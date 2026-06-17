@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!-- SEO: Populated by Cloudflare Worker from Sanity CMS -->
+<title id="page-title">Tiêu đề bài viết · OtaHub</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" id="page-desc" content="Đọc bài viết mới nhất về game, anime và manga từ OtaHub — review chuyên sâu, tin tức và hướng dẫn cập nhật."/>
+<meta name="author" id="page-author" content="OtaHub"/>
+<link rel="canonical" id="page-canonical" href="https://otahub.asia/bai-viet/"/>
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" id="og-title" content="Tiêu đề bài viết · OtaHub"/>
+<meta property="og:description" id="og-desc" content="Đọc bài viết mới nhất về game, anime và manga từ OtaHub — review chuyên sâu, tin tức và hướng dẫn cập nhật."/>
+<meta property="og:url" id="og-url" content="https://otahub.asia/bai-viet/"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:image" id="og-image" content="https://otahub.asia/og-image.png"/>
+<meta property="og:site_name" content="OtaHub"/>
+<meta property="og:locale" content="vi_VN"/>
+  <meta property="article:author" content="OtaHub Team"/>
+  <meta property="article:published_time" content="2026-06-10T00:00:00+07:00"/>
+  <meta property="article:modified_time" content="2026-06-10T00:00:00+07:00"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" id="tw-title" content="Tiêu đề · OtaHub"/>
+<meta name="twitter:image" id="tw-image" content="https://otahub.asia/og-image.png"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"/>
+<meta name="theme-color" content="#0b0220"/>
+<script type="application/ld+json" id="article-schema">
+{
+  "@context":"https://schema.org",
+  "@type":"NewsArticle",
+  "headline":"Tiêu đề bài viết",
+  "description":"Mô tả bài viết",
+  "image":"https://otahub.asia/og-image.png",
+  "datePublished":"2024-01-01T00:00:00+07:00",
+  "dateModified":"2024-01-01T00:00:00+07:00",
+  "author":{"@type":"Person","name":"OtaHub"},
+  "publisher":{"@type":"Organization","name":"OtaHub","url":"https://otahub.asia","logo":{"@type":"ImageObject","url":"https://otahub.asia/favicon-32.png"}},
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://otahub.asia/bai-viet/"}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#0b0418;--surf:#150a2c;--surf2:#1d1040;--card:#190c36;--cyan:#00e5ff;--sakura:#ff3080;--violet:#7c3aed;--lav:#a78bfa;--amber:#fbbf24;--green:#34d399;--white:#f0eeff;--dim:rgba(240,238,255,.72);--muted:rgba(240,238,255,.38);--border:rgba(255,255,255,.07);--bcyan:rgba(0,229,255,.18);--ease:cubic-bezier(.16,1,.3,1);--fd:'Rajdhani',sans-serif;--fb:'Space Grotesk',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:300;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+#amb{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(110px)}
+.o1{width:600px;height:600px;background:radial-gradient(circle,var(--violet),transparent 70%);opacity:.07;top:-150px;left:-100px;animation:fa 18s ease-in-out infinite}
+.o2{width:450px;height:450px;background:radial-gradient(circle,var(--cyan),transparent 70%);opacity:.05;bottom:10%;right:-80px;animation:fb 23s ease-in-out infinite}
+@keyframes fa{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,-30px)}}
+@keyframes fb{0%,100%{transform:translate(0,0)}50%{transform:translate(-35px,25px)}}
+#gtex{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(124,58,237,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.04) 1px,transparent 1px);background-size:48px 48px}
+.nav{position:sticky;top:0;z-index:300;height:60px;background:rgba(11,4,24,.92);border-bottom:1px solid var(--bcyan);backdrop-filter:blur(24px);display:flex;align-items:center}
+.nav-in{max-width:1440px;margin:0 auto;padding:0 24px;width:100%;display:flex;align-items:center;gap:0}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0;margin-right:32px}
+.logo svg{width:30px;height:30px;animation:lp 3s ease-in-out infinite}
+@keyframes lp{0%,100%{filter:drop-shadow(0 0 4px #00e5ff)}50%{filter:drop-shadow(0 0 12px #00e5ff)}}
+.logo-t{font-family:var(--fd);font-weight:700;font-size:20px}
+.logo-ota{color:var(--white)}.logo-hub{color:var(--cyan)}
+.nav-links{display:flex;align-items:center;list-style:none;gap:0;flex:1}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;font-weight:400;letter-spacing:.07em;text-transform:uppercase;padding:0 13px;height:60px;display:flex;align-items:center;position:relative;transition:color .2s}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:2px;background:var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-r{display:flex;align-items:center;gap:8px;margin-left:auto}
+.lang{display:flex;align-items:center;border:1px solid var(--border);overflow:hidden}
+.lb{background:none;border:none;cursor:pointer;font-family:var(--fb);font-size:11px;font-weight:500;letter-spacing:.08em;color:var(--muted);padding:5px 10px;transition:all .18s}
+.lb.on{background:var(--cyan);color:var(--bg);font-weight:600}
+.lsep{width:1px;height:18px;background:var(--border)}
+.nsearch{background:none;border:1px solid var(--border);color:var(--muted);width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s}
+.nsearch:hover{border-color:var(--cyan);color:var(--cyan)}
+.cta{background:var(--cyan);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;padding:8px 20px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:background .18s;text-decoration:none;display:inline-block;white-space:nowrap}
+.cta:hover{background:#33eeff}
+.ham{display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px;align-items:center;justify-content:center}
+.ham span{display:block;width:22px;height:2px;background:rgba(240,238,255,.45);border-radius:2px;transition:all .3s}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:#00e5ff}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:#00e5ff}
+.mobile-nav{display:none;position:fixed;inset:0;top:62px;z-index:290;background:rgba(11,2,32,.97);backdrop-filter:blur(24px);padding:28px 24px;flex-direction:column;gap:0;transform:translateY(-8px);opacity:0;transition:transform .3s,opacity .3s;pointer-events:none}
+.mobile-nav.open{transform:translateY(0);opacity:1;pointer-events:all}
+.mobile-nav a{display:block;color:rgba(240,238,255,.62);text-decoration:none;font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08);transition:color .2s}
+.mobile-nav a:hover{color:#00e5ff}
+.m-sub{display:flex;gap:20px;padding-top:20px;flex-wrap:wrap}
+.m-sub a{font-size:14px;font-weight:400;letter-spacing:.05em;border-bottom:none;color:rgba(240,238,255,.38);padding:6px 0}
+.search-overlay{position:fixed;inset:0;z-index:500;background:rgba(11,2,32,.96);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;opacity:0;pointer-events:none;transition:opacity .25s}
+.search-overlay.open{opacity:1;pointer-events:all}
+.search-box{width:min(640px,90vw);position:relative}
+.search-input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(0,229,255,.2);outline:none;color:#f0eeff;font-family:'Space Grotesk',sans-serif;font-size:20px;padding:18px 56px 18px 20px}
+.search-input::placeholder{color:rgba(240,238,255,.25)}
+.search-close{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(240,238,255,.5);font-size:20px;cursor:pointer}
+.search-hint{font-size:12px;color:rgba(240,238,255,.35)}
+.search-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.stag{color:rgba(240,238,255,.45);text-decoration:none;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:5px 14px;border:1px solid rgba(255,255,255,.08);transition:all .2s}
+.stag:hover{border-color:rgba(0,229,255,.3);color:#00e5ff}
+
+/* ARTICLE HERO */
+.art-hero{position:relative;z-index:1;aspect-ratio:21/7;min-height:300px;max-height:500px;overflow:hidden}
+.art-hero-img{position:absolute;inset:0;background-size:cover;background-position:center;animation:heroPulse 6s ease-in-out infinite alternate}
+@keyframes heroPulse{0%{opacity:.82;filter:saturate(1.05) brightness(.98)}100%{opacity:1;filter:saturate(1.2) brightness(1.06)}}
+.art-hero-grad{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 20%,rgba(11,4,24,.95) 100%)}
+.art-hero-cat{position:absolute;top:24px;left:24px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:5px 14px;border:1px solid rgba(0,229,255,.4);color:var(--cyan);background:rgba(11,4,24,.6);backdrop-filter:blur(8px)}
+
+/* ARTICLE LAYOUT */
+.art-layout{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 300px;gap:48px;position:relative;z-index:1}
+.art-main{padding:40px 0 80px}
+.art-sidebar{padding:40px 0 80px}
+
+/* BREADCRUMB */
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);margin-bottom:20px;flex-wrap:wrap}
+.breadcrumb a{color:var(--muted);text-decoration:none;transition:color .2s}
+.breadcrumb a:hover{color:var(--cyan)}
+.breadcrumb-sep{opacity:.4}
+
+/* ARTICLE HEADER */
+.art-category{display:inline-block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(0,229,255,.3);padding:4px 12px;margin-bottom:16px}
+.art-title{font-family:var(--fd);font-weight:700;font-size:clamp(28px,4vw,52px);line-height:1.05;letter-spacing:-.02em;margin-bottom:16px;color:var(--white)}
+.art-excerpt{font-size:16px;color:var(--dim);line-height:1.75;margin-bottom:24px;border-left:3px solid var(--cyan);padding-left:16px}
+.art-meta{display:flex;align-items:center;gap:20px;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;flex-wrap:wrap}
+.am-author{display:flex;align-items:center;gap:10px}
+.am-avatar{width:32px;height:32px;border-radius:50%;object-fit:cover;background:var(--surf2)}
+.am-name{font-size:13px;color:var(--white);font-weight:500}
+.am-date{font-size:11px;color:var(--muted)}
+.am-sep{width:1px;height:24px;background:var(--border)}
+.am-tag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.am-read{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:5px}
+
+/* ARTICLE BODY */
+.art-body{font-size:15px;color:var(--dim);line-height:1.9}
+.art-body h2{font-family:var(--fd);font-weight:700;font-size:clamp(20px,2.5vw,28px);color:var(--white);margin:36px 0 14px;letter-spacing:-.01em}
+.art-body h3{font-family:var(--fd);font-weight:700;font-size:clamp(17px,2vw,22px);color:var(--white);margin:28px 0 10px}
+.art-body p{margin-bottom:18px}
+.art-body ul,.art-body ol{margin:0 0 18px 24px}
+.art-body li{margin-bottom:8px;line-height:1.75}
+.art-body img{width:100%;height:auto;margin:24px 0;display:block;object-fit:cover}
+.art-body blockquote{border-left:3px solid var(--cyan);padding:16px 20px;background:rgba(0,229,255,.04);margin:24px 0;font-style:italic;color:var(--dim)}
+.art-body a{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(0,229,255,.3)}
+.art-body a:hover{border-color:var(--cyan)}
+.art-body strong{color:var(--white);font-weight:600}
+.art-body code{background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.3);padding:2px 8px;font-size:13px;border-radius:2px;font-family:monospace}
+
+/* VERDICT BOX */
+.verdict-box{background:var(--surf);border:1px solid var(--border);padding:28px 32px;margin:36px 0;position:relative;overflow:hidden}
+.verdict-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--cyan),var(--violet))}
+.vb-title{font-family:var(--fd);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.vb-score{font-family:var(--fd);font-weight:700;font-size:52px;line-height:1;color:var(--cyan);margin-bottom:4px}
+.vb-max{font-size:14px;color:var(--muted)}
+.vb-verdict{font-size:14px;color:var(--dim);margin-top:14px;line-height:1.75}
+
+/* SHARE */
+.share-row{display:flex;align-items:center;gap:10px;padding:24px 0;border-top:1px solid var(--border);margin-top:40px;flex-wrap:wrap}
+.share-lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.share-btn{display:flex;align-items:center;gap:7px;padding:7px 16px;border:1px solid var(--border);font-size:12px;color:var(--dim);cursor:pointer;background:none;transition:all .2s;font-family:var(--fd);font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-decoration:none}
+.share-btn:hover{border-color:rgba(0,229,255,.3);color:var(--cyan);background:rgba(0,229,255,.04)}
+
+/* RELATED */
+.related-section{padding:36px 0;border-top:1px solid var(--border);margin-top:8px}
+.related-title{font-family:var(--fd);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--white);margin-bottom:20px}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rel-card{background:var(--surf);display:flex;gap:12px;padding:14px;text-decoration:none;transition:background .2s}
+.rel-card:hover{background:var(--surf2)}
+.rel-thumb{width:72px;height:56px;object-fit:cover;flex-shrink:0;background:var(--surf2)}
+.rel-info{}
+.rel-cat{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:4px}
+.rel-title{font-size:12px;color:var(--white);line-height:1.4;font-weight:500;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* SIDEBAR */
+.sidebar-block{background:var(--surf);padding:20px;margin-bottom:16px}
+.sb-title{font-family:var(--fd);font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.sb-art{display:flex;gap:10px;margin-bottom:14px;text-decoration:none}
+.sb-art:last-child{margin-bottom:0}
+.sb-thumb{width:56px;height:44px;object-fit:cover;flex-shrink:0;background:var(--surf2)}
+.sb-info{}
+.sb-cat{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:3px}
+.sb-t{font-size:12px;color:var(--white);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .2s}
+.sb-art:hover .sb-t{color:var(--cyan)}
+.sb-tags{display:flex;flex-wrap:wrap;gap:6px}
+.sb-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--border);color:var(--muted);text-decoration:none;transition:all .2s}
+.sb-tag:hover{border-color:rgba(0,229,255,.3);color:var(--cyan)}
+.ad-placeholder{background:rgba(255,255,255,.02);border:1px dashed rgba(255,255,255,.08);height:250px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.ad-placeholder-t{font-size:11px;color:rgba(240,238,255,.15);letter-spacing:.1em;text-transform:uppercase}
+
+footer{position:relative;z-index:1;border-top:1px solid var(--border);background:rgba(6,2,14,.98)}
+.ft-in{max-width:1440px;margin:0 auto;padding:40px 24px 24px;display:grid;grid-template-columns:190px 1fr 1fr 1fr;gap:40px}
+.ft-desc{font-size:12px;color:rgba(240,238,255,.28);line-height:1.7;max-width:170px;margin-top:12px}
+.ft-h{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;font-weight:500}
+.ft-links{display:flex;flex-direction:column;gap:8px;list-style:none}
+.ft-links a{font-size:13px;color:rgba(240,238,255,.42);text-decoration:none;transition:color .2s}
+.ft-links a:hover{color:var(--cyan)}
+.ft-bot{max-width:1440px;margin:0 auto;padding:14px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.ft-copy{font-size:11px;color:rgba(240,238,255,.2)}
+.ft-soc{display:flex;gap:6px}
+.soc{width:28px;height:28px;border:1px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:border-color .2s,color .2s;text-decoration:none}
+.soc:hover{border-color:var(--cyan);color:var(--cyan)}
+@media(max-width:968px){.art-layout{grid-template-columns:1fr}.art-sidebar{display:none}.related-grid{grid-template-columns:1fr}}
+@media(max-width:768px){.nav-links{display:none}.ham{display:flex}.mobile-nav{display:flex}.ft-in{grid-template-columns:1fr;gap:24px}.art-title{font-size:28px}.art-meta{gap:12px}}
+
+/* === MOBILE ACCESSIBILITY FIXES === */
+.ham{min-width:44px;min-height:44px;display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px;align-items:center;justify-content:center}
+input,select,textarea{font-size:16px!important}
+*{-webkit-tap-highlight-color:transparent}
+@media(max-width:768px){
+  .ham{display:flex}
+  a,button{min-height:44px;display:inline-flex;align-items:center}
+  .nav-links a{min-height:60px}
+}
+</style>
+  <link rel="manifest" href="/manifest.json"/>
+  <title id="page-title">Bài Viết · OtaHub | Tin tức Game, Anime & Manga</title>
+</head>
+<body>
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <input class="search-input" id="searchInput" type="text" placeholder="Tìm kiếm game, anime, manga..."/>
+    <button class="search-close" onclick="closeSearch()">✕</button>
+  </div>
+  <div class="search-hint">Nhấn ESC để đóng</div>
+  <div class="search-tags">
+    <a href="gaming.html" class="stag">Gaming</a><a href="anime.html" class="stag">Anime</a><a href="manga.html" class="stag">Manga</a><a href="reviews.html" class="stag">Reviews</a>
+  </div>
+</div>
+<div id="amb"><div class="orb o1"></div><div class="orb o2"></div></div>
+<div id="gtex"></div>
+<nav class="nav">
+  <div class="nav-in">
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"/><rect x="8" y="14" width="18" height="2" fill="#ff3080"/><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"/><rect x="13" y="16" width="2" height="9" fill="#ff3080"/><rect x="19" y="16" width="2" height="9" fill="#ff3080"/><rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".5"/><rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".5"/></svg>
+      <span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="choi-gi.html">Chơi Gì?</a></li>
+      <li><a href="gaming.html">Gaming</a></li>
+      <li><a href="anime.html">Anime</a></li>
+      <li><a href="manga.html">Manga</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="rankings.html">Rankings</a></li>
+    </ul>
+    <button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+    <div class="nav-r">
+      <div class="lang"><button class="lb on" id="bvi" onclick="setLang('vi')">VI</button><div class="lsep"></div><button class="lb" id="ben" onclick="setLang('en')">EN</button></div>
+      <button class="nsearch" onclick="openSearch()"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></button>
+      <a href="index.html#newsletter" class="cta">Subscribe</a>
+    </div>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="choi-gi.html">Chơi Gì?</a><a href="gaming.html">Gaming</a><a href="anime.html">Anime</a>
+  <a href="manga.html">Manga</a><a href="reviews.html">Reviews</a><a href="rankings.html">Rankings</a>
+  <div class="m-sub"><a href="bai-viet.html">Bài Viết</a><a href="about.html">Giới thiệu</a></div>
+</div>
+
+<!-- HERO IMAGE -->
+<div class="art-hero" id="artHero">
+  <div class="art-hero-img" id="artHeroImg" style="background-image:url('https://picsum.photos/seed/article-hero/1400/500')"></div>
+  <div class="art-hero-grad"></div>
+  <div class="art-hero-cat" id="artCategoryBadge">Gaming</div>
+</div>
+
+<!-- LAYOUT -->
+<div class="art-layout">
+  <!-- MAIN CONTENT -->
+  <main class="art-main">
+    <!-- BREADCRUMB -->
+    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a href="index.html">Trang chủ</a>
+      <span class="breadcrumb-sep">›</span>
+      <a href="bai-viet.html">Bài viết</a>
+      <span class="breadcrumb-sep">›</span>
+      <a href="gaming.html" id="breadcrumbCat">Gaming</a>
+      <span class="breadcrumb-sep">›</span>
+      <span id="breadcrumbTitle">Tiêu đề bài viết</span>
+    </nav>
+
+    <div class="art-category" id="artCategory">Gaming</div>
+    <h1 class="art-title" id="artTitle">Tiêu đề bài viết đầy đủ sẽ hiển thị tại đây</h1>
+    <p class="art-excerpt" id="artExcerpt">Đoạn mô tả ngắn giới thiệu nội dung bài viết. Được lấy từ trường "excerpt" trong Sanity CMS.</p>
+
+    <div class="art-meta">
+      <div class="am-author">
+        <img class="am-avatar" id="authorAvatar" src="https://picsum.photos/seed/author/32/32" alt="Author avatar"/ loading="lazy">
+        <div>
+          <div class="am-name" id="authorName">OtaHub Editorial</div>
+          <div class="am-date" id="pubDate">01 tháng 1, 2024</div>
+        </div>
+      </div>
+      <div class="am-sep"></div>
+      <span class="am-tag" id="artCatTag">🎮 Gaming</span>
+      <div class="am-sep"></div>
+      <span class="am-read" id="readTime">⏱ 5 phút đọc</span>
+    </div>
+
+    <!-- ARTICLE BODY — populated by Cloudflare Worker from Sanity portable text -->
+    <div class="art-body" id="artBody">
+      <p>Nội dung bài viết sẽ được tải tự động từ Sanity CMS qua Cloudflare Worker. Template này là giao diện tĩnh — khi deploy lên Cloudflare Pages cùng với function <code>/functions/bai-viet/[slug].js</code>, nội dung sẽ được inject vào div <code>#artBody</code> này.</p>
+
+      <h2>Hướng dẫn setup (dành cho developer)</h2>
+      <p>Trang này hoạt động theo mô hình SSR (Server-Side Rendering) nhẹ qua Cloudflare Workers:</p>
+      <ol>
+        <li>User truy cập <code>otahub.asia/bai-viet/ten-bai</code></li>
+        <li>Cloudflare Worker intercept request, query Sanity API</li>
+        <li>Worker inject title, description, body vào HTML này</li>
+        <li>Trả về HTML đầy đủ với SEO metadata chính xác</li>
+      </ol>
+
+      <blockquote>Khi chưa có Cloudflare Worker, bạn có thể dùng JavaScript fetch() trực tiếp trong trang này để load nội dung từ Sanity. Không cần SSR cho giai đoạn đầu.</blockquote>
+
+      <h2>Sanity Portable Text Rendering</h2>
+      <p>Nội dung từ Sanity được lưu dưới dạng Portable Text — cần convert sang HTML trước khi render. Sử dụng thư viện <code>@portabletext/to-html</code> trong Cloudflare Worker.</p>
+    </div>
+
+    <!-- VERDICT (cho bài review) -->
+    <div class="verdict-box" id="verdictBox" style="display:none">
+      <div class="vb-title">Điểm đánh giá OtaHub</div>
+      <div class="vb-score" id="vbScore">8.5</div><span class="vb-max">/10</span>
+      <div class="vb-verdict" id="vbVerdict">Đánh giá tổng thể của OtaHub về sản phẩm này.</div>
+    </div>
+
+    <!-- SHARE -->
+    <div class="share-row">
+      <span class="share-lbl">Chia sẻ:</span>
+      <a class="share-btn" id="shareFB" href="#" target="_blank" rel="noopener">
+        <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        Facebook
+      </a>
+      <a class="share-btn" id="shareTW" href="#" target="_blank" rel="noopener">
+        <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        Twitter
+      </a>
+      <button class="share-btn" onclick="copyLink()">
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        Sao chép link
+      </button>
+    </div>
+
+    <!-- RELATED ARTICLES -->
+    <div class="related-section">
+      <div class="related-title">Bài viết liên quan</div>
+      <div class="related-grid" id="relatedGrid">
+        <a href="article.html" class="rel-card">
+          <img class="rel-thumb" src="https://picsum.photos/seed/rel1/72/56" alt=""/ loading="lazy">
+          <div class="rel-info"><div class="rel-cat">Gaming</div><div class="rel-title">Elden Ring: Shadow of the Erdtree — Review sau 40 giờ chơi</div></div>
+        </a>
+        <a href="article.html" class="rel-card">
+          <img class="rel-thumb" src="https://picsum.photos/seed/rel2/72/56" alt=""/ loading="lazy">
+          <div class="rel-info"><div class="rel-cat">Anime</div><div class="rel-title">Frieren: Beyond Journey's End kết thúc như thế nào?</div></div>
+        </a>
+        <a href="article.html" class="rel-card">
+          <img class="rel-thumb" src="https://picsum.photos/seed/rel3/72/56" alt=""/ loading="lazy">
+          <div class="rel-info"><div class="rel-cat">Gaming</div><div class="rel-title">Top 5 game indie đáng chú ý nhất tháng 6/2024</div></div>
+        </a>
+        <a href="article.html" class="rel-card">
+          <img class="rel-thumb" src="https://picsum.photos/seed/rel4/72/56" alt=""/ loading="lazy">
+          <div class="rel-info"><div class="rel-cat">Manga</div><div class="rel-title">Chainsaw Man chap mới: Asa Mitaka và bí ẩn hợp đồng</div></div>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="art-sidebar">
+    <div class="ad-placeholder"><span class="ad-placeholder-t">Quảng cáo</span></div>
+
+    <div class="sidebar-block">
+      <div class="sb-title">Đọc nhiều nhất</div>
+      <a href="article.html" class="sb-art">
+        <img class="sb-thumb" src="https://picsum.photos/seed/sb1/56/44" alt=""/ loading="lazy">
+        <div class="sb-info"><div class="sb-cat">Gaming</div><div class="sb-t">Black Myth: Wukong — Kiệt tác từ Trung Quốc đã đến</div></div>
+      </a>
+      <a href="article.html" class="sb-art">
+        <img class="sb-thumb" src="https://picsum.photos/seed/sb2/56/44" alt=""/ loading="lazy">
+        <div class="sb-info"><div class="sb-cat">Anime</div><div class="sb-t">Demon Slayer Season 4 — Hashira Training Arc</div></div>
+      </a>
+      <a href="article.html" class="sb-art">
+        <img class="sb-thumb" src="https://picsum.photos/seed/sb3/56/44" alt=""/ loading="lazy">
+        <div class="sb-info"><div class="sb-cat">Manga</div><div class="sb-t">One Piece 1113: Luffy vs Gorosei — trận chiến đỉnh cao</div></div>
+      </a>
+      <a href="article.html" class="sb-art">
+        <img class="sb-thumb" src="https://picsum.photos/seed/sb4/56/44" alt=""/ loading="lazy">
+        <div class="sb-info"><div class="sb-cat">Review</div><div class="sb-t">Stellar Blade — review sau khi patch 1.05</div></div>
+      </a>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sb-title">Tags</div>
+      <div class="sb-tags">
+        <a href="gaming.html" class="sb-tag">Game PC</a>
+        <a href="gaming.html" class="sb-tag">Mobile</a>
+        <a href="anime.html" class="sb-tag">Shounen</a>
+        <a href="anime.html" class="sb-tag">Isekai</a>
+        <a href="manga.html" class="sb-tag">Manga</a>
+        <a href="reviews.html" class="sb-tag">Review</a>
+        <a href="rankings.html" class="sb-tag">Ranking</a>
+      </div>
+    </div>
+
+    <div class="ad-placeholder"><span class="ad-placeholder-t">Quảng cáo</span></div>
+  </aside>
+</div>
+
+<footer>
+  <div class="ft-in">
+    <div>
+      <a href="index.html" class="logo" style="margin:0 0 10px"><svg viewBox="0 0 34 34" fill="none" width="26" height="26"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"/><rect x="8" y="14" width="18" height="2" fill="#ff3080"/></svg><span class="logo-t" style="font-size:17px"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a>
+      <p class="ft-desc">Hub tin tức Gaming & Anime châu Á.</p>
+    </div>
+    <div><div class="ft-h">Nội dung</div><ul class="ft-links"><li><a href="gaming.html">Gaming</a></li><li><a href="anime.html">Anime</a></li><li><a href="manga.html">Manga</a></li><li><a href="reviews.html">Reviews</a></li></ul></div>
+    <div><div class="ft-h">Khám phá</div><ul class="ft-links"><li><a href="choi-gi.html">Hôm Nay Chơi Gì?</a></li><li><a href="rankings.html">Xếp Hạng</a></li><li><a href="bai-viet.html">Bài Viết</a></li></ul></div>
+    <div><div class="ft-h">OtaHub</div><ul class="ft-links"><li><a href="about.html">Giới thiệu</a></li><li><a href="lien-he.html">Liên hệ</a></li><li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li></ul></div>
+  </div>
+  <div class="ft-bot"><span class="ft-copy">© 2024 OtaHub · Gaming & Anime Hub châu Á</span><div class="ft-soc"><a href="#" class="soc" aria-label="Facebook"><svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></div></div>
+</footer>
+
+<script>
+function toggleMobileNav(){const b=document.getElementById('hamBtn'),n=document.getElementById('mobileNav');b.classList.toggle('open');n.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':''}
+function openSearch(){document.getElementById('searchOverlay').classList.add('open');setTimeout(()=>document.getElementById('searchInput').focus(),100)}
+function closeSearch(){document.getElementById('searchOverlay').classList.remove('open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSearch()})
+function setLang(l){document.getElementById('bvi').classList.toggle('on',l==='vi');document.getElementById('ben').classList.toggle('on',l==='en')}
+function copyLink(){navigator.clipboard.writeText(location.href).then(()=>{const b=event.target.closest('.share-btn');const orig=b.textContent;b.textContent='✓ Đã sao chép!';setTimeout(()=>b.textContent=orig,2000)})}
+
+// Share links
+const url = encodeURIComponent(location.href);
+const title = encodeURIComponent(document.getElementById('artTitle').textContent);
+document.getElementById('shareFB').href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+document.getElementById('shareTW').href = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+
+// Reading time estimator
+window.addEventListener('DOMContentLoaded',()=>{
+  const body = document.getElementById('artBody');
+  if(body){const words=body.textContent.trim().split(/\s+/).length;const mins=Math.max(1,Math.round(words/200));document.getElementById('readTime').textContent=`⏱ ${mins} phút đọc`}
+});
+
+// Populate from URL param or Sanity (placeholder logic)
+// In production: Cloudflare Worker injects content server-side
+// For dev/preview: fetch from Sanity API client-side
+const params = new URLSearchParams(location.search);
+const slug = params.get('slug') || location.pathname.split('/').pop().replace('.html','');
+// TODO: if(slug && slug !== 'article') { fetchFromSanity(slug); }
+</script>
+</body>
+</html>

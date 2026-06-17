@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<title id="page-title">Tên Manga · Thông Tin & Review · OtaHub</title>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" id="page-desc" content="Thông tin chi tiết, điểm số và review manga. Số chương, tác giả, thể loại, trạng thái dịch — đầy đủ tại OtaHub."/>
+<link rel="canonical" id="page-canonical" href="https://otahub.asia/manga-detail.html"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:type" content="article"/><meta property="og:title" id="og-title" content="Tên Manga · OtaHub"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:image" id="og-image" content="https://otahub.asia/og-image.png"/>
+<meta property="og:site_name" content="OtaHub"/><meta property="og:locale" content="vi_VN"/>
+<meta name="twitter:image" content="https://otahub.asia/og-image.png"/>
+    <meta property="article:author" content="OtaHub Team"/>
+  <meta property="article:published_time" content="2026-06-10T00:00:00+07:00"/>
+  <meta property="article:modified_time" content="2026-06-10T00:00:00+07:00"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"/>
+<meta name="theme-color" content="#0b0220"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#0e0e12;--surf:#16161c;--surf2:#1e1e26;--cyan:#00e5ff;--sakura:#ff3080;--violet:#7c3aed;--lav:#a78bfa;--amber:#fbbf24;--green:#34d399;--white:#f2f2f4;--dim:#c4c4cc;--muted:#787885;--border:rgba(255,255,255,.09);--bcyan:rgba(0,229,255,.15);--ease:cubic-bezier(.16,1,.3,1);--fd:'Rajdhani',sans-serif;--fb:'Space Grotesk',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:300;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+#amb{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(110px)}
+.o1{width:600px;height:600px;background:radial-gradient(circle,var(--sakura),transparent 70%);opacity:.04;top:-100px;right:-100px;animation:fa 18s ease-in-out infinite}
+.o2{width:500px;height:500px;background:radial-gradient(circle,var(--violet),transparent 70%);opacity:.05;bottom:10%;left:-80px;animation:fb 22s ease-in-out infinite}
+@keyframes fa{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,20px)}}
+@keyframes fb{0%,100%{transform:translate(0,0)}50%{transform:translate(25px,-20px)}}
+#gtex{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(124,58,237,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.04) 1px,transparent 1px);background-size:48px 48px}
+.nav{position:sticky;top:0;z-index:300;height:60px;background:rgba(10,10,14,.95);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(24px);display:flex;align-items:center}
+.nav-in{max-width:1440px;margin:0 auto;padding:0 24px;width:100%;display:flex;align-items:center;gap:0}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0;margin-right:32px}
+.logo svg{width:30px;height:30px;animation:lp 3s ease-in-out infinite}
+@keyframes lp{0%,100%{filter:drop-shadow(0 0 4px #00e5ff)}50%{filter:drop-shadow(0 0 12px #00e5ff)}}
+.logo-t{font-family:var(--fd);font-weight:700;font-size:20px}.logo-ota{color:var(--white)}.logo-hub{color:var(--cyan)}
+.nav-links{display:flex;align-items:center;list-style:none;gap:0;flex:1}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;font-weight:400;letter-spacing:.07em;text-transform:uppercase;padding:0 13px;height:60px;display:flex;align-items:center;position:relative;transition:color .2s}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:2px;background:var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-r{display:flex;align-items:center;gap:8px;margin-left:auto}
+.lang{display:flex;align-items:center;border:1px solid var(--border);overflow:hidden}
+.lb{background:none;border:none;cursor:pointer;font-family:var(--fb);font-size:11px;font-weight:500;letter-spacing:.08em;color:var(--muted);padding:5px 10px;transition:all .18s}
+.lb.on{background:var(--cyan);color:var(--bg);font-weight:600}
+.lsep{width:1px;height:18px;background:var(--border)}
+.nsearch{background:none;border:1px solid var(--border);color:var(--muted);width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s}
+.nsearch:hover{border-color:var(--cyan);color:var(--cyan)}
+.cta{background:var(--cyan);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;padding:8px 20px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:background .18s;text-decoration:none;display:inline-block;white-space:nowrap}
+.cta:hover{background:#33eeff}
+.ham{display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px;align-items:center;justify-content:center}
+.ham span{display:block;width:22px;height:2px;background:rgba(240,238,255,.45);border-radius:2px;transition:all .3s}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:#00e5ff}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:#00e5ff}
+.mobile-nav{display:none;position:fixed;inset:0;top:62px;z-index:290;background:rgba(11,2,32,.97);backdrop-filter:blur(24px);padding:28px 24px;flex-direction:column;gap:0;transform:translateY(-8px);opacity:0;transition:transform .3s,opacity .3s;pointer-events:none}
+.mobile-nav.open{transform:translateY(0);opacity:1;pointer-events:all}
+.mobile-nav a{display:block;color:rgba(240,238,255,.62);text-decoration:none;font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08);transition:color .2s}
+.mobile-nav a:hover,.mobile-nav a.active{color:#00e5ff}
+.m-sub{display:flex;gap:20px;padding-top:20px;flex-wrap:wrap}
+.m-sub a{font-size:14px;font-weight:400;letter-spacing:.05em;border-bottom:none;color:rgba(240,238,255,.38);padding:6px 0}
+.search-overlay{position:fixed;inset:0;z-index:500;background:rgba(11,2,32,.96);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;opacity:0;pointer-events:none;transition:opacity .25s}
+.search-overlay.open{opacity:1;pointer-events:all}
+.search-box{width:min(640px,90vw);position:relative}
+.search-input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(0,229,255,.2);outline:none;color:#f0eeff;font-family:'Space Grotesk',sans-serif;font-size:20px;padding:18px 56px 18px 20px}
+.search-input::placeholder{color:rgba(240,238,255,.25)}
+.search-close{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(240,238,255,.5);font-size:20px;cursor:pointer}
+.search-hint{font-size:12px;color:rgba(240,238,255,.35)}
+.search-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.stag{color:rgba(240,238,255,.45);text-decoration:none;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:5px 14px;border:1px solid rgba(255,255,255,.08);transition:all .2s}
+.stag:hover{border-color:rgba(0,229,255,.3);color:#00e5ff}
+
+/* ANIME HERO */
+.anime-hero{position:relative;z-index:1;min-height:420px;overflow:hidden;display:flex;align-items:flex-end}
+.ah-bg{position:absolute;inset:0;background-size:cover;background-position:center top;filter:saturate(1.2) brightness(.85)}
+.ah-grad{position:absolute;inset:0;background:linear-gradient(105deg,rgba(11,4,24,.97) 0%,rgba(11,4,24,.7) 50%,rgba(11,4,24,.2) 100%)}
+.ah-content{position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:40px 40px 48px;width:100%;display:flex;gap:32px;align-items:flex-end}
+.ah-poster{width:160px;height:230px;object-fit:cover;flex-shrink:0;border:2px solid rgba(255,48,128,.25);box-shadow:0 0 40px rgba(255,48,128,.15)}
+.ah-info{flex:1}
+.ah-badges{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.ah-badge{font-size:9px;letter-spacing:.16em;text-transform:uppercase;padding:3px 10px;border:1px solid;color:var(--sakura);border-color:rgba(255,48,128,.3);background:rgba(255,48,128,.07)}
+.ah-badge.type{color:var(--cyan);border-color:rgba(0,229,255,.3);background:rgba(0,229,255,.07)}
+.ah-title{font-family:var(--fd);font-weight:700;font-size:clamp(28px,5vw,64px);line-height:.95;letter-spacing:-.02em;margin-bottom:6px}
+.ah-title-jp{font-size:15px;color:var(--muted);margin-bottom:14px;font-family:sans-serif}
+.ah-synopsis{font-size:14px;color:#c8c8d4;line-height:1.85;max-width:600px}
+.ah-scores{display:flex;gap:20px;margin-top:20px;flex-wrap:wrap}
+.ah-score-item{text-align:center}
+.ah-sc-label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.ah-sc-val{font-family:var(--fd);font-weight:700;font-size:28px;line-height:1}
+.ah-sc-val.c{color:var(--cyan)}.ah-sc-val.m{color:var(--amber)}.ah-sc-val.g{color:var(--green)}
+
+/* LAYOUT */
+.anime-layout{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 280px;gap:40px;position:relative;z-index:1}
+.anime-main{padding:32px 0 80px}
+.anime-sidebar{padding:32px 0 80px}
+
+/* INFO TABLE */
+.info-table{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-bottom:32px}
+.info-row{background:var(--surf);padding:14px 18px;display:flex;flex-direction:column;gap:3px}
+.ir-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#888896}
+.ir-val{font-size:13px;color:#e8e8f0;font-weight:500}
+
+/* SCORE BARS */
+.score-bars{background:var(--surf);padding:24px 28px;margin-bottom:32px}
+.sb-header{font-family:var(--fd);font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--white);margin-bottom:20px}
+.score-item{margin-bottom:14px}
+.score-item:last-child{margin-bottom:0}
+.si-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.si-label{font-size:12px;color:var(--dim)}
+.si-val{font-family:var(--fd);font-weight:700;font-size:14px;color:var(--amber)}
+.si-track{height:4px;background:rgba(255,255,255,.06);position:relative;overflow:hidden}
+.si-fill{height:100%;background:linear-gradient(to right,var(--amber),var(--sakura));width:0;transition:width 1.2s var(--ease)}
+
+/* REVIEW BODY */
+.review-body{font-size:15px;color:#d8d8e0;line-height:1.95}
+.review-body h2{font-family:var(--fd);font-weight:700;font-size:24px;color:#ffffff;margin:32px 0 14px;letter-spacing:-.01em}
+.review-body p{margin-bottom:18px;font-size:15px;line-height:1.95;color:#d0d0da}
+.review-body blockquote{border-left:3px solid var(--amber);padding:16px 20px;background:rgba(251,191,36,.06);margin:24px 0;font-style:italic;font-size:15px;color:#e0e0e8;border-radius:0 4px 4px 0}
+
+/* SIDEBAR */
+.gs-block{background:var(--surf);padding:20px;margin-bottom:14px}
+.gs-title{font-family:var(--fd);font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.where-watch{display:flex;flex-direction:column;gap:8px}
+.ww-btn{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(255,255,255,.03);border:1px solid var(--border);text-decoration:none;font-size:12px;color:var(--white);font-weight:500;transition:all .2s}
+.ww-btn:hover{border-color:rgba(255,48,128,.3);color:var(--sakura);background:rgba(255,48,128,.04)}
+.ww-icon{font-size:18px}
+.sim-list{display:flex;flex-direction:column;gap:8px}
+.sim-item{display:flex;align-items:center;gap:10px;text-decoration:none;padding:8px;border:1px solid transparent;transition:all .2s}
+.sim-item:hover{border-color:var(--border);background:rgba(255,255,255,.03)}
+.si-thumb{width:40px;height:56px;object-fit:cover;flex-shrink:0}
+.si-info{}
+.si-name{font-size:12px;color:var(--white);font-weight:500;line-height:1.3}
+.si-genre{font-size:10px;color:var(--muted)}
+
+
+
+/* PHÙ HỢP VỚI AI */
+.audience-section{margin:40px 0 32px;border-top:1px solid var(--border);padding-top:32px}
+.aud-heading{font-family:var(--fd);font-weight:700;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.aud-heading::before{content:'';display:inline-block;width:3px;height:22px;background:var(--amber)}
+.aud-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:24px}
+.aud-card{background:var(--surf);padding:16px 18px;border:1px solid var(--border);display:flex;gap:12px;align-items:flex-start;transition:border-color .2s}
+.aud-card:hover{border-color:rgba(251,191,36,.25)}
+.aud-icon{font-size:22px;flex-shrink:0;line-height:1}
+.aud-text{}
+.aud-type{font-family:var(--fd);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#fff;margin-bottom:3px}
+.aud-desc{font-size:12px;color:#9090a0;line-height:1.55}
+.aud-warn{background:rgba(255,170,0,.05);border:1px solid rgba(255,170,0,.15);padding:14px 18px;display:flex;gap:12px;align-items:flex-start;margin-top:4px}
+.aud-warn-icon{font-size:18px;flex-shrink:0}
+.aud-warn-text{font-size:12px;color:#c0a060;line-height:1.6}
+.aud-tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.aud-tag{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;padding:4px 12px;border:1px solid rgba(251,191,36,.25);color:var(--amber);background:rgba(251,191,36,.06)}
+/* VERDICT BOX */
+.verdict-box{background:linear-gradient(135deg,rgba(251,191,36,.08) 0%,rgba(124,58,237,.08) 100%);border:1px solid rgba(251,191,36,.2);padding:28px 32px;margin:32px 0;display:flex;gap:28px;align-items:center}
+.v-score{text-align:center;flex-shrink:0}
+.v-num{font-family:var(--fd);font-weight:700;font-size:72px;line-height:1;background:linear-gradient(135deg,var(--amber),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.v-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.v-badge{display:inline-block;background:rgba(255,48,128,.12);border:1px solid rgba(251,191,36,.3);color:var(--amber);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:4px 14px;margin-top:8px}
+.v-text{flex:1}
+.v-summary{font-size:14px;color:#c8c8d8;line-height:1.88;font-style:italic}
+.v-divider{width:2px;height:80px;background:linear-gradient(to bottom,transparent,rgba(251,191,36,.3),transparent);flex-shrink:0}
+
+/* PROS CONS */
+.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:28px 0}
+.pc-col{background:var(--surf);padding:20px 22px}
+.pc-head{font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px}
+.pc-head.pro{color:var(--green)}.pc-head.con{color:var(--amber)}
+.pc-list{display:flex;flex-direction:column;gap:10px;list-style:none}
+.pc-item{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--dim);line-height:1.5}
+.pc-icon{flex-shrink:0;font-size:14px;margin-top:1px}
+
+/* REVIEW TABS */
+.rtab-bar{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:28px}
+.rtab-btn{background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:12px 18px;transition:all .2s;margin-bottom:-1px}
+.rtab-btn.active{color:var(--amber);border-bottom-color:var(--amber)}
+.rtab-panel{display:none}.rtab-panel.active{display:block}
+
+/* TRAILER */
+.trailer-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;background:var(--surf);margin:24px 0}
+.trailer-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.trailer-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;cursor:pointer;transition:background .2s}
+.trailer-placeholder:hover{background:rgba(251,191,36,.04)}
+.tp-play{width:64px;height:64px;background:rgba(251,191,36,.12);border:2px solid rgba(251,191,36,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;transition:all .25s}
+.trailer-placeholder:hover .tp-play{background:rgba(255,48,128,.25);transform:scale(1.06)}
+.tp-label{font-family:var(--fd);font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+
+/* SHARE BAR */
+.share-bar{display:flex;align-items:center;gap:8px;padding:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:32px 0}
+.share-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.share-btn{background:var(--surf);border:1px solid var(--border);color:var(--muted);font-size:12px;font-weight:500;padding:7px 16px;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.share-btn:hover{border-color:rgba(251,191,36,.3);color:var(--amber)}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);background:rgba(6,2,14,.98)}
+.ft-in{max-width:1440px;margin:0 auto;padding:40px 24px 24px;display:grid;grid-template-columns:190px 1fr 1fr 1fr;gap:40px}
+.ft-desc{font-size:12px;color:rgba(240,238,255,.28);line-height:1.7;max-width:170px;margin-top:12px}
+.ft-h{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;font-weight:500}
+.ft-links{display:flex;flex-direction:column;gap:8px;list-style:none}
+.ft-links a{font-size:13px;color:rgba(240,238,255,.42);text-decoration:none;transition:color .2s}
+.ft-links a:hover{color:var(--cyan)}
+.ft-bot{max-width:1440px;margin:0 auto;padding:14px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.ft-copy{font-size:11px;color:rgba(240,238,255,.2)}
+@media(max-width:960px){.anime-layout{grid-template-columns:1fr}.anime-sidebar{display:none}}
+@media(max-width:768px){.nav-links{display:none}.ham{display:flex}.mobile-nav{display:flex}.ft-in{grid-template-columns:1fr;gap:24px}.ah-content{flex-direction:column;align-items:flex-start;gap:16px;padding:24px}.ah-poster{width:100px;height:142px}.info-table{grid-template-columns:1fr}}
+
+/* === MOBILE ACCESSIBILITY FIXES === */
+.ham{min-width:44px;min-height:44px;display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px;align-items:center;justify-content:center}
+input,select,textarea{font-size:16px!important}
+*{-webkit-tap-highlight-color:transparent}
+@media(max-width:768px){
+  .ham{display:flex}
+  a,button{min-height:44px;display:inline-flex;align-items:center}
+  .nav-links a{min-height:60px}
+}
+</style>
+  <title>Chainsaw Man — Review Manga & Thông Tin · OtaHub</title>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Review","name":"Chainsaw Man Manga Review","reviewRating":{"@type":"Rating","ratingValue":"9.0","bestRating":"10"},"author":{"@type":"Organization","name":"OtaHub"},"publisher":{"@type":"Organization","name":"OtaHub"}}</script>
+  <link rel="manifest" href="/manifest.json"/>
+</head>
+<body>
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box"><input class="search-input" id="searchInput" type="text" placeholder="Tìm kiếm game, anime, manga..."/><button class="search-close" onclick="closeSearch()">✕</button></div>
+  <div class="search-hint">Nhấn ESC để đóng</div>
+  <div class="search-tags"><a href="gaming.html" class="stag">Gaming</a><a href="anime.html" class="stag">Anime</a><a href="manga.html" class="stag">Manga</a></div>
+</div>
+<div id="amb"><div class="orb o1"></div><div class="orb o2"></div></div>
+<div id="gtex"></div>
+<nav class="nav">
+  <div class="nav-in">
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"/><rect x="8" y="14" width="18" height="2" fill="#ff3080"/><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"/><rect x="13" y="16" width="2" height="9" fill="#ff3080"/><rect x="19" y="16" width="2" height="9" fill="#ff3080"/><rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".5"/><rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".5"/></svg>
+      <span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="choi-gi.html">Chơi Gì?</a></li>
+      <li><a href="gaming.html">Gaming</a></li>
+      <li><a href="anime.html">Anime</a></li>
+      <li><a href="manga.html">Manga</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="rankings.html">Rankings</a></li>
+    </ul>
+    <button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+    <div class="nav-r">
+      <div class="lang"><button class="lb on" id="bvi" onclick="setLang('vi')">VI</button><div class="lsep"></div><button class="lb" id="ben" onclick="setLang('en')">EN</button></div>
+      <button class="nsearch" onclick="openSearch()"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></button>
+      <a href="index.html#newsletter" class="cta">Subscribe</a>
+    </div>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="choi-gi.html">Chơi Gì?</a><a href="gaming.html">Gaming</a><a href="anime.html">Anime</a>
+  <a href="manga.html">Manga</a><a href="reviews.html">Reviews</a><a href="rankings.html">Rankings</a>
+  <div class="m-sub"><a href="about.html">Giới thiệu</a><a href="lien-he.html">Liên hệ</a></div>
+</div>
+
+<!-- ANIME HERO -->
+<section class="anime-hero">
+  <div class="ah-bg" id="animeBg" style="background-image:url('https://picsum.photos/seed/anime-bg/1400/500')"></div>
+  <div class="ah-grad"></div>
+  <div class="ah-content">
+    <img class="ah-poster" id="animePoster" src="https://picsum.photos/seed/anime-poster/160/230" alt="Anime Poster"/ loading="lazy">
+    <div class="ah-info">
+      <div class="ah-badges">
+        <span class="ah-badge type">TV Series</span>
+        <span class="ah-badge">Shounen</span>
+        <span class="ah-badge">Fantasy</span>
+        <span class="ah-badge">Adventure</span>
+      </div>
+      <h1 class="ah-title" id="animeTitle">Chainsaw Man<br/>チェンソーマン</h1>
+      <div class="ah-title-jp" id="animeTitleJp">Fujimoto Tatsuki · Weekly Shōnen Jump</div>
+      <p class="ah-synopsis" id="animeSynopsis">Denji — một chàng trai nghèo làm thợ săn quỷ — hợp nhất với chú chó quỷ Pochita trở thành Chainsaw Man. Được tuyển vào Public Safety Devil Hunters, Denji bước vào thế giới nguy hiểm nơi quỷ và bí mật che giấu đằng sau toàn bộ hệ thống.</p>
+      <div class="ah-scores">
+        <div class="ah-score-item"><div class="ah-sc-label">OtaHub</div><div class="ah-sc-val c" id="animeScore">9.6</div></div>
+        <div class="ah-score-item"><div class="ah-sc-label">MAL Score</div><div class="ah-sc-val m" id="malScore">9.33</div></div>
+        <div class="ah-score-item"><div class="ah-sc-label">Tập</div><div class="ah-sc-val g" id="epCount">28</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAYOUT -->
+<div class="anime-layout">
+  <main class="anime-main">
+    <div class="info-table">
+      <div class="info-row"><span class="ir-label">Tác giả</span><span class="ir-val" id="studio">Fujimoto Tatsuki</span></div>
+      <div class="info-row"><span class="ir-label">Xuất bản</span><span class="ir-val" id="airDate">12/2018 – hiện tại</span></div>
+      <div class="info-row"><span class="ir-label">Số chương</span><span class="ir-val" id="eps">Part 1: 97ch · Part 2: đang tiếp</span></div>
+      <div class="info-row"><span class="ir-label">Nhà xuất bản</span><span class="ir-val" id="source">Shueisha · Viz Media</span></div>
+      <div class="info-row"><span class="ir-label">Thể loại</span><span class="ir-val" id="genres">Shounen · Action · Siêu nhiên</span></div>
+      <div class="info-row"><span class="ir-label">Đối tượng</span><span class="ir-val" id="audience">16+ · Nội dung bạo lực</span></div>
+      <div class="info-row"><span class="ir-label">Trạng thái</span><span class="ir-val" id="status" style="color:var(--green)">🔄 Đang tiếp diễn · Part 2</span></div>
+      <div class="info-row"><span class="ir-label">Bản dịch VN</span><span class="ir-val" id="vietsub">TruyenQQ · MangaDex Vietnamese</span></div>
+    </div>
+
+    <div class="score-bars">
+      <div class="sb-header">Điểm chi tiết OtaHub</div>
+      <div class="score-item"><div class="si-row"><span class="si-label">Hoạt hình & Kỹ thuật</span><span class="si-val">9.8</span></div><div class="si-track"><div class="si-fill" data-w="98"></div></div></div>
+      <div class="score-item"><div class="si-row"><span class="si-label">Cốt truyện & Kịch bản</span><span class="si-val">9.7</span></div><div class="si-track"><div class="si-fill" data-w="97"></div></div></div>
+      <div class="score-item"><div class="si-row"><span class="si-label">Nhân vật</span><span class="si-val">9.5</span></div><div class="si-track"><div class="si-fill" data-w="95"></div></div></div>
+      <div class="score-item"><div class="si-row"><span class="si-label">Âm nhạc</span><span class="si-val">9.4</span></div><div class="si-track"><div class="si-fill" data-w="94"></div></div></div>
+      <div class="score-item"><div class="si-row"><span class="si-label">Cảm xúc & Tác động</span><span class="si-val">9.9</span></div><div class="si-track"><div class="si-fill" data-w="99"></div></div></div>
+    </div>
+
+    <!-- VERDICT -->
+    <div class="verdict-box">
+      <div class="v-score">
+        <div class="v-num" style="-webkit-text-fill-color:transparent;background:linear-gradient(135deg,var(--amber),var(--sakura));-webkit-background-clip:text;background-clip:text">9.4</div>
+        <div class="v-label">OtaHub Score</div>
+        <div class="v-badge" style="border-color:rgba(251,191,36,.3);color:var(--amber);background:rgba(251,191,36,.1)">Xuất Sắc</div>
+      </div>
+      <div class="v-divider" style="background:linear-gradient(to bottom,transparent,rgba(251,191,36,.3),transparent)"></div>
+      <div class="v-text">
+        <p class="v-summary">Chainsaw Man là cú tát vào mặt tất cả những quy ước của shounen. Fujimoto viết như một người không sợ gì — không sợ giết nhân vật, không sợ subvert expectations, không sợ để độc giả hoang mang. Kết quả là một tác phẩm nguyên thủy, hỗn loạn và sâu sắc một cách bất ngờ.</p>
+      </div>
+    </div>
+
+    <!-- PROS CONS -->
+    <div class="pros-cons">
+      <div class="pc-col">
+        <div class="pc-head pro">✦ Điểm mạnh</div>
+        <ul class="pc-list">
+          <li class="pc-item"><span class="pc-icon">✓</span>Storytelling không theo công thức — unpredictable hoàn toàn</li>
+          <li class="pc-item"><span class="pc-icon">✓</span>Nhân vật phức tạp, đặc biệt Denji và Power</li>
+          <li class="pc-item"><span class="pc-icon">✓</span>Nghệ thuật panel và bố cục trang độc đáo</li>
+          <li class="pc-item"><span class="pc-icon">✓</span>Action sequences rõ ràng, dữ dội, sáng tạo</li>
+          <li class="pc-item"><span class="pc-icon">✓</span>Chủ đề sâu ẩn dưới lớp bề mặt violent</li>
+        </ul>
+      </div>
+      <div class="pc-col">
+        <div class="pc-head con">✦ Điểm yếu</div>
+        <ul class="pc-list">
+          <li class="pc-item"><span class="pc-icon">✗</span>Bạo lực và gore mạnh — không dành cho tất cả mọi người</li>
+          <li class="pc-item"><span class="pc-icon">✗</span>Part 2 pacing chậm hơn, chia rẽ fandom</li>
+          <li class="pc-item"><span class="pc-icon">✗</span>Một số arc phụ cảm giác padding</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- REVIEW TABS -->
+    <div class="rtab-bar">
+      <button class="rtab-btn active" onclick="switchRTab('story',this)">Cốt Truyện</button>
+      <button class="rtab-btn" onclick="switchRTab('art',this)">Nghệ Thuật</button>
+      <button class="rtab-btn" onclick="switchRTab('char',this)">Nhân Vật</button>
+      <button class="rtab-btn" onclick="switchRTab('theme',this)">Chủ Đề</button>
+    </div>
+
+    <div id="tab-story" class="rtab-panel active review-body">
+      <h2>Manga phá vỡ mọi quy tắc shounen</h2>
+      <p>Chainsaw Man bắt đầu bằng premise nghe quen: chàng trai nghèo muốn có cuộc sống bình thường, bị cuốn vào thế giới siêu nhiên. Nhưng sau đó Fujimoto làm mọi thứ khác hoàn toàn với những gì bạn expect.</p>
+      <blockquote>"Tôi chỉ muốn ăn ba bữa một ngày. Đó là tất cả những gì tôi cần." — Denji</blockquote>
+      <p>Không có "power of friendship" truyền thống. Không có nakama speech. Mỗi arc kết thúc với cái giá thực sự — nhân vật chết, không có respawn. Fujimoto đối xử với cái chết như là công cụ narrative, không phải gimmick shock value.</p>
+      <h2>Part 2: Academy Saga và sự trưởng thành</h2>
+      <p>Part 2 dịch chuyển focus sang Asa Mitaka — một nhân vật chính hoàn toàn mới với dynamic cực kỳ thú vị: chia sẻ cơ thể với War Devil. Pacing chậm hơn Part 1 nhưng character work sâu hơn nhiều.</p>
+    </div>
+
+    <div id="tab-art" class="rtab-panel review-body">
+      <h2>Panel layout như một ngôn ngữ riêng</h2>
+      <p>Fujimoto không vẽ đẹp theo nghĩa conventional — nhưng ông sử dụng panel, spacing và page turn như một đạo diễn phim giỏi sử dụng camera. Những chapter nổi tiếng nhất của Chainsaw Man thường là những chapter <em>ít lời thoại nhất</em>.</p>
+      <p>Chapter "Gun Devil" arc finale, Power death sequence, "Who is the Chainsaw Man?" reveal — tất cả đều được kể gần như thuần visual, không cần exposition.</p>
+      <blockquote>Một số trang Chainsaw Man đặt cạnh nhau tạo thành short film hoàn chỉnh — không cần một chữ nào.</blockquote>
+      <p>Part 2 Fujimoto cải thiện đáng kể về technical drawing, đặc biệt trong các cảnh đám đông và environment.</p>
+    </div>
+
+    <div id="tab-char" class="rtab-panel review-body">
+      <h2>Nhân vật "broken" được viết đúng cách</h2>
+      <p><strong>Denji</strong> là một trong những protagonist shounen thực tế nhất. Anh không muốn cứu thế giới — anh muốn ngủ trong giường ấm, ăn ngon và được một cô gái thích. Điều đó nghe đơn giản nhưng cực kỳ honest trong một genre toàn "trở thành Hokage".</p>
+      <p><strong>Power</strong> — Blood Devil — là fan favourite vì lý do chính đáng. Egotistical, chaotic, nhưng với arc phát triển cảm xúc thực sự tinh tế ẩn bên dưới bề mặt comedy.</p>
+      <p><strong>Makima</strong> là villain được xây dựng xuất sắc nhất trong shounen nhiều năm. Ominous từ chapter đầu, reveal cuối arc là một trong những "oh shit" moment hay nhất.</p>
+    </div>
+
+    <div id="tab-theme" class="rtab-panel review-body">
+      <h2>Dưới bề mặt gore là gì?</h2>
+      <p>Chainsaw Man đặt ra câu hỏi: <strong>Nếu nỗi sợ hãi là nguồn gốc của mọi thứ xấu xa, điều gì sẽ xảy ra nếu con người không còn sợ nữa?</strong> Mỗi Devil đều đại diện cho một nỗi sợ cụ thể — và sức mạnh của chúng tỉ lệ thuận với mức độ con người sợ chúng.</p>
+      <p>Ở level sâu hơn, Chainsaw Man nói về <em>exploitation</em>: Makima và toàn bộ hệ thống Devil Hunters là ẩn dụ cho cách xã hội sử dụng người trẻ dễ tổn thương. Denji không bao giờ thực sự "tự do" — anh chỉ đổi xiềng xích.</p>
+      <blockquote>Chainsaw Man là manga về nghèo đói, quyền lực và cái giá của ước mơ nhỏ bé nhất.</blockquote>
+    </div>
+
+
+    <!-- PHÙ HỢP VỚI AI -->
+    <div class="audience-section">
+      <div class="aud-heading">Phù Hợp Với Ai?</div>
+      <div class="aud-grid">
+        <div class="aud-card"><div class="aud-icon">🔥</div><div class="aud-text"><div class="aud-type">Fan action dữ dội, sáng tạo</div><div class="aud-desc">Không trận chiến nào giống nhau — Fujimoto luôn phá vỡ kỳ vọng.</div></div></div>
+        <div class="aud-card"><div class="aud-icon">🎨</div><div class="aud-text"><div class="aud-type">Người quan tâm đến nghệ thuật manga</div><div class="aud-desc">Panel layout độc đáo, storytelling thuần visual đỉnh cao.</div></div></div>
+        <div class="aud-card"><div class="aud-icon">🧠</div><div class="aud-text"><div class="aud-type">Người thích phân tích tầng nghĩa sâu</div><div class="aud-desc">Bên dưới lớp gore là phê bình xã hội, quyền lực và tự do.</div></div></div>
+        <div class="aud-card"><div class="aud-icon">😈</div><div class="aud-text"><div class="aud-type">Fan dark fiction không ngại gore</div><div class="aud-desc">Bạo lực có chủ đích, không phải fan service — nếu okay thì tuyệt.</div></div></div>
+        <div class="aud-card"><div class="aud-icon">🆕</div><div class="aud-text"><div class="aud-type">Người muốn thử manga mainstream đầu tiên</div><div class="aud-desc">Nội dung dễ follow, không cần lore dài, mỗi arc tự hoàn chỉnh.</div></div></div>
+        <div class="aud-card"><div class="aud-icon">🎭</div><div class="aud-text"><div class="aud-type">Fan truyện nhân vật phức tạp</div><div class="aud-desc">Denji, Power, Makima — mỗi người đều có tầng tâm lý riêng.</div></div></div>
+      </div>
+      <div class="aud-warn">
+        <div class="aud-warn-icon">⚠️</div>
+        <div class="aud-warn-text"><strong>Có thể không phù hợp nếu bạn:</strong> Không chịu được nội dung bạo lực/gore nặng · Muốn kết thúc happy, nhân vật được bảo vệ · Thích cốt truyện linear dễ đoán</div>
+      </div>
+      <div class="aud-tag-row">
+        <span class="aud-tag">Đọc Từ Part 1</span>
+        <span class="aud-tag">OtaHub Certified</span>
+      </div>
+    </div>
+
+    <!-- SHARE -->
+    <div class="share-bar" style="margin-top:40px">
+      <span class="share-label">Chia sẻ</span>
+      <a class="share-btn" id="shareFb" href="#" target="_blank" rel="noopener">Facebook</a>
+      <a class="share-btn" id="shareX" href="#" target="_blank" rel="noopener">X / Twitter</a>
+      <button class="share-btn" onclick="copyLink()">📋 Copy link</button>
+    </div>
+  </main>
+
+  <aside class="anime-sidebar">
+    <div class="gs-block">
+      <div class="gs-title">Đọc tại</div>
+      <div class="where-watch">
+        <a href="#" class="ww-btn"><span class="ww-icon">📺</span><span>TruyenQQ — Bản dịch VN</span></a>
+        <a href="#" class="ww-btn"><span class="ww-icon">🎌</span><span>MangaDex — Tiếng Việt</span></a>
+        <a href="#" class="ww-btn"><span class="ww-icon">🎬</span><span>Viz Media — Official EN</span></a>
+      </div>
+    </div>
+    <div class="gs-block">
+      <div class="gs-title">Manga tương tự</div>
+      <div class="sim-list">
+        <a href="manga-detail.html" class="sim-item"><img class="si-thumb" src="https://picsum.photos/seed/sim-a1/40/56" alt=""/ loading="lazy"><div><div class="si-name">Jujutsu Kaisen</div><div class="si-genre">Shounen · Action · 9.0</div></div></a>
+        <a href="manga-detail.html" class="sim-item"><img class="si-thumb" src="https://picsum.photos/seed/sim-a2/40/56" alt=""/ loading="lazy"><div><div class="si-name">Fire Punch</div><div class="si-genre">Action · Dark · 8.5</div></div></a>
+        <a href="manga-detail.html" class="sim-item"><img class="si-thumb" src="https://picsum.photos/seed/sim-a3/40/56" alt=""/ loading="lazy"><div><div class="si-name">Dorohedoro</div><div class="si-genre">Action · Dark Fantasy · 8.8</div></div></a>
+        <a href="manga-detail.html" class="sim-item"><img class="si-thumb" src="https://picsum.photos/seed/sim-a4/40/56" alt=""/ loading="lazy"><div><div class="si-name">Goodnight Punpun</div><div class="si-genre">Slice of Life · Drama · 9.2</div></div></a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <div class="ft-in">
+    <div><a href="index.html" class="logo" style="margin:0 0 10px"><svg viewBox="0 0 34 34" fill="none" width="26" height="26"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"/><rect x="8" y="14" width="18" height="2" fill="#ff3080"/></svg><span class="logo-t" style="font-size:17px"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Hub tin tức Gaming & Anime châu Á.</p></div>
+    <div><div class="ft-h">Nội dung</div><ul class="ft-links"><li><a href="gaming.html">Gaming</a></li><li><a href="anime.html">Anime</a></li><li><a href="manga.html">Manga</a></li><li><a href="reviews.html">Reviews</a></li></ul></div>
+    <div><div class="ft-h">Khám phá</div><ul class="ft-links"><li><a href="choi-gi.html">Chơi Gì?</a></li><li><a href="rankings.html">Xếp Hạng</a></li><li><a href="bai-viet.html">Bài Viết</a></li></ul></div>
+    <div><div class="ft-h">OtaHub</div><ul class="ft-links"><li><a href="about.html">Giới thiệu</a></li><li><a href="lien-he.html">Liên hệ</a></li><li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li></ul></div>
+  </div>
+  <div class="ft-bot"><span class="ft-copy">© 2024 OtaHub · Gaming & Anime Hub châu Á</span></div>
+</footer>
+<script>
+function toggleMobileNav(){const b=document.getElementById('hamBtn'),n=document.getElementById('mobileNav');b.classList.toggle('open');n.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':''}
+function openSearch(){document.getElementById('searchOverlay').classList.add('open');setTimeout(()=>document.getElementById('searchInput').focus(),100)}
+function closeSearch(){document.getElementById('searchOverlay').classList.remove('open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSearch()})
+function setLang(l){document.getElementById('bvi').classList.toggle('on',l==='vi');document.getElementById('ben').classList.toggle('on',l==='en')}
+const barObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.si-fill').forEach(f=>{f.style.width=f.dataset.w+'%'});barObs.unobserve(e.target)}})},{threshold:.3});
+document.querySelectorAll('.score-bars').forEach(el=>barObs.observe(el));
+function switchRTab(id,btn){document.querySelectorAll('.rtab-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.rtab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');btn.classList.add('active')}
+(function(){const url=encodeURIComponent(location.href),t=encodeURIComponent(document.title);document.getElementById('shareFb').href='https://www.facebook.com/sharer/sharer.php?u='+url;document.getElementById('shareX').href='https://twitter.com/intent/tweet?url='+url+'&text='+t})()
+function copyLink(){navigator.clipboard.writeText(location.href).then(()=>{const b=event.target;b.textContent='✓ Đã copy!';setTimeout(()=>b.textContent='📋 Copy link',2000)})}
+</script>
+</body>
+</html>

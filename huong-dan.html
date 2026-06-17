@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<title>Hướng Dẫn Elden Ring: Nightreign — Boss, Build, Bản Đồ · OtaHub</title>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Hướng dẫn Elden Ring: Nightreign chi tiết: build, boss, bản đồ, vũ khí tốt nhất. Cập nhật đầy đủ bởi OtaHub."/>
+<link rel="canonical" href="https://otahub.asia/huong-dan.html"/>
+<meta property="og:title" content="Hướng Dẫn Elden Ring: Nightreign · OtaHub"/>
+<meta property="og:description" content="Hướng dẫn đầy đủ Elden Ring: Nightreign — boss, build, bản đồ bí ẩn."/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:image" content="https://otahub.asia/og-image.png"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:image" content="https://otahub.asia/og-image.png"/>
+    <meta property="article:author" content="OtaHub Team"/>
+  <meta property="article:published_time" content="2026-06-10T00:00:00+07:00"/>
+  <meta property="article:modified_time" content="2026-06-10T00:00:00+07:00"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"/>
+<meta name="theme-color" content="#0b0220"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"Hướng Dẫn Elden Ring: Nightreign","description":"Hướng dẫn chơi Elden Ring: Nightreign từ đầu đến cuối","publisher":{"@type":"Organization","name":"OtaHub"},"step":[{"@type":"HowToStep","name":"Cần biết trước khi chơi"},{"@type":"HowToStep","name":"Cơ chế chiến đấu"},{"@type":"HowToStep","name":"Boss và chiến lược"}]}</script>
+<style>
+:root{--bg:#0e0e12;--surf:#16161c;--surf2:#1e1e26;--cyan:#00e5ff;--sakura:#ff3080;--violet:#7c3aed;--amber:#fbbf24;--green:#34d399;--orange:#f97316;--white:#f2f2f4;--dim:#c4c4cc;--muted:#787885;--border:rgba(255,255,255,.09);--ease:cubic-bezier(.16,1,.3,1);--fd:'Rajdhani',sans-serif;--fb:'Space Grotesk',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:300;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+/* NAV */
+.nav{position:sticky;top:0;z-index:300;height:60px;background:rgba(10,10,14,.95);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(24px);display:flex;align-items:center}
+.nav-in{max-width:1440px;margin:0 auto;padding:0 24px;width:100%;display:flex;align-items:center}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0;margin-right:32px}
+.logo svg{width:30px;height:30px}
+.logo-t{font-family:var(--fd);font-weight:700;font-size:20px}.logo-ota{color:var(--white)}.logo-hub{color:var(--cyan)}
+.nav-links{display:flex;align-items:center;list-style:none;flex:1}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;font-weight:400;letter-spacing:.07em;text-transform:uppercase;padding:0 13px;height:60px;display:flex;align-items:center;position:relative;transition:color .2s}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:2px;background:var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-r{display:flex;align-items:center;gap:8px;margin-left:auto}
+.cta{background:var(--cyan);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;padding:8px 20px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:background .18s;text-decoration:none;display:inline-block}
+.cta:hover{background:#33eeff}
+.ham{display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px}
+.ham span{display:block;width:22px;height:2px;background:rgba(240,238,255,.45);border-radius:2px}
+.mobile-nav{display:none;position:fixed;inset:0;top:62px;z-index:290;background:rgba(11,2,32,.97);backdrop-filter:blur(24px);padding:28px 24px;flex-direction:column;gap:0;transform:translateY(-8px);opacity:0;transition:transform .3s,opacity .3s;pointer-events:none}
+.mobile-nav.open{transform:translateY(0);opacity:1;pointer-events:all}
+.mobile-nav a{display:block;color:rgba(240,238,255,.62);text-decoration:none;font-family:var(--fd);font-size:22px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+/* BREADCRUMB */
+.breadcrumb{max-width:1200px;margin:0 auto;padding:16px 24px 0;display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.breadcrumb a{color:var(--muted);text-decoration:none}.breadcrumb a:hover{color:var(--cyan)}
+.breadcrumb .sep{opacity:.4}
+/* GUIDE HERO */
+.guide-hero{max-width:1200px;margin:0 auto;padding:24px 24px 0}
+.gh-eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.gh-cat{font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--cyan);padding:3px 10px;border:1px solid rgba(0,229,255,.25);background:rgba(0,229,255,.06)}
+.gh-updated{font-size:11px;color:var(--muted)}
+.guide-hero h1{font-family:var(--fd);font-weight:700;font-size:clamp(28px,4vw,48px);line-height:1;letter-spacing:-.02em;margin-bottom:12px}
+.guide-hero h1 span{color:var(--cyan)}
+.guide-meta{display:flex;align-items:center;gap:16px;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:16px 0}
+.gm-item{display:flex;flex-direction:column;gap:2px}
+.gm-label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.gm-val{font-size:13px;color:var(--dim);font-weight:400}
+.guide-hero-img{width:100%;height:260px;object-fit:cover;margin:16px 0}
+/* LAYOUT */
+.guide-layout{max-width:1200px;margin:0 auto;padding:0 24px 80px;display:grid;grid-template-columns:260px 1fr;gap:40px;align-items:start}
+/* TOC */
+.toc-wrap{position:sticky;top:80px}
+.toc-title{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;font-weight:500}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:0}
+.toc-list li a{display:flex;align-items:center;gap:8px;padding:9px 12px;font-size:13px;color:var(--muted);text-decoration:none;border-left:2px solid var(--border);transition:all .2s}
+.toc-list li a:hover,.toc-list li a.active{color:var(--white);border-left-color:var(--cyan);background:rgba(0,229,255,.04)}
+.toc-list li a .toc-num{font-family:var(--fd);font-weight:700;font-size:11px;color:var(--cyan);min-width:18px}
+.toc-progress{margin-top:20px;padding:14px;background:var(--surf);border:1px solid var(--border)}
+.tp-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.tp-bar{height:4px;background:var(--border);position:relative;overflow:hidden}
+.tp-fill{height:100%;background:var(--cyan);width:0%;transition:width .3s}
+.tp-pct{font-family:var(--fd);font-weight:700;font-size:18px;color:var(--cyan);margin-top:6px}
+/* CONTENT */
+.guide-content{min-width:0}
+/* SECTION */
+.g-section{margin-bottom:48px;scroll-margin-top:80px}
+.g-section-header{display:flex;align-items:center;gap:12px;padding:16px 0 14px;border-top:1px solid var(--border);cursor:pointer;user-select:none}
+.g-section-header:hover .gs-title{color:var(--cyan)}
+.gs-num{font-family:var(--fd);font-weight:700;font-size:13px;color:var(--cyan);min-width:28px}
+.gs-title{font-family:var(--fd);font-weight:700;font-size:22px;letter-spacing:.04em;text-transform:uppercase;transition:color .2s}
+.gs-toggle{margin-left:auto;font-size:18px;transition:transform .3s;color:var(--muted)}
+.gs-toggle.open{transform:rotate(180deg)}
+.g-section-body{display:block}
+.g-section-body.collapsed{display:none}
+/* CALLOUT BOXES */
+.callout{padding:18px 20px;margin:20px 0;border-left:3px solid;position:relative}
+.callout.tip{background:rgba(0,229,255,.05);border-color:var(--cyan)}
+.callout.warning{background:rgba(249,115,22,.05);border-color:var(--orange)}
+.callout.danger{background:rgba(255,48,128,.05);border-color:var(--sakura)}
+.callout.note{background:rgba(124,58,237,.05);border-color:var(--violet)}
+.callout-label{font-family:var(--fd);font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:7px}
+.callout.tip .callout-label{color:var(--cyan)}
+.callout.warning .callout-label{color:var(--orange)}
+.callout.danger .callout-label{color:var(--sakura)}
+.callout.note .callout-label{color:var(--violet)}
+.callout p{font-size:14px;color:var(--dim);line-height:1.65}
+/* BODY TEXT */
+.g-p{font-size:15px;color:var(--dim);line-height:1.75;margin-bottom:16px}
+.g-h3{font-family:var(--fd);font-weight:700;font-size:17px;letter-spacing:.06em;text-transform:uppercase;color:var(--white);margin:24px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.g-h4{font-size:14px;font-weight:500;color:var(--white);margin:16px 0 8px}
+/* CHECKLIST */
+.checklist{list-style:none;display:flex;flex-direction:column;gap:8px;margin:16px 0}
+.checklist li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--dim)}
+.checklist li::before{content:'✓';color:var(--green);font-weight:600;flex-shrink:0;margin-top:2px}
+/* TABLE */
+.g-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px}
+.g-table th{background:var(--surf2);color:var(--muted);font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);font-weight:500}
+.g-table td{padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.05);color:var(--dim);vertical-align:top}
+.g-table tr:hover td{background:rgba(255,255,255,.02)}
+.g-table .good{color:var(--green)}.g-table .bad{color:var(--sakura)}.g-table .ok{color:var(--amber)}
+/* BOSS CARDS */
+.boss-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:2px;margin:16px 0}
+.boss-card{background:var(--surf);padding:16px;border:1px solid var(--border);transition:all .2s}
+.boss-card:hover{border-color:rgba(0,229,255,.2);background:var(--surf2)}
+.bc-name{font-family:var(--fd);font-weight:700;font-size:16px;margin-bottom:6px}
+.bc-diff{display:inline-flex;align-items:center;gap:4px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:2px 8px;margin-bottom:8px}
+.bc-diff.hard{background:rgba(255,48,128,.1);border:1px solid rgba(255,48,128,.2);color:var(--sakura)}
+.bc-diff.med{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2);color:var(--amber)}
+.bc-diff.easy{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.2);color:var(--green)}
+.bc-tip{font-size:12px;color:var(--dim);line-height:1.55}
+.bc-weak{font-size:11px;color:var(--muted);margin-top:8px}
+.bc-weak span{color:var(--cyan)}
+/* QUICK FACTS (CẦN BIẾT) */
+.quick-facts{background:linear-gradient(135deg,rgba(0,229,255,.06),rgba(124,58,237,.04));border:1px solid rgba(0,229,255,.15);padding:24px 28px;margin:0 0 32px}
+.qf-title{font-family:var(--fd);font-weight:700;font-size:18px;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.qf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.qf-item{display:flex;gap:10px;align-items:flex-start}
+.qf-icon{font-size:18px;flex-shrink:0;margin-top:2px}
+.qf-text{font-size:13px;color:var(--dim);line-height:1.5}
+.qf-text strong{color:var(--white);font-weight:500;display:block;margin-bottom:2px}
+/* RATING BADGE */
+.diff-stars{display:flex;gap:3px;margin:4px 0}
+.star{width:10px;height:10px;background:var(--border);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.star.lit{background:var(--amber)}
+/* RELATED GUIDES */
+.related-guides{border-top:1px solid var(--border);padding-top:28px;margin-top:40px}
+.rg-title{font-family:var(--fd);font-weight:700;font-size:16px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;color:var(--white)}
+.rg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:2px}
+.rg-card{background:var(--surf);padding:14px;border:1px solid var(--border);text-decoration:none;display:block;transition:all .2s}
+.rg-card:hover{border-color:rgba(0,229,255,.2);background:var(--surf2)}
+.rg-cat{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:6px}
+.rg-name{font-family:var(--fd);font-weight:700;font-size:15px;color:var(--white);line-height:1.2}
+.rg-sub{font-size:11px;color:var(--muted);margin-top:4px}
+/* FOOTER */
+footer{border-top:1px solid var(--border);background:rgba(6,2,14,.98)}
+.ft-in{max-width:1440px;margin:0 auto;padding:40px 24px 24px;display:grid;grid-template-columns:190px 1fr 1fr 1fr;gap:40px}
+.ft-desc{font-size:12px;color:rgba(240,238,255,.28);line-height:1.7;max-width:170px;margin-top:12px}
+.ft-h{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;font-weight:500}
+.ft-links{display:flex;flex-direction:column;gap:8px;list-style:none}
+.ft-links a{font-size:13px;color:rgba(240,238,255,.42);text-decoration:none;transition:color .2s}
+.ft-links a:hover{color:var(--cyan)}
+.ft-bot{max-width:1440px;margin:0 auto;padding:14px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.ft-copy{font-size:11px;color:rgba(240,238,255,.2)}
+@media(max-width:900px){.guide-layout{grid-template-columns:1fr}.toc-wrap{position:static;display:none}.nav-links{display:none}.ham{display:flex}.mobile-nav{display:flex}.ft-in{grid-template-columns:1fr;gap:24px}.qf-grid{grid-template-columns:1fr}}
+
+/* === MOBILE ACCESSIBILITY FIXES === */
+.ham{min-width:44px;min-height:44px;display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px;align-items:center;justify-content:center}
+input,select,textarea{font-size:16px!important}
+*{-webkit-tap-highlight-color:transparent}
+@media(max-width:768px){
+  .ham{display:flex}
+  a,button{min-height:44px;display:inline-flex;align-items:center}
+  .nav-links a{min-height:60px}
+}
+</style>
+  <link rel="manifest" href="/manifest.json"/>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-in">
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"/><rect x="8" y="14" width="18" height="2" fill="#ff3080"/><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"/><rect x="13" y="16" width="2" height="9" fill="#ff3080"/><rect x="19" y="16" width="2" height="9" fill="#ff3080"/><rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".5"/><rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".5"/></svg>
+      <span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="choi-gi.html">Chơi Gì?</a></li>
+      <li><a href="gaming.html" class="active">Gaming</a></li>
+      <li><a href="anime.html">Anime</a></li>
+      <li><a href="manga.html">Manga</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="rankings.html">Rankings</a></li>
+    </ul>
+    <button class="ham" id="hamBtn" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+    <div class="nav-r"><a href="index.html#newsletter" class="cta">Subscribe</a></div>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="choi-gi.html">Chơi Gì?</a><a href="gaming.html" class="active">Gaming</a><a href="anime.html">Anime</a>
+  <a href="manga.html">Manga</a><a href="reviews.html">Reviews</a><a href="rankings.html">Rankings</a>
+</div>
+
+<div class="breadcrumb">
+  <a href="index.html">OtaHub</a><span class="sep">›</span>
+  <a href="gaming.html">Gaming</a><span class="sep">›</span>
+  <a href="game-detail.html">Elden Ring: Nightreign</a><span class="sep">›</span>
+  <span>Hướng Dẫn</span>
+</div>
+
+<div class="guide-hero">
+  <div class="gh-eyebrow">
+    <span class="gh-cat">📖 Hướng dẫn</span>
+    <span class="gh-updated">✏️ Cập nhật: 10/6/2026 · bởi OtaHub Team</span>
+  </div>
+  <h1>Hướng Dẫn <span>Elden Ring: Nightreign</span><br>Đầy Đủ Từ A–Z</h1>
+  <div class="guide-meta">
+    <div class="gm-item"><div class="gm-label">Nền tảng</div><div class="gm-val">PC · PS5 · Xbox</div></div>
+    <div class="gm-item"><div class="gm-label">Thể loại</div><div class="gm-val">Action RPG · Souls-like</div></div>
+    <div class="gm-item"><div class="gm-label">Độ khó</div><div class="gm-val">⭐⭐⭐⭐⭐ Rất khó</div></div>
+    <div class="gm-item"><div class="gm-label">Phát hành</div><div class="gm-val">21/6/2026</div></div>
+    <div class="gm-item"><div class="gm-label">Studio</div><div class="gm-val">FromSoftware</div></div>
+  </div>
+  <img src="https://picsum.photos/seed/nightreign-hero/1200/260" alt="Elden Ring Nightreign" class="guide-hero-img" loading="lazy"/>
+</div>
+
+<div class="guide-layout">
+  <!-- TOC SIDEBAR -->
+  <aside class="toc-wrap" id="tocWrap">
+    <div class="toc-title">Mục lục</div>
+    <ul class="toc-list" id="tocList">
+      <li><a href="#can-biet" class="active"><span class="toc-num">01</span>Cần biết trước khi chơi</a></li>
+      <li><a href="#co-che"><span class="toc-num">02</span>Cơ chế chiến đấu</a></li>
+      <li><a href="#build"><span class="toc-num">03</span>Build tốt nhất 2026</a></li>
+      <li><a href="#boss"><span class="toc-num">04</span>Boss & chiến lược</a></li>
+      <li><a href="#ban-do"><span class="toc-num">05</span>Bản đồ & khu vực</a></li>
+      <li><a href="#vu-khi"><span class="toc-num">06</span>Vũ khí & trang bị</a></li>
+      <li><a href="#tips"><span class="toc-num">07</span>Mẹo & thủ thuật</a></li>
+    </ul>
+    <div class="toc-progress">
+      <div class="tp-label">Tiến độ đọc</div>
+      <div class="tp-bar"><div class="tp-fill" id="tpFill"></div></div>
+      <div class="tp-pct" id="tpPct">0%</div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="guide-content">
+
+    <!-- QUICK FACTS -->
+    <div class="quick-facts">
+      <div class="qf-title">⚡ Cần Biết Trước Khi Chơi</div>
+      <div class="qf-grid">
+        <div class="qf-item"><div class="qf-icon">🎮</div><div class="qf-text"><strong>Chơi co-op được</strong>Hỗ trợ 2–3 người qua online. Khó hơn hẳn nếu chơi solo.</div></div>
+        <div class="qf-item"><div class="qf-icon">⚔️</div><div class="qf-text"><strong>Chọn class cẩn thận</strong>Class ban đầu ảnh hưởng toàn bộ lộ trình build. Không đổi được sau khi tạo nhân vật.</div></div>
+        <div class="qf-item"><div class="qf-icon">🗺️</div><div class="qf-text"><strong>Explore trước, boss sau</strong>Đừng vội đánh boss chính. Khám phá bản đồ để nâng level và tìm vũ khí tốt hơn.</div></div>
+        <div class="qf-item"><div class="qf-icon">💀</div><div class="qf-text"><strong>Chết là bình thường</strong>Mỗi lần chết học được điều gì đó. Đừng stress nếu thất bại nhiều lần.</div></div>
+        <div class="qf-item"><div class="qf-icon">🧪</div><div class="qf-text"><strong>Flasks là sinh mệnh</strong>Luôn nâng cấp Flask of Crimson Tears lên tối đa trước khi vào dungeon khó.</div></div>
+        <div class="qf-item"><div class="qf-icon">📖</div><div class="qf-text"><strong>Đọc item description</strong>FromSoftware giấu lore và gợi ý chiến thuật trong mô tả vật phẩm.</div></div>
+      </div>
+    </div>
+
+    <!-- SECTION 1 -->
+    <section class="g-section" id="can-biet">
+      <div class="g-section-header" onclick="toggleSection(this)">
+        <span class="gs-num">01</span>
+        <span class="gs-title">Cần Biết Trước Khi Chơi</span>
+        <span class="gs-toggle open">▼</span>
+      </div>
+      <div class="g-section-body">
+        <p class="g-p">Elden Ring: Nightreign là phiên bản standalone của Elden Ring, tập trung vào gameplay co-op roguelite. Mỗi "run" kéo dài khoảng 40 phút qua 3 ngày in-game, kết thúc bằng một Nightlord boss cực khó.</p>
+        <div class="callout tip"><div class="callout-label">💡 Mẹo</div><p>Nếu đây là game FromSoftware đầu tiên của bạn, hãy bắt đầu với Class <strong>Hero</strong> (Warrior) — đơn giản nhất, stats cân bằng, dễ học cơ chế nhất.</p></div>
+        <h3 class="g-h3">Các Class & Điểm Khởi Đầu</h3>
+        <table class="g-table">
+          <thead><tr><th>Class</th><th>Phù hợp</th><th>Điểm mạnh</th><th>Điểm yếu</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Hero</strong></td><td class="good">Người mới</td><td>Tank, dễ học</td><td>Chậm, combo ngắn</td></tr>
+            <tr><td><strong>Rogue</strong></td><td class="ok">Trung cấp</td><td>Nhanh, dodge cực tốt</td><td>HP thấp, cần skill</td></tr>
+            <tr><td><strong>Duchess</strong></td><td class="ok">Trung cấp</td><td>Support + DPS kết hợp</td><td>Phức tạp</td></tr>
+            <tr><td><strong>Wylder</strong></td><td class="ok">Trung cấp</td><td>Grappling hook, cơ động</td><td>Cần map sense tốt</td></tr>
+            <tr><td><strong>Revenant</strong></td><td class="bad">Cao cấp</td><td>Mana build mạnh nhất</td><td>Fragile, khó master</td></tr>
+            <tr><td><strong>Ironeye</strong></td><td class="bad">Cao cấp</td><td>Sniper/ranged damage</td><td>Dở trong cận chiến</td></tr>
+          </tbody>
+        </table>
+        <ul class="checklist">
+          <li>Hoàn thành Tutorial Camp trước — unlock passive skill đầu tiên</li>
+          <li>Nâng Flask lên tối đa trong ngày đầu mỗi run</li>
+          <li>Tránh fight boss khi đói relic — farm thêm trước</li>
+          <li>Đọc kỹ Relic description để biết synergy với class</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section class="g-section" id="co-che">
+      <div class="g-section-header" onclick="toggleSection(this)">
+        <span class="gs-num">02</span>
+        <span class="gs-title">Cơ Chế Chiến Đấu</span>
+        <span class="gs-toggle open">▼</span>
+      </div>
+      <div class="g-section-body">
+        <p class="g-p">Nightreign kết hợp combat Souls-like cổ điển với cơ chế roguelite. Mỗi run bạn nhặt Relics (vật phẩm tăng sức mạnh tạm thời) và build theo hướng ngẫu nhiên.</p>
+        <h3 class="g-h3">Hệ Thống Relic</h3>
+        <p class="g-p">Relic là linh hồn của Nightreign. Mỗi Relic có độ hiếm từ Common → Rare → Legendary và tạo ra synergy với nhau. Ưu tiên stack synergy thay vì chọn Relic mạnh đơn lẻ.</p>
+        <div class="callout warning"><div class="callout-label">⚠️ Cảnh báo</div><p>Đừng pick Relic ngẫu nhiên không có kế hoạch. Conflict synergy sẽ làm build của bạn yếu hơn chơi không có Relic.</p></div>
+        <h3 class="g-h3">Combat Fundamentals</h3>
+        <p class="g-p">Dodge timing, poise breaking, và positional play là 3 trụ cột. Master dodge trước — mọi thứ khác có thể học sau.</p>
+        <div class="callout tip"><div class="callout-label">💡 Kỹ thuật nâng cao</div><p><strong>Poise Break Combo:</strong> Dùng Heavy Attack → Charged Attack để stagger địch. Sau đó thực hiện Critical Strike (R1 khi địch ngã) để damage tối đa.</p></div>
+      </div>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section class="g-section" id="build">
+      <div class="g-section-header" onclick="toggleSection(this)">
+        <span class="gs-num">03</span>
+        <span class="gs-title">Build Tốt Nhất 2026</span>
+        <span class="gs-toggle open">▼</span>
+      </div>
+      <div class="g-section-body">
+        <h3 class="g-h3">Top 3 Meta Build (Patch 1.2)</h3>
+        <div class="callout note"><div class="callout-label">📝 Ghi chú</div><p>Meta build thay đổi theo từng patch. Trang này được cập nhật theo patch mới nhất. Kiểm tra ngày cập nhật ở đầu bài.</p></div>
+        <table class="g-table">
+          <thead><tr><th>Build</th><th>Class</th><th>Điểm DPS</th><th>Độ khó</th><th>Tier</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Bleed Rogue</strong></td><td>Rogue</td><td class="good">★★★★★</td><td class="bad">Khó</td><td class="good">S</td></tr>
+            <tr><td><strong>Tank Hero</strong></td><td>Hero</td><td class="ok">★★★☆☆</td><td class="good">Dễ</td><td class="ok">A</td></tr>
+            <tr><td><strong>Mana Burst</strong></td><td>Revenant</td><td class="good">★★★★★</td><td class="bad">Rất khó</td><td class="good">S</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 4 -->
+    <section class="g-section" id="boss">
+      <div class="g-section-header" onclick="toggleSection(this)">
+        <span class="gs-num">04</span>
+        <span class="gs-title">Boss & Chiến Lược</span>
+        <span class="gs-toggle open">▼</span>
+      </div>
+      <div class="g-section-body">
+        <p class="g-p">Nightreign có 8 Nightlord boss chính và hàng chục field boss phụ. Dưới đây là các boss quan trọng nhất và cách tiếp cận chúng.</p>
+        <div class="boss-grid">
+          <div class="boss-card">
+            <div class="bc-name">☽ Nightlord Gael</div>
+            <div class="bc-diff hard">💀 Rất khó</div>
+            <div class="diff-stars"><div class="star lit"></div><div class="star lit"></div><div class="star lit"></div><div class="star lit"></div><div class="star lit"></div></div>
+            <div class="bc-tip">Boss cuối game. Có 3 phase, mỗi phase thay đổi attack pattern hoàn toàn. Ưu tiên dodge tất cả — không block được Phase 3.</div>
+            <div class="bc-weak">Điểm yếu: <span>Holy damage, backstab window</span></div>
+          </div>
+          <div class="boss-card">
+            <div class="bc-name">🔥 Furnace Golem</div>
+            <div class="bc-diff med">⚔️ Trung bình</div>
+            <div class="diff-stars"><div class="star lit"></div><div class="star lit"></div><div class="star lit"></div><div class="star"></div><div class="star"></div></div>
+            <div class="bc-tip">Leo lên chân để tránh stomp AOE. Focus đánh vào đầu gối khi nó dừng lại. Tránh đứng chính diện.</div>
+            <div class="bc-weak">Điểm yếu: <span>Fire resistance → dùng Lightning</span></div>
+          </div>
+          <div class="boss-card">
+            <div class="bc-name">🐺 Revenant Wolf</div>
+            <div class="bc-diff easy">✅ Tương đối dễ</div>
+            <div class="diff-stars"><div class="star lit"></div><div class="star lit"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+            <div class="bc-tip">Pattern dễ đọc. Dodge về phía trái khi nó nhảy. Punish bằng 2–3 Heavy Attack sau mỗi combo của nó.</div>
+            <div class="bc-weak">Điểm yếu: <span>Bleed, stance break</span></div>
+          </div>
+          <div class="boss-card">
+            <div class="bc-name">🌊 Tidal Wyrm</div>
+            <div class="bc-diff hard">💀 Khó</div>
+            <div class="diff-stars"><div class="star lit"></div><div class="star lit"></div><div class="star lit"></div><div class="star lit"></div><div class="star"></div></div>
+            <div class="bc-tip">Không đứng trong nước — AOE sẽ 1-shot. Di chuyển liên tục trên platform khô. Đánh vào mang cá.</div>
+            <div class="bc-weak">Điểm yếu: <span>Lightning damage ×2</span></div>
+          </div>
+        </div>
+        <div class="callout danger"><div class="callout-label">🚨 Nguy hiểm</div><p>Boss <strong>Nightlord Gael Phase 3</strong> có instant-kill attack nếu HP dưới 40%. Luôn giữ Flask và dùng Flask ngay khi HP xuống 50%.</p></div>
+      </div>
+    </section>
+
+    <!-- SECTION 5 -->
+    <section class="g-section" id="ban-do">
+      <div class="g-section-header" onclick="toggleSection(this)">
+        <span class="gs-num">05</span>
+        <span class="gs-title">Bản Đồ & Khu Vực</span>
+        <span class="gs-toggle open">▼</span>
+      </div>
+      <div class="g-section-body">
+        <p class="g-p">Bản đồ Nightreign tái tạo Limgrave với nhiều khu vực mới. Mỗi run ngẫu nhiên thay đổi vị trí event và loot.</p>
+        <h3 class="g-h3">Khu Vực Quan Trọng</h3>
+        <table class="g-table">
+          <thead><tr><th>Khu vực</th><th>Level khuyến nghị</th><th>Loot đặc biệt</th><th>Lưu ý</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Roundtable Hold</strong></td><td>—</td><td>NPC merchants, Upgrades</td><td>Hub chính, an toàn</td></tr>
+            <tr><td><strong>Stormveil Night</strong></td><td>Lvl 5–10</td><td>Knight gear, Relics</td><td>Day 1 priority</td></tr>
+            <tr><td><strong>Liurnia Depths</strong></td><td>Lvl 15–25</td><td>Magic Relics, Staves</td><td>Mage build thiên đường</td></tr>
+            <tr><td><strong>Caelid Ruins</strong></td><td>Lvl 20+</td><td>Bleed weapons, Scarlet gear</td><td>Nguy hiểm — vào muộn</td></tr>
+            <tr><td><strong>Leyndell Summit</strong></td><td>Lvl 35+</td><td>Legendary Relics</td><td>Pre-final boss area</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 6 -->
+    <section class="g-section" id="vu-khi">
+      <div class="g-section-header" onclick="toggleSection(this)">
+        <span class="gs-num">06</span>
+        <span class="gs-title">Vũ Khí & Trang Bị</span>
+        <span class="gs-toggle open">▼</span>
+      </div>
+      <div class="g-section-body">
+        <h3 class="g-h3">Vũ Khí S-Tier Hiện Tại</h3>
+        <table class="g-table">
+          <thead><tr><th>Vũ khí</th><th>Loại</th><th>Scaling</th><th>Kiếm ở đâu</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Nightblade +10</strong></td><td>Greatsword</td><td class="good">STR/DEX S</td><td>Stormveil, Day 2</td></tr>
+            <tr><td><strong>Lunar Spear</strong></td><td>Spear</td><td class="good">DEX S, INT B</td><td>Liurnia boss drop</td></tr>
+            <tr><td><strong>Icerind Hatchet</strong></td><td>Axe</td><td class="ok">DEX A</td><td>Common drop, Caelid</td></tr>
+            <tr><td><strong>Rivers of Blood</strong></td><td>Katana</td><td class="good">DEX/ARC S</td><td>Legendary Relic drop</td></tr>
+          </tbody>
+        </table>
+        <div class="callout tip"><div class="callout-label">💡 Upgrade tip</div><p>Luôn nâng cấp vũ khí chính lên +5 trong Day 1. Smithing Stones rất nhiều ở Stormveil — không cần tiết kiệm.</p></div>
+      </div>
+    </section>
+
+    <!-- SECTION 7 -->
+    <section class="g-section" id="tips">
+      <div class="g-section-header" onclick="toggleSection(this)">
+        <span class="gs-num">07</span>
+        <span class="gs-title">Mẹo & Thủ Thuật</span>
+        <span class="gs-toggle open">▼</span>
+      </div>
+      <div class="g-section-body">
+        <h3 class="g-h3">10 Mẹo Người Mới Cần Biết</h3>
+        <ul class="checklist">
+          <li>Luôn đốt Site of Grace đầu tiên gặp để mở respawn point</li>
+          <li>Đừng bỏ qua NPC dialogue — nhiều item free và quest hidden</li>
+          <li>Torrent (ngựa) nhanh gấp 3 lần chạy bộ — dùng nhiều nhất có thể</li>
+          <li>Coop với người mạnh hơn để học attack pattern boss miễn phí</li>
+          <li>Day 3 Night Phase cực nguy hiểm — hoàn thiện build trước khi bước vào</li>
+          <li>Merchant Roundtable bán Smithing Stone mỗi run — mua hết trước khi vào</li>
+          <li>Parry chỉ work với humanoid enemy, không work với boss lớn</li>
+          <li>Stack cùng type Relic effect để trigger bonus threshold</li>
+          <li>Boss field (non-Nightlord) drop Relic rare tốt hơn chest thường</li>
+          <li>Ping teammate khi thấy Legendary Relic — quyết định ai pick phù hợp hơn</li>
+        </ul>
+        <div class="callout note"><div class="callout-label">📝 Pro tip</div><p>Sau khi clear một run, xem replay để phân tích lúc nào bị damage không cần thiết. Nightreign có replay system tích hợp.</p></div>
+      </div>
+    </section>
+
+    <!-- RELATED GUIDES -->
+    <div class="related-guides">
+      <div class="rg-title">Hướng Dẫn Liên Quan</div>
+      <div class="rg-grid">
+        <a href="huong-dan.html" class="rg-card"><div class="rg-cat">Game Guide</div><div class="rg-name">Elden Ring: Nightreign — All Bosses</div><div class="rg-sub">8 Nightlord đầy đủ</div></a>
+        <a href="huong-dan.html" class="rg-card"><div class="rg-cat">Game Guide</div><div class="rg-name">Best Relic Synergies Tier List</div><div class="rg-sub">Top combo mạnh nhất</div></a>
+        <a href="huong-dan.html" class="rg-card"><div class="rg-cat">Game Guide</div><div class="rg-name">Hướng Dẫn Trophy/Achievement</div><div class="rg-sub">100% completion guide</div></a>
+        <a href="game-detail.html" class="rg-card"><div class="rg-cat">Review</div><div class="rg-name">Review Elden Ring: Nightreign</div><div class="rg-sub">9.2/10 — Kiệt tác co-op</div></a>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <div class="ft-in">
+    <div><a href="index.html" class="logo" style="margin:0 0 10px"><svg viewBox="0 0 34 34" fill="none" width="26" height="26"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"/><rect x="8" y="14" width="18" height="2" fill="#ff3080"/></svg><span class="logo-t" style="font-size:17px"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Hub tin tức Gaming & Anime châu Á.</p></div>
+    <div><div class="ft-h">Nội dung</div><ul class="ft-links"><li><a href="gaming.html">Gaming</a></li><li><a href="anime.html">Anime</a></li><li><a href="manga.html">Manga</a></li></ul></div>
+    <div><div class="ft-h">Khám phá</div><ul class="ft-links"><li><a href="lich-phat-song.html">Lịch Phát Sóng</a></li><li><a href="sap-ra-mat.html">Sắp Ra Mắt</a></li><li><a href="rankings.html">Xếp Hạng</a></li></ul></div>
+    <div><div class="ft-h">OtaHub</div><ul class="ft-links"><li><a href="lien-he.html">Liên hệ</a></li><li><a href="chinh-sach-bao-mat.html">Chính sách</a></li></ul></div>
+  </div>
+  <div class="ft-bot"><span class="ft-copy">© 2026 OtaHub · Gaming & Anime Hub châu Á</span></div>
+</footer>
+
+<script>
+// TOC ACTIVE + PROGRESS
+function updateTOC(){
+  const sections=document.querySelectorAll('.g-section');
+  const links=document.querySelectorAll('.toc-list a');
+  const doc=document.documentElement;
+  const progress=(doc.scrollTop||document.body.scrollTop)/(doc.scrollHeight-doc.clientHeight);
+  document.getElementById('tpFill').style.width=(progress*100)+'%';
+  document.getElementById('tpPct').textContent=Math.round(progress*100)+'%';
+  let current='';
+  sections.forEach(s=>{
+    const rect=s.getBoundingClientRect();
+    if(rect.top<120) current=s.id;
+  });
+  links.forEach(l=>{
+    l.classList.toggle('active',l.getAttribute('href')==='#'+current);
+  });
+}
+
+function toggleSection(header){
+  const body=header.nextElementSibling;
+  const icon=header.querySelector('.gs-toggle');
+  const isOpen=!body.classList.contains('collapsed');
+  body.classList.toggle('collapsed',isOpen);
+  icon.classList.toggle('open',!isOpen);
+}
+
+function toggleMobileNav(){
+  const b=document.getElementById('hamBtn'),n=document.getElementById('mobileNav');
+  b.classList.toggle('open');n.classList.toggle('open');
+  document.body.style.overflow=n.classList.contains('open')?'hidden':'';
+}
+
+window.addEventListener('scroll',updateTOC,{passive:true});
+updateTOC();
+</script>
+</body>
+</html>

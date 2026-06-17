@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<title id="page-title">Tên Game · Review & Thông Tin · OtaHub</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" id="page-desc" content="Review và thông tin chi tiết về game. Điểm số, gameplay, cấu hình, đánh giá từ OtaHub."/>
+<link rel="canonical" id="page-canonical" href="https://otahub.asia/game-detail.html"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" id="og-title" content="Tên Game · OtaHub"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:image" id="og-image" content="https://otahub.asia/og-image.png"/>
+<meta property="og:site_name" content="OtaHub"/><meta property="og:locale" content="vi_VN"/>
+<meta name="twitter:image" content="https://otahub.asia/og-image.png"/>
+    <meta property="article:author" content="OtaHub Team"/>
+  <meta property="article:published_time" content="2026-06-10T00:00:00+07:00"/>
+  <meta property="article:modified_time" content="2026-06-10T00:00:00+07:00"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"/>
+<meta name="theme-color" content="#0b0220"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#0b0418;--surf:#150a2c;--surf2:#1d1040;--card:#190c36;--cyan:#00e5ff;--sakura:#ff3080;--violet:#7c3aed;--lav:#a78bfa;--amber:#fbbf24;--green:#34d399;--white:#f0eeff;--dim:rgba(240,238,255,.68);--muted:rgba(240,238,255,.38);--border:rgba(255,255,255,.07);--bcyan:rgba(0,229,255,.18);--ease:cubic-bezier(.16,1,.3,1);--fd:'Rajdhani',sans-serif;--fb:'Space Grotesk',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:300;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+#amb{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(110px)}
+.o1{width:700px;height:700px;background:radial-gradient(circle,var(--violet),transparent 70%);opacity:.09;top:-200px;left:-150px;animation:fa 18s ease-in-out infinite}
+.o2{width:500px;height:500px;background:radial-gradient(circle,var(--cyan),transparent 70%);opacity:.06;bottom:5%;right:-100px;animation:fb 22s ease-in-out infinite}
+@keyframes fa{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,-30px)}}
+@keyframes fb{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,20px)}}
+#gtex{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(124,58,237,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.04) 1px,transparent 1px);background-size:48px 48px}
+.nav{position:sticky;top:0;z-index:300;height:60px;background:rgba(11,4,24,.92);border-bottom:1px solid var(--bcyan);backdrop-filter:blur(24px);display:flex;align-items:center}
+.nav-in{max-width:1440px;margin:0 auto;padding:0 24px;width:100%;display:flex;align-items:center;gap:0}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0;margin-right:32px}
+.logo svg{width:30px;height:30px;animation:lp 3s ease-in-out infinite}
+@keyframes lp{0%,100%{filter:drop-shadow(0 0 4px #00e5ff)}50%{filter:drop-shadow(0 0 12px #00e5ff)}}
+.logo-t{font-family:var(--fd);font-weight:700;font-size:20px}.logo-ota{color:var(--white)}.logo-hub{color:var(--cyan)}
+.nav-links{display:flex;align-items:center;list-style:none;gap:0;flex:1}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;font-weight:400;letter-spacing:.07em;text-transform:uppercase;padding:0 13px;height:60px;display:flex;align-items:center;position:relative;transition:color .2s}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:2px;background:var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-r{display:flex;align-items:center;gap:8px;margin-left:auto}
+.lang{display:flex;align-items:center;border:1px solid var(--border);overflow:hidden}
+.lb{background:none;border:none;cursor:pointer;font-family:var(--fb);font-size:11px;font-weight:500;letter-spacing:.08em;color:var(--muted);padding:5px 10px;transition:all .18s}
+.lb.on{background:var(--cyan);color:var(--bg);font-weight:600}
+.lsep{width:1px;height:18px;background:var(--border)}
+.nsearch{background:none;border:1px solid var(--border);color:var(--muted);width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s}
+.nsearch:hover{border-color:var(--cyan);color:var(--cyan)}
+.cta{background:var(--cyan);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;padding:8px 20px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:background .18s;text-decoration:none;display:inline-block;white-space:nowrap}
+.cta:hover{background:#33eeff}
+.ham{display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px;align-items:center;justify-content:center}
+.ham span{display:block;width:22px;height:2px;background:rgba(240,238,255,.45);border-radius:2px;transition:all .3s}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:#00e5ff}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:#00e5ff}
+.mobile-nav{display:none;position:fixed;inset:0;top:62px;z-index:290;background:rgba(11,2,32,.97);backdrop-filter:blur(24px);padding:28px 24px;flex-direction:column;gap:0;transform:translateY(-8px);opacity:0;transition:transform .3s,opacity .3s;pointer-events:none}
+.mobile-nav.open{transform:translateY(0);opacity:1;pointer-events:all}
+.mobile-nav a{display:block;color:rgba(240,238,255,.62);text-decoration:none;font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08);transition:color .2s}
+.mobile-nav a:hover,.mobile-nav a.active{color:#00e5ff}
+.m-sub{display:flex;gap:20px;padding-top:20px;flex-wrap:wrap}
+.m-sub a{font-size:14px;font-weight:400;letter-spacing:.05em;border-bottom:none;color:rgba(240,238,255,.38);padding:6px 0}
+.search-overlay{position:fixed;inset:0;z-index:500;background:rgba(11,2,32,.96);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;opacity:0;pointer-events:none;transition:opacity .25s}
+.search-overlay.open{opacity:1;pointer-events:all}
+.search-box{width:min(640px,90vw);position:relative}
+.search-input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(0,229,255,.2);outline:none;color:#f0eeff;font-family:'Space Grotesk',sans-serif;font-size:20px;padding:18px 56px 18px 20px}
+.search-input::placeholder{color:rgba(240,238,255,.25)}
+.search-close{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(240,238,255,.5);font-size:20px;cursor:pointer}
+.search-hint{font-size:12px;color:rgba(240,238,255,.35)}
+.search-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.stag{color:rgba(240,238,255,.45);text-decoration:none;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:5px 14px;border:1px solid rgba(255,255,255,.08);transition:all .2s}
+.stag:hover{border-color:rgba(0,229,255,.3);color:#00e5ff}
+
+/* GAME HERO BANNER */
+.game-banner{position:relative;z-index:1;height:420px;overflow:hidden}
+.game-banner-bg{position:absolute;inset:0;background-size:cover;background-position:center top;animation:heroPulse 8s ease-in-out infinite alternate;filter:saturate(1.1)}
+@keyframes heroPulse{0%{opacity:.8;filter:saturate(1)}100%{opacity:1;filter:saturate(1.2) brightness(1.05)}}
+.game-banner-grad{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,4,24,.1) 0%,rgba(11,4,24,.4) 50%,rgba(11,4,24,.97) 100%)}
+.game-banner-content{position:absolute;bottom:0;left:0;right:0;padding:32px 40px;display:flex;align-items:flex-end;gap:28px;max-width:1440px;margin:0 auto}
+.game-cover{width:120px;height:160px;object-fit:cover;flex-shrink:0;border:2px solid rgba(0,229,255,.2);box-shadow:0 8px 32px rgba(0,0,0,.6)}
+.game-header-info{flex:1}
+.game-genre-badges{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.genre-badge{font-size:9px;letter-spacing:.15em;text-transform:uppercase;padding:3px 10px;background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.25);color:var(--cyan)}
+.game-title{font-family:var(--fd);font-weight:700;font-size:clamp(32px,5vw,64px);line-height:.95;letter-spacing:-.02em;margin-bottom:8px;text-shadow:0 2px 20px rgba(0,0,0,.8)}
+.game-tagline{font-size:14px;color:var(--dim);margin-bottom:0}
+.game-score-panel{flex-shrink:0;text-align:center;background:rgba(11,4,24,.8);border:1px solid rgba(0,229,255,.2);backdrop-filter:blur(12px);padding:18px 24px}
+.gsp-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.gsp-score{font-family:var(--fd);font-weight:700;font-size:52px;line-height:1;color:var(--cyan)}
+.gsp-max{font-size:13px;color:var(--muted)}
+.gsp-verdict{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-top:6px;padding:3px 8px;border:1px solid rgba(52,211,153,.25);background:rgba(52,211,153,.08)}
+
+/* LAYOUT */
+.game-layout{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 280px;gap:40px;position:relative;z-index:1}
+.game-main{padding:32px 0 80px}
+.game-sidebar{padding:32px 0 80px}
+
+/* INFO TABLE */
+.info-table{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-bottom:36px}
+.info-row{background:var(--surf);padding:14px 18px;display:flex;flex-direction:column;gap:3px}
+.ir-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.ir-val{font-size:13px;color:var(--white);font-weight:500}
+
+/* SCORE BREAKDOWN */
+.score-bars{background:var(--surf);padding:24px 28px;margin-bottom:36px}
+.sb-header{font-family:var(--fd);font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--white);margin-bottom:20px}
+.score-item{margin-bottom:14px}
+.score-item:last-child{margin-bottom:0}
+.si-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.si-label{font-size:12px;color:var(--dim)}
+.si-val{font-family:var(--fd);font-weight:700;font-size:14px;color:var(--cyan)}
+.si-track{height:4px;background:rgba(255,255,255,.06);position:relative;overflow:hidden}
+.si-fill{height:100%;background:linear-gradient(to right,var(--cyan),var(--violet));width:0;transition:width 1.2s var(--ease)}
+
+/* SCREENSHOTS */
+.screenshots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-bottom:36px}
+.ss-img{aspect-ratio:16/9;object-fit:cover;width:100%;cursor:pointer;transition:filter .2s,transform .25s;display:block}
+.ss-img:hover{filter:brightness(1.15);transform:scale(1.02)}
+
+/* TABS */
+.tab-bar{display:flex;border-bottom:1px solid var(--border);margin-bottom:28px;gap:0}
+.tab-btn{font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;padding:12px 20px;cursor:pointer;margin-bottom:-1px;transition:color .2s,border-color .2s}
+.tab-btn.active{color:var(--cyan);border-color:var(--cyan)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* REVIEW BODY */
+.review-body{font-size:14px;color:var(--dim);line-height:1.9}
+.review-body h2{font-family:var(--fd);font-weight:700;font-size:22px;color:var(--white);margin:28px 0 12px}
+.review-body p{margin-bottom:16px}
+.review-body ul{margin:0 0 16px 22px}
+.review-body li{margin-bottom:6px}
+
+/* PROS CONS */
+.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin:24px 0}
+.pc-box{padding:20px 22px;background:var(--surf)}
+.pc-title{font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.pros .pc-title{color:var(--green)}
+.cons .pc-title{color:var(--sakura)}
+.pc-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.pc-list li{font-size:13px;color:var(--dim);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.pros .pc-list li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+.cons .pc-list li::before{content:'✗';color:var(--sakura);font-weight:700;flex-shrink:0}
+
+/* SYS REQ */
+.sys-req{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+.sr-box{background:var(--surf);padding:20px 22px}
+.sr-title{font-family:var(--fd);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.sr-row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px;font-size:12px}
+.sr-label{color:var(--muted);flex-shrink:0;min-width:80px}
+.sr-val{color:var(--white);text-align:right}
+
+/* SIDEBAR */
+.gs-block{background:var(--surf);padding:20px;margin-bottom:14px}
+.gs-title{font-family:var(--fd);font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.gs-links{display:flex;flex-direction:column;gap:8px}
+.gs-link{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(255,255,255,.03);border:1px solid var(--border);text-decoration:none;color:var(--white);font-size:12px;font-weight:500;transition:all .2s}
+.gs-link:hover{border-color:rgba(0,229,255,.3);color:var(--cyan);background:rgba(0,229,255,.04)}
+.gs-link-icon{font-size:16px}
+.sim-games{display:flex;flex-direction:column;gap:8px}
+.sim-game{display:flex;align-items:center;gap:10px;text-decoration:none;padding:8px;background:rgba(255,255,255,.02);border:1px solid transparent;transition:all .2s}
+.sim-game:hover{border-color:var(--border);background:rgba(255,255,255,.04)}
+.sg-thumb{width:48px;height:36px;object-fit:cover;flex-shrink:0}
+.sg-name{font-size:12px;color:var(--white);font-weight:500;line-height:1.3}
+.sg-genre{font-size:10px;color:var(--muted)}
+
+/* FOOTER */
+footer{position:relative;z-index:1;border-top:1px solid var(--border);background:rgba(6,2,14,.98)}
+.ft-in{max-width:1440px;margin:0 auto;padding:40px 24px 24px;display:grid;grid-template-columns:190px 1fr 1fr 1fr;gap:40px}
+.ft-desc{font-size:12px;color:rgba(240,238,255,.28);line-height:1.7;max-width:170px;margin-top:12px}
+.ft-h{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;font-weight:500}
+.ft-links{display:flex;flex-direction:column;gap:8px;list-style:none}
+.ft-links a{font-size:13px;color:rgba(240,238,255,.42);text-decoration:none;transition:color .2s}
+.ft-links a:hover{color:var(--cyan)}
+.ft-bot{max-width:1440px;margin:0 auto;padding:14px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.ft-copy{font-size:11px;color:rgba(240,238,255,.2)}
+@media(max-width:960px){.game-layout{grid-template-columns:1fr}.game-sidebar{display:none}.screenshots-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.nav-links{display:none}.ham{display:flex}.mobile-nav{display:flex}.ft-in{grid-template-columns:1fr;gap:24px}.game-banner{height:300px}.game-banner-content{flex-direction:column;align-items:flex-start;gap:12px}.game-cover{width:80px;height:106px}.game-score-panel{align-self:flex-start}.info-table{grid-template-columns:1fr}.pros-cons,.sys-req{grid-template-columns:1fr}}
+
+/* === MOBILE ACCESSIBILITY FIXES === */
+.ham{min-width:44px;min-height:44px;display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px;align-items:center;justify-content:center}
+input,select,textarea{font-size:16px!important}
+*{-webkit-tap-highlight-color:transparent}
+@media(max-width:768px){
+  .ham{display:flex}
+  a,button{min-height:44px;display:inline-flex;align-items:center}
+  .nav-links a{min-height:60px}
+}
+</style>
+  <title>Elden Ring: Nightreign — Review Game · OtaHub</title>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Review","name":"Elden Ring: Nightreign Game Review","reviewRating":{"@type":"Rating","ratingValue":"9.0","bestRating":"10"},"author":{"@type":"Organization","name":"OtaHub"},"publisher":{"@type":"Organization","name":"OtaHub"}}</script>
+  <link rel="manifest" href="/manifest.json"/>
+</head>
+<body>
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box"><input class="search-input" id="searchInput" type="text" placeholder="Tìm kiếm game, anime, manga..."/><button class="search-close" onclick="closeSearch()">✕</button></div>
+  <div class="search-hint">Nhấn ESC để đóng</div>
+  <div class="search-tags"><a href="gaming.html" class="stag">Gaming</a><a href="anime.html" class="stag">Anime</a><a href="manga.html" class="stag">Manga</a></div>
+</div>
+<div id="amb"><div class="orb o1"></div><div class="orb o2"></div></div>
+<div id="gtex"></div>
+<nav class="nav">
+  <div class="nav-in">
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"/><rect x="8" y="14" width="18" height="2" fill="#ff3080"/><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"/><rect x="13" y="16" width="2" height="9" fill="#ff3080"/><rect x="19" y="16" width="2" height="9" fill="#ff3080"/><rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".5"/><rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".5"/></svg>
+      <span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="choi-gi.html">Chơi Gì?</a></li>
+      <li><a href="gaming.html" class="active">Gaming</a></li>
+      <li><a href="anime.html">Anime</a></li>
+      <li><a href="manga.html">Manga</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="rankings.html">Rankings</a></li>
+    </ul>
+    <button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+    <div class="nav-r">
+      <div class="lang"><button class="lb on" id="bvi" onclick="setLang('vi')">VI</button><div class="lsep"></div><button class="lb" id="ben" onclick="setLang('en')">EN</button></div>
+      <button class="nsearch" onclick="openSearch()"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></button>
+      <a href="index.html#newsletter" class="cta">Subscribe</a>
+    </div>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="choi-gi.html">Chơi Gì?</a><a href="gaming.html" class="active">Gaming</a><a href="anime.html">Anime</a>
+  <a href="manga.html">Manga</a><a href="reviews.html">Reviews</a><a href="rankings.html">Rankings</a>
+  <div class="m-sub"><a href="about.html">Giới thiệu</a><a href="lien-he.html">Liên hệ</a></div>
+</div>
+
+<!-- GAME BANNER HERO -->
+<div class="game-banner">
+  <div class="game-banner-bg" id="gameBannerBg" style="background-image:url('https://picsum.photos/seed/game-banner/1400/420')"></div>
+  <div class="game-banner-grad"></div>
+  <div class="game-banner-content">
+    <img class="game-cover" id="gameCover" src="https://picsum.photos/seed/game-cover/120/160" alt="Game Cover"/ loading="lazy">
+    <div class="game-header-info">
+      <div class="game-genre-badges">
+        <span class="genre-badge" id="genre1">Action RPG</span>
+        <span class="genre-badge" id="genre2">Open World</span>
+        <span class="genre-badge" id="genre3">Soulslike</span>
+      </div>
+      <h1 class="game-title" id="gameTitle">Elden Ring:<br/>Shadow of the Erdtree</h1>
+      <p class="game-tagline" id="gameTagline">FromSoftware · 2024 · PC / PS5 / Xbox Series X</p>
+    </div>
+    <div class="game-score-panel">
+      <div class="gsp-label">Điểm OtaHub</div>
+      <div class="gsp-score" id="gameScore">9.4</div>
+      <div class="gsp-max">/10</div>
+      <div class="gsp-verdict" id="gameVerdict">KIỆT TÁC</div>
+    </div>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="game-layout">
+  <main class="game-main">
+    <!-- INFO TABLE -->
+    <div class="info-table">
+      <div class="info-row"><span class="ir-label">Nhà phát triển</span><span class="ir-val" id="dev">FromSoftware</span></div>
+      <div class="info-row"><span class="ir-label">Nhà phát hành</span><span class="ir-val" id="pub">Bandai Namco</span></div>
+      <div class="info-row"><span class="ir-label">Ngày ra mắt</span><span class="ir-val" id="release">21 tháng 6, 2024</span></div>
+      <div class="info-row"><span class="ir-label">Nền tảng</span><span class="ir-val" id="platform">PC · PS5 · XSX</span></div>
+      <div class="info-row"><span class="ir-label">Thể loại</span><span class="ir-val" id="genre">Action RPG</span></div>
+      <div class="info-row"><span class="ir-label">Chế độ chơi</span><span class="ir-val" id="mode">1 người · Online Co-op</span></div>
+      <div class="info-row"><span class="ir-label">Giá</span><span class="ir-val" id="price" style="color:var(--amber)">~900.000₫ (Steam)</span></div>
+      <div class="info-row"><span class="ir-label">Ngôn ngữ</span><span class="ir-val" id="lang">Tiếng Anh (không VN)</span></div>
+    </div>
+
+    <!-- SCORE BREAKDOWN -->
+    <div class="score-bars">
+      <div class="sb-header">Điểm chi tiết</div>
+      <div class="score-item"><div class="si-row"><span class="si-label">Gameplay</span><span class="si-val">9.5</span></div><div class="si-track"><div class="si-fill" data-w="95"></div></div></div>
+      <div class="score-item"><div class="si-row"><span class="si-label">Đồ họa & Nghệ thuật</span><span class="si-val">9.8</span></div><div class="si-track"><div class="si-fill" data-w="98"></div></div></div>
+      <div class="score-item"><div class="si-row"><span class="si-label">Cốt truyện</span><span class="si-val">8.8</span></div><div class="si-track"><div class="si-fill" data-w="88"></div></div></div>
+      <div class="score-item"><div class="si-row"><span class="si-label">Âm nhạc</span><span class="si-val">9.6</span></div><div class="si-track"><div class="si-fill" data-w="96"></div></div></div>
+      <div class="score-item"><div class="si-row"><span class="si-label">Độ dài & Giá trị</span><span class="si-val">9.0</span></div><div class="si-track"><div class="si-fill" data-w="90"></div></div></div>
+      <div class="score-item"><div class="si-row"><span class="si-label">Hiệu suất (PC)</span><span class="si-val">7.5</span></div><div class="si-track"><div class="si-fill" data-w="75"></div></div></div>
+    </div>
+
+    <!-- SCREENSHOTS -->
+    <div class="screenshots-grid">
+      <img class="ss-img" src="https://picsum.photos/seed/ss1/400/225" alt="Screenshot 1"/ loading="lazy">
+      <img class="ss-img" src="https://picsum.photos/seed/ss2/400/225" alt="Screenshot 2"/ loading="lazy">
+      <img class="ss-img" src="https://picsum.photos/seed/ss3/400/225" alt="Screenshot 3"/ loading="lazy">
+      <img class="ss-img" src="https://picsum.photos/seed/ss4/400/225" alt="Screenshot 4"/ loading="lazy">
+      <img class="ss-img" src="https://picsum.photos/seed/ss5/400/225" alt="Screenshot 5"/ loading="lazy">
+      <img class="ss-img" src="https://picsum.photos/seed/ss6/400/225" alt="Screenshot 6"/ loading="lazy">
+    </div>
+
+    <!-- TABS: Review / Cấu hình -->
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('review',this)">Đánh Giá</button>
+      <button class="tab-btn" onclick="switchTab('sysreq',this)">Cấu Hình Máy</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-review">
+      <div class="review-body">
+        <p>Shadow of the Erdtree là DLC đầu tiên và duy nhất của Elden Ring — và đây là một trong những DLC xuất sắc nhất trong lịch sử game. FromSoftware không chỉ thêm nội dung mới, họ mang đến một thế giới hoàn toàn mới với mật độ thiết kế dày đặc đến kinh ngạc.</p>
+        <h2>Thế giới mới — Shadow Realm</h2>
+        <p>The Shadow Realm (Vùng Đất Bóng Tối) là một cõi bí ẩn nằm song song với Lands Between. Từ thiết kế kiến trúc đến palette màu sắc, tất cả đều toát lên cảm giác u ám nhưng không kém phần hùng vĩ.</p>
+        <h2>Boss fights — đỉnh cao của series</h2>
+        <p>Các boss trong Shadow of the Erdtree là những màn trình diễn choreography và design xuất sắc nhất FromSoftware từng tạo ra. Mesmer the Impaler và Promised Consort Radahn sẽ là những trận đánh khắc vào ký ức bạn lâu dài.</p>
+      </div>
+      <div class="pros-cons">
+        <div class="pc-box pros">
+          <div class="pc-title">Điểm cộng</div>
+          <ul class="pc-list">
+            <li>Thế giới được thiết kế cực kỳ chi tiết, mật độ cao</li>
+            <li>Boss fights đỉnh cao, đáng nhớ nhất series</li>
+            <li>Hệ thống vũ khí và build mới đa dạng</li>
+            <li>Âm nhạc đạt tầm Epic</li>
+            <li>30-40 giờ nội dung chất lượng cao</li>
+          </ul>
+        </div>
+        <div class="pc-box cons">
+          <div class="pc-title">Điểm trừ</div>
+          <ul class="pc-list">
+            <li>Cần grind Scadutree Fragment để scale damage</li>
+            <li>Một vài khu vực ít nội dung hơn phần còn lại</li>
+            <li>Performance trên PC vẫn chưa tối ưu tốt</li>
+            <li>Giá DLC khá cao so với thị trường</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-sysreq">
+      <div class="sys-req">
+        <div class="sr-box">
+          <div class="sr-title">Cấu hình tối thiểu</div>
+          <div class="sr-row"><span class="sr-label">CPU</span><span class="sr-val">Intel i5-8600K / AMD Ryzen 5 3600</span></div>
+          <div class="sr-row"><span class="sr-label">RAM</span><span class="sr-val">12 GB</span></div>
+          <div class="sr-row"><span class="sr-label">GPU</span><span class="sr-val">Nvidia GTX 1070 8GB / Radeon RX 5700 8GB</span></div>
+          <div class="sr-row"><span class="sr-label">Storage</span><span class="sr-val">60 GB SSD</span></div>
+          <div class="sr-row"><span class="sr-label">OS</span><span class="sr-val">Windows 10/11 64-bit</span></div>
+        </div>
+        <div class="sr-box">
+          <div class="sr-title">Cấu hình khuyến nghị</div>
+          <div class="sr-row"><span class="sr-label">CPU</span><span class="sr-val">Intel i7-8700K / AMD Ryzen 5 3600X</span></div>
+          <div class="sr-row"><span class="sr-label">RAM</span><span class="sr-val">16 GB</span></div>
+          <div class="sr-row"><span class="sr-label">GPU</span><span class="sr-val">Nvidia GTX 1080 / AMD RX 5700 XT</span></div>
+          <div class="sr-row"><span class="sr-label">Storage</span><span class="sr-val">60 GB NVMe SSD</span></div>
+          <div class="sr-row"><span class="sr-label">OS</span><span class="sr-val">Windows 10/11 64-bit</span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="game-sidebar">
+    <div class="gs-block">
+      <div class="gs-title">Mua game</div>
+      <div class="gs-links">
+        <a href="#" class="gs-link"><span class="gs-link-icon">🖥️</span><span>Steam — PC</span></a>
+        <a href="#" class="gs-link"><span class="gs-link-icon">🎮</span><span>PlayStation Store</span></a>
+        <a href="#" class="gs-link"><span class="gs-link-icon">🟢</span><span>Xbox / PC Game Pass</span></a>
+      </div>
+    </div>
+    <div class="gs-block">
+      <div class="gs-title">Game tương tự</div>
+      <div class="sim-games">
+        <a href="game-detail.html" class="sim-game"><img class="sg-thumb" src="https://picsum.photos/seed/sim1/48/36" alt=""/ loading="lazy"><div><div class="sg-name">Dark Souls III</div><div class="sg-genre">Action RPG · 9.1</div></div></a>
+        <a href="game-detail.html" class="sim-game"><img class="sg-thumb" src="https://picsum.photos/seed/sim2/48/36" alt=""/ loading="lazy"><div><div class="sg-name">Sekiro: Shadows Die Twice</div><div class="sg-genre">Action · 9.5</div></div></a>
+        <a href="game-detail.html" class="sim-game"><img class="sg-thumb" src="https://picsum.photos/seed/sim3/48/36" alt=""/ loading="lazy"><div><div class="sg-name">Lies of P</div><div class="sg-genre">Soulslike · 8.2</div></div></a>
+        <a href="game-detail.html" class="sim-game"><img class="sg-thumb" src="https://picsum.photos/seed/sim4/48/36" alt=""/ loading="lazy"><div><div class="sg-name">Black Myth: Wukong</div><div class="sg-genre">Action RPG · 9.0</div></div></a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <div class="ft-in">
+    <div><a href="index.html" class="logo" style="margin:0 0 10px"><svg viewBox="0 0 34 34" fill="none" width="26" height="26"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"/><rect x="8" y="14" width="18" height="2" fill="#ff3080"/></svg><span class="logo-t" style="font-size:17px"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Hub tin tức Gaming & Anime châu Á.</p></div>
+    <div><div class="ft-h">Nội dung</div><ul class="ft-links"><li><a href="gaming.html">Gaming</a></li><li><a href="anime.html">Anime</a></li><li><a href="manga.html">Manga</a></li><li><a href="reviews.html">Reviews</a></li></ul></div>
+    <div><div class="ft-h">Khám phá</div><ul class="ft-links"><li><a href="choi-gi.html">Hôm Nay Chơi Gì?</a></li><li><a href="rankings.html">Xếp Hạng</a></li><li><a href="bai-viet.html">Bài Viết</a></li></ul></div>
+    <div><div class="ft-h">OtaHub</div><ul class="ft-links"><li><a href="about.html">Giới thiệu</a></li><li><a href="lien-he.html">Liên hệ</a></li><li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li></ul></div>
+  </div>
+  <div class="ft-bot"><span class="ft-copy">© 2024 OtaHub · Gaming & Anime Hub châu Á</span></div>
+</footer>
+
+<script>
+function toggleMobileNav(){const b=document.getElementById('hamBtn'),n=document.getElementById('mobileNav');b.classList.toggle('open');n.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':''}
+function openSearch(){document.getElementById('searchOverlay').classList.add('open');setTimeout(()=>document.getElementById('searchInput').focus(),100)}
+function closeSearch(){document.getElementById('searchOverlay').classList.remove('open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSearch()})
+function setLang(l){document.getElementById('bvi').classList.toggle('on',l==='vi');document.getElementById('ben').classList.toggle('on',l==='en')}
+function switchTab(id,btn){document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');btn.classList.add('active')}
+// Animate score bars
+const barObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.si-fill').forEach(f=>{f.style.width=f.dataset.w+'%'});barObs.unobserve(e.target)}})},{threshold:.3});
+document.querySelectorAll('.score-bars').forEach(el=>barObs.observe(el));
+</script>
+</body>
+</html>

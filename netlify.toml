@@ -1,0 +1,55 @@
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=600"
+
+[[redirects]]
+  from = "/news"
+  to = "/news.html"
+  status = 200
+
+[[redirects]]
+  from = "/gaming"
+  to = "/gaming.html"
+  status = 200
+
+[[redirects]]
+  from = "/anime"
+  to = "/anime.html"
+  status = 200
+
+[[redirects]]
+  from = "/manga"
+  to = "/manga.html"
+  status = 200
+
+[[redirects]]
+  from = "/reviews"
+  to = "/reviews.html"
+  status = 200
+
+[[redirects]]
+  from = "/rankings"
+  to = "/rankings.html"
+  status = 200
+
+[[redirects]]
+  from = "/choi-gi"
+  to = "/choi-gi.html"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
