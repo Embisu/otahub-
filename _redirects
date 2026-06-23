@@ -1,8 +1,3 @@
-/news      /news.html      200
-/gaming    /gaming.html    200
-/anime     /anime.html     200
-/manga     /manga.html     200
-/reviews   /reviews.html   200
-/rankings  /rankings.html  200
-/choi-gi   /choi-gi.html   200
-/about     /about.html     200
+# Cloudflare Pages Pretty URLs handles clean URL routing automatically.
+# No manual redirects needed — adding /path -> /path.html rules here
+# causes redirect loops when Pretty URLs is enabled.
