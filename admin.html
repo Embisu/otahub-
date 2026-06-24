@@ -793,4 +793,89 @@ async function saveArticle() {
     // H1
     html = html.replace(/(<h1 class="art-hero-title lang-vi active">)[^<]*(<\/h1>)/, `$1${title}$2`);
     // Body
-    const ne
+    const newBody = `<article class="art-body lang-vi active">\n${bodyVi}\n</article>`;
+    html = html.replace(/<article class="art-body lang-vi active">[\s\S]*?<\/article>/, newBody);
+
+    await ghPut(currentFile, html, sha, `[admin] cap nhat: ${title.slice(0,50)}`);
+
+    // Update local state
+    currentSha = sha;
+    const art = ARTICLES.find(a => a.file === currentFile);
+    if (art) { art.title = title; art.desc = desc; art.hero = hero; art.cat = cat; }
+
+    if (dot) dot.className = 'status-dot';
+    if (txt) txt.textContent = 'Đã lưu • ' + new Date().toLocaleTimeString('vi-VN');
+    const log = document.getElementById('save-log');
+    if (log) log.innerHTML = `✅ Commit lúc ${new Date().toLocaleTimeString('vi-VN')}<br>` + log.innerHTML;
+
+    toast('success', '✅ Đã lưu và deploy! Chờ ~1-2 phút để live.');
+  } catch(e) {
+    if (dot) dot.className = 'status-dot error';
+    if (txt) txt.textContent = 'Lỗi: ' + e.message;
+    toast('error', 'Lỗi lưu: ' + e.message);
+  } finally {
+    btn.textContent = '💾 Lưu & Deploy'; btn.disabled = false;
+  }
+}
+
+// ── New article ────────────────────────────────────────────────────────────
+function newArticle() {
+  const slug = prompt('Tên file bài viết mới (không có .html):\nVí dụ: tekken-8-review');
+  if (!slug) return;
+  const filename = slug.replace(/[^a-z0-9-]/gi,'').toLowerCase() + '.html';
+
+  // Use minimal template
+  const template = `<!DOCTYPE html>
+<html lang="vi">
+<head>
+<title>Tiêu đề bài viết · OtaHub</title>
+<meta charset="UTF-8"/>
+<meta name="description" content="Mô tả bài viết"/>
+<meta property="og:title" content="Tiêu đề bài viết · OtaHub"/>
+<meta property="og:description" content="Mô tả bài viết"/>
+<meta property="og:url" content="https://otahub.asia/${filename}"/>
+<meta property="article:section" content="Gaming"/>
+<meta name="twitter:title" content="Tiêu đề bài viết · OtaHub"/>
+<meta name="twitter:description" content="Mô tả bài viết"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"Tiêu đề bài viết","datePublished":"${new Date().toISOString()}","keywords":"game, anime"}<\/script>
+</head>
+<body>
+<div class="art-hero-img" style="background-image:url(https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg);background-color:#0b0418;"></div>
+<h1 class="art-hero-title lang-vi active">Tiêu đề bài viết</h1>
+<p class="art-hero-excerpt lang-vi active">Mô tả ngắn xuất hiện dưới tiêu đề.</p>
+<div class="hb-text lang-vi active">Tóm tắt nhanh về bài viết này.</div>
+<article class="art-body lang-vi active">
+<p>Nội dung bài viết ở đây...</p>
+<h2>Tiêu đề phần 1</h2>
+<p>Nội dung phần 1.</p>
+</article>
+<article class="art-body lang-en">
+<p>Article content here...</p>
+</article>
+</body>
+</html>`;
+
+  // Fake a "new file" edit
+  currentFile = filename;
+  currentSha = null; // null = new file
+  ARTICLES.push({ file: filename, sha: null, title: 'Bài viết mới', desc: '', hero: '', cat: 'Gaming', date: '' });
+
+  // Override ghPut for new files (no sha needed)
+  renderEditor(filename, template);
+  toast('success', `Tạo bài mới: ${filename}`);
+}
+
+// ── Helpers ────────────────────────────────────────────────────────────────
+function openSite()   { window.open('https://otahub.asia', '_blank'); }
+function openGitHub() { window.open(`https://github.com/${CFG.owner}/${CFG.repo}`, '_blank'); }
+
+function toast(type, msg) {
+  const el = document.createElement('div');
+  el.className = `toast-item ${type}`;
+  el.innerHTML = `<span class="toast-icon">${type==='success'?'✅':'❌'}</span><span>${msg}</span>`;
+  document.getElementById('toast').appendChild(el);
+  setTimeout(() => el.remove(), 4000);
+}
+</script>
+</body>
+</html>
