@@ -505,18 +505,18 @@ input,select,textarea{font-size:16px!important}
     <div class="h-img"></div><div class="h-ov"></div><div class="h-scan"></div><div class="h-glow"></div>
     <div class="h-content">
       <span class="tag tag-s tag-live" id="h-tag">Breaking</span>
-      <h1 class="h-title" id="h-title">Elden Ring <em>DLC 2</em>: Shadow of the Erdtree II<br>FromSoftware xác nhận phát hành Q4 2026</h1>
-      <p class="h-sub" id="h-sub">FromSoftware bất ngờ công bố DLC tiếp theo tại Summer Game Fest. Người chơi sẽ khám phá vùng đất hoàn toàn mới ngoài Lands Between với bosses và vũ khí chưa từng thấy.</p>
-      <div class="h-meta"><span class="h-meta-cat">Gaming</span><span class="h-meta-sep">·</span><span>Minh Khôi Trần</span><span class="h-meta-sep">·</span><span id="h-time">2 giờ trước</span></div>
-      <a href="#" class="read-more" id="h-read"><span>Đọc toàn bài</span><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></a>
+      <h1 class="h-title" id="h-title">Elden Ring <em>DLC 2</em>: Shadow of the Erdtree II<br>FromSoftware xac nhan phat hanh Q4 2026</h1>
+      <p class="h-sub" id="h-sub">FromSoftware bat ngo cong bo DLC tiep theo tai Summer Game Fest. Nguoi choi se kham pha vung dat hoan toan moi ngoai Lands Between voi bosses va vu khi chua tung thay.</p>
+      <div class="h-meta"><span class="h-meta-cat">Gaming</span><span class="h-meta-sep">·</span><span>OtaHub Gaming</span><span class="h-meta-sep">·</span><span id="h-time">Moi nhat</span></div>
+      <a href="elden-ring-dlc2.html" class="read-more" id="h-read"><span>Doc toan bai</span><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></a>
     </div>
   </div>
   <aside class="hero-side">
     <div class="side-head" id="side-head">Nổi bật hôm nay</div>
-    <article class="s-art"><div class="sa-c" style="color:var(--sakura)">Anime</div><div class="sa-t">Chainsaw Man phần 3 · Fujimoto xác nhận tự đạo diễn anime</div><div class="sa-m">Linh Phương · 4 giờ trước</div></article>
-    <article class="s-art"><div class="sa-c" style="color:var(--cyan)">Gaming</div><div class="sa-t">Wuthering Waves vượt 40 triệu người chơi sau bản 2.3</div><div class="sa-m">Anh Kiệt · 5 giờ trước</div></article>
-    <article class="s-art"><div class="sa-c" style="color:var(--lavender)">Manga</div><div class="sa-t">Berserk · Dark Horse tiết lộ chi tiết về arc cuối</div><div class="sa-m">Hà Trung · 7 giờ trước</div></article>
-    <article class="s-art"><div class="sa-c" style="color:var(--amber)">Review</div><div class="sa-t">Blue Protocol: Resonance · review sau 50 giờ, đáng đầu tư không?</div><div class="sa-m">Quốc Bảo · 9 giờ trước</div></article>
+    <article class="s-art" onclick="location.href='chainsaw-man-season3.html'" style="cursor:pointer"><div class="sa-c" style="color:var(--sakura)">Anime</div><div class="sa-t">Chainsaw Man Assassins Arc: MAPPA xac nhan tu dao dien anime</div><div class="sa-m">OtaHub Anime · Doc bai</div></article>
+    <article class="s-art" onclick="location.href='wuthering-waves-24.html'" style="cursor:pointer"><div class="sa-c" style="color:var(--cyan)">Gaming</div><div class="sa-t">Wuthering Waves 2.4: Aero Archipelago va nhan vat moi Roccia</div><div class="sa-m">OtaHub Gaming · Doc bai</div></article>
+    <article class="s-art" onclick="location.href='berserk-arc-cuoi.html'" style="cursor:pointer"><div class="sa-c" style="color:var(--lavender)">Manga</div><div class="sa-t">Berserk Arc Cuoi: Studio Gaga hoan thanh di san cua Miura</div><div class="sa-m">OtaHub Manga · Doc bai</div></article>
+    <article class="s-art" onclick="location.href='solo-leveling-season2.html'" style="cursor:pointer"><div class="sa-c" style="color:var(--amber)">Anime</div><div class="sa-t">Solo Leveling Season 2: Sung Jinwoo tro lai manh me hon bao gio het</div><div class="sa-m">OtaHub Anime · Doc bai</div></article>
   </aside>
 </section>
 <div class="marquee">
@@ -784,8 +784,4 @@ function setLang(l){
 function handleSubscribe(e){e.preventDefault();const btn=document.getElementById('nl-btn');btn.textContent='✓ Đã đăng ký!';btn.style.background='var(--green)';setTimeout(()=>{btn.textContent='Đăng ký';btn.style.background='';},3000);}
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}});},{threshold:.05,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
-const barObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.rk-bar[data-w]').forEach(b=>{setTimeout(()=>{b.style.width=b.dataset.w},120);});barObs.unobserve(e.target);}});},{threshold:.1});
-document.querySelectorAll('.rk-card').forEach(c=>barObs.observe(c));
-</script>
-</body>
-</html>
+const barObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.rk-bar[data-w]').forEach(b
