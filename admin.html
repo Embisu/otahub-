@@ -369,14 +369,20 @@ function extract(html, re) {
 }
 
 function extractHero(html) {
-  const m = html.match(/art-hero-img[^"]*"[^"]*"[^s]*style="([^"]+)"/);
+  const m = html.match(/class="art-hero-img"\s+style="([^"]+)"/);
   if (m) {
     const u = m[1].match(/url\(([^)]+)\)/);
     return u ? u[1] : '';
   }
-  // fallback: first figure img
   const f = html.match(/<figure><img src="([^"]+)"/);
   return f ? f[1] : '';
+}
+
+function extractHeroPos(html) {
+  const m = html.match(/class="art-hero-img"\s+style="([^"]+)"/);
+  if (!m) return 50;
+  const p = m[1].match(/background-position[^:]*:\s*center\s+(\d+)%/);
+  return p ? parseInt(p[1]) : 50;
 }
 
 // ── Views ──────────────────────────────────────────────────────────────────
@@ -460,6 +466,7 @@ function renderEditor(file, html) {
   const title   = extract(html, /<title>([^<]+)<\/title>/) || '';
   const desc    = extract(html, /name="description" content="([^"]+)"/) || '';
   const heroUrl = extractHero(html);
+  const heroPos = extractHeroPos(html);
   const cat     = extract(html, /article:section" content="([^"]+)"/) || 'Gaming';
   const bodyVi  = extractBody(html, 'lang-vi active');
   const bodyEn  = extractBody(html, 'lang-en">');
@@ -499,13 +506,33 @@ function renderEditor(file, html) {
           <div class="field-group-title">🖼️ Ảnh bìa (Hero)</div>
           <label class="form-label">URL ảnh bìa</label>
           <input class="form-input" id="ed-hero" value="${esc(heroUrl)}" placeholder="https://i.ytimg.com/vi/VIDEO_ID/maxresdefault.jpg" oninput="updateHeroPreview(this.value)"/>
-          <div class="form-label" style="margin-top:8px">Xem trước:</div>
-          <img id="hero-preview" class="img-preview" src="${heroUrl}" alt="Hero preview" onerror="this.style.display='none'; document.getElementById('hero-placeholder').style.display='flex'" style="${heroUrl?'':'display:none'}"/>
-          <div id="hero-placeholder" class="img-preview-placeholder" style="${heroUrl?'display:none':''}">Chưa có ảnh bìa</div>
-          <div style="font-size:11px;color:var(--muted);margin-top:8px">
+          <div class="form-label" style="margin-top:10px">Xem trước:</div>
+          <div style="position:relative;overflow:hidden;border-radius:8px;margin-top:6px">
+            <img id="hero-preview" src="${heroUrl}" alt="Hero preview"
+              style="width:100%;height:160px;object-fit:cover;object-position:center ${heroPos}%;display:${heroUrl?'block':'none'};transition:object-position .1s"
+              onerror="this.style.display='none';document.getElementById('hero-placeholder').style.display='flex'"/>
+            <div id="hero-placeholder" style="width:100%;height:160px;border-radius:8px;background:var(--surf2);border:2px dashed var(--border);display:${heroUrl?'none':'flex'};align-items:center;justify-content:center;color:var(--muted);font-size:12px">Chưa có ảnh bìa</div>
+          </div>
+          <div style="margin-top:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+              <label class="form-label" style="margin:0">↕ Kéo vị trí ảnh (lên / xuống)</label>
+              <span id="hero-pos-label" style="color:var(--cyan);font-size:12px;font-weight:600">${heroPos}%</span>
+            </div>
+            <input type="range" id="ed-hero-pos" min="0" max="100" value="${heroPos}"
+              style="width:100%;accent-color:var(--cyan);cursor:pointer"
+              oninput="updateHeroPosLabel(this.value)"/>
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-top:2px"><span>⬆ Lên đầu</span><span>Giữa</span><span>⬇ Xuống cuối</span></div>
+          </div>
+          <div style="font-size:11px;color:var(--muted);margin-top:10px">
             💡 YouTube: <code style="color:var(--cyan)">https://i.ytimg.com/vi/VIDEO_ID/maxresdefault.jpg</code><br>
             💡 Steam: <code style="color:var(--cyan)">https://cdn.akamai.steamstatic.com/steam/apps/APP_ID/header.jpg</code>
           </div>
+        </div>
+
+        <!-- Body images quick editor -->
+        <div class="field-group" id="body-imgs-group">
+          <div class="field-group-title">📷 Ảnh trong bài (kéo thả URL để thay)</div>
+          <div id="body-imgs-list"><div style="color:var(--muted);font-size:12px">Đang phân tích...</div></div>
         </div>
 
         <!-- Body VI -->
@@ -570,9 +597,12 @@ function renderEditor(file, html) {
   `);
 
   // Mark as changed when edited
-  ['ed-title','ed-desc','ed-hero','body-textarea'].forEach(id => {
+  ['ed-title','ed-desc','ed-hero','ed-hero-pos','body-textarea'].forEach(id => {
     document.getElementById(id)?.addEventListener('input', markChanged);
   });
+
+  // Populate body images list
+  renderBodyImgs(bodyVi);
 }
 
 function extractBody(html, cls) {
@@ -603,6 +633,57 @@ function updateHeroPreview(url) {
     img.style.display = 'none';
     ph.style.display  = 'flex';
   }
+  markChanged();
+}
+
+function updateHeroPosLabel(val) {
+  const lbl = document.getElementById('hero-pos-label');
+  if (lbl) lbl.textContent = val + '%';
+  const img = document.getElementById('hero-preview');
+  if (img) img.style.objectPosition = `center ${val}%`;
+  markChanged();
+}
+
+function renderBodyImgs(bodyHtml) {
+  const el = document.getElementById('body-imgs-list');
+  if (!el) return;
+  const imgs = [...bodyHtml.matchAll(/<img[^>]+src="([^"]+)"/g)].map(m => m[1]);
+  if (!imgs.length) {
+    el.innerHTML = '<p style="color:var(--muted);font-size:12px">Không có ảnh trong bài. Dùng nút 📷 Ảnh trong toolbar bên dưới để thêm.</p>';
+    return;
+  }
+  el.innerHTML = imgs.map((src, i) => `
+    <div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)">
+      <label class="form-label">Ảnh ${i+1}</label>
+      <div style="display:flex;gap:8px;align-items:center">
+        <input class="form-input" style="flex:1;font-size:12px" id="body-img-${i}"
+          value="${esc(src)}" placeholder="URL ảnh..."
+          oninput="syncBodyImg(${i},this.value)"/>
+        <button class="tb-btn" onclick="applyBodyImg(${i})">✓ Áp dụng</button>
+      </div>
+      <img src="${src}" id="body-img-prev-${i}"
+        style="width:100%;height:90px;object-fit:cover;border-radius:6px;margin-top:6px;background:var(--surf2)"
+        onerror="this.style.opacity=0.3"/>
+    </div>
+  `).join('');
+}
+
+function syncBodyImg(idx, newUrl) {
+  const prev = document.getElementById(`body-img-prev-${idx}`);
+  if (prev) { prev.src = newUrl; prev.style.opacity = 1; }
+}
+
+function applyBodyImg(idx) {
+  const ta = document.getElementById('body-textarea');
+  const inp = document.getElementById(`body-img-${idx}`);
+  if (!ta || !inp) return;
+  const newUrl = inp.value.trim();
+  const imgs = [...ta.value.matchAll(/<img[^>]+src="([^"]+)"/g)];
+  if (idx >= imgs.length) return;
+  const oldSrc = imgs[idx][1];
+  ta.value = ta.value.replace(new RegExp(oldSrc.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'g'), newUrl);
+  syncBodyImg(idx, newUrl);
+  toast('success', `Đã thay ảnh ${idx+1}`);
   markChanged();
 }
 
@@ -677,6 +758,7 @@ async function saveArticle() {
   const title   = document.getElementById('ed-title')?.value || '';
   const desc    = document.getElementById('ed-desc')?.value || '';
   const hero    = document.getElementById('ed-hero')?.value || '';
+  const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
   const cat     = document.getElementById('ed-cat')?.value || 'Gaming';
   const bodyVi  = document.getElementById('body-textarea')?.value || '';
 
@@ -707,93 +789,8 @@ async function saveArticle() {
     html = html.replace(/(<meta property="article:section" content=")[^"]*(")/,  `$1${cat}$2`);
     // Hero
     html = html.replace(/(class="art-hero-img"\s+style=")[^"]*(")/,
-      `$1background-image:url(${hero});background-color:#0b0418;$2`);
+      `$1background-image:url(${hero});background-position:center ${heroPos}%;background-color:#0b0418;$2`);
     // H1
     html = html.replace(/(<h1 class="art-hero-title lang-vi active">)[^<]*(<\/h1>)/, `$1${title}$2`);
     // Body
-    const newBody = `<article class="art-body lang-vi active">\n${bodyVi}\n</article>`;
-    html = html.replace(/<article class="art-body lang-vi active">[\s\S]*?<\/article>/, newBody);
-
-    await ghPut(currentFile, html, sha, `[admin] cap nhat: ${title.slice(0,50)}`);
-
-    // Update local state
-    currentSha = sha;
-    const art = ARTICLES.find(a => a.file === currentFile);
-    if (art) { art.title = title; art.desc = desc; art.hero = hero; art.cat = cat; }
-
-    if (dot) dot.className = 'status-dot';
-    if (txt) txt.textContent = 'Đã lưu • ' + new Date().toLocaleTimeString('vi-VN');
-    const log = document.getElementById('save-log');
-    if (log) log.innerHTML = `✅ Commit lúc ${new Date().toLocaleTimeString('vi-VN')}<br>` + log.innerHTML;
-
-    toast('success', '✅ Đã lưu và deploy! Chờ ~1-2 phút để live.');
-  } catch(e) {
-    if (dot) dot.className = 'status-dot error';
-    if (txt) txt.textContent = 'Lỗi: ' + e.message;
-    toast('error', 'Lỗi lưu: ' + e.message);
-  } finally {
-    btn.textContent = '💾 Lưu & Deploy'; btn.disabled = false;
-  }
-}
-
-// ── New article ────────────────────────────────────────────────────────────
-function newArticle() {
-  const slug = prompt('Tên file bài viết mới (không có .html):\nVí dụ: tekken-8-review');
-  if (!slug) return;
-  const filename = slug.replace(/[^a-z0-9-]/gi,'').toLowerCase() + '.html';
-
-  // Use minimal template
-  const template = `<!DOCTYPE html>
-<html lang="vi">
-<head>
-<title>Tiêu đề bài viết · OtaHub</title>
-<meta charset="UTF-8"/>
-<meta name="description" content="Mô tả bài viết"/>
-<meta property="og:title" content="Tiêu đề bài viết · OtaHub"/>
-<meta property="og:description" content="Mô tả bài viết"/>
-<meta property="og:url" content="https://otahub.asia/${filename}"/>
-<meta property="article:section" content="Gaming"/>
-<meta name="twitter:title" content="Tiêu đề bài viết · OtaHub"/>
-<meta name="twitter:description" content="Mô tả bài viết"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"Tiêu đề bài viết","datePublished":"${new Date().toISOString()}","keywords":"game, anime"}<\/script>
-</head>
-<body>
-<div class="art-hero-img" style="background-image:url(https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg);background-color:#0b0418;"></div>
-<h1 class="art-hero-title lang-vi active">Tiêu đề bài viết</h1>
-<p class="art-hero-excerpt lang-vi active">Mô tả ngắn xuất hiện dưới tiêu đề.</p>
-<div class="hb-text lang-vi active">Tóm tắt nhanh về bài viết này.</div>
-<article class="art-body lang-vi active">
-<p>Nội dung bài viết ở đây...</p>
-<h2>Tiêu đề phần 1</h2>
-<p>Nội dung phần 1.</p>
-</article>
-<article class="art-body lang-en">
-<p>Article content here...</p>
-</article>
-</body>
-</html>`;
-
-  // Fake a "new file" edit
-  currentFile = filename;
-  currentSha = null; // null = new file
-  ARTICLES.push({ file: filename, sha: null, title: 'Bài viết mới', desc: '', hero: '', cat: 'Gaming', date: '' });
-
-  // Override ghPut for new files (no sha needed)
-  renderEditor(filename, template);
-  toast('success', `Tạo bài mới: ${filename}`);
-}
-
-// ── Helpers ────────────────────────────────────────────────────────────────
-function openSite()   { window.open('https://otahub.asia', '_blank'); }
-function openGitHub() { window.open(`https://github.com/${CFG.owner}/${CFG.repo}`, '_blank'); }
-
-function toast(type, msg) {
-  const el = document.createElement('div');
-  el.className = `toast-item ${type}`;
-  el.innerHTML = `<span class="toast-icon">${type==='success'?'✅':'❌'}</span><span>${msg}</span>`;
-  document.getElementById('toast').appendChild(el);
-  setTimeout(() => el.remove(), 4000);
-}
-</script>
-</body>
-</html>
+    const ne
