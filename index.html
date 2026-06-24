@@ -784,4 +784,8 @@ function setLang(l){
 function handleSubscribe(e){e.preventDefault();const btn=document.getElementById('nl-btn');btn.textContent='✓ Đã đăng ký!';btn.style.background='var(--green)';setTimeout(()=>{btn.textContent='Đăng ký';btn.style.background='';},3000);}
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}});},{threshold:.05,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
-const barObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.rk-bar[data-w]').forEach(b
+const barObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.rk-bar[data-w]').forEach(b=>{setTimeout(()=>{b.style.width=b.dataset.w},120);});barObs.unobserve(e.target);}});},{threshold:.1});
+document.querySelectorAll('.rk-card').forEach(c=>barObs.observe(c));
+</script>
+</body>
+</html>
