@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>OtaHub Admin</title>
+<meta name="robots" content="noindex, nofollow"/>
+<style>
+:root {
+  --bg: #0b0418; --surf: #150a2c; --surf2: #1d1040; --card: #190c36;
+  --cyan: #00e5ff; --sakura: #ff3080; --violet: #7c3aed; --lav: #a78bfa;
+  --amber: #fbbf24; --green: #34d399; --white: #f0eeff;
+  --dim: rgba(240,238,255,.72); --muted: rgba(240,238,255,.38);
+  --border: rgba(255,255,255,.09); --bcyan: rgba(0,229,255,.15);
+}
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--white); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.6; min-height: 100vh; }
+
+/* ── Layout ── */
+.layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+.sidebar { background: var(--surf); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+.main { overflow-y: auto; }
+
+/* ── Sidebar ── */
+.logo { padding: 20px 20px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+.logo-text { font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
+.logo-text span { color: var(--cyan); }
+.logo-badge { font-size: 10px; background: var(--violet); color: #fff; padding: 2px 7px; border-radius: 20px; font-weight: 600; letter-spacing: .05em; }
+
+.sidebar-section { padding: 12px 12px 4px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 16px; border-radius: 8px; margin: 2px 8px; cursor: pointer; color: var(--dim); transition: all .15s; font-size: 13.5px; border: none; background: none; width: calc(100% - 16px); text-align: left; }
+.nav-item:hover { background: var(--surf2); color: var(--white); }
+.nav-item.active { background: var(--bcyan); color: var(--cyan); }
+.nav-item .icon { width: 16px; text-align: center; flex-shrink: 0; opacity: .8; }
+.nav-item .badge { margin-left: auto; background: var(--violet); color: #fff; font-size: 10px; padding: 1px 6px; border-radius: 10px; }
+
+.sidebar-footer { margin-top: auto; padding: 16px; border-top: 1px solid var(--border); }
+.connected-info { font-size: 11px; color: var(--muted); line-height: 1.7; }
+.connected-info strong { color: var(--dim); }
+.disconnect-btn { margin-top: 8px; padding: 5px 10px; background: rgba(255,48,128,.12); border: 1px solid rgba(255,48,128,.3); color: var(--sakura); border-radius: 6px; cursor: pointer; font-size: 11px; width: 100%; }
+.disconnect-btn:hover { background: rgba(255,48,128,.22); }
+
+/* ── Header ── */
+.page-header { padding: 24px 32px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.page-title { font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
+.page-title small { font-size: 12px; color: var(--muted); font-weight: 400; display: block; margin-top: 2px; }
+.header-actions { display: flex; gap: 10px; align-items: center; }
+
+/* ── Buttons ── */
+.btn { display: inline-flex; align-items: center; gap: 7px; padding: 8px 16px; border-radius: 8px; border: none; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .15s; text-decoration: none; }
+.btn-primary { background: var(--cyan); color: #000; }
+.btn-primary:hover { background: #00ccee; }
+.btn-secondary { background: var(--surf2); color: var(--white); border: 1px solid var(--border); }
+.btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
+.btn-danger { background: rgba(255,48,128,.15); color: var(--sakura); border: 1px solid rgba(255,48,128,.3); }
+.btn-danger:hover { background: rgba(255,48,128,.25); }
+.btn-sm { padding: 5px 12px; font-size: 12px; }
+.btn-icon { padding: 7px; border-radius: 7px; }
+.btn:disabled { opacity: .4; cursor: not-allowed; }
+
+/* ── Setup screen ── */
+#setup-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 24px; }
+.setup-card { background: var(--surf); border: 1px solid var(--border); border-radius: 16px; padding: 40px; max-width: 460px; width: 100%; }
+.setup-card h1 { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
+.setup-card .sub { color: var(--muted); font-size: 13px; margin-bottom: 28px; line-height: 1.7; }
+.field { margin-bottom: 16px; }
+.field label { display: block; font-size: 12px; font-weight: 600; color: var(--dim); margin-bottom: 6px; letter-spacing: .03em; }
+.field input, .field select { width: 100%; background: var(--surf2); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; color: var(--white); font-size: 13px; outline: none; transition: border .15s; }
+.field input:focus, .field select:focus { border-color: var(--cyan); }
+.field .hint { font-size: 11px; color: var(--muted); margin-top: 5px; line-height: 1.6; }
+.field .hint a { color: var(--cyan); }
+.setup-submit { width: 100%; margin-top: 8px; padding: 11px; font-size: 14px; }
+.setup-error { background: rgba(255,48,128,.1); border: 1px solid rgba(255,48,128,.3); border-radius: 8px; padding: 10px 14px; color: var(--sakura); font-size: 12px; margin-top: 12px; display: none; }
+
+/* ── Article list ── */
+.content-area { padding: 24px 32px 48px; }
+.search-row { display: flex; gap: 10px; margin-bottom: 20px; }
+.search-input { flex: 1; background: var(--surf); border: 1px solid var(--border); border-radius: 8px; padding: 9px 14px; color: var(--white); font-size: 13px; outline: none; }
+.search-input:focus { border-color: var(--cyan); }
+.filter-select { background: var(--surf); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; color: var(--white); font-size: 13px; outline: none; }
+
+.articles-grid { display: grid; gap: 10px; }
+.article-card { background: var(--surf); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; display: grid; grid-template-columns: 60px 1fr auto; gap: 14px; align-items: center; transition: border .15s; cursor: pointer; }
+.article-card:hover { border-color: rgba(0,229,255,.35); }
+.art-thumb { width: 60px; height: 40px; object-fit: cover; border-radius: 6px; background: var(--surf2); }
+.art-info { min-width: 0; }
+.art-title { font-size: 13.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--white); }
+.art-meta { font-size: 11px; color: var(--muted); margin-top: 3px; display: flex; gap: 10px; }
+.art-cat { background: var(--bcyan); color: var(--cyan); padding: 1px 7px; border-radius: 10px; font-size: 10px; font-weight: 600; }
+.art-actions { display: flex; gap: 6px; }
+
+/* ── Editor ── */
+.editor-layout { display: grid; grid-template-columns: 1fr 300px; gap: 24px; padding: 24px 32px 48px; }
+.editor-main {}
+.editor-sidebar {}
+
+.field-group { background: var(--surf); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+.field-group-title { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.form-input { width: 100%; background: var(--surf2); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; color: var(--white); font-size: 13px; outline: none; transition: border .15s; font-family: inherit; }
+.form-input:focus { border-color: var(--cyan); }
+textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
+.form-label { display: block; font-size: 11px; font-weight: 600; color: var(--dim); margin-bottom: 5px; letter-spacing: .03em; margin-top: 12px; }
+.form-label:first-child { margin-top: 0; }
+.img-preview { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-top: 8px; background: var(--surf2); display: block; }
+.img-preview-placeholder { width: 100%; height: 120px; border-radius: 8px; margin-top: 8px; background: var(--surf2); border: 2px dashed var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 12px; }
+
+/* Body editor */
+.body-editor { background: var(--surf2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.body-toolbar { display: flex; gap: 4px; padding: 8px 10px; border-bottom: 1px solid var(--border); flex-wrap: wrap; background: var(--surf); }
+.tb-btn { padding: 4px 9px; background: transparent; border: 1px solid var(--border); border-radius: 5px; color: var(--dim); font-size: 12px; cursor: pointer; transition: all .12s; font-family: inherit; }
+.tb-btn:hover { background: var(--surf2); color: var(--white); border-color: rgba(255,255,255,.15); }
+.tb-sep { width: 1px; background: var(--border); margin: 2px 4px; }
+#body-textarea { width: 100%; min-height: 400px; background: transparent; border: none; padding: 14px; color: var(--dim); font-size: 13px; line-height: 1.8; resize: vertical; outline: none; font-family: 'Consolas', 'Monaco', monospace; }
+
+/* Sidebar widgets */
+.status-indicator { display: flex; align-items: center; gap: 8px; font-size: 12px; padding: 10px 0; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; animation: pulse 2s infinite; }
+.status-dot.saving { background: var(--amber); animation: none; }
+.status-dot.error { background: var(--sakura); animation: none; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+.save-log { font-size: 11px; color: var(--muted); line-height: 1.7; max-height: 120px; overflow-y: auto; }
+
+.deploy-info { background: rgba(0,229,255,.05); border: 1px solid var(--bcyan); border-radius: 8px; padding: 12px; font-size: 11px; color: var(--dim); line-height: 1.8; }
+.deploy-info strong { color: var(--cyan); }
+
+/* ── Loading ── */
+.loading { display: flex; align-items: center; justify-content: center; padding: 60px; flex-direction: column; gap: 16px; color: var(--muted); }
+.spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--cyan); border-radius: 50%; animation: spin .7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Toast ── */
+#toast { position: fixed; bottom: 24px; right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+.toast-item { background: var(--surf); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; font-size: 13px; min-width: 260px; display: flex; align-items: center; gap: 10px; animation: toastIn .2s ease; box-shadow: 0 8px 32px rgba(0,0,0,.5); }
+.toast-item.success { border-color: rgba(52,211,153,.4); }
+.toast-item.error { border-color: rgba(255,48,128,.4); }
+.toast-icon { font-size: 16px; flex-shrink: 0; }
+@keyframes toastIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none} }
+
+/* ── Empty state ── */
+.empty-state { text-align: center; padding: 60px 24px; color: var(--muted); }
+.empty-icon { font-size: 48px; margin-bottom: 16px; opacity: .5; }
+
+/* ── Responsive ── */
+@media(max-width:768px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; }
+  .editor-layout { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── SETUP SCREEN ── -->
+<div id="setup-screen">
+  <div class="setup-card">
+    <h1>🎮 OtaHub Admin</h1>
+    <p class="sub">Kết nối GitHub repo để chỉnh sửa bài viết trực tiếp trên browser. Mọi thay đổi sẽ tự deploy lên Cloudflare Pages.</p>
+
+    <div class="field">
+      <label>GitHub Personal Access Token</label>
+      <input type="password" id="setup-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"/>
+      <div class="hint">Tạo tại <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens</a> — chọn scope <strong>repo</strong></div>
+    </div>
+    <div class="field">
+      <label>GitHub Username</label>
+      <input type="text" id="setup-owner" placeholder="username"/>
+    </div>
+    <div class="field">
+      <label>Tên Repository</label>
+      <input type="text" id="setup-repo" placeholder="web-tin-tuc-game"/>
+    </div>
+    <div class="field">
+      <label>Branch</label>
+      <input type="text" id="setup-branch" placeholder="main" value="main"/>
+    </div>
+    <button class="btn btn-primary setup-submit" onclick="doSetup()">Kết nối →</button>
+    <div id="setup-error" class="setup-error"></div>
+  </div>
+</div>
+
+<!-- ── MAIN APP ── -->
+<div id="app" style="display:none">
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="logo">
+        <div class="logo-text">Ota<span>Hub</span></div>
+        <span class="logo-badge">ADMIN</span>
+      </div>
+
+      <div class="sidebar-section">Nội dung</div>
+      <button class="nav-item active" id="nav-articles" onclick="showView('articles')">
+        <span class="icon">📄</span> Bài viết
+        <span class="badge" id="article-count">—</span>
+      </button>
+      <button class="nav-item" id="nav-new" onclick="newArticle()">
+        <span class="icon">✏️</span> Viết bài mới
+      </button>
+
+      <div class="sidebar-section">Website</div>
+      <button class="nav-item" onclick="openSite()">
+        <span class="icon">🌐</span> Xem website
+      </button>
+      <button class="nav-item" onclick="openGitHub()">
+        <span class="icon">⚙️</span> GitHub repo
+      </button>
+
+      <div class="sidebar-footer">
+        <div class="connected-info" id="conn-info"></div>
+        <button class="disconnect-btn" onclick="disconnect()">Đăng xuất</button>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="main" id="main-content">
+      <div class="loading"><div class="spinner"></div><span>Đang tải...</span></div>
+    </main>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ── State ──────────────────────────────────────────────────────────────────
+let CFG = {};
+let ARTICLES = [];
+let currentFile = null;
+let currentSha = null;
+
+// ── Setup ──────────────────────────────────────────────────────────────────
+window.onload = () => {
+  const saved = localStorage.getItem('otahub_cfg');
+  if (saved) {
+    CFG = JSON.parse(saved);
+    startApp();
+  }
+};
+
+async function doSetup() {
+  const token  = document.getElementById('setup-token').value.trim();
+  const owner  = document.getElementById('setup-owner').value.trim();
+  const repo   = document.getElementById('setup-repo').value.trim();
+  const branch = document.getElementById('setup-branch').value.trim() || 'main';
+  const errEl  = document.getElementById('setup-error');
+  errEl.style.display = 'none';
+
+  if (!token || !owner || !repo) {
+    errEl.textContent = 'Vui lòng điền đầy đủ thông tin.';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  // Test connection
+  const btn = document.querySelector('.setup-submit');
+  btn.textContent = 'Đang kết nối...'; btn.disabled = true;
+  try {
+    const r = await ghFetch(`/repos/${owner}/${repo}`, token);
+    if (!r.ok) throw new Error('Không tìm thấy repo hoặc token không hợp lệ.');
+    CFG = { token, owner, repo, branch };
+    localStorage.setItem('otahub_cfg', JSON.stringify(CFG));
+    startApp();
+  } catch(e) {
+    errEl.textContent = e.message;
+    errEl.style.display = 'block';
+    btn.textContent = 'Kết nối →'; btn.disabled = false;
+  }
+}
+
+function startApp() {
+  document.getElementById('setup-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  document.getElementById('conn-info').innerHTML =
+    `<strong>${CFG.owner}/${CFG.repo}</strong><br>Branch: ${CFG.branch}`;
+  loadArticles();
+}
+
+function disconnect() {
+  if (!confirm('Đăng xuất khỏi admin?')) return;
+  localStorage.removeItem('otahub_cfg');
+  location.reload();
+}
+
+// ── GitHub API ─────────────────────────────────────────────────────────────
+function ghFetch(path, token, opts={}) {
+  return fetch('https://api.github.com' + path, {
+    ...opts,
+    headers: {
+      'Authorization': 'Bearer ' + (token || CFG.token),
+      'Accept': 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      ...(opts.headers || {})
+    }
+  });
+}
+
+async function ghGet(path) {
+  const r = await ghFetch(`/repos/${CFG.owner}/${CFG.repo}/contents/${path}?ref=${CFG.branch}`);
+  if (!r.ok) throw new Error('GitHub API error: ' + r.status);
+  return r.json();
+}
+
+async function ghPut(path, content, sha, message) {
+  const r = await ghFetch(`/repos/${CFG.owner}/${CFG.repo}/contents/${path}`, {}, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      message,
+      content: btoa(unescape(encodeURIComponent(content))),
+      sha,
+      branch: CFG.branch
+    })
+  });
+  if (!r.ok) {
+    const e = await r.json();
+    throw new Error(e.message || 'Lỗi khi lưu file');
+  }
+  return r.json();
+}
+
+// ── Load articles ──────────────────────────────────────────────────────────
+const ARTICLE_FILES = [
+  'gta6-preview.html','elden-ring-dlc2.html','chainsaw-man-season3.html',
+  'dragon-ball-daima.html','solo-leveling-season2.html','one-piece-egghead-arc.html',
+  'jujutsu-kaisen-ket-thuc.html','berserk-arc-cuoi.html','stellar-blade-dlc.html',
+  'honkai-star-rail-30.html','nintendo-switch-2-review.html','genshin-natlan-review.html',
+  'black-myth-wukong-huong-dan.html','wuthering-waves-24.html','space-marine-2-dlc.html',
+  'top-game-pc-2026.html','top-anime-2025.html','anime-mua-he-2026.html',
+  'blue-protocol-review.html','xbox-showcase-2026.html',
+  'tekken8-season2.html','kingdom-come-deliverance-2.html',
+  'frieren-season2.html','resident-evil-9-announcement.html'
+];
+
+async function loadArticles() {
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải danh sách bài viết...</span></div>`);
+  try {
+    // Fetch all article files in parallel (get metadata only)
+    const results = await Promise.allSettled(
+      ARTICLE_FILES.map(f => ghGet(f))
+    );
+    ARTICLES = [];
+    results.forEach((r, i) => {
+      if (r.status === 'fulfilled') {
+        const data = r.value;
+        const html = decodeURIComponent(escape(atob(data.content)));
+        ARTICLES.push({
+          file: ARTICLE_FILES[i],
+          sha: data.sha,
+          title: extract(html, /<title>([^<]+)<\/title>/) || ARTICLE_FILES[i],
+          desc: extract(html, /name="description" content="([^"]+)"/) || '',
+          hero: extractHero(html),
+          cat: extract(html, /article:section" content="([^"]+)"/) || 'Gaming',
+          date: extract(html, /datePublished": "([^"]+)"/) || '',
+        });
+      }
+    });
+    document.getElementById('article-count').textContent = ARTICLES.length;
+    showView('articles');
+  } catch(e) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải bài viết: ${e.message}</p></div>`);
+  }
+}
+
+function extract(html, re) {
+  const m = html.match(re);
+  return m ? m[1].replace(' · OtaHub','').trim() : null;
+}
+
+function extractHero(html) {
+  const m = html.match(/art-hero-img[^"]*"[^"]*"[^s]*style="([^"]+)"/);
+  if (m) {
+    const u = m[1].match(/url\(([^)]+)\)/);
+    return u ? u[1] : '';
+  }
+  // fallback: first figure img
+  const f = html.match(/<figure><img src="([^"]+)"/);
+  return f ? f[1] : '';
+}
+
+// ── Views ──────────────────────────────────────────────────────────────────
+function setMain(html) { document.getElementById('main-content').innerHTML = html; }
+
+function showView(view) {
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-' + (view === 'articles' ? 'articles' : 'articles'))?.classList.add('active');
+
+  if (view === 'articles') {
+    renderArticleList();
+  }
+}
+
+function renderArticleList(filter='', cat='') {
+  const filtered = ARTICLES.filter(a => {
+    const q = filter.toLowerCase();
+    const matchQ = !q || a.title.toLowerCase().includes(q) || a.file.includes(q);
+    const matchCat = !cat || a.cat === cat;
+    return matchQ && matchCat;
+  });
+
+  const cats = [...new Set(ARTICLES.map(a => a.cat))].sort();
+  const catOpts = `<option value="">Tất cả danh mục</option>` +
+    cats.map(c => `<option value="${c}" ${c===cat?'selected':''}>${c}</option>`).join('');
+
+  const cards = filtered.length ? filtered.map(a => `
+    <div class="article-card" onclick="editArticle('${a.file}')">
+      <img class="art-thumb" src="${a.hero}" alt="${a.title}" onerror="this.style.background='var(--surf2)';this.src=''"/>
+      <div class="art-info">
+        <div class="art-title">${a.title}</div>
+        <div class="art-meta">
+          <span class="art-cat">${a.cat}</span>
+          <span>${a.file}</span>
+          <span>${a.date ? a.date.slice(0,10) : ''}</span>
+        </div>
+      </div>
+      <div class="art-actions">
+        <a class="btn btn-secondary btn-sm btn-icon" href="https://otahub.asia/${a.file}" target="_blank" onclick="event.stopPropagation()" title="Xem bài">🔗</a>
+        <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();editArticle('${a.file}')">Chỉnh sửa</button>
+      </div>
+    </div>
+  `).join('') : `<div class="empty-state"><div class="empty-icon">🔍</div><p>Không tìm thấy bài viết nào.</p></div>`;
+
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">Bài viết <small>${filtered.length}/${ARTICLES.length} bài</small></div>
+      <div class="header-actions">
+        <button class="btn btn-secondary btn-sm" onclick="loadArticles()">🔄 Tải lại</button>
+        <button class="btn btn-primary" onclick="newArticle()">✏️ Viết mới</button>
+      </div>
+    </div>
+    <div class="content-area">
+      <div class="search-row">
+        <input class="search-input" placeholder="Tìm bài viết..." oninput="renderArticleList(this.value, document.getElementById('cat-filter').value)" />
+        <select class="filter-select" id="cat-filter" onchange="renderArticleList(document.querySelector('.search-input').value, this.value)">
+          ${catOpts}
+        </select>
+      </div>
+      <div class="articles-grid">${cards}</div>
+    </div>
+  `);
+}
+
+// ── Editor ─────────────────────────────────────────────────────────────────
+async function editArticle(file) {
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải bài viết...</span></div>`);
+  try {
+    const data = await ghGet(file);
+    const html = decodeURIComponent(escape(atob(data.content)));
+    currentFile = file;
+    currentSha = data.sha;
+    renderEditor(file, html);
+  } catch(e) {
+    toast('error', 'Không tải được bài: ' + e.message);
+    showView('articles');
+  }
+}
+
+function renderEditor(file, html) {
+  const title   = extract(html, /<title>([^<]+)<\/title>/) || '';
+  const desc    = extract(html, /name="description" content="([^"]+)"/) || '';
+  const heroUrl = extractHero(html);
+  const cat     = extract(html, /article:section" content="([^"]+)"/) || 'Gaming';
+  const bodyVi  = extractBody(html, 'lang-vi active');
+  const bodyEn  = extractBody(html, 'lang-en">');
+
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">
+        Chỉnh sửa bài viết
+        <small>${file}</small>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-secondary" onclick="showView('articles')">← Quay lại</button>
+        <a class="btn btn-secondary" href="https://otahub.asia/${file}" target="_blank">🔗 Xem live</a>
+        <button class="btn btn-primary" id="save-btn" onclick="saveArticle()">💾 Lưu & Deploy</button>
+      </div>
+    </div>
+
+    <div class="editor-layout">
+      <div class="editor-main">
+
+        <!-- Metadata -->
+        <div class="field-group">
+          <div class="field-group-title">📋 Metadata & SEO</div>
+          <label class="form-label">Tiêu đề bài viết (Title)</label>
+          <input class="form-input" id="ed-title" value="${esc(title)}" placeholder="Tiêu đề bài viết..."/>
+          <label class="form-label">Mô tả (Meta Description)</label>
+          <textarea class="form-input" id="ed-desc" rows="3" placeholder="Mô tả ngắn cho SEO...">${esc(desc)}</textarea>
+          <label class="form-label">Danh mục</label>
+          <select class="form-input" id="ed-cat">
+            ${['Gaming','Anime','Manga','Reviews','Rankings','Guide','News'].map(c =>
+              `<option value="${c}" ${c===cat?'selected':''}>${c}</option>`).join('')}
+          </select>
+        </div>
+
+        <!-- Hero image -->
+        <div class="field-group">
+          <div class="field-group-title">🖼️ Ảnh bìa (Hero)</div>
+          <label class="form-label">URL ảnh bìa</label>
+          <input class="form-input" id="ed-hero" value="${esc(heroUrl)}" placeholder="https://i.ytimg.com/vi/VIDEO_ID/maxresdefault.jpg" oninput="updateHeroPreview(this.value)"/>
+          <div class="form-label" style="margin-top:8px">Xem trước:</div>
+          <img id="hero-preview" class="img-preview" src="${heroUrl}" alt="Hero preview" onerror="this.style.display='none'; document.getElementById('hero-placeholder').style.display='flex'" style="${heroUrl?'':'display:none'}"/>
+          <div id="hero-placeholder" class="img-preview-placeholder" style="${heroUrl?'display:none':''}">Chưa có ảnh bìa</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:8px">
+            💡 YouTube: <code style="color:var(--cyan)">https://i.ytimg.com/vi/VIDEO_ID/maxresdefault.jpg</code><br>
+            💡 Steam: <code style="color:var(--cyan)">https://cdn.akamai.steamstatic.com/steam/apps/APP_ID/header.jpg</code>
+          </div>
+        </div>
+
+        <!-- Body VI -->
+        <div class="field-group">
+          <div class="field-group-title">📝 Nội dung bài viết (Tiếng Việt)</div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:10px">Chỉnh sửa HTML trực tiếp. Dùng &lt;h2&gt;, &lt;p&gt;, &lt;figure&gt;&lt;img src="URL"&gt;&lt;/figure&gt; để thêm ảnh.</div>
+          <div class="body-editor">
+            <div class="body-toolbar">
+              <button class="tb-btn" onclick="wrapSel('&lt;h2&gt;','&lt;/h2&gt;')"><b>H2</b></button>
+              <button class="tb-btn" onclick="wrapSel('&lt;h3&gt;','&lt;/h3&gt;')">H3</button>
+              <div class="tb-sep"></div>
+              <button class="tb-btn" onclick="wrapSel('&lt;strong&gt;','&lt;/strong&gt;')"><b>B</b></button>
+              <button class="tb-btn" onclick="wrapSel('&lt;em&gt;','&lt;/em&gt;')"><i>I</i></button>
+              <div class="tb-sep"></div>
+              <button class="tb-btn" onclick="insertImg()">📷 Ảnh</button>
+              <button class="tb-btn" onclick="insertPara()">¶ Đoạn</button>
+              <button class="tb-btn" onclick="insertBlock()">❝ Quote</button>
+            </div>
+            <textarea id="body-textarea" class="form-input" style="border:none;border-radius:0;min-height:500px;font-family:monospace;font-size:12px">${esc(bodyVi)}</textarea>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Editor sidebar -->
+      <div class="editor-sidebar">
+        <div class="field-group">
+          <div class="field-group-title">🚀 Trạng thái</div>
+          <div class="status-indicator">
+            <div class="status-dot" id="status-dot"></div>
+            <span id="status-text">Chưa có thay đổi</span>
+          </div>
+          <div class="save-log" id="save-log"></div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-group-title">☁️ Deploy Info</div>
+          <div class="deploy-info">
+            Lưu bài → commit lên <strong>GitHub</strong> → Cloudflare Pages tự build và deploy trong <strong>~1-2 phút</strong>.<br><br>
+            Repo: <strong>${CFG.owner}/${CFG.repo}</strong><br>
+            Branch: <strong>${CFG.branch}</strong>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-group-title">🔗 Thêm ảnh nhanh</div>
+          <label class="form-label">Video ID YouTube</label>
+          <input class="form-input" id="yt-id" placeholder="dQw4w9WgXcQ" oninput="updateYtPreview()"/>
+          <div style="font-size:11px;color:var(--muted);margin-top:6px" id="yt-urls"></div>
+          <label class="form-label" style="margin-top:12px">App ID Steam</label>
+          <input class="form-input" id="steam-id" placeholder="1091500" oninput="updateSteamUrls()"/>
+          <div style="font-size:11px;color:var(--muted);margin-top:6px" id="steam-urls"></div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-group-title">⚡ Hành động</div>
+          <button class="btn btn-primary" style="width:100%;margin-bottom:8px" onclick="saveArticle()">💾 Lưu & Deploy</button>
+          <button class="btn btn-secondary" style="width:100%" onclick="if(confirm('Bỏ thay đổi?'))editArticle(currentFile)">↺ Hoàn tác</button>
+        </div>
+      </div>
+    </div>
+  `);
+
+  // Mark as changed when edited
+  ['ed-title','ed-desc','ed-hero','body-textarea'].forEach(id => {
+    document.getElementById(id)?.addEventListener('input', markChanged);
+  });
+}
+
+function extractBody(html, cls) {
+  const re = new RegExp(`<article class="art-body ${cls.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}">([\\s\\S]*?)<\\/article>`);
+  const m = html.match(re);
+  return m ? m[1].trim() : '';
+}
+
+function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function unesc(s) { return s.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"'); }
+
+function markChanged() {
+  const dot = document.getElementById('status-dot');
+  const txt = document.getElementById('status-text');
+  if (dot) dot.className = 'status-dot saving';
+  if (txt) txt.textContent = 'Có thay đổi chưa lưu';
+}
+
+function updateHeroPreview(url) {
+  const img = document.getElementById('hero-preview');
+  const ph  = document.getElementById('hero-placeholder');
+  if (!img || !ph) return;
+  if (url) {
+    img.src = url;
+    img.style.display = 'block';
+    ph.style.display  = 'none';
+  } else {
+    img.style.display = 'none';
+    ph.style.display  = 'flex';
+  }
+  markChanged();
+}
+
+function updateYtPreview() {
+  const id = document.getElementById('yt-id').value.trim();
+  const el = document.getElementById('yt-urls');
+  if (!id || !el) return;
+  el.innerHTML = `
+    <div style="margin:4px 0"><a href="https://i.ytimg.com/vi/${id}/maxresdefault.jpg" target="_blank" style="color:var(--cyan)">maxresdefault (1280px)</a>
+    <button class="tb-btn" style="margin-left:6px" onclick="copyImg('https://i.ytimg.com/vi/${id}/maxresdefault.jpg')">Copy</button></div>
+    <div style="margin:4px 0"><a href="https://i.ytimg.com/vi/${id}/hqdefault.jpg" target="_blank" style="color:var(--cyan)">hqdefault (480px)</a>
+    <button class="tb-btn" style="margin-left:6px" onclick="copyImg('https://i.ytimg.com/vi/${id}/hqdefault.jpg')">Copy</button></div>
+    <div style="margin:4px 0"><a href="https://i.ytimg.com/vi/${id}/sddefault.jpg" target="_blank" style="color:var(--cyan)">sddefault (640px)</a>
+    <button class="tb-btn" style="margin-left:6px" onclick="copyImg('https://i.ytimg.com/vi/${id}/sddefault.jpg')">Copy</button></div>
+  `;
+}
+
+function updateSteamUrls() {
+  const id = document.getElementById('steam-id').value.trim();
+  const el = document.getElementById('steam-urls');
+  if (!id || !el) return;
+  const base = `https://cdn.akamai.steamstatic.com/steam/apps/${id}`;
+  el.innerHTML = `
+    <div style="margin:4px 0"><a href="${base}/header.jpg" target="_blank" style="color:var(--cyan)">header.jpg</a>
+    <button class="tb-btn" style="margin-left:6px" onclick="copyImg('${base}/header.jpg')">Copy</button></div>
+    <div style="margin:4px 0"><a href="${base}/library_hero.jpg" target="_blank" style="color:var(--cyan)">library_hero (wide)</a>
+    <button class="tb-btn" style="margin-left:6px" onclick="copyImg('${base}/library_hero.jpg')">Copy</button></div>
+    <div style="margin:4px 0"><a href="${base}/capsule_616x353.jpg" target="_blank" style="color:var(--cyan)">capsule_616x353</a>
+    <button class="tb-btn" style="margin-left:6px" onclick="copyImg('${base}/capsule_616x353.jpg')">Copy</button></div>
+  `;
+}
+
+function copyImg(url) {
+  navigator.clipboard.writeText(url).then(() => toast('success', 'Đã copy URL ảnh!'));
+}
+
+// ── Toolbar helpers ────────────────────────────────────────────────────────
+function wrapSel(open, close) {
+  const ta = document.getElementById('body-textarea');
+  if (!ta) return;
+  const s = ta.selectionStart, e = ta.selectionEnd;
+  const sel = ta.value.slice(s, e);
+  const decoded = unesc(open) + sel + unesc(close);
+  ta.value = ta.value.slice(0, s) + decoded + ta.value.slice(e);
+  markChanged();
+}
+
+function insertImg() {
+  const url = prompt('URL ảnh:');
+  if (!url) return;
+  const alt = prompt('Alt text (mô tả ảnh):') || '';
+  const cap = prompt('Caption (chú thích):') || '';
+  const html = `\n<figure><img src="${url}" alt="${alt}" loading="lazy"/>${cap?`<figcaption>${cap}</figcaption>`:''}</figure>\n`;
+  insertAt(html);
+}
+
+function insertPara() { insertAt('\n<p></p>\n'); }
+function insertBlock() { insertAt('\n<blockquote>\n\n<cite></cite>\n</blockquote>\n'); }
+
+function insertAt(text) {
+  const ta = document.getElementById('body-textarea');
+  if (!ta) return;
+  const pos = ta.selectionStart;
+  ta.value = ta.value.slice(0, pos) + text + ta.value.slice(pos);
+  ta.selectionStart = ta.selectionEnd = pos + text.length;
+  ta.focus();
+  markChanged();
+}
+
+// ── Save ───────────────────────────────────────────────────────────────────
+async function saveArticle() {
+  const title   = document.getElementById('ed-title')?.value || '';
+  const desc    = document.getElementById('ed-desc')?.value || '';
+  const hero    = document.getElementById('ed-hero')?.value || '';
+  const cat     = document.getElementById('ed-cat')?.value || 'Gaming';
+  const bodyVi  = document.getElementById('body-textarea')?.value || '';
+
+  if (!currentFile || !currentSha) return;
+
+  const btn = document.getElementById('save-btn');
+  btn.textContent = '⏳ Đang lưu...'; btn.disabled = true;
+
+  const dot = document.getElementById('status-dot');
+  const txt = document.getElementById('status-text');
+  if (dot) dot.className = 'status-dot saving';
+  if (txt) txt.textContent = 'Đang commit lên GitHub...';
+
+  try {
+    // Get current file content
+    const data = await ghGet(currentFile);
+    let html = decodeURIComponent(escape(atob(data.content)));
+    const sha = data.sha;
+
+    // Apply edits
+    html = html.replace(/<title>[^<]+<\/title>/, `<title>${title} · OtaHub</title>`);
+    html = html.replace(/(<meta name="description" content=")[^"]*(")/,   `$1${desc}$2`);
+    html = html.replace(/(<meta property="og:title" content=")[^"]*(")/,  `$1${title} · OtaHub$2`);
+    html = html.replace(/(<meta property="og:description" content=")[^"]*(")/,  `$1${desc}$2`);
+    html = html.replace(/(<meta name="twitter:title" content=")[^"]*(")/,  `$1${title} · OtaHub$2`);
+    html = html.replace(/(<meta name="twitter:description" content=")[^"]*(")/,  `$1${desc}$2`);
+    html = html.replace(/("headline": ")[^"]*(")/,  `$1${title}$2`);
+    html = html.replace(/(<meta property="article:section" content=")[^"]*(")/,  `$1${cat}$2`);
+    // Hero
+    html = html.replace(/(class="art-hero-img"\s+style=")[^"]*(")/,
+      `$1background-image:url(${hero});background-color:#0b0418;$2`);
+    // H1
+    html = html.replace(/(<h1 class="art-hero-title lang-vi active">)[^<]*(<\/h1>)/, `$1${title}$2`);
+    // Body
+    const newBody = `<article class="art-body lang-vi active">\n${bodyVi}\n</article>`;
+    html = html.replace(/<article class="art-body lang-vi active">[\s\S]*?<\/article>/, newBody);
+
+    await ghPut(currentFile, html, sha, `[admin] cap nhat: ${title.slice(0,50)}`);
+
+    // Update local state
+    currentSha = sha;
+    const art = ARTICLES.find(a => a.file === currentFile);
+    if (art) { art.title = title; art.desc = desc; art.hero = hero; art.cat = cat; }
+
+    if (dot) dot.className = 'status-dot';
+    if (txt) txt.textContent = 'Đã lưu • ' + new Date().toLocaleTimeString('vi-VN');
+    const log = document.getElementById('save-log');
+    if (log) log.innerHTML = `✅ Commit lúc ${new Date().toLocaleTimeString('vi-VN')}<br>` + log.innerHTML;
+
+    toast('success', '✅ Đã lưu và deploy! Chờ ~1-2 phút để live.');
+  } catch(e) {
+    if (dot) dot.className = 'status-dot error';
+    if (txt) txt.textContent = 'Lỗi: ' + e.message;
+    toast('error', 'Lỗi lưu: ' + e.message);
+  } finally {
+    btn.textContent = '💾 Lưu & Deploy'; btn.disabled = false;
+  }
+}
+
+// ── New article ────────────────────────────────────────────────────────────
+function newArticle() {
+  const slug = prompt('Tên file bài viết mới (không có .html):\nVí dụ: tekken-8-review');
+  if (!slug) return;
+  const filename = slug.replace(/[^a-z0-9-]/gi,'').toLowerCase() + '.html';
+
+  // Use minimal template
+  const template = `<!DOCTYPE html>
+<html lang="vi">
+<head>
+<title>Tiêu đề bài viết · OtaHub</title>
+<meta charset="UTF-8"/>
+<meta name="description" content="Mô tả bài viết"/>
+<meta property="og:title" content="Tiêu đề bài viết · OtaHub"/>
+<meta property="og:description" content="Mô tả bài viết"/>
+<meta property="og:url" content="https://otahub.asia/${filename}"/>
+<meta property="article:section" content="Gaming"/>
+<meta name="twitter:title" content="Tiêu đề bài viết · OtaHub"/>
+<meta name="twitter:description" content="Mô tả bài viết"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"Tiêu đề bài viết","datePublished":"${new Date().toISOString()}","keywords":"game, anime"}</script>
+</head>
+<body>
+<div class="art-hero-img" style="background-image:url(https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg);background-color:#0b0418;"></div>
+<h1 class="art-hero-title lang-vi active">Tiêu đề bài viết</h1>
+<p class="art-hero-excerpt lang-vi active">Mô tả ngắn xuất hiện dưới tiêu đề.</p>
+<div class="hb-text lang-vi active">Tóm tắt nhanh về bài viết này.</div>
+<article class="art-body lang-vi active">
+<p>Nội dung bài viết ở đây...</p>
+<h2>Tiêu đề phần 1</h2>
+<p>Nội dung phần 1.</p>
+</article>
+<article class="art-body lang-en">
+<p>Article content here...</p>
+</article>
+</body>
+</html>`;
+
+  // Fake a "new file" edit
+  currentFile = filename;
+  currentSha = null; // null = new file
+  ARTICLES.push({ file: filename, sha: null, title: 'Bài viết mới', desc: '', hero: '', cat: 'Gaming', date: '' });
+
+  // Override ghPut for new files (no sha needed)
+  renderEditor(filename, template);
+  toast('success', `Tạo bài mới: ${filename}`);
+}
+
+// ── Helpers ────────────────────────────────────────────────────────────────
+function openSite()   { window.open('https://otahub.asia', '_blank'); }
+function openGitHub() { window.open(`https://github.com/${CFG.owner}/${CFG.repo}`, '_blank'); }
+
+function toast(type, msg) {
+  const el = document.createElement('div');
+  el.className = `toast-item ${type}`;
+  el.innerHTML = `<span class="toast-icon">${type==='success'?'✅':'❌'}</span><span>${msg}</span>`;
+  document.getElementById('toast').appendChild(el);
+  setTimeout(() => el.remove(), 4000);
+}
+</script>
+</body>
+</html>
