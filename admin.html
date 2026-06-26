@@ -142,6 +142,33 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .empty-state { text-align: center; padding: 60px 24px; color: var(--muted); }
 .empty-icon { font-size: 48px; margin-bottom: 16px; opacity: .5; }
 
+/* ── Rankings editor ── */
+.rank-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 20px; flex-wrap: wrap; }
+.rank-tab { padding: 9px 18px; border: none; background: none; color: var(--muted); cursor: pointer; font-size: 13px; font-weight: 600; border-bottom: 2px solid transparent; transition: all .15s; }
+.rank-tab:hover { color: var(--white); }
+.rank-tab.active { color: var(--cyan); border-bottom-color: var(--cyan); }
+.rank-entry { display: grid; grid-template-columns: 72px 1fr; gap: 12px; align-items: start; padding: 12px; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; background: var(--surf); transition: border .15s; }
+.rank-entry:hover { border-color: rgba(0,229,255,.2); }
+.rank-entry.top3 { border-color: rgba(0,229,255,.3); background: rgba(0,229,255,.03); }
+.rank-num { font-size: 20px; font-weight: 800; color: var(--cyan); text-align: center; padding-top: 6px; }
+.rank-num.gold { color: #fbbf24; }
+.rank-num.silver { color: #a0aec0; }
+.rank-num.bronze { color: #cd7f32; }
+.rank-img-prev { width: 72px; height: 54px; object-fit: cover; border-radius: 6px; background: var(--surf2); display: block; margin-top: 6px; }
+.rank-fields { display: grid; gap: 6px; }
+.rank-row { display: grid; grid-template-columns: 1fr 90px 90px; gap: 8px; }
+.rank-input-sm { background: var(--surf2); border: 1px solid var(--border); border-radius: 6px; padding: 5px 8px; color: var(--white); font-size: 12px; outline: none; width: 100%; }
+.rank-input-sm:focus { border-color: var(--cyan); }
+
+/* ── Pages grid ── */
+.pages-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); gap: 10px; }
+.page-card { background: var(--surf); border: 1px solid var(--border); border-radius: 10px; padding: 14px; cursor: pointer; transition: border .15s; }
+.page-card:hover { border-color: rgba(0,229,255,.35); }
+.page-card .pc-icon { font-size: 24px; margin-bottom: 8px; }
+.page-card .pc-name { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+.page-card .pc-file { font-size: 10px; color: var(--muted); }
+.page-card .pc-actions { display: flex; gap: 6px; margin-top: 10px; }
+
 /* ── Responsive ── */
 @media(max-width:768px) {
   .layout { grid-template-columns: 1fr; }
@@ -198,6 +225,14 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
       </button>
       <button class="nav-item" id="nav-new" onclick="newArticle()">
         <span class="icon">✏️</span> Viết bài mới
+      </button>
+
+      <div class="sidebar-section">Chỉnh sửa đặc biệt</div>
+      <button class="nav-item" id="nav-rankings" onclick="showView('rankings')">
+        <span class="icon">📊</span> Bảng xếp hạng
+      </button>
+      <button class="nav-item" id="nav-pages" onclick="showView('pages')">
+        <span class="icon">🗂️</span> Tất cả trang
       </button>
 
       <div class="sidebar-section">Website</div>
@@ -390,11 +425,12 @@ function setMain(html) { document.getElementById('main-content').innerHTML = htm
 
 function showView(view) {
   document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  document.getElementById('nav-' + (view === 'articles' ? 'articles' : 'articles'))?.classList.add('active');
+  const navMap = { articles: 'nav-articles', rankings: 'nav-rankings', pages: 'nav-pages' };
+  document.getElementById(navMap[view] || 'nav-articles')?.classList.add('active');
 
-  if (view === 'articles') {
-    renderArticleList();
-  }
+  if (view === 'articles') renderArticleList();
+  else if (view === 'rankings') loadRankings();
+  else if (view === 'pages') renderPagesView();
 }
 
 function renderArticleList(filter='', cat='') {
@@ -863,6 +899,257 @@ function newArticle() {
   // Override ghPut for new files (no sha needed)
   renderEditor(filename, template);
   toast('success', `Tạo bài mới: ${filename}`);
+}
+
+// ── Rankings Editor ────────────────────────────────────────────────────────
+let rankingsHtml = '';
+let rankingsSha  = '';
+let CATS_DATA    = null;
+let currentRankTab = 'pc';
+
+async function loadRankings() {
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải bảng xếp hạng...</span></div>`);
+  try {
+    const data = await ghGet('rankings.html');
+    rankingsHtml = decodeURIComponent(escape(atob(data.content)));
+    rankingsSha  = data.sha;
+    // Extract CATS object
+    const m = rankingsHtml.match(/const CATS\s*=\s*(\{[\s\S]*?\n\})\s*;/);
+    if (!m) throw new Error('Không tìm thấy dữ liệu CATS trong rankings.html');
+    CATS_DATA = new Function('return ' + m[1])();
+    renderRankingsEditor();
+  } catch(e) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi: ${e.message}</p></div>`);
+  }
+}
+
+function renderRankingsEditor() {
+  const tabs = Object.keys(CATS_DATA).map(k => `
+    <button class="rank-tab ${k===currentRankTab?'active':''}" onclick="switchRankTab('${k}')">
+      ${CATS_DATA[k].icon} ${CATS_DATA[k].label}
+    </button>`).join('');
+
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">Bảng xếp hạng <small>rankings.html</small></div>
+      <div class="header-actions">
+        <a class="btn btn-secondary btn-sm" href="https://otahub.asia/rankings.html" target="_blank">🔗 Xem live</a>
+        <button class="btn btn-primary" id="rank-save-btn" onclick="saveRankings()">💾 Lưu & Deploy</button>
+      </div>
+    </div>
+    <div class="content-area">
+      <div style="background:var(--surf);border:1px solid var(--border);border-radius:12px;padding:20px">
+        <div class="rank-tabs" id="rank-tabs">${tabs}</div>
+        <div id="rank-content"></div>
+      </div>
+    </div>
+  `);
+  renderRankTab(currentRankTab);
+}
+
+function switchRankTab(key) {
+  currentRankTab = key;
+  document.querySelectorAll('.rank-tab').forEach((t,i) => {
+    t.classList.toggle('active', Object.keys(CATS_DATA)[i] === key);
+  });
+  renderRankTab(key);
+}
+
+function renderRankTab(key) {
+  const cat = CATS_DATA[key];
+  if (!cat) return;
+  const el = document.getElementById('rank-content');
+  if (!el) return;
+
+  const topHtml = (cat.top||[]).map((e,i) => renderRankEntry(key,'top',i,e,true)).join('');
+  const restHtml = (cat.rest||[]).map((e,i) => renderRankEntry(key,'rest',i,e,false)).join('');
+
+  el.innerHTML = `
+    <div style="font-size:11px;color:var(--muted);margin-bottom:12px">
+      💡 Chỉnh URL ảnh, tên, điểm số rồi nhấn <strong style="color:var(--cyan)">💾 Lưu & Deploy</strong>
+    </div>
+    <div style="font-size:12px;font-weight:700;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">🏆 Top 3</div>
+    ${topHtml}
+    ${restHtml ? `<div style="font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin:16px 0 8px">Còn lại</div>${restHtml}` : ''}
+  `;
+}
+
+function renderRankEntry(catKey, listKey, idx, e, isTop) {
+  const numLabel = listKey==='top' ? ['🥇','🥈','🥉'][idx]||`#${idx+1}` : `#${idx+4}`;
+  const numClass = listKey==='top' ? ['gold','silver','bronze'][idx]||'' : '';
+  const imgId    = `ri_${catKey}_${listKey}_${idx}`;
+  const titleId  = `rt_${catKey}_${listKey}_${idx}`;
+  const studioId = `rs_${catKey}_${listKey}_${idx}`;
+  const scoreId  = `rsc_${catKey}_${listKey}_${idx}`;
+  const trendId  = `rtr_${catKey}_${listKey}_${idx}`;
+
+  return `
+    <div class="rank-entry${isTop?' top3':''}">
+      <div style="text-align:center">
+        <div class="rank-num ${numClass}">${numLabel}</div>
+        <img class="rank-img-prev" id="prev_${imgId}" src="${esc(e.img||'')}"
+          onerror="this.style.opacity=.3" alt="${esc(e.title||'')}"/>
+      </div>
+      <div class="rank-fields">
+        <div>
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px">URL ảnh</div>
+          <input class="rank-input-sm" style="width:100%" id="${imgId}" value="${esc(e.img||'')}"
+            oninput="document.getElementById('prev_${imgId}').src=this.value;updateRankData('${catKey}','${listKey}',${idx},'img',this.value)"/>
+        </div>
+        <div class="rank-row">
+          <div>
+            <div style="font-size:10px;color:var(--muted);margin-bottom:3px">Tên</div>
+            <input class="rank-input-sm" id="${titleId}" value="${esc(e.title||'')}"
+              oninput="updateRankData('${catKey}','${listKey}',${idx},'title',this.value)"/>
+          </div>
+          <div>
+            <div style="font-size:10px;color:var(--muted);margin-bottom:3px">Điểm</div>
+            <input class="rank-input-sm" id="${scoreId}" value="${esc(e.score||'')}"
+              oninput="updateRankData('${catKey}','${listKey}',${idx},'score',this.value)"/>
+          </div>
+          <div>
+            <div style="font-size:10px;color:var(--muted);margin-bottom:3px">Trend</div>
+            <input class="rank-input-sm" id="${trendId}" value="${esc(e.trend||'')}"
+              oninput="updateRankData('${catKey}','${listKey}',${idx},'trend',this.value)"/>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px">Studio / Thể loại</div>
+          <input class="rank-input-sm" style="width:100%" id="${studioId}"
+            value="${esc(e.studio||e.sub||'')}"
+            oninput="updateRankData('${catKey}','${listKey}',${idx},e.studio!==undefined?'studio':'sub',this.value)"/>
+        </div>
+      </div>
+    </div>`;
+}
+
+function updateRankData(catKey, listKey, idx, field, value) {
+  if (!CATS_DATA[catKey]) return;
+  const list = CATS_DATA[catKey][listKey];
+  if (!list || !list[idx]) return;
+  list[idx][field] = value;
+}
+
+async function saveRankings() {
+  const btn = document.getElementById('rank-save-btn');
+  btn.textContent = '⏳ Đang lưu...'; btn.disabled = true;
+  try {
+    // Re-fetch to get latest SHA
+    const latest = await ghGet('rankings.html');
+    const sha = latest.sha;
+    let html = decodeURIComponent(escape(atob(latest.content)));
+
+    // Rebuild CATS entries via targeted replacements
+    // Replace each entry's img and title in the CATS block
+    for (const catKey of Object.keys(CATS_DATA)) {
+      const cat = CATS_DATA[catKey];
+      for (const listKey of ['top','rest']) {
+        (cat[listKey]||[]).forEach((entry, idx) => {
+          // Replace img URL
+          if (entry._origImg && entry._origImg !== entry.img) {
+            html = html.replace(
+              new RegExp(entry._origImg.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'g'),
+              entry.img
+            );
+          }
+        });
+      }
+    }
+
+    // Better: replace full CATS block with serialized version
+    const newCats = 'const CATS = ' + serializeCats(CATS_DATA) + ';';
+    html = html.replace(/const CATS\s*=\s*\{[\s\S]*?\n\}\s*;/, newCats);
+
+    await ghPut('rankings.html', html, sha, '[admin] cap nhat bang xep hang');
+    toast('success', '✅ Đã lưu bảng xếp hạng! Deploy trong ~1-2 phút.');
+  } catch(e) {
+    toast('error', 'Lỗi lưu: ' + e.message);
+  } finally {
+    btn.textContent = '💾 Lưu & Deploy'; btn.disabled = false;
+  }
+}
+
+function serializeCats(cats) {
+  // Custom serializer to keep JS object style
+  function serEntry(e) {
+    const parts = [];
+    for (const [k,v] of Object.entries(e)) {
+      if (v === null) parts.push(`${k}:null`);
+      else if (typeof v === 'object') parts.push(`${k}:${JSON.stringify(v)}`);
+      else if (typeof v === 'string') parts.push(`${k}:'${v.replace(/'/g,"\\'")}'`);
+      else parts.push(`${k}:${v}`);
+    }
+    return '{' + parts.join(',') + '}';
+  }
+  function serList(arr) {
+    return '[' + arr.map(serEntry).join(',\n      ') + ']';
+  }
+  const catParts = Object.entries(cats).map(([k,cat]) => {
+    const entryParts = [];
+    for (const [ck,cv] of Object.entries(cat)) {
+      if (Array.isArray(cv)) entryParts.push(`${ck}:${serList(cv)}`);
+      else if (typeof cv === 'string') entryParts.push(`${ck}:'${cv.replace(/'/g,"\\'")}'`);
+      else entryParts.push(`${ck}:${JSON.stringify(cv)}`);
+    }
+    return `  ${k}:{\n    ${entryParts.join(',\n    ')}\n  }`;
+  });
+  return '{\n' + catParts.join(',\n') + '\n}';
+}
+
+// ── Pages View ─────────────────────────────────────────────────────────────
+const ALL_PAGES = [
+  { file: 'index.html',           icon: '🏠', name: 'Trang chủ',         cat: 'Core' },
+  { file: 'gaming.html',          icon: '🎮', name: 'Gaming',             cat: 'Core' },
+  { file: 'anime.html',           icon: '⛩️', name: 'Anime',              cat: 'Core' },
+  { file: 'manga.html',           icon: '📚', name: 'Manga',              cat: 'Core' },
+  { file: 'reviews.html',         icon: '⭐', name: 'Reviews',            cat: 'Core' },
+  { file: 'rankings.html',        icon: '📊', name: 'Rankings',           cat: 'Core' },
+  { file: 'choi-gi.html',         icon: '🕹️', name: 'Chơi Gì?',          cat: 'Core' },
+  { file: 'news.html',            icon: '📰', name: 'News',               cat: 'Core' },
+  { file: 'sap-ra-mat.html',      icon: '🚀', name: 'Sắp ra mắt',        cat: 'Core' },
+  { file: 'recommend.html',       icon: '💡', name: 'Recommend',          cat: 'Core' },
+  { file: 'lich-phat-song.html',  icon: '📅', name: 'Lịch phát sóng',    cat: 'Core' },
+  { file: 'about.html',           icon: 'ℹ️', name: 'Giới thiệu',        cat: 'Info' },
+  { file: 'lien-he.html',         icon: '📬', name: 'Liên hệ',           cat: 'Info' },
+  { file: 'chinh-sach-bao-mat.html', icon: '🔒', name: 'Chính sách',    cat: 'Info' },
+];
+
+function renderPagesView() {
+  const corePages = ALL_PAGES.filter(p => p.cat === 'Core');
+  const infoPages = ALL_PAGES.filter(p => p.cat === 'Info');
+
+  function renderGroup(title, pages) {
+    return `
+      <div style="margin-bottom:24px">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">${title}</div>
+        <div class="pages-grid">
+          ${pages.map(p => `
+            <div class="page-card">
+              <div class="pc-icon">${p.icon}</div>
+              <div class="pc-name">${p.name}</div>
+              <div class="pc-file">${p.file}</div>
+              <div class="pc-actions">
+                <button class="btn btn-primary btn-sm" style="flex:1" onclick="editArticle('${p.file}')">✏️ Sửa</button>
+                <a class="btn btn-secondary btn-sm btn-icon" href="https://otahub.asia/${p.file}" target="_blank" title="Xem">🔗</a>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>`;
+  }
+
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">Tất cả trang <small>${ALL_PAGES.length} trang</small></div>
+      <div class="header-actions">
+        <button class="btn btn-secondary btn-sm" onclick="showView('articles')">📄 Bài viết</button>
+      </div>
+    </div>
+    <div class="content-area">
+      ${renderGroup('Trang chính', corePages)}
+      ${renderGroup('Thông tin', infoPages)}
+    </div>
+  `);
 }
 
 // ── Helpers ────────────────────────────────────────────────────────────────
