@@ -90,6 +90,7 @@ function renderEmpty(){
 }
 
 function renderEntry(title, entry, catalog){
+  if(EN&&entry.storyEn){entry=Object.assign({},entry,{story:entry.storyEn,desc:entry.descEn||entry.storyEn[0],hook:entry.hookEn||entry.storyEn[0],status:entry.statusEn||entry.status});}
   document.title=title+' · Thông tin & Điểm số · OtaHub';
   var descEl=document.querySelector('meta[name="description"]');
   if(descEl)descEl.setAttribute('content', entry.desc.slice(0,155));
@@ -113,6 +114,7 @@ function renderEntry(title, entry, catalog){
   var storyParas = entry.story && entry.story.length ? entry.story : [entry.desc];
   var sectionHeads=EN?['Overview','Core experience','Points to consider','Verified information','Verdict']:['Tổng quan','Trải nghiệm cốt lõi','Điểm cần cân nhắc','Thông tin đã xác nhận','Kết luận'];
   var storyHtml = storyParas.map(function(p,i){return (entry.generated&&sectionHeads[i]?'<h2 class="review-heading">'+sectionHeads[i]+'</h2>':'')+'<p>'+esc(p)+'</p>';}).join('');
+  var sourcesHtml=entry.sources&&entry.sources.length?'<section class="review-sources"><h2 class="review-heading">'+(EN?'Sources and verification':'Nguồn và kiểm chứng')+'</h2><ul>'+entry.sources.map(function(s){return '<li><a href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">'+esc(s.name)+'</a></li>';}).join('')+'</ul></section>':'';
 
   root.innerHTML=
   '<section class="anime-hero">'+
@@ -140,7 +142,7 @@ function renderEntry(title, entry, catalog){
         (entry.status?'<div class="info-row"><span class="ir-label">'+TXT.status+'</span><span class="ir-val">'+esc(entry.status)+'</span></div>':'')+
         '<div class="info-row"><span class="ir-label">'+TXT.score+'</span><span class="ir-val">'+scoreHtml+' / 10</span></div>'+
       '</div>'+
-      '<div class="review-body">'+storyHtml+'</div>'+
+      '<div class="review-body">'+storyHtml+sourcesHtml+'</div>'+
       (entry.article?'<div class="highlight-box" style="margin:8px 0 28px"><div class="hb-label">'+TXT.article+'</div><div class="hb-text"><a href="'+entry.article+'" style="color:var(--acc)">'+TXT.read+esc(title)+' →</a></div></div>':'')+
       '<div class="share-bar"><span class="share-label">'+TXT.share+'</span>'+
         '<a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(pageUrl)+'" target="_blank" rel="noopener">Facebook</a>'+
@@ -162,7 +164,7 @@ function renderEntry(title, entry, catalog){
 if(!qTitle){
   renderEmpty();
 }else{
-  fetch('/assets/catalog.json').then(function(r){return r.json();}).then(function(catalog){
+  fetch('/assets/catalog.json?v=20260817d').then(function(r){return r.json();}).then(function(catalog){
     var found=findEntry(catalog, qTitle);
     if(!found){renderEntry(qTitle, generatedEntry(qTitle), catalog);return;}
     renderEntry(found[0], found[1], catalog);
