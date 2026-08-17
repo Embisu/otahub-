@@ -102,7 +102,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 
 /* CATEGORY HEADER */
 .cat-header{position:relative;z-index:1;min-height:240px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
-.ch-bg{position:absolute;inset:0;background:url('https://cdn.myanimelist.net/images/anime/1792/138022l.jpg') center 30%/cover no-repeat;opacity:.18}
+.ch-bg{position:absolute;inset:0;background:url('/assets/img/d662bae70f-maxresdefault.jpg') center 30%/cover no-repeat;opacity:.18}
 .ch-ov{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0%,var(--bg) 100%),linear-gradient(to right,rgba(124,58,237,.06) 0%,transparent 50%)}
 .ch-accent{position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,transparent,var(--lav),transparent);opacity:.6}
 .ch-body{position:relative;z-index:2;max-width:1440px;margin:0 auto;padding:0 24px}
@@ -110,7 +110,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .ch-eye::before{content:'';width:20px;height:1px;background:var(--lav);opacity:.6}
 .ch-title{font-family:var(--fd);font-weight:700;font-size:clamp(38px,5.5vw,76px);line-height:.95;letter-spacing:-.03em;color:var(--white);margin-bottom:10px}
 .ch-title em{font-style:normal;color:var(--lav);text-shadow:0 0 40px rgba(167,139,250,.3)}
-.ch-sub{font-size:13px;color:var(--dim);max-width:520px}
+.ch-sub{font-size:16px;color:var(--dim);max-width:520px}
 .ch-stats{display:flex;align-items:center;gap:32px;padding:16px 0;margin-top:12px;border-top:1px solid var(--border);flex-wrap:wrap}
 .ch-stat-num{font-family:var(--fd);font-size:22px;font-weight:700;color:var(--lav);line-height:1}
 .ch-stat-lbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:2px}
@@ -187,11 +187,11 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .mi.t2 .mi-num{color:rgba(200,200,220,.45);font-size:19px}
 .mi.t3 .mi-num{color:rgba(180,120,70,.45);font-size:18px}
 .mi-num{font-family:var(--fd);font-size:17px;font-weight:700;color:rgba(240,238,255,.08);text-align:right;line-height:1}
-.mi-thumb{width:56px;height:76px;overflow:hidden;flex-shrink:0;background:var(--surf2)}
+.mi-thumb{width:66px;height:88px;overflow:hidden;flex-shrink:0;background:var(--surf2)}
 .mi-thumb img{width:100%;height:100%;object-fit:cover;opacity:.85;transition:opacity .3s}
 .mi:hover .mi-thumb img{opacity:1}
 .mi-info{}
-.mi-title{font-family:var(--fd);font-weight:600;font-size:14px;line-height:1.25;color:rgba(240,238,255,.9);margin-bottom:3px;transition:color .2s}
+.mi-title{font-family:var(--fd);font-weight:600;font-size:17px;line-height:1.25;color:rgba(240,238,255,.9);margin-bottom:3px;transition:color .2s}
 .mi-author{font-size:10px;color:var(--muted);margin-bottom:4px}
 .mi-tags{display:flex;gap:4px;flex-wrap:wrap}
 .mi-score-col{text-align:right;flex-shrink:0}
@@ -290,14 +290,14 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .rk-cover{width:36px;height:50px;overflow:hidden;flex-shrink:0;background:var(--surf2)}
 .rk-cover img{width:100%;height:100%;object-fit:cover;opacity:.85}
 .rk-info{flex:1;min-width:0}
-.rk-title{font-family:var(--fd);font-size:13px;font-weight:600;line-height:1.2;color:rgba(240,238,255,.85);transition:color .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
-.rk-sub{font-size:10px;color:var(--muted)}
+.rk-title{font-family:var(--fd);font-size:16px;font-weight:600;line-height:1.2;color:rgba(240,238,255,.85);transition:color .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+.rk-sub{font-size:14px;color:var(--muted)}
 .rk-score{font-family:var(--fd);font-size:16px;font-weight:700;flex-shrink:0;color:var(--amber)}
 
 /* Promo */
 .promo-block{padding:22px 20px;background:linear-gradient(135deg,rgba(124,58,237,.07),rgba(167,139,250,.07));border-top:1px solid rgba(124,58,237,.15);text-align:center}
 .pb-title{font-family:var(--fd);font-weight:700;font-size:16px;color:var(--white);margin-bottom:5px}
-.pb-sub{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6}
+.pb-sub{font-size:15px;color:var(--muted);margin-bottom:14px;line-height:1.6}
 .pb-inp{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--white);font-family:var(--fb);font-size:13px;padding:9px 12px;outline:none;margin-bottom:8px;display:block}
 .pb-inp:focus{border-color:rgba(167,139,250,.4)}
 .pb-btn{width:100%;background:var(--lav);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;padding:10px;cursor:pointer;transition:background .18s}
@@ -416,6 +416,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     gtag('js', new Date());
     gtag('config', 'G-12852ZFD0K');
   </script>
+<link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml"/>
 </head>
 <body>
 
@@ -454,7 +455,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     </ul>
     <button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
     <div class="nav-r">
-      <div class="lang"><button class="lb on" id="bvi" onclick="setLang('vi')">VI</button><div class="lsep"></div><button class="lb" id="ben" onclick="setLang('en')">EN</button></div>
+      <button class="lb" id="ben" onclick="">EN</button></div>
       <button class="nsearch" onclick="openSearch()"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></button>
       <a href="index.html#newsletter" class="cta">Subscribe</a>
     </div>
@@ -527,7 +528,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   <div class="sec-h">
     <span class="sec-t">Hot <em>tuần này</em></span>
     <div class="sec-l"></div>
-    <a href="#" class="sec-more">Xem đầy đủ BXH</a>
+    <a href="/rankings.html" class="sec-more">Xem đầy đủ BXH</a>
   </div>
   <div class="weekly-grid">
 
@@ -540,11 +541,11 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
           </div>
           <span class="col-type-name" style="color:var(--lav)">Manga</span>
         </div>
-        <span class="col-week" style="border-color:rgba(167,139,250,.25);color:var(--lav)">Tuần 22</span>
+        <span class="col-week" style="border-color:rgba(167,139,250,.25);color:var(--lav)">Tuần 33</span>
       </div>
-      <a href="bai-viet.html" class="mi t1">
+      <a href="/manga-detail.html?t=Jujutsu%20Kaisen" class="mi t1">
         <div class="mi-num">01</div>
-        <div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/anime/1792/138022l.jpg" alt="" loading="lazy"/></div>
+        <div class="mi-thumb"><img src="/assets/img/d662bae70f-maxresdefault.jpg" alt="Jujutsu Kaisen" loading="lazy"/></div>
         <div class="mi-info">
           <div class="mi-title">Jujutsu Kaisen</div>
           <div class="mi-author">Gege Akutami · Shueisha</div>
@@ -553,9 +554,9 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
         <div class="mi-score-col"><div class="mi-score" style="color:var(--amber)">9.6</div><div class="mi-trend up">+2 ↑</div></div>
       </a>
-      <a href="bai-viet.html" class="mi t2">
+      <a href="/manga-detail.html?t=One%20Piece" class="mi t2">
         <div class="mi-num">02</div>
-        <div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/manga/3/266234l.jpg" alt="" loading="lazy"/></div>
+        <div class="mi-thumb"><img src="/assets/img/8d631824e5-maxresdefault.jpg" alt="One Piece" loading="lazy"/></div>
         <div class="mi-info">
           <div class="mi-title">One Piece</div>
           <div class="mi-author">Eiichiro Oda · Weekly</div>
@@ -564,9 +565,9 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
         <div class="mi-score-col"><div class="mi-score" style="color:var(--cyan)">9.4</div><div class="mi-trend eq">= →</div></div>
       </a>
-      <a href="bai-viet.html" class="mi t3">
+      <a href="/manga-detail.html?t=Chainsaw%20Man" class="mi t3">
         <div class="mi-num">03</div>
-        <div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/anime/1806/126216l.jpg" alt="" loading="lazy"/></div>
+        <div class="mi-thumb"><img src="/assets/img/39c7dd4496-maxresdefault.jpg" alt="Chainsaw Man" loading="lazy"/></div>
         <div class="mi-info">
           <div class="mi-title">Chainsaw Man</div>
           <div class="mi-author">Tatsuki Fujimoto · Monthly</div>
@@ -575,9 +576,9 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
         <div class="mi-score-col"><div class="mi-score" style="color:var(--green)">9.3</div><div class="mi-trend dn">-1 ↓</div></div>
       </a>
-      <a href="bai-viet.html" class="mi">
+      <a href="/manga-detail.html?t=Berserk" class="mi">
         <div class="mi-num">04</div>
-        <div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/manga/1/157897l.jpg" alt="" loading="lazy"/></div>
+        <div class="mi-thumb"><img src="/assets/img/placeholder.svg" alt="Berserk" loading="lazy"/></div>
         <div class="mi-info">
           <div class="mi-title">Berserk</div>
           <div class="mi-author">Studio Gaga · Irregular</div>
@@ -585,9 +586,9 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
         <div class="mi-score-col"><div class="mi-score" style="color:var(--amber)">9.2</div><div class="mi-trend eq">= →</div></div>
       </a>
-      <a href="bai-viet.html" class="mi">
+      <a href="/manga-detail.html?t=Spy%20x%20Family" class="mi">
         <div class="mi-num">05</div>
-        <div class="mi-thumb"><img src="https://upload.wikimedia.org/wikipedia/en/5/51/Spy_Family_vol_1.jpg" alt="" loading="lazy"/></div>
+        <div class="mi-thumb"><img src="/assets/img/placeholder.svg" alt="Spy x Family" loading="lazy"/></div>
         <div class="mi-info">
           <div class="mi-title">Spy x Family</div>
           <div class="mi-author">Tatsuya Endo · Bi-weekly</div>
@@ -595,9 +596,9 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
         <div class="mi-score-col"><div class="mi-score" style="color:var(--lav)">8.9</div><div class="mi-trend up">+1 ↑</div></div>
       </a>
-      <a href="bai-viet.html" class="mi">
+      <a href="/manga-detail.html?t=Bleach" class="mi">
         <div class="mi-num">06</div>
-        <div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/manga/3/163575l.jpg" alt="" loading="lazy"/></div>
+        <div class="mi-thumb"><img src="/assets/img/placeholder.svg" alt="Bleach" loading="lazy"/></div>
         <div class="mi-info">
           <div class="mi-title">Bleach</div>
           <div class="mi-author">Tite Kubo · Complete</div>
@@ -605,7 +606,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
         <div class="mi-score-col"><div class="mi-score" style="color:var(--green)">8.8</div><div class="mi-trend up">+3 ↑</div></div>
       </a>
-      <div class="col-footer"><a href="#">Xem top 50 Manga</a></div>
+      <div class="col-footer"><a href="/rankings.html">Xem top 50 Manga</a></div>
     </div>
 
     <!-- MANHWA COL -->
@@ -617,11 +618,11 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
           </div>
           <span class="col-type-name" style="color:var(--cyan)">Manhwa</span>
         </div>
-        <span class="col-week" style="border-color:rgba(0,229,255,.25);color:var(--cyan)">Tuần 22</span>
+        <span class="col-week" style="border-color:rgba(0,229,255,.25);color:var(--cyan)">Tuần 33</span>
       </div>
-      <a href="bai-viet.html" class="mi t1">
+      <a href="/manga-detail.html?t=Solo%20Leveling%3A%20Ragnarok" class="mi t1">
         <div class="mi-num">01</div>
-        <div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/anime/1448/147351l.jpg" alt="" loading="lazy"/></div>
+        <div class="mi-thumb"><img src="/assets/img/d98cf42206-maxresdefault.jpg" alt="Solo Leveling: Ragnarok" loading="lazy"/></div>
         <div class="mi-info">
           <div class="mi-title">Solo Leveling: Ragnarok</div>
           <div class="mi-author">Dubu · Kakao</div>
@@ -630,9 +631,9 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
         <div class="mi-score-col"><div class="mi-score" style="color:var(--amber)">9.5</div><div class="mi-trend up">+3 ↑</div></div>
       </a>
-      <a href="bai-viet.html" class="mi t2">
+      <a href="/manga-detail.html?t=The%20Beginning%20After%20The%20End" class="mi t2">
         <div class="mi-num">02</div>
-        <div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/anime/1448/147351l.jpg" alt="" loading="lazy"/></div>
+        <div class="mi-thumb"><img src="/assets/img/d98cf42206-maxresdefault.jpg" alt="The Beginning After The End" loading="lazy"/></div>
         <div class="mi-info">
           <div class="mi-title">The Beginning After The End</div>
           <div class="mi-author">TurtleMe · Weekly</div>
@@ -640,9 +641,9 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
         <div class="mi-score-col"><div class="mi-score" style="color:var(--cyan)">9.2</div><div class="mi-trend eq">= →</div></div>
       </a>
-      <a href="bai-viet.html" class="mi t3">
+      <a href="/manga-detail.html?t=Omniscient%20Reader" class="mi t3">
         <div class="mi-num">03</div>
-        <div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/anime/1448/147351l.jpg" alt="" loading="lazy"/></div>
+        <div class="mi-thumb"><img src="/assets/img/d98cf42206-maxresdefault.jpg" alt="Omniscient Reader" loading="lazy"/></div>
         <div class="mi-info">
           <div class="mi-title">Omniscient Reader</div>
           <div class="mi-author">Sleepy-C · Weekly</div>
@@ -650,9 +651,9 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
         <div class="mi-score-col"><div class="mi-score" style="color:var(--green)">9.0</div><div class="mi-trend up">+1 ↑</div></div>
       </a>
-      <a href="bai-viet.html" class="mi">
+      <a href="/manga-detail.html?t=God%20of%20Blackfield" class="mi">
         <div class="mi-num">04</div>
-        <div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/manga/1/157897l.jpg" alt="" loading="lazy"/></div>
+        <div class="mi-thumb"><img src="/assets/img/placeholder.svg" alt="God of Blackfield" loading="lazy"/></div>
         <div class="mi-info">
           <div class="mi-title">God of Blackfield</div>
           <div class="mi-author">Hyeonsung Jun · Weekly</div>
@@ -660,9 +661,9 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
         <div class="mi-score-col"><div class="mi-score" style="color:var(--lav)">8.8</div><div class="mi-trend dn">-1 ↓</div></div>
       </a>
-      <a href="bai-viet.html" class="mi">
+      <a href="/manga-detail.html?t=Second%20Life%20Ranker" class="mi">
         <div class="mi-num">05</div>
-        <div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/anime/5/17407l.jpg" alt="" loading="lazy"/></div>
+        <div class="mi-thumb"><img src="/assets/img/a4f75364fc-maxresdefault.jpg" alt="Second Life Ranker" loading="lazy"/></div>
         <div class="mi-info">
           <div class="mi-title">Second Life Ranker</div>
           <div class="mi-author">Sadoyeon · Weekly</div>
@@ -670,9 +671,9 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
         <div class="mi-score-col"><div class="mi-score" style="color:var(--sakura)">8.6</div><div class="mi-trend up">+2 ↑</div></div>
       </a>
-      <a href="bai-viet.html" class="mi">
+      <a href="/manga-detail.html?t=Overgeared" class="mi">
         <div class="mi-num">06</div>
-        <div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/manga/1/157897l.jpg" alt="" loading="lazy"/></div>
+        <div class="mi-thumb"><img src="/assets/img/placeholder.svg" alt="Overgeared" loading="lazy"/></div>
         <div class="mi-info">
           <div class="mi-title">Overgeared</div>
           <div class="mi-author">Park Saenal · Weekly</div>
@@ -680,7 +681,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
         <div class="mi-score-col"><div class="mi-score" style="color:var(--amber)">8.4</div><div class="mi-trend eq">= →</div></div>
       </a>
-      <div class="col-footer"><a href="#">Xem top 50 Manhwa</a></div>
+      <div class="col-footer"><a href="/rankings.html">Xem top 50 Manhwa</a></div>
     </div>
 
     <!-- MANHUA COL -->
@@ -692,11 +693,11 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
           </div>
           <span class="col-type-name" style="color:var(--sakura)">Manhua</span>
         </div>
-        <span class="col-week" style="border-color:rgba(255,48,128,.25);color:var(--sakura)">Tuần 22</span>
+        <span class="col-week" style="border-color:rgba(255,48,128,.25);color:var(--sakura)">Tuần 33</span>
       </div>
-      <a href="bai-viet.html" class="mi t1">
+      <a href="/manga-detail.html?t=Battle%20Through%20the%20Heavens" class="mi t1">
         <div class="mi-num">01</div>
-        <div class="mi-thumb"><img src="https://upload.wikimedia.org/wikipedia/en/9/93/Dungeon_Meshi_cover.jpeg" alt="" loading="lazy"/></div>
+        <div class="mi-thumb"><img src="/assets/img/1f0540d7a3-maxresdefault.jpg" alt="Battle Through the Heavens" loading="lazy"/></div>
         <div class="mi-info">
           <div class="mi-title">Battle Through the Heavens</div>
           <div class="mi-author">Tiancan Tudou · Weekly</div>
@@ -705,9 +706,9 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
         <div class="mi-score-col"><div class="mi-score" style="color:var(--amber)">9.1</div><div class="mi-trend eq">= →</div></div>
       </a>
-      <a href="bai-viet.html" class="mi t2">
+      <a href="/manga-detail.html?t=Swallowed%20Star" class="mi t2">
         <div class="mi-num">02</div>
-        <div class="mi-thumb"><img src="https://upload.wikimedia.org/wikipedia/en/9/93/Dungeon_Meshi_cover.jpeg" alt="" loading="lazy"/></div>
+        <div class="mi-thumb"><img src="/assets/img/1f0540d7a3-maxresdefault.jpg" alt="Swallowed Star" loading="lazy"/></div>
         <div class="mi-info">
           <div class="mi-title">Swallowed Star</div>
           <div class="mi-author">I Eat Tomatoes · Weekly</div>
@@ -715,9 +716,9 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
         <div class="mi-score-col"><div class="mi-score" style="color:var(--cyan)">8.9</div><div class="mi-trend up">+1 ↑</div></div>
       </a>
-      <a href="bai-viet.html" class="mi t3">
+      <a href="/manga-detail.html?t=Doupo%20Cangqiong" class="mi t3">
         <div class="mi-num">03</div>
-        <div class="mi-thumb"><img src="https://upload.wikimedia.org/wikipedia/en/9/93/Dungeon_Meshi_cover.jpeg" alt="" loading="lazy"/></div>
+        <div class="mi-thumb"><img src="/assets/img/1f0540d7a3-maxresdefault.jpg" alt="Doupo Cangqiong" loading="lazy"/></div>
         <div class="mi-info">
           <div class="mi-title">Doupo Cangqiong</div>
           <div class="mi-author">Xuanhuan · Weekly</div>
@@ -725,9 +726,9 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
         <div class="mi-score-col"><div class="mi-score" style="color:var(--green)">8.7</div><div class="mi-trend dn">-1 ↓</div></div>
       </a>
-      <a href="bai-viet.html" class="mi">
+      <a href="/manga-detail.html?t=Rebirth%20Urban%20Immortal" class="mi">
         <div class="mi-num">04</div>
-        <div class="mi-thumb"><img src="https://upload.wikimedia.org/wikipedia/en/9/93/Dungeon_Meshi_cover.jpeg" alt="" loading="lazy"/></div>
+        <div class="mi-thumb"><img src="/assets/img/1f0540d7a3-maxresdefault.jpg" alt="Rebirth Urban Immortal" loading="lazy"/></div>
         <div class="mi-info">
           <div class="mi-title">Rebirth Urban Immortal</div>
           <div class="mi-author">Anonymous · Bi-weekly</div>
@@ -735,9 +736,9 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
         <div class="mi-score-col"><div class="mi-score" style="color:var(--lav)">8.5</div><div class="mi-trend up">+2 ↑</div></div>
       </a>
-      <a href="bai-viet.html" class="mi">
+      <a href="/manga-detail.html?t=Wu%20Shen%20Zhu%20Zai" class="mi">
         <div class="mi-num">05</div>
-        <div class="mi-thumb"><img src="https://upload.wikimedia.org/wikipedia/en/9/93/Dungeon_Meshi_cover.jpeg" alt="" loading="lazy"/></div>
+        <div class="mi-thumb"><img src="/assets/img/1f0540d7a3-maxresdefault.jpg" alt="Wu Shen Zhu Zai" loading="lazy"/></div>
         <div class="mi-info">
           <div class="mi-title">Wu Shen Zhu Zai</div>
           <div class="mi-author">Fengqingyang · Weekly</div>
@@ -745,9 +746,9 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
         <div class="mi-score-col"><div class="mi-score" style="color:var(--amber)">8.3</div><div class="mi-trend dn">-1 ↓</div></div>
       </a>
-      <a href="bai-viet.html" class="mi">
+      <a href="/manga-detail.html?t=Mo%20Dao%20Zu%20Shi" class="mi">
         <div class="mi-num">06</div>
-        <div class="mi-thumb"><img src="https://upload.wikimedia.org/wikipedia/en/9/93/Dungeon_Meshi_cover.jpeg" alt="" loading="lazy"/></div>
+        <div class="mi-thumb"><img src="/assets/img/1f0540d7a3-maxresdefault.jpg" alt="Mo Dao Zu Shi" loading="lazy"/></div>
         <div class="mi-info">
           <div class="mi-title">Mo Dao Zu Shi</div>
           <div class="mi-author">MXTX · Complete</div>
@@ -755,7 +756,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
         <div class="mi-score-col"><div class="mi-score" style="color:var(--sakura)">8.7</div><div class="mi-trend up">+4 ↑</div></div>
       </a>
-      <div class="col-footer"><a href="#">Xem top 50 Manhua</a></div>
+      <div class="col-footer"><a href="/rankings.html">Xem top 50 Manhua</a></div>
     </div>
 
   </div>
@@ -766,39 +767,39 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   <div class="sec-h">
     <span class="sec-t">Chapter <em>mới nhất</em></span>
     <div class="sec-l"></div>
-    <a href="#" class="sec-more">Xem tất cả</a>
+    <a href="/news.html" class="sec-more">Xem tất cả</a>
   </div>
   <div class="chapters-grid">
-    <a href="bai-viet.html" class="ch-card">
-      <div class="chc-cover"><img class="chc-img" src="https://cdn.myanimelist.net/images/anime/1792/138022l.jpg" alt="" loading="lazy"/><span class="chc-new">Mới</span><span class="chc-type tag tv" style="position:absolute;top:8px;right:8px;z-index:2">Manga</span></div>
+    <a href="/manga-detail.html?t=Jujutsu%20Kaisen" class="ch-card">
+      <div class="chc-cover"><img class="chc-img" src="/assets/img/d662bae70f-maxresdefault.jpg" alt="Jujutsu Kaisen" loading="lazy"/><span class="chc-new">Mới</span><span class="chc-type tag tv" style="position:absolute;top:8px;right:8px;z-index:2">Manga</span></div>
       <div class="chc-body"><div class="chc-genre">Action / Supernatural</div><div class="chc-title">Jujutsu Kaisen</div><div class="chc-meta"><span class="chc-ch">Chapter 271</span><span class="chc-time">2 giờ trước</span></div></div>
     </a>
-    <a href="bai-viet.html" class="ch-card">
-      <div class="chc-cover"><img class="chc-img" src="https://cdn.myanimelist.net/images/manga/3/266234l.jpg" alt="" loading="lazy"/><span class="chc-new">Mới</span><span class="chc-type tag tv" style="position:absolute;top:8px;right:8px;z-index:2">Manga</span></div>
+    <a href="/manga-detail.html?t=One%20Piece" class="ch-card">
+      <div class="chc-cover"><img class="chc-img" src="/assets/img/8d631824e5-maxresdefault.jpg" alt="One Piece" loading="lazy"/><span class="chc-new">Mới</span><span class="chc-type tag tv" style="position:absolute;top:8px;right:8px;z-index:2">Manga</span></div>
       <div class="chc-body"><div class="chc-genre">Adventure / Shonen</div><div class="chc-title">One Piece</div><div class="chc-meta"><span class="chc-ch">Chapter 1135</span><span class="chc-time">5 giờ trước</span></div></div>
     </a>
-    <a href="bai-viet.html" class="ch-card">
-      <div class="chc-cover"><img class="chc-img" src="https://cdn.myanimelist.net/images/anime/5/17407l.jpg" alt="" loading="lazy"/><span class="chc-new">Mới</span><span class="chc-type tag tc" style="position:absolute;top:8px;right:8px;z-index:2">Manhwa</span></div>
+    <a href="/manga-detail.html?t=Solo%20Leveling%3A%20Ragnarok" class="ch-card">
+      <div class="chc-cover"><img class="chc-img" src="/assets/img/a4f75364fc-maxresdefault.jpg" alt="Solo Leveling: Ragnarok" loading="lazy"/><span class="chc-new">Mới</span><span class="chc-type tag tc" style="position:absolute;top:8px;right:8px;z-index:2">Manhwa</span></div>
       <div class="chc-body"><div class="chc-genre">Action / Fantasy</div><div class="chc-title">Solo Leveling: Ragnarok</div><div class="chc-meta"><span class="chc-ch">Chapter 48</span><span class="chc-time">3 giờ trước</span></div></div>
     </a>
-    <a href="bai-viet.html" class="ch-card">
-      <div class="chc-cover"><img class="chc-img" src="https://cdn.myanimelist.net/images/anime/1806/126216l.jpg" alt="" loading="lazy"/><span class="chc-new">Mới</span><span class="chc-type tag tv" style="position:absolute;top:8px;right:8px;z-index:2">Manga</span></div>
+    <a href="/manga-detail.html?t=Chainsaw%20Man" class="ch-card">
+      <div class="chc-cover"><img class="chc-img" src="/assets/img/39c7dd4496-maxresdefault.jpg" alt="Chainsaw Man" loading="lazy"/><span class="chc-new">Mới</span><span class="chc-type tag tv" style="position:absolute;top:8px;right:8px;z-index:2">Manga</span></div>
       <div class="chc-body"><div class="chc-genre">Action / Horror</div><div class="chc-title">Chainsaw Man</div><div class="chc-meta"><span class="chc-ch">Chapter 192</span><span class="chc-time">6 giờ trước</span></div></div>
     </a>
-    <a href="bai-viet.html" class="ch-card">
-      <div class="chc-cover"><img class="chc-img" src="https://cdn.myanimelist.net/images/anime/1448/147351l.jpg" alt="" loading="lazy"/><span class="chc-type tag tc" style="position:absolute;top:8px;right:8px;z-index:2">Manhwa</span></div>
+    <a href="/manga-detail.html?t=Omniscient%20Reader" class="ch-card">
+      <div class="chc-cover"><img class="chc-img" src="/assets/img/d98cf42206-maxresdefault.jpg" alt="Omniscient Reader" loading="lazy"/><span class="chc-type tag tc" style="position:absolute;top:8px;right:8px;z-index:2">Manhwa</span></div>
       <div class="chc-body"><div class="chc-genre">Fantasy / Adventure</div><div class="chc-title">Omniscient Reader</div><div class="chc-meta"><span class="chc-ch">Chapter 214</span><span class="chc-time">8 giờ trước</span></div></div>
     </a>
-    <a href="bai-viet.html" class="ch-card">
-      <div class="chc-cover"><img class="chc-img" src="https://upload.wikimedia.org/wikipedia/en/9/93/Dungeon_Meshi_cover.jpeg" alt="" loading="lazy"/><span class="chc-type tag ts" style="position:absolute;top:8px;right:8px;z-index:2">Manhua</span></div>
+    <a href="/manga-detail.html?t=Battle%20Through%20the%20Heavens" class="ch-card">
+      <div class="chc-cover"><img class="chc-img" src="/assets/img/1f0540d7a3-maxresdefault.jpg" alt="Battle Through the Heavens" loading="lazy"/><span class="chc-type tag ts" style="position:absolute;top:8px;right:8px;z-index:2">Manhua</span></div>
       <div class="chc-body"><div class="chc-genre">Xianxia / Action</div><div class="chc-title">Battle Through the Heavens</div><div class="chc-meta"><span class="chc-ch">Chapter 512</span><span class="chc-time">9 giờ trước</span></div></div>
     </a>
-    <a href="bai-viet.html" class="ch-card">
-      <div class="chc-cover"><img class="chc-img" src="https://upload.wikimedia.org/wikipedia/en/5/51/Spy_Family_vol_1.jpg" alt="" loading="lazy"/><span class="chc-type tag tv" style="position:absolute;top:8px;right:8px;z-index:2">Manga</span></div>
+    <a href="/manga-detail.html?t=Spy%20x%20Family" class="ch-card">
+      <div class="chc-cover"><img class="chc-img" src="/assets/img/placeholder.svg" alt="Spy x Family" loading="lazy"/><span class="chc-type tag tv" style="position:absolute;top:8px;right:8px;z-index:2">Manga</span></div>
       <div class="chc-body"><div class="chc-genre">Comedy / Action</div><div class="chc-title">Spy x Family</div><div class="chc-meta"><span class="chc-ch">Chapter 112</span><span class="chc-time">12 giờ trước</span></div></div>
     </a>
-    <a href="bai-viet.html" class="ch-card">
-      <div class="chc-cover"><img class="chc-img" src="https://cdn.myanimelist.net/images/anime/1448/147351l.jpg" alt="" loading="lazy"/><span class="chc-type tag tc" style="position:absolute;top:8px;right:8px;z-index:2">Manhwa</span></div>
+    <a href="/manga-detail.html?t=The%20Beginning%20After%20The%20End" class="ch-card">
+      <div class="chc-cover"><img class="chc-img" src="/assets/img/d98cf42206-maxresdefault.jpg" alt="The Beginning After The End" loading="lazy"/><span class="chc-type tag tc" style="position:absolute;top:8px;right:8px;z-index:2">Manhwa</span></div>
       <div class="chc-body"><div class="chc-genre">Fantasy / Isekai</div><div class="chc-title">The Beginning After The End</div><div class="chc-meta"><span class="chc-ch">Chapter 206</span><span class="chc-time">14 giờ trước</span></div></div>
     </a>
   </div>
@@ -806,7 +807,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 <!-- NEWS + SIDEBAR -->
 <div class="wrap rv" style="padding-top:0;padding-bottom:0">
-  <div class="sec-h"><span class="sec-t">Tin tức <em>truyện tranh</em></span><div class="sec-l"></div><a href="#" class="sec-more">Xem tất cả</a></div>
+  <div class="sec-h"><span class="sec-t">Tin tức <em>truyện tranh</em></span><div class="sec-l"></div><a href="/news.html" class="sec-more">Xem tất cả</a></div>
   <div class="content-layout">
     <div>
       <div class="art-sub">
@@ -817,8 +818,8 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         <button class="sf-btn" onclick="setSub(this)">Reviews</button>
       </div>
       <div class="ac-top2">
-        <a href="bai-viet.html" class="ac-mag">
-          <img class="acm-img" src="https://cdn.myanimelist.net/images/manga/1/157897l.jpg" alt=""/ loading="lazy">
+        <a href="/berserk-arc-cuoi.html" class="ac-mag">
+          <img class="acm-img" src="/assets/img/placeholder.svg" alt="Berserk arc cuối · editor Dark Horse tiết lộ chi tiết về kế hoạch hoàn thành di cảo của Miura" loading="lazy"/>
           <div class="acm-ov"></div>
           <div class="acm-body">
             <div class="acm-tags"><span class="tag tv">Manga</span><span class="tag" style="background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);color:var(--amber);font-size:9px;padding:3px 9px">Breaking</span></div>
@@ -826,8 +827,8 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
             <div class="acm-meta">Hà Trung · 2 giờ trước · 6 min</div>
           </div>
         </a>
-        <a href="bai-viet.html" class="ac-mag">
-          <img class="acm-img" src="https://cdn.myanimelist.net/images/anime/1792/138022l.jpg" alt=""/ loading="lazy">
+        <a href="/manga-detail.html?t=Jujutsu%20Kaisen" class="ac-mag">
+          <img class="acm-img" src="/assets/img/d662bae70f-maxresdefault.jpg" alt="Jujutsu Kaisen spin-off Yuta Okkotsu chính thức xác nhận · Gege Akutami tự viết kịch bản" loading="lazy"/>
           <div class="acm-ov"></div>
           <div class="acm-body">
             <div class="acm-tags"><span class="tag tv">Manga</span><span class="tag tc">Spin-off</span></div>
@@ -836,40 +837,40 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
           </div>
         </a>
       </div>
-      <a href="bai-viet.html" class="ac">
-        <div class="ac-thumb"><img src="https://cdn.myanimelist.net/images/anime/5/17407l.jpg" alt="" loading="lazy"/></div>
+      <a href="/manga-detail.html?t=Solo%20Leveling%3A%20Ragnarok" class="ac">
+        <div class="ac-thumb"><img src="/assets/img/a4f75364fc-maxresdefault.jpg" alt="Solo Leveling: Ragnarok chapter 48 spoiler và phân tích · Sung Suho đối đầu kẻ địch mạnh nhất" loading="lazy"/></div>
         <div class="ac-info">
           <div><div class="ac-tags"><span class="tag tc">Manhwa</span></div>
           <div class="ac-title">Solo Leveling: Ragnarok chapter 48 spoiler và phân tích · Sung Suho đối đầu kẻ địch mạnh nhất</div></div>
           <div class="ac-meta"><span>Minh Tuấn</span><span class="sep">·</span><span>3 giờ trước</span><span class="sep">·</span><span>5 min</span></div>
         </div>
       </a>
-      <a href="bai-viet.html" class="ac">
-        <div class="ac-thumb"><img src="https://cdn.myanimelist.net/images/manga/3/266234l.jpg" alt="" loading="lazy"/></div>
+      <a href="/one-piece-final-saga.html" class="ac">
+        <div class="ac-thumb"><img src="/assets/img/8d631824e5-maxresdefault.jpg" alt="One Piece chapter 1135 phân tích chi tiết · Oda tiết lộ bí ẩn lớn nhất về Laugh Tale và One Piece" loading="lazy"/></div>
         <div class="ac-info">
           <div><div class="ac-tags"><span class="tag tv">Manga</span></div>
           <div class="ac-title">One Piece chapter 1135 phân tích chi tiết · Oda tiết lộ bí ẩn lớn nhất về Laugh Tale và One Piece</div></div>
           <div class="ac-meta"><span>Trọng Khang</span><span class="sep">·</span><span>5 giờ trước</span><span class="sep">·</span><span>8 min</span></div>
         </div>
       </a>
-      <a href="bai-viet.html" class="ac">
-        <div class="ac-thumb"><img src="https://cdn.myanimelist.net/images/anime/1448/147351l.jpg" alt="" loading="lazy"/></div>
+      <a href="/manga-detail.html?t=The%20Beginning%20After%20The%20End" class="ac">
+        <div class="ac-thumb"><img src="/assets/img/d98cf42206-maxresdefault.jpg" alt="The Beginning After The End · review tổng quan 206 chapter: manhwa xây dựng thế giới tốt nhất hiện tại" loading="lazy"/></div>
         <div class="ac-info">
           <div><div class="ac-tags"><span class="tag tc">Manhwa</span><span class="tag ta">Review</span></div>
           <div class="ac-title">The Beginning After The End · review tổng quan 206 chapter: manhwa xây dựng thế giới tốt nhất hiện tại</div></div>
           <div class="ac-meta"><span>Thanh Liêm</span><span class="sep">·</span><span>7 giờ trước</span><span class="sep">·</span><span>10 min</span></div>
         </div>
       </a>
-      <a href="bai-viet.html" class="ac">
-        <div class="ac-thumb"><img src="https://upload.wikimedia.org/wikipedia/en/9/93/Dungeon_Meshi_cover.jpeg" alt="" loading="lazy"/></div>
+      <a href="/manga-detail.html?t=Battle%20Through%20the%20Heavens" class="ac">
+        <div class="ac-thumb"><img src="/assets/img/1f0540d7a3-maxresdefault.jpg" alt="Battle Through the Heavens · top 10 cảnh chiến đấu đẹp nhất arc Đại Hiệu Môn năm 2026" loading="lazy"/></div>
         <div class="ac-info">
           <div><div class="ac-tags"><span class="tag ts">Manhua</span></div>
           <div class="ac-title">Battle Through the Heavens · top 10 cảnh chiến đấu đẹp nhất arc Đại Hiệu Môn năm 2026</div></div>
           <div class="ac-meta"><span>Quang Đại</span><span class="sep">·</span><span>9 giờ trước</span><span class="sep">·</span><span>6 min</span></div>
         </div>
       </a>
-      <a href="bai-viet.html" class="ac">
-        <div class="ac-thumb"><img src="https://cdn.myanimelist.net/images/anime/1806/126216l.jpg" alt="" loading="lazy"/></div>
+      <a href="/chainsaw-man-season3.html" class="ac">
+        <div class="ac-thumb"><img src="/assets/img/39c7dd4496-maxresdefault.jpg" alt="Chainsaw Man part 3 theory · Denji và Pochita: mối quan hệ sẽ thay đổi hoàn toàn trong arc mới" loading="lazy"/></div>
         <div class="ac-info">
           <div><div class="ac-tags"><span class="tag tv">Manga</span></div>
           <div class="ac-title">Chainsaw Man part 3 theory · Denji và Pochita: mối quan hệ sẽ thay đổi hoàn toàn trong arc mới</div></div>
@@ -883,17 +884,17 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     <aside>
       <div>
         <div class="side-head"><span style="color:var(--lav)">Top All-time Manga</span></div>
-        <a href="bai-viet.html" class="rk t1"><div class="rk-num">1</div><div class="rk-cover"><img src="https://cdn.myanimelist.net/images/manga/1/157897l.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Berserk</div><div class="rk-sub">Kentaro Miura</div></div><div class="rk-score">9.8</div></a>
-        <a href="bai-viet.html" class="rk t2"><div class="rk-num">2</div><div class="rk-cover"><img src="https://cdn.myanimelist.net/images/manga/1/157897l.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Vagabond</div><div class="rk-sub">Takehiko Inoue</div></div><div class="rk-score">9.7</div></a>
-        <a href="bai-viet.html" class="rk t3"><div class="rk-num">3</div><div class="rk-cover"><img src="https://cdn.myanimelist.net/images/manga/1/157897l.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Fullmetal Alchemist</div><div class="rk-sub">Hiromu Arakawa</div></div><div class="rk-score">9.6</div></a>
-        <a href="bai-viet.html" class="rk"><div class="rk-num">4</div><div class="rk-cover"><img src="https://cdn.myanimelist.net/images/anime/1792/138022l.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Jujutsu Kaisen</div><div class="rk-sub">Gege Akutami</div></div><div class="rk-score">9.6</div></a>
-        <a href="bai-viet.html" class="rk"><div class="rk-num">5</div><div class="rk-cover"><img src="https://cdn.myanimelist.net/images/manga/3/266234l.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-title">One Piece</div><div class="rk-sub">Eiichiro Oda</div></div><div class="rk-score">9.5</div></a>
+        <a href="/manga-detail.html?t=Berserk" class="rk t1"><div class="rk-num">1</div><div class="rk-cover"><img src="/assets/img/641c702735-157897l.jpg" alt="Berserk" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Berserk</div><div class="rk-sub">Kentaro Miura</div></div><div class="rk-score">9.8</div></a>
+        <a href="/manga-detail.html?t=Vagabond" class="rk t2"><div class="rk-num">2</div><div class="rk-cover"><img src="/assets/img/118caef59f-vagabond.jpg" alt="Vagabond" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Vagabond</div><div class="rk-sub">Takehiko Inoue</div></div><div class="rk-score">9.7</div></a>
+        <a href="/manga-detail.html?t=Fullmetal%20Alchemist" class="rk t3"><div class="rk-num">3</div><div class="rk-cover"><img src="/assets/img/df408abe3e-fma.jpg" alt="Fullmetal Alchemist" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Fullmetal Alchemist</div><div class="rk-sub">Hiromu Arakawa</div></div><div class="rk-score">9.6</div></a>
+        <a href="/manga-detail.html?t=Jujutsu%20Kaisen" class="rk"><div class="rk-num">4</div><div class="rk-cover"><img src="/assets/img/d662bae70f-maxresdefault.jpg" alt="Jujutsu Kaisen" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Jujutsu Kaisen</div><div class="rk-sub">Gege Akutami</div></div><div class="rk-score">9.6</div></a>
+        <a href="/manga-detail.html?t=One%20Piece" class="rk"><div class="rk-num">5</div><div class="rk-cover"><img src="/assets/img/8d631824e5-maxresdefault.jpg" alt="One Piece" loading="lazy"/></div><div class="rk-info"><div class="rk-title">One Piece</div><div class="rk-sub">Eiichiro Oda</div></div><div class="rk-score">9.5</div></a>
       </div>
       <div>
         <div class="side-head" style="margin-top:0"><span style="color:var(--cyan)">Top Manhwa</span><span class="side-badge" style="border-color:rgba(0,229,255,.25);color:var(--cyan)">All-time</span></div>
-        <a href="bai-viet.html" class="rk t1"><div class="rk-num">1</div><div class="rk-cover"><img src="https://cdn.myanimelist.net/images/anime/5/17407l.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Solo Leveling</div><div class="rk-sub">Chugong / Dubu</div></div><div class="rk-score" style="color:var(--cyan)">9.7</div></a>
-        <a href="bai-viet.html" class="rk t2"><div class="rk-num">2</div><div class="rk-cover"><img src="https://cdn.myanimelist.net/images/anime/1448/147351l.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-title">TBATE</div><div class="rk-sub">TurtleMe</div></div><div class="rk-score" style="color:var(--cyan)">9.3</div></a>
-        <a href="bai-viet.html" class="rk t3"><div class="rk-num">3</div><div class="rk-cover"><img src="https://cdn.myanimelist.net/images/anime/1448/147351l.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Omniscient Reader</div><div class="rk-sub">Sleepy-C</div></div><div class="rk-score" style="color:var(--cyan)">9.1</div></a>
+        <a href="/manga-detail.html?t=Solo%20Leveling" class="rk t1"><div class="rk-num">1</div><div class="rk-cover"><img src="/assets/img/a4f75364fc-maxresdefault.jpg" alt="Solo Leveling" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Solo Leveling</div><div class="rk-sub">Chugong / Dubu</div></div><div class="rk-score" style="color:var(--cyan)">9.7</div></a>
+        <a href="/manga-detail.html?t=TBATE" class="rk t2"><div class="rk-num">2</div><div class="rk-cover"><img src="/assets/img/d98cf42206-maxresdefault.jpg" alt="TBATE" loading="lazy"/></div><div class="rk-info"><div class="rk-title">TBATE</div><div class="rk-sub">TurtleMe</div></div><div class="rk-score" style="color:var(--cyan)">9.3</div></a>
+        <a href="/manga-detail.html?t=Omniscient%20Reader" class="rk t3"><div class="rk-num">3</div><div class="rk-cover"><img src="/assets/img/d98cf42206-maxresdefault.jpg" alt="Omniscient Reader" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Omniscient Reader</div><div class="rk-sub">Sleepy-C</div></div><div class="rk-score" style="color:var(--cyan)">9.1</div></a>
       </div>
       <div class="promo-block">
         <div class="pb-title">Manga Weekly</div>
@@ -918,11 +919,11 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     <div>
       <div class="ft-h">Truyện tranh</div>
       <ul class="ft-links">
-        <li><a href="#">Manga Nhật</a></li>
-        <li><a href="#">Manhwa Hàn</a></li>
-        <li><a href="#">Manhua Trung</a></li>
-        <li><a href="#">Chapter mới</a></li>
-        <li><a href="#">Bảng xếp hạng</a></li>
+        <li><a href="/manga.html">Manga Nhật</a></li>
+        <li><a href="/manga.html">Manhwa Hàn</a></li>
+        <li><a href="/manga.html">Manhua Trung</a></li>
+        <li><a href="/manga.html">Chapter mới</a></li>
+        <li><a href="/rankings.html">Bảng xếp hạng</a></li>
       </ul>
     </div>
     <div>
@@ -939,7 +940,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       <ul class="ft-links">
         <li><a href="about.html">Giới thiệu</a></li>
         <li><a href="about.html#team">Đội ngũ</a></li>
-        <li><a href="#">Discord</a></li>
+
         <li><a href="index.html#newsletter">Newsletter</a></li>
         <li><a href="about.html#contact">Liên hệ</a></li>
       </ul>
@@ -947,17 +948,12 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   </div>
   <div class="ft-bot">
     <span class="ft-copy">2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span>
-    <div class="ft-soc">
-      <button class="soc"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></button>
-      <button class="soc"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></button>
-      <button class="soc"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.003.028.014.057.035.066a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg></button>
-      <button class="soc"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></button>
-    </div>
+
   </div>
 </footer>
 
 <script>
-function setLang(l){document.getElementById('bvi').classList.toggle('on',l==='vi');document.getElementById('ben').classList.toggle('on',l==='en')}
+
 function setType(btn,t){document.querySelectorAll('.ttab').forEach(b=>b.classList.remove('on'));btn.classList.add('on')}
 function setF(btn){document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('on'));btn.classList.add('on')}
 function setSub(btn){document.querySelectorAll('.sf-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on')}
@@ -1022,5 +1018,8 @@ function openSearch(){var o=document.getElementById('searchOverlay');if(o){o.cla
 function closeSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.remove('open');document.body.style.overflow=''}}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSearch();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch()}});
 </script>
+<script defer src="/assets/search.js"></script>
+<script defer src="/assets/enhance.js"></script>
+<script defer src="/assets/engage.js"></script>
 </body>
 </html>

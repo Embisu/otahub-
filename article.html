@@ -5,13 +5,13 @@
 <title id="page-title">Tiêu đề bài viết · OtaHub</title>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" id="page-desc" content="Đọc bài viết mới nhất về game, anime và manga từ OtaHub — review chuyên sâu, tin tức và hướng dẫn cập nhật."/>
+<meta name="description" id="page-desc" content="Đọc bài viết mới nhất về game, anime và manga từ OtaHub — review chuyên sâu, tin tức nóng hổi, hướng dẫn chi tiết và phân tích chuyên môn được cập nhật mỗi ngày."/>
 <meta name="author" id="page-author" content="OtaHub"/>
 <link rel="canonical" id="page-canonical" href="https://otahub.asia/bai-viet/"/>
 <meta name="robots" content="noindex, follow"/>
 <meta property="og:type" content="article"/>
 <meta property="og:title" id="og-title" content="Tiêu đề bài viết · OtaHub"/>
-<meta property="og:description" id="og-desc" content="Đọc bài viết mới nhất về game, anime và manga từ OtaHub — review chuyên sâu, tin tức và hướng dẫn cập nhật."/>
+<meta property="og:description" id="og-desc" content="Đọc bài viết mới nhất về game, anime và manga từ OtaHub — review chuyên sâu, tin tức nóng hổi, hướng dẫn chi tiết và phân tích chuyên môn được cập nhật mỗi ngày."/>
 <meta property="og:url" id="og-url" content="https://otahub.asia/bai-viet/"/>
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
@@ -99,7 +99,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .stag:hover{border-color:rgba(0,229,255,.3);color:#00e5ff}
 
 /* ARTICLE HERO */
-.art-hero{position:relative;z-index:1;aspect-ratio:21/7;min-height:300px;max-height:500px;overflow:hidden}
+.art-hero{position:relative;z-index:1;aspect-ratio:21/7;min-height:400px;max-height:650px;overflow:hidden}
 .art-hero-img{position:absolute;inset:0;background-size:cover;background-position:center;animation:heroPulse 6s ease-in-out infinite alternate}
 @keyframes heroPulse{0%{opacity:.82;filter:saturate(1.05) brightness(.98)}100%{opacity:1;filter:saturate(1.2) brightness(1.06)}}
 .art-hero-grad{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 20%,rgba(11,4,24,.95) 100%)}
@@ -111,7 +111,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .art-sidebar{padding:40px 0 80px}
 
 /* BREADCRUMB */
-.breadcrumb{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);margin-bottom:20px;flex-wrap:wrap}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);margin-bottom:20px;flex-wrap:wrap}
 .breadcrumb a{color:var(--muted);text-decoration:none;transition:color .2s}
 .breadcrumb a:hover{color:var(--cyan)}
 .breadcrumb-sep{opacity:.4}
@@ -124,10 +124,10 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .am-author{display:flex;align-items:center;gap:10px}
 .am-avatar{width:32px;height:32px;border-radius:50%;object-fit:cover;background:var(--surf2)}
 .am-name{font-size:13px;color:var(--white);font-weight:500}
-.am-date{font-size:11px;color:var(--muted)}
+.am-date{font-size:14px;color:var(--muted)}
 .am-sep{width:1px;height:24px;background:var(--border)}
-.am-tag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.am-read{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:5px}
+.am-tag{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.am-read{font-size:14px;color:var(--muted);display:flex;align-items:center;gap:5px}
 
 /* ARTICLE BODY */
 .art-body{font-size:15px;color:var(--dim);line-height:1.9}
@@ -173,10 +173,10 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .sb-title{font-family:var(--fd);font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
 .sb-art{display:flex;gap:10px;margin-bottom:14px;text-decoration:none}
 .sb-art:last-child{margin-bottom:0}
-.sb-thumb{width:56px;height:44px;object-fit:cover;flex-shrink:0;background:var(--surf2)}
+.sb-thumb{width:76px;height:60px;object-fit:cover;flex-shrink:0;background:var(--surf2)}
 .sb-info{}
 .sb-cat{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:3px}
-.sb-t{font-size:12px;color:var(--white);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .2s}
+.sb-t{font-size:15px;color:var(--white);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .2s}
 .sb-art:hover .sb-t{color:var(--cyan)}
 .sb-tags{display:flex;flex-wrap:wrap;gap:6px}
 .sb-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--border);color:var(--muted);text-decoration:none;transition:all .2s}
@@ -210,7 +210,6 @@ input,select,textarea{font-size:16px!important}
 }
 </style>
   <link rel="manifest" href="/manifest.json"/>
-  <title id="page-title">Bài Viết · OtaHub | Tin tức Game, Anime & Manga</title>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-12852ZFD0K"></script>
   <script>
@@ -219,6 +218,7 @@ input,select,textarea{font-size:16px!important}
     gtag('js', new Date());
     gtag('config', 'G-12852ZFD0K');
   </script>
+<link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml"/>
 </head>
 <body>
 <div class="search-overlay" id="searchOverlay">
@@ -249,7 +249,7 @@ input,select,textarea{font-size:16px!important}
     </ul>
     <button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
     <div class="nav-r">
-      <div class="lang"><button class="lb on" id="bvi" onclick="setLang('vi')">VI</button><div class="lsep"></div><button class="lb" id="ben" onclick="setLang('en')">EN</button></div>
+      <button class="lb" id="ben" onclick="">EN</button></div>
       <button class="nsearch" onclick="openSearch()"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></button>
       <a href="index.html#newsletter" class="cta">Subscribe</a>
     </div>
@@ -263,7 +263,7 @@ input,select,textarea{font-size:16px!important}
 
 <!-- HERO IMAGE -->
 <div class="art-hero" id="artHero">
-  <div class="art-hero-img" id="artHeroImg" style="background-image:url('https://picsum.photos/seed/article-hero/1400/500')"></div>
+  <div class="art-hero-img" id="artHeroImg" style="background-image:url('/assets/img/6dfb4d58cf-img.jpg')"></div>
   <div class="art-hero-grad"></div>
   <div class="art-hero-cat" id="artCategoryBadge">Gaming</div>
 </div>
@@ -289,7 +289,7 @@ input,select,textarea{font-size:16px!important}
 
     <div class="art-meta">
       <div class="am-author">
-        <img class="am-avatar" id="authorAvatar" src="https://picsum.photos/seed/author/32/32" alt="Author avatar"/ loading="lazy">
+        <img class="am-avatar" id="authorAvatar" src="/assets/img/64af1fba74-img.jpg" alt="Author avatar"/ loading="lazy">
         <div>
           <div class="am-name" id="authorName">OtaHub Editorial</div>
           <div class="am-date" id="pubDate">01 tháng 1, 2024</div>
@@ -330,11 +330,11 @@ input,select,textarea{font-size:16px!important}
     <!-- SHARE -->
     <div class="share-row">
       <span class="share-lbl">Chia sẻ:</span>
-      <a class="share-btn" id="shareFB" href="#" target="_blank" rel="noopener">
+      <a class="share-btn" id="shareFB" href="/lien-he.html" target="_blank" rel="noopener">
         <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
         Facebook
       </a>
-      <a class="share-btn" id="shareTW" href="#" target="_blank" rel="noopener">
+      <a class="share-btn" id="shareTW" href="/lien-he.html" target="_blank" rel="noopener">
         <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         Twitter
       </a>
@@ -349,19 +349,19 @@ input,select,textarea{font-size:16px!important}
       <div class="related-title">Bài viết liên quan</div>
       <div class="related-grid" id="relatedGrid">
         <a href="article.html" class="rel-card">
-          <img class="rel-thumb" src="https://picsum.photos/seed/rel1/72/56" alt=""/ loading="lazy">
+          <img class="rel-thumb" src="/assets/img/2450f9d052-img.jpg" alt="Elden Ring: Shadow of the Erdtree — Review sau 40 giờ chơi" loading="lazy"/>
           <div class="rel-info"><div class="rel-cat">Gaming</div><div class="rel-title">Elden Ring: Shadow of the Erdtree — Review sau 40 giờ chơi</div></div>
         </a>
         <a href="article.html" class="rel-card">
-          <img class="rel-thumb" src="https://picsum.photos/seed/rel2/72/56" alt=""/ loading="lazy">
+          <img class="rel-thumb" src="/assets/img/b3d6294196-img.jpg" alt="Frieren: Beyond Journey's End kết thúc như thế nào?" loading="lazy"/>
           <div class="rel-info"><div class="rel-cat">Anime</div><div class="rel-title">Frieren: Beyond Journey's End kết thúc như thế nào?</div></div>
         </a>
         <a href="article.html" class="rel-card">
-          <img class="rel-thumb" src="https://picsum.photos/seed/rel3/72/56" alt=""/ loading="lazy">
+          <img class="rel-thumb" src="/assets/img/b629f142b1-img.jpg" alt="Top 5 game indie đáng chú ý nhất tháng 6/2024" loading="lazy"/>
           <div class="rel-info"><div class="rel-cat">Gaming</div><div class="rel-title">Top 5 game indie đáng chú ý nhất tháng 6/2024</div></div>
         </a>
         <a href="article.html" class="rel-card">
-          <img class="rel-thumb" src="https://picsum.photos/seed/rel4/72/56" alt=""/ loading="lazy">
+          <img class="rel-thumb" src="/assets/img/32065dc473-img.jpg" alt="Chainsaw Man chap mới: Asa Mitaka và bí ẩn hợp đồng" loading="lazy"/>
           <div class="rel-info"><div class="rel-cat">Manga</div><div class="rel-title">Chainsaw Man chap mới: Asa Mitaka và bí ẩn hợp đồng</div></div>
         </a>
       </div>
@@ -375,19 +375,19 @@ input,select,textarea{font-size:16px!important}
     <div class="sidebar-block">
       <div class="sb-title">Đọc nhiều nhất</div>
       <a href="article.html" class="sb-art">
-        <img class="sb-thumb" src="https://picsum.photos/seed/sb1/56/44" alt=""/ loading="lazy">
+        <img class="sb-thumb" src="/assets/img/05cef7e2e1-img.jpg" alt="Black Myth: Wukong — Kiệt tác từ Trung Quốc đã đến" loading="lazy"/>
         <div class="sb-info"><div class="sb-cat">Gaming</div><div class="sb-t">Black Myth: Wukong — Kiệt tác từ Trung Quốc đã đến</div></div>
       </a>
       <a href="article.html" class="sb-art">
-        <img class="sb-thumb" src="https://picsum.photos/seed/sb2/56/44" alt=""/ loading="lazy">
+        <img class="sb-thumb" src="/assets/img/ba0e4950ea-img.jpg" alt="Demon Slayer Season 4 — Hashira Training Arc" loading="lazy"/>
         <div class="sb-info"><div class="sb-cat">Anime</div><div class="sb-t">Demon Slayer Season 4 — Hashira Training Arc</div></div>
       </a>
       <a href="article.html" class="sb-art">
-        <img class="sb-thumb" src="https://picsum.photos/seed/sb3/56/44" alt=""/ loading="lazy">
+        <img class="sb-thumb" src="/assets/img/8f49b4e964-img.jpg" alt="One Piece 1113: Luffy vs Gorosei — trận chiến đỉnh cao" loading="lazy"/>
         <div class="sb-info"><div class="sb-cat">Manga</div><div class="sb-t">One Piece 1113: Luffy vs Gorosei — trận chiến đỉnh cao</div></div>
       </a>
       <a href="article.html" class="sb-art">
-        <img class="sb-thumb" src="https://picsum.photos/seed/sb4/56/44" alt=""/ loading="lazy">
+        <img class="sb-thumb" src="/assets/img/d5101c9d72-img.jpg" alt="Stellar Blade — review sau khi patch 1.05" loading="lazy"/>
         <div class="sb-info"><div class="sb-cat">Review</div><div class="sb-t">Stellar Blade — review sau khi patch 1.05</div></div>
       </a>
     </div>
@@ -419,7 +419,7 @@ input,select,textarea{font-size:16px!important}
     <div><div class="ft-h">Khám phá</div><ul class="ft-links"><li><a href="choi-gi.html">Hôm Nay Chơi Gì?</a></li><li><a href="rankings.html">Xếp Hạng</a></li><li><a href="bai-viet.html">Bài Viết</a></li></ul></div>
     <div><div class="ft-h">OtaHub</div><ul class="ft-links"><li><a href="about.html">Giới thiệu</a></li><li><a href="lien-he.html">Liên hệ</a></li><li><a href="chinh-sach-bao-mat.html">Chính sách bảo mật</a></li></ul></div>
   </div>
-  <div class="ft-bot"><span class="ft-copy">© 2024 OtaHub · Gaming & Anime Hub châu Á</span><div class="ft-soc"><a href="#" class="soc" aria-label="Facebook"><svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></div></div>
+  <div class="ft-bot"><span class="ft-copy">© 2024 OtaHub · Gaming & Anime Hub châu Á</span></div>
 </footer>
 
 <script>
@@ -427,7 +427,7 @@ function toggleMobileNav(){const b=document.getElementById('hamBtn'),n=document.
 function openSearch(){document.getElementById('searchOverlay').classList.add('open');setTimeout(()=>document.getElementById('searchInput').focus(),100)}
 function closeSearch(){document.getElementById('searchOverlay').classList.remove('open')}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSearch()})
-function setLang(l){document.getElementById('bvi').classList.toggle('on',l==='vi');document.getElementById('ben').classList.toggle('on',l==='en')}
+
 function copyLink(){navigator.clipboard.writeText(location.href).then(()=>{const b=event.target.closest('.share-btn');const orig=b.textContent;b.textContent='✓ Đã sao chép!';setTimeout(()=>b.textContent=orig,2000)})}
 
 // Share links
@@ -449,5 +449,8 @@ const params = new URLSearchParams(location.search);
 const slug = params.get('slug') || location.pathname.split('/').pop().replace('.html','');
 // TODO: if(slug && slug !== 'article') { fetchFromSanity(slug); }
 </script>
+<script defer src="/assets/search.js"></script>
+<script defer src="/assets/enhance.js"></script>
+<script defer src="/assets/engage.js"></script>
 </body>
 </html>

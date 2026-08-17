@@ -5,7 +5,7 @@
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta name="description" content="Lịch phát sóng anime 2026 đầy đủ theo mùa: Xuân, Hè, Thu, Đông. Xem ngày chiếu, studio, thể loại và synopsis từng anime mùa mới nhất."/>
 <link rel="canonical" href="https://otahub.asia/lich-phat-song"/>
-<meta property="og:title" content="Lịch Phát Sóng Anime 2026 · OtaHub"/>
+<meta property="og:title" content="Lịch Phát Sóng Anime 2026 · OtaHub"/><meta property="og:url" content="https://otahub.asia/lich-phat-song"/>
 <meta property="og:description" content="Anime mùa Hè 2026 — lịch chiếu đầy đủ, filter theo loại, studio và thể loại."/>
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
@@ -123,6 +123,7 @@ input,select,textarea{font-size:16px!important}
     gtag('js', new Date());
     gtag('config', 'G-12852ZFD0K');
   </script>
+<link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml"/>
 </head>
 <body>
 <nav class="nav">
@@ -194,35 +195,84 @@ input,select,textarea{font-size:16px!important}
 <script>
 const DATA = {
   summer: [
-    {type:'tv',title:'Re:Zero Season 4',titleJp:'Re:ゼロ 4th Season',studio:'White Fox',day:'Thứ Tư',genres:['Isekai','Fantasy','Dark'],air:'2/4/2026',status:'airing',img:'https://picsum.photos/seed/rezero4/90/130'},
-    {type:'tv',title:'Witch Hat Atelier',titleJp:'Tongari Boushi no Atelier',studio:'Wit Studio',day:'Thứ Bảy',genres:['Fantasy','Slice of Life'],air:'6/4/2026',status:'airing',img:'https://picsum.photos/seed/witchhat/90/130'},
-    {type:'tv',title:'Classroom of the Elite S4',titleJp:'Youkoso Jitsuryokuwa S4',studio:'Lerche',day:'Thứ Hai',genres:['Psychological','Drama'],air:'7/4/2026',status:'airing',img:'https://picsum.photos/seed/cote4/90/130'},
-    {type:'tv',title:'One Piece (đang chiếu)',titleJp:'ONE PIECE',studio:'Toei Animation',day:'Chủ Nhật',genres:['Shounen','Adventure'],air:'Đang chiếu',status:'airing',img:'https://picsum.photos/seed/onepiece26/90/130'},
-    {type:'movie',title:'Jujutsu Kaisen: Hidden Inventory Movie',titleJp:'呪術廻戦 隠し財産編',studio:'MAPPA',day:'Khởi chiếu 15/5',genres:['Action','Supernatural'],air:'15/5/2026',status:'upcoming',img:'https://picsum.photos/seed/jjkmovie/90/130'},
-    {type:'tv',title:'Sword Art Online: Alicization Arc 3',titleJp:'SAO Alicization 3',studio:'A-1 Pictures',day:'Thứ Sáu',genres:['Isekai','Action'],air:'3/4/2026',status:'airing',img:'https://picsum.photos/seed/sao3/90/130'},
-    {type:'ona',title:'Oshi no Ko Season 3',titleJp:'推しの子 3期',studio:'Doga Kobo',day:'Netflix',genres:['Drama','Music','Mystery'],air:'5/2026',status:'upcoming',img:'https://picsum.photos/seed/oshinoko3/90/130'},
-    {type:'tv',title:'Dungeon Meshi Season 2',titleJp:'ダンジョン飯 2期',studio:'Trigger',day:'Thứ Tư',genres:['Fantasy','Comedy','Adventure'],air:'4/2026',status:'upcoming',img:'https://picsum.photos/seed/dunmeshi2/90/130'},
-    {type:'ova',title:'Violet Evergarden: Side Story',titleJp:'ヴァイオレット外伝新作',studio:'KyoAni',day:'OVA',genres:['Drama','Fantasy'],air:'3/2026',status:'ended',img:'https://picsum.photos/seed/vegova/90/130'},
-    {type:'movie',title:'Your Name 2026 Special',titleJp:'君の名は。10th Anniversary',studio:'CoMix Wave',day:'Khởi chiếu 4/2026',genres:['Romance','Fantasy'],air:'4/2026',status:'upcoming',img:'https://picsum.photos/seed/yourname10/90/130'},
-    {type:'tv',title:'Bleach: Thousand-Year Blood War Part 4',titleJp:'BLEACH 千年血戦篇 Part4',studio:'Pierrot',day:'Thứ Bảy',genres:['Shounen','Action'],air:'4/2026',status:'airing',img:'https://picsum.photos/seed/bleach4/90/130'},
-    {type:'ona',title:'The Apothecary Diaries Season 2',titleJp:'薬屋のひとりごと 2期',studio:'OLM',day:'Netflix',genres:['Mystery','Historical'],air:'5/2026',status:'upcoming',img:'https://picsum.photos/seed/apoth2/90/130'},
+    {type:'tv',title:'Demon Slayer: Infinity Castle',titleJp:'鬼滅の刃 無限城編',studio:'ufotable',day:'Thứ Bảy',genres:['Shounen','Action','Dark Fantasy'],air:'2026',status:'airing',img:'/assets/img/e497ae1e1b-demon-slayer-cover.jpg'},
+    {type:'tv',title:'Frieren Season 2',titleJp:'葬送のフリーレン 2期',studio:'Madhouse',day:'Thứ Tư',genres:['Fantasy','Slice of Life'],air:'2026',status:'airing',img:'/assets/img/4a7324f467-138006l.jpg'},
+    {type:'tv',title:'Solo Leveling Season 3',titleJp:'俺だけレベルアップな件 3期',studio:'A-1 Pictures',day:'Thứ Sáu',genres:['Action','Isekai'],air:'2026',status:'airing',img:'/assets/img/dfc2a226b6-339933l.jpg'},
+    {type:'tv',title:'Bleach: TYBW Part 5',titleJp:'BLEACH 千年血戦篇 Part5',studio:'Pierrot',day:'Thứ Tư',genres:['Shounen','Action'],air:'2026',status:'airing',img:'/assets/img/7429db2141-bleach-tybw-cover.jpg'},
+    {type:'tv',title:'Dungeon Meshi Season 2',titleJp:'ダンジョン飯 2期',studio:'Trigger',day:'Thứ Năm',genres:['Fantasy','Comedy','Adventure'],air:'2026',status:'airing',img:'/assets/img/1a63d75aaa-dungeon-meshi-cover.jpg'},
+    {type:'tv',title:'Chainsaw Man Part 3',titleJp:'チェンソーマン Part3',studio:'MAPPA',day:'Thứ Ba',genres:['Action','Horror'],air:'2026',status:'airing',img:'/assets/img/fced43ae52-216464l.jpg'},
+    {type:'tv',title:'Kaiju No.8 Season 2',titleJp:'怪獣8号 2期',studio:'Production I.G',day:'Thứ Hai',genres:['Action','Sci-Fi'],air:'2026',status:'airing',img:'/assets/img/1cd80a8a56-kaiju-no8-cover.jpg'},
+    {type:'tv',title:'Mushoku Tensei Season 3',titleJp:'無職転生 3期',studio:'Studio Bind',day:'Thứ Tư',genres:['Fantasy','Isekai'],air:'2026',status:'airing',img:'/assets/img/93dc86c38d-117776l.jpg'},
+    {type:'tv',title:'Sakamoto Days',titleJp:'サカモトデイズ',studio:'TMS Entertainment',day:'Thứ Sáu',genres:['Action','Comedy'],air:'2026',status:'airing',img:'/assets/img/43abe6812a-sakamoto-days-cover.jpg'},
+    {type:'tv',title:'Re:Zero Season 4 Part 2',titleJp:'Re:ゼロ 4th Season Part2',studio:'White Fox',day:'Thứ Tư',genres:['Isekai','Fantasy','Dark'],air:'12/8/2026',status:'airing',img:'/assets/img/7402a5d53f-rezero-cover.jpg'},
+    {type:'tv',title:'Link Click Season 3',titleJp:'时光代理人 3',studio:'LAN Studio',day:'Bilibili / Crunchyroll',genres:['Sci-Fi','Mystery','Drama'],air:'14/8/2026',status:'airing',img:'/assets/img/1f8bc2e797-link-click-s3-hero.jpg'},
+    {type:'ona',title:'The Ribbon Hero',titleJp:'The Ribbon Hero',studio:'OUTLINE',day:'Netflix',genres:['Adventure','Fantasy'],air:'8/8/2026',status:'ended',img:'/assets/img/632c9aeaf5-the-ribbon-hero-netflix-hero.jpg'},
   ],
   spring: [
-    {type:'tv',title:'Frieren: Beyond Journey\'s End Season 2',titleJp:'葬送のフリーレン 2期',studio:'Madhouse',day:'Thứ Sáu',genres:['Fantasy','Slice of Life'],air:'1/2026',status:'ended',img:'https://picsum.photos/seed/frieren2/90/130'},
-    {type:'tv',title:'Dragon Ball Daima',titleJp:'ドラゴンボールDAIMA',studio:'Toei',day:'Thứ Sáu',genres:['Shounen','Adventure'],air:'10/2025',status:'ended',img:'https://picsum.photos/seed/dbdaima/90/130'},
-    {type:'movie',title:'Chainsaw Man Movie',titleJp:'チェンソーマン 劇場版',studio:'MAPPA',day:'2026',genres:['Action','Dark'],air:'2026',status:'tba',img:'https://picsum.photos/seed/csmovie/90/130'},
-    {type:'tv',title:'Blue Lock Season 2',titleJp:'ブルーロック 2期',studio:'8bit',day:'Thứ Hai',genres:['Sports','Drama'],air:'10/2025',status:'ended',img:'https://picsum.photos/seed/bluelock2/90/130'},
+    {type:'tv',title:'Re:Zero Season 4',titleJp:'Re:ゼロ 4th Season',studio:'White Fox',day:'Thứ Tư',genres:['Isekai','Fantasy','Dark'],air:'4/2026',status:'ended',img:'/assets/img/7402a5d53f-rezero-cover.jpg'},
+    {type:'tv',title:'Witch Hat Atelier',titleJp:'とんがり帽子のアトリエ',studio:'Wit Studio',day:'Thứ Bảy',genres:['Fantasy','Slice of Life'],air:'4/2026',status:'ended',img:'/assets/img/53da1f083b-witch-hat-atelier-cover.jpg'},
+    {type:'tv',title:'Classroom of the Elite S4',titleJp:'ようこそ実力至上主義の教室へ S4',studio:'Lerche',day:'Thứ Hai',genres:['Psychological','Drama'],air:'4/2026',status:'ended',img:'/assets/img/cc0a4e0f5b-cote-cover.jpg'},
+    {type:'tv',title:'Sword Art Online: Alicization Arc 3',titleJp:'SAO アリシゼーション編 3',studio:'A-1 Pictures',day:'Thứ Sáu',genres:['Isekai','Action'],air:'4/2026',status:'ended',img:'/assets/img/4b50ed9261-sao-cover.jpg'},
+    {type:'tv',title:'Bleach: Thousand-Year Blood War Part 4',titleJp:'BLEACH 千年血戦篇 Part4',studio:'Pierrot',day:'Thứ Bảy',genres:['Shounen','Action'],air:'4/2026',status:'ended',img:'/assets/img/7429db2141-bleach-tybw-cover.jpg'},
+    {type:'movie',title:'Jujutsu Kaisen: Hidden Inventory Movie',titleJp:'呪術廻戦 隠し財産編',studio:'MAPPA',day:'Khởi chiếu 15/5',genres:['Action','Supernatural'],air:'15/5/2026',status:'ended',img:'/assets/img/a4d82e012d-138022l.jpg'},
   ],
   fall: [
-    {type:'tv',title:'Demon Slayer: Infinity Fortress Arc',titleJp:'鬼滅の刃 無限城編',studio:'ufotable',day:'TBA',genres:['Shounen','Action'],air:'2026',status:'tba',img:'https://picsum.photos/seed/ds2026/90/130'},
-    {type:'tv',title:'Attack on Titan: Final OVA',titleJp:'進撃の巨人 Final OVA',studio:'MAPPA',day:'TBA',genres:['Dark','Action'],air:'2026',status:'tba',img:'https://picsum.photos/seed/aot2026/90/130'},
-    {type:'movie',title:'Haikyu!! Movie: The Dumpster Battle',titleJp:'ハイキュー!! ゴミ捨て場の決戦',studio:'Production I.G',day:'2026',genres:['Sports','Drama'],air:'2026',status:'tba',img:'https://picsum.photos/seed/hq2026/90/130'},
+    {type:'tv',title:'Black Clover Season 2',titleJp:'ブラッククローバー 2期',studio:'Pierrot',day:'TBA',genres:['Shounen','Fantasy','Action'],air:'10/2026',status:'upcoming',img:'/assets/img/bd3666212d-black-clover-cover.jpg'},
+    {type:'tv',title:'Gachiakuta Season 2',titleJp:'ガチアクタ 2期',studio:'Bones',day:'TBA',genres:['Action','Dark Fantasy'],air:'2026',status:'tba',img:'/assets/img/e9b5b5fae9-gachiakuta-cover.jpg'},
+    {type:'tv',title:'Chained Soldier Season 3',titleJp:'鎖之勇士 3期',studio:'Studio Blanc',day:'TBA',genres:['Action','Fantasy'],air:'2026',status:'tba',img:'/assets/img/cc1f44dabd-chained-soldier-s3.jpg'},
+    {type:'movie',title:'Haikyu!! Movie: The Dumpster Battle',titleJp:'ハイキュー!! ゴミ捨て場の決戦',studio:'Production I.G',day:'2026',genres:['Sports','Drama'],air:'2026',status:'tba',img:'/assets/img/1aa6c988b4-haikyuu-cover.jpg'},
   ],
   winter: [
-    {type:'tv',title:'Jujutsu Kaisen Season 3',titleJp:'呪術廻戦 3期',studio:'MAPPA',day:'TBA',genres:['Action','Supernatural'],air:'2026',status:'tba',img:'https://picsum.photos/seed/jjk3/90/130'},
-    {type:'tv',title:'Chainsaw Man Part 2',titleJp:'チェンソーマン Part2',studio:'MAPPA',day:'TBA',genres:['Action','Dark'],air:'2026',status:'tba',img:'https://picsum.photos/seed/csm2/90/130'},
+    {type:'tv',title:'Jujutsu Kaisen Season 3',titleJp:'呪術廻戦 3期',studio:'MAPPA',day:'TBA',genres:['Action','Supernatural'],air:'2026',status:'tba',img:'/assets/img/a4d82e012d-138022l.jpg'},
+    {type:'tv',title:'Chainsaw Man Part 4',titleJp:'チェンソーマン Part4',studio:'MAPPA',day:'TBA',genres:['Action','Dark'],air:'2026',status:'tba',img:'/assets/img/fced43ae52-216464l.jpg'},
   ]
 };
+
+const REAL_LINK = {
+  'Demon Slayer: Infinity Castle':'/anime.html',
+  'Frieren Season 2':'/frieren-season2.html',
+  'Chainsaw Man Part 3':'/chainsaw-man-season3.html',
+  'Black Clover Season 2':'/black-clover-season-2.html',
+  'Chained Soldier Season 3':'/chained-soldier-season-3.html',
+  'Mushoku Tensei Season 3':'/mushoku-tensei-s3-chaos-breaker.html',
+  "Frieren: Beyond Journey's End Season 2":'/frieren-season2.html',
+  'Jujutsu Kaisen: Hidden Inventory Movie':'/jujutsu-kaisen-ket-thuc.html',
+  'Jujutsu Kaisen Season 3':'/jujutsu-kaisen-ket-thuc.html',
+  'Chainsaw Man Part 4':'/chainsaw-man-season3.html',
+  'Re:Zero Season 4 Part 2':'/re-zero-season4-recapture-arc.html',
+  'Re:Zero Season 4':'/re-zero-season4-recapture-arc.html',
+  'Link Click Season 3':'/link-click-season3-premiere.html',
+  'The Ribbon Hero':'/the-ribbon-hero-netflix.html',
+};
+const REAL_IMG = {
+  'Demon Slayer: Infinity Castle':'/assets/img/0feb0c5f50-99889l.jpg',
+  'Frieren Season 2':'/assets/img/4a7324f467-138006l.jpg',
+  'Solo Leveling Season 3':'/assets/img/4eddd32871-142390l.jpg',
+  'Bleach: TYBW Part 5':'/assets/img/a563c981e0-135431l.jpg',
+  'Dungeon Meshi Season 2':'/assets/img/c76fab236e-142478l.jpg',
+  'Chainsaw Man Part 3':'/assets/img/5a2451e4ea-126216l.jpg',
+  'Kaiju No.8 Season 2':'/assets/img/064c22bc8c-140362l.jpg',
+  'Mushoku Tensei Season 3':'/assets/img/93dc86c38d-117776l.jpg',
+  'Sakamoto Days':'/assets/img/53434489e9-146459l.jpg',
+  'Re:Zero Season 4 Part 2':'/assets/img/7402a5d53f-rezero.jpg',
+  'Link Click Season 3':'/assets/img/1f8bc2e797-link-click-s3-hero.jpg',
+  'The Ribbon Hero':'/assets/img/632c9aeaf5-the-ribbon-hero-netflix-hero.jpg',
+  'Gachiakuta Season 2':'/assets/img/e9b5b5fae9-gachiakuta.jpg',
+  'Chained Soldier Season 3':'/assets/img/4763fea8c3-chainedsoldier.jpg',
+  'Haikyu!! Movie: The Dumpster Battle':'/assets/img/c46b018c88-haikyu.jpg',
+  'Re:Zero Season 4':'/assets/img/7402a5d53f-rezero.jpg',
+  'Witch Hat Atelier':'/assets/img/53da1f083b-witchhat.jpg',
+  'Classroom of the Elite S4':'/assets/img/cc0a4e0f5b-cote.jpg',
+  'Sword Art Online: Alicization Arc 3':'/assets/img/566c86f5fb-sao.jpg',
+  'Bleach: Thousand-Year Blood War Part 4':'/assets/img/46ad3bbf21-bleach.jpg',
+  'Black Clover Season 2':'/assets/img/00ecd3dafc-banner.jpg',
+  "Frieren: Beyond Journey's End Season 2":'/assets/img/4a7324f467-138006l.jpg',
+  'Jujutsu Kaisen: Hidden Inventory Movie':'/assets/img/d662bae70f-maxresdefault.jpg',
+  'Jujutsu Kaisen Season 3':'/assets/img/d662bae70f-maxresdefault.jpg',
+  'Chainsaw Man Part 4':'/assets/img/2656ba8ffc-maxresdefault.jpg',
+};
+function resolveLink(title){ return REAL_LINK[title] || ('/anime-detail.html?t=' + encodeURIComponent(title)); }
+function resolveImg(title, fallback){ return REAL_IMG[title] || '/assets/img/placeholder.svg'; }
 
 const SEASON_NAMES = {spring:'Mùa Xuân',summer:'Mùa Hè',fall:'Mùa Thu',winter:'Mùa Đông'};
 let currentSeason = 'summer', currentFilter = 'all', currentYear = 2026;
@@ -236,8 +286,8 @@ function renderGrid(){
     return;
   }
   grid.innerHTML = items.map(a => `
-    <a href="anime-detail.html" class="ac">
-      <img class="ac-cover" src="${a.img}" alt="${a.title}" loading="lazy"/>
+    <a href="${resolveLink(a.title)}" class="ac">
+      <img class="ac-cover" src="${resolveImg(a.title, a.img)}" alt="${a.title}" loading="lazy"/>
       <div class="ac-body">
         <div class="ac-type-badge ${a.type}">${a.type.toUpperCase()} · ${a.day}</div>
         <div class="ac-title">${a.title}</div>
@@ -275,5 +325,8 @@ function toggleMobileNav(){const b=document.getElementById('hamBtn'),n=document.
 
 renderGrid();
 </script>
+<script defer src="/assets/search.js"></script>
+<script defer src="/assets/enhance.js"></script>
+<script defer src="/assets/engage.js"></script>
 </body>
 </html>

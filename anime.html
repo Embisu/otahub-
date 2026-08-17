@@ -102,7 +102,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 
 /* CATEGORY HEADER */
 .cat-header{position:relative;z-index:1;min-height:240px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
-.ch-bg{position:absolute;inset:0;background:url('https://cdn.myanimelist.net/images/anime/1792/138022l.jpg') center 25%/cover no-repeat;opacity:.2}
+.ch-bg{position:absolute;inset:0;background:url('/assets/img/placeholder.svg') center 25%/cover no-repeat;opacity:.2}
 .ch-ov{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0%,var(--bg) 100%),linear-gradient(to right,rgba(255,48,128,.05) 0%,transparent 50%)}
 .ch-accent{position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,transparent,var(--sakura),transparent);opacity:.6}
 .ch-body{position:relative;z-index:2;max-width:1440px;margin:0 auto;padding:0 24px}
@@ -110,7 +110,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .ch-eye::before{content:'';width:20px;height:1px;background:var(--sakura);opacity:.6}
 .ch-title{font-family:var(--fd);font-weight:700;font-size:clamp(44px,6vw,80px);line-height:.95;letter-spacing:-.03em;color:var(--white);margin-bottom:10px}
 .ch-title em{font-style:normal;color:var(--sakura);text-shadow:0 0 40px rgba(255,48,128,.3)}
-.ch-sub{font-size:13px;color:var(--dim);max-width:500px}
+.ch-sub{font-size:16px;color:var(--dim);max-width:500px}
 .ch-stats{display:flex;align-items:center;gap:32px;padding:16px 0;margin-top:12px;border-top:1px solid var(--border)}
 .ch-stat-num{font-family:var(--fd);font-size:22px;font-weight:700;color:var(--sakura);line-height:1}
 .ch-stat-lbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:2px}
@@ -209,7 +209,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .rb-score{display:inline-flex;align-items:baseline;gap:4px;background:rgba(11,3,24,.7);backdrop-filter:blur(6px);border:1px solid rgba(251,191,36,.25);padding:5px 12px;margin-bottom:10px}
 .rb-score-num{font-family:var(--fd);font-size:22px;font-weight:700;color:var(--amber)}
 .rb-title{font-family:var(--fd);font-weight:700;font-size:clamp(18px,2vw,26px);line-height:1.1;color:var(--white);margin:8px 0 8px;transition:color .2s}
-.rb-sub{font-size:13px;color:var(--dim);margin-bottom:12px;max-width:400px}
+.rb-sub{font-size:16px;color:var(--dim);margin-bottom:12px;max-width:400px}
 .rb-meta{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
 .rb-meta span{color:var(--sakura)}
 
@@ -225,7 +225,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .rs-thumb img{width:100%;height:100%;object-fit:cover;opacity:.75;transition:transform .5s var(--ease),opacity .3s}
 .rev-sm:hover .rs-thumb img{transform:scale(1.06);opacity:.9}
 .rs-body{padding:16px 18px;display:flex;flex-direction:column;justify-content:space-between}
-.rs-title{font-family:var(--fd);font-weight:600;font-size:14px;line-height:1.25;color:rgba(240,238,255,.9);margin:7px 0 6px;transition:color .2s}
+.rs-title{font-family:var(--fd);font-weight:600;font-size:17px;line-height:1.25;color:rgba(240,238,255,.9);margin:7px 0 6px;transition:color .2s}
 .rs-meta{font-size:11px;color:var(--muted)}
 .rs-score{font-family:var(--fd);font-size:18px;font-weight:700;color:var(--amber)}
 
@@ -288,8 +288,8 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .rk-poster{width:38px;height:54px;overflow:hidden;flex-shrink:0;background:var(--surf2)}
 .rk-poster img{width:100%;height:100%;object-fit:cover;opacity:.85}
 .rk-info{flex:1;min-width:0}
-.rk-title{font-family:var(--fd);font-size:13px;font-weight:600;line-height:1.25;color:rgba(240,238,255,.85);transition:color .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
-.rk-sub{font-size:10px;color:var(--muted)}
+.rk-title{font-family:var(--fd);font-size:16px;font-weight:600;line-height:1.25;color:rgba(240,238,255,.85);transition:color .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+.rk-sub{font-size:14px;color:var(--muted)}
 .rk-score{font-family:var(--fd);font-size:17px;font-weight:700;flex-shrink:0;color:var(--amber)}
 
 /* Schedule */
@@ -298,13 +298,13 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .sched-item{display:flex;align-items:center;gap:10px;padding:10px 20px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s}
 .sched-item:hover{background:var(--surf2)}
 .si-time{font-family:var(--fd);font-size:12px;font-weight:600;color:var(--cyan);width:36px;flex-shrink:0}
-.si-title{font-family:var(--fd);font-size:13px;font-weight:600;color:rgba(240,238,255,.85);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.si-title{font-family:var(--fd);font-size:16px;font-weight:600;color:rgba(240,238,255,.85);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .si-ep{font-size:10px;color:var(--muted);flex-shrink:0}
 
 /* Promo */
 .promo-block{padding:22px 20px;background:linear-gradient(135deg,rgba(255,48,128,.07),rgba(124,58,237,.07));border-top:1px solid rgba(255,48,128,.12);text-align:center}
 .pb-title{font-family:var(--fd);font-weight:700;font-size:16px;color:var(--white);margin-bottom:5px}
-.pb-sub{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6}
+.pb-sub{font-size:15px;color:var(--muted);margin-bottom:14px;line-height:1.6}
 .pb-inp{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--white);font-family:var(--fb);font-size:13px;padding:9px 12px;outline:none;margin-bottom:8px;display:block}
 .pb-inp:focus{border-color:rgba(255,48,128,.4)}
 .pb-btn{width:100%;background:var(--sakura);color:var(--white);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;padding:10px;cursor:pointer;transition:background .18s}
@@ -422,6 +422,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     gtag('js', new Date());
     gtag('config', 'G-12852ZFD0K');
   </script>
+<link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml"/>
 </head>
 <body>
 
@@ -460,7 +461,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     </ul>
     <button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
     <div class="nav-r">
-      <div class="lang"><button class="lb on" id="bvi" onclick="setLang('vi')">VI</button><div class="lsep"></div><button class="lb" id="ben" onclick="setLang('en')">EN</button></div>
+      <button class="lb" id="ben" onclick="">EN</button></div>
       <button class="nsearch" onclick="openSearch()"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></button>
       <a href="index.html#newsletter" class="cta">Subscribe</a>
     </div>
@@ -524,11 +525,11 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   <div class="sec-h">
     <span class="sec-t">Review <em>nổi bật</em></span>
     <div class="sec-l"></div>
-    <a href="#" class="sec-more">Tất cả review</a>
+    <a href="/reviews.html" class="sec-more">Tất cả review</a>
   </div>
   <div class="rev-grid">
-    <a href="bai-viet.html" class="rev-big">
-      <img class="rb-img" src="https://cdn.myanimelist.net/images/anime/1792/138022l.jpg" alt=""/ loading="lazy">
+    <a href="/anime-detail.html?t=Demon%20Slayer%3A%20Infinity%20Castle" class="rev-big">
+      <img class="rb-img" src="/assets/img/0feb0c5f50-99889l.jpg" alt="Demon Slayer: Infinity Castle · bộ phim anime xuất sắc nhất thập kỷ" loading="lazy"/>
       <div class="rb-ov"></div>
       <div class="rb-body">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
@@ -542,24 +543,24 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       </div>
     </a>
     <div class="rev-stack">
-      <a href="bai-viet.html" class="rev-sm">
-        <div class="rs-thumb"><img src="https://cdn.myanimelist.net/images/manga/1/157897l.jpg" alt="" loading="lazy"/></div>
+      <a href="/frieren-season2.html" class="rev-sm">
+        <div class="rs-thumb"><img src="/assets/img/4a7324f467-138006l.jpg" alt="Frieren Beyond Journey's End Season 2 · vẫn là tuyệt phẩm không thể bỏ qua" loading="lazy"/></div>
         <div class="rs-body">
           <div><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px"><span class="tag ts" style="font-size:9px">Review</span><span class="rs-score">9.2</span></div>
           <div class="rs-title">Frieren Beyond Journey's End Season 2 · vẫn là tuyệt phẩm không thể bỏ qua</div></div>
           <div class="rs-meta">Lan Anh · 5 giờ trước · 9 min</div>
         </div>
       </a>
-      <a href="bai-viet.html" class="rev-sm">
-        <div class="rs-thumb"><img src="https://cdn.myanimelist.net/images/anime/1806/126216l.jpg" alt="" loading="lazy"/></div>
+      <a href="/chainsaw-man-season3.html" class="rev-sm">
+        <div class="rs-thumb"><img src="/assets/img/2656ba8ffc-maxresdefault.jpg" alt="Chainsaw Man Part 3 anime · Fujimoto tự đạo diễn: kỳ vọng hay lo ngại?" loading="lazy"/></div>
         <div class="rs-body">
           <div><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px"><span class="tag tc" style="font-size:9px">Preview</span><span style="font-size:10px;color:var(--muted)">Mùa 3</span></div>
           <div class="rs-title">Chainsaw Man Part 3 anime · Fujimoto tự đạo diễn: kỳ vọng hay lo ngại?</div></div>
           <div class="rs-meta">Gia Bảo · 8 giờ trước · 7 min</div>
         </div>
       </a>
-      <a href="bai-viet.html" class="rev-sm">
-        <div class="rs-thumb"><img src="https://cdn.myanimelist.net/images/anime/1448/147351l.jpg" alt="" loading="lazy"/></div>
+      <a href="/solo-leveling-season2.html" class="rev-sm">
+        <div class="rs-thumb"><img src="/assets/img/d98cf42206-maxresdefault.jpg" alt="Solo Leveling Season 3 · Sung Jinwoo đối đầu Monarchs trong arc cuối" loading="lazy"/></div>
         <div class="rs-body">
           <div><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px"><span class="tag ts" style="font-size:9px">Review</span><span class="rs-score">9.0</span></div>
           <div class="rs-title">Solo Leveling Season 3 · Sung Jinwoo đối đầu Monarchs trong arc cuối</div></div>
@@ -572,7 +573,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 <!-- NEWS + SIDEBAR -->
 <div class="wrap rv" style="padding-top:0;padding-bottom:0">
-  <div class="sec-h"><span class="sec-t">Tin tức <em>anime</em></span><div class="sec-l"></div><a href="#" class="sec-more">Xem tất cả</a></div>
+  <div class="sec-h"><span class="sec-t">Tin tức <em>anime</em></span><div class="sec-l"></div><a href="/news.html" class="sec-more">Xem tất cả</a></div>
   <div class="content-layout">
     <div>
       <div class="art-sub">
@@ -583,8 +584,8 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         <button class="sf-btn" onclick="setSub(this)">Mùa hè</button>
       </div>
       <div class="ac-top2">
-        <a href="bai-viet.html" class="ac-mag">
-          <img class="acm-img" src="https://cdn.myanimelist.net/images/manga/1/157897l.jpg" alt=""/ loading="lazy">
+        <a href="/news.html" class="ac-mag">
+          <img class="acm-img" src="/assets/img/placeholder.svg" alt="Studio Ghibli công bố phim hoạt hình mới tại Annecy 2026 · Miyazaki trực tiếp giám sát" loading="lazy"/>
           <div class="acm-ov"></div>
           <div class="acm-body">
             <div class="acm-tags"><span class="tag tc">Breaking</span><span class="tag" style="background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.25);color:var(--green);font-size:9px;padding:3px 9px">Studio Ghibli</span></div>
@@ -592,8 +593,8 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
             <div class="acm-meta">Thu Hương · 2 giờ trước · 5 min</div>
           </div>
         </a>
-        <a href="bai-viet.html" class="ac-mag">
-          <img class="acm-img" src="https://cdn.myanimelist.net/images/anime/1806/126216l.jpg" alt=""/ loading="lazy">
+        <a href="/chainsaw-man-season3.html" class="ac-mag">
+          <img class="acm-img" src="/assets/img/2656ba8ffc-maxresdefault.jpg" alt="Chainsaw Man phần 3 xác nhận: Tatsuki Fujimoto tự đạo diễn, ra mắt mùa thu 2027" loading="lazy"/>
           <div class="acm-ov"></div>
           <div class="acm-body">
             <div class="acm-tags"><span class="tag ts">Anime</span></div>
@@ -602,40 +603,40 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
           </div>
         </a>
       </div>
-      <a href="bai-viet.html" class="ac">
-        <div class="ac-thumb"><img src="https://cdn.myanimelist.net/images/anime/1792/138022l.jpg" alt="" loading="lazy"/></div>
+      <a href="/anime-detail.html?t=Bleach%3A%20TYBW%20Part%205" class="ac">
+        <div class="ac-thumb"><img src="/assets/img/15741dcbc3-hqdefault.jpg" alt="Bleach: Thousand-Year Blood War Part 5 · tất cả những gì cần biết về arc cuối Yhwach" loading="lazy"/></div>
         <div class="ac-info">
           <div><div class="ac-tags"><span class="tag ts">Anime</span><span class="tag t-airing">Đang chiếu</span></div>
           <div class="ac-title">Bleach: Thousand-Year Blood War Part 5 · tất cả những gì cần biết về arc cuối Yhwach</div></div>
           <div class="ac-meta"><span>Lan Anh</span><span class="sep">·</span><span>3 giờ trước</span><span class="sep">·</span><span>6 min</span></div>
         </div>
       </a>
-      <a href="bai-viet.html" class="ac">
-        <div class="ac-thumb"><img src="https://upload.wikimedia.org/wikipedia/en/9/93/Dungeon_Meshi_cover.jpeg" alt="" loading="lazy"/></div>
+      <a href="/anime-detail.html?t=Dungeon%20Meshi%20Season%202" class="ac">
+        <div class="ac-thumb"><img src="/assets/img/7bdd6038c6-hqdefault.jpg" alt="Dungeon Meshi Season 2 · tiếp tục là anime slice-of-life xuất sắc nhất mùa hè 2026" loading="lazy"/></div>
         <div class="ac-info">
           <div><div class="ac-tags"><span class="tag ts">Review</span><span class="ac-score-inline">8.8</span></div>
           <div class="ac-title">Dungeon Meshi Season 2 · tiếp tục là anime slice-of-life xuất sắc nhất mùa hè 2026</div></div>
           <div class="ac-meta"><span>Như Quỳnh</span><span class="sep">·</span><span>5 giờ trước</span><span class="sep">·</span><span>8 min</span></div>
         </div>
       </a>
-      <a href="bai-viet.html" class="ac">
-        <div class="ac-thumb"><img src="https://cdn.myanimelist.net/images/anime/1806/126216l.jpg" alt="" loading="lazy"/></div>
+      <a href="/anime-detail.html?t=Kaiju%20No.8%20Season%202" class="ac">
+        <div class="ac-thumb"><img src="/assets/img/37aa53b176-hqdefault.jpg" alt="Kaiju No.8 Season 2 ep.4 review · Kafka Hibino cuối cùng có được khả năng kiểm soát hoàn toàn" loading="lazy"/></div>
         <div class="ac-info">
           <div><div class="ac-tags"><span class="tag ts">Anime</span></div>
           <div class="ac-title">Kaiju No.8 Season 2 ep.4 review · Kafka Hibino cuối cùng có được khả năng kiểm soát hoàn toàn</div></div>
           <div class="ac-meta"><span>Anh Đức</span><span class="sep">·</span><span>6 giờ trước</span><span class="sep">·</span><span>5 min</span></div>
         </div>
       </a>
-      <a href="bai-viet.html" class="ac">
-        <div class="ac-thumb"><img src="https://cdn.myanimelist.net/images/anime/5/17407l.jpg" alt="" loading="lazy"/></div>
+      <a href="/mushoku-tensei-s3-chaos-breaker.html" class="ac">
+        <div class="ac-thumb"><img src="/assets/img/a4f75364fc-maxresdefault.jpg" alt="Mushoku Tensei Season 3 · Rudeus đối mặt với cuộc chiến lớn nhất trong cuộc đời mới của mình" loading="lazy"/></div>
         <div class="ac-info">
           <div><div class="ac-tags"><span class="tag tv">Isekai</span><span class="ac-score-inline">9.1</span></div>
           <div class="ac-title">Mushoku Tensei Season 3 · Rudeus đối mặt với cuộc chiến lớn nhất trong cuộc đời mới của mình</div></div>
           <div class="ac-meta"><span>Gia Bảo</span><span class="sep">·</span><span>9 giờ trước</span><span class="sep">·</span><span>7 min</span></div>
         </div>
       </a>
-      <a href="bai-viet.html" class="ac">
-        <div class="ac-thumb"><img src="https://cdn.myanimelist.net/images/anime/1806/126216l.jpg" alt="" loading="lazy"/></div>
+      <a href="/anime-detail.html?t=Sakamoto%20Days" class="ac">
+        <div class="ac-thumb"><img src="/assets/img/39c7dd4496-maxresdefault.jpg" alt="Sakamoto Days · anime adaptation vượt mong đợi, cảnh chiến đấu được khen ngợi rầm rộ" loading="lazy"/></div>
         <div class="ac-info">
           <div><div class="ac-tags"><span class="tag ts">Action</span></div>
           <div class="ac-title">Sakamoto Days · anime adaptation vượt mong đợi, cảnh chiến đấu được khen ngợi rầm rộ</div></div>
@@ -649,24 +650,21 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     <aside>
       <div>
         <div class="side-head"><span style="color:var(--sakura)">Top Anime mùa hè</span><span class="side-badge">2026</span></div>
-        <div class="rk t1"><div class="rk-num">1</div><div class="rk-poster"><img src="https://cdn.myanimelist.net/images/anime/1792/138022l.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Demon Slayer: Infinity Castle</div><div class="rk-sub">Ufotable · Action</div></div><div class="rk-score">9.8</div></div>
-        <div class="rk t2"><div class="rk-num">2</div><div class="rk-poster"><img src="https://cdn.myanimelist.net/images/manga/1/157897l.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Frieren Season 2</div><div class="rk-sub">Madhouse · Fantasy</div></div><div class="rk-score">9.2</div></div>
-        <div class="rk t3"><div class="rk-num">3</div><div class="rk-poster"><img src="https://cdn.myanimelist.net/images/anime/1448/147351l.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Solo Leveling S3</div><div class="rk-sub">A-1 Pictures · Action</div></div><div class="rk-score">9.0</div></div>
-        <div class="rk"><div class="rk-num">4</div><div class="rk-poster"><img src="https://cdn.myanimelist.net/images/anime/1806/126216l.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Chainsaw Man Part 3</div><div class="rk-sub">MAPPA · Action</div></div><div class="rk-score">8.9</div></div>
-        <div class="rk"><div class="rk-num">5</div><div class="rk-poster"><img src="https://cdn.myanimelist.net/images/anime/1792/138022l.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Bleach TYBW Part 5</div><div class="rk-sub">Pierrot · Action</div></div><div class="rk-score">8.8</div></div>
-        <div class="rk"><div class="rk-num">6</div><div class="rk-poster"><img src="https://upload.wikimedia.org/wikipedia/en/9/93/Dungeon_Meshi_cover.jpeg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Dungeon Meshi S2</div><div class="rk-sub">Trigger · Fantasy</div></div><div class="rk-score">8.7</div></div>
-        <div class="rk"><div class="rk-num">7</div><div class="rk-poster"><img src="https://cdn.myanimelist.net/images/anime/5/17407l.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Mushoku Tensei S3</div><div class="rk-sub">Studio Bind · Isekai</div></div><div class="rk-score">8.6</div></div>
+        <div class="rk t1"><div class="rk-num">1</div><div class="rk-poster"><img src="/assets/img/0feb0c5f50-99889l.jpg" alt="Demon Slayer: Infinity Castle" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Demon Slayer: Infinity Castle</div><div class="rk-sub">Ufotable · Action</div></div><div class="rk-score">9.8</div></div>
+        <div class="rk t2"><div class="rk-num">2</div><div class="rk-poster"><img src="/assets/img/4a7324f467-138006l.jpg" alt="Frieren Season 2" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Frieren Season 2</div><div class="rk-sub">Madhouse · Fantasy</div></div><div class="rk-score">9.2</div></div>
+        <div class="rk t3"><div class="rk-num">3</div><div class="rk-poster"><img src="/assets/img/d98cf42206-maxresdefault.jpg" alt="Solo Leveling S3" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Solo Leveling S3</div><div class="rk-sub">A-1 Pictures · Action</div></div><div class="rk-score">9.0</div></div>
+        <div class="rk"><div class="rk-num">4</div><div class="rk-poster"><img src="/assets/img/2656ba8ffc-maxresdefault.jpg" alt="Chainsaw Man Part 3" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Chainsaw Man Part 3</div><div class="rk-sub">MAPPA · Action</div></div><div class="rk-score">8.9</div></div>
+        <div class="rk"><div class="rk-num">5</div><div class="rk-poster"><img src="/assets/img/15741dcbc3-hqdefault.jpg" alt="Bleach TYBW Part 5" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Bleach TYBW Part 5</div><div class="rk-sub">Pierrot · Action</div></div><div class="rk-score">8.8</div></div>
+        <div class="rk"><div class="rk-num">6</div><div class="rk-poster"><img src="/assets/img/7bdd6038c6-hqdefault.jpg" alt="Dungeon Meshi S2" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Dungeon Meshi S2</div><div class="rk-sub">Trigger · Fantasy</div></div><div class="rk-score">8.7</div></div>
+        <div class="rk"><div class="rk-num">7</div><div class="rk-poster"><img src="/assets/img/a4f75364fc-maxresdefault.jpg" alt="Mushoku Tensei S3" loading="lazy"/></div><div class="rk-info"><div class="rk-title">Mushoku Tensei S3</div><div class="rk-sub">Studio Bind · Isekai</div></div><div class="rk-score">8.6</div></div>
       </div>
 
       <div>
-        <div class="side-head" style="margin-top:0"><span style="color:var(--cyan)">Lịch phát hôm nay</span><span style="font-size:10px;color:var(--muted)">Thứ 2</span></div>
-        <div class="sched-day"><div class="sd-label">Sáng</div></div>
-        <div class="sched-item"><div class="si-time">09:00</div><div class="si-title">Sakamoto Days</div><div class="si-ep">Ep 7</div></div>
-        <div class="sched-item"><div class="si-time">10:30</div><div class="si-title">Solo Leveling S3</div><div class="si-ep">Ep 3</div></div>
+        <div class="side-head" style="margin-top:0"><span style="color:var(--cyan)">Lịch phát hôm nay</span><span style="font-size:10px;color:var(--muted)">Thứ 4</span></div>
+        <div class="sched-day"><div class="sd-label">Chiều</div></div>
+        <div class="sched-item"><div class="si-time">17:00</div><div class="si-title">Mushoku Tensei S3</div><div class="si-ep">Ep 4</div></div>
         <div class="sched-day"><div class="sd-label">Tối</div></div>
         <div class="sched-item"><div class="si-time">21:00</div><div class="si-title">Frieren Season 2</div><div class="si-ep">Ep 6</div></div>
-        <div class="sched-item"><div class="si-time">22:30</div><div class="si-title">Bleach TYBW Part 5</div><div class="si-ep">Ep 2</div></div>
-        <div class="sched-item"><div class="si-time">23:00</div><div class="si-title">Dungeon Meshi S2</div><div class="si-ep">Ep 7</div></div>
       </div>
 
       <div class="promo-block">
@@ -689,55 +687,51 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       </a>
       <p class="ft-desc">Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias.</p>
     </div>
-    <div><div class="ft-h">Anime</div><ul class="ft-links"><li><a href="#">Đang chiếu</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="#">Lịch phát sóng</a></li><li><a href="#">Top Anime</a></li><li><a href="#">Theo thể loại</a></li></ul></div>
-    <div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="gaming.html">Gaming</a></li><li><a href="manga.html">Manga</a></li><li><a href="#">Manhwa</a></li><li><a href="rankings.html">Rankings</a></li></ul></div>
-    <div><div class="ft-h">OtaHub</div><ul class="ft-links"><li><a href="about.html">Giới thiệu</a></li><li><a href="about.html#team">Đội ngũ</a></li><li><a href="#">Discord</a></li><li><a href="index.html#newsletter">Newsletter</a></li></ul></div>
+    <div><div class="ft-h">Anime</div><ul class="ft-links"><li><a href="/anime.html">Đang chiếu</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="/lich-phat-song.html">Lịch phát sóng</a></li><li><a href="/rankings.html">Top Anime</a></li><li><a href="/anime.html">Theo thể loại</a></li></ul></div>
+    <div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="gaming.html">Gaming</a></li><li><a href="manga.html">Manga</a></li><li><a href="/manga.html">Manhwa</a></li><li><a href="rankings.html">Rankings</a></li></ul></div>
+    <div><div class="ft-h">OtaHub</div><ul class="ft-links"><li><a href="about.html">Giới thiệu</a></li><li><a href="about.html#team">Đội ngũ</a></li><li><a href="index.html#newsletter">Newsletter</a></li></ul></div>
   </div>
   <div class="ft-bot">
     <span class="ft-copy">2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span>
-    <div class="ft-soc">
-      <button class="soc"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></button>
-      <button class="soc"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></button>
-      <button class="soc"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.003.028.014.057.035.066a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg></button>
-      <button class="soc"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></button>
-    </div>
+
   </div>
 </footer>
 
 <script>
 const SEASONS={
   summer:[
-    {title:'Demon Slayer: Infinity Castle',genre:'Action / Dark Fantasy',score:'9.8',day:'Thứ 7',ep:'Ep 8/13',status:'airing',img:'https://cdn.myanimelist.net/images/anime/1286/99889l.jpg'},
-    {title:'Frieren Season 2',genre:'Fantasy / Slice of Life',score:'9.2',day:'Thứ 4',ep:'Ep 6/24',status:'airing',img:'https://cdn.myanimelist.net/images/anime/1015/138006l.jpg'},
-    {title:'Solo Leveling Season 3',genre:'Action / Isekai',score:'9.0',day:'Thứ 6',ep:'Ep 3/13',status:'airing',img:'https://cdn.myanimelist.net/images/anime/1801/142390l.jpg'},
-    {title:'Bleach: TYBW Part 5',genre:'Action / Shonen',score:'8.8',day:'Thứ 2',ep:'Ep 2/13',status:'airing',img:'https://cdn.myanimelist.net/images/anime/1908/135431l.jpg'},
-    {title:'Dungeon Meshi S2',genre:'Fantasy / Comedy',score:'8.7',day:'Thứ 5',ep:'Ep 7/13',status:'airing',img:'https://cdn.myanimelist.net/images/anime/1711/142478l.jpg'},
-    {title:'Chainsaw Man Part 3',genre:'Action / Horror',score:'8.9',day:'Thứ 3',ep:'Ep 3/12',status:'airing',img:'https://cdn.myanimelist.net/images/anime/1806/126216l.jpg'},
-    {title:'Kaiju No.8 Season 2',genre:'Action / Sci-Fi',score:'8.5',day:'Thứ 2',ep:'Ep 4/12',status:'airing',img:'https://cdn.myanimelist.net/images/anime/1370/140362l.jpg'},
-    {title:'Mushoku Tensei S3',genre:'Fantasy / Isekai',score:'8.6',day:'Thứ 4',ep:'Ep 4/13',status:'airing',img:'https://cdn.myanimelist.net/images/anime/1530/117776l.jpg'},
-    {title:'Sakamoto Days',genre:'Action / Comedy',score:'8.4',day:'Thứ 6',ep:'Ep 7/12',status:'airing',img:'https://cdn.myanimelist.net/images/anime/1026/146459l.jpg'},
-    {title:'Negai no Astro',genre:'Sci-Fi / Adventure',score:'',day:'Tháng 8',ep:'Sắp ra',status:'soon',img:'https://cdn.myanimelist.net/images/anime/1987/117507l.jpg'},
+    {title:'Demon Slayer: Infinity Castle',genre:'Action / Dark Fantasy',score:'9.8',day:'Thứ 7',ep:'Ep 8/13',status:'airing',img:'/assets/img/0feb0c5f50-99889l.jpg'},
+    {title:'Frieren Season 2',genre:'Fantasy / Slice of Life',score:'9.2',day:'Thứ 4',ep:'Ep 6/24',status:'airing',img:'/assets/img/4a7324f467-138006l.jpg'},
+    {title:'Re:Zero Season 4',genre:'Isekai / Drama',score:'9.1',day:'Thứ 4',ep:'Ep 12/19',status:'airing',img:'/assets/img/7402a5d53f-rezero-cover.jpg'},
+    {title:'Solo Leveling Season 3',genre:'Action / Isekai',score:'9.0',day:'Thứ 6',ep:'Ep 3/13',status:'airing',img:'/assets/img/4eddd32871-142390l.jpg'},
+    {title:'Bleach: TYBW Part 5',genre:'Action / Shonen',score:'8.8',day:'Thứ 2',ep:'Ep 2/13',status:'airing',img:'/assets/img/a563c981e0-135431l.jpg'},
+    {title:'Dungeon Meshi S2',genre:'Fantasy / Comedy',score:'8.7',day:'Thứ 5',ep:'Ep 7/13',status:'airing',img:'/assets/img/c76fab236e-142478l.jpg'},
+    {title:'Chainsaw Man Part 3',genre:'Action / Horror',score:'8.9',day:'Thứ 3',ep:'Ep 3/12',status:'airing',img:'/assets/img/5a2451e4ea-126216l.jpg'},
+    {title:'Kaiju No.8 Season 2',genre:'Action / Sci-Fi',score:'8.5',day:'Thứ 2',ep:'Ep 4/12',status:'airing',img:'/assets/img/064c22bc8c-140362l.jpg'},
+    {title:'Mushoku Tensei Season 3',genre:'Fantasy / Isekai',score:'8.6',day:'Thứ 4',ep:'Ep 4/13',status:'airing',img:'/assets/img/93dc86c38d-117776l.jpg'},
+    {title:'Sakamoto Days',genre:'Action / Comedy',score:'8.4',day:'Thứ 6',ep:'Ep 7/12',status:'airing',img:'/assets/img/53434489e9-146459l.jpg'},
+    {title:'Negai no Astro',genre:'Sci-Fi / Adventure',score:'',day:'Tháng 8',ep:'Sắp ra',status:'soon',img:'/assets/img/34a9559c3e-117507l.jpg'},
   ],
   spring:[
-    {title:'Demon Slayer: Infinity Castle',genre:'Action / Dark Fantasy',score:'9.8',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1286/99889l.jpg'},
-    {title:'JJK Final Arc',genre:'Action / Supernatural',score:'9.5',day:'Hoàn tất',ep:'24/24 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1792/138022l.jpg'},
-    {title:'Wind Breaker',genre:'Sports / Action',score:'8.3',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1438/141816l.jpg'},
-    {title:'Mushoku Tensei S3',genre:'Fantasy',score:'9.1',day:'Hoàn tất',ep:'12/12 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1530/117776l.jpg'},
-    {title:'Metallic Rouge',genre:'Sci-Fi / Mecha',score:'7.9',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1859/140210l.jpg'},
+    {title:'Demon Slayer: Infinity Castle',genre:'Action / Dark Fantasy',score:'9.8',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/0feb0c5f50-99889l.jpg'},
+    {title:'Jujutsu Kaisen Final Arc',genre:'Action / Supernatural',score:'9.5',day:'Hoàn tất',ep:'24/24 Ep',status:'done',img:'/assets/img/a4d82e012d-138022l.jpg'},
+    {title:'Wind Breaker',genre:'Sports / Action',score:'8.3',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/7fe07557d5-141816l.jpg'},
+    {title:'Mushoku Tensei Season 3',genre:'Fantasy',score:'9.1',day:'Hoàn tất',ep:'12/12 Ep',status:'done',img:'/assets/img/93dc86c38d-117776l.jpg'},
+    {title:'Metallic Rouge',genre:'Sci-Fi / Mecha',score:'7.9',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/1398450367-140210l.jpg'},
   ],
   winter:[
-    {title:'Shangri-La Frontier S2',genre:'Isekai / Game',score:'8.7',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1500/139931l.jpg'},
-    {title:'Dungeon Meshi',genre:'Fantasy / Comedy',score:'9.0',day:'Hoàn tất',ep:'24/24 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1711/142478l.jpg'},
-    {title:'Mashle S2',genre:'Comedy',score:'8.2',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1912/140804l.jpg'},
-    {title:'Solo Leveling',genre:'Action / Isekai',score:'8.8',day:'Hoàn tất',ep:'12/12 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1801/142390l.jpg'},
-    {title:'Frieren: Beyond',genre:'Fantasy',score:'9.3',day:'Hoàn tất',ep:'28/28 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1015/138006l.jpg'},
+    {title:'Shangri-La Frontier S2',genre:'Isekai / Game',score:'8.7',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/6247a8245a-139931l.jpg'},
+    {title:'Dungeon Meshi',genre:'Fantasy / Comedy',score:'9.0',day:'Hoàn tất',ep:'24/24 Ep',status:'done',img:'/assets/img/c76fab236e-142478l.jpg'},
+    {title:'Mashle S2',genre:'Comedy',score:'8.2',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/f2c03777f8-140804l.jpg'},
+    {title:'Ore dake Level Up na Ken',genre:'Action / Isekai',score:'8.8',day:'Hoàn tất',ep:'12/12 Ep',status:'done',img:'/assets/img/4eddd32871-142390l.jpg'},
+    {title:'Sousou no Frieren',genre:'Fantasy',score:'9.3',day:'Hoàn tất',ep:'28/28 Ep',status:'done',img:'/assets/img/4a7324f467-138006l.jpg'},
   ],
   fall:[
-    {title:'Oshi no Ko Season 2',genre:'Drama / Idol',score:'9.0',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1812/134736l.jpg'},
-    {title:'Blue Lock Season 2 P2',genre:'Sports / Action',score:'8.9',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1258/126929l.jpg'},
-    {title:'Dr. Stone Season 4',genre:'Sci-Fi',score:'8.7',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1613/102576l.jpg'},
-    {title:'Spy x Family S3',genre:'Comedy / Action',score:'8.5',day:'Hoàn tất',ep:'12/12 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1441/122795l.jpg'},
-    {title:'Assassination Class. S3',genre:'Shonen',score:'8.6',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/5/75639l.jpg'},
+    {title:'Oshi no Ko Season 2',genre:'Drama / Idol',score:'9.0',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/d137b0931c-134736l.jpg'},
+    {title:'Blue Lock Season 2 Part 2',genre:'Sports / Action',score:'8.9',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/a5b2a5cd39-126929l.jpg'},
+    {title:'Dr. Stone Season 4',genre:'Sci-Fi',score:'8.7',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/ea478ecebf-102576l.jpg'},
+    {title:'Spy x Family Season 3',genre:'Comedy / Action',score:'8.5',day:'Hoàn tất',ep:'12/12 Ep',status:'done',img:'/assets/img/a7f0eee58e-122795l.jpg'},
+    {title:'Assassination Classroom S3',genre:'Shonen',score:'8.6',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/b7622e1073-75639l.jpg'},
   ]
 };
 
@@ -745,9 +739,9 @@ function renderAiring(season){
   const grid=document.getElementById('airing-grid');
   const data=SEASONS[season];
   grid.innerHTML=data.map(a=>`
-    <article class="a-card" style="text-decoration:none">
+    <a class="a-card" href="/anime-detail.html?t=${encodeURIComponent(a.title)}" style="text-decoration:none">
       <div class="a-poster">
-        <img class="ap-img" src="${a.img}" alt="" loading="lazy"/>
+        <img class="ap-img" src="${a.img}" alt="${a.title}" loading="lazy"/>
         <span class="ap-ep">${a.ep}</span>
         <span class="ap-status ${a.status==='airing'?'t-airing':a.status==='done'?'t-done':'t-soon'}" style="font-family:var(--fd);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 7px;position:absolute;top:8px;right:8px;z-index:2">${a.status==='airing'?'Đang chiếu':a.status==='done'?'Hoàn tất':'Sắp ra'}</span>
       </div>
@@ -759,7 +753,7 @@ function renderAiring(season){
           <span class="ac-day">${a.day}</span>
         </div>
       </div>
-    </article>
+    </a>
   `).join('');
 }
 renderAiring('summer');
@@ -767,7 +761,7 @@ renderAiring('summer');
 function setSeason(btn,s){document.querySelectorAll('.stab').forEach(t=>t.classList.remove('on'));btn.classList.add('on');renderAiring(s)}
 function setF(btn){document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));btn.classList.add('on')}
 function setSub(btn){document.querySelectorAll('.sf-btn').forEach(t=>t.classList.remove('on'));btn.classList.add('on')}
-function setLang(l){document.getElementById('bvi').classList.toggle('on',l==='vi');document.getElementById('ben').classList.toggle('on',l==='en')}
+
 
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target)}})},{threshold:0,rootMargin:'120px 0px 120px 0px'});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
@@ -817,5 +811,8 @@ function openSearch(){var o=document.getElementById('searchOverlay');if(o){o.cla
 function closeSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.remove('open');document.body.style.overflow=''}}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSearch();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch()}});
 </script>
+<script defer src="/assets/search.js"></script>
+<script defer src="/assets/enhance.js"></script>
+<script defer src="/assets/engage.js"></script>
 </body>
 </html>
