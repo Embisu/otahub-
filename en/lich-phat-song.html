@@ -815,7 +815,7 @@ const REAL_IMG = {
 };
 
 
-function resolveLink(title){ return REAL_LINK[title] || ('/anime-detail.html?t=' + encodeURIComponent(title)); }
+function resolveLink(title){ return REAL_LINK[title] || ('/en/anime-detail?t=' + encodeURIComponent(title)); }
 
 
 function resolveImg(title, fallback){ return REAL_IMG[title] || '/assets/img/placeholder.svg'; }
