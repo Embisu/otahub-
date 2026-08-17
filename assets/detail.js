@@ -15,7 +15,7 @@ var TXT=EN?{score:'OtaHub score',genre:'Genre',platform:'Platforms',release:'Rel
 var TITLE_IMAGE={
   'Demon Slayer: Infinity Castle':'/assets/img/0feb0c5f50-99889l.jpg','Frieren Season 2':'/assets/img/4a7324f467-138006l.jpg',
   'Sousou no Frieren':'/assets/img/4a7324f467-138006l.jpg','Re:Zero Season 4':'/assets/img/087af8ed98-rezero-s4-hero.jpg',
-  'Solo Leveling Season 3':'/assets/img/1619ce791a-solo-leveling-hero.jpg','Ore dake Level Up na Ken':'/assets/img/1619ce791a-solo-leveling-hero.jpg',
+  'Solo Leveling Season 3':'/assets/img/1619ce791a-solo-leveling-hero.jpg','Solo Leveling':'/assets/img/1619ce791a-solo-leveling-hero.jpg','Ore dake Level Up na Ken':'/assets/img/1619ce791a-solo-leveling-hero.jpg',
   'Bleach: TYBW Part 5':'/assets/img/bleach-tybw-poster.jpg','Chainsaw Man Part 3':'/assets/img/2656ba8ffc-maxresdefault.jpg',
   'Dungeon Meshi S2':'/assets/img/c76fab236e-142478l.jpg','Dungeon Meshi':'/assets/img/c76fab236e-142478l.jpg',
   'Kaiju No.8 Season 2':'/assets/img/064c22bc8c-140362l.jpg','Sakamoto Days':'/assets/img/53434489e9-146459l.jpg',
