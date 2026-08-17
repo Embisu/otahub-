@@ -4,7 +4,7 @@
 <title>404 — Trang Không Tìm Thấy · OtaHub</title>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Trang bạn tìm không tồn tại. Quay về trang chủ OtaHub để xem tin tức game, anime và manga mới nhất."/>
+  <meta name="description" content="Trang bạn tìm không tồn tại hoặc đã bị di chuyển. Quay về trang chủ OtaHub để khám phá tin tức game, anime, manga và bảng xếp hạng mới nhất mỗi ngày."/>
     <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
   <meta property="og:image" content="https://otahub.asia/og-image.png"/>
@@ -68,7 +68,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 @media(max-width:480px){.err-btns{flex-direction:column;align-items:center}.btn-main,.btn-ghost{width:200px;text-align:center}}
 </style>
   <link rel="manifest" href="/manifest.json"/>
-  <meta property="og:title" content="404 — Trang Không Tìm Thấy · OtaHub"/>
+  <meta property="og:title" content="404 — Trang Không Tìm Thấy · OtaHub"/><meta property="og:description" content="Trang bạn tìm không tồn tại hoặc đã bị di chuyển. Quay về trang chủ OtaHub để khám phá tin tức game, anime, manga mới nhất."/><meta property="og:url" content="https://otahub.asia/404"/>
   <meta property="og:type" content="website"/>
   <meta name="twitter:card" content="summary"/>
   <meta name="twitter:title" content="404 — OtaHub"/>
@@ -81,6 +81,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
     gtag('js', new Date());
     gtag('config', 'G-12852ZFD0K');
   </script>
+<link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml"/>
 </head>
 <body>
 <div id="amb"><div class="orb o1"></div><div class="orb o2"></div></div>
@@ -120,5 +121,8 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 let s=10;const el=document.getElementById('ct');
 const t=setInterval(()=>{s--;el.textContent=s;if(s<=0){clearInterval(t);window.location.href='index.html'}},1000);
 </script>
+<script defer src="/assets/search.js"></script>
+<script defer src="/assets/enhance.js"></script>
+<script defer src="/assets/engage.js"></script>
 </body>
 </html>

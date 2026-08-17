@@ -115,7 +115,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 /* Full-bleed background */
 .ch-bg{
   position:absolute;inset:0;
-  background:url('https://cdn.akamai.steamstatic.com/steam/apps/1245620/library_hero.jpg') center 30%/cover no-repeat;
+  background:url('/assets/img/b80150127d-library_hero.jpg') center 30%/cover no-repeat;
   opacity:.22;
 }
 .ch-overlay{
@@ -148,7 +148,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
   color:var(--white);margin-bottom:10px;
 }
 .ch-title em{font-style:normal;color:var(--cyan);text-shadow:0 0 40px rgba(0,229,255,.3)}
-.ch-sub{font-size:13px;color:var(--dim);max-width:500px;margin-bottom:0}
+.ch-sub{font-size:16px;color:var(--dim);max-width:500px;margin-bottom:0}
 
 /* Stats row */
 .ch-stats{
@@ -218,7 +218,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .fg-big:hover .fgb-title{color:var(--cyan)}
 .fgb-img{
   position:absolute;inset:0;
-  background:url('https://cdn.akamai.steamstatic.com/steam/apps/1245620/library_hero.jpg') center/cover no-repeat;
+  background:url('/assets/img/b80150127d-library_hero.jpg') center/cover no-repeat;
   opacity:.42;transition:transform .7s var(--ease),opacity .4s;
 }
 .fgb-ov{
@@ -247,7 +247,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
   color:var(--white);margin:10px 0 10px;
   transition:color .2s;
 }
-.fgb-sub{font-size:13px;color:var(--dim);margin-bottom:14px;max-width:460px;line-height:1.6}
+.fgb-sub{font-size:16px;color:var(--dim);margin-bottom:14px;max-width:460px;line-height:1.6}
 .fgb-meta{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;display:flex;align-items:center;gap:8px}
 .fgb-meta-cat{color:var(--cyan);font-weight:500}
 .fgb-meta-dot{opacity:.3}
@@ -387,6 +387,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
   display:flex;align-items:center;gap:10px;
   padding:12px 20px;border-bottom:1px solid var(--border);
   cursor:pointer;transition:background .2s;
+  text-decoration:none;color:inherit;
 }
 .rk-item:hover{background:var(--surf2)}
 .rk-item:hover .rki-title{color:var(--cyan)}
@@ -397,11 +398,11 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .rk-item.t1 .rki-num{color:rgba(251,191,36,.6);font-size:20px}
 .rk-item.t2 .rki-num{color:rgba(192,192,210,.45);font-size:19px}
 .rk-item.t3 .rki-num{color:rgba(180,120,80,.45)}
-.rki-thumb{width:42px;height:42px;overflow:hidden;flex-shrink:0;background:var(--surf2)}
+.rki-thumb{width:58px;height:58px;overflow:hidden;flex-shrink:0;background:var(--surf2)}
 .rki-thumb img{width:100%;height:100%;object-fit:cover;opacity:.85}
 .rki-info{flex:1;min-width:0}
-.rki-title{font-family:var(--fd);font-size:13px;font-weight:600;line-height:1.3;color:rgba(240,238,255,.85);transition:color .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rki-sub{font-size:10px;color:var(--muted);margin-top:1px}
+.rki-title{font-family:var(--fd);font-size:16px;font-weight:600;line-height:1.3;color:rgba(240,238,255,.85);transition:color .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rki-sub{font-size:13px;color:var(--muted);margin-top:1px}
 .rki-score{font-family:var(--fd);font-size:17px;font-weight:700;flex-shrink:0}
 
 /* Score bar under each rank */
@@ -417,7 +418,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .trend-item:hover{background:var(--surf2)}
 .trend-item:hover .ti-title{color:var(--cyan)}
 .ti-num{font-family:var(--fd);font-size:22px;font-weight:700;color:rgba(240,238,255,.07);width:24px;flex-shrink:0;line-height:1;margin-top:2px}
-.ti-title{font-family:var(--fd);font-size:13px;font-weight:600;line-height:1.3;color:rgba(240,238,255,.82);transition:color .2s;margin-bottom:2px}
+.ti-title{font-family:var(--fd);font-size:16px;font-weight:600;line-height:1.3;color:rgba(240,238,255,.82);transition:color .2s;margin-bottom:2px}
 .ti-meta{font-size:10px;color:var(--muted)}
 
 /* Promo block */
@@ -428,7 +429,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
   text-align:center;
 }
 .pb-title{font-family:var(--fd);font-weight:700;font-size:17px;color:var(--white);margin-bottom:5px}
-.pb-sub{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6}
+.pb-sub{font-size:15px;color:var(--muted);margin-bottom:14px;line-height:1.6}
 .pb-inp{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--white);font-family:var(--fb);font-size:13px;padding:9px 12px;outline:none;margin-bottom:8px;display:block}
 .pb-inp:focus{border-color:rgba(0,229,255,.4)}
 .pb-btn{width:100%;background:var(--cyan);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;padding:10px;cursor:pointer;transition:background .18s}
@@ -556,6 +557,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     gtag('js', new Date());
     gtag('config', 'G-12852ZFD0K');
   </script>
+<link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml"/>
 </head>
 <body>
 
@@ -602,10 +604,8 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     </ul>
     <button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
     <div class="nav-r">
-      <div class="lang">
-        <button class="lb on" id="bvi" onclick="setLang('vi')">VI</button>
-        <div class="lsep"></div>
-        <button class="lb" id="ben" onclick="setLang('en')">EN</button>
+
+        <button class="lb" id="ben" onclick="">EN</button>
       </div>
       <button class="nsearch" aria-label="Tìm kiếm">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
@@ -655,12 +655,12 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   <div class="sec-h">
     <span class="sec-t">Nổi bật <em>tuần này</em></span>
     <div class="sec-l"></div>
-    <a href="#" class="sec-more">Xem thêm</a>
+    <a href="/news.html" class="sec-more">Xem thêm</a>
   </div>
   <div class="fg">
 
     <!-- Big featured card -->
-    <a href="bai-viet.html" class="fg-big">
+    <a href="/elden-ring-dlc2.html" class="fg-big">
       <div class="fgb-img"></div>
       <div class="fgb-ov"></div>
       <div class="fgb-glow"></div>
@@ -698,9 +698,9 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
     <!-- Stack -->
     <div class="fg-stack">
-      <a href="bai-viet.html" class="fg-sm">
+      <a href="/game-detail.html?t=Monster%20Hunter%20Wilds" class="fg-sm">
         <div class="fgs-thumb">
-          <img class="fgs-img" src="https://cdn.akamai.steamstatic.com/steam/apps/2246340/library_hero.jpg" alt=""/ loading="lazy">
+          <img class="fgs-img" src="/assets/img/ec9554f424-library_hero.jpg" alt="Monster Hunter Wilds · masterpiece của Capcom sau 120 giờ trải nghiệm" loading="lazy"/>
           <div class="fgs-ov"></div>
         </div>
         <div class="fgs-body">
@@ -712,9 +712,9 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
           <div class="fgs-meta">Thanh Tùng · 6 giờ trước</div>
         </div>
       </a>
-      <a href="bai-viet.html" class="fg-sm">
+      <a href="/stellar-blade-2.html" class="fg-sm">
         <div class="fgs-thumb">
-          <img class="fgs-img" src="https://cdn.akamai.steamstatic.com/steam/apps/2446190/library_hero.jpg" alt=""/ loading="lazy">
+          <img class="fgs-img" src="/assets/img/7bc69a799e-library_hero.jpg" alt="Stellar Blade 2 · concept art, cơ chế chiến đấu và vùng thế giới mới" loading="lazy"/>
           <div class="fgs-ov"></div>
         </div>
         <div class="fgs-body">
@@ -752,8 +752,8 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
       <!-- Top 2 magazine cards -->
       <div class="ac-top2">
-        <a href="bai-viet.html" class="ac-mag">
-          <img class="acm-img" src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" alt=""/ loading="lazy">
+        <a href="/elden-ring-dlc2.html" class="ac-mag">
+          <img class="acm-img" src="/assets/img/a7f47ed998-header.jpg" alt="Elden Ring DLC 2: Shadow of the Erdtree II · tất cả những gì đã biết sau trailer đầu tiên" loading="lazy"/>
           <div class="acm-ov"></div>
           <div class="acm-body">
             <div class="acm-tags"><span class="tag tc">Breaking</span><span class="tag ta">PC</span></div>
@@ -761,8 +761,8 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
             <div class="acm-meta">Minh Khôi Trần · 2 giờ trước · 8 min</div>
           </div>
         </a>
-        <a href="bai-viet.html" class="ac-mag">
-          <img class="acm-img" src="https://cdn.akamai.steamstatic.com/steam/apps/2246340/header.jpg" alt=""/ loading="lazy">
+        <a href="/game-detail.html?t=Monster%20Hunter%20Wilds" class="ac-mag">
+          <img class="acm-img" src="/assets/img/587e72813c-header.jpg" alt="Monster Hunter Wilds · review đầy đủ sau 120 giờ: Capcom đã làm ra một tuyệt phẩm" loading="lazy"/>
           <div class="acm-ov"></div>
           <div class="acm-body">
             <div class="acm-tags"><span class="tag ta">Review</span><span class="acm-score">9.4</span></div>
@@ -773,8 +773,8 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       </div>
 
       <!-- Horizontal list cards with big thumb -->
-      <a href="bai-viet.html" class="ac">
-        <div class="ac-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1794680/header.jpg" alt="" loading="lazy"/></div>
+      <a href="/genshin-54-citlali.html" class="ac">
+        <div class="ac-thumb"><img src="/assets/img/f89df6064f-142648l.jpg" alt="Genshin Impact 5.4 · guide kéo Citlali đầy đủ: constellation nào cần thiết, đội hình meta tối ưu" loading="lazy"/></div>
         <div class="ac-info">
           <div><div class="ac-top"><span class="tag tg">Guide</span></div>
           <div class="ac-title">Genshin Impact 5.4 · guide kéo Citlali đầy đủ: constellation nào cần thiết, đội hình meta tối ưu</div></div>
@@ -782,8 +782,8 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
       </a>
 
-      <a href="bai-viet.html" class="ac">
-        <div class="ac-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/2418520/header.jpg" alt="" loading="lazy"/></div>
+      <a href="/wuthering-waves-24.html" class="ac">
+        <div class="ac-thumb"><img src="/assets/img/c53329917b-wuthering-waves-hero.jpg" alt="Wuthering Waves 2.4 · tất cả thay đổi, nhân vật mới Shorekeeper và event trong bản cập nhật" loading="lazy"/></div>
         <div class="ac-info">
           <div><div class="ac-top"><span class="tag ts">Mobile</span></div>
           <div class="ac-title">Wuthering Waves 2.4 · tất cả thay đổi, nhân vật mới Shorekeeper và event trong bản cập nhật</div></div>
@@ -791,8 +791,8 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
       </a>
 
-      <a href="bai-viet.html" class="ac">
-        <div class="ac-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/2446190/header.jpg" alt="" loading="lazy"/></div>
+      <a href="/stellar-blade-2.html" class="ac">
+        <div class="ac-thumb"><img src="/assets/img/8a90eed2d5-header.jpg" alt="Stellar Blade 2 · tất cả thông tin từ TGS 2026: cơ chế mới, vùng thế giới và nhân vật Eve 2.0" loading="lazy"/></div>
         <div class="ac-info">
           <div><div class="ac-top"><span class="tag tv">Preview</span></div>
           <div class="ac-title">Stellar Blade 2 · tất cả thông tin từ TGS 2026: cơ chế mới, vùng thế giới và nhân vật Eve 2.0</div></div>
@@ -800,8 +800,8 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
       </a>
 
-      <a href="bai-viet.html" class="ac">
-        <div class="ac-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/3681810/library_hero.jpg" alt="" loading="lazy"/></div>
+      <a href="/blue-protocol-review.html" class="ac">
+        <div class="ac-thumb"><img src="/assets/img/3578d308d7-library_hero.jpg" alt="Blue Protocol: Resonance · review sau 50 giờ: MMO anime châu Á đáng đầu tư nhất năm 2026" loading="lazy"/></div>
         <div class="ac-info">
           <div><div class="ac-top"><span class="tag ta">Review</span><span class="ac-score">8.8</span></div>
           <div class="ac-title">Blue Protocol: Resonance · review sau 50 giờ: MMO anime châu Á đáng đầu tư nhất năm 2026</div></div>
@@ -809,8 +809,8 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
       </a>
 
-      <a href="bai-viet.html" class="ac">
-        <div class="ac-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/2358720/header.jpg" alt="" loading="lazy"/></div>
+      <a href="/black-myth-wukong-huong-dan.html" class="ac">
+        <div class="ac-thumb"><img src="/assets/img/7403bc0e49-header.jpg" alt="Black Myth: Wukong bản patch 1.6 fix toàn bộ lỗi ray tracing AMD GPU, cải thiện 18% FPS trung bình" loading="lazy"/></div>
         <div class="ac-info">
           <div><div class="ac-top"><span class="tag tc">PC / Console</span></div>
           <div class="ac-title">Black Myth: Wukong bản patch 1.6 fix toàn bộ lỗi ray tracing AMD GPU, cải thiện 18% FPS trung bình</div></div>
@@ -818,8 +818,8 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
       </a>
 
-      <a href="bai-viet.html" class="ac">
-        <div class="ac-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg" alt="" loading="lazy"/></div>
+      <a href="/vct-pacific-2026.html" class="ac">
+        <div class="ac-thumb"><img src="/assets/img/4c17ff1a96-Valorant_Champions_Los_Angeles_2023.jpg" alt="VCT Pacific 2026 Playoffs · Paper Rex vào chung kết, đối đầu T1 trong trận grand final lịch sử" loading="lazy"/></div>
         <div class="ac-info">
           <div><div class="ac-top"><span class="tag" style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.3);color:var(--lav)">Esports</span></div>
           <div class="ac-title">VCT Pacific 2026 Playoffs · Paper Rex vào chung kết, đối đầu T1 trong trận grand final lịch sử</div></div>
@@ -827,8 +827,8 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </div>
       </a>
 
-      <a href="bai-viet.html" class="ac">
-        <div class="ac-thumb"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7d/Honor_of_Kings_logo.png/330px-Honor_of_Kings_logo.png" alt="" loading="lazy"/></div>
+      <a href="/game-detail.html?t=Honor%20of%20Kings%20Global" class="ac">
+        <div class="ac-thumb"><img src="/assets/img/6323076b06-158003l.jpg" alt="Honor of Kings Global · tier list nhân vật S-tier mùa 3 và guide reroll tối ưu cho tân thủ" loading="lazy"/></div>
         <div class="ac-info">
           <div><div class="ac-top"><span class="tag ts">Mobile</span><span class="tag tg">Tier List</span></div>
           <div class="ac-title">Honor of Kings Global · tier list nhân vật S-tier mùa 3 và guide reroll tối ưu cho tân thủ</div></div>
@@ -852,58 +852,58 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
             <span style="color:var(--cyan)">PC Game</span>
             <span style="color:var(--muted);font-size:9px">BXH</span>
           </div>
-          <span class="side-badge">Tuần 22</span>
+          <span class="side-badge">Tuần 33</span>
         </div>
-        <div class="rk-item t1">
+        <a class="rk-item t1" href="/game-detail.html?t=Elden%20Ring%3A%20Shadow%20of%20Erdtree%20II">
           <div class="rki-num">1</div>
-          <div class="rki-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" alt="" loading="lazy"/></div>
+          <div class="rki-thumb"><img src="/assets/img/b80150127d-library_hero.jpg" alt="Elden Ring DLC 2" loading="lazy"/></div>
           <div class="rki-info">
             <div class="rki-title">Elden Ring DLC 2</div>
             <div class="rki-sub">Action RPG · FromSoftware</div>
             <div class="rki-bar-wrap"><div class="rki-bar" style="width:97%;background:var(--amber)"></div></div>
           </div>
           <div class="rki-score" style="color:var(--amber)">9.7</div>
-        </div>
-        <div class="rk-item t2">
+        </a>
+        <a class="rk-item t2" href="/game-detail.html?t=Monster%20Hunter%20Wilds">
           <div class="rki-num">2</div>
-          <div class="rki-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/2246340/header.jpg" alt="" loading="lazy"/></div>
+          <div class="rki-thumb"><img src="/assets/img/ec9554f424-library_hero.jpg" alt="Monster Hunter Wilds" loading="lazy"/></div>
           <div class="rki-info">
             <div class="rki-title">Monster Hunter Wilds</div>
             <div class="rki-sub">Action · Capcom</div>
             <div class="rki-bar-wrap"><div class="rki-bar" style="width:94%;background:var(--cyan)"></div></div>
           </div>
           <div class="rki-score" style="color:var(--cyan)">9.4</div>
-        </div>
-        <div class="rk-item t3">
+        </a>
+        <a class="rk-item t3" href="/game-detail.html?t=Black%20Myth%3A%20Wukong">
           <div class="rki-num">3</div>
-          <div class="rki-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/2358720/header.jpg" alt="" loading="lazy"/></div>
+          <div class="rki-thumb"><img src="/assets/img/6eef9e5628-library_hero.jpg" alt="Black Myth: Wukong" loading="lazy"/></div>
           <div class="rki-info">
             <div class="rki-title">Black Myth: Wukong</div>
             <div class="rki-sub">Action RPG · Game Science</div>
             <div class="rki-bar-wrap"><div class="rki-bar" style="width:91%;background:var(--green)"></div></div>
           </div>
           <div class="rki-score" style="color:var(--green)">9.1</div>
-        </div>
-        <div class="rk-item">
+        </a>
+        <a class="rk-item" href="/game-detail.html?t=Blue%20Protocol%3A%20Resonance">
           <div class="rki-num">4</div>
-          <div class="rki-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/3681810/library_hero.jpg" alt="" loading="lazy"/></div>
+          <div class="rki-thumb"><img src="/assets/img/3578d308d7-library_hero.jpg" alt="Blue Protocol: Resonance" loading="lazy"/></div>
           <div class="rki-info">
             <div class="rki-title">Blue Protocol: Resonance</div>
             <div class="rki-sub">MMORPG · Bandai Namco</div>
             <div class="rki-bar-wrap"><div class="rki-bar" style="width:88%;background:var(--lav)"></div></div>
           </div>
           <div class="rki-score" style="color:var(--lav)">8.8</div>
-        </div>
-        <div class="rk-item">
+        </a>
+        <a class="rk-item" href="/game-detail.html?t=Final%20Fantasy%20VII%20Rebirth">
           <div class="rki-num">5</div>
-          <div class="rki-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/2909400/header.jpg" alt="" loading="lazy"/></div>
+          <div class="rki-thumb"><img src="/assets/img/9fdcc19d8c-header.jpg" alt="FF VII Rebirth" loading="lazy"/></div>
           <div class="rki-info">
             <div class="rki-title">FF VII Rebirth</div>
             <div class="rki-sub">JRPG · Square Enix</div>
             <div class="rki-bar-wrap"><div class="rki-bar" style="width:86%;background:var(--sakura)"></div></div>
           </div>
           <div class="rki-score" style="color:var(--sakura)">8.6</div>
-        </div>
+        </a>
       </div>
 
       <!-- Mobile ranking -->
@@ -914,58 +914,58 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
             <span style="color:var(--sakura)">Mobile Game</span>
             <span style="color:var(--muted);font-size:9px">BXH</span>
           </div>
-          <span class="side-badge" style="border-color:rgba(255,48,128,.25);color:var(--sakura)">Tuần 22</span>
+          <span class="side-badge" style="border-color:rgba(255,48,128,.25);color:var(--sakura)">Tuần 33</span>
         </div>
-        <div class="rk-item t1">
+        <a class="rk-item t1" href="/game-detail.html?t=Wuthering%20Waves">
           <div class="rki-num">1</div>
-          <div class="rki-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/2418520/header.jpg" alt="" loading="lazy"/></div>
+          <div class="rki-thumb"><img src="/assets/img/0c18ade4ba-library_hero.jpg" alt="Wuthering Waves" loading="lazy"/></div>
           <div class="rki-info">
             <div class="rki-title">Wuthering Waves</div>
             <div class="rki-sub">Action RPG · Kuro Games</div>
             <div class="rki-bar-wrap"><div class="rki-bar" style="width:95%;background:var(--sakura)"></div></div>
           </div>
           <div class="rki-score" style="color:var(--amber)">9.5</div>
-        </div>
-        <div class="rk-item t2">
+        </a>
+        <a class="rk-item t2" href="/game-detail.html?t=Honkai%3A%20Star%20Rail">
           <div class="rki-num">2</div>
-          <div class="rki-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1836180/header.jpg" alt="" loading="lazy"/></div>
+          <div class="rki-thumb"><img src="/assets/img/681306c50c-143582l.jpg" alt="Honkai: Star Rail" loading="lazy"/></div>
           <div class="rki-info">
             <div class="rki-title">Honkai: Star Rail</div>
             <div class="rki-sub">Turn-based · HoYoverse</div>
             <div class="rki-bar-wrap"><div class="rki-bar" style="width:92%;background:var(--cyan)"></div></div>
           </div>
           <div class="rki-score" style="color:var(--cyan)">9.2</div>
-        </div>
-        <div class="rk-item t3">
+        </a>
+        <a class="rk-item t3" href="/game-detail.html?t=Genshin%20Impact">
           <div class="rki-num">3</div>
-          <div class="rki-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1794680/header.jpg" alt="" loading="lazy"/></div>
+          <div class="rki-thumb"><img src="/assets/img/f89df6064f-142648l.jpg" alt="Genshin Impact" loading="lazy"/></div>
           <div class="rki-info">
             <div class="rki-title">Genshin Impact</div>
             <div class="rki-sub">Action RPG · HoYoverse</div>
             <div class="rki-bar-wrap"><div class="rki-bar" style="width:89%;background:var(--green)"></div></div>
           </div>
           <div class="rki-score" style="color:var(--green)">8.9</div>
-        </div>
-        <div class="rk-item">
+        </a>
+        <a class="rk-item" href="/game-detail.html?t=Honor%20of%20Kings%20Global">
           <div class="rki-num">4</div>
-          <div class="rki-thumb"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7d/Honor_of_Kings_logo.png/330px-Honor_of_Kings_logo.png" alt="" loading="lazy"/></div>
+          <div class="rki-thumb"><img src="/assets/img/6323076b06-158003l.jpg" alt="Honor of Kings Global" loading="lazy"/></div>
           <div class="rki-info">
             <div class="rki-title">Honor of Kings Global</div>
             <div class="rki-sub">MOBA · TiMi Studio</div>
             <div class="rki-bar-wrap"><div class="rki-bar" style="width:87%;background:var(--lav)"></div></div>
           </div>
           <div class="rki-score" style="color:var(--lav)">8.7</div>
-        </div>
-        <div class="rk-item">
+        </a>
+        <a class="rk-item" href="/game-detail.html?t=Zenless%20Zone%20Zero">
           <div class="rki-num">5</div>
-          <div class="rki-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/2406618/header.jpg" alt="" loading="lazy"/></div>
+          <div class="rki-thumb"><img src="/assets/img/513145db34-header.jpg" alt="Zenless Zone Zero" loading="lazy"/></div>
           <div class="rki-info">
             <div class="rki-title">Zenless Zone Zero</div>
             <div class="rki-sub">Action RPG · HoYoverse</div>
             <div class="rki-bar-wrap"><div class="rki-bar" style="width:85%;background:var(--sakura)"></div></div>
           </div>
           <div class="rki-score" style="color:var(--sakura)">8.5</div>
-        </div>
+        </a>
       </div>
 
       <!-- Trending -->
@@ -1006,12 +1006,12 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     <div>
       <div class="ft-h">Gaming</div>
       <ul class="ft-links">
-        <li><a href="#">PC / Console</a></li>
-        <li><a href="#">Mobile</a></li>
-        <li><a href="#">Esports</a></li>
+        <li><a href="/gaming.html">PC / Console</a></li>
+        <li><a href="/gaming.html">Mobile</a></li>
+        <li><a href="/gaming.html">Esports</a></li>
         <li><a href="reviews.html">Reviews</a></li>
-        <li><a href="#">Guides</a></li>
-        <li><a href="#">Tier Lists</a></li>
+        <li><a href="/choi-gi.html">Guides</a></li>
+        <li><a href="/rankings.html">Tier Lists</a></li>
       </ul>
     </div>
     <div>
@@ -1019,8 +1019,8 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       <ul class="ft-links">
         <li><a href="anime.html">Anime</a></li>
         <li><a href="manga.html">Manga</a></li>
-        <li><a href="#">Manhwa</a></li>
-        <li><a href="#">Bảng xếp hạng</a></li>
+        <li><a href="/manga.html">Manhwa</a></li>
+        <li><a href="/rankings.html">Bảng xếp hạng</a></li>
       </ul>
     </div>
     <div>
@@ -1028,7 +1028,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       <ul class="ft-links">
         <li><a href="about.html">Giới thiệu</a></li>
         <li><a href="about.html#team">Đội ngũ</a></li>
-        <li><a href="#">Discord</a></li>
+
         <li><a href="index.html#newsletter">Newsletter</a></li>
         <li><a href="about.html#contact">Liên hệ</a></li>
       </ul>
@@ -1036,17 +1036,12 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   </div>
   <div class="ft-bot">
     <span class="ft-copy">2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span>
-    <div class="ft-soc">
-      <button class="soc" aria-label="X"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></button>
-      <button class="soc" aria-label="Facebook"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></button>
-      <button class="soc" aria-label="Discord"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.003.028.014.057.035.066a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg></button>
-      <button class="soc" aria-label="YouTube"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></button>
-    </div>
+
   </div>
 </footer>
 
 <script>
-function setLang(l){document.getElementById('bvi').classList.toggle('on',l==='vi');document.getElementById('ben').classList.toggle('on',l==='en')}
+
 function setFilter(btn){document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));btn.classList.add('on')}
 function setSub(btn){document.querySelectorAll('.sf-btn').forEach(t=>t.classList.remove('on'));btn.classList.add('on')}
 
@@ -1113,5 +1108,8 @@ function openSearch(){var o=document.getElementById('searchOverlay');if(o){o.cla
 function closeSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.remove('open');document.body.style.overflow=''}}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSearch();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch()}});
 </script>
+<script defer src="/assets/search.js"></script>
+<script defer src="/assets/enhance.js"></script>
+<script defer src="/assets/engage.js"></script>
 </body>
 </html>

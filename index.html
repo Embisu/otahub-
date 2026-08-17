@@ -40,21 +40,6 @@
   "url": "https://otahub.asia/",
   "description": "Hub tin tức Gaming, Anime và Manga châu Á. Bảng xếp hạng game, review chuyên sâu, tier list gacha và lịch phát sóng anime mới nhất.",
   "inLanguage": "vi",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "OtaHub",
-    "url": "https://otahub.asia"
-  }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "OtaHub",
-  "url": "https://otahub.asia",
-  "description": "Hub tin tức Gaming, Anime và Manga châu Á",
-  "inLanguage": ["vi", "en"],
   "potentialAction": {
     "@type": "SearchAction",
     "target": {
@@ -79,7 +64,6 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<meta name="description" content="Tin tức game, anime, manga châu Á mới nhất. Bảng xếp hạng, review, tier list."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"/>
@@ -164,12 +148,12 @@ body{
 .tick-track:hover{animation-play-state:paused}
 .tick-item{font-size:12px;padding:0 36px;display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.95)}
 .tick-item::before{content:'//';opacity:.5;font-family:var(--fd)}
-.hero{position:relative;z-index:1;min-height:600px;display:grid;grid-template-columns:1fr 400px;align-items:stretch;width:100%}
-.hero-main{padding:80px 48px 80px max(24px,calc((100vw - 1040px)/2));display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;cursor:pointer;min-height:600px}
-.hero-side{padding:36px 24px 36px 32px;max-width:400px;display:flex;flex-direction:column;background:rgba(11,2,32,.55);backdrop-filter:blur(8px);border-left:1px solid var(--border)}
-.h-img{position:absolute;inset:0;background:url('https://cdn.akamai.steamstatic.com/steam/apps/1245620/library_hero.jpg') center/cover no-repeat;animation:heroPulse 8s ease-in-out infinite alternate;transition:transform .7s var(--ease)}
+.hero{position:relative;z-index:1;min-height:780px;display:grid;grid-template-columns:1fr 460px;align-items:stretch;width:100%}
+.hero-main{padding:80px 48px 80px max(24px,calc((100vw - 1040px)/2));display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;cursor:pointer;min-height:640px}
+.hero-side{padding:32px 24px 32px 28px;max-width:460px;display:flex;flex-direction:column;background:rgba(11,2,32,.45);backdrop-filter:blur(6px);border-left:1px solid var(--border)}
+.h-img{position:absolute;inset:0;background:url('/assets/img/ccd6b922bc-gta6-trailer3-netflix-hero.jpg') center/cover no-repeat;animation:heroPulse 8s ease-in-out infinite alternate;transition:transform .7s var(--ease)}
 .hero-main:hover .h-img{transform:scale(1.04)}
-.h-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(11,2,32,.12) 0%,rgba(11,2,32,.55) 50%,var(--bg) 100%),linear-gradient(to top,var(--bg) 0%,rgba(11,2,32,.7) 30%,rgba(11,2,32,.2) 60%,transparent 100%)}
+.h-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(11,2,32,.05) 0%,rgba(11,2,32,.4) 55%,var(--bg) 100%),linear-gradient(to top,var(--bg) 0%,rgba(11,2,32,.62) 26%,rgba(11,2,32,.12) 55%,transparent 100%)}
 .h-scan{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,229,255,.008) 3px,rgba(0,229,255,.008) 4px)}
 .h-glow{position:absolute;bottom:-60px;left:-60px;width:320px;height:320px;background:var(--cyan);border-radius:50%;filter:blur(100px);opacity:.09;pointer-events:none}
 .h-content{position:relative;z-index:2}
@@ -182,7 +166,7 @@ body{
 .tag-live::before{content:'';width:6px;height:6px;background:currentColor;border-radius:50%;animation:blink 1.1s ease-in-out infinite}
 .h-title{font-family:var(--fd);font-weight:700;font-size:clamp(28px,3.6vw,56px);line-height:1.02;letter-spacing:-.015em;color:var(--white);margin-bottom:16px;max-width:620px;text-shadow:0 4px 40px rgba(0,0,0,.8)}
 .h-title em{font-style:normal;color:var(--cyan);text-shadow:0 0 20px rgba(0,229,255,.5)}
-.h-sub{font-size:14px;color:var(--dim);font-weight:300;margin-bottom:26px;max-width:460px;line-height:1.75;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.h-sub{font-size:17px;color:var(--dim);font-weight:300;margin-bottom:26px;max-width:460px;line-height:1.75;text-shadow:0 2px 12px rgba(0,0,0,.6)}
 .h-meta{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
 .h-meta-cat{color:var(--cyan);font-weight:500}
 .h-meta-sep{opacity:.3;margin:0 2px}
@@ -190,19 +174,28 @@ body{
 .read-more:hover{gap:14px}
 .read-more svg{transition:transform .22s var(--ease)}
 .read-more:hover svg{transform:translateX(4px)}
+.wc-more{display:flex;align-items:center;justify-content:center;gap:8px;padding:16px 20px;color:var(--cyan);font-family:var(--fd);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-top:1px solid var(--border);transition:background .2s,gap .22s var(--ease)}
+.wc-more:hover{background:var(--surf2);gap:12px}
+.wc-more svg{transition:transform .22s var(--ease)}
+.wc-more:hover svg{transform:translateY(2px)}
 /* hero-side already defined above, skip duplicate */
 .side-head{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-.s-art{padding:16px 0;border-bottom:1px solid var(--border);cursor:pointer;animation:fadeUp .45s var(--ease) both}
+.s-art{display:flex;gap:14px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--border);cursor:pointer;animation:fadeUp .45s var(--ease) both}
 .s-art:last-child{border-bottom:none}
 .s-art:nth-child(1){animation-delay:.06s}.s-art:nth-child(2){animation-delay:.12s}
 .s-art:nth-child(3){animation-delay:.18s}.s-art:nth-child(4){animation-delay:.24s}
 .s-art:hover .sa-t{color:var(--cyan)}
+.sa-thumb{width:108px;height:108px;flex-shrink:0;overflow:hidden;background:var(--surf2)}
+.sa-thumb img{width:100%;height:100%;object-fit:cover;opacity:.88;transition:transform .4s var(--ease)}
+.s-art:hover .sa-thumb img{transform:scale(1.08)}
 .sa-c{font-size:9px;letter-spacing:.15em;text-transform:uppercase;font-weight:600;margin-bottom:5px}
-.sa-t{font-family:var(--fd);font-weight:600;font-size:14px;line-height:1.3;color:rgba(240,238,255,.9);margin-bottom:4px;transition:color .2s}
-.sa-m{font-size:11px;color:var(--muted)}
+.sa-t{font-family:var(--fd);font-weight:600;font-size:16px;line-height:1.28;color:rgba(240,238,255,.9);margin-bottom:4px;transition:color .2s}
+.sa-m{font-size:13px;color:var(--muted)}
 .marquee{position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(124,58,237,.05);height:36px;overflow:hidden;display:flex;align-items:center}
 .mq-track{display:flex;animation:mq 55s linear infinite;white-space:nowrap}
 .mq-track:hover{animation-play-state:paused}
+a.mq-item{text-decoration:none;cursor:pointer}
+.mq-item:hover{color:var(--cyan)}
 .mq-item{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:0 28px;display:flex;align-items:center;gap:9px}
 .mq-item::after{content:'';width:3px;height:3px;background:var(--violet);border-radius:50%}
 .mq-item strong{color:var(--cyan);font-weight:500}
@@ -215,14 +208,14 @@ body{
 .sec-more:hover{color:var(--cyan)}
 .f-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:290px 230px;gap:3px;margin-top:3px}
 .fc{grid-row:1/3;position:relative;overflow:hidden;cursor:pointer;background:var(--card)}
-.fc-img{position:absolute;inset:0;background:url('https://cdn.akamai.steamstatic.com/steam/apps/2446190/library_hero.jpg') center/cover no-repeat;animation:heroPulse 10s ease-in-out infinite alternate-reverse;opacity:.9;transition:opacity .5s,transform .7s var(--ease)}
+.fc-img{position:absolute;inset:0;background:url('/assets/img/7bc69a799e-library_hero.jpg') center/cover no-repeat;animation:heroPulse 10s ease-in-out infinite alternate-reverse;opacity:.9;transition:opacity .5s,transform .7s var(--ease)}
 .fc:hover .fc-img{opacity:.75;transform:scale(1.04)}
 .fc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,2,32,.98) 0%,rgba(11,2,32,.6) 38%,rgba(11,2,32,.12) 70%,transparent 100%),linear-gradient(to right,transparent 50%,rgba(11,2,32,.4) 100%)}
 .fc::after{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;pointer-events:none}
 .fc:hover::after{border-color:rgba(0,229,255,.3)}
 .fc-body{position:absolute;bottom:0;left:0;right:0;padding:32px}
 .fc-title{font-family:var(--fd);font-weight:700;font-size:clamp(17px,2vw,27px);line-height:1.1;color:var(--white);margin:10px 0 10px;text-shadow:0 2px 20px rgba(0,0,0,.6)}
-.fc-sub{font-size:13px;color:var(--dim);margin-bottom:12px;max-width:420px}
+.fc-sub{font-size:16px;color:var(--dim);margin-bottom:12px;max-width:420px}
 .fc-meta{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
 .fc-meta span{color:var(--cyan)}
 .sc{position:relative;overflow:hidden;cursor:pointer;background:var(--card);display:flex;flex-direction:column;transition:background .2s}
@@ -233,9 +226,9 @@ body{
 .sc::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;z-index:3;pointer-events:none}
 .sc:hover::before{border-color:rgba(0,229,255,.22)}
 .sc-body{padding:14px 16px}
-.sc-title{font-family:var(--fd);font-weight:600;font-size:14px;line-height:1.25;color:rgba(240,238,255,.9);margin:6px 0 5px;transition:color .2s}
+.sc-title{font-family:var(--fd);font-weight:600;font-size:17px;line-height:1.25;color:rgba(240,238,255,.9);margin:6px 0 5px;transition:color .2s}
 .sc:hover .sc-title{color:var(--cyan)}
-.sc-meta{font-size:11px;color:var(--muted)}
+.sc-meta{font-size:14px;color:var(--muted)}
 .rank-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:3px}
 .rk-card{background:var(--surf);overflow:hidden}
 .rk-head{padding:20px 24px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
@@ -244,7 +237,7 @@ body{
 .rk-badge{font-size:10px;letter-spacing:.1em;font-family:var(--fb);font-weight:500;text-transform:uppercase;padding:3px 9px;border:1px solid}
 .rk-week{border-color:rgba(0,229,255,.25);color:var(--cyan);background:rgba(0,229,255,.07)}
 .rk-list{display:flex;flex-direction:column}
-.rk-item{display:grid;grid-template-columns:40px 54px 1fr auto;align-items:center;gap:12px;padding:14px 24px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s}
+.rk-item{display:grid;grid-template-columns:40px 76px 1fr auto;align-items:center;gap:12px;padding:14px 24px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s;text-decoration:none;color:inherit}
 .rk-item:last-child{border-bottom:none}
 .rk-item:hover{background:var(--surf2)}
 .rk-item:hover .rk-name{color:var(--cyan)}
@@ -253,11 +246,11 @@ body{
 .rk-item.top1 .rk-num{color:var(--amber);opacity:.9;font-size:24px}
 .rk-item.top2 .rk-num{color:rgba(200,200,220,.7);font-size:23px}
 .rk-item.top3 .rk-num{color:rgba(200,130,80,.7);font-size:22px}
-.rk-thumb{width:54px;height:54px;overflow:hidden;flex-shrink:0;background:var(--surf2)}
+.rk-thumb{width:76px;height:76px;overflow:hidden;flex-shrink:0;background:var(--surf2)}
 .rk-thumb img{width:100%;height:100%;object-fit:cover;opacity:.9;transition:transform .4s var(--ease)}
 .rk-item:hover .rk-thumb img{transform:scale(1.1)}
-.rk-name{font-family:var(--fd);font-weight:600;font-size:15px;line-height:1.2;color:rgba(240,238,255,.9);margin-bottom:3px;transition:color .2s}
-.rk-sub{font-size:11px;color:var(--muted)}
+.rk-name{font-family:var(--fd);font-weight:600;font-size:18px;line-height:1.2;color:rgba(240,238,255,.9);margin-bottom:3px;transition:color .2s}
+.rk-sub{font-size:14px;color:var(--muted)}
 .rk-tags{display:flex;gap:5px;margin-top:5px;flex-wrap:wrap}
 .rk-tag-pill{font-size:9px;letter-spacing:.1em;font-weight:500;text-transform:uppercase;padding:2px 7px;border:1px solid}
 .rk-score-col{text-align:right;flex-shrink:0}
@@ -276,8 +269,14 @@ body{
 .s-tab{background:none;border:none;cursor:pointer;padding:13px 22px;font-family:var(--fd);font-size:12px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .2s,border-color .2s}
 .s-tab.on{color:var(--cyan);border-bottom-color:var(--cyan)}
 .s-tab:hover:not(.on){color:var(--white)}
-.anime-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;margin-top:3px}
-.anime-card{background:var(--surf);cursor:pointer;position:relative;overflow:hidden;display:flex;flex-direction:column;transition:background .2s}
+.ag-wrap{position:relative;margin-top:3px}
+.anime-grid{display:flex;gap:3px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.anime-grid::-webkit-scrollbar{display:none}
+.ag-nav{position:absolute;top:calc(50% - 20px);transform:translateY(-50%);z-index:5;width:38px;height:38px;border-radius:50%;background:rgba(11,4,24,.88);border:1px solid var(--border);color:var(--white);font-size:19px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s;backdrop-filter:blur(4px)}
+.ag-nav:hover{background:rgba(0,229,255,.16);border-color:rgba(0,229,255,.4);color:var(--cyan)}
+.ag-prev{left:-16px}
+.ag-next{right:-16px}
+.anime-card{flex:0 0 calc((100% - 4*3px)/5);scroll-snap-align:start;background:var(--surf);cursor:pointer;position:relative;overflow:hidden;display:flex;flex-direction:column;transition:background .2s;text-decoration:none;color:inherit}
 .anime-card:hover{background:var(--surf2)}
 .anime-card:hover .an-title{color:var(--cyan)}
 .anime-card::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;z-index:3;pointer-events:none}
@@ -292,34 +291,35 @@ body{
 .st-soon{background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.3);color:var(--amber)}
 .an-body{padding:12px 14px}
 .an-genre{font-size:9px;letter-spacing:.13em;text-transform:uppercase;font-weight:500;margin-bottom:5px}
-.an-title{font-family:var(--fd);font-weight:600;font-size:14px;line-height:1.25;color:rgba(240,238,255,.9);margin-bottom:4px;transition:color .2s}
+.an-title{font-family:var(--fd);font-weight:600;font-size:17px;line-height:1.25;color:rgba(240,238,255,.9);margin-bottom:4px;transition:color .2s}
 .an-meta{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
 .an-score-num{font-family:var(--fd);font-weight:700;font-size:16px;color:var(--amber)}
-.an-day{font-size:10px;color:var(--muted);letter-spacing:.05em}
+.an-day{font-size:13px;color:var(--muted);letter-spacing:.05em}
 .manga-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;margin-top:3px}
 .manga-col{background:var(--surf)}
 .manga-col-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .manga-col-title{font-family:var(--fd);font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
-.manga-item{display:grid;grid-template-columns:28px 46px 1fr auto;align-items:center;gap:10px;padding:12px 20px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s}
+.manga-item{display:grid;grid-template-columns:28px 64px 1fr auto;align-items:center;gap:10px;padding:12px 20px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s;text-decoration:none;color:inherit}
 .manga-item:last-child{border-bottom:none}
 .manga-item:hover{background:var(--surf2)}
 .manga-item:hover .mi-title{color:var(--cyan)}
 .mi-num{font-family:var(--fd);font-size:18px;font-weight:700;color:rgba(240,238,255,.1);text-align:right}
-.mi-thumb{width:46px;height:62px;overflow:hidden;background:var(--surf2)}
+.mi-thumb{width:64px;height:86px;overflow:hidden;background:var(--surf2)}
 .mi-thumb img{width:100%;height:100%;object-fit:cover;opacity:.85}
-.mi-title{font-family:var(--fd);font-weight:600;font-size:13px;line-height:1.25;color:rgba(240,238,255,.88);margin-bottom:3px;transition:color .2s}
-.mi-meta{font-size:10px;color:var(--muted)}
+.mi-title{font-family:var(--fd);font-weight:600;font-size:16px;line-height:1.25;color:rgba(240,238,255,.88);margin-bottom:3px;transition:color .2s}
+.mi-meta{font-size:13px;color:var(--muted)}
 .mi-score{font-family:var(--fd);font-weight:700;font-size:14px}
-.latest-wrap{display:grid;grid-template-columns:1fr 300px;gap:3px;margin-top:3px}
+.latest-wrap{display:grid;grid-template-columns:1fr 380px;gap:3px;margin-top:3px}
 .latest-wrap>*{background:var(--surf)}
 .latest-side{padding:24px 20px}
-.w-card{display:grid;grid-template-columns:1fr 86px;gap:14px;align-items:center;padding:18px 20px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s}
+.w-card{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 20px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s}
 .w-card:hover{background:var(--surf2)}
 .w-card:hover .wc-t{color:var(--cyan)}
+.wc-info{flex:1 1 auto;max-width:560px;min-width:0}
 .wc-c{font-size:9px;letter-spacing:.15em;text-transform:uppercase;font-weight:600;margin-bottom:4px}
-.wc-t{font-family:var(--fd);font-weight:600;font-size:14px;line-height:1.3;color:rgba(240,238,255,.9);margin-bottom:4px;transition:color .2s}
-.wc-m{font-size:11px;color:var(--muted)}
-.wc-thumb{aspect-ratio:1;overflow:hidden;background:var(--surf2)}
+.wc-t{font-family:var(--fd);font-weight:600;font-size:17px;line-height:1.3;color:rgba(240,238,255,.9);margin-bottom:4px;transition:color .2s}
+.wc-m{font-size:14px;color:var(--muted)}
+.wc-thumb{width:200px;flex-shrink:0;aspect-ratio:3/2;overflow:hidden;background:var(--surf2)}
 .wc-thumb img{width:100%;height:100%;object-fit:cover;opacity:.82;transition:transform .4s var(--ease)}
 .w-card:hover .wc-thumb img{transform:scale(1.08)}
 .trend-h{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)}
@@ -327,7 +327,10 @@ body{
 .t-item:last-child{border-bottom:none}
 .t-item:hover .ti-t{color:var(--cyan)}
 .t-num{font-family:var(--fd);font-size:24px;font-weight:700;color:rgba(240,238,255,.06);line-height:1;flex-shrink:0;width:28px}
-.ti-t{font-family:var(--fd);font-size:13px;font-weight:600;line-height:1.3;color:rgba(240,238,255,.8);margin-bottom:2px;transition:color .2s}
+.ti-thumb{width:80px;height:80px;flex-shrink:0;overflow:hidden;background:var(--surf2)}
+.ti-thumb img{width:100%;height:100%;object-fit:cover;opacity:.88;transition:transform .4s var(--ease)}
+.t-item:hover .ti-thumb img{transform:scale(1.08)}
+.ti-t{font-family:var(--fd);font-size:16px;font-weight:600;line-height:1.3;color:rgba(240,238,255,.8);margin-bottom:2px;transition:color .2s}
 .ti-m{font-size:11px;color:var(--muted)}
 .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:3px}
 .cat-b{background:var(--surf);padding:32px 26px;cursor:pointer;position:relative;overflow:hidden;transition:background .22s;display:block}
@@ -374,8 +377,8 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 .rv.vis{opacity:1;transform:translateY(0)}
 @media(max-width:1100px){
   .f-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
-  .fc{grid-row:auto;grid-column:1/3;min-height:300px}
-  .anime-grid{grid-template-columns:repeat(3,1fr)}
+  .fc{grid-row:auto;grid-column:1/3;min-height:390px}
+  .anime-card{flex:0 0 calc((100% - 2*3px)/3)}
   .rank-grid{grid-template-columns:1fr}
   .manga-grid{grid-template-columns:1fr}
   .ft-in{grid-template-columns:1fr 1fr}
@@ -390,21 +393,27 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
   .hero-side{padding:28px 24px;max-width:100%;backdrop-filter:none;background:var(--surf);border-left:none;border-top:1px solid var(--border)}
   .h-title{font-size:clamp(24px,7vw,36px)}
   .f-grid{grid-template-columns:1fr;grid-template-rows:auto}
-  .fc{grid-column:auto;min-height:280px}
+  .fc{grid-column:auto;min-height:370px}
   .latest-wrap{grid-template-columns:1fr}
-  .anime-grid{grid-template-columns:repeat(2,1fr)}
+  .w-card{gap:12px}
+  .wc-info{max-width:none}
+  .wc-thumb{width:120px}
+  .anime-card{flex:0 0 calc((100% - 1*3px)/2)}
+  .ag-nav{display:none}
   .cat-grid{grid-template-columns:1fr 1fr}
   .ft-in{grid-template-columns:1fr;gap:28px}
   .ft-bot{flex-direction:column;gap:10px}
   .nl-in{grid-template-columns:1fr}
   .nl-row{grid-template-columns:1fr}
   .nl-btn{padding:13px 18px;clip-path:none}
-  .rk-item{grid-template-columns:32px 44px 1fr auto}
+  .rk-item{grid-template-columns:32px 62px 1fr auto}
 }
 @media(max-width:480px){
-  .anime-grid{grid-template-columns:repeat(2,1fr)}
+  .anime-card{flex:0 0 calc((100% - 1*3px)/1.7)}
   .wrap{padding:0 14px}
   .nav-in{padding:0 14px}
+  .sa-thumb{width:84px;height:84px}
+  .sa-t{font-size:15px}
 }
 
 /* === MOBILE ACCESSIBILITY FIXES === */
@@ -426,6 +435,7 @@ input,select,textarea{font-size:16px!important}
     gtag('js', new Date());
     gtag('config', 'G-12852ZFD0K');
   </script>
+<link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml"/>
 </head>
 <body>
 <div class="search-overlay" id="searchOverlay">
@@ -460,11 +470,7 @@ input,select,textarea{font-size:16px!important}
     </ul>
     <button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
     <div class="nav-r">
-      <div class="lang" role="group">
-        <button class="lang-btn on" id="bvi" onclick="setLang('vi')">VI</button>
-        <div class="lang-sep"></div>
-        <button class="lang-btn" id="ben" onclick="setLang('en')">EN</button>
-      </div>
+
       <button class="nav-search" aria-label="Tìm kiếm" onclick="openSearch()">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
       </button>
@@ -487,97 +493,70 @@ input,select,textarea{font-size:16px!important}
 </div>
 <div class="ticker">
   <div class="tick-label">Breaking</div>
-  <div class="tick-wrap"><div class="tick-track">
-    <span class="tick-item">Elden Ring DLC 2 chính thức xác nhận · Ra mắt Q4 2026</span>
-    <span class="tick-item">Wuthering Waves 2.4 · Resonator mới và event double drop</span>
-    <span class="tick-item">Studio Ghibli công bố phim mới tại Annecy 2026</span>
-    <span class="tick-item">LoL Worlds 2026 · Hà Nội được chọn làm địa điểm tổ chức</span>
-    <span class="tick-item">Chainsaw Man phần 3 xác nhận · Fujimoto tự đạo diễn anime</span>
-    <span class="tick-item">Elden Ring DLC 2 chính thức xác nhận · Ra mắt Q4 2026</span>
-    <span class="tick-item">Wuthering Waves 2.4 · Resonator mới và event double drop</span>
-    <span class="tick-item">Studio Ghibli công bố phim mới tại Annecy 2026</span>
-    <span class="tick-item">LoL Worlds 2026 · Hà Nội được chọn làm địa điểm tổ chức</span>
-    <span class="tick-item">Chainsaw Man phần 3 xác nhận · Fujimoto tự đạo diễn anime</span>
-  </div></div>
+  <div class="tick-wrap"><div class="tick-track"><span class="tick-item">Reincarnated as a Sword Mùa 2 ấn định ngày phát sóng 7/10</span><span class="tick-item">Final Fantasy VII Revelation lộ diện tại Gamescom Opening Night Live · 25/8</span><span class="tick-item">GTA 6 tung trailer thứ 3 · Công chiếu độc quyền trên Netflix ngày 27/8</span><span class="tick-item">The Apothecary Diaries Mùa 3 tung trailer, key visual · Ấn định ngày 2/10</span><span class="tick-item">Phantom Blade Zero: State of Play gameplay deep dive ngày 17/8, mở pre-order</span><span class="tick-item">Honkai: Star Rail x Zenless Zone Zero — crossover chính thức xác nhận, ra mắt mùa Đông 2026</span><span class="tick-item">Oshi no Ko Mùa 4 (Mùa Cuối) tung teaser visual và trailer đầu tiên</span><span class="tick-item">Mushoku Tensei Mùa 3: Chaos Breaker Arc chính thức bắt đầu từ tập 8</span><span class="tick-item">Jump GIGA Hè 2026: bộ đôi Food Wars và tác giả We Never Learn trở lại với one-shot mới</span><span class="tick-item">Elden Ring: Tarnished Edition đổ bộ Nintendo Switch 2 ngày 28/8</span><span class="tick-item">WIT Studio hé lộ công bố bí ẩn Attack on Titan ngày 20/8</span><span class="tick-item">Cha đẻ My Hero Academia trở lại Jump với one-shot kinh dị mới</span><span class="tick-item">Big Walk · House House ra mắt game co-op mới cực chill</span><span class="tick-item">Star Wars Zero Company chính thức ra mắt 27/8 · Chiến thuật theo lượt từ EA</span><span class="tick-item">Mushoku Tensei S3 · Chaos Breaker Arc khởi chiếu 16/8</span><span class="tick-item">Chained Soldier chính thức được xác nhận Season 3</span><span class="tick-item">Metal Gear Solid: Master Collection Vol. 2 ấn định ngày ra mắt 27/8</span><span class="tick-item">Black Clover Season 2 tung trailer chính thức · Trở lại tháng 10</span><span class="tick-item">Shueisha ra mắt MANGA MILLION · Đọc miễn phí gần 400 bộ manga</span><span class="tick-item">Elden Ring DLC 2 chính thức xác nhận · Ra mắt Q4 2026</span><span class="tick-item">Genshin Impact 5.4 · Citlali đang gây sốt tier list</span><span class="tick-item">Stellar Blade 2 hé lộ concept art tại TGS 2026</span><span class="tick-item">One Piece hé lộ bản đồ Laugh Tale · Final Saga tăng tốc</span><span class="tick-item">VCT Pacific 2026 · Paper Rex bất bại vòng bảng</span><span class="tick-item">Chainsaw Man phần 3 xác nhận · Fujimoto tự đạo diễn anime</span><span class="tick-item">Elden Ring: Tarnished Edition đổ bộ Nintendo Switch 2 ngày 28/8</span><span class="tick-item">WIT Studio hé lộ công bố bí ẩn Attack on Titan ngày 20/8</span><span class="tick-item">Cha đẻ My Hero Academia trở lại Jump với one-shot kinh dị mới</span><span class="tick-item">Big Walk · House House ra mắt game co-op mới cực chill</span><span class="tick-item">Star Wars Zero Company chính thức ra mắt 27/8 · Chiến thuật theo lượt từ EA</span><span class="tick-item">Mushoku Tensei S3 · Chaos Breaker Arc khởi chiếu 16/8</span><span class="tick-item">Chained Soldier chính thức được xác nhận Season 3</span><span class="tick-item">Metal Gear Solid: Master Collection Vol. 2 ấn định ngày ra mắt 27/8</span><span class="tick-item">Black Clover Season 2 tung trailer chính thức · Trở lại tháng 10</span><span class="tick-item">Shueisha ra mắt MANGA MILLION · Đọc miễn phí gần 400 bộ manga</span><span class="tick-item">Elden Ring DLC 2 chính thức xác nhận · Ra mắt Q4 2026</span><span class="tick-item">Genshin Impact 5.4 · Citlali đang gây sốt tier list</span><span class="tick-item">Stellar Blade 2 hé lộ concept art tại TGS 2026</span><span class="tick-item">One Piece hé lộ bản đồ Laugh Tale · Final Saga tăng tốc</span><span class="tick-item">VCT Pacific 2026 · Paper Rex bất bại vòng bảng</span><span class="tick-item">Chainsaw Man phần 3 xác nhận · Fujimoto tự đạo diễn anime</span></div></div>
 </div>
 <section class="hero">
-  <div class="hero-main">
+  <div class="hero-main" onclick="location.href='gta6-trailer3-netflix-premiere.html'" style="cursor:pointer">
     <div class="h-img"></div><div class="h-ov"></div><div class="h-scan"></div><div class="h-glow"></div>
     <div class="h-content">
       <span class="tag tag-s tag-live" id="h-tag">Breaking</span>
-      <h1 class="h-title" id="h-title">Elden Ring <em>DLC 2</em>: Shadow of the Erdtree II<br>FromSoftware xác nhận phát hành Q4 2026</h1>
-      <p class="h-sub" id="h-sub">FromSoftware bất ngờ công bố DLC tiếp theo tại Summer Game Fest. Người chơi sẽ khám phá vùng đất hoàn toàn mới ngoài Lands Between với bosses và vũ khí chưa từng thấy.</p>
-      <div class="h-meta"><span class="h-meta-cat">Gaming</span><span class="h-meta-sep">·</span><span>OtaHub Gaming</span><span class="h-meta-sep">·</span><span id="h-time">Mới nhất</span></div>
-      <a href="elden-ring-dlc2.html" class="read-more" id="h-read"><span>Đọc toàn bài</span><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></a>
+      <h1 class="h-title" id="h-title">GTA 6 Tung Trailer Thứ 3, <em>Công Chiếu Độc Quyền</em><br>Trên Netflix Ngày 27/8</h1>
+      <p class="h-sub" id="h-sub">Rockstar Games xác nhận trailer thứ 3 của GTA 6 sẽ debut độc quyền trên Netflix ngày 27/8 lúc 15:00 ET, trước khi phát trên kênh chính thức — lần đầu tiên hãng hợp tác với một nền tảng streaming.</p>
+      <div class="h-meta"><span class="h-meta-cat">Gaming</span><span class="h-meta-sep">·</span><span>OtaHub Editorial</span><span class="h-meta-sep">·</span><span id="h-time">Mới nhất</span></div>
+      <a href="gta6-trailer3-netflix-premiere.html" class="read-more" id="h-read"><span>Đọc toàn bài</span><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></a>
     </div>
   </div>
   <aside class="hero-side">
     <div class="side-head" id="side-head">Nổi bật hôm nay</div>
-    <article class="s-art" onclick="location.href='chainsaw-man-season3.html'" style="cursor:pointer"><div class="sa-c" style="color:var(--sakura)">Anime</div><div class="sa-t">Chainsaw Man Assassins Arc: MAPPA xác nhận tự đạo diễn anime</div><div class="sa-m">OtaHub Anime · Đọc bài</div></article>
-    <article class="s-art" onclick="location.href='wuthering-waves-24.html'" style="cursor:pointer"><div class="sa-c" style="color:var(--cyan)">Gaming</div><div class="sa-t">Wuthering Waves 2.4: Aero Archipelago và nhân vật mới Roccia</div><div class="sa-m">OtaHub Gaming · Đọc bài</div></article>
-    <article class="s-art" onclick="location.href='berserk-arc-cuoi.html'" style="cursor:pointer"><div class="sa-c" style="color:var(--lavender)">Manga</div><div class="sa-t">Berserk Arc Cuối: Studio Gaga hoàn thành di sản của Miura</div><div class="sa-m">OtaHub Manga · Đọc bài</div></article>
-    <article class="s-art" onclick="location.href='solo-leveling-season2.html'" style="cursor:pointer"><div class="sa-c" style="color:var(--amber)">Anime</div><div class="sa-t">Solo Leveling Season 2: Sung Jinwoo trở lại mạnh mẽ hơn bao giờ hết</div><div class="sa-m">OtaHub Anime · Đọc bài</div></article>
+    <article class="s-art" onclick="location.href='apothecary-diaries-season3-trailer.html'" style="cursor:pointer"><div class="sa-thumb"><img src="/assets/img/ba56514692-apothecary-diaries-s3-key-visual.jpg" alt="The Apothecary Diaries Mùa 3 tung trailer, key visual, ấn định ngày 2/10" loading="lazy"/></div><div><div class="sa-c" style="color:var(--sakura)">Anime</div><div class="sa-t">The Apothecary Diaries Mùa 3 tung trailer, key visual, ấn định ngày 2/10</div><div class="sa-m">OtaHub Anime · Đọc bài</div></div></article>
+    <article class="s-art" onclick="location.href='gta6-trailer3-netflix-premiere.html'" style="cursor:pointer"><div class="sa-thumb"><img src="/assets/img/ccd6b922bc-gta6-trailer3-netflix-hero.jpg" alt="GTA 6 tung trailer thứ 3, công chiếu độc quyền trên Netflix ngày 27/8" loading="lazy"/></div><div><div class="sa-c" style="color:var(--cyan)">Gaming</div><div class="sa-t">GTA 6 tung trailer thứ 3, công chiếu độc quyền trên Netflix ngày 27/8</div><div class="sa-m">OtaHub Gaming · Đọc bài</div></div></article>
+    <article class="s-art" onclick="location.href='oshi-no-ko-season4-teaser.html'" style="cursor:pointer"><div class="sa-thumb"><img src="/assets/img/02716b9688-oshi-no-ko-season4-teaser-hero.jpg" alt="Oshi no Ko Mùa 4 tung teaser visual và trailer đầu tiên" loading="lazy"/></div><div><div class="sa-c" style="color:var(--sakura)">Anime</div><div class="sa-t">Oshi no Ko Mùa 4 tung teaser visual và trailer đầu tiên</div><div class="sa-m">OtaHub Anime · Đọc bài</div></div></article>
+    <article class="s-art" onclick="location.href='mushoku-tensei-chaos-breaker-arc.html'" style="cursor:pointer"><div class="sa-thumb"><img src="/assets/img/ef42374676-mushoku-tensei-chaos-breaker-hero.jpg" alt="Mushoku Tensei Mùa 3: Chaos Breaker Arc chính thức bắt đầu" loading="lazy"/></div><div><div class="sa-c" style="color:var(--sakura)">Anime</div><div class="sa-t">Mushoku Tensei Mùa 3: Chaos Breaker Arc chính thức bắt đầu</div><div class="sa-m">OtaHub Anime · Đọc bài</div></div></article>
+    <article class="s-art" onclick="location.href='final-fantasy-7-revelation-gamescom.html'" style="cursor:pointer"><div class="sa-thumb"><img src="/assets/img/b14d8c1cc7-ff7-revelation-gamescom-hero.jpg" alt="Final Fantasy VII Revelation lộ diện tại Gamescom Opening Night Live 25/8" loading="lazy"/></div><div><div class="sa-c" style="color:var(--cyan)">Gaming</div><div class="sa-t">Final Fantasy VII Revelation lộ diện tại Gamescom Opening Night Live 25/8</div><div class="sa-m">OtaHub Gaming · Đọc bài</div></div></article>
   </aside>
 </section>
 <div class="marquee">
-  <div class="mq-track">
-    <span class="mq-item"><strong>Trending:</strong> Elden Ring DLC 2</span>
-    <span class="mq-item"><strong>Anime:</strong> Chainsaw Man S3</span>
-    <span class="mq-item"><strong>PC Game:</strong> Monster Hunter Wilds</span>
-    <span class="mq-item"><strong>Mobile:</strong> Wuthering Waves 2.4</span>
-    <span class="mq-item"><strong>Manga:</strong> Berserk Final Arc</span>
-    <span class="mq-item"><strong>Esports:</strong> Worlds 2026 Hà Nội</span>
-    <span class="mq-item"><strong>Gacha:</strong> Genshin 5.4 Tier List</span>
-    <span class="mq-item"><strong>Review:</strong> Blue Protocol 9.1/10</span>
-    <span class="mq-item"><strong>Trending:</strong> Elden Ring DLC 2</span>
-    <span class="mq-item"><strong>Anime:</strong> Chainsaw Man S3</span>
-    <span class="mq-item"><strong>PC Game:</strong> Monster Hunter Wilds</span>
-    <span class="mq-item"><strong>Mobile:</strong> Wuthering Waves 2.4</span>
-    <span class="mq-item"><strong>Manga:</strong> Berserk Final Arc</span>
-    <span class="mq-item"><strong>Esports:</strong> Worlds 2026 Hà Nội</span>
-    <span class="mq-item"><strong>Gacha:</strong> Genshin 5.4 Tier List</span>
-    <span class="mq-item"><strong>Review:</strong> Blue Protocol 9.1/10</span>
-  </div>
+  <div class="mq-track"><a class="mq-item" href="/resonance-plague-tale-legacy-release.html"><strong>Gaming:</strong> Resonance: A Plague Tale Legacy 27/8</a><a class="mq-item" href="/mortal-shell-2-release.html"><strong>Gaming:</strong> Mortal Shell II ra mắt 20/8</a><a class="mq-item" href="/skip-and-loafer-season2-teaser.html"><strong>Anime:</strong> Skip and Loafer S2 Teaser</a><a class="mq-item" href="/beast-of-reincarnation.html"><strong>Gaming:</strong> Beast of Reincarnation</a><a class="mq-item" href="/suikoden-star-leap.html"><strong>Gaming:</strong> Suikoden STAR LEAP</a><a class="mq-item" href="/the-ribbon-hero-netflix.html"><strong>Anime:</strong> The Ribbon Hero</a><a class="mq-item" href="/made-in-abyss-awakening-mystery.html"><strong>Anime:</strong> Made in Abyss Film</a><a class="mq-item" href="/black-clover-final-volume-guidebook.html"><strong>Manga:</strong> Black Clover Vol. 38</a><a class="mq-item" href="/ghost-of-yotei-complete-edition.html"><strong>Gaming:</strong> Ghost of Yōtei Complete</a><a class="mq-item" href="/crunchyroll-makoto-shinkai-next-film.html"><strong>Anime:</strong> Crunchyroll x Shinkai</a><a class="mq-item" href="/manga-million-near-simulcast.html"><strong>Manga:</strong> MANGA MILLION Near-Simulcast</a><a class="mq-item" href="/mafia-old-country-man-of-honor.html"><strong>Gaming:</strong> Mafia Man of Honor</a><a class="mq-item" href="/link-click-season3-premiere.html"><strong>Anime:</strong> Link Click Season 3</a><a class="mq-item" href="/hollow-knight-silksong-sea-of-sorrow.html"><strong>Gaming:</strong> Silksong Sea of Sorrow</a><a class="mq-item" href="/genshin-impact-70-snezhnaya.html"><strong>Gacha:</strong> Genshin 7.0 Snezhnaya</a><a class="mq-item" href="/re-zero-season4-recapture-arc.html"><strong>Anime:</strong> Re:Zero S4 Recapture Arc</a><a class="mq-item" href="/jojo-golden-spirit-launch.html"><strong>Gaming:</strong> JoJo Golden Spirit</a><a class="mq-item" href="/kaiju-no-8-the-game-anniversary.html"><strong>Gaming:</strong> Kaiju No.8 1 năm</a><a class="mq-item" href="/star-wars-zero-company.html"><strong>Gaming:</strong> Star Wars Zero Company</a><a class="mq-item" href="/mushoku-tensei-s3-chaos-breaker.html"><strong>Anime:</strong> Mushoku Tensei Chaos Breaker</a><a class="mq-item" href="/chained-soldier-season-3.html"><strong>Anime:</strong> Chained Soldier S3</a><a class="mq-item" href="/metal-gear-solid-master-collection-vol2.html"><strong>Gaming:</strong> MGS Master Collection Vol. 2</a><a class="mq-item" href="/black-clover-season-2.html"><strong>Anime:</strong> Black Clover Season 2</a><a class="mq-item" href="/shueisha-manga-million.html"><strong>Manga:</strong> Shueisha MANGA MILLION</a><a class="mq-item" href="/elden-ring-dlc2.html"><strong>Trending:</strong> Elden Ring DLC 2</a><a class="mq-item" href="/chainsaw-man-season3.html"><strong>Anime:</strong> Chainsaw Man S3</a><a class="mq-item" href="/top-game-pc-2026.html"><strong>PC Game:</strong> Monster Hunter Wilds</a><a class="mq-item" href="/wuthering-waves-24.html"><strong>Mobile:</strong> Wuthering Waves 2.4</a><a class="mq-item" href="/berserk-arc-cuoi.html"><strong>Manga:</strong> Berserk Final Arc</a><a class="mq-item" href="/vct-pacific-2026.html"><strong>Esports:</strong> VCT Pacific · Paper Rex</a><a class="mq-item" href="/genshin-54-citlali.html"><strong>Gacha:</strong> Genshin 5.4 Tier List</a><a class="mq-item" href="/blue-protocol-review.html"><strong>Review:</strong> Blue Protocol 9.1/10</a><a class="mq-item" href="/one-piece-final-saga.html"><strong>Manga:</strong> One Piece · Laugh Tale</a><a class="mq-item" href="/stellar-blade-2.html"><strong>Preview:</strong> Stellar Blade 2</a><a class="mq-item" href="/made-in-abyss-awakening-mystery.html"><strong>Anime:</strong> Made in Abyss Film</a><a class="mq-item" href="/black-clover-final-volume-guidebook.html"><strong>Manga:</strong> Black Clover Vol. 38</a><a class="mq-item" href="/ghost-of-yotei-complete-edition.html"><strong>Gaming:</strong> Ghost of Yōtei Complete</a><a class="mq-item" href="/crunchyroll-makoto-shinkai-next-film.html"><strong>Anime:</strong> Crunchyroll x Shinkai</a><a class="mq-item" href="/manga-million-near-simulcast.html"><strong>Manga:</strong> MANGA MILLION Near-Simulcast</a><a class="mq-item" href="/mafia-old-country-man-of-honor.html"><strong>Gaming:</strong> Mafia Man of Honor</a><a class="mq-item" href="/link-click-season3-premiere.html"><strong>Anime:</strong> Link Click Season 3</a><a class="mq-item" href="/hollow-knight-silksong-sea-of-sorrow.html"><strong>Gaming:</strong> Silksong Sea of Sorrow</a><a class="mq-item" href="/genshin-impact-70-snezhnaya.html"><strong>Gacha:</strong> Genshin 7.0 Snezhnaya</a><a class="mq-item" href="/re-zero-season4-recapture-arc.html"><strong>Anime:</strong> Re:Zero S4 Recapture Arc</a><a class="mq-item" href="/jojo-golden-spirit-launch.html"><strong>Gaming:</strong> JoJo Golden Spirit</a><a class="mq-item" href="/kaiju-no-8-the-game-anniversary.html"><strong>Gaming:</strong> Kaiju No.8 1 năm</a><a class="mq-item" href="/star-wars-zero-company.html"><strong>Gaming:</strong> Star Wars Zero Company</a><a class="mq-item" href="/mushoku-tensei-s3-chaos-breaker.html"><strong>Anime:</strong> Mushoku Tensei Chaos Breaker</a><a class="mq-item" href="/chained-soldier-season-3.html"><strong>Anime:</strong> Chained Soldier S3</a><a class="mq-item" href="/metal-gear-solid-master-collection-vol2.html"><strong>Gaming:</strong> MGS Master Collection Vol. 2</a><a class="mq-item" href="/black-clover-season-2.html"><strong>Anime:</strong> Black Clover Season 2</a><a class="mq-item" href="/shueisha-manga-million.html"><strong>Manga:</strong> Shueisha MANGA MILLION</a><a class="mq-item" href="/elden-ring-dlc2.html"><strong>Trending:</strong> Elden Ring DLC 2</a><a class="mq-item" href="/chainsaw-man-season3.html"><strong>Anime:</strong> Chainsaw Man S3</a><a class="mq-item" href="/top-game-pc-2026.html"><strong>PC Game:</strong> Monster Hunter Wilds</a><a class="mq-item" href="/wuthering-waves-24.html"><strong>Mobile:</strong> Wuthering Waves 2.4</a><a class="mq-item" href="/berserk-arc-cuoi.html"><strong>Manga:</strong> Berserk Final Arc</a><a class="mq-item" href="/vct-pacific-2026.html"><strong>Esports:</strong> VCT Pacific · Paper Rex</a><a class="mq-item" href="/genshin-54-citlali.html"><strong>Gacha:</strong> Genshin 5.4 Tier List</a><a class="mq-item" href="/blue-protocol-review.html"><strong>Review:</strong> Blue Protocol 9.1/10</a><a class="mq-item" href="/one-piece-final-saga.html"><strong>Manga:</strong> One Piece · Laugh Tale</a><a class="mq-item" href="/stellar-blade-2.html"><strong>Preview:</strong> Stellar Blade 2</a></div>
 </div>
 <div class="wrap rv">
   <div class="sec-h"><span class="sec-t">Tin <em>nổi bật</em></span><div class="sec-l"></div><a href="gaming.html" class="sec-more">Xem tất cả</a></div>
   <div class="f-grid">
-    <article class="fc">
-      <div class="fc-img"></div><div class="fc-ov"></div>
+    <a class="fc" href="/gta6-trailer3-netflix-premiere.html">
+      <div class="fc-img" style="background-image:url(/assets/img/ccd6b922bc-gta6-trailer3-netflix-hero.jpg)"></div><div class="fc-ov"></div>
       <div class="fc-body">
-        <span class="tag tag-c">Preview</span>
-        <h2 class="fc-title">Stellar Blade 2 · Team Tera hé lộ concept art và cơ chế chiến đấu mới tại TGS 2026</h2>
-        <p class="fc-sub">Sequel của game nhập vai hành động đỉnh nhất 2024 với quy mô và ngân sách lớn hơn đáng kể.</p>
-        <div class="fc-meta"><span>Gaming</span> · Dũng Nguyễn · 6 giờ trước</div>
+        <span class="tag tag-c">Gaming</span>
+        <h2 class="fc-title">GTA 6 tung trailer thứ 3, công chiếu độc quyền trên Netflix ngày 27/8</h2>
+        <p class="fc-sub">Rockstar Games lần đầu bắt tay một nền tảng streaming, cho trailer thứ 3 debut trên Netflix trước khi phát trên kênh chính thức 6 tiếng sau.</p>
+        <div class="fc-meta"><span>Gaming</span> · OtaHub Editorial · 17/8/2026</div>
       </div>
-    </article>
-    <article class="sc"><div class="sc-img"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1794680/header.jpg" alt="" loading="lazy"/></div><div class="sc-body"><span class="tag tag-c" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Gaming</span><div class="sc-title">Genshin Impact 5.4 · Tier list và đội hình meta Citlali mới nhất</div><div class="sc-meta">Bích Ngọc · 3 giờ trước</div></div></article>
-    <article class="sc"><div class="sc-img"><img src="https://cdn.myanimelist.net/images/anime/1015/138006l.jpg" alt="" loading="lazy"/></div><div class="sc-body"><span class="tag tag-s" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Anime</span><div class="sc-title">Anime mùa hè 2026 · 12 tựa đáng xem nhất theo thứ tự ưu tiên</div><div class="sc-meta">Thu Hương · 5 giờ trước</div></div></article>
-    <article class="sc"><div class="sc-img"><img src="https://cdn.myanimelist.net/images/manga/3/266234l.jpg" alt="" loading="lazy"/></div><div class="sc-body"><span class="tag tag-v" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Manga</span><div class="sc-title">One Piece Final Saga · Oda tiết lộ bản đồ Laugh Tale và ý nghĩa</div><div class="sc-meta">Trọng Khang · 8 giờ trước</div></div></article>
-    <article class="sc"><div class="sc-img"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg" alt="" loading="lazy"/></div><div class="sc-body"><span class="tag tag-g" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Esports</span><div class="sc-title">VCT Pacific 2026 · Paper Rex thống trị mùa giải, hướng đến Champions</div><div class="sc-meta">Hoàng Long · 11 giờ trước</div></div></article>
+    </a>
+    <a class="sc" href="/apothecary-diaries-season3-trailer.html"><div class="sc-img"><img src="/assets/img/ba56514692-apothecary-diaries-s3-key-visual.jpg" alt="The Apothecary Diaries Mùa 3 tung trailer, key visual, ấn định ngày 2/10" loading="lazy"/></div><div class="sc-body"><span class="tag tag-s" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Anime</span><div class="sc-title">The Apothecary Diaries Mùa 3 tung trailer, key visual, ấn định ngày 2/10</div><div class="sc-meta">OtaHub Editorial · 17/8/2026</div></div></a>
+    <a class="sc" href="/phantom-blade-zero-state-of-play.html"><div class="sc-img"><img src="/assets/img/891449aa89-phantom-blade-zero-card.jpg" alt="Phantom Blade Zero: State of Play gameplay deep dive, mở pre-order" loading="lazy"/></div><div class="sc-body"><span class="tag tag-c" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Gaming</span><div class="sc-title">Phantom Blade Zero: State of Play gameplay deep dive, mở pre-order</div><div class="sc-meta">OtaHub Editorial · 17/8/2026</div></div></a>
+    <a class="sc" href="/jump-giga-summer-2026-oneshots.html"><div class="sc-img"><img src="/assets/img/320021956a-food-wars-jump-giga-hero.jpg" alt="Bộ đôi Food Wars và tác giả We Never Learn trở lại trên Jump GIGA Hè 2026" loading="lazy"/></div><div class="sc-body"><span class="tag tag-v" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Manga</span><div class="sc-title">Bộ đôi Food Wars và tác giả We Never Learn trở lại trên Jump GIGA Hè 2026</div><div class="sc-meta">OtaHub Editorial · 17/8/2026</div></div></a>
+    <a class="sc" href="/honkai-star-rail-zzz-crossover.html"><div class="sc-img"><img src="/assets/img/d2b409c61d-hsr-zzz-pompom-scene.jpg" alt="Honkai: Star Rail xác nhận crossover với Zenless Zone Zero" loading="lazy"/></div><div class="sc-body"><span class="tag tag-c" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Gaming</span><div class="sc-title">Honkai: Star Rail xác nhận crossover với Zenless Zone Zero</div><div class="sc-meta">OtaHub Editorial · 16/8/2026</div></div></a>
   </div>
 </div>
 <div class="wrap rv">
   <div class="sec-h"><span class="sec-t">Bảng xếp hạng <em>Game tuần này</em></span><div class="sec-l"></div><a href="rankings.html" class="sec-more">Xem đầy đủ</a></div>
   <div class="rank-grid">
     <div class="rk-card">
-      <div class="rk-head"><div class="rk-head-title"><div class="rk-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" stroke="#00e5ff" stroke-width="1.5"/><path d="M8 12H16M12 8v8" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="square"/><circle cx="18" cy="10" r="1" fill="#00e5ff"/><circle cx="18" cy="13" r="1" fill="#00e5ff"/></svg></div><span style="color:var(--cyan)">PC Games</span></div><span class="rk-badge rk-week">Tuần 22</span></div>
+      <div class="rk-head"><div class="rk-head-title"><div class="rk-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" stroke="#00e5ff" stroke-width="1.5"/><path d="M8 12H16M12 8v8" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="square"/><circle cx="18" cy="10" r="1" fill="#00e5ff"/><circle cx="18" cy="13" r="1" fill="#00e5ff"/></svg></div><span style="color:var(--cyan)">PC Games</span></div><span class="rk-badge rk-week">Tuần 35</span></div>
       <div class="rk-list">
-        <div class="rk-item top1"><div class="rk-num">01</div><div class="rk-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-name">Elden Ring: Shadow of Erdtree II</div><div class="rk-sub">FromSoftware · Action RPG</div><div class="rk-tags"><span class="rk-tag-pill" style="border-color:rgba(251,191,36,.3);color:var(--amber)">New DLC</span><span class="rk-trend up">+5 ↑</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--amber)">9.7</div><div class="rk-stars"><svg class="star star-full" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4l-2 1.9.5 2.6L5 7.2l-2.5 1.3L3 6 1 4l2.8-.5z"/></svg><svg class="star star-full" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4l-2 1.9.5 2.6L5 7.2l-2.5 1.3L3 6 1 4l2.8-.5z"/></svg><svg class="star star-full" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4l-2 1.9.5 2.6L5 7.2l-2.5 1.3L3 6 1 4l2.8-.5z"/></svg><svg class="star star-full" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4l-2 1.9.5 2.6L5 7.2l-2.5 1.3L3 6 1 4l2.8-.5z"/></svg><svg class="star star-half" viewBox="0 0 10 10"><path d="M5 1v6.2L2.5 8.5 3 6 1 4l2.8-.5z"/><path d="M5 1l1.2 2.5L9 4l-2 1.9.5 2.6L5 7.2V1z" fill="rgba(255,255,255,.15)"/></svg></div><div class="rk-bar-wrap"><div class="rk-bar" data-w="97%" style="background:var(--amber)"></div></div></div></div>
-        <div class="rk-item top2"><div class="rk-num">02</div><div class="rk-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/2246340/header.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-name">Monster Hunter Wilds</div><div class="rk-sub">Capcom · Action</div><div class="rk-tags"><span class="rk-trend eq">= 2 →</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--cyan)">9.4</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="94%" style="background:var(--cyan)"></div></div></div></div>
-        <div class="rk-item top3"><div class="rk-num">03</div><div class="rk-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/2358720/header.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-name">Black Myth: Wukong</div><div class="rk-sub">Game Science · Action RPG</div><div class="rk-tags"><span class="rk-trend dn">-1 ↓</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--green)">9.1</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="91%" style="background:var(--green)"></div></div></div></div>
-        <div class="rk-item"><div class="rk-num">04</div><div class="rk-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/3681810/library_hero.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-name">Blue Protocol: Resonance</div><div class="rk-sub">Bandai Namco · MMORPG</div><div class="rk-tags"><span class="rk-trend up">+2 ↑</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--lavender)">8.8</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="88%" style="background:var(--lavender)"></div></div></div></div>
-        <div class="rk-item"><div class="rk-num">05</div><div class="rk-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/2909400/header.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-name">Final Fantasy VII Rebirth</div><div class="rk-sub">Square Enix · JRPG</div><div class="rk-tags"><span class="rk-trend eq">= 5 →</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--sakura)">8.6</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="86%" style="background:var(--sakura)"></div></div></div></div>
+        <a class="rk-item top1" href="/game-detail.html?t=Elden%20Ring%3A%20Shadow%20of%20Erdtree%20II"><div class="rk-num">01</div><div class="rk-thumb"><img src="/assets/img/a7f47ed998-header.jpg" alt="Elden Ring: Shadow of Erdtree II" loading="lazy"/></div><div class="rk-info"><div class="rk-name">Elden Ring: Shadow of Erdtree II</div><div class="rk-sub">FromSoftware · Action RPG</div><div class="rk-tags"><span class="rk-tag-pill" style="border-color:rgba(251,191,36,.3);color:var(--amber)">New DLC</span><span class="rk-trend eq">= 1 →</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--amber)">9.7</div><div class="rk-stars"><svg class="star star-full" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4l-2 1.9.5 2.6L5 7.2l-2.5 1.3L3 6 1 4l2.8-.5z"/></svg><svg class="star star-full" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4l-2 1.9.5 2.6L5 7.2l-2.5 1.3L3 6 1 4l2.8-.5z"/></svg><svg class="star star-full" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4l-2 1.9.5 2.6L5 7.2l-2.5 1.3L3 6 1 4l2.8-.5z"/></svg><svg class="star star-full" viewBox="0 0 10 10"><path d="M5 1l1.2 2.5L9 4l-2 1.9.5 2.6L5 7.2l-2.5 1.3L3 6 1 4l2.8-.5z"/></svg><svg class="star star-half" viewBox="0 0 10 10"><path d="M5 1v6.2L2.5 8.5 3 6 1 4l2.8-.5z"/><path d="M5 1l1.2 2.5L9 4l-2 1.9.5 2.6L5 7.2V1z" fill="rgba(255,255,255,.15)"/></svg></div><div class="rk-bar-wrap"><div class="rk-bar" data-w="97%" style="background:var(--amber)"></div></div></div></a>
+        <a class="rk-item top2" href="/game-detail.html?t=Monster%20Hunter%20Wilds"><div class="rk-num">02</div><div class="rk-thumb"><img src="/assets/img/587e72813c-header.jpg" alt="Monster Hunter Wilds" loading="lazy"/></div><div class="rk-info"><div class="rk-name">Monster Hunter Wilds</div><div class="rk-sub">Capcom · Action</div><div class="rk-tags"><span class="rk-trend eq">= 2 →</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--cyan)">9.4</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="94%" style="background:var(--cyan)"></div></div></div></a>
+        <a class="rk-item top3" href="/ghost-of-yotei-complete-edition.html"><div class="rk-num">03</div><div class="rk-thumb"><img src="/assets/img/0a878e4709-ghost-of-yotei-complete-edition-hero.jpg" alt="Ghost of Yōtei: Complete Edition" loading="lazy"/></div><div class="rk-info"><div class="rk-name">Ghost of Yōtei: Complete Edition</div><div class="rk-sub">Sucker Punch · Action-Adventure</div><div class="rk-tags"><span class="rk-trend eq">= 3 →</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--green)">9.3</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="93%" style="background:var(--green)"></div></div></div></a>
+        <a class="rk-item" href="/big-walk-house-house.html"><div class="rk-num">04</div><div class="rk-thumb"><img src="/assets/img/d4b52b428d-big-walk-house-house-hero.jpg" alt="Big Walk" loading="lazy"/></div><div class="rk-info"><div class="rk-name">Big Walk</div><div class="rk-sub">House House · Co-op Puzzle</div><div class="rk-tags"><span class="rk-tag-pill" style="border-color:rgba(0,229,255,.3);color:var(--cyan)">Co-op</span><span class="rk-trend up">NEW ↑</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--green)">9.2</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="92%" style="background:var(--cyan)"></div></div></div></a>
+        <a class="rk-item" href="/game-detail.html?t=Black%20Myth%3A%20Wukong"><div class="rk-num">05</div><div class="rk-thumb"><img src="/assets/img/7403bc0e49-header.jpg" alt="Black Myth: Wukong" loading="lazy"/></div><div class="rk-info"><div class="rk-name">Black Myth: Wukong</div><div class="rk-sub">Game Science · Action RPG</div><div class="rk-tags"><span class="rk-trend dn">-1 ↓</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--green)">9.1</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="91%" style="background:var(--green)"></div></div></div></a>
       </div>
     </div>
     <div class="rk-card">
-      <div class="rk-head"><div class="rk-head-title"><div class="rk-icon"><svg width="20" height="22" viewBox="0 0 20 24" fill="none"><rect x="3" y="1" width="14" height="22" rx="2" stroke="#ff3080" stroke-width="1.5"/><circle cx="10" cy="19" r="1.5" fill="#ff3080"/><path d="M7 8H13M10 5v6" stroke="#ff3080" stroke-width="1.5" stroke-linecap="square"/></svg></div><span style="color:var(--sakura)">Mobile Games</span></div><span class="rk-badge" style="border-color:var(--b-sakura);color:var(--sakura);background:rgba(255,48,128,.06)">Tuần 22</span></div>
+      <div class="rk-head"><div class="rk-head-title"><div class="rk-icon"><svg width="20" height="22" viewBox="0 0 20 24" fill="none"><rect x="3" y="1" width="14" height="22" rx="2" stroke="#ff3080" stroke-width="1.5"/><circle cx="10" cy="19" r="1.5" fill="#ff3080"/><path d="M7 8H13M10 5v6" stroke="#ff3080" stroke-width="1.5" stroke-linecap="square"/></svg></div><span style="color:var(--sakura)">Mobile Games</span></div><span class="rk-badge" style="border-color:var(--b-sakura);color:var(--sakura);background:rgba(255,48,128,.06)">Tuần 35</span></div>
       <div class="rk-list">
-        <div class="rk-item top1"><div class="rk-num">01</div><div class="rk-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/2418520/header.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-name">Wuthering Waves</div><div class="rk-sub">Kuro Games · Action RPG</div><div class="rk-tags"><span class="rk-tag-pill" style="border-color:var(--b-sakura);color:var(--sakura)">Ver 2.4</span><span class="rk-trend up">+3 ↑</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--amber)">9.5</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="95%" style="background:var(--sakura)"></div></div></div></div>
-        <div class="rk-item top2"><div class="rk-num">02</div><div class="rk-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1836180/header.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-name">Honkai: Star Rail</div><div class="rk-sub">HoYoverse · Turn-based RPG</div><div class="rk-tags"><span class="rk-trend dn">-1 ↓</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--cyan)">9.2</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="92%" style="background:var(--cyan)"></div></div></div></div>
-        <div class="rk-item top3"><div class="rk-num">03</div><div class="rk-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1794680/header.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-name">Genshin Impact</div><div class="rk-sub">HoYoverse · Action RPG</div><div class="rk-tags"><span class="rk-trend eq">= 3 →</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--green)">8.9</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="89%" style="background:var(--green)"></div></div></div></div>
-        <div class="rk-item"><div class="rk-num">04</div><div class="rk-thumb"><img src="https://cdn.myanimelist.net/images/anime/1308/158003l.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-name">Honor of Kings Global</div><div class="rk-sub">TiMi Studio · MOBA</div><div class="rk-tags"><span class="rk-trend up">+4 ↑</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--lavender)">8.7</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="87%" style="background:var(--lavender)"></div></div></div></div>
-        <div class="rk-item"><div class="rk-num">05</div><div class="rk-thumb"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4162040/be0ca488708c4eda6668b031a99880dfd250de92/header.jpg" alt="" loading="lazy"/></div><div class="rk-info"><div class="rk-name">Zenless Zone Zero</div><div class="rk-sub">HoYoverse · Action RPG</div><div class="rk-tags"><span class="rk-trend dn">-2 ↓</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--amber)">8.5</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="85%" style="background:var(--amber)"></div></div></div></div>
+        <a class="rk-item top1" href="/game-detail.html?t=Wuthering%20Waves"><div class="rk-num">01</div><div class="rk-thumb"><img src="/assets/img/c53329917b-wuthering-waves-hero.jpg" alt="Wuthering Waves" loading="lazy"/></div><div class="rk-info"><div class="rk-name">Wuthering Waves</div><div class="rk-sub">Kuro Games · Action RPG</div><div class="rk-tags"><span class="rk-tag-pill" style="border-color:var(--b-sakura);color:var(--sakura)">Ver 2.4</span><span class="rk-trend eq">= 1 →</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--amber)">9.5</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="95%" style="background:var(--sakura)"></div></div></div></a>
+        <a class="rk-item top2" href="/game-detail.html?t=Honkai%3A%20Star%20Rail"><div class="rk-num">02</div><div class="rk-thumb"><img src="/assets/img/681306c50c-143582l.jpg" alt="Honkai: Star Rail" loading="lazy"/></div><div class="rk-info"><div class="rk-name">Honkai: Star Rail</div><div class="rk-sub">HoYoverse · Turn-based RPG</div><div class="rk-tags"><span class="rk-trend eq">= 2 →</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--cyan)">9.2</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="92%" style="background:var(--cyan)"></div></div></div></a>
+        <a class="rk-item top3" href="/game-detail.html?t=Genshin%20Impact"><div class="rk-num">03</div><div class="rk-thumb"><img src="/assets/img/f89df6064f-142648l.jpg" alt="Genshin Impact" loading="lazy"/></div><div class="rk-info"><div class="rk-name">Genshin Impact</div><div class="rk-sub">HoYoverse · Action RPG</div><div class="rk-tags"><span class="rk-trend eq">= 3 →</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--green)">8.9</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="89%" style="background:var(--green)"></div></div></div></a>
+        <a class="rk-item" href="/suikoden-star-leap.html"><div class="rk-num">04</div><div class="rk-thumb"><img src="/assets/img/3a6da459ec-suikoden-star-leap-hero.jpg" alt="Suikoden STAR LEAP" loading="lazy"/></div><div class="rk-info"><div class="rk-name">Suikoden STAR LEAP</div><div class="rk-sub">Konami · Turn-based RPG</div><div class="rk-tags"><span class="rk-tag-pill" style="border-color:var(--b-sakura);color:var(--sakura)">JP Launch</span><span class="rk-trend eq">= 4 →</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--lavender)">8.8</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="88%" style="background:var(--lavender)"></div></div></div></a>
+        <a class="rk-item" href="/game-detail.html?t=Honor%20of%20Kings%20Global"><div class="rk-num">05</div><div class="rk-thumb"><img src="/assets/img/6323076b06-158003l.jpg" alt="Honor of Kings Global" loading="lazy"/></div><div class="rk-info"><div class="rk-name">Honor of Kings Global</div><div class="rk-sub">TiMi Studio · MOBA</div><div class="rk-tags"><span class="rk-trend eq">= 5 →</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--amber)">8.7</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="87%" style="background:var(--amber)"></div></div></div></a>
       </div>
     </div>
   </div>
@@ -590,75 +569,73 @@ input,select,textarea{font-size:16px!important}
     <button class="s-tab" onclick="setTab(this,'winter')">Mùa Đông 2026</button>
     <button class="s-tab" onclick="setTab(this,'fall')">Mùa Thu 2025</button>
   </div>
-  <div class="anime-grid" id="anime-grid"></div>
+  <div class="ag-wrap">
+    <button class="ag-nav ag-prev" onclick="scrollAnime(-1)" aria-label="Trước">‹</button>
+    <div class="anime-grid" id="anime-grid"></div>
+    <button class="ag-nav ag-next" onclick="scrollAnime(1)" aria-label="Sau">›</button>
+  </div>
 </div>
 <div class="wrap rv">
   <div class="sec-h"><span class="sec-t">Hot <em>tuần này</em> · Truyện tranh</span><div class="sec-l"></div><a href="manga.html" class="sec-more">Xem thêm</a></div>
   <div class="manga-grid">
     <div class="manga-col">
-      <div class="manga-col-head"><span class="manga-col-title" style="color:var(--lavender)">Manga</span><span class="rk-badge" style="border-color:rgba(167,139,250,.25);color:var(--lavender);background:rgba(167,139,250,.06)">Tuần 22</span></div>
-      <div class="manga-item top1"><div class="mi-num">01</div><div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/manga/2/259446l.jpg" alt="" loading="lazy"/></div><div><div class="mi-title">Jujutsu Kaisen</div><div class="mi-meta">Gege Akutami · Weekly</div></div><div class="mi-score" style="color:var(--amber)">9.6</div></div>
-      <div class="manga-item top2"><div class="mi-num">02</div><div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/manga/3/266234l.jpg" alt="" loading="lazy"/></div><div><div class="mi-title">One Piece</div><div class="mi-meta">Eiichiro Oda · Weekly</div></div><div class="mi-score" style="color:var(--cyan)">9.4</div></div>
-      <div class="manga-item top3"><div class="mi-num">03</div><div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/manga/3/216464l.jpg" alt="" loading="lazy"/></div><div><div class="mi-title">Chainsaw Man</div><div class="mi-meta">Tatsuki Fujimoto · Monthly</div></div><div class="mi-score" style="color:var(--green)">9.3</div></div>
-      <div class="manga-item"><div class="mi-num">04</div><div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/manga/1/157897l.jpg" alt="" loading="lazy"/></div><div><div class="mi-title">Berserk</div><div class="mi-meta">Studio Gaga · Irregular</div></div><div class="mi-score" style="color:var(--lavender)">9.2</div></div>
-      <div class="manga-item"><div class="mi-num">05</div><div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/manga/3/219741l.jpg" alt="" loading="lazy"/></div><div><div class="mi-title">Spy x Family</div><div class="mi-meta">Tatsuya Endo · Bi-weekly</div></div><div class="mi-score" style="color:var(--sakura)">8.9</div></div>
+      <div class="manga-col-head"><span class="manga-col-title" style="color:var(--lavender)">Manga</span><span class="rk-badge" style="border-color:rgba(167,139,250,.25);color:var(--lavender);background:rgba(167,139,250,.06)">Tuần 33</span></div>
+      <a class="manga-item top1" href="/manga-detail.html?t=Jujutsu%20Kaisen"><div class="mi-num">01</div><div class="mi-thumb"><img src="/assets/img/f503c61d36-259446l.jpg" alt="Jujutsu Kaisen" loading="lazy"/></div><div><div class="mi-title">Jujutsu Kaisen</div><div class="mi-meta">Gege Akutami · Weekly</div></div><div class="mi-score" style="color:var(--amber)">9.6</div></a>
+      <a class="manga-item top2" href="/manga-detail.html?t=One%20Piece"><div class="mi-num">02</div><div class="mi-thumb"><img src="/assets/img/add1e919a8-266234l.jpg" alt="One Piece" loading="lazy"/></div><div><div class="mi-title">One Piece</div><div class="mi-meta">Eiichiro Oda · Weekly</div></div><div class="mi-score" style="color:var(--cyan)">9.4</div></a>
+      <a class="manga-item top3" href="/manga-detail.html?t=Chainsaw%20Man"><div class="mi-num">03</div><div class="mi-thumb"><img src="/assets/img/fced43ae52-216464l.jpg" alt="Chainsaw Man" loading="lazy"/></div><div><div class="mi-title">Chainsaw Man</div><div class="mi-meta">Tatsuki Fujimoto · Monthly</div></div><div class="mi-score" style="color:var(--green)">9.3</div></a>
+      <a class="manga-item" href="/manga-detail.html?t=Berserk"><div class="mi-num">04</div><div class="mi-thumb"><img src="/assets/img/641c702735-157897l.jpg" alt="Berserk" loading="lazy"/></div><div><div class="mi-title">Berserk</div><div class="mi-meta">Studio Gaga · Irregular</div></div><div class="mi-score" style="color:var(--lavender)">9.2</div></a>
+      <a class="manga-item" href="/manga-detail.html?t=Spy%20x%20Family"><div class="mi-num">05</div><div class="mi-thumb"><img src="/assets/img/b63f53ed28-219741l.jpg" alt="Spy x Family" loading="lazy"/></div><div><div class="mi-title">Spy x Family</div><div class="mi-meta">Tatsuya Endo · Bi-weekly</div></div><div class="mi-score" style="color:var(--sakura)">8.9</div></a>
     </div>
     <div class="manga-col">
-      <div class="manga-col-head"><span class="manga-col-title" style="color:var(--cyan)">Manhwa</span><span class="rk-badge rk-week">Tuần 22</span></div>
-      <div class="manga-item top1"><div class="mi-num">01</div><div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/manga/2/339933l.jpg" alt="" loading="lazy"/></div><div><div class="mi-title">Solo Leveling: Ragnarok</div><div class="mi-meta">Dubu · Weekly</div></div><div class="mi-score" style="color:var(--amber)">9.5</div></div>
-      <div class="manga-item top2"><div class="mi-num">02</div><div class="mi-thumb"><img src="https://upload.wikimedia.org/wikipedia/en/c/cc/The_Beginning_After_the_End_webtoon_volume_1_cover.jpg" alt="" loading="lazy"/></div><div><div class="mi-title">The Beginning After The End</div><div class="mi-meta">TurtleMe · Weekly</div></div><div class="mi-score" style="color:var(--cyan)">9.2</div></div>
-      <div class="manga-item top3"><div class="mi-num">03</div><div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/manga/2/238873l.jpg" alt="" loading="lazy"/></div><div><div class="mi-title">Omniscient Reader</div><div class="mi-meta">Sleepy-C · Weekly</div></div><div class="mi-score" style="color:var(--green)">9.0</div></div>
-      <div class="manga-item"><div class="mi-num">04</div><div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/manga/2/261694l.jpg" alt="" loading="lazy"/></div><div><div class="mi-title">God of Blackfield</div><div class="mi-meta">Hyeonsung Jun · Weekly</div></div><div class="mi-score" style="color:var(--lavender)">8.8</div></div>
-      <div class="manga-item"><div class="mi-num">05</div><div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/manga/2/261257l.jpg" alt="" loading="lazy"/></div><div><div class="mi-title">Second Life Ranker</div><div class="mi-meta">Sadoyeon · Weekly</div></div><div class="mi-score" style="color:var(--sakura)">8.6</div></div>
+      <div class="manga-col-head"><span class="manga-col-title" style="color:var(--cyan)">Manhwa</span><span class="rk-badge rk-week">Tuần 33</span></div>
+      <a class="manga-item top1" href="/manga-detail.html?t=Solo%20Leveling%3A%20Ragnarok"><div class="mi-num">01</div><div class="mi-thumb"><img src="/assets/img/dfc2a226b6-339933l.jpg" alt="Solo Leveling: Ragnarok" loading="lazy"/></div><div><div class="mi-title">Solo Leveling: Ragnarok</div><div class="mi-meta">Dubu · Weekly</div></div><div class="mi-score" style="color:var(--amber)">9.5</div></a>
+      <a class="manga-item top2" href="/manga-detail.html?t=The%20Beginning%20After%20The%20End"><div class="mi-num">02</div><div class="mi-thumb"><img src="/assets/img/3eb1c4a80b-The_Beginning_After_the_End_webtoon_volu" alt="The Beginning After The End" loading="lazy"/></div><div><div class="mi-title">The Beginning After The End</div><div class="mi-meta">TurtleMe · Weekly</div></div><div class="mi-score" style="color:var(--cyan)">9.2</div></a>
+      <a class="manga-item top3" href="/manga-detail.html?t=Omniscient%20Reader"><div class="mi-num">03</div><div class="mi-thumb"><img src="/assets/img/24741c60cd-238873l.jpg" alt="Omniscient Reader" loading="lazy"/></div><div><div class="mi-title">Omniscient Reader</div><div class="mi-meta">Sleepy-C · Weekly</div></div><div class="mi-score" style="color:var(--green)">9.0</div></a>
+      <a class="manga-item" href="/manga-detail.html?t=God%20of%20Blackfield"><div class="mi-num">04</div><div class="mi-thumb"><img src="/assets/img/becf296339-261694l.jpg" alt="God of Blackfield" loading="lazy"/></div><div><div class="mi-title">God of Blackfield</div><div class="mi-meta">Hyeonsung Jun · Weekly</div></div><div class="mi-score" style="color:var(--lavender)">8.8</div></a>
+      <a class="manga-item" href="/manga-detail.html?t=Second%20Life%20Ranker"><div class="mi-num">05</div><div class="mi-thumb"><img src="/assets/img/40c84c255a-261257l.jpg" alt="Second Life Ranker" loading="lazy"/></div><div><div class="mi-title">Second Life Ranker</div><div class="mi-meta">Sadoyeon · Weekly</div></div><div class="mi-score" style="color:var(--sakura)">8.6</div></a>
     </div>
     <div class="manga-col">
-      <div class="manga-col-head"><span class="manga-col-title" style="color:var(--sakura)">Manhua</span><span class="rk-badge" style="border-color:var(--b-sakura);color:var(--sakura);background:rgba(255,48,128,.06)">Tuần 22</span></div>
-      <div class="manga-item top1"><div class="mi-num">01</div><div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/manga/3/226182l.jpg" alt="" loading="lazy"/></div><div><div class="mi-title">Battle Through the Heavens</div><div class="mi-meta">Tiancan Tudou · Weekly</div></div><div class="mi-score" style="color:var(--amber)">9.1</div></div>
-      <div class="manga-item top2"><div class="mi-num">02</div><div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/manga/1/294808l.jpg" alt="" loading="lazy"/></div><div><div class="mi-title">Swallowed Star</div><div class="mi-meta">I Eat Tomatoes · Weekly</div></div><div class="mi-score" style="color:var(--cyan)">8.9</div></div>
-      <div class="manga-item top3"><div class="mi-num">03</div><div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/manga/3/226182l.jpg" alt="" loading="lazy"/></div><div><div class="mi-title">Doupo Cangqiong</div><div class="mi-meta">Xuanhuan · Weekly</div></div><div class="mi-score" style="color:var(--green)">8.7</div></div>
-      <div class="manga-item"><div class="mi-num">04</div><div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/manga/1/280661l.jpg" alt="" loading="lazy"/></div><div><div class="mi-title">Rebirth of the Urban Immortal</div><div class="mi-meta">Anonymous · Bi-weekly</div></div><div class="mi-score" style="color:var(--lavender)">8.5</div></div>
-      <div class="manga-item"><div class="mi-num">05</div><div class="mi-thumb"><img src="https://cdn.myanimelist.net/images/manga/3/223798l.jpg" alt="" loading="lazy"/></div><div><div class="mi-title">Wu Shen Zhu Zai</div><div class="mi-meta">Fengqingyang · Weekly</div></div><div class="mi-score" style="color:var(--sakura)">8.3</div></div>
+      <div class="manga-col-head"><span class="manga-col-title" style="color:var(--sakura)">Manhua</span><span class="rk-badge" style="border-color:var(--b-sakura);color:var(--sakura);background:rgba(255,48,128,.06)">Tuần 33</span></div>
+      <a class="manga-item top1" href="/manga-detail.html?t=Battle%20Through%20the%20Heavens"><div class="mi-num">01</div><div class="mi-thumb"><img src="/assets/img/f9fa2f5cc7-226182l.jpg" alt="Battle Through the Heavens" loading="lazy"/></div><div><div class="mi-title">Battle Through the Heavens</div><div class="mi-meta">Tiancan Tudou · Weekly</div></div><div class="mi-score" style="color:var(--amber)">9.1</div></a>
+      <a class="manga-item top2" href="/manga-detail.html?t=Swallowed%20Star"><div class="mi-num">02</div><div class="mi-thumb"><img src="/assets/img/c88fd83c70-294808l.jpg" alt="Swallowed Star" loading="lazy"/></div><div><div class="mi-title">Swallowed Star</div><div class="mi-meta">I Eat Tomatoes · Weekly</div></div><div class="mi-score" style="color:var(--cyan)">8.9</div></a>
+      <a class="manga-item top3" href="/manga-detail.html?t=Martial%20Peak"><div class="mi-num">03</div><div class="mi-thumb"><img src="/assets/img/672a0e3b1e-martialpeak.jpg" alt="Martial Peak" loading="lazy"/></div><div><div class="mi-title">Martial Peak</div><div class="mi-meta">PIKAPI · Weekly</div></div><div class="mi-score" style="color:var(--green)">8.7</div></a>
+      <a class="manga-item" href="/manga-detail.html?t=Rebirth%20of%20the%20Urban%20Immortal"><div class="mi-num">04</div><div class="mi-thumb"><img src="/assets/img/fe6c0cc209-280661l.jpg" alt="Rebirth of the Urban Immortal" loading="lazy"/></div><div><div class="mi-title">Rebirth of the Urban Immortal</div><div class="mi-meta">Anonymous · Bi-weekly</div></div><div class="mi-score" style="color:var(--lavender)">8.5</div></a>
+      <a class="manga-item" href="/manga-detail.html?t=Wu%20Shen%20Zhu%20Zai"><div class="mi-num">05</div><div class="mi-thumb"><img src="/assets/img/8d22560005-223798l.jpg" alt="Wu Shen Zhu Zai" loading="lazy"/></div><div><div class="mi-title">Wu Shen Zhu Zai</div><div class="mi-meta">Fengqingyang · Weekly</div></div><div class="mi-score" style="color:var(--sakura)">8.3</div></a>
     </div>
   </div>
 </div>
 <div class="wrap rv" style="padding-top:0">
-  <div class="sec-h"><span class="sec-t">Tin <em>mới nhất</em></span><div class="sec-l"></div><a href="#" class="sec-more">Xem tất cả</a></div>
+  <div class="sec-h"><span class="sec-t">Tin <em>mới nhất</em></span><div class="sec-l"></div><a href="/news.html" class="sec-more">Xem tất cả</a></div>
   <div class="latest-wrap">
     <div>
-      <article class="w-card"><a href="top-game-pc-2026.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--amber)">Rankings · PC</div><div class="wc-t">Top 10 Game PC 2026 · Elden Ring DLC 2, Hollow Knight Silksong, Hades II và hơn nữa</div><div class="wc-m">OtaHub Editorial · 20/6/2026 · 9 min</div></div><div class="wc-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" alt="Top 10 Game PC 2026" loading="lazy"/></div></a></article>
-      <article class="w-card"><a href="gta6-preview.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--cyan)">Gaming · Preview</div><div class="wc-t">GTA 6 · Tất cả những gì biết về tựa game lớn nhất 2026 — Lucia, Vice City, GTA Online</div><div class="wc-m">OtaHub Editorial · 10/6/2026 · 8 min</div></div><div class="wc-thumb"><img src="https://upload.wikimedia.org/wikipedia/en/4/46/Grand_Theft_Auto_VI.png" alt="GTA 6 Preview" loading="lazy"/></div></a></article>
-      <article class="w-card"><a href="chainsaw-man-season3.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--sakura)">Anime · MAPPA</div><div class="wc-t">Chainsaw Man Season 3 · MAPPA xác nhận ngày phát, Aging Devil arc, tháng 10/2026</div><div class="wc-m">OtaHub Editorial · 14/6/2026 · 6 min</div></div><div class="wc-thumb"><img src="https://cdn.myanimelist.net/images/anime/1806/126216l.jpg" alt="Chainsaw Man Season 3" loading="lazy"/></div></a></article>
-      <article class="w-card"><a href="solo-leveling-season2.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--sakura)">Anime · A-1 Pictures</div><div class="wc-t">Solo Leveling Season 2 · Jeju Island arc và Monarchs Conflict — mọi thứ đã biết</div><div class="wc-m">OtaHub Editorial · 19/6/2026 · 7 min</div></div><div class="wc-thumb"><img src="https://cdn.myanimelist.net/images/anime/1448/147351l.jpg" alt="Solo Leveling Season 2" loading="lazy"/></div></a></article>
-      <article class="w-card"><a href="elden-ring-dlc2.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--cyan)">Gaming · FromSoftware</div><div class="wc-t">Elden Ring DLC 2: Shadows Beyond Time · Fractured Abyss và cơ chế Time Echo</div><div class="wc-m">OtaHub Editorial · 12/6/2026 · 7 min</div></div><div class="wc-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" alt="Elden Ring DLC 2" loading="lazy"/></div></a></article>
-      <article class="w-card"><a href="blue-protocol-review.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--amber)">Review · 7.8/10</div><div class="wc-t">Blue Protocol Review · MMORPG anime đẹp nhất 2026 có đúng như kỳ vọng?</div><div class="wc-m">OtaHub Editorial · 17/6/2026 · 10 min</div></div><div class="wc-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/3681810/library_hero.jpg" alt="Blue Protocol Review" loading="lazy"/></div></a></article>
-      <article class="w-card"><a href="anime-mua-he-2026.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--sakura)">Anime · Mùa Hè</div><div class="wc-t">Anime Mùa Hè 2026 · 10 bộ không thể bỏ lỡ — Dungeon Meshi S2, Frieren S2 và hơn nữa</div><div class="wc-m">OtaHub Editorial · 18/6/2026 · 8 min</div></div><div class="wc-thumb"><img src="https://cdn.myanimelist.net/images/anime/1015/138006l.jpg" alt="Anime Mùa Hè 2026" loading="lazy"/></div></a></article>
-      <article class="w-card"><a href="genshin-natlan-review.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--amber)">Review · 8.8/10</div><div class="wc-t">Genshin Impact Natlan · Region tốt nhất từ Liyue và câu chuyện phung phóng nhất 5 năm</div><div class="wc-m">OtaHub Editorial · 4/6/2026 · 10 min</div></div><div class="wc-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1794680/header.jpg" alt="Genshin Natlan Review" loading="lazy"/></div></a></article>
-      <article class="w-card"><a href="jujutsu-kaisen-ket-thuc.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--sakura)">Manga · JJK</div><div class="wc-t">Jujutsu Kaisen đã kết thúc · Phân tích arc cuối và di sản thực sự của Gege Akutami</div><div class="wc-m">OtaHub Editorial · 1/6/2026 · 9 min</div></div><div class="wc-thumb"><img src="https://cdn.myanimelist.net/images/anime/1792/138022l.jpg" alt="Jujutsu Kaisen Kết Thúc" loading="lazy"/></div></a></article>
-      <article class="w-card"><a href="nintendo-switch-2-review.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--amber)">Review · 9.0/10</div><div class="wc-t">Nintendo Switch 2 Review · Máy chơi game đáng mua nhất 2026? Joy-Con không drift, 1080p OLED</div><div class="wc-m">OtaHub Editorial · 28/5/2026 · 9 min</div></div><div class="wc-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Nintendo_Switch_2_logo.svg/330px-Nintendo_Switch_2_logo.svg.png" alt="Nintendo Switch 2 Review" loading="lazy"/></div></a></article>
-      <article class="w-card"><a href="one-piece-egghead-arc.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--sakura)">Manga · One Piece</div><div class="wc-t">One Piece Egghead Arc kết thúc · Phân tích toàn bộ từ Vegapunk đến Final Saga</div><div class="wc-m">OtaHub Editorial · 7/6/2026 · 10 min</div></div><div class="wc-thumb"><img src="https://cdn.myanimelist.net/images/manga/3/266234l.jpg" alt="One Piece Egghead Arc" loading="lazy"/></div></a></article>
-      <article class="w-card"><a href="top-anime-2025.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--amber)">Rankings · Anime</div><div class="wc-t">Top 10 Anime Hay Nhất 2025 · Dungeon Meshi số 1, Dan Da Dan và Frieren không thể bỏ qua</div><div class="wc-m">OtaHub Editorial · 21/6/2026 · 8 min</div></div><div class="wc-thumb"><img src="https://cdn.myanimelist.net/images/anime/1711/142478l.jpg" alt="Top Anime 2025" loading="lazy"/></div></a></article>
-      <article class="w-card"><a href="honkai-star-rail-30.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--cyan)">Gaming · HSR</div><div class="wc-t">Honkai Star Rail 3.0 Amphoreus · Arc lớn nhất từ launch với story được gọi là masterpiece</div><div class="wc-m">OtaHub Editorial · 11/6/2026 · 8 min</div></div><div class="wc-thumb"><img src="https://cdn.myanimelist.net/images/anime/1367/143582l.jpg" alt="Honkai Star Rail 3.0" loading="lazy"/></div></a></article>
-    <article class="w-card"><a href="xbox-showcase-2026.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--amber)">Gaming · Xbox</div><div class="wc-t">Xbox Games Showcase 2026 · Fable, Perfect Dark và hàng chục tựa game mới được công bố</div><div class="wc-m">OtaHub Editorial · 10/6/2026 · 12 min</div></div><div class="wc-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1240440/library_hero.jpg" alt="Xbox Games Showcase 2026" loading="lazy"/></div></a></article>
-    <article class="w-card"><a href="frieren-season2.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--sakura)">Anime · Madhouse</div><div class="wc-t">Frieren Season 2 · Hành Trình Đến Aureole Và Những Điều Không Nói Ra</div><div class="wc-m">OtaHub Editorial · 12/6/2026 · 7 min</div></div><div class="wc-thumb"><img src="https://cdn.myanimelist.net/images/anime/1015/138006l.jpg" alt="Frieren Season 2" loading="lazy"/></div></a></article>
-    <article class="w-card"><a href="kingdom-come-deliverance-2.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--amber)">Gaming · RPG</div><div class="wc-t">Kingdom Come: Deliverance 2 Review · RPG Lịch Sử Hay Nhất Thập Kỷ — Sau 7 Năm Chờ Đợi</div><div class="wc-m">OtaHub Editorial · 8/6/2026 · 8 min</div></div><div class="wc-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1771650/library_hero.jpg" alt="Kingdom Come Deliverance 2" loading="lazy"/></div></a></article>
-    <article class="w-card"><a href="resident-evil-9-announcement.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--amber)">Gaming · Capcom</div><div class="wc-t">Resident Evil 9 · Setting Đông Nam Á, Nhân Vật Bí Ẩn Và Ngày Ra Mắt 2027</div><div class="wc-m">OtaHub Editorial · 5/6/2026 · 8 min</div></div><div class="wc-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/2207840/header.jpg" alt="Resident Evil 9" loading="lazy"/></div></a></article>
-    <article class="w-card"><a href="dragon-ball-daima.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--sakura)">Anime · Toei</div><div class="wc-t">Dragon Ball DAIMA · Di Sản Của Toriyama Và Tương Lai Nhượng Quyền Dragon Ball</div><div class="wc-m">OtaHub Editorial · 15/5/2026 · 6 min</div></div><div class="wc-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Dragon_Ball_Daima_Logo.png/330px-Dragon_Ball_Daima_Logo.png" alt="Dragon Ball DAIMA" loading="lazy"/></div></a></article>
-    <article class="w-card"><a href="wuthering-waves-24.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--amber)">Gaming · Kuro Game</div><div class="wc-t">Wuthering Waves 2.4 · Khám Phá Aero Archipelago và Nhân Vật Kaethe Mới</div><div class="wc-m">OtaHub Editorial · 1/7/2026 · 6 min</div></div><div class="wc-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/2418520/library_hero.jpg" alt="Wuthering Waves 2.4" loading="lazy"/></div></a></article>
-    <article class="w-card"><a href="black-myth-wukong-huong-dan.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--amber)">Gaming · Guide</div><div class="wc-t">Black Myth: Wukong · Hướng Dẫn Đầy Đủ Từ A đến Z Cho Người Mới Bắt Đầu</div><div class="wc-m">OtaHub Editorial · 10/5/2026 · 7 min</div></div><div class="wc-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/2358720/library_hero.jpg" alt="Black Myth Wukong" loading="lazy"/></div></a></article>
-    <article class="w-card"><a href="space-marine-2-dlc.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--amber)">Gaming · Warhammer</div><div class="wc-t">Space Marine 2: Chaos Rising DLC · Khi Anh Hùng Không Gian Trở Thành Kẻ Thù Của Chính Mình</div><div class="wc-m">OtaHub Editorial · 15/6/2026 · 7 min</div></div><div class="wc-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/2183900/library_hero.jpg" alt="Space Marine 2 DLC" loading="lazy"/></div></a></article>
-    <article class="w-card"><a href="stellar-blade-dlc.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--sakura)">Gaming · Shift Up</div><div class="wc-t">Stellar Blade: Raven Returns DLC · Gravity Core — Cơ Chế Mới Thay Đổi Hoàn Toàn Lối Chơi</div><div class="wc-m">OtaHub Editorial · 18/6/2026 · 7 min</div></div><div class="wc-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/2568510/library_hero.jpg" alt="Stellar Blade DLC" loading="lazy"/></div></a></article>
-    <article class="w-card"><a href="tekken8-season2.html" style="text-decoration:none;display:contents"><div><div class="wc-c" style="color:var(--amber)">Gaming · Bandai Namco</div><div class="wc-t">Tekken 8 Season 2 · 4 Nhân Vật Mới, Heat System Cập Nhật Và Armor King Trở Lại</div><div class="wc-m">OtaHub Editorial · 20/6/2026 · 7 min</div></div><div class="wc-thumb"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1778820/library_hero.jpg" alt="Tekken 8 Season 2" loading="lazy"/></div></a></article>
+      <article class="w-card"><a href="resonance-plague-tale-legacy-release.html" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming · Asobo Studio</div><div class="wc-t">Resonance: A Plague Tale Legacy ra mắt 27/8/2026, tiền truyện 15 năm trước Innocence</div><div class="wc-m">OtaHub Editorial · 17/8/2026 · 5 min</div></div><div class="wc-thumb"><img src="/assets/img/4e114f95a9-plague-tale-legacy-minotaur-island.jpg" alt="Resonance: A Plague Tale Legacy" loading="lazy"/></div></a></article>
+      <article class="w-card"><a href="mortal-shell-2-release.html" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming · Cold Symmetry</div><div class="wc-t">Mortal Shell II ấn định ngày ra mắt 20/8/2026 trên PC, PS5, Xbox Series X|S</div><div class="wc-m">OtaHub Editorial · 17/8/2026 · 5 min</div></div><div class="wc-thumb"><img src="/assets/img/697812e0ec-mortal-shell-2-key-art.jpg" alt="Mortal Shell II key art" loading="lazy"/></div></a></article>
+      <article class="w-card"><a href="skip-and-loafer-season2-teaser.html" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--sakura)">Anime · P.A.Works</div><div class="wc-t">Skip and Loafer Mùa 2 tung teaser, ấn định lên sóng tháng 4/2027</div><div class="wc-m">OtaHub Editorial · 17/8/2026 · 4 min</div></div><div class="wc-thumb"><img src="/assets/img/2715e60035-skip-and-loafer-s2-teaser.jpg" alt="Skip and Loafer Mùa 2 teaser" loading="lazy"/></div></a></article>
+      <article class="w-card"><a href="reincarnated-as-a-sword-season2-premiere.html" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--sakura)">Anime</div><div class="wc-t">Reincarnated as a Sword Mùa 2 ấn định ngày phát sóng 7/10</div><div class="wc-m">OtaHub Editorial · 17/8/2026 · 4 min</div></div><div class="wc-thumb"><img src="/assets/img/ae00527a02-reincarnated-as-a-sword-s2-hero.jpg" alt="Reincarnated as a Sword S2" loading="lazy"/></div></a></article>
+      <article class="w-card"><a href="final-fantasy-7-revelation-gamescom.html" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming · Square Enix</div><div class="wc-t">Final Fantasy VII Revelation lộ diện tại Gamescom Opening Night Live 25/8</div><div class="wc-m">OtaHub Editorial · 17/8/2026 · 5 min</div></div><div class="wc-thumb"><img src="/assets/img/b14d8c1cc7-ff7-revelation-gamescom-hero.jpg" alt="FF7 Revelation Gamescom" loading="lazy"/></div></a></article>
+      <article class="w-card"><a href="gta6-trailer3-netflix-premiere.html" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming · Rockstar Games</div><div class="wc-t">GTA 6 tung trailer thứ 3, công chiếu độc quyền trên Netflix ngày 27/8</div><div class="wc-m">OtaHub Editorial · 17/8/2026 · 5 min</div></div><div class="wc-thumb"><img src="/assets/img/ccd6b922bc-gta6-trailer3-netflix-hero.jpg" alt="GTA 6 trailer 3 Netflix" loading="lazy"/></div></a></article>
+      <article class="w-card"><a href="apothecary-diaries-season3-trailer.html" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--sakura)">Anime · Studio OLM</div><div class="wc-t">The Apothecary Diaries Mùa 3 tung trailer, key visual, ấn định ngày 2/10</div><div class="wc-m">OtaHub Editorial · 17/8/2026 · 5 min</div></div><div class="wc-thumb"><img src="/assets/img/ba56514692-apothecary-diaries-s3-key-visual.jpg" alt="Apothecary Diaries S3 key visual" loading="lazy"/></div></a></article>
+      <article class="w-card"><a href="phantom-blade-zero-state-of-play.html" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming · S-Game</div><div class="wc-t">Phantom Blade Zero: State of Play gameplay deep dive, mở pre-order</div><div class="wc-m">OtaHub Editorial · 17/8/2026 · 6 min</div></div><div class="wc-thumb"><img src="/assets/img/891449aa89-phantom-blade-zero-card.jpg" alt="Phantom Blade Zero: State of Play gameplay deep dive, mở pre-order" loading="lazy"/></div></a></article>
+      <article class="w-card"><a href="jump-giga-summer-2026-oneshots.html" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--lavender)">Manga · Shueisha</div><div class="wc-t">Bộ đôi Food Wars và tác giả We Never Learn trở lại trên Jump GIGA Hè 2026</div><div class="wc-m">OtaHub Editorial · 17/8/2026 · 5 min</div></div><div class="wc-thumb"><img src="/assets/img/320021956a-food-wars-jump-giga-hero.jpg" alt="Bộ đôi Food Wars và tác giả We Never Learn trở lại trên Jump GIGA Hè 2026" loading="lazy"/></div></a></article>
+      <article class="w-card"><a href="oshi-no-ko-season4-teaser.html" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--sakura)">Anime · Doga Kobo</div><div class="wc-t">Oshi no Ko Mùa 4 tung teaser visual và trailer đầu tiên</div><div class="wc-m">OtaHub Editorial · 16/8/2026 · 5 min</div></div><div class="wc-thumb"><img src="/assets/img/02716b9688-oshi-no-ko-season4-teaser-hero.jpg" alt="Oshi no Ko Mùa 4 tung teaser visual và trailer đầu tiên" loading="lazy"/></div></a></article>
+      <article class="w-card"><a href="mushoku-tensei-chaos-breaker-arc.html" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--sakura)">Anime · Studio Bind</div><div class="wc-t">Mushoku Tensei Mùa 3: Chaos Breaker Arc chính thức bắt đầu</div><div class="wc-m">OtaHub Editorial · 16/8/2026 · 6 min</div></div><div class="wc-thumb"><img src="/assets/img/ef42374676-mushoku-tensei-chaos-breaker-hero.jpg" alt="Mushoku Tensei Mùa 3: Chaos Breaker Arc chính thức bắt đầu" loading="lazy"/></div></a></article>
+      <article class="w-card"><a href="honkai-star-rail-zzz-crossover.html" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming · HoYoverse</div><div class="wc-t">Honkai: Star Rail xác nhận crossover với Zenless Zone Zero</div><div class="wc-m">OtaHub Editorial · 16/8/2026 · 6 min</div></div><div class="wc-thumb"><img src="/assets/img/d2b409c61d-hsr-zzz-pompom-scene.jpg" alt="Honkai: Star Rail xác nhận crossover với Zenless Zone Zero" loading="lazy"/></div></a></article>
+      <article class="w-card"><a href="big-walk-house-house.html" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming · House House</div><div class="wc-t">Big Walk: Cha đẻ Untitled Goose Game ra mắt game co-op mới cực chill</div><div class="wc-m">OtaHub Editorial · 15/8/2026 · 6 min</div></div><div class="wc-thumb"><img src="/assets/img/d4b52b428d-big-walk-house-house-hero.jpg" alt="Big Walk" loading="lazy"/></div></a></article>
+      <article class="w-card"><a href="quit-laughing-shijima-horikoshi.html" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--lavender)">Manga · Kohei Horikoshi</div><div class="wc-t">Cha đẻ My Hero Academia trở lại Jump với one-shot kinh dị mới</div><div class="wc-m">OtaHub Editorial · 15/8/2026 · 5 min</div></div><div class="wc-thumb"><img src="/assets/img/b95ebcacec-quit-laughing-shijima-horikoshi-hero.jpg" alt="Quit Laughing Shijima" loading="lazy"/></div></a></article>
+      <article class="w-card"><a href="attack-on-titan-wit-teaser.html" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--sakura)">Anime · WIT Studio</div><div class="wc-t">WIT Studio hé lộ công bố bí ẩn Attack on Titan ngày 20/8</div><div class="wc-m">OtaHub Editorial · 15/8/2026 · 5 min</div></div><div class="wc-thumb"><img src="/assets/img/a7548f6c8e-attack-on-titan-wit-teaser-hero.jpg" alt="Attack on Titan WIT Teaser" loading="lazy"/></div></a></article>
+      <article class="w-card"><a href="elden-ring-tarnished-edition.html" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming · FromSoftware</div><div class="wc-t">Elden Ring: Tarnished Edition đổ bộ Nintendo Switch 2 ngày 28/8</div><div class="wc-m">OtaHub Editorial · 15/8/2026 · 6 min</div></div><div class="wc-thumb"><img src="/assets/img/adbee997e8-elden-ring-tarnished-edition-hero.jpg" alt="Elden Ring Tarnished Edition" loading="lazy"/></div></a></article>
+      <article class="w-card"><a href="beast-of-reincarnation.html" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming · Game Freak</div><div class="wc-t">Beast of Reincarnation: Game Freak ra mắt tựa AAA đầu tiên ngoài Pokémon</div><div class="wc-m">OtaHub Editorial · 14/8/2026 · 8 min</div></div><div class="wc-thumb"><img src="/assets/img/5f8467072b-beast-of-reincarnation-hero.jpg" alt="Beast of Reincarnation" loading="lazy"/></div></a></article>
+      <article class="w-card"><a href="suikoden-star-leap.html" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming · Konami</div><div class="wc-t">Suikoden STAR LEAP ra mắt mobile Nhật Bản, 108 Ngôi Sao Định Mệnh mới</div><div class="wc-m">OtaHub Editorial · 14/8/2026 · 6 min</div></div><div class="wc-thumb"><img src="/assets/img/3a6da459ec-suikoden-star-leap-hero.jpg" alt="Suikoden STAR LEAP" loading="lazy"/></div></a></article>
+      <a class="wc-more" href="/news.html"><span>Xem thêm tin</span><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg></a>
     </div>
     <aside class="latest-side">
       <div class="trend-h">Đang hot</div>
-      <div class="t-item"><div class="t-num">01</div><div><div class="ti-t"><a href="gta6-preview.html" style="color:inherit;text-decoration:none">GTA 6 · Vice City, Lucia và ngày ra mắt 2026</a></div><div class="ti-m">Gaming · Preview</div></div></div>
-      <div class="t-item"><div class="t-num">02</div><div><div class="ti-t"><a href="xbox-showcase-2026.html" style="color:inherit;text-decoration:none">Xbox Games Showcase 2026 · Fable, Perfect Dark xác nhận</a></div><div class="ti-m">Gaming · Xbox</div></div></div>
-      <div class="t-item"><div class="t-num">03</div><div><div class="ti-t"><a href="chainsaw-man-season3.html" style="color:inherit;text-decoration:none">Chainsaw Man S3 · Aging Devil arc tháng 10/2026</a></div><div class="ti-m">Anime · MAPPA</div></div></div>
-      <div class="t-item"><div class="t-num">04</div><div><div class="ti-t"><a href="resident-evil-9-announcement.html" style="color:inherit;text-decoration:none">Resident Evil 9 · Setting Đông Nam Á, 2027</a></div><div class="ti-m">Gaming · Capcom</div></div></div>
-      <div class="t-item"><div class="t-num">05</div><div><div class="ti-t"><a href="anime-mua-he-2026.html" style="color:inherit;text-decoration:none">Anime Mùa Hè 2026 · 10 bộ không thể bỏ lỡ</a></div><div class="ti-m">Anime · Ranking</div></div></div>
-      <div class="t-item"><div class="t-num">06</div><div><div class="ti-t"><a href="frieren-season2.html" style="color:inherit;text-decoration:none">Frieren Season 2 · Hành trình đến Aureole</a></div><div class="ti-m">Anime · Madhouse</div></div></div>
-      <div class="t-item"><div class="t-num">07</div><div><div class="ti-t"><a href="wuthering-waves-24.html" style="color:inherit;text-decoration:none">Wuthering Waves 2.4 · Aero Archipelago mới</a></div><div class="ti-m">Gaming · Kuro</div></div></div>
-      <div class="t-item"><div class="t-num">08</div><div><div class="ti-t"><a href="berserk-arc-cuoi.html" style="color:inherit;text-decoration:none">Berserk arc cuối · Studio Gaga xác nhận hồi kết</a></div><div class="ti-m">Manga · Studio Gaga</div></div></div></div>
+      <a class="t-item" href="gta6-preview.html" style="text-decoration:none;color:inherit"><div class="t-num">01</div><div class="ti-thumb"><img src="/assets/img/c8cd09fede-maxresdefault.jpg" alt="GTA 6 · mọi thứ về Vice City và Lucia" loading="lazy"/></div><div><div class="ti-t">GTA 6 · mọi thứ về Vice City và Lucia</div><div class="ti-m">Gaming · 156k lượt xem</div></div></a>
+      <a class="t-item" href="elden-ring-dlc2.html" style="text-decoration:none;color:inherit"><div class="t-num">02</div><div class="ti-thumb"><img src="/assets/img/b80150127d-library_hero.jpg" alt="Elden Ring DLC 2 · Fractured Abyss và Time Echo" loading="lazy"/></div><div><div class="ti-t">Elden Ring DLC 2 · Fractured Abyss và Time Echo</div><div class="ti-m">Gaming · 139k lượt xem</div></div></a>
+      <a class="t-item" href="chainsaw-man-season3.html" style="text-decoration:none;color:inherit"><div class="t-num">03</div><div class="ti-thumb"><img src="/assets/img/2656ba8ffc-maxresdefault.jpg" alt="Chainsaw Man S3 · Aging Devil arc tháng 10" loading="lazy"/></div><div><div class="ti-t">Chainsaw Man S3 · Aging Devil arc tháng 10</div><div class="ti-m">Anime · 112k lượt xem</div></div></a>
+      <a class="t-item" href="anime-mua-he-2026.html" style="text-decoration:none;color:inherit"><div class="t-num">04</div><div class="ti-thumb"><img src="/assets/img/10728427f3-chainsaw-man-hero.jpg" alt="Anime Mùa Hè 2026 · 10 bộ không thể bỏ lỡ" loading="lazy"/></div><div><div class="ti-t">Anime Mùa Hè 2026 · 10 bộ không thể bỏ lỡ</div><div class="ti-m">Anime · 94k lượt xem</div></div></a>
+      <a class="t-item" href="berserk-arc-cuoi.html" style="text-decoration:none;color:inherit"><div class="t-num">05</div><div class="ti-thumb"><img src="/assets/img/7b5a968234-maxresdefault.jpg" alt="Berserk arc cuối · Studio Gaga xác nhận hồi kết" loading="lazy"/></div><div><div class="ti-t">Berserk arc cuối · Studio Gaga xác nhận hồi kết</div><div class="ti-m">Manga · 81k lượt xem</div></div></a>
+      <a class="t-item" href="blue-protocol-review.html" style="text-decoration:none;color:inherit"><div class="t-num">06</div><div class="ti-thumb"><img src="/assets/img/3578d308d7-library_hero.jpg" alt="Blue Protocol Review · 7.8/10 · đẹp nhưng endgame mỏng" loading="lazy"/></div><div><div class="ti-t">Blue Protocol Review · 7.8/10 · đẹp nhưng endgame mỏng</div><div class="ti-m">Reviews · 67k lượt xem</div></div></a>
     </aside>
   </div>
 </div>
@@ -681,7 +658,7 @@ input,select,textarea{font-size:16px!important}
     <form class="nl-form" onsubmit="handleSubscribe(event)">
       <label class="nl-label" id="nl-label">Địa chỉ email</label>
       <div class="nl-row">
-        <input class="nl-input" type="email" placeholder="ten@email.com" required/>
+        <input class="nl-input" id="nl-email" type="email" placeholder="ten@email.com" required/>
         <button class="nl-btn" type="submit" id="nl-btn">Đăng ký</button>
       </div>
       <p class="nl-note" id="nl-note">Miễn phí · Hủy bất cứ lúc nào · Không spam</p>
@@ -696,58 +673,58 @@ input,select,textarea{font-size:16px!important}
     </div>
     <div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="gaming.html">Gaming</a></li><li><a href="anime.html">Anime</a></li><li><a href="manga.html">Manga</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="rankings.html">Rankings</a></li></ul></div>
     <div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="about.html">Giới thiệu</a></li><li><a href="about.html#team">Đội ngũ</a></li><li><a href="about.html#contact">Liên hệ</a></li><li><a href="#newsletter">Newsletter</a></li></ul></div>
-    <div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="#">Facebook</a></li><li><a href="#">Twitter / X</a></li><li><a href="#">YouTube</a></li><li><a href="#">Discord</a></li><li><a href="#">RSS Feed</a></li></ul></div>
+    <div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div>
   </div>
   <div class="ft-bot">
     <span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming & Anime Hub</span>
-    <div class="ft-soc">
-      <button class="soc" aria-label="X"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></button>
-      <button class="soc" aria-label="Facebook"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></button>
-      <button class="soc" aria-label="Discord"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.003.028.014.057.035.066a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg></button>
-      <button class="soc" aria-label="YouTube"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></button>
-    </div>
+
   </div>
 </footer>
 <script>
 const ANIME={
   summer:[
-    {title:'Chainsaw Man Part 3',genre:'Action / Dark Fantasy',score:'9.4',day:'Thứ 3',ep:'Ep 3/12',status:'airing',img:'https://cdn.myanimelist.net/images/anime/1806/126216l.jpg'},
-    {title:'Frieren Season 2',genre:'Fantasy / Slice of Life',score:'9.2',day:'Thứ 4',ep:'Ep 5/24',status:'airing',img:'https://cdn.myanimelist.net/images/anime/1015/138006l.jpg'},
-    {title:'Solo Leveling Season 3',genre:'Action / Isekai',score:'9.0',day:'Thứ 6',ep:'Ep 2/13',status:'airing',img:'https://cdn.myanimelist.net/images/anime/1801/142390l.jpg'},
-    {title:'Bleach: TYBW Part 5',genre:'Action / Shonen',score:'8.9',day:'Thứ 7',ep:'Ep 1/13',status:'airing',img:'https://cdn.myanimelist.net/images/anime/1908/135431l.jpg'},
-    {title:'Dungeon Meshi S2',genre:'Fantasy / Comedy',score:'8.8',day:'Thứ 5',ep:'Ep 6/13',status:'airing',img:'https://cdn.myanimelist.net/images/anime/1711/142478l.jpg'},
-    {title:'Negai no Astro',genre:'Sci-Fi / Adventure',score:'—',day:'Tháng 7',ep:'Sắp ra',status:'soon',img:'https://cdn.myanimelist.net/images/anime/1987/117507l.jpg'},
-    {title:'Kaiju No.8 Season 2',genre:'Action / Sci-Fi',score:'8.6',day:'Thứ 2',ep:'Ep 4/12',status:'airing',img:'https://cdn.myanimelist.net/images/anime/1370/140362l.jpg'},
-    {title:'Sakamoto Days',genre:'Action / Comedy',score:'8.5',day:'Thứ 6',ep:'Ep 7/12',status:'airing',img:'https://cdn.myanimelist.net/images/anime/1026/146459l.jpg'},
-    {title:'The Ancient Magus Bride S3',genre:'Fantasy / Romance',score:'8.4',day:'Thứ 4',ep:'Ep 3/13',status:'airing',img:'https://cdn.myanimelist.net/images/anime/3/88476l.jpg'},
-    {title:'Vinland Saga Season 3',genre:'Historical / Action',score:'—',day:'Tháng 8',ep:'Sắp ra',status:'soon',img:'https://cdn.myanimelist.net/images/anime/1500/103005l.jpg'},
+    {title:'Chainsaw Man Part 3',genre:'Action / Dark Fantasy',score:'9.4',day:'Thứ 3',ep:'Ep 3/12',status:'airing',img:'/assets/img/5a2451e4ea-126216l.jpg'},
+    {title:'Re:Zero Season 4',genre:'Isekai / Drama',score:'9.1',day:'Thứ 4',ep:'Ep 12/19',status:'airing',img:'/assets/img/7402a5d53f-rezero-cover.jpg'},
+    {title:'Frieren Season 2',genre:'Fantasy / Slice of Life',score:'9.2',day:'Thứ 4',ep:'Ep 5/24',status:'airing',img:'/assets/img/4a7324f467-138006l.jpg'},
+    {title:'Solo Leveling Season 3',genre:'Action / Isekai',score:'9.0',day:'Thứ 6',ep:'Ep 2/13',status:'airing',img:'/assets/img/4eddd32871-142390l.jpg'},
+    {title:'Bleach: TYBW Part 5',genre:'Action / Shonen',score:'8.9',day:'Thứ 7',ep:'Ep 1/13',status:'airing',img:'/assets/img/a563c981e0-135431l.jpg'},
+    {title:'Dungeon Meshi S2',genre:'Fantasy / Comedy',score:'8.8',day:'Thứ 5',ep:'Ep 6/13',status:'airing',img:'/assets/img/c76fab236e-142478l.jpg'},
+    {title:'Negai no Astro',genre:'Sci-Fi / Adventure',score:'—',day:'Tháng 7',ep:'Sắp ra',status:'soon',img:'/assets/img/34a9559c3e-117507l.jpg'},
+    {title:'Kaiju No.8 Season 2',genre:'Action / Sci-Fi',score:'8.6',day:'Thứ 2',ep:'Ep 4/12',status:'airing',img:'/assets/img/064c22bc8c-140362l.jpg'},
+    {title:'Sakamoto Days',genre:'Action / Comedy',score:'8.5',day:'Thứ 6',ep:'Ep 7/12',status:'airing',img:'/assets/img/53434489e9-146459l.jpg'},
+    {title:'The Ancient Magus Bride S3',genre:'Fantasy / Romance',score:'8.4',day:'Thứ 4',ep:'Ep 3/13',status:'airing',img:'/assets/img/ac2b306f69-88476l.jpg'},
+    {title:'Vinland Saga Season 3',genre:'Historical / Action',score:'—',day:'Tháng 8',ep:'Sắp ra',status:'soon',img:'/assets/img/e1e752520f-103005l.jpg'},
   ],
   spring:[
-    {title:'Demon Slayer: Infinity Castle',genre:'Action / Dark Fantasy',score:'9.8',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1286/99889l.jpg'},
-    {title:'Jujutsu Kaisen Final Arc',genre:'Action / Supernatural',score:'9.5',day:'Hoàn tất',ep:'24/24 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1792/138022l.jpg'},
-    {title:'Metallic Rouge',genre:'Sci-Fi / Mecha',score:'7.9',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1859/140210l.jpg'},
-    {title:'Wind Breaker',genre:'Sports / Action',score:'8.3',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1438/141816l.jpg'},
-    {title:'Mushoku Tensei Season 3',genre:'Isekai / Fantasy',score:'9.1',day:'Hoàn tất',ep:'12/12 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1530/117776l.jpg'},
+    {title:'Demon Slayer: Infinity Castle',genre:'Action / Dark Fantasy',score:'9.8',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/0feb0c5f50-99889l.jpg'},
+    {title:'Jujutsu Kaisen Final Arc',genre:'Action / Supernatural',score:'9.5',day:'Hoàn tất',ep:'24/24 Ep',status:'done',img:'/assets/img/a4d82e012d-138022l.jpg'},
+    {title:'Metallic Rouge',genre:'Sci-Fi / Mecha',score:'7.9',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/1398450367-140210l.jpg'},
+    {title:'Wind Breaker',genre:'Sports / Action',score:'8.3',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/7fe07557d5-141816l.jpg'},
+    {title:'Mushoku Tensei Season 3',genre:'Isekai / Fantasy',score:'9.1',day:'Hoàn tất',ep:'12/12 Ep',status:'done',img:'/assets/img/93dc86c38d-117776l.jpg'},
   ],
   winter:[
-    {title:'Shangri-La Frontier S2',genre:'Isekai / Game',score:'8.7',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1500/139931l.jpg'},
-    {title:'Sousou no Frieren',genre:'Fantasy',score:'9.3',day:'Hoàn tất',ep:'28/28 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1015/138006l.jpg'},
-    {title:'Mashle S2',genre:'Comedy / Fantasy',score:'8.2',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1912/140804l.jpg'},
-    {title:'Ore dake Level Up na Ken',genre:'Action / Isekai',score:'8.8',day:'Hoàn tất',ep:'12/12 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1801/142390l.jpg'},
-    {title:'Dungeon Meshi',genre:'Fantasy / Comedy',score:'9.0',day:'Hoàn tất',ep:'24/24 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1711/142478l.jpg'},
+    {title:'Shangri-La Frontier S2',genre:'Isekai / Game',score:'8.7',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/6247a8245a-139931l.jpg'},
+    {title:'Sousou no Frieren',genre:'Fantasy',score:'9.3',day:'Hoàn tất',ep:'28/28 Ep',status:'done',img:'/assets/img/4a7324f467-138006l.jpg'},
+    {title:'Mashle S2',genre:'Comedy / Fantasy',score:'8.2',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/f2c03777f8-140804l.jpg'},
+    {title:'Ore dake Level Up na Ken',genre:'Action / Isekai',score:'8.8',day:'Hoàn tất',ep:'12/12 Ep',status:'done',img:'/assets/img/4eddd32871-142390l.jpg'},
+    {title:'Dungeon Meshi',genre:'Fantasy / Comedy',score:'9.0',day:'Hoàn tất',ep:'24/24 Ep',status:'done',img:'/assets/img/c76fab236e-142478l.jpg'},
   ],
   fall:[
-    {title:'Assassination Classroom S3',genre:'Shonen / Comedy',score:'8.6',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/5/75639l.jpg'},
-    {title:'Spy x Family Season 3',genre:'Comedy / Action',score:'8.5',day:'Hoàn tất',ep:'12/12 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1441/122795l.jpg'},
-    {title:'Dr. Stone Season 4',genre:'Sci-Fi / Adventure',score:'8.7',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1613/102576l.jpg'},
-    {title:'Oshi no Ko Season 2',genre:'Drama / Idol',score:'9.0',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1812/134736l.jpg'},
-    {title:'Blue Lock Season 2 Part 2',genre:'Sports / Action',score:'8.9',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'https://cdn.myanimelist.net/images/anime/1258/126929l.jpg'},
+    {title:'Assassination Classroom S3',genre:'Shonen / Comedy',score:'8.6',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/b7622e1073-75639l.jpg'},
+    {title:'Spy x Family Season 3',genre:'Comedy / Action',score:'8.5',day:'Hoàn tất',ep:'12/12 Ep',status:'done',img:'/assets/img/a7f0eee58e-122795l.jpg'},
+    {title:'Dr. Stone Season 4',genre:'Sci-Fi / Adventure',score:'8.7',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/ea478ecebf-102576l.jpg'},
+    {title:'Oshi no Ko Season 2',genre:'Drama / Idol',score:'9.0',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/d137b0931c-134736l.jpg'},
+    {title:'Blue Lock Season 2 Part 2',genre:'Sports / Action',score:'8.9',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/a5b2a5cd39-126929l.jpg'},
   ],
 };
+function resolveAnimeHref(title){
+  return '/anime-detail.html?t=' + encodeURIComponent(title);
+}
+
 function renderAnime(season){
   const grid=document.getElementById('anime-grid');
   grid.innerHTML=ANIME[season].map(a=>`
-    <article class="anime-card">
+    <a href="${resolveAnimeHref(a.title)}" class="anime-card">
       <div class="an-poster">
         <img src="${a.img}" alt="${a.title}" loading="lazy"/>
         <span class="an-ep">${a.ep}</span>
@@ -758,46 +735,45 @@ function renderAnime(season){
         <div class="an-title">${a.title}</div>
         <div class="an-meta"><span class="an-score-num">${a.score}</span><span class="an-day">${a.day}</span></div>
       </div>
-    </article>`).join('');
+    </a>`).join('');
 }
 renderAnime('summer');
 function setTab(btn,season){document.querySelectorAll('.s-tab').forEach(t=>t.classList.remove('on'));btn.classList.add('on');renderAnime(season);}
+function scrollAnime(dir){
+  const grid=document.getElementById('anime-grid');
+  const card=grid.querySelector('.anime-card');
+  const step=card?(card.getBoundingClientRect().width+3)*2:400;
+  grid.scrollBy({left:dir*step,behavior:'smooth'});
+}
 function toggleMobileNav(){const nav=document.getElementById('mobileNav');const ham=document.getElementById('hamBtn');const open=nav.classList.toggle('open');ham.classList.toggle('open',open);document.body.style.overflow=open?'hidden':'';}
 function openSearch(){document.getElementById('searchOverlay').classList.add('open');setTimeout(()=>document.getElementById('searchInput').focus(),50);}
 function closeSearch(){document.getElementById('searchOverlay').classList.remove('open');document.getElementById('searchInput').value='';}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSearch();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch();}});
 document.getElementById('searchOverlay').addEventListener('click',function(e){if(e.target===this)closeSearch();});
-const T={
-  vi:{cta:'Subscribe',sideHead:'Nổi bật hôm nay',hTag:'Breaking',hTime:'2 giờ trước',hRead:'Đọc toàn bài',hTitle:'Elden Ring <em>DLC 2</em>: Shadow of the Erdtree II<br>FromSoftware xác nhận phát hành Q4 2026',hSub:'FromSoftware bất ngờ công bố DLC tiếp theo tại Summer Game Fest. Người chơi sẽ khám phá vùng đất hoàn toàn mới ngoài Lands Between với bosses và vũ khí chưa từng thấy.',nlTitle:'Không bỏ lỡ tin tức game và anime châu Á',nlSub:'Tổng hợp hàng ngày lúc 8:00 sáng · chỉ những tin quan trọng nhất, không spam.',nlLabel:'Địa chỉ email',nlBtn:'Đăng ký',nlNote:'Miễn phí · Hủy bất cứ lúc nào · Không spam'},
-  en:{cta:'Subscribe',sideHead:"Today's highlights",hTag:'Breaking',hTime:'2 hours ago',hRead:'Read full story',hTitle:'Elden Ring <em>DLC 2</em>: Shadow of the Erdtree II · FromSoftware Confirms Q4 2026 Release',hSub:'FromSoftware surprised the gaming world at Summer Game Fest. Players will explore an entirely new region beyond the Lands Between with unseen bosses and weapons.',nlTitle:"Don't miss Asian gaming & anime news",nlSub:'Daily digest at 8:00 AM · only the most important stories, no spam.',nlLabel:'Email address',nlBtn:'Subscribe',nlNote:'Free · Cancel anytime · No spam'},
-};
-function setLang(l){
-  document.getElementById('bvi').classList.toggle('on',l==='vi');
-  document.getElementById('ben').classList.toggle('on',l==='en');
-  document.documentElement.lang=l;
-  const t=T[l];
-  ['cta-sub','side-head','h-tag','h-time','nl-title','nl-sub','nl-label','nl-btn','nl-note'].forEach(id=>{
-    const el=document.getElementById(id);
-    if(el)el.textContent=t[id.replace(/-([a-z])/g,(_,c)=>c.toUpperCase()).replace('ctaSub','cta').replace('sideHead','sideHead')];
-  });
-  document.getElementById('cta-sub').textContent=t.cta;
-  document.getElementById('side-head').textContent=t.sideHead;
-  document.getElementById('h-tag').textContent=t.hTag;
-  document.getElementById('h-time').textContent=t.hTime;
-  document.getElementById('h-read').querySelector('span').textContent=t.hRead;
-  document.getElementById('h-title').innerHTML=t.hTitle;
-  document.getElementById('h-sub').textContent=t.hSub;
-  document.getElementById('nl-title').textContent=t.nlTitle;
-  document.getElementById('nl-sub').textContent=t.nlSub;
-  document.getElementById('nl-label').textContent=t.nlLabel;
-  document.getElementById('nl-btn').textContent=t.nlBtn;
-  document.getElementById('nl-note').textContent=t.nlNote;
+
+
+async function handleSubscribe(e){e.preventDefault();
+var btn=document.getElementById('nl-btn'),inp=document.getElementById('nl-email'),note=document.getElementById('nl-note');
+var email=(inp.value||'').trim();if(!email)return;
+btn.disabled=true;btn.textContent='Đang gửi…';
+try{
+  var r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email})});
+  if(!r.ok)throw 0;
+  btn.textContent='✓ Đã đăng ký!';btn.style.background='var(--green)';inp.value='';
+  note.textContent='Cảm ơn bạn! Hẹn gặp ở bản tin 8:00 sáng.';
+}catch(_){
+  btn.textContent='Lỗi · thử lại';
+  note.textContent='Chưa gửi được — vui lòng thử lại sau ít phút.';
 }
-function handleSubscribe(e){e.preventDefault();const btn=document.getElementById('nl-btn');btn.textContent='✓ Đã đăng ký!';btn.style.background='var(--green)';setTimeout(()=>{btn.textContent='Đăng ký';btn.style.background='';},3000);}
+btn.disabled=false;
+setTimeout(function(){btn.textContent='Đăng ký';btn.style.background='';},4000);}
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}});},{threshold:.05,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 const barObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.rk-bar[data-w]').forEach(b=>{setTimeout(()=>{b.style.width=b.dataset.w},120);});barObs.unobserve(e.target);}});},{threshold:.1});
 document.querySelectorAll('.rk-card').forEach(c=>barObs.observe(c));
 </script>
+<script defer src="/assets/search.js"></script>
+<script defer src="/assets/enhance.js"></script>
+<script defer src="/assets/engage.js"></script>
 </body>
 </html>
