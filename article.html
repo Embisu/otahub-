@@ -5,13 +5,13 @@
 <title id="page-title">Tiêu đề bài viết · OtaHub</title>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" id="page-desc" content="Đọc bài viết mới nhất về game, anime và manga từ OtaHub — review chuyên sâu, tin tức nóng hổi, hướng dẫn chi tiết và phân tích chuyên môn được cập nhật mỗi ngày."/>
+<meta name="description" id="page-desc" content="Đọc bài viết mới nhất về game, anime và manga từ OtaHub, review chuyên sâu, tin tức nóng hổi, hướng dẫn chi tiết và phân tích chuyên môn được cập nhật mỗi ngày."/>
 <meta name="author" id="page-author" content="OtaHub"/>
 <link rel="canonical" id="page-canonical" href="https://otahub.asia/bai-viet/"/>
 <meta name="robots" content="noindex, follow"/>
 <meta property="og:type" content="article"/>
 <meta property="og:title" id="og-title" content="Tiêu đề bài viết · OtaHub"/>
-<meta property="og:description" id="og-desc" content="Đọc bài viết mới nhất về game, anime và manga từ OtaHub — review chuyên sâu, tin tức nóng hổi, hướng dẫn chi tiết và phân tích chuyên môn được cập nhật mỗi ngày."/>
+<meta property="og:description" id="og-desc" content="Đọc bài viết mới nhất về game, anime và manga từ OtaHub, review chuyên sâu, tin tức nóng hổi, hướng dẫn chi tiết và phân tích chuyên môn được cập nhật mỗi ngày."/>
 <meta property="og:url" id="og-url" content="https://otahub.asia/bai-viet/"/>
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
@@ -301,9 +301,9 @@ input,select,textarea{font-size:16px!important}
       <span class="am-read" id="readTime">⏱ 5 phút đọc</span>
     </div>
 
-    <!-- ARTICLE BODY — populated by Cloudflare Worker from Sanity portable text -->
+    <!-- ARTICLE BODY, populated by Cloudflare Worker from Sanity portable text -->
     <div class="art-body" id="artBody">
-      <p>Nội dung bài viết sẽ được tải tự động từ Sanity CMS qua Cloudflare Worker. Template này là giao diện tĩnh — khi deploy lên Cloudflare Pages cùng với function <code>/functions/bai-viet/[slug].js</code>, nội dung sẽ được inject vào div <code>#artBody</code> này.</p>
+      <p>Nội dung bài viết sẽ được tải tự động từ Sanity CMS qua Cloudflare Worker. Template này là giao diện tĩnh, khi deploy lên Cloudflare Pages cùng với function <code>/functions/bai-viet/[slug].js</code>, nội dung sẽ được inject vào div <code>#artBody</code> này.</p>
 
       <h2>Hướng dẫn setup (dành cho developer)</h2>
       <p>Trang này hoạt động theo mô hình SSR (Server-Side Rendering) nhẹ qua Cloudflare Workers:</p>
@@ -317,7 +317,7 @@ input,select,textarea{font-size:16px!important}
       <blockquote>Khi chưa có Cloudflare Worker, bạn có thể dùng JavaScript fetch() trực tiếp trong trang này để load nội dung từ Sanity. Không cần SSR cho giai đoạn đầu.</blockquote>
 
       <h2>Sanity Portable Text Rendering</h2>
-      <p>Nội dung từ Sanity được lưu dưới dạng Portable Text — cần convert sang HTML trước khi render. Sử dụng thư viện <code>@portabletext/to-html</code> trong Cloudflare Worker.</p>
+      <p>Nội dung từ Sanity được lưu dưới dạng Portable Text, cần convert sang HTML trước khi render. Sử dụng thư viện <code>@portabletext/to-html</code> trong Cloudflare Worker.</p>
     </div>
 
     <!-- VERDICT (cho bài review) -->
@@ -349,8 +349,8 @@ input,select,textarea{font-size:16px!important}
       <div class="related-title">Bài viết liên quan</div>
       <div class="related-grid" id="relatedGrid">
         <a href="article.html" class="rel-card">
-          <img class="rel-thumb" src="/assets/img/2450f9d052-img.jpg" alt="Elden Ring: Shadow of the Erdtree — Review sau 40 giờ chơi" loading="lazy"/>
-          <div class="rel-info"><div class="rel-cat">Gaming</div><div class="rel-title">Elden Ring: Shadow of the Erdtree — Review sau 40 giờ chơi</div></div>
+          <img class="rel-thumb" src="/assets/img/2450f9d052-img.jpg" alt="Elden Ring: Shadow of the Erdtree, Review sau 40 giờ chơi" loading="lazy"/>
+          <div class="rel-info"><div class="rel-cat">Gaming</div><div class="rel-title">Elden Ring: Shadow of the Erdtree, Review sau 40 giờ chơi</div></div>
         </a>
         <a href="article.html" class="rel-card">
           <img class="rel-thumb" src="/assets/img/b3d6294196-img.jpg" alt="Frieren: Beyond Journey's End kết thúc như thế nào?" loading="lazy"/>
@@ -375,20 +375,20 @@ input,select,textarea{font-size:16px!important}
     <div class="sidebar-block">
       <div class="sb-title">Đọc nhiều nhất</div>
       <a href="article.html" class="sb-art">
-        <img class="sb-thumb" src="/assets/img/05cef7e2e1-img.jpg" alt="Black Myth: Wukong — Kiệt tác từ Trung Quốc đã đến" loading="lazy"/>
-        <div class="sb-info"><div class="sb-cat">Gaming</div><div class="sb-t">Black Myth: Wukong — Kiệt tác từ Trung Quốc đã đến</div></div>
+        <img class="sb-thumb" src="/assets/img/05cef7e2e1-img.jpg" alt="Black Myth: Wukong, Kiệt tác từ Trung Quốc đã đến" loading="lazy"/>
+        <div class="sb-info"><div class="sb-cat">Gaming</div><div class="sb-t">Black Myth: Wukong, Kiệt tác từ Trung Quốc đã đến</div></div>
       </a>
       <a href="article.html" class="sb-art">
-        <img class="sb-thumb" src="/assets/img/ba0e4950ea-img.jpg" alt="Demon Slayer Season 4 — Hashira Training Arc" loading="lazy"/>
-        <div class="sb-info"><div class="sb-cat">Anime</div><div class="sb-t">Demon Slayer Season 4 — Hashira Training Arc</div></div>
+        <img class="sb-thumb" src="/assets/img/ba0e4950ea-img.jpg" alt="Demon Slayer Season 4, Hashira Training Arc" loading="lazy"/>
+        <div class="sb-info"><div class="sb-cat">Anime</div><div class="sb-t">Demon Slayer Season 4, Hashira Training Arc</div></div>
       </a>
       <a href="article.html" class="sb-art">
-        <img class="sb-thumb" src="/assets/img/8f49b4e964-img.jpg" alt="One Piece 1113: Luffy vs Gorosei — trận chiến đỉnh cao" loading="lazy"/>
-        <div class="sb-info"><div class="sb-cat">Manga</div><div class="sb-t">One Piece 1113: Luffy vs Gorosei — trận chiến đỉnh cao</div></div>
+        <img class="sb-thumb" src="/assets/img/8f49b4e964-img.jpg" alt="One Piece 1113: Luffy vs Gorosei, trận chiến đỉnh cao" loading="lazy"/>
+        <div class="sb-info"><div class="sb-cat">Manga</div><div class="sb-t">One Piece 1113: Luffy vs Gorosei, trận chiến đỉnh cao</div></div>
       </a>
       <a href="article.html" class="sb-art">
-        <img class="sb-thumb" src="/assets/img/d5101c9d72-img.jpg" alt="Stellar Blade — review sau khi patch 1.05" loading="lazy"/>
-        <div class="sb-info"><div class="sb-cat">Review</div><div class="sb-t">Stellar Blade — review sau khi patch 1.05</div></div>
+        <img class="sb-thumb" src="/assets/img/d5101c9d72-img.jpg" alt="Stellar Blade, review sau khi patch 1.05" loading="lazy"/>
+        <div class="sb-info"><div class="sb-cat">Review</div><div class="sb-t">Stellar Blade, review sau khi patch 1.05</div></div>
       </a>
     </div>
 
