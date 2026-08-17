@@ -1,5 +1,24 @@
 /* OtaHub — reaction + bình luận, lưu qua Cloudflare KV (functions/api/engagement.js) */
 (function(){
+document.addEventListener('error',function(event){
+  var image=event.target;
+  if(image&&image.tagName==='IMG'&&!image.dataset.otFallback){
+    image.dataset.otFallback='1';
+    image.src='/assets/img/placeholder.svg';
+  }
+},true);
+var pagePath=location.pathname||'/';
+var english=/^\/en(?:\/|$)/.test(pagePath);
+var viPath=english?(pagePath.replace(/^\/en/,'')||'/'):pagePath;
+var enPath=english?pagePath:(pagePath==='/'?'/en/':'/en'+pagePath);
+var langStyle=document.createElement('style');
+langStyle.textContent='.ot-lang-switch{position:fixed;top:72px;right:18px;z-index:10000;display:flex;overflow:hidden;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(8,5,24,.9);box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(12px)}.ot-lang-switch a{min-width:42px;padding:8px 11px;color:#aaa6bd;text-decoration:none;text-align:center;font:700 11px/1 system-ui,sans-serif;letter-spacing:.08em}.ot-lang-switch a.active{background:#ff3080;color:#fff}.ot-lang-switch a:focus-visible{outline:2px solid #00e5ff;outline-offset:-2px}@media(max-width:720px){.ot-lang-switch{top:62px;right:10px}.ot-lang-switch a{min-width:38px;padding:7px 9px}}';
+document.head.appendChild(langStyle);
+var langSwitch=document.createElement('nav');
+langSwitch.className='ot-lang-switch';
+langSwitch.setAttribute('aria-label',english?'Language selector':'Chọn ngôn ngữ');
+langSwitch.innerHTML='<a href="'+viPath+'" hreflang="vi"'+(english?'':' class="active"')+'>VI</a><a href="'+enPath+'" hreflang="en"'+(english?' class="active"':'')+'>EN</a>';
+document.body.appendChild(langSwitch);
 var row=document.querySelector('.share-row');
 if(!row)return;
 var slug=(location.pathname.replace(/^\//,'')||'index.html').split('?')[0];
