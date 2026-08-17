@@ -3,6 +3,17 @@
 document.addEventListener('error',function(event){
   var image=event.target;
   if(image&&image.tagName==='IMG'&&!image.dataset.otFallback){
+    var original=image.dataset.otOriginal||image.currentSrc||image.src;
+    var attempts=Number(image.dataset.otRetries||0);
+    if(original&&original.indexOf('/assets/img/placeholder.svg')===-1&&attempts<2){
+      image.dataset.otOriginal=original;
+      image.dataset.otRetries=String(attempts+1);
+      window.setTimeout(function(){
+        var separator=original.indexOf('?')===-1?'?':'&';
+        image.src=original+separator+'retry='+(attempts+1)+'-'+Date.now();
+      },300*(attempts+1));
+      return;
+    }
     image.dataset.otFallback='1';
     image.src='/assets/img/placeholder.svg';
   }

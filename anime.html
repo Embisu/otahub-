@@ -2217,16 +2217,18 @@ function renderAiring(season){
   const data=SEASONS[season];
 
 
-  grid.innerHTML=data.map(a=>`
+  grid.innerHTML=data.map(a=>{
+    const imageUrl=a.img.includes('?')?a.img:`${a.img}?v=20260817f`;
+    return `
 
 
     <a class="a-card" href="/anime-detail.html?t=${encodeURIComponent(a.title)}" style="text-decoration:none">
 
 
-      <div class="a-poster" style="--poster:url('${a.img}?v=20260817c')">
+      <div class="a-poster" style="--poster:url('${imageUrl}')">
 
 
-        <img class="ap-img" src="${a.img}?v=20260817c" alt="${a.title}" loading="lazy"/>
+        <img class="ap-img" src="${imageUrl}" alt="${a.title}" loading="eager" decoding="async"/>
 
 
         <span class="ap-ep">${a.ep}</span>
@@ -2265,7 +2267,7 @@ function renderAiring(season){
     </a>
 
 
-  `).join('');
+  `}).join('');
 
 
 }
@@ -2442,7 +2444,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSearch(
 <script defer src="/assets/enhance.js"></script>
 
 
-<script defer src="/assets/engage.js?v=20260817c"></script>
+<script defer src="/assets/engage.js?v=20260817f"></script>
 
 
 </body>
