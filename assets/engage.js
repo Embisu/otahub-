@@ -19,6 +19,23 @@ langSwitch.className='ot-lang-switch';
 langSwitch.setAttribute('aria-label',english?'Language selector':'Chọn ngôn ngữ');
 langSwitch.innerHTML='<a href="'+viPath+'" hreflang="vi"'+(english?'':' class="active"')+'>VI</a><a href="'+enPath+'" hreflang="en"'+(english?' class="active"':'')+'>EN</a>';
 document.body.appendChild(langSwitch);
+var reviewArticle=document.querySelector('.art-body');
+if(reviewArticle&&document.querySelector('.score-box')&&!reviewArticle.querySelector('.review-method')){
+  var schemaText=Array.prototype.map.call(document.querySelectorAll('script[type="application/ld+json"]'),function(s){return s.textContent||'';}).join(' ');
+  var reviewType=/VideoGame/i.test(schemaText)?'game':(/Book|Manga|CreativeWork/i.test(schemaText)?'manga':'anime');
+  var criteria={
+    game:english?['Core gameplay and controls','Systems, progression, and mission design','Art direction and sound','Performance and technical stability','Value and replayability']:['Gameplay cốt lõi và cảm giác điều khiển','Hệ thống, tiến trình và thiết kế nhiệm vụ','Mỹ thuật và âm thanh','Hiệu năng và độ ổn định kỹ thuật','Giá trị nội dung và khả năng chơi lại'],
+    anime:english?['Screenplay, structure, and pacing','Character development','Animation and visual direction','Music, voice acting, and sound design','Adaptation quality and emotional impact']:['Kịch bản, cấu trúc và nhịp kể','Phát triển nhân vật','Animation và chỉ đạo hình ảnh','Âm nhạc, lồng tiếng và thiết kế âm thanh','Chất lượng chuyển thể và tác động cảm xúc'],
+    manga:english?['Narrative structure and pacing','Character development','Artwork and panel composition','Themes and authorial voice','Consistency across chapters or volumes']:['Cấu trúc truyện và nhịp kể','Phát triển nhân vật','Nét vẽ và bố cục khung tranh','Chủ đề và dấu ấn tác giả','Độ ổn định giữa các chương hoặc tập']
+  }[reviewType];
+  var method=document.createElement('section');
+  method.className='review-method';
+  method.innerHTML=english?'<h2>Review method and scoring criteria</h2><p>OtaHub reviews are written to support a practical viewing, reading, or purchasing decision. The editorial score reflects the evidence and analysis presented in the article; it is not a public aggregate.</p><ul>'+criteria.map(function(c){return '<li>'+c+'</li>';}).join('')+'</ul><h3>How to read the score</h3><p><strong>9.0–10:</strong> exceptional; <strong>8.0–8.9:</strong> strongly recommended; <strong>7.0–7.9:</strong> good with notable limitations; <strong>below 7:</strong> substantial trade-offs. Scores may be revised after major updates or a completed season.</p>':'<h2>Phương pháp và tiêu chí đánh giá</h2><p>Review của OtaHub được biên tập nhằm hỗ trợ quyết định xem, đọc hoặc mua một cách thực tế. Điểm số phản ánh bằng chứng và phân tích được trình bày trong bài; đây không phải điểm tổng hợp từ cộng đồng.</p><ul>'+criteria.map(function(c){return '<li>'+c+'</li>';}).join('')+'</ul><h3>Cách đọc điểm số</h3><p><strong>9,0–10:</strong> xuất sắc; <strong>8,0–8,9:</strong> rất đáng trải nghiệm; <strong>7,0–7,9:</strong> tốt nhưng có hạn chế đáng chú ý; <strong>dưới 7:</strong> tồn tại đánh đổi lớn. Điểm số có thể được cập nhật sau bản vá quan trọng hoặc khi mùa phim kết thúc.</p>';
+  reviewArticle.appendChild(method);
+  var methodStyle=document.createElement('style');
+  methodStyle.textContent='.review-method{margin:38px 0 12px;padding:24px 26px;background:rgba(0,229,255,.045);border:1px solid rgba(0,229,255,.18);border-left:3px solid #00e5ff}.review-method h2{margin:0 0 12px}.review-method h3{font-family:var(--fd);font-size:18px;margin:22px 0 8px;color:var(--white)}.review-method p{margin:0 0 12px}.review-method ul{margin:14px 0 18px;padding-left:22px}.review-method li{margin:7px 0;line-height:1.65}@media(max-width:600px){.review-method{padding:20px 18px}}';
+  document.head.appendChild(methodStyle);
+}
 var row=document.querySelector('.share-row');
 if(!row)return;
 var slug=(location.pathname.replace(/^\//,'')||'index.html').split('?')[0];
