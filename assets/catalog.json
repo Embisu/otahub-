@@ -54,6 +54,46 @@
     ],
     "sources":[{"name":"CloverWorks: staff and production credits","url":"https://en.cloverworks.co.jp/works/spy-family/"},{"name":"Spy x Family official TV anime site","url":"https://spy-family.net/tvseries/"}]
   },
+  "Elden Ring: Shadow of the Erdtree": {
+    "type":"game", "img":"/assets/img/a7f47ed998-header.jpg", "score":"9.6", "genre":"Action RPG", "studio":"FromSoftware / Bandai Namco", "platforms":"PC / PlayStation 4 / PlayStation 5 / Xbox One / Xbox Series", "release":"21/06/2024", "status":"Đã phát hành", "statusEn":"Released", "generated":true,
+    "hook":"Một bản mở rộng quy mô lớn, tái cấu trúc nhịp khám phá của Elden Ring trong vùng đất dày đặc và khắc nghiệt hơn.",
+    "hookEn":"A large expansion that compresses Elden Ring's exploration loop into a denser and more demanding new land.",
+    "story":[
+      "Shadow of the Erdtree đưa Tarnished đến Land of Shadow theo dấu Miquella. Đây là bản mở rộng của Elden Ring, không phải một phần II độc lập. Cấu trúc bản đồ nhiều tầng khiến đường đi, hầm ngục nhỏ và khu vực lớn liên kết chặt hơn thế giới gốc, đồng thời vẫn giữ cảm giác tự khám phá mà không cần danh sách nhiệm vụ dẫn đường.",
+      "Combat tiếp tục dựa trên stamina, khoảng né và khả năng đọc động tác, nhưng số vũ khí, phép và Ash of War mới mở rộng đáng kể cách xây dựng nhân vật. Hệ thống Scadutree Blessing tạo riêng một trục tiến triển trong vùng đất mới: khám phá kỹ giúp người chơi chịu đòn và gây sát thương tốt hơn, thay vì chỉ dựa vào cấp độ cũ.",
+      "Boss là điểm mạnh lẫn rào cản lớn nhất. Những trận hay nhất có hình ảnh, âm nhạc và nhịp chuyển phase xuất sắc; một số chuỗi tấn công dài và hiệu ứng dày có thể làm giảm khả năng đọc tình huống. Người chơi nên xem việc tìm mảnh Scadutree, đổi trang bị và dùng Spirit Ash là một phần thiết kế, không phải dấu hiệu chơi sai.",
+      "Thiết kế nghệ thuật kể chuyện qua địa hình, kiến trúc và vị trí vật phẩm tốt hơn phần giải thích trực tiếp. Đổi lại, tuyến truyện của Miquella vẫn cần ghép từ lời thoại và mô tả vật phẩm; người chỉ đi theo đường chính có thể bỏ lỡ bối cảnh quan trọng. Hiệu năng cũng phụ thuộc nền tảng và cấu hình, nên cần kiểm tra yêu cầu hệ thống trước khi mua.",
+      "Kết luận: 9,6/10. Shadow of the Erdtree đáng giá nhờ mật độ khám phá cao, build đa dạng và những cao trào mạnh, nhưng độ khó cuối game cùng cách kể chuyện gián tiếp không phù hợp mọi người. Nên hoàn thành phần lớn Elden Ring, chuẩn bị build ổn định và tiếp cận Land of Shadow với tâm thế khám phá thay vì chạy thẳng đến boss."
+    ],
+    "storyEn":[
+      "Shadow of the Erdtree sends the Tarnished into the Land of Shadow on Miquella's trail. It is an expansion for Elden Ring, not a standalone Part II. Its layered map links routes, minor dungeons, and major regions more tightly than the base game while preserving unguided discovery.",
+      "Combat still depends on stamina, spacing, and animation reading, but new weapon types, spells, and Ashes of War materially expand build options. Scadutree Blessing adds a separate progression axis inside the expansion: thorough exploration improves damage and defense instead of making legacy levels the only answer.",
+      "Bosses are both the greatest strength and the largest barrier. The best encounters combine visual direction, music, and strong phase transitions; some long strings and dense effects reduce readability. Finding Scadutree Fragments, changing equipment, and using Spirit Ashes should be treated as intended systems.",
+      "Environmental art communicates history through terrain, architecture, and item placement. The trade-off is that Miquella's story still requires assembling dialogue and descriptions, so a direct route misses context. Performance varies by platform and hardware, making system-requirement checks important before purchase.",
+      "Verdict: 9.6/10. Shadow of the Erdtree earns its score through dense exploration, build variety, and memorable peaks, but its late difficulty and indirect narrative are not universal. Finish much of Elden Ring, bring a stable build, and explore rather than rushing from boss to boss."
+    ],
+    "sources":[{"name":"Bandai Namco: Shadow of the Erdtree official page","url":"https://en.bandainamcoent.eu/elden-ring/elden-ring/shadow-of-the-erdtree"},{"name":"ELDEN RING official site","url":"https://en.bandainamcoent.eu/elden-ring/elden-ring"}]
+  },
+  "Monster Hunter Wilds": {
+    "type":"game", "img":"/assets/img/587e72813c-header.jpg", "score":"9.1", "genre":"Action / Hunting / Co-op", "studio":"Capcom", "platforms":"PC / PlayStation 5 / Xbox Series", "release":"28/02/2025", "status":"Đã phát hành", "statusEn":"Released", "generated":true,
+    "hook":"Một game săn quái ưu tiên hệ sinh thái sống động, chiến đấu có trọng lượng và phối hợp co-op, nhưng đòi hỏi thời gian học vũ khí.",
+    "hookEn":"A hunting game built around living ecosystems, weighty combat, and co-op, with a meaningful weapon-learning curve.",
+    "story":[
+      "Monster Hunter Wilds đặt người chơi vào Forbidden Lands, nơi thời tiết và đàn quái thay đổi trạng thái của từng khu vực. Vòng lặp cốt lõi vẫn là theo dấu, săn, chế tạo trang bị rồi thử mục tiêu khó hơn, nhưng chuyển cảnh giữa căn cứ và khu săn liền mạch hơn giúp hành trình bớt bị chia vụn.",
+      "Mỗi loại vũ khí hoạt động gần như một bộ kỹ năng riêng. Focus Mode hỗ trợ nhắm vào vết thương và điều chỉnh hướng tấn công, nhưng không thay thế việc học animation, khoảng cách và thời điểm né. Người mới nên chọn một vũ khí, luyện ở khu huấn luyện rồi mới đánh giá độ sâu combat.",
+      "Co-op là điểm hấp dẫn rõ rệt: vai trò không bị khóa cứng nhưng nhóm biết phối hợp bẫy, trạng thái và vị trí sẽ rút ngắn trận săn. Trải nghiệm solo vẫn đầy đủ, song giao diện nhiều lớp và lượng vật phẩm ban đầu có thể gây ngợp. Một vài nhiệm vụ cốt truyện cũng giới hạn nhịp ghép đội.",
+      "Hình ảnh hệ sinh thái, chuyển đổi thời tiết và phản ứng của đàn quái tạo cảm giác thế giới vận hành ngoài người chơi. Đổi lại, tải CPU/GPU cao khiến hiệu năng PC phụ thuộc mạnh vào cấu hình và bản cập nhật. Trước khi mua, nên kiểm tra benchmark gần với phần cứng thực tế thay vì chỉ nhìn cấu hình tối thiểu.",
+      "Kết luận: 9,1/10. Wilds phù hợp người thích combat có chiều sâu, săn lặp để tối ưu build và chơi cùng bạn bè. Điểm trừ là rào cản nhập môn, giao diện dày và yêu cầu hiệu năng. Nếu chỉ muốn campaign ngắn, ít lặp, đây không phải lựa chọn lý tưởng; nếu thích làm chủ một hệ vũ khí, giá trị chơi lâu dài rất cao."
+    ],
+    "storyEn":[
+      "Monster Hunter Wilds takes players into the Forbidden Lands, where weather and monster herds change each locale. The central loop remains tracking, hunting, crafting, and challenging stronger targets, while smoother transitions reduce the separation between camp and field.",
+      "Each weapon behaves almost like its own ruleset. Focus Mode helps target wounds and redirect attacks, but it does not replace learning animation commitments, distance, and evasion timing. New players should choose one weapon and train before judging combat depth.",
+      "Co-op is a clear strength. Roles are flexible, yet groups coordinating traps, status effects, and positioning shorten difficult hunts. Solo remains viable, although layered interfaces and early item volume can overwhelm. Some story sequences also interrupt seamless matchmaking.",
+      "Ecosystem visuals, weather shifts, and herd behavior make the world feel active beyond the player. The trade-off is heavy CPU and GPU demand, so PC performance depends strongly on hardware and updates. Check benchmarks close to your actual configuration before purchase.",
+      "Verdict: 9.1/10. Wilds suits players who enjoy deep combat, repeated hunts for build optimization, and co-op. Its costs are onboarding friction, interface density, and performance demands. It is less suitable for a short, repetition-free campaign; weapon mastery provides excellent long-term value."
+    ],
+    "sources":[{"name":"Monster Hunter Wilds official site","url":"https://www.monsterhunter.com/wilds/en-us/"},{"name":"Capcom game information","url":"https://www.capcom.co.jp/ir/english/business/title.html"}]
+  },
   "Solo Leveling Season 2": {
     "type":"anime", "img":"/assets/img/1619ce791a-solo-leveling-hero.jpg", "score":"7.8", "genre":"Action / Fantasy", "studio":"A-1 Pictures", "release":"04/01/2025", "status":"Đã phát sóng", "statusEn":"Aired", "generated":true,
     "story":[

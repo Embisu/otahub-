@@ -35,6 +35,8 @@ var TITLE_IMAGE={
 
 var params=new URLSearchParams(location.search);
 var qTitle=params.get('t')||'';
+var TITLE_ALIAS={'Elden Ring: Shadow of Erdtree II':'Elden Ring: Shadow of the Erdtree'};
+qTitle=TITLE_ALIAS[qTitle]||qTitle;
 
 function esc(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML;}
 
@@ -91,6 +93,7 @@ function renderEmpty(){
 
 function renderEntry(title, entry, catalog){
   if(EN&&entry.storyEn){entry=Object.assign({},entry,{story:entry.storyEn,desc:entry.descEn||entry.storyEn[0],hook:entry.hookEn||entry.storyEn[0],status:entry.statusEn||entry.status});}
+  entry.desc=entry.desc||entry.hook||(entry.story&&entry.story[0])||title;
   document.title=title+' · Thông tin & Điểm số · OtaHub';
   var descEl=document.querySelector('meta[name="description"]');
   if(descEl)descEl.setAttribute('content', entry.desc.slice(0,155));
@@ -164,7 +167,7 @@ function renderEntry(title, entry, catalog){
 if(!qTitle){
   renderEmpty();
 }else{
-  fetch('/assets/catalog.json?v=20260817d').then(function(r){return r.json();}).then(function(catalog){
+  fetch('/assets/catalog.json?v=20260818c').then(function(r){return r.json();}).then(function(catalog){
     var found=findEntry(catalog, qTitle);
     if(!found){renderEntry(qTitle, generatedEntry(qTitle), catalog);return;}
     renderEntry(found[0], found[1], catalog);

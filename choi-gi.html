@@ -206,7 +206,7 @@
 html{scroll-behavior:smooth}
 
 
-body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:300;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+html,body{overflow-x:hidden}body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;
 
 
   background-image:
@@ -660,6 +660,8 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 
 
   transition:background .4s var(--ease);
+
+  background-position:center;background-size:cover;background-repeat:no-repeat;
 
 
 }
@@ -1814,7 +1816,7 @@ const GAMES = [
   // PC / Console
 
 
-  {id:'elden-ring',name:'Elden Ring',dev:'FromSoftware · 2022',platform:'pc',genre:'Action RPG',moods:['action','story','challenge','explore'],time:'60-150h',score:9.7,icon:'⚔️',color:['#1a0c08','#3d1a00'],why:'Thế giới open-world đẹp nhất từng được tạo ra. Mỗi góc khuất đều ẩn chứa bí mật. Khó nhưng thỏa mãn vô cùng.'},
+  {id:'elden-ring',name:'Elden Ring',dev:'FromSoftware · 2022',platform:'pc',genre:'Action RPG',moods:['action','story','challenge','explore'],time:'60-150h',score:9.7,img:'/assets/img/a7f47ed998-header.jpg',icon:'⚔️',color:['#1a0c08','#3d1a00'],why:'Thế giới open-world đẹp nhất từng được tạo ra. Mỗi góc khuất đều ẩn chứa bí mật. Khó nhưng thỏa mãn vô cùng.'},
 
 
   {id:'hades',name:'Hades',dev:'Supergiant Games · 2020',platform:'pc',genre:'Roguelite',moods:['quick','action','story'],time:'20-50h',score:9.3,icon:'🔱',color:['#1a0508','#3d0010'],why:'Roguelite hoàn hảo nhất từng có. Story kể qua từng lần chết, càng chơi càng muốn biết thêm. 1 tiếng hay 5 tiếng đều đã.'},
@@ -1826,10 +1828,10 @@ const GAMES = [
   {id:'cyberpunk',name:'Cyberpunk 2077',dev:'CD Projekt Red · 2020',platform:'pc',genre:'Action RPG',moods:['story','explore','action'],time:'50-100h',score:9.0,icon:'🤖',color:['#05050f','#0f0a28'],why:'Night City là thành phố game đẹp nhất của thập kỷ. Story Phantom Liberty cực hay. Giờ đã hoàn thiện sau 3 năm patch.'},
 
 
-  {id:'mhwilds',name:'Monster Hunter Wilds',dev:'Capcom · 2025',platform:'pc',genre:'Action',moods:['action','coop','challenge'],time:'80-300h',score:9.4,icon:'🗡️',color:['#0a0e05','#1a280a'],why:'Hunt monster cùng 3 người bạn, không có gì vui hơn thế. Wilds là đỉnh cao của series với thế giới sống động cực kỳ.'},
+  {id:'mhwilds',name:'Monster Hunter Wilds',dev:'Capcom · 2025',platform:'pc',genre:'Action',moods:['action','coop','challenge'],time:'80-300h',score:9.4,img:'/assets/img/587e72813c-header.jpg',icon:'🗡️',color:['#0a0e05','#1a280a'],why:'Hunt monster cùng 3 người bạn, không có gì vui hơn thế. Wilds là đỉnh cao của series với thế giới sống động cực kỳ.'},
 
 
-  {id:'bmw',name:'Black Myth: Wukong',dev:'Game Science · 2024',platform:'pc',genre:'Action RPG',moods:['action','story','challenge'],time:'30-50h',score:9.1,icon:'🐒',color:['#0a0805','#201004'],why:'Đồ họa đẹp nhất năm 2024. Thần thoại phương Đông được kể bằng combat hành động mãn nhãn. Bắt buộc phải chơi.'},
+  {id:'bmw',name:'Black Myth: Wukong',dev:'Game Science · 2024',platform:'pc',genre:'Action RPG',moods:['action','story','challenge'],time:'30-50h',score:9.1,img:'/assets/img/7403bc0e49-header.jpg',icon:'🐒',color:['#0a0805','#201004'],why:'Đồ họa đẹp nhất năm 2024. Thần thoại phương Đông được kể bằng combat hành động mãn nhãn. Bắt buộc phải chơi.'},
 
 
   {id:'disco',name:'Disco Elysium',dev:'ZA/UM · 2019',platform:'pc',genre:'RPG',moods:['story','relax'],time:'30-60h',score:9.5,icon:'🕵️',color:['#050a15','#0a1528'],why:'RPG không có combat, chỉ toàn dialogue và choice. Writing hay nhất lịch sử game. Thám tử nghiện rượu tìm lại ký ức.'},
@@ -1844,7 +1846,7 @@ const GAMES = [
   // Mobile
 
 
-  {id:'wuwa',name:'Wuthering Waves',dev:'Kuro Games · 2024',platform:'mobile',genre:'Action RPG',moods:['action','story','explore'],time:'∞',score:9.5,icon:'🌊',color:['#050810','#0a1228'],why:'Game mobile action RPG hay nhất 2024. Combat cực responsive, story mùa 2 xuất sắc. Chơi được cả PC lẫn mobile.'},
+  {id:'wuwa',name:'Wuthering Waves',dev:'Kuro Games · 2024',platform:'mobile',genre:'Action RPG',moods:['action','story','explore'],time:'∞',score:9.5,img:'/assets/img/c53329917b-wuthering-waves-hero.jpg',icon:'🌊',color:['#050810','#0a1228'],why:'Game mobile action RPG hay nhất 2024. Combat cực responsive, story mùa 2 xuất sắc. Chơi được cả PC lẫn mobile.'},
 
 
   {id:'hsr',name:'Honkai: Star Rail',dev:'HoYoverse · 2023',platform:'mobile',genre:'Turn-based RPG',moods:['story','relax','quick'],time:'∞',score:9.2,icon:'🚂',color:['#080510','#150a25'],why:'Turn-based RPG story tốt nhất trong các gacha hiện tại. Writing arc Phán Xử cực hay. Không cần grind nhiều, friendly.'},
@@ -1957,8 +1959,9 @@ function pickGame(id){
 
   currentGame = g;
 
-
-  showResult(g);
+  document.getElementById('emptyState').style.display='none';
+  renderCard(g);
+  document.getElementById('resultCard').classList.add('show');
 
 
   document.getElementById('resultCard').scrollIntoView({behavior:'smooth',block:'center'});
@@ -2144,13 +2147,12 @@ function renderCard(g){
   const grad = g.color || GRADIENTS[currentMood] || GRADIENTS['all'];
 
 
-  document.getElementById('rcGradient').style.background =
+  document.getElementById('rcGradient').style.backgroundImage = g.img
+    ? `linear-gradient(to top,rgba(5,2,15,.72),rgba(5,2,15,.05) 55%),url('${g.img}')`
+    : `radial-gradient(ellipse at 30% 40%,rgba(0,229,255,.2) 0%,transparent 55%),radial-gradient(ellipse at 70% 70%,rgba(255,48,128,.15) 0%,transparent 50%),linear-gradient(135deg,${grad[0]} 0%,${grad[1]} 100%)`;
 
 
-    `radial-gradient(ellipse at 30% 40%,rgba(0,229,255,.2) 0%,transparent 55%),radial-gradient(ellipse at 70% 70%,rgba(255,48,128,.15) 0%,transparent 50%),linear-gradient(135deg,${grad[0]} 0%,${grad[1]} 100%)`;
-
-
-  document.getElementById('rcIcon').textContent = g.icon;
+  document.getElementById('rcIcon').textContent = g.img ? '' : g.icon;
 
 
   document.getElementById('rcCoverTitle').textContent = g.name;
