@@ -47,7 +47,8 @@ const stories = [
 ];
 
 const esc = (s) => s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
-const slugifyImage = (slug) => slug==='playstation-plus-august-2026'?'/assets/img/news-playstation-plus-august-2026.jpg':`/assets/img/news-${slug}.svg`;
+const imageMap=JSON.parse(fs.readFileSync(path.join(root,'assets/news-image-map.json'),'utf8'));
+const slugifyImage = (slug) => `/assets/img/news-${slug}.${imageMap[slug]||'jpg'}`;
 
 function svg(title, category) {
   const words = title.split(' '); const lines=[]; let line='';
@@ -76,10 +77,9 @@ for (const story of stories) {
   const enPage=article(story,true).replace(/<meta name="description" content="[^"]*">/,`<meta name="description" content="${esc(story[5])}">`).replace('</head>',mobileNavStyle+'</head>');
   fs.writeFileSync(path.join(root,`${slug}.html`),viPage);
   fs.writeFileSync(path.join(root,'en',`${slug}.html`),enPage);
-  fs.writeFileSync(path.join(root,'assets','img',`news-${slug}.svg`),svg(story[1],story[3]));
 }
 
-function cards(en=false){return `<section class="otahub-new30" style="max-width:1240px;margin:40px auto;padding:0 24px"><h2 style="font-size:32px">${en?'30 verified updates':'30 tin mới đã kiểm chứng'}</h2><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px">${stories.map(s=>`<a href="/${en?'en/':''}${s[0]}" style="display:block;background:#150a2c;border:1px solid rgba(255,255,255,.12);color:#f3efff;text-decoration:none"><img src="/assets/img/news-${s[0]}.svg" alt="${esc(en?s[2]:s[1])}" width="1200" height="675" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover"><div style="padding:18px"><span style="color:#00e5ff;font-size:11px;letter-spacing:.15em">${s[3].toUpperCase()}</span><h3 style="font-size:20px;line-height:1.3;margin:8px 0">${esc(en?s[2]:s[1])}</h3><p style="color:#aaa1ba;font-size:14px">${esc(en?s[5]:s[4])}</p></div></a>`).join('')}</div></section>`}
+function cards(en=false){return `<section class="otahub-new30" style="max-width:1240px;margin:40px auto;padding:0 24px"><h2 style="font-size:32px">${en?'30 verified updates':'30 tin mới đã kiểm chứng'}</h2><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px">${stories.map(s=>`<a href="/${en?'en/':''}${s[0]}" style="display:block;background:#150a2c;border:1px solid rgba(255,255,255,.12);color:#f3efff;text-decoration:none"><img src="${slugifyImage(s[0])}" alt="${esc(en?s[2]:s[1])}" width="1200" height="675" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover"><div style="padding:18px"><span style="color:#00e5ff;font-size:11px;letter-spacing:.15em">${s[3].toUpperCase()}</span><h3 style="font-size:20px;line-height:1.3;margin:8px 0">${esc(en?s[2]:s[1])}</h3><p style="color:#aaa1ba;font-size:14px">${esc(en?s[5]:s[4])}</p></div></a>`).join('')}</div></section>`}
 
 for(const [file,en] of [['news.html',false],['en/news.html',true]]){
   const p=path.join(root,file);let h=fs.readFileSync(p,'utf8');
@@ -99,7 +99,7 @@ sitemap=sitemap.replace('</urlset>',`${urls}\n</urlset>`);fs.writeFileSync(path.
 
 let feed=fs.readFileSync(path.join(root,'feed.xml'),'utf8');
 feed=feed.replace(/<!-- OTAHUB_NEW30_FEED_START -->[\s\S]*?<!-- OTAHUB_NEW30_FEED_END -->/g,'');
-const items=stories.map(s=>`<item><title>${esc(s[1])}</title><link>https://otahub.asia/${s[0]}</link><guid isPermaLink="true">https://otahub.asia/${s[0]}</guid><pubDate>Tue, 18 Aug 2026 08:30:00 GMT</pubDate><description>${esc(s[4])}</description><media:content url="https://otahub.asia/assets/img/news-${s[0]}.svg" medium="image"/></item>`).join('\n');
+const items=stories.map(s=>`<item><title>${esc(s[1])}</title><link>https://otahub.asia/${s[0]}</link><guid isPermaLink="true">https://otahub.asia/${s[0]}</guid><pubDate>Tue, 18 Aug 2026 08:30:00 GMT</pubDate><description>${esc(s[4])}</description><media:content url="https://otahub.asia${slugifyImage(s[0])}" medium="image"/></item>`).join('\n');
 feed=feed.replace(/<lastBuildDate>[^<]*<\/lastBuildDate>/,'<lastBuildDate>Tue, 18 Aug 2026 08:30:00 GMT</lastBuildDate>').replace('<lastBuildDate>Tue, 18 Aug 2026 08:30:00 GMT</lastBuildDate>','<lastBuildDate>Tue, 18 Aug 2026 08:30:00 GMT</lastBuildDate><!-- OTAHUB_NEW30_FEED_START -->'+items+'<!-- OTAHUB_NEW30_FEED_END -->');fs.writeFileSync(path.join(root,'feed.xml'),feed);
 
 console.log(JSON.stringify({stories:stories.length,pages:stories.length*2,images:stories.length},null,2));
