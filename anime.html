@@ -371,6 +371,12 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .fsep{width:1px;height:28px;background:var(--border);flex-shrink:0;margin:0 4px}
 
 
+/* Ẩn card khi bị lọc bởi setFilter/setSub */
+
+
+.cat-hidden{display:none}
+
+
 
 
 
@@ -1374,40 +1380,40 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   <div class="filter-in">
 
 
-    <button class="ftab on" onclick="setF(this)">Tất cả</button>
+    <button class="ftab on" onclick="setFilter(this)">Tất cả</button>
 
 
-    <button class="ftab" onclick="setF(this)">Mùa hè 2026</button>
+    <button class="ftab" onclick="setFilter(this)">Mùa hè 2026</button>
 
 
-    <button class="ftab" onclick="setF(this)">Mùa xuân 2026</button>
-
-
-    <div class="fsep"></div>
-
-
-    <button class="ftab" onclick="setF(this)">Reviews</button>
-
-
-    <button class="ftab" onclick="setF(this)">News</button>
-
-
-    <button class="ftab" onclick="setF(this)">Rankings</button>
+    <button class="ftab" onclick="setFilter(this)">Mùa xuân 2026</button>
 
 
     <div class="fsep"></div>
 
 
-    <button class="ftab" onclick="setF(this)">Action</button>
+    <button class="ftab" onclick="setFilter(this)">Reviews</button>
 
 
-    <button class="ftab" onclick="setF(this)">Romance</button>
+    <button class="ftab" onclick="setFilter(this)">News</button>
 
 
-    <button class="ftab" onclick="setF(this)">Isekai</button>
+    <button class="ftab" onclick="setFilter(this)">Rankings</button>
 
 
-    <button class="ftab" onclick="setF(this)">Shonen</button>
+    <div class="fsep"></div>
+
+
+    <button class="ftab" onclick="setFilter(this)">Action</button>
+
+
+    <button class="ftab" onclick="setFilter(this)">Romance</button>
+
+
+    <button class="ftab" onclick="setFilter(this)">Isekai</button>
+
+
+    <button class="ftab" onclick="setFilter(this)">Shonen</button>
 
 
   </div>
@@ -1488,7 +1494,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   <div class="rev-grid">
 
 
-    <a href="/anime-detail?t=Demon%20Slayer%3A%20Infinity%20Castle" class="rev-big">
+    <a href="/anime-detail?t=Demon%20Slayer%3A%20Infinity%20Castle" class="rev-big" data-cat="review mua-he-2026 action">
 
 
       <img class="rb-img" src="/assets/img/0feb0c5f50-99889l.jpg" alt="Demon Slayer: Infinity Castle · bộ phim anime xuất sắc nhất thập kỷ" width="460" height="639" fetchpriority="high" decoding="async">
@@ -1533,7 +1539,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     <div class="rev-stack">
 
 
-      <a href="/frieren-season2" class="rev-sm">
+      <a href="/frieren-season2" class="rev-sm" data-cat="review mua-he-2026">
 
 
         <div class="rs-thumb"><img src="/assets/img/4a7324f467-138006l.jpg" alt="Frieren Beyond Journey's End Season 2 · vẫn là tuyệt phẩm không thể bỏ qua" loading="lazy" width="460" height="649"></div>
@@ -1557,7 +1563,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       </a>
 
 
-      <a href="/chainsaw-man-season3" class="rev-sm">
+      <a href="/chainsaw-man-season3" class="rev-sm" data-cat="news mua-he-2026 action">
 
 
         <div class="rs-thumb"><img src="/assets/img/2656ba8ffc-maxresdefault.jpg" alt="Chainsaw Man Part 3 anime · Fujimoto tự đạo diễn: kỳ vọng hay lo ngại?" loading="lazy" width="460" height="653"></div>
@@ -1581,7 +1587,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       </a>
 
 
-      <a href="/solo-leveling-season2" class="rev-sm">
+      <a href="/solo-leveling-season2" class="rev-sm" data-cat="review mua-he-2026 action isekai">
 
 
         <div class="rs-thumb"><img src="/assets/img/d98cf42206-maxresdefault.jpg" alt="Solo Leveling Season 3 · Sung Jinwoo đối đầu Monarchs trong arc cuối" loading="lazy" width="1280" height="720"></div>
@@ -1656,7 +1662,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       <div class="ac-top2">
 
 
-        <a href="/news" class="ac-mag">
+        <a href="/news" class="ac-mag" data-cat="news">
 
 
           <img class="acm-img" src="/assets/img/studio-ghibli-films.webp" alt="Studio Ghibli công bố phim hoạt hình mới tại Annecy 2026 · Miyazaki trực tiếp giám sát" loading="lazy" width="640" height="360">
@@ -1683,10 +1689,10 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </a>
 
 
-        <a href="/chainsaw-man-season3" class="ac-mag">
+        <a href="/attack-on-titan-wit-teaser" class="ac-mag" data-cat="news action shonen">
 
 
-          <img class="acm-img" src="/assets/img/2656ba8ffc-maxresdefault.jpg" alt="Chainsaw Man phần 3 xác nhận: Tatsuki Fujimoto tự đạo diễn, ra mắt mùa thu 2027" loading="lazy" width="460" height="653">
+          <img class="acm-img" src="/assets/img/a7548f6c8e-attack-on-titan-wit-teaser-hero.jpg" alt="WIT Studio hé lộ công bố bí ẩn Attack on Titan ngày 20/8" loading="lazy" width="1920" height="1080">
 
 
           <div class="acm-ov"></div>
@@ -1698,10 +1704,10 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
             <div class="acm-tags"><span class="tag ts">Anime</span></div>
 
 
-            <div class="acm-title">Chainsaw Man phần 3 xác nhận: Tatsuki Fujimoto tự đạo diễn, ra mắt mùa thu 2027</div>
+            <div class="acm-title">WIT Studio hé lộ công bố bí ẩn Attack on Titan ngày 20/8</div>
 
 
-            <div class="acm-meta">Gia Bảo · 4 giờ trước · 4 min</div>
+            <div class="acm-meta">Minh Tuấn · 4 giờ trước · 4 min</div>
 
 
           </div>
@@ -1713,7 +1719,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       </div>
 
 
-      <a href="/anime-detail?t=Bleach%3A%20TYBW%20Part%205" class="ac">
+      <a href="/anime-detail?t=Bleach%3A%20TYBW%20Part%205" class="ac" data-cat="news mua-he-2026 action shonen">
 
 
         <div class="ac-thumb"><img src="/assets/img/15741dcbc3-hqdefault.jpg" alt="Bleach: Thousand-Year Blood War Part 5 · tất cả những gì cần biết về arc cuối Yhwach" loading="lazy" width="480" height="360"></div>
@@ -1737,7 +1743,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       </a>
 
 
-      <a href="/anime-detail?t=Dungeon%20Meshi%20Season%202" class="ac">
+      <a href="/anime-detail?t=Dungeon%20Meshi%20Season%202" class="ac" data-cat="review mua-he-2026">
 
 
         <div class="ac-thumb"><img src="/assets/img/7bdd6038c6-hqdefault.jpg" alt="Dungeon Meshi Season 2 · tiếp tục là anime slice-of-life xuất sắc nhất mùa hè 2026" loading="lazy" width="480" height="360"></div>
@@ -1761,7 +1767,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       </a>
 
 
-      <a href="/anime-detail?t=Kaiju%20No.8%20Season%202" class="ac">
+      <a href="/anime-detail?t=Kaiju%20No.8%20Season%202" class="ac" data-cat="news mua-he-2026 action">
 
 
         <div class="ac-thumb"><img src="/assets/img/37aa53b176-hqdefault.jpg" alt="Kaiju No.8 Season 2 ep.4 review · Kafka Hibino cuối cùng có được khả năng kiểm soát hoàn toàn" loading="lazy" width="480" height="360"></div>
@@ -1785,7 +1791,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       </a>
 
 
-      <a href="/mushoku-tensei-s3-chaos-breaker" class="ac">
+      <a href="/mushoku-tensei-s3-chaos-breaker" class="ac" data-cat="news mua-he-2026 isekai">
 
 
         <div class="ac-thumb"><img src="/assets/img/a4f75364fc-maxresdefault.jpg" alt="Mushoku Tensei Season 3 · Rudeus đối mặt với cuộc chiến lớn nhất trong cuộc đời mới của mình" loading="lazy" width="1280" height="720"></div>
@@ -1809,7 +1815,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       </a>
 
 
-      <a href="/anime-detail?t=Sakamoto%20Days" class="ac">
+      <a href="/anime-detail?t=Sakamoto%20Days" class="ac" data-cat="news mua-he-2026 action shonen">
 
 
         <div class="ac-thumb"><img src="/assets/img/39c7dd4496-maxresdefault.jpg" alt="Sakamoto Days · anime adaptation vượt mong đợi, cảnh chiến đấu được khen ngợi rầm rộ" loading="lazy" width="1280" height="720"></div>
@@ -2132,10 +2138,130 @@ renderAiring('summer');
 function setSeason(btn,s){document.querySelectorAll('.stab').forEach(t=>t.classList.remove('on'));btn.classList.add('on');renderAiring(s)}
 
 
-function setF(btn){document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));btn.classList.add('on')}
+// Map nhãn nút .ftab (filter-bar) sang giá trị data-cat chuẩn hoá
 
 
-function setSub(btn){document.querySelectorAll('.sf-btn').forEach(t=>t.classList.remove('on'));btn.classList.add('on')}
+const FILTER_MAP={
+
+
+  'Tất cả':'all',
+
+
+  'Mùa hè 2026':'mua-he-2026',
+
+
+  'Mùa xuân 2026':'mua-xuan-2026',
+
+
+  'Reviews':'review',
+
+
+  'News':'news',
+
+
+  'Rankings':'rankings',
+
+
+  'Action':'action',
+
+
+  'Romance':'romance',
+
+
+  'Isekai':'isekai',
+
+
+  'Shonen':'shonen'
+
+
+};
+
+
+// Map nhãn nút .sf-btn (sub-filter khối tin tức) sang giá trị data-cat
+
+
+const SUB_MAP={
+
+
+  'Tất cả':'all',
+
+
+  'News':'news',
+
+
+  'Reviews':'review',
+
+
+  'Guides':'guide',
+
+
+  'Mùa hè':'mua-he-2026'
+
+
+};
+
+
+function applyCatFilter(cards,val){
+
+
+  cards.forEach(card=>{
+
+
+    if(val==='all'){card.classList.remove('cat-hidden');return}
+
+
+    const cats=(card.dataset.cat||'').split(' ');
+
+
+    card.classList.toggle('cat-hidden',!cats.includes(val));
+
+
+  });
+
+
+}
+
+
+function setFilter(btn){
+
+
+  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));
+
+
+  btn.classList.add('on');
+
+
+  const val=FILTER_MAP[btn.textContent.trim()]||'all';
+
+
+  const cards=document.querySelectorAll('.rev-grid [data-cat], .content-layout [data-cat]');
+
+
+  applyCatFilter(cards,val);
+
+
+}
+
+
+function setSub(btn){
+
+
+  document.querySelectorAll('.sf-btn').forEach(t=>t.classList.remove('on'));
+
+
+  btn.classList.add('on');
+
+
+  const val=SUB_MAP[btn.textContent.trim()]||'all';
+
+
+  const cards=document.querySelectorAll('.content-layout [data-cat]');
+
+
+  applyCatFilter(cards,val);
+
+
+}
 
 
 

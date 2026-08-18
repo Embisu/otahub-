@@ -728,6 +728,10 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .sf-btn:hover:not(.on){color:rgba(240,238,255,.7)}
 
 
+/* Ẩn card khi bị lọc bởi filter-bar / sub-filter */
+.cat-hidden{display:none!important}
+
+
 
 
 
@@ -2219,7 +2223,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   <div class="chapters-grid">
 
 
-    <a href="/manga-detail?t=Jujutsu%20Kaisen" class="ch-card">
+    <a href="/manga-detail?t=Jujutsu%20Kaisen" class="ch-card" data-cat="chapter-moi manga action supernatural">
 
 
       <div class="chc-cover"><img class="chc-img" src="/assets/img/d662bae70f-maxresdefault.jpg" alt="Jujutsu Kaisen" loading="lazy" width="1280" height="720"><span class="chc-new">Mới</span><span class="chc-type tag tv" style="position:absolute;top:8px;right:8px;z-index:2">Manga</span></div>
@@ -2231,7 +2235,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     </a>
 
 
-    <a href="/manga-detail?t=One%20Piece" class="ch-card">
+    <a href="/manga-detail?t=One%20Piece" class="ch-card" data-cat="chapter-moi manga adventure shonen">
 
 
       <div class="chc-cover"><img class="chc-img" src="/assets/img/8d631824e5-maxresdefault.jpg" alt="One Piece" loading="lazy" width="1280" height="720"><span class="chc-new">Mới</span><span class="chc-type tag tv" style="position:absolute;top:8px;right:8px;z-index:2">Manga</span></div>
@@ -2243,7 +2247,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     </a>
 
 
-    <a href="/manga-detail?t=Solo%20Leveling%3A%20Ragnarok" class="ch-card">
+    <a href="/manga-detail?t=Solo%20Leveling%3A%20Ragnarok" class="ch-card" data-cat="chapter-moi manhwa action fantasy">
 
 
       <div class="chc-cover"><img class="chc-img" src="/assets/img/a4f75364fc-maxresdefault.jpg" alt="Solo Leveling: Ragnarok" loading="lazy" width="1280" height="720"><span class="chc-new">Mới</span><span class="chc-type tag tc" style="position:absolute;top:8px;right:8px;z-index:2">Manhwa</span></div>
@@ -2255,7 +2259,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     </a>
 
 
-    <a href="/manga-detail?t=Chainsaw%20Man" class="ch-card">
+    <a href="/manga-detail?t=Chainsaw%20Man" class="ch-card" data-cat="chapter-moi manga action horror">
 
 
       <div class="chc-cover"><img class="chc-img" src="/assets/img/39c7dd4496-maxresdefault.jpg" alt="Chainsaw Man" loading="lazy" width="1280" height="720"><span class="chc-new">Mới</span><span class="chc-type tag tv" style="position:absolute;top:8px;right:8px;z-index:2">Manga</span></div>
@@ -2267,7 +2271,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     </a>
 
 
-    <a href="/manga-detail?t=Omniscient%20Reader" class="ch-card">
+    <a href="/manga-detail?t=Omniscient%20Reader" class="ch-card" data-cat="manhwa fantasy adventure">
 
 
       <div class="chc-cover"><img class="chc-img" src="/assets/img/d98cf42206-maxresdefault.jpg" alt="Omniscient Reader" loading="lazy" width="1280" height="720"><span class="chc-type tag tc" style="position:absolute;top:8px;right:8px;z-index:2">Manhwa</span></div>
@@ -2279,7 +2283,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     </a>
 
 
-    <a href="/manga-detail?t=Battle%20Through%20the%20Heavens" class="ch-card">
+    <a href="/manga-detail?t=Battle%20Through%20the%20Heavens" class="ch-card" data-cat="manhua xianxia action">
 
 
       <div class="chc-cover"><img class="chc-img" src="/assets/img/1f0540d7a3-maxresdefault.jpg" alt="Battle Through the Heavens" loading="lazy" width="1280" height="720"><span class="chc-type tag ts" style="position:absolute;top:8px;right:8px;z-index:2">Manhua</span></div>
@@ -2291,7 +2295,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     </a>
 
 
-    <a href="/manga-detail?t=Spy%20x%20Family" class="ch-card">
+    <a href="/manga-detail?t=Spy%20x%20Family" class="ch-card" data-cat="manga comedy action">
 
 
       <div class="chc-cover"><img class="chc-img" src="/assets/img/a7f0eee58e-122795l.jpg" alt="Spy x Family" loading="lazy" width="640" height="360"><span class="chc-type tag tv" style="position:absolute;top:8px;right:8px;z-index:2">Manga</span></div>
@@ -2303,7 +2307,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     </a>
 
 
-    <a href="/manga-detail?t=The%20Beginning%20After%20The%20End" class="ch-card">
+    <a href="/manga-detail?t=The%20Beginning%20After%20The%20End" class="ch-card" data-cat="manhwa fantasy isekai">
 
 
       <div class="chc-cover"><img class="chc-img" src="/assets/img/d98cf42206-maxresdefault.jpg" alt="The Beginning After The End" loading="lazy" width="1280" height="720"><span class="chc-type tag tc" style="position:absolute;top:8px;right:8px;z-index:2">Manhwa</span></div>
@@ -2363,7 +2367,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       <div class="ac-top2">
 
 
-        <a href="/berserk-arc-cuoi" class="ac-mag">
+        <a href="/berserk-arc-cuoi" class="ac-mag" data-cat="manga">
 
 
           <img class="acm-img" src="/assets/img/7b5a968234-maxresdefault.jpg" alt="Berserk arc cuối · editor Dark Horse tiết lộ chi tiết về kế hoạch hoàn thành di cảo của Miura" loading="lazy" width="640" height="360">
@@ -2390,10 +2394,11 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </a>
 
 
-        <a href="/manga-detail?t=Jujutsu%20Kaisen" class="ac-mag">
+        <!-- Trùng bài: card cũ href="/manga-detail?t=Jujutsu%20Kaisen" trùng với mục #1 trong "Hot tuần này" (weekly-grid) phía trên, đã thay bằng bài Manga thật lấy từ IDX (search.js), chưa xuất hiện ở đâu khác trên trang -->
+        <a href="/black-clover-final-volume-guidebook" class="ac-mag" data-cat="manga">
 
 
-          <img class="acm-img" src="/assets/img/d662bae70f-maxresdefault.jpg" alt="Jujutsu Kaisen spin-off Yuta Okkotsu chính thức xác nhận · Gege Akutami tự viết kịch bản" loading="lazy" width="1280" height="720">
+          <img class="acm-img" src="/assets/img/75f4272c97-black-clover-final-volume-hero.jpg" alt="Black Clover khép lại với Volume 38 và guidebook Perfect Grimoire, kèm truyện ngắn 15 trang của Yuki Tabata" loading="lazy" width="1600" height="900">
 
 
           <div class="acm-ov"></div>
@@ -2402,13 +2407,13 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
           <div class="acm-body">
 
 
-            <div class="acm-tags"><span class="tag tv">Manga</span><span class="tag tc">Spin-off</span></div>
+            <div class="acm-tags"><span class="tag tv">Manga</span><span class="tag tc">Kết thúc</span></div>
 
 
-            <div class="acm-title">Jujutsu Kaisen spin-off Yuta Okkotsu chính thức xác nhận · Gege Akutami tự viết kịch bản</div>
+            <div class="acm-title">Black Clover khép lại với Volume 38 và guidebook Perfect Grimoire, kèm truyện ngắn 15 trang của Yuki Tabata</div>
 
 
-            <div class="acm-meta">Gia Bảo · 4 giờ trước · 4 min</div>
+            <div class="acm-meta">Gia Bảo · 10 giờ trước · 7 min</div>
 
 
           </div>
@@ -2420,7 +2425,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       </div>
 
 
-      <a href="/manga-detail?t=Solo%20Leveling%3A%20Ragnarok" class="ac">
+      <a href="/manga-detail?t=Solo%20Leveling%3A%20Ragnarok" class="ac" data-cat="manhwa action fantasy chapter-moi">
 
 
         <div class="ac-thumb"><img src="/assets/img/a4f75364fc-maxresdefault.jpg" alt="Solo Leveling: Ragnarok chapter 48 spoiler và phân tích · Sung Suho đối đầu kẻ địch mạnh nhất" loading="lazy" width="1280" height="720"></div>
@@ -2444,7 +2449,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       </a>
 
 
-      <a href="/one-piece-final-saga" class="ac">
+      <a href="/one-piece-final-saga" class="ac" data-cat="manga adventure shonen chapter-moi">
 
 
         <div class="ac-thumb"><img src="/assets/img/8d631824e5-maxresdefault.jpg" alt="One Piece chapter 1135 phân tích chi tiết · Oda tiết lộ bí ẩn lớn nhất về Laugh Tale và One Piece" loading="lazy" width="1280" height="720"></div>
@@ -2468,7 +2473,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       </a>
 
 
-      <a href="/manga-detail?t=The%20Beginning%20After%20The%20End" class="ac">
+      <a href="/manga-detail?t=The%20Beginning%20After%20The%20End" class="ac" data-cat="manhwa fantasy isekai reviews">
 
 
         <div class="ac-thumb"><img src="/assets/img/d98cf42206-maxresdefault.jpg" alt="The Beginning After The End · review tổng quan 206 chapter: manhwa xây dựng thế giới tốt nhất hiện tại" loading="lazy" width="1280" height="720"></div>
@@ -2492,7 +2497,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       </a>
 
 
-      <a href="/manga-detail?t=Battle%20Through%20the%20Heavens" class="ac">
+      <a href="/manga-detail?t=Battle%20Through%20the%20Heavens" class="ac" data-cat="manhua xianxia action">
 
 
         <div class="ac-thumb"><img src="/assets/img/1f0540d7a3-maxresdefault.jpg" alt="Battle Through the Heavens · top 10 cảnh chiến đấu đẹp nhất arc Đại Hiệu Môn năm 2026" loading="lazy" width="1280" height="720"></div>
@@ -2516,7 +2521,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       </a>
 
 
-      <a href="/chainsaw-man-season3" class="ac">
+      <a href="/chainsaw-man-season3" class="ac" data-cat="manga action horror">
 
 
         <div class="ac-thumb"><img src="/assets/img/39c7dd4496-maxresdefault.jpg" alt="Chainsaw Man part 3 theory · Denji và Pochita: mối quan hệ sẽ thay đổi hoàn toàn trong arc mới" loading="lazy" width="1280" height="720"></div>
@@ -2645,10 +2650,60 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 function setType(btn,t){document.querySelectorAll('.ttab').forEach(b=>b.classList.remove('on'));btn.classList.add('on')}
 
 
-function setF(btn){document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('on'));btn.classList.add('on')}
+/* ===== Lọc bài theo thể loại (.ftab) và theo loại truyện (.sf-btn) ===== */
+/* Ánh xạ nhãn nút bấm -> mã category chuẩn hoá (không dấu, chữ thường) dùng trong data-cat */
+var FTAB_CAT_MAP={
+  'Tất cả thể loại':'all',
+  'Action':'action',
+  'Fantasy':'fantasy',
+  'Romance':'romance',
+  'Isekai':'isekai',
+  'Slice of Life':'slice-of-life',
+  'Horror':'horror',
+  'Reviews':'reviews',
+  'Chapter mới':'chapter-moi'
+};
+var SFBTN_CAT_MAP={
+  'Tất cả':'all',
+  'Manga':'manga',
+  'Manhwa':'manhwa',
+  'Manhua':'manhua',
+  'Reviews':'reviews'
+};
 
+function setF(btn){
+  document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  applyMangaFilters();
+}
 
-function setSub(btn){document.querySelectorAll('.sf-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on')}
+function setSub(btn){
+  document.querySelectorAll('.sf-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  applyMangaFilters();
+}
+
+function applyMangaFilters(){
+  var ftabOn=document.querySelector('.ftab.on');
+  var sfOn=document.querySelector('.sf-btn.on');
+  var genre=ftabOn?(FTAB_CAT_MAP[ftabOn.textContent.trim()]||'all'):'all';
+  var sub=sfOn?(SFBTN_CAT_MAP[sfOn.textContent.trim()]||'all'):'all';
+
+  /* Lưới "Chapter mới nhất": chỉ chịu ảnh hưởng của filter-bar (.ftab) */
+  document.querySelectorAll('.chapters-grid .ch-card[data-cat]').forEach(function(card){
+    var cats=card.getAttribute('data-cat').split(' ');
+    var show=(genre==='all')||cats.indexOf(genre)>-1;
+    card.classList.toggle('cat-hidden',!show);
+  });
+
+  /* Khối "Tin tức truyện tranh" (ac-mag + ac): chịu ảnh hưởng của cả filter-bar lẫn sub-filter */
+  document.querySelectorAll('.ac-mag[data-cat], .content-layout a.ac[data-cat]').forEach(function(card){
+    var cats=card.getAttribute('data-cat').split(' ');
+    var showGenre=(genre==='all')||cats.indexOf(genre)>-1;
+    var showSub=(sub==='all')||cats.indexOf(sub)>-1;
+    card.classList.toggle('cat-hidden',!(showGenre&&showSub));
+  });
+}
 
 
 

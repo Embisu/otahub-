@@ -535,6 +535,9 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 
 .filter-sep{width:1px;height:28px;background:var(--border);flex-shrink:0;margin:0 4px}
 
+/* Ẩn card khi bị lọc bởi filter tab (setFilter/setSub) */
+.cat-hidden{display:none!important}
+
 
 
 
@@ -1853,7 +1856,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     <!-- Big featured card -->
 
 
-    <a href="/elden-ring-dlc2" class="fg-big">
+    <a href="/elden-ring-dlc2" class="fg-big" data-cat="pc">
 
 
       <div class="fgb-img"></div>
@@ -1967,7 +1970,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     <div class="fg-stack">
 
 
-      <a href="/game-detail?t=Monster%20Hunter%20Wilds" class="fg-sm">
+      <a href="/game-detail?t=Monster%20Hunter%20Wilds" class="fg-sm" data-cat="review">
 
 
         <div class="fgs-thumb">
@@ -2009,7 +2012,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       </a>
 
 
-      <a href="/stellar-blade-2" class="fg-sm">
+      <a href="/stellar-blade-2" class="fg-sm" data-cat="preview">
 
 
         <div class="fgs-thumb">
@@ -2129,10 +2132,10 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       <div class="ac-top2">
 
 
-        <a href="/elden-ring-dlc2" class="ac-mag">
+        <a href="/resident-evil-9-announcement" class="ac-mag" data-cat="pc">
 
 
-          <img class="acm-img" src="/assets/img/a7f47ed998-header.jpg" alt="Elden Ring DLC 2: Shadow of the Erdtree II · tất cả những gì đã biết sau trailer đầu tiên" loading="lazy" width="460" height="215">
+          <img class="acm-img" src="/assets/img/4d865718ab-library_hero.jpg" alt="Resident Evil 9: tất cả những gì chúng ta biết về phần tiếp theo" loading="lazy" width="1920" height="620">
 
 
           <div class="acm-ov"></div>
@@ -2141,13 +2144,13 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
           <div class="acm-body">
 
 
-            <div class="acm-tags"><span class="tag tc">Breaking</span><span class="tag ta">PC</span></div>
+            <div class="acm-tags"><span class="tag tc">Breaking</span><span class="tag ta">PC / Console</span></div>
 
 
-            <div class="acm-title">Elden Ring DLC 2: Shadow of the Erdtree II · tất cả những gì đã biết sau trailer đầu tiên</div>
+            <div class="acm-title">Resident Evil 9: tất cả những gì chúng ta biết về phần tiếp theo</div>
 
 
-            <div class="acm-meta">Minh Khôi Trần · 2 giờ trước · 8 min</div>
+            <div class="acm-meta">OtaHub Editorial · 12 giờ trước · 8 min</div>
 
 
           </div>
@@ -2156,10 +2159,10 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </a>
 
 
-        <a href="/game-detail?t=Monster%20Hunter%20Wilds" class="ac-mag">
+        <a href="/kingdom-come-deliverance-2" class="ac-mag" data-cat="review">
 
 
-          <img class="acm-img" src="/assets/img/587e72813c-header.jpg" alt="Monster Hunter Wilds · review đầy đủ sau 120 giờ: Capcom đã làm ra một tuyệt phẩm" loading="lazy" width="460" height="215">
+          <img class="acm-img" src="/assets/img/50c4f9b171-library_hero.jpg" alt="Kingdom Come Deliverance 2 · review: RPG lịch sử hay nhất trong thập kỷ" loading="lazy" width="1920" height="620">
 
 
           <div class="acm-ov"></div>
@@ -2171,10 +2174,10 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
             <div class="acm-tags"><span class="tag ta">Review</span><span class="acm-score">9.4</span></div>
 
 
-            <div class="acm-title">Monster Hunter Wilds · review đầy đủ sau 120 giờ: Capcom đã làm ra một tuyệt phẩm</div>
+            <div class="acm-title">Kingdom Come Deliverance 2 · review: RPG lịch sử hay nhất trong thập kỷ</div>
 
 
-            <div class="acm-meta">Thanh Tùng · 6 giờ trước · 12 min</div>
+            <div class="acm-meta">OtaHub Editorial · 16 giờ trước · 8 min</div>
 
 
           </div>
@@ -2192,7 +2195,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       <!-- Horizontal list cards with big thumb -->
 
 
-      <a href="/genshin-54-citlali" class="ac">
+      <a href="/genshin-54-citlali" class="ac" data-cat="guide">
 
 
         <div class="ac-thumb"><img src="/assets/img/f89df6064f-142648l.jpg" alt="Genshin Impact 5.4 · guide kéo Citlali đầy đủ: constellation nào cần thiết, đội hình meta tối ưu" loading="lazy" width="600" height="338"></div>
@@ -2219,7 +2222,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 
-      <a href="/wuthering-waves-24" class="ac">
+      <a href="/wuthering-waves-24" class="ac" data-cat="mobile">
 
 
         <div class="ac-thumb"><img src="/assets/img/c53329917b-wuthering-waves-hero.jpg" alt="Wuthering Waves 2.4 · tất cả thay đổi, nhân vật mới Shorekeeper và event trong bản cập nhật" loading="lazy" width="460" height="215"></div>
@@ -2246,10 +2249,10 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 
-      <a href="/stellar-blade-2" class="ac">
+      <a href="/gta6-preview" class="ac" data-cat="preview">
 
 
-        <div class="ac-thumb"><img src="/assets/img/8a90eed2d5-header.jpg" alt="Stellar Blade 2 · tất cả thông tin từ TGS 2026: cơ chế mới, vùng thế giới và nhân vật Eve 2.0" loading="lazy" width="460" height="215"></div>
+        <div class="ac-thumb"><img src="/assets/img/c8cd09fede-maxresdefault.jpg" alt="GTA 6 · tất cả những gì chúng ta biết về bom tấn lớn nhất 2026" loading="lazy" width="1280" height="720"></div>
 
 
         <div class="ac-info">
@@ -2258,10 +2261,10 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
           <div><div class="ac-top"><span class="tag tv">Preview</span></div>
 
 
-          <div class="ac-title">Stellar Blade 2 · tất cả thông tin từ TGS 2026: cơ chế mới, vùng thế giới và nhân vật Eve 2.0</div></div>
+          <div class="ac-title">GTA 6 · tất cả những gì chúng ta biết về bom tấn lớn nhất 2026</div></div>
 
 
-          <div class="ac-meta"><span>Dũng Nguyễn</span><span class="ac-meta-sep">·</span><span>6 giờ trước</span><span class="ac-meta-sep">·</span><span>5 min</span></div>
+          <div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>18 giờ trước</span><span class="ac-meta-sep">·</span><span>8 min</span></div>
 
 
         </div>
@@ -2273,7 +2276,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 
-      <a href="/blue-protocol-review" class="ac">
+      <a href="/blue-protocol-review" class="ac" data-cat="review">
 
 
         <div class="ac-thumb"><img src="/assets/img/3578d308d7-library_hero.jpg" alt="Blue Protocol: Resonance · review sau 50 giờ: MMO anime châu Á đáng đầu tư nhất năm 2026" loading="lazy" width="1920" height="620"></div>
@@ -2300,7 +2303,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 
-      <a href="/black-myth-wukong-huong-dan" class="ac">
+      <a href="/black-myth-wukong-huong-dan" class="ac" data-cat="pc">
 
 
         <div class="ac-thumb"><img src="/assets/img/7403bc0e49-header.jpg" alt="Black Myth: Wukong bản patch 1.6 fix toàn bộ lỗi ray tracing AMD GPU, cải thiện 18% FPS trung bình" loading="lazy" width="460" height="215"></div>
@@ -2327,7 +2330,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 
-      <a href="/vct-pacific-2026" class="ac">
+      <a href="/vct-pacific-2026" class="ac" data-cat="esports">
 
 
         <div class="ac-thumb"><img src="/assets/img/4c17ff1a96-Valorant_Champions_Los_Angeles_2023.jpg" alt="VCT Pacific 2026 Playoffs · Paper Rex vào chung kết, đối đầu T1 trong trận grand final lịch sử" loading="lazy" width="1920" height="620"></div>
@@ -2354,7 +2357,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 
-      <a href="/game-detail?t=Honor%20of%20Kings%20Global" class="ac">
+      <a href="/game-detail?t=Honor%20of%20Kings%20Global" class="ac" data-cat="mobile tierlist">
 
 
         <div class="ac-thumb"><img src="/assets/img/6323076b06-158003l.jpg" alt="Honor of Kings Global · tier list nhân vật S-tier mùa 3 và guide reroll tối ưu cho tân thủ" loading="lazy" width="394" height="600"></div>
@@ -2867,10 +2870,38 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 
-function setFilter(btn){document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));btn.classList.add('on')}
+/* ── Bộ lọc bài viết theo danh mục ──
+   .ftab (filter-bar trên cùng) lọc TOÀN BỘ card có data-cat bên dưới filter-bar
+   (cả khối "Nổi bật tuần này" lẫn ".art-list").
+   .sf-btn (sub-filter trong .art-list) chỉ lọc card nằm trong ".art-list",
+   không đụng tới khối "Nổi bật tuần này" phía trên — tránh 2 bộ filter dẫm chân nhau.
+   Mỗi lần bấm sẽ tính lại toàn bộ trạng thái ẩn/hiện trong đúng phạm vi của bộ đó,
+   nên không bị tồn đọng trạng thái cũ từ lần lọc trước. */
+var FTAB_CAT_MAP={'Tất cả':'all','PC / Console':'pc','Mobile':'mobile','Reviews':'review','Previews':'preview','Guides':'guide','Esports':'esports','Tier Lists':'tierlist'};
+var SFBTN_CAT_MAP={'Tất cả':'all','PC':'pc','Mobile':'mobile','Review':'review','Guide':'guide','Esports':'esports'};
 
+function applyCatFilter(cards,cat){
+  cards.forEach(function(card){
+    if(cat==='all'){card.classList.remove('cat-hidden');return}
+    var cats=(card.getAttribute('data-cat')||'').split(' ');
+    if(cats.indexOf(cat)>-1)card.classList.remove('cat-hidden');
+    else card.classList.add('cat-hidden');
+  });
+}
 
-function setSub(btn){document.querySelectorAll('.sf-btn').forEach(t=>t.classList.remove('on'));btn.classList.add('on')}
+function setFilter(btn){
+  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  var cat=FTAB_CAT_MAP[btn.textContent.trim()]||'all';
+  applyCatFilter(Array.prototype.slice.call(document.querySelectorAll('[data-cat]')),cat);
+}
+
+function setSub(btn){
+  document.querySelectorAll('.sf-btn').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  var cat=SFBTN_CAT_MAP[btn.textContent.trim()]||'all';
+  applyCatFilter(Array.prototype.slice.call(document.querySelectorAll('.art-list [data-cat]')),cat);
+}
 
 
 
