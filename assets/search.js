@@ -73,7 +73,7 @@ inp.addEventListener('keydown',function(e){
   }else if(e.key==='Enter'&&sel>=0&&items[sel]){location.href=items[sel].getAttribute('href');}
 });
 var nr=document.querySelector('.nav-r');
-if(nr&&!document.querySelector('.nav-search')){
+if(nr&&!document.querySelector('.nsearch')&&!document.querySelector('.nav-search')){
   var b=document.createElement('button');b.className='sjs-navbtn';b.setAttribute('aria-label','Tìm kiếm');
   b.innerHTML='<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.2 3.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
   b.addEventListener('click',function(){(window.openSearch||openIt)();});

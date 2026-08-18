@@ -1,0 +1,16 @@
+/* Chèn (nếu trang chưa có) để hub-footer.html + nút .nsearch trong hub-nav.html hiển thị đúng.
+   Màu hover mặc định cyan — trang nào đã có theme accent riêng (sakura/lav) thì script giữ
+   nguyên rule .nsearch:hover đã có sẵn của trang đó, không ghi đè. */
+footer{position:relative;z-index:1;border-top:1px solid var(--border);background:rgba(7,1,18,.98)}
+.ft-in{max-width:1440px;margin:0 auto;padding:52px 24px 32px;display:grid;grid-template-columns:200px 1fr 1fr 1fr;gap:48px}
+.ft-desc{font-size:12px;color:rgba(240,238,255,.3);line-height:1.75;max-width:175px;margin-top:12px}
+.ft-h{font-size:10px;letter-spacing:.19em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;font-weight:500}
+.ft-links{display:flex;flex-direction:column;gap:9px;list-style:none}
+.ft-links a{font-size:13px;color:rgba(240,238,255,.4);text-decoration:none;transition:color .2s}
+.ft-links a:hover{color:var(--cyan)}
+.ft-bot{max-width:1440px;margin:0 auto;padding:16px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.ft-copy{font-size:11px;color:rgba(240,238,255,.22);letter-spacing:.04em}
+@media(max-width:1024px){.ft-in{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.ft-in{grid-template-columns:1fr;gap:28px}.ft-bot{flex-direction:column;gap:10px}}
+.nsearch{background:none;border:1px solid var(--border);color:var(--muted);width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s}
+.nsearch:hover{border-color:var(--cyan);color:var(--cyan)}
