@@ -19,6 +19,7 @@ document.addEventListener('error',function(event){
   }
 },true);
 var pagePath=location.pathname||'/';
+pagePath=pagePath.replace(/\/index\.html$/i,'/').replace(/\.html$/i,'')||'/';
 var english=/^\/en(?:\/|$)/.test(pagePath);
 var viPath=english?(pagePath.replace(/^\/en/,'')||'/'):pagePath;
 var enPath=english?pagePath:(pagePath==='/'?'/en/':'/en'+pagePath);
@@ -30,6 +31,16 @@ langSwitch.className='ot-lang-switch';
 langSwitch.setAttribute('aria-label',english?'Language selector':'Chọn ngôn ngữ');
 langSwitch.innerHTML='<a href="'+viPath+'" hreflang="vi"'+(english?'':' class="active"')+'>VI</a><a href="'+enPath+'" hreflang="en"'+(english?' class="active"':'')+'>EN</a>';
 document.body.appendChild(langSwitch);
+var deepPath=english?'/en/in-depth':'/chuyen-sau';
+var deepLabel=english?'In-depth':'Chuyên sâu';
+Array.prototype.forEach.call(document.querySelectorAll('.nav-links,.mobile-nav'),function(menu){
+  if(menu.querySelector('a[href="'+deepPath+'"]'))return;
+  var link=document.createElement('a');
+  link.href=deepPath;
+  link.textContent=deepLabel;
+  if(menu.matches('ul')){var item=document.createElement('li');item.appendChild(link);menu.appendChild(item);}
+  else menu.appendChild(link);
+});
 var reviewArticle=document.querySelector('.art-body');
 if(reviewArticle&&document.querySelector('.score-box')&&!reviewArticle.querySelector('.review-method')){
   var schemaText=Array.prototype.map.call(document.querySelectorAll('script[type="application/ld+json"]'),function(s){return s.textContent||'';}).join(' ');

@@ -8,7 +8,7 @@ document.head.appendChild(detailStyle);
 var TYPE=document.body.getAttribute('data-detail-type')||'anime';
 var EN=/^\/en(?:\/|$)/.test(location.pathname);
 var LABEL={anime:'Anime',game:'Game',manga:'Manga'};
-var CATPAGE=EN?{anime:'/en/anime',game:'/en/gaming',manga:'/en/manga'}:{anime:'/anime.html',game:'/gaming.html',manga:'/manga.html'};
+var CATPAGE=EN?{anime:'/en/anime',game:'/en/gaming',manga:'/en/manga'}:{anime:'/anime',game:'/gaming',manga:'/manga'};
 var META_LABEL=EN?{anime:'Studio',game:'Developer',manga:'Author / Publisher'}:{anime:'Studio',game:'Nhà phát triển',manga:'Tác giả / NXB'};
 var TXT=EN?{score:'OtaHub score',genre:'Genre',platform:'Platforms',release:'Release',status:'Status',related:'You may also like',discover:'Discover more',viewAll:'View all ',share:'Share',article:'Related article',read:'Read the full article about '}:{score:'Điểm OtaHub',genre:'Thể loại',platform:'Nền tảng',release:'Phát hành',status:'Trạng thái',related:'Có thể bạn quan tâm',discover:'Khám phá thêm',viewAll:'Xem tất cả ',share:'Chia sẻ',article:'Bài viết liên quan',read:'Đọc bài viết đầy đủ về '};
 
