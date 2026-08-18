@@ -47,13 +47,14 @@ const stories = [
 ];
 
 const esc = (s) => s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
-const slugifyImage = (slug) => `/assets/img/news-${slug}.svg`;
+const slugifyImage = (slug) => slug==='playstation-plus-august-2026'?'/assets/img/news-playstation-plus-august-2026.jpg':`/assets/img/news-${slug}.svg`;
 
 function svg(title, category) {
   const words = title.split(' '); const lines=[]; let line='';
-  for (const word of words) { const next=(line+' '+word).trim(); if(next.length>34&&line){lines.push(line);line=word}else line=next; }
-  if(line)lines.push(line); const shown=lines.slice(0,3);
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675"><defs><linearGradient id="g" x2="1" y2="1"><stop stop-color="#07182f"/><stop offset=".55" stop-color="#160b38"/><stop offset="1" stop-color="#3a0b42"/></linearGradient><pattern id="p" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0H0V64" fill="none" stroke="#00e5ff" stroke-opacity=".08"/></pattern></defs><rect width="1200" height="675" fill="url(#g)"/><rect width="1200" height="675" fill="url(#p)"/><path d="M0 520L1200 330V675H0Z" fill="#ff3080" opacity=".08"/><text x="80" y="105" fill="#00e5ff" font-family="Arial,sans-serif" font-size="28" font-weight="700" letter-spacing="7">OTAHUB · ${esc(category.toUpperCase())}</text>${shown.map((l,i)=>`<text x="80" y="${230+i*82}" fill="#f3efff" font-family="Arial,sans-serif" font-size="62" font-weight="800">${esc(l)}</text>`).join('')}<text x="80" y="610" fill="#a9a0bd" font-family="Arial,sans-serif" font-size="24">Tin đã kiểm chứng · 18.08.2026</text><rect x="80" y="135" width="180" height="8" fill="#ff3080"/><rect x="270" y="135" width="420" height="8" fill="#00e5ff" opacity=".55"/></svg>`;
+  for (const word of words) { const next=(line+' '+word).trim(); if(next.length>42&&line){lines.push(line);line=word}else line=next; }
+  if(line)lines.push(line); const shown=lines.slice(0,2);
+  const isGame=category==='Gaming';
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675"><defs><linearGradient id="g" x2="1" y2="1"><stop stop-color="${isGame?'#071d32':'#170b34'}"/><stop offset=".62" stop-color="#13082b"/><stop offset="1" stop-color="#390b3c"/></linearGradient><radialGradient id="r"><stop stop-color="${isGame?'#00e5ff':'#ff3080'}" stop-opacity=".42"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient><pattern id="p" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0H0V64" fill="none" stroke="#00e5ff" stroke-opacity=".07"/></pattern></defs><rect width="1200" height="675" fill="url(#g)"/><rect width="1200" height="675" fill="url(#p)"/><circle cx="890" cy="270" r="310" fill="url(#r)"/><path d="M760 155h260l95 115-95 115H760L665 270z" fill="none" stroke="${isGame?'#00e5ff':'#ff3080'}" stroke-width="18" opacity=".45"/><path d="M790 225h200M790 270h200M790 315h200" stroke="#f3efff" stroke-width="16" opacity=".32"/><rect x="0" y="478" width="1200" height="197" fill="#080313" fill-opacity=".88"/><text x="64" y="535" fill="#00e5ff" font-family="Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="6">OTAHUB · ${esc(category.toUpperCase())}</text>${shown.map((l,i)=>`<text x="64" y="${590+i*48}" fill="#f3efff" font-family="Arial,sans-serif" font-size="36" font-weight="800">${esc(l)}</text>`).join('')}</svg>`;
 }
 
 function article(story, en=false) {
