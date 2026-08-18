@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="t d">
+  <title id="t">Anime NYC 2026</title><desc id="d">OtaHub editorial graphic for Anime NYC 2026 coverage</desc>
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071d3b"/><stop offset=".48" stop-color="#190737"/><stop offset="1" stop-color="#3b082b"/></linearGradient><pattern id="p" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0v48" fill="none" stroke="#00e5ff" stroke-opacity=".09"/></pattern></defs>
+  <rect width="1200" height="675" fill="url(#g)"/><rect width="1200" height="675" fill="url(#p)"/>
+  <circle cx="1030" cy="125" r="230" fill="#ff3080" opacity=".16"/><circle cx="170" cy="560" r="260" fill="#00e5ff" opacity=".12"/>
+  <path d="M810 570V245h58v-76h52v76h48V96h58v149h54v325M770 570h350" fill="none" stroke="#a78bfa" stroke-width="7" opacity=".55"/>
+  <text x="82" y="132" fill="#00e5ff" font-family="Arial,sans-serif" font-size="26" font-weight="700" letter-spacing="8">BREAKING · OTAHUB</text>
+  <text x="78" y="300" fill="#fff" font-family="Arial,sans-serif" font-size="105" font-weight="900">ANIME NYC</text>
+  <text x="82" y="415" fill="#ff3080" font-family="Arial,sans-serif" font-size="108" font-weight="900">2026</text>
+  <text x="86" y="505" fill="#d8d4eb" font-family="Arial,sans-serif" font-size="32">20–23 AUG · JAVITS CENTER · NEW YORK</text>
+  <text x="88" y="580" fill="#fff" font-family="Arial,sans-serif" font-size="25" font-weight="700" letter-spacing="3">PREMIERES · PANELS · ANNIVERSARIES</text>
+</svg>

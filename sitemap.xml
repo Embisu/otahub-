@@ -1272,4 +1272,18 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   <xhtml:link rel="alternate" hreflang="vi" href="https://otahub.asia/chainsaw-man-manga-part2-review"/><xhtml:link rel="alternate" hreflang="en" href="https://otahub.asia/en/chainsaw-man-manga-part2-review"/><xhtml:link rel="alternate" hreflang="x-default" href="https://otahub.asia/chainsaw-man-manga-part2-review"/></url>
+  <url>
+    <loc>https://otahub.asia/anime-nyc-2026-crunchyroll</loc>
+    <lastmod>2026-08-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://otahub.asia/anime-nyc-2026-crunchyroll"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://otahub.asia/en/anime-nyc-2026-crunchyroll"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://otahub.asia/anime-nyc-2026-crunchyroll"/>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/anime-nyc-2026-crunchyroll</loc>
+    <lastmod>2026-08-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://otahub.asia/anime-nyc-2026-crunchyroll"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://otahub.asia/en/anime-nyc-2026-crunchyroll"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://otahub.asia/anime-nyc-2026-crunchyroll"/>
+  </url>
 </urlset>
