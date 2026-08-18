@@ -959,7 +959,7 @@ input,select,textarea{font-size:16px!important}
   <div class="nav-in">
 
 
-    <a href="index.html" class="logo">
+    <a href="index" class="logo">
 
 
       <svg viewbox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg>
@@ -974,22 +974,22 @@ input,select,textarea{font-size:16px!important}
     <ul class="nav-links">
 
 
-      <li><a href="choi-gi.html">Chơi Gì?</a></li>
+      <li><a href="choi-gi">Chơi Gì?</a></li>
 
 
-      <li><a href="gaming.html">Gaming</a></li>
+      <li><a href="gaming">Gaming</a></li>
 
 
-      <li><a href="anime.html">Anime</a></li>
+      <li><a href="anime">Anime</a></li>
 
 
-      <li><a href="manga.html">Manga</a></li>
+      <li><a href="manga">Manga</a></li>
 
 
-      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="reviews">Reviews</a></li>
 
 
-      <li><a href="rankings.html" class="active">Rankings</a></li>
+      <li><a href="rankings" class="active">Rankings</a></li>
 
 
     </ul>
@@ -998,7 +998,7 @@ input,select,textarea{font-size:16px!important}
     <button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
 
 
-    <div class="nav-r"><a href="index.html#newsletter" class="cta">Subscribe</a></div>
+    <div class="nav-r"><a href="index#newsletter" class="cta">Subscribe</a></div>
 
 
   </div>
@@ -1013,22 +1013,22 @@ input,select,textarea{font-size:16px!important}
 <div class="mobile-nav" id="mobileNav">
 
 
-  <a href="choi-gi.html">Chơi Gì?</a>
+  <a href="choi-gi">Chơi Gì?</a>
 
 
-  <a href="gaming.html">Gaming</a>
+  <a href="gaming">Gaming</a>
 
 
-  <a href="anime.html">Anime</a>
+  <a href="anime">Anime</a>
 
 
-  <a href="manga.html">Manga</a>
+  <a href="manga">Manga</a>
 
 
-  <a href="reviews.html">Reviews</a>
+  <a href="reviews">Reviews</a>
 
 
-  <a href="rankings.html">Rankings</a>
+  <a href="rankings">Rankings</a>
 
 
 </div>
@@ -1379,7 +1379,7 @@ function resolveHref(title, catKey){
   const t = CAT_TYPE[catKey] || 'game';
 
 
-  return '/' + t + '-detail.html?t=' + encodeURIComponent(title);
+  return '/' + t + '-detail?t=' + encodeURIComponent(title);
 
 
 }

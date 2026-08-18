@@ -845,19 +845,19 @@ const RELEASES = {
 const REAL_LINK = {
 
 
-  'GTA VI':'/gta6-preview.html',
+  'GTA VI':'/gta6-preview',
 
 
-  'Jujutsu Kaisen Season 3':'/jujutsu-kaisen-ket-thuc.html',
+  'Jujutsu Kaisen Season 3':'/jujutsu-kaisen-ket-thuc',
 
 
-  'Black Clover Season 2':'/black-clover-season-2.html',
+  'Black Clover Season 2':'/black-clover-season-2',
 
 
-  'Demon Slayer: Infinity Fortress':'/anime.html',
+  'Demon Slayer: Infinity Fortress':'/anime',
 
 
-  "JoJo's Bizarre Adventure: Golden Spirit":'/jojo-golden-spirit-launch.html',
+  "JoJo's Bizarre Adventure: Golden Spirit":'/jojo-golden-spirit-launch',
 
 
 };
@@ -893,10 +893,10 @@ const REAL_IMG = {
 };
 
 
-const CAT_FALLBACK = {game:'/gaming.html', anime:'/anime.html', manga:'/manga.html'};
+const CAT_FALLBACK = {game:'/gaming', anime:'/anime', manga:'/manga'};
 
 
-function resolveLink(title, cat){ return REAL_LINK[title] || ('/' + (cat||'game') + '-detail.html?t=' + encodeURIComponent(title)); }
+function resolveLink(title, cat){ return REAL_LINK[title] || ('/' + (cat||'game') + '-detail?t=' + encodeURIComponent(title)); }
 
 
 function resolveImg(title){ return REAL_IMG[title] || '/assets/img/placeholder.svg'; }
