@@ -105,6 +105,7 @@ body{background:radial-gradient(ellipse 120% 40% at 50% 0%,rgba(124,58,237,.28) 
 @media(max-width:768px){.nav-links{display:none!important}.ham{display:flex}}
 
 /* ── PAGE HERO ── */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .cs-hero{position:relative;z-index:1;padding:64px 24px 40px;text-align:center;border-bottom:1px solid var(--border)}
 .cs-hero-in{max-width:760px;margin:0 auto}
 .cs-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);font-weight:600;margin-bottom:18px}
@@ -119,7 +120,7 @@ body{background:radial-gradient(ellipse 120% 40% at 50% 0%,rgba(124,58,237,.28) 
 .cs-stat-sep{width:1px;height:30px;background:var(--border)}
 
 /* ── FEATURED PICK HERO ── */
-.cs-featured{max-width:1440px;margin:40px auto 0;padding:0 24px}
+.cs-featured{max-width:1440px;margin:28px auto 0;padding:0 24px}
 .cs-feat-card{position:relative;min-height:460px;display:grid;grid-template-columns:1.3fr 1fr;background:var(--card);overflow:hidden;text-decoration:none;border:1px solid var(--border)}
 .cs-feat-img{position:relative;overflow:hidden}
 .cs-feat-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
@@ -254,21 +255,7 @@ input,select,textarea{font-size:16px!important}
   <a href="/chuyen-sau">Chuyên sâu</a>
 </div>
 
-<!-- PAGE HERO -->
-<section class="cs-hero">
-  <div class="cs-hero-in">
-    <div class="cs-eyebrow">Phân tích · Bối cảnh · Góc nhìn</div>
-    <h1 class="cs-title">Chuyên sâu</h1>
-    <p class="cs-sub">Bài dài có lập luận, trải nghiệm và bối cảnh rõ ràng về game, anime và manga — không giật tít, không lướt qua bề mặt.</p>
-    <div class="cs-stats">
-      <div class="cs-stat"><div class="cs-stat-n">50+</div><div class="cs-stat-l">Bài phân tích</div></div>
-      <div class="cs-stat-sep"></div>
-      <div class="cs-stat"><div class="cs-stat-n">3</div><div class="cs-stat-l">Chuyên mục</div></div>
-      <div class="cs-stat-sep"></div>
-      <div class="cs-stat"><div class="cs-stat-n">8-12</div><div class="cs-stat-l">Phút đọc / bài</div></div>
-    </div>
-  </div>
-</section>
+<h1 class="sr-only">Chuyên sâu</h1>
 
 <!-- FEATURED PICK -->
 <div class="cs-featured">
