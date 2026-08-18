@@ -1884,9 +1884,8 @@ const GAMES = [
 
 ];
 
-
-
-
+const GAME_IMAGES={hades:'/assets/img/recommend-hades.jpg',stardew:'/assets/img/recommend-stardew.jpg',cyberpunk:'/assets/img/recommend-cyberpunk.jpg',disco:'/assets/img/recommend-disco.jpg',hollow:'/assets/img/recommend-hollow.jpg',celeste:'/assets/img/recommend-celeste.jpg',hsr:'/assets/img/681306c50c-143582l.jpg',genshin:'/assets/img/f89df6064f-142648l.jpg',limbus:'/assets/img/recommend-limbus.jpg',arknights:'/assets/img/recommend-arknights.svg',journey:'/assets/img/recommend-journey.jpg',abzu:'/assets/img/recommend-abzu.jpg',spiritfarer:'/assets/img/recommend-spiritfarer.jpg',overcooked2:'/assets/img/recommend-overcooked2.jpg','among-us':'/assets/img/recommend-amongus.jpg','it-takes-two':'/assets/img/recommend-ittakestwo.jpg'};
+GAMES.forEach(g=>{if(!g.img&&GAME_IMAGES[g.id])g.img=GAME_IMAGES[g.id]});
 
 let currentMood = 'all';
 
