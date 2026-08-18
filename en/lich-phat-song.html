@@ -863,7 +863,7 @@ function renderGrid(){
     <a href="${resolveLink(a.title)}" class="ac">
 
 
-      <img class="ac-cover" src="${resolveImg(a.title, a.img)}" alt="${a.title}" loading="lazy"/>
+      <img class="ac-cover" src="${resolveImg(a.title, a.img)}" alt="${a.title}" fetchpriority="high" decoding="async">
 
 
       <div class="ac-body">

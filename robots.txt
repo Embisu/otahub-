@@ -8,6 +8,7 @@ Disallow: /OTAHUB/
 
 # Sitemap
 Sitemap: https://otahub.asia/sitemap.xml
+Sitemap: https://otahub.asia/sitemap-news.xml
 
 # Good bots — no crawl delay needed
 User-agent: Googlebot

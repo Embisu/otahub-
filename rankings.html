@@ -1538,7 +1538,7 @@ function renderList(data, catKeyForList){
       <div class="rkr-num">${String(i+4).padStart(2,'0')}</div>
 
 
-      <div class="rkr-thumb"><img src="${r.img}" alt="${r.title}" loading="lazy"/></div>
+      <div class="rkr-thumb"><img src="${r.img}" alt="${r.title}" fetchpriority="high" decoding="async"></div>
 
 
       <div class="rkr-info">

@@ -1295,7 +1295,7 @@ function renderGrid(){
     <a class="rv-card" href="${r.url||'#'}" style="animation-delay:${i*.07}s;text-decoration:none;color:inherit">
 
 
-      <div class="rvc-img"><img src="${r.img}" alt="${r.title}" loading="lazy"/></div>
+      <div class="rvc-img"><img src="${r.img}" alt="${r.title}" fetchpriority="high" decoding="async"></div>
 
 
       <div class="rvc-body">

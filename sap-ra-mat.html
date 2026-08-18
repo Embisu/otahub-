@@ -1007,7 +1007,7 @@ function renderReleases(cat, data, containerId){
             ${item.hot ? '<div class="hot-badge">🔥 HOT</div>' : ''}
 
 
-            <img class="rc-cover" src="${resolveImg(item.title)}" alt="${item.title}" loading="lazy"/>
+            <img class="rc-cover" src="${resolveImg(item.title)}" alt="${item.title}" fetchpriority="high" decoding="async">
 
 
             <div class="rc-body">
