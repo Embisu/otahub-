@@ -293,28 +293,28 @@ body{
 #grid-tex{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(124,58,237,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.04) 1px,transparent 1px);background-size:52px 52px}
 
 
-.nav{position:sticky;top:0;z-index:300;height:62px;background:rgba(11,2,32,.88);border-bottom:1px solid var(--b-cyan);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);display:flex;align-items:center}
+.nav{position:sticky;top:0;z-index:300;height:60px;background:rgba(11,2,32,.88);border-bottom:1px solid var(--b-cyan);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);display:flex;align-items:center}
 
 
-.nav-in{max-width:1440px;margin:0 auto;padding:0 24px;width:100%;display:flex;align-items:center;gap:28px}
+.nav-in{max-width:1440px;margin:0 auto;padding:0 24px;width:100%;display:flex;align-items:center;gap:0}
 
 
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0;margin-right:32px}
 
 
-.logo svg{width:34px;height:34px;animation:logoPulse 3.5s ease-in-out infinite}
+.logo svg{width:30px;height:30px;animation:logoPulse 3.5s ease-in-out infinite}
 
 
-.logo-t{font-family:var(--fd);font-weight:700;font-size:22px;letter-spacing:-.01em;line-height:1}
+.logo-t{font-family:var(--fd);font-weight:700;font-size:20px;letter-spacing:-.01em;line-height:1}
 
 
 .logo-ota{color:var(--white)}.logo-hub{color:var(--cyan)}
 
 
-.nav-links{display:flex;align-items:center;list-style:none;gap:0}
+.nav-links{display:flex;align-items:center;list-style:none;gap:0;flex:1}
 
 
-.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;font-weight:400;letter-spacing:.07em;text-transform:uppercase;padding:6px 13px;position:relative;transition:color .2s var(--ease)}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;font-weight:400;letter-spacing:.07em;text-transform:uppercase;padding:0 13px;height:60px;display:flex;align-items:center;position:relative;transition:color .2s}
 
 
 .nav-links a::after{content:'';position:absolute;bottom:-1px;left:13px;right:13px;height:2px;background:linear-gradient(90deg,var(--cyan),var(--sakura));transform:scaleX(0);transform-origin:left;transition:transform .28s var(--ease)}
@@ -326,7 +326,7 @@ body{
 .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
 
 
-.nav-r{margin-left:auto;display:flex;align-items:center;gap:8px}
+.nav-r{display:flex;align-items:center;gap:8px;margin-left:auto}
 
 
 .lang{display:flex;align-items:center;border:1px solid var(--border);overflow:hidden}
@@ -347,13 +347,13 @@ body{
 .nav-search:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,229,255,.06)}
 
 
-.cta{background:linear-gradient(135deg,var(--cyan),#0099bb);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;padding:9px 22px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:filter .18s,transform .12s;text-decoration:none;display:inline-block;white-space:nowrap}
+.cta{background:linear-gradient(135deg,var(--cyan),#0099bb);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;padding:8px 20px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:filter .18s,transform .12s;text-decoration:none;display:inline-block;white-space:nowrap}
 
 
 .cta:hover{filter:brightness(1.15)}.cta:active{transform:translateY(1px) scale(.98)}
 
 
-.ham{display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px;align-items:center;justify-content:center}
+.ham{min-width:44px;min-height:44px;display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px;align-items:center;justify-content:center}
 
 
 .ham span{display:block;width:22px;height:2px;background:var(--muted);border-radius:2px;transition:all .3s var(--ease)}
