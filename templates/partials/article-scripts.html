@@ -1,0 +1,31 @@
+<!--
+  PARTIAL: Script cuối trang dùng chung cho TRANG BÀI VIẾT.
+
+  QUAN TRỌNG: đây là nơi chuẩn hoá nút "Sao chép link". Khi audit phát hiện
+  2 cách cài đặt khác nhau đang tồn tại song song trên site:
+    - Bài cũ (VD frieren-season2.html): <button onclick="copyArticleLink(this)">
+      + hàm copyArticleLink() khai báo riêng ở cuối file.
+    - Bài mới (VD mortal-shell-2-release.html): JS viết trực tiếp trong onclick,
+      không dùng hàm chung, text phản hồi khác nhau ("Đã sao chép" vs "Đã copy!").
+  Từ partial này trở đi, TOÀN BỘ bài viết dùng chung 1 hàm copyArticleLink() duy nhất,
+  gọi qua onclick="copyArticleLink(this)" trong share-row (xem article-body-example.html).
+-->
+<script>
+function toggleMob(){
+  var h=document.getElementById('ham');
+  var m=document.getElementById('mobnav');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+  document.body.style.overflow=m.classList.contains('open')?'hidden':'';
+}
+function copyArticleLink(button){
+  navigator.clipboard.writeText(location.href).then(function(){
+    var original = button.textContent;
+    button.textContent = "Đã sao chép";
+    setTimeout(function(){ button.textContent = original; }, 1800);
+  });
+}
+</script>
+<script defer src="/assets/search.js"></script>
+<script defer src="/assets/enhance.js"></script>
+<script defer src="/assets/engage.js?v=20260818b"></script>
