@@ -19,17 +19,62 @@
   "keywords": "Black Myth Wukong hướng dẫn, Black Myth guide, Wukong build, Stance, Vessel, mẹo chơi",
   "bodyHtml": "<p><strong>Black Myth: Wukong</strong> của Game Science là tựa game hành động RPG lấy cảm hứng từ Tây Du Ký, phát hành tháng 8/2024 và nhanh chóng trở thành một trong những tựa game bán chạy nhất lịch sử PC. Tuy nhiên, nhiều người chơi mới bị choáng ngợp bởi hệ thống chiến đấu phức tạp và boss đa dạng. Bài hướng dẫn này sẽ giúp bạn nắm vững từng cơ chế quan trọng.</p>\n<h2>Ba Tư Thế Chiến Đấu, Nền Tảng Của Mọi Trận Đánh</h2>\n<p>Không như nhiều game action RPG, Black Myth: Wukong có ba tư thế (Stance) hoàn toàn khác nhau, mỗi tư thế phù hợp với một phong cách chơi riêng:</p>\n<p><strong>Smash Stance</strong>: Tư thế mặc định, combo nhanh và linh hoạt. Ideal cho người mới vì dễ học nhưng khó master. Charged attack của Smash có thể interrupt nhiều boss giữa chừng combo.</p>\n<p><strong>Pillar Stance</strong>: Chuyển Thiết Bảng thành cột dài, đánh từ xa và có AoE lớn. Cực kỳ mạnh với nhóm enemy nhỏ và boss hay giữ khoảng cách. Kết hợp với Spirit Pillar Stance để gây thiệt hại khổng lồ.</p>\n<p><strong>Thrust Stance</strong>: Tấn công nhanh theo đường thẳng, damage cao nhất trên hit đơn. Phù hợp với người chơi thích tốc độ và chơi aggressive.</p>\n<figure><img src=\"/assets/img/6eef9e5628-library_hero.jpg\" alt=\"Ba tư thế chiến đấu trong Black Myth Wukong\" width=\"1920\" height=\"620\" fetchpriority=\"high\" decoding=\"async\"><figcaption>Smash, Pillar và Thrust, ba tư thế cho ba phong cách chơi hoàn toàn khác nhau</figcaption></figure>\n<h2>Vessel, Sức Mạnh Bí Ẩn Từ Bình Báu</h2>\n<p>Vessel là hệ thống đặc trưng nhất của Black Myth: Wukong. Bằng cách thu thập nguyên liệu từ boss và crafting tại Shrine, bạn mở khóa các Vessel mang lại buff cực mạnh khi kích hoạt. Mỗi Vessel có đặc tính riêng: Loong Vessel tăng crit rate và Spark damage, Azure Dust Vessel cho phép hấp thụ máu từ enemy bị đánh ngã, trong khi Supreme Vessel là Vessel mạnh nhất chỉ có được sau khi hoàn thành True Ending.</p>\n<figure><img src=\"/assets/img/050cb9bd18-capsule_616x353.jpg\" alt=\"Hệ thống Vessel trong Black Myth Wukong\" loading=\"lazy\" width=\"616\" height=\"353\"><figcaption>Vessel mang lại sức mạnh đặc biệt khi được kích hoạt đúng thời điểm trong trận chiến</figcaption></figure>\n<h2>Spirit, Biến Kẻ Thù Thành Sức Mạnh</h2>\n<p>Sau khi đánh bại một số boss và miniboss nhất định, bạn có thể thu thập linh hồn (Spirit) của chúng và sử dụng như một kỹ năng đặc biệt. Có hơn 30 Spirit khác nhau và việc chọn đúng Spirit cho từng tình huống là yếu tố quyết định: Red Loong Spirit cho burst damage, Wandering Wight Spirit cho tankiness, còn Whiteclad Noble Spirit cho healing.</p>\n<h2>Mẹo Để Vượt Boss Khó</h2>\n<p>Một số lời khuyên đã được kiểm chứng bởi cộng đồng: Luôn giữ ít nhất 2 Gourd charges (bình thuốc) cho boss fight. Học kỹ animation của boss trước khi tấn công, hầu hết boss có cửa sổ punish rõ ràng sau combo 3-4 hit. Sử dụng Immobilize spell (bất động) khi boss ở ngưỡng máu thấp để gây thêm damage tự do. Đừng quên nâng cấp Gourd tại Shrine để tăng lượng hồi phục mỗi lần uống.</p>\n<figure><img src=\"/assets/img/7403bc0e49-header.jpg\" alt=\"Boss fight trong Black Myth Wukong\" loading=\"lazy\" width=\"460\" height=\"215\"><figcaption>Mỗi boss trong Black Myth: Wukong đều có cơ chế riêng đòi hỏi người chơi phải quan sát và học thuộc</figcaption></figure>\n<h2>Build Khuyến Nghị Cho Người Mới</h2>\n<p>Nếu bạn mới bắt đầu, hãy đầu tư vào cây kỹ năng <strong>Smash Stance</strong> để mở khóa Focus Points nhanh nhất. Ưu tiên: nâng cấp Gourd → mở khóa Immobilize → lấy Critical Strike từ cây Foundation → sau đó tùy theo sở thích. Đừng spread đều tất cả, đầu tư sâu vào một tư thế sẽ hiệu quả hơn nhiều trong giai đoạn đầu game.</p>",
   "relatedArticles": [
-    { "url": "/stellar-blade-2", "img": "/assets/img/f845d7c936-library_hero.jpg", "alt": "Stellar Blade 2: Team Tera Hé Lộ Concept Art Và Cơ Chế Chiến Đấu Mới Tại TGS 2026", "width": 1920, "height": 620, "cat": "Gaming", "title": "Stellar Blade 2: Team Tera Hé Lộ Concept Art Và Cơ Chế Chiến Đấu Mới Tại TGS 2026" },
-    { "url": "/resident-evil-9-announcement", "img": "/assets/img/4d865718ab-library_hero.jpg", "alt": "Resident Evil 9: Tất Cả Những Gì Chúng Ta Biết Về Phần Tiếp Theo", "width": 1920, "height": 620, "cat": "Gaming", "title": "Resident Evil 9: Tất Cả Những Gì Chúng Ta Biết Về Phần Tiếp Theo" },
-    { "url": "/stellar-blade-dlc", "img": "/assets/img/ec5a6e3960-maxresdefault.jpg", "alt": "Stellar Blade DLC: Nội Dung Mới Và Tương Lai Của Shift Up", "width": 1280, "height": 720, "cat": "Gaming", "title": "Stellar Blade DLC: Nội Dung Mới Và Tương Lai Của Shift Up" }
+    {
+      "url": "/stellar-blade-2",
+      "img": "/assets/img/f845d7c936-library_hero.jpg",
+      "alt": "Stellar Blade: Blood Rain Chính Thức Lộ Diện, Giới Thiệu Nữ Chính Mới Evie",
+      "width": 1920,
+      "height": 620,
+      "cat": "Gaming",
+      "title": "Stellar Blade: Blood Rain Chính Thức Lộ Diện, Giới Thiệu Nữ Chính Mới Evie"
+    },
+    {
+      "url": "/resident-evil-9-announcement",
+      "img": "/assets/img/4d865718ab-library_hero.jpg",
+      "alt": "Resident Evil 9: Tất Cả Những Gì Chúng Ta Biết Về Phần Tiếp Theo",
+      "width": 1920,
+      "height": 620,
+      "cat": "Gaming",
+      "title": "Resident Evil 9: Tất Cả Những Gì Chúng Ta Biết Về Phần Tiếp Theo"
+    },
+    {
+      "url": "/stellar-blade-dlc",
+      "img": "/assets/img/ec5a6e3960-maxresdefault.jpg",
+      "alt": "Stellar Blade x NIKKE: DLC Crossover Miễn Phí Với Boss Scarlet Và Loạt Trang Phục Mới",
+      "width": 1280,
+      "height": 720,
+      "cat": "Gaming",
+      "title": "Stellar Blade x NIKKE: DLC Crossover Miễn Phí Với Boss Scarlet Và Loạt Trang Phục Mới"
+    }
   ],
   "tags": [
-    { "url": "/gaming", "label": "Black Myth Wukong" },
-    { "url": "/gaming", "label": "Game Science" },
-    { "url": "/gaming", "label": "Action RPG" },
-    { "url": "/gaming", "label": "Hướng Dẫn" },
-    { "url": "/gaming", "label": "Guide" },
-    { "url": "/gaming", "label": "PS5" },
-    { "url": "/gaming", "label": "PC" }
+    {
+      "url": "/gaming",
+      "label": "Black Myth Wukong"
+    },
+    {
+      "url": "/gaming",
+      "label": "Game Science"
+    },
+    {
+      "url": "/gaming",
+      "label": "Action RPG"
+    },
+    {
+      "url": "/gaming",
+      "label": "Hướng Dẫn"
+    },
+    {
+      "url": "/gaming",
+      "label": "Guide"
+    },
+    {
+      "url": "/gaming",
+      "label": "PS5"
+    },
+    {
+      "url": "/gaming",
+      "label": "PC"
+    }
   ]
 }
