@@ -1,0 +1,32 @@
+# Ép toàn bộ file text trong repo dùng line ending LF (Unix), bất kể máy nào
+# (Windows/macOS/Linux) clone/commit. Tránh lặp lại lỗi "git diff hiện hàng nghìn
+# dòng thay đổi giả" khi core.autocrlf=true trên máy Windows tự đổi LF -> CRLF.
+# Xem thêm: QUY-TAC-BAT-BUOC-SUA-TRANG.md mục 6.
+
+* text=auto eol=lf
+
+*.html text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.css text eol=lf
+*.json text eol=lf
+*.jsonc text eol=lf
+*.md text eol=lf
+*.xml text eol=lf
+*.txt text eol=lf
+*.svg text eol=lf
+*.toml text eol=lf
+.assetsignore text eol=lf
+_headers text eol=lf
+_redirects text eol=lf
+
+# Ảnh/file nhị phân — không đụng, không convert line ending
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.zip binary
+*.woff binary
+*.woff2 binary
