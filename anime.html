@@ -404,6 +404,19 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .sec-more:hover{color:var(--sakura)}
 
 
+/* HUB QUICK LINKS */
+.hub-links{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:3px}
+.hub-link-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);padding:24px;text-decoration:none;transition:all .2s}
+.hub-link-card:hover{border-color:var(--cyan);background:var(--surf2)}
+.hlc-ic{font-size:28px;flex-shrink:0}
+.hlc-body{flex:1;min-width:0}
+.hlc-title{font-family:var(--fd);font-weight:700;font-size:17px;color:var(--white);margin-bottom:4px}
+.hlc-sub{font-size:13px;color:var(--dim)}
+.hlc-arrow{color:var(--muted);font-size:18px;transition:transform .2s,color .2s;flex-shrink:0}
+.hub-link-card:hover .hlc-arrow{transform:translateX(4px);color:var(--cyan)}
+@media(max-width:768px){.hub-links{grid-template-columns:1fr}}
+
+
 
 
 
@@ -2015,201 +2028,30 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 
-<!-- CURRENTLY AIRING -->
-
-
+<!-- QUICK LINKS: LICH CHIEU + REVIEWS -->
 <div class="wrap rv">
-
-
   <div class="sec-h">
-
-
-    <span class="sec-t">Đang chiếu <em>mùa hè 2026</em></span>
-
-
+    <span class="sec-t">Khám phá <em>thêm</em></span>
     <div class="sec-l"></div>
-
-
-    <a href="/lich-phat-song" class="sec-more">Xem lịch đầy đủ</a>
-
-
-    <div class="season-tabs">
-
-
-      <button class="stab on" onclick="setSeason(this,'summer')">Hè 2026</button>
-
-
-      <button class="stab" onclick="setSeason(this,'spring')">Xuân 2026</button>
-
-
-      <button class="stab" onclick="setSeason(this,'winter')">Đông 2026</button>
-
-
-      <button class="stab" onclick="setSeason(this,'fall')">Thu 2025</button>
-
-
-    </div>
-
-
   </div>
-
-
-  <div class="airing-grid" id="airing-grid"></div>
-
-
-</div>
-
-
-
-
-
-<!-- REVIEWS FEATURED -->
-
-
-<div class="wrap rv">
-
-
-  <div class="sec-h">
-
-
-    <span class="sec-t">Review <em>nổi bật</em></span>
-
-
-    <div class="sec-l"></div>
-
-
-    <a href="/reviews" class="sec-more">Tất cả review</a>
-
-
-  </div>
-
-
-  <div class="rev-grid">
-
-
-    <a href="/anime-detail?t=Demon%20Slayer%3A%20Infinity%20Castle" class="rev-big" data-cat="review mua-he-2026 action">
-
-
-      <img class="rb-img" src="/assets/img/0feb0c5f50-99889l.jpg" alt="Demon Slayer: Infinity Castle · bộ phim anime xuất sắc nhất thập kỷ" width="460" height="639" fetchpriority="high" decoding="async">
-
-
-      <div class="rb-ov"></div>
-
-
-      <div class="rb-body">
-
-
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-
-
-          <span class="tag ts">Review</span>
-
-
-          <span class="tag t-airing">Đang chiếu</span>
-
-
-        </div>
-
-
-        <div class="rb-score"><span class="rb-score-num">9.8</span><span style="font-size:11px;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-left:4px">OtaHub</span></div>
-
-
-        <h2 class="rb-title">Demon Slayer: Infinity Castle · bộ phim anime xuất sắc nhất thập kỷ</h2>
-
-
-        <p class="rb-sub">Ufotable đã vượt qua chính mình. Infinity Castle không chỉ là anime hay nhất năm, đây là một kiệt tác của medium.</p>
-
-
-        <div class="rb-meta"><span>Thu Hương</span> · <span>Ufotable</span> · <span>12 min read</span></div>
-
-
+  <div class="hub-links">
+    <a href="/lich-phat-song" class="hub-link-card">
+      <div class="hlc-ic">📅</div>
+      <div class="hlc-body">
+        <div class="hlc-title">Lịch chiếu anime đầy đủ</div>
+        <div class="hlc-sub">Xem lịch phát sóng theo mùa: Xuân, Hè, Thu, Đông 2026</div>
       </div>
-
-
+      <div class="hlc-arrow">→</div>
     </a>
-
-
-    <div class="rev-stack">
-
-
-      <a href="/frieren-season2" class="rev-sm" data-cat="review mua-he-2026">
-
-
-        <div class="rs-thumb"><img src="/assets/img/4a7324f467-138006l.jpg" alt="Frieren Beyond Journey's End Season 2 · vẫn là tuyệt phẩm không thể bỏ qua" loading="lazy" width="460" height="649"></div>
-
-
-        <div class="rs-body">
-
-
-          <div><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px"><span class="tag ts" style="font-size:9px">Review</span><span class="rs-score">9.2</span></div>
-
-
-          <div class="rs-title">Frieren Beyond Journey's End Season 2 · vẫn là tuyệt phẩm không thể bỏ qua</div></div>
-
-
-          <div class="rs-meta">Lan Anh · 5 giờ trước · 9 min</div>
-
-
-        </div>
-
-
-      </a>
-
-
-      <a href="/chainsaw-man-season3" class="rev-sm" data-cat="news mua-he-2026 action">
-
-
-        <div class="rs-thumb"><img src="/assets/img/2656ba8ffc-maxresdefault.jpg" alt="Chainsaw Man: Assassins Arc · MAPPA xác nhận sản xuất, dự kiến 2027" loading="lazy" width="460" height="653"></div>
-
-
-        <div class="rs-body">
-
-
-          <div><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px"><span class="tag tc" style="font-size:9px">Preview</span><span style="font-size:10px;color:var(--muted)">Mùa 3</span></div>
-
-
-          <div class="rs-title">Chainsaw Man: Assassins Arc · MAPPA xác nhận sản xuất, dự kiến 2027</div></div>
-
-
-          <div class="rs-meta">Gia Bảo · 8 giờ trước · 7 min</div>
-
-
-        </div>
-
-
-      </a>
-
-
-      <a href="/solo-leveling-season2" class="rev-sm" data-cat="review mua-he-2026 action isekai">
-
-
-        <div class="rs-thumb"><img src="/assets/img/d98cf42206-maxresdefault.jpg" alt="Solo Leveling Mùa 2 · Sung Jinwoo đối đầu Monarchs tại Jeju Island" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="rs-body">
-
-
-          <div><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px"><span class="tag ts" style="font-size:9px">Review</span><span class="rs-score">9.0</span></div>
-
-
-          <div class="rs-title">Solo Leveling Mùa 2 · Sung Jinwoo đối đầu Monarchs tại Jeju Island</div></div>
-
-
-          <div class="rs-meta">Minh Tuấn · 12 giờ trước · 8 min</div>
-
-
-        </div>
-
-
-      </a>
-
-
-    </div>
-
-
+    <a href="/reviews" class="hub-link-card">
+      <div class="hlc-ic">⭐</div>
+      <div class="hlc-body">
+        <div class="hlc-title">Tất cả review anime</div>
+        <div class="hlc-sub">Đánh giá chi tiết từng bộ anime đang và đã phát sóng</div>
+      </div>
+      <div class="hlc-arrow">→</div>
+    </a>
   </div>
-
-
 </div>
 
 
@@ -2228,189 +2070,6 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 <script>
 
 
-const SEASONS={
-
-
-  summer:[
-
-
-    {title:'Demon Slayer: Infinity Castle',genre:'Action / Dark Fantasy',score:'9.8',day:'Thứ 7',ep:'Ep 8/13',status:'airing',img:'/assets/img/0feb0c5f50-99889l.jpg'},
-
-
-    {title:'Frieren Season 2',genre:'Fantasy / Slice of Life',score:'9.2',day:'Thứ 4',ep:'Ep 6/24',status:'airing',img:'/assets/img/4a7324f467-138006l.jpg'},
-
-
-    {title:'Re:Zero Season 4',genre:'Isekai / Drama',score:'9.1',day:'Thứ 4',ep:'Ep 12/19',status:'airing',img:'/assets/img/087af8ed98-rezero-s4-hero.jpg'},
-
-
-    {title:'Solo Leveling Season 3',genre:'Action / Isekai',score:'9.0',day:'Thứ 6',ep:'Ep 3/13',status:'airing',img:'/assets/img/1619ce791a-solo-leveling-hero.jpg'},
-
-
-    {title:'Bleach: TYBW Part 5',genre:'Action / Shonen',score:'8.8',day:'Thứ 2',ep:'Ep 2/13',status:'airing',img:'/assets/img/bleach-tybw-poster.jpg'},
-
-
-    {title:'Dungeon Meshi S2',genre:'Fantasy / Comedy',score:'8.7',day:'Thứ 5',ep:'Ep 7/13',status:'airing',img:'/assets/img/c76fab236e-142478l.jpg'},
-
-
-    {title:'Chainsaw Man Part 3',genre:'Action / Horror',score:'8.9',day:'Thứ 3',ep:'Ep 3/12',status:'airing',img:'/assets/img/2656ba8ffc-maxresdefault.jpg'},
-
-
-    {title:'Kaiju No.8 Season 2',genre:'Action / Sci-Fi',score:'8.5',day:'Thứ 2',ep:'Ep 4/12',status:'airing',img:'/assets/img/064c22bc8c-140362l.jpg'},
-
-
-    {title:'Mushoku Tensei Season 3',genre:'Fantasy / Isekai',score:'8.6',day:'Thứ 4',ep:'Ep 4/13',status:'airing',img:'/assets/img/93dc86c38d-117776l.jpg'},
-
-
-    {title:'Sakamoto Days',genre:'Action / Comedy',score:'8.4',day:'Thứ 6',ep:'Ep 7/12',status:'airing',img:'/assets/img/53434489e9-146459l.jpg'},
-
-
-    {title:'Negai no Astro',genre:'Sci-Fi / Adventure',score:'',day:'Tháng 8',ep:'Sắp ra',status:'soon',img:'/assets/img/34a9559c3e-117507l.jpg?v=20260817e'},
-
-
-  ],
-
-
-  spring:[
-
-
-    {title:'Demon Slayer: Infinity Castle',genre:'Action / Dark Fantasy',score:'9.8',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/0feb0c5f50-99889l.jpg'},
-
-
-    {title:'Jujutsu Kaisen Final Arc',genre:'Action / Supernatural',score:'9.5',day:'Hoàn tất',ep:'24/24 Ep',status:'done',img:'/assets/img/a4d82e012d-138022l.jpg'},
-
-
-    {title:'Wind Breaker',genre:'Sports / Action',score:'8.3',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/7fe07557d5-141816l.jpg'},
-
-
-    {title:'Mushoku Tensei Season 3',genre:'Fantasy',score:'9.1',day:'Hoàn tất',ep:'12/12 Ep',status:'done',img:'/assets/img/93dc86c38d-117776l.jpg'},
-
-
-    {title:'Metallic Rouge',genre:'Sci-Fi / Mecha',score:'7.9',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/1398450367-140210l.jpg'},
-
-
-  ],
-
-
-  winter:[
-
-
-    {title:'Shangri-La Frontier S2',genre:'Isekai / Game',score:'8.7',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/6247a8245a-139931l.jpg?v=20260817e'},
-
-
-    {title:'Dungeon Meshi',genre:'Fantasy / Comedy',score:'9.0',day:'Hoàn tất',ep:'24/24 Ep',status:'done',img:'/assets/img/c76fab236e-142478l.jpg'},
-
-
-    {title:'Mashle S2',genre:'Comedy',score:'8.2',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/f2c03777f8-140804l.jpg?v=20260817e'},
-
-
-    {title:'Solo Leveling',genre:'Action / Isekai',score:'8.8',day:'Hoàn tất',ep:'12/12 Ep',status:'done',img:'/assets/img/1619ce791a-solo-leveling-hero.jpg'},
-
-
-    {title:'Sousou no Frieren',genre:'Fantasy',score:'9.3',day:'Hoàn tất',ep:'28/28 Ep',status:'done',img:'/assets/img/4a7324f467-138006l.jpg'},
-
-
-  ],
-
-
-  fall:[
-
-
-    {title:'Oshi no Ko Season 2',genre:'Drama / Idol',score:'9.0',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/d137b0931c-134736l.jpg'},
-
-
-    {title:'Blue Lock Season 2 Part 2',genre:'Sports / Action',score:'8.9',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/a5b2a5cd39-126929l.jpg'},
-
-
-    {title:'Dr. Stone Season 4',genre:'Sci-Fi',score:'8.7',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/ea478ecebf-102576l.jpg'},
-
-
-    {title:'Spy x Family Season 3',genre:'Comedy / Action',score:'8.5',day:'Hoàn tất',ep:'12/12 Ep',status:'done',img:'/assets/img/a7f0eee58e-122795l.jpg'},
-
-
-    {title:'Assassination Classroom S3',genre:'Shonen',score:'8.6',day:'Hoàn tất',ep:'13/13 Ep',status:'done',img:'/assets/img/b7622e1073-75639l.jpg'},
-
-
-  ]
-
-
-};
-
-
-
-
-
-function renderAiring(season){
-
-
-  const grid=document.getElementById('airing-grid');
-
-
-  const data=SEASONS[season];
-
-
-  grid.innerHTML=data.map(a=>{
-    const imageUrl=a.img.includes('?')?a.img:`${a.img}?v=20260817f`;
-    return `
-
-
-    <a class="a-card" href="/anime-detail?t=${encodeURIComponent(a.title)}" style="text-decoration:none">
-
-
-      <div class="a-poster" style="--poster:url('${imageUrl}')">
-
-
-        <img class="ap-img" src="${imageUrl}" alt="${a.title}" loading="eager" decoding="async"/>
-
-
-        <span class="ap-ep">${a.ep}</span>
-
-
-        <span class="ap-status ${a.status==='airing'?'t-airing':a.status==='done'?'t-done':'t-soon'}" style="font-family:var(--fd);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 7px;position:absolute;top:8px;right:8px;z-index:2">${a.status==='airing'?'Đang chiếu':a.status==='done'?'Hoàn tất':'Sắp ra'}</span>
-
-
-      </div>
-
-
-      <div class="a-body">
-
-
-        <div class="ac-genre">${a.genre}</div>
-
-
-        <div class="ac-name">${a.title}</div>
-
-
-        <div class="ac-bottom">
-
-
-          <span class="ac-score">${a.score||'TBA'}</span>
-
-
-          <span class="ac-day">${a.day}</span>
-
-
-        </div>
-
-
-      </div>
-
-
-    </a>
-
-
-  `}).join('');
-
-
-}
-
-
-renderAiring('summer');
-
-
-
-
-
-function setSeason(btn,s){document.querySelectorAll('.stab').forEach(t=>t.classList.remove('on'));btn.classList.add('on');renderAiring(s)}
 
 
 // Map nhãn nút .ftab (filter-bar) sang giá trị data-cat chuẩn hoá
