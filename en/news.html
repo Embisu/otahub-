@@ -2626,7 +2626,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     <span class="tick-item">LoL Worlds 2026 · Hanoi was chosen as the venue</span>
 
 
-    <span class="tick-item">Chainsaw Man part 3 confirmed · Fujimoto directed the anime himself</span>
+    <span class="tick-item">Chainsaw Man Assassins Arc officially confirmed by MAPPA</span>
 
 
     <span class="tick-item">Elden Ring DLC 2 officially confirmed · Launch Q4 2026</span>
@@ -2641,7 +2641,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     <span class="tick-item">LoL Worlds 2026 · Hanoi was chosen as the venue</span>
 
 
-    <span class="tick-item">Chainsaw Man part 3 confirmed · Fujimoto directed the anime himself</span>
+    <span class="tick-item">Chainsaw Man Assassins Arc officially confirmed by MAPPA</span>
 
 
   </div></div>
@@ -2731,7 +2731,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     <div class="side-head" id="side-head">Featured today</div>
 
 
-    <a class="s-art" href="/en/chainsaw-man-season3"><div class="sa-c" style="color:var(--sakura)">Anime</div><div class="sa-t">Chainsaw Man part 3 · Fujimoto confirmed that he directed the anime himself</div><div class="sa-m">Linh Phuong · 4 hours ago</div></a>
+    <a class="s-art" href="/en/chainsaw-man-season3"><div class="sa-c" style="color:var(--sakura)">Anime</div><div class="sa-t">Chainsaw Man: Assassins Arc · MAPPA confirms continued production</div><div class="sa-m">Linh Phuong · 4 hours ago</div></a>
 
 
     <a class="s-art" href="/en/wuthering-waves-24"><div class="sa-c" style="color:var(--cyan)">Gaming</div><div class="sa-t">Wuthering Waves surpasses 40 million players after version 2.3</div><div class="sa-m">Mr. Kiet · 5 hours ago</div></a>
@@ -4247,6 +4247,63 @@ const barObs = new IntersectionObserver(entries=>{
 
 
 document.querySelectorAll('.rk-card').forEach(c=>barObs.observe(c));
+
+
+/* Mobile nav toggle */
+
+
+function toggleMobileNav(){
+
+
+  const nav=document.getElementById('mobileNav');
+
+
+  const ham=document.getElementById('hamBtn');
+
+
+  if(!nav||!ham) return;
+
+
+  const open=nav.classList.toggle('open');
+
+
+  ham.classList.toggle('open',open);
+
+
+  document.body.style.overflow=open?'hidden':'';
+
+
+}
+
+
+document.querySelectorAll('.mobile-nav a').forEach(a=>a.addEventListener('click',()=>{
+
+
+  const nav=document.getElementById('mobileNav');
+
+
+  const ham=document.getElementById('hamBtn');
+
+
+  if(nav)nav.classList.remove('open');
+
+
+  if(ham)ham.classList.remove('open');
+
+
+  document.body.style.overflow='';
+
+
+}));
+
+
+function openSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.add('open');setTimeout(function(){var i=document.getElementById('searchInput');if(i)i.focus()},50);document.body.style.overflow='hidden'}}
+
+
+function closeSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.remove('open');document.body.style.overflow=''}}
+
+
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSearch();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch()}});
 
 
 </script>

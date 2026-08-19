@@ -1991,13 +1991,34 @@ function renderHistory() {
   if(!ham||!mn)return;
 
 
-  ham.addEventListener('click',function(){ham.classList.toggle('open');mn.classList.toggle('open');document.body.style.overflow=mn.classList.contains('open')?'hidden':''});
-
-
   mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){ham.classList.remove('open');mn.classList.remove('open');document.body.style.overflow=''})});
 
 
 })();
+
+
+function toggleMobileNav(){
+
+
+  const nav=document.getElementById('mobileNav');
+
+
+  const ham=document.getElementById('hamBtn');
+
+
+  if(!nav||!ham) return;
+
+
+  const open=nav.classList.toggle('open');
+
+
+  ham.classList.toggle('open',open);
+
+
+  document.body.style.overflow=open?'hidden':'';
+
+
+}
 
 
 
