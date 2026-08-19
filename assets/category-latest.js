@@ -4,40 +4,40 @@
   var category=match[1], english=/^\/en\//.test(location.pathname);
   var stories={
     gaming:[
-      ['playstation-plus-august-2026','PlayStation Plus tháng 8/2026 có Dying Light 2, Big Walk và Signalis','PlayStation Plus August 2026 includes Dying Light 2, Big Walk and Signalis'],
-      ['silent-hill-townfall-gameplay','Silent Hill: Townfall hé lộ bối cảnh Scotland và gameplay','Silent Hill: Townfall details its Scotland setting and gameplay'],
-      ['ball-x-pit-naturalist-update','Ball x Pit phát hành bản cập nhật cuối The Naturalist','Ball x Pit releases final update The Naturalist'],
-      ['flamecraft-ps5-demo','Flamecraft xác nhận bản PS5, demo đã có thể trải nghiệm','Flamecraft confirms PS5 version, demo available now'],
-      ['marvel-tokon-phoenix-cyclops-dlc','MARVEL Tōkon công bố Phoenix Cyclops là DLC đầu tiên','MARVEL Tōkon reveals Phoenix Cyclops as first DLC fighter'],
-      ['marvel-wolverine-story-trailer','Marvel’s Wolverine tung trailer cốt truyện mới','Marvel’s Wolverine releases a new story trailer'],
-      ['halo-campaign-evolved-modernizes','Halo: Campaign Evolved nêu 13 thay đổi mới','Halo: Campaign Evolved outlines 13 upgrades'],
-      ['dragon-ball-sparking-zero-neo-dlc','Dragon Ball: Sparking Zero phát hành DLC Neo','Dragon Ball: Sparking Zero releases Neo DLC'],
-      ['lous-lagoon-ps5-august-27','Lou’s Lagoon lên PS5 ngày 27/8','Lou’s Lagoon comes to PS5 August 27'],
-      ['order-of-the-sinking-star-ps5','Order of the Sinking Star công bố bản PS5','Order of the Sinking Star reveals PS5 version'],
-      ['xbox-game-pass-july-wave-2','Xbox Game Pass bổ sung Halo và nhiều game mới','Xbox Game Pass adds Halo and more games'],
-      ['splatoon-raiders-launch','Splatoon Raiders phát hành trên Nintendo Switch 2','Splatoon Raiders launches on Nintendo Switch 2'],
-      ['lego-donkey-kong-arcade','LEGO Donkey Kong Arcade mở bán ngày 1/8','LEGO Donkey Kong Arcade launches August 1'],
-      ['rhythm-heaven-groove-nintendo','Rhythm Heaven Groove giới thiệu gameplay và demo','Rhythm Heaven Groove shares gameplay and demo details'],
-      ['oblivion-remastered-switch-2','Oblivion Remastered lên Nintendo Switch 2','Oblivion Remastered comes to Nintendo Switch 2']
+      ['playstation-plus-august-2026','PlayStation Plus Tháng 8/2026 Chốt Danh Sách: Dying Light 2 Reloaded, Big Walk Và Signalis','PlayStation Plus August 2026 Lineup: Dying Light 2 Reloaded, Big Walk And Signalis'],
+      ['silent-hill-townfall-gameplay','Silent Hill: Townfall Hé Lộ Bối Cảnh Scotland 1996 Và Thiết Bị CRTV','Silent Hill: Townfall Details Scotland Setting And CRTV Retro Tech'],
+      ['ball-x-pit-naturalist-update','Ball x Pit Ra Mắt Bản Cập Nhật Miễn Phí Cuối The Naturalist, Thêm 2 Nhân Vật Mới','Ball x Pit Launches Final Free Update The Naturalist With Two New Characters'],
+      ['flamecraft-ps5-demo','Flamecraft Xác Nhận Ra Mắt PS5, Xbox Series Và Switch, Demo Có Từ 28/7','Flamecraft Confirms PS5, Xbox Series, And Switch Versions, Demo Live Since July 28'],
+      ['marvel-tokon-phoenix-cyclops-dlc','MARVEL Tōkon: Fighting Souls Công Bố Phoenix Cyclops Là DLC Year 1 Đầu Tiên','MARVEL Tōkon: Fighting Souls Reveals Phoenix Cyclops As First Year 1 DLC Fighter'],
+      ['marvel-wolverine-story-trailer','Marvel\'s Wolverine Tung Trailer Cốt Truyện Tại Comic-Con, Xác Nhận Ra Mắt 15/9','Marvel\'s Wolverine Releases Story Trailer At Comic-Con, Confirms September 15 Launch'],
+      ['halo-campaign-evolved-modernizes','Halo: Campaign Evolved Ra Mắt 28/7, Nêu 13 Thay Đổi Hiện Đại Hóa Chiến Dịch','Halo: Campaign Evolved Launches July 28, Outlines 13 Changes Modernizing The Campaign'],
+      ['dragon-ball-sparking-zero-neo-dlc','Dragon Ball: Sparking Zero Tung DLC Super Limit-Breaking Neo Với 33 Nhân Vật Mới','Dragon Ball: Sparking Zero Launches Super Limit-Breaking Neo DLC With 33 New Characters'],
+      ['lous-lagoon-ps5-august-27','Lou\'s Lagoon Ấn Định Ra Mắt PS5 Ngày 27/8, Công Bố Deluxe Edition','Lou\'s Lagoon Confirms PS5 Launch On August 27, Reveals Deluxe Edition'],
+      ['order-of-the-sinking-star-ps5','Order Of The Sinking Star Xác Nhận Bản PS5, Ra Mắt Ngày 8/10','Order Of The Sinking Star Confirms PS5 Version, Launches October 8'],
+      ['xbox-game-pass-july-wave-2','Xbox Game Pass Wave 2 Tháng 7: Halo Campaign Evolved Dẫn Đầu Cùng Beast Of Reincarnation','Xbox Game Pass July Wave 2: Halo Campaign Evolved Leads Beast Of Reincarnation Lineup'],
+      ['splatoon-raiders-launch','Splatoon Raiders Chính Thức Ra Mắt Trên Nintendo Switch 2 Ngày 23/7','Splatoon Raiders Launches On Nintendo Switch 2'],
+      ['lego-donkey-kong-arcade','LEGO Donkey Kong Arcade (Bộ 72051) Mở Bán 1/8, Giá 199,99 USD, 1.367 Mảnh Ghép','LEGO Donkey Kong Arcade (Set 72051) Launches August 1 At $199.99, 1,367 Pieces'],
+      ['rhythm-heaven-groove-nintendo','Rhythm Heaven Groove Chính Thức Ra Mắt Sau 11 Năm, Demo Miễn Phí Vẫn Đang Mở','Rhythm Heaven Groove Is Out Now After 11 Years, Free Demo Still Live'],
+      ['oblivion-remastered-switch-2','Oblivion Remastered Chính Thức Lên Nintendo Switch 2, Chạy 1080p Docked/900p Handheld','Oblivion Remastered Launches On Nintendo Switch 2 With DLSS Upscaling']
     ],
     anime:[
-      ['senren-banka-anime-2027','Senren＊Banka được chuyển thể anime năm 2027','Senren＊Banka anime adaptation announced for 2027'],
-      ['konosuba-season-4-2027','KONOSUBA mùa 4 xác nhận phát sóng năm 2027','KONOSUBA Season 4 confirms 2027 broadcast'],
-      ['free-fire-daybreak-anime-2027','Free Fire Daybreak lên sóng mùa xuân 2027','Free Fire Daybreak premieres spring 2027'],
-      ['ranma-half-season-3-visual','Ranma 1/2 mùa 3 giới thiệu visual và dàn cast mới','Ranma 1/2 Season 3 reveals visual and new cast'],
-      ['bleach-tybw-calamity-opening-ending','Bleach TYBW: The Calamity phát hành opening và ending','Bleach TYBW: The Calamity releases opening and ending'],
-      ['galaxy-express-999-new-film','Galaxy Express 999 công bố phim anime mới','Galaxy Express 999 announces a new anime film'],
-      ['doraemon-steam-time-machine-film','Doraemon công bố phim Cỗ máy thời gian hơi nước','Doraemon announces Steam-Powered Time Machine film'],
-      ['rezero-10th-anniversary-visual','Re:ZERO tung visual kỷ niệm 10 năm','Re:ZERO reveals 10th anniversary visual'],
-      ['the-bugle-call-anime-2027','The Bugle Call công bố anime 2027','The Bugle Call anime announced for 2027'],
-      ['magical-buffs-fate-rewinder-crunchyroll','Magical Buffs và Fate Rewinder đến Crunchyroll','Magical Buffs and Fate Rewinder come to Crunchyroll'],
-      ['mii-chan-miss-yamada-anime','Mii-chan and Miss Yamada được chuyển thể anime','Mii-chan and Miss Yamada anime announced'],
-      ['studio-cabana-anime-2027','Studio Cabana xác nhận anime năm 2027','Studio Cabana anime confirmed for 2027']
+      ['senren-banka-anime-2027','Senren＊Banka Được Chuyển Thể Anime, Dàn Cast Gốc Trở Lại, Ra Mắt 2027','Senren＊Banka Gets Anime Adaptation, Original Cast Returns, 2027 Premiere'],
+      ['konosuba-season-4-2027','KONOSUBA Mùa 4 Ấn Định Ra Mắt 2027, Đổi Sang Studio ENGI','KONOSUBA Season 4 Confirmed For 2027, Moves To Studio ENGI'],
+      ['free-fire-daybreak-anime-2027','Free Fire Daybreak Tung Key Visual Đầu Tiên, Ấn Định Mùa Xuân 2027','Free Fire Daybreak Reveals Key Visual, Sets Spring 2027 Debut'],
+      ['ranma-half-season-3-visual','Ranma 1/2 Mùa 3 Công Bố Key Visual, 5 Diễn Viên Mới Và Ngày Lên Sóng 3/10','Ranma 1/2 Season 3 Reveals Key Visual, Five New Cast Members, October 3 Premiere'],
+      ['bleach-tybw-calamity-opening-ending','Bleach TYBW: The Calamity Công Bố OP \'I-BULL\' Và ED \'Rasen\'','Bleach TYBW: The Calamity Reveals OP "I-BULL" and ED "Rasen"'],
+      ['galaxy-express-999-new-film','Toei Animation Xác Nhận Phim Galaxy Express 999 Mới, Rintaro Viết Cốt Truyện','Toei Confirms New Galaxy Express 999 Film With Rintaro'],
+      ['doraemon-steam-time-machine-film','Doraemon Công Bố Phim Thứ 46: Nobita Đến London Bằng Tàu Thời Gian Hơi Nước','Doraemon Announces 46th Film: Steam-Powered Time Machine'],
+      ['rezero-10th-anniversary-visual','Re:ZERO Tung Visual Kỷ Niệm 10 Năm, Hé Lộ Triển Lãm Tại Tokyo Tháng 9','Re:ZERO Reveals 10th Anniversary Visual, Announces Tokyo Exhibition'],
+      ['the-bugle-call-anime-2027','The Bugle Call: Song of War Công Bố TV Anime Tại Studio CA Soa, Ra Mắt 2027','The Bugle Call: Song of War Gets TV Anime at CA Soa, Set For 2027'],
+      ['magical-buffs-fate-rewinder-crunchyroll','Crunchyroll Xác Nhận Magical Buffs Và Fate Rewinder Sau Showcase Anime Expo 2026','Crunchyroll Confirms Magical Buffs, Fate Rewinder After AX 2026'],
+      ['mii-chan-miss-yamada-anime','Mii-chan and Miss Yamada Được Chuyển Thể Anime, Ra Mắt Năm 2027','Mii-chan and Miss Yamada Manga Gets Anime Adaptation in 2027'],
+      ['studio-cabana-anime-2027','Manga Studio Cabana Được Chuyển Thể Anime Tại JUVENAGE, Ra Mắt 2027','Studio Cabana Manga Gets TV Anime at JUVENAGE, Set For 2027']
     ],
     manga:[
-      ['yen-press-champignon-witch-licenses','Yen Press công bố Champignon Witch và manga mới','Yen Press announces Champignon Witch and new manga licenses'],
-      ['akira-toriyama-eisner-hall-of-fame','Akira Toriyama được ghi danh vào Eisner Hall of Fame','Akira Toriyama inducted into the Eisner Hall of Fame'],
-      ['crunchyroll-manga-black-torch-hana-kimi','Crunchyroll Manga thêm Black Torch và Hana-Kimi','Crunchyroll Manga adds Black Torch and Hana-Kimi']
+      ['yen-press-champignon-witch-licenses','Yen Press Cấp Phép Champignon Witch Cùng 9 Manga, Light Novel Mới Tại SDCC 2026','Yen Press Licenses Champignon Witch And 9 More Manga, Light Novels at SDCC 2026'],
+      ['akira-toriyama-eisner-hall-of-fame','Akira Toriyama Chính Thức Được Ghi Danh Vào Eisner Hall of Fame','Akira Toriyama Inducted Into the Eisner Hall of Fame'],
+      ['crunchyroll-manga-black-torch-hana-kimi','Crunchyroll Manga Bổ Sung Black Torch, Hana-Kimi Trong Đợt Cập Nhật Tháng 7','Crunchyroll Manga Adds Black Torch, Hana-Kimi in July Update']
     ]
   };
   // Dùng lại đúng class .wrap/.sec-h/.sec-t/.sec-l/.sec-more đã có sẵn trên trang
