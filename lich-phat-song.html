@@ -5,22 +5,22 @@
 <head>
 
 
-<title>Lịch Phát Sóng Anime 2026, Mùa Hè, Thu, Đông · OtaHub</title>
+<title>Lịch Chiếu Anime &amp; Cập Nhật Manga 2026 · OtaHub</title>
 
 
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 
-<meta name="description" content="Lịch phát sóng anime 2026 đầy đủ theo mùa: Xuân, Hè, Thu, Đông. Xem ngày chiếu, studio, thể loại và synopsis từng anime mùa mới nhất.">
+<meta name="description" content="Lịch phát sóng anime 2026 theo mùa, cùng bảng cập nhật chapter manga/manhwa/manhua mới nhất. Xem ngày chiếu, studio, thể loại tại một nơi.">
 
 
 <link rel="alternate" hreflang="vi" href="https://otahub.asia/lich-phat-song"><link rel="alternate" hreflang="en" href="https://otahub.asia/en/lich-phat-song"><link rel="alternate" hreflang="x-default" href="https://otahub.asia/lich-phat-song"><link rel="canonical" href="https://otahub.asia/lich-phat-song">
 
 
-<meta property="og:title" content="Lịch Phát Sóng Anime 2026 · OtaHub"><meta property="og:url" content="https://otahub.asia/lich-phat-song">
+<meta property="og:title" content="Lịch Chiếu Anime &amp; Cập Nhật Manga 2026 · OtaHub"><meta property="og:url" content="https://otahub.asia/lich-phat-song">
 
 
-<meta property="og:description" content="Anime mùa Hè 2026, lịch chiếu đầy đủ, filter theo loại, studio và thể loại.">
+<meta property="og:description" content="Lịch chiếu anime theo mùa và bảng cập nhật chapter manga/manhwa/manhua mới nhất, filter theo loại, studio và thể loại.">
 
 
   <meta property="og:image:width" content="1200">
@@ -56,7 +56,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&amp;family=Space+Grotesk:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
 
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Lịch Phát Sóng Anime 2026","description":"Lịch phát sóng anime theo mùa năm 2026","url":"https://otahub.asia/lich-phat-song","publisher":{"@type":"Organization","name":"OtaHub"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Lịch Chiếu Anime & Cập Nhật Manga 2026","description":"Lịch phát sóng anime theo mùa và bảng cập nhật chapter manga/manhwa/manhua mới nhất năm 2026","url":"https://otahub.asia/lich-phat-song","publisher":{"@type":"Organization","name":"OtaHub"}}</script>
 
 
 <style>
@@ -154,6 +154,12 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 
 .ph-sub{font-size:14px;color:var(--dim)}
 
+
+/* MODE TABS (Anime/Manga) */
+.mode-bar{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;gap:8px;margin-top:22px}
+.mode-btn{background:var(--surf);border:1px solid var(--border);color:var(--dim);font-family:var(--fd);font-weight:700;font-size:14px;letter-spacing:.06em;padding:10px 22px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px}
+.mode-btn.active{background:var(--cyan);border-color:var(--cyan);color:var(--bg)}
+.mode-btn:hover:not(.active){border-color:rgba(0,229,255,.3);color:var(--cyan)}
 
 /* YEAR TABS */
 
@@ -255,6 +261,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 
 
 .ac-air-dot.tba{background:var(--amber)}
+.ac-type-badge.manga{color:var(--cyan)}.ac-type-badge.manhwa{color:var(--sakura)}.ac-type-badge.manhua{color:var(--amber)}
 
 
 /* DAY SECTION HEADERS */
@@ -455,19 +462,31 @@ input,select,textarea{font-size:16px!important}
   <div class="ph-in">
 
 
-    <div class="ph-eyebrow">📅 Lịch Phát Sóng</div>
+    <div class="ph-eyebrow">📅 Lịch Chiếu &amp; Cập Nhật</div>
 
 
-    <h1 class="ph-title">Anime <span style="color:var(--sakura)" id="seasonTitle">Mùa Hè 2026</span></h1>
+    <h1 class="ph-title" id="pageTitle"><span id="modeLabel">Anime</span> <span style="color:var(--sakura)" id="seasonTitle">Mùa Hè 2026</span></h1>
 
 
-    <p class="ph-sub">Cập nhật đầy đủ lịch chiếu, studio, thể loại cho từng anime theo mùa</p>
+    <p class="ph-sub" id="pageSub">Cập nhật đầy đủ lịch chiếu, studio, thể loại cho từng anime theo mùa</p>
 
 
   </div>
 
 
-  <div class="year-bar">
+  <div class="mode-bar">
+
+
+    <button class="mode-btn active" id="modeBtnAnime" onclick="setMode('anime',this)">🎬 Anime</button>
+
+
+    <button class="mode-btn" id="modeBtnManga" onclick="setMode('manga',this)">📖 Manga</button>
+
+
+  </div>
+
+
+  <div class="year-bar" id="yearBar">
 
 
     <button class="yr-btn" onclick="setYear(2025,this)">2025</button>
@@ -488,7 +507,7 @@ input,select,textarea{font-size:16px!important}
 
 
 
-<div class="season-wrap">
+<div class="season-wrap" id="animeSection">
 
 
   <div class="season-tabs">
@@ -540,6 +559,38 @@ input,select,textarea{font-size:16px!important}
 
 
   <div class="anime-grid" id="animeGrid"></div>
+
+
+</div>
+
+
+<div class="season-wrap" id="mangaSection" style="display:none">
+
+
+  <div class="filter-bar" style="margin-top:0">
+
+
+    <span class="filter-label">Loại:</span>
+
+
+    <button class="filter-btn active" onclick="setMangaFilter('all',this)">Tất cả</button>
+
+
+    <button class="filter-btn" onclick="setMangaFilter('manga',this)">Manga</button>
+
+
+    <button class="filter-btn" onclick="setMangaFilter('manhwa',this)">Manhwa</button>
+
+
+    <button class="filter-btn" onclick="setMangaFilter('manhua',this)">Manhua</button>
+
+
+  </div>
+
+
+
+
+  <div class="anime-grid" id="mangaGrid"></div>
 
 
 </div>
@@ -943,9 +994,75 @@ function setYear(y, btn){
 
 function toggleMobileNav(){const b=document.getElementById('hamBtn'),n=document.getElementById('mobileNav');b.classList.toggle('open');n.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':''}
 
+/* ===== MANGA: bang cap nhat chapter moi nhat ===== */
+const MANGA_DATA = [
+  {type:'manga',title:'Jujutsu Kaisen',chapter:'Chapter 271',genres:['Action','Supernatural'],time:'2 giờ trước',img:'/assets/img/d662bae70f-maxresdefault.jpg',link:'/manga-detail?t=Jujutsu%20Kaisen'},
+  {type:'manga',title:'One Piece',chapter:'Chapter 1135',genres:['Adventure','Shonen'],time:'5 giờ trước',img:'/assets/img/8d631824e5-maxresdefault.jpg',link:'/manga-detail?t=One%20Piece'},
+  {type:'manhwa',title:'Solo Leveling: Ragnarok',chapter:'Chapter 48',genres:['Action','Fantasy'],time:'3 giờ trước',img:'/assets/img/a4f75364fc-maxresdefault.jpg',link:'/manga-detail?t=Solo%20Leveling%3A%20Ragnarok'},
+  {type:'manga',title:'Chainsaw Man',chapter:'Chapter 192',genres:['Action','Horror'],time:'6 giờ trước',img:'/assets/img/39c7dd4496-maxresdefault.jpg',link:'/manga-detail?t=Chainsaw%20Man'},
+  {type:'manhwa',title:'Omniscient Reader',chapter:'Chapter 214',genres:['Fantasy','Adventure'],time:'8 giờ trước',img:'/assets/img/d98cf42206-maxresdefault.jpg',link:'/manga-detail?t=Omniscient%20Reader'},
+  {type:'manhua',title:'Battle Through the Heavens',chapter:'Chapter 512',genres:['Xianxia','Action'],time:'9 giờ trước',img:'/assets/img/1f0540d7a3-maxresdefault.jpg',link:'/manga-detail?t=Battle%20Through%20the%20Heavens'},
+  {type:'manga',title:'Spy x Family',chapter:'Chapter 112',genres:['Comedy','Action'],time:'12 giờ trước',img:'/assets/img/a7f0eee58e-122795l.jpg',link:'/manga-detail?t=Spy%20x%20Family'},
+  {type:'manhwa',title:'The Beginning After The End',chapter:'Chapter 206',genres:['Fantasy','Isekai'],time:'14 giờ trước',img:'/assets/img/d98cf42206-maxresdefault.jpg',link:'/manga-detail?t=The%20Beginning%20After%20The%20End'},
+];
+let currentMangaFilter = 'all';
 
+function renderMangaGrid(){
+  const grid = document.getElementById('mangaGrid');
+  let items = MANGA_DATA;
+  if(currentMangaFilter !== 'all') items = items.filter(m => m.type === currentMangaFilter);
+  if(!items.length){
+    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">📖</div><p>Chưa có chapter mới cho loại này.</p></div>';
+    return;
+  }
+  grid.innerHTML = items.map(m => `
+    <a href="${m.link}" class="ac">
+      <img class="ac-cover" src="${m.img}" alt="${m.title}" fetchpriority="high" decoding="async">
+      <div class="ac-body">
+        <div class="ac-type-badge ${m.type}">${m.type.toUpperCase()} · ${m.chapter}</div>
+        <div class="ac-title">${m.title}</div>
+        <div class="ac-genres">${m.genres.map(g=>`<span class="ac-genre">${g}</span>`).join('')}</div>
+        <div class="ac-air"><div class="ac-air-dot"></div>Cập nhật ${m.time}</div>
+      </div>
+    </a>`).join('');
+}
 
+function setMangaFilter(f, btn){
+  currentMangaFilter = f;
+  btn.parentElement.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMangaGrid();
+}
 
+function setMode(mode, btn){
+  document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const animeSection = document.getElementById('animeSection');
+  const mangaSection = document.getElementById('mangaSection');
+  const yearBar = document.getElementById('yearBar');
+  const modeLabel = document.getElementById('modeLabel');
+  const seasonTitle = document.getElementById('seasonTitle');
+  if(mode === 'manga'){
+    animeSection.style.display = 'none';
+    mangaSection.style.display = '';
+    yearBar.style.display = 'none';
+    modeLabel.textContent = 'Manga';
+    seasonTitle.textContent = 'Cập Nhật Chapter';
+    document.getElementById('pageSub').textContent = 'Chapter mới nhất từ manga, manhwa và manhua đang theo dõi trên OtaHub';
+  } else {
+    animeSection.style.display = '';
+    mangaSection.style.display = 'none';
+    yearBar.style.display = '';
+    modeLabel.textContent = 'Anime';
+    seasonTitle.textContent = SEASON_NAMES[currentSeason]+' '+currentYear;
+    document.getElementById('pageSub').textContent = 'Cập nhật đầy đủ lịch chiếu, studio, thể loại cho từng anime theo mùa';
+  }
+}
+
+renderMangaGrid();
+if(location.hash === '#manga'){
+  setMode('manga', document.getElementById('modeBtnManga'));
+}
 
 renderGrid();
 
