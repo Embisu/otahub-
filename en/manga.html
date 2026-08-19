@@ -674,18 +674,6 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 /* Article sub-filter */
 
 
-.art-sub{display:flex;gap:0;border-bottom:1px solid var(--border);background:rgba(19,10,40,.6)}
-
-
-.sf-btn{background:none;border:none;cursor:pointer;font-family:var(--fd);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:11px 16px;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
-
-
-.sf-btn.on{color:var(--lav);border-bottom-color:var(--lav)}
-
-
-.sf-btn:hover:not(.on){color:rgba(240,238,255,.7)}
-
-
 
 
 
@@ -1629,25 +1617,6 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     <div>
 
 
-      <div class="art-sub">
-
-
-        <button class="sf-btn on" onclick="setSub(this)">All</button>
-
-
-        <button class="sf-btn" onclick="setSub(this)">Manga</button>
-
-
-        <button class="sf-btn" onclick="setSub(this)">Manhwa</button>
-
-
-        <button class="sf-btn" onclick="setSub(this)">Manhua</button>
-
-
-        <button class="sf-btn" onclick="setSub(this)">Reviews</button>
-
-
-      </div>
 
 
       <div class="f-grid">
@@ -2723,7 +2692,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 
-/* ===== Filter by type (.ttab), category (.ftab) and sub-type (.sf-btn) ===== */
+/* ===== Filter by type (.ttab) and category (.ftab) ===== */
 var FTAB_CAT_MAP={
   'All categories':'all',
   'Action':'action',
@@ -2743,10 +2712,8 @@ function setF(btn){document.querySelectorAll('.ftab').forEach(b=>b.classList.rem
 
 function applyCatFilter(){
   var ftabOn=document.querySelector('.ftab.on');
-  var sfOn=document.querySelector('.sf-btn.on');
   var type=currentType||'all';
   var genre=ftabOn?(FTAB_CAT_MAP[ftabOn.textContent.trim()]||'all'):'all';
-  var sub=sfOn?sfOn.textContent.trim().toLowerCase():'all';
 
   /* "Latest chapters" grid: affected by type-tabs (.ttab) and category filter (.ftab) */
   document.querySelectorAll('.chapters-grid .ch-card[data-cat]').forEach(function(card){
@@ -2756,19 +2723,13 @@ function applyCatFilter(){
     card.style.display=(showType&&showGenre)?'':'none';
   });
 
-  /* "News comics" block (ac-mag + ac): affected by type-tabs, category filter and sub-filter */
+  /* "News comics" block (ac-mag + ac): affected by type-tabs and category filter */
   document.querySelectorAll('.content-layout [data-cat]').forEach(function(card){
     var cats=(card.dataset.cat||'').split(/\s+/);
     var showType=(type==='all')||cats.indexOf(type)>-1;
     var showGenre=(genre==='all')||cats.indexOf(genre)>-1;
-    var showSub=(sub==='all')||cats.indexOf(sub)>-1;
-    card.style.display=(showType&&showGenre&&showSub)?'':'none';
+    card.style.display=(showType&&showGenre)?'':'none';
   });
-}
-function setSub(btn){
-  document.querySelectorAll('.sf-btn').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');
-  applyCatFilter();
 }
 
 

@@ -676,18 +676,6 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 /* Article cards */
 
 
-.art-sub{display:flex;gap:0;border-bottom:1px solid var(--border);background:rgba(22,10,44,.6)}
-
-
-.sf-btn{background:none;border:none;cursor:pointer;font-family:var(--fd);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:11px 16px;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
-
-
-.sf-btn.on{color:var(--sakura);border-bottom-color:var(--sakura)}
-
-
-.sf-btn:hover:not(.on){color:rgba(240,238,255,.7)}
-
-
 
 
 
@@ -1583,25 +1571,6 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     <div>
 
 
-      <div class="art-sub">
-
-
-        <button class="sf-btn on" onclick="setSub(this)">All</button>
-
-
-        <button class="sf-btn" onclick="setSub(this)">News</button>
-
-
-        <button class="sf-btn" onclick="setSub(this)">Reviews</button>
-
-
-        <button class="sf-btn" onclick="setSub(this)">Guides</button>
-
-
-        <button class="sf-btn" onclick="setSub(this)">Summer</button>
-
-
-      </div>
 
 
       <div class="f-grid">
@@ -1979,23 +1948,6 @@ function setF(btn){
   const val=FILTER_MAP[btn.textContent.trim()]||'all';
   applyFtabFilter(val);
 }
-
-function applyCatFilter(){
-  const active=document.querySelector('.sf-btn.on');
-  const map={'All':'all','News':'news','Reviews':'review','Guides':'guide','Summer':'mua-he-2026'};
-  const cat=active?(map[active.textContent.trim()]||'all'):'all';
-  document.querySelectorAll('.content-layout [data-cat]').forEach(card=>{
-    const cats=(card.dataset.cat||'').split(/\s+/);
-    card.style.display=cat==='all'||cats.includes(cat)?'':'none';
-  });
-}
-function setSub(btn){
-  document.querySelectorAll('.sf-btn').forEach(t=>t.classList.remove('on'));
-  btn.classList.add('on');
-  applyCatFilter();
-}
-
-
 
 
 

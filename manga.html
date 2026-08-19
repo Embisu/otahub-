@@ -716,18 +716,6 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 /* Article sub-filter */
 
 
-.art-sub{display:flex;gap:0;border-bottom:1px solid var(--border);background:rgba(19,10,40,.6)}
-
-
-.sf-btn{background:none;border:none;cursor:pointer;font-family:var(--fd);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:11px 16px;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
-
-
-.sf-btn.on{color:var(--lav);border-bottom-color:var(--lav)}
-
-
-.sf-btn:hover:not(.on){color:rgba(240,238,255,.7)}
-
-
 /* Ẩn card khi bị lọc bởi filter-bar / sub-filter */
 .cat-hidden{display:none!important}
 
@@ -1575,25 +1563,6 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     <div>
 
 
-      <div class="art-sub">
-
-
-        <button class="sf-btn on" onclick="setSub(this)">Tất cả</button>
-
-
-        <button class="sf-btn" onclick="setSub(this)">Manga</button>
-
-
-        <button class="sf-btn" onclick="setSub(this)">Manhwa</button>
-
-
-        <button class="sf-btn" onclick="setSub(this)">Manhua</button>
-
-
-        <button class="sf-btn" onclick="setSub(this)">Reviews</button>
-
-
-      </div>
 
 
       <div class="f-grid">
@@ -2731,32 +2700,16 @@ var FTAB_CAT_MAP={
   'Reviews':'reviews',
   'Chapter mới':'chapter-moi'
 };
-var SFBTN_CAT_MAP={
-  'Tất cả':'all',
-  'Manga':'manga',
-  'Manhwa':'manhwa',
-  'Manhua':'manhua',
-  'Reviews':'reviews'
-};
-
 function setF(btn){
   document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
   applyMangaFilters();
 }
 
-function setSub(btn){
-  document.querySelectorAll('.sf-btn').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');
-  applyMangaFilters();
-}
-
 function applyMangaFilters(){
   var ftabOn=document.querySelector('.ftab.on');
-  var sfOn=document.querySelector('.sf-btn.on');
   var type=currentType||'all';
   var genre=ftabOn?(FTAB_CAT_MAP[ftabOn.textContent.trim()]||'all'):'all';
-  var sub=sfOn?(SFBTN_CAT_MAP[sfOn.textContent.trim()]||'all'):'all';
 
   /* Lưới "Chapter mới nhất": chịu ảnh hưởng của cả type-tabs (.ttab) lẫn filter-bar (.ftab) */
   document.querySelectorAll('.chapters-grid .ch-card[data-cat]').forEach(function(card){
@@ -2766,13 +2719,12 @@ function applyMangaFilters(){
     card.classList.toggle('cat-hidden',!(showType&&showGenre));
   });
 
-  /* Khối "Tin tức truyện tranh" (ac-mag + ac): chịu ảnh hưởng của type-tabs, filter-bar lẫn sub-filter */
+  /* Khối "Tin tức truyện tranh" (ac-mag + ac): chịu ảnh hưởng của type-tabs lẫn filter-bar */
   document.querySelectorAll('.ac-mag[data-cat], .content-layout a.ac[data-cat]').forEach(function(card){
     var cats=card.getAttribute('data-cat').split(' ');
     var showType=(type==='all')||cats.indexOf(type)>-1;
     var showGenre=(genre==='all')||cats.indexOf(genre)>-1;
-    var showSub=(sub==='all')||cats.indexOf(sub)>-1;
-    card.classList.toggle('cat-hidden',!(showType&&showGenre&&showSub));
+    card.classList.toggle('cat-hidden',!(showType&&showGenre));
   });
 }
 
