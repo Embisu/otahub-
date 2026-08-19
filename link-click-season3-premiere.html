@@ -180,14 +180,17 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .sb-tags{display:flex;flex-wrap:wrap;gap:6px}
 .sb-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--border);color:var(--muted);text-decoration:none;transition:all .2s;min-height:auto}
 .sb-tag:hover{border-color:rgba(0,229,255,.3);color:var(--cyan)}
-footer{position:relative;z-index:1;background:var(--surf);border-top:1px solid var(--border);padding:40px 24px 24px;margin-top:0}
-.ft-in{max-width:1160px;margin:0 auto}
-.ft-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:16px}
-.ft-brand{font-family:var(--fd);font-weight:700;font-size:18px}
-.ft-links{display:flex;gap:20px;flex-wrap:wrap}
-.ft-links a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);background:rgba(7,1,18,.98)}
+.ft-in{max-width:1440px;margin:0 auto;padding:52px 24px 32px;display:grid;grid-template-columns:200px 1fr 1fr 1fr;gap:48px}
+.ft-desc{font-size:12px;color:rgba(240,238,255,.3);line-height:1.75;max-width:175px;margin-top:12px}
+.ft-h{font-size:10px;letter-spacing:.19em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;font-weight:500}
+.ft-links{display:flex;flex-direction:column;gap:9px;list-style:none}
+.ft-links a{font-size:13px;color:rgba(240,238,255,.4);text-decoration:none;transition:color .2s}
 .ft-links a:hover{color:var(--cyan)}
-.ft-copy{font-size:11px;color:var(--muted);padding-top:20px;border-top:1px solid var(--border)}
+.ft-bot{max-width:1440px;margin:0 auto;padding:16px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.ft-copy{font-size:11px;color:rgba(240,238,255,.22);letter-spacing:.04em}
+@media(max-width:1024px){.ft-in{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.ft-in{grid-template-columns:1fr;gap:28px}.ft-bot{flex-direction:column;gap:10px}}
 @media(max-width:900px){
 .art-hero{height:340px}
 .art-layout{grid-template-columns:1fr;gap:0}
@@ -273,17 +276,7 @@ footer{position:relative;z-index:1;background:var(--surf);border-top:1px solid v
   PARTIAL: Footer dùng chung cho TRANG BÀI VIẾT.
   Không có biến — nội dung cố định 100%. Sửa 1 lần ở đây, mọi bài viết đổi theo.
 -->
-<footer><div class="ft-in">
-<div class="ft-top">
-<span class="ft-brand"><span style="color:var(--white)">Ota</span><span style="color:var(--cyan)">Hub</span></span>
-<div class="ft-links">
-<a href="/about">Về chúng tôi</a>
-<a href="/lien-he">Liên hệ</a>
-<a href="/chinh-sach-bao-mat">Chính sách bảo mật</a>
-</div>
-</div>
-<div class="ft-copy">© 2026 OtaHub · Gaming · Anime · Manga</div>
-</div></footer>
+<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><svg viewbox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
 
 <!--
   PARTIAL: Script cuối trang dùng chung cho TRANG BÀI VIẾT.
