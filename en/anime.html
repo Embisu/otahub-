@@ -230,6 +230,24 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
 
 
+.nav-drop{position:relative}
+
+
+.nav-drop-menu{position:absolute;top:100%;left:0;min-width:230px;background:var(--surf);border:1px solid var(--border);box-shadow:0 16px 36px rgba(0,0,0,.45);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s;z-index:60;padding:6px 0}
+
+
+.nav-drop:hover .nav-drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
+
+
+.nav-drop-menu a{display:flex;align-items:center;gap:10px;padding:11px 18px;font-size:12px;font-weight:400;letter-spacing:.03em;text-transform:none;color:var(--muted);height:auto}
+
+
+.nav-drop-menu a:hover{color:var(--white);background:var(--surf2)}
+
+
+.nav-drop-menu a::after{display:none}
+
+
 .nav-r{display:flex;align-items:center;gap:8px;margin-left:auto}
 
 
@@ -305,28 +323,6 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 
 
 
-/* Filter bar */
-
-
-.filter-bar{position:relative;z-index:1;border-bottom:1px solid var(--border);background:rgba(11,3,24,.8);backdrop-filter:blur(12px)}
-
-
-.filter-in{max-width:1440px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none}
-
-
-.filter-in::-webkit-scrollbar{display:none}
-
-
-.ftab{background:none;border:none;cursor:pointer;font-family:var(--fd);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:13px 18px;white-space:nowrap;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;flex-shrink:0}
-
-
-.ftab.on{color:var(--sakura);border-bottom-color:var(--sakura)}
-
-
-.ftab:hover:not(.on){color:rgba(240,238,255,.75)}
-
-
-.fsep{width:1px;height:28px;background:var(--border);flex-shrink:0;margin:0 4px}
 
 
 
@@ -814,7 +810,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .ac:hover::after{transform:scaleY(1)}
 
 
-.ac-thumb{overflow:hidden;background:var(--surf2)}
+.ac-thumb{overflow:hidden;background:var(--surf2);aspect-ratio:16/9}
 
 
 .ac-thumb img{width:100%;height:100%;object-fit:cover;opacity:.75;transition:transform .5s var(--ease),opacity .3s;display:block}
@@ -1402,7 +1398,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       <li><a href="/en/gaming">Gaming</a></li>
 
 
-      <li><a href="/en/anime" class="active">Anime</a></li>
+      <li class="nav-drop"><a href="/en/anime" class="active">Anime</a><div class="nav-drop-menu"><a href="/en/lich-phat-song">📅 Anime Schedule</a><a href="/en/reviews">⭐ Anime Reviews</a><a href="/en/rankings">🏆 Rankings</a><a href="/en/in-depth">🔍 In-depth Analysis</a></div></li>
 
 
       <li><a href="/en/manga">Manga</a></li>
@@ -1463,6 +1459,9 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   <a href="/en/anime" class="active">Anime</a>
 
 
+  <a href="/en/lich-phat-song" style="padding-left:32px;font-size:13px">↳ Anime Schedule</a>
+
+
   <a href="/en/manga">Manga</a>
 
 
@@ -1502,55 +1501,6 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 
-<!-- FILTER BAR -->
-
-
-<div class="filter-bar">
-
-
-  <div class="filter-in">
-
-
-    <button class="ftab on" onclick="setF(this)">All</button>
-
-
-    <button class="ftab" onclick="setF(this)">Summer 2026</button>
-
-
-    <button class="ftab" onclick="setF(this)">Spring 2026</button>
-
-
-    <div class="fsep"></div>
-
-
-    <button class="ftab" onclick="setF(this)">Reviews</button>
-
-
-    <button class="ftab" onclick="setF(this)">News</button>
-
-
-    <button class="ftab" onclick="setF(this)">Rankings</button>
-
-
-    <div class="fsep"></div>
-
-
-    <button class="ftab" onclick="setF(this)">Action</button>
-
-
-    <button class="ftab" onclick="setF(this)">Romance</button>
-
-
-    <button class="ftab" onclick="setF(this)">Isekai</button>
-
-
-    <button class="ftab" onclick="setF(this)">Shounen</button>
-
-
-  </div>
-
-
-</div>
 
 
 
@@ -1753,6 +1703,10 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         <div class="ac-thumb"><img src="/assets/img/news-doraemon-steam-time-machine-film.jpg" alt="Doraemon Announces 46th Film: Steam-Powered Time Machine" loading="lazy" width="1280" height="720"></div>
         <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Anime</span></div><div class="ac-title">Doraemon Announces 46th Film: Steam-Powered Time Machine</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="sep">·</span><span>2 days ago</span><span class="sep">·</span><span>6 min</span></div></div>
       </a>
+      <a href="/en/detective-conan-final-chapter" class="ac" data-cat="news">
+        <div class="ac-thumb"><img src="/assets/img/news-detective-conan-final-chapter.jpg" alt="Gosho Aoyama Confirms He Has Already Drafted Detective Conan's Final Chapter Storyboard" loading="lazy" width="704" height="396"></div>
+        <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Anime</span></div><div class="ac-title">Gosho Aoyama Confirms He Has Already Drafted Detective Conan's Final Chapter Storyboard</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="sep">·</span><span>4 hours ago</span><span class="sep">·</span><span>5 min</span></div></div>
+      </a>
       <a href="/en/rezero-10th-anniversary-visual" class="ac" data-cat="news">
         <div class="ac-thumb"><img src="/assets/img/news-rezero-10th-anniversary-visual.jpg" alt="Re:ZERO Reveals 10th Anniversary Visual, Announces Tokyo Exhibition" loading="lazy" width="1280" height="720"></div>
         <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Anime</span></div><div class="ac-title">Re:ZERO Reveals 10th Anniversary Visual, Announces Tokyo Exhibition</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="sep">·</span><span>2 days ago</span><span class="sep">·</span><span>6 min</span></div></div>
@@ -1918,36 +1872,6 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 <script>
 
 
-
-
-// Map .ftab (filter-bar) label -> data-cat value
-const FILTER_MAP={
-  'All':'all',
-  'Summer 2026':'mua-he-2026',
-  'Spring 2026':'mua-xuan-2026',
-  'Reviews':'review',
-  'News':'news',
-  'Rankings':'rankings',
-  'Action':'action',
-  'Romance':'romance',
-  'Isekai':'isekai',
-  'Shounen':'shonen'
-};
-
-function applyFtabFilter(val){
-  document.querySelectorAll('.rev-grid [data-cat], .content-layout [data-cat]').forEach(card=>{
-    if(val==='all'){card.style.display='';return}
-    const cats=(card.dataset.cat||'').split(/\s+/);
-    card.style.display=cats.includes(val)?'':'none';
-  });
-}
-
-function setF(btn){
-  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));
-  btn.classList.add('on');
-  const val=FILTER_MAP[btn.textContent.trim()]||'all';
-  applyFtabFilter(val);
-}
 
 
 

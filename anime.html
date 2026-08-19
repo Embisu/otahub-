@@ -272,6 +272,24 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
 
 
+.nav-drop{position:relative}
+
+
+.nav-drop-menu{position:absolute;top:100%;left:0;min-width:230px;background:var(--surf);border:1px solid var(--border);box-shadow:0 16px 36px rgba(0,0,0,.45);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s;z-index:60;padding:6px 0}
+
+
+.nav-drop:hover .nav-drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
+
+
+.nav-drop-menu a{display:flex;align-items:center;gap:10px;padding:11px 18px;font-size:12px;font-weight:400;letter-spacing:.03em;text-transform:none;color:var(--muted);height:auto}
+
+
+.nav-drop-menu a:hover{color:var(--white);background:var(--surf2)}
+
+
+.nav-drop-menu a::after{display:none}
+
+
 .nav-r{display:flex;align-items:center;gap:8px;margin-left:auto}
 
 
@@ -347,34 +365,6 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 
 
 
-/* Filter bar */
-
-
-.filter-bar{position:relative;z-index:1;border-bottom:1px solid var(--border);background:rgba(11,3,24,.8);backdrop-filter:blur(12px)}
-
-
-.filter-in{max-width:1440px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none}
-
-
-.filter-in::-webkit-scrollbar{display:none}
-
-
-.ftab{background:none;border:none;cursor:pointer;font-family:var(--fd);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:13px 18px;white-space:nowrap;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;flex-shrink:0}
-
-
-.ftab.on{color:var(--sakura);border-bottom-color:var(--sakura)}
-
-
-.ftab:hover:not(.on){color:rgba(240,238,255,.75)}
-
-
-.fsep{width:1px;height:28px;background:var(--border);flex-shrink:0;margin:0 4px}
-
-
-/* Ẩn card khi bị lọc bởi setFilter/setSub */
-
-
-.cat-hidden{display:none}
 
 
 
@@ -862,7 +852,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .ac:hover::after{transform:scaleY(1)}
 
 
-.ac-thumb{overflow:hidden;background:var(--surf2)}
+.ac-thumb{overflow:hidden;background:var(--surf2);aspect-ratio:16/9}
 
 
 .ac-thumb img{width:100%;height:100%;object-fit:cover;opacity:.75;transition:transform .5s var(--ease),opacity .3s;display:block}
@@ -1423,7 +1413,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 <!-- NAV -->
 
 
-<nav class="nav"><div class="nav-in"><a href="/" class="logo"><svg viewbox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="5" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming">Gaming</a></li><li><a href="/anime" class="active">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="Tìm kiếm" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="/#newsletter" class="cta" id="cta-sub">Subscribe</a></div></div></nav>
+<nav class="nav"><div class="nav-in"><a href="/" class="logo"><svg viewbox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="5" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming">Gaming</a></li><li class="nav-drop"><a href="/anime" class="active">Anime</a><div class="nav-drop-menu"><a href="/lich-phat-song">📅 Lịch chiếu anime</a><a href="/reviews">⭐ Review Anime</a><a href="/rankings">🏆 Bảng xếp hạng</a><a href="/chuyen-sau">🔍 Phân tích chuyên sâu</a></div></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="Tìm kiếm" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="/#newsletter" class="cta" id="cta-sub">Subscribe</a></div></div></nav>
 
 
 <!-- SEO H1 -->
@@ -1435,7 +1425,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 
-<div class="mobile-nav" id="mobileNav"><a href="/choi-gi">Chơi Gì?</a><a href="/gaming">Gaming</a><a href="/anime" class="active">Anime</a><a href="/manga">Manga</a><a href="/reviews">Reviews</a><a href="/rankings">Rankings</a><a href="/chuyen-sau">Chuyên sâu</a><div class="m-sub"><a href="/about">Giới thiệu</a><a href="/#newsletter">Newsletter</a><a href="/about#contact">Liên hệ</a></div></div>
+<div class="mobile-nav" id="mobileNav"><a href="/choi-gi">Chơi Gì?</a><a href="/gaming">Gaming</a><a href="/anime" class="active">Anime</a><a href="/lich-phat-song" style="padding-left:32px;font-size:13px">↳ Lịch chiếu anime</a><a href="/manga">Manga</a><a href="/reviews">Reviews</a><a href="/rankings">Rankings</a><a href="/chuyen-sau">Chuyên sâu</a><div class="m-sub"><a href="/about">Giới thiệu</a><a href="/#newsletter">Newsletter</a><a href="/about#contact">Liên hệ</a></div></div>
 
 
 
@@ -1449,56 +1439,6 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 
-
-<!-- FILTER BAR -->
-
-
-<div class="filter-bar">
-
-
-  <div class="filter-in">
-
-
-    <button class="ftab on" onclick="setFilter(this)">Tất cả</button>
-
-
-    <button class="ftab" onclick="setFilter(this)">Mùa hè 2026</button>
-
-
-    <button class="ftab" onclick="setFilter(this)">Mùa xuân 2026</button>
-
-
-    <div class="fsep"></div>
-
-
-    <button class="ftab" onclick="setFilter(this)">Reviews</button>
-
-
-    <button class="ftab" onclick="setFilter(this)">News</button>
-
-
-    <button class="ftab" onclick="setFilter(this)">Rankings</button>
-
-
-    <div class="fsep"></div>
-
-
-    <button class="ftab" onclick="setFilter(this)">Action</button>
-
-
-    <button class="ftab" onclick="setFilter(this)">Romance</button>
-
-
-    <button class="ftab" onclick="setFilter(this)">Isekai</button>
-
-
-    <button class="ftab" onclick="setFilter(this)">Shonen</button>
-
-
-  </div>
-
-
-</div>
 
 
 
@@ -1763,6 +1703,31 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
       </a>
 
+
+
+
+      <a href="/detective-conan-final-chapter" class="ac" data-cat="news">
+
+
+        <div class="ac-thumb"><img src="/assets/img/news-detective-conan-final-chapter.jpg" alt="Gosho Aoyama Xác Nhận Đã Phác Thảo Storyboard Chương Cuối Thám Tử Lừng Danh Conan" loading="lazy" width="704" height="396"></div>
+
+
+        <div class="ac-info">
+
+
+          <div><div class="ac-tags"><span class="tag ts">Anime</span></div>
+
+
+          <div class="ac-title">Gosho Aoyama Xác Nhận Đã Phác Thảo Storyboard Chương Cuối Thám Tử Lừng Danh Conan</div></div>
+
+
+          <div class="ac-meta"><span>Đức Anh</span><span class="sep">·</span><span>4 giờ trước</span><span class="sep">·</span><span>5 min</span></div>
+
+
+        </div>
+
+
+      </a>
 
 
 
@@ -2036,91 +2001,6 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 <script>
-
-
-
-
-// Map nhãn nút .ftab (filter-bar) sang giá trị data-cat chuẩn hoá
-
-
-const FILTER_MAP={
-
-
-  'Tất cả':'all',
-
-
-  'Mùa hè 2026':'mua-he-2026',
-
-
-  'Mùa xuân 2026':'mua-xuan-2026',
-
-
-  'Reviews':'review',
-
-
-  'News':'news',
-
-
-  'Rankings':'rankings',
-
-
-  'Action':'action',
-
-
-  'Romance':'romance',
-
-
-  'Isekai':'isekai',
-
-
-  'Shonen':'shonen'
-
-
-};
-
-
-
-
-function applyCatFilter(cards,val){
-
-
-  cards.forEach(card=>{
-
-
-    if(val==='all'){card.classList.remove('cat-hidden');return}
-
-
-    const cats=(card.dataset.cat||'').split(' ');
-
-
-    card.classList.toggle('cat-hidden',!cats.includes(val));
-
-
-  });
-
-
-}
-
-
-function setFilter(btn){
-
-
-  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));
-
-
-  btn.classList.add('on');
-
-
-  const val=FILTER_MAP[btn.textContent.trim()]||'all';
-
-
-  const cards=document.querySelectorAll('.rev-grid [data-cat], .content-layout [data-cat]');
-
-
-  applyCatFilter(cards,val);
-
-
-}
 
 
 

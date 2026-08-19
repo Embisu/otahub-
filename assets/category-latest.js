@@ -4,6 +4,7 @@
   var category=match[1], english=/^\/en\//.test(location.pathname);
   var stories={
     gaming:[
+      ['sinking-city-2-launch','The Sinking City 2 Ra Mắt 18/8: Frogwares Chuyển Hẳn Sang Kinh Dị Sinh Tồn','The Sinking City 2 Launches August 18: Frogwares Goes All-In On Survival Horror'],
       ['playstation-plus-august-2026','PlayStation Plus Tháng 8/2026 Chốt Danh Sách: Dying Light 2 Reloaded, Big Walk Và Signalis','PlayStation Plus August 2026 Lineup: Dying Light 2 Reloaded, Big Walk And Signalis'],
       ['silent-hill-townfall-gameplay','Silent Hill: Townfall Hé Lộ Bối Cảnh Scotland 1996 Và Thiết Bị CRTV','Silent Hill: Townfall Details Scotland Setting And CRTV Retro Tech'],
       ['ball-x-pit-naturalist-update','Ball x Pit Ra Mắt Bản Cập Nhật Miễn Phí Cuối The Naturalist, Thêm 2 Nhân Vật Mới','Ball x Pit Launches Final Free Update The Naturalist With Two New Characters'],
@@ -21,6 +22,7 @@
       ['oblivion-remastered-switch-2','Oblivion Remastered Chính Thức Lên Nintendo Switch 2, Chạy 1080p Docked/900p Handheld','Oblivion Remastered Launches On Nintendo Switch 2 With DLSS Upscaling']
     ],
     anime:[
+      ['detective-conan-final-chapter','Gosho Aoyama Xác Nhận Đã Phác Thảo Storyboard Chương Cuối Thám Tử Lừng Danh Conan','Gosho Aoyama Confirms He Has Already Drafted Detective Conan\'s Final Chapter Storyboard'],
       ['senren-banka-anime-2027','Senren＊Banka Được Chuyển Thể Anime, Dàn Cast Gốc Trở Lại, Ra Mắt 2027','Senren＊Banka Gets Anime Adaptation, Original Cast Returns, 2027 Premiere'],
       ['konosuba-season-4-2027','KONOSUBA Mùa 4 Ấn Định Ra Mắt 2027, Đổi Sang Studio ENGI','KONOSUBA Season 4 Confirmed For 2027, Moves To Studio ENGI'],
       ['free-fire-daybreak-anime-2027','Free Fire Daybreak Tung Key Visual Đầu Tiên, Ấn Định Mùa Xuân 2027','Free Fire Daybreak Reveals Key Visual, Sets Spring 2027 Debut'],
@@ -35,6 +37,7 @@
       ['studio-cabana-anime-2027','Manga Studio Cabana Được Chuyển Thể Anime Tại JUVENAGE, Ra Mắt 2027','Studio Cabana Manga Gets TV Anime at JUVENAGE, Set For 2027']
     ],
     manga:[
+      ['hanako-kun-manga-resumes','Toilet-Bound Hanako-kun Trở Lại Sau 10 Tháng Gián Đoạn Vì Sức Khỏe Tác Giả','Toilet-Bound Hanako-kun Manga Returns After 10-Month Health Hiatus'],
       ['yen-press-champignon-witch-licenses','Yen Press Cấp Phép Champignon Witch Cùng 9 Manga, Light Novel Mới Tại SDCC 2026','Yen Press Licenses Champignon Witch And 9 More Manga, Light Novels at SDCC 2026'],
       ['akira-toriyama-eisner-hall-of-fame','Akira Toriyama Chính Thức Được Ghi Danh Vào Eisner Hall of Fame','Akira Toriyama Inducted Into the Eisner Hall of Fame'],
       ['crunchyroll-manga-black-torch-hana-kimi','Crunchyroll Manga Bổ Sung Black Torch, Hana-Kimi Trong Đợt Cập Nhật Tháng 7','Crunchyroll Manga Adds Black Torch, Hana-Kimi in July Update']
