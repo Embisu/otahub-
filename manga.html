@@ -735,6 +735,84 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 
 
 
+/* Featured grid (đồng bộ với trang chủ) */
+
+
+.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:290px 230px;gap:3px;margin-top:3px}
+
+
+.fc{grid-row:1/3;position:relative;overflow:hidden;cursor:pointer;background:var(--card)}
+
+
+.fc-img{position:absolute;inset:0;background:url('/assets/img/7bc69a799e-library_hero.jpg') center/cover no-repeat;animation:heroPulse 10s ease-in-out infinite alternate-reverse;opacity:.9;transition:opacity .5s,transform .7s var(--ease)}
+
+
+.fc:hover .fc-img{opacity:.75;transform:scale(1.04)}
+
+
+.fc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,2,32,.98) 0%,rgba(11,2,32,.6) 38%,rgba(11,2,32,.12) 70%,transparent 100%),linear-gradient(to right,transparent 50%,rgba(11,2,32,.4) 100%)}
+
+
+.fc::after{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;pointer-events:none}
+
+
+.fc:hover::after{border-color:rgba(0,229,255,.3)}
+
+
+.fc-body{position:absolute;bottom:0;left:0;right:0;padding:32px}
+
+
+.fc-title{font-family:var(--fd);font-weight:700;font-size:clamp(17px,2vw,27px);line-height:1.1;color:var(--white);margin:10px 0 10px;text-shadow:0 2px 20px rgba(0,0,0,.6)}
+
+
+.fc-sub{font-size:16px;color:var(--dim);margin-bottom:12px;max-width:420px}
+
+
+.fc-meta{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+
+.fc-meta span{color:var(--cyan)}
+
+
+.sc{position:relative;overflow:hidden;cursor:pointer;background:var(--card);display:flex;flex-direction:column;transition:background .2s}
+
+
+.sc:hover{background:#1e1244}
+
+
+.sc-img{flex:1;overflow:hidden;min-height:0;background:var(--surf2)}
+
+
+.sc-img img{width:100%;height:100%;object-fit:cover;opacity:.82;transition:transform .55s var(--ease),opacity .3s}
+
+
+.sc:hover .sc-img img{transform:scale(1.07);opacity:.95}
+
+
+.sc::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;z-index:3;pointer-events:none}
+
+
+.sc:hover::before{border-color:rgba(0,229,255,.22)}
+
+
+.sc-body{padding:14px 16px}
+
+
+.sc-title{font-family:var(--fd);font-weight:600;font-size:17px;line-height:1.25;color:rgba(240,238,255,.9);margin:6px 0 5px;transition:color .2s}
+
+
+.sc:hover .sc-title{color:var(--cyan)}
+
+
+.sc-meta{font-size:14px;color:var(--muted)}
+
+
+@media(max-width:1100px){.f-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.fc{grid-row:auto;grid-column:1/3;min-height:390px}}
+
+
+@media(max-width:768px){.f-grid{grid-template-columns:1fr;grid-template-rows:auto}.fc{grid-column:auto;min-height:370px}}
+
+
 /* Magazine top 2 */
 
 
@@ -1518,65 +1596,52 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       </div>
 
 
-      <div class="ac-top2">
+      <div class="f-grid">
 
 
-        <a href="/berserk-arc-cuoi" class="ac-mag" data-cat="manga">
+        <a class="fc" href="/berserk-arc-cuoi">
 
 
-          <img class="acm-img" src="/assets/img/7b5a968234-maxresdefault.jpg" alt="Berserk arc cuối · editor Dark Horse tiết lộ chi tiết về kế hoạch hoàn thành di cảo của Miura" width="640" height="360" fetchpriority="high" decoding="async">
+          <div class="fc-img" style="background-image:url(/assets/img/7b5a968234-maxresdefault.jpg)"></div><div class="fc-ov"></div>
 
 
-          <div class="acm-ov"></div>
+          <div class="fc-body">
 
 
-          <div class="acm-body">
+            <span class="tag tv">Manga</span>
 
 
-            <div class="acm-tags"><span class="tag tv">Manga</span><span class="tag" style="background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);color:var(--amber);font-size:9px;padding:3px 9px">Breaking</span></div>
+            <h2 class="fc-title">Berserk Arc Cuối · Editor Dark Horse Tiết Lộ Chi Tiết Kế Hoạch Hoàn Thành Di Cảo Của Miura</h2>
 
 
-            <div class="acm-title">Berserk arc cuối · editor Dark Horse tiết lộ chi tiết về kế hoạch hoàn thành di cảo của Miura</div>
+            <p class="fc-sub">Berserk arc cuối cùng do Studio Gaga sản xuất đang tiến đến hồi kết, Casca phục hồi, Fantasia Arc mở ra và Guts chuẩn bị đối đầu cuối cùng với Griffith.</p>
 
 
-            <div class="acm-meta">Hà Trung · 2 giờ trước · 6 min</div>
-
-
-          </div>
-
-
-        </a>
-
-
-        <!-- Trùng bài: card cũ href="/manga-detail?t=Jujutsu%20Kaisen" trùng với mục #1 trong "Hot tuần này" (weekly-grid) phía trên, đã thay bằng bài Manga thật lấy từ IDX (search.js), chưa xuất hiện ở đâu khác trên trang -->
-        <a href="/black-clover-final-volume-guidebook" class="ac-mag" data-cat="manga">
-
-
-          <img class="acm-img" src="/assets/img/75f4272c97-black-clover-final-volume-hero.jpg" alt="Black Clover khép lại với Volume 38 và guidebook Perfect Grimoire, kèm truyện ngắn 15 trang của Yuki Tabata" loading="lazy" width="1600" height="900">
-
-
-          <div class="acm-ov"></div>
-
-
-          <div class="acm-body">
-
-
-            <div class="acm-tags"><span class="tag tv">Manga</span><span class="tag tc">Kết thúc</span></div>
-
-
-            <div class="acm-title">Black Clover khép lại với Volume 38 và guidebook Perfect Grimoire, kèm truyện ngắn 15 trang của Yuki Tabata</div>
-
-
-            <div class="acm-meta">Gia Bảo · 10 giờ trước · 7 min</div>
+            <div class="fc-meta"><span>Manga</span> · Hà Trung · 2 giờ trước</div>
 
 
           </div>
 
 
         </a>
+
+
+        <a class="sc" href="/black-clover-final-volume-guidebook"><div class="sc-img"><img src="/assets/img/75f4272c97-black-clover-final-volume-hero.jpg" alt="Black Clover khép lại với Volume 38 và guidebook Perfect Grimoire, kèm truyện ngắn 15 trang của Yuki Tabata" loading="lazy" width="1600" height="900"></div><div class="sc-body"><span class="tag tv" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Manga</span><div class="sc-title">Black Clover khép lại với Volume 38 và guidebook Perfect Grimoire</div><div class="sc-meta">Gia Bảo · 10 giờ trước</div></div></a>
+
+
+        <a class="sc" href="/one-piece-final-saga"><div class="sc-img"><img src="/assets/img/8d631824e5-maxresdefault.jpg" alt="One Piece chapter 1135 phân tích chi tiết · Oda tiết lộ bí ẩn lớn nhất về Laugh Tale và One Piece" loading="lazy" width="1280" height="720"></div><div class="sc-body"><span class="tag tv" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Manga</span><div class="sc-title">One Piece Chapter 1135 · Bí Ẩn Lớn Nhất Về Laugh Tale</div><div class="sc-meta">Trọng Khang · 5 giờ trước</div></div></a>
+
+
+        <a class="sc" href="/chainsaw-man-season3"><div class="sc-img"><img src="/assets/img/39c7dd4496-maxresdefault.jpg" alt="Chainsaw Man part 3 theory · Denji và Pochita: mối quan hệ sẽ thay đổi hoàn toàn trong arc mới" loading="lazy" width="1280" height="720"></div><div class="sc-body"><span class="tag tv" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Manga</span><div class="sc-title">Chainsaw Man Part 3 Theory · Denji Và Pochita</div><div class="sc-meta">Gia Bảo · 12 giờ trước</div></div></a>
+
+
+        <a class="sc" href="/yen-press-champignon-witch-licenses"><div class="sc-img"><img src="/assets/img/news-yen-press-champignon-witch-licenses.jpg" alt="Yen Press Cấp Phép Champignon Witch Cùng 9 Manga, Light Novel Mới Tại SDCC 2026" loading="lazy" width="1280" height="720"></div><div class="sc-body"><span class="tag tv" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Manga</span><div class="sc-title">Yen Press Cấp Phép Champignon Witch Cùng 9 Manga Mới Tại SDCC 2026</div><div class="sc-meta">Minh Tuấn · 14 giờ trước</div></div></a>
 
 
       </div>
+
+
+      <div class="sec-h" style="padding:32px 0 16px;border-bottom:1px solid var(--border)"><span class="sec-t">Tin <em>mới nhất</em></span></div>
 
 
       <a href="/manga-detail?t=Solo%20Leveling%3A%20Ragnarok" class="ac" data-cat="manhwa action fantasy chapter-moi">
@@ -2725,10 +2790,11 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 
-function setType(btn,t){document.querySelectorAll('.ttab').forEach(b=>b.classList.remove('on'));btn.classList.add('on')}
+var currentType='all';
+function setType(btn,t){document.querySelectorAll('.ttab').forEach(b=>b.classList.remove('on'));btn.classList.add('on');currentType=t||'all';applyMangaFilters();}
 
 
-/* ===== Lọc bài theo thể loại (.ftab) và theo loại truyện (.sf-btn) ===== */
+/* ===== Lọc bài theo loại truyện (.ttab), thể loại (.ftab) và theo phân loại phụ (.sf-btn) ===== */
 /* Ánh xạ nhãn nút bấm -> mã category chuẩn hoá (không dấu, chữ thường) dùng trong data-cat */
 var FTAB_CAT_MAP={
   'Tất cả thể loại':'all',
@@ -2764,22 +2830,25 @@ function setSub(btn){
 function applyMangaFilters(){
   var ftabOn=document.querySelector('.ftab.on');
   var sfOn=document.querySelector('.sf-btn.on');
+  var type=currentType||'all';
   var genre=ftabOn?(FTAB_CAT_MAP[ftabOn.textContent.trim()]||'all'):'all';
   var sub=sfOn?(SFBTN_CAT_MAP[sfOn.textContent.trim()]||'all'):'all';
 
-  /* Lưới "Chapter mới nhất": chỉ chịu ảnh hưởng của filter-bar (.ftab) */
+  /* Lưới "Chapter mới nhất": chịu ảnh hưởng của cả type-tabs (.ttab) lẫn filter-bar (.ftab) */
   document.querySelectorAll('.chapters-grid .ch-card[data-cat]').forEach(function(card){
     var cats=card.getAttribute('data-cat').split(' ');
-    var show=(genre==='all')||cats.indexOf(genre)>-1;
-    card.classList.toggle('cat-hidden',!show);
+    var showType=(type==='all')||cats.indexOf(type)>-1;
+    var showGenre=(genre==='all')||cats.indexOf(genre)>-1;
+    card.classList.toggle('cat-hidden',!(showType&&showGenre));
   });
 
-  /* Khối "Tin tức truyện tranh" (ac-mag + ac): chịu ảnh hưởng của cả filter-bar lẫn sub-filter */
+  /* Khối "Tin tức truyện tranh" (ac-mag + ac): chịu ảnh hưởng của type-tabs, filter-bar lẫn sub-filter */
   document.querySelectorAll('.ac-mag[data-cat], .content-layout a.ac[data-cat]').forEach(function(card){
     var cats=card.getAttribute('data-cat').split(' ');
+    var showType=(type==='all')||cats.indexOf(type)>-1;
     var showGenre=(genre==='all')||cats.indexOf(genre)>-1;
     var showSub=(sub==='all')||cats.indexOf(sub)>-1;
-    card.classList.toggle('cat-hidden',!(showGenre&&showSub));
+    card.classList.toggle('cat-hidden',!(showType&&showGenre&&showSub));
   });
 }
 

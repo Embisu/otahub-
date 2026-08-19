@@ -678,6 +678,84 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 
 
 
+/* Featured grid (matches homepage) */
+
+
+.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:290px 230px;gap:3px;margin-top:3px}
+
+
+.fc{grid-row:1/3;position:relative;overflow:hidden;cursor:pointer;background:var(--card)}
+
+
+.fc-img{position:absolute;inset:0;background:url('/assets/img/7bc69a799e-library_hero.jpg') center/cover no-repeat;animation:heroPulse 10s ease-in-out infinite alternate-reverse;opacity:.9;transition:opacity .5s,transform .7s var(--ease)}
+
+
+.fc:hover .fc-img{opacity:.75;transform:scale(1.04)}
+
+
+.fc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,2,32,.98) 0%,rgba(11,2,32,.6) 38%,rgba(11,2,32,.12) 70%,transparent 100%),linear-gradient(to right,transparent 50%,rgba(11,2,32,.4) 100%)}
+
+
+.fc::after{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;pointer-events:none}
+
+
+.fc:hover::after{border-color:rgba(0,229,255,.3)}
+
+
+.fc-body{position:absolute;bottom:0;left:0;right:0;padding:32px}
+
+
+.fc-title{font-family:var(--fd);font-weight:700;font-size:clamp(17px,2vw,27px);line-height:1.1;color:var(--white);margin:10px 0 10px;text-shadow:0 2px 20px rgba(0,0,0,.6)}
+
+
+.fc-sub{font-size:16px;color:var(--dim);margin-bottom:12px;max-width:420px}
+
+
+.fc-meta{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+
+.fc-meta span{color:var(--cyan)}
+
+
+.sc{position:relative;overflow:hidden;cursor:pointer;background:var(--card);display:flex;flex-direction:column;transition:background .2s}
+
+
+.sc:hover{background:#1e1244}
+
+
+.sc-img{flex:1;overflow:hidden;min-height:0;background:var(--surf2)}
+
+
+.sc-img img{width:100%;height:100%;object-fit:cover;opacity:.82;transition:transform .55s var(--ease),opacity .3s}
+
+
+.sc:hover .sc-img img{transform:scale(1.07);opacity:.95}
+
+
+.sc::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;z-index:3;pointer-events:none}
+
+
+.sc:hover::before{border-color:rgba(0,229,255,.22)}
+
+
+.sc-body{padding:14px 16px}
+
+
+.sc-title{font-family:var(--fd);font-weight:600;font-size:17px;line-height:1.25;color:rgba(240,238,255,.9);margin:6px 0 5px;transition:color .2s}
+
+
+.sc:hover .sc-title{color:var(--cyan)}
+
+
+.sc-meta{font-size:14px;color:var(--muted)}
+
+
+@media(max-width:1100px){.f-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.fc{grid-row:auto;grid-column:1/3;min-height:390px}}
+
+
+@media(max-width:768px){.f-grid{grid-template-columns:1fr;grid-template-rows:auto}.fc{grid-column:auto;min-height:370px}}
+
+
 /* Magazine top-2 */
 
 
@@ -1513,64 +1591,52 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       </div>
 
 
-      <div class="ac-top2">
+      <div class="f-grid">
 
 
-        <a href="/en/news" class="ac-mag" data-cat="news">
+        <a class="fc" href="/en/chainsaw-man-season3">
 
 
-          <img class="acm-img" src="/assets/img/studio-ghibli-films.webp" alt="Studio Ghibli announces new animated film at Annecy 2026 · Miyazaki directly supervises" width="640" height="360" fetchpriority="high" decoding="async">
+          <div class="fc-img" style="background-image:url(/assets/img/2656ba8ffc-maxresdefault.jpg)"></div><div class="fc-ov"></div>
 
 
-          <div class="acm-ov"></div>
+          <div class="fc-body">
 
 
-          <div class="acm-body">
+            <span class="tag ts">Anime</span>
 
 
-            <div class="acm-tags"><span class="tag tc">Breaking</span><span class="tag" style="background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.25);color:var(--green);font-size:9px;padding:3px 9px">Studio Ghibli</span></div>
+            <h2 class="fc-title">Chainsaw Man: Assassins Arc Confirmed By MAPPA, Expected 2027</h2>
 
 
-            <div class="acm-title">Studio Ghibli announces new animated film at Annecy 2026 · Miyazaki directly supervises</div>
+            <p class="fc-sub">Chainsaw Man Assassins Arc was officially confirmed by MAPPA, continuing immediately after the shocking event at the end of season 1.</p>
 
 
-            <div class="acm-meta">Thu Huong · 2 hours ago · 5 min</div>
-
-
-          </div>
-
-
-        </a>
-
-
-        <a href="/en/chainsaw-man-season3" class="ac-mag" data-cat="news">
-
-
-          <img class="acm-img" src="/assets/img/2656ba8ffc-maxresdefault.jpg" alt="Chainsaw Man: Assassins Arc confirmed by MAPPA, expected 2027" loading="lazy" width="460" height="653">
-
-
-          <div class="acm-ov"></div>
-
-
-          <div class="acm-body">
-
-
-            <div class="acm-tags"><span class="tag ts">Anime</span></div>
-
-
-            <div class="acm-title">Chainsaw Man: Assassins Arc confirmed by MAPPA, expected 2027</div>
-
-
-            <div class="acm-meta">Gia Bao · 4 hours ago · 4 min</div>
+            <div class="fc-meta"><span>Anime</span> · Gia Bao · 4 hours ago</div>
 
 
           </div>
 
 
         </a>
+
+
+        <a class="sc" href="/en/senren-banka-anime-2027"><div class="sc-img"><img src="/assets/img/news-senren-banka-anime-2027.jpg" alt="Senren＊Banka Gets Anime Adaptation, Original Cast Returns, 2027 Premiere" loading="lazy" width="1280" height="720"></div><div class="sc-body"><span class="tag ts" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Anime</span><div class="sc-title">Senren＊Banka Gets Anime Adaptation, Original Cast Returns, 2027 Premiere</div><div class="sc-meta">OtaHub Editorial · 13 hours ago</div></div></a>
+
+
+        <a class="sc" href="/en/konosuba-season-4-2027"><div class="sc-img"><img src="/assets/img/news-konosuba-season-4-2027.jpg" alt="KONOSUBA Season 4 Confirmed For 2027, Moves To Studio ENGI" loading="lazy" width="1280" height="720"></div><div class="sc-body"><span class="tag ts" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Anime</span><div class="sc-title">KONOSUBA Season 4 Confirmed For 2027, Moves To Studio ENGI</div><div class="sc-meta">OtaHub Editorial · 15 hours ago</div></div></a>
+
+
+        <a class="sc" href="/en/free-fire-daybreak-anime-2027"><div class="sc-img"><img src="/assets/img/news-free-fire-daybreak-anime-2027.jpg" alt="Free Fire Daybreak Reveals Key Visual, Sets Spring 2027 Debut" loading="lazy" width="1280" height="720"></div><div class="sc-body"><span class="tag ts" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Anime</span><div class="sc-title">Free Fire Daybreak Reveals Key Visual, Sets Spring 2027 Debut</div><div class="sc-meta">OtaHub Editorial · 17 hours ago</div></div></a>
+
+
+        <a class="sc" href="/en/ranma-half-season-3-visual"><div class="sc-img"><img src="/assets/img/news-ranma-half-season-3-visual.jpg" alt="Ranma 1/2 Season 3 Reveals Key Visual, Five New Cast Members, October 3 Premiere" loading="lazy" width="1280" height="720"></div><div class="sc-body"><span class="tag ts" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Anime</span><div class="sc-title">Ranma 1/2 Season 3 Reveals Key Visual, Five New Cast Members, October 3 Premiere</div><div class="sc-meta">OtaHub Editorial · 19 hours ago</div></div></a>
 
 
       </div>
+
+
+      <div class="sec-h" style="padding:32px 0 16px;border-bottom:1px solid var(--border)"><span class="sec-t">Latest <em>news</em></span></div>
 
 
       <a href="/en/anime-detail?t=Bleach%3A%20TYBW%20Part%205" class="ac" data-cat="news mua-he-2026">
@@ -2242,8 +2308,34 @@ renderAiring('summer');
 function setSeason(btn,s){document.querySelectorAll('.stab').forEach(t=>t.classList.remove('on'));btn.classList.add('on');renderAiring(s)}
 
 
-function setF(btn){document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));btn.classList.add('on')}
+// Map .ftab (filter-bar) label -> data-cat value
+const FILTER_MAP={
+  'All':'all',
+  'Summer 2026':'mua-he-2026',
+  'Spring 2026':'mua-xuan-2026',
+  'Reviews':'review',
+  'News':'news',
+  'Rankings':'rankings',
+  'Action':'action',
+  'Romance':'romance',
+  'Isekai':'isekai',
+  'Shounen':'shonen'
+};
 
+function applyFtabFilter(val){
+  document.querySelectorAll('.rev-grid [data-cat], .content-layout [data-cat]').forEach(card=>{
+    if(val==='all'){card.style.display='';return}
+    const cats=(card.dataset.cat||'').split(/\s+/);
+    card.style.display=cats.includes(val)?'':'none';
+  });
+}
+
+function setF(btn){
+  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  const val=FILTER_MAP[btn.textContent.trim()]||'all';
+  applyFtabFilter(val);
+}
 
 function applyCatFilter(){
   const active=document.querySelector('.sf-btn.on');

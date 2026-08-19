@@ -872,6 +872,84 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 
 
 
+/* Featured grid (matches homepage) */
+
+
+.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:290px 230px;gap:3px;margin-top:3px}
+
+
+.fc{grid-row:1/3;position:relative;overflow:hidden;cursor:pointer;background:var(--card)}
+
+
+.fc-img{position:absolute;inset:0;background:url('/assets/img/7bc69a799e-library_hero.jpg') center/cover no-repeat;animation:heroPulse 10s ease-in-out infinite alternate-reverse;opacity:.9;transition:opacity .5s,transform .7s var(--ease)}
+
+
+.fc:hover .fc-img{opacity:.75;transform:scale(1.04)}
+
+
+.fc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,2,32,.98) 0%,rgba(11,2,32,.6) 38%,rgba(11,2,32,.12) 70%,transparent 100%),linear-gradient(to right,transparent 50%,rgba(11,2,32,.4) 100%)}
+
+
+.fc::after{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;pointer-events:none}
+
+
+.fc:hover::after{border-color:rgba(0,229,255,.3)}
+
+
+.fc-body{position:absolute;bottom:0;left:0;right:0;padding:32px}
+
+
+.fc-title{font-family:var(--fd);font-weight:700;font-size:clamp(17px,2vw,27px);line-height:1.1;color:var(--white);margin:10px 0 10px;text-shadow:0 2px 20px rgba(0,0,0,.6)}
+
+
+.fc-sub{font-size:16px;color:var(--dim);margin-bottom:12px;max-width:420px}
+
+
+.fc-meta{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+
+.fc-meta span{color:var(--cyan)}
+
+
+.sc{position:relative;overflow:hidden;cursor:pointer;background:var(--card);display:flex;flex-direction:column;transition:background .2s}
+
+
+.sc:hover{background:#1e1244}
+
+
+.sc-img{flex:1;overflow:hidden;min-height:0;background:var(--surf2)}
+
+
+.sc-img img{width:100%;height:100%;object-fit:cover;opacity:.82;transition:transform .55s var(--ease),opacity .3s}
+
+
+.sc:hover .sc-img img{transform:scale(1.07);opacity:.95}
+
+
+.sc::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;z-index:3;pointer-events:none}
+
+
+.sc:hover::before{border-color:rgba(0,229,255,.22)}
+
+
+.sc-body{padding:14px 16px}
+
+
+.sc-title{font-family:var(--fd);font-weight:600;font-size:17px;line-height:1.25;color:rgba(240,238,255,.9);margin:6px 0 5px;transition:color .2s}
+
+
+.sc:hover .sc-title{color:var(--cyan)}
+
+
+.sc-meta{font-size:14px;color:var(--muted)}
+
+
+@media(max-width:1100px){.f-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.fc{grid-row:auto;grid-column:1/3;min-height:390px}}
+
+
+@media(max-width:768px){.f-grid{grid-template-columns:1fr;grid-template-rows:auto}.fc{grid-column:auto;min-height:370px}}
+
+
 /* Top 2 cards · magazine style grid */
 
 
@@ -1938,112 +2016,28 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   </div>
 
 
-  <div class="fg">
+  <div class="f-grid">
 
 
+    <a class="fc" href="/en/elden-ring-dlc2">
 
 
+      <div class="fc-img" style="background-image:url(/assets/img/b80150127d-library_hero.jpg)"></div><div class="fc-ov"></div>
 
-    <!-- Big featured card -->
 
+      <div class="fc-body">
 
-    <a href="/en/elden-ring-dlc2" class="fg-big">
 
+        <span class="tag tc">Gaming</span>
 
-      <div class="fgb-img"></div>
 
+        <h2 class="fc-title">Elden Ring Tarnished Pack: Heavy Knight And Idus Knight Classes Arrive August 28</h2>
 
-      <div class="fgb-ov"></div>
 
+        <p class="fc-sub">FromSoftware releases the Tarnished Pack alongside the Switch 2 version. Heavy Knight (a heavily-armored tank) and Idus Knight (agile, wields the Milady), plus 3 new Torrent cosmetic skins.</p>
 
-      <div class="fgb-glow"></div>
 
-
-      <div class="fgb-body">
-
-
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
-
-
-          <span class="tag tc">Breaking</span>
-
-
-          <span class="tag ta">PC/Console</span>
-
-
-        </div>
-
-
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
-
-
-          <div class="fgb-score">
-
-
-            <span class="fgb-score-num">9.7</span>
-
-
-            <span class="fgb-score-lbl">OtaHub</span>
-
-
-          </div>
-
-
-          <div style="display:flex;gap:3px">
-
-
-            <svg width="12" height="12" viewbox="0 0 10 10" fill="#fbbf24"><path d="M5 1l1.2 2.5L9 4l-2 1.9.5 2.6L5 7.2l-2.5 1.3L3 6 1 4l2.8-.5z"></path></svg>
-
-
-            <svg width="12" height="12" viewbox="0 0 10 10" fill="#fbbf24"><path d="M5 1l1.2 2.5L9 4l-2 1.9.5 2.6L5 7.2l-2.5 1.3L3 6 1 4l2.8-.5z"></path></svg>
-
-
-            <svg width="12" height="12" viewbox="0 0 10 10" fill="#fbbf24"><path d="M5 1l1.2 2.5L9 4l-2 1.9.5 2.6L5 7.2l-2.5 1.3L3 6 1 4l2.8-.5z"></path></svg>
-
-
-            <svg width="12" height="12" viewbox="0 0 10 10" fill="#fbbf24"><path d="M5 1l1.2 2.5L9 4l-2 1.9.5 2.6L5 7.2l-2.5 1.3L3 6 1 4l2.8-.5z"></path></svg>
-
-
-            <svg width="12" height="12" viewbox="0 0 10 10"><path d="M5 1v6.2L2.5 8.5 3 6 1 4l2.8-.5z" fill="#fbbf24"></path><path d="M5 1l1.2 2.5L9 4l-2 1.9.5 2.6L5 7.2V1z" fill="rgba(255,255,255,.15)"></path></svg>
-
-
-          </div>
-
-
-        </div>
-
-
-        <h2 class="fgb-title">Elden Ring Tarnished Pack: Heavy Knight And Idus Knight Classes Arrive August 28</h2>
-
-
-        <p class="fgb-sub">FromSoftware releases the Tarnished Pack alongside the Switch 2 version. Heavy Knight (a heavily-armored tank) and Idus Knight (agile, wields the Milady), plus 3 new Torrent cosmetic skins.</p>
-
-
-        <div class="fgb-meta">
-
-
-          <span class="fgb-meta-cat">FromSoftware</span>
-
-
-          <span class="fgb-meta-dot">·</span>
-
-
-          <span>Minh Khoi Tran</span>
-
-
-          <span class="fgb-meta-dot">·</span>
-
-
-          <span>2 hours ago</span>
-
-
-          <span class="fgb-meta-dot">·</span>
-
-
-          <span>8 min read</span>
-
-
-        </div>
+        <div class="fc-meta"><span>Gaming</span> · Minh Khoi Tran · 2 hours ago</div>
 
 
       </div>
@@ -2052,112 +2046,22 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     </a>
 
 
+    <a class="sc" href="/en/stellar-blade-2"><div class="sc-img"><img src="/assets/img/8a90eed2d5-header.jpg" alt="Stellar Blade: Blood Rain · everything revealed at Summer Game Fest 2026: new protagonist Evie and cyberpunk setting" loading="lazy" width="460" height="215"></div><div class="sc-body"><span class="tag tv" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Preview</span><div class="sc-title">Stellar Blade: Blood Rain · new protagonist Evie and cyberpunk city setting revealed</div><div class="sc-meta">Dung Nguyen · 6 hours ago</div></div></a>
 
 
+    <a class="sc" href="/en/avengers-doomsday-homework-watchlist"><div class="sc-img"><img src="/assets/img/news-avengers-doomsday-homework-watchlist.jpg" alt="Marvel Confirms Your Avengers: Doomsday Homework List: 15 Movies and Shows" loading="lazy" width="600" height="338"></div><div class="sc-body"><span class="tag tc" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Breaking</span><div class="sc-title">Marvel Confirms Your Avengers: Doomsday Homework List: 15 Movies and Shows</div><div class="sc-meta">OtaHub Editorial · 1 hour ago</div></div></a>
 
-    <!-- Stack -->
 
+    <a class="sc" href="/en/genshin-54-citlali"><div class="sc-img"><img src="/assets/img/f89df6064f-142648l.jpg" alt="Genshin Impact 7.0 · best tier list and meta team after Snezhnaya: Odette, Sandrone, Sucrose SS-tier" loading="lazy" width="600" height="338"></div><div class="sc-body"><span class="tag tg" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Guide</span><div class="sc-title">Genshin Impact 7.0 · Best Tier List And Meta Team After Snezhnaya</div><div class="sc-meta">Bich Ngoc · 3 hours ago</div></div></a>
 
-    <div class="fg-stack">
 
-
-      <a href="/en/game-detail?t=Monster%20Hunter%20Wilds" class="fg-sm">
-
-
-        <div class="fgs-thumb">
-
-
-          <img class="fgs-img" src="/assets/img/ec9554f424-library_hero.jpg" alt="Monster Hunter Wilds · Capcom's masterpiece after 120 hours of experience" width="1920" height="620" fetchpriority="high" decoding="async">
-
-
-          <div class="fgs-ov"></div>
-
-
-        </div>
-
-
-        <div class="fgs-body">
-
-
-          <div style="display:flex;align-items:center;gap:6px;justify-content:space-between">
-
-
-            <span class="tag ta">Review</span>
-
-
-            <span style="font-family:var(--fd);font-size:17px;font-weight:700;color:var(--amber)">9.4</span>
-
-
-          </div>
-
-
-          <div class="fgs-title">Monster Hunter Wilds · Capcom's masterpiece after 120 hours of experience</div>
-
-
-          <div class="fgs-meta">Thanh Tung · 6 hours ago</div>
-
-
-        </div>
-
-
-      </a>
-
-
-      <a href="/en/stellar-blade-2" class="fg-sm">
-
-
-        <div class="fgs-thumb">
-
-
-          <img class="fgs-img" src="/assets/img/7bc69a799e-library_hero.jpg" alt="Stellar Blade: Blood Rain · new protagonist Evie and cyberpunk city setting revealed" loading="lazy" width="1920" height="620">
-
-
-          <div class="fgs-ov"></div>
-
-
-        </div>
-
-
-        <div class="fgs-body">
-
-
-          <div style="display:flex;align-items:center;gap:6px;justify-content:space-between">
-
-
-            <span class="tag tv">Preview</span>
-
-
-            <span style="font-size:10px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase">Summer Game Fest 2026</span>
-
-
-          </div>
-
-
-          <div class="fgs-title">Stellar Blade: Blood Rain · new protagonist Evie and cyberpunk city setting revealed</div>
-
-
-          <div class="fgs-meta">Dung Nguyen · 6 hours ago</div>
-
-
-        </div>
-
-
-      </a>
-
-
-    </div>
-
-
-
+    <a class="sc" href="/en/blue-protocol-review"><div class="sc-img"><img src="/assets/img/3578d308d7-library_hero.jpg" alt="Blue Protocol: Resonance · review after 50 hours: Asian anime MMO worth investing in in 2026" loading="lazy" width="1920" height="620"></div><div class="sc-body"><span class="tag ta" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Review</span><div class="sc-title">Blue Protocol: Resonance · Review After 50 Hours</div><div class="sc-meta">6 hours ago</div></div></a>
 
 
   </div>
 
 
 </div>
-
-
-
 
 
 <!-- ══ ARTICLES + SIDEBAR ══ -->
@@ -2366,7 +2270,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 
-      <a href="/en/stellar-blade-2" class="ac" data-cat="pc">
+      <a href="/en/stellar-blade-2" class="ac" data-cat="pc preview">
 
 
         <div class="ac-thumb"><img src="/assets/img/8a90eed2d5-header.jpg" alt="Stellar Blade: Blood Rain · everything revealed at Summer Game Fest 2026: new protagonist Evie and cyberpunk setting" loading="lazy" width="460" height="215"></div>
@@ -2474,7 +2378,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 
-      <a href="/en/game-detail?t=Honor%20of%20Kings%20Global" class="ac" data-cat="mobile guide">
+      <a href="/en/game-detail?t=Honor%20of%20Kings%20Global" class="ac" data-cat="mobile tierlist">
 
 
         <div class="ac-thumb"><img src="/assets/img/6323076b06-158003l.jpg" alt="Honor of Kings Global · tier list of S-tier season 3 characters and optimal reroll guide for new players" loading="lazy" width="394" height="600"></div>
@@ -3048,8 +2952,18 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 
-function setFilter(btn){document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));btn.classList.add('on')}
+// Map .ftab (top filter-bar) label -> data-cat value
+var FTAB_CAT_MAP={'All':'all','PC/Console':'pc','Mobile':'mobile','Reviews':'review','Previews':'preview','Guides':'guide','Esports':'esports','Tier Lists':'tierlist'};
 
+function setFilter(btn){
+  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  var cat=FTAB_CAT_MAP[btn.textContent.trim()]||'all';
+  document.querySelectorAll('[data-cat]').forEach(function(card){
+    var cats=(card.dataset.cat||'').split(/\s+/);
+    card.style.display=(cat==='all'||cats.indexOf(cat)>-1)?'':'none';
+  });
+}
 
 function applyCatFilter(){
   const active=document.querySelector('.sf-btn.on');

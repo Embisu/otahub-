@@ -726,6 +726,84 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 
 
 
+/* Featured grid (đồng bộ với trang chủ) */
+
+
+.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:290px 230px;gap:3px;margin-top:3px}
+
+
+.fc{grid-row:1/3;position:relative;overflow:hidden;cursor:pointer;background:var(--card)}
+
+
+.fc-img{position:absolute;inset:0;background:url('/assets/img/7bc69a799e-library_hero.jpg') center/cover no-repeat;animation:heroPulse 10s ease-in-out infinite alternate-reverse;opacity:.9;transition:opacity .5s,transform .7s var(--ease)}
+
+
+.fc:hover .fc-img{opacity:.75;transform:scale(1.04)}
+
+
+.fc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,2,32,.98) 0%,rgba(11,2,32,.6) 38%,rgba(11,2,32,.12) 70%,transparent 100%),linear-gradient(to right,transparent 50%,rgba(11,2,32,.4) 100%)}
+
+
+.fc::after{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;pointer-events:none}
+
+
+.fc:hover::after{border-color:rgba(0,229,255,.3)}
+
+
+.fc-body{position:absolute;bottom:0;left:0;right:0;padding:32px}
+
+
+.fc-title{font-family:var(--fd);font-weight:700;font-size:clamp(17px,2vw,27px);line-height:1.1;color:var(--white);margin:10px 0 10px;text-shadow:0 2px 20px rgba(0,0,0,.6)}
+
+
+.fc-sub{font-size:16px;color:var(--dim);margin-bottom:12px;max-width:420px}
+
+
+.fc-meta{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+
+.fc-meta span{color:var(--cyan)}
+
+
+.sc{position:relative;overflow:hidden;cursor:pointer;background:var(--card);display:flex;flex-direction:column;transition:background .2s}
+
+
+.sc:hover{background:#1e1244}
+
+
+.sc-img{flex:1;overflow:hidden;min-height:0;background:var(--surf2)}
+
+
+.sc-img img{width:100%;height:100%;object-fit:cover;opacity:.82;transition:transform .55s var(--ease),opacity .3s}
+
+
+.sc:hover .sc-img img{transform:scale(1.07);opacity:.95}
+
+
+.sc::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;z-index:3;pointer-events:none}
+
+
+.sc:hover::before{border-color:rgba(0,229,255,.22)}
+
+
+.sc-body{padding:14px 16px}
+
+
+.sc-title{font-family:var(--fd);font-weight:600;font-size:17px;line-height:1.25;color:rgba(240,238,255,.9);margin:6px 0 5px;transition:color .2s}
+
+
+.sc:hover .sc-title{color:var(--cyan)}
+
+
+.sc-meta{font-size:14px;color:var(--muted)}
+
+
+@media(max-width:1100px){.f-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.fc{grid-row:auto;grid-column:1/3;min-height:390px}}
+
+
+@media(max-width:768px){.f-grid{grid-template-columns:1fr;grid-template-rows:auto}.fc{grid-column:auto;min-height:370px}}
+
+
 /* Magazine top-2 */
 
 
@@ -1461,64 +1539,52 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       </div>
 
 
-      <div class="ac-top2">
+      <div class="f-grid">
 
 
-        <a href="/news" class="ac-mag" data-cat="news">
+        <a class="fc" href="/attack-on-titan-wit-teaser">
 
 
-          <img class="acm-img" src="/assets/img/studio-ghibli-films.webp" alt="Studio Ghibli công bố phim hoạt hình mới tại Annecy 2026 · Miyazaki trực tiếp giám sát" width="640" height="360" fetchpriority="high" decoding="async">
+          <div class="fc-img" style="background-image:url(/assets/img/a7548f6c8e-attack-on-titan-wit-teaser-hero.jpg)"></div><div class="fc-ov"></div>
 
 
-          <div class="acm-ov"></div>
+          <div class="fc-body">
 
 
-          <div class="acm-body">
+            <span class="tag ts">Anime</span>
 
 
-            <div class="acm-tags"><span class="tag tc">Breaking</span><span class="tag" style="background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.25);color:var(--green);font-size:9px;padding:3px 9px">Studio Ghibli</span></div>
+            <h2 class="fc-title">WIT Studio Hé Lộ Công Bố Bí Ẩn Attack on Titan Ngày 20/8</h2>
 
 
-            <div class="acm-title">Studio Ghibli công bố phim hoạt hình mới tại Annecy 2026 · Miyazaki trực tiếp giám sát</div>
+            <p class="fc-sub">WIT Studio tung hình ảnh teaser bí ẩn với 6 nhân vật Attack on Titan, hẹn công bố chính thức vào ngày 20/8/2026. Mikasa đeo miếng che mắt, Eren cầm đũa mì.</p>
 
 
-            <div class="acm-meta">Thu Hương · 2 giờ trước · 5 min</div>
-
-
-          </div>
-
-
-        </a>
-
-
-        <a href="/attack-on-titan-wit-teaser" class="ac-mag" data-cat="news action shonen">
-
-
-          <img class="acm-img" src="/assets/img/a7548f6c8e-attack-on-titan-wit-teaser-hero.jpg" alt="WIT Studio hé lộ công bố bí ẩn Attack on Titan ngày 20/8" loading="lazy" width="1920" height="1080">
-
-
-          <div class="acm-ov"></div>
-
-
-          <div class="acm-body">
-
-
-            <div class="acm-tags"><span class="tag ts">Anime</span></div>
-
-
-            <div class="acm-title">WIT Studio hé lộ công bố bí ẩn Attack on Titan ngày 20/8</div>
-
-
-            <div class="acm-meta">Minh Tuấn · 4 giờ trước · 4 min</div>
+            <div class="fc-meta"><span>Anime</span> · Minh Tuấn · 4 giờ trước</div>
 
 
           </div>
 
 
         </a>
+
+
+        <a class="sc" href="/senren-banka-anime-2027"><div class="sc-img"><img src="/assets/img/news-senren-banka-anime-2027.jpg" alt="Senren＊Banka Được Chuyển Thể Anime, Dàn Cast Gốc Trở Lại, Ra Mắt 2027" loading="lazy" width="1280" height="720"></div><div class="sc-body"><span class="tag ts" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Anime</span><div class="sc-title">Senren＊Banka Được Chuyển Thể Anime, Dàn Cast Gốc Trở Lại, Ra Mắt 2027</div><div class="sc-meta">Lan Anh · 13 giờ trước</div></div></a>
+
+
+        <a class="sc" href="/konosuba-season-4-2027"><div class="sc-img"><img src="/assets/img/news-konosuba-season-4-2027.jpg" alt="KONOSUBA Mùa 4 Ấn Định Ra Mắt 2027, Đổi Sang Studio ENGI" loading="lazy" width="1280" height="720"></div><div class="sc-body"><span class="tag ts" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Anime</span><div class="sc-title">KONOSUBA Mùa 4 Ấn Định Ra Mắt 2027, Đổi Sang Studio ENGI</div><div class="sc-meta">Như Quỳnh · 14 giờ trước</div></div></a>
+
+
+        <a class="sc" href="/free-fire-daybreak-anime-2027"><div class="sc-img"><img src="/assets/img/news-free-fire-daybreak-anime-2027.jpg" alt="Free Fire Daybreak Tung Key Visual Đầu Tiên, Ấn Định Mùa Xuân 2027" loading="lazy" width="1280" height="720"></div><div class="sc-body"><span class="tag ts" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Anime</span><div class="sc-title">Free Fire Daybreak Tung Key Visual Đầu Tiên, Ấn Định Mùa Xuân 2027</div><div class="sc-meta">Anh Đức · 15 giờ trước</div></div></a>
+
+
+        <a class="sc" href="/ranma-half-season-3-visual"><div class="sc-img"><img src="/assets/img/news-ranma-half-season-3-visual.jpg" alt="Ranma 1/2 Mùa 3 Công Bố Key Visual, 5 Diễn Viên Mới Và Ngày Lên Sóng 3/10" loading="lazy" width="1280" height="720"></div><div class="sc-body"><span class="tag ts" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Anime</span><div class="sc-title">Ranma 1/2 Mùa 3 Công Bố Key Visual, 5 Diễn Viên Mới Và Ngày Lên Sóng 3/10</div><div class="sc-meta">Gia Bảo · 16 giờ trước</div></div></a>
 
 
       </div>
+
+
+      <div class="sec-h" style="padding:32px 0 16px;border-bottom:1px solid var(--border)"><span class="sec-t">Tin <em>mới nhất</em></span></div>
 
 
       <a href="/anime-detail?t=Bleach%3A%20TYBW%20Part%205" class="ac" data-cat="news mua-he-2026 action shonen">
