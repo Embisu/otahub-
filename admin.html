@@ -227,12 +227,26 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
         <span class="icon">✏️</span> Viết bài mới
       </button>
 
+      <div class="sidebar-section">Trang đặc biệt</div>
+      <button class="nav-item" id="nav-home" onclick="homeEditor('index.html')">
+        <span class="icon">🏠</span> Trang chủ
+      </button>
+      <button class="nav-item" id="nav-hub-gaming" onclick="hubEditor('gaming.html','Gaming')">
+        <span class="icon">🎮</span> Gaming
+      </button>
+      <button class="nav-item" id="nav-hub-anime" onclick="hubEditor('anime.html','Anime')">
+        <span class="icon">⛩️</span> Anime
+      </button>
+      <button class="nav-item" id="nav-hub-manga" onclick="hubEditor('manga.html','Manga')">
+        <span class="icon">📚</span> Manga
+      </button>
+
       <div class="sidebar-section">Chỉnh sửa đặc biệt</div>
       <button class="nav-item" id="nav-rankings" onclick="showView('rankings')">
         <span class="icon">📊</span> Bảng xếp hạng
       </button>
       <button class="nav-item" id="nav-pages" onclick="showView('pages')">
-        <span class="icon">🗂️</span> Tất cả trang
+        <span class="icon">🗂️</span> Trang khác
       </button>
 
       <div class="sidebar-section">Website</div>
@@ -264,6 +278,7 @@ let CFG = {};
 let ARTICLES = [];
 let currentFile = null;
 let currentSha = null;
+let currentRawHtml = '';
 
 // ── Setup ──────────────────────────────────────────────────────────────────
 window.onload = () => {
@@ -356,41 +371,29 @@ async function ghPut(path, content, sha, message) {
 }
 
 // ── Load articles ──────────────────────────────────────────────────────────
-const ARTICLE_FILES = [
-  'gta6-preview.html','elden-ring-dlc2.html','chainsaw-man-season3.html',
-  'dragon-ball-daima.html','solo-leveling-season2.html','one-piece-egghead-arc.html',
-  'jujutsu-kaisen-ket-thuc.html','berserk-arc-cuoi.html','stellar-blade-dlc.html',
-  'honkai-star-rail-30.html','nintendo-switch-2-review.html','genshin-natlan-review.html',
-  'black-myth-wukong-huong-dan.html','wuthering-waves-24.html','space-marine-2-dlc.html',
-  'top-game-pc-2026.html','top-anime-2025.html','anime-mua-he-2026.html',
-  'blue-protocol-review.html','xbox-showcase-2026.html',
-  'tekken8-season2.html','kingdom-come-deliverance-2.html',
-  'frieren-season2.html','resident-evil-9-announcement.html'
-];
-
+// Danh sách bài viết được lấy động từ assets/search.js (IDX) thay vì danh sách
+// cứng, để tự động bao phủ toàn bộ ~150+ bài trên site (chỉ bài tiếng Việt —
+// bài tiếng Anh dùng template khác, chưa hỗ trợ sửa qua trình soạn thảo này).
 async function loadArticles() {
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải danh sách bài viết...</span></div>`);
   try {
-    // Fetch all article files in parallel (get metadata only)
-    const results = await Promise.allSettled(
-      ARTICLE_FILES.map(f => ghGet(f))
-    );
-    ARTICLES = [];
-    results.forEach((r, i) => {
-      if (r.status === 'fulfilled') {
-        const data = r.value;
-        const html = decodeURIComponent(escape(atob(data.content)));
-        ARTICLES.push({
-          file: ARTICLE_FILES[i],
-          sha: data.sha,
-          title: extract(html, /<title>([^<]+)<\/title>/) || ARTICLE_FILES[i],
-          desc: extract(html, /name="description" content="([^"]+)"/) || '',
-          hero: extractHero(html),
-          cat: extract(html, /article:section" content="([^"]+)"/) || 'Gaming',
-          date: extract(html, /datePublished": "([^"]+)"/) || '',
-        });
-      }
-    });
+    const data = await ghGet('assets/search.js');
+    const js = decodeURIComponent(escape(atob(data.content)));
+    const m = js.match(/var IDX\s*=\s*(\[[\s\S]*?\]);/);
+    if (!m) throw new Error('Không đọc được danh sách bài viết từ assets/search.js');
+    const idx = new Function('return ' + m[1])();
+    const SKIP_CATS = new Set(['Chuyên mục','Trang']);
+    ARTICLES = idx
+      .filter(e => e.u && e.u.indexOf('?') === -1 && !SKIP_CATS.has(e.c) && !e.u.startsWith('/en/'))
+      .map(e => ({
+        file: e.u.replace(/^\//,'') + '.html',
+        sha: null,
+        title: e.t || e.u,
+        desc: e.s || '',
+        hero: '',
+        cat: e.c || 'Gaming',
+        date: '',
+      }));
     document.getElementById('article-count').textContent = ARTICLES.length;
     showView('articles');
   } catch(e) {
@@ -447,7 +450,7 @@ function renderArticleList(filter='', cat='') {
 
   const cards = filtered.length ? filtered.map(a => `
     <div class="article-card" onclick="editArticle('${a.file}')">
-      <img class="art-thumb" src="${a.hero}" alt="${a.title}" onerror="this.style.background='var(--surf2)';this.src=''"/>
+      ${a.hero ? `<img class="art-thumb" src="${a.hero}" alt="${esc(a.title)}" onerror="this.style.background='var(--surf2)';this.src=''"/>` : `<div class="art-thumb" style="display:flex;align-items:center;justify-content:center;font-size:18px">📄</div>`}
       <div class="art-info">
         <div class="art-title">${a.title}</div>
         <div class="art-meta">
@@ -499,6 +502,7 @@ async function editArticle(file) {
 }
 
 function renderEditor(file, html) {
+  currentRawHtml = html;
   const title   = extract(html, /<title>([^<]+)<\/title>/) || '';
   const desc    = extract(html, /name="description" content="([^"]+)"/) || '';
   const heroUrl = extractHero(html);
@@ -798,7 +802,7 @@ async function saveArticle() {
   const cat     = document.getElementById('ed-cat')?.value || 'Gaming';
   const bodyVi  = document.getElementById('body-textarea')?.value || '';
 
-  if (!currentFile || !currentSha) return;
+  if (!currentFile) return;
 
   const btn = document.getElementById('save-btn');
   btn.textContent = '⏳ Đang lưu...'; btn.disabled = true;
@@ -808,11 +812,19 @@ async function saveArticle() {
   if (dot) dot.className = 'status-dot saving';
   if (txt) txt.textContent = 'Đang commit lên GitHub...';
 
+  const isNewFile = !currentSha;
   try {
-    // Get current file content
-    const data = await ghGet(currentFile);
-    let html = decodeURIComponent(escape(atob(data.content)));
-    const sha = data.sha;
+    // Bài đã tồn tại: lấy lại nội dung mới nhất từ GitHub để không đè lên thay đổi khác.
+    // Bài mới: dùng template đang có sẵn trong editor, sha để trống để GitHub tự tạo file.
+    let html, sha;
+    if (isNewFile) {
+      html = currentRawHtml;
+      sha = undefined;
+    } else {
+      const data = await ghGet(currentFile);
+      html = decodeURIComponent(escape(atob(data.content)));
+      sha = data.sha;
+    }
 
     // Apply edits
     html = html.replace(/<title>[^<]+<\/title>/, `<title>${title} · OtaHub</title>`);
@@ -832,12 +844,15 @@ async function saveArticle() {
     const newBody = `<article class="art-body lang-vi active">\n${bodyVi}\n</article>`;
     html = html.replace(/<article class="art-body lang-vi active">[\s\S]*?<\/article>/, newBody);
 
-    await ghPut(currentFile, html, sha, `[admin] cap nhat: ${title.slice(0,50)}`);
+    const putResult = await ghPut(currentFile, html, sha, `[admin] cap nhat: ${title.slice(0,50)}`);
 
-    // Update local state
-    currentSha = sha;
-    const art = ARTICLES.find(a => a.file === currentFile);
+    // Update local state — với bài mới, lấy sha thật từ kết quả commit để lần
+    // lưu tiếp theo được nhận diện là "sửa bài đã tồn tại" thay vì tạo lại.
+    currentSha = putResult?.content?.sha || sha;
+    currentRawHtml = html;
+    let art = ARTICLES.find(a => a.file === currentFile);
     if (art) { art.title = title; art.desc = desc; art.hero = hero; art.cat = cat; }
+    else { art = { file: currentFile, sha: currentSha, title, desc, hero, cat, date: '' }; ARTICLES.unshift(art); }
 
     if (dot) dot.className = 'status-dot';
     if (txt) txt.textContent = 'Đã lưu • ' + new Date().toLocaleTimeString('vi-VN');
@@ -845,6 +860,10 @@ async function saveArticle() {
     if (log) log.innerHTML = `✅ Commit lúc ${new Date().toLocaleTimeString('vi-VN')}<br>` + log.innerHTML;
 
     toast('success', '✅ Đã lưu và deploy! Chờ ~1-2 phút để live.');
+
+    if (isNewFile && confirm('Bài viết mới đã được lưu.\n\nBạn có muốn tự động thêm bài này vào Trang chủ, trang chuyên mục, Tìm kiếm, RSS và Sitemap không?')) {
+      await syncNewArticle({ file: currentFile, title, desc, cat, hero });
+    }
   } catch(e) {
     if (dot) dot.className = 'status-dot error';
     if (txt) txt.textContent = 'Lỗi: ' + e.message;
@@ -1098,10 +1117,6 @@ function serializeCats(cats) {
 
 // ── Pages View ─────────────────────────────────────────────────────────────
 const ALL_PAGES = [
-  { file: 'index.html',           icon: '🏠', name: 'Trang chủ',         cat: 'Core' },
-  { file: 'gaming.html',          icon: '🎮', name: 'Gaming',             cat: 'Core' },
-  { file: 'anime.html',           icon: '⛩️', name: 'Anime',              cat: 'Core' },
-  { file: 'manga.html',           icon: '📚', name: 'Manga',              cat: 'Core' },
   { file: 'reviews.html',         icon: '⭐', name: 'Reviews',            cat: 'Core' },
   { file: 'rankings.html',        icon: '📊', name: 'Rankings',           cat: 'Core' },
   { file: 'choi-gi.html',         icon: '🕹️', name: 'Chơi Gì?',          cat: 'Core' },
@@ -1146,10 +1161,427 @@ function renderPagesView() {
       </div>
     </div>
     <div class="content-area">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:16px">💡 Trang chủ, Gaming, Anime, Manga có trình soạn thảo riêng — dùng mục "Trang đặc biệt" ở sidebar bên trái.</div>
       ${renderGroup('Trang chính', corePages)}
       ${renderGroup('Thông tin', infoPages)}
     </div>
   `);
+}
+
+// ── Shared card-field helpers (dùng chung cho trang chủ + trang chuyên mục) ──
+function fieldGet(raw, re) { const m = raw.match(re); return m ? m[1] : ''; }
+function replaceField(raw, pattern, newVal) {
+  if (newVal === undefined) return raw;
+  return pattern.test(raw) ? raw.replace(pattern, (full, p1, p2) => p1 + esc(newVal) + p2) : raw;
+}
+function splitBlocks(html, startPattern) {
+  const re = new RegExp(startPattern.source, 'g');
+  const starts = [];
+  let mm;
+  while ((mm = re.exec(html))) starts.push(mm.index);
+  const blocks = [];
+  for (let i = 0; i < starts.length; i++) blocks.push(html.slice(starts[i], i + 1 < starts.length ? starts[i + 1] : html.length));
+  return blocks;
+}
+async function ghSpliceInsert(path, anchorPattern, insertHtml, after, commitMsg) {
+  const data = await ghGet(path);
+  let content = decodeURIComponent(escape(atob(data.content)));
+  if (!anchorPattern.test(content)) throw new Error('Không tìm thấy điểm chèn trong ' + path);
+  content = after
+    ? content.replace(anchorPattern, (m) => m + insertHtml)
+    : content.replace(anchorPattern, (m) => insertHtml + m);
+  await ghPut(path, content, data.sha, commitMsg);
+}
+
+// ── .ac card fields (trang Gaming/Anime/Manga) ───────────────────────────────
+function acFields(raw) {
+  return {
+    href: fieldGet(raw, /<a href="([^"]*)"/),
+    img: fieldGet(raw, /<img src="([^"]*)"/),
+    alt: fieldGet(raw, /<img[^>]+alt="([^"]*)"/),
+    title: fieldGet(raw, /class="ac-title">([^<]*)</),
+    tag: fieldGet(raw, /class="tag[^"]*"[^>]*>([^<]*)</),
+  };
+}
+function acApply(raw, f) {
+  let out = raw;
+  out = replaceField(out, /(<a href=")[^"]*(")/, f.href);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
+  out = replaceField(out, /(class="ac-title">)[^<]*(<)/, f.title);
+  out = replaceField(out, /(class="tag[^"]*"[^>]*>)[^<]*(<)/, f.tag);
+  return out;
+}
+
+// ── Trình soạn thảo trang chuyên mục (Gaming / Anime / Manga) ────────────────
+let HUB_FILE = '', HUB_LABEL = '', HUB_CARDS = [];
+
+async function hubEditor(file, label) {
+  HUB_LABEL = label || HUB_LABEL || 'Trang chuyên mục';
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải ${HUB_LABEL}...</span></div>`);
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  try {
+    const data = await ghGet(file);
+    const raw = decodeURIComponent(escape(atob(data.content)));
+    HUB_FILE = file;
+    const m = raw.match(/<!-- ADMIN:ARTICLES_START -->([\s\S]*?)<!-- ADMIN:ARTICLES_END -->/);
+    if (!m) throw new Error('Trang này chưa có marker ADMIN:ARTICLES nên chưa hỗ trợ sửa qua trình soạn thảo này.');
+    HUB_CARDS = splitBlocks(m[1], /<a href="[^"]*" class="ac"/).map(r => ({ raw: r }));
+    renderHubEditor();
+  } catch(e) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải ${HUB_LABEL}: ${e.message}</p></div>`);
+  }
+}
+
+function renderHubEditor() {
+  const isEn = HUB_FILE.startsWith('en/');
+  const viewPath = (isEn ? HUB_FILE.replace(/^en\//, 'en/') : HUB_FILE).replace('.html', '');
+  const rows = HUB_CARDS.map((c, i) => {
+    const f = acFields(c.raw);
+    return `<div class="rank-entry">
+      <div style="text-align:center"><img class="rank-img-prev" src="${esc(f.img)}" onerror="this.style.opacity=.3" alt=""/></div>
+      <div class="rank-fields">
+        <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Tiêu đề</div><input class="rank-input-sm" style="width:100%" value="${esc(f.title)}" oninput="hubUpdate(${i},'title',this.value)"/></div>
+        <div style="margin-top:6px"><div style="font-size:10px;color:var(--muted);margin-bottom:3px">URL ảnh</div><input class="rank-input-sm" style="width:100%" value="${esc(f.img)}" oninput="hubUpdate(${i},'img',this.value)"/></div>
+        <div class="rank-row" style="margin-top:6px;grid-template-columns:1fr 1fr auto">
+          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Link</div><input class="rank-input-sm" value="${esc(f.href)}" oninput="hubUpdate(${i},'href',this.value)"/></div>
+          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Nhãn</div><input class="rank-input-sm" value="${esc(f.tag)}" oninput="hubUpdate(${i},'tag',this.value)"/></div>
+          <div style="display:flex;gap:4px;align-items:end">
+            <button class="tb-btn" onclick="hubMove(${i},-1)" title="Lên">↑</button>
+            <button class="tb-btn" onclick="hubMove(${i},1)" title="Xuống">↓</button>
+            <button class="btn btn-danger btn-sm btn-icon" onclick="hubDelete(${i})" title="Xoá">🗑</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">${esc(HUB_LABEL)} <small>${HUB_FILE}</small></div>
+      <div class="header-actions">
+        <button class="btn btn-secondary btn-sm" onclick="hubEditor('${isEn ? HUB_FILE.replace(/^en\//, '') : 'en/' + HUB_FILE}','${HUB_LABEL}')">${isEn ? '🇻🇳 Xem bản VI' : '🇬🇧 Xem bản EN'}</button>
+        <a class="btn btn-secondary btn-sm" href="https://otahub.asia/${viewPath}" target="_blank">🔗 Xem live</a>
+        <button class="btn btn-primary" onclick="saveHub()">💾 Lưu & Deploy</button>
+      </div>
+    </div>
+    <div class="content-area">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:14px">💡 Chỉ sửa tiêu đề, ảnh, link và nhãn danh mục của mỗi thẻ. Tác giả/ngày/thời lượng đọc được giữ nguyên để không sai định dạng.</div>
+      <button class="btn btn-secondary" style="margin-bottom:14px" onclick="hubAdd()">➕ Thêm thẻ bài viết vào đầu danh sách</button>
+      ${rows}
+    </div>
+  `);
+}
+
+function hubUpdate(i, field, value) { HUB_CARDS[i].raw = acApply(HUB_CARDS[i].raw, { [field]: value }); }
+function hubMove(i, dir) { const j = i + dir; if (j < 0 || j >= HUB_CARDS.length) return; const t = HUB_CARDS[i]; HUB_CARDS[i] = HUB_CARDS[j]; HUB_CARDS[j] = t; renderHubEditor(); }
+function hubDelete(i) { if (!confirm('Gỡ thẻ này khỏi danh sách? (Không xoá file bài viết gốc)')) return; HUB_CARDS.splice(i, 1); renderHubEditor(); }
+function hubAdd() {
+  if (!HUB_CARDS.length) { toast('error', 'Không có thẻ mẫu để nhân bản.'); return; }
+  const clone = { raw: acApply(HUB_CARDS[0].raw, { href: '/duong-dan-bai-viet-moi', img: '/assets/img/placeholder.svg', alt: 'Tiêu đề bài viết mới', title: 'Tiêu đề bài viết mới' }) };
+  HUB_CARDS.unshift(clone);
+  renderHubEditor();
+  toast('success', 'Đã thêm thẻ mới — nhớ sửa link/ảnh/tiêu đề trước khi lưu.');
+}
+async function saveHub() {
+  try {
+    const latest = await ghGet(HUB_FILE);
+    let html = decodeURIComponent(escape(atob(latest.content)));
+    const newSection = '\n      ' + HUB_CARDS.map(c => c.raw.trim()).join('\n\n      ') + '\n      ';
+    html = html.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/, (m, p1, p2) => p1 + newSection + p2);
+    await ghPut(HUB_FILE, html, latest.sha, `[admin] cap nhat danh sach bai viet ${HUB_FILE}`);
+    toast('success', '✅ Đã lưu! Deploy trong ~1-2 phút.');
+  } catch(e) {
+    toast('error', 'Lỗi lưu: ' + e.message);
+  }
+}
+
+// ── Trình soạn thảo trang chủ (hero + ticker + nổi bật hôm nay) ──────────────
+let HOME_FILE = '', HOME_FEATURED = { fc: '', sc: [] }, HOME_TICKER = [];
+const TICKER_RE = /(box\.innerHTML=')([\s\S]*?)('\s*;\s*track\.prepend\(box\)\}\)\(\);)/;
+
+function scFields(raw) {
+  return {
+    href: fieldGet(raw, /<a class="sc" href="([^"]*)"/),
+    img: fieldGet(raw, /<img src="([^"]*)"/),
+    alt: fieldGet(raw, /<img[^>]+alt="([^"]*)"/),
+    tag: fieldGet(raw, /class="tag[^"]*"[^>]*>([^<]*)</),
+    title: fieldGet(raw, /class="sc-title">([^<]*)</),
+  };
+}
+function scApply(raw, f) {
+  let out = raw;
+  out = replaceField(out, /(<a class="sc" href=")[^"]*(")/, f.href);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
+  out = replaceField(out, /(class="tag[^"]*"[^>]*>)[^<]*(<)/, f.tag);
+  out = replaceField(out, /(class="sc-title">)[^<]*(<)/, f.title);
+  return out;
+}
+function fcFields(raw) {
+  return {
+    href: fieldGet(raw, /<a class="fc" href="([^"]*)"/),
+    img: fieldGet(raw, /background-image:url\(([^)]*)\)/),
+    tag: fieldGet(raw, /class="tag[^"]*"[^>]*>([^<]*)</),
+    title: fieldGet(raw, /class="fc-title">([^<]*)</),
+    sub: fieldGet(raw, /class="fc-sub">([^<]*)</),
+  };
+}
+function fcApply(raw, f) {
+  let out = raw;
+  out = replaceField(out, /(<a class="fc" href=")[^"]*(")/, f.href);
+  out = replaceField(out, /(background-image:url\()[^)]*(\))/, f.img);
+  out = replaceField(out, /(class="tag[^"]*"[^>]*>)[^<]*(<)/, f.tag);
+  out = replaceField(out, /(class="fc-title">)[^<]*(<)/, f.title);
+  out = replaceField(out, /(class="fc-sub">)[^<]*(<)/, f.sub);
+  return out;
+}
+
+async function homeEditor(file) {
+  file = file || 'index.html';
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải trang chủ...</span></div>`);
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  try {
+    const data = await ghGet(file);
+    const raw = decodeURIComponent(escape(atob(data.content)));
+    HOME_FILE = file;
+
+    const fm = raw.match(/<!-- ADMIN:FEATURED_START -->([\s\S]*?)<!-- ADMIN:FEATURED_END -->/);
+    if (!fm) throw new Error('Không tìm thấy khối "Nổi bật hôm nay" (thiếu marker ADMIN:FEATURED).');
+    const featuredHtml = fm[1];
+    const scStart = featuredHtml.indexOf('<a class="sc"');
+    const fcRaw = (scStart === -1 ? featuredHtml : featuredHtml.slice(0, scStart)).trim();
+    const scBlocks = scStart === -1 ? [] : splitBlocks(featuredHtml.slice(scStart), /<a class="sc" href="[^"]*"/);
+    HOME_FEATURED = { fc: fcRaw, sc: scBlocks.map(r => ({ raw: r })) };
+
+    const tm = raw.match(TICKER_RE);
+    HOME_TICKER = tm ? [...tm[2].matchAll(/<span class="tick-item">([^<]*)<\/span>/g)].map(x => x[1]) : [];
+
+    window.__homeRawHero = raw;
+    renderHomeEditor();
+  } catch(e) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải trang chủ: ${e.message}</p></div>`);
+  }
+}
+
+function homeHeroFields(html) {
+  return {
+    title: fieldGet(html, /id="h-title">([^<]*)</),
+    sub: fieldGet(html, /id="h-sub">([^<]*)</),
+    cat: fieldGet(html, /class="h-meta-cat">([^<]*)</),
+    date: fieldGet(html, /id="h-time">([^<]*)</),
+    href: fieldGet(html, /<a href="([^"]*)" class="read-more" id="h-read"/),
+    img: fieldGet(html, /\.h-img\{[^}]*background:url\('([^']*)'\)/),
+  };
+}
+
+function renderHomeEditor() {
+  const isEn = HOME_FILE.startsWith('en/');
+  const hf = homeHeroFields(window.__homeRawHero || '');
+  const fc = fcFields(HOME_FEATURED.fc);
+
+  const tickerRows = HOME_TICKER.map((t, i) => `
+    <div style="display:flex;gap:6px;margin-bottom:6px">
+      <input class="form-input" style="flex:1" value="${esc(t)}" oninput="tickerUpdate(${i},this.value)"/>
+      <button class="btn btn-danger btn-sm btn-icon" onclick="tickerDelete(${i})">🗑</button>
+    </div>`).join('');
+
+  const scRows = HOME_FEATURED.sc.map((c, i) => {
+    const f = scFields(c.raw);
+    return `<div class="rank-entry">
+      <div style="text-align:center"><img class="rank-img-prev" src="${esc(f.img)}" onerror="this.style.opacity=.3" alt=""/></div>
+      <div class="rank-fields">
+        <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Tiêu đề</div><input class="rank-input-sm" style="width:100%" value="${esc(f.title)}" oninput="scUpdate(${i},'title',this.value)"/></div>
+        <div style="margin-top:6px"><div style="font-size:10px;color:var(--muted);margin-bottom:3px">URL ảnh</div><input class="rank-input-sm" style="width:100%" value="${esc(f.img)}" oninput="scUpdate(${i},'img',this.value)"/></div>
+        <div class="rank-row" style="margin-top:6px;grid-template-columns:1fr 1fr auto">
+          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Link</div><input class="rank-input-sm" value="${esc(f.href)}" oninput="scUpdate(${i},'href',this.value)"/></div>
+          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Nhãn</div><input class="rank-input-sm" value="${esc(f.tag)}" oninput="scUpdate(${i},'tag',this.value)"/></div>
+          <div style="display:flex;gap:4px;align-items:end">
+            <button class="tb-btn" onclick="scMove(${i},-1)">↑</button>
+            <button class="tb-btn" onclick="scMove(${i},1)">↓</button>
+            <button class="btn btn-danger btn-sm btn-icon" onclick="scDelete(${i})">🗑</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">Trang chủ <small>${HOME_FILE}</small></div>
+      <div class="header-actions">
+        <button class="btn btn-secondary btn-sm" onclick="homeEditor('${isEn ? HOME_FILE.replace(/^en\//, '') : 'en/' + HOME_FILE}')">${isEn ? '🇻🇳 Xem bản VI' : '🇬🇧 Xem bản EN'}</button>
+        <a class="btn btn-secondary btn-sm" href="https://otahub.asia/${isEn ? 'en/' : ''}" target="_blank">🔗 Xem live</a>
+        <button class="btn btn-primary" onclick="saveHome()">💾 Lưu & Deploy</button>
+      </div>
+    </div>
+    <div class="content-area">
+      <div class="field-group">
+        <div class="field-group-title">🎬 Tin nổi bật chính (Hero)</div>
+        <label class="form-label">Tiêu đề</label>
+        <input class="form-input" id="home-hero-title" value="${esc(hf.title)}"/>
+        <label class="form-label">Mô tả ngắn</label>
+        <textarea class="form-input" id="home-hero-sub" rows="2">${esc(hf.sub)}</textarea>
+        <div class="rank-row" style="grid-template-columns:1fr 1fr 1fr;margin-top:12px">
+          <div><label class="form-label" style="margin-top:0">Danh mục</label><input class="form-input" id="home-hero-cat" value="${esc(hf.cat)}"/></div>
+          <div><label class="form-label" style="margin-top:0">Ngày</label><input class="form-input" id="home-hero-date" value="${esc(hf.date)}"/></div>
+          <div><label class="form-label" style="margin-top:0">Link (slug)</label><input class="form-input" id="home-hero-href" value="${esc(hf.href)}"/></div>
+        </div>
+        <label class="form-label">URL ảnh nền</label>
+        <input class="form-input" id="home-hero-img" value="${esc(hf.img)}"/>
+        <img src="${esc(hf.img)}" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-top:8px" onerror="this.style.opacity=.3"/>
+      </div>
+
+      <div class="field-group">
+        <div class="field-group-title">📰 Thanh tin chạy (Breaking ticker)</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:10px">Các dòng tin mới nhất được chèn ở đầu thanh chạy — phần cũ phía sau vẫn giữ nguyên.</div>
+        ${tickerRows}
+        <button class="btn btn-secondary btn-sm" onclick="tickerAdd()">➕ Thêm dòng tin</button>
+      </div>
+
+      <div class="field-group">
+        <div class="field-group-title">⭐ Nổi bật hôm nay — tin chính</div>
+        <label class="form-label">Tiêu đề</label>
+        <input class="form-input" id="home-fc-title" value="${esc(fc.title)}"/>
+        <label class="form-label">Mô tả ngắn</label>
+        <textarea class="form-input" id="home-fc-sub" rows="2">${esc(fc.sub)}</textarea>
+        <div class="rank-row" style="grid-template-columns:1fr 1fr;margin-top:12px">
+          <div><label class="form-label" style="margin-top:0">Link</label><input class="form-input" id="home-fc-href" value="${esc(fc.href)}"/></div>
+          <div><label class="form-label" style="margin-top:0">Nhãn danh mục</label><input class="form-input" id="home-fc-tag" value="${esc(fc.tag)}"/></div>
+        </div>
+        <label class="form-label">URL ảnh</label>
+        <input class="form-input" id="home-fc-img" value="${esc(fc.img)}"/>
+      </div>
+
+      <div class="field-group">
+        <div class="field-group-title">⭐ Nổi bật hôm nay — tin phụ</div>
+        <button class="btn btn-secondary btn-sm" style="margin-bottom:12px" onclick="scAdd()">➕ Thêm thẻ tin phụ</button>
+        ${scRows}
+      </div>
+    </div>
+  `);
+}
+
+function tickerUpdate(i, v) { HOME_TICKER[i] = v; }
+function tickerDelete(i) { HOME_TICKER.splice(i, 1); renderHomeEditor(); }
+function tickerAdd() { HOME_TICKER.unshift('Tiêu đề tin mới'); renderHomeEditor(); }
+
+function scUpdate(i, field, value) { HOME_FEATURED.sc[i].raw = scApply(HOME_FEATURED.sc[i].raw, { [field]: value }); }
+function scMove(i, dir) { const j = i + dir; if (j < 0 || j >= HOME_FEATURED.sc.length) return; const t = HOME_FEATURED.sc[i]; HOME_FEATURED.sc[i] = HOME_FEATURED.sc[j]; HOME_FEATURED.sc[j] = t; renderHomeEditor(); }
+function scDelete(i) { if (!confirm('Xoá thẻ tin phụ này?')) return; HOME_FEATURED.sc.splice(i, 1); renderHomeEditor(); }
+function scAdd() {
+  if (!HOME_FEATURED.sc.length) { toast('error', 'Không có thẻ mẫu để nhân bản.'); return; }
+  const clone = { raw: scApply(HOME_FEATURED.sc[0].raw, { href: '/duong-dan-bai-viet-moi', img: '/assets/img/placeholder.svg', alt: 'Tiêu đề mới', title: 'Tiêu đề mới' }) };
+  HOME_FEATURED.sc.unshift(clone);
+  renderHomeEditor();
+}
+
+async function saveHome() {
+  try {
+    const latest = await ghGet(HOME_FILE);
+    let html = decodeURIComponent(escape(atob(latest.content)));
+
+    const heroTitle = document.getElementById('home-hero-title').value;
+    const heroSub   = document.getElementById('home-hero-sub').value;
+    const heroCat   = document.getElementById('home-hero-cat').value;
+    const heroDate  = document.getElementById('home-hero-date').value;
+    const heroHref  = document.getElementById('home-hero-href').value;
+    const heroImg   = document.getElementById('home-hero-img').value;
+
+    html = html.replace(/(id="h-title">)[^<]*(<)/, (m, p1, p2) => p1 + esc(heroTitle) + p2);
+    html = html.replace(/(id="h-sub">)[^<]*(<)/, (m, p1, p2) => p1 + esc(heroSub) + p2);
+    html = html.replace(/(class="h-meta-cat">)[^<]*(<)/, (m, p1, p2) => p1 + esc(heroCat) + p2);
+    html = html.replace(/(id="h-time">)[^<]*(<)/, (m, p1, p2) => p1 + esc(heroDate) + p2);
+    html = html.replace(/(<a href=")[^"]*(" class="read-more" id="h-read")/, (m, p1, p2) => p1 + esc(heroHref) + p2);
+    html = html.replace(/(<div class="hero-main" onclick="location\.href=')[^']*(')/, (m, p1, p2) => p1 + heroHref.replace(/\\/g, '\\\\').replace(/'/g, "\\'") + p2);
+    html = html.replace(/(\.h-img\{[^}]*background:url\(')[^']*('\))/, (m, p1, p2) => p1 + heroImg.replace(/\\/g, '\\\\').replace(/'/g, "\\'") + p2);
+
+    const fc = {
+      href: document.getElementById('home-fc-href').value,
+      img: document.getElementById('home-fc-img').value,
+      tag: document.getElementById('home-fc-tag').value,
+      title: document.getElementById('home-fc-title').value,
+      sub: document.getElementById('home-fc-sub').value,
+    };
+    const newFc = fcApply(HOME_FEATURED.fc, fc);
+    const newFeatured = '\n    ' + newFc.trim() + '\n\n    ' + HOME_FEATURED.sc.map(c => c.raw.trim()).join('\n\n    ') + '\n    ';
+    html = html.replace(/(<!-- ADMIN:FEATURED_START -->)[\s\S]*?(<!-- ADMIN:FEATURED_END -->)/, (m, p1, p2) => p1 + newFeatured + p2);
+
+    const tickerHtml = HOME_TICKER.map(t => `<span class="tick-item">${esc(t)}</span>`).join('');
+    html = html.replace(TICKER_RE, (m, p1, p2, p3) => p1 + tickerHtml.replace(/\\/g, '\\\\').replace(/'/g, "\\'") + p3);
+
+    await ghPut(HOME_FILE, html, latest.sha, '[admin] cap nhat trang chu');
+    toast('success', '✅ Đã lưu trang chủ! Deploy trong ~1-2 phút.');
+  } catch(e) {
+    toast('error', 'Lỗi lưu: ' + e.message);
+  }
+}
+
+// ── Tự động đồng bộ bài viết mới ra toàn site ────────────────────────────────
+async function syncNewArticle(meta) {
+  const slug = meta.file.replace(/\.html$/, '');
+  const url = '/' + slug;
+  const CAT_MAP = {
+    Gaming: { hub: 'gaming.html', story: 'gaming', tag: 'tc' },
+    Anime:  { hub: 'anime.html',  story: 'anime',  tag: 'ts' },
+    Manga:  { hub: 'manga.html',  story: 'manga',  tag: 'tv' },
+  };
+  const info = CAT_MAP[meta.cat] || CAT_MAP.Gaming;
+  const now = new Date();
+  const dateStr = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
+  const isoDate = now.toISOString().slice(0, 10);
+  const hero = meta.hero || '/assets/img/placeholder.svg';
+  const results = [];
+
+  try {
+    const newsCard = `<a href="${url}" style="display:block;background:#150a2c;border:1px solid rgba(255,255,255,.12);color:#f3efff;text-decoration:none"><img src="${hero}" alt="${esc(meta.title)}" width="1200" height="675" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover"><div style="padding:18px"><span style="color:#00e5ff;font-size:11px;letter-spacing:.15em">${meta.cat.toUpperCase()}</span><h3 style="font-size:20px;line-height:1.3;margin:8px 0">${esc(meta.title)}</h3><p style="color:#aaa1ba;font-size:14px">${esc(meta.desc)}</p></div></a>`;
+    const data = await ghGet('news.html');
+    let content = decodeURIComponent(escape(atob(data.content)));
+    const gridAnchor = /gap:18px">/;
+    if (!gridAnchor.test(content)) throw new Error('Không tìm thấy điểm chèn trong news.html');
+    content = content.replace(gridAnchor, (m) => m + newsCard);
+    content = content.replace(/(\d+)( tin mới đã kiểm chứng)/, (m, n, rest) => (parseInt(n, 10) + 1) + rest);
+    await ghPut('news.html', content, data.sha, `[admin] them bai moi vao news.html: ${meta.title.slice(0, 50)}`);
+    results.push('✅ news.html');
+  } catch(e) { results.push('❌ news.html — ' + e.message); }
+
+  try {
+    const cardHtml = `\n      <a href="${url}" class="ac" data-cat="pc"><div class="ac-thumb"><img src="${hero}" alt="${esc(meta.title)}" loading="lazy" width="1280" height="720"></div><div class="ac-info"><div><div class="ac-top"><span class="tag ${info.tag}">${meta.cat}</span></div><div class="ac-title">${esc(meta.title)}</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>Hôm nay</span><span class="ac-meta-sep">·</span><span>5 min</span></div></div></a>`;
+    await ghSpliceInsert(info.hub, /<!-- ADMIN:ARTICLES_START -->/, cardHtml, true, `[admin] them bai moi vao ${info.hub}: ${meta.title.slice(0, 50)}`);
+    results.push(`✅ ${info.hub}`);
+  } catch(e) { results.push(`❌ ${info.hub} — ` + e.message); }
+
+  try {
+    const wcard = `<article class="w-card"><a href="${slug}" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">${meta.cat} · OtaHub Editorial</div><div class="wc-t">${esc(meta.title)}</div><div class="wc-m">OtaHub Editorial · ${dateStr} · 5 min</div></div><div class="wc-thumb"><img src="${hero}" alt="${esc(meta.title)}" loading="lazy" width="2000" height="1125"></div></a></article>\n\n`;
+    await ghSpliceInsert('index.html', /<article class="w-card">/, wcard, false, `[admin] them bai moi vao trang chu: ${meta.title.slice(0, 50)}`);
+    results.push('✅ index.html');
+  } catch(e) { results.push('❌ index.html — ' + e.message); }
+
+  try {
+    const tuple = `\n      ['${slug}',${JSON.stringify(meta.title)},${JSON.stringify(meta.title)}],`;
+    await ghSpliceInsert('assets/category-latest.js', new RegExp(info.story + ':\\['), tuple, true, `[admin] them bai moi vao category-latest.js: ${meta.title.slice(0, 50)}`);
+    results.push('✅ category-latest.js');
+  } catch(e) { results.push('❌ category-latest.js — ' + e.message); }
+
+  try {
+    const entry = JSON.stringify({ u: url, t: meta.title, c: meta.cat, s: (meta.desc || '').slice(0, 150) }) + ',';
+    await ghSpliceInsert('assets/search.js', /var IDX=\[/, entry, true, `[admin] them bai moi vao search index: ${meta.title.slice(0, 50)}`);
+    results.push('✅ search.js');
+  } catch(e) { results.push('❌ search.js — ' + e.message); }
+
+  try {
+    const urlBlock = `<url><loc>https://otahub.asia${url}</loc><lastmod>${isoDate}</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>\n`;
+    await ghSpliceInsert('sitemap.xml', /<\/urlset>/, urlBlock, false, `[admin] them bai moi vao sitemap: ${meta.title.slice(0, 50)}`);
+    results.push('✅ sitemap.xml');
+  } catch(e) { results.push('❌ sitemap.xml — ' + e.message); }
+
+  try {
+    const item = `  <item><title>${esc(meta.title)}</title><link>https://otahub.asia${url}</link><guid isPermaLink="true">https://otahub.asia${url}</guid><pubDate>${now.toUTCString()}</pubDate><description>${esc(meta.desc)}</description><media:content url="https://otahub.asia${hero}" medium="image"/></item>\n`;
+    await ghSpliceInsert('feed.xml', /<item>/, item, false, `[admin] them bai moi vao feed.xml: ${meta.title.slice(0, 50)}`);
+    results.push('✅ feed.xml');
+  } catch(e) { results.push('❌ feed.xml — ' + e.message); }
+
+  alert('Kết quả đồng bộ bài viết mới:\n\n' + results.join('\n') + '\n\nLưu ý: chỉ đồng bộ bản Tiếng Việt. Nếu cần bản Tiếng Anh, tạo và nối thủ công vào en/.');
 }
 
 // ── Helpers ────────────────────────────────────────────────────────────────
