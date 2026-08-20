@@ -18,17 +18,32 @@ html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--white); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.6; min-height: 100vh; }
 
 /* ── Layout ── */
-.layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
-.sidebar { background: var(--surf); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+.layout { display: grid; grid-template-columns: 72px 1fr; min-height: 100vh; }
+.sidebar { background: var(--surf); border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; position: sticky; top: 0; height: 100vh; overflow: visible; padding: 4px 0 14px; gap: 2px; }
 .main { overflow-y: auto; }
 
 /* ── Sidebar ── */
-.logo { padding: 20px 20px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+.logo { padding: 10px 0 14px; width: 100%; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 6px; margin-bottom: 6px; }
+.logo-mark { width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, var(--cyan), var(--violet)); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; letter-spacing: -.02em; color: #0a0a12; }
 .logo-text { font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
 .logo-text span { color: var(--cyan); }
-.logo-badge { font-size: 10px; background: var(--violet); color: #fff; padding: 2px 7px; border-radius: 20px; font-weight: 600; letter-spacing: .05em; }
+.logo-badge { font-size: 9px; background: var(--violet); color: #fff; padding: 2px 7px; border-radius: 20px; font-weight: 600; letter-spacing: .05em; }
 
 .sidebar-section { padding: 12px 12px 4px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+/* Collapsed icon nav with hover flyout submenus (WordPress-style) */
+.nav-group { position: relative; width: 100%; display: flex; justify-content: center; }
+.nav-group.sidebar-footer-group { margin-top: auto; }
+.nav-group-head { width: 46px; height: 46px; border-radius: 11px; border: none; background: none; color: var(--dim); display: flex; align-items: center; justify-content: center; font-size: 19px; cursor: pointer; transition: all .15s; }
+.nav-group-head:hover { background: var(--surf2); color: var(--white); }
+.nav-group:has(.nav-item.active) .nav-group-head { background: var(--bcyan); color: var(--cyan); }
+.nav-flyout { position: absolute; left: calc(100% + 10px); top: -6px; min-width: 240px; background: var(--surf); border: 1px solid var(--border); border-radius: 12px; padding: 8px; box-shadow: 0 16px 40px rgba(0,0,0,.45); display: none; z-index: 60; }
+.nav-group:hover .nav-flyout, .nav-group:focus-within .nav-flyout { display: block; }
+.flyout-title { padding: 6px 10px 8px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.nav-flyout .nav-item { white-space: nowrap; }
+.nav-flyout .connected-info { padding: 4px 10px 2px; }
+.nav-flyout .disconnect-btn { width: calc(100% - 16px); margin: 8px 8px 2px; }
+
 .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 16px; border-radius: 8px; margin: 2px 8px; cursor: pointer; color: var(--dim); transition: all .15s; font-size: 13.5px; border: none; background: none; width: calc(100% - 16px); text-align: left; }
 .nav-item:hover { background: var(--surf2); color: var(--white); }
 .nav-item.active { background: var(--bcyan); color: var(--cyan); box-shadow: inset 3px 0 0 var(--cyan); }
@@ -80,15 +95,20 @@ body { background: var(--bg); color: var(--white); font-family: 'Segoe UI', syst
 .search-input:focus { border-color: var(--cyan); }
 .filter-select { background: var(--surf); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; color: var(--white); font-size: 13px; outline: none; }
 
-.articles-grid { display: grid; gap: 10px; }
-.article-card { background: var(--surf); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; display: grid; grid-template-columns: 60px 1fr auto; gap: 14px; align-items: center; transition: border .15s; cursor: pointer; }
+.articles-grid { display: grid; gap: 8px; }
+.article-card { background: var(--surf); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; display: grid; grid-template-columns: 68px 1fr auto; gap: 14px; align-items: center; transition: border .15s, transform .15s, box-shadow .15s; cursor: pointer; }
+.article-card:hover { border-color: rgba(0,229,255,.35); transform: translateX(2px); box-shadow: 0 6px 18px rgba(0,0,0,.2); }
 .article-card:hover { border-color: rgba(0,229,255,.35); }
-.art-thumb { width: 60px; height: 40px; object-fit: cover; border-radius: 6px; background: var(--surf2); }
+.art-thumb-wrap { position: relative; width: 68px; height: 46px; border-radius: 8px; overflow: hidden; background: var(--surf2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.art-thumb-ph { font-size: 19px; opacity: .5; }
+.art-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .25s; }
+.art-thumb.loaded, .art-thumb[src]:not([src=""]) { opacity: 1; }
 .art-info { min-width: 0; }
 .art-title { font-size: 13.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--white); }
-.art-meta { font-size: 11px; color: var(--muted); margin-top: 3px; display: flex; gap: 10px; }
-.art-cat { background: var(--bcyan); color: var(--cyan); padding: 1px 7px; border-radius: 10px; font-size: 10px; font-weight: 600; }
-.art-actions { display: flex; gap: 6px; }
+.art-meta { font-size: 11px; color: var(--muted); margin-top: 4px; display: flex; align-items: center; gap: 10px; }
+.art-meta .art-file { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 260px; }
+.art-cat { background: var(--bcyan); color: var(--cyan); padding: 1px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; letter-spacing: .02em; flex-shrink: 0; }
+.art-actions { display: flex; gap: 6px; flex-shrink: 0; }
 
 /* ── Editor (bố cục kiểu WordPress: tiêu đề to, ô soạn thảo là trung tâm,
       hộp "Xuất bản" cố định bên phải) ── */
@@ -124,7 +144,7 @@ body { background: var(--bg); color: var(--white); font-family: 'Segoe UI', syst
 .meta-box-content { padding: 0 20px 20px; display: none; }
 .meta-box-content.open { display: block; }
 
-.field-group { background: var(--surf); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+.field-group { background: var(--surf); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,.14); }
 .field-group-title { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
 .form-input { width: 100%; background: var(--surf2); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; color: var(--white); font-size: 13px; outline: none; transition: border .15s; font-family: inherit; }
 .form-input:focus { border-color: var(--cyan); }
@@ -227,7 +247,8 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .rank-tab { padding: 9px 18px; border: none; background: none; color: var(--muted); cursor: pointer; font-size: 13px; font-weight: 600; border-bottom: 2px solid transparent; transition: all .15s; }
 .rank-tab:hover { color: var(--white); }
 .rank-tab.active { color: var(--cyan); border-bottom-color: var(--cyan); }
-.rank-entry { display: grid; grid-template-columns: 72px 1fr; gap: 12px; align-items: start; padding: 12px; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; background: var(--surf); transition: border .15s; }
+.rank-entry { display: grid; grid-template-columns: 72px 1fr; gap: 12px; align-items: start; padding: 12px; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; background: var(--surf); transition: border .15s, box-shadow .15s; }
+.rank-entry:hover { border-color: rgba(0,229,255,.3); box-shadow: 0 4px 14px rgba(0,0,0,.16); }
 .rank-entry:hover { border-color: rgba(0,229,255,.2); }
 .rank-entry.top3 { border-color: rgba(0,229,255,.3); background: rgba(0,229,255,.03); }
 .rank-num { font-size: 20px; font-weight: 800; color: var(--cyan); text-align: center; padding-top: 6px; }
@@ -252,7 +273,11 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 /* ── Responsive ── */
 @media(max-width:768px) {
   .layout { grid-template-columns: 1fr; }
-  .sidebar { position: static; height: auto; }
+  .sidebar { position: static; height: auto; width: 100%; align-items: stretch; }
+  .nav-group { display: block; }
+  .nav-group-head { display: none; }
+  .nav-flyout { position: static; display: block !important; box-shadow: none; border: none; padding: 0; background: none; min-width: 0; }
+  .flyout-title { padding: 14px 12px 4px; }
   .editor-layout { grid-template-columns: 1fr; }
 }
 </style>
@@ -282,87 +307,115 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 <div id="app" style="display:none">
   <div class="layout">
 
-    <!-- Sidebar -->
+    <!-- Sidebar: thu gọn về icon, submenu xổ ra khi hover (kiểu WordPress) -->
     <nav class="sidebar">
-      <div class="logo">
-        <div class="logo-text">Ota<span>Hub</span></div>
-        <span class="logo-badge">ADMIN</span>
+      <div class="logo" title="OtaHub Admin">
+        <div class="logo-mark">OH</div>
       </div>
 
-      <div class="sidebar-section">Nội dung</div>
-      <button class="nav-item active" id="nav-articles" onclick="showView('articles')">
-        <span class="icon">📄</span> Bài viết
-        <span class="badge" id="article-count"></span>
-      </button>
-      <button class="nav-item" id="nav-new" onclick="newArticle()">
-        <span class="icon">✏️</span> Viết bài mới
-      </button>
+      <div class="nav-group">
+        <button class="nav-group-head" title="Nội dung"><span class="icon">📄</span></button>
+        <div class="nav-flyout">
+          <div class="flyout-title">Nội dung</div>
+          <button class="nav-item active" id="nav-articles" onclick="showView('articles')">
+            <span class="icon">📄</span> Bài viết
+            <span class="badge" id="article-count"></span>
+          </button>
+          <button class="nav-item" id="nav-new" onclick="newArticle()">
+            <span class="icon">✏️</span> Viết bài mới
+          </button>
+        </div>
+      </div>
 
-      <div class="sidebar-section">Trang đặc biệt</div>
-      <button class="nav-item" id="nav-home" onclick="homeEditor('index.html')">
-        <span class="icon">🏠</span> Trang chủ
-      </button>
-      <button class="nav-item" id="nav-hub-gaming" onclick="hubEditor('gaming.html','Gaming')">
-        <span class="icon">🎮</span> Gaming
-      </button>
-      <button class="nav-item" id="nav-hub-anime" onclick="hubEditor('anime.html','Anime')">
-        <span class="icon">⛩️</span> Anime
-      </button>
-      <button class="nav-item" id="nav-hub-manga" onclick="hubEditor('manga.html','Manga')">
-        <span class="icon">📚</span> Manga
-      </button>
+      <div class="nav-group">
+        <button class="nav-group-head" title="Trang đặc biệt"><span class="icon">🏠</span></button>
+        <div class="nav-flyout">
+          <div class="flyout-title">Trang đặc biệt</div>
+          <button class="nav-item" id="nav-home" onclick="homeEditor('index.html')">
+            <span class="icon">🏠</span> Trang chủ
+          </button>
+          <button class="nav-item" id="nav-hub-gaming" onclick="hubEditor('gaming.html','Gaming')">
+            <span class="icon">🎮</span> Gaming
+          </button>
+          <button class="nav-item" id="nav-hub-anime" onclick="hubEditor('anime.html','Anime')">
+            <span class="icon">⛩️</span> Anime
+          </button>
+          <button class="nav-item" id="nav-hub-manga" onclick="hubEditor('manga.html','Manga')">
+            <span class="icon">📚</span> Manga
+          </button>
+        </div>
+      </div>
 
-      <div class="sidebar-section">Chỉnh sửa đặc biệt</div>
-      <button class="nav-item" id="nav-rankings" onclick="showView('rankings')">
-        <span class="icon">📊</span> Bảng xếp hạng
-      </button>
-      <button class="nav-item" id="nav-arr-reviews" onclick="arrayEditor('reviews')">
-        <span class="icon">⭐</span> Reviews
-      </button>
-      <button class="nav-item" id="nav-arr-choigi" onclick="arrayEditor('choigi')">
-        <span class="icon">🕹️</span> Chơi Gì? (CSDL game)
-      </button>
-      <button class="nav-item" id="nav-hotgrid" onclick="hotGridEditor()">
-        <span class="icon">🔥</span> Đang Hot (Chơi Gì?)
-      </button>
-      <button class="nav-item" id="nav-arr-recommend" onclick="arrayEditor('recommend')">
-        <span class="icon">💡</span> Recommend
-      </button>
-      <button class="nav-item" id="nav-arr-lichphatsong" onclick="arrayEditor('lichphatsong')">
-        <span class="icon">📅</span> Lịch cập nhật Manga
-      </button>
-      <button class="nav-item" id="nav-news" onclick="newsEditor()">
-        <span class="icon">📰</span> News
-      </button>
-      <button class="nav-item" id="nav-releases" onclick="releasesEditor()">
-        <span class="icon">🚀</span> Sắp ra mắt
-      </button>
-      <button class="nav-item" id="nav-team" onclick="teamEditor()">
-        <span class="icon">👥</span> Đội ngũ (Giới thiệu)
-      </button>
-      <button class="nav-item" id="nav-lienhe" onclick="sectionEditor('lien-he.html','nav-lienhe','Liên hệ','https://otahub.asia/lien-he')">
-        <span class="icon">📬</span> Liên hệ
-      </button>
-      <button class="nav-item" id="nav-chinhsach" onclick="sectionEditor('chinh-sach-bao-mat.html','nav-chinhsach','Chính sách bảo mật','https://otahub.asia/chinh-sach-bao-mat')">
-        <span class="icon">🔒</span> Chính sách bảo mật
-      </button>
+      <div class="nav-group">
+        <button class="nav-group-head" title="Chỉnh sửa đặc biệt"><span class="icon">🛠️</span></button>
+        <div class="nav-flyout">
+          <div class="flyout-title">Chỉnh sửa đặc biệt</div>
+          <button class="nav-item" id="nav-rankings" onclick="showView('rankings')">
+            <span class="icon">📊</span> Bảng xếp hạng
+          </button>
+          <button class="nav-item" id="nav-arr-reviews" onclick="arrayEditor('reviews')">
+            <span class="icon">⭐</span> Reviews
+          </button>
+          <button class="nav-item" id="nav-arr-choigi" onclick="arrayEditor('choigi')">
+            <span class="icon">🕹️</span> Chơi Gì? (CSDL game)
+          </button>
+          <button class="nav-item" id="nav-hotgrid" onclick="hotGridEditor()">
+            <span class="icon">🔥</span> Đang Hot (Chơi Gì?)
+          </button>
+          <button class="nav-item" id="nav-arr-recommend" onclick="arrayEditor('recommend')">
+            <span class="icon">💡</span> Recommend
+          </button>
+          <button class="nav-item" id="nav-arr-lichphatsong" onclick="arrayEditor('lichphatsong')">
+            <span class="icon">📅</span> Lịch cập nhật Manga
+          </button>
+          <button class="nav-item" id="nav-news" onclick="newsEditor()">
+            <span class="icon">📰</span> News
+          </button>
+          <button class="nav-item" id="nav-releases" onclick="releasesEditor()">
+            <span class="icon">🚀</span> Sắp ra mắt
+          </button>
+          <button class="nav-item" id="nav-team" onclick="teamEditor()">
+            <span class="icon">👥</span> Đội ngũ (Giới thiệu)
+          </button>
+          <button class="nav-item" id="nav-lienhe" onclick="sectionEditor('lien-he.html','nav-lienhe','Liên hệ','https://otahub.asia/lien-he')">
+            <span class="icon">📬</span> Liên hệ
+          </button>
+          <button class="nav-item" id="nav-chinhsach" onclick="sectionEditor('chinh-sach-bao-mat.html','nav-chinhsach','Chính sách bảo mật','https://otahub.asia/chinh-sach-bao-mat')">
+            <span class="icon">🔒</span> Chính sách bảo mật
+          </button>
+        </div>
+      </div>
 
-      <div class="sidebar-section">Quản trị</div>
-      <button class="nav-item" id="nav-users" onclick="showView('users')">
-        <span class="icon">👤</span> Người dùng
-      </button>
+      <div class="nav-group">
+        <button class="nav-group-head" title="Quản trị"><span class="icon">👤</span></button>
+        <div class="nav-flyout">
+          <div class="flyout-title">Quản trị</div>
+          <button class="nav-item" id="nav-users" onclick="showView('users')">
+            <span class="icon">👤</span> Người dùng
+          </button>
+        </div>
+      </div>
 
-      <div class="sidebar-section">Website</div>
-      <button class="nav-item" onclick="openSite()">
-        <span class="icon">🌐</span> Xem website
-      </button>
-      <button class="nav-item" onclick="openGitHub()">
-        <span class="icon">⚙️</span> GitHub repo
-      </button>
+      <div class="nav-group">
+        <button class="nav-group-head" title="Website"><span class="icon">🌐</span></button>
+        <div class="nav-flyout">
+          <div class="flyout-title">Website</div>
+          <button class="nav-item" onclick="openSite()">
+            <span class="icon">🌐</span> Xem website
+          </button>
+          <button class="nav-item" onclick="openGitHub()">
+            <span class="icon">⚙️</span> GitHub repo
+          </button>
+        </div>
+      </div>
 
-      <div class="sidebar-footer">
-        <div class="connected-info" id="conn-info"></div>
-        <button class="disconnect-btn" onclick="disconnect()">Đăng xuất</button>
+      <div class="nav-group sidebar-footer-group">
+        <button class="nav-group-head" title="Tài khoản"><span class="icon">🚪</span></button>
+        <div class="nav-flyout">
+          <div class="flyout-title">Tài khoản</div>
+          <div class="connected-info" id="conn-info"></div>
+          <button class="disconnect-btn" onclick="disconnect()">Đăng xuất</button>
+        </div>
       </div>
     </nav>
 
@@ -624,6 +677,10 @@ async function deleteUser(username) {
   }
 }
 
+const CAT_ICON = { Gaming:'🎮', Anime:'⛩️', Manga:'📚', Reviews:'⭐', Rankings:'📊', Guide:'📘', News:'📰' };
+const HERO_CACHE = new Map();
+let thumbObserver = null;
+
 function renderArticleList(filter='', cat='') {
   const filtered = ARTICLES.filter(a => {
     const q = filter.toLowerCase();
@@ -638,13 +695,16 @@ function renderArticleList(filter='', cat='') {
 
   const cards = filtered.length ? filtered.map(a => `
     <div class="article-card" onclick="editArticle('${a.file}')">
-      ${a.hero ? `<img class="art-thumb" src="${a.hero}" alt="${esc(a.title)}" onerror="this.style.background='var(--surf2)';this.src=''"/>` : `<div class="art-thumb" style="display:flex;align-items:center;justify-content:center;font-size:18px">📄</div>`}
+      <div class="art-thumb-wrap">
+        <span class="art-thumb-ph">${CAT_ICON[a.cat] || '📄'}</span>
+        <img class="art-thumb" data-file="${a.file}" alt="" loading="lazy" onload="this.classList.add('loaded')" onerror="this.remove()"/>
+      </div>
       <div class="art-info">
-        <div class="art-title">${a.title}</div>
+        <div class="art-title">${esc(a.title)}</div>
         <div class="art-meta">
-          <span class="art-cat">${a.cat}</span>
-          <span>${a.file}</span>
-          <span>${a.date ? a.date.slice(0,10) : ''}</span>
+          <span class="art-cat">${esc(a.cat)}</span>
+          <span class="art-file">${esc(a.file)}</span>
+          ${a.date ? `<span>${esc(a.date.slice(0,10))}</span>` : ''}
         </div>
       </div>
       <div class="art-actions">
@@ -664,7 +724,7 @@ function renderArticleList(filter='', cat='') {
     </div>
     <div class="content-area">
       <div class="search-row">
-        <input class="search-input" placeholder="Tìm bài viết..." oninput="renderArticleList(this.value, document.getElementById('cat-filter').value)" />
+        <input class="search-input" placeholder="🔍 Tìm bài viết..." value="${esc(filter)}" oninput="renderArticleList(this.value, document.getElementById('cat-filter').value)" />
         <select class="filter-select" id="cat-filter" onchange="renderArticleList(document.querySelector('.search-input').value, this.value)">
           ${catOpts}
         </select>
@@ -672,6 +732,44 @@ function renderArticleList(filter='', cat='') {
       <div class="articles-grid">${cards}</div>
     </div>
   `);
+
+  const searchEl = document.querySelector('.search-input');
+  if (searchEl) { searchEl.value = filter; searchEl.focus(); searchEl.selectionStart = searchEl.selectionEnd = filter.length; }
+  observeThumbs();
+}
+
+// Lazy-load thumbnail ảnh thật (og:image) cho từng bài khi cuộn tới, có cache trong phiên làm việc
+function observeThumbs() {
+  if (thumbObserver) thumbObserver.disconnect();
+  thumbObserver = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        loadThumb(en.target);
+        thumbObserver.unobserve(en.target);
+      }
+    });
+  }, { rootMargin: '300px' });
+  document.querySelectorAll('.art-thumb[data-file]').forEach(img => thumbObserver.observe(img));
+}
+
+async function loadThumb(imgEl) {
+  const file = imgEl.getAttribute('data-file');
+  if (!file) return;
+  if (HERO_CACHE.has(file)) {
+    const url = HERO_CACHE.get(file);
+    if (url) imgEl.src = url;
+    return;
+  }
+  try {
+    const data = await ghGet(file);
+    const html = decodeURIComponent(escape(atob(data.content)));
+    const m = html.match(/property="og:image"\s+content="([^"]*)"/);
+    const url = m ? m[1] : '';
+    HERO_CACHE.set(file, url);
+    if (url) imgEl.src = url;
+  } catch(e) {
+    HERO_CACHE.set(file, '');
+  }
 }
 
 // ── Editor ─────────────────────────────────────────────────────────────────
@@ -1823,6 +1921,7 @@ async function hubEditor(file, label) {
   HUB_LABEL = label || HUB_LABEL || 'Trang chuyên mục';
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải ${HUB_LABEL}...</span></div>`);
   document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-hub-' + (file.includes('gaming') ? 'gaming' : file.includes('anime') ? 'anime' : 'manga'))?.classList.add('active');
   try {
     const data = await ghGet(file);
     const raw = decodeURIComponent(escape(atob(data.content)));
@@ -1944,6 +2043,7 @@ async function homeEditor(file) {
   file = file || 'index.html';
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải trang chủ...</span></div>`);
   document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-home')?.classList.add('active');
   try {
     const data = await ghGet(file);
     const raw = decodeURIComponent(escape(atob(data.content)));
