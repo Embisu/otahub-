@@ -183,26 +183,17 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 <div id="setup-screen">
   <div class="setup-card">
     <h1>🎮 OtaHub Admin</h1>
-    <p class="sub">Kết nối GitHub repo để chỉnh sửa bài viết trực tiếp trên browser. Mọi thay đổi sẽ tự deploy lên Cloudflare Pages.</p>
+    <p class="sub">Đăng nhập bằng tài khoản quản trị để chỉnh sửa nội dung trực tiếp trên browser. Mọi thay đổi sẽ tự deploy lên Cloudflare.</p>
 
     <div class="field">
-      <label>GitHub Personal Access Token</label>
-      <input type="password" id="setup-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"/>
-      <div class="hint">Tạo tại <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens</a>, chọn scope <strong>repo</strong></div>
+      <label>Tên đăng nhập</label>
+      <input type="text" id="setup-username" placeholder="ten-dang-nhap" autocomplete="username" onkeydown="if(event.key==='Enter')doLogin()"/>
     </div>
     <div class="field">
-      <label>GitHub Username</label>
-      <input type="text" id="setup-owner" placeholder="username"/>
+      <label>Mật khẩu</label>
+      <input type="password" id="setup-password" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"/>
     </div>
-    <div class="field">
-      <label>Tên Repository</label>
-      <input type="text" id="setup-repo" placeholder="otahub-" value="otahub-"/>
-    </div>
-    <div class="field">
-      <label>Branch</label>
-      <input type="text" id="setup-branch" placeholder="main" value="main"/>
-    </div>
-    <button class="btn btn-primary setup-submit" onclick="doSetup()">Kết nối →</button>
+    <button class="btn btn-primary setup-submit" onclick="doLogin()">Đăng nhập →</button>
     <div id="setup-error" class="setup-error"></div>
   </div>
 </div>
@@ -249,6 +240,11 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
         <span class="icon">🗂️</span> Trang khác
       </button>
 
+      <div class="sidebar-section">Quản trị</div>
+      <button class="nav-item" id="nav-users" onclick="showView('users')">
+        <span class="icon">👤</span> Người dùng
+      </button>
+
       <div class="sidebar-section">Website</div>
       <button class="nav-item" onclick="openSite()">
         <span class="icon">🌐</span> Xem website
@@ -274,48 +270,54 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 
 <script>
 // ── State ──────────────────────────────────────────────────────────────────
-let CFG = {};
+let CURRENT_USER = null;
 let ARTICLES = [];
 let currentFile = null;
 let currentSha = null;
 let currentRawHtml = '';
 
-// ── Setup ──────────────────────────────────────────────────────────────────
-window.onload = () => {
-  const saved = localStorage.getItem('otahub_cfg');
-  if (saved) {
-    CFG = JSON.parse(saved);
-    startApp();
-  }
+// ── Đăng nhập ──────────────────────────────────────────────────────────────
+window.onload = async () => {
+  try {
+    const r = await fetch('/api/admin/me', { credentials: 'same-origin' });
+    if (r.ok) {
+      const data = await r.json();
+      CURRENT_USER = data.user;
+      startApp();
+    }
+  } catch(e) { /* chưa đăng nhập — cứ để màn hình đăng nhập hiện ra */ }
 };
 
-async function doSetup() {
-  const token  = document.getElementById('setup-token').value.trim();
-  const owner  = document.getElementById('setup-owner').value.trim();
-  const repo   = document.getElementById('setup-repo').value.trim();
-  const branch = document.getElementById('setup-branch').value.trim() || 'main';
+async function doLogin() {
+  const username = document.getElementById('setup-username').value.trim();
+  const password = document.getElementById('setup-password').value;
   const errEl  = document.getElementById('setup-error');
   errEl.style.display = 'none';
 
-  if (!token || !owner || !repo) {
-    errEl.textContent = 'Vui lòng điền đầy đủ thông tin.';
+  if (!username || !password) {
+    errEl.textContent = 'Vui lòng nhập tên đăng nhập và mật khẩu.';
     errEl.style.display = 'block';
     return;
   }
 
-  // Test connection
   const btn = document.querySelector('.setup-submit');
-  btn.textContent = 'Đang kết nối...'; btn.disabled = true;
+  btn.textContent = 'Đang đăng nhập...'; btn.disabled = true;
   try {
-    const r = await ghFetch(`/repos/${owner}/${repo}`, token);
-    if (!r.ok) throw new Error('Không tìm thấy repo hoặc token không hợp lệ.');
-    CFG = { token, owner, repo, branch };
-    localStorage.setItem('otahub_cfg', JSON.stringify(CFG));
+    const r = await fetch('/api/admin/login', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.error || 'Đăng nhập thất bại.');
+    CURRENT_USER = data.user;
     startApp();
   } catch(e) {
     errEl.textContent = e.message;
     errEl.style.display = 'block';
-    btn.textContent = 'Kết nối →'; btn.disabled = false;
+  } finally {
+    btn.textContent = 'Đăng nhập →'; btn.disabled = false;
   }
 }
 
@@ -323,49 +325,39 @@ function startApp() {
   document.getElementById('setup-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
   document.getElementById('conn-info').innerHTML =
-    `<strong>${CFG.owner}/${CFG.repo}</strong><br>Branch: ${CFG.branch}`;
+    `<strong>${esc(CURRENT_USER.username)}</strong><br>Embisu/otahub-`;
   loadArticles();
 }
 
-function disconnect() {
+async function disconnect() {
   if (!confirm('Đăng xuất khỏi admin?')) return;
-  localStorage.removeItem('otahub_cfg');
+  try { await fetch('/api/admin/logout', { method: 'POST', credentials: 'same-origin' }); } catch(e) {}
   location.reload();
 }
 
-// ── GitHub API ─────────────────────────────────────────────────────────────
-function ghFetch(path, token, opts={}) {
-  return fetch('https://api.github.com' + path, {
-    ...opts,
-    headers: {
-      'Authorization': 'Bearer ' + (token || CFG.token),
-      'Accept': 'application/vnd.github+json',
-      'X-GitHub-Api-Version': '2022-11-28',
-      ...(opts.headers || {})
-    }
-  });
-}
-
+// ── GitHub API (qua Cloudflare Worker — token GitHub thật không rời server) ──
 async function ghGet(path) {
-  const r = await ghFetch(`/repos/${CFG.owner}/${CFG.repo}/contents/${path}?ref=${CFG.branch}`);
-  if (!r.ok) throw new Error('GitHub API error: ' + r.status);
+  const r = await fetch(`/api/admin/gh/${path}`, { credentials: 'same-origin' });
+  if (r.status === 401) { location.reload(); throw new Error('Phiên đăng nhập đã hết hạn.'); }
+  if (!r.ok) { const e = await r.json().catch(()=>({})); throw new Error(e.error || ('Lỗi API: ' + r.status)); }
   return r.json();
 }
 
 async function ghPut(path, content, sha, message) {
-  const r = await ghFetch(`/repos/${CFG.owner}/${CFG.repo}/contents/${path}`, {}, {
+  const r = await fetch(`/api/admin/gh/${path}`, {
     method: 'PUT',
+    credentials: 'same-origin',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      message,
       content: btoa(unescape(encodeURIComponent(content))),
       sha,
-      branch: CFG.branch
+      message
     })
   });
+  if (r.status === 401) { location.reload(); throw new Error('Phiên đăng nhập đã hết hạn.'); }
   if (!r.ok) {
-    const e = await r.json();
-    throw new Error(e.message || 'Lỗi khi lưu file');
+    const e = await r.json().catch(()=>({}));
+    throw new Error(e.error || 'Lỗi khi lưu file');
   }
   return r.json();
 }
@@ -428,12 +420,100 @@ function setMain(html) { document.getElementById('main-content').innerHTML = htm
 
 function showView(view) {
   document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  const navMap = { articles: 'nav-articles', rankings: 'nav-rankings', pages: 'nav-pages' };
+  const navMap = { articles: 'nav-articles', rankings: 'nav-rankings', pages: 'nav-pages', users: 'nav-users' };
   document.getElementById(navMap[view] || 'nav-articles')?.classList.add('active');
 
   if (view === 'articles') renderArticleList();
   else if (view === 'rankings') loadRankings();
   else if (view === 'pages') renderPagesView();
+  else if (view === 'users') loadUsers();
+}
+
+// ── Quản lý người dùng ────────────────────────────────────────────────────
+async function loadUsers() {
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải danh sách người dùng...</span></div>`);
+  try {
+    const r = await fetch('/api/admin/users', { credentials: 'same-origin' });
+    if (!r.ok) throw new Error('Không tải được danh sách người dùng.');
+    const data = await r.json();
+    renderUsersView(data.users || []);
+  } catch(e) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>${esc(e.message)}</p></div>`);
+  }
+}
+
+function renderUsersView(users) {
+  const rows = users.map(u => `
+    <div class="article-card" style="grid-template-columns:1fr auto">
+      <div class="art-info">
+        <div class="art-title">${esc(u.username)}${u.username === CURRENT_USER.username ? ' <span style="color:var(--muted);font-weight:400">(bạn)</span>' : ''}</div>
+        <div class="art-meta">${u.createdAt ? 'Tạo lúc ' + new Date(u.createdAt).toLocaleString('vi-VN') : ''}</div>
+      </div>
+      <div class="art-actions">
+        ${u.username === CURRENT_USER.username ? '' : `<button class="btn btn-danger btn-sm" onclick="deleteUser('${esc(u.username)}')">🗑 Xoá</button>`}
+      </div>
+    </div>`).join('');
+
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">Người dùng <small>${users.length} tài khoản</small></div>
+    </div>
+    <div class="content-area">
+      <div class="field-group">
+        <div class="field-group-title">➕ Thêm tài khoản mới</div>
+        <label class="form-label">Tên đăng nhập</label>
+        <input class="form-input" id="nu-username" placeholder="ten-dang-nhap"/>
+        <label class="form-label">Mật khẩu (tối thiểu 8 ký tự)</label>
+        <input class="form-input" type="password" id="nu-password" placeholder="••••••••"/>
+        <button class="btn btn-primary" style="margin-top:14px" onclick="addUser()">Thêm tài khoản</button>
+        <div id="nu-error" class="setup-error"></div>
+      </div>
+      <div class="articles-grid">${rows}</div>
+    </div>
+  `);
+}
+
+async function addUser() {
+  const username = document.getElementById('nu-username').value.trim();
+  const password = document.getElementById('nu-password').value;
+  const errEl = document.getElementById('nu-error');
+  errEl.style.display = 'none';
+  if (!username || !password || password.length < 8) {
+    errEl.textContent = 'Cần tên đăng nhập và mật khẩu tối thiểu 8 ký tự.';
+    errEl.style.display = 'block';
+    return;
+  }
+  try {
+    const r = await fetch('/api/admin/users', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.error || 'Không thêm được tài khoản.');
+    toast('success', '✅ Đã thêm tài khoản ' + username);
+    loadUsers();
+  } catch(e) {
+    errEl.textContent = e.message;
+    errEl.style.display = 'block';
+  }
+}
+
+async function deleteUser(username) {
+  if (!confirm(`Xoá tài khoản "${username}"?`)) return;
+  try {
+    const r = await fetch('/api/admin/users?username=' + encodeURIComponent(username), {
+      method: 'DELETE',
+      credentials: 'same-origin'
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.error || 'Không xoá được tài khoản.');
+    toast('success', '✅ Đã xoá tài khoản ' + username);
+    loadUsers();
+  } catch(e) {
+    toast('error', e.message);
+  }
 }
 
 function renderArticleList(filter='', cat='') {
@@ -611,9 +691,9 @@ function renderEditor(file, html) {
         <div class="field-group">
           <div class="field-group-title">☁️ Deploy Info</div>
           <div class="deploy-info">
-            Lưu bài → commit lên <strong>GitHub</strong> → Cloudflare Pages tự build và deploy trong <strong>~1-2 phút</strong>.<br><br>
-            Repo: <strong>${CFG.owner}/${CFG.repo}</strong><br>
-            Branch: <strong>${CFG.branch}</strong>
+            Lưu bài → commit lên <strong>GitHub</strong> → Cloudflare tự build và deploy trong <strong>~1-2 phút</strong>.<br><br>
+            Repo: <strong>Embisu/otahub-</strong><br>
+            Branch: <strong>main</strong>
           </div>
         </div>
 
@@ -1586,7 +1666,7 @@ async function syncNewArticle(meta) {
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 function openSite()   { window.open('https://otahub.asia', '_blank'); }
-function openGitHub() { window.open(`https://github.com/${CFG.owner}/${CFG.repo}`, '_blank'); }
+function openGitHub() { window.open('https://github.com/Embisu/otahub-', '_blank'); }
 
 function toast(type, msg) {
   const el = document.createElement('div');

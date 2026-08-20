@@ -2,9 +2,17 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "otahub",
   "compatibility_date": "2026-08-17",
+  "main": "worker/index.js",
   "assets": {
     "directory": ".",
     "html_handling": "auto-trailing-slash",
-    "not_found_handling": "404-page"
-  }
+    "not_found_handling": "404-page",
+    "binding": "ASSETS"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "ADMIN_KV",
+      "id": "6a6a257b47e845e59908fee8d25dd199"
+    }
+  ]
 }
