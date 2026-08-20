@@ -102,14 +102,17 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .sb-tags{display:flex;flex-wrap:wrap;gap:6px}
 .sb-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--border);color:var(--muted);text-decoration:none;transition:all .2s;min-height:auto}
 .sb-tag:hover{border-color:rgba(0,229,255,.3);color:var(--cyan)}
-footer{position:relative;z-index:1;background:var(--surf);border-top:1px solid var(--border);padding:40px 24px 24px;margin-top:0}
-.ft-in{max-width:1160px;margin:0 auto}
-.ft-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:16px}
-.ft-brand{font-family:var(--fd);font-weight:700;font-size:18px}
-.ft-links{display:flex;gap:20px;flex-wrap:wrap}
-.ft-links a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);background:rgba(7,1,18,.98)}
+.ft-in{max-width:1440px;margin:0 auto;padding:52px 24px 32px;display:grid;grid-template-columns:200px 1fr 1fr 1fr;gap:48px}
+.ft-desc{font-size:12px;color:rgba(240,238,255,.3);line-height:1.75;max-width:175px;margin-top:12px}
+.ft-h{font-size:10px;letter-spacing:.19em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;font-weight:500}
+.ft-links{display:flex;flex-direction:column;gap:9px;list-style:none}
+.ft-links a{font-size:13px;color:rgba(240,238,255,.4);text-decoration:none;transition:color .2s}
 .ft-links a:hover{color:var(--cyan)}
-.ft-copy{font-size:11px;color:var(--muted);padding-top:20px;border-top:1px solid var(--border)}
+.ft-bot{max-width:1440px;margin:0 auto;padding:16px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.ft-copy{font-size:11px;color:rgba(240,238,255,.22);letter-spacing:.04em}
+@media(max-width:1024px){.ft-in{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.ft-in{grid-template-columns:1fr;gap:28px}.ft-bot{flex-direction:column;gap:10px}}
 @media(max-width:900px){
 .art-hero{height:340px}
 .art-layout{grid-template-columns:1fr;gap:0}
