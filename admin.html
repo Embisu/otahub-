@@ -39,6 +39,8 @@ body { background: var(--bg); color: var(--white); font-family: 'Segoe UI', syst
 .nav-group-head { width: 46px; height: 46px; border-radius: 11px; border: none; background: none; color: var(--dim); display: flex; align-items: center; justify-content: center; font-size: 19px; cursor: pointer; transition: all .15s; }
 .nav-group-head:hover { background: var(--surf2); color: var(--white); }
 .nav-group:has(.nav-item.active) .nav-group-head { background: var(--bcyan); color: var(--cyan); }
+.cmdk-sidebar-btn { width: 46px; height: 46px; border-radius: 11px; border: 1px dashed var(--border); background: none; color: var(--muted); display: flex; align-items: center; justify-content: center; font-size: 17px; cursor: pointer; transition: all .15s; margin: 0 0 10px; flex-shrink: 0; }
+.cmdk-sidebar-btn:hover { background: var(--surf2); color: var(--cyan); border-color: rgba(0,229,255,.35); border-style: solid; }
 .nav-flyout { position: absolute; left: calc(100% + 10px); top: -6px; min-width: 240px; background: var(--surf); border: 1px solid var(--border); border-radius: 12px; padding: 8px; box-shadow: 0 16px 40px rgba(0,0,0,.45); display: none; z-index: 60; }
 .nav-group:hover .nav-flyout, .nav-group:focus-within .nav-flyout { display: block; }
 .flyout-title { padding: 6px 10px 8px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
@@ -282,6 +284,31 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .toc-link:hover { background: var(--surf2); color: var(--white); }
 .live-edit-hint strong { color: var(--dim); }
 
+/* ── Command palette (Ctrl/Cmd+K) — tìm nhanh kiểu Linear/Vercel/Notion ── */
+.cmdk-trigger { display: flex; align-items: center; gap: 8px; width: 100%; padding: 9px 12px; background: var(--surf); border: 1px solid var(--border); border-radius: 8px; color: var(--muted); font-size: 12.5px; cursor: pointer; transition: border-color .15s, background .15s; font-family: inherit; }
+.cmdk-trigger:hover { border-color: rgba(0,229,255,.35); background: var(--surf2); }
+.cmdk-trigger kbd { margin-left: auto; font-family: inherit; font-size: 10px; font-weight: 700; color: var(--dim); background: rgba(255,255,255,.06); border: 1px solid var(--border); border-radius: 5px; padding: 2px 6px; }
+.cmdk-ov { position: fixed; inset: 0; z-index: 9999; background: rgba(6,2,20,.72); backdrop-filter: blur(6px); display: none; padding: 11vh 20px 0; }
+.cmdk-ov.open { display: block; }
+.cmdk-box { max-width: 620px; margin: 0 auto; background: var(--surf); border: 1px solid rgba(0,229,255,.25); border-radius: 14px; box-shadow: 0 24px 64px rgba(0,0,0,.5); overflow: hidden; animation: cmdkIn .14s var(--ease, ease-out); }
+@keyframes cmdkIn { from { opacity: 0; transform: translateY(-8px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.cmdk-in-row { display: flex; align-items: center; gap: 10px; padding: 16px 18px; border-bottom: 1px solid var(--border); }
+.cmdk-in-row svg { flex-shrink: 0; color: var(--muted); }
+.cmdk-input { flex: 1; background: none; border: none; outline: none; color: var(--white); font-size: 16px; font-family: inherit; }
+.cmdk-input::placeholder { color: var(--muted); }
+.cmdk-esc { font-size: 10px; font-weight: 700; color: var(--muted); background: rgba(255,255,255,.06); border: 1px solid var(--border); border-radius: 5px; padding: 2px 6px; flex-shrink: 0; }
+.cmdk-list { max-height: 54vh; overflow-y: auto; padding: 8px; }
+.cmdk-group-label { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); padding: 10px 10px 6px; }
+.cmdk-item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 8px; cursor: pointer; color: var(--dim); }
+.cmdk-item.sel { background: rgba(0,229,255,.12); color: var(--white); }
+.cmdk-item-icon { width: 30px; height: 30px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: var(--surf2); border-radius: 7px; font-size: 14px; }
+.cmdk-item.sel .cmdk-item-icon { background: rgba(0,229,255,.18); }
+.cmdk-item-body { flex: 1; min-width: 0; }
+.cmdk-item-title { font-size: 13.5px; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cmdk-item-hint { font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; }
+.cmdk-item-tag { font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--cyan); background: rgba(0,229,255,.1); border-radius: 5px; padding: 3px 7px; flex-shrink: 0; }
+.cmdk-empty { padding: 34px 20px; text-align: center; color: var(--muted); font-size: 13px; }
+
 .sc-card { display: flex; gap: 12px; padding: 10px; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; background: var(--surf); transition: border .15s, box-shadow .15s, opacity .15s; }
 .sc-card:hover { border-color: rgba(0,229,255,.3); box-shadow: 0 4px 14px rgba(0,0,0,.16); }
 .sc-card.dragging { opacity: .35; }
@@ -367,6 +394,8 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
       <div class="logo logo-clickable" title="Về Bảng tin" onclick="showView('dashboard')">
         <div class="logo-mark">OH</div>
       </div>
+
+      <button class="cmdk-sidebar-btn" title="Tìm nhanh (Ctrl+K)" onclick="openCmdk()">🔍</button>
 
       <div class="nav-group">
         <button class="nav-group-head" title="Bảng tin"><span class="icon">📊</span></button>
@@ -493,6 +522,16 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 
 <div id="toast"></div>
 <input type="file" id="global-upload-input" accept="image/*" style="display:none" onchange="handleGlobalUpload(this)"/>
+<div class="cmdk-ov" id="cmdk-ov" onclick="if(event.target===this)closeCmdk()">
+  <div class="cmdk-box">
+    <div class="cmdk-in-row">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg>
+      <input class="cmdk-input" id="cmdk-input" placeholder="Đi tới trang, tìm bài viết..." autocomplete="off" oninput="cmdkFilter()" onkeydown="cmdkKeydown(event)">
+      <span class="cmdk-esc">ESC</span>
+    </div>
+    <div class="cmdk-list" id="cmdk-list"></div>
+  </div>
+</div>
 
 <script>
 // ── State ──────────────────────────────────────────────────────────────────
@@ -513,12 +552,105 @@ window.addEventListener('beforeunload', (e) => {
 });
 
 // Phím tắt Ctrl/Cmd+S để lưu nhanh — bấm nút "Lưu & Deploy" đang hiển thị (nếu có)
+// Phím tắt Ctrl/Cmd+K để mở Command Palette (tìm nhanh, kiểu Linear/Vercel/Notion)
 document.addEventListener('keydown', (e) => {
   if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
     const saveBtn = document.getElementById('save-btn');
     if (saveBtn) { e.preventDefault(); saveBtn.click(); }
   }
+  if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+    e.preventDefault();
+    openCmdk();
+  }
 });
+
+// ── Command Palette: điều hướng nhanh tới mọi màn hình + tìm bài viết ────────
+function cmdkNorm(s) { return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd'); }
+function cmdkStaticActions() {
+  return [
+    { icon: '📊', title: 'Bảng tin', hint: 'Tổng quan, viết nhanh', tag: 'Đi tới', run: () => showView('dashboard') },
+    { icon: '📄', title: 'Bài viết', hint: 'Danh sách toàn bộ bài viết', tag: 'Đi tới', run: () => showView('articles') },
+    { icon: '✏️', title: 'Viết bài mới', hint: 'Tạo bài viết trống', tag: 'Hành động', run: () => newArticle() },
+    { icon: '🏠', title: 'Trang chủ', hint: 'Hero, ticker, tin nổi bật', tag: 'Đi tới', run: () => homeEditor('index.html') },
+    { icon: '🎮', title: 'Gaming', hint: 'Trang chuyên mục gaming.html', tag: 'Đi tới', run: () => hubEditor('gaming.html', 'Gaming') },
+    { icon: '⛩️', title: 'Anime', hint: 'Trang chuyên mục anime.html', tag: 'Đi tới', run: () => hubEditor('anime.html', 'Anime') },
+    { icon: '📖', title: 'Manga', hint: 'Trang chuyên mục manga.html', tag: 'Đi tới', run: () => hubEditor('manga.html', 'Manga') },
+    { icon: '🏆', title: 'Bảng xếp hạng', hint: 'Rankings theo tuần', tag: 'Đi tới', run: () => showView('rankings') },
+    { icon: '⭐', title: 'Reviews', hint: 'Danh sách bài đánh giá', tag: 'Đi tới', run: () => arrayEditor('reviews') },
+    { icon: '🎯', title: 'Chơi Gì?', hint: 'Database gợi ý game', tag: 'Đi tới', run: () => arrayEditor('choigi') },
+    { icon: '💡', title: 'Recommend', hint: 'Danh sách gợi ý', tag: 'Đi tới', run: () => arrayEditor('recommend') },
+    { icon: '📅', title: 'Lịch phát sóng', hint: 'Lịch anime theo mùa', tag: 'Đi tới', run: () => arrayEditor('lichphatsong') },
+    { icon: '🔥', title: 'Đang Hot', hint: 'Section tĩnh cho choi-gi.html', tag: 'Đi tới', run: () => hotGridEditor() },
+    { icon: '🚀', title: 'Sắp ra mắt', hint: 'Lịch phát hành sắp tới', tag: 'Đi tới', run: () => releasesEditor() },
+    { icon: '📰', title: 'News', hint: 'Trang tin tức', tag: 'Đi tới', run: () => newsEditor() },
+    { icon: '👥', title: 'Đội ngũ / Giới thiệu', hint: 'Trang about', tag: 'Đi tới', run: () => teamEditor() },
+    { icon: '✉️', title: 'Liên hệ', hint: 'Trang lien-he.html', tag: 'Đi tới', run: () => sectionEditor('lien-he.html', 'nav-lienhe', 'Liên hệ', 'https://otahub.asia/lien-he') },
+    { icon: '🔒', title: 'Chính sách bảo mật', hint: 'Trang chinh-sach-bao-mat.html', tag: 'Đi tới', run: () => sectionEditor('chinh-sach-bao-mat.html', 'nav-chinhsach', 'Chính sách bảo mật', 'https://otahub.asia/chinh-sach-bao-mat') },
+    { icon: '👤', title: 'Người dùng', hint: 'Quản lý tài khoản admin', tag: 'Đi tới', run: () => showView('users') },
+  ];
+}
+function cmdkArticleActions() {
+  return (ARTICLES || []).map(a => ({
+    icon: '📝', title: a.title, hint: a.cat || 'Bài viết', tag: 'Bài viết',
+    run: () => editArticle(a.file),
+  }));
+}
+let CMDK_SEL = 0, CMDK_ITEMS = [];
+function openCmdk() {
+  const ov = document.getElementById('cmdk-ov');
+  const inp = document.getElementById('cmdk-input');
+  ov.classList.add('open');
+  inp.value = '';
+  cmdkFilter();
+  setTimeout(() => inp.focus(), 10);
+}
+function closeCmdk() {
+  document.getElementById('cmdk-ov').classList.remove('open');
+}
+function cmdkFilter() {
+  const q = cmdkNorm(document.getElementById('cmdk-input').value.trim());
+  const staticItems = cmdkStaticActions();
+  let items;
+  if (!q) {
+    items = staticItems;
+  } else {
+    const all = staticItems.concat(cmdkArticleActions());
+    items = all.filter(it => cmdkNorm(it.title).includes(q) || cmdkNorm(it.hint).includes(q)).slice(0, 40);
+  }
+  CMDK_ITEMS = items;
+  CMDK_SEL = 0;
+  cmdkRender();
+}
+function cmdkRender() {
+  const list = document.getElementById('cmdk-list');
+  if (!CMDK_ITEMS.length) {
+    list.innerHTML = '<div class="cmdk-empty">Không tìm thấy kết quả nào.</div>';
+    return;
+  }
+  list.innerHTML = CMDK_ITEMS.map((it, i) => `
+    <div class="cmdk-item${i === CMDK_SEL ? ' sel' : ''}" onmouseenter="CMDK_SEL=${i};cmdkRender()" onclick="cmdkRun(${i})">
+      <div class="cmdk-item-icon">${it.icon}</div>
+      <div class="cmdk-item-body">
+        <div class="cmdk-item-title">${esc(it.title)}</div>
+        <div class="cmdk-item-hint">${esc(it.hint || '')}</div>
+      </div>
+      <div class="cmdk-item-tag">${esc(it.tag)}</div>
+    </div>`).join('');
+  const sel = list.querySelector('.cmdk-item.sel');
+  if (sel) sel.scrollIntoView({ block: 'nearest' });
+}
+function cmdkRun(i) {
+  const it = CMDK_ITEMS[i];
+  if (!it) return;
+  closeCmdk();
+  it.run();
+}
+function cmdkKeydown(e) {
+  if (e.key === 'Escape') { e.preventDefault(); closeCmdk(); return; }
+  if (e.key === 'ArrowDown') { e.preventDefault(); CMDK_SEL = Math.min(CMDK_SEL + 1, CMDK_ITEMS.length - 1); cmdkRender(); return; }
+  if (e.key === 'ArrowUp') { e.preventDefault(); CMDK_SEL = Math.max(CMDK_SEL - 1, 0); cmdkRender(); return; }
+  if (e.key === 'Enter') { e.preventDefault(); cmdkRun(CMDK_SEL); return; }
+}
 
 // ── Đăng nhập ──────────────────────────────────────────────────────────────
 window.onload = async () => {
@@ -2153,6 +2285,7 @@ function acApply(raw, f) {
 let HUB_FILE = '', HUB_LABEL = '', HUB_CARDS = [];
 
 async function hubEditor(file, label) {
+  HAS_UNSAVED_CHANGES = false;
   HUB_LABEL = label || HUB_LABEL || 'Trang chuyên mục';
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải ${HUB_LABEL}...</span></div>`);
   document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
@@ -2200,20 +2333,48 @@ function renderHubEditor() {
       <div class="page-title">${esc(HUB_LABEL)} <small>${HUB_FILE}</small></div>
       <div class="header-actions">
         <button class="btn btn-secondary btn-sm" onclick="hubEditor('${isEn ? HUB_FILE.replace(/^en\//, '') : 'en/' + HUB_FILE}','${HUB_LABEL}')">${isEn ? '🇻🇳 Xem bản VI' : '🇬🇧 Xem bản EN'}</button>
-        <a class="btn btn-secondary btn-sm" href="https://otahub.asia/${viewPath}" target="_blank">🔗 Xem live</a>
-        <button class="btn btn-primary" onclick="saveHub()">💾 Lưu & Deploy</button>
       </div>
     </div>
-    <div class="content-area">
-      <div style="font-size:11px;color:var(--muted);margin-bottom:14px">💡 Kéo ⠿ để sắp xếp lại, bấm vào tiêu đề trên thẻ để sửa trực tiếp. Tác giả/ngày/thời lượng đọc được giữ nguyên để không sai định dạng.</div>
-      <button class="btn btn-secondary" style="margin-bottom:14px" onclick="hubAdd()">➕ Thêm thẻ bài viết vào đầu danh sách</button>
-      ${rows}
+
+    <div class="editor-layout">
+      <div class="editor-main">
+
+        <div class="field-group" id="sec-cards">
+          <div class="field-group-title">🗂️ Danh sách thẻ bài viết</div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:14px">💡 Kéo ⠿ để sắp xếp lại, bấm vào tiêu đề trên thẻ để sửa trực tiếp. Tác giả/ngày/thời lượng đọc được giữ nguyên để không sai định dạng.</div>
+          <button class="btn btn-secondary btn-sm" style="margin-bottom:14px" onclick="hubAdd()">➕ Thêm thẻ bài viết vào đầu danh sách</button>
+          ${rows}
+        </div>
+
+      </div>
+
+      <div class="editor-sidebar">
+        <div class="publish-box">
+          <div class="pb-head">🚀 Xuất bản</div>
+          <div class="pb-body">
+            <div class="pb-row"><span class="pb-label">Trạng thái</span><span class="pb-val" style="display:flex;align-items:center;gap:6px"><span class="status-dot" id="status-dot"></span><span id="status-text">Chưa có thay đổi</span></span></div>
+            <div class="pb-actions">
+              <button class="btn btn-primary" id="save-btn" onclick="saveHub()">💾 Lưu & Deploy</button>
+            </div>
+            <div style="display:flex;gap:14px;margin-top:12px">
+              <a class="pb-link" href="https://otahub.asia/${viewPath}" target="_blank">🔗 Xem live</a>
+              <a class="pb-link" href="#" onclick="event.preventDefault();if(confirm('Bỏ thay đổi?'))hubEditor('${HUB_FILE}','${HUB_LABEL}')">↺ Hoàn tác</a>
+            </div>
+            <div class="pb-savelog" id="save-log"></div>
+          </div>
+        </div>
+
+        <div class="side-box">
+          <div class="side-box-title">📊 Thống kê</div>
+          <div class="pb-row"><span class="pb-label">Tổng số thẻ</span><span class="pb-val">${HUB_CARDS.length}</span></div>
+        </div>
+      </div>
     </div>
   `);
 }
 
 function hubUpdate(i, field, value) { HUB_CARDS[i].raw = acApply(HUB_CARDS[i].raw, { [field]: value }); markChanged(); }
-function hubMove(i, dir) { const j = i + dir; if (j < 0 || j >= HUB_CARDS.length) return; const t = HUB_CARDS[i]; HUB_CARDS[i] = HUB_CARDS[j]; HUB_CARDS[j] = t; renderHubEditor(); }
+function hubMove(i, dir) { const j = i + dir; if (j < 0 || j >= HUB_CARDS.length) return; const t = HUB_CARDS[i]; HUB_CARDS[i] = HUB_CARDS[j]; HUB_CARDS[j] = t; markChanged(); renderHubEditor(); }
 let DRAG_HUB_IDX = null;
 function hubDragStart(e, i) { DRAG_HUB_IDX = i; e.dataTransfer.effectAllowed = 'move'; e.currentTarget.classList.add('dragging'); }
 function hubDrop(e, i) {
@@ -2223,26 +2384,43 @@ function hubDrop(e, i) {
   const item = HUB_CARDS.splice(DRAG_HUB_IDX, 1)[0];
   HUB_CARDS.splice(i, 0, item);
   DRAG_HUB_IDX = null;
+  markChanged();
   renderHubEditor();
 }
-function hubDelete(i) { if (!confirm('Gỡ thẻ này khỏi danh sách? (Không xoá file bài viết gốc)')) return; HUB_CARDS.splice(i, 1); renderHubEditor(); }
+function hubDelete(i) { if (!confirm('Gỡ thẻ này khỏi danh sách? (Không xoá file bài viết gốc)')) return; HUB_CARDS.splice(i, 1); markChanged(); renderHubEditor(); }
 function hubAdd() {
   if (!HUB_CARDS.length) { toast('error', 'Không có thẻ mẫu để nhân bản.'); return; }
   const clone = { raw: acApply(HUB_CARDS[0].raw, { href: '/duong-dan-bai-viet-moi', img: '/assets/img/placeholder.svg', alt: 'Tiêu đề bài viết mới', title: 'Tiêu đề bài viết mới' }) };
   HUB_CARDS.unshift(clone);
+  markChanged();
   renderHubEditor();
   toast('success', 'Đã thêm thẻ mới — nhớ sửa link/ảnh/tiêu đề trước khi lưu.');
 }
 async function saveHub() {
+  const btn = document.getElementById('save-btn');
+  const dot = document.getElementById('status-dot');
+  const txt = document.getElementById('status-text');
+  if (btn) { btn.textContent = '⏳ Đang lưu...'; btn.disabled = true; }
+  if (dot) dot.className = 'status-dot saving';
+  if (txt) txt.textContent = 'Đang commit lên GitHub...';
   try {
     const latest = await ghGet(HUB_FILE);
     let html = decodeURIComponent(escape(atob(latest.content)));
     const newSection = '\n      ' + HUB_CARDS.map(c => c.raw.trim()).join('\n\n      ') + '\n      ';
     html = html.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/, (m, p1, p2) => p1 + newSection + p2);
     await ghPut(HUB_FILE, html, latest.sha, `[admin] cap nhat danh sach bai viet ${HUB_FILE}`);
+    HAS_UNSAVED_CHANGES = false;
+    if (dot) dot.className = 'status-dot';
+    if (txt) txt.textContent = 'Đã lưu • ' + new Date().toLocaleTimeString('vi-VN');
+    const log = document.getElementById('save-log');
+    if (log) log.innerHTML = `✅ Commit lúc ${new Date().toLocaleTimeString('vi-VN')}<br>` + log.innerHTML;
     toast('success', '✅ Đã lưu! Deploy trong ~1-2 phút.');
   } catch(e) {
+    if (dot) dot.className = 'status-dot error';
+    if (txt) txt.textContent = 'Lỗi khi lưu';
     toast('error', 'Lỗi lưu: ' + e.message);
+  } finally {
+    if (btn) { btn.textContent = '💾 Lưu & Deploy'; btn.disabled = false; }
   }
 }
 
