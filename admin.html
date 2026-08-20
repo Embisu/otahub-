@@ -24,7 +24,9 @@ body { background: var(--bg); color: var(--white); font-family: 'Segoe UI', syst
 
 /* ── Sidebar ── */
 .logo { padding: 10px 0 14px; width: 100%; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 6px; margin-bottom: 6px; }
-.logo-mark { width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, var(--cyan), var(--violet)); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; letter-spacing: -.02em; color: #0a0a12; }
+.logo-clickable { cursor: pointer; }
+.logo-mark { width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, var(--cyan), var(--violet)); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; letter-spacing: -.02em; color: #0a0a12; transition: transform .15s, box-shadow .15s; }
+.logo-clickable:hover .logo-mark { transform: scale(1.06); box-shadow: 0 4px 16px rgba(0,229,255,.35); }
 .logo-text { font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
 .logo-text span { color: var(--cyan); }
 .logo-badge { font-size: 9px; background: var(--violet); color: #fff; padding: 2px 7px; border-radius: 20px; font-weight: 600; letter-spacing: .05em; }
@@ -357,7 +359,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 
     <!-- Sidebar: thu gọn về icon, submenu xổ ra khi hover (kiểu WordPress) -->
     <nav class="sidebar">
-      <div class="logo" title="OtaHub Admin">
+      <div class="logo logo-clickable" title="Về Bảng tin" onclick="showView('dashboard')">
         <div class="logo-mark">OH</div>
       </div>
 
@@ -496,6 +498,22 @@ let currentSha = null;
 let currentRawHtml = '';
 let BODY_MODE = 'visual'; // 'visual' | 'code' | 'blocks' — chế độ soạn thảo nội dung bài viết
 let BODY_BLOCKS = null; // mảng block khi bài đang ở chế độ Khối kéo-thả (chỉ bài mới); null = không dùng block
+let HAS_UNSAVED_CHANGES = false; // cảnh báo khi rời trang nếu còn thay đổi chưa lưu
+
+// Cảnh báo trước khi rời trang / đóng tab nếu còn thay đổi chưa lưu
+window.addEventListener('beforeunload', (e) => {
+  if (!HAS_UNSAVED_CHANGES) return;
+  e.preventDefault();
+  e.returnValue = '';
+});
+
+// Phím tắt Ctrl/Cmd+S để lưu nhanh — bấm nút "Lưu & Deploy" đang hiển thị (nếu có)
+document.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
+    const saveBtn = document.getElementById('save-btn');
+    if (saveBtn) { e.preventDefault(); saveBtn.click(); }
+  }
+});
 
 // ── Đăng nhập ──────────────────────────────────────────────────────────────
 window.onload = async () => {
@@ -701,6 +719,8 @@ function extractHeroPos(html) {
 function setMain(html) { document.getElementById('main-content').innerHTML = html; }
 
 function showView(view) {
+  if (HAS_UNSAVED_CHANGES && !confirm('Bạn có thay đổi chưa lưu. Rời khỏi trang này sẽ mất các thay đổi đó — tiếp tục?')) return;
+  HAS_UNSAVED_CHANGES = false;
   document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
   const navMap = { dashboard: 'nav-dashboard', articles: 'nav-articles', rankings: 'nav-rankings', users: 'nav-users' };
   document.getElementById(navMap[view] || 'nav-articles')?.classList.add('active');
@@ -970,6 +990,7 @@ async function editArticle(file) {
 }
 
 function renderEditor(file, html) {
+  HAS_UNSAVED_CHANGES = false;
   currentRawHtml = html;
   const title   = extract(html, /<title>([^<]+)<\/title>/) || '';
   const desc    = extract(html, /name="description" content="([^"]+)"/) || '';
@@ -1042,7 +1063,10 @@ function renderEditor(file, html) {
             <textarea id="body-textarea" class="form-input" style="border:none;border-radius:0;min-height:500px;font-family:monospace;font-size:12px">${esc(bodyVi)}</textarea>
           </div>
         </div>
-        <div style="font-size:11px;color:var(--muted);margin:-8px 0 20px">${BODY_BLOCKS ? '🧱 <strong>Khối</strong>: kéo-thả từng khối, sửa trực tiếp — giống Elementor/WordPress. ' : ''}🖱️ <strong>Trực quan</strong>: gõ như Word. 🔤 <strong>HTML</strong>: sửa mã trực tiếp.</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin:-8px 0 20px;flex-wrap:wrap">
+          <div style="font-size:11px;color:var(--muted)">${BODY_BLOCKS ? '🧱 <strong>Khối</strong>: kéo-thả từng khối, sửa trực tiếp — giống Elementor/WordPress. ' : ''}🖱️ <strong>Trực quan</strong>: gõ như Word. 🔤 <strong>HTML</strong>: sửa mã trực tiếp.</div>
+          <div id="word-count-bar" style="font-size:11px;color:var(--muted);white-space:nowrap">📝 0 từ · ~1 phút đọc</div>
+        </div>
 
         <!-- Body images quick editor -->
         <div class="field-group" id="body-imgs-group">
@@ -1148,6 +1172,10 @@ function renderEditor(file, html) {
 
   // Populate body images list
   renderBodyImgs(bodyVi);
+
+  // Số từ / thời gian đọc ước tính, và focus sẵn vào ô tiêu đề cho tiện gõ ngay
+  updateWordCount();
+  document.getElementById('ed-title')?.focus();
 }
 
 // Mẫu bài viết hiện tại (từ giữa dự án) dùng 1 khối art-body duy nhất, không
@@ -1165,10 +1193,24 @@ function esc(s) { return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt
 function unesc(s) { return s.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"'); }
 
 function markChanged() {
+  HAS_UNSAVED_CHANGES = true;
   const dot = document.getElementById('status-dot');
   const txt = document.getElementById('status-text');
   if (dot) dot.className = 'status-dot saving';
   if (txt) txt.textContent = 'Có thay đổi chưa lưu';
+  updateWordCount();
+}
+
+function updateWordCount() {
+  const el = document.getElementById('word-count-bar');
+  if (!el) return;
+  let text = '';
+  if (BODY_MODE === 'code') text = (document.getElementById('body-textarea')?.value || '').replace(/<[^>]+>/g, ' ');
+  else if (BODY_MODE === 'blocks') text = document.getElementById('body-blocks-editor')?.textContent || '';
+  else text = document.getElementById('body-visual')?.textContent || '';
+  const words = (text.trim().match(/\S+/g) || []).length;
+  const mins = Math.max(1, Math.round(words / 200));
+  el.textContent = `📝 ${words} từ · ~${mins} phút đọc`;
 }
 
 function updateHeroPreview(url) {
@@ -1577,6 +1619,7 @@ async function saveArticle() {
     if (art) { art.title = title; art.desc = desc; art.hero = hero; art.cat = cat; }
     else { art = { file: currentFile, sha: currentSha, title, desc, hero, cat, date: '' }; ARTICLES.unshift(art); }
 
+    HAS_UNSAVED_CHANGES = false;
     if (dot) dot.className = 'status-dot';
     if (txt) txt.textContent = 'Đã lưu • ' + new Date().toLocaleTimeString('vi-VN');
     const log = document.getElementById('save-log');
