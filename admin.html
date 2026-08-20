@@ -298,6 +298,29 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .toc-link:hover { background: var(--surf2); color: var(--white); }
 .live-edit-hint strong { color: var(--dim); }
 
+/* ── Trình soạn thảo trang chủ kiểu Elementor (iframe + click-to-edit) ── */
+.home-visual-editor { grid-template-columns: 1fr 340px; }
+.visual-hint { font-size: 12px; color: var(--dim); background: var(--bcyan); border: 1px solid rgba(0,229,255,.25); border-radius: 8px; padding: 9px 14px; margin-bottom: 14px; }
+.visual-iframe-wrap { background: var(--surf); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,.14); height: calc(100vh - 220px); min-height: 500px; }
+.home-visual-iframe { width: 100%; height: 100%; border: 0; display: block; background: #150a2c; }
+.block-nav-item { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 8px 8px; border-radius: 7px; font-size: 12.5px; color: var(--dim); background: none; border: none; cursor: pointer; transition: background .15s, color .15s; font-family: inherit; }
+.block-nav-item:hover { background: var(--surf2); color: var(--white); }
+.block-nav-item.active { background: var(--bcyan); color: var(--cyan); font-weight: 600; }
+.home-block-panel { background: var(--surf); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; max-height: calc(100vh - 340px); overflow-y: auto; }
+.home-panel-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.home-panel-head h3 { margin: 0; font-size: 13px; color: var(--white); }
+.home-item-card { background: var(--surf2); border: 1px solid var(--border); border-radius: 9px; padding: 12px; margin-bottom: 10px; }
+.home-item-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; font-size: 11px; font-weight: 700; color: var(--muted); }
+.home-item-actions { display: flex; gap: 4px; }
+.home-item-actions button { background: var(--surf); border: 1px solid var(--border); border-radius: 6px; width: 24px; height: 24px; color: var(--dim); cursor: pointer; font-size: 11px; }
+.home-item-actions button:hover { color: var(--white); border-color: var(--cyan); }
+.home-ticker-row { display: flex; gap: 6px; align-items: center; margin-bottom: 8px; }
+.home-ticker-row .form-input { margin: 0; }
+.empty-state-mini { font-size: 12.5px; color: var(--muted); text-align: center; padding: 24px 8px; }
+.home-tab-bar { display: flex; gap: 4px; margin-bottom: 12px; background: var(--surf2); border-radius: 8px; padding: 3px; }
+.home-tab-btn { flex: 1; background: none; border: none; border-radius: 6px; padding: 7px 4px; font-size: 11.5px; color: var(--muted); cursor: pointer; font-family: inherit; transition: background .15s, color .15s; }
+.home-tab-btn.active { background: var(--surf); color: var(--cyan); font-weight: 600; }
+
 /* ── Command palette (Ctrl/Cmd+K) — tìm nhanh kiểu Linear/Vercel/Notion ── */
 .cmdk-trigger { display: flex; align-items: center; gap: 8px; width: 100%; padding: 9px 12px; background: var(--surf); border: 1px solid var(--border); border-radius: 8px; color: var(--muted); font-size: 12.5px; cursor: pointer; transition: border-color .15s, background .15s; font-family: inherit; }
 .cmdk-trigger:hover { border-color: rgba(0,229,255,.35); background: var(--surf2); }
@@ -2438,9 +2461,9 @@ async function saveHub() {
   }
 }
 
-// ── Trình soạn thảo trang chủ (hero + ticker + nổi bật hôm nay) ──────────────
-let HOME_FILE = '', HOME_FEATURED = { fc: '', sc: [] }, HOME_TICKER = [];
-const TICKER_RE = /(box\.innerHTML=')([\s\S]*?)('\s*;\s*track\.prepend\(box\)\}\)\(\);)/;
+// ── Trình soạn thảo trang chủ kiểu Elementor (iframe + click-to-edit) ────────
+let HOME_FILE = '', HOME_RAW = '', HOME_DATA = null, HOME_PANEL = null;
+let HOME_SUBTAB = {};
 
 function scFields(raw) {
   return {
@@ -2479,35 +2502,6 @@ function fcApply(raw, f) {
   return out;
 }
 
-async function homeEditor(file) {
-  HAS_UNSAVED_CHANGES = false;
-  file = file || 'index.html';
-  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải trang chủ...</span></div>`);
-  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  document.getElementById('nav-home')?.classList.add('active');
-  try {
-    const data = await ghGet(file);
-    const raw = decodeURIComponent(escape(atob(data.content)));
-    HOME_FILE = file;
-
-    const fm = raw.match(/<!-- ADMIN:FEATURED_START -->([\s\S]*?)<!-- ADMIN:FEATURED_END -->/);
-    if (!fm) throw new Error('Không tìm thấy khối "Nổi bật hôm nay" (thiếu marker ADMIN:FEATURED).');
-    const featuredHtml = fm[1];
-    const scStart = featuredHtml.indexOf('<a class="sc"');
-    const fcRaw = (scStart === -1 ? featuredHtml : featuredHtml.slice(0, scStart)).trim();
-    const scBlocks = scStart === -1 ? [] : splitBlocks(featuredHtml.slice(scStart), /<a class="sc" href="[^"]*"/);
-    HOME_FEATURED = { fc: fcRaw, sc: scBlocks.map(r => ({ raw: r })) };
-
-    const tm = raw.match(TICKER_RE);
-    HOME_TICKER = tm ? [...tm[2].matchAll(/<span class="tick-item">([^<]*)<\/span>/g)].map(x => x[1]) : [];
-
-    window.__homeRawHero = raw;
-    renderHomeEditor();
-  } catch(e) {
-    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải trang chủ: ${e.message}</p></div>`);
-  }
-}
-
 function homeHeroFields(html) {
   return {
     title: fieldGet(html, /id="h-title">([^<]*)</),
@@ -2519,40 +2513,447 @@ function homeHeroFields(html) {
   };
 }
 
-function renderHomeEditor() {
+// ── Bộ phân tích/tái tạo HTML trang chủ (đã kiểm chứng round-trip byte-perfect) ──
+function hUnesc(s) { return String(s ?? '').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'"); }
+function splitBlocksTrimmed(html, startPattern, closeTag) {
+  const re = new RegExp(startPattern.source, 'g');
+  const starts = [];
+  let mm;
+  while ((mm = re.exec(html))) starts.push(mm.index);
+  const blocks = [];
+  for (let i = 0; i < starts.length; i++) {
+    const raw = html.slice(starts[i], i + 1 < starts.length ? starts[i + 1] : html.length);
+    const ci = raw.indexOf(closeTag);
+    blocks.push(ci === -1 ? raw : raw.slice(0, ci + closeTag.length));
+  }
+  return blocks;
+}
+function hSection(str, startAnchor, endAnchor) {
+  const si = str.indexOf(startAnchor);
+  if (si === -1) return { ok: false };
+  const from = si + startAnchor.length;
+  const ei = str.indexOf(endAnchor, from);
+  if (ei === -1) return { ok: false };
+  return { ok: true, raw: str.slice(from, ei) };
+}
+function hReplaceSection(html, startAnchor, endAnchor, rebuildFn) {
+  const si = html.indexOf(startAnchor);
+  if (si === -1) { console.log('MISSING SECTION:', startAnchor); return html; }
+  const from = si + startAnchor.length;
+  const ei = html.indexOf(endAnchor, from);
+  if (ei === -1) { console.log('MISSING END ANCHOR for:', startAnchor); return html; }
+  return html.slice(0, from) + rebuildFn() + html.slice(ei);
+}
+
+// ── s-art (Nổi bật hôm nay / hero-side) ──
+function sArtFields(item) {
+  return {
+    href: fieldGet(item, /onclick="location\.href='([^']*)'"/),
+    img: fieldGet(item, /<img src="([^"]*)"/),
+    alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
+    cat: fieldGet(item, /class="sa-c"[^>]*>([^<]*)</),
+    title: fieldGet(item, /class="sa-t">([^<]*)</),
+    meta: fieldGet(item, /class="sa-m">([^<]*)</),
+  };
+}
+function sArtApply(item, f) {
+  let out = item;
+  if (f.href !== undefined) out = out.replace(/(onclick="location\.href=')[^']*(')/, (m,p1,p2)=>p1+f.href.replace(/'/g,"\\'")+p2);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
+  out = replaceField(out, /(class="sa-c"[^>]*>)[^<]*(<)/, f.cat);
+  out = replaceField(out, /(class="sa-t">)[^<]*(<)/, f.title);
+  out = replaceField(out, /(class="sa-m">)[^<]*(<)/, f.meta);
+  return out;
+}
+
+// ── mq-item (marquee) ──
+function mqItemFields(item) {
+  return {
+    href: fieldGet(item, /<a class="mq-item" href="([^"]*)"/),
+    label: fieldGet(item, /<strong>([^<]*)<\/strong>/),
+    text: fieldGet(item, /<\/strong>\s*([^<]*)<\/a>/),
+  };
+}
+function mqItemApply(item, f) {
+  let out = item;
+  out = replaceField(out, /(<a class="mq-item" href=")[^"]*(")/, f.href);
+  out = replaceField(out, /(<strong>)[^<]*(<\/strong>)/, f.label);
+  out = replaceField(out, /(<\/strong>\s*)[^<]*(<\/a>)/, f.text);
+  return out;
+}
+
+// ── rk-item (bảng xếp hạng) ──
+function rkItemFields(item) {
+  return {
+    href: fieldGet(item, /<a class="rk-item[^"]*" href="([^"]*)"/),
+    img: fieldGet(item, /<img src="([^"]*)"/),
+    alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
+    name: fieldGet(item, /class="rk-name">([^<]*)</),
+    sub: fieldGet(item, /class="rk-sub">([^<]*)</),
+    score: fieldGet(item, /class="rk-score"[^>]*>([^<]*)</),
+  };
+}
+function rkItemApply(item, f) {
+  let out = item;
+  out = replaceField(out, /(<a class="rk-item[^"]*" href=")[^"]*(")/, f.href);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
+  out = replaceField(out, /(class="rk-name">)[^<]*(<)/, f.name);
+  out = replaceField(out, /(class="rk-sub">)[^<]*(<)/, f.sub);
+  out = replaceField(out, /(class="rk-score"[^>]*>)[^<]*(<)/, f.score);
+  if (f.score !== undefined) {
+    const pct = Math.max(0, Math.min(100, parseFloat(f.score) * 10));
+    out = out.replace(/(data-w=")[^"]*(")/, (m,p1,p2)=>p1+pct+'%'+p2);
+  }
+  return out;
+}
+
+// ── manga-item ──
+function mangaItemFields(item) {
+  return {
+    href: fieldGet(item, /<a class="manga-item[^"]*" href="([^"]*)"/),
+    img: fieldGet(item, /<img src="([^"]*)"/),
+    alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
+    title: fieldGet(item, /class="mi-title">([^<]*)</),
+    meta: fieldGet(item, /class="mi-meta">([^<]*)</),
+    score: fieldGet(item, /class="mi-score"[^>]*>([^<]*)</),
+  };
+}
+function mangaItemApply(item, f) {
+  let out = item;
+  out = replaceField(out, /(<a class="manga-item[^"]*" href=")[^"]*(")/, f.href);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
+  out = replaceField(out, /(class="mi-title">)[^<]*(<)/, f.title);
+  out = replaceField(out, /(class="mi-meta">)[^<]*(<)/, f.meta);
+  out = replaceField(out, /(class="mi-score"[^>]*>)[^<]*(<)/, f.score);
+  return out;
+}
+
+// ── w-card (tin mới nhất) ──
+function wCardFields(item) {
+  return {
+    href: fieldGet(item, /<a href="([^"]*)"/),
+    img: fieldGet(item, /<img src="([^"]*)"/),
+    alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
+    cat: fieldGet(item, /class="wc-c"[^>]*>([^<]*)</),
+    title: fieldGet(item, /class="wc-t">([^<]*)</),
+    meta: fieldGet(item, /class="wc-m">([^<]*)</),
+  };
+}
+function wCardApply(item, f) {
+  let out = item;
+  out = replaceField(out, /(<a href=")[^"]*(")/, f.href);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
+  out = replaceField(out, /(class="wc-c"[^>]*>)[^<]*(<)/, f.cat);
+  out = replaceField(out, /(class="wc-t">)[^<]*(<)/, f.title);
+  out = replaceField(out, /(class="wc-m">)[^<]*(<)/, f.meta);
+  return out;
+}
+
+// ── t-item (đang hot) ──
+function tItemFields(item) {
+  return {
+    href: fieldGet(item, /<a class="t-item" href="([^"]*)"/),
+    img: fieldGet(item, /<img src="([^"]*)"/),
+    alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
+    title: fieldGet(item, /class="ti-t">([^<]*)</),
+    meta: fieldGet(item, /class="ti-m">([^<]*)</),
+  };
+}
+function tItemApply(item, f) {
+  let out = item;
+  out = replaceField(out, /(<a class="t-item" href=")[^"]*(")/, f.href);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
+  out = replaceField(out, /(class="ti-t">)[^<]*(<)/, f.title);
+  out = replaceField(out, /(class="ti-m">)[^<]*(<)/, f.meta);
+  return out;
+}
+
+// ── cat-b (danh mục) ──
+function catTileFields(item) {
+  return {
+    href: fieldGet(item, /<a href="([^"]*)"/),
+    name: fieldGet(item, /class="cat-name">([^<]*)</),
+    count: fieldGet(item, /class="cat-ct">([^<]*) bài viết</),
+  };
+}
+function catTileApply(item, f) {
+  let out = item;
+  out = replaceField(out, /(<a href=")[^"]*(")/, f.href);
+  out = replaceField(out, /(class="cat-name">)[^<]*(<)/, f.name);
+  if (f.count !== undefined) out = out.replace(/(class="cat-ct">)[^<]*( bài viết<)/, (m,p1,p2)=>p1+esc(f.count)+p2);
+  return out;
+}
+
+// ── mục anime theo mùa (đối tượng JS thuần) ──
+function animeItemStr(f) {
+  return `{title:'${String(f.title).replace(/'/g,"\\'")}',genre:'${String(f.genre).replace(/'/g,"\\'")}',score:'${f.score}',day:'${String(f.day).replace(/'/g,"\\'")}',ep:'${String(f.ep).replace(/'/g,"\\'")}',status:'${f.status}',img:'${f.img}'}`;
+}
+
+function loadHomeData(raw) {
+  const hero = homeHeroFields(raw);
+
+  const heroSideSec = hSection(raw, '<aside class="hero-side">', '</aside>');
+  const heroSidePrefix = heroSideSec.ok ? heroSideSec.raw.slice(0, heroSideSec.raw.indexOf('<article')) : '';
+  const heroSide = heroSideSec.ok ? splitBlocksTrimmed(heroSideSec.raw, /<article class="s-art"/, '</article>').map(r => ({ raw: r })) : [];
+
+  const tickerSec = hSection(raw, '<div class="tick-track">', '</div></div>');
+  const ticker = tickerSec.ok ? [...tickerSec.raw.matchAll(/<span class="tick-item">([^<]*)<\/span>/g)].map(m => hUnesc(m[1])) : [];
+
+  const marqueeSec = hSection(raw, '<div class="mq-track">', '</div>');
+  const marquee = marqueeSec.ok ? splitBlocksTrimmed(marqueeSec.raw, /<a class="mq-item"/, '</a>').map(r => ({ raw: r })) : [];
+
+  const fm = raw.match(/<!-- ADMIN:FEATURED_START -->([\s\S]*?)<!-- ADMIN:FEATURED_END -->/);
+  let featured = { fc: '', sc: [] };
+  if (fm) {
+    const featuredHtml = fm[1];
+    const scStart = featuredHtml.indexOf('<a class="sc"');
+    const fcRaw = (scStart === -1 ? featuredHtml : featuredHtml.slice(0, scStart)).trim();
+    const scBlocks = scStart === -1 ? [] : splitBlocksTrimmed(featuredHtml.slice(scStart), /<a class="sc" href="[^"]*"/, '</a>');
+    featured = { fc: fcRaw, sc: scBlocks.map(r => ({ raw: r })) };
+  }
+
+  const rankSec = hSection(raw, '<div class="rank-grid">', '<div class="wrap rv">\n\n\n  <div class="sec-h"><span class="sec-t">Anime');
+  let rankings = { pc: [], mobile: [], pcPrefix: '', mobilePrefix: '' };
+  if (rankSec.ok) {
+    const cardsRaw = rankSec.raw.split('<div class="rk-card">').slice(1);
+    function parseCard(cardChunk) {
+      const firstItemIdx = cardChunk.indexOf('<a class="rk-item');
+      const prefix = firstItemIdx === -1 ? cardChunk : cardChunk.slice(0, firstItemIdx);
+      const items = firstItemIdx === -1 ? [] : splitBlocksTrimmed(cardChunk.slice(firstItemIdx), /<a class="rk-item[^"]*"/, '</a>');
+      return { prefix, items: items.map(r => ({ raw: r })) };
+    }
+    if (cardsRaw[0]) { const c = parseCard(cardsRaw[0]); rankings.pc = c.items; rankings.pcPrefix = c.prefix; }
+    if (cardsRaw[1]) { const c = parseCard(cardsRaw[1]); rankings.mobile = c.items; rankings.mobilePrefix = c.prefix; }
+  }
+
+  const mangaSec = hSection(raw, '<div class="manga-grid">', '<div class="wrap rv" style="padding-top:0">');
+  let manga = { manga: [], manhwa: [], manhua: [], mangaPrefix: '', manhwaPrefix: '', manhuaPrefix: '' };
+  if (mangaSec.ok) {
+    const colsRaw = mangaSec.raw.split('<div class="manga-col">').slice(1);
+    const keys = ['manga', 'manhwa', 'manhua'];
+    colsRaw.forEach((chunk, i) => {
+      if (!keys[i]) return;
+      const firstItemIdx = chunk.indexOf('<a class="manga-item');
+      const prefix = firstItemIdx === -1 ? chunk : chunk.slice(0, firstItemIdx);
+      const items = firstItemIdx === -1 ? [] : splitBlocksTrimmed(chunk.slice(firstItemIdx), /<a class="manga-item[^"]*"/, '</a>');
+      manga[keys[i]] = items.map(r => ({ raw: r }));
+      manga[keys[i] + 'Prefix'] = prefix;
+    });
+  }
+
+  const latestSec = hSection(raw, '<div class="latest-wrap">', '<div class="wrap rv" style="padding-bottom:0">');
+  let latestNews = [], trending = [], latestSuffix = '', trendingPrefix = '';
+  if (latestSec.ok) {
+    latestNews = splitBlocksTrimmed(latestSec.raw, /<article class="w-card">/, '</article>').map(r => ({ raw: r }));
+    const lastArticleEnd = latestSec.raw.lastIndexOf('</article>') + '</article>'.length;
+    const asideStart = latestSec.raw.indexOf('<aside class="latest-side">');
+    latestSuffix = latestSec.raw.slice(lastArticleEnd, asideStart);
+    const asideSec = latestSec.raw.slice(asideStart);
+    const trendHeadEnd = asideSec.indexOf('<a class="t-item"');
+    trendingPrefix = asideSec.slice(0, trendHeadEnd);
+    trending = splitBlocksTrimmed(asideSec.slice(trendHeadEnd), /<a class="t-item"/, '</a>').map(r => ({ raw: r }));
+  }
+
+  const catSec = hSection(raw, '<div class="cat-grid">', '<section class="nl"');
+  const catGrid = catSec.ok ? splitBlocksTrimmed(catSec.raw, /<a href="[^"]*" class="cat-b/, '</a>').map(r => ({ raw: r })) : [];
+
+  const newsletter = {
+    title: hUnesc(fieldGet(raw, /id="nl-title">([^<]*)</)), sub: hUnesc(fieldGet(raw, /id="nl-sub">([^<]*)</)),
+    label: hUnesc(fieldGet(raw, /id="nl-label">([^<]*)</)), note: hUnesc(fieldGet(raw, /id="nl-note">([^<]*)</)),
+    btn: hUnesc(fieldGet(raw, /id="nl-btn">([^<]*)</)),
+  };
+  const footer = { desc: hUnesc(fieldGet(raw, /class="ft-desc">([^<]*)</)), copy: hUnesc(fieldGet(raw, /class="ft-copy">([^<]*)</)) };
+
+  const animeMatch = raw.match(/const ANIME=\{([\s\S]*?)\n\};/);
+  let anime = { summer: [], spring: [], winter: [], fall: [] };
+  if (animeMatch) {
+    const body = animeMatch[1];
+    const seasonRe = /(summer|spring|winter|fall):\[([\s\S]*?)\n  \],?\n/g;
+    let sm2;
+    while ((sm2 = seasonRe.exec(body))) {
+      const items = [...sm2[2].matchAll(/\{title:'([^']*)',genre:'([^']*)',score:'([^']*)',day:'([^']*)',ep:'([^']*)',status:'([^']*)',img:'([^']*)'\}/g)];
+      anime[sm2[1]] = items.map(m => ({ title: hUnesc(m[1]), genre: hUnesc(m[2]), score: m[3], day: hUnesc(m[4]), ep: hUnesc(m[5]), status: m[6], img: m[7] }));
+    }
+  }
+
+  return { hero, heroSide, heroSidePrefix, ticker, marquee, featured, rankings, manga, latestNews, trending, latestSuffix, trendingPrefix, catGrid, newsletter, footer, anime };
+}
+
+function buildHomeHtml(rawHtml, D) {
+  let html = rawHtml;
+  const h = D.hero;
+  html = html.replace(/(id="h-title">)[^<]*(<)/, (m,p1,p2)=>p1+esc(h.title)+p2);
+  html = html.replace(/(id="h-sub">)[^<]*(<)/, (m,p1,p2)=>p1+esc(h.sub)+p2);
+  html = html.replace(/(class="h-meta-cat">)[^<]*(<)/, (m,p1,p2)=>p1+esc(h.cat)+p2);
+  html = html.replace(/(id="h-time">)[^<]*(<)/, (m,p1,p2)=>p1+esc(h.date)+p2);
+  html = html.replace(/(<a href=")[^"]*(" class="read-more" id="h-read")/, (m,p1,p2)=>p1+esc(h.href)+p2);
+  html = html.replace(/(<div class="hero-main" onclick="location\.href=')[^']*(')/, (m,p1,p2)=>p1+h.href.replace(/\\/g,'\\\\').replace(/'/g,"\\'")+p2);
+  html = html.replace(/(\.h-img\{[^}]*background:url\(')[^']*('\))/, (m,p1,p2)=>p1+h.img.replace(/\\/g,'\\\\').replace(/'/g,"\\'")+p2);
+
+  html = hReplaceSection(html, '<aside class="hero-side">', '</aside>', () =>
+    D.heroSidePrefix + D.heroSide.map(x=>x.raw).join('\n\n\n    ') + '\n\n\n  ');
+
+  html = hReplaceSection(html, '<div class="tick-track">', '</div></div>', () =>
+    D.ticker.map(t=>`<span class="tick-item">${esc(t)}</span>`).join(''));
+
+  html = hReplaceSection(html, '<div class="mq-track">', '</div>', () =>
+    D.marquee.map(x=>x.raw).join(''));
+
+  const newFeatured = '\n    ' + D.featured.fc.trim() + '\n\n\n    ' + D.featured.sc.map(c=>c.raw.trim()).join('\n\n\n    ') + '\n    ';
+  html = html.replace(/(<!-- ADMIN:FEATURED_START -->)[\s\S]*?(<!-- ADMIN:FEATURED_END -->)/, (m,p1,p2)=>p1+newFeatured+p2);
+
+  html = hReplaceSection(html, '<div class="rank-grid">', '<div class="wrap rv">\n\n\n  <div class="sec-h"><span class="sec-t">Anime', () => {
+    const cardClose = '\n\n\n      </div>\n\n\n    </div>';
+    const pcCard = '<div class="rk-card">' + D.rankings.pcPrefix + D.rankings.pc.map(x=>x.raw).join('\n\n\n        ') + cardClose;
+    const mobCard = '<div class="rk-card">' + D.rankings.mobilePrefix + D.rankings.mobile.map(x=>x.raw).join('\n\n\n        ') + cardClose;
+    return '\n\n\n    ' + pcCard + '\n\n\n    ' + mobCard + '\n\n\n  </div>\n\n\n</div>\n\n\n';
+  });
+
+  html = hReplaceSection(html, '<div class="manga-grid">', '<div class="wrap rv" style="padding-top:0">', () => {
+    const cols = ['manga','manhwa','manhua'].map(k =>
+      '<div class="manga-col">' + D.manga[k+'Prefix'] + D.manga[k].map(x=>x.raw).join('\n\n\n      ') + '\n\n\n    </div>'
+    );
+    return '\n\n\n    ' + cols.join('\n\n\n    ') + '\n\n\n  </div>\n\n\n</div>\n\n\n';
+  });
+
+  html = hReplaceSection(html, '<div class="latest-wrap">', '<div class="wrap rv" style="padding-bottom:0">', () => {
+    const newsCol = '\n\n\n    <div>\n\n\n      ' + D.latestNews.map(x=>x.raw).join('\n\n\n      ') + D.latestSuffix;
+    const trendCol = D.trendingPrefix + D.trending.map(x=>x.raw).join('\n\n\n      ') + '\n\n\n    </aside>\n\n\n  </div>\n\n\n</div>\n\n\n';
+    return newsCol + trendCol;
+  });
+
+  html = hReplaceSection(html, '<div class="cat-grid">', '<section class="nl"', () =>
+    '\n\n\n    ' + D.catGrid.map(x=>x.raw).join('\n\n\n    ') + '\n\n\n  </div>\n\n\n</div>\n\n\n');
+
+  const nl = D.newsletter;
+  html = html.replace(/(id="nl-title">)[^<]*(<)/, (m,p1,p2)=>p1+esc(nl.title)+p2);
+  html = html.replace(/(id="nl-sub">)[^<]*(<)/, (m,p1,p2)=>p1+esc(nl.sub)+p2);
+  html = html.replace(/(id="nl-label">)[^<]*(<)/, (m,p1,p2)=>p1+esc(nl.label)+p2);
+  html = html.replace(/(id="nl-note">)[^<]*(<)/, (m,p1,p2)=>p1+esc(nl.note)+p2);
+  html = html.replace(/(id="nl-btn">)[^<]*(<)/, (m,p1,p2)=>p1+esc(nl.btn)+p2);
+
+  const ft = D.footer;
+  html = html.replace(/(class="ft-desc">)[^<]*(<)/, (m,p1,p2)=>p1+esc(ft.desc)+p2);
+  html = html.replace(/(class="ft-copy">)[^<]*(<)/, (m,p1,p2)=>p1+esc(ft.copy)+p2);
+
+  html = hReplaceSection(html, 'const ANIME={', '\n};', () => {
+    const seasons = ['summer','spring','winter','fall'].map(k => {
+      const items = D.anime[k].map(x => '    ' + animeItemStr(x) + ',\n\n\n').join('');
+      return `\n\n\n  ${k}:[\n\n\n${items}  ],`;
+    });
+    return seasons.join('') + '\n\n';
+  });
+
+  return html;
+}
+
+// ── Đăng ký loại khối danh sách (get/apply đúng nguyên bản, không phá hỏng phần chưa mô tả) ──
+const HOME_ITEM_TYPES = {
+  heroSide:   { get: sArtFields,    apply: sArtApply,    fields: [['title','Tiêu đề'],['cat','Chuyên mục'],['meta','Meta (tác giả · ngày)'],['href','Link (slug)'],['img','URL ảnh'],['alt','Alt ảnh']] },
+  marquee:    { get: mqItemFields,  apply: mqItemApply,  fields: [['label','Nhãn'],['text','Nội dung'],['href','Link']] },
+  rankItem:   { get: rkItemFields,  apply: rkItemApply,  fields: [['name','Tên'],['sub','Phụ đề'],['score','Điểm (vd 8.7)'],['href','Link'],['img','URL ảnh'],['alt','Alt ảnh']] },
+  mangaItem:  { get: mangaItemFields, apply: mangaItemApply, fields: [['title','Tiêu đề'],['meta','Meta'],['score','Điểm'],['href','Link'],['img','URL ảnh'],['alt','Alt ảnh']] },
+  latestNews: { get: wCardFields,   apply: wCardApply,   fields: [['title','Tiêu đề'],['cat','Chuyên mục'],['meta','Meta'],['href','Link'],['img','URL ảnh'],['alt','Alt ảnh']] },
+  trending:   { get: tItemFields,   apply: tItemApply,   fields: [['title','Tiêu đề'],['meta','Meta'],['href','Link'],['img','URL ảnh'],['alt','Alt ảnh']] },
+  catGrid:    { get: catTileFields, apply: catTileApply, fields: [['name','Tên danh mục'],['count','Số bài (chỉ hiển thị)'],['href','Link']] },
+};
+
+const HOME_BLOCKS = [
+  { key: 'hero', label: '🎬 Tin chính (Hero)' },
+  { key: 'heroSide', label: '⭐ Nổi bật hôm nay' },
+  { key: 'ticker', label: '📰 Ticker chạy tin' },
+  { key: 'marquee', label: '📢 Marquee' },
+  { key: 'featured', label: '🗞️ Tin nổi bật (lưới)' },
+  { key: 'rankings', label: '🏆 Bảng xếp hạng' },
+  { key: 'anime', label: '📺 Anime theo mùa' },
+  { key: 'manga', label: '📖 Manga/Manhwa/Manhua' },
+  { key: 'latest', label: '🆕 Tin mới nhất + Đang hot' },
+  { key: 'catGrid', label: '🗂️ Danh mục' },
+  { key: 'newsletter', label: '✉️ Đăng ký nhận tin' },
+  { key: 'footer', label: '🔻 Chân trang' },
+];
+
+function getArr(path) { return path.split('.').reduce((o,k)=>o[k], HOME_DATA); }
+
+async function homeEditor(file) {
+  HAS_UNSAVED_CHANGES = false;
+  file = file || 'index.html';
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải trang chủ...</span></div>`);
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-home')?.classList.add('active');
+  try {
+    const data = await ghGet(file);
+    const raw = decodeURIComponent(escape(atob(data.content)));
+    HOME_FILE = file;
+    HOME_RAW = raw;
+    HOME_DATA = loadHomeData(raw);
+    renderVisualHomeEditor();
+  } catch(e) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải trang chủ: ${e.message}</p></div>`);
+  }
+}
+
+const HOME_BRIDGE_SCRIPT = `<script>(function(){
+  var BLOCKS = [
+    {key:'hero', sel:'.hero-main'},
+    {key:'heroSide', sel:'.hero-side'},
+    {key:'ticker', sel:'.ticker'},
+    {key:'marquee', sel:'.marquee'},
+    {key:'featured', sel:'.f-grid'},
+    {key:'rankings', sel:'.rank-grid'},
+    {key:'manga', sel:'.manga-grid'},
+    {key:'latest', sel:'.latest-wrap'},
+    {key:'catGrid', sel:'.cat-grid'},
+    {key:'newsletter', sel:'#newsletter'},
+    {key:'footer', sel:'footer'}
+  ];
+  function tag(){
+    BLOCKS.forEach(function(b){
+      var el = document.querySelector(b.sel);
+      if (el) { el.setAttribute('data-oh-block', b.key); el.classList.add('oh-editable'); }
+    });
+    var seasonTabs = document.querySelector('.season-tabs');
+    if (seasonTabs && seasonTabs.parentElement) {
+      seasonTabs.parentElement.setAttribute('data-oh-block', 'anime');
+      seasonTabs.parentElement.classList.add('oh-editable');
+    }
+  }
+  tag();
+  var style = document.createElement('style');
+  style.textContent = '.oh-editable{outline-offset:-3px;cursor:pointer;transition:outline .12s}.oh-editable:hover{outline:3px dashed #00e5ff !important}';
+  document.head.appendChild(style);
+  document.addEventListener('click', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    var el = e.target.closest ? e.target.closest('[data-oh-block]') : null;
+    if (el) parent.postMessage({ type:'oh-click', block: el.getAttribute('data-oh-block') }, '*');
+  }, true);
+})();<\/script>`;
+
+function homeBuildIframeSrcdoc() {
+  const built = buildHomeHtml(HOME_RAW, HOME_DATA);
+  let out = built.replace('<head>', '<head><base href="https://otahub.asia/">');
+  out = out.replace('</body>', HOME_BRIDGE_SCRIPT + '</body>');
+  return out;
+}
+
+let HOME_REFRESH_TIMER = null;
+function schedulePreviewRefresh() {
+  if (HOME_REFRESH_TIMER) clearTimeout(HOME_REFRESH_TIMER);
+  HOME_REFRESH_TIMER = setTimeout(() => {
+    const iframe = document.getElementById('home-visual-iframe');
+    if (iframe) iframe.srcdoc = homeBuildIframeSrcdoc();
+  }, 700);
+}
+
+function renderVisualHomeEditor() {
   const isEn = HOME_FILE.startsWith('en/');
-  const hf = homeHeroFields(window.__homeRawHero || '');
-  const fc = fcFields(HOME_FEATURED.fc);
-
-  const tickerRows = HOME_TICKER.map((t, i) => `
-    <div class="ticker-chip" draggable="true" ondragstart="tickerDragStart(event,${i})" ondragover="event.preventDefault()" ondragend="this.classList.remove('dragging')" ondrop="tickerDrop(event,${i})">
-      <span class="drag-handle" title="Kéo để sắp xếp">⠿</span>
-      <div class="ticker-text" contenteditable="true" oninput="tickerUpdate(${i},this.textContent)">${esc(t)}</div>
-      <button class="btn btn-danger btn-sm btn-icon" onclick="tickerDelete(${i})" title="Xoá">🗑</button>
-    </div>`).join('');
-
-  const scRows = HOME_FEATURED.sc.map((c, i) => {
-    const f = scFields(c.raw);
-    return `<div class="sc-card" draggable="true" ondragstart="scDragStart(event,${i})" ondragover="event.preventDefault()" ondragend="this.classList.remove('dragging')" ondrop="scDrop(event,${i})">
-      <div class="sc-drag-handle" title="Kéo để sắp xếp">⠿</div>
-      <img class="sc-thumb" src="${esc(f.img)}" onerror="this.style.opacity=.3" alt=""/>
-      <div class="sc-body">
-        <div class="sc-title-live" contenteditable="true" oninput="scUpdate(${i},'title',this.textContent)">${esc(f.title)}</div>
-        <div class="sc-fields-row">
-          <input class="rank-input-sm" placeholder="Link" value="${esc(f.href)}" oninput="scUpdate(${i},'href',this.value)"/>
-          <input class="rank-input-sm" placeholder="Nhãn" style="max-width:96px" value="${esc(f.tag)}" oninput="scUpdate(${i},'tag',this.value)"/>
-          <input class="rank-input-sm" placeholder="URL ảnh" value="${esc(f.img)}" oninput="scUpdate(${i},'img',this.value);this.closest('.sc-card').querySelector('.sc-thumb').src=this.value"/>
-          <button class="tb-btn" style="flex-shrink:0" title="Tải ảnh lên từ máy" onclick="triggerImageUpload(url => { scUpdate(${i},'img',url); renderHomeEditor(); })">📤</button>
-        </div>
-      </div>
-      <div class="sc-actions-col">
-        <button class="tb-btn" onclick="scMove(${i},-1)" title="Lên">↑</button>
-        <button class="tb-btn" onclick="scMove(${i},1)" title="Xuống">↓</button>
-        <button class="btn btn-danger btn-sm btn-icon" onclick="scDelete(${i})" title="Xoá">🗑</button>
-      </div>
-    </div>`;
-  }).join('');
-
+  const navHtml = HOME_BLOCKS.map(b => `<button class="block-nav-item" data-block="${b.key}" onclick="openHomeBlockPanel('${b.key}')">${b.label}</button>`).join('');
   setMain(`
     <div class="page-header">
       <div class="page-title">Trang chủ <small>${HOME_FILE}</small></div>
@@ -2561,67 +2962,12 @@ function renderHomeEditor() {
       </div>
     </div>
 
-    <div class="editor-layout">
+    <div class="editor-layout home-visual-editor">
       <div class="editor-main">
-
-        <div class="field-group" id="sec-hero">
-          <div class="field-group-title">🎬 Tin nổi bật chính (Hero)</div>
-          <div class="live-hero-card" id="live-hero-card" style="background-image:url('${esc(hf.img)}')">
-            <span class="live-section-badge live-badge-hero">HERO CHÍNH</span>
-            <div class="live-card-body">
-              <span class="live-tag" id="live-hero-tag" contenteditable="true" oninput="markChanged()">${esc(hf.cat)}</span>
-              <div class="live-title" id="home-hero-title" contenteditable="true" data-ph="Nhập tiêu đề..." oninput="markChanged()">${esc(hf.title)}</div>
-              <div class="live-sub" id="home-hero-sub" contenteditable="true" data-ph="Nhập mô tả ngắn..." oninput="markChanged()">${esc(hf.sub)}</div>
-            </div>
-          </div>
-          <div class="live-edit-hint">✏️ Bấm trực tiếp vào <strong>nhãn</strong>, <strong>tiêu đề</strong> hoặc <strong>mô tả</strong> trên thẻ để sửa — xem trước như thật.</div>
-          <div class="rank-row" style="grid-template-columns:1fr 1fr 1fr">
-            <div><label class="form-label" style="margin-top:0">Ngày</label><input class="form-input" id="home-hero-date" value="${esc(hf.date)}" oninput="markChanged()"/></div>
-            <div><label class="form-label" style="margin-top:0">Link (slug)</label><input class="form-input" id="home-hero-href" value="${esc(hf.href)}" oninput="markChanged()"/></div>
-            <div><label class="form-label" style="margin-top:0">URL ảnh nền</label>
-              <div style="display:flex;gap:6px">
-                <input class="form-input" style="flex:1" id="home-hero-img" value="${esc(hf.img)}" oninput="liveImgUpdate('live-hero-card',this.value)"/>
-                <button class="btn btn-secondary btn-sm btn-icon" title="Tải ảnh lên từ máy" onclick="triggerImageUpload(url => { const el = document.getElementById('home-hero-img'); el.value = url; liveImgUpdate('live-hero-card', url); })">📤</button>
-              </div>
-            </div>
-          </div>
+        <div class="visual-hint">💡 Bấm vào bất kỳ khối nào trên bản xem trước bên dưới để chỉnh sửa — giống Elementor. Khối khó bấm (chân trang, đăng ký nhận tin...) mở nhanh từ danh sách bên phải.</div>
+        <div class="visual-iframe-wrap">
+          <iframe id="home-visual-iframe" class="home-visual-iframe"></iframe>
         </div>
-
-        <div class="field-group" id="sec-ticker">
-          <div class="field-group-title">📰 Thanh tin chạy (Breaking ticker)</div>
-          <div style="font-size:11px;color:var(--muted);margin-bottom:10px">Kéo ⠿ để sắp xếp lại, bấm vào chữ để sửa trực tiếp. Dòng mới được chèn ở đầu thanh chạy — phần cũ phía sau vẫn giữ nguyên.</div>
-          ${tickerRows}
-          <button class="btn btn-secondary btn-sm" onclick="tickerAdd()">➕ Thêm dòng tin</button>
-        </div>
-
-        <div class="field-group" id="sec-fc">
-          <div class="field-group-title">⭐ Nổi bật hôm nay — tin chính</div>
-          <div class="live-fc-card" id="live-fc-card" style="background-image:url('${esc(fc.img)}')">
-            <span class="live-section-badge live-badge-fc">TIN NỔI BẬT</span>
-            <div class="live-card-body">
-              <span class="live-tag" id="live-fc-tag" contenteditable="true" oninput="markChanged()">${esc(fc.tag)}</span>
-              <div class="live-title" id="home-fc-title" contenteditable="true" data-ph="Nhập tiêu đề..." style="font-size:18px" oninput="markChanged()">${esc(fc.title)}</div>
-              <div class="live-sub" id="home-fc-sub" contenteditable="true" data-ph="Nhập mô tả ngắn..." oninput="markChanged()">${esc(fc.sub)}</div>
-            </div>
-          </div>
-          <div class="rank-row" style="grid-template-columns:1fr 1fr">
-            <div><label class="form-label" style="margin-top:0">Link</label><input class="form-input" id="home-fc-href" value="${esc(fc.href)}" oninput="markChanged()"/></div>
-            <div><label class="form-label" style="margin-top:0">URL ảnh</label>
-              <div style="display:flex;gap:6px">
-                <input class="form-input" style="flex:1" id="home-fc-img" value="${esc(fc.img)}" oninput="liveImgUpdate('live-fc-card',this.value)"/>
-                <button class="btn btn-secondary btn-sm btn-icon" title="Tải ảnh lên từ máy" onclick="triggerImageUpload(url => { const el = document.getElementById('home-fc-img'); el.value = url; liveImgUpdate('live-fc-card', url); })">📤</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="field-group" id="sec-sc">
-          <div class="field-group-title">⭐ Nổi bật hôm nay — tin phụ</div>
-          <div style="font-size:11px;color:var(--muted);margin-bottom:12px">Kéo ⠿ để sắp xếp lại, bấm vào tiêu đề trên thẻ để sửa trực tiếp.</div>
-          <button class="btn btn-secondary btn-sm" style="margin-bottom:12px" onclick="scAdd()">➕ Thêm thẻ tin phụ</button>
-          ${scRows}
-        </div>
-
       </div>
 
       <div class="editor-sidebar">
@@ -2630,7 +2976,7 @@ function renderHomeEditor() {
           <div class="pb-body">
             <div class="pb-row"><span class="pb-label">Trạng thái</span><span class="pb-val" style="display:flex;align-items:center;gap:6px"><span class="status-dot" id="status-dot"></span><span id="status-text">Chưa có thay đổi</span></span></div>
             <div class="pb-actions">
-              <button class="btn btn-primary" id="save-btn" onclick="saveHome()">💾 Lưu & Deploy</button>
+              <button class="btn btn-primary" id="save-btn" onclick="saveVisualHome()">💾 Lưu & Deploy</button>
             </div>
             <div style="display:flex;gap:14px;margin-top:12px">
               <a class="pb-link" href="https://otahub.asia/${isEn ? 'en/' : ''}" target="_blank">🔗 Xem live</a>
@@ -2641,62 +2987,209 @@ function renderHomeEditor() {
         </div>
 
         <div class="side-box">
-          <div class="side-box-title">📑 Mục lục</div>
-          <a class="toc-link" href="#sec-hero">🎬 Tin nổi bật chính</a>
-          <a class="toc-link" href="#sec-ticker">📰 Thanh tin chạy</a>
-          <a class="toc-link" href="#sec-fc">⭐ Tin chính</a>
-          <a class="toc-link" href="#sec-sc">⭐ Tin phụ (${HOME_FEATURED.sc.length})</a>
+          <div class="side-box-title">📑 Các khối trên trang</div>
+          ${navHtml}
+        </div>
+
+        <div id="home-block-panel" class="home-block-panel">
+          <div class="empty-state-mini">👈 Click một khối trong bản xem trước hoặc trong danh sách để bắt đầu chỉnh sửa</div>
         </div>
       </div>
     </div>
   `);
+
+  const iframe = document.getElementById('home-visual-iframe');
+  if (iframe) iframe.srcdoc = homeBuildIframeSrcdoc();
+  HOME_PANEL = null;
+
+  if (!window.__homeMsgBound) {
+    window.__homeMsgBound = true;
+    window.addEventListener('message', function(e) {
+      if (!e.data || e.data.type !== 'oh-click') return;
+      openHomeBlockPanel(e.data.block);
+    });
+  }
 }
 
-function liveImgUpdate(elId, url) {
-  const el = document.getElementById(elId);
-  if (el) el.style.backgroundImage = `url('${url.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')`;
+function openHomeBlockPanel(key) {
+  HOME_PANEL = key;
+  document.querySelectorAll('.block-nav-item').forEach(b => b.classList.toggle('active', b.dataset.block === key));
+  const panel = document.getElementById('home-block-panel');
+  if (panel) panel.innerHTML = homeRenderPanel(key);
+}
+
+function homeSetSubtab(blockKey, tabKey) { HOME_SUBTAB[blockKey] = tabKey; openHomeBlockPanel(blockKey); }
+
+function homeRenderPanel(key) {
+  switch (key) {
+    case 'hero': return homeSimplePanelHtml('hero', '🎬 Tin chính (Hero)', [['title','Tiêu đề'],['sub','Mô tả ngắn','textarea'],['cat','Chuyên mục'],['date','Ngày'],['href','Link (slug)'],['img','URL ảnh nền']]);
+    case 'heroSide': return homeItemListPanelHtml('heroSide', 'heroSide', `⭐ Nổi bật hôm nay (${HOME_DATA.heroSide.length})`);
+    case 'ticker': return homeTickerPanelHtml();
+    case 'marquee': return homeItemListPanelHtml('marquee', 'marquee', `📢 Marquee (${HOME_DATA.marquee.length})`);
+    case 'featured': return homeFeaturedPanelHtml();
+    case 'rankings': return homeTabbedListPanel('rankings', [['pc','PC/Console','rankItem','rankings.pc'],['mobile','Mobile','rankItem','rankings.mobile']], '🏆 Bảng xếp hạng');
+    case 'manga': return homeTabbedListPanel('manga', [['manga','Manga','mangaItem','manga.manga'],['manhwa','Manhwa','mangaItem','manga.manhwa'],['manhua','Manhua','mangaItem','manga.manhua']], '📖 Manga/Manhwa/Manhua');
+    case 'latest': return homeTabbedListPanel('latest', [['news','Tin mới nhất','latestNews','latestNews'],['trending','Đang hot','trending','trending']], '🆕 Tin mới nhất + Đang hot');
+    case 'catGrid': return homeItemListPanelHtml('catGrid', 'catGrid', `🗂️ Danh mục (${HOME_DATA.catGrid.length})`);
+    case 'newsletter': return homeSimplePanelHtml('newsletter', '✉️ Đăng ký nhận tin', [['title','Tiêu đề'],['sub','Mô tả','textarea'],['label','Nhãn ô nhập'],['note','Ghi chú nhỏ'],['btn','Chữ nút']]);
+    case 'footer': return homeSimplePanelHtml('footer', '🔻 Chân trang', [['desc','Mô tả website','textarea'],['copy','Dòng bản quyền']]);
+    case 'anime': return homeAnimeTabbedPanel();
+    default: return '<div class="empty-state-mini">👈 Click một khối trong bản xem trước để bắt đầu chỉnh sửa</div>';
+  }
+}
+
+// ── Panel đơn (hero / newsletter / footer) ──
+function homeSimplePanelHtml(objKey, title, fields) {
+  const obj = HOME_DATA[objKey];
+  const rows = fields.map(([k,label,type]) => type === 'textarea'
+    ? `<label class="form-label">${label}</label><textarea class="form-input" oninput="homeSimpleEdit('${objKey}','${k}',this.value)">${esc(obj[k]||'')}</textarea>`
+    : `<label class="form-label">${label}</label><input class="form-input" value="${esc(obj[k]||'')}" oninput="homeSimpleEdit('${objKey}','${k}',this.value)">`
+  ).join('');
+  return `<div class="home-panel-head"><h3>${title}</h3></div><div class="home-item-card">${rows}</div>`;
+}
+function homeSimpleEdit(objKey, key, val) { HOME_DATA[objKey][key] = val; markChanged(); schedulePreviewRefresh(); }
+
+// ── Panel danh sách chung (dùng cho heroSide/marquee/rank/manga/latest/trending/catGrid) ──
+function homeItemListBody(typeKey, path) {
+  const type = HOME_ITEM_TYPES[typeKey];
+  const arr = getArr(path);
+  const rows = arr.map((item, i) => {
+    const f = type.get(item.raw);
+    const fieldsHtml = type.fields.map(([k,label]) => `<label class="form-label">${label}</label><input class="form-input" value="${esc(f[k]||'')}" oninput="homeItemFieldEdit('${path}',${i},'${typeKey}','${k}',this.value)">`).join('');
+    return `<div class="home-item-card"><div class="home-item-head"><span>#${i+1}</span><div class="home-item-actions"><button title="Lên" onclick="homeItemMove('${path}',${i},-1)">↑</button><button title="Xuống" onclick="homeItemMove('${path}',${i},1)">↓</button><button title="Xoá" onclick="homeItemDelete('${path}',${i})">🗑</button></div></div>${fieldsHtml}</div>`;
+  }).join('');
+  return `<button class="btn btn-secondary btn-sm" style="margin-bottom:10px" onclick="homeItemAdd('${path}','${typeKey}')">➕ Thêm mục</button><div class="home-item-list">${rows || '<div class="empty-state-mini">Chưa có mục nào.</div>'}</div>`;
+}
+function homeItemListPanelHtml(typeKey, path, title) {
+  return `<div class="home-panel-head"><h3>${title}</h3></div>${homeItemListBody(typeKey, path)}`;
+}
+function homeTabbedListPanel(blockKey, tabs, title) {
+  const active = HOME_SUBTAB[blockKey] || tabs[0][0];
+  HOME_SUBTAB[blockKey] = active;
+  const tabBar = tabs.map(([tk,label]) => `<button class="home-tab-btn ${tk===active?'active':''}" onclick="homeSetSubtab('${blockKey}','${tk}')">${label}</button>`).join('');
+  const cur = tabs.find(t => t[0] === active);
+  const typeKey = cur[2], path = cur[3];
+  return `<div class="home-panel-head"><h3>${title}</h3></div><div class="home-tab-bar">${tabBar}</div>${homeItemListBody(typeKey, path)}`;
+}
+
+function homeItemFieldEdit(path, i, typeKey, key, val) {
+  const arr = getArr(path);
+  const type = HOME_ITEM_TYPES[typeKey];
+  arr[i].raw = type.apply(arr[i].raw, { [key]: val });
   markChanged();
+  schedulePreviewRefresh();
+}
+function homeItemMove(path, i, dir) {
+  const arr = getArr(path);
+  const j = i + dir;
+  if (j < 0 || j >= arr.length) return;
+  const t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+  markChanged();
+  openHomeBlockPanel(HOME_PANEL);
+  schedulePreviewRefresh();
+}
+function homeItemDelete(path, i) {
+  if (!confirm('Xoá mục này?')) return;
+  getArr(path).splice(i, 1);
+  markChanged();
+  openHomeBlockPanel(HOME_PANEL);
+  schedulePreviewRefresh();
+}
+function homeItemAdd(path, typeKey) {
+  const arr = getArr(path);
+  const type = HOME_ITEM_TYPES[typeKey];
+  if (!arr.length) { toast('error', 'Không có mục mẫu để nhân bản.'); return; }
+  const ph = {};
+  type.fields.forEach(([k]) => {
+    if (k === 'href') ph[k] = '/duong-dan-moi';
+    else if (k === 'img') ph[k] = '/assets/img/placeholder.svg';
+    else if (k === 'alt') ph[k] = 'Ảnh minh hoạ';
+    else if (k === 'score') ph[k] = '8.0';
+    else if (k === 'count') ph[k] = '0';
+    else ph[k] = 'Nội dung mới';
+  });
+  const clone = { raw: type.apply(arr[0].raw, ph) };
+  arr.unshift(clone);
+  markChanged();
+  openHomeBlockPanel(HOME_PANEL);
+  schedulePreviewRefresh();
 }
 
-let DRAG_SC_IDX = null;
-function scDragStart(e, i) { DRAG_SC_IDX = i; e.dataTransfer.effectAllowed = 'move'; e.currentTarget.classList.add('dragging'); }
-function scDrop(e, i) {
-  e.preventDefault();
-  document.querySelectorAll('.sc-card.dragging').forEach(el => el.classList.remove('dragging'));
-  if (DRAG_SC_IDX === null || DRAG_SC_IDX === i) return;
-  const item = HOME_FEATURED.sc.splice(DRAG_SC_IDX, 1)[0];
-  HOME_FEATURED.sc.splice(i, 0, item);
-  DRAG_SC_IDX = null;
-  renderHomeEditor();
+// ── Ticker (mảng chuỗi thuần) ──
+function homeTickerPanelHtml() {
+  const rows = HOME_DATA.ticker.map((t,i) => `
+    <div class="home-ticker-row">
+      <input class="form-input" value="${esc(t)}" oninput="homeTickerEdit(${i},this.value)">
+      <div class="home-item-actions">
+        <button title="Lên" onclick="homeTickerMove(${i},-1)">↑</button>
+        <button title="Xuống" onclick="homeTickerMove(${i},1)">↓</button>
+        <button title="Xoá" onclick="homeTickerDelete(${i})">🗑</button>
+      </div>
+    </div>`).join('');
+  return `<div class="home-panel-head"><h3>📰 Ticker chạy tin (${HOME_DATA.ticker.length})</h3></div><button class="btn btn-secondary btn-sm" style="margin-bottom:10px" onclick="homeTickerAdd()">➕ Thêm dòng tin</button><div class="home-item-list">${rows}</div>`;
+}
+function homeTickerEdit(i,val) { HOME_DATA.ticker[i] = val; markChanged(); schedulePreviewRefresh(); }
+function homeTickerMove(i,dir) { const arr=HOME_DATA.ticker; const j=i+dir; if (j<0||j>=arr.length) return; const t=arr[i]; arr[i]=arr[j]; arr[j]=t; markChanged(); openHomeBlockPanel('ticker'); schedulePreviewRefresh(); }
+function homeTickerDelete(i) { HOME_DATA.ticker.splice(i,1); markChanged(); openHomeBlockPanel('ticker'); schedulePreviewRefresh(); }
+function homeTickerAdd() { HOME_DATA.ticker.unshift('Tin mới'); markChanged(); openHomeBlockPanel('ticker'); schedulePreviewRefresh(); }
+
+// ── Tin nổi bật (fc + sc) ──
+function homeFeaturedPanelHtml() {
+  const fc = fcFields(HOME_DATA.featured.fc);
+  const fcFieldsDef = [['title','Tiêu đề'],['sub','Mô tả ngắn','textarea'],['tag','Nhãn chuyên mục'],['href','Link'],['img','URL ảnh']];
+  const fcHtml = fcFieldsDef.map(([k,label,type]) => type === 'textarea'
+    ? `<label class="form-label">${label}</label><textarea class="form-input" oninput="homeFcEdit('${k}',this.value)">${esc(fc[k]||'')}</textarea>`
+    : `<label class="form-label">${label}</label><input class="form-input" value="${esc(fc[k]||'')}" oninput="homeFcEdit('${k}',this.value)">`
+  ).join('');
+  const scFieldsDef = [['title','Tiêu đề'],['tag','Nhãn'],['href','Link'],['img','URL ảnh']];
+  const scRows = HOME_DATA.featured.sc.map((c,i) => {
+    const f = scFields(c.raw);
+    const fieldsHtml = scFieldsDef.map(([k,label]) => `<label class="form-label">${label}</label><input class="form-input" value="${esc(f[k]||'')}" oninput="homeScEdit(${i},'${k}',this.value)">`).join('');
+    return `<div class="home-item-card"><div class="home-item-head"><span>Tin phụ #${i+1}</span><div class="home-item-actions"><button title="Lên" onclick="homeScMove(${i},-1)">↑</button><button title="Xuống" onclick="homeScMove(${i},1)">↓</button><button title="Xoá" onclick="homeScDelete(${i})">🗑</button></div></div>${fieldsHtml}</div>`;
+  }).join('');
+  return `<div class="home-panel-head"><h3>🗞️ Tin nổi bật — tin chính</h3></div><div class="home-item-card">${fcHtml}</div>
+    <div class="home-panel-head" style="margin-top:16px"><h3>🗞️ Tin nổi bật — tin phụ (${HOME_DATA.featured.sc.length})</h3></div>
+    <button class="btn btn-secondary btn-sm" style="margin-bottom:10px" onclick="homeScAdd()">➕ Thêm thẻ tin phụ</button>
+    <div class="home-item-list">${scRows}</div>`;
+}
+function homeFcEdit(key, val) { HOME_DATA.featured.fc = fcApply(HOME_DATA.featured.fc, { [key]: val }); markChanged(); schedulePreviewRefresh(); }
+function homeScEdit(i, key, val) { HOME_DATA.featured.sc[i].raw = scApply(HOME_DATA.featured.sc[i].raw, { [key]: val }); markChanged(); schedulePreviewRefresh(); }
+function homeScMove(i, dir) { const arr=HOME_DATA.featured.sc; const j=i+dir; if (j<0||j>=arr.length) return; const t=arr[i]; arr[i]=arr[j]; arr[j]=t; markChanged(); openHomeBlockPanel('featured'); schedulePreviewRefresh(); }
+function homeScDelete(i) { if (!confirm('Xoá thẻ tin phụ này?')) return; HOME_DATA.featured.sc.splice(i,1); markChanged(); openHomeBlockPanel('featured'); schedulePreviewRefresh(); }
+function homeScAdd() {
+  if (!HOME_DATA.featured.sc.length) { toast('error', 'Không có thẻ mẫu để nhân bản.'); return; }
+  const clone = { raw: scApply(HOME_DATA.featured.sc[0].raw, { href: '/duong-dan-moi', img: '/assets/img/placeholder.svg', alt: 'Ảnh minh hoạ', title: 'Tiêu đề mới' }) };
+  HOME_DATA.featured.sc.unshift(clone);
+  markChanged();
+  openHomeBlockPanel('featured');
+  schedulePreviewRefresh();
 }
 
-let DRAG_TICKER_IDX = null;
-function tickerDragStart(e, i) { DRAG_TICKER_IDX = i; e.dataTransfer.effectAllowed = 'move'; e.currentTarget.classList.add('dragging'); }
-function tickerDrop(e, i) {
-  e.preventDefault();
-  document.querySelectorAll('.ticker-chip.dragging').forEach(el => el.classList.remove('dragging'));
-  if (DRAG_TICKER_IDX === null || DRAG_TICKER_IDX === i) return;
-  const item = HOME_TICKER.splice(DRAG_TICKER_IDX, 1)[0];
-  HOME_TICKER.splice(i, 0, item);
-  DRAG_TICKER_IDX = null;
-  renderHomeEditor();
+// ── Anime theo mùa (đối tượng JS thuần, không phải raw HTML) ──
+function homeAnimeTabbedPanel() {
+  const seasons = [['summer','Mùa Hè'],['spring','Mùa Xuân'],['winter','Mùa Đông'],['fall','Mùa Thu']];
+  const active = HOME_SUBTAB.anime || 'summer';
+  HOME_SUBTAB.anime = active;
+  const tabBar = seasons.map(([sk,label]) => `<button class="home-tab-btn ${sk===active?'active':''}" onclick="homeSetSubtab('anime','${sk}')">${label}</button>`).join('');
+  const items = HOME_DATA.anime[active] || [];
+  const fieldsDef = [['title','Tiêu đề'],['genre','Thể loại'],['score','Điểm'],['day','Ngày phát'],['ep','Số tập'],['status','Trạng thái (airing/soon/done)'],['img','URL ảnh']];
+  const rows = items.map((it,i) => {
+    const fieldsHtml = fieldsDef.map(([k,label]) => `<label class="form-label">${label}</label><input class="form-input" value="${esc(it[k]||'')}" oninput="homeAnimeEdit('${active}',${i},'${k}',this.value)">`).join('');
+    return `<div class="home-item-card"><div class="home-item-head"><span>#${i+1}</span><div class="home-item-actions"><button title="Lên" onclick="homeAnimeMove('${active}',${i},-1)">↑</button><button title="Xuống" onclick="homeAnimeMove('${active}',${i},1)">↓</button><button title="Xoá" onclick="homeAnimeDelete('${active}',${i})">🗑</button></div></div>${fieldsHtml}</div>`;
+  }).join('');
+  return `<div class="home-panel-head"><h3>📺 Anime theo mùa</h3></div><div class="home-tab-bar">${tabBar}</div><button class="btn btn-secondary btn-sm" style="margin-bottom:10px" onclick="homeAnimeAdd('${active}')">➕ Thêm anime</button><div class="home-item-list">${rows || '<div class="empty-state-mini">Chưa có mục nào.</div>'}</div>`;
+}
+function homeAnimeEdit(season, i, key, val) { HOME_DATA.anime[season][i][key] = val; markChanged(); schedulePreviewRefresh(); }
+function homeAnimeMove(season, i, dir) { const arr=HOME_DATA.anime[season]; const j=i+dir; if (j<0||j>=arr.length) return; const t=arr[i]; arr[i]=arr[j]; arr[j]=t; markChanged(); openHomeBlockPanel('anime'); schedulePreviewRefresh(); }
+function homeAnimeDelete(season, i) { if (!confirm('Xoá anime này?')) return; HOME_DATA.anime[season].splice(i,1); markChanged(); openHomeBlockPanel('anime'); schedulePreviewRefresh(); }
+function homeAnimeAdd(season) {
+  HOME_DATA.anime[season].unshift({ title:'Anime mới', genre:'Action', score:'8.0', day:'Chủ nhật', ep:'1/12', status:'airing', img:'/assets/img/placeholder.svg' });
+  markChanged();
+  openHomeBlockPanel('anime');
+  schedulePreviewRefresh();
 }
 
-function tickerUpdate(i, v) { HOME_TICKER[i] = v; markChanged(); }
-function tickerDelete(i) { HOME_TICKER.splice(i, 1); renderHomeEditor(); }
-function tickerAdd() { HOME_TICKER.unshift('Tiêu đề tin mới'); renderHomeEditor(); }
-
-function scUpdate(i, field, value) { HOME_FEATURED.sc[i].raw = scApply(HOME_FEATURED.sc[i].raw, { [field]: value }); markChanged(); }
-function scMove(i, dir) { const j = i + dir; if (j < 0 || j >= HOME_FEATURED.sc.length) return; const t = HOME_FEATURED.sc[i]; HOME_FEATURED.sc[i] = HOME_FEATURED.sc[j]; HOME_FEATURED.sc[j] = t; renderHomeEditor(); }
-function scDelete(i) { if (!confirm('Xoá thẻ tin phụ này?')) return; HOME_FEATURED.sc.splice(i, 1); renderHomeEditor(); }
-function scAdd() {
-  if (!HOME_FEATURED.sc.length) { toast('error', 'Không có thẻ mẫu để nhân bản.'); return; }
-  const clone = { raw: scApply(HOME_FEATURED.sc[0].raw, { href: '/duong-dan-bai-viet-moi', img: '/assets/img/placeholder.svg', alt: 'Tiêu đề mới', title: 'Tiêu đề mới' }) };
-  HOME_FEATURED.sc.unshift(clone);
-  renderHomeEditor();
-}
-
-async function saveHome() {
+async function saveVisualHome() {
   const btn = document.getElementById('save-btn');
   const dot = document.getElementById('status-dot');
   const txt = document.getElementById('status-text');
@@ -2705,38 +3198,10 @@ async function saveHome() {
   if (txt) txt.textContent = 'Đang commit lên GitHub...';
   try {
     const latest = await ghGet(HOME_FILE);
-    let html = decodeURIComponent(escape(atob(latest.content)));
-
-    const heroTitle = document.getElementById('home-hero-title').textContent;
-    const heroSub   = document.getElementById('home-hero-sub').textContent;
-    const heroCat   = document.getElementById('live-hero-tag').textContent;
-    const heroDate  = document.getElementById('home-hero-date').value;
-    const heroHref  = document.getElementById('home-hero-href').value;
-    const heroImg   = document.getElementById('home-hero-img').value;
-
-    html = html.replace(/(id="h-title">)[^<]*(<)/, (m, p1, p2) => p1 + esc(heroTitle) + p2);
-    html = html.replace(/(id="h-sub">)[^<]*(<)/, (m, p1, p2) => p1 + esc(heroSub) + p2);
-    html = html.replace(/(class="h-meta-cat">)[^<]*(<)/, (m, p1, p2) => p1 + esc(heroCat) + p2);
-    html = html.replace(/(id="h-time">)[^<]*(<)/, (m, p1, p2) => p1 + esc(heroDate) + p2);
-    html = html.replace(/(<a href=")[^"]*(" class="read-more" id="h-read")/, (m, p1, p2) => p1 + esc(heroHref) + p2);
-    html = html.replace(/(<div class="hero-main" onclick="location\.href=')[^']*(')/, (m, p1, p2) => p1 + heroHref.replace(/\\/g, '\\\\').replace(/'/g, "\\'") + p2);
-    html = html.replace(/(\.h-img\{[^}]*background:url\(')[^']*('\))/, (m, p1, p2) => p1 + heroImg.replace(/\\/g, '\\\\').replace(/'/g, "\\'") + p2);
-
-    const fc = {
-      href: document.getElementById('home-fc-href').value,
-      img: document.getElementById('home-fc-img').value,
-      tag: document.getElementById('live-fc-tag').textContent,
-      title: document.getElementById('home-fc-title').textContent,
-      sub: document.getElementById('home-fc-sub').textContent,
-    };
-    const newFc = fcApply(HOME_FEATURED.fc, fc);
-    const newFeatured = '\n    ' + newFc.trim() + '\n\n    ' + HOME_FEATURED.sc.map(c => c.raw.trim()).join('\n\n    ') + '\n    ';
-    html = html.replace(/(<!-- ADMIN:FEATURED_START -->)[\s\S]*?(<!-- ADMIN:FEATURED_END -->)/, (m, p1, p2) => p1 + newFeatured + p2);
-
-    const tickerHtml = HOME_TICKER.map(t => `<span class="tick-item">${esc(t)}</span>`).join('');
-    html = html.replace(TICKER_RE, (m, p1, p2, p3) => p1 + tickerHtml.replace(/\\/g, '\\\\').replace(/'/g, "\\'") + p3);
-
-    await ghPut(HOME_FILE, html, latest.sha, '[admin] cap nhat trang chu');
+    const latestRaw = decodeURIComponent(escape(atob(latest.content)));
+    const html = buildHomeHtml(latestRaw, HOME_DATA);
+    await ghPut(HOME_FILE, html, latest.sha, '[admin] cap nhat trang chu (visual editor)');
+    HOME_RAW = latestRaw;
     HAS_UNSAVED_CHANGES = false;
     if (dot) dot.className = 'status-dot';
     if (txt) txt.textContent = 'Đã lưu • ' + new Date().toLocaleTimeString('vi-VN');
