@@ -30,7 +30,17 @@ var TITLE_IMAGE={
   'Honor of Kings Global':'/assets/img/6323076b06-158003l.jpg','Berserk':'/assets/img/641c702735-157897l.jpg',
   'One Piece':'/assets/img/add1e919a8-266234l.jpg','Chainsaw Man':'/assets/img/fced43ae52-216464l.jpg',
   'Jujutsu Kaisen':'/assets/img/f503c61d36-259446l.jpg','Solo Leveling: Ragnarok':'/assets/img/dfc2a226b6-339933l.jpg',
-  'The Beginning After The End':'/assets/img/9e28941194-222295l.jpg','Omniscient Reader':'/assets/img/24741c60cd-238873l.jpg'
+  'The Beginning After The End':'/assets/img/9e28941194-222295l.jpg','Omniscient Reader':'/assets/img/24741c60cd-238873l.jpg',
+  'Armored Core VI DLC':'/assets/img/41c2f7d358-header.jpg','Battle Through the Heavens':'/assets/img/f9fa2f5cc7-226182l.jpg','Beast of Reincarnation':'/assets/img/5f8467072b-beast-of-reincarnation-hero.jpg','Big Walk':'/assets/img/d4b52b428d-big-walk-house-house-hero.jpg',
+  'Bleach':'/assets/img/15741dcbc3-hqdefault.jpg','Blue Protocol: Resonance':'/assets/img/3578d308d7-library_hero.jpg','Brawl Stars':'/assets/img/6ebdc20dff-500px-Brawl_Stars_logo_2025.svg.png','Doupo Cangqiong':'/assets/img/1f0540d7a3-maxresdefault.jpg',
+  'Dungeon Meshi Season 2':'/assets/img/c76fab236e-142478l.jpg','Elden Ring: Shadow of Erdtree II':'/assets/img/b80150127d-library_hero.jpg','Final Fantasy VII Rebirth':'/assets/img/9fdcc19d8c-header.jpg','Fullmetal Alchemist':'/assets/img/df408abe3e-fma.jpg',
+  'Ghost of Yōtei: Complete Edition':'/assets/img/0a878e4709-ghost-of-yotei-complete-edition-hero.jpg','God of Blackfield':'/assets/img/becf296339-261694l.jpg','Hollow Knight: Silksong':'/assets/img/4f81303202-silksong-hero.jpg',
+  'JoJo\'s Bizarre Adventure: Golden Spirit':'/assets/img/c299f2d727-jojo-golden-spirit-hero.jpg','Link Click Season 3':'/assets/img/anime-nyc-2026-hero-v2.png','Martial Peak':'/assets/img/672a0e3b1e-martialpeak.jpg','Mo Dao Zu Shi':'/assets/img/1f0540d7a3-maxresdefault.jpg',
+  'My Hero Academia Final Season':'/assets/img/ccede1dd78-my-hero-academia-final-season-hero.jpg','Overgeared':'/assets/img/overgeared-cover.jpg','Persona 3 Reload DLC':'/assets/img/34bcac5c7c-header.jpg',
+  'Rebirth Urban Immortal':'/assets/img/1f0540d7a3-maxresdefault.jpg','Rebirth of the Urban Immortal':'/assets/img/fe6c0cc209-280661l.jpg','Second Life Ranker':'/assets/img/40c84c255a-261257l.jpg','Spy x Family':'/assets/img/b63f53ed28-219741l.jpg',
+  'Stellar Blade':'/assets/img/f845d7c936-library_hero.jpg','Suikoden STAR LEAP':'/assets/img/3a6da459ec-suikoden-star-leap-hero.jpg','Swallowed Star':'/assets/img/c88fd83c70-294808l.jpg','TBATE':'/assets/img/a4f75364fc-maxresdefault.jpg',
+  'Tekken 8: Season 2':'/assets/img/cf182db1a1-tekken8-season2-hero.jpg','The Ribbon Hero':'/assets/img/632c9aeaf5-the-ribbon-hero-netflix-hero.jpg','Undawn':'/assets/img/be9f21bd5f-library_hero.jpg','Vagabond':'/assets/img/641c702735-157897l.jpg',
+  'Wu Shen Zhu Zai':'/assets/img/8d22560005-223798l.jpg','Zenless Zone Zero':'/assets/img/513145db34-header.jpg'
 };
 
 var params=new URLSearchParams(location.search);
