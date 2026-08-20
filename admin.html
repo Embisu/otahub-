@@ -31,7 +31,7 @@ body { background: var(--bg); color: var(--white); font-family: 'Segoe UI', syst
 .sidebar-section { padding: 12px 12px 4px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 16px; border-radius: 8px; margin: 2px 8px; cursor: pointer; color: var(--dim); transition: all .15s; font-size: 13.5px; border: none; background: none; width: calc(100% - 16px); text-align: left; }
 .nav-item:hover { background: var(--surf2); color: var(--white); }
-.nav-item.active { background: var(--bcyan); color: var(--cyan); }
+.nav-item.active { background: var(--bcyan); color: var(--cyan); box-shadow: inset 3px 0 0 var(--cyan); }
 .nav-item .icon { width: 16px; text-align: center; flex-shrink: 0; opacity: .8; }
 .nav-item .badge { margin-left: auto; background: var(--violet); color: #fff; font-size: 10px; padding: 1px 6px; border-radius: 10px; }
 
@@ -90,10 +90,39 @@ body { background: var(--bg); color: var(--white); font-family: 'Segoe UI', syst
 .art-cat { background: var(--bcyan); color: var(--cyan); padding: 1px 7px; border-radius: 10px; font-size: 10px; font-weight: 600; }
 .art-actions { display: flex; gap: 6px; }
 
-/* ── Editor ── */
-.editor-layout { display: grid; grid-template-columns: 1fr 300px; gap: 24px; padding: 24px 32px 48px; }
+/* ── Editor (bố cục kiểu WordPress: tiêu đề to, ô soạn thảo là trung tâm,
+      hộp "Xuất bản" cố định bên phải) ── */
+.editor-layout { display: grid; grid-template-columns: 1fr 320px; gap: 24px; padding: 24px 32px 48px; align-items: start; }
 .editor-main {}
-.editor-sidebar {}
+.editor-sidebar { position: sticky; top: 24px; }
+
+.title-field { width: 100%; background: transparent; border: none; border-bottom: 2px solid transparent; outline: none; color: var(--white); font-size: 30px; font-weight: 700; letter-spacing: -.01em; font-family: inherit; padding: 6px 2px 14px; margin-bottom: 18px; transition: border-color .15s; }
+.title-field::placeholder { color: var(--muted); font-weight: 600; }
+.title-field:focus { border-bottom-color: var(--cyan); }
+
+.publish-box { background: var(--surf); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 16px; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+.pb-head { padding: 14px 18px; border-bottom: 1px solid var(--border); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--cyan); display: flex; align-items: center; gap: 8px; }
+.pb-body { padding: 16px 18px; }
+.pb-row { display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; color: var(--dim); padding: 7px 0; border-bottom: 1px dashed var(--border); }
+.pb-row:last-of-type { border-bottom: none; }
+.pb-row .pb-label { color: var(--muted); }
+.pb-row .pb-val { font-weight: 600; color: var(--white); }
+.pb-link { color: var(--cyan); text-decoration: none; font-size: 11.5px; }
+.pb-link:hover { text-decoration: underline; }
+.pb-actions { display: flex; gap: 8px; margin-top: 14px; }
+.pb-actions .btn-primary { flex: 1; justify-content: center; font-size: 13.5px; padding: 10px; }
+.pb-savelog { margin-top: 10px; font-size: 10.5px; color: var(--muted); line-height: 1.7; max-height: 70px; overflow-y: auto; }
+
+.side-box { background: var(--surf); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; margin-bottom: 16px; }
+.side-box-title { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+
+.meta-box-collapsed { background: var(--surf); border: 1px solid var(--border); border-radius: 12px; margin-top: 8px; }
+.meta-box-head { padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
+.meta-box-head .field-group-title { margin: 0; padding: 0; border: none; }
+.meta-box-head .chev { color: var(--muted); transition: transform .15s; font-size: 12px; }
+.meta-box-head.open .chev { transform: rotate(90deg); }
+.meta-box-content { padding: 0 20px 20px; display: none; }
+.meta-box-content.open { display: block; }
 
 .field-group { background: var(--surf); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
 .field-group-title { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
@@ -105,18 +134,19 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .img-preview { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-top: 8px; background: var(--surf2); display: block; }
 .img-preview-placeholder { width: 100%; height: 120px; border-radius: 8px; margin-top: 8px; background: var(--surf2); border: 2px dashed var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 12px; }
 
-/* Body editor */
-.body-editor { background: var(--surf2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-.body-toolbar { display: flex; gap: 4px; padding: 8px 10px; border-bottom: 1px solid var(--border); flex-wrap: wrap; background: var(--surf); }
-.tb-btn { padding: 4px 9px; background: transparent; border: 1px solid var(--border); border-radius: 5px; color: var(--dim); font-size: 12px; cursor: pointer; transition: all .12s; font-family: inherit; }
-.tb-btn:hover { background: var(--surf2); color: var(--white); border-color: rgba(255,255,255,.15); }
-.tb-sep { width: 1px; background: var(--border); margin: 2px 4px; }
+/* Body editor — thanh công cụ kiểu WordPress: nút icon nhỏ gọn, sát nhau */
+.body-editor { background: var(--surf2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,.15); }
+.body-toolbar { display: flex; gap: 2px; padding: 8px; border-bottom: 1px solid var(--border); flex-wrap: wrap; background: var(--surf); }
+.tb-btn { min-width: 30px; height: 30px; padding: 0 8px; background: transparent; border: none; border-radius: 5px; color: var(--dim); font-size: 12.5px; cursor: pointer; transition: all .12s; font-family: inherit; display: inline-flex; align-items: center; justify-content: center; }
+.tb-btn:hover { background: var(--surf2); color: var(--cyan); }
+.tb-sep { width: 1px; background: var(--border); margin: 4px 4px; }
 #body-textarea { width: 100%; min-height: 400px; background: transparent; border: none; padding: 14px; color: var(--dim); font-size: 13px; line-height: 1.8; resize: vertical; outline: none; font-family: 'Consolas', 'Monaco', monospace; }
 
-/* Body mode tabs (Trực quan / HTML) */
-.body-mode-tabs { display: flex; gap: 4px; padding: 8px 10px 0; background: var(--surf); }
-.body-mode-tab { padding: 6px 14px; background: transparent; border: 1px solid var(--border); border-bottom: none; border-radius: 6px 6px 0 0; color: var(--muted); font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit; }
-.body-mode-tab.active { background: var(--surf2); color: var(--white); border-color: var(--cyan); }
+/* Body mode tabs (Khối / Trực quan / HTML) */
+.body-mode-tabs { display: flex; gap: 4px; padding: 10px 10px 0; background: var(--surf); }
+.body-mode-tab { padding: 8px 16px; background: transparent; border: 1px solid var(--border); border-bottom: none; border-radius: 8px 8px 0 0; color: var(--muted); font-size: 12.5px; font-weight: 700; cursor: pointer; font-family: inherit; transition: all .12s; }
+.body-mode-tab:hover { color: var(--dim); }
+.body-mode-tab.active { background: var(--surf2); color: var(--cyan); border-color: var(--cyan); }
 
 /* Visual (WYSIWYG) editor — approximates live article prose styling */
 #body-visual { width: 100%; min-height: 400px; max-height: 700px; overflow-y: auto; background: var(--surf2); padding: 18px 20px; color: var(--white); font-size: 15px; line-height: 1.8; outline: none; }
@@ -135,18 +165,21 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 
 /* Block editor (kéo-thả) — canvas kiểu Elementor/Gutenberg: mỗi khối hiển thị
    đúng như bài thật, sửa trực tiếp trên khối, kéo-thả để sắp xếp lại. */
-.block-canvas { background: var(--surf2); padding: 20px; }
-.block-item { position: relative; margin-bottom: 4px; border: 1px solid transparent; border-radius: 8px; padding: 10px 14px; transition: border-color .12s, background .12s; }
-.block-item:hover, .block-item.dragging { border-color: rgba(0,229,255,.25); background: rgba(0,229,255,.03); }
-.block-toolbar-mini { display: none; position: absolute; top: -14px; right: 10px; gap: 3px; background: var(--surf); border: 1px solid var(--border); border-radius: 6px; padding: 3px; z-index: 5; }
+.block-canvas { background: var(--surf2); padding: 24px; }
+.block-item { position: relative; margin-bottom: 6px; border: 1px dashed transparent; border-radius: 10px; padding: 10px 16px 10px 34px; transition: border-color .12s, background .12s; }
+.block-item:hover, .block-item.dragging { border-color: rgba(0,229,255,.3); background: rgba(0,229,255,.035); }
+.block-toolbar-mini { display: none; position: absolute; top: 8px; right: 10px; gap: 2px; background: var(--surf); border: 1px solid var(--border); border-radius: 7px; padding: 3px; z-index: 5; box-shadow: 0 4px 14px rgba(0,0,0,.3); }
 .block-item:hover .block-toolbar-mini, .block-item:focus-within .block-toolbar-mini { display: flex; }
-.block-mini-btn { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; background: transparent; border: none; border-radius: 4px; color: var(--dim); cursor: pointer; font-size: 12px; }
-.block-mini-btn:hover { background: var(--surf2); color: var(--white); }
-.block-drag { cursor: grab; color: var(--muted); }
-.block-type-tag { position: absolute; top: -14px; left: 10px; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--cyan); background: var(--surf); border: 1px solid var(--border); border-radius: 6px; padding: 2px 7px; display: none; }
+.block-mini-btn { width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; background: transparent; border: none; border-radius: 5px; color: var(--dim); cursor: pointer; font-size: 12px; }
+.block-mini-btn:hover { background: var(--bcyan); color: var(--cyan); }
+.block-drag { position: absolute; left: 6px; top: 10px; width: 22px; height: 26px; display: flex; align-items: center; justify-content: center; cursor: grab; color: var(--muted); font-size: 15px; border-radius: 5px; opacity: 0; transition: opacity .12s; }
+.block-item:hover .block-drag, .block-item:focus-within .block-drag { opacity: 1; }
+.block-drag:hover { color: var(--cyan); background: var(--bcyan); }
+.block-drag:active { cursor: grabbing; }
+.block-type-tag { position: absolute; top: 8px; left: 34px; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--cyan); background: var(--surf); border: 1px solid var(--border); border-radius: 6px; padding: 2px 7px; display: none; }
 .block-item:hover .block-type-tag, .block-item:focus-within .block-type-tag { display: block; }
-.block-canvas h2 { font-size: 20px; font-weight: 800; color: var(--white); outline: none; }
-.block-canvas h3 { font-size: 17px; font-weight: 700; color: var(--white); outline: none; }
+.block-canvas h2 { font-size: 20px; font-weight: 800; color: var(--white); outline: none; margin-top: 6px; }
+.block-canvas h3 { font-size: 17px; font-weight: 700; color: var(--white); outline: none; margin-top: 6px; }
 .block-canvas p { font-size: 15px; line-height: 1.8; color: var(--dim); outline: none; min-height: 1.6em; }
 .block-canvas p:empty:before { content: 'Nhập đoạn văn...'; color: var(--muted); }
 .block-canvas blockquote { border-left: 3px solid var(--cyan); padding: 4px 0 4px 16px; color: var(--dim); font-style: italic; }
@@ -154,7 +187,9 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .block-canvas figure { text-align: center; }
 .block-canvas figure img { max-width: 100%; max-height: 220px; border-radius: 8px; }
 .block-canvas figcaption { font-size: 12px; color: var(--muted); margin-top: 6px; }
-.block-add-bar { display: flex; gap: 6px; flex-wrap: wrap; padding: 12px 14px 0; }
+.block-add-bar { display: flex; gap: 8px; flex-wrap: wrap; padding: 14px 18px 18px; border-top: 1px solid var(--border); margin-top: 4px; }
+.block-add-bar .tb-btn { height: 34px; padding: 0 13px; border: 1px dashed var(--border); border-radius: 8px; font-weight: 600; }
+.block-add-bar .tb-btn:hover { border-style: solid; border-color: var(--cyan); background: var(--bcyan); }
 .block-field-row { display: grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap: 8px; margin-top: 8px; }
 .block-img-empty { width: 100%; height: 90px; border: 2px dashed var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 12px; }
 
@@ -679,55 +714,55 @@ function renderEditor(file, html) {
       </div>
       <div class="header-actions">
         <button class="btn btn-secondary" onclick="showView('articles')">← Quay lại</button>
-        <a class="btn btn-secondary" href="https://otahub.asia/${file}" target="_blank">🔗 Xem live</a>
-        <button class="btn btn-primary" id="save-btn" onclick="saveArticle()">💾 Lưu & Deploy</button>
       </div>
     </div>
 
     <div class="editor-layout">
       <div class="editor-main">
 
-        <!-- Metadata -->
-        <div class="field-group">
-          <div class="field-group-title">📋 Metadata & SEO</div>
-          <label class="form-label">Tiêu đề bài viết (Title)</label>
-          <input class="form-input" id="ed-title" value="${esc(title)}" placeholder="Tiêu đề bài viết..."/>
-          <label class="form-label">Mô tả (Meta Description)</label>
-          <textarea class="form-input" id="ed-desc" rows="3" placeholder="Mô tả ngắn cho SEO...">${esc(desc)}</textarea>
-          <label class="form-label">Danh mục</label>
-          <select class="form-input" id="ed-cat">
-            ${['Gaming','Anime','Manga','Reviews','Rankings','Guide','News'].map(c =>
-              `<option value="${c}" ${c===cat?'selected':''}>${c}</option>`).join('')}
-          </select>
-        </div>
+        <input class="title-field" id="ed-title" value="${esc(title)}" placeholder="Nhập tiêu đề bài viết..."/>
 
-        <!-- Hero image -->
-        <div class="field-group">
-          <div class="field-group-title">🖼️ Ảnh bìa (Hero)</div>
-          <label class="form-label">URL ảnh bìa</label>
-          <input class="form-input" id="ed-hero" value="${esc(heroUrl)}" placeholder="https://i.ytimg.com/vi/VIDEO_ID/maxresdefault.jpg" oninput="updateHeroPreview(this.value)"/>
-          <div class="form-label" style="margin-top:10px">Xem trước:</div>
-          <div style="position:relative;overflow:hidden;border-radius:8px;margin-top:6px">
-            <img id="hero-preview" src="${heroUrl}" alt="Hero preview"
-              style="width:100%;height:160px;object-fit:cover;object-position:center ${heroPos}%;display:${heroUrl?'block':'none'};transition:object-position .1s"
-              onerror="this.style.display='none';document.getElementById('hero-placeholder').style.display='flex'"/>
-            <div id="hero-placeholder" style="width:100%;height:160px;border-radius:8px;background:var(--surf2);border:2px dashed var(--border);display:${heroUrl?'none':'flex'};align-items:center;justify-content:center;color:var(--muted);font-size:12px">Chưa có ảnh bìa</div>
+        <!-- Body VI — ô soạn thảo là trung tâm, giống khung viết bài WordPress -->
+        <div class="body-editor" style="margin-bottom:16px">
+          <div class="body-mode-tabs">
+            ${BODY_BLOCKS ? `<button class="body-mode-tab active" id="body-mode-tab-blocks" onclick="switchBodyMode('blocks')">🧱 Khối (kéo-thả)</button>` : ''}
+            <button class="body-mode-tab ${BODY_BLOCKS ? '' : 'active'}" id="body-mode-tab-visual" onclick="switchBodyMode('visual')">🖱️ Trực quan</button>
+            <button class="body-mode-tab" id="body-mode-tab-code" onclick="switchBodyMode('code')">🔤 HTML</button>
           </div>
-          <div style="margin-top:10px">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-              <label class="form-label" style="margin:0">↕ Kéo vị trí ảnh (lên / xuống)</label>
-              <span id="hero-pos-label" style="color:var(--cyan);font-size:12px;font-weight:600">${heroPos}%</span>
-            </div>
-            <input type="range" id="ed-hero-pos" min="0" max="100" value="${heroPos}"
-              style="width:100%;accent-color:var(--cyan);cursor:pointer"
-              oninput="updateHeroPosLabel(this.value)"/>
-            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-top:2px"><span>⬆ Lên đầu</span><span>Giữa</span><span>⬇ Xuống cuối</span></div>
+          <div id="body-blocks-wrap" style="display:${BODY_BLOCKS ? 'block' : 'none'}">
+            <div id="body-blocks-editor"></div>
           </div>
-          <div style="font-size:11px;color:var(--muted);margin-top:10px">
-            💡 YouTube: <code style="color:var(--cyan)">https://i.ytimg.com/vi/VIDEO_ID/maxresdefault.jpg</code><br>
-            💡 Steam: <code style="color:var(--cyan)">https://cdn.akamai.steamstatic.com/steam/apps/APP_ID/header.jpg</code>
+          <div class="body-toolbar" id="body-toolbar-visual" style="display:${BODY_BLOCKS ? 'none' : 'flex'}">
+            <button class="tb-btn" title="Tiêu đề H2" onclick="visH2()"><b>H2</b></button>
+            <button class="tb-btn" title="Tiêu đề H3" onclick="visH3()">H3</button>
+            <button class="tb-btn" title="Đoạn văn" onclick="visPara()">¶</button>
+            <div class="tb-sep"></div>
+            <button class="tb-btn" title="In đậm" onclick="visBold()"><b>B</b></button>
+            <button class="tb-btn" title="In nghiêng" onclick="visItalic()"><i>I</i></button>
+            <button class="tb-btn" title="Danh sách" onclick="visList()">☰</button>
+            <div class="tb-sep"></div>
+            <button class="tb-btn" title="Chèn ảnh" onclick="visImg()">📷</button>
+            <button class="tb-btn" title="Trích dẫn" onclick="visQuote()">❝</button>
+          </div>
+          <div class="body-toolbar" id="body-toolbar-code" style="display:none">
+            <button class="tb-btn" title="H2" onclick="wrapSel('&lt;h2&gt;','&lt;/h2&gt;')"><b>H2</b></button>
+            <button class="tb-btn" title="H3" onclick="wrapSel('&lt;h3&gt;','&lt;/h3&gt;')">H3</button>
+            <div class="tb-sep"></div>
+            <button class="tb-btn" title="In đậm" onclick="wrapSel('&lt;strong&gt;','&lt;/strong&gt;')"><b>B</b></button>
+            <button class="tb-btn" title="In nghiêng" onclick="wrapSel('&lt;em&gt;','&lt;/em&gt;')"><i>I</i></button>
+            <div class="tb-sep"></div>
+            <button class="tb-btn" title="Chèn ảnh" onclick="insertImg()">📷</button>
+            <button class="tb-btn" title="Đoạn văn" onclick="insertPara()">¶</button>
+            <button class="tb-btn" title="Trích dẫn" onclick="insertBlock()">❝</button>
+          </div>
+          <div id="body-visual-wrap" style="display:${BODY_BLOCKS ? 'none' : 'block'}">
+            <div id="body-visual" contenteditable="true">${bodyVi}</div>
+          </div>
+          <div id="body-code-wrap" style="display:none">
+            <textarea id="body-textarea" class="form-input" style="border:none;border-radius:0;min-height:500px;font-family:monospace;font-size:12px">${esc(bodyVi)}</textarea>
           </div>
         </div>
+        <div style="font-size:11px;color:var(--muted);margin:-8px 0 20px">${BODY_BLOCKS ? '🧱 <strong>Khối</strong>: kéo-thả từng khối, sửa trực tiếp — giống Elementor/WordPress. ' : ''}🖱️ <strong>Trực quan</strong>: gõ như Word. 🔤 <strong>HTML</strong>: sửa mã trực tiếp.</div>
 
         <!-- Body images quick editor -->
         <div class="field-group" id="body-imgs-group">
@@ -735,48 +770,15 @@ function renderEditor(file, html) {
           <div id="body-imgs-list"><div style="color:var(--muted);font-size:12px">Đang phân tích...</div></div>
         </div>
 
-        <!-- Body VI -->
-        <div class="field-group">
-          <div class="field-group-title">📝 Nội dung bài viết (Tiếng Việt)</div>
-          <div style="font-size:11px;color:var(--muted);margin-bottom:10px">${BODY_BLOCKS ? 'Chế độ <strong>Khối</strong>: kéo-thả từng khối nội dung, xem trước trực tiếp bên phải — giống Elementor/WordPress. ' : ''}Chế độ <strong>Trực quan</strong>: gõ và định dạng như Word/WordPress. Chế độ <strong>HTML</strong>: sửa mã trực tiếp cho ai quen thuộc.</div>
-          <div class="body-editor">
-            <div class="body-mode-tabs">
-              ${BODY_BLOCKS ? `<button class="body-mode-tab active" id="body-mode-tab-blocks" onclick="switchBodyMode('blocks')">🧱 Khối (kéo-thả)</button>` : ''}
-              <button class="body-mode-tab ${BODY_BLOCKS ? '' : 'active'}" id="body-mode-tab-visual" onclick="switchBodyMode('visual')">🖱️ Trực quan</button>
-              <button class="body-mode-tab" id="body-mode-tab-code" onclick="switchBodyMode('code')">🔤 HTML</button>
-            </div>
-            <div id="body-blocks-wrap" style="display:${BODY_BLOCKS ? 'block' : 'none'}">
-              <div id="body-blocks-editor"></div>
-            </div>
-            <div class="body-toolbar" id="body-toolbar-visual" style="display:${BODY_BLOCKS ? 'none' : 'flex'}">
-              <button class="tb-btn" onclick="visH2()"><b>H2</b></button>
-              <button class="tb-btn" onclick="visH3()">H3</button>
-              <button class="tb-btn" onclick="visPara()">¶</button>
-              <div class="tb-sep"></div>
-              <button class="tb-btn" onclick="visBold()"><b>B</b></button>
-              <button class="tb-btn" onclick="visItalic()"><i>I</i></button>
-              <button class="tb-btn" onclick="visList()">• List</button>
-              <div class="tb-sep"></div>
-              <button class="tb-btn" onclick="visImg()">📷 Ảnh</button>
-              <button class="tb-btn" onclick="visQuote()">❝ Quote</button>
-            </div>
-            <div class="body-toolbar" id="body-toolbar-code" style="display:none">
-              <button class="tb-btn" onclick="wrapSel('&lt;h2&gt;','&lt;/h2&gt;')"><b>H2</b></button>
-              <button class="tb-btn" onclick="wrapSel('&lt;h3&gt;','&lt;/h3&gt;')">H3</button>
-              <div class="tb-sep"></div>
-              <button class="tb-btn" onclick="wrapSel('&lt;strong&gt;','&lt;/strong&gt;')"><b>B</b></button>
-              <button class="tb-btn" onclick="wrapSel('&lt;em&gt;','&lt;/em&gt;')"><i>I</i></button>
-              <div class="tb-sep"></div>
-              <button class="tb-btn" onclick="insertImg()">📷 Ảnh</button>
-              <button class="tb-btn" onclick="insertPara()">¶ Đoạn</button>
-              <button class="tb-btn" onclick="insertBlock()">❝ Quote</button>
-            </div>
-            <div id="body-visual-wrap" style="display:${BODY_BLOCKS ? 'none' : 'block'}">
-              <div id="body-visual" contenteditable="true">${bodyVi}</div>
-            </div>
-            <div id="body-code-wrap" style="display:none">
-              <textarea id="body-textarea" class="form-input" style="border:none;border-radius:0;min-height:500px;font-family:monospace;font-size:12px">${esc(bodyVi)}</textarea>
-            </div>
+        <!-- SEO / metadata — gấp gọn, ít dùng hơn -->
+        <div class="meta-box-collapsed">
+          <div class="meta-box-head open" onclick="toggleMetaBox(this)">
+            <div class="field-group-title">🔍 SEO & Metadata</div>
+            <span class="chev">▸</span>
+          </div>
+          <div class="meta-box-content open">
+            <label class="form-label" style="margin-top:14px">Mô tả (Meta Description)</label>
+            <textarea class="form-input" id="ed-desc" rows="3" placeholder="Mô tả ngắn cho SEO...">${esc(desc)}</textarea>
           </div>
         </div>
 
@@ -784,27 +786,58 @@ function renderEditor(file, html) {
 
       <!-- Editor sidebar -->
       <div class="editor-sidebar">
-        <div class="field-group">
-          <div class="field-group-title">🚀 Trạng thái</div>
-          <div class="status-indicator">
-            <div class="status-dot" id="status-dot"></div>
-            <span id="status-text">Chưa có thay đổi</span>
+        <div class="publish-box">
+          <div class="pb-head">🚀 Xuất bản</div>
+          <div class="pb-body">
+            <div class="pb-row"><span class="pb-label">Trạng thái</span><span class="pb-val" style="display:flex;align-items:center;gap:6px"><span class="status-dot" id="status-dot"></span><span id="status-text">Chưa có thay đổi</span></span></div>
+            <div class="pb-row"><span class="pb-label">Hiển thị</span><span class="pb-val">🌐 Công khai</span></div>
+            <div class="pb-row"><span class="pb-label">Lưu = xuất bản sau</span><span class="pb-val" style="color:var(--cyan)">~1-2 phút</span></div>
+            <div class="pb-actions">
+              <button class="btn btn-primary" id="save-btn" onclick="saveArticle()">💾 Lưu & Deploy</button>
+            </div>
+            <div style="display:flex;gap:14px;margin-top:12px">
+              <a class="pb-link" href="https://otahub.asia/${file}" target="_blank">🔗 Xem live</a>
+              <a class="pb-link" href="#" onclick="event.preventDefault();if(confirm('Bỏ thay đổi?'))editArticle(currentFile)">↺ Hoàn tác</a>
+            </div>
+            <div class="pb-savelog" id="save-log"></div>
           </div>
-          <div class="save-log" id="save-log"></div>
         </div>
 
-        <div class="field-group">
-          <div class="field-group-title">☁️ Deploy Info</div>
-          <div class="deploy-info">
-            Lưu bài → commit lên <strong>GitHub</strong> → Cloudflare tự build và deploy trong <strong>~1-2 phút</strong>.<br><br>
-            Repo: <strong>Embisu/otahub-</strong><br>
-            Branch: <strong>main</strong>
+        <div class="side-box">
+          <div class="side-box-title">🗂️ Danh mục</div>
+          <select class="form-input" id="ed-cat">
+            ${['Gaming','Anime','Manga','Reviews','Rankings','Guide','News'].map(c =>
+              `<option value="${c}" ${c===cat?'selected':''}>${c}</option>`).join('')}
+          </select>
+        </div>
+
+        <div class="side-box">
+          <div class="side-box-title">🖼️ Ảnh bìa (Hero)</div>
+          <input class="form-input" id="ed-hero" value="${esc(heroUrl)}" placeholder="URL ảnh bìa..." oninput="updateHeroPreview(this.value)"/>
+          <div style="position:relative;overflow:hidden;border-radius:8px;margin-top:8px">
+            <img id="hero-preview" src="${heroUrl}" alt="Hero preview"
+              style="width:100%;height:130px;object-fit:cover;object-position:center ${heroPos}%;display:${heroUrl?'block':'none'};transition:object-position .1s"
+              onerror="this.style.display='none';document.getElementById('hero-placeholder').style.display='flex'"/>
+            <div id="hero-placeholder" style="width:100%;height:130px;border-radius:8px;background:var(--surf2);border:2px dashed var(--border);display:${heroUrl?'none':'flex'};align-items:center;justify-content:center;color:var(--muted);font-size:12px">Chưa có ảnh bìa</div>
+          </div>
+          <div style="margin-top:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+              <label class="form-label" style="margin:0">↕ Vị trí ảnh</label>
+              <span id="hero-pos-label" style="color:var(--cyan);font-size:12px;font-weight:600">${heroPos}%</span>
+            </div>
+            <input type="range" id="ed-hero-pos" min="0" max="100" value="${heroPos}"
+              style="width:100%;accent-color:var(--cyan);cursor:pointer"
+              oninput="updateHeroPosLabel(this.value)"/>
+          </div>
+          <div style="font-size:10.5px;color:var(--muted);margin-top:10px;line-height:1.6">
+            💡 YouTube: <code style="color:var(--cyan)">i.ytimg.com/vi/ID/maxresdefault.jpg</code><br>
+            💡 Steam: <code style="color:var(--cyan)">cdn.akamai.steamstatic.com/steam/apps/ID/header.jpg</code>
           </div>
         </div>
 
-        <div class="field-group">
-          <div class="field-group-title">🔗 Thêm ảnh nhanh</div>
-          <label class="form-label">Video ID YouTube</label>
+        <div class="side-box">
+          <div class="side-box-title">🔗 Thêm ảnh nhanh</div>
+          <label class="form-label" style="margin-top:0">Video ID YouTube</label>
           <input class="form-input" id="yt-id" placeholder="dQw4w9WgXcQ" oninput="updateYtPreview()"/>
           <div style="font-size:11px;color:var(--muted);margin-top:6px" id="yt-urls"></div>
           <label class="form-label" style="margin-top:12px">App ID Steam</label>
@@ -812,10 +845,8 @@ function renderEditor(file, html) {
           <div style="font-size:11px;color:var(--muted);margin-top:6px" id="steam-urls"></div>
         </div>
 
-        <div class="field-group">
-          <div class="field-group-title">⚡ Hành động</div>
-          <button class="btn btn-primary" style="width:100%;margin-bottom:8px" onclick="saveArticle()">💾 Lưu & Deploy</button>
-          <button class="btn btn-secondary" style="width:100%" onclick="if(confirm('Bỏ thay đổi?'))editArticle(currentFile)">↺ Hoàn tác</button>
+        <div class="side-box" style="font-size:10.5px;color:var(--muted);line-height:1.7">
+          ☁️ Lưu bài → commit lên <strong style="color:var(--dim)">GitHub</strong> → Cloudflare tự build & deploy trong <strong style="color:var(--cyan)">~1-2 phút</strong>.
         </div>
       </div>
     </div>
@@ -998,6 +1029,11 @@ function cleanVisualHtml(html) {
     .replace(/ dir="[^"]*"/gi, '')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
+}
+
+function toggleMetaBox(head) {
+  head.classList.toggle('open');
+  head.nextElementSibling?.classList.toggle('open');
 }
 
 function switchBodyMode(mode) {
