@@ -7,11 +7,25 @@
 <meta name="robots" content="noindex, nofollow"/>
 <style>
 :root {
-  --bg: #0b0418; --surf: #150a2c; --surf2: #1d1040; --card: #190c36;
-  --cyan: #00e5ff; --sakura: #ff3080; --violet: #7c3aed; --lav: #a78bfa;
-  --amber: #fbbf24; --green: #34d399; --white: #f0eeff;
+  --bg: #f0f0f1; --surf: #ffffff; --surf2: #f6f7f7; --card: #ffffff;
+  --cyan: #0e7490; --sakura: #d6336c; --violet: #6d28d9; --lav: #8b5cf6;
+  --amber: #d97706; --green: #059669; --white: #1d2327;
+  --dim: #50575e; --muted: #757c82;
+  --border: #dcdcde; --bcyan: rgba(14,116,144,.12);
+}
+/* Sidebar giữ nguyên bảng màu tối gốc (kiểu wp-admin: sidebar tối, nội dung sáng) */
+.sidebar {
+  --surf: #150a2c; --surf2: #1d1040; --white: #f0eeff;
   --dim: rgba(240,238,255,.72); --muted: rgba(240,238,255,.38);
-  --border: rgba(255,255,255,.09); --bcyan: rgba(0,229,255,.15);
+  --border: rgba(255,255,255,.09); --cyan: #00e5ff; --violet: #7c3aed;
+  --sakura: #ff3080; --bcyan: rgba(0,229,255,.15);
+}
+/* Các khối "xem trước trực tiếp" mô phỏng đúng giao diện tối của site công khai — giữ tối để xem trước chính xác */
+.live-hero-card, .live-fc-card, #body-visual, .block-canvas {
+  --surf: #150a2c; --surf2: #150a2c; --white: #f0eeff;
+  --dim: rgba(240,238,255,.72); --muted: rgba(240,238,255,.38);
+  --border: rgba(255,255,255,.09); --cyan: #00e5ff; --violet: #7c3aed;
+  --bcyan: rgba(0,229,255,.15);
 }
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -68,8 +82,8 @@ body { background: var(--bg); color: var(--white); font-family: 'Segoe UI', syst
 
 /* ── Buttons ── */
 .btn { display: inline-flex; align-items: center; gap: 7px; padding: 8px 16px; border-radius: 8px; border: none; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .15s; text-decoration: none; }
-.btn-primary { background: var(--cyan); color: #000; }
-.btn-primary:hover { background: #00ccee; }
+.btn-primary { background: var(--cyan); color: #fff; }
+.btn-primary:hover { background: #0b5f78; }
 .btn-secondary { background: var(--surf2); color: var(--white); border: 1px solid var(--border); }
 .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
 .btn-danger { background: rgba(255,48,128,.15); color: var(--sakura); border: 1px solid rgba(255,48,128,.3); }
@@ -287,7 +301,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 /* ── Command palette (Ctrl/Cmd+K) — tìm nhanh kiểu Linear/Vercel/Notion ── */
 .cmdk-trigger { display: flex; align-items: center; gap: 8px; width: 100%; padding: 9px 12px; background: var(--surf); border: 1px solid var(--border); border-radius: 8px; color: var(--muted); font-size: 12.5px; cursor: pointer; transition: border-color .15s, background .15s; font-family: inherit; }
 .cmdk-trigger:hover { border-color: rgba(0,229,255,.35); background: var(--surf2); }
-.cmdk-trigger kbd { margin-left: auto; font-family: inherit; font-size: 10px; font-weight: 700; color: var(--dim); background: rgba(255,255,255,.06); border: 1px solid var(--border); border-radius: 5px; padding: 2px 6px; }
+.cmdk-trigger kbd { margin-left: auto; font-family: inherit; font-size: 10px; font-weight: 700; color: var(--dim); background: rgba(0,0,0,.05); border: 1px solid var(--border); border-radius: 5px; padding: 2px 6px; }
 .cmdk-ov { position: fixed; inset: 0; z-index: 9999; background: rgba(6,2,20,.72); backdrop-filter: blur(6px); display: none; padding: 11vh 20px 0; }
 .cmdk-ov.open { display: block; }
 .cmdk-box { max-width: 620px; margin: 0 auto; background: var(--surf); border: 1px solid rgba(0,229,255,.25); border-radius: 14px; box-shadow: 0 24px 64px rgba(0,0,0,.5); overflow: hidden; animation: cmdkIn .14s var(--ease, ease-out); }
@@ -296,7 +310,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .cmdk-in-row svg { flex-shrink: 0; color: var(--muted); }
 .cmdk-input { flex: 1; background: none; border: none; outline: none; color: var(--white); font-size: 16px; font-family: inherit; }
 .cmdk-input::placeholder { color: var(--muted); }
-.cmdk-esc { font-size: 10px; font-weight: 700; color: var(--muted); background: rgba(255,255,255,.06); border: 1px solid var(--border); border-radius: 5px; padding: 2px 6px; flex-shrink: 0; }
+.cmdk-esc { font-size: 10px; font-weight: 700; color: var(--muted); background: rgba(0,0,0,.05); border: 1px solid var(--border); border-radius: 5px; padding: 2px 6px; flex-shrink: 0; }
 .cmdk-list { max-height: 54vh; overflow-y: auto; padding: 8px; }
 .cmdk-group-label { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); padding: 10px 10px 6px; }
 .cmdk-item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 8px; cursor: pointer; color: var(--dim); }
