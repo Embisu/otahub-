@@ -294,6 +294,21 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .ticker-chip .drag-handle:active { cursor: grabbing; }
 .ticker-text { flex: 1; outline: none; font-size: 13px; color: var(--white); min-width: 0; border-radius: 4px; padding: 2px 4px; margin: -2px -4px; }
 
+/* ── Bảng tin (Dashboard) ── */
+.dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+.dash-stat-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 2px; border-bottom: 1px dashed var(--border); font-size: 13px; color: var(--dim); }
+.dash-stat-row:last-child { border-bottom: none; }
+.dash-stat-row strong { color: var(--white); font-size: 14px; }
+.dash-stat-total { font-weight: 700; color: var(--white); margin-bottom: 2px; }
+.dash-stat-total strong { color: var(--cyan); font-size: 20px; }
+.dash-recent-row { display: flex; align-items: center; gap: 10px; padding: 9px 6px; border-radius: 8px; cursor: pointer; transition: background .15s; }
+.dash-recent-row:hover { background: var(--surf2); }
+.dash-recent-cat { flex-shrink: 0; }
+.dash-recent-title { flex: 1; min-width: 0; font-size: 13px; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dash-recent-go { font-size: 11px; color: var(--cyan); opacity: 0; transition: opacity .15s; flex-shrink: 0; }
+.dash-recent-row:hover .dash-recent-go { opacity: 1; }
+@media(max-width:900px) { .dash-grid { grid-template-columns: 1fr; } }
+
 /* ── Pages grid ── */
 .pages-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); gap: 10px; }
 .page-card { background: var(--surf); border: 1px solid var(--border); border-radius: 10px; padding: 14px; cursor: pointer; transition: border .15s; }
@@ -344,6 +359,16 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
     <nav class="sidebar">
       <div class="logo" title="OtaHub Admin">
         <div class="logo-mark">OH</div>
+      </div>
+
+      <div class="nav-group">
+        <button class="nav-group-head" title="Bảng tin"><span class="icon">📊</span></button>
+        <div class="nav-flyout">
+          <div class="flyout-title">Bảng tin</div>
+          <button class="nav-item" id="nav-dashboard" onclick="showView('dashboard')">
+            <span class="icon">📊</span> Bảng tin
+          </button>
+        </div>
       </div>
 
       <div class="nav-group">
@@ -460,6 +485,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 </div>
 
 <div id="toast"></div>
+<input type="file" id="global-upload-input" accept="image/*" style="display:none" onchange="handleGlobalUpload(this)"/>
 
 <script>
 // ── State ──────────────────────────────────────────────────────────────────
@@ -521,7 +547,7 @@ function startApp() {
   document.getElementById('app').style.display = 'block';
   document.getElementById('conn-info').innerHTML =
     `<strong>${esc(CURRENT_USER.username)}</strong><br>Embisu/otahub-`;
-  loadArticles();
+  loadArticles(true);
 }
 
 async function disconnect() {
@@ -557,11 +583,72 @@ async function ghPut(path, content, sha, message) {
   return r.json();
 }
 
+// ── Tải ảnh lên (assets/img/) ─────────────────────────────────────────────
+function slugifyFilename(name) {
+  return (name || '')
+    .toLowerCase()
+    .replace(/đ/g, 'd')
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 60);
+}
+
+async function uploadImageFile(file) {
+  if (!file) return null;
+  if (!file.type.startsWith('image/')) throw new Error('Chỉ chấp nhận file ảnh (jpg, png, webp...).');
+  if (file.size > 8 * 1024 * 1024) throw new Error('Ảnh quá lớn (tối đa 8MB).');
+  const ext = (file.type.split('/')[1] || 'jpg').replace('jpeg', 'jpg').replace('svg+xml', 'svg');
+  const hash = Math.random().toString(36).slice(2, 10);
+  const cleanName = slugifyFilename(file.name.replace(/\.[a-z0-9]+$/i, '')) || 'anh';
+  const destPath = `assets/img/${hash}-${cleanName}.${ext}`;
+
+  const b64 = await new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result).split(',')[1] || '');
+    reader.onerror = () => reject(new Error('Không đọc được file ảnh.'));
+    reader.readAsDataURL(file);
+  });
+
+  const r = await fetch(`/api/admin/gh/${destPath}`, {
+    method: 'PUT',
+    credentials: 'same-origin',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ content: b64, sha: null, message: `tai anh len qua admin: ${destPath}` }),
+  });
+  if (r.status === 401) { location.reload(); throw new Error('Phiên đăng nhập đã hết hạn.'); }
+  if (!r.ok) {
+    const e = await r.json().catch(() => ({}));
+    throw new Error(e.error || ('Lỗi tải ảnh lên: ' + r.status));
+  }
+  return `https://otahub.asia/${destPath}`;
+}
+
+let UPLOAD_TARGET_CB = null;
+function triggerImageUpload(onUploaded) {
+  UPLOAD_TARGET_CB = onUploaded;
+  document.getElementById('global-upload-input')?.click();
+}
+async function handleGlobalUpload(inputEl) {
+  const file = inputEl.files && inputEl.files[0];
+  inputEl.value = '';
+  if (!file || !UPLOAD_TARGET_CB) return;
+  const cb = UPLOAD_TARGET_CB;
+  UPLOAD_TARGET_CB = null;
+  toast('success', '⏳ Đang tải ảnh lên...');
+  try {
+    const url = await uploadImageFile(file);
+    if (url) { cb(url); toast('success', '✅ Đã tải ảnh lên: ' + url.split('/').pop()); }
+  } catch (e) {
+    toast('error', 'Lỗi tải ảnh: ' + e.message);
+  }
+}
+
 // ── Load articles ──────────────────────────────────────────────────────────
 // Danh sách bài viết được lấy động từ assets/search.js (IDX) thay vì danh sách
 // cứng, để tự động bao phủ toàn bộ ~150+ bài trên site (chỉ bài tiếng Việt —
 // bài tiếng Anh dùng template khác, chưa hỗ trợ sửa qua trình soạn thảo này).
-async function loadArticles() {
+async function loadArticles(landOnDashboard) {
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải danh sách bài viết...</span></div>`);
   try {
     const data = await ghGet('assets/search.js');
@@ -582,7 +669,7 @@ async function loadArticles() {
         date: '',
       }));
     document.getElementById('article-count').textContent = ARTICLES.length;
-    showView('articles');
+    if (landOnDashboard) showView('dashboard'); else showView('articles');
   } catch(e) {
     setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải bài viết: ${e.message}</p></div>`);
   }
@@ -615,12 +702,74 @@ function setMain(html) { document.getElementById('main-content').innerHTML = htm
 
 function showView(view) {
   document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  const navMap = { articles: 'nav-articles', rankings: 'nav-rankings', users: 'nav-users' };
+  const navMap = { dashboard: 'nav-dashboard', articles: 'nav-articles', rankings: 'nav-rankings', users: 'nav-users' };
   document.getElementById(navMap[view] || 'nav-articles')?.classList.add('active');
 
-  if (view === 'articles') renderArticleList();
+  if (view === 'dashboard') renderDashboard();
+  else if (view === 'articles') renderArticleList();
   else if (view === 'rankings') loadRankings();
   else if (view === 'users') loadUsers();
+}
+
+// ── Bảng tin (Dashboard) ──────────────────────────────────────────────────
+function renderDashboard() {
+  const total = ARTICLES.length;
+  const byCat = {};
+  ARTICLES.forEach(a => { byCat[a.cat] = (byCat[a.cat] || 0) + 1; });
+  const catRows = Object.entries(byCat).sort((a, b) => b[1] - a[1])
+    .map(([cat, count]) => `<div class="dash-stat-row"><span>${CAT_ICON[cat] || '📄'} ${esc(cat)}</span><strong>${count}</strong></div>`).join('');
+
+  const recent = ARTICLES.slice(0, 6);
+  const recentRows = recent.map(a => `
+    <div class="dash-recent-row" onclick="editArticle('${a.file}')">
+      <span class="dash-recent-cat">${CAT_ICON[a.cat] || '📄'}</span>
+      <span class="dash-recent-title">${esc(a.title)}</span>
+      <span class="dash-recent-go">Sửa →</span>
+    </div>`).join('');
+
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">Bảng tin <small>Chào mừng trở lại, ${esc(CURRENT_USER?.username || '')}</small></div>
+    </div>
+    <div class="content-area">
+      <div class="dash-grid">
+        <div class="field-group">
+          <div class="field-group-title">👋 Bắt đầu nhanh</div>
+          <p style="font-size:13px;color:var(--dim);line-height:1.6;margin-bottom:16px">Quản lý toàn bộ nội dung OtaHub.asia ngay tại đây — mọi thay đổi tự động lưu lên GitHub và deploy qua Cloudflare trong ~1-2 phút.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn btn-primary" onclick="newArticle()">✏️ Viết bài mới</button>
+            <button class="btn btn-secondary" onclick="homeEditor('index.html')">🏠 Sửa trang chủ</button>
+            <a class="btn btn-secondary" href="https://otahub.asia" target="_blank">🌐 Xem website</a>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-group-title">📊 Tổng quan</div>
+          <div class="dash-stat-row dash-stat-total"><span>Tổng số bài viết</span><strong>${total}</strong></div>
+          ${catRows}
+        </div>
+
+        <div class="field-group">
+          <div class="field-group-title">📝 Viết nhanh</div>
+          <label class="form-label" style="margin-top:0">Tiêu đề bài viết</label>
+          <input class="form-input" id="dash-quick-title" placeholder="Nhập tiêu đề rồi bấm Tạo bài viết..." onkeydown="if(event.key==='Enter')quickNewArticle()"/>
+          <button class="btn btn-primary" style="margin-top:12px" onclick="quickNewArticle()">Tạo bài viết →</button>
+        </div>
+
+        <div class="field-group">
+          <div class="field-group-title">🕐 Bài viết gần đây</div>
+          ${recentRows || '<p style="color:var(--muted);font-size:12px">Chưa có bài viết nào.</p>'}
+          <button class="btn btn-secondary btn-sm" style="margin-top:12px" onclick="showView('articles')">Xem tất cả bài viết →</button>
+        </div>
+      </div>
+    </div>
+  `);
+}
+
+function quickNewArticle() {
+  const title = (document.getElementById('dash-quick-title')?.value || '').trim();
+  if (!title) { toast('error', 'Nhập tiêu đề trước đã.'); return; }
+  newArticle(title);
 }
 
 // ── Quản lý người dùng ────────────────────────────────────────────────────
@@ -944,7 +1093,10 @@ function renderEditor(file, html) {
 
         <div class="side-box">
           <div class="side-box-title">🖼️ Ảnh bìa (Hero)</div>
-          <input class="form-input" id="ed-hero" value="${esc(heroUrl)}" placeholder="URL ảnh bìa..." oninput="updateHeroPreview(this.value)"/>
+          <div style="display:flex;gap:6px">
+            <input class="form-input" id="ed-hero" style="flex:1" value="${esc(heroUrl)}" placeholder="URL ảnh bìa..." oninput="updateHeroPreview(this.value)"/>
+            <button class="btn btn-secondary btn-sm btn-icon" title="Tải ảnh lên từ máy" onclick="triggerImageUpload(url => { const el = document.getElementById('ed-hero'); el.value = url; updateHeroPreview(url); })">📤</button>
+          </div>
           <div style="position:relative;overflow:hidden;border-radius:8px;margin-top:8px">
             <img id="hero-preview" src="${heroUrl}" alt="Hero preview"
               style="width:100%;height:130px;object-fit:cover;object-position:center ${heroPos}%;display:${heroUrl?'block':'none'};transition:object-position .1s"
@@ -1057,6 +1209,7 @@ function renderBodyImgs(bodyHtml) {
         <input class="form-input" style="flex:1;font-size:12px" id="body-img-${i}"
           value="${esc(src)}" placeholder="URL ảnh..."
           oninput="syncBodyImg(${i},this.value)"/>
+        <button class="tb-btn" title="Tải ảnh lên từ máy" onclick="triggerImageUpload(url => { const el = document.getElementById('body-img-${i}'); el.value = url; syncBodyImg(${i}, url); applyBodyImg(${i}); })">📤</button>
         <button class="tb-btn" onclick="applyBodyImg(${i})">✓ Áp dụng</button>
       </div>
       <img src="${src}" id="body-img-prev-${i}"
@@ -1447,8 +1600,9 @@ async function saveArticle() {
 // Template đầy đủ (head + style + nav + hero + body + footer), sao chép từ
 // khung sườn thật của bài viết đang chạy trên site — để bài mới tạo từ admin
 // trông giống hệt bài thật ngay từ đầu, thay vì trang trơ trụi thiếu CSS/nav.
-function newArticle() {
-  const slug = prompt('Tên file bài viết mới (không có .html):\nVí dụ: tekken-8-review');
+function newArticle(prefillTitle) {
+  const suggestedSlug = prefillTitle ? slugifyFilename(prefillTitle) : '';
+  const slug = prompt('Tên file bài viết mới (không có .html):\nVí dụ: tekken-8-review', suggestedSlug);
   if (!slug) return;
   const cleanSlug = slug.replace(/[^a-z0-9-]/gi,'').toLowerCase();
   const filename = cleanSlug + '.html';
@@ -1457,7 +1611,7 @@ function newArticle() {
   const iso = now.toISOString();
   const dateDisp = iso.slice(0,10);
   const heroImg = 'https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg';
-  const title = 'Tiêu đề bài viết';
+  const title = prefillTitle || 'Tiêu đề bài viết';
   const desc = 'Mô tả ngắn cho SEO (150-160 ký tự)';
   const cat = 'Gaming';
 
@@ -1982,6 +2136,7 @@ function renderHubEditor() {
           <input class="rank-input-sm" placeholder="Link" value="${esc(f.href)}" oninput="hubUpdate(${i},'href',this.value)"/>
           <input class="rank-input-sm" placeholder="Nhãn" style="max-width:96px" value="${esc(f.tag)}" oninput="hubUpdate(${i},'tag',this.value)"/>
           <input class="rank-input-sm" placeholder="URL ảnh" value="${esc(f.img)}" oninput="hubUpdate(${i},'img',this.value);this.closest('.sc-card').querySelector('.sc-thumb').src=this.value"/>
+          <button class="tb-btn" style="flex-shrink:0" title="Tải ảnh lên từ máy" onclick="triggerImageUpload(url => { hubUpdate(${i},'img',url); renderHubEditor(); })">📤</button>
         </div>
       </div>
       <div class="sc-actions-col">
@@ -2146,6 +2301,7 @@ function renderHomeEditor() {
           <input class="rank-input-sm" placeholder="Link" value="${esc(f.href)}" oninput="scUpdate(${i},'href',this.value)"/>
           <input class="rank-input-sm" placeholder="Nhãn" style="max-width:96px" value="${esc(f.tag)}" oninput="scUpdate(${i},'tag',this.value)"/>
           <input class="rank-input-sm" placeholder="URL ảnh" value="${esc(f.img)}" oninput="scUpdate(${i},'img',this.value);this.closest('.sc-card').querySelector('.sc-thumb').src=this.value"/>
+          <button class="tb-btn" style="flex-shrink:0" title="Tải ảnh lên từ máy" onclick="triggerImageUpload(url => { scUpdate(${i},'img',url); renderHomeEditor(); })">📤</button>
         </div>
       </div>
       <div class="sc-actions-col">
@@ -2179,7 +2335,12 @@ function renderHomeEditor() {
         <div class="rank-row" style="grid-template-columns:1fr 1fr 1fr">
           <div><label class="form-label" style="margin-top:0">Ngày</label><input class="form-input" id="home-hero-date" value="${esc(hf.date)}"/></div>
           <div><label class="form-label" style="margin-top:0">Link (slug)</label><input class="form-input" id="home-hero-href" value="${esc(hf.href)}"/></div>
-          <div><label class="form-label" style="margin-top:0">URL ảnh nền</label><input class="form-input" id="home-hero-img" value="${esc(hf.img)}" oninput="liveImgUpdate('live-hero-card',this.value)"/></div>
+          <div><label class="form-label" style="margin-top:0">URL ảnh nền</label>
+            <div style="display:flex;gap:6px">
+              <input class="form-input" style="flex:1" id="home-hero-img" value="${esc(hf.img)}" oninput="liveImgUpdate('live-hero-card',this.value)"/>
+              <button class="btn btn-secondary btn-sm btn-icon" title="Tải ảnh lên từ máy" onclick="triggerImageUpload(url => { const el = document.getElementById('home-hero-img'); el.value = url; liveImgUpdate('live-hero-card', url); })">📤</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -2201,7 +2362,12 @@ function renderHomeEditor() {
         </div>
         <div class="rank-row" style="grid-template-columns:1fr 1fr">
           <div><label class="form-label" style="margin-top:0">Link</label><input class="form-input" id="home-fc-href" value="${esc(fc.href)}"/></div>
-          <div><label class="form-label" style="margin-top:0">URL ảnh</label><input class="form-input" id="home-fc-img" value="${esc(fc.img)}" oninput="liveImgUpdate('live-fc-card',this.value)"/></div>
+          <div><label class="form-label" style="margin-top:0">URL ảnh</label>
+            <div style="display:flex;gap:6px">
+              <input class="form-input" style="flex:1" id="home-fc-img" value="${esc(fc.img)}" oninput="liveImgUpdate('live-fc-card',this.value)"/>
+              <button class="btn btn-secondary btn-sm btn-icon" title="Tải ảnh lên từ máy" onclick="triggerImageUpload(url => { const el = document.getElementById('home-fc-img'); el.value = url; liveImgUpdate('live-fc-card', url); })">📤</button>
+            </div>
+          </div>
         </div>
       </div>
 
