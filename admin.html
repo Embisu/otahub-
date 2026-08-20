@@ -249,7 +249,6 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .rank-tab.active { color: var(--cyan); border-bottom-color: var(--cyan); }
 .rank-entry { display: grid; grid-template-columns: 72px 1fr; gap: 12px; align-items: start; padding: 12px; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; background: var(--surf); transition: border .15s, box-shadow .15s; }
 .rank-entry:hover { border-color: rgba(0,229,255,.3); box-shadow: 0 4px 14px rgba(0,0,0,.16); }
-.rank-entry:hover { border-color: rgba(0,229,255,.2); }
 .rank-entry.top3 { border-color: rgba(0,229,255,.3); background: rgba(0,229,255,.03); }
 .rank-num { font-size: 20px; font-weight: 800; color: var(--cyan); text-align: center; padding-top: 6px; }
 .rank-num.gold { color: #fbbf24; }
@@ -260,6 +259,40 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .rank-row { display: grid; grid-template-columns: 1fr 90px 90px; gap: 8px; }
 .rank-input-sm { background: var(--surf2); border: 1px solid var(--border); border-radius: 6px; padding: 5px 8px; color: var(--white); font-size: 12px; outline: none; width: 100%; }
 .rank-input-sm:focus { border-color: var(--cyan); }
+
+/* ── Live preview cards (xem trước trực tiếp, sửa chữ ngay trên thẻ) ── */
+.live-hero-card, .live-fc-card { position: relative; width: 100%; border-radius: 12px; overflow: hidden; background-size: cover; background-position: center; background-color: var(--surf2); display: flex; align-items: flex-end; margin-bottom: 14px; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+.live-hero-card { min-height: 240px; }
+.live-fc-card { min-height: 170px; }
+.live-hero-card::before, .live-fc-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.4) 55%, rgba(0,0,0,.05) 100%); }
+.live-card-body { position: relative; z-index: 1; padding: 20px; width: 100%; }
+.live-tag { display: inline-block; background: var(--cyan); color: #000; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.live-title { font-size: 22px; font-weight: 800; color: #fff; line-height: 1.3; outline: none; text-shadow: 0 2px 10px rgba(0,0,0,.5); border-radius: 4px; padding: 2px 4px; margin: -2px -4px; }
+.live-title:focus, .live-sub:focus, .sc-title-live:focus, .ticker-text:focus { background: rgba(0,229,255,.12); box-shadow: 0 0 0 1px var(--cyan); }
+.live-title:empty:before { content: attr(data-ph); color: rgba(255,255,255,.4); }
+.live-sub { font-size: 13px; color: rgba(255,255,255,.88); margin-top: 8px; outline: none; max-width: 640px; border-radius: 4px; padding: 2px 4px; margin-left: -4px; }
+.live-sub:empty:before { content: attr(data-ph); color: rgba(255,255,255,.35); }
+.live-edit-hint { font-size: 10.5px; color: var(--muted); margin: -8px 0 14px; }
+.live-edit-hint strong { color: var(--dim); }
+
+.sc-card { display: flex; gap: 12px; padding: 10px; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; background: var(--surf); transition: border .15s, box-shadow .15s, opacity .15s; }
+.sc-card:hover { border-color: rgba(0,229,255,.3); box-shadow: 0 4px 14px rgba(0,0,0,.16); }
+.sc-card.dragging { opacity: .35; }
+.sc-drag-handle { cursor: grab; color: var(--muted); display: flex; align-items: center; padding: 0 2px; font-size: 15px; user-select: none; }
+.sc-drag-handle:active { cursor: grabbing; }
+.sc-thumb { width: 96px; height: 66px; object-fit: cover; border-radius: 8px; background: var(--surf2); flex-shrink: 0; }
+.sc-body { flex: 1; min-width: 0; }
+.sc-title-live { font-size: 14px; font-weight: 700; color: var(--white); outline: none; border-radius: 4px; padding: 1px 3px; margin: -1px -3px; }
+.sc-title-live:empty:before { content: 'Tiêu đề tin phụ...'; color: var(--muted); }
+.sc-fields-row { display: flex; gap: 6px; margin-top: 8px; }
+.sc-actions-col { display: flex; flex-direction: column; gap: 4px; justify-content: center; }
+
+.ticker-chip { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--surf); margin-bottom: 6px; transition: border .15s, opacity .15s; }
+.ticker-chip:hover { border-color: rgba(0,229,255,.3); }
+.ticker-chip.dragging { opacity: .35; }
+.ticker-chip .drag-handle { cursor: grab; color: var(--muted); flex-shrink: 0; font-size: 14px; user-select: none; }
+.ticker-chip .drag-handle:active { cursor: grabbing; }
+.ticker-text { flex: 1; outline: none; font-size: 13px; color: var(--white); min-width: 0; border-radius: 4px; padding: 2px 4px; margin: -2px -4px; }
 
 /* ── Pages grid ── */
 .pages-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); gap: 10px; }
@@ -1940,20 +1973,21 @@ function renderHubEditor() {
   const viewPath = (isEn ? HUB_FILE.replace(/^en\//, 'en/') : HUB_FILE).replace('.html', '');
   const rows = HUB_CARDS.map((c, i) => {
     const f = acFields(c.raw);
-    return `<div class="rank-entry">
-      <div style="text-align:center"><img class="rank-img-prev" src="${esc(f.img)}" onerror="this.style.opacity=.3" alt=""/></div>
-      <div class="rank-fields">
-        <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Tiêu đề</div><input class="rank-input-sm" style="width:100%" value="${esc(f.title)}" oninput="hubUpdate(${i},'title',this.value)"/></div>
-        <div style="margin-top:6px"><div style="font-size:10px;color:var(--muted);margin-bottom:3px">URL ảnh</div><input class="rank-input-sm" style="width:100%" value="${esc(f.img)}" oninput="hubUpdate(${i},'img',this.value)"/></div>
-        <div class="rank-row" style="margin-top:6px;grid-template-columns:1fr 1fr auto">
-          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Link</div><input class="rank-input-sm" value="${esc(f.href)}" oninput="hubUpdate(${i},'href',this.value)"/></div>
-          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Nhãn</div><input class="rank-input-sm" value="${esc(f.tag)}" oninput="hubUpdate(${i},'tag',this.value)"/></div>
-          <div style="display:flex;gap:4px;align-items:end">
-            <button class="tb-btn" onclick="hubMove(${i},-1)" title="Lên">↑</button>
-            <button class="tb-btn" onclick="hubMove(${i},1)" title="Xuống">↓</button>
-            <button class="btn btn-danger btn-sm btn-icon" onclick="hubDelete(${i})" title="Xoá">🗑</button>
-          </div>
+    return `<div class="sc-card" draggable="true" ondragstart="hubDragStart(event,${i})" ondragover="event.preventDefault()" ondragend="this.classList.remove('dragging')" ondrop="hubDrop(event,${i})">
+      <div class="sc-drag-handle" title="Kéo để sắp xếp">⠿</div>
+      <img class="sc-thumb" src="${esc(f.img)}" onerror="this.style.opacity=.3" alt=""/>
+      <div class="sc-body">
+        <div class="sc-title-live" contenteditable="true" oninput="hubUpdate(${i},'title',this.textContent)">${esc(f.title)}</div>
+        <div class="sc-fields-row">
+          <input class="rank-input-sm" placeholder="Link" value="${esc(f.href)}" oninput="hubUpdate(${i},'href',this.value)"/>
+          <input class="rank-input-sm" placeholder="Nhãn" style="max-width:96px" value="${esc(f.tag)}" oninput="hubUpdate(${i},'tag',this.value)"/>
+          <input class="rank-input-sm" placeholder="URL ảnh" value="${esc(f.img)}" oninput="hubUpdate(${i},'img',this.value);this.closest('.sc-card').querySelector('.sc-thumb').src=this.value"/>
         </div>
+      </div>
+      <div class="sc-actions-col">
+        <button class="tb-btn" onclick="hubMove(${i},-1)" title="Lên">↑</button>
+        <button class="tb-btn" onclick="hubMove(${i},1)" title="Xuống">↓</button>
+        <button class="btn btn-danger btn-sm btn-icon" onclick="hubDelete(${i})" title="Xoá">🗑</button>
       </div>
     </div>`;
   }).join('');
@@ -1968,7 +2002,7 @@ function renderHubEditor() {
       </div>
     </div>
     <div class="content-area">
-      <div style="font-size:11px;color:var(--muted);margin-bottom:14px">💡 Chỉ sửa tiêu đề, ảnh, link và nhãn danh mục của mỗi thẻ. Tác giả/ngày/thời lượng đọc được giữ nguyên để không sai định dạng.</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:14px">💡 Kéo ⠿ để sắp xếp lại, bấm vào tiêu đề trên thẻ để sửa trực tiếp. Tác giả/ngày/thời lượng đọc được giữ nguyên để không sai định dạng.</div>
       <button class="btn btn-secondary" style="margin-bottom:14px" onclick="hubAdd()">➕ Thêm thẻ bài viết vào đầu danh sách</button>
       ${rows}
     </div>
@@ -1977,6 +2011,17 @@ function renderHubEditor() {
 
 function hubUpdate(i, field, value) { HUB_CARDS[i].raw = acApply(HUB_CARDS[i].raw, { [field]: value }); }
 function hubMove(i, dir) { const j = i + dir; if (j < 0 || j >= HUB_CARDS.length) return; const t = HUB_CARDS[i]; HUB_CARDS[i] = HUB_CARDS[j]; HUB_CARDS[j] = t; renderHubEditor(); }
+let DRAG_HUB_IDX = null;
+function hubDragStart(e, i) { DRAG_HUB_IDX = i; e.dataTransfer.effectAllowed = 'move'; e.currentTarget.classList.add('dragging'); }
+function hubDrop(e, i) {
+  e.preventDefault();
+  document.querySelectorAll('.sc-card.dragging').forEach(el => el.classList.remove('dragging'));
+  if (DRAG_HUB_IDX === null || DRAG_HUB_IDX === i) return;
+  const item = HUB_CARDS.splice(DRAG_HUB_IDX, 1)[0];
+  HUB_CARDS.splice(i, 0, item);
+  DRAG_HUB_IDX = null;
+  renderHubEditor();
+}
 function hubDelete(i) { if (!confirm('Gỡ thẻ này khỏi danh sách? (Không xoá file bài viết gốc)')) return; HUB_CARDS.splice(i, 1); renderHubEditor(); }
 function hubAdd() {
   if (!HUB_CARDS.length) { toast('error', 'Không có thẻ mẫu để nhân bản.'); return; }
@@ -2084,27 +2129,29 @@ function renderHomeEditor() {
   const fc = fcFields(HOME_FEATURED.fc);
 
   const tickerRows = HOME_TICKER.map((t, i) => `
-    <div style="display:flex;gap:6px;margin-bottom:6px">
-      <input class="form-input" style="flex:1" value="${esc(t)}" oninput="tickerUpdate(${i},this.value)"/>
-      <button class="btn btn-danger btn-sm btn-icon" onclick="tickerDelete(${i})">🗑</button>
+    <div class="ticker-chip" draggable="true" ondragstart="tickerDragStart(event,${i})" ondragover="event.preventDefault()" ondragend="this.classList.remove('dragging')" ondrop="tickerDrop(event,${i})">
+      <span class="drag-handle" title="Kéo để sắp xếp">⠿</span>
+      <div class="ticker-text" contenteditable="true" oninput="tickerUpdate(${i},this.textContent)">${esc(t)}</div>
+      <button class="btn btn-danger btn-sm btn-icon" onclick="tickerDelete(${i})" title="Xoá">🗑</button>
     </div>`).join('');
 
   const scRows = HOME_FEATURED.sc.map((c, i) => {
     const f = scFields(c.raw);
-    return `<div class="rank-entry">
-      <div style="text-align:center"><img class="rank-img-prev" src="${esc(f.img)}" onerror="this.style.opacity=.3" alt=""/></div>
-      <div class="rank-fields">
-        <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Tiêu đề</div><input class="rank-input-sm" style="width:100%" value="${esc(f.title)}" oninput="scUpdate(${i},'title',this.value)"/></div>
-        <div style="margin-top:6px"><div style="font-size:10px;color:var(--muted);margin-bottom:3px">URL ảnh</div><input class="rank-input-sm" style="width:100%" value="${esc(f.img)}" oninput="scUpdate(${i},'img',this.value)"/></div>
-        <div class="rank-row" style="margin-top:6px;grid-template-columns:1fr 1fr auto">
-          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Link</div><input class="rank-input-sm" value="${esc(f.href)}" oninput="scUpdate(${i},'href',this.value)"/></div>
-          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Nhãn</div><input class="rank-input-sm" value="${esc(f.tag)}" oninput="scUpdate(${i},'tag',this.value)"/></div>
-          <div style="display:flex;gap:4px;align-items:end">
-            <button class="tb-btn" onclick="scMove(${i},-1)">↑</button>
-            <button class="tb-btn" onclick="scMove(${i},1)">↓</button>
-            <button class="btn btn-danger btn-sm btn-icon" onclick="scDelete(${i})">🗑</button>
-          </div>
+    return `<div class="sc-card" draggable="true" ondragstart="scDragStart(event,${i})" ondragover="event.preventDefault()" ondragend="this.classList.remove('dragging')" ondrop="scDrop(event,${i})">
+      <div class="sc-drag-handle" title="Kéo để sắp xếp">⠿</div>
+      <img class="sc-thumb" src="${esc(f.img)}" onerror="this.style.opacity=.3" alt=""/>
+      <div class="sc-body">
+        <div class="sc-title-live" contenteditable="true" oninput="scUpdate(${i},'title',this.textContent)">${esc(f.title)}</div>
+        <div class="sc-fields-row">
+          <input class="rank-input-sm" placeholder="Link" value="${esc(f.href)}" oninput="scUpdate(${i},'href',this.value)"/>
+          <input class="rank-input-sm" placeholder="Nhãn" style="max-width:96px" value="${esc(f.tag)}" oninput="scUpdate(${i},'tag',this.value)"/>
+          <input class="rank-input-sm" placeholder="URL ảnh" value="${esc(f.img)}" oninput="scUpdate(${i},'img',this.value);this.closest('.sc-card').querySelector('.sc-thumb').src=this.value"/>
         </div>
+      </div>
+      <div class="sc-actions-col">
+        <button class="tb-btn" onclick="scMove(${i},-1)" title="Lên">↑</button>
+        <button class="tb-btn" onclick="scMove(${i},1)" title="Xuống">↓</button>
+        <button class="btn btn-danger btn-sm btn-icon" onclick="scDelete(${i})" title="Xoá">🗑</button>
       </div>
     </div>`;
   }).join('');
@@ -2121,48 +2168,81 @@ function renderHomeEditor() {
     <div class="content-area">
       <div class="field-group">
         <div class="field-group-title">🎬 Tin nổi bật chính (Hero)</div>
-        <label class="form-label">Tiêu đề</label>
-        <input class="form-input" id="home-hero-title" value="${esc(hf.title)}"/>
-        <label class="form-label">Mô tả ngắn</label>
-        <textarea class="form-input" id="home-hero-sub" rows="2">${esc(hf.sub)}</textarea>
-        <div class="rank-row" style="grid-template-columns:1fr 1fr 1fr;margin-top:12px">
-          <div><label class="form-label" style="margin-top:0">Danh mục</label><input class="form-input" id="home-hero-cat" value="${esc(hf.cat)}"/></div>
+        <div class="live-hero-card" id="live-hero-card" style="background-image:url('${esc(hf.img)}')">
+          <div class="live-card-body">
+            <span class="live-tag" id="live-hero-tag" contenteditable="true" oninput="markChanged()">${esc(hf.cat)}</span>
+            <div class="live-title" id="home-hero-title" contenteditable="true" data-ph="Nhập tiêu đề..." oninput="markChanged()">${esc(hf.title)}</div>
+            <div class="live-sub" id="home-hero-sub" contenteditable="true" data-ph="Nhập mô tả ngắn..." oninput="markChanged()">${esc(hf.sub)}</div>
+          </div>
+        </div>
+        <div class="live-edit-hint">✏️ Bấm trực tiếp vào <strong>nhãn</strong>, <strong>tiêu đề</strong> hoặc <strong>mô tả</strong> trên thẻ để sửa — xem trước như thật.</div>
+        <div class="rank-row" style="grid-template-columns:1fr 1fr 1fr">
           <div><label class="form-label" style="margin-top:0">Ngày</label><input class="form-input" id="home-hero-date" value="${esc(hf.date)}"/></div>
           <div><label class="form-label" style="margin-top:0">Link (slug)</label><input class="form-input" id="home-hero-href" value="${esc(hf.href)}"/></div>
+          <div><label class="form-label" style="margin-top:0">URL ảnh nền</label><input class="form-input" id="home-hero-img" value="${esc(hf.img)}" oninput="liveImgUpdate('live-hero-card',this.value)"/></div>
         </div>
-        <label class="form-label">URL ảnh nền</label>
-        <input class="form-input" id="home-hero-img" value="${esc(hf.img)}"/>
-        <img src="${esc(hf.img)}" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-top:8px" onerror="this.style.opacity=.3"/>
       </div>
 
       <div class="field-group">
         <div class="field-group-title">📰 Thanh tin chạy (Breaking ticker)</div>
-        <div style="font-size:11px;color:var(--muted);margin-bottom:10px">Các dòng tin mới nhất được chèn ở đầu thanh chạy — phần cũ phía sau vẫn giữ nguyên.</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:10px">Kéo ⠿ để sắp xếp lại, bấm vào chữ để sửa trực tiếp. Dòng mới được chèn ở đầu thanh chạy — phần cũ phía sau vẫn giữ nguyên.</div>
         ${tickerRows}
         <button class="btn btn-secondary btn-sm" onclick="tickerAdd()">➕ Thêm dòng tin</button>
       </div>
 
       <div class="field-group">
         <div class="field-group-title">⭐ Nổi bật hôm nay — tin chính</div>
-        <label class="form-label">Tiêu đề</label>
-        <input class="form-input" id="home-fc-title" value="${esc(fc.title)}"/>
-        <label class="form-label">Mô tả ngắn</label>
-        <textarea class="form-input" id="home-fc-sub" rows="2">${esc(fc.sub)}</textarea>
-        <div class="rank-row" style="grid-template-columns:1fr 1fr;margin-top:12px">
-          <div><label class="form-label" style="margin-top:0">Link</label><input class="form-input" id="home-fc-href" value="${esc(fc.href)}"/></div>
-          <div><label class="form-label" style="margin-top:0">Nhãn danh mục</label><input class="form-input" id="home-fc-tag" value="${esc(fc.tag)}"/></div>
+        <div class="live-fc-card" id="live-fc-card" style="background-image:url('${esc(fc.img)}')">
+          <div class="live-card-body">
+            <span class="live-tag" id="live-fc-tag" contenteditable="true" oninput="markChanged()">${esc(fc.tag)}</span>
+            <div class="live-title" id="home-fc-title" contenteditable="true" data-ph="Nhập tiêu đề..." style="font-size:18px" oninput="markChanged()">${esc(fc.title)}</div>
+            <div class="live-sub" id="home-fc-sub" contenteditable="true" data-ph="Nhập mô tả ngắn..." oninput="markChanged()">${esc(fc.sub)}</div>
+          </div>
         </div>
-        <label class="form-label">URL ảnh</label>
-        <input class="form-input" id="home-fc-img" value="${esc(fc.img)}"/>
+        <div class="rank-row" style="grid-template-columns:1fr 1fr">
+          <div><label class="form-label" style="margin-top:0">Link</label><input class="form-input" id="home-fc-href" value="${esc(fc.href)}"/></div>
+          <div><label class="form-label" style="margin-top:0">URL ảnh</label><input class="form-input" id="home-fc-img" value="${esc(fc.img)}" oninput="liveImgUpdate('live-fc-card',this.value)"/></div>
+        </div>
       </div>
 
       <div class="field-group">
         <div class="field-group-title">⭐ Nổi bật hôm nay — tin phụ</div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:12px">Kéo ⠿ để sắp xếp lại, bấm vào tiêu đề trên thẻ để sửa trực tiếp.</div>
         <button class="btn btn-secondary btn-sm" style="margin-bottom:12px" onclick="scAdd()">➕ Thêm thẻ tin phụ</button>
         ${scRows}
       </div>
     </div>
   `);
+}
+
+function liveImgUpdate(elId, url) {
+  const el = document.getElementById(elId);
+  if (el) el.style.backgroundImage = `url('${url.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')`;
+  markChanged();
+}
+
+let DRAG_SC_IDX = null;
+function scDragStart(e, i) { DRAG_SC_IDX = i; e.dataTransfer.effectAllowed = 'move'; e.currentTarget.classList.add('dragging'); }
+function scDrop(e, i) {
+  e.preventDefault();
+  document.querySelectorAll('.sc-card.dragging').forEach(el => el.classList.remove('dragging'));
+  if (DRAG_SC_IDX === null || DRAG_SC_IDX === i) return;
+  const item = HOME_FEATURED.sc.splice(DRAG_SC_IDX, 1)[0];
+  HOME_FEATURED.sc.splice(i, 0, item);
+  DRAG_SC_IDX = null;
+  renderHomeEditor();
+}
+
+let DRAG_TICKER_IDX = null;
+function tickerDragStart(e, i) { DRAG_TICKER_IDX = i; e.dataTransfer.effectAllowed = 'move'; e.currentTarget.classList.add('dragging'); }
+function tickerDrop(e, i) {
+  e.preventDefault();
+  document.querySelectorAll('.ticker-chip.dragging').forEach(el => el.classList.remove('dragging'));
+  if (DRAG_TICKER_IDX === null || DRAG_TICKER_IDX === i) return;
+  const item = HOME_TICKER.splice(DRAG_TICKER_IDX, 1)[0];
+  HOME_TICKER.splice(i, 0, item);
+  DRAG_TICKER_IDX = null;
+  renderHomeEditor();
 }
 
 function tickerUpdate(i, v) { HOME_TICKER[i] = v; }
@@ -2184,9 +2264,9 @@ async function saveHome() {
     const latest = await ghGet(HOME_FILE);
     let html = decodeURIComponent(escape(atob(latest.content)));
 
-    const heroTitle = document.getElementById('home-hero-title').value;
-    const heroSub   = document.getElementById('home-hero-sub').value;
-    const heroCat   = document.getElementById('home-hero-cat').value;
+    const heroTitle = document.getElementById('home-hero-title').textContent;
+    const heroSub   = document.getElementById('home-hero-sub').textContent;
+    const heroCat   = document.getElementById('live-hero-tag').textContent;
     const heroDate  = document.getElementById('home-hero-date').value;
     const heroHref  = document.getElementById('home-hero-href').value;
     const heroImg   = document.getElementById('home-hero-img').value;
@@ -2202,9 +2282,9 @@ async function saveHome() {
     const fc = {
       href: document.getElementById('home-fc-href').value,
       img: document.getElementById('home-fc-img').value,
-      tag: document.getElementById('home-fc-tag').value,
-      title: document.getElementById('home-fc-title').value,
-      sub: document.getElementById('home-fc-sub').value,
+      tag: document.getElementById('live-fc-tag').textContent,
+      title: document.getElementById('home-fc-title').textContent,
+      sub: document.getElementById('home-fc-sub').textContent,
     };
     const newFc = fcApply(HOME_FEATURED.fc, fc);
     const newFeatured = '\n    ' + newFc.trim() + '\n\n    ' + HOME_FEATURED.sc.map(c => c.raw.trim()).join('\n\n    ') + '\n    ';
