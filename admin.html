@@ -275,6 +275,11 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .live-sub { font-size: 13px; color: rgba(255,255,255,.88); margin-top: 8px; outline: none; max-width: 640px; border-radius: 4px; padding: 2px 4px; margin-left: -4px; }
 .live-sub:empty:before { content: attr(data-ph); color: rgba(255,255,255,.35); }
 .live-edit-hint { font-size: 10.5px; color: var(--muted); margin: -8px 0 14px; }
+.live-section-badge { position: absolute; top: 14px; left: 14px; z-index: 2; font-size: 10px; font-weight: 800; letter-spacing: .08em; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; box-shadow: 0 4px 12px rgba(0,0,0,.35); }
+.live-badge-hero { background: var(--cyan); color: #001018; }
+.live-badge-fc { background: var(--violet); color: #fff; }
+.toc-link { display: flex; align-items: center; gap: 8px; padding: 8px 6px; border-radius: 7px; font-size: 12.5px; color: var(--dim); text-decoration: none; transition: background .15s, color .15s; }
+.toc-link:hover { background: var(--surf2); color: var(--white); }
 .live-edit-hint strong { color: var(--dim); }
 
 .sc-card { display: flex; gap: 12px; padding: 10px; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; background: var(--surf); transition: border .15s, box-shadow .15s, opacity .15s; }
@@ -2207,7 +2212,7 @@ function renderHubEditor() {
   `);
 }
 
-function hubUpdate(i, field, value) { HUB_CARDS[i].raw = acApply(HUB_CARDS[i].raw, { [field]: value }); }
+function hubUpdate(i, field, value) { HUB_CARDS[i].raw = acApply(HUB_CARDS[i].raw, { [field]: value }); markChanged(); }
 function hubMove(i, dir) { const j = i + dir; if (j < 0 || j >= HUB_CARDS.length) return; const t = HUB_CARDS[i]; HUB_CARDS[i] = HUB_CARDS[j]; HUB_CARDS[j] = t; renderHubEditor(); }
 let DRAG_HUB_IDX = null;
 function hubDragStart(e, i) { DRAG_HUB_IDX = i; e.dataTransfer.effectAllowed = 'move'; e.currentTarget.classList.add('dragging'); }
@@ -2283,6 +2288,7 @@ function fcApply(raw, f) {
 }
 
 async function homeEditor(file) {
+  HAS_UNSAVED_CHANGES = false;
   file = file || 'index.html';
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải trang chủ...</span></div>`);
   document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
@@ -2360,65 +2366,95 @@ function renderHomeEditor() {
       <div class="page-title">Trang chủ <small>${HOME_FILE}</small></div>
       <div class="header-actions">
         <button class="btn btn-secondary btn-sm" onclick="homeEditor('${isEn ? HOME_FILE.replace(/^en\//, '') : 'en/' + HOME_FILE}')">${isEn ? '🇻🇳 Xem bản VI' : '🇬🇧 Xem bản EN'}</button>
-        <a class="btn btn-secondary btn-sm" href="https://otahub.asia/${isEn ? 'en/' : ''}" target="_blank">🔗 Xem live</a>
-        <button class="btn btn-primary" onclick="saveHome()">💾 Lưu & Deploy</button>
       </div>
     </div>
-    <div class="content-area">
-      <div class="field-group">
-        <div class="field-group-title">🎬 Tin nổi bật chính (Hero)</div>
-        <div class="live-hero-card" id="live-hero-card" style="background-image:url('${esc(hf.img)}')">
-          <div class="live-card-body">
-            <span class="live-tag" id="live-hero-tag" contenteditable="true" oninput="markChanged()">${esc(hf.cat)}</span>
-            <div class="live-title" id="home-hero-title" contenteditable="true" data-ph="Nhập tiêu đề..." oninput="markChanged()">${esc(hf.title)}</div>
-            <div class="live-sub" id="home-hero-sub" contenteditable="true" data-ph="Nhập mô tả ngắn..." oninput="markChanged()">${esc(hf.sub)}</div>
+
+    <div class="editor-layout">
+      <div class="editor-main">
+
+        <div class="field-group" id="sec-hero">
+          <div class="field-group-title">🎬 Tin nổi bật chính (Hero)</div>
+          <div class="live-hero-card" id="live-hero-card" style="background-image:url('${esc(hf.img)}')">
+            <span class="live-section-badge live-badge-hero">HERO CHÍNH</span>
+            <div class="live-card-body">
+              <span class="live-tag" id="live-hero-tag" contenteditable="true" oninput="markChanged()">${esc(hf.cat)}</span>
+              <div class="live-title" id="home-hero-title" contenteditable="true" data-ph="Nhập tiêu đề..." oninput="markChanged()">${esc(hf.title)}</div>
+              <div class="live-sub" id="home-hero-sub" contenteditable="true" data-ph="Nhập mô tả ngắn..." oninput="markChanged()">${esc(hf.sub)}</div>
+            </div>
           </div>
-        </div>
-        <div class="live-edit-hint">✏️ Bấm trực tiếp vào <strong>nhãn</strong>, <strong>tiêu đề</strong> hoặc <strong>mô tả</strong> trên thẻ để sửa — xem trước như thật.</div>
-        <div class="rank-row" style="grid-template-columns:1fr 1fr 1fr">
-          <div><label class="form-label" style="margin-top:0">Ngày</label><input class="form-input" id="home-hero-date" value="${esc(hf.date)}"/></div>
-          <div><label class="form-label" style="margin-top:0">Link (slug)</label><input class="form-input" id="home-hero-href" value="${esc(hf.href)}"/></div>
-          <div><label class="form-label" style="margin-top:0">URL ảnh nền</label>
-            <div style="display:flex;gap:6px">
-              <input class="form-input" style="flex:1" id="home-hero-img" value="${esc(hf.img)}" oninput="liveImgUpdate('live-hero-card',this.value)"/>
-              <button class="btn btn-secondary btn-sm btn-icon" title="Tải ảnh lên từ máy" onclick="triggerImageUpload(url => { const el = document.getElementById('home-hero-img'); el.value = url; liveImgUpdate('live-hero-card', url); })">📤</button>
+          <div class="live-edit-hint">✏️ Bấm trực tiếp vào <strong>nhãn</strong>, <strong>tiêu đề</strong> hoặc <strong>mô tả</strong> trên thẻ để sửa — xem trước như thật.</div>
+          <div class="rank-row" style="grid-template-columns:1fr 1fr 1fr">
+            <div><label class="form-label" style="margin-top:0">Ngày</label><input class="form-input" id="home-hero-date" value="${esc(hf.date)}" oninput="markChanged()"/></div>
+            <div><label class="form-label" style="margin-top:0">Link (slug)</label><input class="form-input" id="home-hero-href" value="${esc(hf.href)}" oninput="markChanged()"/></div>
+            <div><label class="form-label" style="margin-top:0">URL ảnh nền</label>
+              <div style="display:flex;gap:6px">
+                <input class="form-input" style="flex:1" id="home-hero-img" value="${esc(hf.img)}" oninput="liveImgUpdate('live-hero-card',this.value)"/>
+                <button class="btn btn-secondary btn-sm btn-icon" title="Tải ảnh lên từ máy" onclick="triggerImageUpload(url => { const el = document.getElementById('home-hero-img'); el.value = url; liveImgUpdate('live-hero-card', url); })">📤</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="field-group">
-        <div class="field-group-title">📰 Thanh tin chạy (Breaking ticker)</div>
-        <div style="font-size:11px;color:var(--muted);margin-bottom:10px">Kéo ⠿ để sắp xếp lại, bấm vào chữ để sửa trực tiếp. Dòng mới được chèn ở đầu thanh chạy — phần cũ phía sau vẫn giữ nguyên.</div>
-        ${tickerRows}
-        <button class="btn btn-secondary btn-sm" onclick="tickerAdd()">➕ Thêm dòng tin</button>
-      </div>
-
-      <div class="field-group">
-        <div class="field-group-title">⭐ Nổi bật hôm nay — tin chính</div>
-        <div class="live-fc-card" id="live-fc-card" style="background-image:url('${esc(fc.img)}')">
-          <div class="live-card-body">
-            <span class="live-tag" id="live-fc-tag" contenteditable="true" oninput="markChanged()">${esc(fc.tag)}</span>
-            <div class="live-title" id="home-fc-title" contenteditable="true" data-ph="Nhập tiêu đề..." style="font-size:18px" oninput="markChanged()">${esc(fc.title)}</div>
-            <div class="live-sub" id="home-fc-sub" contenteditable="true" data-ph="Nhập mô tả ngắn..." oninput="markChanged()">${esc(fc.sub)}</div>
-          </div>
+        <div class="field-group" id="sec-ticker">
+          <div class="field-group-title">📰 Thanh tin chạy (Breaking ticker)</div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:10px">Kéo ⠿ để sắp xếp lại, bấm vào chữ để sửa trực tiếp. Dòng mới được chèn ở đầu thanh chạy — phần cũ phía sau vẫn giữ nguyên.</div>
+          ${tickerRows}
+          <button class="btn btn-secondary btn-sm" onclick="tickerAdd()">➕ Thêm dòng tin</button>
         </div>
-        <div class="rank-row" style="grid-template-columns:1fr 1fr">
-          <div><label class="form-label" style="margin-top:0">Link</label><input class="form-input" id="home-fc-href" value="${esc(fc.href)}"/></div>
-          <div><label class="form-label" style="margin-top:0">URL ảnh</label>
-            <div style="display:flex;gap:6px">
-              <input class="form-input" style="flex:1" id="home-fc-img" value="${esc(fc.img)}" oninput="liveImgUpdate('live-fc-card',this.value)"/>
-              <button class="btn btn-secondary btn-sm btn-icon" title="Tải ảnh lên từ máy" onclick="triggerImageUpload(url => { const el = document.getElementById('home-fc-img'); el.value = url; liveImgUpdate('live-fc-card', url); })">📤</button>
+
+        <div class="field-group" id="sec-fc">
+          <div class="field-group-title">⭐ Nổi bật hôm nay — tin chính</div>
+          <div class="live-fc-card" id="live-fc-card" style="background-image:url('${esc(fc.img)}')">
+            <span class="live-section-badge live-badge-fc">TIN NỔI BẬT</span>
+            <div class="live-card-body">
+              <span class="live-tag" id="live-fc-tag" contenteditable="true" oninput="markChanged()">${esc(fc.tag)}</span>
+              <div class="live-title" id="home-fc-title" contenteditable="true" data-ph="Nhập tiêu đề..." style="font-size:18px" oninput="markChanged()">${esc(fc.title)}</div>
+              <div class="live-sub" id="home-fc-sub" contenteditable="true" data-ph="Nhập mô tả ngắn..." oninput="markChanged()">${esc(fc.sub)}</div>
+            </div>
+          </div>
+          <div class="rank-row" style="grid-template-columns:1fr 1fr">
+            <div><label class="form-label" style="margin-top:0">Link</label><input class="form-input" id="home-fc-href" value="${esc(fc.href)}" oninput="markChanged()"/></div>
+            <div><label class="form-label" style="margin-top:0">URL ảnh</label>
+              <div style="display:flex;gap:6px">
+                <input class="form-input" style="flex:1" id="home-fc-img" value="${esc(fc.img)}" oninput="liveImgUpdate('live-fc-card',this.value)"/>
+                <button class="btn btn-secondary btn-sm btn-icon" title="Tải ảnh lên từ máy" onclick="triggerImageUpload(url => { const el = document.getElementById('home-fc-img'); el.value = url; liveImgUpdate('live-fc-card', url); })">📤</button>
+              </div>
             </div>
           </div>
         </div>
+
+        <div class="field-group" id="sec-sc">
+          <div class="field-group-title">⭐ Nổi bật hôm nay — tin phụ</div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:12px">Kéo ⠿ để sắp xếp lại, bấm vào tiêu đề trên thẻ để sửa trực tiếp.</div>
+          <button class="btn btn-secondary btn-sm" style="margin-bottom:12px" onclick="scAdd()">➕ Thêm thẻ tin phụ</button>
+          ${scRows}
+        </div>
+
       </div>
 
-      <div class="field-group">
-        <div class="field-group-title">⭐ Nổi bật hôm nay — tin phụ</div>
-        <div style="font-size:11px;color:var(--muted);margin-bottom:12px">Kéo ⠿ để sắp xếp lại, bấm vào tiêu đề trên thẻ để sửa trực tiếp.</div>
-        <button class="btn btn-secondary btn-sm" style="margin-bottom:12px" onclick="scAdd()">➕ Thêm thẻ tin phụ</button>
-        ${scRows}
+      <div class="editor-sidebar">
+        <div class="publish-box">
+          <div class="pb-head">🚀 Xuất bản</div>
+          <div class="pb-body">
+            <div class="pb-row"><span class="pb-label">Trạng thái</span><span class="pb-val" style="display:flex;align-items:center;gap:6px"><span class="status-dot" id="status-dot"></span><span id="status-text">Chưa có thay đổi</span></span></div>
+            <div class="pb-actions">
+              <button class="btn btn-primary" id="save-btn" onclick="saveHome()">💾 Lưu & Deploy</button>
+            </div>
+            <div style="display:flex;gap:14px;margin-top:12px">
+              <a class="pb-link" href="https://otahub.asia/${isEn ? 'en/' : ''}" target="_blank">🔗 Xem live</a>
+              <a class="pb-link" href="#" onclick="event.preventDefault();if(confirm('Bỏ thay đổi?'))homeEditor('${HOME_FILE}')">↺ Hoàn tác</a>
+            </div>
+            <div class="pb-savelog" id="save-log"></div>
+          </div>
+        </div>
+
+        <div class="side-box">
+          <div class="side-box-title">📑 Mục lục</div>
+          <a class="toc-link" href="#sec-hero">🎬 Tin nổi bật chính</a>
+          <a class="toc-link" href="#sec-ticker">📰 Thanh tin chạy</a>
+          <a class="toc-link" href="#sec-fc">⭐ Tin chính</a>
+          <a class="toc-link" href="#sec-sc">⭐ Tin phụ (${HOME_FEATURED.sc.length})</a>
+        </div>
       </div>
     </div>
   `);
@@ -2454,11 +2490,11 @@ function tickerDrop(e, i) {
   renderHomeEditor();
 }
 
-function tickerUpdate(i, v) { HOME_TICKER[i] = v; }
+function tickerUpdate(i, v) { HOME_TICKER[i] = v; markChanged(); }
 function tickerDelete(i) { HOME_TICKER.splice(i, 1); renderHomeEditor(); }
 function tickerAdd() { HOME_TICKER.unshift('Tiêu đề tin mới'); renderHomeEditor(); }
 
-function scUpdate(i, field, value) { HOME_FEATURED.sc[i].raw = scApply(HOME_FEATURED.sc[i].raw, { [field]: value }); }
+function scUpdate(i, field, value) { HOME_FEATURED.sc[i].raw = scApply(HOME_FEATURED.sc[i].raw, { [field]: value }); markChanged(); }
 function scMove(i, dir) { const j = i + dir; if (j < 0 || j >= HOME_FEATURED.sc.length) return; const t = HOME_FEATURED.sc[i]; HOME_FEATURED.sc[i] = HOME_FEATURED.sc[j]; HOME_FEATURED.sc[j] = t; renderHomeEditor(); }
 function scDelete(i) { if (!confirm('Xoá thẻ tin phụ này?')) return; HOME_FEATURED.sc.splice(i, 1); renderHomeEditor(); }
 function scAdd() {
@@ -2469,6 +2505,12 @@ function scAdd() {
 }
 
 async function saveHome() {
+  const btn = document.getElementById('save-btn');
+  const dot = document.getElementById('status-dot');
+  const txt = document.getElementById('status-text');
+  if (btn) { btn.textContent = '⏳ Đang lưu...'; btn.disabled = true; }
+  if (dot) dot.className = 'status-dot saving';
+  if (txt) txt.textContent = 'Đang commit lên GitHub...';
   try {
     const latest = await ghGet(HOME_FILE);
     let html = decodeURIComponent(escape(atob(latest.content)));
@@ -2503,9 +2545,18 @@ async function saveHome() {
     html = html.replace(TICKER_RE, (m, p1, p2, p3) => p1 + tickerHtml.replace(/\\/g, '\\\\').replace(/'/g, "\\'") + p3);
 
     await ghPut(HOME_FILE, html, latest.sha, '[admin] cap nhat trang chu');
+    HAS_UNSAVED_CHANGES = false;
+    if (dot) dot.className = 'status-dot';
+    if (txt) txt.textContent = 'Đã lưu • ' + new Date().toLocaleTimeString('vi-VN');
+    const log = document.getElementById('save-log');
+    if (log) log.innerHTML = `✅ Commit lúc ${new Date().toLocaleTimeString('vi-VN')}<br>` + log.innerHTML;
     toast('success', '✅ Đã lưu trang chủ! Deploy trong ~1-2 phút.');
   } catch(e) {
+    if (dot) dot.className = 'status-dot error';
+    if (txt) txt.textContent = 'Lỗi khi lưu';
     toast('error', 'Lỗi lưu: ' + e.message);
+  } finally {
+    if (btn) { btn.textContent = '💾 Lưu & Deploy'; btn.disabled = false; }
   }
 }
 
