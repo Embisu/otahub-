@@ -365,6 +365,44 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .cmdk-item-tag { font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--cyan); background: rgba(0,229,255,.1); border-radius: 5px; padding: 3px 7px; flex-shrink: 0; }
 .cmdk-empty { padding: 34px 20px; text-align: center; color: var(--muted); font-size: 13px; }
 
+/* ── Media Inserter (kiểu "Add Media" của WordPress) ────────────────────── */
+.media-modal-ov { position: fixed; inset: 0; z-index: 9999; background: rgba(6,2,20,.72); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; padding: 20px; }
+.media-modal-ov.open { display: flex; }
+.media-modal-box { width: 100%; max-width: 520px; background: var(--surf); border: 1px solid rgba(0,229,255,.25); border-radius: 14px; box-shadow: 0 24px 64px rgba(0,0,0,.5); overflow: hidden; animation: cmdkIn .14s ease-out; max-height: 88vh; display: flex; flex-direction: column; }
+.media-modal-head { display: flex; align-items: center; justify-content: space-between; padding: 8px 10px 8px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+.media-modal-tabs { display: flex; gap: 6px; }
+.media-tab { padding: 7px 14px; border-radius: 8px; border: none; background: none; color: var(--muted); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background .15s, color .15s; }
+.media-tab.active { background: var(--bcyan); color: var(--cyan); }
+.media-modal-close { background: none; border: none; color: var(--muted); font-size: 16px; cursor: pointer; padding: 4px 10px; border-radius: 6px; }
+.media-modal-close:hover { background: var(--surf2); color: var(--white); }
+.media-modal-body { padding: 16px; overflow-y: auto; }
+.media-modal-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.media-modal-or { font-size: 12px; color: var(--muted); }
+.media-modal-preview { margin-top: 10px; border-radius: 10px; overflow: hidden; background: var(--surf2); border: 1px dashed var(--border); min-height: 120px; display: flex; align-items: center; justify-content: center; }
+.media-modal-preview img { width: 100%; max-height: 280px; object-fit: cover; display: block; }
+.media-preview-empty { color: var(--muted); font-size: 12px; padding: 30px; text-align: center; }
+.media-video-embed-wrap { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; }
+.media-video-embed-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.media-modal-foot { display: flex; justify-content: flex-end; gap: 10px; padding: 12px 16px; border-top: 1px solid var(--border); flex-shrink: 0; }
+.block-video-embed { border-radius: 8px; overflow: hidden; }
+
+/* ── SEO Score panel (kiểu Yoast SEO / Rank Math) ────────────────────────── */
+.seo-score-head { display: flex; align-items: center; gap: 14px; padding: 4px 0 16px; }
+.seo-score-badge { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 800; flex-shrink: 0; transition: background .2s, color .2s; }
+.seo-score-badge.seo-good { background: rgba(34,197,94,.15); color: #16a34a; }
+.seo-score-badge.seo-ok { background: rgba(245,158,11,.15); color: #d97706; }
+.seo-score-badge.seo-bad { background: rgba(239,68,68,.15); color: #dc2626; }
+.seo-score-label { font-size: 13.5px; font-weight: 700; }
+.seo-score-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.seo-score-label.seo-good { color: #16a34a; }
+.seo-score-label.seo-ok { color: #d97706; }
+.seo-score-label.seo-bad { color: #dc2626; }
+.seo-checklist { display: flex; flex-direction: column; gap: 9px; margin-top: 4px; }
+.seo-check-item { display: flex; gap: 9px; align-items: flex-start; font-size: 12px; }
+.seo-check-icon { flex-shrink: 0; margin-top: 1px; font-size: 12px; }
+.seo-check-label { color: var(--white); font-weight: 600; }
+.seo-check-hint { color: var(--muted); margin-top: 2px; line-height: 1.5; }
+
 .sc-card { display: flex; gap: 12px; padding: 10px; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; background: var(--surf); transition: border .15s, box-shadow .15s, opacity .15s; }
 .sc-card:hover { border-color: rgba(0,229,255,.3); box-shadow: 0 4px 14px rgba(0,0,0,.16); }
 .sc-card.dragging { opacity: .35; }
@@ -578,6 +616,42 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 
 <div id="toast"></div>
 <input type="file" id="global-upload-input" accept="image/*" style="display:none" onchange="handleGlobalUpload(this)"/>
+
+<!-- Media Inserter (kiểu "Add Media" WordPress) — dùng chung cho toolbar Trực
+     quan và các khối Ảnh/Video trong chế độ Khối. -->
+<div class="media-modal-ov" id="media-modal-ov" onclick="if(event.target===this)closeMediaModal()">
+  <div class="media-modal-box">
+    <div class="media-modal-head">
+      <div class="media-modal-tabs">
+        <button class="media-tab active" id="media-tab-image" onclick="mediaSwitchTab('image')">🖼️ Ảnh</button>
+        <button class="media-tab" id="media-tab-video" onclick="mediaSwitchTab('video')">🎬 Video</button>
+      </div>
+      <button class="media-modal-close" onclick="closeMediaModal()">✕</button>
+    </div>
+    <div class="media-modal-body">
+      <div id="media-panel-image">
+        <div class="media-modal-row">
+          <button class="btn btn-secondary btn-sm" onclick="mediaTriggerUpload()">📤 Tải ảnh lên từ máy</button>
+          <span class="media-modal-or">hoặc dán URL ảnh:</span>
+        </div>
+        <input class="form-input" id="media-img-url" placeholder="https://..." oninput="mediaUpdatePreview()"/>
+        <div class="media-modal-preview" id="media-img-preview"><div class="media-preview-empty">Chưa có ảnh</div></div>
+        <input class="form-input" id="media-img-alt" placeholder="Alt text (mô tả ảnh — quan trọng cho SEO)" style="margin-top:10px"/>
+        <input class="form-input" id="media-img-caption" placeholder="Chú thích ảnh (tuỳ chọn)" style="margin-top:10px"/>
+      </div>
+      <div id="media-panel-video" style="display:none">
+        <input class="form-input" id="media-video-url" placeholder="Dán link YouTube hoặc Vimeo..." oninput="mediaUpdateVideoPreview()"/>
+        <div class="media-modal-preview" id="media-video-preview"><div class="media-preview-empty">Dán link để xem trước</div></div>
+        <input class="form-input" id="media-video-caption" placeholder="Chú thích video (tuỳ chọn)" style="margin-top:10px"/>
+      </div>
+    </div>
+    <div class="media-modal-foot">
+      <button class="btn btn-secondary" onclick="closeMediaModal()">Huỷ</button>
+      <button class="btn btn-primary" onclick="mediaConfirmInsert()">✓ Chèn vào bài</button>
+    </div>
+  </div>
+</div>
+
 <div class="cmdk-ov" id="cmdk-ov" onclick="if(event.target===this)closeCmdk()">
   <div class="cmdk-box">
     <div class="cmdk-in-row">
@@ -858,6 +932,97 @@ async function handleGlobalUpload(inputEl) {
     if (url) { cb(url); toast('success', '✅ Đã tải ảnh lên: ' + url.split('/').pop()); }
   } catch (e) {
     toast('error', 'Lỗi tải ảnh: ' + e.message);
+  }
+}
+
+// ── Media Inserter — modal "Chèn Media" kiểu WordPress ──────────────────────
+// Dùng chung cho toolbar Trực quan (chèn tại vị trí con trỏ) và các khối
+// Ảnh/Video trong chế độ Khối (kéo-thả) — thay cho prompt() cũ, cho xem
+// trước ảnh/video ngay trong modal trước khi chèn.
+let MEDIA_MODAL_TAB = 'image';
+let MEDIA_MODAL_CB = null;
+
+function openMediaModal(cb, defaultTab) {
+  MEDIA_MODAL_CB = cb;
+  const img = document.getElementById('media-img-url'), alt = document.getElementById('media-img-alt'),
+        cap = document.getElementById('media-img-caption'), vid = document.getElementById('media-video-url'),
+        vcap = document.getElementById('media-video-caption');
+  if (img) img.value = ''; if (alt) alt.value = ''; if (cap) cap.value = '';
+  if (vid) vid.value = ''; if (vcap) vcap.value = '';
+  mediaUpdatePreview();
+  mediaUpdateVideoPreview();
+  mediaSwitchTab(defaultTab || 'image');
+  document.getElementById('media-modal-ov')?.classList.add('open');
+}
+function closeMediaModal() {
+  document.getElementById('media-modal-ov')?.classList.remove('open');
+  MEDIA_MODAL_CB = null;
+}
+function mediaSwitchTab(tab) {
+  MEDIA_MODAL_TAB = tab;
+  document.getElementById('media-tab-image')?.classList.toggle('active', tab === 'image');
+  document.getElementById('media-tab-video')?.classList.toggle('active', tab === 'video');
+  const pi = document.getElementById('media-panel-image'), pv = document.getElementById('media-panel-video');
+  if (pi) pi.style.display = tab === 'image' ? 'block' : 'none';
+  if (pv) pv.style.display = tab === 'video' ? 'block' : 'none';
+}
+function mediaTriggerUpload() {
+  triggerImageUpload(url => {
+    const el = document.getElementById('media-img-url');
+    if (el) el.value = url;
+    mediaUpdatePreview();
+  });
+}
+function mediaUpdatePreview() {
+  const url = (document.getElementById('media-img-url')?.value || '').trim();
+  const prev = document.getElementById('media-img-preview');
+  if (!prev) return;
+  if (!url) { prev.innerHTML = `<div class="media-preview-empty">Chưa có ảnh</div>`; return; }
+  prev.innerHTML = `<img src="${esc(url)}">`;
+  const img = prev.querySelector('img');
+  if (img) img.onerror = () => { prev.innerHTML = `<div class="media-preview-empty">⚠️ Không tải được ảnh, kiểm tra lại URL</div>`; };
+}
+// Nhận diện link YouTube/Vimeo phổ biến (watch, shorts, youtu.be, embed, vimeo) → video ID để dựng iframe nhúng.
+function parseVideoUrl(url) {
+  url = (url || '').trim();
+  let m = url.match(/(?:youtube\.com\/watch\?v=|youtube\.com\/shorts\/|youtu\.be\/|youtube\.com\/embed\/)([A-Za-z0-9_-]{11})/);
+  if (m) return { provider: 'youtube', id: m[1], embedUrl: `https://www.youtube.com/embed/${m[1]}` };
+  m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  if (m) return { provider: 'vimeo', id: m[1], embedUrl: `https://player.vimeo.com/video/${m[1]}` };
+  return null;
+}
+function mediaUpdateVideoPreview() {
+  const url = document.getElementById('media-video-url')?.value || '';
+  const prev = document.getElementById('media-video-preview');
+  if (!prev) return;
+  const v = parseVideoUrl(url);
+  prev.innerHTML = v
+    ? `<div class="media-video-embed-wrap"><iframe src="${esc(v.embedUrl)}" frameborder="0" allowfullscreen loading="lazy"></iframe></div>`
+    : (url ? `<div class="media-preview-empty">⚠️ Không nhận diện được link YouTube/Vimeo</div>` : `<div class="media-preview-empty">Dán link để xem trước</div>`);
+}
+// Wrapper responsive tự chứa (padding-bottom trick, không phụ thuộc CSS trang thật)
+// để nhúng được an toàn vào MỌI bài viết, kể cả ~150 bài cũ chưa có class video sẵn.
+function videoEmbedHtml(embedUrl, caption, forPreviewOnly) {
+  return `<figure class="art-video-embed"><div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px${forPreviewOnly ? ';pointer-events:none' : ''}"><iframe src="${esc(embedUrl)}" title="Video" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>${caption ? `<figcaption${forPreviewOnly ? ' data-ohf="caption"' : ''}>${esc(caption)}</figcaption>` : ''}</figure>`;
+}
+function mediaConfirmInsert() {
+  if (!MEDIA_MODAL_CB) { closeMediaModal(); return; }
+  if (MEDIA_MODAL_TAB === 'image') {
+    const src = (document.getElementById('media-img-url')?.value || '').trim();
+    if (!src) { toast('error', 'Chưa có ảnh để chèn'); return; }
+    const alt = (document.getElementById('media-img-alt')?.value || '').trim();
+    const caption = (document.getElementById('media-img-caption')?.value || '').trim();
+    const html = `<figure><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy">${caption ? `<figcaption>${esc(caption)}</figcaption>` : ''}</figure>`;
+    const cb = MEDIA_MODAL_CB; closeMediaModal();
+    cb({ kind: 'image', src, alt, caption, html });
+  } else {
+    const url = (document.getElementById('media-video-url')?.value || '').trim();
+    const v = parseVideoUrl(url);
+    if (!v) { toast('error', 'Link video không hợp lệ (chỉ hỗ trợ YouTube/Vimeo)'); return; }
+    const caption = (document.getElementById('media-video-caption')?.value || '').trim();
+    const html = videoEmbedHtml(v.embedUrl, caption, false);
+    const cb = MEDIA_MODAL_CB; closeMediaModal();
+    cb({ kind: 'video', provider: v.provider, embedUrl: v.embedUrl, caption, html });
   }
 }
 
@@ -1205,6 +1370,7 @@ function renderEditor(file, html) {
   const cat     = extract(html, /article:section" content="([^"]+)"/) || 'Gaming';
   const bodyVi  = extractBody(html);
   const excerpt = extractExcerpt(html);
+  const keyword = extract(html, /name="focus-keyword" content="([^"]*)"/) || '';
   ART_TITLE = title;
   ART_EXCERPT = excerpt;
 
@@ -1257,6 +1423,7 @@ function renderEditor(file, html) {
             <button class="tb-btn" title="Danh sách" onclick="visList()">☰</button>
             <div class="tb-sep"></div>
             <button class="tb-btn" title="Chèn ảnh" onclick="visImg()">📷</button>
+            <button class="tb-btn" title="Nhúng video (YouTube/Vimeo)" onclick="visVideo()">🎬</button>
             <button class="tb-btn" title="Trích dẫn" onclick="visQuote()">❝</button>
             <div class="tb-sep"></div>
             <button class="tb-btn" id="vis-jump-img-btn" title="Nhảy tới ảnh tiếp theo trong bài" onclick="visJumpImage()" style="display:none">🖼️ <span id="vis-img-count">0</span></button>
@@ -1290,15 +1457,26 @@ function renderEditor(file, html) {
           <div id="body-imgs-list"><div style="color:var(--muted);font-size:12px">Đang phân tích...</div></div>
         </div>
 
-        <!-- SEO / metadata — gấp gọn, ít dùng hơn -->
+        <!-- SEO Score — kiểu Yoast SEO / Rank Math: nhập từ khóa trọng tâm, chấm
+             điểm + checklist cập nhật real-time theo tiêu đề/mô tả/nội dung. -->
         <div class="meta-box-collapsed">
           <div class="meta-box-head open" onclick="toggleMetaBox(this)">
-            <div class="field-group-title">🔍 SEO & Metadata</div>
+            <div class="field-group-title">🎯 SEO Score</div>
             <span class="chev">▸</span>
           </div>
           <div class="meta-box-content open">
+            <div class="seo-score-head">
+              <div class="seo-score-badge seo-bad" id="seo-score-badge">–</div>
+              <div>
+                <div class="seo-score-label seo-bad" id="seo-score-label">Chưa phân tích</div>
+                <div class="seo-score-sub">Điểm SEO tổng quan dựa trên từ khóa, tiêu đề, mô tả &amp; nội dung</div>
+              </div>
+            </div>
+            <label class="form-label" style="margin-top:0">🔑 Từ khóa trọng tâm</label>
+            <input class="form-input" id="ed-keyword" value="${esc(keyword)}" placeholder="VD: avengers doomsday, review game..." oninput="markChanged()"/>
             <label class="form-label" style="margin-top:14px">Mô tả (Meta Description)</label>
             <textarea class="form-input" id="ed-desc" rows="3" placeholder="Mô tả ngắn cho SEO...">${esc(desc)}</textarea>
+            <div class="seo-checklist" id="seo-checklist" style="margin-top:16px"></div>
           </div>
         </div>
 
@@ -1396,8 +1574,9 @@ function renderEditor(file, html) {
   if (artIframe) artIframe.srcdoc = buildArticlePreviewHtml();
   bindArticleBridgeMessages();
 
-  // Số từ / thời gian đọc ước tính
+  // Số từ / thời gian đọc ước tính + điểm SEO ban đầu
   updateWordCount();
+  updateSeoScore();
 }
 
 // Mẫu bài viết hiện tại (từ giữa dự án) dùng 1 khối art-body duy nhất, không
@@ -1421,6 +1600,7 @@ function markChanged() {
   if (dot) dot.className = 'status-dot saving';
   if (txt) txt.textContent = 'Có thay đổi chưa lưu';
   updateWordCount();
+  updateSeoScore();
   // Thay đổi cấu trúc (danh mục, ảnh bìa, khối, HTML thô...) cần dựng lại toàn
   // bộ iframe xem trước bài viết — có debounce nên gõ liên tục vẫn mượt.
   scheduleArticlePreviewRefresh();
@@ -1435,6 +1615,7 @@ function markChangedNoRebuild() {
   const txt = document.getElementById('status-text');
   if (dot) dot.className = 'status-dot saving';
   if (txt) txt.textContent = 'Có thay đổi chưa lưu';
+  updateSeoScore();
 }
 
 function updateWordCount() {
@@ -1448,6 +1629,118 @@ function updateWordCount() {
   const mins = Math.max(1, Math.round(words / 200));
   el.textContent = `📝 ${words} từ · ~${mins} phút đọc`;
   updateVisImageCount();
+}
+
+// ── SEO Score — chấm điểm rule-based kiểu Yoast SEO / Rank Math ─────────────
+// Không gọi AI/API ngoài — Yoast/Rank Math thật ra cũng hoạt động theo cách
+// này: một bộ quy tắc cố định (độ dài, mật độ từ khóa, cấu trúc...) chứ
+// không phải mô hình AI, nên đây là cách làm đúng bản chất của các công cụ đó.
+function seoNormText(s) {
+  return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd');
+}
+function getCurrentBodyHtml() {
+  if (BODY_MODE === 'blocks' && BODY_BLOCKS) return blocksToHtml(BODY_BLOCKS);
+  if (BODY_MODE === 'code') return document.getElementById('body-textarea')?.value || '';
+  return document.getElementById('body-visual')?.innerHTML || '';
+}
+function computeSeoScore() {
+  const title = ART_TITLE || '';
+  const desc = document.getElementById('ed-desc')?.value || '';
+  const keyword = (document.getElementById('ed-keyword')?.value || '').trim();
+  const slug = (currentFile || '').replace(/\.html$/, '');
+  const bodyHtml = getCurrentBodyHtml();
+  const bodyText = bodyHtml.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  const words = bodyText.match(/\S+/g) || [];
+  const wordCount = words.length;
+
+  const nTitle = seoNormText(title), nDesc = seoNormText(desc), nKw = seoNormText(keyword),
+        nSlug = seoNormText(slug).replace(/-/g, ' '), nBody = seoNormText(bodyText);
+
+  const checks = [];
+  const add = (label, status, hint) => checks.push({ label, status, hint });
+
+  if (!keyword) {
+    add('Chưa nhập từ khóa trọng tâm', 'bad', 'Nhập 1 từ khóa chính để phân tích SEO đầy đủ (VD: tên game/anime, chủ đề chính).');
+  } else {
+    add('Từ khóa trong tiêu đề', nTitle.includes(nKw) ? 'good' : 'bad',
+      nTitle.includes(nKw) ? 'Tiêu đề đã chứa từ khóa.' : 'Thêm từ khóa vào tiêu đề bài viết.');
+    add('Từ khóa trong mô tả', nDesc.includes(nKw) ? 'good' : 'bad',
+      nDesc.includes(nKw) ? 'Mô tả đã chứa từ khóa.' : 'Thêm từ khóa vào mô tả SEO.');
+    add('Từ khóa trong URL', nSlug.includes(nKw) ? 'good' : 'ok',
+      nSlug.includes(nKw) ? 'URL đã chứa từ khóa.' : 'URL hiện chưa chứa từ khóa (chỉ chỉnh được khi tạo bài mới).');
+    const kwCount = nKw ? Math.max(0, nBody.split(nKw).length - 1) : 0;
+    const density = wordCount ? (kwCount / wordCount) * 100 : 0;
+    const densStatus = density === 0 ? 'bad' : (density >= 0.5 && density <= 2.5 ? 'good' : 'ok');
+    add(`Mật độ từ khóa (${density.toFixed(2)}%)`, densStatus,
+      density === 0 ? 'Từ khóa chưa xuất hiện trong nội dung bài.' :
+      density > 2.5 ? 'Mật độ hơi cao, tránh nhồi nhét từ khóa.' : 'Mật độ từ khóa hợp lý (0.5%–2.5%).');
+    const first100 = seoNormText(words.slice(0, 100).join(' '));
+    add('Từ khóa trong đoạn mở đầu', first100.includes(nKw) ? 'good' : 'ok',
+      first100.includes(nKw) ? 'Từ khóa xuất hiện sớm trong bài.' : 'Nên nhắc từ khóa trong 100 từ đầu tiên.');
+  }
+
+  const titleLen = title.length;
+  add(`Độ dài tiêu đề (${titleLen} ký tự)`, (titleLen >= 40 && titleLen <= 65) ? 'good' : 'ok',
+    titleLen === 0 ? 'Chưa có tiêu đề.' : titleLen < 40 ? 'Tiêu đề hơi ngắn, nên 40-65 ký tự.' :
+    titleLen > 65 ? 'Tiêu đề hơi dài, có thể bị cắt trên Google.' : 'Độ dài tiêu đề hợp lý.');
+
+  const descLen = desc.length;
+  add(`Độ dài mô tả (${descLen} ký tự)`, (descLen >= 120 && descLen <= 160) ? 'good' : (descLen === 0 ? 'bad' : 'ok'),
+    descLen === 0 ? 'Chưa có mô tả SEO.' : descLen < 120 ? 'Mô tả hơi ngắn, nên 120-160 ký tự.' :
+    descLen > 160 ? 'Mô tả hơi dài, có thể bị cắt trên Google.' : 'Độ dài mô tả lý tưởng.');
+
+  add(`Độ dài nội dung (${wordCount} từ)`, wordCount >= 600 ? 'good' : (wordCount >= 300 ? 'ok' : 'bad'),
+    wordCount < 300 ? 'Nội dung khá ngắn, nên viết tối thiểu 300 từ.' :
+    wordCount < 600 ? 'Ổn, nhưng bài 600+ từ thường lên hạng tốt hơn.' : 'Độ dài nội dung tốt cho SEO.');
+
+  const hasHeading = /<h[23][ >]/i.test(bodyHtml);
+  add('Có tiêu đề phụ (H2/H3)', hasHeading ? 'good' : 'ok',
+    hasHeading ? 'Bài đã có tiêu đề phụ, giúp dễ đọc và SEO tốt hơn.' : 'Thêm vài tiêu đề phụ (H2/H3) để chia nhỏ nội dung.');
+
+  const imgTags = bodyHtml.match(/<img[^>]*>/gi) || [];
+  const imgsWithAlt = imgTags.filter(t => /alt="[^"]+"/i.test(t)).length;
+  add(`Ảnh có Alt text (${imgsWithAlt}/${imgTags.length})`, imgTags.length === 0 ? 'ok' : (imgsWithAlt === imgTags.length ? 'good' : 'bad'),
+    imgTags.length === 0 ? 'Bài chưa có ảnh minh hoạ.' :
+    imgsWithAlt < imgTags.length ? 'Một số ảnh còn thiếu Alt text.' : 'Tất cả ảnh đã có Alt text.');
+
+  const linkCount = (bodyHtml.match(/<a\s+[^>]*href=/gi) || []).length;
+  add(`Liên kết trong bài (${linkCount})`, linkCount > 0 ? 'good' : 'ok',
+    linkCount > 0 ? 'Bài đã có liên kết.' : 'Cân nhắc thêm liên kết nội bộ/ngoài để tăng giá trị SEO.');
+
+  const sentences = bodyText.split(/[.!?…]+/).map(s => s.trim()).filter(Boolean);
+  const avgWps = sentences.length ? wordCount / sentences.length : 0;
+  add(`Độ dài câu trung bình (${avgWps.toFixed(1)} từ/câu)`, (avgWps === 0 || avgWps <= 20) ? 'good' : 'ok',
+    avgWps > 20 ? 'Câu khá dài, nên chia ngắn hơn để dễ đọc.' : 'Độ dài câu phù hợp, dễ đọc.');
+
+  const weights = { good: 100, ok: 55, bad: 0 };
+  const score = checks.length ? Math.round(checks.reduce((s, c) => s + weights[c.status], 0) / checks.length) : 0;
+  return { score, checks };
+}
+function seoScoreLabel(score) {
+  if (score >= 80) return { text: 'Tốt', cls: 'seo-good' };
+  if (score >= 50) return { text: 'Cần cải thiện', cls: 'seo-ok' };
+  return { text: 'Kém', cls: 'seo-bad' };
+}
+function updateSeoScore() {
+  const badge = document.getElementById('seo-score-badge');
+  if (!badge) return; // không ở màn hình có SEO box (VD: đang ở view khác)
+  const { score, checks } = computeSeoScore();
+  const lbl = seoScoreLabel(score);
+  badge.className = 'seo-score-badge ' + lbl.cls;
+  badge.textContent = score;
+  const labelEl = document.getElementById('seo-score-label');
+  if (labelEl) { labelEl.textContent = lbl.text; labelEl.className = 'seo-score-label ' + lbl.cls; }
+  const list = document.getElementById('seo-checklist');
+  if (list) {
+    list.innerHTML = checks.map(c => `
+      <div class="seo-check-item">
+        <span class="seo-check-icon">${c.status === 'good' ? '✅' : c.status === 'ok' ? '⚠️' : '❌'}</span>
+        <div>
+          <div class="seo-check-label">${esc(c.label)}</div>
+          <div class="seo-check-hint">${esc(c.hint)}</div>
+        </div>
+      </div>`).join('');
+  }
 }
 
 function updateHeroPreview(url) {
@@ -1642,12 +1935,10 @@ function visBold() { visExec('bold'); }
 function visItalic() { visExec('italic'); }
 function visList() { visExec('insertUnorderedList'); }
 function visImg() {
-  const url = prompt('URL ảnh:');
-  if (!url) return;
-  const alt = prompt('Alt text (mô tả ảnh):') || '';
-  const cap = prompt('Caption (chú thích):') || '';
-  const html = `<figure><img src="${esc(url)}" alt="${esc(alt)}" loading="lazy"/>${cap ? `<figcaption>${esc(cap)}</figcaption>` : ''}</figure><p><br></p>`;
-  visExec('insertHTML', html);
+  openMediaModal(res => visExec('insertHTML', res.html + '<p><br></p>'), 'image');
+}
+function visVideo() {
+  openMediaModal(res => visExec('insertHTML', res.html + '<p><br></p>'), 'video');
 }
 function visQuote() {
   visExec('insertHTML', '<blockquote><p>Trích dẫn...</p><cite></cite></blockquote><p><br></p>');
@@ -1687,6 +1978,7 @@ const BLOCK_TYPES = {
   paragraph: { label: 'Đoạn văn', icon: '¶' },
   heading:   { label: 'Tiêu đề',  icon: 'H' },
   image:     { label: 'Ảnh',      icon: '📷' },
+  video:     { label: 'Video',    icon: '🎬' },
   quote:     { label: 'Trích dẫn', icon: '❝' },
   list:      { label: 'Danh sách', icon: '•' },
 };
@@ -1695,6 +1987,7 @@ let DRAG_FROM_IDX = null;
 function newBlockData(type) {
   if (type === 'heading') return { type, level: 2, text: '' };
   if (type === 'image') return { type, src: '', alt: '', caption: '', collapsed: false };
+  if (type === 'video') return { type, provider: '', embedUrl: '', caption: '' };
   if (type === 'quote') return { type, text: '', cite: '' };
   if (type === 'list') return { type, items: [''] };
   return { type: 'paragraph', html: '' };
@@ -1702,6 +1995,7 @@ function newBlockData(type) {
 function blockToHtml(b) {
   if (b.type === 'heading') { const lvl = b.level === 3 ? 3 : 2; return `<h${lvl}>${esc(b.text || '')}</h${lvl}>`; }
   if (b.type === 'image') return b.src ? `<figure><img src="${esc(b.src)}" alt="${esc(b.alt || '')}" loading="lazy">${b.caption ? `<figcaption>${esc(b.caption)}</figcaption>` : ''}</figure>` : '';
+  if (b.type === 'video') return b.embedUrl ? videoEmbedHtml(b.embedUrl, b.caption || '', false) : '';
   if (b.type === 'quote') return `<blockquote><p>${b.text || ''}</p>${b.cite ? `<cite>${esc(b.cite)}</cite>` : ''}</blockquote>`;
   if (b.type === 'list') { const items = (b.items || []).map(s => s.trim()).filter(Boolean); return items.length ? `<ul>${items.map(i => `<li>${esc(i)}</li>`).join('')}</ul>` : ''; }
   return b.html ? `<p>${b.html}</p>` : '';
@@ -1721,6 +2015,10 @@ function blockToHtmlTagged(b, i) {
   if (b.type === 'image') {
     if (!b.src) return `<figure data-oh-jump="block-${i}" class="oh-img-empty"><div class="oh-img-empty-hint">📷 Chưa có ảnh — bấm để thêm bên dưới</div></figure>`;
     return `<figure data-oh-jump="block-${i}"><img src="${esc(b.src)}" alt="${esc(b.alt||'')}"><figcaption data-ohb="${i}" data-ohf="caption" contenteditable="true">${esc(b.caption||'')}</figcaption></figure>`;
+  }
+  if (b.type === 'video') {
+    if (!b.embedUrl) return `<figure data-oh-jump="block-${i}" class="oh-img-empty"><div class="oh-img-empty-hint">🎬 Chưa có video — bấm để thêm bên dưới</div></figure>`;
+    return `<figure data-oh-jump="block-${i}" class="art-video-embed"><div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;pointer-events:none"><iframe src="${esc(b.embedUrl)}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" loading="lazy"></iframe></div><figcaption data-ohb="${i}" data-ohf="caption" contenteditable="true">${esc(b.caption||'')}</figcaption></figure>`;
   }
   if (b.type === 'quote') {
     return `<blockquote data-oh-jump="block-${i}"><p data-ohb="${i}" data-ohf="text" contenteditable="true">${b.text || ''}</p><cite data-ohb="${i}" data-ohf="cite" contenteditable="true">${esc(b.cite || '')}</cite></blockquote>`;
@@ -1801,13 +2099,24 @@ async function renderBlockEditor() {
       } else {
         body = (b.src
           ? `<figure><img src="${esc(b.src)}" alt="${esc(b.alt||'')}" onerror="this.style.display='none'"></figure>`
-          : `<div class="block-img-empty">Chưa có ảnh — nhập URL bên dưới</div>`) +
+          : `<div class="block-img-empty">Chưa có ảnh</div>`) +
           `<div class="block-field-row">
-            <input class="rank-input-sm" placeholder="URL ảnh" value="${esc(b.src||'')}" oninput="blockField(${i},'src',this.value)" onblur="renderBlockEditor()"/>
+            <button class="btn btn-secondary btn-sm" onclick="blockPickImage(${i})">🖼️ Chọn / tải ảnh</button>
+            <input class="rank-input-sm" placeholder="hoặc dán URL ảnh" value="${esc(b.src||'')}" oninput="blockField(${i},'src',this.value)" onblur="renderBlockEditor()"/>
+          </div>
+          <div class="block-field-row">
             <input class="rank-input-sm" placeholder="Alt text" value="${esc(b.alt||'')}" oninput="blockField(${i},'alt',this.value)"/>
             <input class="rank-input-sm" placeholder="Chú thích (tuỳ chọn)" value="${esc(b.caption||'')}" oninput="blockField(${i},'caption',this.value)"/>
           </div>`;
       }
+    } else if (b.type === 'video') {
+      body = (b.embedUrl
+        ? `<div class="block-video-embed"><div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px"><iframe src="${esc(b.embedUrl)}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" loading="lazy"></iframe></div></div>`
+        : `<div class="block-img-empty">Chưa có video</div>`) +
+        `<div class="block-field-row" style="margin-top:8px">
+          <button class="btn btn-secondary btn-sm" onclick="blockPickVideo(${i})">🎬 ${b.embedUrl ? 'Đổi video' : 'Chọn video'}</button>
+          <input class="rank-input-sm" style="flex:1" placeholder="Chú thích (tuỳ chọn)" value="${esc(b.caption||'')}" oninput="blockField(${i},'caption',this.value)"/>
+        </div>`;
     }
 
     return `<div class="block-item${isCollapsedImg ? ' block-item-collapsed' : ''}" id="block-item-${i}" draggable="false" ondragover="event.preventDefault()" ondrop="blockDrop(event,${i})">${toolbar}${body}</div>`;
@@ -1848,7 +2157,31 @@ function blockListInput(i, el) {
   markChanged();
 }
 function blockSetLevel(i, level) { if (BODY_BLOCKS[i]) { BODY_BLOCKS[i].level = level; renderBlockEditor(); markChanged(); } }
-function blockAdd(type) { BODY_BLOCKS.push(newBlockData(type)); renderBlockEditor(); markChanged(); }
+function blockAdd(type) {
+  // Ảnh/Video mở luôn Media Inserter thay vì thêm khối rỗng — giống trải nghiệm
+  // "Add Media" của WordPress: chọn/tải media xong mới tạo khối.
+  if (type === 'image') { openMediaModal(res => { BODY_BLOCKS.push({ type: 'image', src: res.src, alt: res.alt, caption: res.caption, collapsed: false }); renderBlockEditor(); markChanged(); }, 'image'); return; }
+  if (type === 'video') { openMediaModal(res => { BODY_BLOCKS.push({ type: 'video', provider: res.provider, embedUrl: res.embedUrl, caption: res.caption }); renderBlockEditor(); markChanged(); }, 'video'); return; }
+  BODY_BLOCKS.push(newBlockData(type)); renderBlockEditor(); markChanged();
+}
+function blockPickImage(i) {
+  openMediaModal(res => {
+    if (!BODY_BLOCKS[i]) return;
+    BODY_BLOCKS[i].src = res.src;
+    BODY_BLOCKS[i].alt = res.alt;
+    if (res.caption) BODY_BLOCKS[i].caption = res.caption;
+    renderBlockEditor(); markChanged();
+  }, 'image');
+}
+function blockPickVideo(i) {
+  openMediaModal(res => {
+    if (!BODY_BLOCKS[i]) return;
+    BODY_BLOCKS[i].provider = res.provider;
+    BODY_BLOCKS[i].embedUrl = res.embedUrl;
+    if (res.caption) BODY_BLOCKS[i].caption = res.caption;
+    renderBlockEditor(); markChanged();
+  }, 'video');
+}
 function blockDuplicate(i) { BODY_BLOCKS.splice(i + 1, 0, JSON.parse(JSON.stringify(BODY_BLOCKS[i]))); renderBlockEditor(); markChanged(); }
 function blockDelete(i) { if (!confirm('Xoá khối này?')) return; BODY_BLOCKS.splice(i, 1); renderBlockEditor(); markChanged(); }
 function blockMove(i, dir) {
@@ -2010,6 +2343,7 @@ async function saveArticle() {
   const title   = ART_TITLE || '';
   const excerpt = ART_EXCERPT || '';
   const desc    = document.getElementById('ed-desc')?.value || '';
+  const keyword = (document.getElementById('ed-keyword')?.value || '').trim();
   const hero    = document.getElementById('ed-hero')?.value || '';
   const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
   const cat     = document.getElementById('ed-cat')?.value || 'Gaming';
@@ -2042,6 +2376,15 @@ async function saveArticle() {
     // Apply edits (esc() để tránh vỡ HTML nếu tiêu đề/mô tả chứa <, >, &, ")
     html = html.replace(/<title>[^<]+<\/title>/, `<title>${esc(title)} · OtaHub</title>`);
     html = html.replace(/(<meta name="description" content=")[^"]*(")/,   `$1${esc(desc)}$2`);
+    // Từ khóa trọng tâm (SEO Score) — lưu dạng meta ẩn, chỉ admin.html đọc lại,
+    // không ảnh hưởng SEO thật (không phải meta keywords cũ mà Google đã bỏ dùng).
+    const kwRe = /<meta name="focus-keyword" content="[^"]*">\n?/;
+    if (keyword) {
+      const kwTag = `<meta name="focus-keyword" content="${esc(keyword)}">\n`;
+      html = kwRe.test(html) ? html.replace(kwRe, kwTag) : html.replace(/(<meta name="description" content="[^"]*">\n?)/, `$1${kwTag}`);
+    } else if (kwRe.test(html)) {
+      html = html.replace(kwRe, '');
+    }
     html = html.replace(/(<meta property="og:title" content=")[^"]*(")/,  `$1${esc(title)} · OtaHub$2`);
     html = html.replace(/(<meta property="og:description" content=")[^"]*(")/,  `$1${esc(desc)}$2`);
     html = html.replace(/(<meta name="twitter:title" content=")[^"]*(")/,  `$1${esc(title)} · OtaHub$2`);
