@@ -1483,15 +1483,8 @@ function renderEditor(file, html) {
             <textarea id="body-textarea" class="form-input" style="border:none;border-radius:0;min-height:500px;font-family:monospace;font-size:12px">${esc(bodyVi)}</textarea>
           </div>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin:-8px 0 20px;flex-wrap:wrap">
-          <div style="font-size:11px;color:var(--muted)">${BODY_BLOCKS ? '🧱 <strong>Khối</strong>: kéo-thả từng khối, sửa trực tiếp — giống Elementor/WordPress. ' : ''}🖱️ <strong>Trực quan</strong>: gõ như Word. 🔤 <strong>HTML</strong>: sửa mã trực tiếp.</div>
+        <div style="display:flex;justify-content:flex-end;align-items:center;gap:12px;margin:-8px 0 20px;flex-wrap:wrap">
           <div id="word-count-bar" style="font-size:11px;color:var(--muted);white-space:nowrap">📝 0 từ · ~1 phút đọc</div>
-        </div>
-
-        <!-- Body images quick editor -->
-        <div class="field-group" id="body-imgs-group">
-          <div class="field-group-title">📷 Ảnh trong bài (kéo thả URL để thay)</div>
-          <div id="body-imgs-list"><div style="color:var(--muted);font-size:12px">Đang phân tích...</div></div>
         </div>
 
         <!-- SEO Score — kiểu Yoast SEO / Rank Math: nhập từ khóa trọng tâm, chấm
@@ -1615,9 +1608,6 @@ function renderEditor(file, html) {
 
   if (BODY_BLOCKS) renderBlockEditor();
 
-  // Populate body images list
-  renderBodyImgs(bodyVi);
-
   // Dựng bản xem trước thật kiểu Elementor + gắn cầu nối postMessage cho phép
   // gõ trực tiếp trong iframe (tiêu đề, mô tả ngắn, đoạn văn...) đồng bộ ngược
   // về trạng thái editor mà không làm mất con trỏ/focus.
@@ -1655,6 +1645,8 @@ function markChanged() {
   // Thay đổi cấu trúc (danh mục, ảnh bìa, khối, HTML thô...) cần dựng lại toàn
   // bộ iframe xem trước bài viết — có debounce nên gõ liên tục vẫn mượt.
   scheduleArticlePreviewRefresh();
+  // Áp dụng tương tự cho bản xem trước trang chuyên mục (nếu đang mở editor đó).
+  scheduleHubPreviewRefresh();
 }
 
 // Dùng cho các chỉnh sửa BẮT NGUỒN từ trong iframe (gõ trực tiếp tiêu đề, mô
@@ -1814,50 +1806,6 @@ function updateHeroPosLabel(val) {
   if (lbl) lbl.textContent = val + '%';
   const img = document.getElementById('hero-preview');
   if (img) img.style.objectPosition = `center ${val}%`;
-  markChanged();
-}
-
-function renderBodyImgs(bodyHtml) {
-  const el = document.getElementById('body-imgs-list');
-  if (!el) return;
-  const imgs = [...bodyHtml.matchAll(/<img[^>]+src="([^"]+)"/g)].map(m => m[1]);
-  if (!imgs.length) {
-    el.innerHTML = '<p style="color:var(--muted);font-size:12px">Không có ảnh trong bài. Dùng nút 📷 Ảnh trong toolbar bên dưới để thêm.</p>';
-    return;
-  }
-  el.innerHTML = imgs.map((src, i) => `
-    <div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)">
-      <label class="form-label">Ảnh ${i+1}</label>
-      <div style="display:flex;gap:8px;align-items:center">
-        <input class="form-input" style="flex:1;font-size:12px" id="body-img-${i}"
-          value="${esc(src)}" placeholder="URL ảnh..."
-          oninput="syncBodyImg(${i},this.value)"/>
-        <button class="tb-btn" title="Tải ảnh lên từ máy" onclick="triggerImageUpload(url => { const el = document.getElementById('body-img-${i}'); el.value = url; syncBodyImg(${i}, url); applyBodyImg(${i}); })">📤</button>
-        <button class="tb-btn" onclick="applyBodyImg(${i})">✓ Áp dụng</button>
-      </div>
-      <img src="${src}" id="body-img-prev-${i}"
-        style="width:100%;height:90px;object-fit:cover;border-radius:6px;margin-top:6px;background:var(--surf2)"
-        onerror="this.style.opacity=0.3"/>
-    </div>
-  `).join('');
-}
-
-function syncBodyImg(idx, newUrl) {
-  const prev = document.getElementById(`body-img-prev-${idx}`);
-  if (prev) { prev.src = newUrl; prev.style.opacity = 1; }
-}
-
-function applyBodyImg(idx) {
-  const ta = document.getElementById('body-textarea');
-  const inp = document.getElementById(`body-img-${idx}`);
-  if (!ta || !inp) return;
-  const newUrl = inp.value.trim();
-  const imgs = [...ta.value.matchAll(/<img[^>]+src="([^"]+)"/g)];
-  if (idx >= imgs.length) return;
-  const oldSrc = imgs[idx][1];
-  ta.value = ta.value.replace(new RegExp(oldSrc.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'g'), newUrl);
-  syncBodyImg(idx, newUrl);
-  toast('success', `Đã thay ảnh ${idx+1}`);
   markChanged();
 }
 
@@ -3032,7 +2980,59 @@ function acApply(raw, f) {
 }
 
 // ── Trình soạn thảo trang chuyên mục (Gaming / Anime / Manga) ────────────────
-let HUB_FILE = '', HUB_LABEL = '', HUB_CARDS = [];
+let HUB_FILE = '', HUB_LABEL = '', HUB_CARDS = [], HUB_RAW = '';
+let HUB_PREVIEW_TIMER = null;
+
+// Bản xem trước thật của trang chuyên mục — ghép HUB_CARDS hiện tại vào đúng
+// vị trí trong HUB_RAW (y hệt logic saveHub() nhưng không commit), đánh dấu
+// data-oh-jump trên từng thẻ để bấm vào bản xem trước sẽ nhảy tới đúng thẻ
+// đang sửa bên danh sách — giống cách bài viết jump tới ảnh/danh mục.
+function buildHubPreviewHtml() {
+  const taggedCards = HUB_CARDS.map((c, i) => c.raw.replace(/^(<a\s+)/, `$1data-oh-jump="card-${i}" `));
+  const newSection = '\n      ' + taggedCards.join('\n\n      ') + '\n      ';
+  let html = HUB_RAW.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/, (m, p1, p2) => p1 + newSection + p2);
+  html = html.replace('<head>', '<head><base href="https://otahub.asia/">');
+  html = html.replace('</body>', HUB_BRIDGE_SCRIPT + '</body>');
+  return html;
+}
+const HUB_BRIDGE_SCRIPT = `<script>(function(){
+  var style = document.createElement('style');
+  style.textContent = '[data-oh-jump]{cursor:pointer;outline-offset:-2px;transition:outline .12s}[data-oh-jump]:hover{outline:3px dashed #00e5ff !important}';
+  document.head.appendChild(style);
+  document.addEventListener('click', function(e){
+    var el = e.target.closest ? e.target.closest('[data-oh-jump]') : null;
+    if (!el) return;
+    e.preventDefault();
+    e.stopPropagation();
+    parent.postMessage({ type:'hub-jump', target: el.getAttribute('data-oh-jump') }, '*');
+  }, true);
+})();<\/script>`;
+function scheduleHubPreviewRefresh() {
+  if (HUB_PREVIEW_TIMER) clearTimeout(HUB_PREVIEW_TIMER);
+  HUB_PREVIEW_TIMER = setTimeout(() => {
+    const iframe = document.getElementById('hub-visual-iframe');
+    if (iframe) iframe.srcdoc = buildHubPreviewHtml();
+  }, 700);
+}
+function hubJumpTo(target) {
+  if (!target || !target.startsWith('card-')) return;
+  const el = document.getElementById('hub-' + target);
+  if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  el.classList.add('block-item-flash');
+  setTimeout(() => el.classList.remove('block-item-flash'), 1200);
+  const titleEl = el.querySelector('.sc-title-live');
+  try { titleEl?.focus({ preventScroll: true }); } catch(e) {}
+}
+let __hubMsgBound = false;
+function bindHubBridgeMessages() {
+  if (__hubMsgBound) return;
+  __hubMsgBound = true;
+  window.addEventListener('message', function(e) {
+    if (!e.data || e.data.type !== 'hub-jump') return;
+    hubJumpTo(e.data.target);
+  });
+}
 
 async function hubEditor(file, label) {
   HAS_UNSAVED_CHANGES = false;
@@ -3044,6 +3044,7 @@ async function hubEditor(file, label) {
     const data = await ghGet(file);
     const raw = decodeURIComponent(escape(atob(data.content)));
     HUB_FILE = file;
+    HUB_RAW = raw;
     const m = raw.match(/<!-- ADMIN:ARTICLES_START -->([\s\S]*?)<!-- ADMIN:ARTICLES_END -->/);
     if (!m) throw new Error('Trang này chưa có marker ADMIN:ARTICLES nên chưa hỗ trợ sửa qua trình soạn thảo này.');
     HUB_CARDS = splitBlocks(m[1], /<a href="[^"]*" class="ac"/).map(r => ({ raw: r }));
@@ -3058,7 +3059,7 @@ function renderHubEditor() {
   const viewPath = (isEn ? HUB_FILE.replace(/^en\//, 'en/') : HUB_FILE).replace('.html', '');
   const rows = HUB_CARDS.map((c, i) => {
     const f = acFields(c.raw);
-    return `<div class="sc-card" draggable="true" ondragstart="hubDragStart(event,${i})" ondragover="event.preventDefault()" ondragend="this.classList.remove('dragging')" ondrop="hubDrop(event,${i})">
+    return `<div class="sc-card" id="hub-card-${i}" draggable="true" ondragstart="hubDragStart(event,${i})" ondragover="event.preventDefault()" ondragend="this.classList.remove('dragging')" ondrop="hubDrop(event,${i})">
       <div class="sc-drag-handle" title="Kéo để sắp xếp">⠿</div>
       <img class="sc-thumb" src="${esc(f.img)}" onerror="this.style.opacity=.3" alt=""/>
       <div class="sc-body">
@@ -3066,8 +3067,7 @@ function renderHubEditor() {
         <div class="sc-fields-row">
           <input class="rank-input-sm" placeholder="Link" value="${esc(f.href)}" oninput="hubUpdate(${i},'href',this.value)"/>
           <input class="rank-input-sm" placeholder="Nhãn" style="max-width:96px" value="${esc(f.tag)}" oninput="hubUpdate(${i},'tag',this.value)"/>
-          <input class="rank-input-sm" placeholder="URL ảnh" value="${esc(f.img)}" oninput="hubUpdate(${i},'img',this.value);this.closest('.sc-card').querySelector('.sc-thumb').src=this.value"/>
-          <button class="tb-btn" style="flex-shrink:0" title="Tải ảnh lên từ máy" onclick="triggerImageUpload(url => { hubUpdate(${i},'img',url); renderHubEditor(); })">📤</button>
+          <button class="btn btn-secondary btn-sm" style="flex-shrink:0" onclick="hubPickImage(${i})">🖼️ Chọn ảnh</button>
         </div>
       </div>
       <div class="sc-actions-col">
@@ -3088,6 +3088,11 @@ function renderHubEditor() {
 
     <div class="editor-layout">
       <div class="editor-main">
+
+        <div class="visual-hint">🖱️ Bấm vào một thẻ trong bản xem trước bên dưới để nhảy tới đúng thẻ đó trong danh sách chỉnh sửa. Sửa tiêu đề/link/ảnh trực tiếp trên từng thẻ trong danh sách.</div>
+        <div class="visual-iframe-wrap" style="height:420px;min-height:340px;margin-bottom:18px">
+          <iframe id="hub-visual-iframe" class="home-visual-iframe"></iframe>
+        </div>
 
         <div class="field-group" id="sec-cards">
           <div class="field-group-title">🗂️ Danh sách thẻ bài viết</div>
@@ -3121,9 +3126,20 @@ function renderHubEditor() {
       </div>
     </div>
   `);
+
+  const hubIframe = document.getElementById('hub-visual-iframe');
+  if (hubIframe) hubIframe.srcdoc = buildHubPreviewHtml();
+  bindHubBridgeMessages();
 }
 
 function hubUpdate(i, field, value) { HUB_CARDS[i].raw = acApply(HUB_CARDS[i].raw, { [field]: value }); markChanged(); }
+function hubPickImage(i) {
+  openMediaModal(res => {
+    hubUpdate(i, 'img', res.src);
+    if (res.alt) hubUpdate(i, 'alt', res.alt);
+    renderHubEditor();
+  }, 'image');
+}
 function hubMove(i, dir) { const j = i + dir; if (j < 0 || j >= HUB_CARDS.length) return; const t = HUB_CARDS[i]; HUB_CARDS[i] = HUB_CARDS[j]; HUB_CARDS[j] = t; markChanged(); renderHubEditor(); }
 let DRAG_HUB_IDX = null;
 function hubDragStart(e, i) { DRAG_HUB_IDX = i; e.dataTransfer.effectAllowed = 'move'; e.currentTarget.classList.add('dragging'); }
@@ -3761,11 +3777,19 @@ function homeSimplePanelHtml(objKey, title, fields) {
   const obj = HOME_DATA[objKey];
   const rows = fields.map(([k,label,type]) => type === 'textarea'
     ? `<label class="form-label">${label}</label><textarea class="form-input" oninput="homeSimpleEdit('${objKey}','${k}',this.value)">${esc(obj[k]||'')}</textarea>`
+    : k === 'img'
+    ? `<label class="form-label">${label}</label><div style="display:flex;gap:6px"><input class="form-input" style="flex:1" value="${esc(obj[k]||'')}" oninput="homeSimpleEdit('${objKey}','${k}',this.value)"><button class="btn btn-secondary btn-sm" style="flex-shrink:0" onclick="homeSimplePickImage('${objKey}','${k}')">🖼️ Chọn</button></div>`
     : `<label class="form-label">${label}</label><input class="form-input" value="${esc(obj[k]||'')}" oninput="homeSimpleEdit('${objKey}','${k}',this.value)">`
   ).join('');
   return `<div class="home-panel-head"><h3>${title}</h3></div><div class="home-item-card">${rows}</div>`;
 }
 function homeSimpleEdit(objKey, key, val) { HOME_DATA[objKey][key] = val; markChanged(); schedulePreviewRefresh(); }
+function homeSimplePickImage(objKey, key) {
+  openMediaModal(res => {
+    homeSimpleEdit(objKey, key, res.src);
+    openHomeBlockPanel(HOME_PANEL);
+  }, 'image');
+}
 
 // ── Panel danh sách chung (dùng cho heroSide/marquee/rank/manga/latest/trending/catGrid) ──
 // Mỗi mục mặc định THU GỌN (chỉ hiện ảnh mini + tên + nút thao tác) — bấm để
@@ -3789,7 +3813,10 @@ function homeItemListBody(typeKey, path) {
       const thumb = imgKey && f[imgKey] ? `<img class="home-item-thumb" src="${esc(f[imgKey])}" alt="" onerror="this.style.opacity=.2">` : `<div class="home-item-thumb home-item-thumb-empty">·</div>`;
       return `<div class="home-item-card home-item-collapsed">${head}<div class="home-item-summary" onclick="homeItemToggleExpand('${ek}')">${thumb}<span class="home-item-summary-text">${esc(f[primaryKey] || '(chưa có nội dung)')}</span></div></div>`;
     }
-    const fieldsHtml = type.fields.map(([k,label]) => `<label class="form-label">${label}</label><input class="form-input" value="${esc(f[k]||'')}" oninput="homeItemFieldEdit('${path}',${i},'${typeKey}','${k}',this.value)">`).join('');
+    const fieldsHtml = type.fields.map(([k,label]) => k === 'img'
+      ? `<label class="form-label">${label}</label><div style="display:flex;gap:6px"><input class="form-input" style="flex:1" value="${esc(f[k]||'')}" oninput="homeItemFieldEdit('${path}',${i},'${typeKey}','${k}',this.value)"><button class="btn btn-secondary btn-sm" style="flex-shrink:0" onclick="homeItemPickImage('${path}',${i},'${typeKey}','${k}')">🖼️ Chọn</button></div>`
+      : `<label class="form-label">${label}</label><input class="form-input" value="${esc(f[k]||'')}" oninput="homeItemFieldEdit('${path}',${i},'${typeKey}','${k}',this.value)">`
+    ).join('');
     return `<div class="home-item-card">${head}${fieldsHtml}</div>`;
   }).join('');
   return `<button class="btn btn-secondary btn-sm" style="margin-bottom:10px" onclick="homeItemAdd('${path}','${typeKey}')">➕ Thêm mục</button><div class="home-item-list">${rows || '<div class="empty-state-mini">Chưa có mục nào.</div>'}</div>`;
@@ -3816,6 +3843,12 @@ function homeItemFieldEdit(path, i, typeKey, key, val) {
   arr[i].raw = type.apply(arr[i].raw, { [key]: val });
   markChanged();
   schedulePreviewRefresh();
+}
+function homeItemPickImage(path, i, typeKey, key) {
+  openMediaModal(res => {
+    homeItemFieldEdit(path, i, typeKey, key, res.src);
+    openHomeBlockPanel(HOME_PANEL);
+  }, 'image');
 }
 function homeItemMove(path, i, dir) {
   const arr = getArr(path);
@@ -3877,12 +3910,17 @@ function homeFeaturedPanelHtml() {
   const fcFieldsDef = [['title','Tiêu đề'],['sub','Mô tả ngắn','textarea'],['tag','Nhãn chuyên mục'],['href','Link'],['img','URL ảnh']];
   const fcHtml = fcFieldsDef.map(([k,label,type]) => type === 'textarea'
     ? `<label class="form-label">${label}</label><textarea class="form-input" oninput="homeFcEdit('${k}',this.value)">${esc(fc[k]||'')}</textarea>`
+    : k === 'img'
+    ? `<label class="form-label">${label}</label><div style="display:flex;gap:6px"><input class="form-input" style="flex:1" value="${esc(fc[k]||'')}" oninput="homeFcEdit('${k}',this.value)"><button class="btn btn-secondary btn-sm" style="flex-shrink:0" onclick="homeFcPickImage('${k}')">🖼️ Chọn</button></div>`
     : `<label class="form-label">${label}</label><input class="form-input" value="${esc(fc[k]||'')}" oninput="homeFcEdit('${k}',this.value)">`
   ).join('');
   const scFieldsDef = [['title','Tiêu đề'],['tag','Nhãn'],['href','Link'],['img','URL ảnh']];
   const scRows = HOME_DATA.featured.sc.map((c,i) => {
     const f = scFields(c.raw);
-    const fieldsHtml = scFieldsDef.map(([k,label]) => `<label class="form-label">${label}</label><input class="form-input" value="${esc(f[k]||'')}" oninput="homeScEdit(${i},'${k}',this.value)">`).join('');
+    const fieldsHtml = scFieldsDef.map(([k,label]) => k === 'img'
+      ? `<label class="form-label">${label}</label><div style="display:flex;gap:6px"><input class="form-input" style="flex:1" value="${esc(f[k]||'')}" oninput="homeScEdit(${i},'${k}',this.value)"><button class="btn btn-secondary btn-sm" style="flex-shrink:0" onclick="homeScPickImage(${i},'${k}')">🖼️ Chọn</button></div>`
+      : `<label class="form-label">${label}</label><input class="form-input" value="${esc(f[k]||'')}" oninput="homeScEdit(${i},'${k}',this.value)">`
+    ).join('');
     return `<div class="home-item-card"><div class="home-item-head"><span>Tin phụ #${i+1}</span><div class="home-item-actions"><button title="Lên" onclick="homeScMove(${i},-1)">↑</button><button title="Xuống" onclick="homeScMove(${i},1)">↓</button><button title="Xoá" onclick="homeScDelete(${i})">🗑</button></div></div>${fieldsHtml}</div>`;
   }).join('');
   return `<div class="home-panel-head"><h3>🗞️ Tin nổi bật — tin chính</h3></div><div class="home-item-card">${fcHtml}</div>
@@ -3891,7 +3929,9 @@ function homeFeaturedPanelHtml() {
     <div class="home-item-list">${scRows}</div>`;
 }
 function homeFcEdit(key, val) { HOME_DATA.featured.fc = fcApply(HOME_DATA.featured.fc, { [key]: val }); markChanged(); schedulePreviewRefresh(); }
+function homeFcPickImage(key) { openMediaModal(res => { homeFcEdit(key, res.src); openHomeBlockPanel('featured'); }, 'image'); }
 function homeScEdit(i, key, val) { HOME_DATA.featured.sc[i].raw = scApply(HOME_DATA.featured.sc[i].raw, { [key]: val }); markChanged(); schedulePreviewRefresh(); }
+function homeScPickImage(i, key) { openMediaModal(res => { homeScEdit(i, key, res.src); openHomeBlockPanel('featured'); }, 'image'); }
 function homeScMove(i, dir) { const arr=HOME_DATA.featured.sc; const j=i+dir; if (j<0||j>=arr.length) return; const t=arr[i]; arr[i]=arr[j]; arr[j]=t; markChanged(); openHomeBlockPanel('featured'); schedulePreviewRefresh(); }
 function homeScDelete(i) { if (!confirm('Xoá thẻ tin phụ này?')) return; HOME_DATA.featured.sc.splice(i,1); markChanged(); openHomeBlockPanel('featured'); schedulePreviewRefresh(); }
 function homeScAdd() {
@@ -3912,12 +3952,16 @@ function homeAnimeTabbedPanel() {
   const items = HOME_DATA.anime[active] || [];
   const fieldsDef = [['title','Tiêu đề'],['genre','Thể loại'],['score','Điểm'],['day','Ngày phát'],['ep','Số tập'],['status','Trạng thái (airing/soon/done)'],['img','URL ảnh']];
   const rows = items.map((it,i) => {
-    const fieldsHtml = fieldsDef.map(([k,label]) => `<label class="form-label">${label}</label><input class="form-input" value="${esc(it[k]||'')}" oninput="homeAnimeEdit('${active}',${i},'${k}',this.value)">`).join('');
+    const fieldsHtml = fieldsDef.map(([k,label]) => k === 'img'
+      ? `<label class="form-label">${label}</label><div style="display:flex;gap:6px"><input class="form-input" style="flex:1" value="${esc(it[k]||'')}" oninput="homeAnimeEdit('${active}',${i},'${k}',this.value)"><button class="btn btn-secondary btn-sm" style="flex-shrink:0" onclick="homeAnimePickImage('${active}',${i},'${k}')">🖼️ Chọn</button></div>`
+      : `<label class="form-label">${label}</label><input class="form-input" value="${esc(it[k]||'')}" oninput="homeAnimeEdit('${active}',${i},'${k}',this.value)">`
+    ).join('');
     return `<div class="home-item-card"><div class="home-item-head"><span>#${i+1}</span><div class="home-item-actions"><button title="Lên" onclick="homeAnimeMove('${active}',${i},-1)">↑</button><button title="Xuống" onclick="homeAnimeMove('${active}',${i},1)">↓</button><button title="Xoá" onclick="homeAnimeDelete('${active}',${i})">🗑</button></div></div>${fieldsHtml}</div>`;
   }).join('');
   return `<div class="home-panel-head"><h3>📺 Anime theo mùa</h3></div><div class="home-tab-bar">${tabBar}</div><button class="btn btn-secondary btn-sm" style="margin-bottom:10px" onclick="homeAnimeAdd('${active}')">➕ Thêm anime</button><div class="home-item-list">${rows || '<div class="empty-state-mini">Chưa có mục nào.</div>'}</div>`;
 }
 function homeAnimeEdit(season, i, key, val) { HOME_DATA.anime[season][i][key] = val; markChanged(); schedulePreviewRefresh(); }
+function homeAnimePickImage(season, i, key) { openMediaModal(res => { homeAnimeEdit(season, i, key, res.src); openHomeBlockPanel('anime'); }, 'image'); }
 function homeAnimeMove(season, i, dir) { const arr=HOME_DATA.anime[season]; const j=i+dir; if (j<0||j>=arr.length) return; const t=arr[i]; arr[i]=arr[j]; arr[j]=t; markChanged(); openHomeBlockPanel('anime'); schedulePreviewRefresh(); }
 function homeAnimeDelete(season, i) { if (!confirm('Xoá anime này?')) return; HOME_DATA.anime[season].splice(i,1); markChanged(); openHomeBlockPanel('anime'); schedulePreviewRefresh(); }
 function homeAnimeAdd(season) {
@@ -3994,12 +4038,6 @@ async function syncNewArticle(meta) {
     await ghSpliceInsert('index.html', /<article class="w-card">/, wcard, false, `[admin] them bai moi vao trang chu: ${meta.title.slice(0, 50)}`);
     results.push('✅ index.html');
   } catch(e) { results.push('❌ index.html — ' + e.message); }
-
-  try {
-    const tuple = `\n      ['${slug}',${JSON.stringify(meta.title)},${JSON.stringify(meta.title)}],`;
-    await ghSpliceInsert('assets/category-latest.js', new RegExp(info.story + ':\\['), tuple, true, `[admin] them bai moi vao category-latest.js: ${meta.title.slice(0, 50)}`);
-    results.push('✅ category-latest.js');
-  } catch(e) { results.push('❌ category-latest.js — ' + e.message); }
 
   try {
     const entry = JSON.stringify({ u: url, t: meta.title, c: meta.cat, s: (meta.desc || '').slice(0, 150) }) + ',';
