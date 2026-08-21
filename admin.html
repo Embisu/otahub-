@@ -67,6 +67,7 @@ body { background: var(--bg); color: var(--white); font-family: 'Segoe UI', syst
 .nav-item.active { background: var(--bcyan); color: var(--cyan); box-shadow: inset 3px 0 0 var(--cyan); }
 .nav-item .icon { width: 16px; text-align: center; flex-shrink: 0; opacity: .8; }
 .nav-item .badge { margin-left: auto; background: var(--violet); color: #fff; font-size: 10px; padding: 1px 6px; border-radius: 10px; }
+.draft-badge { display: inline-flex; align-items: center; gap: 3px; background: var(--amber); color: #1d1300; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px; white-space: nowrap; }
 
 .sidebar-footer { margin-top: auto; padding: 16px; border-top: 1px solid var(--border); }
 .connected-info { font-size: 11px; color: var(--muted); line-height: 1.7; }
@@ -597,6 +598,9 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
           <button class="nav-item" id="nav-users" onclick="showView('users')">
             <span class="icon">👤</span> Người dùng
           </button>
+          <button class="nav-item" id="nav-auditlog" onclick="showView('auditlog')">
+            <span class="icon">📜</span> Nhật ký hoạt động
+          </button>
         </div>
       </div>
 
@@ -668,6 +672,24 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
   </div>
 </div>
 
+<!-- Lịch sử phiên bản (dựa trên lịch sử commit Git thật của file) — cho phép
+     xem lại và khôi phục bản cũ mà không mất lịch sử (khôi phục = tạo commit
+     mới với nội dung cũ, không revert/force-push). -->
+<div class="media-modal-ov" id="history-modal-ov" onclick="if(event.target===this)closeHistoryModal()">
+  <div class="media-modal-box" style="max-width:600px">
+    <div class="media-modal-head">
+      <strong style="font-size:13.5px">🕐 Lịch sử phiên bản</strong>
+      <button class="media-modal-close" onclick="closeHistoryModal()">✕</button>
+    </div>
+    <div class="media-modal-body" id="history-modal-body" style="min-height:120px">
+      <div class="loading"><div class="spinner"></div><span>Đang tải lịch sử...</span></div>
+    </div>
+    <div class="media-modal-foot">
+      <button class="btn btn-secondary" onclick="closeHistoryModal()">Đóng</button>
+    </div>
+  </div>
+</div>
+
 <div class="cmdk-ov" id="cmdk-ov" onclick="if(event.target===this)closeCmdk()">
   <div class="cmdk-box">
     <div class="cmdk-in-row">
@@ -683,6 +705,8 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 // ── State ──────────────────────────────────────────────────────────────────
 let CURRENT_USER = null;
 let ARTICLES = [];
+let DRAFT_FILES = new Set(); // các file (bài viết/trang) hiện có bản nháp chưa xuất bản — dùng để hiện huy hiệu "Nháp"
+let CURRENT_VIEW = null; // view đang hiển thị ('dashboard'|'articles'|...) — dùng để biết có nên vẽ lại khi dữ liệu nền tải xong hay không
 let currentFile = null;
 let currentSha = null;
 let currentRawHtml = '';
@@ -740,6 +764,7 @@ function cmdkStaticActions() {
     { icon: '✉️', title: 'Liên hệ', hint: 'Trang lien-he.html', tag: 'Đi tới', run: () => sectionEditor('lien-he.html', 'nav-lienhe', 'Liên hệ', 'https://otahub.asia/lien-he') },
     { icon: '🔒', title: 'Chính sách bảo mật', hint: 'Trang chinh-sach-bao-mat.html', tag: 'Đi tới', run: () => sectionEditor('chinh-sach-bao-mat.html', 'nav-chinhsach', 'Chính sách bảo mật', 'https://otahub.asia/chinh-sach-bao-mat') },
     { icon: '👤', title: 'Người dùng', hint: 'Quản lý tài khoản admin', tag: 'Đi tới', run: () => showView('users') },
+    { icon: '📜', title: 'Nhật ký hoạt động', hint: 'Ai sửa gì, lúc nào', tag: 'Đi tới', run: () => showView('auditlog') },
   ];
 }
 function cmdkArticleActions() {
@@ -781,7 +806,7 @@ function cmdkRender() {
     return;
   }
   list.innerHTML = CMDK_ITEMS.map((it, i) => `
-    <div class="cmdk-item${i === CMDK_SEL ? ' sel' : ''}" onmouseenter="CMDK_SEL=${i};cmdkRender()" onclick="cmdkRun(${i})">
+    <div class="cmdk-item${i === CMDK_SEL ? ' sel' : ''}" onmouseenter="cmdkHover(${i})" onclick="cmdkRun(${i})">
       <div class="cmdk-item-icon">${it.icon}</div>
       <div class="cmdk-item-body">
         <div class="cmdk-item-title">${esc(it.title)}</div>
@@ -791,6 +816,19 @@ function cmdkRender() {
     </div>`).join('');
   const sel = list.querySelector('.cmdk-item.sel');
   if (sel) sel.scrollIntoView({ block: 'nearest' });
+}
+// Rê chuột chỉ đổi class 'sel', KHÔNG render lại toàn bộ danh sách — trước đây
+// mỗi lần onmouseenter gọi cmdkRender() sẽ thay cả cây DOM ngay dưới con trỏ
+// chuột (kèm scrollIntoView), khiến trình duyệt đôi khi "mất" sự kiện click
+// vì phần tử đang hover bị huỷ và tạo lại đúng lúc người dùng bấm.
+function cmdkHover(i) {
+  CMDK_SEL = i;
+  const list = document.getElementById('cmdk-list');
+  if (!list) return;
+  const cur = list.querySelector('.cmdk-item.sel');
+  if (cur) cur.classList.remove('sel');
+  const el = list.children[i];
+  if (el) el.classList.add('sel');
 }
 function cmdkRun(i) {
   const it = CMDK_ITEMS[i];
@@ -850,11 +888,17 @@ async function doLogin() {
   }
 }
 
+const ROLE_LABEL = { admin: 'Admin', editor: 'Editor', author: 'Author', contributor: 'Contributor' };
 function startApp() {
   document.getElementById('setup-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
+  const roleTxt = ROLE_LABEL[CURRENT_USER.role] || CURRENT_USER.role || '';
   document.getElementById('conn-info').innerHTML =
-    `<strong>${esc(CURRENT_USER.username)}</strong><br>Embisu/otahub-`;
+    `<strong>${esc(CURRENT_USER.username)}</strong>${roleTxt ? ' · ' + esc(roleTxt) : ''}<br>Embisu/otahub-`;
+  // Quản lý tài khoản chỉ danh cho admin — an tuong nhung sai vai tro se bi
+  // chan lai o backend, nhung an di cho gon giao dien.
+  const usersNav = document.getElementById('nav-users');
+  if (usersNav) usersNav.style.display = CURRENT_USER.role === 'admin' ? '' : 'none';
   loadArticles(true);
 }
 
@@ -889,6 +933,40 @@ async function ghPut(path, content, sha, message) {
     throw new Error(e.error || 'Lỗi khi lưu file');
   }
   return r.json();
+}
+
+// ── Bản nháp (draft) — KHÔNG commit lên GitHub, chỉ lưu tạm trong KV để
+// autosave liên tục mà không tạo hàng loạt commit "rác" trên production.
+// "Lưu & Deploy" mới thật sự xuất bản (ghPut) — sau khi xuất bản thành công,
+// bản nháp tương ứng sẽ tự bị xoá.
+async function putDraft(file, html) {
+  const r = await fetch('/api/admin/draft/' + file, {
+    method: 'PUT', credentials: 'same-origin',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ html }),
+  });
+  if (!r.ok) { const e = await r.json().catch(()=>({})); throw new Error(e.error || 'Lỗi lưu bản nháp'); }
+  return r.json();
+}
+async function getDraft(file) {
+  try {
+    const r = await fetch('/api/admin/draft/' + file, { credentials: 'same-origin' });
+    if (!r.ok) return null;
+    return r.json();
+  } catch(e) { return null; }
+}
+async function deleteDraft(file) {
+  try { await fetch('/api/admin/draft/' + file, { method: 'DELETE', credentials: 'same-origin' }); } catch(e) {}
+}
+// Nạp lại danh sách file đang có bản nháp (để hiện huy hiệu "Nháp" ở danh sách
+// bài viết + bảng tin). Lỗi ở đây không nên chặn phần còn lại của trang.
+async function refreshDraftFiles() {
+  try {
+    const r = await fetch('/api/admin/drafts', { credentials: 'same-origin' });
+    if (!r.ok) return;
+    const data = await r.json();
+    DRAFT_FILES = new Set((data.drafts || []).map(d => d.file));
+  } catch(e) { /* bỏ qua — không có huy hiệu nháp thì thôi, không phải lỗi nghiêm trọng */ }
 }
 
 // ── Tải ảnh lên (assets/img/) ─────────────────────────────────────────────
@@ -993,6 +1071,76 @@ function closeMediaModal() {
   document.getElementById('media-modal-ov')?.classList.remove('open');
   MEDIA_MODAL_CB = null;
 }
+
+// ── Lịch sử phiên bản + khôi phục ─────────────────────────────────────────
+// Dùng thẳng lịch sử commit Git đã có sẵn (mỗi lần Lưu & Deploy là 1 commit)
+// thay vì tự xây kho lưu phiên bản riêng — vừa đơn giản, vừa không bao giờ
+// lệch với thực tế trên GitHub. "Khôi phục" = lấy nội dung file tại 1 commit
+// cũ rồi LƯU LẠI THÀNH COMMIT MỚI (không revert/force — không mất lịch sử).
+let HISTORY_FILE = null, HISTORY_RELOAD_CB = null;
+function timeAgoVi(iso) {
+  const diffMs = Date.now() - new Date(iso).getTime();
+  const mins = Math.floor(diffMs / 60000);
+  if (mins < 1) return 'vừa xong';
+  if (mins < 60) return `${mins} phút trước`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs} giờ trước`;
+  const days = Math.floor(hrs / 24);
+  if (days < 30) return `${days} ngày trước`;
+  return new Date(iso).toLocaleDateString('vi-VN');
+}
+async function openHistoryModal(file, reloadCb) {
+  HISTORY_FILE = file;
+  HISTORY_RELOAD_CB = reloadCb || null;
+  document.getElementById('history-modal-ov')?.classList.add('open');
+  const body = document.getElementById('history-modal-body');
+  body.innerHTML = `<div class="loading"><div class="spinner"></div><span>Đang tải lịch sử...</span></div>`;
+  try {
+    const r = await fetch('/api/admin/history/' + file, { credentials: 'same-origin' });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.error || 'Không tải được lịch sử.');
+    renderHistoryList(data.commits || []);
+  } catch(e) {
+    body.innerHTML = `<div class="empty-state"><div class="empty-icon">⚠️</div><p>${esc(e.message)}</p></div>`;
+  }
+}
+function renderHistoryList(commits) {
+  const body = document.getElementById('history-modal-body');
+  if (!commits.length) {
+    body.innerHTML = `<div class="empty-state"><div class="empty-icon">🕐</div><p>Chưa có lịch sử commit nào cho file này.</p></div>`;
+    return;
+  }
+  body.innerHTML = commits.map((c, i) => `
+    <div class="dash-recent-row" style="cursor:default;align-items:flex-start">
+      <span class="dash-recent-cat">${i === 0 ? '🟢' : '📝'}</span>
+      <span class="dash-recent-title" style="white-space:normal">
+        ${esc((c.message || '').split('\n')[0])}
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">${esc(c.author || '')} · ${timeAgoVi(c.date)}${i === 0 ? ' · <strong style="color:var(--cyan)">bản hiện tại</strong>' : ''}</div>
+      </span>
+      ${i === 0 ? '' : `<button class="btn btn-secondary btn-sm" style="flex-shrink:0" onclick="historyRestore('${c.sha}')">↺ Khôi phục</button>`}
+    </div>`).join('');
+}
+async function historyRestore(sha) {
+  if (!HISTORY_FILE) return;
+  if (!confirm('Khôi phục file về phiên bản này? Thao tác này sẽ tạo một commit mới với nội dung cũ — không mất lịch sử, luôn có thể khôi phục lại bản mới nhất sau đó.')) return;
+  try {
+    const oldData = await ghGet(HISTORY_FILE + '?ref=' + sha);
+    const oldContent = decodeURIComponent(escape(atob(oldData.content)));
+    const latest = await ghGet(HISTORY_FILE);
+    await ghPut(HISTORY_FILE, oldContent, latest.sha, `khoi phuc ve phien ban cu (${sha.slice(0,7)})`);
+    toast('success', '✅ Đã khôi phục — deploy trong ~1-2 phút.');
+    const reload = HISTORY_RELOAD_CB;
+    closeHistoryModal();
+    if (reload) reload();
+  } catch(e) {
+    toast('error', 'Lỗi khôi phục: ' + e.message);
+  }
+}
+function closeHistoryModal() {
+  document.getElementById('history-modal-ov')?.classList.remove('open');
+  HISTORY_FILE = null;
+  HISTORY_RELOAD_CB = null;
+}
 function mediaSwitchTab(tab) {
   MEDIA_MODAL_TAB = tab;
   document.getElementById('media-tab-image')?.classList.toggle('active', tab === 'image');
@@ -1086,6 +1234,12 @@ async function loadArticles(landOnDashboard) {
         date: '',
       }));
     document.getElementById('article-count').textContent = ARTICLES.length;
+    refreshDraftFiles().then(() => {
+      // Danh sách nháp tải xong sau — nếu người dùng vẫn còn đang xem đúng
+      // view này thì vẽ lại để hiện huy hiệu, không thì bỏ qua.
+      if (CURRENT_VIEW === 'articles') renderArticleList();
+      else if (CURRENT_VIEW === 'dashboard') renderDashboard();
+    });
     if (landOnDashboard) showView('dashboard'); else showView('articles');
   } catch(e) {
     setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải bài viết: ${e.message}</p></div>`);
@@ -1127,14 +1281,16 @@ function setMain(html) { document.getElementById('main-content').innerHTML = htm
 function showView(view) {
   if (HAS_UNSAVED_CHANGES && !confirm('Bạn có thay đổi chưa lưu. Rời khỏi trang này sẽ mất các thay đổi đó — tiếp tục?')) return;
   HAS_UNSAVED_CHANGES = false;
+  CURRENT_VIEW = view;
   document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  const navMap = { dashboard: 'nav-dashboard', articles: 'nav-articles', rankings: 'nav-rankings', users: 'nav-users' };
+  const navMap = { dashboard: 'nav-dashboard', articles: 'nav-articles', rankings: 'nav-rankings', users: 'nav-users', auditlog: 'nav-auditlog' };
   document.getElementById(navMap[view] || 'nav-articles')?.classList.add('active');
 
   if (view === 'dashboard') renderDashboard();
   else if (view === 'articles') renderArticleList();
   else if (view === 'rankings') loadRankings();
   else if (view === 'users') loadUsers();
+  else if (view === 'auditlog') loadAuditLog();
 }
 
 // ── Bảng tin (Dashboard) ──────────────────────────────────────────────────
@@ -1149,7 +1305,7 @@ function renderDashboard() {
   const recentRows = recent.map(a => `
     <div class="dash-recent-row" onclick="editArticle('${a.file}')">
       <span class="dash-recent-cat">${CAT_ICON[a.cat] || '📄'}</span>
-      <span class="dash-recent-title">${esc(a.title)}</span>
+      <span class="dash-recent-title">${esc(a.title)}${DRAFT_FILES.has(a.file) ? ' <span class="draft-badge" title="Có bản nháp chưa xuất bản">📝 Nháp</span>' : ''}</span>
       <span class="dash-recent-go">Sửa →</span>
     </div>`).join('');
 
@@ -1205,21 +1361,34 @@ async function loadUsers() {
     const r = await fetch('/api/admin/users', { credentials: 'same-origin' });
     if (!r.ok) throw new Error('Không tải được danh sách người dùng.');
     const data = await r.json();
-    renderUsersView(data.users || []);
+    renderUsersView(data.users || [], !!data.canManageUsers);
   } catch(e) {
     setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>${esc(e.message)}</p></div>`);
   }
 }
 
-function renderUsersView(users) {
+const ROLE_HINT = {
+  admin: 'Toàn quyền — quản lý tài khoản, ghi mọi file.',
+  editor: 'Ghi được mọi file (bài viết + trang chủ/hub/trang hệ thống), không quản lý tài khoản.',
+  author: 'Chỉ ghi được bài viết — không sửa được trang chủ, trang chuyên mục hay file cấu hình.',
+  contributor: 'Chỉ xem — chưa xuất bản trực tiếp được (dành cho quy trình duyệt bài sau này).',
+};
+function renderUsersView(users, canManage) {
+  const roleSelectHtml = (u) => canManage
+    ? `<select class="form-input" style="width:auto;padding:5px 8px;font-size:11.5px" onchange="changeUserRole('${esc(u.username)}',this.value)">
+        ${Object.keys(ROLE_LABEL).map(r => `<option value="${r}" ${r===u.role?'selected':''}>${ROLE_LABEL[r]}</option>`).join('')}
+      </select>`
+    : `<span class="cmdk-item-tag">${esc(ROLE_LABEL[u.role] || u.role)}</span>`;
+
   const rows = users.map(u => `
-    <div class="article-card" style="grid-template-columns:1fr auto">
+    <div class="article-card" style="grid-template-columns:1fr auto auto">
       <div class="art-info">
         <div class="art-title">${esc(u.username)}${u.username === CURRENT_USER.username ? ' <span style="color:var(--muted);font-weight:400">(bạn)</span>' : ''}</div>
         <div class="art-meta">${u.createdAt ? 'Tạo lúc ' + new Date(u.createdAt).toLocaleString('vi-VN') : ''}</div>
       </div>
+      <div class="art-actions">${roleSelectHtml(u)}</div>
       <div class="art-actions">
-        ${u.username === CURRENT_USER.username ? '' : `<button class="btn btn-danger btn-sm" onclick="deleteUser('${esc(u.username)}')">🗑 Xoá</button>`}
+        ${(!canManage || u.username === CURRENT_USER.username) ? '' : `<button class="btn btn-danger btn-sm" onclick="deleteUser('${esc(u.username)}')">🗑 Xoá</button>`}
       </div>
     </div>`).join('');
 
@@ -1228,23 +1397,34 @@ function renderUsersView(users) {
       <div class="page-title">Người dùng <small>${users.length} tài khoản</small></div>
     </div>
     <div class="content-area">
+      ${canManage ? `
       <div class="field-group">
         <div class="field-group-title">➕ Thêm tài khoản mới</div>
         <label class="form-label">Tên đăng nhập</label>
         <input class="form-input" id="nu-username" placeholder="ten-dang-nhap"/>
         <label class="form-label">Mật khẩu (tối thiểu 8 ký tự)</label>
         <input class="form-input" type="password" id="nu-password" placeholder="••••••••"/>
+        <label class="form-label">Vai trò</label>
+        <select class="form-input" id="nu-role">
+          ${Object.keys(ROLE_LABEL).map(r => `<option value="${r}" ${r==='author'?'selected':''}>${ROLE_LABEL[r]}</option>`).join('')}
+        </select>
+        <div id="nu-role-hint" style="font-size:11px;color:var(--muted);margin-top:5px">${ROLE_HINT.author}</div>
         <button class="btn btn-primary" style="margin-top:14px" onclick="addUser()">Thêm tài khoản</button>
         <div id="nu-error" class="setup-error"></div>
-      </div>
+      </div>` : `<div class="field-group"><p style="color:var(--muted);font-size:12.5px">Chỉ admin mới quản lý được tài khoản — bạn chỉ có thể xem danh sách.</p></div>`}
       <div class="articles-grid">${rows}</div>
     </div>
   `);
+  const roleSel = document.getElementById('nu-role');
+  if (roleSel) roleSel.addEventListener('change', () => {
+    document.getElementById('nu-role-hint').textContent = ROLE_HINT[roleSel.value] || '';
+  });
 }
 
 async function addUser() {
   const username = document.getElementById('nu-username').value.trim();
   const password = document.getElementById('nu-password').value;
+  const role = document.getElementById('nu-role')?.value || 'author';
   const errEl = document.getElementById('nu-error');
   errEl.style.display = 'none';
   if (!username || !password || password.length < 8) {
@@ -1257,7 +1437,7 @@ async function addUser() {
       method: 'POST',
       credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
+      body: JSON.stringify({ username, password, role })
     });
     const data = await r.json();
     if (!r.ok) throw new Error(data.error || 'Không thêm được tài khoản.');
@@ -1266,6 +1446,24 @@ async function addUser() {
   } catch(e) {
     errEl.textContent = e.message;
     errEl.style.display = 'block';
+  }
+}
+
+async function changeUserRole(username, role) {
+  try {
+    const r = await fetch('/api/admin/users/role', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, role })
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.error || 'Không đổi được vai trò.');
+    toast('success', `✅ Đã đổi vai trò của ${username} sang ${ROLE_LABEL[role] || role}`);
+    loadUsers();
+  } catch(e) {
+    toast('error', e.message);
+    loadUsers();
   }
 }
 
@@ -1283,6 +1481,44 @@ async function deleteUser(username) {
   } catch(e) {
     toast('error', e.message);
   }
+}
+
+// ── Nhật ký hoạt động (audit log) ────────────────────────────────────────
+const AUDIT_ACTION_LABEL = {
+  login: '🔑 Đăng nhập', login_failed: '⚠️ Đăng nhập sai', setup: '🆕 Khởi tạo hệ thống',
+  write: '💾 Ghi file', write_failed: '❌ Ghi file thất bại',
+  user_created: '➕ Tạo tài khoản', user_deleted: '🗑 Xoá tài khoản', user_role_changed: '🔄 Đổi vai trò',
+};
+async function loadAuditLog() {
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải nhật ký hoạt động...</span></div>`);
+  try {
+    const r = await fetch('/api/admin/auditlog', { credentials: 'same-origin' });
+    if (!r.ok) throw new Error('Không tải được nhật ký hoạt động.');
+    const data = await r.json();
+    renderAuditLog(data.log || []);
+  } catch(e) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>${esc(e.message)}</p></div>`);
+  }
+}
+function renderAuditLog(log) {
+  const rows = log.map(e => {
+    const label = AUDIT_ACTION_LABEL[e.action] || e.action;
+    const detail = [e.file, e.target, e.role ? 'vai trò: ' + (ROLE_LABEL[e.role] || e.role) : '', e.message, e.error]
+      .filter(Boolean).join(' · ');
+    return `<div class="dash-recent-row" style="cursor:default">
+      <span class="dash-recent-cat">${label.split(' ')[0]}</span>
+      <span class="dash-recent-title">${esc(label.replace(/^\S+\s/, ''))} — <strong>${esc(e.username || '')}</strong>${detail ? ' <span style="color:var(--muted);font-weight:400">(' + esc(detail) + ')</span>' : ''}</span>
+      <span class="dash-recent-go">${e.at ? new Date(e.at).toLocaleString('vi-VN') : ''}</span>
+    </div>`;
+  }).join('');
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">Nhật ký hoạt động <small>${log.length} mục gần nhất</small></div>
+    </div>
+    <div class="content-area">
+      <div class="field-group">${rows || '<p style="color:var(--muted);font-size:12px">Chưa có hoạt động nào được ghi lại.</p>'}</div>
+    </div>
+  `);
 }
 
 const CAT_ICON = { Gaming:'🎮', Anime:'⛩️', Manga:'📚', Reviews:'⭐', Rankings:'📊', Guide:'📘', News:'📰' };
@@ -1308,7 +1544,7 @@ function renderArticleList(filter='', cat='') {
         <img class="art-thumb" data-file="${a.file}" alt="" loading="lazy" onload="this.classList.add('loaded')" onerror="this.remove()"/>
       </div>
       <div class="art-info">
-        <div class="art-title">${esc(a.title)}</div>
+        <div class="art-title">${esc(a.title)}${DRAFT_FILES.has(a.file) ? ' <span class="draft-badge" title="Có bản nháp chưa xuất bản">📝 Nháp</span>' : ''}</div>
         <div class="art-meta">
           <span class="art-cat">${esc(a.cat)}</span>
           <span class="art-file">${esc(a.file)}</span>
@@ -1388,11 +1624,31 @@ async function editArticle(file) {
     const html = decodeURIComponent(escape(atob(data.content)));
     currentFile = file;
     currentSha = data.sha;
-    renderEditor(file, html);
+    const finalHtml = await resolveDraftOrPublished(file, html);
+    renderEditor(file, finalHtml);
   } catch(e) {
     toast('error', 'Không tải được bài: ' + e.message);
     showView('articles');
   }
+}
+
+// Kiểm tra xem file này có bản nháp chưa xuất bản không; nếu có, hỏi người
+// dùng muốn tiếp tục từ nháp hay bỏ nháp và dùng bản đã xuất bản. Lưu ý:
+// currentSha vẫn luôn trỏ tới bản đã xuất bản thật (lấy từ ghGet ở trên) dù
+// nội dung hiển thị trong editor là từ nháp hay không — điều này đảm bảo lần
+// "Lưu & Deploy" kế tiếp vẫn so khớp đúng với sha thật trên GitHub.
+async function resolveDraftOrPublished(file, publishedHtml) {
+  try {
+    const draft = await getDraft(file);
+    if (draft && typeof draft.html === 'string') {
+      const when = draft.updatedAt ? timeAgoVi(new Date(draft.updatedAt).toISOString()) : '';
+      const who = draft.updatedBy ? ` bởi ${draft.updatedBy}` : '';
+      const useDraft = confirm(`Có bản nháp chưa xuất bản (lưu ${when}${who}).\n\nBấm OK để tiếp tục từ bản nháp, hoặc Cancel để bỏ nháp và mở bản đã xuất bản.`);
+      if (useDraft) return draft.html;
+      await deleteDraft(file);
+    }
+  } catch(e) { /* không có nháp hoặc lỗi tải nháp — dùng bản đã xuất bản */ }
+  return publishedHtml;
 }
 
 function renderEditor(file, html) {
@@ -1523,9 +1779,10 @@ function renderEditor(file, html) {
             <div class="pb-actions">
               <button class="btn btn-primary" id="save-btn" onclick="saveArticle()">💾 Lưu & Deploy</button>
             </div>
-            <div style="display:flex;gap:14px;margin-top:12px">
+            <div style="display:flex;gap:14px;margin-top:12px;flex-wrap:wrap">
               <a class="pb-link" id="ed-live-link" href="https://otahub.asia/${file.replace(/\.html$/,'')}" target="_blank">🔗 Xem live</a>
               <a class="pb-link" href="#" onclick="event.preventDefault();if(confirm('Bỏ thay đổi?'))editArticle(currentFile)">↺ Hoàn tác</a>
+              ${isNewFile ? '' : `<a class="pb-link" href="#" onclick="event.preventDefault();openHistoryModal('${file}', () => editArticle('${file}'))">🕐 Lịch sử</a>`}
             </div>
             <div class="pb-savelog" id="save-log"></div>
           </div>
@@ -1634,6 +1891,33 @@ function extractBody(html) {
 function esc(s) { return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function unesc(s) { return s.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"'); }
 
+// ── Autosave bản nháp (dùng chung cho Article/Home/Hub editor) ──────────────
+// Debounce dài hơn nhiều so với debounce xem trước (700ms) — 45s là đủ để
+// không spam request KV liên tục khi gõ, nhưng vẫn đủ nhanh để không mất
+// nhiều nếu trình duyệt/tab bị đóng đột ngột.
+let DRAFT_AUTOSAVE_TIMER = null;
+function scheduleDraftAutosave() {
+  clearTimeout(DRAFT_AUTOSAVE_TIMER);
+  DRAFT_AUTOSAVE_TIMER = setTimeout(autosaveDraft, 45000);
+}
+function setDraftIndicator(text) {
+  const log = document.getElementById('save-log');
+  if (log) log.innerHTML = `<span style="color:var(--muted);font-size:11px">${esc(text)}</span><br>` + log.innerHTML;
+}
+// Nhận diện editor nào đang mở dựa trên phần tử DOM đặc trưng của từng loại
+// (giống cách scheduleHubPreviewRefresh()/schedulePreviewRefresh() đã làm) —
+// không cần 1 biến "màn hình hiện tại" riêng, tránh 2 nguồn sự thật lệch nhau.
+async function autosaveDraft() {
+  if (!HAS_UNSAVED_CHANGES) return;
+  if (currentFile && document.getElementById('body-textarea')) {
+    await autosaveArticleDraft();
+  } else if (typeof HOME_FILE !== 'undefined' && HOME_FILE && document.getElementById('home-visual-iframe')) {
+    await autosaveHomeDraft();
+  } else if (typeof HUB_FILE !== 'undefined' && HUB_FILE && document.getElementById('hub-visual-iframe')) {
+    await autosaveHubDraft();
+  }
+}
+
 function markChanged() {
   HAS_UNSAVED_CHANGES = true;
   const dot = document.getElementById('status-dot');
@@ -1647,6 +1931,7 @@ function markChanged() {
   scheduleArticlePreviewRefresh();
   // Áp dụng tương tự cho bản xem trước trang chuyên mục (nếu đang mở editor đó).
   scheduleHubPreviewRefresh();
+  scheduleDraftAutosave();
 }
 
 // Dùng cho các chỉnh sửa BẮT NGUỒN từ trong iframe (gõ trực tiếp tiêu đề, mô
@@ -1659,6 +1944,7 @@ function markChangedNoRebuild() {
   if (dot) dot.className = 'status-dot saving';
   if (txt) txt.textContent = 'Có thay đổi chưa lưu';
   updateSeoScore();
+  scheduleDraftAutosave();
 }
 
 function updateWordCount() {
@@ -2337,18 +2623,27 @@ function scheduleBlockListRefresh() {
 }
 
 // ── Save ───────────────────────────────────────────────────────────────────
-async function saveArticle() {
-  // Nếu đang ở chế độ Trực quan hoặc Khối, đồng bộ nội dung sang ô HTML thô
-  // trước khi lưu (ô HTML thô luôn là nguồn dữ liệu thật sự được ghi vào file).
-  if (BODY_MODE === 'visual') {
-    const vis = document.getElementById('body-visual');
-    const ta = document.getElementById('body-textarea');
-    if (vis && ta) ta.value = cleanVisualHtml(vis.innerHTML);
-  } else if (BODY_MODE === 'blocks') {
-    const ta = document.getElementById('body-textarea');
-    if (ta) ta.value = blocksToHtml(BODY_BLOCKS);
-  }
+// Bài mới: URL/slug có thể đã bị đổi trong lúc soạn (ô "Đường dẫn URL") sau
+// khi template gốc được dựng với slug tạm — vá lại canonical/hreflang/og:url/
+// JSON-LD cho khớp với slug CUỐI CÙNG. Tách riêng để autosaveArticleDraft()
+// dùng chung được, không chỉ saveArticle() (xuất bản thật).
+function patchNewArticleUrls(html, file) {
+  const finalSlug = file.replace(/\.html$/, '');
+  const finalUrl = `https://otahub.asia/${finalSlug}`;
+  html = html.replace(/(<link rel="alternate" hreflang="vi" href=")[^"]*(")/, `$1${finalUrl}$2`);
+  html = html.replace(/(<link rel="alternate" hreflang="en" href=")[^"]*(")/, `$1https://otahub.asia/en/${finalSlug}$2`);
+  html = html.replace(/(<link rel="alternate" hreflang="x-default" href=")[^"]*(")/, `$1${finalUrl}$2`);
+  html = html.replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${finalUrl}$2`);
+  html = html.replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${finalUrl}$2`);
+  html = html.replace(/("mainEntityOfPage": \{ "@type": "WebPage", "@id": ")[^"]*(")/, `$1${finalUrl}$2`);
+  return html;
+}
 
+// Áp toàn bộ field đang có trong editor (tiêu đề, mô tả, ảnh bìa, nội dung...)
+// vào 1 chuỗi HTML nền — dùng chung cho cả "Lưu & Deploy" thật (saveArticle)
+// lẫn autosave bản nháp (autosaveArticleDraft), để 2 đường không bao giờ lệch
+// logic với nhau. KHÔNG đọc/ghi state ngoài field DOM hiện tại + tham số vào.
+function applyArticleEditsToHtml(baseHtml) {
   const title   = ART_TITLE || '';
   const excerpt = ART_EXCERPT || '';
   const desc    = document.getElementById('ed-desc')?.value || '';
@@ -2357,6 +2652,80 @@ async function saveArticle() {
   const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
   const cat     = document.getElementById('ed-cat')?.value || 'Gaming';
   const bodyVi  = document.getElementById('body-textarea')?.value || '';
+
+  let html = baseHtml;
+  // Apply edits (esc() để tránh vỡ HTML nếu tiêu đề/mô tả chứa <, >, &, ")
+  html = html.replace(/<title>[^<]+<\/title>/, `<title>${esc(title)} · OtaHub</title>`);
+  html = html.replace(/(<meta name="description" content=")[^"]*(")/,   `$1${esc(desc)}$2`);
+  // Từ khóa trọng tâm (SEO Score) — lưu dạng meta ẩn, chỉ admin.html đọc lại,
+  // không ảnh hưởng SEO thật (không phải meta keywords cũ mà Google đã bỏ dùng).
+  const kwRe = /<meta name="focus-keyword" content="[^"]*">\n?/;
+  if (keyword) {
+    const kwTag = `<meta name="focus-keyword" content="${esc(keyword)}">\n`;
+    html = kwRe.test(html) ? html.replace(kwRe, kwTag) : html.replace(/(<meta name="description" content="[^"]*">\n?)/, `$1${kwTag}`);
+  } else if (kwRe.test(html)) {
+    html = html.replace(kwRe, '');
+  }
+  html = html.replace(/(<meta property="og:title" content=")[^"]*(")/,  `$1${esc(title)} · OtaHub$2`);
+  html = html.replace(/(<meta property="og:description" content=")[^"]*(")/,  `$1${esc(desc)}$2`);
+  html = html.replace(/(<meta name="twitter:title" content=")[^"]*(")/,  `$1${esc(title)} · OtaHub$2`);
+  html = html.replace(/(<meta name="twitter:description" content=")[^"]*(")/,  `$1${esc(desc)}$2`);
+  html = html.replace(/("headline": ")[^"]*(")/,  `$1${title.replace(/\\/g,'\\\\').replace(/"/g,'\\"')}$2`);
+  html = html.replace(/(<meta property="article:section" content=")[^"]*(")/,  `$1${esc(cat)}$2`);
+  // Hero
+  html = html.replace(/(class="art-hero-img"\s+style=")[^"]*(")/,
+    `$1background-image:url(${hero});background-position:center ${heroPos}%;background-color:#0b0418;$2`);
+  // H1 — hỗ trợ cả mẫu hiện tại (art-hero-title) lẫn mẫu cũ (art-hero-title lang-vi active)
+  if (/<h1 class="art-hero-title">[^<]*<\/h1>/.test(html)) {
+    html = html.replace(/(<h1 class="art-hero-title">)[^<]*(<\/h1>)/, `$1${esc(title)}$2`);
+  } else {
+    html = html.replace(/(<h1 class="art-hero-title lang-vi active">)[^<]*(<\/h1>)/, `$1${esc(title)}$2`);
+  }
+  // Mô tả ngắn dưới tiêu đề, trên ảnh bìa (trước đây tồn tại trong mẫu nhưng
+  // chưa từng được đọc/lưu — nay là field thật, xem extractExcerpt()).
+  if (/<p class="art-hero-excerpt">[^<]*<\/p>/.test(html)) {
+    html = html.replace(/(<p class="art-hero-excerpt">)[^<]*(<\/p>)/, `$1${esc(excerpt)}$2`);
+  }
+  // Body — hỗ trợ cả mẫu hiện tại (art-body) lẫn mẫu cũ (art-body lang-vi active)
+  if (/<article class="art-body">[\s\S]*?<\/article>/.test(html)) {
+    html = html.replace(/<article class="art-body">[\s\S]*?<\/article>/, `<article class="art-body">\n${bodyVi}\n</article>`);
+  } else {
+    html = html.replace(/<article class="art-body lang-vi active">[\s\S]*?<\/article>/, `<article class="art-body lang-vi active">\n${bodyVi}\n</article>`);
+  }
+
+  // Dữ liệu Khối ẩn (admin-block-data) — chỉ tồn tại cho bài dùng chế độ Khối.
+  // Nếu vẫn đang dùng Khối: ghi lại JSON khối mới nhất để lần sau mở lại vẫn
+  // chỉnh được bằng kéo-thả. Nếu đã "tốt nghiệp" sang Trực quan/HTML (BODY_BLOCKS
+  // = null) nhưng file vẫn còn marker cũ: gỡ bỏ để không lưu dữ liệu khối lỗi thời.
+  const blockMarkerRe = /<script type="application\/json" id="admin-block-data">[\s\S]*?<\/script>\n?/;
+  if (BODY_BLOCKS) {
+    const newMarker = `<script type="application/json" id="admin-block-data">${JSON.stringify(BODY_BLOCKS)}<\/script>\n`;
+    html = blockMarkerRe.test(html) ? html.replace(blockMarkerRe, newMarker) : html.replace(/<\/article>/, `</article>\n${newMarker}`);
+  } else if (blockMarkerRe.test(html)) {
+    html = html.replace(blockMarkerRe, '');
+  }
+  return html;
+}
+
+// Đồng bộ Trực quan/Khối -> ô HTML thô (ô HTML thô luôn là nguồn dữ liệu thật
+// sự được ghi vào file) — dùng chung cho saveArticle() lẫn autosave draft.
+function syncArticleBodyToTextarea() {
+  if (BODY_MODE === 'visual') {
+    const vis = document.getElementById('body-visual');
+    const ta = document.getElementById('body-textarea');
+    if (vis && ta) ta.value = cleanVisualHtml(vis.innerHTML);
+  } else if (BODY_MODE === 'blocks') {
+    const ta = document.getElementById('body-textarea');
+    if (ta) ta.value = blocksToHtml(BODY_BLOCKS);
+  }
+}
+
+async function saveArticle() {
+  syncArticleBodyToTextarea();
+  const title = ART_TITLE || '';
+  const desc  = document.getElementById('ed-desc')?.value || '';
+  const cat   = document.getElementById('ed-cat')?.value || 'Gaming';
+  const hero  = document.getElementById('ed-hero')?.value || '';
 
   if (!currentFile) return;
 
@@ -2374,77 +2743,17 @@ async function saveArticle() {
     // Bài mới: dùng template đang có sẵn trong editor, sha để trống để GitHub tự tạo file.
     let html, sha;
     if (isNewFile) {
-      html = currentRawHtml;
+      html = patchNewArticleUrls(currentRawHtml, currentFile);
       sha = undefined;
-      // Bài mới: URL/slug có thể đã bị đổi trong lúc soạn (ô "Đường dẫn URL")
-      // sau khi template gốc được dựng với slug tạm — vá lại canonical/hreflang/
-      // og:url/JSON-LD cho khớp với currentFile CUỐI CÙNG trước khi lưu thật.
-      const finalSlug = currentFile.replace(/\.html$/, '');
-      const finalUrl = `https://otahub.asia/${finalSlug}`;
-      html = html.replace(/(<link rel="alternate" hreflang="vi" href=")[^"]*(")/, `$1${finalUrl}$2`);
-      html = html.replace(/(<link rel="alternate" hreflang="en" href=")[^"]*(")/, `$1https://otahub.asia/en/${finalSlug}$2`);
-      html = html.replace(/(<link rel="alternate" hreflang="x-default" href=")[^"]*(")/, `$1${finalUrl}$2`);
-      html = html.replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${finalUrl}$2`);
-      html = html.replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${finalUrl}$2`);
-      html = html.replace(/("mainEntityOfPage": \{ "@type": "WebPage", "@id": ")[^"]*(")/, `$1${finalUrl}$2`);
     } else {
       const data = await ghGet(currentFile);
       html = decodeURIComponent(escape(atob(data.content)));
       sha = data.sha;
     }
-
-    // Apply edits (esc() để tránh vỡ HTML nếu tiêu đề/mô tả chứa <, >, &, ")
-    html = html.replace(/<title>[^<]+<\/title>/, `<title>${esc(title)} · OtaHub</title>`);
-    html = html.replace(/(<meta name="description" content=")[^"]*(")/,   `$1${esc(desc)}$2`);
-    // Từ khóa trọng tâm (SEO Score) — lưu dạng meta ẩn, chỉ admin.html đọc lại,
-    // không ảnh hưởng SEO thật (không phải meta keywords cũ mà Google đã bỏ dùng).
-    const kwRe = /<meta name="focus-keyword" content="[^"]*">\n?/;
-    if (keyword) {
-      const kwTag = `<meta name="focus-keyword" content="${esc(keyword)}">\n`;
-      html = kwRe.test(html) ? html.replace(kwRe, kwTag) : html.replace(/(<meta name="description" content="[^"]*">\n?)/, `$1${kwTag}`);
-    } else if (kwRe.test(html)) {
-      html = html.replace(kwRe, '');
-    }
-    html = html.replace(/(<meta property="og:title" content=")[^"]*(")/,  `$1${esc(title)} · OtaHub$2`);
-    html = html.replace(/(<meta property="og:description" content=")[^"]*(")/,  `$1${esc(desc)}$2`);
-    html = html.replace(/(<meta name="twitter:title" content=")[^"]*(")/,  `$1${esc(title)} · OtaHub$2`);
-    html = html.replace(/(<meta name="twitter:description" content=")[^"]*(")/,  `$1${esc(desc)}$2`);
-    html = html.replace(/("headline": ")[^"]*(")/,  `$1${title.replace(/\\/g,'\\\\').replace(/"/g,'\\"')}$2`);
-    html = html.replace(/(<meta property="article:section" content=")[^"]*(")/,  `$1${esc(cat)}$2`);
-    // Hero
-    html = html.replace(/(class="art-hero-img"\s+style=")[^"]*(")/,
-      `$1background-image:url(${hero});background-position:center ${heroPos}%;background-color:#0b0418;$2`);
-    // H1 — hỗ trợ cả mẫu hiện tại (art-hero-title) lẫn mẫu cũ (art-hero-title lang-vi active)
-    if (/<h1 class="art-hero-title">[^<]*<\/h1>/.test(html)) {
-      html = html.replace(/(<h1 class="art-hero-title">)[^<]*(<\/h1>)/, `$1${esc(title)}$2`);
-    } else {
-      html = html.replace(/(<h1 class="art-hero-title lang-vi active">)[^<]*(<\/h1>)/, `$1${esc(title)}$2`);
-    }
-    // Mô tả ngắn dưới tiêu đề, trên ảnh bìa (trước đây tồn tại trong mẫu nhưng
-    // chưa từng được đọc/lưu — nay là field thật, xem extractExcerpt()).
-    if (/<p class="art-hero-excerpt">[^<]*<\/p>/.test(html)) {
-      html = html.replace(/(<p class="art-hero-excerpt">)[^<]*(<\/p>)/, `$1${esc(excerpt)}$2`);
-    }
-    // Body — hỗ trợ cả mẫu hiện tại (art-body) lẫn mẫu cũ (art-body lang-vi active)
-    if (/<article class="art-body">[\s\S]*?<\/article>/.test(html)) {
-      html = html.replace(/<article class="art-body">[\s\S]*?<\/article>/, `<article class="art-body">\n${bodyVi}\n</article>`);
-    } else {
-      html = html.replace(/<article class="art-body lang-vi active">[\s\S]*?<\/article>/, `<article class="art-body lang-vi active">\n${bodyVi}\n</article>`);
-    }
-
-    // Dữ liệu Khối ẩn (admin-block-data) — chỉ tồn tại cho bài dùng chế độ Khối.
-    // Nếu vẫn đang dùng Khối: ghi lại JSON khối mới nhất để lần sau mở lại vẫn
-    // chỉnh được bằng kéo-thả. Nếu đã "tốt nghiệp" sang Trực quan/HTML (BODY_BLOCKS
-    // = null) nhưng file vẫn còn marker cũ: gỡ bỏ để không lưu dữ liệu khối lỗi thời.
-    const blockMarkerRe = /<script type="application\/json" id="admin-block-data">[\s\S]*?<\/script>\n?/;
-    if (BODY_BLOCKS) {
-      const newMarker = `<script type="application/json" id="admin-block-data">${JSON.stringify(BODY_BLOCKS)}<\/script>\n`;
-      html = blockMarkerRe.test(html) ? html.replace(blockMarkerRe, newMarker) : html.replace(/<\/article>/, `</article>\n${newMarker}`);
-    } else if (blockMarkerRe.test(html)) {
-      html = html.replace(blockMarkerRe, '');
-    }
+    html = applyArticleEditsToHtml(html);
 
     const putResult = await ghPut(currentFile, html, sha, `[admin] cap nhat: ${title.slice(0,50)}`);
+    await deleteDraft(currentFile);
 
     // Update local state — với bài mới, lấy sha thật từ kết quả commit để lần
     // lưu tiếp theo được nhận diện là "sửa bài đã tồn tại" thay vì tạo lại.
@@ -2471,6 +2780,25 @@ async function saveArticle() {
     toast('error', 'Lỗi lưu: ' + e.message);
   } finally {
     btn.textContent = '💾 Lưu & Deploy'; btn.disabled = false;
+  }
+}
+
+// Autosave bản nháp bài viết — KHÔNG commit GitHub, chỉ lưu tạm trong KV.
+// Dùng lại chính xác cùng logic dựng HTML với saveArticle() (applyArticleEditsToHtml
+// + patchNewArticleUrls) để bản nháp và bản xuất bản không bao giờ lệch nhau,
+// nhưng lấy HTML nền từ bộ nhớ (currentRawHtml) thay vì gọi lại GitHub — nhanh
+// hơn và phù hợp vì bản nháp vốn không phải bản chốt cuối cùng.
+async function autosaveArticleDraft() {
+  if (!currentFile || !currentRawHtml) return;
+  syncArticleBodyToTextarea();
+  try {
+    let html = currentRawHtml;
+    if (!currentSha) html = patchNewArticleUrls(html, currentFile);
+    html = applyArticleEditsToHtml(html);
+    await putDraft(currentFile, html);
+    setDraftIndicator('📝 Đã lưu nháp tự động lúc ' + new Date().toLocaleTimeString('vi-VN'));
+  } catch(e) {
+    setDraftIndicator('⚠️ Lưu nháp tự động thất bại: ' + e.message);
   }
 }
 
@@ -3044,8 +3372,8 @@ async function hubEditor(file, label) {
     const data = await ghGet(file);
     const raw = decodeURIComponent(escape(atob(data.content)));
     HUB_FILE = file;
-    HUB_RAW = raw;
-    const m = raw.match(/<!-- ADMIN:ARTICLES_START -->([\s\S]*?)<!-- ADMIN:ARTICLES_END -->/);
+    HUB_RAW = await resolveDraftOrPublished(file, raw);
+    const m = HUB_RAW.match(/<!-- ADMIN:ARTICLES_START -->([\s\S]*?)<!-- ADMIN:ARTICLES_END -->/);
     if (!m) throw new Error('Trang này chưa có marker ADMIN:ARTICLES nên chưa hỗ trợ sửa qua trình soạn thảo này.');
     HUB_CARDS = splitBlocks(m[1], /<a href="[^"]*" class="ac"/).map(r => ({ raw: r }));
     renderHubEditor();
@@ -3111,9 +3439,10 @@ function renderHubEditor() {
             <div class="pb-actions">
               <button class="btn btn-primary" id="save-btn" onclick="saveHub()">💾 Lưu & Deploy</button>
             </div>
-            <div style="display:flex;gap:14px;margin-top:12px">
+            <div style="display:flex;gap:14px;margin-top:12px;flex-wrap:wrap">
               <a class="pb-link" href="https://otahub.asia/${viewPath}" target="_blank">🔗 Xem live</a>
               <a class="pb-link" href="#" onclick="event.preventDefault();if(confirm('Bỏ thay đổi?'))hubEditor('${HUB_FILE}','${HUB_LABEL}')">↺ Hoàn tác</a>
+              <a class="pb-link" href="#" onclick="event.preventDefault();openHistoryModal('${HUB_FILE}', () => hubEditor('${HUB_FILE}','${HUB_LABEL}'))">🕐 Lịch sử</a>
             </div>
             <div class="pb-savelog" id="save-log"></div>
           </div>
@@ -3162,6 +3491,12 @@ function hubAdd() {
   renderHubEditor();
   toast('success', 'Đã thêm thẻ mới — nhớ sửa link/ảnh/tiêu đề trước khi lưu.');
 }
+// Ghép danh sách thẻ bài viết hiện tại (HUB_CARDS) vào 1 HTML nền — dùng chung
+// cho saveHub() (xuất bản thật) lẫn autosaveHubDraft() (bản nháp).
+function buildHubHtml(baseHtml) {
+  const newSection = '\n      ' + HUB_CARDS.map(c => c.raw.trim()).join('\n\n      ') + '\n      ';
+  return baseHtml.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/, (m, p1, p2) => p1 + newSection + p2);
+}
 async function saveHub() {
   const btn = document.getElementById('save-btn');
   const dot = document.getElementById('status-dot');
@@ -3172,9 +3507,9 @@ async function saveHub() {
   try {
     const latest = await ghGet(HUB_FILE);
     let html = decodeURIComponent(escape(atob(latest.content)));
-    const newSection = '\n      ' + HUB_CARDS.map(c => c.raw.trim()).join('\n\n      ') + '\n      ';
-    html = html.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/, (m, p1, p2) => p1 + newSection + p2);
+    html = buildHubHtml(html);
     await ghPut(HUB_FILE, html, latest.sha, `[admin] cap nhat danh sach bai viet ${HUB_FILE}`);
+    await deleteDraft(HUB_FILE);
     HAS_UNSAVED_CHANGES = false;
     if (dot) dot.className = 'status-dot';
     if (txt) txt.textContent = 'Đã lưu • ' + new Date().toLocaleTimeString('vi-VN');
@@ -3187,6 +3522,18 @@ async function saveHub() {
     toast('error', 'Lỗi lưu: ' + e.message);
   } finally {
     if (btn) { btn.textContent = '💾 Lưu & Deploy'; btn.disabled = false; }
+  }
+}
+// Autosave bản nháp Hub editor — dùng HUB_RAW (đã cache khi mở editor) làm
+// nền thay vì gọi lại GitHub, giữ tốc độ nhanh cho autosave định kỳ.
+async function autosaveHubDraft() {
+  if (!HUB_FILE || !HUB_RAW) return;
+  try {
+    const html = buildHubHtml(HUB_RAW);
+    await putDraft(HUB_FILE, html);
+    setDraftIndicator('📝 Đã lưu nháp tự động lúc ' + new Date().toLocaleTimeString('vi-VN'));
+  } catch(e) {
+    setDraftIndicator('⚠️ Lưu nháp tự động thất bại: ' + e.message);
   }
 }
 
@@ -3623,8 +3970,8 @@ async function homeEditor(file) {
     const data = await ghGet(file);
     const raw = decodeURIComponent(escape(atob(data.content)));
     HOME_FILE = file;
-    HOME_RAW = raw;
-    HOME_DATA = loadHomeData(raw);
+    HOME_RAW = await resolveDraftOrPublished(file, raw);
+    HOME_DATA = loadHomeData(HOME_RAW);
     HOME_ITEM_EXPANDED = new Set();
     renderVisualHomeEditor();
   } catch(e) {
@@ -3712,9 +4059,10 @@ function renderVisualHomeEditor() {
             <div class="pb-actions">
               <button class="btn btn-primary" id="save-btn" onclick="saveVisualHome()">💾 Lưu & Deploy</button>
             </div>
-            <div style="display:flex;gap:14px;margin-top:12px">
+            <div style="display:flex;gap:14px;margin-top:12px;flex-wrap:wrap">
               <a class="pb-link" href="https://otahub.asia/${isEn ? 'en/' : ''}" target="_blank">🔗 Xem live</a>
               <a class="pb-link" href="#" onclick="event.preventDefault();if(confirm('Bỏ thay đổi?'))homeEditor('${HOME_FILE}')">↺ Hoàn tác</a>
+              <a class="pb-link" href="#" onclick="event.preventDefault();openHistoryModal('${HOME_FILE}', () => homeEditor('${HOME_FILE}'))">🕐 Lịch sử</a>
             </div>
             <div class="pb-savelog" id="save-log"></div>
           </div>
@@ -3983,6 +4331,7 @@ async function saveVisualHome() {
     const latestRaw = decodeURIComponent(escape(atob(latest.content)));
     const html = buildHomeHtml(latestRaw, HOME_DATA);
     await ghPut(HOME_FILE, html, latest.sha, '[admin] cap nhat trang chu (visual editor)');
+    await deleteDraft(HOME_FILE);
     HOME_RAW = latestRaw;
     HAS_UNSAVED_CHANGES = false;
     if (dot) dot.className = 'status-dot';
@@ -3996,6 +4345,18 @@ async function saveVisualHome() {
     toast('error', 'Lỗi lưu: ' + e.message);
   } finally {
     if (btn) { btn.textContent = '💾 Lưu & Deploy'; btn.disabled = false; }
+  }
+}
+// Autosave bản nháp Home editor — dùng HOME_RAW (đã cache khi mở editor) làm
+// nền thay vì gọi lại GitHub, giữ tốc độ nhanh cho autosave định kỳ.
+async function autosaveHomeDraft() {
+  if (!HOME_FILE || !HOME_RAW || !HOME_DATA) return;
+  try {
+    const html = buildHomeHtml(HOME_RAW, HOME_DATA);
+    await putDraft(HOME_FILE, html);
+    setDraftIndicator('📝 Đã lưu nháp tự động lúc ' + new Date().toLocaleTimeString('vi-VN'));
+  } catch(e) {
+    setDraftIndicator('⚠️ Lưu nháp tự động thất bại: ' + e.message);
   }
 }
 
