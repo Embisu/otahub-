@@ -600,6 +600,12 @@ let BODY_MODE = 'visual'; // 'visual' | 'code' | 'blocks' — chế độ soạn
 let BODY_BLOCKS = null; // mảng block khi bài đang ở chế độ Khối kéo-thả (chỉ bài mới); null = không dùng block
 let HAS_UNSAVED_CHANGES = false; // cảnh báo khi rời trang nếu còn thay đổi chưa lưu
 
+// ── Trạng thái trình soạn thảo Elementor (iframe xem trước thật + click-to-edit) ──
+let ART_TITLE = '';
+let ART_EXCERPT = '';
+let ART_PREVIEW_TIMER = null;
+let ART_BLOCKLIST_TIMER = null;
+
 // Cảnh báo trước khi rời trang / đóng tab nếu còn thay đổi chưa lưu
 window.addEventListener('beforeunload', (e) => {
   if (!HAS_UNSAVED_CHANGES) return;
@@ -908,6 +914,13 @@ function extractHeroPos(html) {
   return p ? parseInt(p[1]) : 50;
 }
 
+// Mô tả ngắn hiển thị ngay dưới tiêu đề, trên ảnh bìa — trước đây tồn tại trong
+// mẫu bài viết nhưng chưa từng được admin đọc/lưu (luôn giữ nguyên placeholder).
+function extractExcerpt(html) {
+  const m = html.match(/<p class="art-hero-excerpt">([^<]*)<\/p>/);
+  return m ? unesc(m[1]).trim() : '';
+}
+
 // ── Views ──────────────────────────────────────────────────────────────────
 function setMain(html) { document.getElementById('main-content').innerHTML = html; }
 
@@ -1191,6 +1204,9 @@ function renderEditor(file, html) {
   const heroPos = extractHeroPos(html);
   const cat     = extract(html, /article:section" content="([^"]+)"/) || 'Gaming';
   const bodyVi  = extractBody(html);
+  const excerpt = extractExcerpt(html);
+  ART_TITLE = title;
+  ART_EXCERPT = excerpt;
 
   // Chế độ Khối (kéo-thả) chỉ khả dụng cho bài có sẵn dữ liệu block ẩn (bài mới
   // tạo qua nút "Viết bài mới" — xem newArticle()). Bài cũ (~130 bài) không có
@@ -1214,7 +1230,12 @@ function renderEditor(file, html) {
     <div class="editor-layout">
       <div class="editor-main">
 
-        <input class="title-field" id="ed-title" value="${esc(title)}" placeholder="Nhập tiêu đề bài viết..."/>
+        <!-- Bản xem trước thật kiểu Elementor — bấm trực tiếp vào tiêu đề, mô tả
+             ngắn, đoạn văn, ảnh... để sửa ngay tại chỗ, không cần mở form riêng. -->
+        <div class="visual-hint">🖱️ Đây là bản xem trước <strong>thật</strong> của bài viết. Bấm vào tiêu đề, mô tả ngắn, đoạn văn hoặc ảnh để sửa trực tiếp — giống Elementor. Các thay đổi cấu trúc (thêm/xoá khối, đổi ảnh, danh mục) dùng bảng điều khiển bên dưới/bên phải.</div>
+        <div class="visual-iframe-wrap" style="margin-bottom:18px">
+          <iframe id="art-visual-iframe" class="home-visual-iframe"></iframe>
+        </div>
 
         <!-- Body VI — ô soạn thảo là trung tâm, giống khung viết bài WordPress -->
         <div class="body-editor" style="margin-bottom:16px">
@@ -1304,7 +1325,7 @@ function renderEditor(file, html) {
 
         <div class="side-box">
           <div class="side-box-title">🗂️ Danh mục</div>
-          <select class="form-input" id="ed-cat">
+          <select class="form-input" id="ed-cat" onchange="markChanged()">
             ${['Gaming','Anime','Manga','Reviews','Rankings','Guide','News'].map(c =>
               `<option value="${c}" ${c===cat?'selected':''}>${c}</option>`).join('')}
           </select>
@@ -1355,7 +1376,7 @@ function renderEditor(file, html) {
   `);
 
   // Mark as changed when edited
-  ['ed-title','ed-desc','ed-hero','ed-hero-pos','body-textarea','body-visual'].forEach(id => {
+  ['ed-desc','ed-hero','ed-hero-pos','body-textarea','body-visual'].forEach(id => {
     document.getElementById(id)?.addEventListener('input', markChanged);
   });
 
@@ -1368,9 +1389,15 @@ function renderEditor(file, html) {
   // Populate body images list
   renderBodyImgs(bodyVi);
 
-  // Số từ / thời gian đọc ước tính, và focus sẵn vào ô tiêu đề cho tiện gõ ngay
+  // Dựng bản xem trước thật kiểu Elementor + gắn cầu nối postMessage cho phép
+  // gõ trực tiếp trong iframe (tiêu đề, mô tả ngắn, đoạn văn...) đồng bộ ngược
+  // về trạng thái editor mà không làm mất con trỏ/focus.
+  const artIframe = document.getElementById('art-visual-iframe');
+  if (artIframe) artIframe.srcdoc = buildArticlePreviewHtml();
+  bindArticleBridgeMessages();
+
+  // Số từ / thời gian đọc ước tính
   updateWordCount();
-  document.getElementById('ed-title')?.focus();
 }
 
 // Mẫu bài viết hiện tại (từ giữa dự án) dùng 1 khối art-body duy nhất, không
@@ -1394,6 +1421,20 @@ function markChanged() {
   if (dot) dot.className = 'status-dot saving';
   if (txt) txt.textContent = 'Có thay đổi chưa lưu';
   updateWordCount();
+  // Thay đổi cấu trúc (danh mục, ảnh bìa, khối, HTML thô...) cần dựng lại toàn
+  // bộ iframe xem trước bài viết — có debounce nên gõ liên tục vẫn mượt.
+  scheduleArticlePreviewRefresh();
+}
+
+// Dùng cho các chỉnh sửa BẮT NGUỒN từ trong iframe (gõ trực tiếp tiêu đề, mô
+// tả ngắn, đoạn văn...) — iframe đã tự hiển thị thay đổi ngay khi gõ nên KHÔNG
+// cần dựng lại srcdoc (tránh mất con trỏ/focus giữa chừng).
+function markChangedNoRebuild() {
+  HAS_UNSAVED_CHANGES = true;
+  const dot = document.getElementById('status-dot');
+  const txt = document.getElementById('status-text');
+  if (dot) dot.className = 'status-dot saving';
+  if (txt) txt.textContent = 'Có thay đổi chưa lưu';
 }
 
 function updateWordCount() {
@@ -1667,6 +1708,41 @@ function blockToHtml(b) {
 }
 function blocksToHtml(blocks) { return (blocks || []).map(blockToHtml).filter(Boolean).join('\n'); }
 
+// ── Bản HTML "có gắn thẻ" cho khối — chỉ dùng để dựng bản xem trước trong
+// iframe (không bao giờ lưu ra file thật). Mỗi khối được đánh data-ohb="{idx}"
+// và phần văn bản chính được bật contenteditable trực tiếp trong iframe, đồng
+// bộ về BODY_BLOCKS qua postMessage — giống hệt cách Elementor cho sửa ngay
+// trên bản xem trước thay vì phải mở form riêng.
+function blockToHtmlTagged(b, i) {
+  if (b.type === 'heading') {
+    const lvl = b.level === 3 ? 3 : 2;
+    return `<h${lvl} data-ohb="${i}" data-ohf="text" contenteditable="true">${esc(b.text || '')}</h${lvl}>`;
+  }
+  if (b.type === 'image') {
+    if (!b.src) return `<figure data-oh-jump="block-${i}" class="oh-img-empty"><div class="oh-img-empty-hint">📷 Chưa có ảnh — bấm để thêm bên dưới</div></figure>`;
+    return `<figure data-oh-jump="block-${i}"><img src="${esc(b.src)}" alt="${esc(b.alt||'')}"><figcaption data-ohb="${i}" data-ohf="caption" contenteditable="true">${esc(b.caption||'')}</figcaption></figure>`;
+  }
+  if (b.type === 'quote') {
+    return `<blockquote data-oh-jump="block-${i}"><p data-ohb="${i}" data-ohf="text" contenteditable="true">${b.text || ''}</p><cite data-ohb="${i}" data-ohf="cite" contenteditable="true">${esc(b.cite || '')}</cite></blockquote>`;
+  }
+  if (b.type === 'list') {
+    const items = (b.items || []).map(s => s.trim()).filter(Boolean);
+    return `<ul data-ohb="${i}" data-ohf="items" contenteditable="true">${items.length ? items.map(it => `<li>${esc(it)}</li>`).join('') : '<li>Mục đầu tiên...</li>'}</ul>`;
+  }
+  return `<p data-ohb="${i}" data-ohf="html" contenteditable="true">${b.html || ''}</p>`;
+}
+function blocksToHtmlTagged(blocks) { return (blocks || []).map((b, i) => blockToHtmlTagged(b, i)).join('\n'); }
+
+// Chuyển innerHTML của <ul contenteditable> (gõ trực tiếp trong iframe) ngược
+// lại thành mảng chuỗi — Enter trong UL/LI là hành vi gõ danh sách mặc định
+// của trình duyệt nên gõ y hệt Word, không cần toolbar riêng.
+function parseListItemsFromHtml(html) {
+  const tmp = document.createElement('ul');
+  tmp.innerHTML = html;
+  const items = [...tmp.querySelectorAll('li')].map(li => li.textContent.trim());
+  return items.length ? items : [''];
+}
+
 async function renderBlockEditor() {
   const el = document.getElementById('body-blocks-editor');
   if (!el) return;
@@ -1791,6 +1867,133 @@ function blockDrop(e, i) {
   renderBlockEditor(); markChanged();
 }
 
+// ── Bản xem trước thật kiểu Elementor (iframe + click/gõ trực tiếp) ─────────
+// Dựng từ chính currentRawHtml (khung sườn thật của bài, y hệt file sẽ lưu),
+// vá lại tiêu đề/mô tả/danh mục/ảnh bìa/nội dung theo trạng thái đang chỉnh,
+// rồi gắn bridge script để cho gõ trực tiếp + click để nhảy tới control.
+function buildArticlePreviewHtml() {
+  let html = currentRawHtml;
+  const cat     = document.getElementById('ed-cat')?.value || 'Gaming';
+  const hero    = document.getElementById('ed-hero')?.value || '';
+  const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
+
+  html = html.replace(/(class="art-hero-img"\s+style=")[^"]*(")/,
+    `$1background-image:url(${hero});background-position:center ${heroPos}%;background-color:#0b0418;$2 data-oh-jump="heroimg"`);
+
+  const titleTag = /<h1 class="art-hero-title">/.test(html) ? 'art-hero-title' : 'art-hero-title lang-vi active';
+  html = html.replace(new RegExp(`(<h1 class="${titleTag}")>[^<]*(<\\/h1>)`),
+    (m, p1, p2) => `${p1} contenteditable="true" data-ohfield="title">${esc(ART_TITLE)}${p2}`);
+
+  if (/<p class="art-hero-excerpt">/.test(html)) {
+    html = html.replace(/(<p class="art-hero-excerpt")>[^<]*(<\/p>)/,
+      (m, p1, p2) => `${p1} contenteditable="true" data-ohfield="excerpt">${esc(ART_EXCERPT)}${p2}`);
+  }
+  html = html.replace(/(<span class="art-hero-cat")>[^<]*(<\/span>)/,
+    (m, p1, p2) => `${p1} data-oh-jump="cat">${esc(cat)}${p2}`);
+  html = html.replace(/(<span class="am-tag">)[^<]*(<\/span>)/, (m, p1, p2) => p1 + esc(cat) + p2);
+
+  const bodyTagged = BODY_BLOCKS
+    ? blocksToHtmlTagged(BODY_BLOCKS)
+    : `<div data-oh-jump="body-editor">${document.getElementById('body-visual')?.innerHTML || ''}</div>`;
+  if (/<article class="art-body">[\s\S]*?<\/article>/.test(html)) {
+    html = html.replace(/<article class="art-body">[\s\S]*?<\/article>/, `<article class="art-body">\n${bodyTagged}\n</article>`);
+  } else {
+    html = html.replace(/<article class="art-body lang-vi active">[\s\S]*?<\/article>/, `<article class="art-body lang-vi active">\n${bodyTagged}\n</article>`);
+  }
+
+  html = html.replace('<head>', '<head><base href="https://otahub.asia/">');
+  html = html.replace('</body>', ART_BRIDGE_SCRIPT + '</body>');
+  return html;
+}
+
+const ART_BRIDGE_SCRIPT = `<script>(function(){
+  var style = document.createElement('style');
+  style.textContent =
+    '[data-oh-jump]{cursor:pointer;outline-offset:2px;transition:outline .12s}' +
+    '[data-oh-jump]:hover{outline:2px dashed #00e5ff}' +
+    '[contenteditable="true"]{outline-offset:3px;transition:outline .12s;cursor:text}' +
+    '[contenteditable="true"]:hover{outline:2px dashed rgba(0,229,255,.5)}' +
+    '[contenteditable="true"]:focus{outline:2px solid #00e5ff}' +
+    'figcaption:empty:before{content:"+ Thêm chú thích ảnh (bấm để nhập)";opacity:.45}' +
+    'cite:empty:before{content:"+ Thêm nguồn / tác giả (tuỳ chọn)";opacity:.45}' +
+    '.oh-img-empty{display:flex;align-items:center;justify-content:center;min-height:160px;border:2px dashed rgba(255,255,255,.25);background:rgba(255,255,255,.03)}' +
+    '.oh-img-empty-hint{color:rgba(240,238,255,.5);font-size:14px}';
+  document.head.appendChild(style);
+
+  document.addEventListener('click', function(e){
+    var editable = e.target.closest('[contenteditable="true"]');
+    if (editable) return; // để trình duyệt tự đặt con trỏ, gõ bình thường
+    var jumpEl = e.target.closest('[data-oh-jump]');
+    e.preventDefault();
+    e.stopPropagation();
+    if (jumpEl) parent.postMessage({ type:'art-jump', target: jumpEl.getAttribute('data-oh-jump') }, '*');
+  }, true);
+
+  document.addEventListener('input', function(e){
+    var fieldEl = e.target.closest('[data-ohfield]');
+    if (fieldEl) {
+      parent.postMessage({ type:'art-field-input', field: fieldEl.getAttribute('data-ohfield'), value: fieldEl.innerText }, '*');
+      return;
+    }
+    var blockEl = e.target.closest('[data-ohb]');
+    if (blockEl) {
+      var field = blockEl.getAttribute('data-ohf');
+      var value = (field === 'cite' || field === 'caption') ? blockEl.innerText : blockEl.innerHTML;
+      parent.postMessage({ type:'art-block-input', idx: parseInt(blockEl.getAttribute('data-ohb'), 10), field: field, value: value }, '*');
+    }
+  }, true);
+})();<\/script>`;
+
+let __artMsgBound = false;
+function bindArticleBridgeMessages() {
+  if (__artMsgBound) return;
+  __artMsgBound = true;
+  window.addEventListener('message', function(e) {
+    const d = e.data;
+    if (!d || !d.type) return;
+    if (d.type === 'art-field-input') {
+      if (d.field === 'title') ART_TITLE = d.value;
+      else if (d.field === 'excerpt') ART_EXCERPT = d.value;
+      markChangedNoRebuild();
+    } else if (d.type === 'art-block-input') {
+      const b = BODY_BLOCKS && BODY_BLOCKS[d.idx];
+      if (!b) return;
+      if (d.field === 'items') b.items = parseListItemsFromHtml(d.value);
+      else b[d.field] = d.value;
+      markChangedNoRebuild();
+      scheduleBlockListRefresh();
+    } else if (d.type === 'art-jump') {
+      articleJumpTo(d.target);
+    }
+  });
+}
+
+function articleJumpTo(target) {
+  let el = null;
+  if (target === 'heroimg') el = document.getElementById('ed-hero');
+  else if (target === 'cat') el = document.getElementById('ed-cat');
+  else if (target === 'body-editor') el = document.getElementById('body-blocks-wrap') || document.getElementById('body-visual-wrap');
+  else if (target && target.startsWith('block-')) { blockScrollTo(parseInt(target.slice(6), 10)); return; }
+  if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  el.classList.add('block-item-flash');
+  (el.closest('.side-box') || el).classList.add('block-item-flash');
+  setTimeout(() => { el.classList.remove('block-item-flash'); (el.closest('.side-box') || el).classList.remove('block-item-flash'); }, 1200);
+  try { el.focus({ preventScroll: true }); } catch(e) {}
+}
+
+function scheduleArticlePreviewRefresh() {
+  if (ART_PREVIEW_TIMER) clearTimeout(ART_PREVIEW_TIMER);
+  ART_PREVIEW_TIMER = setTimeout(() => {
+    const iframe = document.getElementById('art-visual-iframe');
+    if (iframe) iframe.srcdoc = buildArticlePreviewHtml();
+  }, 700);
+}
+function scheduleBlockListRefresh() {
+  if (ART_BLOCKLIST_TIMER) clearTimeout(ART_BLOCKLIST_TIMER);
+  ART_BLOCKLIST_TIMER = setTimeout(() => { if (BODY_BLOCKS) renderBlockEditor(); }, 900);
+}
+
 // ── Save ───────────────────────────────────────────────────────────────────
 async function saveArticle() {
   // Nếu đang ở chế độ Trực quan hoặc Khối, đồng bộ nội dung sang ô HTML thô
@@ -1804,7 +2007,8 @@ async function saveArticle() {
     if (ta) ta.value = blocksToHtml(BODY_BLOCKS);
   }
 
-  const title   = document.getElementById('ed-title')?.value || '';
+  const title   = ART_TITLE || '';
+  const excerpt = ART_EXCERPT || '';
   const desc    = document.getElementById('ed-desc')?.value || '';
   const hero    = document.getElementById('ed-hero')?.value || '';
   const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
@@ -1835,24 +2039,28 @@ async function saveArticle() {
       sha = data.sha;
     }
 
-    // Apply edits
-    html = html.replace(/<title>[^<]+<\/title>/, `<title>${title} · OtaHub</title>`);
-    html = html.replace(/(<meta name="description" content=")[^"]*(")/,   `$1${desc}$2`);
-    html = html.replace(/(<meta property="og:title" content=")[^"]*(")/,  `$1${title} · OtaHub$2`);
-    html = html.replace(/(<meta property="og:description" content=")[^"]*(")/,  `$1${desc}$2`);
-    html = html.replace(/(<meta name="twitter:title" content=")[^"]*(")/,  `$1${title} · OtaHub$2`);
-    html = html.replace(/(<meta name="twitter:description" content=")[^"]*(")/,  `$1${desc}$2`);
-    html = html.replace(/("headline": ")[^"]*(")/,  `$1${title}$2`);
-    html = html.replace(/(<meta property="article:section" content=")[^"]*(")/,  `$1${cat}$2`);
+    // Apply edits (esc() để tránh vỡ HTML nếu tiêu đề/mô tả chứa <, >, &, ")
+    html = html.replace(/<title>[^<]+<\/title>/, `<title>${esc(title)} · OtaHub</title>`);
+    html = html.replace(/(<meta name="description" content=")[^"]*(")/,   `$1${esc(desc)}$2`);
+    html = html.replace(/(<meta property="og:title" content=")[^"]*(")/,  `$1${esc(title)} · OtaHub$2`);
+    html = html.replace(/(<meta property="og:description" content=")[^"]*(")/,  `$1${esc(desc)}$2`);
+    html = html.replace(/(<meta name="twitter:title" content=")[^"]*(")/,  `$1${esc(title)} · OtaHub$2`);
+    html = html.replace(/(<meta name="twitter:description" content=")[^"]*(")/,  `$1${esc(desc)}$2`);
+    html = html.replace(/("headline": ")[^"]*(")/,  `$1${title.replace(/\\/g,'\\\\').replace(/"/g,'\\"')}$2`);
+    html = html.replace(/(<meta property="article:section" content=")[^"]*(")/,  `$1${esc(cat)}$2`);
     // Hero
     html = html.replace(/(class="art-hero-img"\s+style=")[^"]*(")/,
       `$1background-image:url(${hero});background-position:center ${heroPos}%;background-color:#0b0418;$2`);
-    // H1
     // H1 — hỗ trợ cả mẫu hiện tại (art-hero-title) lẫn mẫu cũ (art-hero-title lang-vi active)
     if (/<h1 class="art-hero-title">[^<]*<\/h1>/.test(html)) {
-      html = html.replace(/(<h1 class="art-hero-title">)[^<]*(<\/h1>)/, `$1${title}$2`);
+      html = html.replace(/(<h1 class="art-hero-title">)[^<]*(<\/h1>)/, `$1${esc(title)}$2`);
     } else {
-      html = html.replace(/(<h1 class="art-hero-title lang-vi active">)[^<]*(<\/h1>)/, `$1${title}$2`);
+      html = html.replace(/(<h1 class="art-hero-title lang-vi active">)[^<]*(<\/h1>)/, `$1${esc(title)}$2`);
+    }
+    // Mô tả ngắn dưới tiêu đề, trên ảnh bìa (trước đây tồn tại trong mẫu nhưng
+    // chưa từng được đọc/lưu — nay là field thật, xem extractExcerpt()).
+    if (/<p class="art-hero-excerpt">[^<]*<\/p>/.test(html)) {
+      html = html.replace(/(<p class="art-hero-excerpt">)[^<]*(<\/p>)/, `$1${esc(excerpt)}$2`);
     }
     // Body — hỗ trợ cả mẫu hiện tại (art-body) lẫn mẫu cũ (art-body lang-vi active)
     if (/<article class="art-body">[\s\S]*?<\/article>/.test(html)) {
