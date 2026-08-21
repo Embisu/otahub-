@@ -1,11 +1,18 @@
 import {
   hashPassword, verifyPassword, parseCookies, sessionCookie, clearSessionCookie,
   getSessionUser, createSession, deleteSession, json,
-  normalizeRole, canManageUsers, canWritePath, canDraftPath,
+  normalizeRole, canManageUsers, canWritePath, canDraftPath, canUploadImage,
   checkLoginLock, recordLoginFailure, clearLoginFailures,
   logAudit, getAuditLog,
-  putDraft, getDraftRaw, deleteDraft, listDrafts,
+  putDraft, getDraftRaw, deleteDraft, listDrafts, canViewDraft,
 } from './lib.js';
+
+// Lay IP that cua nguoi goi tu header Cloudflare gan (CF-Connecting-IP luon
+// dang tin cay hon X-Forwarded-For vi Cloudflare tu dat, khong the gia mao
+// tu phia client).
+function clientIp(request) {
+  return request.headers.get('CF-Connecting-IP') || request.headers.get('X-Forwarded-For') || 'unknown';
+}
 
 // Repo GitHub co dinh cho site nay (khong doi, khong can nguoi dung nhap lai).
 const GH_OWNER = 'Embisu';
@@ -27,23 +34,24 @@ async function handleLogin(request, env) {
   const { username, password } = body || {};
   if (!username || !password) return json({ error: 'Vui long nhap ten dang nhap va mat khau.' }, 400);
   const uname = username.toLowerCase();
+  const ip = clientIp(request);
 
-  const lock = await checkLoginLock(env, uname);
+  const lock = await checkLoginLock(env, ip, uname);
   if (lock.locked) {
     return json({ error: 'Tai khoan tam bi khoa do dang nhap sai qua nhieu lan. Vui long thu lai sau 10 phut.' }, 429);
   }
 
   const raw = await env.ADMIN_KV.get(`user:${uname}`);
-  if (!raw) { await recordLoginFailure(env, uname); return json({ error: 'Sai ten dang nhap hoac mat khau.' }, 401); }
+  if (!raw) { await recordLoginFailure(env, ip, uname); return json({ error: 'Sai ten dang nhap hoac mat khau.' }, 401); }
   const user = JSON.parse(raw);
   const ok = await verifyPassword(password, user.salt, user.hash);
   if (!ok) {
-    await recordLoginFailure(env, uname);
+    await recordLoginFailure(env, ip, uname);
     await logAudit(env, { action: 'login_failed', username: user.username });
     return json({ error: 'Sai ten dang nhap hoac mat khau.' }, 401);
   }
 
-  await clearLoginFailures(env, uname);
+  await clearLoginFailures(env, ip, uname);
   const sid = await createSession(env, user.username);
   await logAudit(env, { action: 'login', username: user.username });
   return json({ ok: true, user: { username: user.username, role: normalizeRole(user.role) } }, 200, { 'Set-Cookie': sessionCookie(sid) });
@@ -172,7 +180,8 @@ async function handleGhPut(request, env, ghPath) {
   const user = await getSessionUser(request, env);
   if (!user) return json({ error: 'Chua dang nhap.' }, 401);
   if (!ghPath) return json({ error: 'Thieu duong dan file.' }, 400);
-  if (!canWritePath(user, ghPath)) {
+  const isImageUpload = canUploadImage(user, ghPath);
+  if (!canWritePath(user, ghPath) && !isImageUpload) {
     return json({
       error: user.role === 'contributor'
         ? 'Tai khoan Contributor khong duoc xuat ban truc tiep — lien he editor/admin.'
@@ -183,6 +192,12 @@ async function handleGhPut(request, env, ghPath) {
   try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
   const { content, sha, message } = body || {};
   if (typeof content !== 'string') return json({ error: 'Thieu noi dung file.' }, 400);
+  // Khong tin kiem tra kich thuoc/dinh dang phia client — kiem tra lai server-side
+  // cho duong dan anh (client da gioi han 8MB nhung co the bi bypass).
+  if (isImageUpload) {
+    const approxBytes = Math.floor((content.length * 3) / 4);
+    if (approxBytes > 8 * 1024 * 1024) return json({ error: 'Anh vuot qua 8MB.' }, 413);
+  }
   const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}`, {
     method: 'PUT',
     headers: { ...ghHeaders(env), 'Content-Type': 'application/json' },
@@ -224,9 +239,15 @@ async function handleGhHistory(request, env, ghPath) {
   });
 }
 
+// Nhat ky hoat dong lo thong tin ai-sua-gi-luc-nao trong toan he thong — chi
+// admin/editor moi can (va nen) thay duoc, author/contributor khong can biet
+// nguoi khac dang lam gi.
 async function handleAuditLog(request, env) {
   const me = await getSessionUser(request, env);
   if (!me) return json({ error: 'Chua dang nhap.' }, 401);
+  if (me.role !== 'admin' && me.role !== 'editor') {
+    return json({ error: 'Chi admin/editor moi duoc xem nhat ky hoat dong.' }, 403);
+  }
   const log = await getAuditLog(env, 150);
   return json({ log });
 }
@@ -236,12 +257,18 @@ async function handleAuditLog(request, env) {
 // hang loat commit "rac". Chi "Luu & Deploy" (handleGhPut) moi la xuat ban
 // that; sau khi xuat ban thanh cong, draft tuong ung se bi xoa (frontend goi
 // DELETE rieng ngay sau khi ghPut thanh cong).
+// Quyen so huu: chi chinh chu (updatedBy) hoac admin/editor moi duoc doc/ghi
+// de/xoa 1 draft cu the — tranh 1 tai khoan bat ky doc/ghi de/xoa duoc draft
+// cua nguoi khac chi vi da dang nhap.
 async function handleDraftGet(request, env, ghPath) {
   const user = await getSessionUser(request, env);
   if (!user) return json({ error: 'Chua dang nhap.' }, 401);
   if (!ghPath) return json({ error: 'Thieu duong dan file.' }, 400);
   const draft = await getDraftRaw(env, ghPath);
-  if (!draft) return json({ error: 'Khong co ban nhap.' }, 404);
+  // Tra ve 404 giong het truong hop "khong co draft" cho ca truong hop "co
+  // draft nhung khong phai cua minh" — tranh lo thong tin la file nay dang
+  // duoc ai do khac soan.
+  if (!draft || !canViewDraft(user, draft)) return json({ error: 'Khong co ban nhap.' }, 404);
   return json(draft);
 }
 async function handleDraftPut(request, env, ghPath) {
@@ -250,6 +277,10 @@ async function handleDraftPut(request, env, ghPath) {
   if (!ghPath) return json({ error: 'Thieu duong dan file.' }, 400);
   if (!canDraftPath(user, ghPath)) {
     return json({ error: `Vai tro "${user.role}" khong duoc nhap ban nhap cho file he thong (${ghPath}).` }, 403);
+  }
+  const existing = await getDraftRaw(env, ghPath);
+  if (existing && !canViewDraft(user, existing)) {
+    return json({ error: `Ban nhap nay dang duoc "${existing.updatedBy}" soan — khong the ghi de.` }, 409);
   }
   let body;
   try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
@@ -261,13 +292,17 @@ async function handleDraftDelete(request, env, ghPath) {
   const user = await getSessionUser(request, env);
   if (!user) return json({ error: 'Chua dang nhap.' }, 401);
   if (!ghPath) return json({ error: 'Thieu duong dan file.' }, 400);
+  const existing = await getDraftRaw(env, ghPath);
+  if (existing && !canViewDraft(user, existing)) {
+    return json({ error: `Ban nhap nay dang duoc "${existing.updatedBy}" soan — khong the xoa.` }, 403);
+  }
   await deleteDraft(env, ghPath);
   return json({ ok: true });
 }
 async function handleDraftsList(request, env) {
   const user = await getSessionUser(request, env);
   if (!user) return json({ error: 'Chua dang nhap.' }, 401);
-  const drafts = await listDrafts(env);
+  const drafts = await listDrafts(env, user);
   return json({ drafts });
 }
 

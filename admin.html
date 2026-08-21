@@ -899,6 +899,10 @@ function startApp() {
   // chan lai o backend, nhung an di cho gon giao dien.
   const usersNav = document.getElementById('nav-users');
   if (usersNav) usersNav.style.display = CURRENT_USER.role === 'admin' ? '' : 'none';
+  // Nhật ký hoạt động lộ thông tin ai-sửa-gì-lúc-nào toàn hệ thống — chỉ
+  // admin/editor mới cần thấy (backend cũng chặn tương ứng ở handleAuditLog).
+  const auditNav = document.getElementById('nav-auditlog');
+  if (auditNav) auditNav.style.display = (CURRENT_USER.role === 'admin' || CURRENT_USER.role === 'editor') ? '' : 'none';
   loadArticles(true);
 }
 
@@ -1005,7 +1009,12 @@ async function uploadImageFile(file) {
   const ext = (file.type.split('/')[1] || 'jpg').replace('jpeg', 'jpg').replace('svg+xml', 'svg');
   const hash = Math.random().toString(36).slice(2, 10);
   const cleanName = slugifyFilename(file.name.replace(/\.[a-z0-9]+$/i, '')) || 'anh';
-  const destPath = `assets/img/${hash}-${cleanName}.${ext}`;
+  // Tai vao assets/img/uploads/ (khong phai thang assets/img/) — day la duong
+  // dan rieng ma quyen canUploadImage() o backend cho phep ca author tai anh
+  // len (cac vai tro khac ngoai admin/editor khong duoc ghi truc tiep vao
+  // assets/ noi chung, nhung uploads/ duoc mo rieng, gioi han dinh dang + kich
+  // thuoc, de tranh loi dung ghi de file khac trong assets/).
+  const destPath = `assets/img/uploads/${hash}-${cleanName}.${ext}`;
 
   const b64 = await new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -1128,6 +1137,10 @@ async function historyRestore(sha) {
     const oldContent = decodeURIComponent(escape(atob(oldData.content)));
     const latest = await ghGet(HISTORY_FILE);
     await ghPut(HISTORY_FILE, oldContent, latest.sha, `khoi phuc ve phien ban cu (${sha.slice(0,7)})`);
+    // Xoá bản nháp còn sót lại của file này (nếu có) — nếu không xoá, lần mở
+    // lại editor kế tiếp sẽ hỏi "tiếp tục từ nháp cũ" và có thể vô tình đưa
+    // nội dung TRƯỚC khi rollback quay lại, ghi đè mất tác dụng của rollback.
+    await deleteDraft(HISTORY_FILE);
     toast('success', '✅ Đã khôi phục — deploy trong ~1-2 phút.');
     const reload = HISTORY_RELOAD_CB;
     closeHistoryModal();

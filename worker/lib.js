@@ -11,15 +11,25 @@ const SESSION_TTL = 60 * 60 * 24 * 14; // 14 ngay
 //               he thong/worker/assets) — tranh vo cau truc site do thao tac nham.
 // contributor : khong duoc ghi truc tiep (danh cho quy trinh duyet bai sau nay).
 export const ROLES = ['admin', 'editor', 'author', 'contributor'];
+// Tai khoan tao TRUOC khi RBAC ton tai khong co truong `role` trong KV (moi ban
+// ghi user tu handleSetup/handleUsersPost hien nay LUON ghi ro role, nen `role`
+// chi co the la undefined doi voi tai khoan cu). Truoc RBAC khong co phan cap —
+// ai dang nhap duoc cung sua duoc moi thu — nen coi thieu-role la "admin cu" de
+// khong vo tinh tuoc quyen quan tri cua ho khi nang cap. Con neu `role` CO gia
+// tri nhung khong hop le (du lieu loi/sai) thi ve author (it quyen nhat) de
+// an toan, vi day la truong hop bat thuong that su chu khong phai tai khoan cu.
 export function normalizeRole(role) {
+  if (role === undefined || role === null) return 'admin';
   return ROLES.includes(role) ? role : 'author';
 }
 export function canManageUsers(user) {
   return !!user && user.role === 'admin';
 }
 // Cac duong dan duoc xem la "trang he thong" — chi admin/editor duoc ghi.
-// Moi duong dan khac (bai viet .html o thu muc goc + en/) duoc xem la "bai viet",
-// author cung ghi duoc.
+// Van giu de dung noi khac can biet 1 duong dan co phai trang he thong khong,
+// nhung KHONG con dung lam co so cap quyen cho author/contributor (xem
+// isArticleFile ben duoi) — mot danh sach cam se luon co nguy co bo sot file
+// moi (robots.txt, _headers, manifest.json, v.v...) va vo tinh cho ghi nham.
 const SYSTEM_FILE_EXACT = new Set([
   'index.html', 'gaming.html', 'anime.html', 'manga.html', 'news.html',
   'reviews.html', 'choi-gi.html', 'recommend.html', 'lich-phat-song.html',
@@ -36,21 +46,42 @@ export function isSystemFile(ghPath) {
   if (SYSTEM_FILE_EXACT.has(ghPath)) return true;
   return SYSTEM_FILE_PREFIX.some((p) => ghPath.startsWith(p));
 }
+// Danh sach CHO PHEP (allowlist) thay vi danh sach cam — author/contributor
+// CHI duoc dung toi file bai viet .html o thu muc goc hoac en/, khong khop
+// ten trang he thong. Bat ky file nao khac (robots.txt, _headers, _redirects,
+// manifest.json, sitemap-news.xml, file moi bat ky...) mac dinh BI CHAN, phai
+// duoc admin/editor ghi thay vi vo tinh duoc author ghi vi bi bo sot khoi
+// danh sach cam.
+const ARTICLE_FILE_RE = /^(en\/)?[a-z0-9][a-z0-9-]*\.html$/;
+export function isArticleFile(ghPath) {
+  return ARTICLE_FILE_RE.test(ghPath) && !SYSTEM_FILE_EXACT.has(ghPath);
+}
 export function canWritePath(user, ghPath) {
   if (!user) return false;
   if (user.role === 'contributor') return false;
   if (user.role === 'admin' || user.role === 'editor') return true;
-  // author: duoc ghi moi thu TRU cac file he thong
-  return !isSystemFile(ghPath);
+  // author: CHI duoc ghi bai viet .html (allowlist) — khong con la "moi thu
+  // tru file he thong" nhu truoc.
+  return isArticleFile(ghPath);
 }
 // Luu ban nhap (KHONG dong nghia voi xuat ban that len GitHub) — contributor
 // duoc phep luu nhap de nguoi khac review, day chinh la ly do vai tro nay
-// ton tai. Van gioi han theo pham vi file giong author (khong nhap duoc trang
-// he thong) de tranh hieu lam nham hoac lam roi cau truc site.
+// ton tai. Van gioi han theo allowlist bai viet giong author.
 export function canDraftPath(user, ghPath) {
   if (!user) return false;
   if (user.role === 'admin' || user.role === 'editor') return true;
-  return !isSystemFile(ghPath);
+  return isArticleFile(ghPath);
+}
+// Cho phep tai anh len (assets/img/uploads/<ten-file>) — rieng biet voi
+// canWritePath vi day khong phai bai viet .html. Author/editor/admin (khong
+// tinh contributor, vi contributor chua duoc "xuat ban" bat ky thu gi truc
+// tiep) deu duoc tai anh, nhung CHI vao thu muc uploads/ va CHI dinh dang anh
+// an toan — khong the loi dung de ghi de file khac trong assets/.
+const UPLOAD_IMAGE_RE = /^assets\/img\/uploads\/[a-z0-9]{4,16}-[a-z0-9._-]{1,100}\.(jpe?g|png|webp|gif|svg)$/i;
+export function canUploadImage(user, ghPath) {
+  if (!user) return false;
+  if (user.role === 'contributor') return false;
+  return UPLOAD_IMAGE_RE.test(ghPath);
 }
 
 // ── Ban nhap (draft) ─────────────────────────────────────────────────────
@@ -68,13 +99,26 @@ export async function getDraftRaw(env, ghPath) {
 export async function deleteDraft(env, ghPath) {
   await env.ADMIN_KV.delete(`draft:${ghPath}`);
 }
-export async function listDrafts(env) {
+// Ai duoc phep xem/ghi de/xoa 1 ban nhap: chinh chu nhan (updatedBy) hoac
+// admin/editor (can thay duoc de review/tiep quan bai cua contributor — day
+// la ly do chinh vai tro contributor + draft ton tai). Author/contributor
+// khac KHONG duoc dung toi ban nhap cua nguoi khac.
+export function canViewDraft(user, draft) {
+  if (!user || !draft) return false;
+  if (user.role === 'admin' || user.role === 'editor') return true;
+  return draft.updatedBy === user.username;
+}
+// Danh sach toan bo draft — CHI admin/editor moi thay het (de biet ai dang
+// soan gi ma review). Author/contributor chi thay draft cua chinh minh, tranh
+// lo thong tin "ai dang viet bai gi" cho cac tai khoan khac.
+export async function listDrafts(env, user) {
   const list = await env.ADMIN_KV.list({ prefix: 'draft:' });
   const out = [];
   for (const k of list.keys) {
     const raw = await env.ADMIN_KV.get(k.name);
     if (!raw) continue;
     const d = JSON.parse(raw);
+    if (user && user.role !== 'admin' && user.role !== 'editor' && d.updatedBy !== user.username) continue;
     out.push({ file: d.file, updatedAt: d.updatedAt, updatedBy: d.updatedBy });
   }
   out.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
@@ -82,23 +126,49 @@ export async function listDrafts(env) {
 }
 
 // ── Rate limit dang nhap ─────────────────────────────────────────────────
-const LOGIN_MAX_ATTEMPTS = 6;
+// Khoa theo CAP (IP, username) chu khong chi theo username — neu chi khoa
+// theo username thi bat ky ai biet ten dang nhap cua admin deu co the doan
+// sai 6 lan tu xa de khoa han tai khoan do 10 phut, ke ca voi chinh chu tai
+// khoan dang dang nhap tu may/IP binh thuong cua ho (tu-DoS ho tu xa). Khoa
+// theo cap (IP, username) nghia la ke tan cong tu IP la chi tu khoa duoc IP
+// cua chinh no doi voi username do — chu nhan that van dang nhap binh thuong
+// tu IP quen thuoc cua ho trong luc bi tan cong.
+// Ngoai ra co them khoa rieng theo IP (khong phan biet username) voi nguong
+// cao hon, de chan viec 1 IP spam that nhieu username khac nhau tao vo so
+// key KV (moi username gia se ra 1 key moi neu chi khoa theo cap).
+const LOGIN_MAX_ATTEMPTS = 6;       // nguong khoa theo cap (IP, username)
+const LOGIN_IP_MAX_ATTEMPTS = 20;   // nguong khoa theo IP rieng (chan spam nhieu username)
 const LOGIN_LOCK_SECONDS = 10 * 60; // khoa 10 phut sau khi vuot qua so lan sai
 
-export async function checkLoginLock(env, username) {
-  const raw = await env.ADMIN_KV.get(`loginfail:${username}`);
-  if (!raw) return { locked: false, attempts: 0 };
-  const data = JSON.parse(raw);
-  return { locked: (data.count || 0) >= LOGIN_MAX_ATTEMPTS, attempts: data.count || 0 };
-}
-export async function recordLoginFailure(env, username) {
-  const key = `loginfail:${username}`;
+async function bumpFailCounter(env, key) {
   const raw = await env.ADMIN_KV.get(key);
   const count = raw ? (JSON.parse(raw).count || 0) + 1 : 1;
   await env.ADMIN_KV.put(key, JSON.stringify({ count }), { expirationTtl: LOGIN_LOCK_SECONDS });
+  return count;
 }
-export async function clearLoginFailures(env, username) {
-  await env.ADMIN_KV.delete(`loginfail:${username}`);
+export async function checkLoginLock(env, ip, username) {
+  const safeIp = ip || 'unknown';
+  const [ipRaw, pairRaw] = await Promise.all([
+    env.ADMIN_KV.get(`loginfail:ip:${safeIp}`),
+    env.ADMIN_KV.get(`loginfail:pair:${safeIp}:${username}`),
+  ]);
+  const ipCount = ipRaw ? (JSON.parse(ipRaw).count || 0) : 0;
+  const pairCount = pairRaw ? (JSON.parse(pairRaw).count || 0) : 0;
+  return { locked: ipCount >= LOGIN_IP_MAX_ATTEMPTS || pairCount >= LOGIN_MAX_ATTEMPTS, attempts: pairCount };
+}
+export async function recordLoginFailure(env, ip, username) {
+  const safeIp = ip || 'unknown';
+  await Promise.all([
+    bumpFailCounter(env, `loginfail:ip:${safeIp}`),
+    bumpFailCounter(env, `loginfail:pair:${safeIp}:${username}`),
+  ]);
+}
+export async function clearLoginFailures(env, ip, username) {
+  const safeIp = ip || 'unknown';
+  // Chi xoa bo dem theo CAP (IP, username) khi dang nhap dung — KHONG xoa bo
+  // dem rieng theo IP, vi 1 lan dang nhap dung tu 1 IP dung chung (NAT/proxy)
+  // khong nen "giai phong" spam cua ke khac tu cung IP do.
+  await env.ADMIN_KV.delete(`loginfail:pair:${safeIp}:${username}`);
 }
 
 // ── Nhat ky hoat dong (audit log) ────────────────────────────────────────
