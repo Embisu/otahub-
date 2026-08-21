@@ -336,6 +336,22 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .home-ticker-row { display: flex; gap: 6px; align-items: center; margin-bottom: 8px; }
 .home-ticker-row .form-input { margin: 0; }
 .empty-state-mini { font-size: 12.5px; color: var(--muted); text-align: center; padding: 24px 8px; }
+.home-item-collapsed { padding: 8px 10px; }
+.home-item-collapsed .home-item-head { margin-bottom: 4px; }
+.home-item-summary { display: flex; align-items: center; gap: 9px; cursor: pointer; }
+.home-item-thumb { width: 34px; height: 34px; border-radius: 6px; object-fit: cover; flex-shrink: 0; background: var(--surf); }
+.home-item-thumb-empty { display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 16px; }
+.home-item-summary-text { font-size: 12.5px; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ── Layout sidebar Home editor: pane xem trước + danh sách khối luôn cố định
+   trong tầm nhìn, chỉ phần panel chỉnh sửa (có thể rất dài) tự cuộn riêng —
+   tránh việc cả trang phải cuộn khiến iframe xem trước bị trôi mất khỏi màn
+   hình như trước (lỗi báo cáo: sidebar dài làm mất đồng bộ với bản xem trước). ──*/
+.editor-sidebar { max-height: calc(100vh - 48px); overflow-y: auto; }
+.home-visual-editor .editor-sidebar { display: flex; flex-direction: column; overflow: hidden; }
+.home-visual-editor .editor-sidebar .publish-box { flex-shrink: 0; }
+.home-visual-editor .editor-sidebar .home-nav-box { flex-shrink: 0; max-height: 220px; overflow-y: auto; }
+.home-visual-editor .home-block-panel { flex: 1 1 auto; min-height: 0; max-height: none; }
 .home-tab-bar { display: flex; gap: 4px; margin-bottom: 12px; background: var(--surf2); border-radius: 8px; padding: 3px; }
 .home-tab-btn { flex: 1; background: none; border: none; border-radius: 6px; padding: 7px 4px; font-size: 11.5px; color: var(--muted); cursor: pointer; font-family: inherit; transition: background .15s, color .15s; }
 .home-tab-btn.active { background: var(--surf); color: var(--cyan); font-weight: 600; }
@@ -679,6 +695,7 @@ let ART_TITLE = '';
 let ART_EXCERPT = '';
 let ART_PREVIEW_TIMER = null;
 let ART_BLOCKLIST_TIMER = null;
+let ART_SLUG_TOUCHED = false; // true khi user tự tay sửa ô URL — ngừng tự sinh từ tiêu đề
 
 // Cảnh báo trước khi rời trang / đóng tab nếu còn thay đổi chưa lưu
 window.addEventListener('beforeunload', (e) => {
@@ -883,6 +900,24 @@ function slugifyFilename(name) {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
     .slice(0, 60);
+}
+
+// Cập nhật currentFile + link "Xem live" theo slug mới — chỉ áp dụng cho bài
+// CHƯA lưu lần nào (currentSha === null), tránh đổi URL bài đã xuất bản.
+function applySlug(slug) {
+  if (currentSha) return;
+  const oldFile = currentFile;
+  currentFile = slug + '.html';
+  const link = document.getElementById('ed-live-link');
+  if (link) link.href = `https://otahub.asia/${slug}`;
+  const art = ARTICLES.find(a => a.file === oldFile && a.sha === null);
+  if (art) art.file = currentFile;
+}
+function onSlugInput(value) {
+  ART_SLUG_TOUCHED = true;
+  const clean = slugifyFilename(value) || 'bai-viet-moi';
+  applySlug(clean);
+  markChanged();
 }
 
 async function uploadImageFile(file) {
@@ -1363,6 +1398,8 @@ async function editArticle(file) {
 function renderEditor(file, html) {
   HAS_UNSAVED_CHANGES = false;
   currentRawHtml = html;
+  const isNewFile = !currentSha;
+  ART_SLUG_TOUCHED = false;
   const title   = extract(html, /<title>([^<]+)<\/title>/) || '';
   const desc    = extract(html, /name="description" content="([^"]+)"/) || '';
   const heroUrl = extractHero(html);
@@ -1494,11 +1531,25 @@ function renderEditor(file, html) {
               <button class="btn btn-primary" id="save-btn" onclick="saveArticle()">💾 Lưu & Deploy</button>
             </div>
             <div style="display:flex;gap:14px;margin-top:12px">
-              <a class="pb-link" href="https://otahub.asia/${file}" target="_blank">🔗 Xem live</a>
+              <a class="pb-link" id="ed-live-link" href="https://otahub.asia/${file.replace(/\.html$/,'')}" target="_blank">🔗 Xem live</a>
               <a class="pb-link" href="#" onclick="event.preventDefault();if(confirm('Bỏ thay đổi?'))editArticle(currentFile)">↺ Hoàn tác</a>
             </div>
             <div class="pb-savelog" id="save-log"></div>
           </div>
+        </div>
+
+        <div class="side-box">
+          <div class="side-box-title">🔗 Đường dẫn URL</div>
+          ${isNewFile ? `
+            <div style="display:flex;align-items:center;gap:4px;font-size:12px;color:var(--muted);margin-bottom:6px">
+              <span>otahub.asia/</span>
+            </div>
+            <input class="form-input" id="ed-slug" value="${esc(file.replace(/\.html$/,''))}" placeholder="duong-dan-bai-viet" oninput="onSlugInput(this.value)"/>
+            <div style="font-size:10.5px;color:var(--muted);margin-top:8px;line-height:1.6">💡 Tự sinh từ tiêu đề — có thể sửa tự do cho tới khi bấm Lưu lần đầu. Sau khi lưu sẽ không đổi được nữa (tránh vỡ link đã chia sẻ).</div>
+          ` : `
+            <div class="form-input" style="background:var(--surf2);color:var(--muted);cursor:not-allowed;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">otahub.asia/${esc(file.replace(/\.html$/,''))}</div>
+            <div style="font-size:10.5px;color:var(--muted);margin-top:8px;line-height:1.6">🔒 Bài đã xuất bản — không đổi URL để tránh vỡ link đã chia sẻ.</div>
+          `}
         </div>
 
         <div class="side-box">
@@ -2285,7 +2336,17 @@ function bindArticleBridgeMessages() {
     const d = e.data;
     if (!d || !d.type) return;
     if (d.type === 'art-field-input') {
-      if (d.field === 'title') ART_TITLE = d.value;
+      if (d.field === 'title') {
+        ART_TITLE = d.value;
+        // Bài mới chưa lưu + user chưa tự sửa URL → tự sinh URL theo tiêu đề,
+        // giống permalink tự cập nhật theo tiêu đề của WordPress lúc đang soạn.
+        const slugEl = document.getElementById('ed-slug');
+        if (slugEl && !currentSha && !ART_SLUG_TOUCHED) {
+          const autoSlug = slugifyFilename(d.value) || currentFile.replace(/\.html$/, '');
+          slugEl.value = autoSlug;
+          applySlug(autoSlug);
+        }
+      }
       else if (d.field === 'excerpt') ART_EXCERPT = d.value;
       markChangedNoRebuild();
     } else if (d.type === 'art-block-input') {
@@ -2367,6 +2428,17 @@ async function saveArticle() {
     if (isNewFile) {
       html = currentRawHtml;
       sha = undefined;
+      // Bài mới: URL/slug có thể đã bị đổi trong lúc soạn (ô "Đường dẫn URL")
+      // sau khi template gốc được dựng với slug tạm — vá lại canonical/hreflang/
+      // og:url/JSON-LD cho khớp với currentFile CUỐI CÙNG trước khi lưu thật.
+      const finalSlug = currentFile.replace(/\.html$/, '');
+      const finalUrl = `https://otahub.asia/${finalSlug}`;
+      html = html.replace(/(<link rel="alternate" hreflang="vi" href=")[^"]*(")/, `$1${finalUrl}$2`);
+      html = html.replace(/(<link rel="alternate" hreflang="en" href=")[^"]*(")/, `$1https://otahub.asia/en/${finalSlug}$2`);
+      html = html.replace(/(<link rel="alternate" hreflang="x-default" href=")[^"]*(")/, `$1${finalUrl}$2`);
+      html = html.replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${finalUrl}$2`);
+      html = html.replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${finalUrl}$2`);
+      html = html.replace(/("mainEntityOfPage": \{ "@type": "WebPage", "@id": ")[^"]*(")/, `$1${finalUrl}$2`);
     } else {
       const data = await ghGet(currentFile);
       html = decodeURIComponent(escape(atob(data.content)));
@@ -2459,10 +2531,10 @@ async function saveArticle() {
 // khung sườn thật của bài viết đang chạy trên site — để bài mới tạo từ admin
 // trông giống hệt bài thật ngay từ đầu, thay vì trang trơ trụi thiếu CSS/nav.
 function newArticle(prefillTitle) {
-  const suggestedSlug = prefillTitle ? slugifyFilename(prefillTitle) : '';
-  const slug = prompt('Tên file bài viết mới (không có .html):\nVí dụ: tekken-8-review', suggestedSlug);
-  if (!slug) return;
-  const cleanSlug = slug.replace(/[^a-z0-9-]/gi,'').toLowerCase();
+  // Không hỏi tên file qua popup nữa — vào thẳng trình soạn thảo giống WordPress
+  // "Add New Post". URL/slug tự sinh từ tiêu đề (nếu có) hoặc placeholder tạm,
+  // và có thể chỉnh trực tiếp trong sidebar (ô "Đường dẫn URL") cho tới khi lưu.
+  const cleanSlug = (prefillTitle ? slugifyFilename(prefillTitle) : '') || `bai-viet-moi-${Date.now().toString(36)}`;
   const filename = cleanSlug + '.html';
   const url = `https://otahub.asia/${cleanSlug}`;
   const now = new Date();
@@ -3105,6 +3177,10 @@ async function saveHub() {
 // ── Trình soạn thảo trang chủ kiểu Elementor (iframe + click-to-edit) ────────
 let HOME_FILE = '', HOME_RAW = '', HOME_DATA = null, HOME_PANEL = null;
 let HOME_SUBTAB = {};
+// Danh sách item nào đang MỞ RỘNG (mặc định thu gọn) — key "path#i", chỉ dùng
+// cho UI, không lưu ra file. Thu gọn giúp danh sách dài (10-20 mục) không còn
+// dài lê thê như trước, giống card thu gọn/mở của khối ảnh trong bài viết.
+let HOME_ITEM_EXPANDED = new Set();
 
 function scFields(raw) {
   return {
@@ -3533,6 +3609,7 @@ async function homeEditor(file) {
     HOME_FILE = file;
     HOME_RAW = raw;
     HOME_DATA = loadHomeData(raw);
+    HOME_ITEM_EXPANDED = new Set();
     renderVisualHomeEditor();
   } catch(e) {
     setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải trang chủ: ${e.message}</p></div>`);
@@ -3627,7 +3704,7 @@ function renderVisualHomeEditor() {
           </div>
         </div>
 
-        <div class="side-box">
+        <div class="side-box home-nav-box">
           <div class="side-box-title">📑 Các khối trên trang</div>
           ${navHtml}
         </div>
@@ -3691,15 +3768,35 @@ function homeSimplePanelHtml(objKey, title, fields) {
 function homeSimpleEdit(objKey, key, val) { HOME_DATA[objKey][key] = val; markChanged(); schedulePreviewRefresh(); }
 
 // ── Panel danh sách chung (dùng cho heroSide/marquee/rank/manga/latest/trending/catGrid) ──
+// Mỗi mục mặc định THU GỌN (chỉ hiện ảnh mini + tên + nút thao tác) — bấm để
+// mở rộng sửa đầy đủ field. Tránh danh sách 10-20 mục dài lê thê như trước.
 function homeItemListBody(typeKey, path) {
   const type = HOME_ITEM_TYPES[typeKey];
   const arr = getArr(path);
+  const primaryKey = (type.fields.find(([k]) => k === 'title' || k === 'name' || k === 'text') || type.fields[0])[0];
+  const imgKey = type.fields.some(([k]) => k === 'img') ? 'img' : null;
   const rows = arr.map((item, i) => {
     const f = type.get(item.raw);
+    const ek = path + '#' + i;
+    const expanded = HOME_ITEM_EXPANDED.has(ek);
+    const head = `<div class="home-item-head"><span>#${i+1}</span><div class="home-item-actions">
+        <button title="${expanded ? 'Thu gọn' : 'Mở rộng để sửa'}" onclick="homeItemToggleExpand('${ek}')">${expanded ? '▾' : '▸'}</button>
+        <button title="Lên" onclick="homeItemMove('${path}',${i},-1)">↑</button>
+        <button title="Xuống" onclick="homeItemMove('${path}',${i},1)">↓</button>
+        <button title="Xoá" onclick="homeItemDelete('${path}',${i})">🗑</button>
+      </div></div>`;
+    if (!expanded) {
+      const thumb = imgKey && f[imgKey] ? `<img class="home-item-thumb" src="${esc(f[imgKey])}" alt="" onerror="this.style.opacity=.2">` : `<div class="home-item-thumb home-item-thumb-empty">·</div>`;
+      return `<div class="home-item-card home-item-collapsed">${head}<div class="home-item-summary" onclick="homeItemToggleExpand('${ek}')">${thumb}<span class="home-item-summary-text">${esc(f[primaryKey] || '(chưa có nội dung)')}</span></div></div>`;
+    }
     const fieldsHtml = type.fields.map(([k,label]) => `<label class="form-label">${label}</label><input class="form-input" value="${esc(f[k]||'')}" oninput="homeItemFieldEdit('${path}',${i},'${typeKey}','${k}',this.value)">`).join('');
-    return `<div class="home-item-card"><div class="home-item-head"><span>#${i+1}</span><div class="home-item-actions"><button title="Lên" onclick="homeItemMove('${path}',${i},-1)">↑</button><button title="Xuống" onclick="homeItemMove('${path}',${i},1)">↓</button><button title="Xoá" onclick="homeItemDelete('${path}',${i})">🗑</button></div></div>${fieldsHtml}</div>`;
+    return `<div class="home-item-card">${head}${fieldsHtml}</div>`;
   }).join('');
   return `<button class="btn btn-secondary btn-sm" style="margin-bottom:10px" onclick="homeItemAdd('${path}','${typeKey}')">➕ Thêm mục</button><div class="home-item-list">${rows || '<div class="empty-state-mini">Chưa có mục nào.</div>'}</div>`;
+}
+function homeItemToggleExpand(ek) {
+  if (HOME_ITEM_EXPANDED.has(ek)) HOME_ITEM_EXPANDED.delete(ek); else HOME_ITEM_EXPANDED.add(ek);
+  openHomeBlockPanel(HOME_PANEL);
 }
 function homeItemListPanelHtml(typeKey, path, title) {
   return `<div class="home-panel-head"><h3>${title}</h3></div>${homeItemListBody(typeKey, path)}`;
