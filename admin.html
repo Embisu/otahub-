@@ -193,8 +193,9 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 #body-visual p { margin: 0 0 14px; color: var(--dim); }
 #body-visual strong { color: var(--white); }
 #body-visual figure { margin: 18px 0; }
-#body-visual figure img { width: 100%; border-radius: 10px; display: block; }
+#body-visual figure img { width: 100%; max-height: 340px; object-fit: cover; border-radius: 10px; display: block; transition: box-shadow .3s; }
 #body-visual figcaption { font-size: 12px; color: var(--muted); margin-top: 6px; text-align: center; }
+#body-visual figure.vis-img-flash img { box-shadow: 0 0 0 3px var(--cyan); }
 #body-visual blockquote { border-left: 3px solid var(--cyan); margin: 18px 0; padding: 4px 0 4px 16px; color: var(--dim); font-style: italic; }
 #body-visual blockquote cite { display: block; margin-top: 6px; font-size: 12px; color: var(--muted); font-style: normal; }
 #body-visual ul, #body-visual ol { margin: 0 0 14px; padding-left: 22px; color: var(--dim); }
@@ -230,6 +231,24 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .block-add-bar .tb-btn:hover { border-style: solid; border-color: var(--cyan); background: var(--bcyan); }
 .block-field-row { display: grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap: 8px; margin-top: 8px; }
 .block-img-empty { width: 100%; height: 90px; border: 2px dashed var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 12px; }
+
+/* ── Ảnh trong khối: thu gọn / dải xem nhanh (cho bài nhiều ảnh) ── */
+.block-gallery-strip { background: var(--surf); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; margin-bottom: 14px; }
+.block-gallery-label { font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+.block-gallery-thumbs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+.block-gallery-thumb { width: 44px; height: 44px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border); cursor: pointer; flex-shrink: 0; transition: transform .12s, border-color .12s; }
+.block-gallery-thumb:hover { transform: scale(1.08); border-color: var(--cyan); }
+.block-gallery-actions { display: flex; gap: 8px; margin-top: 10px; }
+.block-item-collapsed { padding-top: 6px; padding-bottom: 6px; }
+.block-img-collapsed-row { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 4px 2px; border-radius: 8px; }
+.block-img-collapsed-row:hover { background: var(--bcyan); }
+.block-img-collapsed-thumb { width: 40px; height: 40px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
+.block-img-collapsed-empty { display: flex; align-items: center; justify-content: center; background: var(--surf2); border: 1px dashed var(--border); font-size: 15px; }
+.block-img-collapsed-info { min-width: 0; flex: 1; }
+.block-img-collapsed-alt { font-size: 13px; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.block-img-collapsed-caption { font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@keyframes blockFlash { 0%, 100% { background: transparent; } 30% { background: var(--bcyan); } }
+.block-item-flash { animation: blockFlash 1.2s ease-out; border-radius: 10px; }
 
 /* Sidebar widgets */
 .status-indicator { display: flex; align-items: center; gap: 8px; font-size: 12px; padding: 10px 0; }
@@ -1218,6 +1237,8 @@ function renderEditor(file, html) {
             <div class="tb-sep"></div>
             <button class="tb-btn" title="Chèn ảnh" onclick="visImg()">📷</button>
             <button class="tb-btn" title="Trích dẫn" onclick="visQuote()">❝</button>
+            <div class="tb-sep"></div>
+            <button class="tb-btn" id="vis-jump-img-btn" title="Nhảy tới ảnh tiếp theo trong bài" onclick="visJumpImage()" style="display:none">🖼️ <span id="vis-img-count">0</span></button>
           </div>
           <div class="body-toolbar" id="body-toolbar-code" style="display:none">
             <button class="tb-btn" title="H2" onclick="wrapSel('&lt;h2&gt;','&lt;/h2&gt;')"><b>H2</b></button>
@@ -1385,6 +1406,7 @@ function updateWordCount() {
   const words = (text.trim().match(/\S+/g) || []).length;
   const mins = Math.max(1, Math.round(words / 200));
   el.textContent = `📝 ${words} từ · ~${mins} phút đọc`;
+  updateVisImageCount();
 }
 
 function updateHeroPreview(url) {
@@ -1590,6 +1612,31 @@ function visQuote() {
   visExec('insertHTML', '<blockquote><p>Trích dẫn...</p><cite></cite></blockquote><p><br></p>');
 }
 
+// Bài nhiều ảnh ở chế độ Trực quan: đếm ảnh + cho phép nhảy nhanh qua từng ảnh
+// thay vì phải cuộn tìm thủ công.
+let VIS_IMG_JUMP_IDX = -1;
+function updateVisImageCount() {
+  const btn = document.getElementById('vis-jump-img-btn');
+  const countEl = document.getElementById('vis-img-count');
+  const vis = document.getElementById('body-visual');
+  if (!btn || !countEl || !vis) return;
+  const n = vis.querySelectorAll('img').length;
+  countEl.textContent = n;
+  btn.style.display = n > 0 ? 'inline-flex' : 'none';
+}
+function visJumpImage() {
+  const vis = document.getElementById('body-visual');
+  if (!vis) return;
+  const imgs = [...vis.querySelectorAll('img')];
+  if (!imgs.length) return;
+  VIS_IMG_JUMP_IDX = (VIS_IMG_JUMP_IDX + 1) % imgs.length;
+  const img = imgs[VIS_IMG_JUMP_IDX];
+  const figure = img.closest('figure') || img;
+  figure.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  figure.classList.add('vis-img-flash');
+  setTimeout(() => figure.classList.remove('vis-img-flash'), 1200);
+}
+
 // ── Trình soạn thảo Khối (kéo-thả, kiểu Elementor/Gutenberg) ───────────────
 // Chỉ dùng cho bài viết MỚI (xem newArticle()) — dữ liệu khối lưu ẩn trong
 // <script type="application/json" id="admin-block-data"> ngay sau </article>,
@@ -1606,7 +1653,7 @@ let DRAG_FROM_IDX = null;
 
 function newBlockData(type) {
   if (type === 'heading') return { type, level: 2, text: '' };
-  if (type === 'image') return { type, src: '', alt: '', caption: '' };
+  if (type === 'image') return { type, src: '', alt: '', caption: '', collapsed: false };
   if (type === 'quote') return { type, text: '', cite: '' };
   if (type === 'list') return { type, items: [''] };
   return { type: 'paragraph', html: '' };
@@ -1626,12 +1673,27 @@ async function renderBlockEditor() {
   const addMenu = Object.entries(BLOCK_TYPES).map(([t, m]) =>
     `<button class="tb-btn" onclick="blockAdd('${t}')">${m.icon} ${esc(m.label)}</button>`).join('');
 
+  const imgBlocks = BODY_BLOCKS.map((b, i) => ({ b, i })).filter(x => x.b.type === 'image' && x.b.src);
+  const galleryStrip = imgBlocks.length >= 3 ? `
+    <div class="block-gallery-strip">
+      <div class="block-gallery-label">🖼️ ${imgBlocks.length} ảnh trong bài — bấm để nhảy tới:</div>
+      <div class="block-gallery-thumbs">
+        ${imgBlocks.map(({ b, i }) => `<img class="block-gallery-thumb" src="${esc(b.src)}" alt="" title="${esc(b.alt || 'Ảnh #' + (i+1))}" onclick="blockScrollTo(${i})" onerror="this.style.opacity=.25">`).join('')}
+      </div>
+      <div class="block-gallery-actions">
+        <button class="btn btn-secondary btn-sm" onclick="blockCollapseAllImages(true)">Thu gọn tất cả</button>
+        <button class="btn btn-secondary btn-sm" onclick="blockCollapseAllImages(false)">Mở rộng tất cả</button>
+      </div>
+    </div>` : '';
+
   const items = BODY_BLOCKS.map((b, i) => {
+    const isCollapsedImg = b.type === 'image' && b.collapsed;
     const toolbar = `
       <div class="block-type-tag">${esc(BLOCK_TYPES[b.type]?.label || b.type)}</div>
       <div class="block-toolbar-mini">
         <span class="block-mini-btn block-drag" draggable="true" ondragstart="blockDragStart(event,${i})" title="Kéo để sắp xếp">⠿</span>
         ${b.type === 'heading' ? `<button class="block-mini-btn" onclick="blockSetLevel(${i},2)" title="H2">H2</button><button class="block-mini-btn" onclick="blockSetLevel(${i},3)" title="H3">H3</button>` : ''}
+        ${b.type === 'image' ? `<button class="block-mini-btn" onclick="blockToggleCollapse(${i})" title="${isCollapsedImg ? 'Mở rộng ảnh' : 'Thu gọn ảnh'}">${isCollapsedImg ? '▸' : '▾'}</button>` : ''}
         <button class="block-mini-btn" onclick="blockMove(${i},-1)" title="Lên">↑</button>
         <button class="block-mini-btn" onclick="blockMove(${i},1)" title="Xuống">↓</button>
         <button class="block-mini-btn" onclick="blockDuplicate(${i})" title="Nhân bản">⧉</button>
@@ -1652,23 +1714,51 @@ async function renderBlockEditor() {
       body = `<textarea class="rank-input-sm" style="width:100%;min-height:70px;font-family:inherit" placeholder="Mỗi dòng 1 mục" oninput="blockListInput(${i},this)">${esc(val)}</textarea>
         <ul id="block-list-prev-${i}" style="margin-top:8px;padding-left:20px;color:var(--dim);font-size:14px">${(b.items||[]).filter(Boolean).map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`;
     } else if (b.type === 'image') {
-      body = (b.src
-        ? `<figure><img src="${esc(b.src)}" alt="${esc(b.alt||'')}" onerror="this.style.display='none'"></figure>`
-        : `<div class="block-img-empty">Chưa có ảnh — nhập URL bên dưới</div>`) +
-        `<div class="block-field-row">
-          <input class="rank-input-sm" placeholder="URL ảnh" value="${esc(b.src||'')}" oninput="blockField(${i},'src',this.value)" onblur="renderBlockEditor()"/>
-          <input class="rank-input-sm" placeholder="Alt text" value="${esc(b.alt||'')}" oninput="blockField(${i},'alt',this.value)"/>
-          <input class="rank-input-sm" placeholder="Chú thích (tuỳ chọn)" value="${esc(b.caption||'')}" oninput="blockField(${i},'caption',this.value)"/>
+      if (isCollapsedImg) {
+        body = `<div class="block-img-collapsed-row" onclick="blockToggleCollapse(${i})" title="Bấm để mở rộng">
+          ${b.src ? `<img class="block-img-collapsed-thumb" src="${esc(b.src)}" alt="" onerror="this.style.opacity=.25">` : `<div class="block-img-collapsed-thumb block-img-collapsed-empty">📷</div>`}
+          <div class="block-img-collapsed-info">
+            <div class="block-img-collapsed-alt">${esc(b.alt || '(chưa có alt text)')}</div>
+            <div class="block-img-collapsed-caption">${esc(b.caption || '')}</div>
+          </div>
         </div>`;
+      } else {
+        body = (b.src
+          ? `<figure><img src="${esc(b.src)}" alt="${esc(b.alt||'')}" onerror="this.style.display='none'"></figure>`
+          : `<div class="block-img-empty">Chưa có ảnh — nhập URL bên dưới</div>`) +
+          `<div class="block-field-row">
+            <input class="rank-input-sm" placeholder="URL ảnh" value="${esc(b.src||'')}" oninput="blockField(${i},'src',this.value)" onblur="renderBlockEditor()"/>
+            <input class="rank-input-sm" placeholder="Alt text" value="${esc(b.alt||'')}" oninput="blockField(${i},'alt',this.value)"/>
+            <input class="rank-input-sm" placeholder="Chú thích (tuỳ chọn)" value="${esc(b.caption||'')}" oninput="blockField(${i},'caption',this.value)"/>
+          </div>`;
+      }
     }
 
-    return `<div class="block-item" draggable="false" ondragover="event.preventDefault()" ondrop="blockDrop(event,${i})">${toolbar}${body}</div>`;
+    return `<div class="block-item${isCollapsedImg ? ' block-item-collapsed' : ''}" id="block-item-${i}" draggable="false" ondragover="event.preventDefault()" ondrop="blockDrop(event,${i})">${toolbar}${body}</div>`;
   }).join('');
 
   el.innerHTML = `
-    <div class="block-canvas">${items || '<div style="color:var(--muted);font-size:13px;padding:10px">Chưa có khối nào — thêm khối bên dưới.</div>'}</div>
+    <div class="block-canvas">${galleryStrip}${items || '<div style="color:var(--muted);font-size:13px;padding:10px">Chưa có khối nào — thêm khối bên dưới.</div>'}</div>
     <div class="block-add-bar">${addMenu}</div>
   `;
+}
+
+function blockToggleCollapse(i) { if (BODY_BLOCKS[i]) { BODY_BLOCKS[i].collapsed = !BODY_BLOCKS[i].collapsed; renderBlockEditor(); } }
+function blockCollapseAllImages(collapse) {
+  BODY_BLOCKS.forEach(b => { if (b.type === 'image') b.collapsed = collapse; });
+  renderBlockEditor();
+}
+function blockScrollTo(i) {
+  const target = document.getElementById('block-item-' + i);
+  if (!target) return;
+  if (BODY_BLOCKS[i] && BODY_BLOCKS[i].collapsed) { BODY_BLOCKS[i].collapsed = false; renderBlockEditor(); }
+  requestAnimationFrame(() => {
+    const el = document.getElementById('block-item-' + i);
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.classList.add('block-item-flash');
+    setTimeout(() => el.classList.remove('block-item-flash'), 1200);
+  });
 }
 
 function blockField(i, key, value) { if (BODY_BLOCKS[i]) { BODY_BLOCKS[i][key] = value; markChanged(); } }
