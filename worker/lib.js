@@ -35,11 +35,15 @@ const SYSTEM_FILE_EXACT = new Set([
   'reviews.html', 'choi-gi.html', 'recommend.html', 'lich-phat-song.html',
   'sap-ra-mat.html', 'rankings.html', 'chuyen-sau.html', 'in-depth.html',
   'about.html', 'lien-he.html', 'chinh-sach-bao-mat.html', 'admin.html',
-  'anime-detail.html', '404.html', 'sitemap.xml', 'feed.xml',
+  '404.html', 'anime-detail.html', 'article.html', 'bai-viet.html',
+  'game-detail.html', 'huong-dan.html', 'manga-detail.html',
+  'sitemap.xml', 'feed.xml',
   'en/index.html', 'en/gaming.html', 'en/anime.html', 'en/manga.html', 'en/news.html',
   'en/reviews.html', 'en/choi-gi.html', 'en/recommend.html', 'en/lich-phat-song.html',
   'en/sap-ra-mat.html', 'en/rankings.html', 'en/chuyen-sau.html', 'en/in-depth.html',
-  'en/about.html', 'en/lien-he.html', 'en/chinh-sach-bao-mat.html',
+  'en/about.html', 'en/lien-he.html', 'en/chinh-sach-bao-mat.html', 'en/404.html',
+  'en/anime-detail.html', 'en/article.html', 'en/bai-viet.html',
+  'en/game-detail.html', 'en/huong-dan.html', 'en/manga-detail.html',
 ]);
 const SYSTEM_FILE_PREFIX = ['assets/', 'worker/', 'templates/', 'scripts/', '.github/'];
 export function isSystemFile(ghPath) {
@@ -77,11 +81,29 @@ export function canDraftPath(user, ghPath) {
 // tinh contributor, vi contributor chua duoc "xuat ban" bat ky thu gi truc
 // tiep) deu duoc tai anh, nhung CHI vao thu muc uploads/ va CHI dinh dang anh
 // an toan — khong the loi dung de ghi de file khac trong assets/.
-const UPLOAD_IMAGE_RE = /^assets\/img\/uploads\/[a-z0-9]{4,16}-[a-z0-9._-]{1,100}\.(jpe?g|png|webp|gif|svg)$/i;
+const UPLOAD_IMAGE_RE = /^assets\/img\/uploads\/[a-z0-9]{4,16}-[a-z0-9._-]{1,100}\.(jpe?g|png|webp|gif)$/i;
 export function canUploadImage(user, ghPath) {
   if (!user) return false;
   if (user.role === 'contributor') return false;
   return UPLOAD_IMAGE_RE.test(ghPath);
+}
+
+// Khong chi tin vao duoi file: xac minh magic bytes cua anh sau khi decode
+// base64 de ngan HTML/JS doi ten thanh .png/.jpg duoc day len cung origin.
+export function hasValidImageSignature(ghPath, base64Content) {
+  if (!UPLOAD_IMAGE_RE.test(ghPath) || typeof base64Content !== 'string') return false;
+  let bytes;
+  try {
+    const raw = atob(base64Content.slice(0, 64));
+    bytes = Uint8Array.from(raw, (char) => char.charCodeAt(0));
+  } catch { return false; }
+  const ends = (values) => values.every((value, index) => bytes[index] === value);
+  const ext = ghPath.split('.').pop().toLowerCase();
+  if ((ext === 'jpg' || ext === 'jpeg') && ends([0xff, 0xd8, 0xff])) return true;
+  if (ext === 'png' && ends([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a])) return true;
+  if (ext === 'gif' && (new TextDecoder().decode(bytes.slice(0, 6)) === 'GIF87a' || new TextDecoder().decode(bytes.slice(0, 6)) === 'GIF89a')) return true;
+  if (ext === 'webp' && new TextDecoder().decode(bytes.slice(0, 4)) === 'RIFF' && new TextDecoder().decode(bytes.slice(8, 12)) === 'WEBP') return true;
+  return false;
 }
 
 // ── Ban nhap (draft) ─────────────────────────────────────────────────────
@@ -259,7 +281,14 @@ export async function getSessionUser(request, env) {
   if (!raw) return null;
   try {
     const u = JSON.parse(raw);
-    return { username: u.username, role: normalizeRole(u.role) };
+    const role = normalizeRole(u.role);
+    // Backfill mot lan de du lieu legacy tro thanh minh bach, tranh moi request
+    // sau nay phai tiep tuc dua vao fallback quyen admin.
+    if (u.role === undefined || u.role === null) {
+      u.role = role;
+      await env.ADMIN_KV.put(`user:${session.username.toLowerCase()}`, JSON.stringify(u));
+    }
+    return { username: u.username, role };
   } catch { return null; }
 }
 

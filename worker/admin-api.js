@@ -1,7 +1,7 @@
 import {
   hashPassword, verifyPassword, parseCookies, sessionCookie, clearSessionCookie,
   getSessionUser, createSession, deleteSession, json,
-  normalizeRole, canManageUsers, canWritePath, canDraftPath, canUploadImage,
+  normalizeRole, canManageUsers, canWritePath, canDraftPath, canUploadImage, hasValidImageSignature,
   checkLoginLock, recordLoginFailure, clearLoginFailures,
   logAudit, getAuditLog,
   putDraft, getDraftRaw, deleteDraft, listDrafts, canViewDraft,
@@ -93,6 +93,7 @@ async function handleSetup(request, env) {
 async function handleUsersGet(request, env) {
   const me = await getSessionUser(request, env);
   if (!me) return json({ error: 'Chua dang nhap.' }, 401);
+  if (!canManageUsers(me)) return json({ error: 'Chi admin moi duoc xem danh sach tai khoan.' }, 403);
   const list = await env.ADMIN_KV.list({ prefix: 'user:' });
   const users = [];
   for (const k of list.keys) {
@@ -197,6 +198,7 @@ async function handleGhPut(request, env, ghPath) {
   if (isImageUpload) {
     const approxBytes = Math.floor((content.length * 3) / 4);
     if (approxBytes > 8 * 1024 * 1024) return json({ error: 'Anh vuot qua 8MB.' }, 413);
+    if (!hasValidImageSignature(ghPath, content)) return json({ error: 'Noi dung file khong khop dinh dang anh.' }, 415);
   }
   const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}`, {
     method: 'PUT',

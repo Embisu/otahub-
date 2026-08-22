@@ -532,7 +532,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
         </div>
       </div>
 
-      <div class="nav-group">
+      <div class="nav-group" id="nav-group-special-pages">
         <button class="nav-group-head" title="Trang đặc biệt"><span class="icon">🏠</span></button>
         <div class="nav-flyout">
           <div class="flyout-title">Trang đặc biệt</div>
@@ -551,7 +551,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
         </div>
       </div>
 
-      <div class="nav-group">
+      <div class="nav-group" id="nav-group-special-editors">
         <button class="nav-group-head" title="Chỉnh sửa đặc biệt"><span class="icon">🛠️</span></button>
         <div class="nav-flyout">
           <div class="flyout-title">Chỉnh sửa đặc biệt</div>
@@ -744,7 +744,7 @@ document.addEventListener('keydown', (e) => {
 // ── Command Palette: điều hướng nhanh tới mọi màn hình + tìm bài viết ────────
 function cmdkNorm(s) { return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd'); }
 function cmdkStaticActions() {
-  return [
+  const items = [
     { icon: '📊', title: 'Bảng tin', hint: 'Tổng quan, viết nhanh', tag: 'Đi tới', run: () => showView('dashboard') },
     { icon: '📄', title: 'Bài viết', hint: 'Danh sách toàn bộ bài viết', tag: 'Đi tới', run: () => showView('articles') },
     { icon: '✏️', title: 'Viết bài mới', hint: 'Tạo bài viết trống', tag: 'Hành động', run: () => newArticle() },
@@ -764,8 +764,14 @@ function cmdkStaticActions() {
     { icon: '✉️', title: 'Liên hệ', hint: 'Trang lien-he.html', tag: 'Đi tới', run: () => sectionEditor('lien-he.html', 'nav-lienhe', 'Liên hệ', 'https://otahub.asia/lien-he') },
     { icon: '🔒', title: 'Chính sách bảo mật', hint: 'Trang chinh-sach-bao-mat.html', tag: 'Đi tới', run: () => sectionEditor('chinh-sach-bao-mat.html', 'nav-chinhsach', 'Chính sách bảo mật', 'https://otahub.asia/chinh-sach-bao-mat') },
     { icon: '👤', title: 'Người dùng', hint: 'Quản lý tài khoản admin', tag: 'Đi tới', run: () => showView('users') },
-    { icon: '📜', title: 'Nhật ký hoạt động', hint: 'Ai sửa gì, lúc nào', tag: 'Đi tới', run: () => showView('auditlog') },
+    { icon: '📜', title: 'Nhật ký hoạt động', hint: 'Ai sửa gì, lúc nào', tag: 'Đi tới', minRole: 'editor', run: () => showView('auditlog') },
   ];
+  const canEditSystem = CURRENT_USER?.role === 'admin' || CURRENT_USER?.role === 'editor';
+  return items.filter((item) => {
+    if (item.title === 'Người dùng') return CURRENT_USER?.role === 'admin';
+    if (item.minRole === 'editor') return canEditSystem;
+    return canEditSystem || !['Trang chủ','Gaming','Anime','Manga','Bảng xếp hạng','Reviews','Chơi Gì?','Recommend','Lịch phát sóng','Đang Hot','Sắp ra mắt','News','Đội ngũ / Giới thiệu','Liên hệ','Chính sách bảo mật'].includes(item.title);
+  });
 }
 function cmdkArticleActions() {
   return (ARTICLES || []).map(a => ({
@@ -903,6 +909,11 @@ function startApp() {
   // admin/editor mới cần thấy (backend cũng chặn tương ứng ở handleAuditLog).
   const auditNav = document.getElementById('nav-auditlog');
   if (auditNav) auditNav.style.display = (CURRENT_USER.role === 'admin' || CURRENT_USER.role === 'editor') ? '' : 'none';
+  const canEditSystem = CURRENT_USER.role === 'admin' || CURRENT_USER.role === 'editor';
+  ['nav-group-special-pages', 'nav-group-special-editors'].forEach((id) => {
+    const group = document.getElementById(id);
+    if (group) group.style.display = canEditSystem ? '' : 'none';
+  });
   loadArticles(true);
 }
 
@@ -1004,7 +1015,8 @@ function onSlugInput(value) {
 
 async function uploadImageFile(file) {
   if (!file) return null;
-  if (!file.type.startsWith('image/')) throw new Error('Chỉ chấp nhận file ảnh (jpg, png, webp...).');
+  const allowedImageTypes = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/gif']);
+  if (!allowedImageTypes.has(file.type)) throw new Error('Chỉ chấp nhận ảnh JPG, PNG, WEBP hoặc GIF.');
   if (file.size > 8 * 1024 * 1024) throw new Error('Ảnh quá lớn (tối đa 8MB).');
   const ext = (file.type.split('/')[1] || 'jpg').replace('jpeg', 'jpg').replace('svg+xml', 'svg');
   const hash = Math.random().toString(36).slice(2, 10);
@@ -1333,7 +1345,7 @@ function renderDashboard() {
           <p style="font-size:13px;color:var(--dim);line-height:1.6;margin-bottom:16px">Quản lý toàn bộ nội dung OtaHub.asia ngay tại đây — mọi thay đổi tự động lưu lên GitHub và deploy qua Cloudflare trong ~1-2 phút.</p>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <button class="btn btn-primary" onclick="newArticle()">✏️ Viết bài mới</button>
-            <button class="btn btn-secondary" onclick="homeEditor('index.html')">🏠 Sửa trang chủ</button>
+            ${['admin', 'editor'].includes(CURRENT_USER?.role) ? `<button class="btn btn-secondary" onclick="homeEditor('index.html')">🏠 Sửa trang chủ</button>` : ''}
             <a class="btn btn-secondary" href="https://otahub.asia" target="_blank">🌐 Xem website</a>
           </div>
         </div>
@@ -1668,6 +1680,7 @@ function renderEditor(file, html) {
   HAS_UNSAVED_CHANGES = false;
   currentRawHtml = html;
   const isNewFile = !currentSha;
+  const isContributor = CURRENT_USER?.role === 'contributor';
   ART_SLUG_TOUCHED = false;
   const title   = extract(html, /<title>([^<]+)<\/title>/) || '';
   const desc    = extract(html, /name="description" content="([^"]+)"/) || '';
@@ -1784,13 +1797,13 @@ function renderEditor(file, html) {
       <!-- Editor sidebar -->
       <div class="editor-sidebar">
         <div class="publish-box">
-          <div class="pb-head">🚀 Xuất bản</div>
+          <div class="pb-head">${isContributor ? '📝 Bản nháp' : '🚀 Xuất bản'}</div>
           <div class="pb-body">
             <div class="pb-row"><span class="pb-label">Trạng thái</span><span class="pb-val" style="display:flex;align-items:center;gap:6px"><span class="status-dot" id="status-dot"></span><span id="status-text">Chưa có thay đổi</span></span></div>
-            <div class="pb-row"><span class="pb-label">Hiển thị</span><span class="pb-val">🌐 Công khai</span></div>
-            <div class="pb-row"><span class="pb-label">Lưu = xuất bản sau</span><span class="pb-val" style="color:var(--cyan)">~1-2 phút</span></div>
+            <div class="pb-row"><span class="pb-label">Hiển thị</span><span class="pb-val">${isContributor ? '🔒 Chưa công khai' : '🌐 Công khai'}</span></div>
+            <div class="pb-row"><span class="pb-label">${isContributor ? 'Quy trình' : 'Lưu = xuất bản sau'}</span><span class="pb-val" style="color:var(--cyan)">${isContributor ? 'Chờ biên tập duyệt' : '~1-2 phút'}</span></div>
             <div class="pb-actions">
-              <button class="btn btn-primary" id="save-btn" onclick="saveArticle()">💾 Lưu & Deploy</button>
+              <button class="btn btn-primary" id="save-btn" onclick="${isContributor ? 'saveArticleDraftNow()' : 'saveArticle()'}">${isContributor ? '📝 Lưu bản nháp' : '💾 Lưu & Deploy'}</button>
             </div>
             <div style="display:flex;gap:14px;margin-top:12px;flex-wrap:wrap">
               <a class="pb-link" id="ed-live-link" href="https://otahub.asia/${file.replace(/\.html$/,'')}" target="_blank">🔗 Xem live</a>
@@ -2802,7 +2815,7 @@ async function saveArticle() {
 // nhưng lấy HTML nền từ bộ nhớ (currentRawHtml) thay vì gọi lại GitHub — nhanh
 // hơn và phù hợp vì bản nháp vốn không phải bản chốt cuối cùng.
 async function autosaveArticleDraft() {
-  if (!currentFile || !currentRawHtml) return;
+  if (!currentFile || !currentRawHtml) return false;
   syncArticleBodyToTextarea();
   try {
     let html = currentRawHtml;
@@ -2810,9 +2823,30 @@ async function autosaveArticleDraft() {
     html = applyArticleEditsToHtml(html);
     await putDraft(currentFile, html);
     setDraftIndicator('📝 Đã lưu nháp tự động lúc ' + new Date().toLocaleTimeString('vi-VN'));
+    return true;
   } catch(e) {
     setDraftIndicator('⚠️ Lưu nháp tự động thất bại: ' + e.message);
+    return false;
   }
+}
+
+async function saveArticleDraftNow() {
+  const btn = document.getElementById('save-btn');
+  const dot = document.getElementById('status-dot');
+  const txt = document.getElementById('status-text');
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ Đang lưu bản nháp...'; }
+  const saved = await autosaveArticleDraft();
+  if (saved) {
+    HAS_UNSAVED_CHANGES = false;
+    if (dot) dot.className = 'status-dot';
+    if (txt) txt.textContent = 'Đã lưu bản nháp • ' + new Date().toLocaleTimeString('vi-VN');
+    toast('success', '✅ Đã lưu bản nháp để biên tập viên duyệt.');
+  } else {
+    if (dot) dot.className = 'status-dot error';
+    if (txt) txt.textContent = 'Lưu bản nháp thất bại';
+    toast('error', 'Không thể lưu bản nháp. Vui lòng thử lại.');
+  }
+  if (btn) { btn.disabled = false; btn.textContent = '📝 Lưu bản nháp'; }
 }
 
 // ── New article ────────────────────────────────────────────────────────────
