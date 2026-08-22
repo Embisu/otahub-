@@ -1,7 +1,15 @@
 {
   "Sakamoto Days": {
-    "type": "manga", "img": "/assets/img/c738f99843-sakamoto-days-hero.jpg", "score": "8.8", "genre": "Action / Comedy", "studio": "Yuto Suzuki / Shueisha", "status": "Đang phát hành", "statusEn": "Ongoing", "generated": true,
-    "hook": "Một manga hành động hiểu rằng trận đánh hay cần không gian, chuyển động và tính cách cùng kể chuyện.", "hookEn": "An action manga that understands space, movement, and character must tell the story together.",
+    "type": "manga",
+    "img": "/assets/img/c738f99843-sakamoto-days-hero.jpg",
+    "score": "8.8",
+    "genre": "Action / Comedy",
+    "studio": "Yuto Suzuki / Shueisha",
+    "status": "Đang phát hành",
+    "statusEn": "Ongoing",
+    "generated": true,
+    "hook": "Một manga hành động hiểu rằng trận đánh hay cần không gian, chuyển động và tính cách cùng kể chuyện.",
+    "hookEn": "An action manga that understands space, movement, and character must tell the story together.",
     "story": [
       "Sakamoto Days bắt đầu bằng một nghịch lý giàu tiềm năng: Taro Sakamoto từng là sát thủ khiến thế giới ngầm khiếp sợ, nhưng rời nghề sau khi yêu, kết hôn và mở cửa hàng tiện lợi. VIZ xác nhận manga do Yuto Suzuki sáng tác, còn trang chính thức Shonen Jump duy trì danh sách tập và chương. Tiền đề gia đình không chỉ tạo tiếng cười; nó đặt giới hạn đạo đức khiến hành động có mục tiêu rõ hơn việc khoe sức mạnh.",
       "Điểm mạnh nhất là dàn dựng hành động trên trang giấy. Suzuki thường xác lập không gian trước, rồi tăng tốc bằng góc máy thấp, đường chuyển động và cú lật trang. Đồ vật đời thường trở thành một phần của chiến thuật. Nhờ vậy, trận đánh vẫn dễ theo dõi dù mật độ chuyển động cao và mỗi sát thủ giữ được phong cách riêng.",
@@ -16,100 +24,819 @@
       "Character silhouettes and expressions are immediately legible, and major chapters show excellent control of rhythm. Transitional chapters can lean on exposition, while supporting-character depth varies. Pure-thriller readers may want more interiority; readers seeking inventive action and strong group chemistry are better served.",
       "Verdict: 8.8/10. Sakamoto Days earns its score through readable choreography, memorable identities, and environmental storytelling. Its limitations are faction density and uneven supporting depth. Start from volume one because the domestic foundation gives later action its meaning."
     ],
-    "sources": [{"name":"VIZ: Sakamoto Days official series page","url":"https://www.viz.com/sakamoto-days"},{"name":"Shonen Jump: Sakamoto Days official page","url":"https://www.shonenjump.com/j/rensai/sakamoto/"}]
+    "sources": [
+      {
+        "name": "VIZ: Sakamoto Days official series page",
+        "url": "https://www.viz.com/sakamoto-days"
+      },
+      {
+        "name": "Shonen Jump: Sakamoto Days official page",
+        "url": "https://www.shonenjump.com/j/rensai/sakamoto/"
+      }
+    ]
   },
   "Undead Unluck": {
-    "type":"manga", "img":"/assets/img/5492106922-undead-unluck-hero.jpg", "score":"8.9", "genre":"Action / Supernatural", "studio":"Yoshifumi Tozuka / Shueisha", "status":"Đã hoàn thành", "statusEn":"Completed", "generated":true,
-    "story":[
+    "type": "manga",
+    "img": "/assets/img/5492106922-undead-unluck-hero.jpg",
+    "score": "8.9",
+    "genre": "Action / Supernatural",
+    "studio": "Yoshifumi Tozuka / Shueisha",
+    "status": "Đã hoàn thành",
+    "statusEn": "Completed",
+    "generated": true,
+    "story": [
       "Undead Unluck khởi đầu với Fuuko, người gây bất hạnh cho người chạm vào mình, và Andy, kẻ bất tử muốn tìm cái chết thực sự. VIZ xác nhận Yoshifumi Tozuka bắt đầu series trên Weekly Shonen Jump vào tháng 1/2020. Sự đối lập giữa hai năng lực tạo ra cả cơ chế chiến đấu lẫn quan hệ trung tâm.",
       "Điểm sáng lớn nhất là hệ thống năng lực dựa trên việc phủ định quy luật. Hiệu quả sức mạnh phụ thuộc cách nhân vật hiểu khái niệm mà mình phủ định. Trận đánh vì thế trở thành bài toán về ngôn ngữ, điều kiện kích hoạt và góc nhìn cá nhân; chiến thắng thường đến từ việc hiểu nhân vật thay vì một đòn mới xuất hiện đúng lúc.",
       "Fuuko phát triển từ một người sợ tiếp xúc thành người chủ động xây dựng liên minh. Andy chiếm nhiều không gian ở phần mở đầu, nhưng câu chuyện dần trao quyền quyết định cho Fuuko. Hạn chế lớn là hài tình dục và tương tác cơ thể trong các chương đầu có thể khiến độc giả khó chịu, dù giọng điệu này giảm dần.",
       "Cấu trúc vòng lặp cho phép tác giả tái diễn giải quan hệ và biến kiến thức tích lũy thành chiến lược. Đây cũng là con dao hai lưỡi: thuật ngữ, quy tắc và số nhân vật tăng nhanh. Mỹ thuật mạnh ở biểu cảm và ý tưởng quái vật, nhưng bố cục các trận đông người không phải lúc nào cũng sạch.",
       "Kết luận: 8,9/10. Undead Unluck đáng giá khi biến hệ thống sức mạnh thành phương tiện nói về định mệnh, ký ức và quyền tự quyết. Điểm trừ là rào cản phần mở đầu và mật độ quy tắc về sau. Người thích battle manga có cơ chế rõ và phát triển nhân vật dài hạn nên đọc từ đầu."
     ],
-    "storyEn":[
+    "storyEn": [
       "Undead Unluck begins with Fuuko, who brings misfortune to anyone she touches, and the immortal Andy, who seeks a genuine death. VIZ confirms Yoshifumi Tozuka began the series in Weekly Shonen Jump in January 2020. The contrast between their powers drives both combat and relationship.",
       "Its best idea is a power system based on negating rules. An ability depends on how a character interprets the concept being negated. Battles become problems of language, activation conditions, and worldview; victory often comes from understanding a person rather than unveiling a convenient new attack.",
       "Fuuko grows from someone afraid of contact into a proactive coalition builder. Andy dominates the opening, but the narrative gradually gives Fuuko greater agency. The major caveat is early sexual comedy and unwanted physical contact, which can alienate readers even though this tone becomes less central.",
       "The loop structure reinterprets relationships and turns accumulated knowledge into strategy. It also increases the burden of terminology, rules, and characters. The art is strongest in expression and creature concepts, although crowded battles are not always equally clean.",
       "Verdict: 8.9/10. Undead Unluck is most rewarding when its system discusses fate, memory, and agency. Its weaknesses are the opening barrier and later rule density. Readers who value mechanical battles and long-term growth should start at the beginning."
     ],
-    "sources":[{"name":"VIZ: Undead Unluck official series page","url":"https://www.viz.com/undead-unluck"},{"name":"VIZ: Undead Unluck volume catalogue","url":"https://www.viz.com/manga-books/manga/undead-unluck/all"}]
+    "sources": [
+      {
+        "name": "VIZ: Undead Unluck official series page",
+        "url": "https://www.viz.com/undead-unluck"
+      },
+      {
+        "name": "VIZ: Undead Unluck volume catalogue",
+        "url": "https://www.viz.com/manga-books/manga/undead-unluck/all"
+      }
+    ]
   },
   "Spy x Family": {
-    "type":"anime", "img":"/assets/img/38f47bcc17-spy-x-family-hero.jpg", "score":"9.0", "genre":"Comedy / Action / Family", "studio":"WIT Studio / CloverWorks", "status":"Đã phát sóng", "statusEn":"Aired", "generated":true,
-    "story":[
+    "type": "anime",
+    "img": "/assets/img/38f47bcc17-spy-x-family-hero.jpg",
+    "score": "9.0",
+    "genre": "Comedy / Action / Family",
+    "studio": "WIT Studio / CloverWorks",
+    "status": "Đã phát sóng",
+    "statusEn": "Aired",
+    "generated": true,
+    "story": [
       "Spy x Family ghép ba bí mật vào một gia đình giả: Loid là điệp viên, Yor là sát thủ và Anya đọc được suy nghĩ. CloverWorks xác nhận nguyên tác Tatsuya Endo, đạo diễn Kazuhiro Furuhashi và mô hình đồng sản xuất WIT Studio cùng CloverWorks. Bí mật không chỉ tạo hài; mỗi người tìm thấy cảm giác thuộc về mà họ không thể nói trực tiếp.",
       "Kịch bản mạnh nhất khi nhiệm vụ Operation Strix và đời sống gia đình cùng tồn tại trong một tập. Anya là điểm nối vì biết điều người lớn che giấu nhưng hiểu bằng logic trẻ con. Khoảng lệch này tạo hài tự nhiên và cho thấy khoảng cách giữa ý định với hành động của Loid và Yor.",
       "Hai studio duy trì biểu cảm rõ và action dễ đọc. Các trận đánh thường ngắn, chính xác để không phá nhịp comedy. Âm nhạc của (K)NoW_NAME và diễn xuất lồng tiếng giúp espionage, sitcom và cảm xúc gia đình chuyển đổi liền mạch.",
       "Hạn chế xuất hiện khi tiến trình nhiệm vụ chính chậm quá lâu. Tập đời thường có giá trị nhân vật nhưng tạo cảm giác trì hoãn đối với người chờ cốt truyện gián điệp. Yor cũng hiệu quả hơn khi có quyền chủ động ngoài vai trò người mẹ vụng về hoặc sức mạnh gây cười.",
       "Kết luận: 9,0/10. Spy x Family xuất sắc cho khán giả muốn comedy gia đình có lớp vỏ điệp viên, sản xuất ổn định và nhân vật dễ đồng cảm. Điểm trừ là tiến triển cốt truyện chính đôi lúc thưa. Người chờ action liên tục cần điều chỉnh kỳ vọng; người thích chemistry nhân vật có thể xem cùng gia đình."
     ],
-    "storyEn":[
+    "storyEn": [
       "Spy x Family places three secrets inside one fabricated household: Loid is a spy, Yor an assassin, and Anya a telepath. CloverWorks credits identify Tatsuya Endo as creator, Kazuhiro Furuhashi as director, and WIT Studio with CloverWorks as producers. The secrets do more than generate jokes; each character finds belonging they cannot state directly.",
       "The writing works best when Operation Strix and domestic life share an episode. Anya connects both layers because she knows what adults hide but interprets it through a child's logic. That gap produces organic comedy while exposing the distance between Loid and Yor's intentions and behavior.",
       "The co-production maintains readable expressions and clean action. Fights are usually brief and precise enough to preserve comic timing. Music by (K)NoW_NAME and the voice performances let espionage, sitcom, and family emotion coexist.",
       "The limitation is slow movement in the central mission. Slice-of-life episodes enrich relationships while feeling like delays to viewers waiting for espionage. Yor also benefits whenever she receives agency beyond being an awkward mother or physical punchline.",
       "Verdict: 9.0/10. Spy x Family is excellent family comedy with an espionage frame, consistent production, and empathetic characters. Its trade-off is sparse main-plot progression. Constant-action viewers should adjust expectations; character-focused audiences can comfortably watch it with family."
     ],
-    "sources":[{"name":"CloverWorks: staff and production credits","url":"https://en.cloverworks.co.jp/works/spy-family/"},{"name":"Spy x Family official TV anime site","url":"https://spy-family.net/tvseries/"}]
+    "sources": [
+      {
+        "name": "CloverWorks: staff and production credits",
+        "url": "https://en.cloverworks.co.jp/works/spy-family/"
+      },
+      {
+        "name": "Spy x Family official TV anime site",
+        "url": "https://spy-family.net/tvseries/"
+      }
+    ]
   },
   "Elden Ring: Shadow of the Erdtree": {
-    "type":"game", "img":"/assets/img/a7f47ed998-header.jpg", "score":"9.6", "genre":"Action RPG", "studio":"FromSoftware / Bandai Namco", "platforms":"PC / PlayStation 4 / PlayStation 5 / Xbox One / Xbox Series", "release":"21/06/2024", "status":"Đã phát hành", "statusEn":"Released", "generated":true,
-    "hook":"Một bản mở rộng quy mô lớn, tái cấu trúc nhịp khám phá của Elden Ring trong vùng đất dày đặc và khắc nghiệt hơn.",
-    "hookEn":"A large expansion that compresses Elden Ring's exploration loop into a denser and more demanding new land.",
-    "story":[
+    "type": "game",
+    "img": "/assets/img/a7f47ed998-header.jpg",
+    "score": "9.6",
+    "genre": "Action RPG",
+    "studio": "FromSoftware / Bandai Namco",
+    "platforms": "PC / PlayStation 4 / PlayStation 5 / Xbox One / Xbox Series",
+    "release": "21/06/2024",
+    "status": "Đã phát hành",
+    "statusEn": "Released",
+    "generated": true,
+    "hook": "Một bản mở rộng quy mô lớn, tái cấu trúc nhịp khám phá của Elden Ring trong vùng đất dày đặc và khắc nghiệt hơn.",
+    "hookEn": "A large expansion that compresses Elden Ring's exploration loop into a denser and more demanding new land.",
+    "story": [
       "Shadow of the Erdtree đưa Tarnished đến Land of Shadow theo dấu Miquella. Đây là bản mở rộng của Elden Ring, không phải một phần II độc lập. Cấu trúc bản đồ nhiều tầng khiến đường đi, hầm ngục nhỏ và khu vực lớn liên kết chặt hơn thế giới gốc, đồng thời vẫn giữ cảm giác tự khám phá mà không cần danh sách nhiệm vụ dẫn đường.",
       "Combat tiếp tục dựa trên stamina, khoảng né và khả năng đọc động tác, nhưng số vũ khí, phép và Ash of War mới mở rộng đáng kể cách xây dựng nhân vật. Hệ thống Scadutree Blessing tạo riêng một trục tiến triển trong vùng đất mới: khám phá kỹ giúp người chơi chịu đòn và gây sát thương tốt hơn, thay vì chỉ dựa vào cấp độ cũ.",
       "Boss là điểm mạnh lẫn rào cản lớn nhất. Những trận hay nhất có hình ảnh, âm nhạc và nhịp chuyển phase xuất sắc; một số chuỗi tấn công dài và hiệu ứng dày có thể làm giảm khả năng đọc tình huống. Người chơi nên xem việc tìm mảnh Scadutree, đổi trang bị và dùng Spirit Ash là một phần thiết kế, không phải dấu hiệu chơi sai.",
       "Thiết kế nghệ thuật kể chuyện qua địa hình, kiến trúc và vị trí vật phẩm tốt hơn phần giải thích trực tiếp. Đổi lại, tuyến truyện của Miquella vẫn cần ghép từ lời thoại và mô tả vật phẩm; người chỉ đi theo đường chính có thể bỏ lỡ bối cảnh quan trọng. Hiệu năng cũng phụ thuộc nền tảng và cấu hình, nên cần kiểm tra yêu cầu hệ thống trước khi mua.",
       "Kết luận: 9,6/10. Shadow of the Erdtree đáng giá nhờ mật độ khám phá cao, build đa dạng và những cao trào mạnh, nhưng độ khó cuối game cùng cách kể chuyện gián tiếp không phù hợp mọi người. Nên hoàn thành phần lớn Elden Ring, chuẩn bị build ổn định và tiếp cận Land of Shadow với tâm thế khám phá thay vì chạy thẳng đến boss."
     ],
-    "storyEn":[
+    "storyEn": [
       "Shadow of the Erdtree sends the Tarnished into the Land of Shadow on Miquella's trail. It is an expansion for Elden Ring, not a standalone Part II. Its layered map links routes, minor dungeons, and major regions more tightly than the base game while preserving unguided discovery.",
       "Combat still depends on stamina, spacing, and animation reading, but new weapon types, spells, and Ashes of War materially expand build options. Scadutree Blessing adds a separate progression axis inside the expansion: thorough exploration improves damage and defense instead of making legacy levels the only answer.",
       "Bosses are both the greatest strength and the largest barrier. The best encounters combine visual direction, music, and strong phase transitions; some long strings and dense effects reduce readability. Finding Scadutree Fragments, changing equipment, and using Spirit Ashes should be treated as intended systems.",
       "Environmental art communicates history through terrain, architecture, and item placement. The trade-off is that Miquella's story still requires assembling dialogue and descriptions, so a direct route misses context. Performance varies by platform and hardware, making system-requirement checks important before purchase.",
       "Verdict: 9.6/10. Shadow of the Erdtree earns its score through dense exploration, build variety, and memorable peaks, but its late difficulty and indirect narrative are not universal. Finish much of Elden Ring, bring a stable build, and explore rather than rushing from boss to boss."
     ],
-    "sources":[{"name":"Bandai Namco: Shadow of the Erdtree official page","url":"https://en.bandainamcoent.eu/elden-ring/elden-ring/shadow-of-the-erdtree"},{"name":"ELDEN RING official site","url":"https://en.bandainamcoent.eu/elden-ring/elden-ring"}]
+    "sources": [
+      {
+        "name": "Bandai Namco: Shadow of the Erdtree official page",
+        "url": "https://en.bandainamcoent.eu/elden-ring/elden-ring/shadow-of-the-erdtree"
+      },
+      {
+        "name": "ELDEN RING official site",
+        "url": "https://en.bandainamcoent.eu/elden-ring/elden-ring"
+      }
+    ]
   },
   "Monster Hunter Wilds": {
-    "type":"game", "img":"/assets/img/587e72813c-header.jpg", "score":"9.1", "genre":"Action / Hunting / Co-op", "studio":"Capcom", "platforms":"PC / PlayStation 5 / Xbox Series", "release":"28/02/2025", "status":"Đã phát hành", "statusEn":"Released", "generated":true,
-    "hook":"Một game săn quái ưu tiên hệ sinh thái sống động, chiến đấu có trọng lượng và phối hợp co-op, nhưng đòi hỏi thời gian học vũ khí.",
-    "hookEn":"A hunting game built around living ecosystems, weighty combat, and co-op, with a meaningful weapon-learning curve.",
-    "story":[
+    "type": "game",
+    "img": "/assets/img/587e72813c-header.jpg",
+    "score": "9.1",
+    "genre": "Action / Hunting / Co-op",
+    "studio": "Capcom",
+    "platforms": "PC / PlayStation 5 / Xbox Series",
+    "release": "28/02/2025",
+    "status": "Đã phát hành",
+    "statusEn": "Released",
+    "generated": true,
+    "hook": "Một game săn quái ưu tiên hệ sinh thái sống động, chiến đấu có trọng lượng và phối hợp co-op, nhưng đòi hỏi thời gian học vũ khí.",
+    "hookEn": "A hunting game built around living ecosystems, weighty combat, and co-op, with a meaningful weapon-learning curve.",
+    "story": [
       "Monster Hunter Wilds đặt người chơi vào Forbidden Lands, nơi thời tiết và đàn quái thay đổi trạng thái của từng khu vực. Vòng lặp cốt lõi vẫn là theo dấu, săn, chế tạo trang bị rồi thử mục tiêu khó hơn, nhưng chuyển cảnh giữa căn cứ và khu săn liền mạch hơn giúp hành trình bớt bị chia vụn.",
       "Mỗi loại vũ khí hoạt động gần như một bộ kỹ năng riêng. Focus Mode hỗ trợ nhắm vào vết thương và điều chỉnh hướng tấn công, nhưng không thay thế việc học animation, khoảng cách và thời điểm né. Người mới nên chọn một vũ khí, luyện ở khu huấn luyện rồi mới đánh giá độ sâu combat.",
       "Co-op là điểm hấp dẫn rõ rệt: vai trò không bị khóa cứng nhưng nhóm biết phối hợp bẫy, trạng thái và vị trí sẽ rút ngắn trận săn. Trải nghiệm solo vẫn đầy đủ, song giao diện nhiều lớp và lượng vật phẩm ban đầu có thể gây ngợp. Một vài nhiệm vụ cốt truyện cũng giới hạn nhịp ghép đội.",
       "Hình ảnh hệ sinh thái, chuyển đổi thời tiết và phản ứng của đàn quái tạo cảm giác thế giới vận hành ngoài người chơi. Đổi lại, tải CPU/GPU cao khiến hiệu năng PC phụ thuộc mạnh vào cấu hình và bản cập nhật. Trước khi mua, nên kiểm tra benchmark gần với phần cứng thực tế thay vì chỉ nhìn cấu hình tối thiểu.",
       "Kết luận: 9,1/10. Wilds phù hợp người thích combat có chiều sâu, săn lặp để tối ưu build và chơi cùng bạn bè. Điểm trừ là rào cản nhập môn, giao diện dày và yêu cầu hiệu năng. Nếu chỉ muốn campaign ngắn, ít lặp, đây không phải lựa chọn lý tưởng; nếu thích làm chủ một hệ vũ khí, giá trị chơi lâu dài rất cao."
     ],
-    "storyEn":[
+    "storyEn": [
       "Monster Hunter Wilds takes players into the Forbidden Lands, where weather and monster herds change each locale. The central loop remains tracking, hunting, crafting, and challenging stronger targets, while smoother transitions reduce the separation between camp and field.",
       "Each weapon behaves almost like its own ruleset. Focus Mode helps target wounds and redirect attacks, but it does not replace learning animation commitments, distance, and evasion timing. New players should choose one weapon and train before judging combat depth.",
       "Co-op is a clear strength. Roles are flexible, yet groups coordinating traps, status effects, and positioning shorten difficult hunts. Solo remains viable, although layered interfaces and early item volume can overwhelm. Some story sequences also interrupt seamless matchmaking.",
       "Ecosystem visuals, weather shifts, and herd behavior make the world feel active beyond the player. The trade-off is heavy CPU and GPU demand, so PC performance depends strongly on hardware and updates. Check benchmarks close to your actual configuration before purchase.",
       "Verdict: 9.1/10. Wilds suits players who enjoy deep combat, repeated hunts for build optimization, and co-op. Its costs are onboarding friction, interface density, and performance demands. It is less suitable for a short, repetition-free campaign; weapon mastery provides excellent long-term value."
     ],
-    "sources":[{"name":"Monster Hunter Wilds official site","url":"https://www.monsterhunter.com/wilds/en-us/"},{"name":"Capcom game information","url":"https://www.capcom.co.jp/ir/english/business/title.html"}]
+    "sources": [
+      {
+        "name": "Monster Hunter Wilds official site",
+        "url": "https://www.monsterhunter.com/wilds/en-us/"
+      },
+      {
+        "name": "Capcom game information",
+        "url": "https://www.capcom.co.jp/ir/english/business/title.html"
+      }
+    ]
   },
   "Solo Leveling Season 2": {
-    "type":"anime", "img":"/assets/img/1619ce791a-solo-leveling-hero.jpg", "score":"7.8", "genre":"Action / Fantasy", "studio":"A-1 Pictures", "release":"04/01/2025", "status":"Đã phát sóng", "statusEn":"Aired", "generated":true,
-    "story":[
+    "type": "anime",
+    "img": "/assets/img/1619ce791a-solo-leveling-hero.jpg",
+    "score": "7.8",
+    "genre": "Action / Fantasy",
+    "studio": "A-1 Pictures",
+    "release": "04/01/2025",
+    "status": "Đã phát sóng",
+    "statusEn": "Aired",
+    "generated": true,
+    "story": [
       "Solo Leveling Season 2: Arise from the Shadow tiếp tục quá trình Sung Jinwoo chuyển từ thợ săn yếu nhất thành lực lượng thay đổi cán cân thế giới. Crunchyroll xác nhận phim ra mắt ngày 4/1/2025, Shunsuke Nakashige đạo diễn tại A-1 Pictures, Noboru Kimura phụ trách cấu trúc và Hiroyuki Sawano đảm nhiệm âm nhạc.",
       "Ưu thế rõ nhất là biến tiến trình sức mạnh thành spectacle. Hai action director Hirokatsu Maruyama và Yoshihiro Kanno giúp trận đánh có đường chuyển động rõ, hiệu ứng kỹ năng mạnh và đòn kết liễu đủ trọng lượng. Đội quân bóng tối thêm lớp chiến thuật thị giác, dù xung đột vẫn xoay quanh việc Jinwoo vượt xa đối thủ.",
       "Nhịp nhanh giúp mùa phim ít khoảng chết nhưng làm lộ giới hạn power fantasy. Nhân vật phụ thường xuất hiện để xác nhận quy mô hiểm họa hoặc sức mạnh của Jinwoo thay vì có arc hoàn chỉnh. Khi thắng lợi quá chắc chắn, căng thẳng phải dựa vào thời gian và người cần bảo vệ thay vì khả năng thất bại.",
       "Âm thanh là trụ cột. Nhạc Sawano tạo quy mô cho các màn thức tỉnh và triệu hồi; opening của LiSA kết hợp Felix cùng ending của TK from Ling Tosite Sigure tạo bản sắc riêng. CGI phục vụ tốt tốc độ, nhưng cảnh đông thực thể đôi lúc phẳng hơn hoạt họa nhân vật chính.",
       "Kết luận: 7,8/10. Mùa 2 hiệu quả với action tốc độ cao, hình ảnh sức mạnh rõ và cảm giác thăng tiến liên tục. Điểm trừ nằm ở chiều sâu nhân vật phụ, mức độ bất định thấp và nhịp chuyển thể ưu tiên cao trào hơn hậu quả cảm xúc. Người thích power fantasy được phục vụ tốt; người cần ensemble sâu nên điều chỉnh kỳ vọng."
     ],
-    "storyEn":[
+    "storyEn": [
       "Solo Leveling Season 2: Arise from the Shadow continues Sung Jinwoo's shift from the weakest hunter into a world-changing force. Crunchyroll confirms a January 4, 2025 premiere, with Shunsuke Nakashige directing at A-1 Pictures, Noboru Kimura handling composition, and Hiroyuki Sawano returning for music.",
       "Its clearest advantage is turning progression into spectacle. Action directors Hirokatsu Maruyama and Yoshihiro Kanno give fights readable motion, forceful effects, and decisive finishing beats. The shadow army adds visual strategy, although conflicts still revolve around how completely Jinwoo outclasses opponents.",
       "Fast pacing minimizes downtime but exposes power-fantasy limitations. Supporting characters often establish threat scale or Jinwoo's strength instead of receiving complete arcs. Once victory feels guaranteed, tension must come from time pressure and people requiring protection rather than possible defeat.",
       "Sound is a major pillar. Sawano's score gives weight to awakenings and summons, while LiSA with Felix and TK from Ling Tosite Sigure provide a distinct identity. CGI supports speed, though crowded scenes can look flatter than the strongest character animation.",
       "Verdict: 7.8/10. Season 2 succeeds as fast action, clear escalation, and continuous progression. Its weaknesses are supporting depth, low uncertainty, and pacing that sometimes values climax over emotional aftermath. Power-fantasy audiences are well served; ensemble-focused viewers should calibrate expectations."
     ],
-    "sources":[{"name":"Crunchyroll: release, cast, staff and music guide","url":"https://www.crunchyroll.com/news/guides/2025/1/4/solo-leveling-season-2-where-to-watch-trailers-cast-more"},{"name":"Crunchyroll: production documentary","url":"https://www.crunchyroll.com/news/announcements/2024/3/5/solo-leveling-documentary-watch-now"}]
+    "sources": [
+      {
+        "name": "Crunchyroll: release, cast, staff and music guide",
+        "url": "https://www.crunchyroll.com/news/guides/2025/1/4/solo-leveling-season-2-where-to-watch-trailers-cast-more"
+      },
+      {
+        "name": "Crunchyroll: production documentary",
+        "url": "https://www.crunchyroll.com/news/announcements/2024/3/5/solo-leveling-documentary-watch-now"
+      }
+    ]
+  },
+  "Wuthering Waves": {
+    "type": "game",
+    "img": "/assets/img/c53329917b-wuthering-waves-hero.jpg",
+    "score": "8.9",
+    "genre": "Action RPG / Open World / Gacha",
+    "studio": "Kuro Games",
+    "platforms": "PC / iOS / Android / PS5",
+    "release": "22/05/2024",
+    "status": "Đang vận hành",
+    "statusEn": "Live Service",
+    "generated": true,
+    "hook": "Tựa game hành động thế giới mở đột phá của Kuro Games với cơ chế combat tốc độ cao, hệ thống săn bắt Echo độc đáo và tính năng di chuyển tự do không giới hạn.",
+    "hookEn": "Kuro Games' open-world action RPG delivers intense, high-mobility combat, innovative Echo collection systems, and deep skill expression.",
+    "story": [
+      "Wuthering Waves (Đoạt Giới) đưa người chơi vào vai Rover tỉnh giấc tại thế giới hậu tận thế Solaris-3 bị tàn phá bởi hiện tượng Lament. Kuro Games xây dựng một vũ trụ khoa học viễn tưởng u tối kết hợp võ thuật phương Đông, nơi âm thanh và tần số dao động (Frequencies) là nguồn gốc của mọi năng lượng và quái thú Tacet Discord.",
+      "Điểm sáng vượt trội nhất của game là hệ thống chiến đấu nhịp độ cao. Khác với phong cách đổi tướng dồn nguyên tố truyền thống, Wuthering Waves tập trung vào kỹ năng phản xạ thực thụ: né đòn hoàn hảo (Perfect Dodge), phản đòn (Parry) ngắt nhịp boss, chuỗi chiêu thức phối hợp trên không và cơ chế QTE Intro/Outro Skills khi luân chuyển Resonator. Cảm giác chặt chém mang đậm DNA của Punishing: Gray Raven.",
+      "Hệ thống Echo là cơ chế đột phá nhất: người chơi có thể đánh bại bất kỳ quái vật hay boss nào trên bản đồ mở để bắt và hấp thụ linh hồn của chúng làm kỹ năng chiến đấu riêng, biến hình trực tiếp trong combat và kích hoạt các bộ hiệu ứng Sonata đa dạng mà không bị giới hạn quá chặt bởi thể lực như các game gacha khác.",
+      "Trải nghiệm khám phá thế giới mở sở hữu độ cơ động vượt trội nhờ khả năng chạy tường không tốn stamina, đu dây móc grappler và lướt nhảy linh hoạt. Hạn chế trong giai đoạn đầu game nằm ở phần tối ưu hóa đồ họa trên thiết bị di động và cốt truyện Act 1 hơi lan man, nhưng đã được Kuro Games cải thiện vượt bậc từ các bản cập nhật 1.1 và các chương cốt truyện tiếp theo.",
+      "Kết luận: 8,9/10. Wuthering Waves là sự lựa chọn hàng đầu cho game thủ yêu thích combat hành động hardcore, đòi hỏi kỹ năng bấm tay chuẩn xác và chiều sâu phối hợp đội hình trong một thế giới mở rộng lớn."
+    ],
+    "storyEn": [
+      "Wuthering Waves places players in the role of the Rover, awakening in the post-apocalyptic world of Solaris-3 devastated by the Lament. Kuro Games crafts a dark sci-fi universe blended with eastern martial arts aesthetics, where frequencies and sonic anomalies govern reality.",
+      "The game's standout achievement is its fast-paced, skill-expressive combat system. Built on precise mechanics like Perfect Dodges, satisfying Parries that break enemy postures, aerial juggle combos, and dynamic Intro/Outro skills upon switching Resonators, combat delivers deep mechanical gratification reminiscent of character-action titles.",
+      "The Echo system serves as a revolutionary monster-hunting mechanic: players can defeat and absorb virtually any open-world creature or boss into usable combat skills, morphing mid-battle while farming customizable Sonata set bonuses directly in the overworld.",
+      "Exploration features exceptional fluid movement with stamina-free wall running, grappling hooks, and mid-air dashes. While early launch suffered from mobile optimization hurdles and a slow-paced opening act, Kuro Games has aggressively polished performance and storytelling in subsequent major updates.",
+      "Verdict: 8.9/10. Wuthering Waves is a premier choice for action enthusiasts demanding high skill ceiling combat, fluid traversal, and rewarding monster-taming mechanics in an expansive open-world gacha RPG."
+    ],
+    "sources": [
+      {
+        "name": "Wuthering Waves Official Site",
+        "url": "https://wutheringwaves.kurogames.com/"
+      },
+      {
+        "name": "Kuro Games Official Portal",
+        "url": "https://www.kurogames.com/"
+      }
+    ],
+    "article": "/wuthering-waves-24"
+  },
+  "Genshin Impact": {
+    "type": "game",
+    "img": "/assets/img/f89df6064f-142648l.jpg",
+    "score": "9.3",
+    "genre": "Open World Action RPG / Gacha",
+    "studio": "HoYoverse (miHoYo)",
+    "platforms": "PC / PlayStation 4 / PlayStation 5 / iOS / Android",
+    "release": "28/09/2020",
+    "status": "Đang vận hành",
+    "statusEn": "Live Service",
+    "generated": true,
+    "hook": "Bom tấn thế giới mở định hình kỷ nguyên gacha hiện đại của HoYoverse với đại lục Teyvat rộng lớn, 7 quốc gia thần thoại và hệ thống phản ứng nguyên tố đặc sắc.",
+    "hookEn": "HoYoverse's genre-defining open-world action RPG featuring the vast world of Teyvat, 7 elemental nations, and intricate elemental reaction combat.",
+    "story": [
+      "Genshin Impact đưa người chơi vào vai Nhà Lữ Hành (Traveler) trên hành trình chu du qua 7 quốc gia của đại lục Teyvat để tìm lại người thân thất lạc. Mỗi quốc gia (Mondstadt, Liyue, Inazuma, Sumeru, Fontaine, Natlan, Snezhnaya) đều được xây dựng với bản sắc văn hóa, kiến trúc và truyền thuyết thần thoại độc nhất vô nhị.",
+      "Hệ thống chiến đấu phản ứng nguyên tố (Elemental Reactions) là linh hồn của gameplay. Việc kết hợp Hỏa, Thủy, Băng, Lôi, Phong, Nham và Thảo tạo nên hàng chục phản ứng phức tạp như Bốc Hơi, Tan Chảy, Đóng Băng, Nở Rộ, Tăng Cường, đòi hỏi người chơi tư duy chiến thuật sâu sắc khi xây dựng đội hình 4 nhân vật.",
+      "Thế giới mở Teyvat sở hữu chất lượng thiết kế bản đồ thuộc hàng đỉnh cao thế giới với hàng ngàn câu đố môi trường, hang động ngầm dưới nước tại Fontaine, vách đá kỳ vĩ của Chenyu Vale và những bản nhạc giao hưởng do dàn nhạc quốc tế trình diễn cho từng khu vực.",
+      "Điểm cần lưu ý là cơ chế gacha quay nhân vật và hệ thống nâng cấp Thánh Di Vật (Artifacts) tốn nhiều thời gian cày cuốc (RNG). Hệ thống thể lực Nhựa Nguyên Chất (Resin) giới hạn lượng tài nguyên mỗi ngày đối với người chơi muốn cày cấp nhanh.",
+      "Kết luận: 9,3/10. Genshin Impact là một chuẩn mực của dòng game thế giới mở miễn phí, mang lại giá trị trải nghiệm cốt truyện và khám phá vượt trội ngang tầm các tựa game AAA hàng đầu."
+    ],
+    "storyEn": [
+      "Genshin Impact follows the Traveler across the seven nations of Teyvat in search of their lost twin. Each region—from Mondstadt and Liyue to Fontaine and Natlan—is crafted with distinct cultural architecture, rich mythology, and breathtaking landscapes.",
+      "The core combat loop revolves around the 7-element reaction system. Combining Pyro, Hydro, Cryo, Electro, Anemo, Geo, and Dendro triggers intricate reactions like Vaporize, Melt, Freeze, and Hyperbloom, rewarding strategic team-building and rotation execution.",
+      "Teyvat's open-world exploration features masterclass level design with thousands of organic environmental puzzles, underwater exploration in Fontaine, and an iconic symphonic soundtrack recorded by world-renowned orchestras.",
+      "Points to consider include the gacha character acquisition model and the RNG-heavy artifact farming progression, gated by daily Resin stamina constraints for endgame players.",
+      "Verdict: 9.3/10. Genshin Impact remains the gold standard of free-to-play open-world RPGs, offering an astounding volume of premium AAA story and exploration content."
+    ],
+    "sources": [
+      {
+        "name": "Genshin Impact Official Site",
+        "url": "https://genshin.hoyoverse.com/"
+      }
+    ],
+    "article": "/genshin-70-snezhnaya-review"
+  },
+  "Honkai: Star Rail": {
+    "type": "game",
+    "img": "/assets/img/681306c50c-143582l.jpg",
+    "score": "9.1",
+    "genre": "Turn-Based Space Fantasy RPG / Gacha",
+    "studio": "HoYoverse",
+    "platforms": "PC / PlayStation 5 / iOS / Android",
+    "release": "26/04/2023",
+    "status": "Đang vận hành",
+    "statusEn": "Live Service",
+    "generated": true,
+    "hook": "Cuộc phiêu lưu không gian kỳ vĩ trên chuyến tàu Astral Express với lối đánh theo lượt chiến thuật cinematic mãn nhãn và cốt truyện vũ trụ sâu sắc.",
+    "hookEn": "A breathtaking space fantasy turn-based RPG aboard the Astral Express, featuring cinematic combat, deep galactic lore, and rich strategic gameplay.",
+    "story": [
+      "Honkai: Star Rail đưa người chơi vào vai Nhà Khai Phá (Trailblazer) mang trong mình khối Stellaron bí ẩn, đồng hành cùng đoàn tàu Astral Express chu du qua các hành tinh xa xôi như Trạm Không Gian Herta, hành tinh băng Jarilo-VI, chiến hạm tiên phong Xianzhou Luofu và thế giới giấc mơ Penacony.",
+      "Lối chơi chiến đấu theo lượt (Turn-based) kết hợp phá vỡ điểm yếu nguyên tố (Weakness Break) và tuyệt kỹ cắt cảnh Ultimate điện ảnh. Cơ chế Vận Mệnh (Paths: Săn Bắn, Hủy Diệt, Tri Thức, Hư Vô, Trù Phú, Bảo Hộ, Hòa Hợp) tạo nên chiều sâu chiến thuật phong phú khi phối hợp đội hình.",
+      "Chế độ Vũ Trụ Mô Phỏng (Simulated Universe) và Kể Chuyện Hư Cấu mang đến trải nghiệm Roguelike hấp dẫn với hàng trăm chúc phúc, xúc xắc vận mệnh và boss thử thách, tăng giá trị chơi lại bất tận cho người chơi.",
+      "Lối chơi theo lượt có thể không phù hợp với những ai thuần thích hành động chặt chém thời gian thực; việc thám hiểm bản đồ dạng mê cung (zone-based) thay vì thế giới mở hoàn toàn giúp game tối ưu hóa tốt hơn trên mọi nền tảng di động.",
+      "Kết luận: 9,1/10. Tựa game turn-based xuất sắc nhất của HoYoverse với chất lượng đồ họa đỉnh cao, âm nhạc tuyệt mỹ và văn phong cốt truyện hài hước, nhân văn."
+    ],
+    "storyEn": [
+      "Honkai: Star Rail follows the Trailblazer, implanted with a mysterious Stellaron, joining the crew of the Astral Express across diverse worlds including Belobog on Jarilo-VI, the cosmic flagship Xianzhou Luofu, and the dreamscape of Penacony.",
+      "Turn-based combat centers on elemental Weakness Breaks, action order manipulation, and cinematic Ultimate skill animations. The 7 Aeon Paths create deep tactical synergy across hunt, destruction, erudition, nihility, abundance, preservation, and harmony roles.",
+      "The Simulated Universe and Divergent Universe modes provide robust roguelike progression with hundreds of blessing curio combinations, ensuring dynamic and challenging endgame replayability.",
+      "While turn-based mechanics might not appeal to pure real-time action fans, the structured zone exploration allows flawless performance and visual polish across PC, mobile, and PS5.",
+      "Verdict: 9.1/10. HoYoverse's premier turn-based space RPG shines with stellar production values, witty writing, and deeply rewarding strategic combat."
+    ],
+    "sources": [
+      {
+        "name": "Honkai: Star Rail Official Site",
+        "url": "https://hsr.hoyoverse.com/"
+      }
+    ],
+    "article": "/honkai-star-rail-30"
+  },
+  "Zenless Zone Zero": {
+    "type": "game",
+    "img": "/assets/img/513145db34-header.jpg",
+    "score": "8.8",
+    "genre": "Urban Fantasy Action RPG",
+    "studio": "HoYoverse",
+    "platforms": "PC / PlayStation 5 / iOS / Android",
+    "release": "04/07/2024",
+    "status": "Đang vận hành",
+    "statusEn": "Live Service",
+    "generated": true,
+    "hook": "Tựa game hành động phong cách Retro-Futuristic đường phố rực rỡ với nhịp độ combat dồn dập, cơ chế Parry chói lóa và dàn nhân vật cá tính.",
+    "hookEn": "HoYoverse's stylish urban fantasy action RPG featuring high-octane close-quarters combat, flash parries, and vibrant retro-futuristic aesthetics.",
+    "story": [
+      "Zenless Zone Zero lấy bối cảnh thành phố New Eridu — ốc đảo văn minh cuối cùng sau khi thế giới bị xâm chiếm bởi các lỗ hổng siêu nhiên Hollows. Người chơi vào vai cặp Người Điều Khiển (Proxy) Belle và Wise, dẫn dắt các Đặc Vụ (Agents) khám phá mê cung và giải cứu các bí mật đen tối.",
+      "Hệ thống chiến đấu là điểm nhấn sáng nhất: tốc độ tấn công dồn dập, cơ chế Chuyển Đổi Chiêu Thức (Assist Switch) kích hoạt đòn Parry tóe lửa kèm âm thanh đã tai và chuỗi liên hoàn Chain Attacks điện ảnh khi làm choáng (Daze) quái vật.",
+      "Thiết kế mỹ thuật đường phố lấy cảm hứng từ văn hóa hip-hop, băng đĩa cassette và truyện tranh thập niên 90 mang đến luồng gió mới hoàn toàn so với phong cách kỳ ảo truyền thống của HoYoverse.",
+      "Giao diện khám phá lưới TV (Hollow Deep Dive) từng nhận một số ý kiến trái chiều ở phiên bản đầu, nhưng các bản cập nhật mới đã chuyển dịch mạnh mẽ sang trải nghiệm chiến đấu liên tục và tương tác NPC ngoài đời thực.",
+      "Kết luận: 8,8/10. Zenless Zone Zero là lựa chọn tuyệt hảo cho game thủ tìm kiếm một tựa game hành động chặt chém phong cách, âm nhạc bắt tai và chuyển động mượt mà như phim hoạt hình."
+    ],
+    "storyEn": [
+      "Zenless Zone Zero is set in New Eridu, humanity's last bastion surviving catastrophic supernatural rifts known as Hollows. Players operate as Proxies (Belle and Wise), guiding Agents through labyrinthine corruption zones.",
+      "Combat focuses on high-speed kinetic action: responsive Dodge Counters, satisfying Flash Assists (Parries) accompanied by heavy impact sound design, and cinematic multi-agent Chain Attacks triggered upon breaking enemy Daze thresholds.",
+      "The visual identity blends 90s retro-tech, cassette futurism, and street culture with fluid, expressive character animations that surpass typical mobile standards.",
+      "The TV grid exploration board received refinements in later updates to emphasize direct combat encounters and rich narrative interactions across New Eridu's vibrant districts.",
+      "Verdict: 8.8/10. A stylish, adrenaline-fueled action RPG offering peerless combat rhythm, top-tier animation, and infectious urban energy."
+    ],
+    "sources": [
+      {
+        "name": "Zenless Zone Zero Official Site",
+        "url": "https://zenless.hoyoverse.com/"
+      }
+    ],
+    "article": "/news"
+  },
+  "Black Myth: Wukong": {
+    "type": "game",
+    "img": "/assets/img/7403bc0e49-header.jpg",
+    "score": "8.9",
+    "genre": "Action RPG / Souls-like",
+    "studio": "Game Science",
+    "platforms": "PC / PlayStation 5",
+    "release": "20/08/2024",
+    "status": "Đang phát hành",
+    "statusEn": "Released",
+    "generated": true,
+    "hook": "Kiệt tác hành động AAA đầu tiên của Trung Quốc chuyển thể Hậu Tây Du Ký với 3 thế gậy biến hóa, hơn 80 trận đấu trùm độc nhất và đồ họa Unreal Engine 5 đỉnh cao.",
+    "hookEn": "China's landmark AAA action RPG reimagining Journey to the West with versatile staff combat, over 80 unique boss encounters, and breathtaking Unreal Engine 5 visuals.",
+    "story": [
+      "Black Myth: Wukong đưa người chơi vào vai Thiên Mệnh Nhân (Destined One) trên hành trình vượt qua ngàn trùng hiểm nguy để thu thập lại 6 mảnh Lục Căn của Tôn Ngộ Không sau cuộc chiến bi tráng với Thiên Đình.",
+      "Combat không dựa vào khiên đỡ mà tôn vinh phản xạ Né Đòn Hoàn Hảo (Perfect Dodge) và khả năng làm chủ 3 Thế Gậy: Phách Côn (Smash), Lập Côn (Pillar) và Trích Côn (Thrust), kết hợp cùng phép thuật Định Thân, Phân Thân và biến thân thành yêu quái.",
+      "Dàn boss hơn 80 trận không trùng lặp với tạo hình và cơ chế riêng biệt như Hổ Tiên Phong, Hoàng Phong Quái, Tiểu Hoàng Long và Nhị Lang Thần đem lại thử thách thỏa mãn cho game thủ.",
+      "Hạn chế nằm ở hiện tượng tường vô hình (invisible walls) xuất hiện nhiều khi thám hiểm và yêu cầu phần cứng PC tương đối cao để kích hoạt toàn bộ tính năng Ray Tracing.",
+      "Kết luận: 8,9/10. Tựa game hành động xuất sắc bậc nhất năm 2024, một cột mốc lịch sử đưa ngành game AAA phương Đông vươn tầm thế giới."
+    ],
+    "storyEn": [
+      "Black Myth: Wukong follows the Destined One on a perilous pilgrimage to reclaim the six lost relics of Sun Wukong following the tragic fall of the Monkey King.",
+      "Combat emphasizes fluid Perfect Dodges and mastery over three staff stances (Smash, Pillar, and Thrust), supplemented by mystical spells like Immobilize, A Pluck of Many, and formidable monster transformations.",
+      "Over 80 distinct boss battles with rich mythological designs—such as the Tiger Vanguard and Erlang Shen—provide intense combat variety across 40+ hours of gameplay.",
+      "Drawbacks include invisible boundary walls during exploration and demanding hardware requirements for full path tracing on PC.",
+      "Verdict: 8.9/10. A monumental triumph for Chinese game development and one of the finest action RPGs of the modern era."
+    ],
+    "sources": [
+      {
+        "name": "Game Science Official Site",
+        "url": "https://www.gamesci.com.cn/"
+      }
+    ],
+    "article": "/black-myth-wukong-review"
+  },
+  "Final Fantasy VII Rebirth": {
+    "type": "game",
+    "img": "/assets/img/9fdcc19d8c-header.jpg",
+    "score": "9.4",
+    "genre": "Action RPG / Open World",
+    "studio": "Square Enix",
+    "platforms": "PlayStation 5",
+    "release": "29/02/2024",
+    "status": "Đã phát hành",
+    "statusEn": "Released",
+    "generated": true,
+    "hook": "Phần thứ 2 trong bộ ba Remake huyền thoại của Square Enix đưa Cloud và nhóm bạn bước ra thế giới mở rộng lớn của hành tinh Gaia với gameplay hành động phối hợp đỉnh cao.",
+    "hookEn": "The monumental second entry in the FF7 Remake trilogy, expanding Cloud's journey into a massive open world with masterclass hybrid combat.",
+    "story": [
+      "Final Fantasy VII Rebirth tiếp nối hành trình của Cloud, Tifa, Aerith, Barret và Red XIII sau khi thoát khỏi Midgar, dấn thân vào hành tinh Gaia để truy lùng Sephiroth.",
+      "Hệ thống chiến đấu lai giữa hành động thời gian thực và lệnh chiến thuật ATB được nâng cấp toàn diện với cơ chế Đòn Phối Hợp (Synergy Skills & Abilities), cho phép hai nhân vật tung chiêu thức kết hợp độc đáo mà không tiêu tốn thanh ATB.",
+      "Các vùng đất mở như Đồng Cỏ Grasslands, Junon, Corel, Gongaga và Cosmo Canyon chứa đựng hàng chục mini-game lôi cuốn (đặc biệt là game bài Queen's Blood) và hệ thống khám phá Chocobo đặc sắc.",
+      "Một số nhiệm vụ phụ tìm kiếm tháp kích hoạt có thể tạo cảm giác hơi quen thuộc theo công thức thế giới mở truyền thống, nhưng chất lượng phát triển nhân vật và âm nhạc tuyệt hảo bù đắp trọn vẹn.",
+      "Kết luận: 9,4/10. Kiệt tác game nhập vai Nhật Bản (JRPG) với khối lượng nội dung khổng lồ, đem lại cảm xúc bùng nổ cho cả người hâm mộ lâu năm lẫn tân thủ."
+    ],
+    "storyEn": [
+      "Final Fantasy VII Rebirth continues Cloud Strife's odyssey across the vast expanse of Gaia in pursuit of the enigmatic Sephiroth after escaping the metropolis of Midgar.",
+      "The combat system masterfully refines real-time action and tactical ATB commands, introducing Synergy Skills and Abilities that enable seamless pair-based team attacks without depleting action meters.",
+      "Diverse open-world regions—including the Grasslands, Junon, and Cosmo Canyon—are brimming with mini-games (especially the addictive Queen's Blood card game) and specialized Chocobo exploration mechanics.",
+      "While some open-world checklist objectives feel conventional, the emotional resonance of the main cast, incredible soundtrack, and thrilling boss battles make it an unforgettable journey.",
+      "Verdict: 9.4/10. A tour de force JRPG delivering over 100 hours of top-tier adventure and narrative brilliance."
+    ],
+    "sources": [
+      {
+        "name": "Square Enix FF7 Rebirth Portal",
+        "url": "https://ffvii.square-enix-games.com/en-us/games/rebirth"
+      }
+    ],
+    "article": "/final-fantasy-7-revelation-gamescom"
+  },
+  "Demon Slayer: Infinity Castle": {
+    "type": "anime",
+    "img": "/assets/img/0feb0c5f50-99889l.jpg",
+    "score": "9.5",
+    "genre": "Action / Dark Fantasy / Shounen",
+    "studio": "ufotable",
+    "release": "2025 - 2026",
+    "status": "Sắp chiếu",
+    "statusEn": "Upcoming Trilogy",
+    "generated": true,
+    "hook": "Bộ ba phim điện ảnh đỉnh cao khép lại hành trình diệt quỷ của Tanjiro và Sát Quỷ Đội trong Pháo Đài Vô Tận dưới bàn tay hoạt họa vô song của ufotable.",
+    "hookEn": "The epic theatrical trilogy by ufotable adapting the climactic final battle of Demon Slayer inside the shifting Infinity Castle.",
+    "story": [
+      "Demon Slayer: Kimetsu no Yaiba - Pháo Đài Vô Tận (Infinity Castle Arc) là đỉnh cao cao trào của toàn bộ series, nơi toàn bộ Trụ Cột và Tanjiro bị cuốn vào pháo đài không gian 3 chiều đảo ngược để quyết chiến sinh tử cùng Thượng Huyền Quỷ và Chúa Quỷ Kibutsuji Muzan.",
+      "Studio ufotable tiếp tục thiết lập chuẩn mực đồ họa điện ảnh với kỹ xảo 3D CGI kết hợp vẽ tay 2D thượng thừa. Sự chuyển động biến ảo vô tận của các căn phòng pháo đài cùng hiệu ứng Hơi Thở Mặt Trời, Hơi Thở Gió, Nham và Sương Mù tạo nên bữa tiệc thị giác bùng nổ.",
+      "Cốt truyện đẩy cao cảm xúc tột độ với quá khứ bi thương của các Thượng Huyền Quỷ (Akaza, Doma, Kokushibo) và sự hy sinh kiên cường không khoan nhượng của các kiếm sĩ Sát Quỷ Đội.",
+      "Mô hình phát hành chia làm 3 phần phim chiếu rạp đòi hỏi người hâm mộ phải chờ đợi giữa các phần, nhưng đảm bảo chất lượng hình ảnh và âm thanh đạt chuẩn rạp chiếu IMAX cao nhất.",
+      "Kết luận: 9,5/10. Tác phẩm anime chiếu rạp được mong đợi nhất thập kỷ, hứa hẹn xô đổ mọi kỷ lục phòng vé toàn cầu của ngành hoạt hình Nhật Bản."
+    ],
+    "storyEn": [
+      "Demon Slayer: Infinity Castle represents the monumental final confrontation between the Demon Slayer Corps Hashira and the Upper Rank Demons alongside Muzan Kibutsuji.",
+      "Studio ufotable raises the animation bar to unprecedented heights, combining dynamic 3D camera sweeps across the gravity-defying architecture with hand-drawn combat sequences.",
+      "Emotional stakes reach their zenith through the tragic backstories of Upper Moons and the desperate, heroic sacrifices made by the Hashira.",
+      "The trilogy format requires patient anticipation between theatrical releases, yet ensures uncompromising cinematic fidelity on IMAX screens.",
+      "Verdict: 9.5/10. The definitive anime cinematic event of the decade, destined to shatter international box office records."
+    ],
+    "sources": [
+      {
+        "name": "Demon Slayer Anime Official Portal",
+        "url": "https://kimetsu.com/"
+      }
+    ],
+    "article": "/demon-slayer-infinity-castle-review"
+  },
+  "Frieren Season 2": {
+    "type": "anime",
+    "img": "/assets/img/4a7324f467-138006l.jpg",
+    "score": "9.6",
+    "genre": "Fantasy / Adventure / Drama",
+    "studio": "Madhouse",
+    "release": "2026",
+    "status": "Đang sản xuất",
+    "statusEn": "In Production",
+    "generated": true,
+    "hook": "Hành trình chiêm nghiệm thời gian và tình cảm của pháp sư ngàn tuổi Frieren trở lại mùa 2, tiếp nối kiệt tác anime được chấm điểm cao nhất lịch sử MyAnimeList.",
+    "hookEn": "The continuation of the highest-rated anime in history, following elven mage Frieren's contemplative journey toward the resting place of souls.",
+    "story": [
+      "Frieren: Pháp Sư Tiễn Táng Mùa 2 tiếp tục đưa Frieren, Fern và Stark tiến sâu về phía Bắc tới Ende (Thiên Đàng) — nơi linh hồn các anh hùng trong quá khứ tề tựu.",
+      "Madhouse duy trì nghệ thuật kể chuyện chậm rãi, tinh tế và triết lý sâu sắc về giá trị của những khoảnh khắc đời thường, sự trôi chảy của thời gian và tình bạn giữa các sinh mệnh có tuổi thọ chênh lệch ngàn năm.",
+      "Các phân cảnh chiến đấu ma pháp được trau chuốt với chuyển động mượt mà phi thường, âm nhạc thính phòng da diết của Evan Call nâng tầm từng khung hình thành một tác phẩm nghệ thuật.",
+      "Tác phẩm phù hợp nhất với khán giả yêu thích chiều sâu cảm xúc, chiêm nghiệm nhân sinh hơn là dòng phim hành động liên tục không ngừng nghỉ.",
+      "Kết luận: 9,6/10. Một kiệt tác fantasy hiện đại hiếm có, chạm tới trái tim người xem bằng sự dịu dàng và vẻ đẹp thuần khiết của nghệ thuật hoạt hình."
+    ],
+    "storyEn": [
+      "Frieren: Beyond Journey's End Season 2 accompanies Frieren, Fern, and Stark on their northern journey toward Ende, where the resting place of souls awaits.",
+      "Madhouse preserves the series' signature contemplative pacing, exploring the ephemeral beauty of human connections through the lens of an immortal elf.",
+      "Magical combat sequences feature breathtaking choreography and fluid animation, perfectly scored by Evan Call's evocative symphonic compositions.",
+      "Best appreciated by audiences who value emotional depth, philosophical reflection, and subtle character storytelling over relentless battle pacing.",
+      "Verdict: 9.6/10. A modern fantasy masterpiece that speaks directly to the human soul with unmatched poetic elegance."
+    ],
+    "sources": [
+      {
+        "name": "Frieren Official Anime Site",
+        "url": "https://frieren-anime.jp/"
+      }
+    ],
+    "article": "/frieren-season2"
+  },
+  "One Piece": {
+    "type": "manga",
+    "img": "/assets/img/add1e919a8-266234l.jpg",
+    "score": "9.7",
+    "genre": "Adventure / Shounen / Fantasy",
+    "studio": "Eiichiro Oda / Shueisha",
+    "release": "1997 - Hiện tại",
+    "status": "Đang phát hành",
+    "statusEn": "Ongoing",
+    "generated": true,
+    "hook": "Bộ manga huyền thoại bán chạy nhất lịch sử nhân loại của Eiichiro Oda đang bước vào Saga Cuối Cùng với những bí mật thế kỷ vĩ đại nhất dần được hé lộ.",
+    "hookEn": "Eiichiro Oda's record-breaking manga masterpiece entering its Final Saga as the greatest mysteries of the Void Century and the One Piece are finally revealed.",
+    "story": [
+      "One Piece kể về hành trình của Monkey D. Luffy và băng Mũ Rơm giương buồm ra khơi để tìm kiếm kho báu huyền thoại One Piece và trở thành Vua Hải Tặc.",
+      "Eiichiro Oda đã tạo nên một kỳ quan thế giới mở trên trang giấy với hệ thống xây dựng thế giới (World-building) đồ sộ nhất lịch sử truyện tranh: Chính Phủ Thế Giới, Ngũ Lão Tinh, Quân Cách Mạng, Thế Kỷ Trống và Trái Ác Quỷ liên kết chặt chẽ suốt hơn 1100 chương.",
+      "Arc Đảo Egghead và Saga Cuối Cùng đưa toàn bộ mạch truyện lên đỉnh điểm cao trào với sự xuất hiện của tiến sĩ Vegapunk, bí ẩn về Joy Boy và vũ khí cổ đại thay đổi hoàn toàn cục diện thế giới.",
+      "Thời lượng đồ sộ hơn 100 tập truyện là rào cản thời gian cho người mới bắt đầu, nhưng mang lại phần thưởng trải nghiệm vô giá khi theo dõi từ đầu.",
+      "Kết luận: 9,7/10. Tượng đài bất tử của truyện tranh thế giới, tác phẩm phải đọc một lần trong đời đối với mọi tín đồ văn hóa manga."
+    ],
+    "storyEn": [
+      "One Piece chronicles the epic voyage of Monkey D. Luffy and the Straw Hat Pirates across the Grand Line to discover the legendary treasure and claim the title of Pirate King.",
+      "Eiichiro Oda's peerless world-building spans over 1,100 chapters, intricately weaving the World Government, the Void Century, Ancient Weapons, and Devil Fruits into an unparalleled narrative tapestry.",
+      "The Egghead Arc and the unfolding Final Saga accelerate plot revelations with Dr. Vegapunk, Joy Boy's legacy, and seismic shifts across the geopolitical balance of power.",
+      "The sheer length spanning over 100 volumes presents an investment for newcomers, but delivers unrivaled long-term emotional and narrative payoff.",
+      "Verdict: 9.7/10. The unrivaled titan of global manga and a monumental cultural touchstone for generations of readers."
+    ],
+    "sources": [
+      {
+        "name": "Shonen Jump One Piece Portal",
+        "url": "https://www.shonenjump.com/j/rensai/onepiece.html"
+      }
+    ],
+    "article": "/one-piece-final-saga"
+  },
+  "Chainsaw Man": {
+    "type": "manga",
+    "img": "/assets/img/fced43ae52-216464l.jpg",
+    "score": "9.2",
+    "genre": "Dark Fantasy / Psychological / Action",
+    "studio": "Tatsuki Fujimoto / Shueisha",
+    "release": "2018 - Hiện tại",
+    "status": "Đang phát hành",
+    "statusEn": "Ongoing",
+    "generated": true,
+    "hook": "Kiệt tác manga đen tối và điên rồ của Tatsuki Fujimoto phá vỡ mọi quy chuẩn Shounen truyền thống bằng nhịp độ dồn dập, bạo lực và triết lý hiện sinh độc dị.",
+    "hookEn": "Tatsuki Fujimoto's wildly inventive dark fantasy subverting shonen tropes with cinematic pacing, surreal violence, and existential vulnerability.",
+    "story": [
+      "Chainsaw Man xoay quanh Denji — một thiếu niên nghèo khổ hồi sinh thành Người Cưa sau khi hợp nhất với Quỷ Cưa Pochita, bị cuốn vào Cục Trị An Diệt Quỷ dưới sự thao túng đầy bí ẩn của Makima.",
+      "Tatsuki Fujimoto thể hiện tài năng dàn dựng khung tranh đậm chất điện ảnh Hollywood, các góc quay táo bạo, tính biểu tượng cao và những cú bẻ lái cốt truyện không thể đoán trước.",
+      "Phần 2 (Part 2: Academy Saga) tiếp tục mở rộng thế giới với nhân vật nữ chính Asa Mitaka và Quỷ Chiến Tranh Yoru, đào sâu vào nỗi cô đơn, nhu cầu được yêu thương và sự bất an của tuổi trưởng thành.",
+      "Yếu tố máu me bạo lực và tính dục kỳ dị có thể là rào cản với độc giả tìm kiếm một câu chuyện shounen tươi sáng kiểu mẫu.",
+      "Kết luận: 9,2/10. Một tác phẩm cách tân đầy táo bạo, thể hiện tầm nhìn nghệ thuật độc nhất vô nhị của thế hệ tác giả manga đương đại."
+    ],
+    "storyEn": [
+      "Chainsaw Man follows Denji, a destitute youth merged with the Chainsaw Devil Pochita, recruited into the Public Safety Devil Hunters under the enigmatic control of Makima.",
+      "Tatsuki Fujimoto employs Hollywood cinematic panelling, bold symbolic framing, and shocking narrative twists that subvert conventional shonen tropes.",
+      "Part 2 expands into the Academy Arc with Asa Mitaka and the War Devil Yoru, exploring loneliness, alienation, and adolescent vulnerability with surreal dark humor.",
+      "Graphic gore, nihilistic undertones, and unconventional erotic themes may challenge readers seeking traditional hero-journey narratives.",
+      "Verdict: 9.2/10. A boundary-pushing masterpiece of modern dark fiction and visual storytelling."
+    ],
+    "sources": [
+      {
+        "name": "VIZ Chainsaw Man Page",
+        "url": "https://www.viz.com/chainsaw-man"
+      }
+    ],
+    "article": "/chainsaw-man-manga-part2-review"
+  },
+  "Jujutsu Kaisen": {
+    "type": "manga",
+    "img": "/assets/img/f503c61d36-259446l.jpg",
+    "score": "9.0",
+    "genre": "Dark Fantasy / Supernatural Action",
+    "studio": "Gege Akutami / Shueisha",
+    "release": "2018 - 2024",
+    "status": "Đã hoàn thành",
+    "statusEn": "Completed",
+    "generated": true,
+    "hook": "Bộ manga chú thuật đỉnh cao của Gege Akutami với hệ thống Chú Lực phức tạp, Bành Trướng Lãnh Địa mãn nhãn và trận đại chiến Shinjuku kinh thiên động địa.",
+    "hookEn": "Gege Akutami's dark supernatural battle manga featuring intricate Cursed Energy rules, Domain Expansions, and the legendary Shinjuku Showdown.",
+    "story": [
+      "Jujutsu Kaisen theo chân Yuji Itadori nuốt ngón tay của Vua Chú Thuật Ryomen Sukuna, bước vào thế giới ngầm của các Chú Thuật Sư để chiến đấu chống lại các Chú Linh hung ác.",
+      "Hệ thống sức mạnh Chú Lực (Cursed Energy) và Bành Trướng Lãnh Địa (Domain Expansion) được xây dựng với những quy tắc chiến thuật chặt chẽ, biến mỗi trận đánh thành một bàn cờ trí tuệ nghẹt thở.",
+      "Các arc truyện kinh điển như Biến Cố Shibuya và Trận Chiến Quyết Định Shinjuku (Gojo Satoru vs Sukuna) đã tạo nên những cơn sốt thảo luận bùng nổ trên toàn cầu.",
+      "Mật độ giải thích thuật ngữ và kỹ năng trong các chương cuối tương đối dày, đòi hỏi độc giả phải tập trung cao độ để nắm bắt diễn biến.",
+      "Kết luận: 9,0/10. Một trong những bộ truyện hành động chú thuật xuất sắc nhất thập kỷ 2020, khép lại trọn vẹn di sản rực rỡ trên Weekly Shonen Jump."
+    ],
+    "storyEn": [
+      "Jujutsu Kaisen follows Yuji Itadori after ingesting the finger of Ryomen Sukuna, thrusting him into the perilous world of Jujutsu Sorcerers.",
+      "The power system of Cursed Energy, Heavenly Restrictions, and Domain Expansions functions like an intricate tactical puzzle with severe consequences for every move.",
+      "Legendary story arcs like the Shibuya Incident and the Shinjuku Showdown (Gojo vs Sukuna) established unprecedented cultural resonance worldwide.",
+      "High rule complexity and rapid combat pacing in later chapters demand close attention to detail from the reader.",
+      "Verdict: 9.0/10. A benchmark of modern dark shonen combat that defined the 2020s manga landscape."
+    ],
+    "sources": [
+      {
+        "name": "VIZ Jujutsu Kaisen Page",
+        "url": "https://www.viz.com/jujutsu-kaisen"
+      }
+    ],
+    "article": "/jujutsu-kaisen-ket-thuc"
+  },
+  "Berserk": {
+    "type": "manga",
+    "img": "/assets/img/641c702735-157897l.jpg",
+    "score": "9.8",
+    "genre": "Dark Fantasy / Epic / Tragedy",
+    "studio": "Kentaro Miura & Studio Gaga / Hakusensha",
+    "release": "1989 - Hiện tại",
+    "status": "Đang phát hành",
+    "statusEn": "Ongoing",
+    "generated": true,
+    "hook": "Đỉnh cao vĩ đại nhất của thể loại Dark Fantasy thế giới: thiên anh hùng ca bi tráng về Kiếm Sĩ Đen Guts và cuộc chiến bất tận chống lại số phận nghiệt ngã.",
+    "hookEn": "The monumental dark fantasy magnum opus by Kentaro Miura, chronicling the Black Swordsman Guts in an unrelenting struggle against causality and demons.",
+    "story": [
+      "Berserk kể về cuộc đời đầy bi kịch của Guts — Kiếm Sĩ Đen mang thanh kiếm khổng lồ Dragon Slayer, cùng mối ân oán thế kỷ với người bạn thân thiết Griffith sau sự kiện Nhật Thực (Eclipse) kinh hoàng.",
+      "Nét vẽ của cố đại tài Kentaro Miura đạt đến cảnh giới hội họa đỉnh cao của nhân loại: từng chi tiết áo giáp, khung cảnh chiến trường hàng vạn người và tạo hình quái vật Apostle được chạm khắc tỉ mỉ như những bức tranh sơn dầu thời Phục Hưng.",
+      "Tác phẩm đào sâu vào bản ngã con người, tình bạn, sự phản bội, ý chí sinh tồn kiên cường trước sự định đoạt của Thần Bàn Tay (God Hand).",
+      "Chứa đựng những nội dung kinh dị, bạo lực máu me và yếu tố tâm lý cực kỳ nặng nề, chỉ dành cho độc giả trưởng thành (18+).",
+      "Kết luận: 9,8/10. Tác phẩm Dark Fantasy vĩ đại nhất trong lịch sử truyện tranh, nguồn cảm hứng bất tận cho các kiệt tác game như Dark Souls và Elden Ring."
+    ],
+    "storyEn": [
+      "Berserk chronicles the grim odyssey of Guts, the Black Swordsman wielding the massive Dragonslayer sword, and his fateful conflict with Griffith following the horrific Eclipse.",
+      "The late Kentaro Miura's transcendent artwork represents the absolute pinnacle of visual craftsmanship in the comic medium, evoking Renaissance-era etching precision.",
+      "The narrative explores human resilience, trauma, camaraderie, and an indomitable will defying the predestined cruelty of the God Hand.",
+      "Contains graphic violence, psychological horror, and mature themes intended strictly for adult audiences.",
+      "Verdict: 9.8/10. The undisputed pinnacle of dark fantasy literature, inspiring modern gaming legends like Dark Souls and Elden Ring."
+    ],
+    "sources": [
+      {
+        "name": "Young Animal Berserk Official",
+        "url": "https://younganimal.com/series/01d4ad49cb737"
+      }
+    ],
+    "article": "/berserk-arc-cuoi"
+  },
+  "Hollow Knight: Silksong": {
+    "type": "game",
+    "img": "/assets/img/4f81303202-silksong-hero.jpg",
+    "score": "9.5",
+    "genre": "Metroidvania / Action / Platformer",
+    "studio": "Team Cherry",
+    "platforms": "PC / Xbox Series / PS5 / Nintendo Switch",
+    "release": "2025 - 2026",
+    "status": "Sắp ra mắt",
+    "statusEn": "Upcoming",
+    "generated": true,
+    "hook": "Phần hậu bản được mong đợi nhất của kiệt tác Metroidvania Hollow Knight: hóa thân thành công chúa Hornet khám phá vương quốc tơ lụa Pharloom u ám và hoa lệ.",
+    "hookEn": "The monumental sequel to Metroidvania masterpiece Hollow Knight, starring Hornet through the haunted, silk-spun kingdom of Pharloom.",
+    "story": [
+      "Hollow Knight: Silksong đưa người chơi vào vai Hornet — công chúa bảo hộ của Hallownest, bị bắt cóc và đưa đến vương quốc xa lạ Pharloom nơi bị nguyền rủa bởi âm nhạc và tơ lụa.",
+      "Lối chơi của Hornet sở hữu độ cơ động vượt trội so with The Knight ở phần 1: tốc độ di chuyển nhanh thoăn thoắt, khả năng bám tường, nhào lộn trên không và hệ thống kỹ năng sử dụng chỉ tơ tằm để khâu vết thương hồi máu tức thì trong lúc di chuyển.",
+      "Hệ thống chế tạo công cụ (Crest & Tools) phong phú cho phép người chơi tùy biến vũ khí phụ, bẫy gai và phi tiêu linh hoạt phù hợp với phong cách chiến đấu cá nhân.",
+      "Độ khó của game tiếp tục là thử thách lớn với hơn 150 loài quái vật mới và những trận đấu boss đa giai đoạn đòi hỏi sự kiên nhẫn và phản xạ đỉnh cao.",
+      "Kết luận: 9,5/10. Một tuyệt phẩm Metroidvania được tôi luyện tỉ mỉ trong nhiều năm từ Team Cherry, hứa hẹn vượt qua cái bóng khổng lồ của phần đầu tiên."
+    ],
+    "storyEn": [
+      "Hollow Knight: Silksong stars Hornet, princess-protector of Hallownest, navigating her ascent through the haunted, melodic kingdom of Pharloom.",
+      "Hornet's combat toolkit is lightning-fast: acrobatic wall climbs, diagonal pounces, and a dynamic Silk healing mechanic that mends wounds instantly on the move.",
+      "The Crafting and Crest system replaces Charms with customizable tools, traps, and needles tailored to diverse combat approaches.",
+      "Challenging platforming and multi-phase boss battles against 150+ new adversaries require razor-sharp precision and tactical patience.",
+      "Verdict: 9.5/10. A peerless Metroidvania masterpiece meticulously crafted to redefine the 2D action genre."
+    ],
+    "sources": [
+      {
+        "name": "Team Cherry Official Site",
+        "url": "https://www.teamcherry.com.au/"
+      }
+    ],
+    "article": "/hollow-knight-silksong-sea-of-sorrow"
+  },
+  "Tekken 8: Season 2": {
+    "type": "game",
+    "img": "/assets/img/cf182db1a1-tekken8-season2-hero.jpg",
+    "score": "9.0",
+    "genre": "3D Fighting Game / Esports",
+    "studio": "Bandai Namco Studios",
+    "platforms": "PC / PlayStation 5 / Xbox Series",
+    "release": "2025 - 2026",
+    "status": "Đang vận hành",
+    "statusEn": "Live Service",
+    "generated": true,
+    "hook": "Bản mở rộng Season 2 của Tekken 8 tiếp tục bùng nổ với các đấu sĩ huyền thoại mới, cân bằng hệ thống Heat System và đồ họa đối kháng Unreal Engine 5 đỉnh cao.",
+    "hookEn": "Tekken 8 Season 2 elevates competitive 3D fighting with iconic returning combatants, refined Heat System balance, and cutting-edge Unreal Engine 5 visuals.",
+    "story": [
+      "Tekken 8 Season 2 mang trở lại những võ sĩ biểu tượng được cộng đồng ngóng chờ, mở rộng sàn đấu toàn cầu và bổ sung các chương cốt truyện ngoại truyện hấp dẫn.",
+      "Hệ thống Heat System mang tính công kích bạo lực tiếp tục được tinh chỉnh để tạo ra sự cân bằng hoàn hảo giữa tấn công dồn ép và phòng thủ phản công tinh vi.",
+      "Tính năng Ghost Battle sử dụng trí tuệ nhân tạo (AI) học hỏi chính xác thói quen đánh của người chơi và các cao thủ thế giới để bạn luyện tập đối kháng mọi lúc.",
+      "Rào cản học combo và ghi nhớ hàng trăm đòn thế (frame data) của mỗi nhân vật vẫn là thử thách cần thời gian rèn luyện đối với người chơi mới.",
+      "Kết luận: 9,0/10. Tựa game đối kháng 3D số 1 thế giới hiện nay, mang lại trải nghiệm thi đấu Esports cuồng nhiệt và mãn nhãn bậc nhất."
+    ],
+    "storyEn": [
+      "Tekken 8 Season 2 expands the King of Iron Fist Tournament with fan-favorite legacy fighters, new dynamic stages, and fresh story chapters.",
+      "The aggressive Heat System receives competitive tuning to balance offensive rushdowns with defensive punish opportunities.",
+      "AI-powered Ghost Battles allow players to spar against realistic digital clones of top-ranked competitors worldwide.",
+      "A steep learning curve involving extensive frame data and matchup knowledge remains the primary barrier for beginners.",
+      "Verdict: 9.0/10. The undisputed titan of 3D fighting games, offering peerless competitive depth and visual spectacle."
+    ],
+    "sources": [
+      {
+        "name": "Tekken Official Portal",
+        "url": "https://tk8.tekken-official.jp/"
+      }
+    ],
+    "article": "/tekken8-season2"
+  },
+  "Stellar Blade": {
+    "type": "game",
+    "img": "/assets/img/f845d7c936-library_hero.jpg",
+    "score": "8.8",
+    "genre": "Action Adventure / Hack and Slash",
+    "studio": "Shift Up / Sony Interactive Entertainment",
+    "platforms": "PlayStation 5 / PC",
+    "release": "26/04/2024",
+    "status": "Đang phát hành",
+    "statusEn": "Released",
+    "generated": true,
+    "hook": "Bom tấn hành động chặt chém mãn nhãn của Shift Up kết hợp cơ chế né đỡ chuẩn xác của Sekiro cùng tạo hình nhân vật nữ chính Eve tuyệt mỹ.",
+    "hookEn": "Shift Up's adrenaline-fueled action spectacle combining Sekiro-inspired parry-and-dodge combat with breathtaking character aesthetics.",
+    "story": [
+      "Stellar Blade đưa người chơi vào vai nữ chiến binh Eve thuộc Đội Quân Đổ Bộ thứ 7, hạ cánh xuống Trái Đất hậu tận thế bị tàn phá bởi loài quái vật bí ẩn Naytiba để giành lại hành tinh cho loài người.",
+      "Hệ thống chiến đấu là điểm sáng rực rỡ nhất: sự kết hợp hoàn mỹ giữa đòn phản đòn (Perfect Parry) làm vỡ thế giáp của quái và cú né đòn chớp nhoáng (Perfect Dodge) kích hoạt chuỗi chiêu thức Beta & Burst rực lửa.",
+      "Nhạc nền OST đa thể loại từ pop, jazz đến nhạc thính phòng acoustic do studio Monaca (đội ngũ đứng sau NieR: Automata) phụ trách đem lại bầu không khí hoài niệm sâu lắng.",
+      "Cốt truyện chính tương đối thẳng thắn và quen thuộc theo mô-típ khoa học viễn tưởng kinh điển, nhưng gameplay và độ hoàn thiện đồ họa vượt xa kỳ vọng.",
+      "Kết luận: 8,8/10. Một trong những tựa game hành động nguyên bản (New IP) ấn tượng nhất thế hệ console PS5."
+    ],
+    "storyEn": [
+      "Stellar Blade follows 7th Airborne Squad warrior Eve descending upon a desolate Earth overrun by monstrous Naytibas to reclaim humanity's lost cradle.",
+      "Combat delivers high-intensity satisfaction through rhythmic Perfect Parries and Perfect Dodges that feed devastating Beta and Burst skills.",
+      "An eclectic, atmospheric soundtrack crafted with Monaca Studio (NieR: Automata composers) enriches exploration and boss battles.",
+      "While the narrative follows familiar sci-fi tropes, the polished mechanics and visual splendor make it an essential action title.",
+      "Verdict: 8.8/10. A stellar debut IP delivering top-class combat feel and breathtaking presentation."
+    ],
+    "sources": [
+      {
+        "name": "PlayStation Stellar Blade Page",
+        "url": "https://www.playstation.com/games/stellar-blade/"
+      }
+    ],
+    "article": "/stellar-blade-dlc"
+  },
+  "The Beginning After The End": {
+    "type": "manga",
+    "img": "/assets/img/9e28941194-222295l.jpg",
+    "score": "9.1",
+    "genre": "Action / Fantasy / Isekai",
+    "studio": "TurtleMe / Tapas",
+    "release": "2018 - Hiện tại",
+    "status": "Đang phát hành",
+    "statusEn": "Ongoing",
+    "generated": true,
+    "hook": "Bộ webtoon chuyển sinh phương Tây xuất sắc nhất: Vua Grey tái sinh thành Arthur Leywin trên lục địa ma thuật Dicathen đầy bí ẩn và chiến tranh khốc liệt.",
+    "hookEn": "The acclaimed western fantasy webcomic following King Grey's reincarnation as Arthur Leywin in the magic-rich continent of Dicathen.",
+    "story": [
+      "The Beginning After The End theo chân Vua Grey — một vị vua cô độc trên đỉnh cao quyền lực, tái sinh thành cậu bé Arthur Leywin trong một thế giới ma thuật và quái thú.",
+      "Hệ thống ma thuật kết hợp mana core, nguyên tố tự nhiên và sức mạnh Aether cổ xưa được xây dựng mạch lạc, biến Arthur từ một thần đồng kiếm thuật thành trụ cột bảo vệ lục địa.",
+      "Mạch truyện chuyển dịch xuất sắc từ tuổi thơ êm đềm sang cuộc đại chiến tàn khốc giữa hai lục địa Dicathen và Alacrya với quy mô sử thi bi tráng.",
+      "Các đợt gián đoạn vẽ do thay đổi họa sĩ từng tạo chút hụt hẫng, nhưng cốt truyện của tác giả TurtleMe luôn duy trì chất lượng xuất sắc.",
+      "Kết luận: 9,1/10. Tác phẩm webcomic chuyển sinh hàng đầu thế giới, kết hợp nhuần nhuyễn giữa phong cách phương Tây và mỹ thuật webtoon châu Á."
+    ],
+    "storyEn": [
+      "The Beginning After The End chronicles King Grey's second chance at life as Arthur Leywin in the magical realm of Dicathen.",
+      "Its progression system elegantly integrates mana core purification, elemental deviants, and ancient Aether arts into gripping combat encounters.",
+      "The narrative transitions masterfully from warm coming-of-age adventures into a devastating, high-stakes continental war against Alacrya.",
+      "Visual style adjustments across production seasons aside, TurtleMe's writing consistently delivers high emotional and epic payoff.",
+      "Verdict: 9.1/10. A pinnacle of modern web fantasy, bridging western world-building with dynamic webtoon artistry."
+    ],
+    "sources": [
+      {
+        "name": "Tapas TBATE Portal",
+        "url": "https://tapas.io/series/tbate-comic"
+      }
+    ],
+    "article": "/news"
+  },
+  "Omniscient Reader": {
+    "type": "manga",
+    "img": "/assets/img/24741c60cd-238873l.jpg",
+    "score": "9.4",
+    "genre": "Apocalypse / Action / Supernatural",
+    "studio": "singNsong & Redice Studio / Webtoon",
+    "release": "2020 - Hiện tại",
+    "status": "Đang phát hành",
+    "statusEn": "Ongoing",
+    "generated": true,
+    "hook": "Siêu phẩm manhwa sinh tồn số 1 Hàn Quốc: khi cuốn tiểu thuyết tận thế duy nhất bạn đọc biến thành hiện thực và bạn là người duy nhất biết kết cục.",
+    "hookEn": "The premier Korean survival manhwa where a novel's apocalyptic reality comes alive, and one reader knows the ending.",
+    "story": [
+      "Omniscient Reader (Toàn Trí Độc Giả) kể về Kim Dokja — một nhân viên văn phòng bình thường là độc giả duy nhất đọc trọn vẹn bộ tiểu thuyết dài 3149 chương \"Ba Cách Để Sống Sót Trong Thế Giới Đổ Nát\". Khi tận thế ập đến đúng như trong truyện, Dokja sử dụng tri thức độc quyền để sinh tồn.",
+      "Hệ thống Kịch Bản (Scenarios) do các Tinh Linh (Dokbi) điều hành dưới sự theo dõi và tài trợ của các Chòm Sao (Constellations) tạo nên bối cảnh sinh tồn độc đáo và kịch tính bậc nhất.",
+      "Mối quan hệ đồng minh - đối trọng phức tạp giữa Kim Dokja và nhân vật chính nguyên tác Yoo Joonghyuk đem lại chiều sâu tâm lý vượt trội.",
+      "Nét vẽ đỉnh cao từ Redice Studio với tạo hình nhân vật sắc nét, hiệu ứng kỹ năng bùng nổ và biểu cảm sống động trên từng khung tranh cuộn dọc.",
+      "Kết luận: 9,4/10. Một trong những manhwa vĩ đại nhất lịch sử Hàn Quốc, tác phẩm bắt buộc phải đọc đối với mọi tín đồ thể loại sinh tồn tận thế."
+    ],
+    "storyEn": [
+      "Omniscient Reader's Viewpoint follows Kim Dokja, the sole reader who completed the 3,149-chapter apocalyptic web novel \"Ways of Survival,\" suddenly thrust into its brutal reality.",
+      "Streamed survival scenarios overseen by mischievous Dokkaebis and cosmic Constellations construct a thrilling metaphysical game world.",
+      "The compelling psychological dynamic between the omniscient reader Dokja and the tragic regressor protagonist Yoo Joonghyuk fuels emotional resonance.",
+      "Redice Studio's peerless visual execution delivers phenomenal vertical action choreography and striking character designs.",
+      "Verdict: 9.4/10. An undisputed masterpiece of contemporary Korean webtoons and speculative fiction."
+    ],
+    "sources": [
+      {
+        "name": "Naver Webtoon ORV Official",
+        "url": "https://comic.naver.com/"
+      }
+    ],
+    "article": "/news"
+  },
+  "Vagabond": {
+    "type": "manga",
+    "img": "/assets/img/641c702735-157897l.jpg",
+    "score": "9.8",
+    "genre": "Historical / Martial Arts / Philosophy",
+    "studio": "Takehiko Inoue / Kodansha",
+    "release": "1998 - 2015",
+    "status": "Tạm ngưng",
+    "statusEn": "Hiatus",
+    "generated": true,
+    "hook": "Kiệt tác hội họa kiếm hiệp vô song của danh họa Takehiko Inoue tái hiện cuộc đời huyền thoại kiếm thánh Miyamoto Musashi và con đường tìm kiếm sự giác ngộ.",
+    "hookEn": "Takehiko Inoue's breathtaking brushwork masterpiece recounting the philosophical and martial odyssey of legendary sword saint Miyamoto Musashi.",
+    "story": [
+      "Vagabond chuyển thể từ tiểu thuyết kinh điển Musashi của Eiji Yoshikawa, theo chân Shinmen Takezo từ một thanh niên cuồng bạo hoang dã vươn lên thành kiếm thánh Miyamoto Musashi vang danh thiên hạ.",
+      "Mỗi trang truyện của Takehiko Inoue là một tuyệt phẩm thư pháp và cọ mực truyền thống Nhật Bản: từng nhát kiếm, chuyển động cơ bắp và ánh mắt nhân vật toát lên khí chất thiền định và sát khí kinh người.",
+      "Tác phẩm vượt khỏi khuôn khổ truyện tranh võ thuật đơn thuần để trở thành bài học triết học sâu sắc về bản chất của sức mạnh, sự bất khả chiến bại và ý nghĩa của sinh mệnh.",
+      "Tình trạng tạm ngưng (hiatus) kéo dài nhiều năm là nỗi tiếc nuối lớn nhất của độc giả, nhưng hơn 300 chương đã xuất bản đủ tạo nên một tượng đài bất hủ.",
+      "Kết luận: 9,8/10. Đỉnh cao nghệ thuật truyện tranh phương Đông, kiệt tác mang tính biểu tượng của văn hóa kiếm đạo Nhật Bản."
+    ],
+    "storyEn": [
+      "Vagabond adapts Eiji Yoshikawa's classic novel, tracing Shinmen Takezo's evolution from a feral outlaw into the enlightened sword master Miyamoto Musashi.",
+      "Takehiko Inoue's traditional ink-brush illustrations stand as an unmatched pinnacle of comic draftsmanship, conveying raw emotion and philosophical weight in every stroke.",
+      "The narrative transcends martial arts to explore the illusion of invincibility, spirituality, and the true cost of mastery.",
+      "While the series remains on long-term hiatus, its published body of work stands as an untouchable monument of visual literature.",
+      "Verdict: 9.8/10. A transcendent achievement in sequential art and the definitive samurai epic."
+    ],
+    "sources": [
+      {
+        "name": "Kodansha Morning Vagabond Page",
+        "url": "https://morning.kodansha.co.jp/"
+      }
+    ],
+    "article": "/news"
   }
 }

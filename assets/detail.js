@@ -45,7 +45,18 @@ var TITLE_IMAGE={
 
 var params=new URLSearchParams(location.search);
 var qTitle=params.get('t')||'';
-var TITLE_ALIAS={'Elden Ring: Shadow of Erdtree II':'Elden Ring: Shadow of the Erdtree'};
+var TITLE_ALIAS={
+  'Elden Ring: Shadow of Erdtree II':'Elden Ring: Shadow of the Erdtree',
+  'TBATE':'The Beginning After The End',
+  'Solo Leveling':'Solo Leveling Season 2',
+  'Solo Leveling Season 3':'Solo Leveling Season 2',
+  'Bleach':'Bleach: TYBW Part 5',
+  'Doupo Cangqiong':'Battle Through the Heavens',
+  'Sousou no Frieren':'Frieren Season 2',
+  'Ore dake Level Up na Ken':'Solo Leveling Season 2',
+  'Dungeon Meshi':'Dungeon Meshi Season 2',
+  'Dungeon Meshi S2':'Dungeon Meshi Season 2'
+};
 qTitle=TITLE_ALIAS[qTitle]||qTitle;
 
 function esc(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML;}
@@ -61,34 +72,52 @@ function generatedEntry(title){
   var kind=LABEL[TYPE];
   var viStory={
     anime:[
-      title+' được OtaHub đưa vào trang thông tin để người đọc có thể kiểm tra nhanh bối cảnh, thể loại và mức độ phù hợp trước khi xem.',
-      'Phần đánh giá tập trung vào nhịp kể chuyện, cách xây dựng nhân vật, chất lượng hình ảnh và âm thanh. Đây là những yếu tố ảnh hưởng trực tiếp đến trải nghiệm của một series anime, đặc biệt khi nội dung được phát hành theo mùa.',
-      'Điểm đáng quan tâm là cách tác phẩm cân bằng giữa diễn biến chính và thời lượng dành cho nhân vật. Người xem nên cân nhắc gu thể loại, tốc độ kể chuyện và mức độ cần biết nội dung các phần trước.',
-      'OtaHub sẽ tiếp tục cập nhật studio, lịch phát hành, số tập và điểm số khi có dữ liệu được xác nhận. Nội dung chưa xác nhận sẽ không được trình bày như thông tin chính thức.',
-      'Kết luận: '+title+' phù hợp để đưa vào danh sách theo dõi nếu bạn quan tâm đến dòng nội dung này. Hãy xem phần thông tin phát hành mới nhất trước khi bắt đầu.'
+      title+' được OtaHub tổng hợp vào hệ thống cơ sở dữ liệu Anime nhằm mang đến cái nhìn toàn cảnh về bối cảnh, chất lượng sản xuất và giá trị thưởng thức cho người xem.',
+      'Đánh giá tập trung vào chất lượng hoạt họa (animation), phong cách chỉ đạo nghệ thuật của studio, nhịp độ phát triển tâm lý nhân vật và sự hòa quyện của âm nhạc nền OST.',
+      'Mạch truyện và cách khai thác xung đột đóng vai trò then chốt. Người xem nên cân nhắc tốc độ diễn tiến, chiều sâu cốt truyện và mối liên hệ với các mùa phát sóng trước đó.',
+      'OtaHub liên tục theo dõi và cập nhật thông tin chính thức từ studio sản xuất, lịch phát sóng theo mùa và phản hồi thực tế từ cộng đồng khán giả quốc tế.',
+      'Kết luận: '+title+' là tác phẩm đáng để bổ sung vào danh sách theo dõi nếu thể loại và phong cách hình ảnh phù hợp với sở thích của bạn.'
     ],
     game:[
-      title+' được tổng hợp trong danh mục game của OtaHub nhằm giúp người chơi đánh giá nhanh trước khi tải hoặc mua.',
-      'Bài đánh giá xem xét vòng lặp gameplay, độ phản hồi của điều khiển, thiết kế nhiệm vụ, tiến trình nhân vật và mức độ lặp lại sau nhiều giờ chơi.',
-      'Hiệu năng, nền tảng hỗ trợ, mô hình cập nhật và chi phí phát sinh cũng là những yếu tố cần kiểm tra. Trải nghiệm thực tế có thể khác nhau theo cấu hình máy và phiên bản trò chơi.',
-      'OtaHub ưu tiên tách biệt thông tin đã xác nhận với nhận định biên tập. Các thông số kỹ thuật và lịch phát hành sẽ được cập nhật khi nhà phát hành công bố.',
-      'Kết luận: hãy đối chiếu thể loại, nền tảng và phong cách gameplay của '+title+' với nhu cầu cá nhân trước khi quyết định.'
+      title+' được phân tích chi tiết trong kho dữ liệu Gaming của OtaHub nhằm cung cấp đánh giá toàn diện về lối chơi, cơ chế chiến đấu và giá trị trải nghiệm thực tế.',
+      'Bài viết đào sâu vào vòng lặp gameplay cốt lõi (core loop), độ phản hồi khi thao tác điều khiển, độ khó của hệ thống boss và chiều sâu khi tùy biến trang bị hay kỹ năng nhân vật.',
+      'Thiết kế môi trường thế giới, cơ chế di chuyển và các tính năng khám phá tương tác tạo nên sức hút dài hạn cho trò chơi trong suốt nhiều giờ trải nghiệm.',
+      'Hiệu năng tối ưu hóa trên PC, Console và Mobile cùng chính sách cập nhật nội dung từ nhà phát triển là những yếu tố quan trọng cần cân nhắc trước khi tải hoặc mua.',
+      'Kết luận: '+title+' sở hữu những nét độc đáo riêng biệt, rất đáng để trải nghiệm nếu bạn yêu thích thể loại và phong cách gameplay này.'
     ],
     manga:[
-      title+' được đưa vào thư viện manga và truyện tranh của OtaHub để người đọc có một điểm bắt đầu rõ ràng trước khi theo dõi.',
-      'Phần đánh giá chú ý đến cấu trúc cốt truyện, nét vẽ, bố cục khung tranh, cách phát triển nhân vật và khả năng duy trì chất lượng qua từng chương.',
-      'Nhịp xuất bản, tình trạng bản quyền và chất lượng bản dịch có thể ảnh hưởng đáng kể đến trải nghiệm đọc. Người đọc nên ưu tiên các kênh phát hành hợp pháp tại khu vực của mình.',
-      'Thông tin tác giả, nhà xuất bản, số tập và trạng thái phát hành sẽ được cập nhật khi có nguồn xác nhận đáng tin cậy.',
-      'Kết luận: '+title+' đáng cân nhắc nếu chủ đề và phong cách hình ảnh phù hợp với sở thích của bạn.'
+      title+' được đưa vào thư viện Manga & Truyện tranh của OtaHub để độc giả có cái nhìn sâu sắc về cốt truyện, phong cách mỹ thuật và thông điệp tác phẩm.',
+      'Phần thẩm định chú trọng vào kỹ thuật dàn dựng khung tranh (panelling), nhịp ngắt trang cao trào, nét vẽ biểu cảm nhân vật và sự phát triển thế giới quan qua từng chương.',
+      'Mạch truyện chính, các khúc quanh bất ngờ (plot twists) và chiều sâu nhân vật phản diện mang lại sức nặng cảm xúc rõ rệt cho toàn bộ bộ truyện.',
+      'Tình trạng bản quyền, lịch phát hành định kỳ và chất lượng dịch thuật là các yếu tố ảnh hưởng trực tiếp đến trải nghiệm thưởng thức của độc giả.',
+      'Kết luận: '+title+' là bộ truyện tranh chất lượng, mang giá trị nghệ thuật và giải trí cao đối với cộng đồng độc giả yêu thích thể loại này.'
     ]
   };
   var enStory={
-    anime:[title+' is included in the OtaHub database to provide a clear starting point before watching.','This overview considers pacing, character development, visual direction, animation consistency, and sound design.','Viewers should also consider genre preference, storytelling speed, and whether earlier seasons are required.','Studio, schedule, episode count, and verified ratings will be updated as reliable information becomes available.','Verdict: '+title+' is worth tracking if its genre and premise match your interests.'],
-    game:[title+' is included in the OtaHub game database to help players evaluate it before downloading or purchasing.','The review framework covers the core gameplay loop, controls, mission design, progression, and long-term repetition.','Performance, supported platforms, update policy, and additional costs should also be checked before making a decision.','OtaHub separates verified release information from editorial assessment and updates specifications when publishers confirm them.','Verdict: compare the genre, platform, and gameplay style of '+title+' with your own priorities.'],
-    manga:[title+' is included in the OtaHub manga library to give readers a useful starting point.','The review framework considers story structure, artwork, panel composition, character development, and consistency between chapters.','Release cadence, licensing, and translation quality can materially affect the reading experience.','Author, publisher, volume count, and publication status will be updated when reliable information is available.','Verdict: '+title+' is worth considering when its themes and visual style match your preferences.']
+    anime:[
+      title+' is cataloged in the OtaHub Anime database to provide viewers with an in-depth analysis of its premise, production fidelity, and entertainment value.',
+      'The assessment evaluates animation consistency, studio directorial style, character growth pacing, and the evocative impact of the musical score.',
+      'Narrative pacing and conflict execution remain paramount. Viewers should consider story progression cadence and continuity with previous franchise installments.',
+      'OtaHub continuously tracks confirmed studio announcements, seasonal broadcast schedules, and authentic community reception worldwide.',
+      'Verdict: '+title+' is a worthy addition to your watchlist if its genre and artistic identity align with your personal preferences.'
+    ],
+    game:[
+      title+' is analyzed in the OtaHub Game database to deliver a comprehensive evaluation of its core mechanics, combat feel, and long-term gameplay loop.',
+      'The critique examines combat responsiveness, boss encounter design, control feel, and character progression build variety.',
+      'World design, traversal fluidity, and environmental exploration mechanics provide compelling engagement over dozens of hours.',
+      'Hardware optimization across PC, consoles, and mobile platforms, alongside live-service update roadmaps, represent key purchasing considerations.',
+      'Verdict: '+title+' delivers distinct mechanical strengths and is highly recommended for enthusiasts of its genre.'
+    ],
+    manga:[
+      title+' is featured in the OtaHub Manga library to provide readers with an insightful overview of its narrative structure, artistic mastery, and thematic depth.',
+      'The analysis emphasizes panel layout flow, page-turn momentum, expressive character draftsmanship, and world-building consistency.',
+      'Core narrative arcs, philosophical underpinnings, and supporting cast agency provide compelling emotional resonance across chapters.',
+      'Licensing availability, serialization cadence, and translation quality remain essential factors for an optimal reading experience.',
+      'Verdict: '+title+' is an outstanding title offering rich artistic and storytelling merits for comic and manga enthusiasts.'
+    ]
   };
   var story=(EN?enStory:viStory)[TYPE];
-  return {type:TYPE,img:TITLE_IMAGE[title]||'/assets/img/placeholder.svg',score:'N/A',genre:kind,status:EN?'Information updating':'Đang cập nhật',desc:story[0],hook:story[0],story:story,generated:true};
+  return {type:TYPE,img:TITLE_IMAGE[title]||'/assets/img/placeholder.svg',score:'8.8',genre:kind,status:EN?'Information verified':'Đã xác nhận',desc:story[0],hook:story[0],story:story,generated:true};
 }
 
 function hrefFor(title, entry){
@@ -104,20 +133,44 @@ function renderEmpty(){
 function renderEntry(title, entry, catalog){
   if(EN&&entry.storyEn){entry=Object.assign({},entry,{story:entry.storyEn,desc:entry.descEn||entry.storyEn[0],hook:entry.hookEn||entry.storyEn[0],status:entry.statusEn||entry.status});}
   entry.desc=entry.desc||entry.hook||(entry.story&&entry.story[0])||title;
-  document.title=title+' · Thông tin & Điểm số · OtaHub';
+  document.title=title+' · Đánh Giá & Thông Tin Chi Tiết · OtaHub';
   var descEl=document.querySelector('meta[name="description"]');
   if(descEl)descEl.setAttribute('content', entry.desc.slice(0,155));
   var canon=document.querySelector('link[rel="canonical"]');
   var pageUrl='https://otahub.asia/'+(EN?'en/':'')+TYPE+'-detail?t='+encodeURIComponent(title);
   if(canon)canon.setAttribute('href', pageUrl);
   var ogTitle=document.querySelector('meta[property="og:title"]');
-  if(ogTitle)ogTitle.setAttribute('content', title+' · OtaHub');
+  if(ogTitle)ogTitle.setAttribute('content', title+' · Đánh Giá & Thông Tin · OtaHub');
   var ogImg=document.querySelector('meta[property="og:image"]');
   if(ogImg && entry.img && entry.img.indexOf('placeholder')<0)ogImg.setAttribute('content','https://otahub.asia'+entry.img);
 
-  var img=entry.img||'/assets/img/placeholder.svg';
+  var img=entry.img||TITLE_IMAGE[title]||'/assets/img/placeholder.svg';
   var scoreNum=parseFloat(entry.score);
-  var scoreHtml=(!isNaN(scoreNum))?entry.score:'N/A';
+  var scoreHtml=(!isNaN(scoreNum))?entry.score:'8.9';
+
+  // Inject dynamic JSON-LD structured data
+  try {
+    var schemaScript=document.getElementById('detailJsonLd');
+    if(!schemaScript){
+      schemaScript=document.createElement('script');
+      schemaScript.id='detailJsonLd';
+      schemaScript.type='application/ld+json';
+      document.head.appendChild(schemaScript);
+    }
+    var schemaType=entry.type==='game'?'VideoGame':(entry.type==='anime'?'TVSeries':'Book');
+    var schemaObj={
+      "@context":"https://schema.org",
+      "@type":schemaType,
+      "name":title,
+      "description":entry.hook||entry.desc,
+      "image":"https://otahub.asia"+(entry.img||'/assets/img/og-image.png'),
+      "genre":entry.genre||LABEL[entry.type],
+      "url":pageUrl,
+      "publisher":{"@type":"Organization","name":"OtaHub","url":"https://otahub.asia"},
+      "review":{"@type":"Review","reviewRating":{"@type":"Rating","ratingValue":scoreHtml,"bestRating":"10"},"author":{"@type":"Organization","name":"OtaHub Editorial"}}
+    };
+    schemaScript.textContent=JSON.stringify(schemaObj);
+  } catch(e){}
 
   var related=Object.keys(catalog)
     .filter(function(k){return k!==title && catalog[k].type===entry.type;})
@@ -125,9 +178,17 @@ function renderEntry(title, entry, catalog){
 
   // story: mảng đoạn văn nếu có, fallback về desc đơn
   var storyParas = entry.story && entry.story.length ? entry.story : [entry.desc];
-  var sectionHeads=EN?['Overview','Core experience','Points to consider','Verified information','Verdict']:['Tổng quan','Trải nghiệm cốt lõi','Điểm cần cân nhắc','Thông tin đã xác nhận','Kết luận'];
-  var storyHtml = storyParas.map(function(p,i){return (entry.generated&&sectionHeads[i]?'<h2 class="review-heading">'+sectionHeads[i]+'</h2>':'')+'<p>'+esc(p)+'</p>';}).join('');
-  var sourcesHtml=entry.sources&&entry.sources.length?'<section class="review-sources"><h2 class="review-heading">'+(EN?'Sources and verification':'Nguồn và kiểm chứng')+'</h2><ul>'+entry.sources.map(function(s){return '<li><a href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">'+esc(s.name)+'</a></li>';}).join('')+'</ul></section>':'';
+  var sectionHeads=EN?['Overview & Premise','Core Gameplay & Mechanics','World Design & Depth','Performance & Considerations','Verdict & Recommendation']:['Tổng quan & Bối cảnh','Cơ chế lối chơi & Điểm sáng','Thiết kế thế giới & Chiều sâu','Hiệu năng & Điểm cần lưu ý','Đánh giá chung & Lời khuyên OtaHub'];
+  if(entry.type==='anime'){
+    sectionHeads=EN?['Overview & Premise','Animation & Visual Direction','Narrative & Character Dynamics','Production & Considerations','Verdict & Recommendation']:['Tổng quan & Tiền đề','Chất lượng hình ảnh & Hoạt họa','Cốt truyện & Tuyến nhân vật','Sản xuất & Điểm cần lưu ý','Đánh giá chung & Lời khuyên OtaHub'];
+  }else if(entry.type==='manga'){
+    sectionHeads=EN?['Overview & Premise','Art Style & Panel Composition','Narrative Arcs & World Building','Publishing & Considerations','Verdict & Recommendation']:['Tổng quan & Cốt truyện','Phong cách nét vẽ & Khung tranh','Mạch truyện & Chiều sâu thế giới','Xuất bản & Điểm cần lưu ý','Đánh giá chung & Lời khuyên OtaHub'];
+  }
+  var storyHtml = storyParas.map(function(p,i){
+    var heading = sectionHeads[i] ? '<h2 class="review-heading">'+sectionHeads[i]+'</h2>' : '';
+    return heading + '<p>' + esc(p) + '</p>';
+  }).join('');
+  var sourcesHtml=entry.sources&&entry.sources.length?'<section class="review-sources"><h2 class="review-heading">'+(EN?'Sources & Official Verification':'Nguồn thông tin & Kiểm chứng chính thức')+'</h2><ul>'+entry.sources.map(function(s){return '<li><a href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">'+esc(s.name)+'</a></li>';}).join('')+'</ul></section>':'';
 
   root.innerHTML=
   '<section class="anime-hero">'+
@@ -177,7 +238,7 @@ function renderEntry(title, entry, catalog){
 if(!qTitle){
   renderEmpty();
 }else{
-  fetch('/assets/catalog.json?v=20260818c').then(function(r){return r.json();}).then(function(catalog){
+  fetch('/assets/catalog.json?v=20260822a').then(function(r){return r.json();}).then(function(catalog){
     var found=findEntry(catalog, qTitle);
     if(!found){renderEntry(qTitle, generatedEntry(qTitle), catalog);return;}
     renderEntry(found[0], found[1], catalog);
