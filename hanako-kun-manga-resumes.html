@@ -10,7 +10,7 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Toilet-Bound Hanako-kun Trở Lại Sau 10 Tháng Gián Đoạn Vì Sức Khỏe Tác Giả · OtaHub">
-<meta property="og:description" content="AidaIro xác nhận Toilet-Bound Hanako-kun chính thức serialize trở lại từ số tháng 9/2026 của Monthly GFantasy, khép lại 10 tháng gián đoạn vì lý do sức khỏe.">
+<meta property="og:description" content="Manga Toilet-Bound Hanako-kun chính thức trở lại serialize từ 18/8/2026 trên Monthly GFantasy sau 10 tháng gián đoạn vì tác giả AidaIro điều trị sức khỏe.">
 <meta property="og:url" content="https://otahub.asia/hanako-kun-manga-resumes">
 <meta property="og:image" content="https://otahub.asia/assets/img/news-hanako-kun-manga-resumes.jpg">
 <meta property="og:site_name" content="OtaHub">
@@ -28,7 +28,7 @@
   "@context": "https://schema.org",
   "@type": "NewsArticle",
   "headline": "Toilet-Bound Hanako-kun Trở Lại Sau 10 Tháng Gián Đoạn Vì Sức Khỏe Tác Giả",
-  "description": "AidaIro xác nhận Toilet-Bound Hanako-kun chính thức serialize trở lại từ số tháng 9/2026 của Monthly GFantasy, khép lại 10 tháng gián đoạn vì lý do sức khỏe.",
+  "description": "Manga Toilet-Bound Hanako-kun chính thức trở lại serialize từ 18/8/2026 trên Monthly GFantasy sau 10 tháng gián đoạn vì tác giả AidaIro điều trị sức khỏe.",
   "image": "https://otahub.asia/assets/img/news-hanako-kun-manga-resumes.jpg",
   "datePublished": "2026-08-19T13:00:00+07:00",
   "dateModified": "2026-08-19T13:00:00+07:00",
@@ -54,6 +54,12 @@
   "inLanguage": "vi"
 }
 </script>
+<!--
+  PARTIAL: Phần <head> KHÔNG đổi theo từng bài viết (khác với title/description/OG/
+  JSON-LD — những thứ đó vẫn là biến riêng từng trang, xử lý ở build.js).
+
+  Chèn vào <head>, sau khối meta+OG+JSON-LD riêng của từng bài, trước </head>.
+-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -70,6 +76,13 @@
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
 
 <style>
+/*
+  PARTIAL: CSS dùng chung cho TRANG BÀI VIẾT (article template).
+  Xác nhận: byte-giống-hệt giữa frieren-season2.html (bài cũ) và mortal-shell-2-release.html
+  (bài mới) tại thời điểm audit 18/8/2026 — an toàn để tách ra dùng chung.
+  Trang hub (gaming.html, anime.html...) và trang detail (game-detail.html...) dùng
+  CSS khác, sẽ tách thành article-style-hub.css / article-style-detail.css ở đợt sau.
+*/
 :root{--bg:#0b0418;--surf:#150a2c;--surf2:#1d1040;--card:#190c36;--cyan:#00e5ff;--sakura:#ff3080;--violet:#7c3aed;--lav:#a78bfa;--amber:#fbbf24;--green:#34d399;--white:#f0eeff;--dim:rgba(240,238,255,.72);--muted:rgba(240,238,255,.38);--border:rgba(255,255,255,.07);--bcyan:rgba(0,229,255,.18);--ease:cubic-bezier(.16,1,.3,1);--fd:'Rajdhani',sans-serif;--fb:'Space Grotesk',sans-serif}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -193,6 +206,17 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://otahub.asia/"},{"@type":"ListItem","position":2,"name":"Manga","item":"https://otahub.asia/manga"},{"@type":"ListItem","position":3,"name":"Toilet-Bound Hanako-kun Trở Lại Sau 10 Tháng Gián Đoạn Vì Sức Khỏe Tác Giả","item":"https://otahub.asia/hanako-kun-manga-resumes"}]}</script>
 </head>
 <body>
+<!--
+  PARTIAL: Nav + Mobile Nav dùng cho TRANG BÀI VIẾT (article template).
+  Nguồn duy nhất cho thanh điều hướng — sửa ở đây, build lại là mọi bài viết đổi theo.
+
+  Biến cần thay khi build:
+  {{ACTIVE_SECTION}} — 1 trong: choi-gi | gaming | anime | manga | reviews | rankings | chuyen-sau
+    → build.js sẽ chèn class="active" vào đúng <li><a> tương ứng.
+
+  Lưu ý: trang bài viết KHÔNG có nút "Subscribe" trong nav-r (khác với trang hub
+  như gaming.html/anime.html — trang đó dùng partial riêng "hub-nav.html" ở giai đoạn sau).
+-->
 <div id="amb"><div class="orb o1"></div><div class="orb o2"></div></div>
 <div id="gtex"></div>
 <nav class="nav"><div class="nav-in"><a class="logo" href="/"><span><svg viewbox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="5" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect></svg></span><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga" class="active">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><div class="nav-r"><button class="ham" id="ham" aria-label="Menu" onclick="toggleMob()"><span></span><span></span><span></span></button></div></div></nav><nav class="mobile-nav" id="mobnav"><a href="/choi-gi">Chơi Gì?</a>
@@ -242,12 +266,30 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 <p>Bạn có thể xem thêm <a href="/news">tin mới nhất</a> và chuyên mục <a href="/manga">Manga</a> của OtaHub.</p>
 <p><strong>Nguồn:</strong> <a href="https://www.animenewsnetwork.com/news/2026-07-13/toilet-bound-hanako-kun-manga-resumes-on-august-18/.239558" rel="nofollow noopener" target="_blank">Anime News Network</a>.</p>
 </article>
-<div class="share-row"><span class="share-lbl">Chia sẻ:</span><a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https://otahub.asia/hanako-kun-manga-resumes" target="_blank" rel="noopener">Facebook</a><a class="share-btn" href="https://twitter.com/intent/tweet?url=https://otahub.asia/hanako-kun-manga-resumes&amp;text=Toilet-Bound%20Hanako-kun%20Tr%E1%BB%9F%20L%E1%BA%A1i%20Sau%2010%20Th%C3%A1ng%20Gi%C3%A1n%20%C4%90o%E1%BA%A1n" target="_blank" rel="noopener">Twitter / X</a><a class="share-btn" href="https://www.reddit.com/submit?url=https://otahub.asia/hanako-kun-manga-resumes" target="_blank" rel="noopener">Reddit</a><button class="share-btn" type="button" onclick="copyArticleLink(this)">Sao chép link</button></div>
+<div class="share-row"><span class="share-lbl">Chia sẻ:</span><a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https://otahub.asia/hanako-kun-manga-resumes" target="_blank" rel="noopener">Facebook</a><a class="share-btn" href="https://twitter.com/intent/tweet?url=https://otahub.asia/hanako-kun-manga-resumes&amp;text=Toilet-Bound%20Hanako-kun%20Tr%E1%BB%9F%20L%E1%BA%A1i%20Sau%2010%20Th%C3%A1ng%20Gi%C3%A1n%20%C4%90o%E1%BA%A1n%20V%C3%AC%20S%E1%BB%A9c%20Kh%E1%BB%8Fe%20T%C3%A1c%20Gi%E1%BA%A3" target="_blank" rel="noopener">Twitter / X</a><a class="share-btn" href="https://www.reddit.com/submit?url=https://otahub.asia/hanako-kun-manga-resumes" target="_blank" rel="noopener">Reddit</a><button class="share-btn" type="button" onclick="copyArticleLink(this)">Sao chép link</button></div>
 </main>
 <aside class="art-sidebar"><div class="sidebar-block"><div class="sb-title">Bài liên quan</div><a class="sb-art" href="/shueisha-manga-million"><img class="sb-thumb" src="/assets/img/5463b8f413-Manga-Million-KV.jpg" alt="Shueisha Ra Mắt MANGA MILLION: Đọc Miễn Phí 400 Bộ" loading="lazy" width="1920" height="620"><div><div class="sb-cat">Manga</div><div class="sb-t">Shueisha Ra Mắt MANGA MILLION: Đọc Miễn Phí 400 Bộ</div></div></a><a class="sb-art" href="/crunchyroll-manga-black-torch-hana-kimi"><img class="sb-thumb" src="/assets/img/news-crunchyroll-manga-black-torch-hana-kimi.jpg" alt="Crunchyroll Manga Bổ Sung Black Torch, Hana-Kimi" loading="lazy" width="1280" height="720"><div><div class="sb-cat">Manga</div><div class="sb-t">Crunchyroll Manga Bổ Sung Black Torch, Hana-Kimi Trong Đợt Cập Nhật Tháng 7</div></div></a><a class="sb-art" href="/detective-conan-final-chapter"><img class="sb-thumb" src="/assets/img/news-detective-conan-final-chapter.jpg" alt="Gosho Aoyama Xác Nhận Đã Phác Thảo Storyboard Chương Cuối Conan" loading="lazy" width="704" height="396"><div><div class="sb-cat">Anime</div><div class="sb-t">Gosho Aoyama Xác Nhận Đã Phác Thảo Storyboard Chương Cuối Conan</div></div></a></div><div class="sidebar-block"><div class="sb-title">Tags</div><div class="sb-tags"><a class="sb-tag" href="/manga">Toilet-Bound Hanako-kun</a><a class="sb-tag" href="/manga">AidaIro</a><a class="sb-tag" href="/manga">Monthly GFantasy</a><a class="sb-tag" href="/manga">Square Enix</a></div></div></aside>
 </div>
+<!--
+  PARTIAL: Footer dùng chung cho TRANG BÀI VIẾT.
+  Không có biến — nội dung cố định 100%. Sửa 1 lần ở đây, mọi bài viết đổi theo.
+  Đồng bộ với hub-footer.html (cùng 1 bố cục 4 cột) để toàn site nhất quán —
+  trước đây trang bài viết dùng bản tối giản 1 dòng, gây lệch giao diện so với trang hub.
+-->
 <footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><svg viewbox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
 
+<!--
+  PARTIAL: Script cuối trang dùng chung cho TRANG BÀI VIẾT.
+
+  QUAN TRỌNG: đây là nơi chuẩn hoá nút "Sao chép link". Khi audit phát hiện
+  2 cách cài đặt khác nhau đang tồn tại song song trên site:
+    - Bài cũ (VD frieren-season2.html): <button onclick="copyArticleLink(this)">
+      + hàm copyArticleLink() khai báo riêng ở cuối file.
+    - Bài mới (VD mortal-shell-2-release.html): JS viết trực tiếp trong onclick,
+      không dùng hàm chung, text phản hồi khác nhau ("Đã sao chép" vs "Đã copy!").
+  Từ partial này trở đi, TOÀN BỘ bài viết dùng chung 1 hàm copyArticleLink() duy nhất,
+  gọi qua onclick="copyArticleLink(this)" trong share-row (xem article-body-example.html).
+-->
 <script>
 function toggleMob(){
   var h=document.getElementById('ham');

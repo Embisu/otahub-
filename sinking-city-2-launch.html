@@ -10,7 +10,7 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The Sinking City 2 Ra Mắt 18/8: Frogwares Chuyển Hẳn Sang Kinh Dị Sinh Tồn · OtaHub">
-<meta property="og:description" content="Frogwares tung The Sinking City 2 ngày 18/8/2026 trên PC, PS5, Xbox Series X/S với nhân vật chính mới Calvin Rafferty và lối chơi kinh dị sinh tồn đậm chất Resident Evil cổ điển.">
+<meta property="og:description" content="The Sinking City 2 của Frogwares ra mắt 18/8/2026 trên PC, PS5 và Xbox Series X/S, chuyển hẳn từ trinh thám sang kinh dị sinh tồn kiểu Resident Evil cổ điển.">
 <meta property="og:url" content="https://otahub.asia/sinking-city-2-launch">
 <meta property="og:image" content="https://otahub.asia/assets/img/news-sinking-city-2-launch.jpg">
 <meta property="og:site_name" content="OtaHub">
@@ -28,7 +28,7 @@
   "@context": "https://schema.org",
   "@type": "NewsArticle",
   "headline": "The Sinking City 2 Ra Mắt 18/8: Frogwares Chuyển Hẳn Sang Kinh Dị Sinh Tồn",
-  "description": "Frogwares tung The Sinking City 2 ngày 18/8/2026 trên PC, PS5, Xbox Series X/S với nhân vật chính mới Calvin Rafferty và lối chơi kinh dị sinh tồn đậm chất Resident Evil cổ điển.",
+  "description": "The Sinking City 2 của Frogwares ra mắt 18/8/2026 trên PC, PS5 và Xbox Series X/S, chuyển hẳn từ trinh thám sang kinh dị sinh tồn kiểu Resident Evil cổ điển.",
   "image": "https://otahub.asia/assets/img/news-sinking-city-2-launch.jpg",
   "datePublished": "2026-08-19T09:00:00+07:00",
   "dateModified": "2026-08-19T09:00:00+07:00",
@@ -54,6 +54,12 @@
   "inLanguage": "vi"
 }
 </script>
+<!--
+  PARTIAL: Phần <head> KHÔNG đổi theo từng bài viết (khác với title/description/OG/
+  JSON-LD — những thứ đó vẫn là biến riêng từng trang, xử lý ở build.js).
+
+  Chèn vào <head>, sau khối meta+OG+JSON-LD riêng của từng bài, trước </head>.
+-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -70,6 +76,13 @@
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
 
 <style>
+/*
+  PARTIAL: CSS dùng chung cho TRANG BÀI VIẾT (article template).
+  Xác nhận: byte-giống-hệt giữa frieren-season2.html (bài cũ) và mortal-shell-2-release.html
+  (bài mới) tại thời điểm audit 18/8/2026 — an toàn để tách ra dùng chung.
+  Trang hub (gaming.html, anime.html...) và trang detail (game-detail.html...) dùng
+  CSS khác, sẽ tách thành article-style-hub.css / article-style-detail.css ở đợt sau.
+*/
 :root{--bg:#0b0418;--surf:#150a2c;--surf2:#1d1040;--card:#190c36;--cyan:#00e5ff;--sakura:#ff3080;--violet:#7c3aed;--lav:#a78bfa;--amber:#fbbf24;--green:#34d399;--white:#f0eeff;--dim:rgba(240,238,255,.72);--muted:rgba(240,238,255,.38);--border:rgba(255,255,255,.07);--bcyan:rgba(0,229,255,.18);--ease:cubic-bezier(.16,1,.3,1);--fd:'Rajdhani',sans-serif;--fb:'Space Grotesk',sans-serif}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -193,6 +206,17 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://otahub.asia/"},{"@type":"ListItem","position":2,"name":"Gaming","item":"https://otahub.asia/gaming"},{"@type":"ListItem","position":3,"name":"The Sinking City 2 Ra Mắt 18/8: Frogwares Chuyển Hẳn Sang Kinh Dị Sinh Tồn","item":"https://otahub.asia/sinking-city-2-launch"}]}</script>
 </head>
 <body>
+<!--
+  PARTIAL: Nav + Mobile Nav dùng cho TRANG BÀI VIẾT (article template).
+  Nguồn duy nhất cho thanh điều hướng — sửa ở đây, build lại là mọi bài viết đổi theo.
+
+  Biến cần thay khi build:
+  {{ACTIVE_SECTION}} — 1 trong: choi-gi | gaming | anime | manga | reviews | rankings | chuyen-sau
+    → build.js sẽ chèn class="active" vào đúng <li><a> tương ứng.
+
+  Lưu ý: trang bài viết KHÔNG có nút "Subscribe" trong nav-r (khác với trang hub
+  như gaming.html/anime.html — trang đó dùng partial riêng "hub-nav.html" ở giai đoạn sau).
+-->
 <div id="amb"><div class="orb o1"></div><div class="orb o2"></div></div>
 <div id="gtex"></div>
 <nav class="nav"><div class="nav-in"><a class="logo" href="/"><span><svg viewbox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="5" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect></svg></span><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming" class="active">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><div class="nav-r"><button class="ham" id="ham" aria-label="Menu" onclick="toggleMob()"><span></span><span></span><span></span></button></div></div></nav><nav class="mobile-nav" id="mobnav"><a href="/choi-gi">Chơi Gì?</a>
@@ -247,8 +271,26 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 </main>
 <aside class="art-sidebar"><div class="sidebar-block"><div class="sb-title">Bài liên quan</div><a class="sb-art" href="/silent-hill-townfall-gameplay"><img class="sb-thumb" src="/assets/img/news-silent-hill-townfall-gameplay.jpg" alt="Silent Hill: Townfall Hé Lộ Bối Cảnh Scotland 1996 Và Thiết Bị CRTV" loading="lazy" width="1280" height="720"><div><div class="sb-cat">Gaming</div><div class="sb-t">Silent Hill: Townfall Hé Lộ Bối Cảnh Scotland 1996 Và Thiết Bị CRTV</div></div></a><a class="sb-art" href="/death-stranding-2-review"><img class="sb-thumb" src="/assets/img/9c68ea445d-death-stranding-2-on-the-beach-review-hero.jpg" alt="Death Stranding 2 Review: Kojima Vượt Qua Chính Mình" loading="lazy" width="1600" height="900"><div><div class="sb-cat">Gaming</div><div class="sb-t">Death Stranding 2 Review: Kojima Vượt Qua Chính Mình</div></div></a><a class="sb-art" href="/playstation-plus-august-2026"><img class="sb-thumb" src="/assets/img/news-playstation-plus-august-2026.jpg" alt="PlayStation Plus Tháng 8/2026 Chốt Danh Sách: Dying Light 2 Reloaded, Big Walk Và Signalis" loading="lazy" width="1920" height="620"><div><div class="sb-cat">Gaming</div><div class="sb-t">PlayStation Plus Tháng 8/2026 Chốt Danh Sách: Dying Light 2 Reloaded, Big Walk Và Signalis</div></div></a></div><div class="sidebar-block"><div class="sb-title">Tags</div><div class="sb-tags"><a class="sb-tag" href="/gaming">The Sinking City 2</a><a class="sb-tag" href="/gaming">Frogwares</a><a class="sb-tag" href="/gaming">Kinh dị sinh tồn</a><a class="sb-tag" href="/gaming">PS5</a></div></div></aside>
 </div>
+<!--
+  PARTIAL: Footer dùng chung cho TRANG BÀI VIẾT.
+  Không có biến — nội dung cố định 100%. Sửa 1 lần ở đây, mọi bài viết đổi theo.
+  Đồng bộ với hub-footer.html (cùng 1 bố cục 4 cột) để toàn site nhất quán —
+  trước đây trang bài viết dùng bản tối giản 1 dòng, gây lệch giao diện so với trang hub.
+-->
 <footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><svg viewbox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
 
+<!--
+  PARTIAL: Script cuối trang dùng chung cho TRANG BÀI VIẾT.
+
+  QUAN TRỌNG: đây là nơi chuẩn hoá nút "Sao chép link". Khi audit phát hiện
+  2 cách cài đặt khác nhau đang tồn tại song song trên site:
+    - Bài cũ (VD frieren-season2.html): <button onclick="copyArticleLink(this)">
+      + hàm copyArticleLink() khai báo riêng ở cuối file.
+    - Bài mới (VD mortal-shell-2-release.html): JS viết trực tiếp trong onclick,
+      không dùng hàm chung, text phản hồi khác nhau ("Đã sao chép" vs "Đã copy!").
+  Từ partial này trở đi, TOÀN BỘ bài viết dùng chung 1 hàm copyArticleLink() duy nhất,
+  gọi qua onclick="copyArticleLink(this)" trong share-row (xem article-body-example.html).
+-->
 <script>
 function toggleMob(){
   var h=document.getElementById('ham');
