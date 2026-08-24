@@ -858,10 +858,10 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 <!-- FEATURED REVIEW HERO -->
 
 
-<a class="rv-hero" href="/en/demon-slayer-infinity-castle-review" style="text-decoration:none">
+<a class="rv-hero" id="reviewHeroCard" href="/en/demon-slayer-infinity-castle-review" style="text-decoration:none">
 
 
-  <div class="rvh-img" style="background-image:url('/assets/img/5418135572-demon-slayer-infinity-castle-review-hero.jpg')"></div>
+  <div class="rvh-img" id="reviewHeroImg" style="background-image:url('/assets/img/5418135572-demon-slayer-infinity-castle-review-hero.jpg')"></div>
 
 
   <div class="rvh-ov"></div>
@@ -873,16 +873,16 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
     <div class="rvh-label">Featured review this week</div>
 
 
-    <h1 class="rvh-title">Demon Slayer:<br><em>Infinity Castle</em></h1>
+    <h1 class="rvh-title" id="reviewHeroTitle">Demon Slayer:<br><em>Infinity Castle</em></h1>
 
 
-    <p class="rvh-desc">Ufotable did the unthinkable. The best animation in anime history, chilling music, tear-jerking story, Infinity Castle is the absolute pinnacle of the entire series.</p>
+    <p class="rvh-desc" id="reviewHeroDesc">Ufotable did the unthinkable. The best animation in anime history, chilling music, tear-jerking story, Infinity Castle is the absolute pinnacle of the entire series.</p>
 
 
     <div class="rvh-meta">
 
 
-      <span class="rvh-cat">Anime Films</span>
+      <span class="rvh-cat" id="reviewHeroCat">Anime Films</span>
 
 
       <span class="rvh-sep">·</span>
@@ -906,7 +906,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
   <div class="rvh-score-panel">
 
 
-    <div class="rvh-score-big">9.9</div>
+    <div class="rvh-score-big" id="reviewHeroScore">9.9</div>
 
 
     <div class="rvh-score-label">OtaHub Points</div>
@@ -933,7 +933,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
     </div>
 
 
-    <div class="rvh-verdict">MUST WATCH · Masterpiece</div>
+    <div class="rvh-verdict" id="reviewHeroVerdict">MUST WATCH · Masterpiece</div>
 
 
   </div>
@@ -1332,21 +1332,77 @@ function renderGrid(){
 
 
 
+
+/* ─── REVIEW HERO DYNAMIC CATEGORY SWITCHER ─── */
+var REVIEW_HERO_DATA = {
+  all: {
+    url: '/en/demon-slayer-infinity-castle-review',
+    img: '/assets/img/5418135572-demon-slayer-infinity-castle-review-hero.jpg',
+    cat: 'Anime Film',
+    title: 'Demon Slayer:<br><em>Infinity Castle</em>',
+    desc: 'ufotable achieves the impossible. Peak animation in anime history, spine-chilling music, emotional story, Infinity Castle is the ultimate climax of the series.',
+    score: '9.9',
+    verdict: 'MUST WATCH · Kiệt tác'
+  },
+  game: {
+    url: '/en/black-myth-wukong-review',
+    img: '/assets/img/6eef9e5628-library_hero.jpg',
+    cat: 'PC / PS5 Game',
+    title: 'Black Myth:<br><em>Wukong</em>',
+    desc: 'China\'s first true Souls-like masterpiece. Stunning Unreal Engine 5 art direction, fast fluid staff combat, and epic Chinese mythology boss encounters.',
+    score: '9.5',
+    verdict: 'MASTERPIECE · Siêu phẩm'
+  },
+  anime: {
+    url: '/en/frieren-season2',
+    img: '/assets/img/3f4f599cac-frieren-s2-hero.jpg',
+    cat: 'Anime Series',
+    title: 'Frieren:<br><em>Beyond Journey\'s End S2</em>',
+    desc: 'Madhouse elevates the anime adaptation to perfection with emotional character journeys and breathtaking fantasy art.',
+    score: '9.8',
+    verdict: 'MUST WATCH · Tuyệt tác'
+  },
+  manga: {
+    url: '/en/one-piece-final-saga-review',
+    img: '/assets/img/d653b4c00a-one-piece-hero.jpg',
+    cat: 'Weekly Shonen Jump',
+    title: 'One Piece:<br><em>Final Saga</em>',
+    desc: '25 years marching towards Laugh Tale. Eiichiro Oda masterfully connects every plot thread in modern manga\'s most ambitious finale.',
+    score: '9.8',
+    verdict: 'LEGENDARY · Huyền thoại'
+  }
+};
+
+function updateReviewHero(cat){
+  var data = REVIEW_HERO_DATA[cat] || REVIEW_HERO_DATA['all'];
+  var heroCard = document.getElementById('reviewHeroCard');
+  var heroImg = document.getElementById('reviewHeroImg');
+  var heroCat = document.getElementById('reviewHeroCat');
+  var heroTitle = document.getElementById('reviewHeroTitle');
+  var heroDesc = document.getElementById('reviewHeroDesc');
+  var heroScore = document.getElementById('reviewHeroScore');
+  var heroVerdict = document.getElementById('reviewHeroVerdict');
+
+  if(heroCard && data){
+    heroCard.href = data.url;
+    if(heroImg) heroImg.style.backgroundImage = "url('" + data.img + "')";
+    if(heroCat) heroCat.textContent = data.cat;
+    if(heroTitle) heroTitle.innerHTML = data.title;
+    if(heroDesc) heroDesc.textContent = data.desc;
+    if(heroScore) heroScore.textContent = data.score;
+    if(heroVerdict) heroVerdict.textContent = data.verdict;
+
+    heroCard.style.animation = 'none';
+    setTimeout(function(){ heroCard.style.animation = 'heroPulseFade .4s ease-out'; }, 10);
+  }
+}
+
 function filter(btn, cat){
-
-
   document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('on'));
-
-
   btn.classList.add('on');
-
-
   currentFilter = cat;
-
-
+  updateReviewHero(cat);
   renderGrid();
-
-
 }
 
 

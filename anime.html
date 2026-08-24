@@ -1447,10 +1447,21 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 <!-- NEWS + SIDEBAR -->
 
 
+
+<!-- ══ ANIME FILTER BAR ══ -->
+<div class="filter-bar" style="position:sticky;top:60px;z-index:200;background:rgba(11,2,32,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);margin-bottom:24px">
+  <div class="filter-in" style="max-width:1440px;margin:0 auto;padding:0 24px;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;align-items:center">
+    <button class="ftab on" onclick="setAnimeFilter(this,'all')">Tất cả</button>
+    <button class="ftab" onclick="setAnimeFilter(this,'mua-he-2026')">Mùa Hè 2026</button>
+    <button class="ftab" onclick="setAnimeFilter(this,'review')">Đánh Giá & Review</button>
+    <button class="ftab" onclick="setAnimeFilter(this,'action')">Hành Động / Shonen</button>
+    <button class="ftab" onclick="setAnimeFilter(this,'isekai')">Isekai & Fantasy</button>
+    <button class="ftab" onclick="setAnimeFilter(this,'news')">Tin Chiếu Rạp</button>
+  </div>
+</div>
+
 <div class="wrap rv" style="padding-top:0;padding-bottom:0">
-
-
-  <div class="sec-h"><span class="sec-t">Tin tức <em>anime</em></span><div class="sec-l"></div><a href="/news" class="sec-more">Xem tất cả</a></div>
+  <div class="sec-h"><span class="sec-t" id="animeSecTitle">Tin tức <em>anime</em></span><div class="sec-l"></div><a href="/news" class="sec-more">Xem tất cả</a></div>
 
 
   <div class="content-layout">
@@ -1460,6 +1471,11 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 
+      
+    <div id="animeFilterBanner" class="filter-banner" style="display:none;margin-bottom:18px;background:rgba(255,48,128,.06);border:1px solid rgba(255,48,128,.25);padding:10px 18px;display:flex;align-items:center;justify-content:space-between;border-radius:4px">
+      <span style="font-size:13px;color:var(--white)">Đang xem chuyên mục: <strong id="animeFilterName" style="color:var(--sakura)">Tất cả</strong> (<span id="animeFilterCount" style="color:var(--sakura)">0</span> bài viết)</span>
+      <button type="button" onclick="setAnimeFilterByCat('all')" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:4px 12px;font-size:11px;font-weight:600;text-transform:uppercase;cursor:pointer;letter-spacing:.05em;transition:all .2s">✕ Xóa lọc</button>
+    </div>
       <div class="f-grid">
 
 
@@ -2154,8 +2170,153 @@ function closeSearch(){var o=document.getElementById('searchOverlay');if(o){o.cl
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSearch();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch()}});
 
 
-</script>
 
+/* ─── ANIME DYNAMIC CATEGORY FILTERING ─── */
+var ANIME_FEATURED_DATA = {
+  all: {
+    secTitle: 'Tin tức <em>Anime</em>',
+    name: 'Tất cả bài viết',
+    url: '/demon-slayer-infinity-castle-trailer-chinh-thuc',
+    img: '/assets/img/news-demon-slayer-infinity-castle-trailer.jpg',
+    tag: 'Anime · Breaking',
+    tagClass: 'ts',
+    title: 'Demon Slayer: Infinity Castle Part 1 Tung Trailer 3 Phút Mãn Nhãn, Chiếu Rạp Toàn Cầu',
+    sub: 'ufotable chính thức phát hành trailer 3 phút cho Phần 1 Pháo Đài Vô Tận, xác nhận phát hành định dạng IMAX và Dolby Cinema toàn cầu.',
+    meta: 'Anime · OtaHub Editorial · 22/8/2026'
+  },
+  'mua-he-2026': {
+    secTitle: 'Anime <em>Mùa Hè 2026</em>',
+    name: 'Mùa Hè 2026',
+    url: '/frieren-season2',
+    img: '/assets/img/3f4f599cac-frieren-s2-hero.jpg',
+    tag: 'Summer 2026 · Top 1',
+    tagClass: 'ts',
+    title: 'Frieren Season 2 Review: Vượt Qua Cái Bóng Của Chính Mình',
+    sub: 'Madhouse tiếp tục nâng tầm kiệt tác kỳ ảo với hành trình đầy cảm xúc của nhóm Frieren, Fern và Stark.',
+    meta: 'Mùa Hè 2026 · Lan Anh · Hôm nay'
+  },
+  review: {
+    secTitle: 'Đánh Giá & <em>Review Anime</em>',
+    name: 'Review Anime',
+    url: '/demon-slayer-infinity-castle-review',
+    img: '/assets/img/5418135572-demon-slayer-infinity-castle-review-hero.jpg',
+    tag: 'Review · 9.9/10',
+    tagClass: 'ta',
+    title: 'Demon Slayer: Infinity Castle Review: Kiệt Tác Phòng Vé Lịch Sử',
+    sub: 'ufotable đã làm điều không tưởng với chất lượng hoạt họa đỉnh cao nhất lịch sử anime cùng âm nhạc giao hưởng hùng tráng.',
+    meta: 'Review · OtaHub Editorial · 8 phút đọc'
+  },
+  action: {
+    secTitle: 'Anime <em>Hành Động & Shonen</em>',
+    name: 'Hành Động / Shonen',
+    url: '/chainsaw-man-reze-arc-review',
+    img: '/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg',
+    tag: 'Shonen · Action',
+    tagClass: 'tv',
+    title: 'Chainsaw Man – The Movie: Reze Arc Review: Bom Tấn Điện Ảnh Đẫm Máu',
+    sub: 'MAPPA bùng nổ với màn trình diễn hoạt họa đỉnh cao trong cuộc chiến bi kịch giữa Denji và Reze.',
+    meta: 'Action · Gia Bảo · 2 ngày trước'
+  },
+  isekai: {
+    secTitle: 'Anime <em>Isekai & Kỳ Ảo</em>',
+    name: 'Isekai & Fantasy',
+    url: '/mushoku-tensei-s3-chaos-breaker',
+    img: '/assets/img/a4f75364fc-maxresdefault.jpg',
+    tag: 'Isekai · 9.1/10',
+    tagClass: 'tv',
+    title: 'Mushoku Tensei Season 3: Rudeus Đối Mặt Cuộc Chiến Lớn Nhất Cuộc Đời',
+    sub: 'Studio Bind khắc họa bước trưởng thành vượt bậc của Rudeus trong arc pháo đài bay Chaos Breaker.',
+    meta: 'Isekai · Gia Bảo · 9 giờ trước'
+  },
+  news: {
+    secTitle: 'Anime <em>Chiếu Rạp & Movie</em>',
+    name: 'Chiếu Rạp',
+    url: '/demon-slayer-infinity-castle-trailer-chinh-thuc',
+    img: '/assets/img/news-demon-slayer-infinity-castle-trailer.jpg',
+    tag: 'Cinema · Global',
+    tagClass: 'ts',
+    title: 'Demon Slayer: Infinity Castle Part 1 Tung Trailer 3 Phút Mãn Nhãn, Chiếu Rạp Toàn Cầu',
+    sub: 'Xác nhận công chiếu định dạng IMAX, Dolby Cinema và 4DX tại hơn 140 quốc gia.',
+    meta: 'Cinema · OtaHub Editorial · Hôm nay'
+  }
+};
+
+function updateAnimeHero(cat){
+  var data = ANIME_FEATURED_DATA[cat] || ANIME_FEATURED_DATA['all'];
+  var heroCard = document.getElementById('animeHeroCard');
+  var heroImg = document.getElementById('animeHeroImg');
+  var heroTag = document.getElementById('animeHeroTag');
+  var heroTitle = document.getElementById('animeHeroTitle');
+  var heroSub = document.getElementById('animeHeroSub');
+  var heroMeta = document.getElementById('animeHeroMeta');
+  var secTitle = document.getElementById('animeSecTitle');
+
+  if(heroCard && data){
+    heroCard.href = data.url;
+    if(heroImg) heroImg.style.backgroundImage = 'url(' + data.img + ')';
+    if(heroTag){
+      heroTag.className = 'tag ' + data.tagClass;
+      heroTag.textContent = data.tag;
+    }
+    if(heroTitle) heroTitle.textContent = data.title;
+    if(heroSub) heroSub.textContent = data.sub;
+    if(heroMeta) heroMeta.textContent = data.meta;
+    if(secTitle) secTitle.innerHTML = data.secTitle;
+
+    heroCard.style.animation = 'none';
+    setTimeout(function(){ heroCard.style.animation = 'heroPulseFade .4s ease-out'; }, 10);
+  }
+
+  var banner = document.getElementById('animeFilterBanner');
+  var filterName = document.getElementById('animeFilterName');
+  var filterCount = document.getElementById('animeFilterCount');
+  if(banner && filterName && filterCount){
+    if(cat === 'all'){
+      banner.style.display = 'none';
+    } else {
+      banner.style.display = 'flex';
+      filterName.textContent = data ? data.name : cat;
+    }
+  }
+}
+
+function setAnimeFilterByCat(cat){
+  document.querySelectorAll('.filter-bar .ftab').forEach(function(t){
+    var onclickAttr = t.getAttribute('onclick') || '';
+    if(onclickAttr.indexOf("'" + cat + "'") > -1 || (cat === 'all' && onclickAttr.indexOf("'all'") > -1)){
+      t.classList.add('on');
+    } else {
+      t.classList.remove('on');
+    }
+  });
+
+  updateAnimeHero(cat);
+
+  var visibleCount = 0;
+  document.querySelectorAll('.content-layout .ac').forEach(function(card){
+    if(cat === 'all'){
+      card.classList.remove('cat-hidden');
+      visibleCount++;
+      return;
+    }
+    var cats = (card.getAttribute('data-cat') || '').toLowerCase().split(' ');
+    if(cats.indexOf(cat.toLowerCase()) > -1){
+      card.classList.remove('cat-hidden');
+      visibleCount++;
+    } else {
+      card.classList.add('cat-hidden');
+    }
+  });
+
+  var filterCount = document.getElementById('animeFilterCount');
+  if(filterCount) filterCount.textContent = visibleCount;
+}
+
+function setAnimeFilter(btn, cat){
+  setAnimeFilterByCat(cat);
+}
+
+</script>
 <script defer src="/assets/search.js"></script>
 
 

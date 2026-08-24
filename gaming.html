@@ -1913,7 +1913,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   <div class="sec-h">
 
 
-    <span class="sec-t">Nổi bật <em>tuần này</em></span>
+    <span class="sec-t" id="gamingSecTitle">Nổi bật <em>tuần này</em></span>
 
 
     <div class="sec-l"></div>
@@ -1925,30 +1925,35 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   </div>
 
 
+  
+  <div id="activeFilterBanner" class="filter-banner" style="display:none;margin-bottom:18px;background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.2);padding:10px 18px;display:flex;align-items:center;justify-content:space-between;border-radius:4px">
+    <span style="font-size:13px;color:var(--white)">Đang xem chuyên mục: <strong id="activeFilterName" style="color:var(--cyan)">Tất cả</strong> (<span id="activeFilterCount" style="color:var(--cyan)">0</span> bài viết)</span>
+    <button type="button" onclick="setFilterByCat('all')" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:4px 12px;font-size:11px;font-weight:600;text-transform:uppercase;cursor:pointer;letter-spacing:.05em;transition:all .2s">✕ Xóa lọc</button>
+  </div>
   <div class="f-grid">
 
 
-    <a class="fc" href="/black-myth-wukong-dlc-rebirth-great-sage">
-      <div class="fc-img" style="background-image:url(/assets/img/news-black-myth-wukong-dlc-rebirth.jpg)"></div><div class="fc-ov"></div>
+    <a class="fc" id="gamingHeroCard" href="/black-myth-wukong-dlc-rebirth-great-sage" data-cat="all pc guide">
+      <div class="fc-img" id="gamingHeroImg" style="background-image:url(/assets/img/news-black-myth-wukong-dlc-rebirth.jpg)"></div><div class="fc-ov"></div>
       <div class="fc-body">
-        <span class="tag tc">Gaming · Breaking</span>
-        <h2 class="fc-title">Black Myth: Wukong Kỷ Niệm 2 Năm, Công Bố DLC Cốt Truyện "Rebirth of the Great Sage"</h2>
-        <p class="fc-sub">Game Science kỷ niệm 2 năm ra mắt bằng việc công bố DLC mở rộng cốt truyện Tái Sinh Tề Thiên tại Gamescom 2026 trên nền tảng Unreal Engine 5.5.</p>
-        <div class="fc-meta"><span>Gaming</span> · OtaHub Editorial · 22/8/2026</div>
+        <span class="tag tc" id="gamingHeroTag">Gaming · Breaking</span>
+        <h2 class="fc-title" id="gamingHeroTitle">Black Myth: Wukong Kỷ Niệm 2 Năm, Công Bố DLC Cốt Truyện "Rebirth of the Great Sage"</h2>
+        <p class="fc-sub" id="gamingHeroSub">Game Science kỷ niệm 2 năm ra mắt bằng việc công bố DLC mở rộng cốt truyện Tái Sinh Tề Thiên tại Gamescom 2026 trên nền tảng Unreal Engine 5.5.</p>
+        <div class="fc-meta" id="gamingHeroMeta"><span>Gaming</span> · OtaHub Editorial · 22/8/2026</div>
       </div>
     </a>
 
 
-    <a class="sc" href="/stellar-blade-2"><div class="sc-img"><img src="/assets/img/7bc69a799e-library_hero.jpg" alt="Stellar Blade: Blood Rain · nữ chính mới Evie và bối cảnh thành phố cyberpunk" width="1920" height="620" fetchpriority="high" decoding="async"></div><div class="sc-body"><span class="tag tv" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Preview</span><div class="sc-title">Stellar Blade: Blood Rain · nữ chính mới Evie và bối cảnh thành phố cyberpunk</div><div class="sc-meta">Dũng Nguyễn · 6 giờ trước</div></div></a>
+    <a class="sc" data-cat="preview pc" href="/stellar-blade-2"><div class="sc-img"><img src="/assets/img/7bc69a799e-library_hero.jpg" alt="Stellar Blade: Blood Rain · nữ chính mới Evie và bối cảnh thành phố cyberpunk" width="1920" height="620" fetchpriority="high" decoding="async"></div><div class="sc-body"><span class="tag tv" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Preview</span><div class="sc-title">Stellar Blade: Blood Rain · nữ chính mới Evie và bối cảnh thành phố cyberpunk</div><div class="sc-meta">Dũng Nguyễn · 6 giờ trước</div></div></a>
 
 
-    <a class="sc" href="/resident-evil-9-announcement"><div class="sc-img"><img src="/assets/img/4d865718ab-library_hero.jpg" alt="Resident Evil 9: tất cả những gì chúng ta biết về phần tiếp theo" loading="lazy" width="1920" height="620"></div><div class="sc-body"><span class="tag tc" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Breaking</span><div class="sc-title">Resident Evil 9: Tất Cả Những Gì Chúng Ta Biết Về Phần Tiếp Theo</div><div class="sc-meta">OtaHub Editorial · 12 giờ trước</div></div></a>
+    <a class="sc" data-cat="pc preview" href="/resident-evil-9-announcement"><div class="sc-img"><img src="/assets/img/4d865718ab-library_hero.jpg" alt="Resident Evil 9: tất cả những gì chúng ta biết về phần tiếp theo" loading="lazy" width="1920" height="620"></div><div class="sc-body"><span class="tag tc" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Breaking</span><div class="sc-title">Resident Evil 9: Tất Cả Những Gì Chúng Ta Biết Về Phần Tiếp Theo</div><div class="sc-meta">OtaHub Editorial · 12 giờ trước</div></div></a>
 
 
-    <a class="sc" href="/kingdom-come-deliverance-2"><div class="sc-img"><img src="/assets/img/50c4f9b171-library_hero.jpg" alt="Kingdom Come Deliverance 2 · review: RPG lịch sử hay nhất trong thập kỷ" loading="lazy" width="1920" height="620"></div><div class="sc-body"><span class="tag ta" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Review</span><div class="sc-title">Kingdom Come Deliverance 2 · Review: RPG Lịch Sử Hay Nhất Thập Kỷ</div><div class="sc-meta">OtaHub Editorial · 16 giờ trước</div></div></a>
+    <a class="sc" data-cat="review pc" href="/kingdom-come-deliverance-2"><div class="sc-img"><img src="/assets/img/50c4f9b171-library_hero.jpg" alt="Kingdom Come Deliverance 2 · review: RPG lịch sử hay nhất trong thập kỷ" loading="lazy" width="1920" height="620"></div><div class="sc-body"><span class="tag ta" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Review</span><div class="sc-title">Kingdom Come Deliverance 2 · Review: RPG Lịch Sử Hay Nhất Thập Kỷ</div><div class="sc-meta">OtaHub Editorial · 16 giờ trước</div></div></a>
 
 
-    <a class="sc" href="/avengers-doomsday-homework-watchlist"><div class="sc-img"><img src="/assets/img/news-avengers-doomsday-homework-watchlist.jpg" alt="Marvel Xác Nhận Danh Sách 15 Phim/Series Phải Xem Trước Avengers: Doomsday" loading="lazy" width="600" height="338"></div><div class="sc-body"><span class="tag tc" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Breaking</span><div class="sc-title">Marvel Xác Nhận Danh Sách 15 Phim/Series Phải Xem Trước Avengers: Doomsday</div><div class="sc-meta">OtaHub Editorial · 1 giờ trước</div></div></a>
+    <a class="sc" data-cat="pc preview" href="/avengers-doomsday-homework-watchlist"><div class="sc-img"><img src="/assets/img/news-avengers-doomsday-homework-watchlist.jpg" alt="Marvel Xác Nhận Danh Sách 15 Phim/Series Phải Xem Trước Avengers: Doomsday" loading="lazy" width="600" height="338"></div><div class="sc-body"><span class="tag tc" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Breaking</span><div class="sc-title">Marvel Xác Nhận Danh Sách 15 Phim/Series Phải Xem Trước Avengers: Doomsday</div><div class="sc-meta">OtaHub Editorial · 1 giờ trước</div></div></a>
 
 
   </div>
@@ -3136,37 +3141,193 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 
-/* ── Bộ lọc bài viết theo danh mục ──
-   .ftab (filter-bar trên cùng) lọc TOÀN BỘ card có data-cat bên dưới filter-bar
-   (cả khối "Nổi bật tuần này" lẫn ".art-list").
-   .sf-btn (sub-filter trong .art-list) chỉ lọc card nằm trong ".art-list",
-   không đụng tới khối "Nổi bật tuần này" phía trên — tránh 2 bộ filter dẫm chân nhau.
-   Mỗi lần bấm sẽ tính lại toàn bộ trạng thái ẩn/hiện trong đúng phạm vi của bộ đó,
-   nên không bị tồn đọng trạng thái cũ từ lần lọc trước. */
-var FTAB_CAT_MAP={'Tất cả':'all','PC / Console':'pc','Mobile':'mobile','Reviews':'review','Previews':'preview','Guides':'guide','Esports':'esports','Tier Lists':'tierlist'};
-var SFBTN_CAT_MAP={'Tất cả':'all','PC':'pc','Mobile':'mobile','Review':'review','Guide':'guide','Esports':'esports'};
+/* ─── BỘ LỌC CHUYÊN MỤC ĐỘNG (INTERACTIVE CATEGORY FILTERING) ─── */
+var GAMING_FEATURED_DATA = {
+  all: {
+    secTitle: 'Nổi bật <em>tuần này</em>',
+    name: 'Tất cả bài viết',
+    url: '/black-myth-wukong-dlc-rebirth-great-sage',
+    img: '/assets/img/news-black-myth-wukong-dlc-rebirth.jpg',
+    tag: 'Gaming · Breaking',
+    tagClass: 'tc',
+    title: 'Black Myth: Wukong Kỷ Niệm 2 Năm, Công Bố DLC Cốt Truyện "Rebirth of the Great Sage"',
+    sub: 'Game Science kỷ niệm 2 năm ra mắt bằng việc công bố DLC mở rộng cốt truyện Tái Sinh Tề Thiên tại Gamescom 2026 trên nền tảng Unreal Engine 5.5.',
+    meta: 'Gaming · OtaHub Editorial · 22/8/2026'
+  },
+  pc: {
+    secTitle: 'Nổi bật: <em>PC & Console</em>',
+    name: 'PC / Console',
+    url: '/black-myth-wukong-dlc-rebirth-great-sage',
+    img: '/assets/img/news-black-myth-wukong-dlc-rebirth.jpg',
+    tag: 'PC / Console · Breaking',
+    tagClass: 'tc',
+    title: 'Black Myth: Wukong Kỷ Niệm 2 Năm, Công Bố DLC Cốt Truyện "Rebirth of the Great Sage"',
+    sub: 'Game Science kỷ niệm 2 năm ra mắt bằng việc công bố DLC mở rộng cốt truyện Tái Sinh Tề Thiên tại Gamescom 2026 trên nền tảng Unreal Engine 5.5.',
+    meta: 'PC / Console · OtaHub Editorial · 22/8/2026'
+  },
+  mobile: {
+    secTitle: 'Nổi bật: <em>Game Mobile</em>',
+    name: 'Mobile',
+    url: '/wuthering-waves-24',
+    img: '/assets/img/c53329917b-wuthering-waves-hero.jpg',
+    tag: 'Mobile · Update',
+    tagClass: 'ts',
+    title: 'Wuthering Waves 3.6: Ren Realm, Sword Flight Và 2 Nhân Vật Mới Qingxiao, Jingran',
+    sub: 'Kuro Games mở ra kỷ nguyên mới với bản đồ Ren Realm, hệ thống phi kiếm bay lượn và banner 2 nhân vật 5 sao mới.',
+    meta: 'Mobile · Anh Kiệt · 5 giờ trước'
+  },
+  review: {
+    secTitle: 'Nổi bật: <em>Đánh Giá & Reviews</em>',
+    name: 'Reviews',
+    url: '/kingdom-come-deliverance-2',
+    img: '/assets/img/50c4f9b171-library_hero.jpg',
+    tag: 'Review · 9.4/10',
+    tagClass: 'ta',
+    title: 'Kingdom Come Deliverance 2 Review: RPG Lịch Sử Hay Nhất Thập Kỷ',
+    sub: 'Warhorse Studios đưa tiêu chuẩn nhập vai thế giới mở lên tầm cao mới với hệ thống đối thoại và kiếm thuật chân thực.',
+    meta: 'Review · OtaHub Editorial · 16 giờ trước'
+  },
+  preview: {
+    secTitle: 'Nổi bật: <em>Tin Tức & Previews</em>',
+    name: 'Previews',
+    url: '/stellar-blade-2',
+    img: '/assets/img/7bc69a799e-library_hero.jpg',
+    tag: 'Preview · Exclusive',
+    tagClass: 'tv',
+    title: 'Stellar Blade: Blood Rain · Nữ Chính Mới Evie Và Bối Cảnh Thành Phố Cyberpunk',
+    sub: 'Shift Up hé lộ dự án hậu truyện mở rộng vũ trụ Stellar Blade với thành phố tương lai ngập tràn quái vật Naytiba.',
+    meta: 'Preview · Dũng Nguyễn · 6 giờ trước'
+  },
+  guide: {
+    secTitle: 'Nổi bật: <em>Cẩm Nang & Guides</em>',
+    name: 'Guides',
+    url: '/genshin-54-citlali',
+    img: '/assets/img/ae2a55e940-genshin-citlali-hero.jpg',
+    tag: 'Guide · Meta Build',
+    tagClass: 'tg',
+    title: 'Genshin Impact 7.0 · Tier List Đội Hình Meta Snezhnaya & Build Guide Odette, Sandrone',
+    sub: 'Phân tích chi tiết vòng quay năng lượng, phản ứng Băng nguyên tố và hướng dẫn trang bị thánh di vật chuẩn SS-tier.',
+    meta: 'Guide · Bích Ngọc · 3 giờ trước'
+  },
+  esports: {
+    secTitle: 'Nổi bật: <em>Thể Thao Điện Tử (Esports)</em>',
+    name: 'Esports',
+    url: '/vct-pacific-2026',
+    img: '/assets/img/0a878e4709-ghost-of-yotei-complete-edition-hero.jpg',
+    tag: 'Esports · VCT 2026',
+    tagClass: 'tc',
+    title: 'VCT Pacific 2026: Phân Tích Meta Mới Và Lịch Thi Đấu Vòng Bảng',
+    sub: 'Các đội tuyển hàng đầu châu Á tranh tài tại Seoul với thể thức thi đấu mới và thay đổi bản đồ bước ngoặt.',
+    meta: 'Esports · Ban Thể Thao · Hôm nay'
+  },
+  tierlist: {
+    secTitle: 'Nổi bật: <em>Bảng Xếp Hạng Meta & Tier Lists</em>',
+    name: 'Tier Lists',
+    url: '/game-detail?t=Honor%20of%20Kings%20Global',
+    img: '/assets/img/6323076b06-158003l.jpg',
+    tag: 'Tier List · S-tier',
+    tagClass: 'tg',
+    title: 'Honor of Kings Global · Tier List Nhân Vật S-tier Mùa 3 & Guide Reroll Cho Tân Thủ',
+    sub: 'Bảng xếp hạng tướng leo rank đơn hiệu quả nhất mùa 3 cùng lối lên đồ khắc chế meta sát thủ đường giữa.',
+    meta: 'Tier List · Gia Linh · 14 giờ trước'
+  }
+};
 
-function applyCatFilter(cards,cat){
+var FTAB_CAT_MAP = {'Tất cả':'all','All':'all','PC / Console':'pc','Mobile':'mobile','Reviews':'review','Previews':'preview','Guides':'guide','Esports':'esports','Tier Lists':'tierlist'};
+var SFBTN_CAT_MAP = {'Tất cả':'all','All':'all','PC':'pc','Mobile':'mobile','Review':'review','Guide':'guide','Esports':'esports'};
+
+function applyCatFilter(cards, cat){
+  var visibleCount = 0;
   cards.forEach(function(card){
-    if(cat==='all'){card.classList.remove('cat-hidden');return}
-    var cats=(card.getAttribute('data-cat')||'').split(' ');
-    if(cats.indexOf(cat)>-1)card.classList.remove('cat-hidden');
-    else card.classList.add('cat-hidden');
+    if(cat === 'all'){
+      card.classList.remove('cat-hidden');
+      visibleCount++;
+      return;
+    }
+    var cats = (card.getAttribute('data-cat') || '').toLowerCase().split(' ');
+    if(cats.indexOf(cat.toLowerCase()) > -1){
+      card.classList.remove('cat-hidden');
+      visibleCount++;
+    } else {
+      card.classList.add('cat-hidden');
+    }
   });
+  return visibleCount;
+}
+
+function updateHeroFeatured(cat){
+  var data = GAMING_FEATURED_DATA[cat] || GAMING_FEATURED_DATA['all'];
+  var heroCard = document.getElementById('gamingHeroCard');
+  var heroImg = document.getElementById('gamingHeroImg');
+  var heroTag = document.getElementById('gamingHeroTag');
+  var heroTitle = document.getElementById('gamingHeroTitle');
+  var heroSub = document.getElementById('gamingHeroSub');
+  var heroMeta = document.getElementById('gamingHeroMeta');
+  var secTitle = document.getElementById('gamingSecTitle');
+
+  if(heroCard && data){
+    heroCard.href = data.url;
+    if(heroImg) heroImg.style.backgroundImage = 'url(' + data.img + ')';
+    if(heroTag){
+      heroTag.className = 'tag ' + data.tagClass;
+      heroTag.textContent = data.tag;
+    }
+    if(heroTitle) heroTitle.textContent = data.title;
+    if(heroSub) heroSub.textContent = data.sub;
+    if(heroMeta) heroMeta.textContent = data.meta;
+    if(secTitle) secTitle.innerHTML = data.secTitle;
+
+    // Pulse effect to show dynamic change
+    heroCard.style.animation = 'none';
+    setTimeout(function(){ heroCard.style.animation = 'heroPulseFade .4s ease-out'; }, 10);
+  }
+
+  // Update banner
+  var banner = document.getElementById('activeFilterBanner');
+  var filterName = document.getElementById('activeFilterName');
+  var filterCount = document.getElementById('activeFilterCount');
+  if(banner && filterName && filterCount){
+    if(cat === 'all'){
+      banner.style.display = 'none';
+    } else {
+      banner.style.display = 'flex';
+      filterName.textContent = data ? data.name : cat;
+    }
+  }
+}
+
+function setFilterByCat(cat){
+  // Update .ftab
+  document.querySelectorAll('.ftab').forEach(function(t){
+    var tCat = FTAB_CAT_MAP[t.textContent.trim()] || 'all';
+    if(tCat === cat) t.classList.add('on');
+    else t.classList.remove('on');
+  });
+
+  // Update .sf-btn
+  document.querySelectorAll('.sf-btn').forEach(function(t){
+    var tCat = SFBTN_CAT_MAP[t.textContent.trim()] || 'all';
+    if(tCat === cat) t.classList.add('on');
+    else t.classList.remove('on');
+  });
+
+  // Update hero
+  updateHeroFeatured(cat);
+
+  // Filter cards
+  var count = applyCatFilter(Array.prototype.slice.call(document.querySelectorAll('.art-list [data-cat]')), cat);
+  var filterCount = document.getElementById('activeFilterCount');
+  if(filterCount) filterCount.textContent = count;
 }
 
 function setFilter(btn){
-  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));
-  btn.classList.add('on');
-  var cat=FTAB_CAT_MAP[btn.textContent.trim()]||'all';
-  applyCatFilter(Array.prototype.slice.call(document.querySelectorAll('[data-cat]')),cat);
+  var cat = FTAB_CAT_MAP[btn.textContent.trim()] || 'all';
+  setFilterByCat(cat);
 }
 
 function setSub(btn){
-  document.querySelectorAll('.sf-btn').forEach(t=>t.classList.remove('on'));
-  btn.classList.add('on');
-  var cat=SFBTN_CAT_MAP[btn.textContent.trim()]||'all';
-  applyCatFilter(Array.prototype.slice.call(document.querySelectorAll('.art-list [data-cat]')),cat);
+  var cat = SFBTN_CAT_MAP[btn.textContent.trim()] || 'all';
+  setFilterByCat(cat);
 }
 
 

@@ -1718,6 +1718,12 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
 
 
+
+<style>
+@keyframes heroPulseFade{0%{opacity:0.3;transform:scale(0.98)}100%{opacity:1;transform:scale(1)}}
+.filter-banner button:hover{background:rgba(0,229,255,.2)!important;border-color:var(--cyan)!important}
+.ftab.on{color:var(--cyan)!important;border-bottom-color:var(--cyan)!important;text-shadow:0 0 10px rgba(0,229,255,.5)}
+</style>
 </head>
 
 
@@ -2016,16 +2022,21 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   </div>
 
 
+  
+  <div id="activeFilterBanner" class="filter-banner" style="display:none;margin-bottom:18px;background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.2);padding:10px 18px;display:flex;align-items:center;justify-content:space-between;border-radius:4px">
+    <span style="font-size:13px;color:var(--white)">Đang xem chuyên mục: <strong id="activeFilterName" style="color:var(--cyan)">Tất cả</strong> (<span id="activeFilterCount" style="color:var(--cyan)">0</span> bài viết)</span>
+    <button type="button" onclick="setFilterByCat('all')" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:4px 12px;font-size:11px;font-weight:600;text-transform:uppercase;cursor:pointer;letter-spacing:.05em;transition:all .2s">✕ Xóa lọc</button>
+  </div>
   <div class="f-grid">
 
 
-    <a class="fc" href="/en/black-myth-wukong-dlc-rebirth-great-sage">
-      <div class="fc-img" style="background-image:url(/assets/img/news-black-myth-wukong-dlc-rebirth.jpg)"></div><div class="fc-ov"></div>
+    <a class="fc" id="gamingHeroCard" href="/en/black-myth-wukong-dlc-rebirth-great-sage" data-cat="all pc guide">
+      <div class="fc-img" id="gamingHeroImg" style="background-image:url(/assets/img/news-black-myth-wukong-dlc-rebirth.jpg)"></div><div class="fc-ov"></div>
       <div class="fc-body">
-        <span class="tag tc">Gaming · Breaking</span>
-        <h2 class="fc-title">Black Myth: Wukong 2-Year Anniversary: Game Science Announces "Rebirth of the Great Sage" DLC</h2>
-        <p class="fc-sub">Game Science reveals Heavenly Realm story expansion on Unreal Engine 5.5 at Gamescom 2026.</p>
-        <div class="fc-meta"><span>Gaming</span> · OtaHub Editorial · Aug 22, 2026</div>
+        <span class="tag tc" id="gamingHeroTag">Gaming · Breaking</span>
+        <h2 class="fc-title" id="gamingHeroTitle">Black Myth: Wukong 2-Year Anniversary: Game Science Announces "Rebirth of the Great Sage" DLC</h2>
+        <p class="fc-sub" id="gamingHeroSub">Game Science reveals Heavenly Realm story expansion on Unreal Engine 5.5 at Gamescom 2026.</p>
+        <div class="fc-meta" id="gamingHeroMeta"><span>Gaming</span> · OtaHub Editorial · Aug 22, 2026</div>
       </div>
     </a>
 

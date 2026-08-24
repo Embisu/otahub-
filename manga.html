@@ -1451,9 +1451,20 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 <!-- NEWS + SIDEBAR -->
 
 
+
+<!-- ══ MANGA FILTER BAR ══ -->
+<div class="filter-bar" style="position:sticky;top:60px;z-index:200;background:rgba(11,2,32,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);margin-bottom:24px">
+  <div class="filter-in" style="max-width:1440px;margin:0 auto;padding:0 24px;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;align-items:center">
+    <button class="ftab on" onclick="setMangaFilter(this,'all')">Tất cả</button>
+    <button class="ftab" onclick="setMangaFilter(this,'shonen')">Weekly Shonen Jump</button>
+    <button class="ftab" onclick="setMangaFilter(this,'manhwa')">Manhwa & Webtoon</button>
+    <button class="ftab" onclick="setMangaFilter(this,'reviews')">Đánh Giá & Review</button>
+    <button class="ftab" onclick="setMangaFilter(this,'manhua')">Manhua Tu Tiên</button>
+    <button class="ftab" onclick="setMangaFilter(this,'chapter-moi')">Chapter Mới & Spoilers</button>
+  </div>
+</div>
+
 <div class="wrap rv" style="padding-top:0;padding-bottom:0">
-
-
   <div class="sec-h"><span class="sec-t">Tin tức <em>truyện tranh</em></span><div class="sec-l"></div><a href="/news" class="sec-more">Xem tất cả</a></div>
 
 
@@ -1465,6 +1476,11 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 
+      
+    <div id="mangaFilterBanner" class="filter-banner" style="display:none;margin-bottom:18px;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.3);padding:10px 18px;display:flex;align-items:center;justify-content:space-between;border-radius:4px">
+      <span style="font-size:13px;color:var(--white)">Đang xem chuyên mục: <strong id="mangaFilterName" style="color:var(--lavender)">Tất cả</strong> (<span id="mangaFilterCount" style="color:var(--lavender)">0</span> bài viết)</span>
+      <button type="button" onclick="setMangaFilterByCat('all')" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:4px 12px;font-size:11px;font-weight:600;text-transform:uppercase;cursor:pointer;letter-spacing:.05em;transition:all .2s">✕ Xóa lọc</button>
+    </div>
       <div class="f-grid">
 
 
@@ -2811,8 +2827,153 @@ function closeSearch(){var o=document.getElementById('searchOverlay');if(o){o.cl
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSearch();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch()}});
 
 
-</script>
 
+/* ─── MANGA DYNAMIC CATEGORY FILTERING ─── */
+var MANGA_FEATURED_DATA = {
+  all: {
+    secTitle: 'Tin tức <em>Manga</em>',
+    name: 'Tất cả bài viết',
+    url: '/one-piece-chapter-1192-elbaf-uranus',
+    img: '/assets/img/news-one-piece-chapter-1192-elbaf-uranus.jpg',
+    tag: 'Manga · Breaking',
+    tagClass: 'tv',
+    title: 'One Piece Chapter 1192: Oda Tiết Lộ Năng Lực Imu & Bí Ẩn Vũ Khí Uranus Tại Elbaf',
+    sub: 'Weekly Shonen Jump mở ra cao trào Arc Elbaf khi hé lộ Vũ Khí Cổ Đại Uranus và sức mạnh bóng tối của Imu.',
+    meta: 'Manga · OtaHub Editorial · 22/8/2026'
+  },
+  shonen: {
+    secTitle: 'Weekly <em>Shonen Jump Nổi Bật</em>',
+    name: 'Weekly Shonen Jump',
+    url: '/one-piece-chapter-1192-elbaf-uranus',
+    img: '/assets/img/news-one-piece-chapter-1192-elbaf-uranus.jpg',
+    tag: 'Shonen · Chapter 1192',
+    tagClass: 'tv',
+    title: 'One Piece Chapter 1192: Oda Tiết Lộ Năng Lực Imu & Bí Ẩn Vũ Khí Uranus Tại Elbaf',
+    sub: 'Shueisha làm rung chuyển giới manga với bí ẩn Thế Kỷ Trống và trận chiến đỉnh cao của Luffy Gear 5.',
+    meta: 'Shonen · OtaHub Editorial · Hôm nay'
+  },
+  manhwa: {
+    secTitle: 'Vũ Trụ <em>Manhwa & Webtoon</em>',
+    name: 'Manhwa & Webtoon',
+    url: '/solo-leveling-season2',
+    img: '/assets/img/1619ce791a-solo-leveling-hero.jpg',
+    tag: 'Manhwa · Solo Leveling',
+    tagClass: 'tc',
+    title: 'Solo Leveling: Ragnarok Chapter Phân Tích Chi Tiết & Sức Mạnh Sung Suho',
+    sub: 'Redice Studio tiếp nối huyền thoại thợ săn bóng tối với hành trình kế thừa ngai vàng đầy kịch tính.',
+    meta: 'Manhwa · Minh Tuấn · 3 giờ trước'
+  },
+  reviews: {
+    secTitle: 'Đánh Giá & <em>Review Manga</em>',
+    name: 'Review Manga',
+    url: '/one-piece-final-saga-review',
+    img: '/assets/img/d653b4c00a-one-piece-hero.jpg',
+    tag: 'Review · 9.8/10',
+    tagClass: 'ta',
+    title: 'One Piece: Final Saga Review: 25 Năm Tiến Gần Đến Laugh Tale',
+    sub: 'Eiichiro Oda kết nối hoàn hảo mọi mắt xích cốt truyện trong hồi kết vĩ đại nhất lịch sử truyện tranh.',
+    meta: 'Review · OtaHub Editorial · 10 phút đọc'
+  },
+  manhua: {
+    secTitle: 'Manhua <em>Tu Tiên & Huyền Huyễn</em>',
+    name: 'Manhua',
+    url: '/manga-detail?t=Battle%20Through%20the%20Heavens',
+    img: '/assets/img/1f0540d7a3-maxresdefault.jpg',
+    tag: 'Manhua · Đấu Phá',
+    tagClass: 'ts',
+    title: 'Đấu Phá Thương Khung: Top 10 Cảnh Chiến Đấu Đẹp Nhất Arc Đại Hiệu Môn',
+    sub: 'Tiêu Viêm phô diễn Dị Hỏa dung hợp trong cuộc chạm trán đỉnh cao chấn động giới tu tiên.',
+    meta: 'Manhua · Quang Đại · 9 giờ trước'
+  },
+  'chapter-moi': {
+    secTitle: 'Chapter Mới & <em>Spoilers Hàng Tuần</em>',
+    name: 'Chapter Mới',
+    url: '/one-piece-chapter-1192-elbaf-uranus',
+    img: '/assets/img/news-one-piece-chapter-1192-elbaf-uranus.jpg',
+    tag: 'Spoilers · Hot',
+    tagClass: 'tv',
+    title: 'One Piece Chapter 1192: Oda Tiết Lộ Năng Lực Imu & Bí Ẩn Vũ Khí Uranus Tại Elbaf',
+    sub: 'Phân tích chi tiết từng khung tranh và giả thuyết chấn động của chương truyện mới nhất.',
+    meta: 'Spoilers · OtaHub Editorial · Hôm nay'
+  }
+};
+
+function updateMangaHero(cat){
+  var data = MANGA_FEATURED_DATA[cat] || MANGA_FEATURED_DATA['all'];
+  var heroCard = document.getElementById('mangaHeroCard');
+  var heroImg = document.getElementById('mangaHeroImg');
+  var heroTag = document.getElementById('mangaHeroTag');
+  var heroTitle = document.getElementById('mangaHeroTitle');
+  var heroSub = document.getElementById('mangaHeroSub');
+  var heroMeta = document.getElementById('mangaHeroMeta');
+  var secTitle = document.getElementById('mangaSecTitle');
+
+  if(heroCard && data){
+    heroCard.href = data.url;
+    if(heroImg) heroImg.style.backgroundImage = 'url(' + data.img + ')';
+    if(heroTag){
+      heroTag.className = 'tag ' + data.tagClass;
+      heroTag.textContent = data.tag;
+    }
+    if(heroTitle) heroTitle.textContent = data.title;
+    if(heroSub) heroSub.textContent = data.sub;
+    if(heroMeta) heroMeta.textContent = data.meta;
+    if(secTitle) secTitle.innerHTML = data.secTitle;
+
+    heroCard.style.animation = 'none';
+    setTimeout(function(){ heroCard.style.animation = 'heroPulseFade .4s ease-out'; }, 10);
+  }
+
+  var banner = document.getElementById('mangaFilterBanner');
+  var filterName = document.getElementById('mangaFilterName');
+  var filterCount = document.getElementById('mangaFilterCount');
+  if(banner && filterName && filterCount){
+    if(cat === 'all'){
+      banner.style.display = 'none';
+    } else {
+      banner.style.display = 'flex';
+      filterName.textContent = data ? data.name : cat;
+    }
+  }
+}
+
+function setMangaFilterByCat(cat){
+  document.querySelectorAll('.filter-bar .ftab').forEach(function(t){
+    var onclickAttr = t.getAttribute('onclick') || '';
+    if(onclickAttr.indexOf("'" + cat + "'") > -1 || (cat === 'all' && onclickAttr.indexOf("'all'") > -1)){
+      t.classList.add('on');
+    } else {
+      t.classList.remove('on');
+    }
+  });
+
+  updateMangaHero(cat);
+
+  var visibleCount = 0;
+  document.querySelectorAll('.content-layout .ac').forEach(function(card){
+    if(cat === 'all'){
+      card.classList.remove('cat-hidden');
+      visibleCount++;
+      return;
+    }
+    var cats = (card.getAttribute('data-cat') || '').toLowerCase().split(' ');
+    if(cats.indexOf(cat.toLowerCase()) > -1){
+      card.classList.remove('cat-hidden');
+      visibleCount++;
+    } else {
+      card.classList.add('cat-hidden');
+    }
+  });
+
+  var filterCount = document.getElementById('mangaFilterCount');
+  if(filterCount) filterCount.textContent = visibleCount;
+}
+
+function setMangaFilter(btn, cat){
+  setMangaFilterByCat(cat);
+}
+
+</script>
 <script defer src="/assets/search.js"></script>
 
 
