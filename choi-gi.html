@@ -642,28 +642,24 @@ html,body{overflow-x:hidden}body{background:var(--bg);color:var(--white);font-fa
 
 
 .rc-cover{
-
-
   position:relative;overflow:hidden;
-
-
-  background:linear-gradient(135deg,#1e0840 0%,#150628 100%);
-
-
+  background:linear-gradient(135deg,#16062d 0%,#0c021a 100%);
+  display:flex;align-items:center;justify-content:center;
 }
-
-
-.rc-cover-gradient{
-
-
-  position:absolute;inset:0;
-
-
+.rc-cover-ambient{
+  position:absolute;inset:-15px;
+  background-position:center center;background-size:cover;background-repeat:no-repeat;
+  filter:blur(22px) brightness(0.55) saturate(1.4);
+  transform:scale(1.2);
   transition:background .4s var(--ease);
-
-  background-position:center;background-size:cover;background-repeat:no-repeat;
-
-
+  z-index:1;
+}
+.rc-cover-gradient{
+  position:absolute;inset:12px;
+  transition:background .4s var(--ease);
+  background-position:center center;background-size:contain;background-repeat:no-repeat;
+  filter:drop-shadow(0 8px 20px rgba(0,0,0,.85));
+  z-index:2;
 }
 
 
@@ -2008,9 +2004,14 @@ function renderCard(g){
   const grad = g.color || GRADIENTS[currentMood] || GRADIENTS['all'];
 
 
-  document.getElementById('rcGradient').style.backgroundImage = g.img
-    ? `linear-gradient(to top,rgba(5,2,15,.72),rgba(5,2,15,.05) 55%),url('${g.img}')`
-    : `radial-gradient(ellipse at 30% 40%,rgba(0,229,255,.2) 0%,transparent 55%),radial-gradient(ellipse at 70% 70%,rgba(255,48,128,.15) 0%,transparent 50%),linear-gradient(135deg,${grad[0]} 0%,${grad[1]} 100%)`;
+  const ambEl = document.getElementById('rcAmbient');
+  const gradEl = document.getElementById('rcGradient');
+  if (ambEl) {
+    ambEl.style.backgroundImage = g.img ? `url('${g.img}')` : `linear-gradient(135deg,${grad[0]} 0%,${grad[1]} 100%)`;
+  }
+  if (gradEl) {
+    gradEl.style.backgroundImage = g.img ? `url('${g.img}')` : `radial-gradient(ellipse at 30% 40%,rgba(0,229,255,.2) 0%,transparent 55%),linear-gradient(135deg,${grad[0]} 0%,${grad[1]} 100%)`;
+  }
 
 
   document.getElementById('rcIcon').textContent = g.img ? '' : g.icon;

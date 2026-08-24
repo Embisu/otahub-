@@ -1,0 +1,60 @@
+{
+  "title": "Monster Hunter Wilds: Cẩm Nang Làm Chủ Hệ Thống Focus Mode & Combo 14 Vũ Khí Trên Lưng Thú Cưỡi Seikret",
+  "description": "Hướng dẫn chi tiết cách khai thác điểm yếu Wound System, mẹo nhắm bắn chuẩn xác trong Focus Mode và kỹ thuật combo chuyển đổi 2 vũ khí trên lưng Seikret trong Monster Hunter Wilds.",
+  "canonical": "/monster-hunter-wilds-huong-dan-focus-mode-seikret",
+  "ogImage": "https://otahub.asia/assets/img/news-monster-hunter-wilds-focus-mode-guide.jpg",
+  "heroImage": "/assets/img/news-monster-hunter-wilds-focus-mode-guide.jpg",
+  "heroTitle": "Monster Hunter Wilds: Cẩm Nang Làm Chủ Hệ Thống Focus Mode & Combo 14 Vũ Khí Trên Lưng Thú Cưỡi Seikret",
+  "heroExcerpt": "Bí quyết giúp thợ săn tối ưu hóa DPS, phá hủy điểm yếu của quái vật Apex và thực hiện chuỗi combo đổi vũ khí mượt mà chuẩn pro.",
+  "publishedTime": "2026-08-24T10:30:00+07:00",
+  "modifiedTime": "2026-08-24T10:50:00+07:00",
+  "section": "Gaming",
+  "activeSection": "gaming",
+  "breadcrumbSection": "Guides",
+  "breadcrumbSectionUrl": "/gaming",
+  "keywords": "Monster Hunter Wilds, Cẩm Nang Focus Mode, Seikret, Đổi Vũ Khí Kép, Capcom, Đại Kiếm, Song Kiếm, PS5, PC",
+  "readTime": "8 phút đọc",
+  "metaDate": "2026-08-24",
+  "metaReadTime": "8 phút đọc",
+  "summaryLabel": "Điểm Cốt Lõi Cẩm Nang",
+  "summaryText": "Cơ chế <strong>Focus Mode</strong> kết hợp cùng hệ thống <strong>Vết Thương (Wound System)</strong> và thú cưỡi thông minh <strong>Seikret</strong> là chìa khóa thay đổi hoàn toàn phong cách săn quái trong <strong>Monster Hunter Wilds</strong>. Cẩm nang này phân tích sâu cách xoay tâm camera, thời điểm tung đòn Focus Strike kết liễu và các cặp vũ khí kết hợp hiệu quả nhất.",
+  "bodyHtml": "<p>Khác biệt hoàn toàn với cơ chế Clutch Claw của MHW hay Wirebug của MHR, <strong>Focus Mode</strong> trong Monster Hunter Wilds cho phép thợ săn điều khiển hướng đánh của vũ khí độc lập với hướng di chuyển của nhân vật, giúp tấn công chính xác vào từng khớp xương của quái vật.</p>\n\n<figure><img src=\"/assets/img/news-monster-hunter-wilds-focus-mode-guide.jpg\" alt=\"Monster Hunter Wilds Cẩm Nang Focus Mode và Seikret\" width=\"1200\" height=\"675\" fetchpriority=\"high\" decoding=\"async\"><figcaption>Focus Mode cho phép ngắm chuẩn xác vào các Vết Thương Đỏ rực trên thân quái thú</figcaption></figure>\n\n<h2>1. Cơ Chế Tạo Vết Thương (Wounds) & Đòn Focus Strike</h2>\n<ul>\n<li><strong>Giai Đoạn 1 (Tích Lũy Sát Thương):</strong> Đánh liên tục vào một bộ phận cố định (đầu, chân, đuôi) sẽ làm lớp vảy nứt ra và phát sáng đỏ.</li>\n<li><strong>Giai Đoạn 2 (Focus Strike):</strong> Khi tâm ngắm Focus Mode chuyển sang màu đỏ rực, nhấn nút Tấn Công Nặng để kích hoạt hoạt cảnh đặc biệt phá nát vết thương, gây sát thương chí mạng khổng lồ và làm quái vật ngã quỵ (Topple).</li>\n</ul>\n\n<h2>2. Kỹ Thuật Đổi Vũ Khí Kép Trên Lưng Seikret</h2>\n<p>Seikret được trang bị túi đựng vũ khí thứ hai bên hông yên cương. Dưới đây là các combo cặp vũ khí mạnh nhất:</p>\n<ol>\n<li><strong>Đại Kiếm (Great Sword) + Nỏ Nhẹ (Light Bowgun):</strong> Dùng Nỏ bắn đạn Status (Gây Ngủ / Tê Liệt) từ xa trên lưng Seikret, sau đó lập tức đổi sang Đại Kiếm thực hiện cú True Charged Slash thức tỉnh nhân đôi sát thương.</li>\n<li><strong>Song Kiếm (Dual Blades) + Côn Nhị Khúc Cung (Bow):</strong> Tận dụng tốc độ cơ động của Song Kiếm áp sát và chuyển sang Cung bắn đạn phân tán khi quái vật bay lên không trung.</li>\n</ol>\n\n<p>Xem thông tin bản cập nhật mới tại <a href=\"/monster-hunter-wilds-ban-cap-nhat-mua-thu-2026\">Monster Hunter Wilds Title Update 2026</a> trên OtaHub.</p>",
+  "source": {
+    "name": "Capcom Hunter Guild Training Guide",
+    "url": "https://www.monsterhunter.com/wilds/"
+  },
+  "relatedArticles": [
+    {
+      "url": "/monster-hunter-wilds-ban-cap-nhat-mua-thu-2026",
+      "title": "Monster Hunter Wilds: Bản Cập Nhật Mùa Thu 2026",
+      "cat": "Gaming",
+      "img": "/assets/img/news-monster-hunter-wilds-autumn-update.jpg",
+      "alt": "MH Wilds"
+    },
+    {
+      "url": "/black-myth-wukong-huong-dan",
+      "title": "Black Myth: Wukong Hướng Dẫn Cơ Bản",
+      "cat": "Guides",
+      "img": "/assets/img/news-black-myth-wukong-boss-an-guide.jpg",
+      "alt": "Wukong Guide"
+    }
+  ],
+  "tags": [
+    {
+      "label": "Monster Hunter Wilds",
+      "url": "/gaming"
+    },
+    {
+      "label": "Guides",
+      "url": "/gaming"
+    },
+    {
+      "label": "Focus Mode",
+      "url": "/gaming"
+    },
+    {
+      "label": "Seikret",
+      "url": "/gaming"
+    }
+  ]
+}
