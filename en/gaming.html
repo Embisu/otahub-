@@ -120,1418 +120,30 @@
 
 
 <style>
-
-
-/* ─── TOKENS ─── */
-
-
-:root{
-
-
-  --bg:#0b0418; --surf:#150a2c; --surf2:#1d1040; --card:#190c36;
-
-
-  --cyan:#00e5ff; --sakura:#ff3080; --violet:#7c3aed;
-
-
-  --lav:#a78bfa; --amber:#fbbf24; --green:#34d399;
-
-
-  --white:#f0eeff; --dim:rgba(240,238,255,.62); --muted:rgba(240,238,255,.35);
-
-
-  --border:rgba(255,255,255,.07); --bcyan:rgba(0,229,255,.18);
-
-
-  --ease:cubic-bezier(.16,1,.3,1);
-
-
-  --fd:'Rajdhani',sans-serif; --fb:'Space Grotesk',sans-serif;
-
-
-}
-
-
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
-
-html{scroll-behavior:smooth}
-
-
-body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:300;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-
-
-
-
-
-/* AMBIENT */
-
-
-#amb{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-
-
-.orb{position:absolute;border-radius:50%;filter:blur(110px)}
-
-
-.o1{width:700px;height:700px;background:radial-gradient(circle,var(--cyan),transparent 70%);opacity:.07;top:-200px;left:-150px;animation:fa 17s ease-in-out infinite}
-
-
-.o2{width:500px;height:500px;background:radial-gradient(circle,var(--violet),transparent 70%);opacity:.07;bottom:5%;right:-120px;animation:fb 22s ease-in-out infinite}
-
-
-.o3{width:400px;height:400px;background:radial-gradient(circle,var(--sakura),transparent 70%);opacity:.05;top:50%;left:40%;animation:fc 19s ease-in-out infinite}
-
-
-@keyframes fa{0%,100%{transform:translate(0,0)}50%{transform:translate(50px,-35px)}}
-
-
-@keyframes fb{0%,100%{transform:translate(0,0)}50%{transform:translate(-35px,25px)}}
-
-
-@keyframes fc{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-40px)}}
-
-
-#gtex{position:fixed;inset:0;pointer-events:none;z-index:0;
-
-
-  background-image:linear-gradient(rgba(124,58,237,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.04) 1px,transparent 1px);
-
-
-  background-size:48px 48px}
-
-
-
-
-
-/* ─── NAV ─── */
-
-
-.nav{position:sticky;top:0;z-index:300;height:60px;background:rgba(11,4,24,.92);border-bottom:1px solid var(--bcyan);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);display:flex;align-items:center}
-
-
-.nav-in{max-width:1440px;margin:0 auto;padding:0 24px;width:100%;display:flex;align-items:center;gap:0}
-
-
-.logo{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0;margin-right:32px}
-
-
-.logo svg{width:30px;height:30px;animation:lp 3s ease-in-out infinite}
-
-
-@keyframes lp{0%,100%{filter:drop-shadow(0 0 4px var(--cyan)) drop-shadow(0 0 12px rgba(0,229,255,.5))}50%{filter:drop-shadow(0 0 8px var(--cyan)) drop-shadow(0 0 24px rgba(0,229,255,.9))}}
-
-
-.logo-t{font-family:var(--fd);font-weight:700;font-size:20px;letter-spacing:-.01em;line-height:1}
-
-
-.logo-ota{color:var(--white)}.logo-hub{color:var(--cyan)}
-
-
-.nav-links{display:flex;align-items:center;list-style:none;gap:0;flex:1}
-
-
-.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;font-weight:400;letter-spacing:.07em;text-transform:uppercase;padding:0 13px;height:60px;display:flex;align-items:center;position:relative;transition:color .2s}
-
-
-.nav-links a::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:2px;background:var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
-
-
-.nav-links a:hover,.nav-links a.active{color:var(--white)}
-
-
-.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
-
-
-.nav-r{display:flex;align-items:center;gap:8px;margin-left:auto}
-
-
-.lang{display:flex;align-items:center;border:1px solid var(--border);overflow:hidden}
-
-
-.lb{background:none;border:none;cursor:pointer;font-family:var(--fb);font-size:11px;font-weight:500;letter-spacing:.08em;color:var(--muted);padding:5px 10px;transition:all .18s}
-
-
-.lb.on{background:var(--cyan);color:var(--bg);font-weight:600}
-
-
-.lsep{width:1px;height:18px;background:var(--border)}
-
-
-.nsearch{background:none;border:1px solid var(--border);color:var(--muted);width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s}
-
-
-.nsearch:hover{border-color:var(--cyan);color:var(--cyan)}
-
-
-.cta{background:var(--cyan);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;padding:8px 20px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:background .18s;text-decoration:none;display:inline-block;white-space:nowrap}
-
-
-.cta:hover{background:#33eeff}
-
-
-.cta:active{transform:translateY(1px) scale(.98)}
-
-
-
-
-
-/* ─── CATEGORY HEADER ─── */
-
-
-.cat-header{
-
-
-  position:relative;z-index:1;
-
-
-  min-height:220px;
-
-
-  display:flex;flex-direction:column;justify-content:flex-end;
-
-
-  overflow:hidden;
-
-
-}
-
-
-/* Full-bleed background */
-
-
-.ch-bg{
-
-
-  position:absolute;inset:0;
-
-
-  background:url('/assets/img/b80150127d-library_hero.jpg') center 30%/cover no-repeat;
-
-
-  opacity:.22;
-
-
-}
-
-
-.ch-overlay{
-
-
-  position:absolute;inset:0;
-
-
-  background:
-
-
-    linear-gradient(to bottom, transparent 0%, var(--bg) 100%),
-
-
-    linear-gradient(to right, rgba(0,229,255,.06) 0%, transparent 50%);
-
-
-}
-
-
-/* Decorative left accent */
-
-
-.ch-accent{
-
-
-  position:absolute;left:0;top:0;bottom:0;width:3px;
-
-
-  background:linear-gradient(to bottom,transparent,var(--cyan),transparent);
-
-
-  opacity:.6;
-
-
-}
-
-
-.ch-body{
-
-
-  position:relative;z-index:2;
-
-
-  max-width:1440px;margin:0 auto;padding:0 24px;
-
-
-  padding-bottom:0;
-
-
-}
-
-
-.ch-eyebrow{
-
-
-  font-size:10px;letter-spacing:.22em;text-transform:uppercase;
-
-
-  color:var(--cyan);margin-bottom:8px;
-
-
-  display:flex;align-items:center;gap:8px;
-
-
-}
-
-
-.ch-eyebrow::before{content:'';width:20px;height:1px;background:var(--cyan);opacity:.6}
-
-
-.ch-title{
-
-
-  font-family:var(--fd);font-weight:700;
-
-
-  font-size:clamp(44px,6vw,80px);
-
-
-  line-height:.95;letter-spacing:-.03em;
-
-
-  color:var(--white);margin-bottom:10px;
-
-
-}
-
-
-.ch-title em{font-style:normal;color:var(--cyan);text-shadow:0 0 40px rgba(0,229,255,.3)}
-
-
-.ch-sub{font-size:16px;color:var(--dim);max-width:500px;margin-bottom:0}
-
-
-
-
-
-/* Stats row */
-
-
-.ch-stats{
-
-
-  display:flex;align-items:center;gap:32px;
-
-
-  padding:16px 0;margin-top:12px;
-
-
-  border-top:1px solid var(--border);
-
-
-}
-
-
-.ch-stat{text-align:left}
-
-
-.ch-stat-num{font-family:var(--fd);font-size:22px;font-weight:700;color:var(--cyan);line-height:1}
-
-
-.ch-stat-lbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:2px}
-
-
-
-
-
-/* Filter tabs */
-
-
-.filter-bar{
-
-
-  position:relative;z-index:1;
-
-
-  border-bottom:1px solid var(--border);
-
-
-  background:rgba(11,4,24,.8);backdrop-filter:blur(12px);
-
-
-}
-
-
+.filter-bar{position:sticky;top:60px;z-index:200;background:rgba(4,8,20,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);margin-bottom:28px}
 .filter-in{max-width:1440px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none}
-
-
 .filter-in::-webkit-scrollbar{display:none}
-
-
-.ftab{
-
-
-  background:none;border:none;cursor:pointer;
-
-
-  font-family:var(--fd);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-
-
-  color:var(--muted);padding:13px 18px;white-space:nowrap;
-
-
-  border-bottom:2px solid transparent;
-
-
-  transition:color .2s,border-color .2s;flex-shrink:0;
-
-
-}
-
-
-.ftab.on{color:var(--cyan);border-bottom-color:var(--cyan)}
-
-
-.ftab:hover:not(.on){color:rgba(240,238,255,.75)}
-
-
-.filter-sep{width:1px;height:28px;background:var(--border);flex-shrink:0;margin:0 4px}
-
-
-
-
-
-/* ─── LAYOUT UTILS ─── */
-
-
-.wrap{max-width:1440px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
-
-
-.sec-h{display:flex;align-items:center;gap:14px;padding:40px 0 20px;border-bottom:1px solid var(--border)}
-
-
-.sec-t{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--white);white-space:nowrap}
-
-
-.sec-t em{color:var(--cyan);font-style:normal}
-
-
-.sec-l{flex:1;height:1px;background:linear-gradient(to right,var(--bcyan),transparent)}
-
-
-.sec-more{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;white-space:nowrap;transition:color .2s}
-
-
-.sec-more:hover{color:var(--cyan)}
-
-
-
-
-
-/* ─── TAGS ─── */
-
-
-.tag{display:inline-flex;align-items:center;gap:5px;font-family:var(--fb);font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px}
-
-
-.tc{background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.28);color:var(--cyan)}
-
-
-.ts{background:rgba(255,48,128,.1);border:1px solid rgba(255,48,128,.28);color:var(--sakura)}
-
-
-.tv{background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.3);color:var(--lav)}
-
-
-.ta{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);color:var(--amber)}
-
-
-.tg{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.25);color:var(--green)}
-
-
-
-
-
-/* ─── FEATURED GRID ─── */
-
-
-/*
-
-
-  Big card left (2fr) + stack of 2 right (1fr)
-
-
-  Using explicit widths to guarantee no wrap
-
-
-*/
-
-
-.fg{
-
-
-  display:flex;
-
-
-  gap:3px;
-
-
-  margin-top:3px;
-
-
-  height:480px; /* fixed height so grid stays rigid */
-
-
-}
-
-
-/* Big card */
-
-
-.fg-big{
-
-
-  flex:2;
-
-
-  position:relative;overflow:hidden;cursor:pointer;
-
-
-  background:var(--card);
-
-
-  text-decoration:none;
-
-
-}
-
-
-.fg-big:hover .fgb-img{transform:scale(1.04);opacity:.55}
-
-
-.fg-big:hover .fgb-title{color:var(--cyan)}
-
-
-.fgb-img{
-
-
-  position:absolute;inset:0;
-
-
-  background:url('/assets/img/b80150127d-library_hero.jpg') center/cover no-repeat;
-
-
-  opacity:.42;transition:transform .7s var(--ease),opacity .4s;
-
-
-}
-
-
-.fgb-ov{
-
-
-  position:absolute;inset:0;
-
-
-  background:
-
-
-    linear-gradient(to top, rgba(11,4,24,.98) 0%, rgba(11,4,24,.45) 45%, transparent 75%),
-
-
-    linear-gradient(to right, rgba(0,229,255,.03) 0%, transparent 50%);
-
-
-}
-
-
-/* Cyan corner glow */
-
-
-.fgb-glow{position:absolute;bottom:-60px;left:-60px;width:280px;height:280px;background:var(--cyan);border-radius:50%;filter:blur(80px);opacity:.06;pointer-events:none}
-
-
-/* Hover border */
-
-
-.fg-big::after{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;pointer-events:none;z-index:3}
-
-
-.fg-big:hover::after{border-color:rgba(0,229,255,.22)}
-
-
-.fgb-body{position:absolute;bottom:0;left:0;right:0;padding:32px;z-index:2}
-
-
-.fgb-score{
-
-
-  display:inline-flex;align-items:baseline;gap:4px;
-
-
-  background:rgba(11,4,24,.7);backdrop-filter:blur(6px);
-
-
-  border:1px solid rgba(251,191,36,.25);
-
-
-  padding:5px 12px;margin-bottom:12px;
-
-
-}
-
-
-.fgb-score-num{font-family:var(--fd);font-size:20px;font-weight:700;color:var(--amber);line-height:1}
-
-
-.fgb-score-lbl{font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
-
-
-.fgb-title{
-
-
-  font-family:var(--fd);font-weight:700;
-
-
-  font-size:clamp(20px,2.2vw,30px);line-height:1.08;
-
-
-  color:var(--white);margin:10px 0 10px;
-
-
-  transition:color .2s;
-
-
-}
-
-
-.fgb-sub{font-size:16px;color:var(--dim);margin-bottom:14px;max-width:460px;line-height:1.6}
-
-
-.fgb-meta{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;display:flex;align-items:center;gap:8px}
-
-
-.fgb-meta-cat{color:var(--cyan);font-weight:500}
-
-
-.fgb-meta-dot{opacity:.3}
-
-
-
-
-
-/* Stack right */
-
-
-.fg-stack{
-
-
-  flex:1;
-
-
-  display:flex;flex-direction:column;gap:3px;
-
-
-  min-width:0; /* prevent flex blowout */
-
-
-}
-
-
-.fg-sm{
-
-
-  flex:1;
-
-
-  position:relative;overflow:hidden;cursor:pointer;
-
-
-  background:var(--card);
-
-
-  display:flex;flex-direction:column;
-
-
-  text-decoration:none;min-height:0;
-
-
-}
-
-
-.fg-sm:hover .fgs-img{transform:scale(1.06);opacity:.75}
-
-
-.fg-sm:hover .fgs-title{color:var(--cyan)}
-
-
-.fg-sm::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);z-index:3;pointer-events:none;transition:border-color .3s}
-
-
-.fg-sm:hover::before{border-color:rgba(0,229,255,.18)}
-
-
-.fgs-thumb{position:absolute;inset:0;overflow:hidden}
-
-
-.fgs-img{
-
-
-  width:100%;height:100%;object-fit:cover;
-
-
-  opacity:.38;transition:transform .55s var(--ease),opacity .35s;
-
-
-}
-
-
-.fgs-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,4,24,.97) 0%,rgba(11,4,24,.4) 55%,transparent 80%)}
-
-
-.fgs-body{position:absolute;bottom:0;left:0;right:0;padding:18px 20px;z-index:2}
-
-
-.fgs-title{font-family:var(--fd);font-weight:600;font-size:15px;line-height:1.2;color:rgba(240,238,255,.92);margin:7px 0 5px;transition:color .2s}
-
-
-.fgs-meta{font-size:11px;color:var(--muted)}
-
-
-
-
-
-/* ─── MAIN CONTENT AREA ─── */
-
-
-.content-wrap{
-
-
-  display:grid;
-
-
-  grid-template-columns:1fr 308px;
-
-
-  gap:3px;
-
-
-  margin-top:3px;
-
-
-  background:var(--border);
-
-
-}
-
-
-.content-wrap>*{background:var(--surf)}
-
-
-
-
-
-/* Article list */
-
-
-.art-list{}
-
-
-.sub-filter{
-
-
-  display:flex;gap:0;border-bottom:1px solid var(--border);
-
-
-  background:rgba(21,10,44,.6);
-
-
-}
-
-
-.sf-btn{
-
-
-  background:none;border:none;cursor:pointer;
-
-
-  font-family:var(--fd);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-
-
-  color:var(--muted);padding:11px 16px;border-bottom:2px solid transparent;
-
-
-  transition:color .2s,border-color .2s;white-space:nowrap;
-
-
-}
-
-
-.sf-btn.on{color:var(--cyan);border-bottom-color:var(--cyan)}
-
-
-.sf-btn:hover:not(.on){color:rgba(240,238,255,.7)}
-
-
-
-
-
-/* Featured grid (matches homepage) */
-
-
-.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:290px 230px;gap:3px;margin-top:3px}
-
-
-.fc{grid-row:1/3;position:relative;overflow:hidden;cursor:pointer;background:var(--card)}
-
-
-.fc-img{position:absolute;inset:0;background:url('/assets/img/7bc69a799e-library_hero.jpg') center/cover no-repeat;animation:heroPulse 10s ease-in-out infinite alternate-reverse;opacity:.9;transition:opacity .5s,transform .7s var(--ease)}
-
-
-.fc:hover .fc-img{opacity:.75;transform:scale(1.04)}
-
-
-.fc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,2,32,.98) 0%,rgba(11,2,32,.6) 38%,rgba(11,2,32,.12) 70%,transparent 100%),linear-gradient(to right,transparent 50%,rgba(11,2,32,.4) 100%)}
-
-
-.fc::after{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;pointer-events:none}
-
-
-.fc:hover::after{border-color:rgba(0,229,255,.3)}
-
-
-.fc-body{position:absolute;bottom:0;left:0;right:0;padding:32px}
-
-
-.fc-title{font-family:var(--fd);font-weight:700;font-size:clamp(17px,2vw,27px);line-height:1.1;color:var(--white);margin:10px 0 10px;text-shadow:0 2px 20px rgba(0,0,0,.6)}
-
-
-.fc-sub{font-size:16px;color:var(--dim);margin-bottom:12px;max-width:420px}
-
-
-.fc-meta{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-
-
-.fc-meta span{color:var(--cyan)}
-
-
-.sc{position:relative;overflow:hidden;cursor:pointer;background:var(--card);display:flex;flex-direction:column;transition:background .2s}
-
-
-.sc:hover{background:#1e1244}
-
-
-.sc-img{flex:1;overflow:hidden;min-height:0;background:var(--surf2)}
-
-
-.sc-img img{width:100%;height:100%;object-fit:cover;opacity:.82;transition:transform .55s var(--ease),opacity .3s}
-
-
-.sc:hover .sc-img img{transform:scale(1.07);opacity:.95}
-
-
-.sc::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;z-index:3;pointer-events:none}
-
-
-.sc:hover::before{border-color:rgba(0,229,255,.22)}
-
-
-.sc-body{padding:14px 16px}
-
-
-.sc-title{font-family:var(--fd);font-weight:600;font-size:17px;line-height:1.25;color:rgba(240,238,255,.9);margin:6px 0 5px;transition:color .2s}
-
-
-.sc:hover .sc-title{color:var(--cyan)}
-
-
-.sc-meta{font-size:14px;color:var(--muted)}
-
-
-@media(max-width:1100px){.f-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.fc{grid-row:auto;grid-column:1/3;min-height:390px}}
-
-
-@media(max-width:768px){.f-grid{grid-template-columns:1fr;grid-template-rows:auto}.fc{grid-column:auto;min-height:370px}}
-
-
-/* Top 2 cards · magazine style grid */
-
-
-.ac-top2{
-
-
-  display:grid;grid-template-columns:1fr 1fr;gap:3px;
-
-
-  border-bottom:1px solid var(--border);
-
-
-}
-
-
-.ac-mag{
-
-
-  position:relative;overflow:hidden;cursor:pointer;
-
-
-  background:var(--card);min-height:220px;
-
-
-  display:flex;flex-direction:column;justify-content:flex-end;
-
-
-  text-decoration:none;
-
-
-}
-
-
-.ac-mag:hover .acm-img{transform:scale(1.05);opacity:.55}
-
-
-.ac-mag:hover .acm-title{color:var(--cyan)}
-
-
-.acm-img{
-
-
-  position:absolute;inset:0;object-fit:cover;width:100%;height:100%;
-
-
-  opacity:.7;transition:transform .6s var(--ease),opacity .35s;
-
-
-}
-
-
-.acm-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,4,24,.97) 0%,rgba(11,4,24,.35) 55%,transparent 85%)}
-
-
-.ac-mag::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);z-index:3;pointer-events:none;transition:border-color .3s}
-
-
-.ac-mag:hover::before{border-color:rgba(0,229,255,.18)}
-
-
-.acm-body{position:relative;z-index:2;padding:18px 20px}
-
-
-.acm-tags{display:flex;align-items:center;gap:6px;margin-bottom:8px;flex-wrap:wrap}
-
-
-.acm-score{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--amber)}
-
-
-.acm-title{font-family:var(--fd);font-weight:600;font-size:16px;line-height:1.22;color:rgba(240,238,255,.92);margin-bottom:6px;transition:color .2s}
-
-
-.acm-meta{font-size:11px;color:var(--muted)}
-
-
-
-
-
-/* Article card · horizontal with bigger thumb */
-
-
-.ac{
-
-
-  display:grid;grid-template-columns:160px 1fr;gap:0;
-
-
-  border-bottom:1px solid var(--border);
-
-
-  cursor:pointer;transition:background .2s;text-decoration:none;
-
-
-  position:relative;overflow:hidden;min-height:110px;
-
-
-}
-
-
-.ac:hover{background:var(--surf2)}
-
-
-.ac:hover .ac-title{color:var(--cyan)}
-
-
-.ac::after{content:'';position:absolute;right:0;top:0;bottom:0;width:2px;background:var(--cyan);transform:scaleY(0);transform-origin:top;transition:transform .25s var(--ease)}
-
-
-.ac:hover::after{transform:scaleY(1)}
-
-
-.ac-thumb{
-
-
-  position:relative;overflow:hidden;background:var(--surf2);flex-shrink:0;aspect-ratio:16/9;
-
-
-}
-
-
-.ac-thumb img{
-
-
-  width:100%;height:100%;object-fit:cover;opacity:.85;
-
-
-  transition:transform .5s var(--ease),opacity .3s;display:block;
-
-
-}
-
-
-.ac:hover .ac-thumb img{transform:scale(1.06);opacity:.88}
-
-
-.ac-info{padding:16px 20px;display:flex;flex-direction:column;justify-content:space-between}
-
-
-.ac-top{display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap}
-
-
-.ac-title{
-
-
-  font-family:var(--fd);font-weight:600;font-size:15px;line-height:1.28;
-
-
-  color:rgba(240,238,255,.9);margin-bottom:6px;transition:color .2s;
-
-
-}
-
-
-.ac-meta{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:8px}
-
-
-.ac-score{font-family:var(--fd);font-size:15px;font-weight:700;color:var(--amber)}
-
-
-.ac-meta-sep{opacity:.3;font-size:10px}
-
-
-
-
-
-/* Load more */
-
-
-.load-wrap{padding:28px;text-align:center;background:var(--surf)}
-
-
-.load-btn{
-
-
-  background:none;border:1px solid var(--border);
-
-
-  color:var(--muted);font-family:var(--fd);font-size:12px;font-weight:600;
-
-
-  letter-spacing:.12em;text-transform:uppercase;
-
-
-  padding:11px 40px;cursor:pointer;transition:all .2s;
-
-
-}
-
-
-.load-btn:hover{border-color:var(--cyan);color:var(--cyan)}
-
-
-
-
-
-/* ─── SIDEBAR ─── */
-
-
-.sidebar{padding:0}
-
-
-
-
-
-/* Rank mini card */
-
-
-.side-head{
-
-
-  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
-
-
-  color:var(--muted);font-weight:500;
-
-
-  padding:18px 20px 12px;border-bottom:1px solid var(--border);
-
-
-  display:flex;align-items:center;justify-content:space-between;
-
-
-}
-
-
-.side-head-label{display:flex;align-items:center;gap:8px}
-
-
-.side-head-label svg{opacity:.6}
-
-
-.side-badge{font-size:9px;padding:2px 7px;border:1px solid rgba(0,229,255,.25);color:var(--cyan);letter-spacing:.08em}
-
-
-
-
-
-.rk-item{
-
-
-  display:flex;align-items:center;gap:10px;
-
-
-  padding:12px 20px;border-bottom:1px solid var(--border);
-
-
-  cursor:pointer;transition:background .2s;
-
-
-  text-decoration:none;color:inherit;
-
-
-}
-
-
-.rk-item:hover{background:var(--surf2)}
-
-
-.rk-item:hover .rki-title{color:var(--cyan)}
-
-
-.rki-num{
-
-
-  font-family:var(--fd);font-size:18px;font-weight:700;
-
-
-  color:rgba(240,238,255,.08);width:22px;text-align:right;flex-shrink:0;
-
-
-}
-
-
-.rk-item.t1 .rki-num{color:rgba(251,191,36,.6);font-size:20px}
-
-
-.rk-item.t2 .rki-num{color:rgba(192,192,210,.45);font-size:19px}
-
-
-.rk-item.t3 .rki-num{color:rgba(180,120,80,.45)}
-
-
-.rki-thumb{width:58px;height:58px;overflow:hidden;flex-shrink:0;background:var(--surf2)}
-
-
-.rki-thumb img{width:100%;height:100%;object-fit:cover;opacity:.85}
-
-
-.rki-info{flex:1;min-width:0}
-
-
-.rki-title{font-family:var(--fd);font-size:16px;font-weight:600;line-height:1.3;color:rgba(240,238,255,.85);transition:color .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
-
-.rki-sub{font-size:13px;color:var(--muted);margin-top:1px}
-
-
-.rki-score{font-family:var(--fd);font-size:17px;font-weight:700;flex-shrink:0}
-
-
-
-
-
-/* Score bar under each rank */
-
-
-.rki-bar-wrap{height:2px;background:rgba(255,255,255,.06);margin-top:4px}
-
-
-.rki-bar{height:100%;transition:width .6s var(--ease)}
-
-
-
-
-
-/* Trending mini */
-
-
-.trend-item{
-
-
-  display:flex;align-items:flex-start;gap:10px;
-
-
-  padding:12px 20px;border-bottom:1px solid var(--border);
-
-
-  cursor:pointer;transition:background .2s;
-
-
-}
-
-
-.trend-item:hover{background:var(--surf2)}
-
-
-.trend-item:hover .ti-title{color:var(--cyan)}
-
-
-.ti-num{font-family:var(--fd);font-size:22px;font-weight:700;color:rgba(240,238,255,.07);width:24px;flex-shrink:0;line-height:1;margin-top:2px}
-
-
-.ti-title{font-family:var(--fd);font-size:16px;font-weight:600;line-height:1.3;color:rgba(240,238,255,.82);transition:color .2s;margin-bottom:2px}
-
-
-.ti-meta{font-size:10px;color:var(--muted)}
-
-
-
-
-
-/* Promo block */
-
-
-.promo-block{
-
-
-  margin:0;padding:24px 20px;
-
-
-  background:linear-gradient(135deg,rgba(0,229,255,.07) 0%,rgba(124,58,237,.07) 100%);
-
-
-  border-top:1px solid rgba(0,229,255,.12);
-
-
-  text-align:center;
-
-
-}
-
-
-.pb-title{font-family:var(--fd);font-weight:700;font-size:17px;color:var(--white);margin-bottom:5px}
-
-
-.pb-sub{font-size:15px;color:var(--muted);margin-bottom:14px;line-height:1.6}
-
-
-.pb-inp{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--white);font-family:var(--fb);font-size:13px;padding:9px 12px;outline:none;margin-bottom:8px;display:block}
-
-
-.pb-inp:focus{border-color:rgba(0,229,255,.4)}
-
-
-.pb-btn{width:100%;background:var(--cyan);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;padding:10px;cursor:pointer;transition:background .18s}
-
-
-.pb-btn:hover{background:#33eeff}
-
-
-
-
-
-/* ─── REVEAL ─── */
-
-
-.rv{opacity:1;transform:translateY(0);transition:opacity .5s var(--ease),transform .5s var(--ease)}
-
-
-.rv.vis{opacity:1;transform:translateY(0)}
-
-
-
-
-
-/* ─── FOOTER ─── */
-
-
-footer{position:relative;z-index:1;border-top:1px solid var(--border);background:rgba(6,2,14,.98)}
-
-
-.ft-in{max-width:1440px;margin:0 auto;padding:40px 24px 24px;display:grid;grid-template-columns:190px 1fr 1fr 1fr;gap:40px}
-
-
-.ft-logo-wrap{display:flex;align-items:center;gap:9px;margin-bottom:12px;text-decoration:none}
-
-
-.ft-desc{font-size:12px;color:rgba(240,238,255,.28);line-height:1.7;max-width:170px}
-
-
-.ft-h{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;font-weight:500}
-
-
-.ft-links{display:flex;flex-direction:column;gap:8px;list-style:none}
-
-
-.ft-links a{font-size:13px;color:rgba(240,238,255,.42);text-decoration:none;transition:color .2s}
-
-
-.ft-links a:hover{color:var(--cyan)}
-
-
-.ft-bot{max-width:1440px;margin:0 auto;padding:14px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
-
-
-.ft-copy{font-size:11px;color:rgba(240,238,255,.2);letter-spacing:.04em}
-
-
-.ft-soc{display:flex;gap:6px}
-
-
-.soc{width:28px;height:28px;border:1px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:border-color .2s,color .2s}
-
-
-.soc:hover{border-color:var(--cyan);color:var(--cyan)}
-
-
-
-
-
-/* ─── RESPONSIVE ─── */
-
-
-@media(max-width:1100px){
-
-
-  .content-wrap{grid-template-columns:1fr}
-
-
-  .sidebar{border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:0}
-
-
-  .ft-in{grid-template-columns:1fr 1fr}
-
-
-}
-
-
-@media(max-width:900px){
-
-
-  .fg{height:auto;flex-direction:column}
-
-
-  .fg-big{min-height:320px;flex:none}
-
-
-  .fg-stack{flex-direction:row;flex:none}
-
-
-  .fg-sm{min-height:220px;flex:1}
-
-
-}
-
-
-@media(max-width:768px){
-
-  html,body{max-width:100%;overflow-x:hidden}
-
-  .filter-bar{max-width:100vw;overflow:hidden}
-
-  .filter-in{width:100%;max-width:100vw;min-width:0;overflow-x:auto;overscroll-behavior-x:contain}
-
-
-  .nav-links{display:none}
-
-
-  .wrap,.nav-in,.ft-in,.ft-bot{padding-left:16px;padding-right:16px}
-
-
-  .fg{flex-direction:column;height:auto}
-
-
-  .fg-big{min-height:280px}
-
-
-  .fg-stack{flex-direction:column;gap:3px}
-
-
-  .fg-sm{min-height:180px}
-
-
-  .ac{grid-template-columns:1fr 90px}
-
-
-  .sidebar{grid-template-columns:1fr}
-
-
-  .ft-in{grid-template-columns:1fr;gap:24px}
-
-
-  .ft-bot{flex-direction:column}
-
-
-  .ch-stats{flex-wrap:wrap;gap:20px}
-
-
-}
-
-
-@media(max-width:480px){
-
-
-  .ac{grid-template-columns:1fr 80px}
-
-
-  .filter-in{padding:0 16px}
-
-
-  .ch-title{font-size:40px}
-
-
-}
-
-
-
-
-
-.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
-
-
-
-
-/* === MOBILE ACCESSIBILITY FIXES === */
-
-
-.ham{min-width:44px;min-height:44px;display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px;align-items:center;justify-content:center}
-
-
-input,select,textarea{font-size:16px!important}
-
-
-*{-webkit-tap-highlight-color:transparent}
-
-
-@media(max-width:768px){
-
-
-  .ham{display:flex}
-
-
-  a,button{min-height:44px;display:inline-flex;align-items:center}
-
-
-  .nav-links a{min-height:60px}
-
-
-}
-
-
+.ftab{background:none!important;border:none!important;outline:none!important;cursor:pointer;font-family:var(--fd);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:14px 20px;white-space:nowrap;border-bottom:2px solid transparent!important;transition:all .2s;flex-shrink:0;box-shadow:none!important}
+.ftab:hover:not(.on){color:rgba(240,238,255,.85)}
+.ftab.on{color:var(--cyan)!important;border-bottom:2px solid var(--cyan)!important}
+.filter-sep{width:1px;height:24px;background:var(--border);flex-shrink:0;margin:0 6px}
+.cat-hidden{display:none!important}
+.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:290px 230px;gap:3px;margin-bottom:40px}
+.fc{grid-row:1/3;grid-column:1/2;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;overflow:hidden;text-decoration:none;border-radius:2px;min-height:523px}
+.fc-img{position:absolute;inset:0;background-size:cover;background-position:center center;transition:transform .4s ease;z-index:0}
+.fc:hover .fc-img{transform:scale(1.03)}
+.fc-ov{position:absolute;inset:0;background:linear-gradient(to top,#060112 0%,rgba(6,1,18,.75) 50%,rgba(6,1,18,.1) 100%);z-index:1}
+.fc-body{position:relative;z-index:2}
+.sc{position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;overflow:hidden;text-decoration:none;border-radius:2px;background:var(--surf)}
+.sc-img{position:absolute;inset:0;z-index:0;overflow:hidden}
+.sc-img img{width:100%;height:100%;object-fit:cover;object-position:center center;transition:transform .3s ease}
+.sc:hover .sc-img img{transform:scale(1.05)}
+.sc::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,#060112 0%,rgba(6,1,18,.8) 60%,rgba(6,1,18,.2) 100%);z-index:1}
+.sc-body{position:relative;z-index:2}
+.content-layout{display:grid;grid-template-columns:1fr 340px;gap:32px;align-items:start}
+@media(max-width:1100px){.f-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.fc{grid-row:auto;grid-column:1/3}.content-layout{grid-template-columns:1fr}}
+@media(max-width:768px){.f-grid{grid-template-columns:1fr;grid-template-rows:auto}.fc{grid-column:auto}}
+@keyframes heroPulseFade{0%{opacity:.4;transform:scale(.99)}100%{opacity:1;transform:scale(1)}}
 </style>
 
 
@@ -1954,1238 +566,374 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 <!-- ══ FILTER BAR ══ -->
-
-
 <div class="filter-bar">
-
-
   <div class="filter-in">
-
-
-    <button class="ftab on" onclick="setFilter(this)">All</button>
-
-
-    <button class="ftab" onclick="setFilter(this)">PC/Console</button>
-
-
-    <button class="ftab" onclick="setFilter(this)">Mobile</button>
-
-
+    <button class="ftab on" onclick="setGamingFilter(this,'all')">All</button>
+    <button class="ftab" onclick="setGamingFilter(this,'pc')">PC / Console</button>
+    <button class="ftab" onclick="setGamingFilter(this,'mobile')">Mobile</button>
     <div class="filter-sep"></div>
-
-
-    <button class="ftab" onclick="setFilter(this)">Reviews</button>
-
-
-    <button class="ftab" onclick="setFilter(this)">Previews</button>
-
-
-    <button class="ftab" onclick="setFilter(this)">Guides</button>
-
-
+    <button class="ftab" onclick="setGamingFilter(this,'review')">Reviews</button>
+    <button class="ftab" onclick="setGamingFilter(this,'preview')">Previews</button>
+    <button class="ftab" onclick="setGamingFilter(this,'guide')">Guides</button>
     <div class="filter-sep"></div>
-
-
-    <button class="ftab" onclick="setFilter(this)">Esports</button>
-
-
-    <button class="ftab" onclick="setFilter(this)">Tier Lists</button>
-
-
+    <button class="ftab" onclick="setGamingFilter(this,'esports')">Esports</button>
+    <button class="ftab" onclick="setGamingFilter(this,'tierlist')">Tier Lists</button>
   </div>
-
-
 </div>
 
+<div class="wrap rv" style="padding-top:0;padding-bottom:0">
+  <div class="sec-h"><span class="sec-t" id="gamingSecTitle">Gaming <em>Featured</em></span><div class="sec-l"></div><a href="/news" class="sec-more">View all</a></div>
 
-
-
-
-<!-- ══ FEATURED ══ -->
-
-
-<div class="wrap rv">
-
-
-  <div class="sec-h">
-
-
-    <span class="sec-t">Outstanding <em>this week</em></span>
-
-
-    <div class="sec-l"></div>
-
-
-    <a href="/en/news" class="sec-more">See more</a>
-
-
+  <!-- 5-Card Featured Grid -->
+  <div id="gamingFilterBanner" class="filter-banner" style="display:none;margin-bottom:18px;background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.3);padding:10px 18px;align-items:center;justify-content:space-between;border-radius:4px">
+    <span style="font-size:13px;color:var(--white)">Viewing category: <strong id="gamingFilterName" style="color:var(--cyan)">All</strong> (<span id="gamingFilterCount" style="color:var(--cyan)">0</span> articles)</span>
+    <button type="button" onclick="setGamingFilterByCat('all')" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:4px 12px;font-size:11px;font-weight:600;text-transform:uppercase;cursor:pointer;letter-spacing:.05em;transition:all .2s">✕ Clear filter</button>
   </div>
 
-
-  
-  <div id="activeFilterBanner" class="filter-banner" style="display:none;margin-bottom:18px;background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.2);padding:10px 18px;display:flex;align-items:center;justify-content:space-between;border-radius:4px">
-    <span style="font-size:13px;color:var(--white)">Đang xem chuyên mục: <strong id="activeFilterName" style="color:var(--cyan)">Tất cả</strong> (<span id="activeFilterCount" style="color:var(--cyan)">0</span> bài viết)</span>
-    <button type="button" onclick="setFilterByCat('all')" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:4px 12px;font-size:11px;font-weight:600;text-transform:uppercase;cursor:pointer;letter-spacing:.05em;transition:all .2s">✕ Xóa lọc</button>
-  </div>
   <div class="f-grid">
     <a class="fc" id="gamingHeroCard" href="/en/monster-hunter-wilds-ban-cap-nhat-mua-thu-2026">
-      <div class="fc-img" id="gamingHeroImg" style="background-image:url(/assets/img/news-monster-hunter-wilds-autumn-update.jpg)"></div><div class="fc-ov"></div>
+      <div class="fc-img" id="gamingHeroImg" style="background-image:url(/assets/img/news-monster-hunter-wilds-autumn-update.jpg);background-position:center center"></div><div class="fc-ov"></div>
       <div class="fc-body">
         <span class="tag tc" id="gamingHeroTag">Gaming · Breaking</span>
-        <h2 class="fc-title" id="gamingHeroTitle">Monster Hunter Wilds: Autumn 2026 Title Update & New Elder Dragon</h2>
-        <p class="fc-sub" id="gamingHeroSub">Capcom reveals Thunderstorm Marshland biome and Apex Fulgaris Zinogre with 60 FPS optimizations.</p>
+        <h2 class="fc-title" id="gamingHeroTitle">Monster Hunter Wilds: Capcom Announces Autumn 2026 Update with New Elder Dragon</h2>
+        <p class="fc-sub" id="gamingHeroSub">Capcom reveals the major Title Update 1 with lightning-swept Forbidden Lands biome and Fulgaris Zinogre.</p>
         <div class="fc-meta" id="gamingHeroMeta"><span>Gaming</span> · OtaHub Editorial · 24/8/2026</div>
       </div>
     </a>
 
     <a class="sc" id="gamingSideCard0" href="/en/black-myth-wukong-dlc-rebirth-great-sage">
       <div class="sc-img"><img id="gamingSideImg0" src="/assets/img/news-black-myth-wukong-dlc-rebirth.jpg" alt="Black Myth Wukong DLC" width="1200" height="675" fetchpriority="high" decoding="async"></div>
-      <div class="sc-body"><span class="tag tc" id="gamingSideTag0" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Breaking</span><div class="sc-title" id="gamingSideTitle0">Black Myth: Wukong DLC "Rebirth of the Great Sage"</div><div class="sc-meta" id="gamingSideMeta0">OtaHub Editorial · 22/8/2026</div></div>
+      <div class="sc-body"><span class="tag tc" id="gamingSideTag0" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Breaking</span><div class="sc-title" id="gamingSideTitle0">Black Myth: Wukong DLC Rebirth of the Great Sage</div><div class="sc-meta" id="gamingSideMeta0">OtaHub Editorial · 22/8/2026</div></div>
     </a>
 
     <a class="sc" id="gamingSideCard1" href="/en/zenless-zone-zero-20-hoshimi-miyabi">
       <div class="sc-img"><img id="gamingSideImg1" src="/assets/img/news-zenless-zone-zero-20-miyabi.jpg" alt="Zenless Zone Zero 2.0 Miyabi" loading="lazy" width="1200" height="675"></div>
-      <div class="sc-body"><span class="tag ts" id="gamingSideTag1" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Mobile · Gacha</span><div class="sc-title" id="gamingSideTitle1">Zenless Zone Zero 2.0: S-Rank Hoshimi Miyabi & Lunar Holiday</div><div class="sc-meta" id="gamingSideMeta1">Anh Kiệt · 24/8/2026</div></div>
+      <div class="sc-body"><span class="tag ts" id="gamingSideTag1" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Mobile · Gacha</span><div class="sc-title" id="gamingSideTitle1">Zenless Zone Zero 2.0: S-Rank Hoshimi Miyabi Arrives</div><div class="sc-meta" id="gamingSideMeta1">Anh Kiệt · 24/8/2026</div></div>
     </a>
 
     <a class="sc" id="gamingSideCard2" href="/en/stellar-blade-2">
       <div class="sc-img"><img id="gamingSideImg2" src="/assets/img/7bc69a799e-library_hero.jpg" alt="Stellar Blade: Blood Rain" loading="lazy" width="1200" height="675"></div>
-      <div class="sc-body"><span class="tag tv" id="gamingSideTag2" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Preview</span><div class="sc-title" id="gamingSideTitle2">Stellar Blade: Blood Rain · New Protagonist Evie & Cyberpunk City</div><div class="sc-meta" id="gamingSideMeta2">Dũng Nguyễn · 6 giờ trước</div></div>
+      <div class="sc-body"><span class="tag tv" id="gamingSideTag2" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Preview</span><div class="sc-title" id="gamingSideTitle2">Stellar Blade 2: Blood Rain Unveils Protagonist Evie</div><div class="sc-meta" id="gamingSideMeta2">Dũng Nguyễn · 6 giờ trước</div></div>
     </a>
 
     <a class="sc" id="gamingSideCard3" href="/en/kingdom-come-deliverance-2">
       <div class="sc-img"><img id="gamingSideImg3" src="/assets/img/50c4f9b171-library_hero.jpg" alt="Kingdom Come Deliverance 2" loading="lazy" width="1200" height="675"></div>
-      <div class="sc-body"><span class="tag ta" id="gamingSideTag3" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Review · 9.4</span><div class="sc-title" id="gamingSideTitle3">Kingdom Come Deliverance 2 Review: Historic RPG Masterpiece</div><div class="sc-meta" id="gamingSideMeta3">OtaHub Editorial · 16 giờ trước</div></div>
+      <div class="sc-body"><span class="tag ta" id="gamingSideTag3" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Review · 9.4</span><div class="sc-title" id="gamingSideTitle3">Kingdom Come: Deliverance 2 Review: RPG Masterpiece</div><div class="sc-meta" id="gamingSideMeta3">OtaHub Editorial · 16 giờ trước</div></div>
     </a>
   </div>
-</div>
 
-<!-- ══ ARTICLES + SIDEBAR ══ -->
+  <!-- Lower 2-Column Layout -->
+  <div class="content-layout">
+    <div>
+      <div class="sec-h" style="padding:0 0 16px;border-bottom:1px solid var(--border);margin-bottom:20px"><span class="sec-t">Latest <em>Gaming News</em></span></div>
 
+      <div class="ac-list">
+        <!-- ADMIN:ARTICLES_START -->
+        <a href="/en/honkai-star-rail-ban-cap-nhat-amphoreus-banner-cyrene" class="ac" data-cat="mobile preview">
+          <div class="ac-thumb"><img src="/assets/img/news-honkai-star-rail-31-amphoreus.jpg" alt="Honkai Star Rail 3.1 Amphoreus Cyrene" loading="lazy" width="600" height="338"></div>
+          <div class="ac-info">
+            <div><div class="ac-tags"><span class="tag ts">Mobile</span><span class="tag tc">Gacha 3.1</span></div>
+            <div class="ac-title">Honkai: Star Rail Announces Version 3.1: Amphoreus Expansion & 5-Star Cyrene</div></div>
+            <div class="ac-meta"><span>Anh Kiệt</span><span class="sep">·</span><span>Just now</span><span class="sep">·</span><span>8 min</span></div>
+          </div>
+        </a>
 
-<div class="wrap rv" style="padding-top:0;padding-bottom:0">
+        <a href="/en/honor-of-kings-global-mua-giai-moi-tuong-lan-ling-wang" class="ac" data-cat="mobile esports">
+          <div class="ac-thumb"><img src="/assets/img/news-honor-of-kings-lanling-wang.jpg" alt="Honor of Kings Global Lanling Wang" loading="lazy" width="600" height="338"></div>
+          <div class="ac-info">
+            <div><div class="ac-tags"><span class="tag ts">Mobile</span><span class="tag tg">MOBA</span></div>
+            <div class="ac-title">Honor of Kings Global New Season: Stealth Assassin Lanling Wang & Jungle Overhaul</div></div>
+            <div class="ac-meta"><span>Gia Linh</span><span class="sep">·</span><span>1 hour ago</span><span class="sep">·</span><span>8 min</span></div>
+          </div>
+        </a>
 
+        <a href="/en/genshin-impact-70-top-5-doi-hinh-la-hoan-snezhnaya" class="ac" data-cat="mobile guide">
+          <div class="ac-thumb"><img src="/assets/img/news-genshin-impact-70-abyss-teams.jpg" alt="Genshin Impact 7.0 Top 5 Spiral Abyss Mobile Teams" loading="lazy" width="600" height="338"></div>
+          <div class="ac-info">
+            <div><div class="ac-tags"><span class="tag tg">Guide</span><span class="tag ts">Mobile</span></div>
+            <div class="ac-title">Genshin Impact 7.0: Top 5 Spiral Abyss Teams for Snezhnaya Season on Mobile</div></div>
+            <div class="ac-meta"><span>Bích Ngọc</span><span class="sep">·</span><span>2 hours ago</span><span class="sep">·</span><span>9 min</span></div>
+          </div>
+        </a>
 
-  <div class="sec-h">
-
-
-    <span class="sec-t">Article <em>latest</em></span>
-
-
-    <div class="sec-l"></div>
-
-
-  </div>
-
-
-  <div class="content-wrap">
-
-
-
-
-
-    <!-- Article list -->
-
-
-    <div class="art-list">
-
-
-      <div class="sub-filter">
-
-
-        <button class="sf-btn on" onclick="setSub(this)">All</button>
-
-
-        <button class="sf-btn" onclick="setSub(this)">PC</button>
-
-
-        <button class="sf-btn" onclick="setSub(this)">Mobile</button>
-
-
-        <button class="sf-btn" onclick="setSub(this)">Review</button>
-
-
-        <button class="sf-btn" onclick="setSub(this)">Guide</button>
-
-
-        <button class="sf-btn" onclick="setSub(this)">Esports</button>
-
-
+        <a href="/en/solo-leveling-arise-ban-cap-nhat-monarch-transcendence" class="ac" data-cat="mobile preview">
+          <div class="ac-thumb"><img src="/assets/img/news-solo-leveling-arise-monarch-update.jpg" alt="Solo Leveling Arise 50M Downloads" loading="lazy" width="600" height="338"></div>
+          <div class="ac-info">
+            <div><div class="ac-tags"><span class="tag ts">Mobile</span><span class="tag tv">Action RPG</span></div>
+            <div class="ac-title">Solo Leveling: Arise Hits 50M Downloads: Monarch Transcendence Launched</div></div>
+            <div class="ac-meta"><span>Minh Tuấn</span><span class="sep">·</span><span>3 hours ago</span><span class="sep">·</span><span>8 min</span></div>
+          </div>
+        </a>
+        <!-- ADMIN:ARTICLES_END -->
       </div>
-
-
-
-
-
-      <!-- Horizontal list cards with big thumb -->
-
-
-      <!-- ADMIN:ARTICLES_START -->
-      <a href="/en/honkai-star-rail-ban-cap-nhat-amphoreus-banner-cyrene" class="ac" data-cat="mobile preview">
-        <div class="ac-thumb"><img src="/assets/img/news-honkai-star-rail-31-amphoreus.jpg" alt="Honkai Star Rail 3.1 Amphoreus Cyrene" loading="lazy" width="600" height="338"></div>
-        <div class="ac-info">
-          <div><div class="ac-top"><span class="tag ts">Mobile</span><span class="tag tc">Gacha 3.1</span></div>
-          <div class="ac-title">Honkai: Star Rail Announces Version 3.1: Amphoreus Expansion & 5-Star Cyrene</div></div>
-          <div class="ac-meta"><span>Anh Kiệt</span><span class="ac-meta-sep">·</span><span>Just now</span><span class="ac-meta-sep">·</span><span>8 min</span></div>
-        </div>
-      </a>
-
-      <a href="/en/honor-of-kings-global-mua-giai-moi-tuong-lan-ling-wang" class="ac" data-cat="mobile esports">
-        <div class="ac-thumb"><img src="/assets/img/news-honor-of-kings-lanling-wang.jpg" alt="Honor of Kings Global Lanling Wang" loading="lazy" width="600" height="338"></div>
-        <div class="ac-info">
-          <div><div class="ac-top"><span class="tag ts">Mobile</span><span class="tag tg">MOBA</span></div>
-          <div class="ac-title">Honor of Kings Global New Season: Stealth Assassin Lanling Wang & Jungle Overhaul</div></div>
-          <div class="ac-meta"><span>Gia Linh</span><span class="ac-meta-sep">·</span><span>1 hour ago</span><span class="ac-meta-sep">·</span><span>8 min</span></div>
-        </div>
-      </a>
-
-      <a href="/en/genshin-impact-70-top-5-doi-hinh-la-hoan-snezhnaya" class="ac" data-cat="mobile guide">
-        <div class="ac-thumb"><img src="/assets/img/news-genshin-impact-70-abyss-teams.jpg" alt="Genshin Impact 7.0 Top 5 Spiral Abyss Mobile Teams" loading="lazy" width="600" height="338"></div>
-        <div class="ac-info">
-          <div><div class="ac-top"><span class="tag tg">Guide</span><span class="tag ts">Mobile</span></div>
-          <div class="ac-title">Genshin Impact 7.0: Top 5 Spiral Abyss Teams for Snezhnaya Season on Mobile</div></div>
-          <div class="ac-meta"><span>Bích Ngọc</span><span class="ac-meta-sep">·</span><span>2 hours ago</span><span class="ac-meta-sep">·</span><span>9 min</span></div>
-        </div>
-      </a>
-
-      <a href="/en/solo-leveling-arise-ban-cap-nhat-monarch-transcendence" class="ac" data-cat="mobile preview">
-        <div class="ac-thumb"><img src="/assets/img/news-solo-leveling-arise-monarch-update.jpg" alt="Solo Leveling Arise 50M Downloads" loading="lazy" width="600" height="338"></div>
-        <div class="ac-info">
-          <div><div class="ac-top"><span class="tag ts">Mobile</span><span class="tag tv">Action RPG</span></div>
-          <div class="ac-title">Solo Leveling: Arise Hits 50M Downloads: Monarch Transcendence Launched</div></div>
-          <div class="ac-meta"><span>Minh Tuấn</span><span class="ac-meta-sep">·</span><span>3 hours ago</span><span class="ac-meta-sep">·</span><span>8 min</span></div>
-        </div>
-      </a>
-      <a href="/en/wuthering-waves-cam-nang-phi-kiem-ren-realm" class="ac" data-cat="mobile guide">
-        <div class="ac-thumb"><img src="/assets/img/news-wuthering-waves-guide-ren-realm.jpg" alt="Wuthering Waves 3.6 Cẩm Nang Phi Kiếm Ren Realm" loading="lazy" width="600" height="338"></div>
-        <div class="ac-info">
-          <div><div class="ac-top"><span class="tag tg">Guide</span><span class="tag ts">Mobile</span></div>
-          <div class="ac-title">Wuthering Waves 3.6: Ren Realm Exploration Guide & Sword Flight Traversal</div></div>
-          <div class="ac-meta"><span>Editorial Team</span><span class="ac-meta-sep">·</span><span>Just now</span><span class="ac-meta-sep">·</span><span>9 min</span></div>
-        </div>
-      </a>
-
-      <a href="/en/black-myth-wukong-bi-quyet-danh-trum-an" class="ac" data-cat="pc guide">
-        <div class="ac-thumb"><img src="/assets/img/news-black-myth-wukong-boss-an-guide.jpg" alt="Black Myth Wukong Bí Quyết Đánh Boss Ẩn" loading="lazy" width="600" height="338"></div>
-        <div class="ac-info">
-          <div><div class="ac-top"><span class="tag tg">Guide</span><span class="tag tc">PC / Console</span></div>
-          <div class="ac-title">Black Myth: Wukong: Master Guide to 5 Hardest Secret Bosses & Erlang Shen</div></div>
-          <div class="ac-meta"><span>Anh Kiệt</span><span class="ac-meta-sep">·</span><span>1 hour ago</span><span class="ac-meta-sep">·</span><span>9 min</span></div>
-        </div>
-      </a>
-
-      <a href="/en/monster-hunter-wilds-huong-dan-focus-mode-seikret" class="ac" data-cat="pc guide">
-        <div class="ac-thumb"><img src="/assets/img/news-monster-hunter-wilds-focus-mode-guide.jpg" alt="Monster Hunter Wilds Cẩm Nang Focus Mode" loading="lazy" width="600" height="338"></div>
-        <div class="ac-info">
-          <div><div class="ac-top"><span class="tag tg">Guide</span><span class="tag tc">PC / Console</span></div>
-          <div class="ac-title">Monster Hunter Wilds: Focus Mode Mastery Guide & 14-Weapon Combos on Seikret</div></div>
-          <div class="ac-meta"><span>Minh Tuấn</span><span class="ac-meta-sep">·</span><span>2 hours ago</span><span class="ac-meta-sep">·</span><span>8 min</span></div>
-        </div>
-      </a>
-      <a href="/en/monster-hunter-wilds-ban-cap-nhat-mua-thu-2026" class="ac" data-cat="pc preview">
-        <div class="ac-thumb"><img src="/assets/img/news-monster-hunter-wilds-autumn-update.jpg" alt="Monster Hunter Wilds: Capcom Công Bố Bản Cập Nhật Mùa Thu 2026" loading="lazy" width="600" height="338"></div>
-        <div class="ac-info">
-          <div><div class="ac-top"><span class="tag tc">PC / Console</span><span class="tag tag-live">Breaking</span></div>
-          <div class="ac-title">Monster Hunter Wilds: Capcom Announces Autumn 2026 Title Update & New Elder Dragon</div></div>
-          <div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>Just now</span><span class="ac-meta-sep">·</span><span>8 min</span></div>
-        </div>
-      </a>
-
-      <a href="/en/zenless-zone-zero-20-hoshimi-miyabi" class="ac" data-cat="mobile preview">
-        <div class="ac-thumb"><img src="/assets/img/news-zenless-zone-zero-20-miyabi.jpg" alt="Zenless Zone Zero 2.0 Hoshimi Miyabi" loading="lazy" width="600" height="338"></div>
-        <div class="ac-info">
-          <div><div class="ac-top"><span class="tag ts">Mobile</span><span class="tag tc">Gacha</span></div>
-          <div class="ac-title">Zenless Zone Zero 2.0 "Lunar Holiday": S-Rank Hoshimi Miyabi & Orbital Hollow Station</div></div>
-          <div class="ac-meta"><span>Anh Kiệt</span><span class="ac-meta-sep">·</span><span>1 hour ago</span><span class="ac-meta-sep">·</span><span>7 min</span></div>
-        </div>
-      </a>
-      <a href="/en/avengers-doomsday-homework-watchlist" class="ac" data-cat="pc">
-
-
-        <div class="ac-thumb"><img src="/assets/img/news-avengers-doomsday-homework-watchlist.jpg" alt="Marvel Confirms Your Avengers: Doomsday Homework List: 15 Movies and Shows" loading="lazy" width="600" height="338"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-top"><span class="tag tc">Breaking</span></div>
-
-
-          <div class="ac-title">Marvel Confirms Your Avengers: Doomsday Homework List: 15 Movies and Shows</div></div>
-
-
-          <div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>1 hour ago</span><span class="ac-meta-sep">·</span><span>6 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-
-
-      <a href="/en/genshin-54-citlali" class="ac" data-cat="guide mobile">
-
-
-        <div class="ac-thumb"><img src="/assets/img/f89df6064f-142648l.jpg" alt="Genshin Impact 7.0 · best tier list and meta team after Snezhnaya: Odette, Sandrone, Sucrose SS-tier" loading="lazy" width="600" height="338"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-top"><span class="tag tg">Guide</span></div>
-
-
-          <div class="ac-title">Genshin Impact 7.0 · best tier list and meta team after Snezhnaya: Odette, Sandrone, Sucrose SS-tier</div></div>
-
-
-          <div class="ac-meta"><span>Bich Ngoc</span><span class="ac-meta-sep">·</span><span>3 hours ago</span><span class="ac-meta-sep">·</span><span>6 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-
-
-
-      <a href="/en/wuthering-waves-24" class="ac" data-cat="mobile">
-
-
-        <div class="ac-thumb"><img src="/assets/img/c53329917b-wuthering-waves-hero.jpg" alt="Wuthering Waves 3.6 · Ren Realm, Sword Flight, and two new characters Qingxiao and Jingran" loading="lazy" width="460" height="215"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-top"><span class="tag ts">Mobile</span></div>
-
-
-          <div class="ac-title">Wuthering Waves 3.6 · Ren Realm, Sword Flight, and two new characters Qingxiao and Jingran</div></div>
-
-
-          <div class="ac-meta"><span>Mr. Kiet</span><span class="ac-meta-sep">·</span><span>5 hours ago</span><span class="ac-meta-sep">·</span><span>7 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-
-
-
-      <a href="/en/stellar-blade-2" class="ac" data-cat="pc preview">
-
-
-        <div class="ac-thumb"><img src="/assets/img/8a90eed2d5-header.jpg" alt="Stellar Blade: Blood Rain · everything revealed at Summer Game Fest 2026: new protagonist Evie and cyberpunk setting" loading="lazy" width="460" height="215"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-top"><span class="tag tv">Preview</span></div>
-
-
-          <div class="ac-title">Stellar Blade: Blood Rain · everything revealed at Summer Game Fest 2026: new protagonist Evie and cyberpunk setting</div></div>
-
-
-          <div class="ac-meta"><span>Dung Nguyen</span><span class="ac-meta-sep">·</span><span>6 hours ago</span><span class="ac-meta-sep">·</span><span>5 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-
-
-
-      <a href="/en/blue-protocol-review" class="ac" data-cat="review pc">
-
-
-        <div class="ac-thumb"><img src="/assets/img/3578d308d7-library_hero.jpg" alt="Blue Protocol: Resonance · review after 50 hours: Asian anime MMO worth investing in in 2026" loading="lazy" width="1920" height="620"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-top"><span class="tag ta">Review</span><span class="ac-score">8.8</span></div>
-
-
-          <div class="ac-title">Blue Protocol: Resonance · review after 50 hours: Asian anime MMO worth investing in in 2026</div></div>
-
-
-          <div class="ac-meta"><span>Quoc Bao</span><span class="ac-meta-sep">·</span><span>9 hours ago</span><span class="ac-meta-sep">·</span><span>10 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-
-
-
-      <a href="/en/black-myth-wukong-huong-dan" class="ac" data-cat="guide pc">
-
-
-        <div class="ac-thumb"><img src="/assets/img/7403bc0e49-header.jpg" alt="Black Myth: Wukong patch 1.6 fixes all AMD GPU ray tracing errors, improving average FPS by 18%" loading="lazy" width="460" height="215"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-top"><span class="tag tc">PC/Console</span></div>
-
-
-          <div class="ac-title">Black Myth: Wukong patch 1.6 fixes all AMD GPU ray tracing errors, improving average FPS by 18%</div></div>
-
-
-          <div class="ac-meta"><span>Cong Minh</span><span class="ac-meta-sep">·</span><span>1 hour ago</span><span class="ac-meta-sep">·</span><span>4 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-
-
-
-      <a href="/en/vct-pacific-2026" class="ac" data-cat="esports pc">
-
-
-        <div class="ac-thumb"><img src="/assets/img/4c17ff1a96-Valorant_Champions_Los_Angeles_2023.jpg" alt="VCT Pacific 2026 Playoffs · Paper Rex reaches the final, facing T1 in a historic grand final match" loading="lazy" width="1920" height="620"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-top"><span class="tag" style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.3);color:var(--lav)">Esports</span></div>
-
-
-          <div class="ac-title">VCT Pacific 2026 Playoffs · Paper Rex reaches the final, facing T1 in a historic grand final match</div></div>
-
-
-          <div class="ac-meta"><span>Hoang Long</span><span class="ac-meta-sep">·</span><span>11 hours ago</span><span class="ac-meta-sep">·</span><span>4 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-
-
-
-      <a href="/en/game-detail?t=Honor%20of%20Kings%20Global" class="ac" data-cat="mobile tierlist">
-
-
-        <div class="ac-thumb"><img src="/assets/img/6323076b06-158003l.jpg" alt="Honor of Kings Global · tier list of S-tier season 3 characters and optimal reroll guide for new players" loading="lazy" width="394" height="600"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-top"><span class="tag ts">Mobile</span><span class="tag tg">Tier List</span></div>
-
-
-          <div class="ac-title">Honor of Kings Global · tier list of S-tier season 3 characters and optimal reroll guide for new players</div></div>
-
-
-          <div class="ac-meta"><span>Gia Linh</span><span class="ac-meta-sep">·</span><span>14 hours ago</span><span class="ac-meta-sep">·</span><span>9 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-
-
-
-      <a href="/en/sinking-city-2-launch" class="ac" data-cat="pc">
-        <div class="ac-thumb"><img src="/assets/img/news-sinking-city-2-launch.jpg" alt="The Sinking City 2 Launches August 18: Frogwares Goes All-In On Survival Horror" loading="lazy" width="1280" height="720"></div>
-        <div class="ac-info"><div><div class="ac-top"><span class="tag tc">PC</span></div><div class="ac-title">The Sinking City 2 Launches August 18: Frogwares Goes All-In On Survival Horror</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>2 hours ago</span><span class="ac-meta-sep">·</span><span>6 min</span></div></div>
-      </a>
-      <a href="/en/playstation-plus-august-2026" class="ac" data-cat="pc">
-        <div class="ac-thumb"><img src="/assets/img/news-playstation-plus-august-2026.jpg" alt="PlayStation Plus August 2026 Lineup: Dying Light 2 Reloaded, Big Walk And Signalis" loading="lazy" width="1280" height="720"></div>
-        <div class="ac-info"><div><div class="ac-top"><span class="tag tc">PC</span></div><div class="ac-title">PlayStation Plus August 2026 Lineup: Dying Light 2 Reloaded, Big Walk And Signalis</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>16 hours ago</span><span class="ac-meta-sep">·</span><span>6 min</span></div></div>
-      </a>
-      <a href="/en/silent-hill-townfall-gameplay" class="ac" data-cat="pc">
-        <div class="ac-thumb"><img src="/assets/img/news-silent-hill-townfall-gameplay.jpg" alt="Silent Hill: Townfall Details Scotland Setting And CRTV Retro Tech" loading="lazy" width="1280" height="720"></div>
-        <div class="ac-info"><div><div class="ac-top"><span class="tag tc">PC</span></div><div class="ac-title">Silent Hill: Townfall Details Scotland Setting And CRTV Retro Tech</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>18 hours ago</span><span class="ac-meta-sep">·</span><span>6 min</span></div></div>
-      </a>
-      <a href="/en/ball-x-pit-naturalist-update" class="ac" data-cat="pc">
-        <div class="ac-thumb"><img src="/assets/img/news-ball-x-pit-naturalist-update.jpg" alt="Ball x Pit Launches Final Free Update The Naturalist With Two New Characters" loading="lazy" width="1280" height="720"></div>
-        <div class="ac-info"><div><div class="ac-top"><span class="tag tc">PC</span></div><div class="ac-title">Ball x Pit Launches Final Free Update The Naturalist With Two New Characters</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>20 hours ago</span><span class="ac-meta-sep">·</span><span>6 min</span></div></div>
-      </a>
-      <a href="/en/flamecraft-ps5-demo" class="ac" data-cat="pc">
-        <div class="ac-thumb"><img src="/assets/img/news-flamecraft-ps5-demo.jpg" alt="Flamecraft Confirms PS5, Xbox Series, And Switch Versions, Demo Live Since July 28" loading="lazy" width="1280" height="720"></div>
-        <div class="ac-info"><div><div class="ac-top"><span class="tag tc">PC</span></div><div class="ac-title">Flamecraft Confirms PS5, Xbox Series, And Switch Versions, Demo Live Since July 28</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>22 hours ago</span><span class="ac-meta-sep">·</span><span>6 min</span></div></div>
-      </a>
-      <a href="/en/marvel-tokon-phoenix-cyclops-dlc" class="ac" data-cat="pc">
-        <div class="ac-thumb"><img src="/assets/img/news-marvel-tokon-phoenix-cyclops-dlc.jpg" alt="MARVEL Tōkon: Fighting Souls Reveals Phoenix Cyclops As First Year 1 DLC Fighter" loading="lazy" width="1280" height="720"></div>
-        <div class="ac-info"><div><div class="ac-top"><span class="tag tc">PC</span></div><div class="ac-title">MARVEL Tōkon: Fighting Souls Reveals Phoenix Cyclops As First Year 1 DLC Fighter</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>1 day ago</span><span class="ac-meta-sep">·</span><span>6 min</span></div></div>
-      </a>
-      <a href="/en/marvel-wolverine-story-trailer" class="ac" data-cat="pc">
-        <div class="ac-thumb"><img src="/assets/img/news-marvel-wolverine-story-trailer.jpg" alt="Marvel's Wolverine Releases Story Trailer At Comic-Con, Confirms September 15 Launch" loading="lazy" width="1280" height="720"></div>
-        <div class="ac-info"><div><div class="ac-top"><span class="tag tc">PC</span></div><div class="ac-title">Marvel's Wolverine Releases Story Trailer At Comic-Con, Confirms September 15 Launch</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>1 day ago</span><span class="ac-meta-sep">·</span><span>6 min</span></div></div>
-      </a>
-      <a href="/en/halo-campaign-evolved-modernizes" class="ac" data-cat="pc">
-        <div class="ac-thumb"><img src="/assets/img/news-halo-campaign-evolved-modernizes.jpg" alt="Halo: Campaign Evolved Launches July 28, Outlines 13 Changes Modernizing The Campaign" loading="lazy" width="1280" height="720"></div>
-        <div class="ac-info"><div><div class="ac-top"><span class="tag tc">PC</span></div><div class="ac-title">Halo: Campaign Evolved Launches July 28, Outlines 13 Changes Modernizing The Campaign</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>2 days ago</span><span class="ac-meta-sep">·</span><span>6 min</span></div></div>
-      </a>
-      <a href="/en/dragon-ball-sparking-zero-neo-dlc" class="ac" data-cat="pc">
-        <div class="ac-thumb"><img src="/assets/img/news-dragon-ball-sparking-zero-neo-dlc.jpg" alt="Dragon Ball: Sparking Zero Launches Super Limit-Breaking Neo DLC With 33 New Characters" loading="lazy" width="1280" height="720"></div>
-        <div class="ac-info"><div><div class="ac-top"><span class="tag tc">PC</span></div><div class="ac-title">Dragon Ball: Sparking Zero Launches Super Limit-Breaking Neo DLC With 33 New Characters</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>2 days ago</span><span class="ac-meta-sep">·</span><span>6 min</span></div></div>
-      </a>
-      <a href="/en/lous-lagoon-ps5-august-27" class="ac" data-cat="pc">
-        <div class="ac-thumb"><img src="/assets/img/news-lous-lagoon-ps5-august-27.jpg" alt="Lou's Lagoon Confirms PS5 Launch On August 27, Reveals Deluxe Edition" loading="lazy" width="1280" height="720"></div>
-        <div class="ac-info"><div><div class="ac-top"><span class="tag tc">PC</span></div><div class="ac-title">Lou's Lagoon Confirms PS5 Launch On August 27, Reveals Deluxe Edition</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>3 days ago</span><span class="ac-meta-sep">·</span><span>6 min</span></div></div>
-      </a>
-      <a href="/en/order-of-the-sinking-star-ps5" class="ac" data-cat="pc">
-        <div class="ac-thumb"><img src="/assets/img/news-order-of-the-sinking-star-ps5.jpg" alt="Order Of The Sinking Star Confirms PS5 Version, Launches October 8" loading="lazy" width="1280" height="720"></div>
-        <div class="ac-info"><div><div class="ac-top"><span class="tag tc">PC</span></div><div class="ac-title">Order Of The Sinking Star Confirms PS5 Version, Launches October 8</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>3 days ago</span><span class="ac-meta-sep">·</span><span>6 min</span></div></div>
-      </a>
-      <a href="/en/xbox-game-pass-july-wave-2" class="ac" data-cat="pc">
-        <div class="ac-thumb"><img src="/assets/img/news-xbox-game-pass-july-wave-2.jpg" alt="Xbox Game Pass July Wave 2: Halo Campaign Evolved Leads Beast Of Reincarnation Lineup" loading="lazy" width="1280" height="720"></div>
-        <div class="ac-info"><div><div class="ac-top"><span class="tag tc">PC</span></div><div class="ac-title">Xbox Game Pass July Wave 2: Halo Campaign Evolved Leads Beast Of Reincarnation Lineup</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>4 days ago</span><span class="ac-meta-sep">·</span><span>6 min</span></div></div>
-      </a>
-      <a href="/en/splatoon-raiders-launch" class="ac" data-cat="pc">
-        <div class="ac-thumb"><img src="/assets/img/news-splatoon-raiders-launch.jpg" alt="Splatoon Raiders Launches On Nintendo Switch 2" loading="lazy" width="1280" height="720"></div>
-        <div class="ac-info"><div><div class="ac-top"><span class="tag tc">PC</span></div><div class="ac-title">Splatoon Raiders Launches On Nintendo Switch 2</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>4 days ago</span><span class="ac-meta-sep">·</span><span>6 min</span></div></div>
-      </a>
-      <a href="/en/lego-donkey-kong-arcade" class="ac" data-cat="pc">
-        <div class="ac-thumb"><img src="/assets/img/news-lego-donkey-kong-arcade.jpg" alt="LEGO Donkey Kong Arcade (Set 72051) Launches August 1 At $199.99, 1,367 Pieces" loading="lazy" width="1280" height="720"></div>
-        <div class="ac-info"><div><div class="ac-top"><span class="tag tc">PC</span></div><div class="ac-title">LEGO Donkey Kong Arcade (Set 72051) Launches August 1 At $199.99, 1,367 Pieces</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>5 days ago</span><span class="ac-meta-sep">·</span><span>6 min</span></div></div>
-      </a>
-      <a href="/en/rhythm-heaven-groove-nintendo" class="ac" data-cat="pc">
-        <div class="ac-thumb"><img src="/assets/img/news-rhythm-heaven-groove-nintendo.jpg" alt="Rhythm Heaven Groove Is Out Now After 11 Years, Free Demo Still Live" loading="lazy" width="1280" height="720"></div>
-        <div class="ac-info"><div><div class="ac-top"><span class="tag tc">PC</span></div><div class="ac-title">Rhythm Heaven Groove Is Out Now After 11 Years, Free Demo Still Live</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>5 days ago</span><span class="ac-meta-sep">·</span><span>6 min</span></div></div>
-      </a>
-      <a href="/en/oblivion-remastered-switch-2" class="ac" data-cat="pc">
-        <div class="ac-thumb"><img src="/assets/img/news-oblivion-remastered-switch-2.jpg" alt="Oblivion Remastered Launches On Nintendo Switch 2 With DLSS Upscaling" loading="lazy" width="1280" height="720"></div>
-        <div class="ac-info"><div><div class="ac-top"><span class="tag tc">PC</span></div><div class="ac-title">Oblivion Remastered Launches On Nintendo Switch 2 With DLSS Upscaling</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>6 days ago</span><span class="ac-meta-sep">·</span><span>6 min</span></div></div>
-      </a>
-
-      <!-- ADMIN:ARTICLES_END -->
-<div class="load-wrap">
-
-
-        <button class="load-btn">See more articles</button>
-
-
-      </div>
-
-
     </div>
 
-
-
-
-
     <!-- Sidebar -->
-
-
-    <aside class="sidebar">
-
-
-
-
-
-      <!-- PC Ranking -->
-
-
+    <aside>
       <div>
-
-
-        <div class="side-head">
-
-
-          <div class="side-head-label">
-
-
-            <svg width="14" height="14" viewbox="0 0 16 16" fill="none"><rect x="1" y="6" width="14" height="9" stroke="#00e5ff" stroke-width="1.2"></rect><path d="M4 10h2M7 8h2M11 9h2" stroke="#00e5ff" stroke-width="1.2" stroke-linecap="square"></path></svg>
-
-
-            <span style="color:var(--cyan)">PC Games</span>
-
-
-            <span style="color:var(--muted);font-size:9px">rankings</span>
-
-
-          </div>
-
-
-          <span class="side-badge">Week 33</span>
-
-
-        </div>
-
-
-        <a class="rk-item t1" href="/en/game-detail?t=Elden%20Ring%3A%20Shadow%20of%20Erdtree%20II">
-
-
-          <div class="rki-num">1</div>
-
-
-          <div class="rki-thumb"><img src="/assets/img/b80150127d-library_hero.jpg" alt="Elden Ring DLC 2" loading="lazy" width="1920" height="620"></div>
-
-
-          <div class="rki-info">
-
-
-            <div class="rki-title">Elden Ring DLC 2</div>
-
-
-            <div class="rki-sub">Action RPG FromSoftware</div>
-
-
-            <div class="rki-bar-wrap"><div class="rki-bar" style="width:97%;background:var(--amber)"></div></div>
-
-
-          </div>
-
-
-          <div class="rki-score" style="color:var(--amber)">9.7</div>
-
-
-        </a>
-
-
-        <a class="rk-item t2" href="/en/game-detail?t=Monster%20Hunter%20Wilds">
-
-
-          <div class="rki-num">2</div>
-
-
-          <div class="rki-thumb"><img src="/assets/img/ec9554f424-library_hero.jpg" alt="Monster Hunter Wilds" loading="lazy" width="1920" height="620"></div>
-
-
-          <div class="rki-info">
-
-
-            <div class="rki-title">Monster Hunter Wilds</div>
-
-
-            <div class="rki-sub">Action · Capcom</div>
-
-
-            <div class="rki-bar-wrap"><div class="rki-bar" style="width:94%;background:var(--cyan)"></div></div>
-
-
-          </div>
-
-
-          <div class="rki-score" style="color:var(--cyan)">9.4</div>
-
-
-        </a>
-
-
-        <a class="rk-item t3" href="/en/game-detail?t=Black%20Myth%3A%20Wukong">
-
-
-          <div class="rki-num">3</div>
-
-
-          <div class="rki-thumb"><img src="/assets/img/6eef9e5628-library_hero.jpg" alt="Black Myth: Wukong" loading="lazy" width="1920" height="620"></div>
-
-
-          <div class="rki-info">
-
-
-            <div class="rki-title">Black Myth: Wukong</div>
-
-
-            <div class="rki-sub">Action RPG · Game Science</div>
-
-
-            <div class="rki-bar-wrap"><div class="rki-bar" style="width:91%;background:var(--green)"></div></div>
-
-
-          </div>
-
-
-          <div class="rki-score" style="color:var(--green)">9.1</div>
-
-
-        </a>
-
-
-        <a class="rk-item" href="/en/game-detail?t=Blue%20Protocol%3A%20Resonance">
-
-
-          <div class="rki-num">4</div>
-
-
-          <div class="rki-thumb"><img src="/assets/img/3578d308d7-library_hero.jpg" alt="Blue Protocol: Resonance" loading="lazy" width="1920" height="620"></div>
-
-
-          <div class="rki-info">
-
-
-            <div class="rki-title">Blue Protocol: Resonance</div>
-
-
-            <div class="rki-sub">MMORPG · Bandai Namco</div>
-
-
-            <div class="rki-bar-wrap"><div class="rki-bar" style="width:88%;background:var(--lav)"></div></div>
-
-
-          </div>
-
-
-          <div class="rki-score" style="color:var(--lav)">8.8</div>
-
-
-        </a>
-
-
-        <a class="rk-item" href="/en/game-detail?t=Final%20Fantasy%20VII%20Rebirth">
-
-
-          <div class="rki-num">5</div>
-
-
-          <div class="rki-thumb"><img src="/assets/img/9fdcc19d8c-header.jpg" alt="FF VII Rebirth" loading="lazy" width="460" height="215"></div>
-
-
-          <div class="rki-info">
-
-
-            <div class="rki-title">FF VII Rebirth</div>
-
-
-            <div class="rki-sub">JRPG · Square Enix</div>
-
-
-            <div class="rki-bar-wrap"><div class="rki-bar" style="width:86%;background:var(--sakura)"></div></div>
-
-
-          </div>
-
-
-          <div class="rki-score" style="color:var(--sakura)">8.6</div>
-
-
-        </a>
-
-
+        <div class="side-head"><span style="color:var(--cyan)">Top Trending Games</span><span class="side-badge">2026</span></div>
+        <div class="rk t1"><div class="rk-num">1</div><div class="rk-poster"><img src="/assets/img/news-monster-hunter-wilds-autumn-update.jpg" alt="Monster Hunter Wilds" loading="lazy" width="460" height="639"></div><div class="rk-info"><div class="rk-title">Monster Hunter Wilds</div><div class="rk-sub">Capcom · Action RPG</div></div><div class="rk-score">9.8</div></div>
+        <div class="rk t2"><div class="rk-num">2</div><div class="rk-poster"><img src="/assets/img/news-black-myth-wukong-dlc-rebirth.jpg" alt="Black Myth Wukong" loading="lazy" width="460" height="649"></div><div class="rk-info"><div class="rk-title">Black Myth: Wukong</div><div class="rk-sub">Game Science · Action</div></div><div class="rk-score">9.7</div></div>
+        <div class="rk t3"><div class="rk-num">3</div><div class="rk-poster"><img src="/assets/img/news-zenless-zone-zero-20-miyabi.jpg" alt="Zenless Zone Zero" loading="lazy" width="1280" height="720"></div><div class="rk-info"><div class="rk-title">Zenless Zone Zero</div><div class="rk-sub">HoYoverse · Action Gacha</div></div><div class="rk-score">9.5</div></div>
+        <div class="rk"><div class="rk-num">4</div><div class="rk-poster"><img src="/assets/img/7bc69a799e-library_hero.jpg" alt="Stellar Blade" loading="lazy" width="460" height="653"></div><div class="rk-info"><div class="rk-title">Stellar Blade 2</div><div class="rk-sub">Shift Up · PS5</div></div><div class="rk-score">9.4</div></div>
+        <div class="rk"><div class="rk-num">5</div><div class="rk-poster"><img src="/assets/img/50c4f9b171-library_hero.jpg" alt="Kingdom Come 2" loading="lazy" width="480" height="360"></div><div class="rk-info"><div class="rk-title">Kingdom Come 2</div><div class="rk-sub">Warhorse · Open World</div></div><div class="rk-score">9.4</div></div>
       </div>
-
-
-
-
-
-      <!-- Mobile ranking -->
-
-
-      <div>
-
-
-        <div class="side-head">
-
-
-          <div class="side-head-label">
-
-
-            <svg width="12" height="14" viewbox="0 0 14 18" fill="none"><rect x="1" y="1" width="12" height="16" rx="1.5" stroke="#ff3080" stroke-width="1.2"></rect><circle cx="7" cy="14" r="1" fill="#ff3080"></circle></svg>
-
-
-            <span style="color:var(--sakura)">Mobile Games</span>
-
-
-            <span style="color:var(--muted);font-size:9px">rankings</span>
-
-
-          </div>
-
-
-          <span class="side-badge" style="border-color:rgba(255,48,128,.25);color:var(--sakura)">Week 33</span>
-
-
-        </div>
-
-
-        <a class="rk-item t1" href="/en/game-detail?t=Wuthering%20Waves">
-
-
-          <div class="rki-num">1</div>
-
-
-          <div class="rki-thumb"><img src="/assets/img/0c18ade4ba-library_hero.jpg" alt="Wuthering Waves" loading="lazy" width="1920" height="620"></div>
-
-
-          <div class="rki-info">
-
-
-            <div class="rki-title">Wuthering Waves</div>
-
-
-            <div class="rki-sub">Action RPG · Kuro Games</div>
-
-
-            <div class="rki-bar-wrap"><div class="rki-bar" style="width:95%;background:var(--sakura)"></div></div>
-
-
-          </div>
-
-
-          <div class="rki-score" style="color:var(--amber)">9.5</div>
-
-
-        </a>
-
-
-        <a class="rk-item t2" href="/en/game-detail?t=Honkai%3A%20Star%20Rail">
-
-
-          <div class="rki-num">2</div>
-
-
-          <div class="rki-thumb"><img src="/assets/img/681306c50c-143582l.jpg" alt="Honkai: Star Rail" loading="lazy" width="600" height="338"></div>
-
-
-          <div class="rki-info">
-
-
-            <div class="rki-title">Honkai: Star Rail</div>
-
-
-            <div class="rki-sub">Turn-based · HoYoverse</div>
-
-
-            <div class="rki-bar-wrap"><div class="rki-bar" style="width:92%;background:var(--cyan)"></div></div>
-
-
-          </div>
-
-
-          <div class="rki-score" style="color:var(--cyan)">9.2</div>
-
-
-        </a>
-
-
-        <a class="rk-item t3" href="/en/game-detail?t=Genshin%20Impact">
-
-
-          <div class="rki-num">3</div>
-
-
-          <div class="rki-thumb"><img src="/assets/img/f89df6064f-142648l.jpg" alt="Genshin Impact" loading="lazy" width="600" height="338"></div>
-
-
-          <div class="rki-info">
-
-
-            <div class="rki-title">Genshin Impact</div>
-
-
-            <div class="rki-sub">Action RPG · HoYoverse</div>
-
-
-            <div class="rki-bar-wrap"><div class="rki-bar" style="width:89%;background:var(--green)"></div></div>
-
-
-          </div>
-
-
-          <div class="rki-score" style="color:var(--green)">8.9</div>
-
-
-        </a>
-
-
-        <a class="rk-item" href="/en/game-detail?t=Honor%20of%20Kings%20Global">
-
-
-          <div class="rki-num">4</div>
-
-
-          <div class="rki-thumb"><img src="/assets/img/6323076b06-158003l.jpg" alt="Honor of Kings Global" loading="lazy" width="394" height="600"></div>
-
-
-          <div class="rki-info">
-
-
-            <div class="rki-title">Honor of Kings Global</div>
-
-
-            <div class="rki-sub">MOBA · TiMi Studio</div>
-
-
-            <div class="rki-bar-wrap"><div class="rki-bar" style="width:87%;background:var(--lav)"></div></div>
-
-
-          </div>
-
-
-          <div class="rki-score" style="color:var(--lav)">8.7</div>
-
-
-        </a>
-
-
-        <a class="rk-item" href="/en/game-detail?t=Zenless%20Zone%20Zero">
-
-
-          <div class="rki-num">5</div>
-
-
-          <div class="rki-thumb"><img src="/assets/img/513145db34-header.jpg" alt="Zenless Zone Zero" loading="lazy" width="460" height="215"></div>
-
-
-          <div class="rki-info">
-
-
-            <div class="rki-title">Zenless Zone Zero</div>
-
-
-            <div class="rki-sub">Action RPG · HoYoverse</div>
-
-
-            <div class="rki-bar-wrap"><div class="rki-bar" style="width:85%;background:var(--sakura)"></div></div>
-
-
-          </div>
-
-
-          <div class="rki-score" style="color:var(--sakura)">8.5</div>
-
-
-        </a>
-
-
-      </div>
-
-
-
-
-
-      <!-- Trending -->
-
-
-      <div>
-
-
-        <div class="side-head" style="justify-content:flex-start;gap:8px">
-
-
-          <svg width="13" height="13" viewbox="0 0 16 16" fill="none"><path d="M2 12L6 7l3 3 5-6" stroke="#34d399" stroke-width="1.4" stroke-linecap="square"></path></svg>
-
-
-          <span style="color:var(--green)">Hot now</span>
-
-
-        </div>
-
-
-        <div class="trend-item"><div class="ti-num">01</div><div><div class="ti-title">Elden Ring DLC 2 · all known</div><div class="ti-meta">PC · 142k views</div></div></div>
-
-
-        <div class="trend-item"><div class="ti-num">02</div><div><div class="ti-title">Genshin 7.0 · Snezhnaya meta tier list</div><div class="ti-meta">Mobile · 87k views</div></div></div>
-
-
-        <div class="trend-item"><div class="ti-num">03</div><div><div class="ti-title">Monster Hunter Wilds GPU benchmark 2026</div><div class="ti-meta">PC · 74k views</div></div></div>
-
-
-        <div class="trend-item"><div class="ti-num">04</div><div><div class="ti-title">Wuthering Waves tier list ver 2.4</div><div class="ti-meta">Mobile · 63k views</div></div></div>
-
-
-        <div class="trend-item"><div class="ti-num">05</div><div><div class="ti-title">Blue Protocol: Resonance reroll guide</div><div class="ti-meta">PC · 51k views</div></div></div>
-
-
-      </div>
-
-
-
-
-
-      <!-- Newsletter -->
-
-
-      <div class="promo-block">
-
-
-        <div class="pb-title">Gaming Digest</div>
-
-
-        <div class="pb-sub">Gaming news every morning at 8:00 AM.<br>Review, patch notes, esports results.</div>
-
-
-        <input class="pb-inp" type="email" placeholder="email@example.com">
-
-
-        <button class="pb-btn">Sign up for free</button>
-
-
-      </div>
-
-
-
-
-
     </aside>
-
-
   </div>
-
-
 </div>
 
-
-
-
-
-<!-- ══ FOOTER ══ -->
-
-
-<footer><div class="ft-in"><div><a href="/en" class="logo" style="display:inline-flex"><svg viewbox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Asian Gaming, Anime and Manga news hub. Fast, specialized, no bias.</p></div><div><div class="ft-h">Category</div><ul class="ft-links"><li><a href="/en/gaming">Gaming</a></li><li><a href="/en/anime">Anime</a></li><li><a href="/en/manga">Manga</a></li><li><a href="/en/reviews">Reviews</a></li><li><a href="/en/rankings">Rankings</a></li></ul></div><div><div class="ft-h">About OtaHub</div><ul class="ft-links"><li><a href="/en/about">Introduction</a></li><li><a href="/en/about#team">Team</a></li><li><a href="/en/about#contact">Contact</a></li><li><a href="/en/index#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Follow</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
-
-
-
-
-
 <script>
+/* ─── GAMING DYNAMIC 5-CARD SWITCHER ─── */
+var GAMING_FEATURED_DATA = {
+  all: {
+    secTitle: 'Gaming <em>Featured</em>',
+    name: 'All Articles',
+    hero: {
+      url: '/en/monster-hunter-wilds-ban-cap-nhat-mua-thu-2026',
+      img: '/assets/img/news-monster-hunter-wilds-autumn-update.jpg',
+      tag: 'Gaming · Breaking',
+      tagClass: 'tc',
+      title: 'Monster Hunter Wilds: Capcom Announces Autumn 2026 Update',
+      sub: 'Capcom reveals Title Update 1 with lightning-swept Forbidden Lands biome and Fulgaris Zinogre.',
+      meta: 'Gaming · OtaHub Editorial · 24/8/2026'
+    },
+    sides: [
+      { url: '/en/black-myth-wukong-dlc-rebirth-great-sage', img: '/assets/img/news-black-myth-wukong-dlc-rebirth.jpg', tag: 'Breaking', tagClass: 'tc', title: 'Black Myth: Wukong DLC Announced', meta: 'OtaHub Editorial · 22/8/2026' },
+      { url: '/en/zenless-zone-zero-20-hoshimi-miyabi', img: '/assets/img/news-zenless-zone-zero-20-miyabi.jpg', tag: 'Mobile · Gacha', tagClass: 'ts', title: 'Zenless Zone Zero 2.0: S-Rank Miyabi', meta: 'Anh Kiệt · 24/8/2026' },
+      { url: '/en/stellar-blade-2', img: '/assets/img/7bc69a799e-library_hero.jpg', tag: 'Preview', tagClass: 'tv', title: 'Stellar Blade: Blood Rain Protagonist Evie', meta: 'Dũng Nguyễn · 6 giờ trước' },
+      { url: '/en/kingdom-come-deliverance-2', img: '/assets/img/50c4f9b171-library_hero.jpg', tag: 'Review · 9.4', tagClass: 'ta', title: 'Kingdom Come Deliverance 2 Review', meta: 'OtaHub Editorial · 16 giờ trước' }
+    ]
+  },
+  pc: {
+    secTitle: 'PC & <em>Console Games</em>',
+    name: 'PC / Console',
+    hero: {
+      url: '/en/monster-hunter-wilds-ban-cap-nhat-mua-thu-2026',
+      img: '/assets/img/news-monster-hunter-wilds-autumn-update.jpg',
+      tag: 'PC / Console · Top 1',
+      tagClass: 'tc',
+      title: 'Monster Hunter Wilds: PS5 Pro Enhanced 60 FPS Mode',
+      sub: 'Capcom delivers unprecedented monster ecosystem density.',
+      meta: 'PC/Console · OtaHub Editorial · Hôm nay'
+    },
+    sides: [
+      { url: '/en/black-myth-wukong-dlc-rebirth-great-sage', img: '/assets/img/news-black-myth-wukong-dlc-rebirth.jpg', tag: 'DLC', tagClass: 'tc', title: 'Black Myth Wukong DLC: Rebirth of Great Sage', meta: 'Game Science · 22/8' },
+      { url: '/en/ghost-of-yotei-complete-edition', img: '/assets/img/0a878e4709-ghost-of-yotei-complete-edition-hero.jpg', tag: 'PS5', tagClass: 'tv', title: 'Ghost of Yōtei: Atsu Legend', meta: 'Sucker Punch · 9.7' },
+      { url: '/en/gta6-trailer3-netflix-premiere', img: '/assets/img/ccd6b922bc-gta6-trailer3-netflix-hero.jpg', tag: 'Preview', tagClass: 'tg', title: 'GTA 6 Trailer 3: Vice City Story', meta: 'Rockstar Games · 2026' },
+      { url: '/en/metal-gear-solid-delta-review', img: '/assets/img/ce3825d43e-mgs-delta-snake-eater-review-hero.jpg', tag: 'Review', tagClass: 'ta', title: 'MGS Delta: Snake Eater Review', meta: 'Konami · 9.5' }
+    ]
+  },
+  mobile: {
+    secTitle: 'Mobile <em>Gaming & Gacha</em>',
+    name: 'Mobile Games',
+    hero: {
+      url: '/en/honkai-star-rail-ban-cap-nhat-amphoreus-banner-cyrene',
+      img: '/assets/img/news-honkai-star-rail-31-amphoreus.jpg',
+      tag: 'Mobile · Gacha 3.1',
+      tagClass: 'ts',
+      title: 'Honkai: Star Rail 3.1: Amphoreus Expansion & 5-Star Cyrene Banner',
+      sub: 'HoYoverse expands the Greek-mythological realm of Amphoreus with Nihility character Cyrene.',
+      meta: 'Mobile · Anh Kiệt · Vừa xong'
+    },
+    sides: [
+      { url: '/en/honor-of-kings-global-mua-giai-moi-tuong-lan-ling-wang', img: '/assets/img/news-honor-of-kings-lanling-wang.jpg', tag: 'MOBA', tagClass: 'tg', title: 'Honor of Kings Global: Lanling Wang', meta: 'TiMi Studio · 1h trước' },
+      { url: '/en/genshin-impact-70-top-5-doi-hinh-la-hoan-snezhnaya', img: '/assets/img/news-genshin-impact-70-abyss-teams.jpg', tag: 'Guide', tagClass: 'ts', title: 'Genshin Impact 7.0 Abyss Mobile Teams', meta: 'Bích Ngọc · 2h trước' },
+      { url: '/en/solo-leveling-arise-ban-cap-nhat-monarch-transcendence', img: '/assets/img/news-solo-leveling-arise-monarch-update.jpg', tag: 'Action RPG', tagClass: 'tv', title: 'Solo Leveling Arise 50M Downloads', meta: 'Netmarble · 3h trước' },
+      { url: '/en/zenless-zone-zero-20-hoshimi-miyabi', img: '/assets/img/news-zenless-zone-zero-20-miyabi.jpg', tag: 'Gacha', tagClass: 'ts', title: 'Zenless Zone Zero 2.0 Hoshimi Miyabi', meta: 'HoYoverse · 24/8' }
+    ]
+  },
+  review: {
+    secTitle: 'Đánh Giá & <em>Review Game</em>',
+    name: 'Game Reviews',
+    hero: {
+      url: '/en/kingdom-come-deliverance-2',
+      img: '/assets/img/50c4f9b171-library_hero.jpg',
+      tag: 'Review · 9.4/10',
+      tagClass: 'ta',
+      title: 'Kingdom Come: Deliverance 2 Review: The Greatest Historical RPG of the Decade',
+      sub: 'Warhorse Studios raises the bar for realism and narrative depth in medieval Bohemia.',
+      meta: 'Review · OtaHub Editorial · 16 giờ trước'
+    },
+    sides: [
+      { url: '/en/ghost-of-yotei-review', img: '/assets/img/0a878e4709-ghost-of-yotei-complete-edition-hero.jpg', tag: 'Review · 9.7', tagClass: 'ta', title: 'Ghost of Yōtei Review', meta: 'OtaHub · 9.7 Score' },
+      { url: '/en/metal-gear-solid-delta-review', img: '/assets/img/ce3825d43e-mgs-delta-snake-eater-review-hero.jpg', tag: 'Review · 9.5', tagClass: 'ta', title: 'MGS Delta: Snake Eater Review', meta: 'Konami · 9.5 Score' },
+      { url: '/en/death-stranding-2-review', img: '/assets/img/ce3825d43e-mgs-delta-snake-eater-review-hero.jpg', tag: 'Review · 9.6', tagClass: 'ta', title: 'Death Stranding 2: On The Beach Review', meta: 'Kojima · 9.6 Score' },
+      { url: '/en/split-fiction-review', img: '/assets/img/7bc69a799e-library_hero.jpg', tag: 'Review · 9.0', tagClass: 'ta', title: 'Split Fiction Co-op Review', meta: 'Hazelight · 9.0 Score' }
+    ]
+  },
+  preview: {
+    secTitle: 'Game <em>Sắp Ra Mắt & Previews</em>',
+    name: 'Game Previews',
+    hero: {
+      url: '/en/stellar-blade-2',
+      img: '/assets/img/7bc69a799e-library_hero.jpg',
+      tag: 'Preview · PS5 Exclusive',
+      tagClass: 'tv',
+      title: 'Stellar Blade: Blood Rain Preview: Cyberpunk Setting & New Heroine Evie',
+      sub: 'Shift Up details the grand sequel featuring dual-blade combat and expansive semi-open worlds.',
+      meta: 'Preview · Dũng Nguyễn · 6 giờ trước'
+    },
+    sides: [
+      { url: '/en/resident-evil-9-announcement', img: '/assets/img/50c4f9b171-library_hero.jpg', tag: 'Preview', tagClass: 'tc', title: 'Resident Evil 9: Apocalypse Island', meta: 'Capcom · 2026' },
+      { url: '/en/gta6-trailer3-netflix-premiere', img: '/assets/img/ccd6b922bc-gta6-trailer3-netflix-hero.jpg', tag: 'Preview', tagClass: 'tg', title: 'GTA 6: Vice City Next-Gen', meta: 'Rockstar · 2026' },
+      { url: '/en/phantom-blade-zero-state-of-play', img: '/assets/img/news-black-myth-wukong-dlc-rebirth.jpg', tag: 'Preview', tagClass: 'tv', title: 'Phantom Blade Zero Gameplay', meta: 'S-Game · 2026' },
+      { url: '/en/avengers-doomsday-homework-watchlist', img: '/assets/img/news-monster-hunter-wilds-autumn-update.jpg', tag: 'Marvel', tagClass: 'ts', title: 'Marvel Games Roadmap', meta: 'Marvel · 2026' }
+    ]
+  },
+  guide: {
+    secTitle: 'Cẩm Nang & <em>Hướng Dẫn Chơi Game</em>',
+    name: 'Game Guides',
+    hero: {
+      url: '/en/wuthering-waves-cam-nang-phi-kiem-ren-realm',
+      img: '/assets/img/news-wuthering-waves-guide-ren-realm.jpg',
+      tag: 'Guides · Wuthering Waves 3.6',
+      tagClass: 'tg',
+      title: 'Wuthering Waves 3.6: Ren Realm 100% Exploration Guide & Sword Flight Traversal',
+      sub: 'Master aerial sword flight mechanics, solve 15 Bagua puzzle matrices, and farm top-tier 5-star Aero Echoes.',
+      meta: 'Guides · OtaHub Editorial · 24/8/2026'
+    },
+    sides: [
+      { url: '/en/black-myth-wukong-bi-quyet-danh-trum-an', img: '/assets/img/news-black-myth-wukong-boss-an-guide.jpg', tag: 'Boss Guide', tagClass: 'tc', title: 'Black Myth Wukong 5 Secret Bosses', meta: 'Trọng Khang · 24/8' },
+      { url: '/en/monster-hunter-wilds-huong-dan-focus-mode-seikret', img: '/assets/img/news-monster-hunter-wilds-focus-mode-guide.jpg', tag: 'Mechanics', tagClass: 'tc', title: 'MH Wilds Focus Mode & Seikret Guide', meta: 'Dũng Nguyễn · 24/8' },
+      { url: '/en/genshin-impact-70-top-5-doi-hinh-la-hoan-snezhnaya', img: '/assets/img/news-genshin-impact-70-abyss-teams.jpg', tag: 'Abyss Guide', tagClass: 'ts', title: 'Genshin Impact 7.0 Abyss Teams', meta: 'Bích Ngọc · 2h trước' },
+      { url: '/en/genshin-54-citlali', img: '/assets/img/ae2a55e940-genshin-citlali-hero.jpg', tag: 'Build Guide', tagClass: 'ts', title: 'Genshin Impact Citlali Build Guide', meta: 'Anh Kiệt · 1 tuần trước' }
+    ]
+  },
+  esports: {
+    secTitle: 'Tin Tức <em>Esports & Giải Đấu</em>',
+    name: 'Esports',
+    hero: {
+      url: '/en/vct-pacific-2026',
+      img: '/assets/img/0a878e4709-ghost-of-yotei-complete-edition-hero.jpg',
+      tag: 'Esports · VCT Pacific',
+      tagClass: 'tg',
+      title: 'VCT Pacific 2026: PRX and DRX Clash for Championship',
+      sub: 'Comprehensive breakdown of agent draft meta and map pool strategies.',
+      meta: 'Esports · OtaHub · Hôm nay'
+    },
+    sides: [
+      { url: '/en/tekken8-season2', img: '/assets/img/ce3825d43e-mgs-delta-snake-eater-review-hero.jpg', tag: 'FGC', tagClass: 'tv', title: 'Tekken 8 EVO 2026 Grand Finals', meta: 'Bandai Namco · 2026' },
+      { url: '/en/honor-of-kings-global-mua-giai-moi-tuong-lan-ling-wang', img: '/assets/img/news-honor-of-kings-lanling-wang.jpg', tag: 'Mobile MOBA', tagClass: 'ts', title: 'Honor of Kings Global Championship', meta: 'TiMi Studio · 1h trước' },
+      { url: '/en/free-fire-daybreak-anime-2027', img: '/assets/img/news-free-fire-daybreak-anime-2027.jpg', tag: 'Mobile Esports', tagClass: 'ts', title: 'Free Fire World Series 2026', meta: 'Garena · 2026' },
+      { url: '/en/splatoon-raiders-launch', img: '/assets/img/7bc69a799e-library_hero.jpg', tag: 'Tournament', tagClass: 'tc', title: 'Splatoon World Championship', meta: 'Nintendo · 2026' }
+    ]
+  },
+  tierlist: {
+    secTitle: 'Bảng Xếp Hạng & <em>Tier Lists</em>',
+    name: 'Tier Lists',
+    hero: {
+      url: '/en/genshin-54-citlali',
+      img: '/assets/img/ae2a55e940-genshin-citlali-hero.jpg',
+      tag: 'Tier List · Genshin 7.0',
+      tagClass: 'tg',
+      title: 'Genshin Impact 7.0 Snezhnaya Character Tier List',
+      sub: 'Comprehensive ranking of all 5-star DPS, Sub-DPS, and Support characters in version 7.0.',
+      meta: 'Tier List · Bích Ngọc · 3 giờ trước'
+    },
+    sides: [
+      { url: '/en/honor-of-kings-global-mua-giai-moi-tuong-lan-ling-wang', img: '/assets/img/news-honor-of-kings-lanling-wang.jpg', tag: 'MOBA Tier List', tagClass: 'tg', title: 'Honor of Kings S-Tier Heroes', meta: 'Gia Linh · 14 giờ trước' },
+      { url: '/en/wuthering-waves-cam-nang-phi-kiem-ren-realm', img: '/assets/img/news-wuthering-waves-guide-ren-realm.jpg', tag: 'Echo Tier List', tagClass: 'tg', title: 'Wuthering Waves 3.6 Echo Tier List', meta: 'OtaHub · Vừa xong' },
+      { url: '/en/top-game-pc-2026', img: '/assets/img/ce3825d43e-mgs-delta-snake-eater-review-hero.jpg', tag: 'PC Rankings', tagClass: 'tc', title: 'Top 10 PC Games of 2026', meta: 'BXH Tuần · Đọc bài' },
+      { url: '/en/honkai-star-rail-ban-cap-nhat-amphoreus-banner-cyrene', img: '/assets/img/news-honkai-star-rail-31-amphoreus.jpg', tag: 'HSR Tier List', tagClass: 'ts', title: 'Honkai Star Rail 3.1 Tier List', meta: 'HoYoverse · Đọc bài' }
+    ]
+  }
+};
 
+function updateGamingHero(cat){
+  var data = GAMING_FEATURED_DATA[cat] || GAMING_FEATURED_DATA['all'];
+  var heroCard = document.getElementById('gamingHeroCard');
+  var heroImg = document.getElementById('gamingHeroImg');
+  var heroTag = document.getElementById('gamingHeroTag');
+  var heroTitle = document.getElementById('gamingHeroTitle');
+  var heroSub = document.getElementById('gamingHeroSub');
+  var heroMeta = document.getElementById('gamingHeroMeta');
+  var secTitle = document.getElementById('gamingSecTitle');
 
-
-
-
-// Map .ftab (top filter-bar) label -> data-cat value
-var FTAB_CAT_MAP={'All':'all','PC/Console':'pc','Mobile':'mobile','Reviews':'review','Previews':'preview','Guides':'guide','Esports':'esports','Tier Lists':'tierlist'};
-
-function setFilter(btn){
-  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));
-  btn.classList.add('on');
-  var cat=FTAB_CAT_MAP[btn.textContent.trim()]||'all';
-  document.querySelectorAll('[data-cat]').forEach(function(card){
-    var cats=(card.dataset.cat||'').split(/\s+/);
-    card.style.display=(cat==='all'||cats.indexOf(cat)>-1)?'':'none';
-  });
-}
-
-function applyCatFilter(){
-  const active=document.querySelector('.sf-btn.on');
-  const cat=active?active.textContent.trim().toLowerCase():'all';
-  document.querySelectorAll('.art-list [data-cat]').forEach(card=>{
-    const cats=(card.dataset.cat||'').split(/\s+/);
-    card.style.display=cat==='all'||cats.includes(cat)?'':'none';
-  });
-}
-function setSub(btn){
-  document.querySelectorAll('.sf-btn').forEach(t=>t.classList.remove('on'));
-  btn.classList.add('on');
-  applyCatFilter();
-}
-
-
-
-
-
-/* Scroll reveal */
-
-
-const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target)}})},{threshold:0,rootMargin:'120px 0px 120px 0px'});
-
-
-document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
-
-
-setTimeout(()=>{document.querySelectorAll('.rv:not(.vis)').forEach(el=>el.classList.add('vis'))},800);
-
-
-
-
-
-/* Rank bar animate on scroll */
-
-
-const bobs=new IntersectionObserver(e=>{
-
-
-  e.forEach(x=>{
-
-
-    if(x.isIntersecting){
-
-
-      x.target.querySelectorAll('.rki-bar').forEach(b=>{
-
-
-        const w=b.style.width;b.style.width='0';
-
-
-        requestAnimationFrame(()=>setTimeout(()=>b.style.width=w,120));
-
-
-      });
-
-
-      bobs.unobserve(x.target);
-
-
+  if(heroCard && data && data.hero){
+    heroCard.href = data.hero.url;
+    if(heroImg) heroImg.style.backgroundImage = 'url(' + data.hero.img + ')';
+    if(heroTag){
+      heroTag.className = 'tag ' + data.hero.tagClass;
+      heroTag.textContent = data.hero.tag;
     }
+    if(heroTitle) heroTitle.textContent = data.hero.title;
+    if(heroSub) heroSub.textContent = data.hero.sub;
+    if(heroMeta) heroMeta.textContent = data.hero.meta;
+    if(secTitle) secTitle.innerHTML = data.secTitle;
 
+    heroCard.style.animation = 'none';
+    setTimeout(function(){ heroCard.style.animation = 'heroPulseFade .4s ease-out'; }, 10);
+  }
 
-  });
-
-
-},{threshold:.15});
-
-
-document.querySelectorAll('.sidebar').forEach(c=>bobs.observe(c));
-
-
-</script>
-
-
-<script>
-
-
-(function(){
-
-
-  var ham=document.querySelector('.ham');
-
-
-  var mn=document.querySelector('.mobile-nav');
-
-
-  if(!ham||!mn)return;
-
-
-  ham.addEventListener('click',function(){
-
-
-    ham.classList.toggle('open');
-
-
-    mn.classList.toggle('open');
-
-
-    document.body.style.overflow=mn.classList.contains('open')?'hidden':'';
-
-
-  });
-
-
-  mn.querySelectorAll('a').forEach(function(a){
-
-
-    a.addEventListener('click',function(){
-
-
-      ham.classList.remove('open');
-
-
-      mn.classList.remove('open');
-
-
-      document.body.style.overflow='';
-
-
+  if(data && data.sides){
+    data.sides.forEach(function(item, i){
+      var sc = document.getElementById('gamingSideCard' + i);
+      var sImg = document.getElementById('gamingSideImg' + i);
+      var sTag = document.getElementById('gamingSideTag' + i);
+      var sTitle = document.getElementById('gamingSideTitle' + i);
+      var sMeta = document.getElementById('gamingSideMeta' + i);
+      if(sc && item){
+        sc.href = item.url;
+        if(sImg){ sImg.src = item.img; sImg.alt = item.title; }
+        if(sTag){ sTag.className = 'tag ' + item.tagClass; sTag.textContent = item.tag; }
+        if(sTitle) sTitle.textContent = item.title;
+        if(sMeta) sMeta.textContent = item.meta;
+        (function(cardElement, idx){
+          cardElement.style.animation = 'none';
+          setTimeout(function(){ cardElement.style.animation = 'heroPulseFade .4s ease-out'; }, 20 + idx * 30);
+        })(sc, i);
+      }
     });
+  }
 
-
-  });
-
-
-})();
-
-
-</script>
-
-
-<script>
-
-
-// Search overlay
-
-
-
-
-
-/* Mobile nav toggle */
-
-
-function toggleMobileNav(){
-
-
-  const nav=document.getElementById('mobileNav');
-
-
-  const ham=document.getElementById('hamBtn');
-
-
-  if(!nav||!ham) return;
-
-
-  const open=nav.classList.toggle('open');
-
-
-  ham.classList.toggle('open',open);
-
-
-  document.body.style.overflow=open?'hidden':'';
-
-
+  var banner = document.getElementById('gamingFilterBanner');
+  var filterName = document.getElementById('gamingFilterName');
+  if(banner && filterName){
+    if(cat === 'all'){
+      banner.style.display = 'none';
+    } else {
+      banner.style.display = 'flex';
+      filterName.textContent = data ? data.name : cat;
+    }
+  }
 }
 
+function setGamingFilterByCat(cat){
+  document.querySelectorAll('.filter-bar .ftab').forEach(function(t){
+    var onclickAttr = t.getAttribute('onclick') || '';
+    if(onclickAttr.indexOf("'" + cat + "'") > -1 || (cat === 'all' && onclickAttr.indexOf("'all'") > -1)){
+      t.classList.add('on');
+    } else {
+      t.classList.remove('on');
+    }
+  });
 
-/* Close mobile nav on link click */
+  updateGamingHero(cat);
 
+  var visibleCount = 0;
+  document.querySelectorAll('.ac[data-cat]').forEach(function(card){
+    if(cat === 'all'){
+      card.classList.remove('cat-hidden');
+      visibleCount++;
+      return;
+    }
+    var cats = (card.getAttribute('data-cat') || '').toLowerCase().split(' ');
+    if(cats.indexOf(cat.toLowerCase()) > -1){
+      card.classList.remove('cat-hidden');
+      visibleCount++;
+    } else {
+      card.classList.add('cat-hidden');
+    }
+  });
 
-document.querySelectorAll('.mobile-nav a').forEach(a=>a.addEventListener('click',()=>{
+  var filterCount = document.getElementById('gamingFilterCount');
+  if(filterCount) filterCount.textContent = visibleCount;
+}
 
-
-  const nav=document.getElementById('mobileNav');
-
-
-  const ham=document.getElementById('hamBtn');
-
-
-  if(nav)nav.classList.remove('open');
-
-
-  if(ham)ham.classList.remove('open');
-
-
-  document.body.style.overflow='';
-
-
-}));
-
-
-
-
-
-function openSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.add('open');setTimeout(function(){var i=document.getElementById('searchInput');if(i)i.focus()},50);document.body.style.overflow='hidden'}}
-
-
-function closeSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.remove('open');document.body.style.overflow=''}}
-
-
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSearch();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch()}});
-
-
+function setGamingFilter(btn, cat){
+  setGamingFilterByCat(cat);
+}
 </script>
-
-
 <script defer src="/assets/search.js"></script>
 
 

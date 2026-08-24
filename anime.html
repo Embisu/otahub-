@@ -162,1007 +162,7 @@
 
 
 <style>
-
-
-:root{
-
-
-  --bg:#0b0418; --surf:#160a2c; --surf2:#1e0f40; --card:#180b34;
-
-
-  --cyan:#00e5ff; --sakura:#ff3080; --violet:#7c3aed;
-
-
-  --lav:#a78bfa; --amber:#fbbf24; --green:#34d399; --rose:#fb7185;
-
-
-  --white:#f0eeff; --dim:rgba(240,238,255,.62); --muted:rgba(240,238,255,.35);
-
-
-  --border:rgba(255,255,255,.07); --bsak:rgba(255,48,128,.2);
-
-
-  --ease:cubic-bezier(.16,1,.3,1);
-
-
-  --fd:'Rajdhani',sans-serif; --fb:'Space Grotesk',sans-serif;
-
-
-}
-
-
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
-
-html{scroll-behavior:smooth;overflow-x:hidden}
-
-
-body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:300;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-
-
-
-
-
-#amb{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-
-
-.orb{position:absolute;border-radius:50%;filter:blur(110px)}
-
-
-.o1{width:700px;height:700px;background:radial-gradient(circle,var(--sakura),transparent 70%);opacity:.08;top:-200px;right:-150px;animation:fa 17s ease-in-out infinite}
-
-
-.o2{width:500px;height:500px;background:radial-gradient(circle,var(--violet),transparent 70%);opacity:.07;bottom:10%;left:-100px;animation:fb 22s ease-in-out infinite}
-
-
-.o3{width:400px;height:400px;background:radial-gradient(circle,var(--cyan),transparent 70%);opacity:.05;top:50%;left:45%;animation:fc 19s ease-in-out infinite}
-
-
-@keyframes fa{0%,100%{transform:translate(0,0)}50%{transform:translate(-50px,35px)}}
-
-
-@keyframes fb{0%,100%{transform:translate(0,0)}50%{transform:translate(35px,-25px)}}
-
-
-@keyframes fc{0%,100%{transform:translate(0,0)}50%{transform:translate(-20px,40px)}}
-
-
-#gtex{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(124,58,237,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.04) 1px,transparent 1px);background-size:48px 48px}
-
-
-
-
-
-/* NAV */
-
-
-.nav{position:sticky;top:0;z-index:300;height:60px;background:rgba(11,3,24,.92);border-bottom:1px solid rgba(255,48,128,.15);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);display:flex;align-items:center}
-
-
-.nav-in{max-width:1440px;margin:0 auto;padding:0 24px;width:100%;display:flex;align-items:center;gap:0}
-
-
-.logo{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0;margin-right:32px}
-
-
-.logo svg{width:30px;height:30px;animation:lp 3s ease-in-out infinite}
-
-
-@keyframes lp{0%,100%{filter:drop-shadow(0 0 4px #00e5ff) drop-shadow(0 0 12px rgba(0,229,255,.5))}50%{filter:drop-shadow(0 0 8px #00e5ff) drop-shadow(0 0 24px rgba(0,229,255,.9))}}
-
-
-.logo-t{font-family:var(--fd);font-weight:700;font-size:20px;letter-spacing:-.01em;line-height:1}
-
-
-.logo-ota{color:var(--white)}.logo-hub{color:var(--cyan)}
-
-
-.nav-links{display:flex;align-items:center;list-style:none;gap:0;flex:1}
-
-
-.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;font-weight:400;letter-spacing:.07em;text-transform:uppercase;padding:0 13px;height:60px;display:flex;align-items:center;position:relative;transition:color .2s}
-
-
-.nav-links a::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:2px;background:var(--sakura);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
-
-
-.nav-links a:hover,.nav-links a.active{color:var(--white)}
-
-
-.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
-
-
-.nav-drop{position:relative}
-
-
-.nav-drop-menu{position:absolute;top:100%;left:0;min-width:230px;background:var(--surf);border:1px solid var(--border);box-shadow:0 16px 36px rgba(0,0,0,.45);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s;z-index:60;padding:6px 0}
-
-
-.nav-drop:hover .nav-drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
-
-
-.nav-drop-menu a{display:flex;align-items:center;gap:10px;padding:11px 18px;font-size:12px;font-weight:400;letter-spacing:.03em;text-transform:none;color:var(--muted);height:auto}
-
-
-.nav-drop-menu a:hover{color:var(--white);background:var(--surf2)}
-
-
-.nav-drop-menu a::after{display:none}
-
-
-.nav-r{display:flex;align-items:center;gap:8px;margin-left:auto}
-
-
-.lang{display:flex;align-items:center;border:1px solid var(--border);overflow:hidden}
-
-
-.lb{background:none;border:none;cursor:pointer;font-family:var(--fb);font-size:11px;font-weight:500;letter-spacing:.08em;color:var(--muted);padding:5px 10px;transition:all .18s}
-
-
-.lb.on{background:var(--sakura);color:var(--white);font-weight:600}
-
-
-.lsep{width:1px;height:18px;background:var(--border)}
-
-
-.nsearch{background:none;border:1px solid var(--border);color:var(--muted);width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s}
-
-
-.nsearch:hover{border-color:var(--sakura);color:var(--sakura)}
-
-
-.cta{background:var(--sakura);color:var(--white);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;padding:8px 20px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:background .18s;text-decoration:none;display:inline-block;white-space:nowrap}
-
-
-.cta:hover{background:#ff5a9a}
-
-
-
-
-
-/* CATEGORY HEADER */
-
-
-.cat-header{position:relative;z-index:1;min-height:240px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
-
-
-.ch-bg{position:absolute;inset:0;background:url('/assets/img/studio-ghibli-films.webp') center 25%/cover no-repeat;opacity:.2}
-
-
-.ch-ov{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0%,var(--bg) 100%),linear-gradient(to right,rgba(255,48,128,.05) 0%,transparent 50%)}
-
-
-.ch-accent{position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,transparent,var(--sakura),transparent);opacity:.6}
-
-
-.ch-body{position:relative;z-index:2;max-width:1440px;margin:0 auto;padding:0 24px}
-
-
-.ch-eye{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--sakura);margin-bottom:8px;display:flex;align-items:center;gap:8px}
-
-
-.ch-eye::before{content:'';width:20px;height:1px;background:var(--sakura);opacity:.6}
-
-
-.ch-title{font-family:var(--fd);font-weight:700;font-size:clamp(44px,6vw,80px);line-height:.95;letter-spacing:-.03em;color:var(--white);margin-bottom:10px}
-
-
-.ch-title em{font-style:normal;color:var(--sakura);text-shadow:0 0 40px rgba(255,48,128,.3)}
-
-
-.ch-sub{font-size:16px;color:var(--dim);max-width:500px}
-
-
-.ch-stats{display:flex;align-items:center;gap:32px;padding:16px 0;margin-top:12px;border-top:1px solid var(--border)}
-
-
-.ch-stat-num{font-family:var(--fd);font-size:22px;font-weight:700;color:var(--sakura);line-height:1}
-
-
-.ch-stat-lbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:2px}
-
-
-
-
-
-
-
-
-
-
-/* LAYOUT */
-
-
-.wrap{max-width:1440px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
-
-
-.sec-h{display:flex;align-items:center;gap:14px;padding:40px 0 20px;border-bottom:1px solid var(--border)}
-
-
-.sec-t{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--white);white-space:nowrap}
-
-
-.sec-t em{color:var(--sakura);font-style:normal}
-
-
-.sec-l{flex:1;height:1px;background:linear-gradient(to right,var(--bsak),transparent)}
-
-
-.sec-more{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;white-space:nowrap;transition:color .2s}
-
-
-.sec-more:hover{color:var(--sakura)}
-
-
-/* HUB QUICK LINKS */
-.hub-links{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:3px}
-.hub-link-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);padding:24px;text-decoration:none;transition:all .2s}
-.hub-link-card:hover{border-color:var(--cyan);background:var(--surf2)}
-.hlc-ic{font-size:28px;flex-shrink:0}
-.hlc-body{flex:1;min-width:0}
-.hlc-title{font-family:var(--fd);font-weight:700;font-size:17px;color:var(--white);margin-bottom:4px}
-.hlc-sub{font-size:13px;color:var(--dim)}
-.hlc-arrow{color:var(--muted);font-size:18px;transition:transform .2s,color .2s;flex-shrink:0}
-.hub-link-card:hover .hlc-arrow{transform:translateX(4px);color:var(--cyan)}
-@media(max-width:768px){.hub-links{grid-template-columns:1fr}}
-
-
-
-
-
-/* TAGS */
-
-
-.tag{display:inline-flex;align-items:center;gap:5px;font-family:var(--fb);font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px}
-
-
-.tc{background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.28);color:var(--cyan)}
-
-
-.ts{background:rgba(255,48,128,.1);border:1px solid rgba(255,48,128,.28);color:var(--sakura)}
-
-
-.tv{background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.3);color:var(--lav)}
-
-
-.ta{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);color:var(--amber)}
-
-
-.tg{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.25);color:var(--green)}
-
-
-.t-airing{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.35);color:var(--green);display:flex;align-items:center;gap:4px}
-
-
-.t-airing::before{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;animation:blink 1.1s ease-in-out infinite}
-
-
-.t-done{background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.3);color:var(--lav)}
-
-
-.t-soon{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);color:var(--amber)}
-
-
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-
-
-
-
-
-/* SEASON TABS */
-
-
-.season-tabs{display:flex;gap:3px;padding-top:28px;flex-wrap:wrap}
-
-
-.stab{
-
-
-  background:var(--surf);border:1px solid var(--border);cursor:pointer;
-
-
-  font-family:var(--fd);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-
-
-  color:var(--muted);padding:10px 22px;
-
-
-  transition:all .2s;flex-shrink:0;
-
-
-}
-
-
-.stab.on{background:var(--sakura);border-color:var(--sakura);color:var(--white)}
-
-
-.stab:hover:not(.on){border-color:rgba(255,48,128,.3);color:rgba(240,238,255,.8)}
-
-
-
-
-
-/* CURRENTLY AIRING · spotlight row */
-
-
-.airing-grid{
-
-
-  display:grid;
-
-
-  grid-template-columns:repeat(5,1fr);
-
-
-  gap:3px;margin-top:3px;
-
-
-}
-
-
-.a-card{
-
-
-  position:relative;overflow:hidden;cursor:pointer;
-
-
-  background:var(--card);
-
-
-  display:flex;flex-direction:column;
-
-
-  text-decoration:none;
-
-
-  transition:background .2s;
-
-
-}
-
-
-.a-card::before{content:'';position:absolute;inset:0;border:1px solid rgba(255,48,128,0);z-index:3;pointer-events:none;transition:border-color .3s}
-
-
-.a-card:hover::before{border-color:rgba(255,48,128,.25)}
-
-
-.a-card:hover .ap-img{opacity:1}
-
-
-.a-card:hover .ac-name{color:var(--sakura)}
-
-
-
-
-
-/* Poster */
-
-
-.a-poster{aspect-ratio:2/3;overflow:hidden;position:relative;background:#09051a}
-.a-poster::before{content:'';position:absolute;inset:-18px;background-image:var(--poster);background-size:cover;background-position:center;filter:blur(18px);opacity:.28}
-
-
-.ap-img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;object-position:center center;opacity:.9;transition:opacity .3s}
-
-
-/* Episode badge */
-
-
-.ap-ep{position:absolute;bottom:8px;left:8px;z-index:2;background:rgba(11,3,24,.85);backdrop-filter:blur(4px);font-family:var(--fd);font-size:10px;font-weight:600;letter-spacing:.07em;padding:3px 8px;color:rgba(240,238,255,.9);border:1px solid var(--border)}
-
-
-/* Status top-right */
-
-
-.ap-status{position:absolute;top:8px;right:8px;z-index:2;font-family:var(--fd);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 7px}
-
-
-
-
-
-.a-body{padding:12px 14px 16px}
-
-
-.ac-genre{font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--sakura);font-weight:500;margin-bottom:5px}
-
-
-.ac-name{font-family:var(--fd);font-weight:700;font-size:15px;line-height:1.2;color:rgba(240,238,255,.92);margin-bottom:4px;transition:color .2s}
-
-
-.ac-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:6px}
-
-
-.ac-score{font-family:var(--fd);font-size:18px;font-weight:700;color:var(--amber)}
-
-
-.ac-day{font-size:10px;color:var(--muted);letter-spacing:.05em}
-
-
-/* Score stars */
-
-
-.ac-stars{display:flex;gap:2px;margin-top:3px}
-
-
-.star{width:10px;height:10px}
-
-
-
-
-
-/* FEATURED REVIEW */
-
-
-.rev-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:3px}
-
-
-.rev-big{
-
-
-  position:relative;overflow:hidden;cursor:pointer;background:var(--card);min-height:300px;
-
-
-  display:flex;flex-direction:column;justify-content:flex-end;text-decoration:none;
-
-
-}
-
-
-.rev-big:hover .rb-img{transform:scale(1.04);opacity:.55}
-
-
-.rev-big:hover .rb-title{color:var(--sakura)}
-
-
-.rb-img{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;opacity:.7;transition:transform .7s var(--ease),opacity .4s}
-
-
-.rb-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,3,24,.98) 0%,rgba(11,3,24,.4) 50%,transparent 78%)}
-
-
-.rev-big::after{content:'';position:absolute;inset:0;border:1px solid rgba(255,48,128,0);z-index:3;pointer-events:none;transition:border-color .3s}
-
-
-.rev-big:hover::after{border-color:rgba(255,48,128,.22)}
-
-
-.rb-body{position:relative;z-index:2;padding:24px}
-
-
-.rb-score{display:inline-flex;align-items:baseline;gap:4px;background:rgba(11,3,24,.7);backdrop-filter:blur(6px);border:1px solid rgba(251,191,36,.25);padding:5px 12px;margin-bottom:10px}
-
-
-.rb-score-num{font-family:var(--fd);font-size:22px;font-weight:700;color:var(--amber)}
-
-
-.rb-title{font-family:var(--fd);font-weight:700;font-size:clamp(18px,2vw,26px);line-height:1.1;color:var(--white);margin:8px 0 8px;transition:color .2s}
-
-
-.rb-sub{font-size:16px;color:var(--dim);margin-bottom:12px;max-width:400px}
-
-
-.rb-meta{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
-
-
-.rb-meta span{color:var(--sakura)}
-
-
-
-
-
-.rev-stack{display:flex;flex-direction:column;gap:3px}
-
-
-.rev-sm{
-
-
-  flex:1;position:relative;overflow:hidden;cursor:pointer;background:var(--card);
-
-
-  display:grid;grid-template-columns:120px 1fr;min-height:0;text-decoration:none;
-
-
-  transition:background .2s;
-
-
-}
-
-
-.rev-sm:hover{background:var(--surf2)}
-
-
-.rev-sm:hover .rs-title{color:var(--sakura)}
-
-
-.rs-thumb{overflow:hidden;background:var(--surf2)}
-
-
-.rs-thumb img{width:100%;height:100%;object-fit:cover;opacity:.75;transition:transform .5s var(--ease),opacity .3s}
-
-
-.rev-sm:hover .rs-thumb img{transform:scale(1.06);opacity:.9}
-
-
-.rs-body{padding:16px 18px;display:flex;flex-direction:column;justify-content:space-between}
-
-
-.rs-title{font-family:var(--fd);font-weight:600;font-size:17px;line-height:1.25;color:rgba(240,238,255,.9);margin:7px 0 6px;transition:color .2s}
-
-
-.rs-meta{font-size:11px;color:var(--muted)}
-
-
-.rs-score{font-family:var(--fd);font-size:18px;font-weight:700;color:var(--amber)}
-
-
-
-
-
-/* NEWS LIST + SIDEBAR */
-
-
-.content-layout{display:grid;grid-template-columns:1fr 300px;gap:3px;background:var(--border);margin-top:3px}
-
-
-.content-layout>*{background:var(--surf)}
-
-
-
-
-
-/* Article cards */
-
-
-
-
-
-/* Featured grid (đồng bộ với trang chủ) */
-
-
-.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:290px 230px;gap:3px;margin-top:3px}
-
-
-.fc{grid-row:1/3;position:relative;overflow:hidden;cursor:pointer;background:var(--card)}
-
-
-.fc-img{position:absolute;inset:0;background:url('/assets/img/7bc69a799e-library_hero.jpg') center/cover no-repeat;animation:heroPulse 10s ease-in-out infinite alternate-reverse;opacity:.9;transition:opacity .5s,transform .7s var(--ease)}
-
-
-.fc:hover .fc-img{opacity:.75;transform:scale(1.04)}
-
-
-.fc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,2,32,.98) 0%,rgba(11,2,32,.6) 38%,rgba(11,2,32,.12) 70%,transparent 100%),linear-gradient(to right,transparent 50%,rgba(11,2,32,.4) 100%)}
-
-
-.fc::after{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;pointer-events:none}
-
-
-.fc:hover::after{border-color:rgba(0,229,255,.3)}
-
-
-.fc-body{position:absolute;bottom:0;left:0;right:0;padding:32px}
-
-
-.fc-title{font-family:var(--fd);font-weight:700;font-size:clamp(17px,2vw,27px);line-height:1.1;color:var(--white);margin:10px 0 10px;text-shadow:0 2px 20px rgba(0,0,0,.6)}
-
-
-.fc-sub{font-size:16px;color:var(--dim);margin-bottom:12px;max-width:420px}
-
-
-.fc-meta{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-
-
-.fc-meta span{color:var(--cyan)}
-
-
-.sc{position:relative;overflow:hidden;cursor:pointer;background:var(--card);display:flex;flex-direction:column;transition:background .2s}
-
-
-.sc:hover{background:#1e1244}
-
-
-.sc-img{flex:1;overflow:hidden;min-height:0;background:var(--surf2)}
-
-
-.sc-img img{width:100%;height:100%;object-fit:cover;opacity:.82;transition:transform .55s var(--ease),opacity .3s}
-
-
-.sc:hover .sc-img img{transform:scale(1.07);opacity:.95}
-
-
-.sc::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;z-index:3;pointer-events:none}
-
-
-.sc:hover::before{border-color:rgba(0,229,255,.22)}
-
-
-.sc-body{padding:14px 16px}
-
-
-.sc-title{font-family:var(--fd);font-weight:600;font-size:17px;line-height:1.25;color:rgba(240,238,255,.9);margin:6px 0 5px;transition:color .2s}
-
-
-.sc:hover .sc-title{color:var(--cyan)}
-
-
-.sc-meta{font-size:14px;color:var(--muted)}
-
-
-@media(max-width:1100px){.f-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.fc{grid-row:auto;grid-column:1/3;min-height:390px}}
-
-
-@media(max-width:768px){.f-grid{grid-template-columns:1fr;grid-template-rows:auto}.fc{grid-column:auto;min-height:370px}}
-
-
-/* Magazine top-2 */
-
-
-.ac-top2{display:grid;grid-template-columns:1fr 1fr;gap:3px;border-bottom:1px solid var(--border)}
-
-
-.ac-mag{position:relative;overflow:hidden;cursor:pointer;background:var(--card);min-height:200px;display:flex;flex-direction:column;justify-content:flex-end;text-decoration:none}
-
-
-.ac-mag:hover .acm-img{transform:scale(1.05);opacity:.55}
-
-
-.ac-mag:hover .acm-title{color:var(--sakura)}
-
-
-.acm-img{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;opacity:.7;transition:transform .6s var(--ease),opacity .35s}
-
-
-.acm-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,3,24,.97) 0%,rgba(11,3,24,.35) 55%,transparent 85%)}
-
-
-.acm-body{position:relative;z-index:2;padding:16px 18px}
-
-
-.acm-tags{display:flex;align-items:center;gap:6px;margin-bottom:7px;flex-wrap:wrap}
-
-
-.acm-score{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--amber)}
-
-
-.acm-title{font-family:var(--fd);font-weight:600;font-size:15px;line-height:1.22;color:rgba(240,238,255,.92);margin-bottom:5px;transition:color .2s}
-
-
-.acm-meta{font-size:11px;color:var(--muted)}
-
-
-
-
-
-/* Horizontal article */
-
-
-.ac{display:grid;grid-template-columns:150px 1fr;gap:0;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s;text-decoration:none;min-height:105px;position:relative}
-
-
-.ac:hover{background:var(--surf2)}
-
-
-.ac:hover .ac-title{color:var(--sakura)}
-
-
-.ac::after{content:'';position:absolute;right:0;top:0;bottom:0;width:2px;background:var(--sakura);transform:scaleY(0);transform-origin:top;transition:transform .25s var(--ease)}
-
-
-.ac:hover::after{transform:scaleY(1)}
-
-
-.ac-thumb{overflow:hidden;background:var(--surf2);aspect-ratio:16/9}
-
-
-.ac-thumb img{width:100%;height:100%;object-fit:cover;opacity:.75;transition:transform .5s var(--ease),opacity .3s;display:block}
-
-
-.ac:hover .ac-thumb img{transform:scale(1.06);opacity:.9}
-
-
-.ac-info{padding:14px 18px;display:flex;flex-direction:column;justify-content:space-between}
-
-
-.ac-tags{display:flex;align-items:center;gap:7px;margin-bottom:7px;flex-wrap:wrap}
-
-
-.ac-score-inline{font-family:var(--fd);font-size:14px;font-weight:700;color:var(--amber)}
-
-
-.ac-title{font-family:var(--fd);font-weight:600;font-size:15px;line-height:1.28;color:rgba(240,238,255,.9);margin-bottom:6px;transition:color .2s}
-
-
-.ac-meta{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:7px}
-
-
-.sep{opacity:.3}
-
-
-
-
-
-/* Load more */
-
-
-.load-wrap{padding:26px;text-align:center}
-
-
-.load-btn{background:none;border:1px solid var(--border);color:var(--muted);font-family:var(--fd);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:11px 40px;cursor:pointer;transition:all .2s}
-
-
-.load-btn:hover{border-color:var(--sakura);color:var(--sakura)}
-
-
-
-
-
-/* SIDEBAR */
-
-
-.side-head{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:16px 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-
-
-.side-badge{font-size:9px;padding:2px 7px;border:1px solid rgba(255,48,128,.25);color:var(--sakura);letter-spacing:.08em}
-
-
-
-
-
-/* Anime rank item */
-
-
-.rk{display:flex;align-items:center;gap:10px;padding:11px 20px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s}
-
-
-.rk:hover{background:var(--surf2)}
-
-
-.rk:hover .rk-title{color:var(--sakura)}
-
-
-.rk-num{font-family:var(--fd);font-size:18px;font-weight:700;color:rgba(240,238,255,.07);width:20px;text-align:right;flex-shrink:0}
-
-
-.rk.t1 .rk-num{color:rgba(251,191,36,.55);font-size:20px}
-
-
-.rk.t2 .rk-num{color:rgba(192,192,210,.4);font-size:19px}
-
-
-.rk.t3 .rk-num{color:rgba(180,120,80,.4)}
-
-
-.rk-poster{width:38px;height:54px;overflow:hidden;flex-shrink:0;background:var(--surf2)}
-
-
-.rk-poster img{width:100%;height:100%;object-fit:cover;opacity:.85}
-
-
-.rk-info{flex:1;min-width:0}
-
-
-.rk-title{font-family:var(--fd);font-size:16px;font-weight:600;line-height:1.25;color:rgba(240,238,255,.85);transition:color .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
-
-
-.rk-sub{font-size:14px;color:var(--muted)}
-
-
-.rk-score{font-family:var(--fd);font-size:17px;font-weight:700;flex-shrink:0;color:var(--amber)}
-
-
-
-
-
-/* Schedule */
-
-
-.sched-day{padding:12px 20px;border-bottom:1px solid var(--border);background:rgba(255,48,128,.04)}
-
-
-.sd-label{font-family:var(--fd);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sakura)}
-
-
-.sched-item{display:flex;align-items:center;gap:10px;padding:10px 20px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s}
-
-
-.sched-item:hover{background:var(--surf2)}
-
-
-.si-time{font-family:var(--fd);font-size:12px;font-weight:600;color:var(--cyan);width:36px;flex-shrink:0}
-
-
-.si-title{font-family:var(--fd);font-size:16px;font-weight:600;color:rgba(240,238,255,.85);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
-
-.si-ep{font-size:10px;color:var(--muted);flex-shrink:0}
-
-
-
-
-
-/* Promo */
-
-
-.promo-block{padding:22px 20px;background:linear-gradient(135deg,rgba(255,48,128,.07),rgba(124,58,237,.07));border-top:1px solid rgba(255,48,128,.12);text-align:center}
-
-
-.pb-title{font-family:var(--fd);font-weight:700;font-size:16px;color:var(--white);margin-bottom:5px}
-
-
-.pb-sub{font-size:15px;color:var(--muted);margin-bottom:14px;line-height:1.6}
-
-
-.pb-inp{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--white);font-family:var(--fb);font-size:13px;padding:9px 12px;outline:none;margin-bottom:8px;display:block}
-
-
-.pb-inp:focus{border-color:rgba(255,48,128,.4)}
-
-
-.pb-btn{width:100%;background:var(--sakura);color:var(--white);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;padding:10px;cursor:pointer;transition:background .18s}
-
-
-.pb-btn:hover{background:#ff5a9a}
-
-
-
-
-
-/* REVEAL */
-
-
-.rv{opacity:1;transform:translateY(0);transition:opacity .5s var(--ease),transform .5s var(--ease)}
-
-
-.rv.vis{opacity:1;transform:translateY(0)}
-
-
-
-
-
-/* FOOTER */
-
-
-footer{position:relative;z-index:1;border-top:1px solid var(--border);background:rgba(6,2,14,.98)}
-
-
-.ft-in{max-width:1440px;margin:0 auto;padding:40px 24px 24px;display:grid;grid-template-columns:190px 1fr 1fr 1fr;gap:40px}
-
-
-.ft-h{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;font-weight:500}
-
-
-.ft-links{display:flex;flex-direction:column;gap:8px;list-style:none}
-
-
-.ft-links a{font-size:13px;color:rgba(240,238,255,.42);text-decoration:none;transition:color .2s}
-
-
-.ft-links a:hover{color:var(--sakura)}
-
-
-.ft-desc{font-size:12px;color:rgba(240,238,255,.28);line-height:1.7;max-width:170px;margin-top:12px}
-
-
-.ft-bot{max-width:1440px;margin:0 auto;padding:14px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
-
-
-.ft-copy{font-size:11px;color:rgba(240,238,255,.2);letter-spacing:.04em}
-
-
-.ft-soc{display:flex;gap:6px}
-
-
-.soc{width:28px;height:28px;border:1px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:border-color .2s,color .2s}
-
-
-.soc:hover{border-color:var(--sakura);color:var(--sakura)}
-
-
-
-
-
-/* RESPONSIVE */
-
-
-@media(max-width:1100px){
-
-
-  .airing-grid{grid-template-columns:repeat(3,1fr)}
-
-
-  .content-layout{grid-template-columns:1fr}
-
-
-  .ft-in{grid-template-columns:1fr 1fr}
-
-
-}
-
-
-@media(max-width:768px){
-
-
-  .nav-links{display:none}
-
-
-  .wrap,.nav-in{padding-left:16px;padding-right:16px}
-
-
-  .airing-grid{grid-template-columns:repeat(2,1fr)}
-
-
-  .rev-grid{grid-template-columns:1fr}
-
-
-  .rev-stack{flex-direction:column}
-
-
-  .rev-sm{grid-template-columns:100px 1fr}
-
-
-  .ac-top2{grid-template-columns:1fr}
-
-
-  .ft-in{grid-template-columns:1fr;gap:24px}
-
-
-  .ft-bot{flex-direction:column}
-
-
-}
-
-
-@media(max-width:480px){
-
-
-  .airing-grid{grid-template-columns:repeat(2,1fr)}
-
-
-  .ch-stats{flex-wrap:wrap;gap:20px}
-
-
-}
-
-
-
-
-
-.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
-
-
-
-
-/* === MOBILE ACCESSIBILITY FIXES === */
-
-
-.ham{min-width:44px;min-height:44px;display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px;align-items:center;justify-content:center}
-
-
-input,select,textarea{font-size:16px!important}
-
-
-*{-webkit-tap-highlight-color:transparent}
-
-
-@media(max-width:768px){
-
-
-  .ham{display:flex}
-
-
-  a,button{min-height:44px;display:inline-flex;align-items:center}
-
-
-  .nav-links a{min-height:60px}
-
-
-}
-
-
-
-.filter-bar{position:sticky;top:60px;z-index:200;background:rgba(11,2,32,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.filter-bar{position:sticky;top:60px;z-index:200;background:rgba(11,2,32,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);margin-bottom:28px}
 .filter-in{max-width:1440px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none}
 .filter-in::-webkit-scrollbar{display:none}
 .ftab{background:none!important;border:none!important;outline:none!important;cursor:pointer;font-family:var(--fd);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:14px 20px;white-space:nowrap;border-bottom:2px solid transparent!important;transition:all .2s;flex-shrink:0;box-shadow:none!important}
@@ -1170,8 +170,22 @@ input,select,textarea{font-size:16px!important}
 .ftab.on{color:var(--sakura)!important;border-bottom:2px solid var(--sakura)!important}
 .filter-sep{width:1px;height:24px;background:var(--border);flex-shrink:0;margin:0 6px}
 .cat-hidden{display:none!important}
+.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:290px 230px;gap:3px;margin-bottom:40px}
+.fc{grid-row:1/3;grid-column:1/2;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;overflow:hidden;text-decoration:none;border-radius:2px;min-height:523px}
+.fc-img{position:absolute;inset:0;background-size:cover;background-position:center center;transition:transform .4s ease;z-index:0}
+.fc:hover .fc-img{transform:scale(1.03)}
+.fc-ov{position:absolute;inset:0;background:linear-gradient(to top,#060112 0%,rgba(6,1,18,.75) 50%,rgba(6,1,18,.1) 100%);z-index:1}
+.fc-body{position:relative;z-index:2}
+.sc{position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;overflow:hidden;text-decoration:none;border-radius:2px;background:var(--surf)}
+.sc-img{position:absolute;inset:0;z-index:0;overflow:hidden}
+.sc-img img{width:100%;height:100%;object-fit:cover;object-position:center center;transition:transform .3s ease}
+.sc:hover .sc-img img{transform:scale(1.05)}
+.sc::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,#060112 0%,rgba(6,1,18,.8) 60%,rgba(6,1,18,.2) 100%);z-index:1}
+.sc-body{position:relative;z-index:2}
+.content-layout{display:grid;grid-template-columns:1fr 340px;gap:32px;align-items:start}
+@media(max-width:1100px){.f-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.fc{grid-row:auto;grid-column:1/3}.content-layout{grid-template-columns:1fr}}
+@media(max-width:768px){.f-grid{grid-template-columns:1fr;grid-template-rows:auto}.fc{grid-column:auto}}
 @keyframes heroPulseFade{0%{opacity:.4;transform:scale(.99)}100%{opacity:1;transform:scale(1)}}
-
 </style>
 
 
@@ -1473,735 +487,136 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 </div>
 
 <div class="wrap rv" style="padding-top:0;padding-bottom:0">
-  <div class="sec-h"><span class="sec-t" id="animeSecTitle">Tin tức <em>anime</em></span><div class="sec-l"></div><a href="/news" class="sec-more">Xem tất cả</a></div>
+  <div class="sec-h"><span class="sec-t" id="animeSecTitle">Tiêu điểm <em>Anime</em></span><div class="sec-l"></div><a href="/news" class="sec-more">Xem tất cả</a></div>
 
+  <!-- 5-Card Featured Grid -->
+  <div id="animeFilterBanner" class="filter-banner" style="display:none;margin-bottom:18px;background:rgba(255,48,128,.08);border:1px solid rgba(255,48,128,.3);padding:10px 18px;align-items:center;justify-content:space-between;border-radius:4px">
+    <span style="font-size:13px;color:var(--white)">Đang xem chuyên mục: <strong id="animeFilterName" style="color:var(--sakura)">Tất cả</strong> (<span id="animeFilterCount" style="color:var(--sakura)">0</span> bài viết)</span>
+    <button type="button" onclick="setAnimeFilterByCat('all')" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:4px 12px;font-size:11px;font-weight:600;text-transform:uppercase;cursor:pointer;letter-spacing:.05em;transition:all .2s">✕ Xóa lọc</button>
+  </div>
 
+  <div class="f-grid">
+    <a class="fc" id="animeHeroCard" href="/jujutsu-kaisen-mua-3-culling-game-teaser">
+      <div class="fc-img" id="animeHeroImg" style="background-image:url(/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg);background-position:center center"></div><div class="fc-ov"></div>
+      <div class="fc-body">
+        <span class="tag ts" id="animeHeroTag">Anime · Breaking</span>
+        <h2 class="fc-title" id="animeHeroTitle">Jujutsu Kaisen Mùa 3: Culling Game Tung Teaser 90 Giây Bùng Nổ, MAPPA Xác Nhận Phát Sóng 2026</h2>
+        <p class="fc-sub" id="animeHeroSub">MAPPA chính thức hé lộ tạo hình Okkotsu Yuta và Hakari Kinji trong trận chiến sinh tử Culling Game tàn khốc.</p>
+        <div class="fc-meta" id="animeHeroMeta"><span>Anime</span> · OtaHub Editorial · 24/8/2026</div>
+      </div>
+    </a>
+
+    <a class="sc" id="animeSideCard0" href="/demon-slayer-infinity-castle-trailer-chinh-thuc">
+      <div class="sc-img"><img id="animeSideImg0" src="/assets/img/news-demon-slayer-infinity-castle-trailer.jpg" alt="Demon Slayer Infinity Castle" width="1200" height="675" fetchpriority="high" decoding="async"></div>
+      <div class="sc-body"><span class="tag ts" id="animeSideTag0" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Movie</span><div class="sc-title" id="animeSideTitle0">Demon Slayer: Pháo Đài Vô Tận Phần 1 Tung Trailer 3 Phút Mãn Nhãn</div><div class="sc-meta" id="animeSideMeta0">OtaHub Editorial · Hôm nay</div></div>
+    </a>
+
+    <a class="sc" id="animeSideCard1" href="/frieren-season2">
+      <div class="sc-img"><img id="animeSideImg1" src="/assets/img/3f4f599cac-frieren-s2-hero.jpg" alt="Frieren Season 2" loading="lazy" width="1200" height="675"></div>
+      <div class="sc-body"><span class="tag ta" id="animeSideTag1" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Review · 9.8</span><div class="sc-title" id="animeSideTitle1">Frieren: Beyond Journey's End Season 2 · Review</div><div class="sc-meta" id="animeSideMeta1">OtaHub Editorial · 12/8</div></div>
+    </a>
+
+    <a class="sc" id="animeSideCard2" href="/chainsaw-man-reze-arc-review">
+      <div class="sc-img"><img id="animeSideImg2" src="/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg" alt="Chainsaw Man Reze Arc" loading="lazy" width="1200" height="675"></div>
+      <div class="sc-body"><span class="tag tv" id="animeSideTag2" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Movie</span><div class="sc-title" id="animeSideTitle2">Chainsaw Man – Movie: Reze Arc · Đỉnh Cao Bom Tấn MAPPA</div><div class="sc-meta" id="animeSideMeta2">Gia Bảo · 2 ngày trước</div></div>
+    </a>
+
+    <a class="sc" id="animeSideCard3" href="/mushoku-tensei-s3-chaos-breaker">
+      <div class="sc-img"><img id="animeSideImg3" src="/assets/img/77948dbff7-mushoku-tensei-s3-chaosbreaker.jpg" alt="Mushoku Tensei Season 3" loading="lazy" width="1280" height="720"></div>
+      <div class="sc-body"><span class="tag tv" id="animeSideTag3" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Isekai</span><div class="sc-title" id="animeSideTitle3">Mushoku Tensei Season 3: Đại Chiến Pháo Đài Bay Chaos Breaker</div><div class="sc-meta" id="animeSideMeta3">Gia Bảo · 9 giờ trước</div></div>
+    </a>
+  </div>
+
+  <!-- Lower 2-Column Layout (Articles Stream + Sidebar) -->
   <div class="content-layout">
-
-
     <div>
+      <div class="sec-h" style="padding:0 0 16px;border-bottom:1px solid var(--border);margin-bottom:20px"><span class="sec-t">Bài viết <em>mới nhất</em></span></div>
 
-
-
-      
-    <div id="animeFilterBanner" class="filter-banner" style="display:none;margin-bottom:18px;background:rgba(255,48,128,.08);border:1px solid rgba(255,48,128,.3);padding:10px 18px;align-items:center;justify-content:space-between;border-radius:4px">
-      <span style="font-size:13px;color:var(--white)">Đang xem chuyên mục: <strong id="animeFilterName" style="color:var(--sakura)">Tất cả</strong> (<span id="animeFilterCount" style="color:var(--sakura)">0</span> bài viết)</span>
-      <button type="button" onclick="setAnimeFilterByCat('all')" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:4px 12px;font-size:11px;font-weight:600;text-transform:uppercase;cursor:pointer;letter-spacing:.05em;transition:all .2s">✕ Xóa lọc</button>
-    </div>
-
-    <div class="f-grid">
-      <a class="fc" id="animeHeroCard" href="/jujutsu-kaisen-mua-3-culling-game-teaser">
-        <div class="fc-img" id="animeHeroImg" style="background-image:url(/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg);background-position:center center"></div><div class="fc-ov"></div>
-        <div class="fc-body">
-          <span class="tag ts" id="animeHeroTag">Anime · Breaking</span>
-          <h2 class="fc-title" id="animeHeroTitle">Jujutsu Kaisen Mùa 3: Culling Game Tung Teaser 90 Giây Bùng Nổ, MAPPA Xác Nhận Phát Sóng 2026</h2>
-          <p class="fc-sub" id="animeHeroSub">MAPPA chính thức hé lộ tạo hình Okkotsu Yuta và Hakari Kinji trong trận chiến sinh tử Culling Game tàn khốc.</p>
-          <div class="fc-meta" id="animeHeroMeta"><span>Anime</span> · OtaHub Editorial · 24/8/2026</div>
-        </div>
-      </a>
-
-      <a class="sc" id="animeSideCard0" href="/demon-slayer-infinity-castle-trailer-chinh-thuc">
-        <div class="sc-img"><img id="animeSideImg0" src="/assets/img/news-demon-slayer-infinity-castle-trailer.jpg" alt="Demon Slayer Infinity Castle" width="1200" height="675" fetchpriority="high" decoding="async"></div>
-        <div class="sc-body"><span class="tag ts" id="animeSideTag0" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Movie</span><div class="sc-title" id="animeSideTitle0">Demon Slayer: Pháo Đài Vô Tận Phần 1 Tung Trailer 3 Phút Mãn Nhãn</div><div class="sc-meta" id="animeSideMeta0">OtaHub Editorial · Hôm nay</div></div>
-      </a>
-
-      <a class="sc" id="animeSideCard1" href="/frieren-season2">
-        <div class="sc-img"><img id="animeSideImg1" src="/assets/img/2951ca7ab4-frieren-season-2-review-hero.jpg" alt="Frieren Season 2" loading="lazy" width="1200" height="675"></div>
-        <div class="sc-body"><span class="tag ta" id="animeSideTag1" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Review · 9.8</span><div class="sc-title" id="animeSideTitle1">Frieren: Beyond Journey's End Season 2 · Review</div><div class="sc-meta" id="animeSideMeta1">OtaHub Editorial · 12/8</div></div>
-      </a>
-
-      <a class="sc" id="animeSideCard2" href="/chainsaw-man-reze-arc-review">
-        <div class="sc-img"><img id="animeSideImg2" src="/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg" alt="Chainsaw Man Reze Arc" loading="lazy" width="1200" height="675"></div>
-        <div class="sc-body"><span class="tag tv" id="animeSideTag2" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Movie</span><div class="sc-title" id="animeSideTitle2">Chainsaw Man – Movie: Reze Arc · Đỉnh Cao Bom Tấn MAPPA</div><div class="sc-meta" id="animeSideMeta2">Gia Bảo · 2 ngày trước</div></div>
-      </a>
-
-      <a class="sc" id="animeSideCard3" href="/mushoku-tensei-s3-chaos-breaker">
-        <div class="sc-img"><img id="animeSideImg3" src="/assets/img/a4f75364fc-maxresdefault.jpg" alt="Mushoku Tensei Season 3" loading="lazy" width="1280" height="720"></div>
-        <div class="sc-body"><span class="tag tv" id="animeSideTag3" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Isekai</span><div class="sc-title" id="animeSideTitle3">Mushoku Tensei Season 3: Đại Chiến Pháo Đài Bay Chaos Breaker</div><div class="sc-meta" id="animeSideMeta3">Gia Bảo · 9 giờ trước</div></div>
-      </a>
-    </div>
-
-
+      <div class="ac-list">
+        <!-- ADMIN:ARTICLES_START -->
+        <a href="/jujutsu-kaisen-mua-3-culling-game-teaser" class="ac" data-cat="news action shonen">
+          <div class="ac-thumb"><img src="/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg" alt="Jujutsu Kaisen Season 3 Teaser MAPPA" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div><div class="ac-tags"><span class="tag ts">Anime</span><span class="tag tag-live">Breaking</span></div>
+            <div class="ac-title">Jujutsu Kaisen Mùa 3 (Culling Game Arc) Tung Teaser Trailer Đầu Tiên: MAPPA Ấn Định Lên Sóng Đầu Năm 2027</div></div>
+            <div class="ac-meta"><span>OtaHub Editorial</span><span class="sep">·</span><span>Vừa xong</span><span class="sep">·</span><span>7 min</span></div>
+          </div>
         </a>
 
+        <a href="/senren-banka-anime-2027" class="ac" data-cat="news isekai">
+          <div class="ac-thumb"><img src="/assets/img/news-senren-banka-anime-2027.jpg" alt="Senren Banka Anime" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div><div class="ac-tags"><span class="tag ts">Anime</span></div>
+            <div class="ac-title">Senren＊Banka Được Chuyển Thể Anime, Dàn Cast Gốc Trở Lại, Ra Mắt 2027</div></div>
+            <div class="ac-meta"><span>Lan Anh</span><span class="sep">·</span><span>13 giờ trước</span><span class="sep">·</span><span>6 min</span></div>
+          </div>
+        </a>
 
-        <a class="sc" href="/senren-banka-anime-2027"><div class="sc-img"><img src="/assets/img/news-senren-banka-anime-2027.jpg" alt="Senren＊Banka Được Chuyển Thể Anime, Dàn Cast Gốc Trở Lại, Ra Mắt 2027" width="1280" height="720" fetchpriority="high" decoding="async"></div><div class="sc-body"><span class="tag ts" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Anime</span><div class="sc-title">Senren＊Banka Được Chuyển Thể Anime, Dàn Cast Gốc Trở Lại, Ra Mắt 2027</div><div class="sc-meta">Lan Anh · 13 giờ trước</div></div></a>
+        <a href="/konosuba-season-4-2027" class="ac" data-cat="news isekai">
+          <div class="ac-thumb"><img src="/assets/img/news-konosuba-season-4-2027.jpg" alt="KONOSUBA Season 4" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div><div class="ac-tags"><span class="tag ts">Anime</span></div>
+            <div class="ac-title">KONOSUBA Mùa 4 Ấn Định Ra Mắt 2027, Đổi Sang Studio ENGI</div></div>
+            <div class="ac-meta"><span>Như Quỳnh</span><span class="sep">·</span><span>14 giờ trước</span><span class="sep">·</span><span>5 min</span></div>
+          </div>
+        </a>
 
+        <a href="/free-fire-daybreak-anime-2027" class="ac" data-cat="news action">
+          <div class="ac-thumb"><img src="/assets/img/news-free-fire-daybreak-anime-2027.jpg" alt="Free Fire Daybreak" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div><div class="ac-tags"><span class="tag ts">Anime</span></div>
+            <div class="ac-title">Free Fire Daybreak Tung Key Visual Đầu Tiên, Ấn Định Mùa Xuân 2027</div></div>
+            <div class="ac-meta"><span>Anh Đức</span><span class="sep">·</span><span>15 giờ trước</span><span class="sep">·</span><span>6 min</span></div>
+          </div>
+        </a>
 
-        <a class="sc" href="/konosuba-season-4-2027"><div class="sc-img"><img src="/assets/img/news-konosuba-season-4-2027.jpg" alt="KONOSUBA Mùa 4 Ấn Định Ra Mắt 2027, Đổi Sang Studio ENGI" loading="lazy" width="1280" height="720"></div><div class="sc-body"><span class="tag ts" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Anime</span><div class="sc-title">KONOSUBA Mùa 4 Ấn Định Ra Mắt 2027, Đổi Sang Studio ENGI</div><div class="sc-meta">Như Quỳnh · 14 giờ trước</div></div></a>
+        <a href="/ranma-half-season-3-visual" class="ac" data-cat="news action">
+          <div class="ac-thumb"><img src="/assets/img/news-ranma-half-season-3-visual.jpg" alt="Ranma 1/2 Season 3" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div><div class="ac-tags"><span class="tag ts">Anime</span></div>
+            <div class="ac-title">Ranma 1/2 Mùa 3 Công Bố Key Visual, 5 Diễn Viên Mới Và Ngày Lên Sóng 3/10</div></div>
+            <div class="ac-meta"><span>Gia Bảo</span><span class="sep">·</span><span>16 giờ trước</span><span class="sep">·</span><span>7 min</span></div>
+          </div>
+        </a>
 
-
-        <a class="sc" href="/free-fire-daybreak-anime-2027"><div class="sc-img"><img src="/assets/img/news-free-fire-daybreak-anime-2027.jpg" alt="Free Fire Daybreak Tung Key Visual Đầu Tiên, Ấn Định Mùa Xuân 2027" loading="lazy" width="1280" height="720"></div><div class="sc-body"><span class="tag ts" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Anime</span><div class="sc-title">Free Fire Daybreak Tung Key Visual Đầu Tiên, Ấn Định Mùa Xuân 2027</div><div class="sc-meta">Anh Đức · 15 giờ trước</div></div></a>
-
-
-        <a class="sc" href="/ranma-half-season-3-visual"><div class="sc-img"><img src="/assets/img/news-ranma-half-season-3-visual.jpg" alt="Ranma 1/2 Mùa 3 Công Bố Key Visual, 5 Diễn Viên Mới Và Ngày Lên Sóng 3/10" loading="lazy" width="1280" height="720"></div><div class="sc-body"><span class="tag ts" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Anime</span><div class="sc-title">Ranma 1/2 Mùa 3 Công Bố Key Visual, 5 Diễn Viên Mới Và Ngày Lên Sóng 3/10</div><div class="sc-meta">Gia Bảo · 16 giờ trước</div></div></a>
-
-
+        <a href="/frieren-season2" class="ac" data-cat="review mua-he-2026">
+          <div class="ac-thumb"><img src="/assets/img/3f4f599cac-frieren-s2-hero.jpg" alt="Frieren Season 2 Review" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div><div class="ac-tags"><span class="tag ta">Review · 9.8</span><span class="tag ts">Anime</span></div>
+            <div class="ac-title">Frieren: Beyond Journey’s End Mùa 2 Review: Đỉnh Cao Của Anime Kỳ Ảo Nhân Sinh</div></div>
+            <div class="ac-meta"><span>OtaHub Editorial</span><span class="sep">·</span><span>Hôm qua</span><span class="sep">·</span><span>8 min</span></div>
+          </div>
+        </a>
+        <!-- ADMIN:ARTICLES_END -->
       </div>
-
-
-      <div class="sec-h" style="padding:32px 0 16px;border-bottom:1px solid var(--border)"><span class="sec-t">Tin <em>mới nhất</em></span></div>
-
-
-      <!-- ADMIN:ARTICLES_START -->
-      <a href="/jujutsu-kaisen-mua-3-culling-game-teaser" class="ac" data-cat="news action shonen">
-        <div class="ac-thumb"><img src="/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg" alt="Jujutsu Kaisen Season 3 Teaser MAPPA" loading="lazy" width="480" height="360"></div>
-        <div class="ac-info">
-          <div><div class="ac-tags"><span class="tag ts">Anime</span><span class="tag tag-live">Breaking</span></div>
-          <div class="ac-title">Jujutsu Kaisen Mùa 3 (Culling Game Arc) Tung Teaser Trailer Đầu Tiên: MAPPA Ấn Định Lên Sóng Đầu Năm 2027</div></div>
-          <div class="ac-meta"><span>OtaHub Editorial</span><span class="sep">·</span><span>Vừa xong</span><span class="sep">·</span><span>7 min</span></div>
-        </div>
-      </a>
-      <a href="/anime-detail?t=Bleach%3A%20TYBW%20Part%205" class="ac" data-cat="news mua-he-2026 action shonen">
-
-
-        <div class="ac-thumb"><img src="/assets/img/15741dcbc3-hqdefault.jpg" alt="Bleach: Thousand-Year Blood War Part 5 · tất cả những gì cần biết về arc cuối Yhwach" loading="lazy" width="480" height="360"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-tags"><span class="tag ts">Anime</span><span class="tag t-airing">Đang chiếu</span></div>
-
-
-          <div class="ac-title">Bleach: Thousand-Year Blood War Part 5 · tất cả những gì cần biết về arc cuối Yhwach</div></div>
-
-
-          <div class="ac-meta"><span>Lan Anh</span><span class="sep">·</span><span>3 giờ trước</span><span class="sep">·</span><span>6 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-      <a href="/anime-detail?t=Dungeon%20Meshi%20Season%202" class="ac" data-cat="review mua-he-2026">
-
-
-        <div class="ac-thumb"><img src="/assets/img/7bdd6038c6-hqdefault.jpg" alt="Dungeon Meshi Season 2 · tiếp tục là anime slice-of-life xuất sắc nhất mùa hè 2026" loading="lazy" width="480" height="360"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-tags"><span class="tag ts">Review</span><span class="ac-score-inline">8.8</span></div>
-
-
-          <div class="ac-title">Dungeon Meshi Season 2 · tiếp tục là anime slice-of-life xuất sắc nhất mùa hè 2026</div></div>
-
-
-          <div class="ac-meta"><span>Như Quỳnh</span><span class="sep">·</span><span>5 giờ trước</span><span class="sep">·</span><span>8 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-      <a href="/anime-detail?t=Kaiju%20No.8%20Season%202" class="ac" data-cat="news mua-he-2026 action">
-
-
-        <div class="ac-thumb"><img src="/assets/img/37aa53b176-hqdefault.jpg" alt="Kaiju No.8 Season 2 ep.4 review · Kafka Hibino cuối cùng có được khả năng kiểm soát hoàn toàn" loading="lazy" width="480" height="360"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-tags"><span class="tag ts">Anime</span></div>
-
-
-          <div class="ac-title">Kaiju No.8 Season 2 ep.4 review · Kafka Hibino cuối cùng có được khả năng kiểm soát hoàn toàn</div></div>
-
-
-          <div class="ac-meta"><span>Anh Đức</span><span class="sep">·</span><span>6 giờ trước</span><span class="sep">·</span><span>5 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-      <a href="/mushoku-tensei-s3-chaos-breaker" class="ac" data-cat="news mua-he-2026 isekai">
-
-
-        <div class="ac-thumb"><img src="/assets/img/a4f75364fc-maxresdefault.jpg" alt="Mushoku Tensei Season 3 · Rudeus đối mặt với cuộc chiến lớn nhất trong cuộc đời mới của mình" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-tags"><span class="tag tv">Isekai</span><span class="ac-score-inline">9.1</span></div>
-
-
-          <div class="ac-title">Mushoku Tensei Season 3 · Rudeus đối mặt với cuộc chiến lớn nhất trong cuộc đời mới của mình</div></div>
-
-
-          <div class="ac-meta"><span>Gia Bảo</span><span class="sep">·</span><span>9 giờ trước</span><span class="sep">·</span><span>7 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-      <a href="/anime-detail?t=Sakamoto%20Days" class="ac" data-cat="news mua-he-2026 action shonen">
-
-
-        <div class="ac-thumb"><img src="/assets/img/39c7dd4496-maxresdefault.jpg" alt="Sakamoto Days · anime adaptation vượt mong đợi, cảnh chiến đấu được khen ngợi rầm rộ" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-tags"><span class="tag ts">Action</span></div>
-
-
-          <div class="ac-title">Sakamoto Days · anime adaptation vượt mong đợi, cảnh chiến đấu được khen ngợi rầm rộ</div></div>
-
-
-          <div class="ac-meta"><span>Minh Tuấn</span><span class="sep">·</span><span>11 giờ trước</span><span class="sep">·</span><span>5 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-      <a href="/bleach-tybw-calamity-opening-ending" class="ac" data-cat="news">
-
-
-        <div class="ac-thumb"><img src="/assets/img/news-bleach-tybw-calamity-opening-ending.jpg" alt="Bleach TYBW: The Calamity Công Bố OP 'I-BULL' Và ED 'Rasen'" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-tags"><span class="tag ts">Anime</span></div>
-
-
-          <div class="ac-title">Bleach TYBW: The Calamity Công Bố OP 'I-BULL' Và ED 'Rasen'</div></div>
-
-
-          <div class="ac-meta"><span>Minh Tuấn</span><span class="sep">·</span><span>17 giờ trước</span><span class="sep">·</span><span>6 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-
-
-      <a href="/galaxy-express-999-new-film" class="ac" data-cat="news">
-
-
-        <div class="ac-thumb"><img src="/assets/img/news-galaxy-express-999-new-film.jpg" alt="Toei Animation Xác Nhận Phim Galaxy Express 999 Mới, Rintaro Viết Cốt Truyện" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-tags"><span class="tag ts">Anime</span></div>
-
-
-          <div class="ac-title">Toei Animation Xác Nhận Phim Galaxy Express 999 Mới, Rintaro Viết Cốt Truyện</div></div>
-
-
-          <div class="ac-meta"><span>Hải Yến</span><span class="sep">·</span><span>18 giờ trước</span><span class="sep">·</span><span>6 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-
-
-      <a href="/doraemon-steam-time-machine-film" class="ac" data-cat="news">
-
-
-        <div class="ac-thumb"><img src="/assets/img/news-doraemon-steam-time-machine-film.jpg" alt="Doraemon Công Bố Phim Thứ 46: Nobita Đến London Bằng Tàu Thời Gian Hơi Nước" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-tags"><span class="tag ts">Anime</span></div>
-
-
-          <div class="ac-title">Doraemon Công Bố Phim Thứ 46: Nobita Đến London Bằng Tàu Thời Gian Hơi Nước</div></div>
-
-
-          <div class="ac-meta"><span>Thùy Linh</span><span class="sep">·</span><span>19 giờ trước</span><span class="sep">·</span><span>6 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-
-
-      <a href="/detective-conan-final-chapter" class="ac" data-cat="news">
-
-
-        <div class="ac-thumb"><img src="/assets/img/news-detective-conan-final-chapter.jpg" alt="Gosho Aoyama Xác Nhận Đã Phác Thảo Storyboard Chương Cuối Thám Tử Lừng Danh Conan" loading="lazy" width="704" height="396"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-tags"><span class="tag ts">Anime</span></div>
-
-
-          <div class="ac-title">Gosho Aoyama Xác Nhận Đã Phác Thảo Storyboard Chương Cuối Thám Tử Lừng Danh Conan</div></div>
-
-
-          <div class="ac-meta"><span>Đức Anh</span><span class="sep">·</span><span>4 giờ trước</span><span class="sep">·</span><span>5 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-
-      <a href="/rezero-10th-anniversary-visual" class="ac" data-cat="news">
-
-
-        <div class="ac-thumb"><img src="/assets/img/news-rezero-10th-anniversary-visual.jpg" alt="Re:ZERO Tung Visual Kỷ Niệm 10 Năm, Hé Lộ Triển Lãm Tại Tokyo Tháng 9" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-tags"><span class="tag ts">Anime</span></div>
-
-
-          <div class="ac-title">Re:ZERO Tung Visual Kỷ Niệm 10 Năm, Hé Lộ Triển Lãm Tại Tokyo Tháng 9</div></div>
-
-
-          <div class="ac-meta"><span>Đức Anh</span><span class="sep">·</span><span>20 giờ trước</span><span class="sep">·</span><span>6 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-
-
-      <a href="/the-bugle-call-anime-2027" class="ac" data-cat="news">
-
-
-        <div class="ac-thumb"><img src="/assets/img/news-the-bugle-call-anime-2027.jpg" alt="The Bugle Call: Song of War Công Bố TV Anime Tại Studio CA Soa, Ra Mắt 2027" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-tags"><span class="tag ts">Anime</span></div>
-
-
-          <div class="ac-title">The Bugle Call: Song of War Công Bố TV Anime Tại Studio CA Soa, Ra Mắt 2027</div></div>
-
-
-          <div class="ac-meta"><span>Lan Anh</span><span class="sep">·</span><span>21 giờ trước</span><span class="sep">·</span><span>6 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-
-
-      <a href="/magical-buffs-fate-rewinder-crunchyroll" class="ac" data-cat="news">
-
-
-        <div class="ac-thumb"><img src="/assets/img/news-magical-buffs-fate-rewinder-crunchyroll.jpg" alt="Crunchyroll Xác Nhận Magical Buffs Và Fate Rewinder Sau Showcase Anime Expo 2026" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-tags"><span class="tag ts">Anime</span></div>
-
-
-          <div class="ac-title">Crunchyroll Xác Nhận Magical Buffs Và Fate Rewinder Sau Showcase Anime Expo 2026</div></div>
-
-
-          <div class="ac-meta"><span>Như Quỳnh</span><span class="sep">·</span><span>1 ngày trước</span><span class="sep">·</span><span>6 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-
-
-      <a href="/mii-chan-miss-yamada-anime" class="ac" data-cat="news">
-
-
-        <div class="ac-thumb"><img src="/assets/img/news-mii-chan-miss-yamada-anime.jpg" alt="Mii-chan and Miss Yamada Được Chuyển Thể Anime, Ra Mắt Năm 2027" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-tags"><span class="tag ts">Anime</span></div>
-
-
-          <div class="ac-title">Mii-chan and Miss Yamada Được Chuyển Thể Anime, Ra Mắt Năm 2027</div></div>
-
-
-          <div class="ac-meta"><span>Anh Đức</span><span class="sep">·</span><span>1 ngày trước</span><span class="sep">·</span><span>6 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-
-
-      <a href="/studio-cabana-anime-2027" class="ac" data-cat="news">
-
-
-        <div class="ac-thumb"><img src="/assets/img/news-studio-cabana-anime-2027.jpg" alt="Manga Studio Cabana Được Chuyển Thể Anime Tại JUVENAGE, Ra Mắt 2027" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-tags"><span class="tag ts">Anime</span></div>
-
-
-          <div class="ac-title">Manga Studio Cabana Được Chuyển Thể Anime Tại JUVENAGE, Ra Mắt 2027</div></div>
-
-
-          <div class="ac-meta"><span>Gia Bảo</span><span class="sep">·</span><span>2 ngày trước</span><span class="sep">·</span><span>6 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-      <!-- ADMIN:ARTICLES_END -->
-      <div class="load-wrap"><button class="load-btn">Xem thêm bài viết</button></div>
-
-
     </div>
 
-
-
-
-
     <!-- Sidebar -->
-
-
     <aside>
-
-
       <div>
-
-
         <div class="side-head"><span style="color:var(--sakura)">Top Anime mùa hè</span><span class="side-badge">2026</span></div>
-
-
         <div class="rk t1"><div class="rk-num">1</div><div class="rk-poster"><img src="/assets/img/0feb0c5f50-99889l.jpg" alt="Demon Slayer: Infinity Castle" loading="lazy" width="460" height="639"></div><div class="rk-info"><div class="rk-title">Demon Slayer: Infinity Castle</div><div class="rk-sub">Ufotable · Action</div></div><div class="rk-score">9.8</div></div>
-
-
-        <div class="rk t2"><div class="rk-num">2</div><div class="rk-poster"><img src="/assets/img/4a7324f467-138006l.jpg" alt="Frieren Season 2" loading="lazy" width="460" height="649"></div><div class="rk-info"><div class="rk-title">Frieren Season 2</div><div class="rk-sub">Madhouse · Fantasy</div></div><div class="rk-score">9.2</div></div>
-
-
-        <div class="rk t3"><div class="rk-num">3</div><div class="rk-poster"><img src="/assets/img/d98cf42206-maxresdefault.jpg" alt="Solo Leveling S3" loading="lazy" width="1280" height="720"></div><div class="rk-info"><div class="rk-title">Solo Leveling S3</div><div class="rk-sub">A-1 Pictures · Action</div></div><div class="rk-score">9.0</div></div>
-
-
-        <div class="rk"><div class="rk-num">4</div><div class="rk-poster"><img src="/assets/img/2656ba8ffc-maxresdefault.jpg" alt="Chainsaw Man Part 3" loading="lazy" width="460" height="653"></div><div class="rk-info"><div class="rk-title">Chainsaw Man Part 3</div><div class="rk-sub">MAPPA · Action</div></div><div class="rk-score">8.9</div></div>
-
-
+        <div class="rk t2"><div class="rk-num">2</div><div class="rk-poster"><img src="/assets/img/3f4f599cac-frieren-s2-hero.jpg" alt="Frieren Season 2" loading="lazy" width="460" height="649"></div><div class="rk-info"><div class="rk-title">Frieren Season 2</div><div class="rk-sub">Madhouse · Fantasy</div></div><div class="rk-score">9.2</div></div>
+        <div class="rk t3"><div class="rk-num">3</div><div class="rk-poster"><img src="/assets/img/1619ce791a-solo-leveling-hero.jpg" alt="Solo Leveling S3" loading="lazy" width="1280" height="720"></div><div class="rk-info"><div class="rk-title">Solo Leveling S3</div><div class="rk-sub">A-1 Pictures · Action</div></div><div class="rk-score">9.0</div></div>
+        <div class="rk"><div class="rk-num">4</div><div class="rk-poster"><img src="/assets/img/10728427f3-chainsaw-man-hero.jpg" alt="Chainsaw Man Part 3" loading="lazy" width="460" height="653"></div><div class="rk-info"><div class="rk-title">Chainsaw Man Part 3</div><div class="rk-sub">MAPPA · Action</div></div><div class="rk-score">8.9</div></div>
         <div class="rk"><div class="rk-num">5</div><div class="rk-poster"><img src="/assets/img/15741dcbc3-hqdefault.jpg" alt="Bleach TYBW Part 5" loading="lazy" width="480" height="360"></div><div class="rk-info"><div class="rk-title">Bleach TYBW Part 5</div><div class="rk-sub">Pierrot · Action</div></div><div class="rk-score">8.8</div></div>
-
-
-        <div class="rk"><div class="rk-num">6</div><div class="rk-poster"><img src="/assets/img/7bdd6038c6-hqdefault.jpg" alt="Dungeon Meshi S2" loading="lazy" width="480" height="360"></div><div class="rk-info"><div class="rk-title">Dungeon Meshi S2</div><div class="rk-sub">Trigger · Fantasy</div></div><div class="rk-score">8.7</div></div>
-
-
-        <div class="rk"><div class="rk-num">7</div><div class="rk-poster"><img src="/assets/img/a4f75364fc-maxresdefault.jpg" alt="Mushoku Tensei S3" loading="lazy" width="1280" height="720"></div><div class="rk-info"><div class="rk-title">Mushoku Tensei S3</div><div class="rk-sub">Studio Bind · Isekai</div></div><div class="rk-score">8.6</div></div>
-
-
       </div>
 
-
-
-
-
-      <div>
-
-
+      <div style="margin-top:24px">
         <div class="side-head" style="margin-top:0"><span style="color:var(--cyan)">Lịch phát hôm nay</span><span style="font-size:10px;color:var(--muted)">Thứ 4</span></div>
-
-
-        <div class="sched-day"><div class="sd-label">Chiều</div></div>
-
-
-        <div class="sched-item"><div class="si-time">17:00</div><div class="si-title">Mushoku Tensei S3</div><div class="si-ep">Ep 4</div></div>
-
-
-        <div class="sched-day"><div class="sd-label">Tối</div></div>
-
-
-        <div class="sched-item"><div class="si-time">21:00</div><div class="si-title">Frieren Season 2</div><div class="si-ep">Ep 6</div></div>
-
-
+        <div style="padding:16px 20px;border-bottom:1px solid var(--border)"><div style="font-weight:600;font-size:13px;color:var(--white)">Frieren: Beyond Journey's End S2</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Tập 18 · 22:30 JST · Crunchyroll</div></div>
+        <div style="padding:16px 20px;border-bottom:1px solid var(--border)"><div style="font-weight:600;font-size:13px;color:var(--white)">Dandadan Season 2</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Tập 08 · 23:00 JST · Netflix</div></div>
+        <div style="padding:16px 20px"><div style="font-weight:600;font-size:13px;color:var(--white)">Oshi no Ko Season 3</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Tập 11 · 23:30 JST · Bilibili</div></div>
       </div>
-
-
-
-
-
-      <div class="promo-block">
-
-
-        <div class="pb-title">Anime Weekly</div>
-
-
-        <div class="pb-sub">Lịch phát + review mỗi tuần. Không bỏ sót tập nào.</div>
-
-
-        <input class="pb-inp" type="email" placeholder="email@example.com">
-
-
-        <button class="pb-btn">Đăng ký miễn phí</button>
-
-
-      </div>
-
-
     </aside>
-
-
-  </div>
-
-
-</div>
-
-
-
-
-
-<!-- QUICK LINKS: LICH CHIEU + REVIEWS -->
-<div class="wrap rv">
-  <div class="sec-h">
-    <span class="sec-t">Khám phá <em>thêm</em></span>
-    <div class="sec-l"></div>
-  </div>
-  <div class="hub-links">
-    <a href="/lich-phat-song" class="hub-link-card">
-      <div class="hlc-ic">📅</div>
-      <div class="hlc-body">
-        <div class="hlc-title">Lịch chiếu anime đầy đủ</div>
-        <div class="hlc-sub">Xem lịch phát sóng theo mùa: Xuân, Hè, Thu, Đông 2026</div>
-      </div>
-      <div class="hlc-arrow">→</div>
-    </a>
-    <a href="/reviews" class="hub-link-card">
-      <div class="hlc-ic">⭐</div>
-      <div class="hlc-body">
-        <div class="hlc-title">Tất cả review anime</div>
-        <div class="hlc-sub">Đánh giá chi tiết từng bộ anime đang và đã phát sóng</div>
-      </div>
-      <div class="hlc-arrow">→</div>
-    </a>
   </div>
 </div>
 
-
-
-
-
-<!-- FOOTER -->
-
-
-<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><svg viewbox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
-
-
-
-
-
 <script>
-
-
-
-
-
-
-
-
-
-
-const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target)}})},{threshold:0,rootMargin:'120px 0px 120px 0px'});
-
-
-document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
-
-
-setTimeout(()=>{document.querySelectorAll('.rv:not(.vis)').forEach(el=>el.classList.add('vis'))},800);
-
-
-</script>
-
-
-<script>
-
-
-(function(){
-
-
-  var ham=document.querySelector('.ham');
-
-
-  var mn=document.querySelector('.mobile-nav');
-
-
-  if(!ham||!mn)return;
-
-
-  ham.addEventListener('click',function(){
-
-
-    ham.classList.toggle('open');
-
-
-    mn.classList.toggle('open');
-
-
-    document.body.style.overflow=mn.classList.contains('open')?'hidden':'';
-
-
-  });
-
-
-  mn.querySelectorAll('a').forEach(function(a){
-
-
-    a.addEventListener('click',function(){
-
-
-      ham.classList.remove('open');
-
-
-      mn.classList.remove('open');
-
-
-      document.body.style.overflow='';
-
-
-    });
-
-
-  });
-
-
-})();
-
-
-</script>
-
-
-<script>
-
-
-// Search overlay
-
-
-
-
-
-/* Mobile nav toggle */
-
-
-function toggleMobileNav(){
-
-
-  const nav=document.getElementById('mobileNav');
-
-
-  const ham=document.getElementById('hamBtn');
-
-
-  if(!nav||!ham) return;
-
-
-  const open=nav.classList.toggle('open');
-
-
-  ham.classList.toggle('open',open);
-
-
-  document.body.style.overflow=open?'hidden':'';
-
-
-}
-
-
-/* Close mobile nav on link click */
-
-
-document.querySelectorAll('.mobile-nav a').forEach(a=>a.addEventListener('click',()=>{
-
-
-  const nav=document.getElementById('mobileNav');
-
-
-  const ham=document.getElementById('hamBtn');
-
-
-  if(nav)nav.classList.remove('open');
-
-
-  if(ham)ham.classList.remove('open');
-
-
-  document.body.style.overflow='';
-
-
-}));
-
-
-
-
-
-function openSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.add('open');setTimeout(function(){var i=document.getElementById('searchInput');if(i)i.focus()},50);document.body.style.overflow='hidden'}}
-
-
-function closeSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.remove('open');document.body.style.overflow=''}}
-
-
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSearch();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch()}});
-
-
-
 /* ─── ANIME DYNAMIC 5-CARD SWITCHER ─── */
 var ANIME_FEATURED_DATA = {
   all: {
-    secTitle: 'Tin tức <em>Anime</em>',
+    secTitle: 'Tiêu điểm <em>Anime</em>',
     name: 'Tất cả bài viết',
     hero: {
       url: '/jujutsu-kaisen-mua-3-culling-game-teaser',
@@ -2214,9 +629,9 @@ var ANIME_FEATURED_DATA = {
     },
     sides: [
       { url: '/demon-slayer-infinity-castle-trailer-chinh-thuc', img: '/assets/img/news-demon-slayer-infinity-castle-trailer.jpg', tag: 'Movie', tagClass: 'ts', title: 'Demon Slayer: Pháo Đài Vô Tận Phần 1 Tung Trailer 3 Phút Mãn Nhãn', meta: 'OtaHub Editorial · Hôm nay' },
-      { url: '/frieren-season2', img: '/assets/img/2951ca7ab4-frieren-season-2-review-hero.jpg', tag: 'Review · 9.8', tagClass: 'ta', title: 'Frieren Season 2 · Review', meta: 'OtaHub Editorial · 12/8' },
+      { url: '/frieren-season2', img: '/assets/img/3f4f599cac-frieren-s2-hero.jpg', tag: 'Review · 9.8', tagClass: 'ta', title: 'Frieren Season 2 · Review', meta: 'OtaHub Editorial · 12/8' },
       { url: '/chainsaw-man-reze-arc-review', img: '/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg', tag: 'Movie', tagClass: 'tv', title: 'Chainsaw Man – Movie: Reze Arc · Đỉnh Cao Bom Tấn', meta: 'Gia Bảo · 2 ngày trước' },
-      { url: '/mushoku-tensei-s3-chaos-breaker', img: '/assets/img/a4f75364fc-maxresdefault.jpg', tag: 'Isekai', tagClass: 'tv', title: 'Mushoku Tensei S3: Đại Chiến Pháo Đài Bay Chaos Breaker', meta: 'Gia Bảo · 9 giờ trước' }
+      { url: '/mushoku-tensei-s3-chaos-breaker', img: '/assets/img/77948dbff7-mushoku-tensei-s3-chaosbreaker.jpg', tag: 'Isekai', tagClass: 'tv', title: 'Mushoku Tensei S3: Đại Chiến Pháo Đài Bay Chaos Breaker', meta: 'Gia Bảo · 9 giờ trước' }
     ]
   },
   'mua-he-2026': {
@@ -2232,10 +647,10 @@ var ANIME_FEATURED_DATA = {
       meta: 'Mùa Hè 2026 · Lan Anh · Hôm nay'
     },
     sides: [
-      { url: '/dandadan-season-2-review', img: '/assets/img/6789b706c2-dandadan-s2-hero.jpg', tag: 'Summer 2026', tagClass: 'ts', title: 'Dandadan Season 2 · Siêu Phẩm Hành Động Khoa Học Viễn Tưởng', meta: 'OtaHub Editorial · 2 ngày trước' },
-      { url: '/oshi-no-ko-anime-review', img: '/assets/img/a66ffdbf5e-oshi-no-ko-hero.jpg', tag: 'Drama', tagClass: 'ta', title: 'Oshi no Ko Season 3 · Bí Mật Đằng Sau Ánh Hào Quang', meta: 'Anh Đức · 3 ngày trước' },
-      { url: '/kaiju-no-8-the-game-review', img: '/assets/img/7664426fc0-kaiju-no-8-the-game-review-hero.jpg', tag: 'Shonen', tagClass: 'tv', title: 'Kaiju No. 8 Mùa 2: Kafka Hibino Đối Đầu Siêu Thú Biến Dị', meta: 'Minh Tuấn · 4 ngày trước' },
-      { url: '/dragon-ball-daima', img: '/assets/img/4e70e2a901-dragon-ball-daima-hero.jpg', tag: 'Action', tagClass: 'tg', title: 'Dragon Ball Daima: Di Sản Cuối Cùng Của Akira Toriyama', meta: 'Gia Bảo · 1 tuần trước' }
+      { url: '/dandadan-season-2-review', img: '/assets/img/322e6e6826-dandadan-season-2-review-hero.jpg', tag: 'Summer 2026', tagClass: 'ts', title: 'Dandadan Season 2 · Siêu Phẩm Hành Động Khoa Học Viễn Tưởng', meta: 'OtaHub Editorial · 2 ngày trước' },
+      { url: '/oshi-no-ko-anime-review', img: '/assets/img/9506aefbae-oshi-no-ko-hero.jpg', tag: 'Drama', tagClass: 'ta', title: 'Oshi no Ko Season 3 · Bí Mật Đằng Sau Ánh Hào Quang', meta: 'Anh Đức · 3 ngày trước' },
+      { url: '/solo-leveling-season2', img: '/assets/img/1619ce791a-solo-leveling-hero.jpg', tag: 'Action', tagClass: 'tv', title: 'Solo Leveling Mùa 2: Quân Vương Thức Tỉnh', meta: 'A-1 Pictures · 9.4' },
+      { url: '/dragon-ball-sparking-zero-neo-dlc', img: '/assets/img/news-dragon-ball-sparking-zero-neo-dlc.jpg', tag: 'Action', tagClass: 'tg', title: 'Dragon Ball Daima: Di Sản Cuối Cùng Của Akira Toriyama', meta: 'Gia Bảo · 1 tuần trước' }
     ]
   },
   review: {
@@ -2251,10 +666,10 @@ var ANIME_FEATURED_DATA = {
       meta: 'Review · OtaHub Editorial · 8 phút đọc'
     },
     sides: [
-      { url: '/frieren-season2', img: '/assets/img/2951ca7ab4-frieren-season-2-review-hero.jpg', tag: 'Review · 9.8', tagClass: 'ta', title: 'Frieren Season 2: Kiệt Tác Khắc Họa Nhân Sinh', meta: 'OtaHub Editorial · 9.8 Score' },
+      { url: '/frieren-season2', img: '/assets/img/3f4f599cac-frieren-s2-hero.jpg', tag: 'Review · 9.8', tagClass: 'ta', title: 'Frieren Season 2: Kiệt Tác Khắc Họa Nhân Sinh', meta: 'OtaHub Editorial · 9.8 Score' },
       { url: '/chainsaw-man-reze-arc-review', img: '/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg', tag: 'Review · 9.6', tagClass: 'ta', title: 'Chainsaw Man Reze Arc: Bản Giao Hưởng Đẫm Lệ', meta: 'Gia Bảo · 9.6 Score' },
-      { url: '/attack-on-titan-final-season-review', img: '/assets/img/841ec7cefd-attack-on-titan-final-season-review-hero.jpg', tag: 'Review · 9.7', tagClass: 'ta', title: 'Attack on Titan: Hồi Kết Trọn Vẹn Của Một Kỷ Nguyên', meta: 'Hà Trung · 9.7 Score' },
-      { url: '/jujutsu-kaisen-anime-review', img: '/assets/img/017c669145-jujutsu-kaisen-anime-review-hero.jpg', tag: 'Review · 9.5', tagClass: 'ta', title: 'Jujutsu Kaisen Biến Cố Shibuya: Đỉnh Cao Đen Tối MAPPA', meta: 'Minh Tuấn · 9.5 Score' }
+      { url: '/attack-on-titan-wit-teaser', img: '/assets/img/a7548f6c8e-attack-on-titan-wit-teaser-hero.jpg', tag: 'Review · 9.7', tagClass: 'ta', title: 'Attack on Titan: Hồi Kết Trọn Vẹn Của Một Kỷ Nguyên', meta: 'Hà Trung · 9.7 Score' },
+      { url: '/jujutsu-kaisen-mua-3-culling-game-teaser', img: '/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg', tag: 'Review · 9.5', tagClass: 'ta', title: 'Jujutsu Kaisen Biến Cố Shibuya: Đỉnh Cao Đen Tối MAPPA', meta: 'Minh Tuấn · 9.5 Score' }
     ]
   },
   action: {
@@ -2281,7 +696,7 @@ var ANIME_FEATURED_DATA = {
     name: 'Isekai & Fantasy',
     hero: {
       url: '/mushoku-tensei-s3-chaos-breaker',
-      img: '/assets/img/a4f75364fc-maxresdefault.jpg',
+      img: '/assets/img/77948dbff7-mushoku-tensei-s3-chaosbreaker.jpg',
       tag: 'Isekai · 9.1/10',
       tagClass: 'tv',
       title: 'Mushoku Tensei Season 3: Rudeus Đối Mặt Cuộc Chiến Lớn Nhất Cuộc Đời',
@@ -2290,9 +705,9 @@ var ANIME_FEATURED_DATA = {
     },
     sides: [
       { url: '/konosuba-season-4-2027', img: '/assets/img/news-konosuba-season-4-2027.jpg', tag: 'Isekai Comedy', tagClass: 'ts', title: 'KONOSUBA Mùa 4: Bựa Nhân Kazuma Tái Xuất', meta: 'Studio ENGI · 2027' },
-      { url: '/re-zero-season4-recapture-arc', img: '/assets/img/news-re-zero-season-4-recapture-arc.jpg', tag: 'Dark Fantasy', tagClass: 'ts', title: 'Re:Zero Season 4: Chiến Dịch Tái Chiếm Pristella', meta: 'White Fox · 2026' },
-      { url: '/reincarnated-as-a-sword-season2-premiere', img: '/assets/img/news-reincarnated-as-a-sword-season-2.jpg', tag: 'Fantasy', tagClass: 'ts', title: 'Chuyển Sinh Thành Kiếm Mùa 2: Fran & Thầy Kiếm', meta: 'C2C · 2026' },
-      { url: '/senren-banka-anime-2027', img: '/assets/img/news-senren-banka-anime-2027.jpg', tag: 'Supernatural', tagClass: 'ts', title: 'Senren＊Banka Anime: Chuyện Tình Kỳ Ảo Thần Xã', meta: '2027 Premiere' }
+      { url: '/rezero-10th-anniversary-visual', img: '/assets/img/news-rezero-10th-anniversary-visual.jpg', tag: 'Dark Fantasy', tagClass: 'ts', title: 'Re:Zero Season 4: Chiến Dịch Tái Chiếm Pristella', meta: 'White Fox · 2026' },
+      { url: '/senren-banka-anime-2027', img: '/assets/img/news-senren-banka-anime-2027.jpg', tag: 'Supernatural', tagClass: 'ts', title: 'Senren＊Banka Anime: Chuyện Tình Kỳ Ảo Thần Xã', meta: '2027 Premiere' },
+      { url: '/frieren-season2', img: '/assets/img/3f4f599cac-frieren-s2-hero.jpg', tag: 'Fantasy', tagClass: 'ta', title: 'Frieren: Hành Trình Đến Miền Đất Linh Hồn', meta: 'Madhouse · 9.8' }
     ]
   },
   news: {
@@ -2309,9 +724,9 @@ var ANIME_FEATURED_DATA = {
     },
     sides: [
       { url: '/chainsaw-man-reze-arc-review', img: '/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg', tag: 'Movie', tagClass: 'tv', title: 'Chainsaw Man: Reze Arc Chiếu Rạp Toàn Cầu', meta: 'MAPPA · 9.6 Score' },
-      { url: '/doraemon-steam-time-machine-film', img: '/assets/img/news-doraemon-steam-time-machine.jpg', tag: 'Movie', tagClass: 'ts', title: 'Doraemon Movie 2026: Chuyến Du Hành Hơi Nước', meta: 'Toho · 2026' },
-      { url: '/galaxy-express-999-new-film', img: '/assets/img/news-galaxy-express-999-new-film.jpg', tag: 'Movie', tagClass: 'ts', title: 'Galaxy Express 999: Bản Điện Ảnh Kỷ Niệm 50 Năm', meta: 'Toei · 2026' },
-      { url: '/crunchyroll-makoto-shinkai-next-film', img: '/assets/img/news-crunchyroll-makoto-shinkai-next-film.jpg', tag: 'Movie', tagClass: 'ts', title: 'Makoto Shinkai Công Bố Dự Án Điện Ảnh Mới', meta: 'CoMix Wave · 2026' }
+      { url: '/jujutsu-kaisen-mua-3-culling-game-teaser', img: '/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg', tag: 'Movie', tagClass: 'ts', title: 'Jujutsu Kaisen: Cửa Ải Tử Thần', meta: 'MAPPA · 2026' },
+      { url: '/demon-slayer-infinity-castle-review', img: '/assets/img/5418135572-demon-slayer-infinity-castle-review-hero.jpg', tag: 'Movie', tagClass: 'ta', title: 'Demon Slayer: Pháo Đài Vô Tận Đạt 9.9 Điểm', meta: 'ufotable · 9.9 Score' },
+      { url: '/attack-on-titan-wit-teaser', img: '/assets/img/a7548f6c8e-attack-on-titan-wit-teaser-hero.jpg', tag: 'Movie', tagClass: 'ts', title: 'Attack on Titan: Bí Ẩn WIT Studio', meta: 'WIT Studio · 2026' }
     ]
   }
 };
@@ -2342,14 +757,13 @@ function updateAnimeHero(cat){
     setTimeout(function(){ heroCard.style.animation = 'heroPulseFade .4s ease-out'; }, 10);
   }
 
-  if(data && data.sides && data.sides.length >= 4){
-    for(var i = 0; i < 4; i++){
+  if(data && data.sides){
+    data.sides.forEach(function(item, i){
       var sc = document.getElementById('animeSideCard' + i);
       var sImg = document.getElementById('animeSideImg' + i);
       var sTag = document.getElementById('animeSideTag' + i);
       var sTitle = document.getElementById('animeSideTitle' + i);
       var sMeta = document.getElementById('animeSideMeta' + i);
-      var item = data.sides[i];
       if(sc && item){
         sc.href = item.url;
         if(sImg){ sImg.src = item.img; sImg.alt = item.title; }
@@ -2361,7 +775,7 @@ function updateAnimeHero(cat){
           setTimeout(function(){ cardElement.style.animation = 'heroPulseFade .4s ease-out'; }, 20 + idx * 30);
         })(sc, i);
       }
-    }
+    });
   }
 
   var banner = document.getElementById('animeFilterBanner');
@@ -2410,37 +824,7 @@ function setAnimeFilterByCat(cat){
 
 function setAnimeFilter(btn, cat){
   setAnimeFilterByCat(cat);
-} else {
-      t.classList.remove('on');
-    }
-  });
-
-  updateAnimeHero(cat);
-
-  var visibleCount = 0;
-  document.querySelectorAll('.content-layout .ac').forEach(function(card){
-    if(cat === 'all'){
-      card.classList.remove('cat-hidden');
-      visibleCount++;
-      return;
-    }
-    var cats = (card.getAttribute('data-cat') || '').toLowerCase().split(' ');
-    if(cats.indexOf(cat.toLowerCase()) > -1){
-      card.classList.remove('cat-hidden');
-      visibleCount++;
-    } else {
-      card.classList.add('cat-hidden');
-    }
-  });
-
-  var filterCount = document.getElementById('animeFilterCount');
-  if(filterCount) filterCount.textContent = visibleCount;
 }
-
-function setAnimeFilter(btn, cat){
-  setAnimeFilterByCat(cat);
-}
-
 </script>
 <script defer src="/assets/search.js"></script>
 

@@ -120,1006 +120,7 @@
 
 
 <style>
-
-
-:root{
-
-
-  --bg:#0b0418; --surf:#130a28; --surf2:#1b1038; --card:#160c30;
-
-
-  --cyan:#00e5ff; --sakura:#ff3080; --violet:#7c3aed;
-
-
-  --lav:#a78bfa; --amber:#fbbf24; --green:#34d399;
-
-
-  --white:#f0eeff; --dim:rgba(240,238,255,.62); --muted:rgba(240,238,255,.35);
-
-
-  --border:rgba(255,255,255,.07); --bvio:rgba(124,58,237,.2);
-
-
-  --ease:cubic-bezier(.16,1,.3,1);
-
-
-  --fd:'Rajdhani',sans-serif; --fb:'Space Grotesk',sans-serif;
-
-
-}
-
-
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
-
-html{scroll-behavior:smooth}
-
-
-body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:300;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-
-
-
-
-
-#amb{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-
-
-.orb{position:absolute;border-radius:50%;filter:blur(110px)}
-
-
-.o1{width:600px;height:600px;background:radial-gradient(circle,var(--lav),transparent 70%);opacity:.08;top:-150px;left:-100px;animation:fa 18s ease-in-out infinite}
-
-
-.o2{width:500px;height:500px;background:radial-gradient(circle,var(--violet),transparent 70%);opacity:.07;bottom:5%;right:-120px;animation:fb 23s ease-in-out infinite}
-
-
-.o3{width:350px;height:350px;background:radial-gradient(circle,var(--sakura),transparent 70%);opacity:.05;top:45%;left:40%;animation:fc 20s ease-in-out infinite}
-
-
-@keyframes fa{0%,100%{transform:translate(0,0)}50%{transform:translate(45px,-35px)}}
-
-
-@keyframes fb{0%,100%{transform:translate(0,0)}50%{transform:translate(-35px,30px)}}
-
-
-@keyframes fc{0%,100%{transform:translate(0,0)}50%{transform:translate(-20px,-40px)}}
-
-
-#gtex{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(124,58,237,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.04) 1px,transparent 1px);background-size:48px 48px}
-
-
-
-
-
-/* NAV */
-
-
-.nav{position:sticky;top:0;z-index:300;height:60px;background:rgba(9,3,22,.92);border-bottom:1px solid rgba(124,58,237,.18);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);display:flex;align-items:center}
-
-
-.nav-in{max-width:1440px;margin:0 auto;padding:0 24px;width:100%;display:flex;align-items:center;gap:0}
-
-
-.logo{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0;margin-right:32px}
-
-
-.logo svg{width:30px;height:30px;animation:lp 3s ease-in-out infinite}
-
-
-@keyframes lp{0%,100%{filter:drop-shadow(0 0 4px #00e5ff) drop-shadow(0 0 12px rgba(0,229,255,.5))}50%{filter:drop-shadow(0 0 8px #00e5ff) drop-shadow(0 0 24px rgba(0,229,255,.9))}}
-
-
-.logo-t{font-family:var(--fd);font-weight:700;font-size:20px;letter-spacing:-.01em;line-height:1}
-
-
-.logo-ota{color:var(--white)}.logo-hub{color:var(--cyan)}
-
-
-.nav-links{display:flex;align-items:center;list-style:none;gap:0;flex:1}
-
-
-.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;font-weight:400;letter-spacing:.07em;text-transform:uppercase;padding:0 13px;height:60px;display:flex;align-items:center;position:relative;transition:color .2s}
-
-
-.nav-links a::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:2px;background:var(--lav);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
-
-
-.nav-links a:hover,.nav-links a.active{color:var(--white)}
-
-
-.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
-
-
-.nav-drop{position:relative}
-
-
-.nav-drop-menu{position:absolute;top:100%;left:0;min-width:230px;background:var(--surf);border:1px solid var(--border);box-shadow:0 16px 36px rgba(0,0,0,.45);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s;z-index:60;padding:6px 0}
-
-
-.nav-drop:hover .nav-drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
-
-
-.nav-drop-menu a{display:flex;align-items:center;gap:10px;padding:11px 18px;font-size:12px;font-weight:400;letter-spacing:.03em;text-transform:none;color:var(--muted);height:auto}
-
-
-.nav-drop-menu a:hover{color:var(--white);background:var(--surf2)}
-
-
-.nav-drop-menu a::after{display:none}
-
-
-.nav-drop-sep{height:1px;background:var(--border);margin:6px 0}
-
-
-.nav-r{display:flex;align-items:center;gap:8px;margin-left:auto}
-
-
-.lang{display:flex;align-items:center;border:1px solid var(--border);overflow:hidden}
-
-
-.lb{background:none;border:none;cursor:pointer;font-family:var(--fb);font-size:11px;font-weight:500;letter-spacing:.08em;color:var(--muted);padding:5px 10px;transition:all .18s}
-
-
-.lb.on{background:var(--lav);color:var(--bg);font-weight:600}
-
-
-.lsep{width:1px;height:18px;background:var(--border)}
-
-
-.nsearch{background:none;border:1px solid var(--border);color:var(--muted);width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s}
-
-
-.nsearch:hover{border-color:var(--lav);color:var(--lav)}
-
-
-.cta{background:var(--lav);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;padding:8px 20px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:background .18s;text-decoration:none;display:inline-block;white-space:nowrap}
-
-
-.cta:hover{background:#c4a8ff}
-
-
-
-
-
-/* CATEGORY HEADER */
-
-
-.cat-header{position:relative;z-index:1;min-height:240px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
-
-
-.ch-bg{position:absolute;inset:0;background:url('/assets/img/d662bae70f-maxresdefault.jpg') center 30%/cover no-repeat;opacity:.18}
-
-
-.ch-ov{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0%,var(--bg) 100%),linear-gradient(to right,rgba(124,58,237,.06) 0%,transparent 50%)}
-
-
-.ch-accent{position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,transparent,var(--lav),transparent);opacity:.6}
-
-
-.ch-body{position:relative;z-index:2;max-width:1440px;margin:0 auto;padding:0 24px}
-
-
-.ch-eye{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--lav);margin-bottom:8px;display:flex;align-items:center;gap:8px}
-
-
-.ch-eye::before{content:'';width:20px;height:1px;background:var(--lav);opacity:.6}
-
-
-.ch-title{font-family:var(--fd);font-weight:700;font-size:clamp(38px,5.5vw,76px);line-height:.95;letter-spacing:-.03em;color:var(--white);margin-bottom:10px}
-
-
-.ch-title em{font-style:normal;color:var(--lav);text-shadow:0 0 40px rgba(167,139,250,.3)}
-
-
-.ch-sub{font-size:16px;color:var(--dim);max-width:520px}
-
-
-.ch-stats{display:flex;align-items:center;gap:32px;padding:16px 0;margin-top:12px;border-top:1px solid var(--border);flex-wrap:wrap}
-
-
-.ch-stat-num{font-family:var(--fd);font-size:22px;font-weight:700;color:var(--lav);line-height:1}
-
-
-.ch-stat-lbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:2px}
-
-
-
-
-
-/* TYPE TABS · Manga / Manhwa / Manhua */
-
-
-.type-tabs-bar{position:relative;z-index:1;border-bottom:1px solid var(--border)}
-
-
-.type-tabs-in{max-width:1440px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:0}
-
-
-.ttab{
-
-
-  background:none;border:none;cursor:pointer;
-
-
-  font-family:var(--fd);font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-
-
-  color:var(--muted);padding:16px 28px;white-space:nowrap;
-
-
-  border-bottom:3px solid transparent;margin-bottom:-1px;
-
-
-  transition:color .2s,border-color .2s;flex-shrink:0;
-
-
-  display:flex;align-items:center;gap:8px;
-
-
-}
-
-
-.ttab.on{color:var(--white);border-bottom-color:var(--lav)}
-
-
-.ttab:hover:not(.on){color:rgba(240,238,255,.7)}
-
-
-.ttab-count{font-size:10px;font-weight:400;font-family:var(--fb);letter-spacing:.06em;color:var(--muted);background:rgba(255,255,255,.06);padding:2px 7px}
-
-
-.ttab.on .ttab-count{background:rgba(167,139,250,.15);color:var(--lav)}
-
-
-.ttab-manga .ttab-count{background:rgba(167,139,250,.1)}
-
-
-.ttab-manhwa .ttab-count{background:rgba(0,229,255,.1)}
-
-
-.ttab-manhua .ttab-count{background:rgba(255,48,128,.1)}
-
-
-
-
-
-/* Sub-filter */
-
-
-.filter-bar{position:relative;z-index:1;border-bottom:1px solid var(--border);background:rgba(9,3,22,.8);backdrop-filter:blur(12px)}
-
-
-.filter-in{max-width:1440px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none}
-
-
-.filter-in::-webkit-scrollbar{display:none}
-
-
-.ftab{background:none;border:none;cursor:pointer;font-family:var(--fd);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:11px 16px;white-space:nowrap;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;flex-shrink:0}
-
-
-.ftab.on{color:var(--lav);border-bottom-color:var(--lav)}
-
-
-.ftab:hover:not(.on){color:rgba(240,238,255,.7)}
-
-
-.fsep{width:1px;height:24px;background:var(--border);flex-shrink:0;margin:0 4px}
-
-
-
-
-
-/* LAYOUT */
-
-
-.wrap{max-width:1440px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
-
-
-.sec-h{display:flex;align-items:center;gap:14px;padding:40px 0 20px;border-bottom:1px solid var(--border)}
-
-
-.sec-t{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--white);white-space:nowrap}
-
-
-.sec-t em{color:var(--lav);font-style:normal}
-
-
-.sec-l{flex:1;height:1px;background:linear-gradient(to right,var(--bvio),transparent)}
-
-
-.sec-more{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;white-space:nowrap;transition:color .2s}
-
-
-.sec-more:hover{color:var(--lav)}
-
-
-
-
-
-/* TAGS */
-
-
-.tag{display:inline-flex;align-items:center;gap:5px;font-family:var(--fb);font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px}
-
-
-.tc{background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.28);color:var(--cyan)}
-
-
-.ts{background:rgba(255,48,128,.1);border:1px solid rgba(255,48,128,.28);color:var(--sakura)}
-
-
-.tv{background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.3);color:var(--lav)}
-
-
-.ta{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);color:var(--amber)}
-
-
-.tg{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.25);color:var(--green)}
-
-
-
-
-
-/* WEEKLY HOT · 3 columns */
-
-
-.weekly-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:3px}
-
-
-
-
-
-.col-block{background:var(--surf);display:flex;flex-direction:column}
-
-
-.col-head{
-
-
-  padding:16px 20px;border-bottom:1px solid var(--border);
-
-
-  display:flex;align-items:center;justify-content:space-between;
-
-
-  position:sticky;top:60px;z-index:2;background:var(--surf);
-
-
-}
-
-
-.col-head-left{display:flex;align-items:center;gap:10px}
-
-
-.col-type-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-
-
-.col-type-name{font-family:var(--fd);font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase}
-
-
-.col-week{font-size:9px;padding:2px 8px;border:1px solid;letter-spacing:.1em}
-
-
-
-
-
-/* Manga item */
-
-
-.mi{
-
-
-  display:grid;grid-template-columns:28px 56px 1fr auto;
-
-
-  align-items:center;gap:10px;
-
-
-  padding:12px 20px;border-bottom:1px solid var(--border);
-
-
-  cursor:pointer;transition:background .2s;text-decoration:none;
-
-
-}
-
-
-.mi:hover{background:var(--surf2)}
-
-
-.mi:hover .mi-title{color:var(--lav)}
-
-
-.mi.t1 .mi-num{color:rgba(251,191,36,.65);font-size:20px}
-
-
-.mi.t2 .mi-num{color:rgba(200,200,220,.45);font-size:19px}
-
-
-.mi.t3 .mi-num{color:rgba(180,120,70,.45);font-size:18px}
-
-
-.mi-num{font-family:var(--fd);font-size:17px;font-weight:700;color:rgba(240,238,255,.08);text-align:right;line-height:1}
-
-
-.mi-thumb{width:66px;height:88px;overflow:hidden;flex-shrink:0;background:var(--surf2)}
-
-
-.mi-thumb img{width:100%;height:100%;object-fit:cover;opacity:.85;transition:opacity .3s}
-
-
-.mi:hover .mi-thumb img{opacity:1}
-
-
-.mi-info{}
-
-
-.mi-title{font-family:var(--fd);font-weight:600;font-size:17px;line-height:1.25;color:rgba(240,238,255,.9);margin-bottom:3px;transition:color .2s}
-
-
-.mi-author{font-size:10px;color:var(--muted);margin-bottom:4px}
-
-
-.mi-tags{display:flex;gap:4px;flex-wrap:wrap}
-
-
-.mi-score-col{text-align:right;flex-shrink:0}
-
-
-.mi-score{font-family:var(--fd);font-size:20px;font-weight:700;line-height:1;margin-bottom:3px}
-
-
-.mi-trend{font-size:10px;font-weight:600;letter-spacing:.05em}
-
-
-.mi-trend.up{color:var(--green)}.mi-trend.dn{color:var(--sakura)}.mi-trend.eq{color:var(--muted)}
-
-
-/* Score bar */
-
-
-.mi-bar-wrap{height:2px;background:rgba(255,255,255,.06);margin-top:5px}
-
-
-.mi-bar{height:100%;transition:width .6s var(--ease)}
-
-
-
-
-
-/* VIEW ALL link */
-
-
-.col-footer{padding:14px 20px;border-top:1px solid var(--border);text-align:center}
-
-
-.col-footer a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
-
-
-.col-footer a:hover{color:var(--lav)}
-
-
-
-
-
-/* NEW CHAPTERS */
-
-
-.chapters-grid{
-
-
-  display:grid;grid-template-columns:repeat(4,1fr);
-
-
-  gap:3px;margin-top:3px;
-
-
-}
-
-
-.ch-card{
-
-
-  background:var(--surf);cursor:pointer;position:relative;overflow:hidden;
-
-
-  display:flex;flex-direction:column;text-decoration:none;
-
-
-  transition:background .2s;
-
-
-}
-
-
-.ch-card:hover{background:var(--surf2)}
-
-
-.ch-card:hover .chc-title{color:var(--lav)}
-
-
-.ch-card::before{content:'';position:absolute;inset:0;border:1px solid rgba(167,139,250,0);z-index:3;pointer-events:none;transition:border-color .3s}
-
-
-.ch-card:hover::before{border-color:rgba(167,139,250,.2)}
-
-
-.chc-cover{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--surf2)}
-
-
-.chc-img{width:100%;height:100%;object-fit:cover;opacity:.75;transition:transform .5s var(--ease),opacity .3s}
-
-
-.ch-card:hover .chc-img{transform:scale(1.05);opacity:.9}
-
-
-.chc-new{position:absolute;top:8px;left:8px;z-index:2;background:var(--lav);font-family:var(--fd);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;color:var(--bg)}
-
-
-.chc-type{position:absolute;top:8px;right:8px;z-index:2;font-family:var(--fd);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 7px}
-
-
-.chc-body{padding:12px 14px 14px}
-
-
-.chc-genre{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--lav);font-weight:500;margin-bottom:4px}
-
-
-.chc-title{font-family:var(--fd);font-weight:700;font-size:15px;line-height:1.2;color:rgba(240,238,255,.92);margin-bottom:6px;transition:color .2s}
-
-
-.chc-meta{display:flex;align-items:center;justify-content:space-between}
-
-
-.chc-ch{font-size:11px;color:var(--cyan);font-weight:500}
-
-
-.chc-time{font-size:10px;color:var(--muted)}
-
-
-
-
-
-/* MAIN CONTENT + SIDEBAR */
-
-
-.content-layout{display:grid;grid-template-columns:1fr 300px;gap:3px;background:var(--border);margin-top:3px}
-
-
-.content-layout>*{background:var(--surf)}
-
-
-
-
-
-/* Article sub-filter */
-
-
-
-
-
-/* Featured grid (matches homepage) */
-
-
-.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:290px 230px;gap:3px;margin-top:3px}
-
-
-.fc{grid-row:1/3;position:relative;overflow:hidden;cursor:pointer;background:var(--card)}
-
-
-.fc-img{position:absolute;inset:0;background:url('/assets/img/7bc69a799e-library_hero.jpg') center/cover no-repeat;animation:heroPulse 10s ease-in-out infinite alternate-reverse;opacity:.9;transition:opacity .5s,transform .7s var(--ease)}
-
-
-.fc:hover .fc-img{opacity:.75;transform:scale(1.04)}
-
-
-.fc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,2,32,.98) 0%,rgba(11,2,32,.6) 38%,rgba(11,2,32,.12) 70%,transparent 100%),linear-gradient(to right,transparent 50%,rgba(11,2,32,.4) 100%)}
-
-
-.fc::after{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;pointer-events:none}
-
-
-.fc:hover::after{border-color:rgba(0,229,255,.3)}
-
-
-.fc-body{position:absolute;bottom:0;left:0;right:0;padding:32px}
-
-
-.fc-title{font-family:var(--fd);font-weight:700;font-size:clamp(17px,2vw,27px);line-height:1.1;color:var(--white);margin:10px 0 10px;text-shadow:0 2px 20px rgba(0,0,0,.6)}
-
-
-.fc-sub{font-size:16px;color:var(--dim);margin-bottom:12px;max-width:420px}
-
-
-.fc-meta{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-
-
-.fc-meta span{color:var(--cyan)}
-
-
-.sc{position:relative;overflow:hidden;cursor:pointer;background:var(--card);display:flex;flex-direction:column;transition:background .2s}
-
-
-.sc:hover{background:#1e1244}
-
-
-.sc-img{flex:1;overflow:hidden;min-height:0;background:var(--surf2)}
-
-
-.sc-img img{width:100%;height:100%;object-fit:cover;opacity:.82;transition:transform .55s var(--ease),opacity .3s}
-
-
-.sc:hover .sc-img img{transform:scale(1.07);opacity:.95}
-
-
-.sc::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;z-index:3;pointer-events:none}
-
-
-.sc:hover::before{border-color:rgba(0,229,255,.22)}
-
-
-.sc-body{padding:14px 16px}
-
-
-.sc-title{font-family:var(--fd);font-weight:600;font-size:17px;line-height:1.25;color:rgba(240,238,255,.9);margin:6px 0 5px;transition:color .2s}
-
-
-.sc:hover .sc-title{color:var(--cyan)}
-
-
-.sc-meta{font-size:14px;color:var(--muted)}
-
-
-@media(max-width:1100px){.f-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.fc{grid-row:auto;grid-column:1/3;min-height:390px}}
-
-
-@media(max-width:768px){.f-grid{grid-template-columns:1fr;grid-template-rows:auto}.fc{grid-column:auto;min-height:370px}}
-
-
-/* Magazine top 2 */
-
-
-.ac-top2{display:grid;grid-template-columns:1fr 1fr;gap:3px;border-bottom:1px solid var(--border)}
-
-
-.ac-mag{position:relative;overflow:hidden;cursor:pointer;background:var(--card);min-height:210px;display:flex;flex-direction:column;justify-content:flex-end;text-decoration:none}
-
-
-.ac-mag:hover .acm-img{transform:scale(1.05);opacity:.55}
-
-
-.ac-mag:hover .acm-title{color:var(--lav)}
-
-
-.acm-img{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;opacity:.38;transition:transform .6s var(--ease),opacity .35s}
-
-
-.acm-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(9,3,22,.97) 0%,rgba(9,3,22,.35) 55%,transparent 85%)}
-
-
-.ac-mag::before{content:'';position:absolute;inset:0;border:1px solid rgba(167,139,250,0);z-index:3;pointer-events:none;transition:border-color .3s}
-
-
-.ac-mag:hover::before{border-color:rgba(167,139,250,.2)}
-
-
-.acm-body{position:relative;z-index:2;padding:16px 18px}
-
-
-.acm-tags{display:flex;align-items:center;gap:6px;margin-bottom:7px;flex-wrap:wrap}
-
-
-.acm-title{font-family:var(--fd);font-weight:600;font-size:15px;line-height:1.22;color:rgba(240,238,255,.92);margin-bottom:5px;transition:color .2s}
-
-
-.acm-meta{font-size:11px;color:var(--muted)}
-
-
-
-
-
-/* Horizontal article */
-
-
-.ac{display:grid;grid-template-columns:150px 1fr;gap:0;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s;text-decoration:none;min-height:105px;position:relative}
-
-
-.ac:hover{background:var(--surf2)}
-
-
-.ac:hover .ac-title{color:var(--lav)}
-
-
-.ac::after{content:'';position:absolute;right:0;top:0;bottom:0;width:2px;background:var(--lav);transform:scaleY(0);transform-origin:top;transition:transform .25s var(--ease)}
-
-
-.ac:hover::after{transform:scaleY(1)}
-
-
-.ac-thumb{overflow:hidden;background:var(--surf2);aspect-ratio:16/9}
-
-
-.ac-thumb img{width:100%;height:100%;object-fit:cover;opacity:.85;transition:transform .5s var(--ease),opacity .3s;display:block}
-
-
-.ac:hover .ac-thumb img{transform:scale(1.06);opacity:.88}
-
-
-.ac-info{padding:14px 18px;display:flex;flex-direction:column;justify-content:space-between}
-
-
-.ac-tags{display:flex;align-items:center;gap:7px;margin-bottom:7px;flex-wrap:wrap}
-
-
-.ac-title{font-family:var(--fd);font-weight:600;font-size:15px;line-height:1.28;color:rgba(240,238,255,.9);margin-bottom:6px;transition:color .2s}
-
-
-.ac-meta{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:7px}
-
-
-.sep{opacity:.3}
-
-
-.load-wrap{padding:26px;text-align:center}
-
-
-.load-btn{background:none;border:1px solid var(--border);color:var(--muted);font-family:var(--fd);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:11px 40px;cursor:pointer;transition:all .2s}
-
-
-.load-btn:hover{border-color:var(--lav);color:var(--lav)}
-
-
-
-
-
-/* SIDEBAR */
-
-
-.side-head{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:16px 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-
-
-.side-badge{font-size:9px;padding:2px 7px;border:1px solid rgba(167,139,250,.25);color:var(--lav);letter-spacing:.08em}
-
-
-
-
-
-/* Rank mini */
-
-
-.rk{display:flex;align-items:center;gap:9px;padding:10px 20px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s;text-decoration:none}
-
-
-.rk:hover{background:var(--surf2)}
-
-
-.rk:hover .rk-title{color:var(--lav)}
-
-
-.rk-num{font-family:var(--fd);font-size:17px;font-weight:700;color:rgba(240,238,255,.07);width:20px;text-align:right;flex-shrink:0}
-
-
-.rk.t1 .rk-num{color:rgba(251,191,36,.6);font-size:19px}
-
-
-.rk.t2 .rk-num{color:rgba(192,192,210,.4)}
-
-
-.rk.t3 .rk-num{color:rgba(180,120,80,.4)}
-
-
-.rk-cover{width:36px;height:50px;overflow:hidden;flex-shrink:0;background:var(--surf2)}
-
-
-.rk-cover img{width:100%;height:100%;object-fit:cover;opacity:.85}
-
-
-.rk-info{flex:1;min-width:0}
-
-
-.rk-title{font-family:var(--fd);font-size:16px;font-weight:600;line-height:1.2;color:rgba(240,238,255,.85);transition:color .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
-
-
-.rk-sub{font-size:14px;color:var(--muted)}
-
-
-.rk-score{font-family:var(--fd);font-size:16px;font-weight:700;flex-shrink:0;color:var(--amber)}
-
-
-
-
-
-/* Promo */
-
-
-.promo-block{padding:22px 20px;background:linear-gradient(135deg,rgba(124,58,237,.07),rgba(167,139,250,.07));border-top:1px solid rgba(124,58,237,.15);text-align:center}
-
-
-.pb-title{font-family:var(--fd);font-weight:700;font-size:16px;color:var(--white);margin-bottom:5px}
-
-
-.pb-sub{font-size:15px;color:var(--muted);margin-bottom:14px;line-height:1.6}
-
-
-.pb-inp{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--white);font-family:var(--fb);font-size:13px;padding:9px 12px;outline:none;margin-bottom:8px;display:block}
-
-
-.pb-inp:focus{border-color:rgba(167,139,250,.4)}
-
-
-.pb-btn{width:100%;background:var(--lav);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;padding:10px;cursor:pointer;transition:background .18s}
-
-
-.pb-btn:hover{background:#c4a8ff}
-
-
-
-
-
-/* REVEAL */
-
-
-.rv{opacity:1;transform:translateY(0);transition:opacity .5s var(--ease),transform .5s var(--ease)}
-
-
-.rv.vis{opacity:1;transform:translateY(0)}
-
-
-
-
-
-/* FOOTER */
-
-
-footer{position:relative;z-index:1;border-top:1px solid var(--border);background:rgba(5,2,12,.98)}
-
-
-.ft-in{max-width:1440px;margin:0 auto;padding:40px 24px 24px;display:grid;grid-template-columns:190px 1fr 1fr 1fr;gap:40px}
-
-
-.ft-desc{font-size:12px;color:rgba(240,238,255,.28);line-height:1.7;max-width:170px;margin-top:12px}
-
-
-.ft-h{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;font-weight:500}
-
-
-.ft-links{display:flex;flex-direction:column;gap:8px;list-style:none}
-
-
-.ft-links a{font-size:13px;color:rgba(240,238,255,.42);text-decoration:none;transition:color .2s}
-
-
-.ft-links a:hover{color:var(--lav)}
-
-
-.ft-bot{max-width:1440px;margin:0 auto;padding:14px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
-
-
-.ft-copy{font-size:11px;color:rgba(240,238,255,.2);letter-spacing:.04em}
-
-
-.ft-soc{display:flex;gap:6px}
-
-
-.soc{width:28px;height:28px;border:1px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:border-color .2s,color .2s}
-
-
-.soc:hover{border-color:var(--lav);color:var(--lav)}
-
-
-
-
-
-/* RESPONSIVE */
-
-
-@media(max-width:1100px){
-
-
-  .weekly-grid{grid-template-columns:1fr 1fr}
-
-
-  .chapters-grid{grid-template-columns:repeat(3,1fr)}
-
-
-  .content-layout{grid-template-columns:1fr}
-
-
-  .ft-in{grid-template-columns:1fr 1fr}
-
-
-}
-
-
-@media(max-width:768px){
-
-  html,body{max-width:100%;overflow-x:hidden}
-
-  .type-tabs-bar,.filter-bar{max-width:100vw;overflow:hidden}
-
-  .type-tabs-in,.filter-in{width:100%;max-width:100vw;min-width:0;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none}
-
-
-  .nav-links{display:none}
-
-
-  .wrap,.nav-in{padding-left:16px;padding-right:16px}
-
-
-  .weekly-grid{grid-template-columns:1fr}
-
-
-  .chapters-grid{grid-template-columns:repeat(2,1fr)}
-
-
-  .ac-top2{grid-template-columns:1fr}
-
-
-  .ft-in{grid-template-columns:1fr;gap:24px}
-
-
-  .ft-bot{flex-direction:column}
-
-
-  .col-head{position:static}
-
-
-  .ttab{padding:14px 18px}
-
-
-}
-
-
-@media(max-width:480px){
-
-
-  .chapters-grid{grid-template-columns:repeat(2,1fr)}
-
-
-  .ch-stats{gap:20px}
-
-
-}
-
-
-
-
-
-.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
-
-
-
-
-/* === MOBILE ACCESSIBILITY FIXES === */
-
-
-.ham{min-width:44px;min-height:44px;display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px;align-items:center;justify-content:center}
-
-
-input,select,textarea{font-size:16px!important}
-
-
-*{-webkit-tap-highlight-color:transparent}
-
-
-@media(max-width:768px){
-
-
-  .ham{display:flex}
-
-
-  a,button{min-height:44px;display:inline-flex;align-items:center}
-
-
-  .nav-links a{min-height:60px}
-
-
-}
-
-
-
-.filter-bar{position:sticky;top:60px;z-index:200;background:rgba(9,3,22,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.filter-bar{position:sticky;top:60px;z-index:200;background:rgba(9,3,22,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);margin-bottom:28px}
 .filter-in{max-width:1440px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none}
 .filter-in::-webkit-scrollbar{display:none}
 .ftab{background:none!important;border:none!important;outline:none!important;cursor:pointer;font-family:var(--fd);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:14px 20px;white-space:nowrap;border-bottom:2px solid transparent!important;transition:all .2s;flex-shrink:0;box-shadow:none!important}
@@ -1127,8 +128,22 @@ input,select,textarea{font-size:16px!important}
 .ftab.on{color:var(--lavender)!important;border-bottom:2px solid var(--lavender)!important}
 .filter-sep{width:1px;height:24px;background:var(--border);flex-shrink:0;margin:0 6px}
 .cat-hidden{display:none!important}
+.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:290px 230px;gap:3px;margin-bottom:40px}
+.fc{grid-row:1/3;grid-column:1/2;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;overflow:hidden;text-decoration:none;border-radius:2px;min-height:523px}
+.fc-img{position:absolute;inset:0;background-size:cover;background-position:center center;transition:transform .4s ease;z-index:0}
+.fc:hover .fc-img{transform:scale(1.03)}
+.fc-ov{position:absolute;inset:0;background:linear-gradient(to top,#060112 0%,rgba(6,1,18,.75) 50%,rgba(6,1,18,.1) 100%);z-index:1}
+.fc-body{position:relative;z-index:2}
+.sc{position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;overflow:hidden;text-decoration:none;border-radius:2px;background:var(--surf)}
+.sc-img{position:absolute;inset:0;z-index:0;overflow:hidden}
+.sc-img img{width:100%;height:100%;object-fit:cover;object-position:center center;transition:transform .3s ease}
+.sc:hover .sc-img img{transform:scale(1.05)}
+.sc::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,#060112 0%,rgba(6,1,18,.8) 60%,rgba(6,1,18,.2) 100%);z-index:1}
+.sc-body{position:relative;z-index:2}
+.content-layout{display:grid;grid-template-columns:1fr 340px;gap:32px;align-items:start}
+@media(max-width:1100px){.f-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.fc{grid-row:auto;grid-column:1/3}.content-layout{grid-template-columns:1fr}}
+@media(max-width:768px){.f-grid{grid-template-columns:1fr;grid-template-rows:auto}.fc{grid-column:auto}}
 @keyframes heroPulseFade{0%{opacity:.4;transform:scale(.99)}100%{opacity:1;transform:scale(1)}}
-
 </style>
 
 
@@ -1534,1324 +549,128 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 </div>
 
 <div class="wrap rv" style="padding-top:0;padding-bottom:0">
-  <div class="sec-h"><span class="sec-t">News <em>comics</em></span><div class="sec-l"></div><a href="/en/news" class="sec-more">See all</a></div>
+  <div class="sec-h"><span class="sec-t" id="mangaSecTitle">Manga & <em>Webtoon</em></span><div class="sec-l"></div><a href="/news" class="sec-more">View all</a></div>
 
+  <!-- 5-Card Featured Grid -->
+  <div id="mangaFilterBanner" class="filter-banner" style="display:none;margin-bottom:18px;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.3);padding:10px 18px;align-items:center;justify-content:space-between;border-radius:4px">
+    <span style="font-size:13px;color:var(--white)">Viewing category: <strong id="mangaFilterName" style="color:var(--lavender)">All</strong> (<span id="mangaFilterCount" style="color:var(--lavender)">0</span> articles)</span>
+    <button type="button" onclick="setMangaFilterByCat('all')" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:4px 12px;font-size:11px;font-weight:600;text-transform:uppercase;cursor:pointer;letter-spacing:.05em;transition:all .2s">✕ Clear filter</button>
+  </div>
 
+  <div class="f-grid">
+    <a class="fc" id="mangaHeroCard" href="/en/kagurabachi-5-trieu-ban-xac-nhan-anime">
+      <div class="fc-img" id="mangaHeroImg" style="background-image:url(/assets/img/news-kagurabachi-anime-confirmation.jpg);background-position:center center"></div><div class="fc-ov"></div>
+      <div class="fc-body">
+        <span class="tag tv" id="mangaHeroTag">Manga · Breaking</span>
+        <h2 class="fc-title" id="mangaHeroTitle">Kagurabachi Hits 5 Million Copies, Shonen Jump Confirms TV Anime</h2>
+        <p class="fc-sub" id="mangaHeroSub">Takeru Hokazono celebrates the massive sales milestone as Shueisha prepares the global anime rollout.</p>
+        <div class="fc-meta" id="mangaHeroMeta"><span>Manga</span> · Minh Tuấn · Vừa xong</div>
+      </div>
+    </a>
+
+    <a class="sc" id="mangaSideCard0" href="/en/solo-leveling-ragnarok-manhwa-review">
+      <div class="sc-img"><img id="mangaSideImg0" src="/assets/img/news-solo-leveling-ragnarok-manhwa.jpg" alt="Solo Leveling Ragnarok Manhwa" width="1200" height="675" fetchpriority="high" decoding="async"></div>
+      <div class="sc-body"><span class="tag tc" id="mangaSideTag0" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Manhwa</span><div class="sc-title" id="mangaSideTitle0">Solo Leveling: Ragnarok Manhwa Premiere Review</div><div class="sc-meta" id="mangaSideMeta0">OtaHub Editorial · 24/8</div></div>
+    </a>
+
+    <a class="sc" id="mangaSideCard1" href="/en/one-piece-chapter-1192-elbaf-uranus">
+      <div class="sc-img"><img id="mangaSideImg1" src="/assets/img/news-one-piece-chapter-1192-elbaf-uranus.jpg" alt="One Piece Chapter 1192 Elbaf" loading="lazy" width="1200" height="675"></div>
+      <div class="sc-body"><span class="tag tv" id="mangaSideTag1" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Chapter 1192</span><div class="sc-title" id="mangaSideTitle1">One Piece Chapter 1192: Elbaf & Ancient Weapon Uranus</div><div class="sc-meta" id="mangaSideMeta1">Trọng Khang · 22/8</div></div>
+    </a>
+
+    <a class="sc" id="mangaSideCard2" href="/en/black-clover-final-volume-guidebook">
+      <div class="sc-img"><img id="mangaSideImg2" src="/assets/img/75f4272c97-black-clover-final-volume-hero.jpg" alt="Black Clover Final Volume" loading="lazy" width="1600" height="900"></div>
+      <div class="sc-body"><span class="tag tv" id="mangaSideTag2" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Final Volume</span><div class="sc-title" id="mangaSideTitle2">Black Clover Concludes with Volume 38</div><div class="sc-meta" id="mangaSideMeta2">Gia Bảo · 10 giờ trước</div></div>
+    </a>
+
+    <a class="sc" id="mangaSideCard3" href="/en/chainsaw-man-season3">
+      <div class="sc-img"><img id="mangaSideImg3" src="/assets/img/10728427f3-chainsaw-man-hero.jpg" alt="Chainsaw Man Part 3" loading="lazy" width="1280" height="720"></div>
+      <div class="sc-body"><span class="tag tv" id="mangaSideTag3" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Manga Theory</span><div class="sc-title" id="mangaSideTitle3">Chainsaw Man Part 3: Denji and Pochita Destiny</div><div class="sc-meta" id="mangaSideMeta3">Gia Bảo · 12 giờ trước</div></div>
+    </a>
+  </div>
+
+  <!-- Lower 2-Column Layout -->
   <div class="content-layout">
-
-
     <div>
+      <div class="sec-h" style="padding:0 0 16px;border-bottom:1px solid var(--border);margin-bottom:20px"><span class="sec-t">Latest <em>Manga News</em></span></div>
 
-
-
-
-      
-    <div id="mangaFilterBanner" class="filter-banner" style="display:none;margin-bottom:18px;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.3);padding:10px 18px;align-items:center;justify-content:space-between;border-radius:4px">
-      <span style="font-size:13px;color:var(--white)">Viewing category: <strong id="mangaFilterName" style="color:var(--lavender)">All</strong> (<span id="mangaFilterCount" style="color:var(--lavender)">0</span> articles)</span>
-      <button type="button" onclick="setMangaFilterByCat('all')" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:4px 12px;font-size:11px;font-weight:600;text-transform:uppercase;cursor:pointer;letter-spacing:.05em;transition:all .2s">✕ Clear filter</button>
-    </div>
-
-    <div class="f-grid">
-      <a class="fc" id="mangaHeroCard" href="/en/kagurabachi-5-trieu-ban-xac-nhan-anime">
-        <div class="fc-img" id="mangaHeroImg" style="background-image:url(/assets/img/news-kagurabachi-anime-confirmation.jpg);background-position:center center"></div><div class="fc-ov"></div>
-        <div class="fc-body">
-          <span class="tag tv" id="mangaHeroTag">Manga · Breaking</span>
-          <h2 class="fc-title" id="mangaHeroTitle">Kagurabachi Hits 5 Million Copies, Shonen Jump Confirms TV Anime</h2>
-          <p class="fc-sub" id="mangaHeroSub">Takeru Hokazono celebrates the massive sales milestone as Shueisha prepares the global anime rollout.</p>
-          <div class="fc-meta" id="mangaHeroMeta"><span>Manga</span> · Minh Tuấn · Vừa xong</div>
-        </div>
-      </a>
-
-      <a class="sc" id="mangaSideCard0" href="/en/solo-leveling-ragnarok-manhwa-review">
-        <div class="sc-img"><img id="mangaSideImg0" src="/assets/img/news-solo-leveling-ragnarok-manhwa.jpg" alt="Solo Leveling Ragnarok Manhwa" width="1200" height="675" fetchpriority="high" decoding="async"></div>
-        <div class="sc-body"><span class="tag tc" id="mangaSideTag0" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Manhwa</span><div class="sc-title" id="mangaSideTitle0">Solo Leveling: Ragnarok Manhwa Premiere Review</div><div class="sc-meta" id="mangaSideMeta0">OtaHub Editorial · 24/8</div></div>
-      </a>
-
-      <a class="sc" id="mangaSideCard1" href="/en/one-piece-chapter-1192-elbaf-uranus">
-        <div class="sc-img"><img id="mangaSideImg1" src="/assets/img/news-one-piece-elbaf-uranus.jpg" alt="One Piece Chapter 1192 Elbaf" loading="lazy" width="1200" height="675"></div>
-        <div class="sc-body"><span class="tag tv" id="mangaSideTag1" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Chapter 1192</span><div class="sc-title" id="mangaSideTitle1">One Piece Chapter 1192: Elbaf & Ancient Weapon Uranus</div><div class="sc-meta" id="mangaSideMeta1">Trọng Khang · 22/8</div></div>
-      </a>
-
-      <a class="sc" id="mangaSideCard2" href="/en/black-clover-final-volume-guidebook">
-        <div class="sc-img"><img id="mangaSideImg2" src="/assets/img/75f4272c97-black-clover-final-volume-hero.jpg" alt="Black Clover Final Volume" loading="lazy" width="1600" height="900"></div>
-        <div class="sc-body"><span class="tag tv" id="mangaSideTag2" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Final Volume</span><div class="sc-title" id="mangaSideTitle2">Black Clover Concludes with Volume 38</div><div class="sc-meta" id="mangaSideMeta2">Gia Bảo · 10 giờ trước</div></div>
-      </a>
-
-      <a class="sc" id="mangaSideCard3" href="/en/chainsaw-man-season3">
-        <div class="sc-img"><img id="mangaSideImg3" src="/assets/img/056525167f-chainsaw-man-season3-hero.jpg" alt="Chainsaw Man Part 3" loading="lazy" width="1280" height="720"></div>
-        <div class="sc-body"><span class="tag tv" id="mangaSideTag3" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Manga Theory</span><div class="sc-title" id="mangaSideTitle3">Chainsaw Man Part 3: Denji and Pochita Destiny</div><div class="sc-meta" id="mangaSideMeta3">Gia Bảo · 12 giờ trước</div></div>
-      </a>
-    </div>
-
-
+      <div class="ac-list">
+        <!-- ADMIN:ARTICLES_START -->
+        <a href="/en/kagurabachi-5-trieu-ban-xac-nhan-anime" class="ac" data-cat="shonen chapter-moi">
+          <div class="ac-thumb"><img src="/assets/img/news-kagurabachi-anime-confirmation.jpg" alt="Kagurabachi anime" loading="lazy" width="600" height="338"></div>
+          <div class="ac-info">
+            <div><div class="ac-tags"><span class="tag tv">Manga</span><span class="tag tag-live">Breaking</span></div>
+            <div class="ac-title">Kagurabachi Hits 5 Million Copies, Shonen Jump Confirms TV Anime</div></div>
+            <div class="ac-meta"><span>Minh Tuấn</span><span class="sep">·</span><span>Just now</span><span class="sep">·</span><span>7 min</span></div>
+          </div>
         </a>
 
+        <a href="/en/solo-leveling-ragnarok-manhwa-review" class="ac" data-cat="manhwa action reviews">
+          <div class="ac-thumb"><img src="/assets/img/news-solo-leveling-ragnarok-manhwa.jpg" alt="Solo Leveling Ragnarok" loading="lazy" width="600" height="338"></div>
+          <div class="ac-info">
+            <div><div class="ac-tags"><span class="tag tc">Manhwa</span><span class="tag ta">Review · 9.2</span></div>
+            <div class="ac-title">Solo Leveling: Ragnarok Manhwa Premiere Review: Sung Suho Inherits the Throne</div></div>
+            <div class="ac-meta"><span>OtaHub Editorial</span><span class="sep">·</span><span>Today</span><span class="sep">·</span><span>8 min</span></div>
+          </div>
+        </a>
 
-        <a class="sc" href="/en/one-piece-final-saga"><div class="sc-img"><img src="/assets/img/8d631824e5-maxresdefault.jpg" alt="One Piece chapter 1135 detailed analysis · Oda reveals the biggest mystery about Laugh Tale and One Piece" width="1280" height="720" fetchpriority="high" decoding="async"></div><div class="sc-body"><span class="tag tv" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Manga</span><div class="sc-title">One Piece Chapter 1135 · The Biggest Mystery About Laugh Tale</div><div class="sc-meta">Trong Khang · 5 hours ago</div></div></a>
-
-
-        <a class="sc" href="/en/chainsaw-man-season3"><div class="sc-img"><img src="/assets/img/39c7dd4496-maxresdefault.jpg" alt="Chainsaw Man part 3 theory · Denji and Pochita: the relationship will change completely in the new arc" loading="lazy" width="1280" height="720"></div><div class="sc-body"><span class="tag tv" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Manga</span><div class="sc-title">Chainsaw Man Part 3 Theory · Denji And Pochita</div><div class="sc-meta">Gia Bao · 12 hours ago</div></div></a>
-
-
-        <a class="sc" href="/en/yen-press-champignon-witch-licenses"><div class="sc-img"><img src="/assets/img/news-yen-press-champignon-witch-licenses.jpg" alt="Yen Press Licenses Champignon Witch And 9 More Manga, Light Novels at SDCC 2026" loading="lazy" width="1280" height="720"></div><div class="sc-body"><span class="tag tv" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Manga</span><div class="sc-title">Yen Press Licenses Champignon Witch And 9 More Manga at SDCC 2026</div><div class="sc-meta">OtaHub Editorial · 14 hours ago</div></div></a>
-
-
-        <a class="sc" href="/en/akira-toriyama-eisner-hall-of-fame"><div class="sc-img"><img src="/assets/img/news-akira-toriyama-eisner-hall-of-fame.jpg" alt="Akira Toriyama Inducted Into the Eisner Hall of Fame" loading="lazy" width="1280" height="720"></div><div class="sc-body"><span class="tag tv" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Manga</span><div class="sc-title">Akira Toriyama Inducted Into the Eisner Hall of Fame</div><div class="sc-meta">OtaHub Editorial · 16 hours ago</div></div></a>
-
-
+        <a href="/en/one-piece-chapter-1192-elbaf-uranus" class="ac" data-cat="shonen chapter-moi">
+          <div class="ac-thumb"><img src="/assets/img/news-one-piece-chapter-1192-elbaf-uranus.jpg" alt="One Piece Chapter 1192" loading="lazy" width="600" height="338"></div>
+          <div class="ac-info">
+            <div><div class="ac-tags"><span class="tag tv">Manga</span><span class="tag ts">Chapter 1192</span></div>
+            <div class="ac-title">One Piece Chapter 1192: Elbaf Giant Warriors & Ancient Weapon Uranus</div></div>
+            <div class="ac-meta"><span>Trọng Khang</span><span class="sep">·</span><span>Yesterday</span><span class="sep">·</span><span>6 min</span></div>
+          </div>
+        </a>
+        <!-- ADMIN:ARTICLES_END -->
       </div>
-
-
-      <div class="sec-h" style="padding:32px 0 16px;border-bottom:1px solid var(--border)"><span class="sec-t">Latest <em>news</em></span></div>
-
-
-      <!-- ADMIN:ARTICLES_START -->
-      <a href="/en/kagurabachi-5-trieu-ban-xac-nhan-anime" class="ac" data-cat="shonen chapter-moi">
-        <div class="ac-thumb"><img src="/assets/img/news-kagurabachi-anime-confirmation.jpg" alt="Kagurabachi cán mốc 5 triệu bản in xác nhận anime" loading="lazy" width="600" height="338"></div>
-        <div class="ac-info">
-          <div><div class="ac-tags"><span class="tag tv">Manga</span><span class="tag tag-live">Breaking</span></div>
-          <div class="ac-title">Kagurabachi Hits 5 Million Copies in Circulation as Weekly Shonen Jump Confirms TV Anime Adaptation</div></div>
-          <div class="ac-meta"><span>Minh Tuấn</span><span class="sep">·</span><span>Just now</span><span class="sep">·</span><span>7 min</span></div>
-        </div>
-      </a>
-      <a href="/en/manga-detail?t=Solo%20Leveling%3A%20Ragnarok" class="ac" data-cat="manhwa">
-
-
-        <div class="ac-thumb"><img src="/assets/img/a4f75364fc-maxresdefault.jpg" alt="Solo Leveling: Ragnarok chapter 48 spoilers and analysis · Sung Suho confronts the strongest enemy" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-tags"><span class="tag tc">Manhwa</span></div>
-
-
-          <div class="ac-title">Solo Leveling: Ragnarok chapter 48 spoilers and analysis · Sung Suho confronts the strongest enemy</div></div>
-
-
-          <div class="ac-meta"><span>Minh Tuan</span><span class="sep">·</span><span>3 hours ago</span><span class="sep">·</span><span>5 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-      <a href="/en/manga-detail?t=The%20Beginning%20After%20The%20End" class="ac" data-cat="manhwa reviews">
-
-
-        <div class="ac-thumb"><img src="/assets/img/d98cf42206-maxresdefault.jpg" alt="The Beginning After The End · overview review of 206 chapters: the best world-building manhwa currently" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-tags"><span class="tag tc">Manhwa</span><span class="tag ta">Review</span></div>
-
-
-          <div class="ac-title">The Beginning After The End · overview review of 206 chapters: the best world-building manhwa currently</div></div>
-
-
-          <div class="ac-meta"><span>Thanh Liem</span><span class="sep">·</span><span>7 hours ago</span><span class="sep">·</span><span>10 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-      <a href="/en/manga-detail?t=Battle%20Through%20the%20Heavens" class="ac" data-cat="manhua">
-
-
-        <div class="ac-thumb"><img src="/assets/img/1f0540d7a3-maxresdefault.jpg" alt="Battle Through the Heavens · top 10 most beautiful battle scenes in the Dai Thieu Mon arc in 2026" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="ac-info">
-
-
-          <div><div class="ac-tags"><span class="tag ts">Manhua</span></div>
-
-
-          <div class="ac-title">Battle Through the Heavens · top 10 most beautiful battle scenes in the Dai Thieu Mon arc in 2026</div></div>
-
-
-          <div class="ac-meta"><span>Quang Dai</span><span class="sep">·</span><span>9 hours ago</span><span class="sep">·</span><span>6 min</span></div>
-
-
-        </div>
-
-
-      </a>
-
-
-      <a href="/en/hanako-kun-manga-resumes" class="ac" data-cat="manga">
-        <div class="ac-thumb"><img src="/assets/img/news-hanako-kun-manga-resumes.jpg" alt="Toilet-Bound Hanako-kun Manga Returns After 10-Month Health Hiatus" loading="lazy" width="1024" height="576"></div>
-        <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Manga</span></div><div class="ac-title">Toilet-Bound Hanako-kun Manga Returns After 10-Month Health Hiatus</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="sep">·</span><span>6 hours ago</span><span class="sep">·</span><span>5 min</span></div></div>
-      </a>
-      <a href="/en/crunchyroll-manga-black-torch-hana-kimi" class="ac" data-cat="manga">
-        <div class="ac-thumb"><img src="/assets/img/news-crunchyroll-manga-black-torch-hana-kimi.jpg" alt="Crunchyroll Manga Adds Black Torch, Hana-Kimi in July Update" loading="lazy" width="1280" height="720"></div>
-        <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Manga</span></div><div class="ac-title">Crunchyroll Manga Adds Black Torch, Hana-Kimi in July Update</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="sep">·</span><span>18 hours ago</span><span class="sep">·</span><span>6 min</span></div></div>
-      </a>
-
-      <!-- ADMIN:ARTICLES_END -->
-      <div class="load-wrap"><button class="load-btn">See more articles</button></div>
-
-
     </div>
 
-
-
-
-
-    <!-- SIDEBAR -->
-
-
+    <!-- Sidebar -->
     <aside>
-
-
       <div>
-
-
-        <div class="side-head"><span style="color:var(--lav)">Top All-time Manga</span></div>
-
-
-        <a href="/en/manga-detail?t=Berserk" class="rk t1"><div class="rk-num">1</div><div class="rk-cover"><img src="/assets/img/641c702735-157897l.jpg" alt="Berserk" loading="lazy" width="422" height="600"></div><div class="rk-info"><div class="rk-title">Berserk</div><div class="rk-sub">Kentaro Miura</div></div><div class="rk-score">9.8</div></a>
-
-
-        <a href="/en/manga-detail?t=Vagabond" class="rk t2"><div class="rk-num">2</div><div class="rk-cover"><img src="/assets/img/118caef59f-vagabond.jpg" alt="Vagabond" loading="lazy" width="460" height="639"></div><div class="rk-info"><div class="rk-title">Vagabond</div><div class="rk-sub">Takehiko Inoue</div></div><div class="rk-score">9.7</div></a>
-
-
-        <a href="/en/manga-detail?t=Fullmetal%20Alchemist" class="rk t3"><div class="rk-num">3</div><div class="rk-cover"><img src="/assets/img/df408abe3e-fma.jpg" alt="Fullmetal Alchemist" loading="lazy" width="460" height="722"></div><div class="rk-info"><div class="rk-title">Fullmetal Alchemist</div><div class="rk-sub">Hiromu Arakawa</div></div><div class="rk-score">9.6</div></a>
-
-
-        <a href="/en/manga-detail?t=Jujutsu%20Kaisen" class="rk"><div class="rk-num">4</div><div class="rk-cover"><img src="/assets/img/d662bae70f-maxresdefault.jpg" alt="Jujutsu Kaisen" loading="lazy" width="1280" height="720"></div><div class="rk-info"><div class="rk-title">Jujutsu Kaisen</div><div class="rk-sub">Gege Akutami</div></div><div class="rk-score">9.6</div></a>
-
-
-        <a href="/en/manga-detail?t=One%20Piece" class="rk"><div class="rk-num">5</div><div class="rk-cover"><img src="/assets/img/8d631824e5-maxresdefault.jpg" alt="One Piece" loading="lazy" width="1280" height="720"></div><div class="rk-info"><div class="rk-title">One Piece</div><div class="rk-sub">Eiichiro Oda</div></div><div class="rk-score">9.5</div></a>
-
-
+        <div class="side-head"><span style="color:var(--lavender)">Top Manga & Manhwa</span><span class="side-badge">2026</span></div>
+        <div class="rk t1"><div class="rk-num">1</div><div class="rk-poster"><img src="/assets/img/news-kagurabachi-anime-confirmation.jpg" alt="Kagurabachi" loading="lazy" width="460" height="639"></div><div class="rk-info"><div class="rk-title">Kagurabachi</div><div class="rk-sub">Shonen Jump · Action</div></div><div class="rk-score">9.8</div></div>
+        <div class="rk t2"><div class="rk-num">2</div><div class="rk-poster"><img src="/assets/img/news-solo-leveling-ragnarok-manhwa.jpg" alt="Solo Leveling: Ragnarok" loading="lazy" width="460" height="649"></div><div class="rk-info"><div class="rk-title">Solo Leveling: Ragnarok</div><div class="rk-sub">REDICE Studio · Manhwa</div></div><div class="rk-score">9.6</div></div>
+        <div class="rk t3"><div class="rk-num">3</div><div class="rk-poster"><img src="/assets/img/news-one-piece-chapter-1192-elbaf-uranus.jpg" alt="One Piece" loading="lazy" width="1280" height="720"></div><div class="rk-info"><div class="rk-title">One Piece</div><div class="rk-sub">Eiichiro Oda · Shonen</div></div><div class="rk-score">9.5</div></div>
+        <div class="rk"><div class="rk-num">4</div><div class="rk-poster"><img src="/assets/img/10728427f3-chainsaw-man-hero.jpg" alt="Chainsaw Man" loading="lazy" width="460" height="653"></div><div class="rk-info"><div class="rk-title">Chainsaw Man</div><div class="rk-sub">Tatsuki Fujimoto · Shonen</div></div><div class="rk-score">9.2</div></div>
+        <div class="rk"><div class="rk-num">5</div><div class="rk-poster"><img src="/assets/img/7807ea1948-vinland-saga-manga-hero.jpg" alt="Vinland Saga" loading="lazy" width="480" height="360"></div><div class="rk-info"><div class="rk-title">Vinland Saga</div><div class="rk-sub">Makoto Yukimura · Seinen</div></div><div class="rk-score">9.9</div></div>
       </div>
-
-
-      <div>
-
-
-        <div class="side-head" style="margin-top:0"><span style="color:var(--cyan)">Top Manhwa</span><span class="side-badge" style="border-color:rgba(0,229,255,.25);color:var(--cyan)">All-time</span></div>
-
-
-        <a href="/en/manga-detail?t=Solo%20Leveling" class="rk t1"><div class="rk-num">1</div><div class="rk-cover"><img src="/assets/img/a4f75364fc-maxresdefault.jpg" alt="Solo Leveling" loading="lazy" width="1280" height="720"></div><div class="rk-info"><div class="rk-title">Solo Leveling</div><div class="rk-sub">Chugong/Dubu</div></div><div class="rk-score" style="color:var(--cyan)">9.7</div></a>
-
-
-        <a href="/en/manga-detail?t=TBATE" class="rk t2"><div class="rk-num">2</div><div class="rk-cover"><img src="/assets/img/d98cf42206-maxresdefault.jpg" alt="TBATE" loading="lazy" width="1280" height="720"></div><div class="rk-info"><div class="rk-title">TBATE</div><div class="rk-sub">TurtleMe</div></div><div class="rk-score" style="color:var(--cyan)">9.3</div></a>
-
-
-        <a href="/en/manga-detail?t=Omniscient%20Reader" class="rk t3"><div class="rk-num">3</div><div class="rk-cover"><img src="/assets/img/d98cf42206-maxresdefault.jpg" alt="Omniscient Reader" loading="lazy" width="1280" height="720"></div><div class="rk-info"><div class="rk-title">Omniscient Reader</div><div class="rk-sub">Sleepy-C</div></div><div class="rk-score" style="color:var(--cyan)">9.1</div></a>
-
-
-      </div>
-
-
-      <div class="promo-block">
-
-
-        <div class="pb-title">Manga Weekly</div>
-
-
-        <div class="pb-sub">New chapter + weekly review. Full Manga, Manhwa, Manhua.</div>
-
-
-        <input class="pb-inp" type="email" placeholder="email@example.com">
-
-
-        <button class="pb-btn">Sign up for free</button>
-
-
-      </div>
-
-
     </aside>
-
-
   </div>
 
+  <!-- Chapters Grid Section -->
+  <div style="margin-top:48px">
+    <div class="sec-h"><span class="sec-t">Latest <em>Chapters</em></span><div class="sec-l"></div><a href="/lich-phat-song#manga" class="sec-more">Full schedule</a></div>
+    <div class="chapters-grid">
+      <a href="/manga-detail?t=Jujutsu%20Kaisen" class="ch-card" data-cat="chapter-moi manga action supernatural">
+        <div class="chc-cover"><img class="chc-img" src="/assets/img/26ef7fc2d2-jujutsu-kaisen-anime-hero.jpg" alt="Jujutsu Kaisen" loading="lazy" width="600" height="338"><span class="chc-new">New</span><span class="chc-type tag tv" style="position:absolute;top:8px;right:8px;z-index:2">Manga</span></div>
+        <div class="chc-body"><div class="chc-genre">Action / Supernatural</div><div class="chc-title">Jujutsu Kaisen</div><div class="chc-meta"><span class="chc-ch">Chapter 271</span><span class="chc-time">2h ago</span></div></div>
+      </a>
 
+      <a href="/manga-detail?t=One%20Piece" class="ch-card" data-cat="chapter-moi manga adventure shonen">
+        <div class="chc-cover"><img class="chc-img" src="/assets/img/news-one-piece-chapter-1192-elbaf-uranus.jpg" alt="One Piece" loading="lazy" width="600" height="338"><span class="chc-new">New</span><span class="chc-type tag tv" style="position:absolute;top:8px;right:8px;z-index:2">Manga</span></div>
+        <div class="chc-body"><div class="chc-genre">Adventure / Shonen</div><div class="chc-title">One Piece</div><div class="chc-meta"><span class="chc-ch">Chapter 1192</span><span class="chc-time">5h ago</span></div></div>
+      </a>
+
+      <a href="/manga-detail?t=Solo%20Leveling%3A%20Ragnarok" class="ch-card" data-cat="chapter-moi manhwa action fantasy">
+        <div class="chc-cover"><img class="chc-img" src="/assets/img/news-solo-leveling-ragnarok-manhwa.jpg" alt="Solo Leveling: Ragnarok" loading="lazy" width="600" height="338"><span class="chc-new">New</span><span class="chc-type tag tc" style="position:absolute;top:8px;right:8px;z-index:2">Manhwa</span></div>
+        <div class="chc-body"><div class="chc-genre">Action / Fantasy</div><div class="chc-title">Solo Leveling: Ragnarok</div><div class="chc-meta"><span class="chc-ch">Chapter 48</span><span class="chc-time">3h ago</span></div></div>
+      </a>
+
+      <a href="/manga-detail?t=Chainsaw%20Man" class="ch-card" data-cat="chapter-moi manga action horror">
+        <div class="chc-cover"><img class="chc-img" src="/assets/img/10728427f3-chainsaw-man-hero.jpg" alt="Chainsaw Man" loading="lazy" width="600" height="338"><span class="chc-new">New</span><span class="chc-type tag tv" style="position:absolute;top:8px;right:8px;z-index:2">Manga</span></div>
+        <div class="chc-body"><div class="chc-genre">Action / Horror</div><div class="chc-title">Chainsaw Man</div><div class="chc-meta"><span class="chc-ch">Chapter 192</span><span class="chc-time">6h ago</span></div></div>
+      </a>
+    </div>
+  </div>
 </div>
 
-
-
-
-
-<!-- WEEKLY HOT 3 COLUMNS -->
-
-
-<div class="wrap rv">
-
-
-  <div class="sec-h">
-
-
-    <span class="sec-t">Hot <em>this week</em></span>
-
-
-    <div class="sec-l"></div>
-
-
-    <a href="/en/rankings" class="sec-more">See full rankings</a>
-
-
-  </div>
-
-
-  <div class="weekly-grid">
-
-
-
-
-
-    <!-- MANGA COL -->
-
-
-    <div class="col-block">
-
-
-      <div class="col-head">
-
-
-        <div class="col-head-left">
-
-
-          <div class="col-type-icon">
-
-
-            <svg width="22" height="26" viewbox="0 0 22 26" fill="none"><rect x="1" y="1" width="16" height="24" stroke="#a78bfa" stroke-width="1.5"></rect><path d="M5 8h9M5 12h9M5 16h6" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="square"></path><path d="M17 1l4 3v22H5" stroke="#a78bfa" stroke-width="1" opacity=".35"></path></svg>
-
-
-          </div>
-
-
-          <span class="col-type-name" style="color:var(--lav)">Manga</span>
-
-
-        </div>
-
-
-        <span class="col-week" style="border-color:rgba(167,139,250,.25);color:var(--lav)">Week 33</span>
-
-
-      </div>
-
-
-      <a href="/en/manga-detail?t=Jujutsu%20Kaisen" class="mi t1">
-
-
-        <div class="mi-num">01</div>
-
-
-        <div class="mi-thumb"><img src="/assets/img/d662bae70f-maxresdefault.jpg" alt="Jujutsu Kaisen" width="1280" height="720" fetchpriority="high" decoding="async"></div>
-
-
-        <div class="mi-info">
-
-
-          <div class="mi-title">Jujutsu Kaisen</div>
-
-
-          <div class="mi-author">Gege Akutami · Shueisha</div>
-
-
-          <div class="mi-tags"><span class="tag tv" style="font-size:9px;padding:2px 7px">Action</span><span class="tag tv" style="font-size:9px;padding:2px 7px">Supernatural</span></div>
-
-
-          <div class="mi-bar-wrap"><div class="mi-bar" style="width:96%;background:var(--lav)"></div></div>
-
-
-        </div>
-
-
-        <div class="mi-score-col"><div class="mi-score" style="color:var(--amber)">9.6</div><div class="mi-trend up">+2 ↑</div></div>
-
-
-      </a>
-
-
-      <a href="/en/manga-detail?t=One%20Piece" class="mi t2">
-
-
-        <div class="mi-num">02</div>
-
-
-        <div class="mi-thumb"><img src="/assets/img/8d631824e5-maxresdefault.jpg" alt="One Piece" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="mi-info">
-
-
-          <div class="mi-title">One Piece</div>
-
-
-          <div class="mi-author">Eiichiro Oda · Weekly</div>
-
-
-          <div class="mi-tags"><span class="tag tc" style="font-size:9px;padding:2px 7px">Adventure</span></div>
-
-
-          <div class="mi-bar-wrap"><div class="mi-bar" style="width:94%;background:var(--cyan)"></div></div>
-
-
-        </div>
-
-
-        <div class="mi-score-col"><div class="mi-score" style="color:var(--cyan)">9.4</div><div class="mi-trend eq">= →</div></div>
-
-
-      </a>
-
-
-      <a href="/en/manga-detail?t=Chainsaw%20Man" class="mi t3">
-
-
-        <div class="mi-num">03</div>
-
-
-        <div class="mi-thumb"><img src="/assets/img/39c7dd4496-maxresdefault.jpg" alt="Chainsaw Man" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="mi-info">
-
-
-          <div class="mi-title">Chainsaw Man</div>
-
-
-          <div class="mi-author">Tatsuki Fujimoto · Monthly</div>
-
-
-          <div class="mi-tags"><span class="tag ts" style="font-size:9px;padding:2px 7px">Horror</span></div>
-
-
-          <div class="mi-bar-wrap"><div class="mi-bar" style="width:93%;background:var(--sakura)"></div></div>
-
-
-        </div>
-
-
-        <div class="mi-score-col"><div class="mi-score" style="color:var(--green)">9.3</div><div class="mi-trend dn">-1 ↓</div></div>
-
-
-      </a>
-
-
-      <a href="/en/manga-detail?t=Berserk" class="mi">
-
-
-        <div class="mi-num">04</div>
-
-
-        <div class="mi-thumb"><img src="/assets/img/641c702735-157897l.jpg" alt="Berserk" loading="lazy" width="640" height="360"></div>
-
-
-        <div class="mi-info">
-
-
-          <div class="mi-title">Berserk</div>
-
-
-          <div class="mi-author">Studio Gaga Irregular</div>
-
-
-          <div class="mi-bar-wrap"><div class="mi-bar" style="width:92%;background:var(--amber)"></div></div>
-
-
-        </div>
-
-
-        <div class="mi-score-col"><div class="mi-score" style="color:var(--amber)">9.2</div><div class="mi-trend eq">= →</div></div>
-
-
-      </a>
-
-
-      <a href="/en/manga-detail?t=Spy%20x%20Family" class="mi">
-
-
-        <div class="mi-num">05</div>
-
-
-        <div class="mi-thumb"><img src="/assets/img/a7f0eee58e-122795l.jpg" alt="Spy x Family" loading="lazy" width="640" height="360"></div>
-
-
-        <div class="mi-info">
-
-
-          <div class="mi-title">Spy x Family</div>
-
-
-          <div class="mi-author">Tatsuya Endo · Bi-weekly</div>
-
-
-          <div class="mi-bar-wrap"><div class="mi-bar" style="width:89%;background:var(--lav)"></div></div>
-
-
-        </div>
-
-
-        <div class="mi-score-col"><div class="mi-score" style="color:var(--lav)">8.9</div><div class="mi-trend up">+1 ↑</div></div>
-
-
-      </a>
-
-
-      <a href="/en/manga-detail?t=Bleach" class="mi">
-
-
-        <div class="mi-num">06</div>
-
-
-        <div class="mi-thumb"><img src="/assets/img/7429db2141-bleach-tybw-cover.jpg" alt="Bleach" loading="lazy" width="640" height="360"></div>
-
-
-        <div class="mi-info">
-
-
-          <div class="mi-title">Bleach</div>
-
-
-          <div class="mi-author">Tite Kubo · Complete</div>
-
-
-          <div class="mi-bar-wrap"><div class="mi-bar" style="width:88%;background:var(--green)"></div></div>
-
-
-        </div>
-
-
-        <div class="mi-score-col"><div class="mi-score" style="color:var(--green)">8.8</div><div class="mi-trend up">+3 ↑</div></div>
-
-
-      </a>
-
-
-      <div class="col-footer"><a href="/en/rankings">See top 50 Manga</a></div>
-
-
-    </div>
-
-
-
-
-
-    <!-- MANHWA COL -->
-
-
-    <div class="col-block">
-
-
-      <div class="col-head">
-
-
-        <div class="col-head-left">
-
-
-          <div class="col-type-icon">
-
-
-            <svg width="22" height="26" viewbox="0 0 22 26" fill="none"><rect x="1" y="1" width="16" height="24" stroke="#00e5ff" stroke-width="1.5"></rect><path d="M5 8h9M5 12h9M5 16h6" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="square"></path></svg>
-
-
-          </div>
-
-
-          <span class="col-type-name" style="color:var(--cyan)">Manhwa</span>
-
-
-        </div>
-
-
-        <span class="col-week" style="border-color:rgba(0,229,255,.25);color:var(--cyan)">Week 33</span>
-
-
-      </div>
-
-
-      <a href="/en/manga-detail?t=Solo%20Leveling%3A%20Ragnarok" class="mi t1">
-
-
-        <div class="mi-num">01</div>
-
-
-        <div class="mi-thumb"><img src="/assets/img/d98cf42206-maxresdefault.jpg" alt="Solo Leveling: Ragnarok" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="mi-info">
-
-
-          <div class="mi-title">Solo Leveling: Ragnarok</div>
-
-
-          <div class="mi-author">Dubu · Kakao</div>
-
-
-          <div class="mi-tags"><span class="tag tc" style="font-size:9px;padding:2px 7px">Action</span><span class="tag tc" style="font-size:9px;padding:2px 7px">Fantasy</span></div>
-
-
-          <div class="mi-bar-wrap"><div class="mi-bar" style="width:95%;background:var(--cyan)"></div></div>
-
-
-        </div>
-
-
-        <div class="mi-score-col"><div class="mi-score" style="color:var(--amber)">9.5</div><div class="mi-trend up">+3 ↑</div></div>
-
-
-      </a>
-
-
-      <a href="/en/manga-detail?t=The%20Beginning%20After%20The%20End" class="mi t2">
-
-
-        <div class="mi-num">02</div>
-
-
-        <div class="mi-thumb"><img src="/assets/img/d98cf42206-maxresdefault.jpg" alt="The Beginning After The End" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="mi-info">
-
-
-          <div class="mi-title">The Beginning After The End</div>
-
-
-          <div class="mi-author">TurtleMe · Weekly</div>
-
-
-          <div class="mi-bar-wrap"><div class="mi-bar" style="width:92%;background:var(--cyan)"></div></div>
-
-
-        </div>
-
-
-        <div class="mi-score-col"><div class="mi-score" style="color:var(--cyan)">9.2</div><div class="mi-trend eq">= →</div></div>
-
-
-      </a>
-
-
-      <a href="/en/manga-detail?t=Omniscient%20Reader" class="mi t3">
-
-
-        <div class="mi-num">03</div>
-
-
-        <div class="mi-thumb"><img src="/assets/img/d98cf42206-maxresdefault.jpg" alt="Omniscient Reader" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="mi-info">
-
-
-          <div class="mi-title">Omniscient Reader</div>
-
-
-          <div class="mi-author">Sleepy-C · Weekly</div>
-
-
-          <div class="mi-bar-wrap"><div class="mi-bar" style="width:90%;background:var(--green)"></div></div>
-
-
-        </div>
-
-
-        <div class="mi-score-col"><div class="mi-score" style="color:var(--green)">9.0</div><div class="mi-trend up">+1 ↑</div></div>
-
-
-      </a>
-
-
-      <a href="/en/manga-detail?t=God%20of%20Blackfield" class="mi">
-
-
-        <div class="mi-num">04</div>
-
-
-        <div class="mi-thumb"><img src="/assets/img/god-of-blackfield-cover.jpg" alt="God of Blackfield" loading="lazy" width="640" height="360"></div>
-
-
-        <div class="mi-info">
-
-
-          <div class="mi-title">God of Blackfield</div>
-
-
-          <div class="mi-author">Hyeonsung Jun · Weekly</div>
-
-
-          <div class="mi-bar-wrap"><div class="mi-bar" style="width:88%;background:var(--lav)"></div></div>
-
-
-        </div>
-
-
-        <div class="mi-score-col"><div class="mi-score" style="color:var(--lav)">8.8</div><div class="mi-trend dn">-1 ↓</div></div>
-
-
-      </a>
-
-
-      <a href="/en/manga-detail?t=Second%20Life%20Ranker" class="mi">
-
-
-        <div class="mi-num">05</div>
-
-
-        <div class="mi-thumb"><img src="/assets/img/a4f75364fc-maxresdefault.jpg" alt="Second Life Ranker" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="mi-info">
-
-
-          <div class="mi-title">Second Life Ranker</div>
-
-
-          <div class="mi-author">Sadoyeon · Weekly</div>
-
-
-          <div class="mi-bar-wrap"><div class="mi-bar" style="width:86%;background:var(--sakura)"></div></div>
-
-
-        </div>
-
-
-        <div class="mi-score-col"><div class="mi-score" style="color:var(--sakura)">8.6</div><div class="mi-trend up">+2 ↑</div></div>
-
-
-      </a>
-
-
-      <a href="/en/manga-detail?t=Overgeared" class="mi">
-
-
-        <div class="mi-num">06</div>
-
-
-        <div class="mi-thumb"><img src="/assets/img/overgeared-cover.jpg" alt="Overgeared" loading="lazy" width="640" height="360"></div>
-
-
-        <div class="mi-info">
-
-
-          <div class="mi-title">Overgeared</div>
-
-
-          <div class="mi-author">Park Saenal · Weekly</div>
-
-
-          <div class="mi-bar-wrap"><div class="mi-bar" style="width:84%;background:var(--amber)"></div></div>
-
-
-        </div>
-
-
-        <div class="mi-score-col"><div class="mi-score" style="color:var(--amber)">8.4</div><div class="mi-trend eq">= →</div></div>
-
-
-      </a>
-
-
-      <div class="col-footer"><a href="/en/rankings">See top 50 Manhwa</a></div>
-
-
-    </div>
-
-
-
-
-
-    <!-- MANHUA COL -->
-
-
-    <div class="col-block">
-
-
-      <div class="col-head">
-
-
-        <div class="col-head-left">
-
-
-          <div class="col-type-icon">
-
-
-            <svg width="22" height="26" viewbox="0 0 22 26" fill="none"><rect x="1" y="1" width="16" height="24" stroke="#ff3080" stroke-width="1.5"></rect><path d="M5 8h9M5 12h9M5 16h6" stroke="#ff3080" stroke-width="1.5" stroke-linecap="square"></path></svg>
-
-
-          </div>
-
-
-          <span class="col-type-name" style="color:var(--sakura)">Manhua</span>
-
-
-        </div>
-
-
-        <span class="col-week" style="border-color:rgba(255,48,128,.25);color:var(--sakura)">Week 33</span>
-
-
-      </div>
-
-
-      <a href="/en/manga-detail?t=Battle%20Through%20the%20Heavens" class="mi t1">
-
-
-        <div class="mi-num">01</div>
-
-
-        <div class="mi-thumb"><img src="/assets/img/1f0540d7a3-maxresdefault.jpg" alt="Battle Through the Heavens" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="mi-info">
-
-
-          <div class="mi-title">Battle Through the Heavens</div>
-
-
-          <div class="mi-author">Tiancan Tudou · Weekly</div>
-
-
-          <div class="mi-tags"><span class="tag ts" style="font-size:9px;padding:2px 7px">Xianxia</span></div>
-
-
-          <div class="mi-bar-wrap"><div class="mi-bar" style="width:91%;background:var(--sakura)"></div></div>
-
-
-        </div>
-
-
-        <div class="mi-score-col"><div class="mi-score" style="color:var(--amber)">9.1</div><div class="mi-trend eq">= →</div></div>
-
-
-      </a>
-
-
-      <a href="/en/manga-detail?t=Swallowed%20Star" class="mi t2">
-
-
-        <div class="mi-num">02</div>
-
-
-        <div class="mi-thumb"><img src="/assets/img/1f0540d7a3-maxresdefault.jpg" alt="Swallowed Star" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="mi-info">
-
-
-          <div class="mi-title">Swallowed Star</div>
-
-
-          <div class="mi-author">I Eat Tomatoes · Weekly</div>
-
-
-          <div class="mi-bar-wrap"><div class="mi-bar" style="width:89%;background:var(--cyan)"></div></div>
-
-
-        </div>
-
-
-        <div class="mi-score-col"><div class="mi-score" style="color:var(--cyan)">8.9</div><div class="mi-trend up">+1 ↑</div></div>
-
-
-      </a>
-
-
-      <a href="/en/manga-detail?t=Doupo%20Cangqiong" class="mi t3">
-
-
-        <div class="mi-num">03</div>
-
-
-        <div class="mi-thumb"><img src="/assets/img/1f0540d7a3-maxresdefault.jpg" alt="Doupo Cangqiong" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="mi-info">
-
-
-          <div class="mi-title">Doupo Cangqiong</div>
-
-
-          <div class="mi-author">Xuanhuan · Weekly</div>
-
-
-          <div class="mi-bar-wrap"><div class="mi-bar" style="width:87%;background:var(--green)"></div></div>
-
-
-        </div>
-
-
-        <div class="mi-score-col"><div class="mi-score" style="color:var(--green)">8.7</div><div class="mi-trend dn">-1 ↓</div></div>
-
-
-      </a>
-
-
-      <a href="/en/manga-detail?t=Rebirth%20Urban%20Immortal" class="mi">
-
-
-        <div class="mi-num">04</div>
-
-
-        <div class="mi-thumb"><img src="/assets/img/1f0540d7a3-maxresdefault.jpg" alt="Rebirth Urban Immortal" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="mi-info">
-
-
-          <div class="mi-title">Rebirth Urban Immortal</div>
-
-
-          <div class="mi-author">Anonymous · Bi-weekly</div>
-
-
-          <div class="mi-bar-wrap"><div class="mi-bar" style="width:85%;background:var(--lav)"></div></div>
-
-
-        </div>
-
-
-        <div class="mi-score-col"><div class="mi-score" style="color:var(--lav)">8.5</div><div class="mi-trend up">+2 ↑</div></div>
-
-
-      </a>
-
-
-      <a href="/en/manga-detail?t=Wu%20Shen%20Zhu%20Zai" class="mi">
-
-
-        <div class="mi-num">05</div>
-
-
-        <div class="mi-thumb"><img src="/assets/img/1f0540d7a3-maxresdefault.jpg" alt="Wu Shen Zhu Zai" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="mi-info">
-
-
-          <div class="mi-title">Wu Shen Zhu Zai</div>
-
-
-          <div class="mi-author">Fengqingyang · Weekly</div>
-
-
-          <div class="mi-bar-wrap"><div class="mi-bar" style="width:83%;background:var(--amber)"></div></div>
-
-
-        </div>
-
-
-        <div class="mi-score-col"><div class="mi-score" style="color:var(--amber)">8.3</div><div class="mi-trend dn">-1 ↓</div></div>
-
-
-      </a>
-
-
-      <a href="/en/manga-detail?t=Mo%20Dao%20Zu%20Shi" class="mi">
-
-
-        <div class="mi-num">06</div>
-
-
-        <div class="mi-thumb"><img src="/assets/img/1f0540d7a3-maxresdefault.jpg" alt="Mo Dao Zu Shi" loading="lazy" width="1280" height="720"></div>
-
-
-        <div class="mi-info">
-
-
-          <div class="mi-title">Mo Dao Zu Shi</div>
-
-
-          <div class="mi-author">MXTX · Complete</div>
-
-
-          <div class="mi-bar-wrap"><div class="mi-bar" style="width:87%;background:var(--sakura)"></div></div>
-
-
-        </div>
-
-
-        <div class="mi-score-col"><div class="mi-score" style="color:var(--sakura)">8.7</div><div class="mi-trend up">+4 ↑</div></div>
-
-
-      </a>
-
-
-      <div class="col-footer"><a href="/en/rankings">See top 50 Manhua</a></div>
-
-
-    </div>
-
-
-
-
-
-  </div>
-
-
-</div>
-
-
-
-
-
-<!-- NEW CHAPTERS -->
-
-
-<div class="wrap rv">
-
-
-  <div class="sec-h">
-
-
-    <span class="sec-t">Chapter <em>latest</em></span>
-
-
-    <div class="sec-l"></div>
-
-
-    <a href="/en/lich-phat-song#manga" class="sec-more">See full schedule</a>
-
-
-  </div>
-
-
-  <div class="chapters-grid">
-
-
-    <a href="/en/manga-detail?t=Jujutsu%20Kaisen" class="ch-card" data-cat="new-chapter manga action supernatural">
-
-
-      <div class="chc-cover"><img class="chc-img" src="/assets/img/d662bae70f-maxresdefault.jpg" alt="Jujutsu Kaisen" loading="lazy" width="1280" height="720"><span class="chc-new">New</span><span class="chc-type tag tv" style="position:absolute;top:8px;right:8px;z-index:2">Manga</span></div>
-
-
-      <div class="chc-body"><div class="chc-genre">Action / Supernatural</div><div class="chc-title">Jujutsu Kaisen</div><div class="chc-meta"><span class="chc-ch">Chapter 271</span><span class="chc-time">2 hours ago</span></div></div>
-
-
-    </a>
-
-
-    <a href="/en/manga-detail?t=One%20Piece" class="ch-card" data-cat="new-chapter manga adventure shounen">
-
-
-      <div class="chc-cover"><img class="chc-img" src="/assets/img/8d631824e5-maxresdefault.jpg" alt="One Piece" loading="lazy" width="1280" height="720"><span class="chc-new">New</span><span class="chc-type tag tv" style="position:absolute;top:8px;right:8px;z-index:2">Manga</span></div>
-
-
-      <div class="chc-body"><div class="chc-genre">Adventure / Shounen</div><div class="chc-title">One Piece</div><div class="chc-meta"><span class="chc-ch">Chapter 1135</span><span class="chc-time">5 hours ago</span></div></div>
-
-
-    </a>
-
-
-    <a href="/en/manga-detail?t=Solo%20Leveling%3A%20Ragnarok" class="ch-card" data-cat="new-chapter manhwa action fantasy">
-
-
-      <div class="chc-cover"><img class="chc-img" src="/assets/img/a4f75364fc-maxresdefault.jpg" alt="Solo Leveling: Ragnarok" loading="lazy" width="1280" height="720"><span class="chc-new">New</span><span class="chc-type tag tc" style="position:absolute;top:8px;right:8px;z-index:2">Manhwa</span></div>
-
-
-      <div class="chc-body"><div class="chc-genre">Action/Fantasy</div><div class="chc-title">Solo Leveling: Ragnarok</div><div class="chc-meta"><span class="chc-ch">Chapter 48</span><span class="chc-time">3 hours ago</span></div></div>
-
-
-    </a>
-
-
-    <a href="/en/manga-detail?t=Chainsaw%20Man" class="ch-card" data-cat="new-chapter manga action horror">
-
-
-      <div class="chc-cover"><img class="chc-img" src="/assets/img/39c7dd4496-maxresdefault.jpg" alt="Chainsaw Man" loading="lazy" width="1280" height="720"><span class="chc-new">New</span><span class="chc-type tag tv" style="position:absolute;top:8px;right:8px;z-index:2">Manga</span></div>
-
-
-      <div class="chc-body"><div class="chc-genre">Action / Horror</div><div class="chc-title">Chainsaw Man</div><div class="chc-meta"><span class="chc-ch">Chapter 192</span><span class="chc-time">6 hours ago</span></div></div>
-
-
-    </a>
-
-
-    <a href="/en/manga-detail?t=Omniscient%20Reader" class="ch-card" data-cat="manhwa fantasy adventure">
-
-
-      <div class="chc-cover"><img class="chc-img" src="/assets/img/d98cf42206-maxresdefault.jpg" alt="Omniscient Reader" loading="lazy" width="1280" height="720"><span class="chc-type tag tc" style="position:absolute;top:8px;right:8px;z-index:2">Manhwa</span></div>
-
-
-      <div class="chc-body"><div class="chc-genre">Fantasy/Adventure</div><div class="chc-title">Omniscient Reader</div><div class="chc-meta"><span class="chc-ch">Chapter 214</span><span class="chc-time">8 hours ago</span></div></div>
-
-
-    </a>
-
-
-    <a href="/en/manga-detail?t=Battle%20Through%20the%20Heavens" class="ch-card" data-cat="manhua xianxia action">
-
-
-      <div class="chc-cover"><img class="chc-img" src="/assets/img/1f0540d7a3-maxresdefault.jpg" alt="Battle Through the Heavens" loading="lazy" width="1280" height="720"><span class="chc-type tag ts" style="position:absolute;top:8px;right:8px;z-index:2">Manhua</span></div>
-
-
-      <div class="chc-body"><div class="chc-genre">Xianxia / Action</div><div class="chc-title">Battle Through the Heavens</div><div class="chc-meta"><span class="chc-ch">Chapter 512</span><span class="chc-time">9 hours ago</span></div></div>
-
-
-    </a>
-
-
-    <a href="/en/manga-detail?t=Spy%20x%20Family" class="ch-card" data-cat="manga comedy action">
-
-
-      <div class="chc-cover"><img class="chc-img" src="/assets/img/a7f0eee58e-122795l.jpg" alt="Spy x Family" loading="lazy" width="640" height="360"><span class="chc-type tag tv" style="position:absolute;top:8px;right:8px;z-index:2">Manga</span></div>
-
-
-      <div class="chc-body"><div class="chc-genre">Comedy / Action</div><div class="chc-title">Spy x Family</div><div class="chc-meta"><span class="chc-ch">Chapter 112</span><span class="chc-time">12 hours ago</span></div></div>
-
-
-    </a>
-
-
-    <a href="/en/manga-detail?t=The%20Beginning%20After%20The%20End" class="ch-card" data-cat="manhwa fantasy isekai">
-
-
-      <div class="chc-cover"><img class="chc-img" src="/assets/img/d98cf42206-maxresdefault.jpg" alt="The Beginning After The End" loading="lazy" width="1280" height="720"><span class="chc-type tag tc" style="position:absolute;top:8px;right:8px;z-index:2">Manhwa</span></div>
-
-
-      <div class="chc-body"><div class="chc-genre">Fantasy / Isekai</div><div class="chc-title">The Beginning After The End</div><div class="chc-meta"><span class="chc-ch">Chapter 206</span><span class="chc-time">14 hours ago</span></div></div>
-
-
-    </a>
-
-
-  </div>
-
-
-</div>
-
-
-
-
-
-<!-- FOOTER -->
-
-
-<footer><div class="ft-in"><div><a href="/en" class="logo" style="display:inline-flex"><svg viewbox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Asian Gaming, Anime and Manga news hub. Fast, specialized, no bias.</p></div><div><div class="ft-h">Category</div><ul class="ft-links"><li><a href="/en/gaming">Gaming</a></li><li><a href="/en/anime">Anime</a></li><li><a href="/en/manga">Manga</a></li><li><a href="/en/reviews">Reviews</a></li><li><a href="/en/rankings">Rankings</a></li></ul></div><div><div class="ft-h">About OtaHub</div><ul class="ft-links"><li><a href="/en/about">Introduction</a></li><li><a href="/en/about#team">Team</a></li><li><a href="/en/about#contact">Contact</a></li><li><a href="/en/index#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Follow</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
-
-
-
-
-
 <script>
-
-
-
-
-
-/* ===== Filter by type (.ttab) and category (.ftab) ===== */
-var currentType='all';
-function setType(btn,t){document.querySelectorAll('.ttab').forEach(b=>b.classList.remove('on'));btn.classList.add('on');currentType=t||'all';applyCatFilter();}
-
-function applyCatFilter(){
-  var type=currentType||'all';
-
-  /* "Latest chapters" grid: affected by type filter, triggered from nav dropdown */
-  document.querySelectorAll('.chapters-grid .ch-card[data-cat]').forEach(function(card){
-    var cats=(card.dataset.cat||'').split(/\s+/);
-    var showType=(type==='all')||cats.indexOf(type)>-1;
-    card.style.display=showType?'':'none';
-  });
-
-  /* "News comics" block (ac-mag + ac): affected by type filter */
-  document.querySelectorAll('.content-layout [data-cat]').forEach(function(card){
-    var cats=(card.dataset.cat||'').split(/\s+/);
-    var showType=(type==='all')||cats.indexOf(type)>-1;
-    card.style.display=showType?'':'none';
-  });
-}
-
-
-
-
-
-const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target)}})},{threshold:0,rootMargin:'120px 0px 120px 0px'});
-
-
-document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
-
-
-setTimeout(()=>{document.querySelectorAll('.rv:not(.vis)').forEach(el=>el.classList.add('vis'))},800);
-
-
-
-
-
-/* Rank bar animate */
-
-
-const bobs=new IntersectionObserver(e=>{
-
-
-  e.forEach(x=>{if(x.isIntersecting){
-
-
-    x.target.querySelectorAll('.mi-bar').forEach(b=>{
-
-
-      const w=b.style.width;b.style.width='0';
-
-
-      requestAnimationFrame(()=>setTimeout(()=>b.style.width=w,100));
-
-
-    });
-
-
-    bobs.unobserve(x.target);
-
-
-  }});
-
-
-},{threshold:.1});
-
-
-document.querySelectorAll('.col-block').forEach(c=>bobs.observe(c));
-
-
-</script>
-
-
-<script>
-
-
-(function(){
-
-
-  var ham=document.querySelector('.ham');
-
-
-  var mn=document.querySelector('.mobile-nav');
-
-
-  if(!ham||!mn)return;
-
-
-  ham.addEventListener('click',function(){
-
-
-    ham.classList.toggle('open');
-
-
-    mn.classList.toggle('open');
-
-
-    document.body.style.overflow=mn.classList.contains('open')?'hidden':'';
-
-
-  });
-
-
-  mn.querySelectorAll('a').forEach(function(a){
-
-
-    a.addEventListener('click',function(){
-
-
-      ham.classList.remove('open');
-
-
-      mn.classList.remove('open');
-
-
-      document.body.style.overflow='';
-
-
-    });
-
-
-  });
-
-
-})();
-
-
-</script>
-
-
-<script>
-
-
-// Search overlay
-
-
-
-
-
-/* Mobile nav toggle */
-
-
-function toggleMobileNav(){
-
-
-  const nav=document.getElementById('mobileNav');
-
-
-  const ham=document.getElementById('hamBtn');
-
-
-  if(!nav||!ham) return;
-
-
-  const open=nav.classList.toggle('open');
-
-
-  ham.classList.toggle('open',open);
-
-
-  document.body.style.overflow=open?'hidden':'';
-
-
-}
-
-
-/* Close mobile nav on link click */
-
-
-document.querySelectorAll('.mobile-nav a').forEach(a=>a.addEventListener('click',()=>{
-
-
-  const nav=document.getElementById('mobileNav');
-
-
-  const ham=document.getElementById('hamBtn');
-
-
-  if(nav)nav.classList.remove('open');
-
-
-  if(ham)ham.classList.remove('open');
-
-
-  document.body.style.overflow='';
-
-
-}));
-
-
-
-
-
-function openSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.add('open');setTimeout(function(){var i=document.getElementById('searchInput');if(i)i.focus()},50);document.body.style.overflow='hidden'}}
-
-
-function closeSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.remove('open');document.body.style.overflow=''}}
-
-
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSearch();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch()}});
-
-
-
 /* ─── MANGA DYNAMIC 5-CARD SWITCHER ─── */
 var MANGA_FEATURED_DATA = {
   all: {
-    secTitle: 'Manga & <em>Webtoon News</em>',
+    secTitle: 'Manga & <em>Webtoon</em>',
     name: 'All Articles',
     hero: {
       url: '/en/kagurabachi-5-trieu-ban-xac-nhan-anime',
@@ -2864,9 +683,9 @@ var MANGA_FEATURED_DATA = {
     },
     sides: [
       { url: '/en/solo-leveling-ragnarok-manhwa-review', img: '/assets/img/news-solo-leveling-ragnarok-manhwa.jpg', tag: 'Manhwa', tagClass: 'tc', title: 'Solo Leveling: Ragnarok Manhwa Review', meta: 'OtaHub Editorial · 24/8' },
-      { url: '/en/one-piece-chapter-1192-elbaf-uranus', img: '/assets/img/news-one-piece-elbaf-uranus.jpg', tag: 'Chapter 1192', tagClass: 'tv', title: 'One Piece Chapter 1192: Elbaf & Uranus', meta: 'Trọng Khang · 22/8' },
+      { url: '/en/one-piece-chapter-1192-elbaf-uranus', img: '/assets/img/news-one-piece-chapter-1192-elbaf-uranus.jpg', tag: 'Chapter 1192', tagClass: 'tv', title: 'One Piece Chapter 1192: Elbaf & Uranus', meta: 'Trọng Khang · 22/8' },
       { url: '/en/black-clover-final-volume-guidebook', img: '/assets/img/75f4272c97-black-clover-final-volume-hero.jpg', tag: 'Final Volume', tagClass: 'tv', title: 'Black Clover Concludes with Volume 38', meta: 'Gia Bảo · 10 giờ trước' },
-      { url: '/en/chainsaw-man-season3', img: '/assets/img/056525167f-chainsaw-man-season3-hero.jpg', tag: 'Manga Theory', tagClass: 'tv', title: 'Chainsaw Man Part 3: Denji and Pochita Destiny', meta: 'Gia Bảo · 12 giờ trước' }
+      { url: '/en/chainsaw-man-season3', img: '/assets/img/10728427f3-chainsaw-man-hero.jpg', tag: 'Manga Theory', tagClass: 'tv', title: 'Chainsaw Man Part 3: Denji and Pochita Destiny', meta: 'Gia Bảo · 12 giờ trước' }
     ]
   },
   shonen: {
@@ -2882,9 +701,9 @@ var MANGA_FEATURED_DATA = {
       meta: 'Shonen Jump · Minh Tuấn · Hôm nay'
     },
     sides: [
-      { url: '/en/one-piece-chapter-1192-elbaf-uranus', img: '/assets/img/news-one-piece-elbaf-uranus.jpg', tag: 'Shonen Jump', tagClass: 'tv', title: 'One Piece: Elbaf Uranus Revelation', meta: 'Oda Eiichiro · 22/8' },
-      { url: '/en/jujutsu-kaisen-ket-thuc', img: '/assets/img/d662bae70f-maxresdefault.jpg', tag: 'Shonen Jump', tagClass: 'tv', title: 'Jujutsu Kaisen Final Chapter Legacy', meta: 'OtaHub · 8.9 Score' },
-      { url: '/en/dandadan-manga-review', img: '/assets/img/d03e5c92c8-dandadan-hero.jpg', tag: 'Jump+', tagClass: 'ts', title: 'Dandadan Manga Review', meta: 'Yukinobu Tatsu · 9.7' },
+      { url: '/en/one-piece-chapter-1192-elbaf-uranus', img: '/assets/img/news-one-piece-chapter-1192-elbaf-uranus.jpg', tag: 'Shonen Jump', tagClass: 'tv', title: 'One Piece: Elbaf Uranus Revelation', meta: 'Oda Eiichiro · 22/8' },
+      { url: '/en/jujutsu-kaisen-ket-thuc', img: '/assets/img/26ef7fc2d2-jujutsu-kaisen-anime-hero.jpg', tag: 'Shonen Jump', tagClass: 'tv', title: 'Jujutsu Kaisen Final Chapter Legacy', meta: 'OtaHub · 8.9 Score' },
+      { url: '/en/dandadan-manga-review', img: '/assets/img/2c0d7f7a34-dandadan-manga-hero.jpg', tag: 'Jump+', tagClass: 'ts', title: 'Dandadan Manga Review', meta: 'Yukinobu Tatsu · 9.7' },
       { url: '/en/chainsaw-man-manga-part2-review', img: '/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg', tag: 'Jump+', tagClass: 'tv', title: 'Chainsaw Man Part 2 Review', meta: 'Gia Bảo · 9.4 Score' }
     ]
   },
@@ -2902,8 +721,8 @@ var MANGA_FEATURED_DATA = {
     },
     sides: [
       { url: '/en/solo-leveling-arise-ban-cap-nhat-monarch-transcendence', img: '/assets/img/news-solo-leveling-arise-monarch-update.jpg', tag: 'Solo Leveling', tagClass: 'tc', title: 'Solo Leveling Arise 50M Downloads', meta: 'Netmarble · Hôm nay' },
-      { url: '/manga-detail?t=Omniscient%20Reader', img: '/assets/img/3dfc8fa432-159677l.jpg', tag: 'Manhwa', tagClass: 'tc', title: 'Omniscient Reader Webtoon Update', meta: 'Redice Studio · 9.6' },
-      { url: '/manga-detail?t=The%20Beginning%20After%20The%20End', img: '/assets/img/f47ae5a676-158003l.jpg', tag: 'Manhwa', tagClass: 'tc', title: 'The Beginning After The End Season 6', meta: 'TurtleMe · 9.2' },
+      { url: '/manga-detail?t=Omniscient%20Reader', img: '/assets/img/1619ce791a-solo-leveling-hero.jpg', tag: 'Manhwa', tagClass: 'tc', title: 'Omniscient Reader Webtoon Update', meta: 'Redice Studio · 9.6' },
+      { url: '/manga-detail?t=The%20Beginning%20After%20The%20End', img: '/assets/img/7807ea1948-vinland-saga-manga-hero.jpg', tag: 'Manhwa', tagClass: 'tc', title: 'The Beginning After The End Season 6', meta: 'TurtleMe · 9.2' },
       { url: '/manga-detail?t=Solo%20Leveling%3A%20Ragnarok', img: '/assets/img/news-solo-leveling-arise-monarch-update.jpg', tag: 'Manhwa', tagClass: 'tc', title: 'Solo Leveling Ragnarok Chapter 48', meta: 'REDICE · 9.5' }
     ]
   },
@@ -2912,7 +731,7 @@ var MANGA_FEATURED_DATA = {
     name: 'Review Manga & Manhwa',
     hero: {
       url: '/en/kagurabachi-review',
-      img: '/assets/img/3241b71457-kagurabachi-review-hero.jpg',
+      img: '/assets/img/1acdb70bf9-kagurabachi-review-hero.jpg',
       tag: 'Review · 9.6/10',
       tagClass: 'ta',
       title: 'Kagurabachi Manga Review: The Modern Katana Masterpiece',
@@ -2921,9 +740,9 @@ var MANGA_FEATURED_DATA = {
     },
     sides: [
       { url: '/en/solo-leveling-ragnarok-manhwa-review', img: '/assets/img/news-solo-leveling-ragnarok-manhwa.jpg', tag: 'Review · 9.2', tagClass: 'ta', title: 'Solo Leveling Ragnarok Review', meta: 'REDICE · 9.2 Score' },
-      { url: '/en/vinland-saga-manga-review', img: '/assets/img/934ca4aa13-vinland-saga-hero.jpg', tag: 'Review · 9.9', tagClass: 'ta', title: 'Vinland Saga Manga Review', meta: 'Kodansha · 9.9 Score' },
-      { url: '/en/one-piece-final-saga-review', img: '/assets/img/7e382d56ae-one-piece-egghead-arc-review-hero.jpg', tag: 'Review · 9.8', tagClass: 'ta', title: 'One Piece Final Saga Review', meta: 'Oda · 9.8 Score' },
-      { url: '/en/dandadan-manga-review', img: '/assets/img/d03e5c92c8-dandadan-hero.jpg', tag: 'Review · 9.5', tagClass: 'ta', title: 'Dandadan Manga Review', meta: 'Tatsu · 9.5 Score' }
+      { url: '/en/vinland-saga-manga-review', img: '/assets/img/7807ea1948-vinland-saga-manga-hero.jpg', tag: 'Review · 9.9', tagClass: 'ta', title: 'Vinland Saga Manga Review', meta: 'Kodansha · 9.9 Score' },
+      { url: '/en/one-piece-final-saga-review', img: '/assets/img/d187ae6a67-one-piece-egghead-arc-hero.jpg', tag: 'Review · 9.8', tagClass: 'ta', title: 'One Piece Final Saga Review', meta: 'Oda · 9.8 Score' },
+      { url: '/en/dandadan-manga-review', img: '/assets/img/2c0d7f7a34-dandadan-manga-hero.jpg', tag: 'Review · 9.5', tagClass: 'ta', title: 'Dandadan Manga Review', meta: 'Tatsu · 9.5 Score' }
     ]
   },
   manhua: {
@@ -2931,7 +750,7 @@ var MANGA_FEATURED_DATA = {
     name: 'Manhua Tu Tiên',
     hero: {
       url: '/manga-detail?t=Battle%20Through%20the%20Heavens',
-      img: '/assets/img/6323076b06-158003l.jpg',
+      img: '/assets/img/1f0540d7a3-maxresdefault.jpg',
       tag: 'Manhua · 9.1/10',
       tagClass: 'ts',
       title: 'Battle Through the Heavens: Xiao Yan Dominates the Dou Qi Continent',
@@ -2939,10 +758,10 @@ var MANGA_FEATURED_DATA = {
       meta: 'Manhua · Thiên Tàm Thổ Đậu'
     },
     sides: [
-      { url: '/manga-detail?t=Swallowed%20Star', img: '/assets/img/7429db2141-bleach-tybw-cover.jpg', tag: 'Sci-Fi Tu Tiên', tagClass: 'ts', title: 'Swallowed Star Manhua', meta: 'Ngã Cật Tây Hồng Thị · 8.9' },
-      { url: '/manga-detail?t=Doupo%20Cangqiong', img: '/assets/img/6323076b06-158003l.jpg', tag: 'Manhua', tagClass: 'ts', title: 'Martial Universe Manhua', meta: 'Manhua · 8.7' },
-      { url: '/manga-detail?t=Rebirth%20Urban%20Immortal', img: '/assets/img/641c702735-157897l.jpg', tag: 'Đô Thị Tu Tiên', tagClass: 'ts', title: 'Urban Immortal Cultivator', meta: 'Manhua · 8.5' },
-      { url: '/manga-detail?t=Wu%20Shen%20Zhu%20Zai', img: '/assets/img/a7f0eee58e-122795l.jpg', tag: 'Tu Chân', tagClass: 'ts', title: 'The Great Ruler Manhua', meta: 'Manhua · 8.3' }
+      { url: '/manga-detail?t=Swallowed%20Star', img: '/assets/img/7807ea1948-vinland-saga-manga-hero.jpg', tag: 'Sci-Fi Tu Tiên', tagClass: 'ts', title: 'Swallowed Star Manhua', meta: 'Ngã Cật Tây Hồng Thị · 8.9' },
+      { url: '/manga-detail?t=Doupo%20Cangqiong', img: '/assets/img/1f0540d7a3-maxresdefault.jpg', tag: 'Manhua', tagClass: 'ts', title: 'Martial Universe Manhua', meta: 'Manhua · 8.7' },
+      { url: '/manga-detail?t=Rebirth%20Urban%20Immortal', img: '/assets/img/1619ce791a-solo-leveling-hero.jpg', tag: 'Đô Thị Tu Tiên', tagClass: 'ts', title: 'Urban Immortal Cultivator', meta: 'Manhua · 8.5' },
+      { url: '/manga-detail?t=Wu%20Shen%20Zhu%20Zai', img: '/assets/img/10728427f3-chainsaw-man-hero.jpg', tag: 'Tu Chân', tagClass: 'ts', title: 'The Great Ruler Manhua', meta: 'Manhua · 8.3' }
     ]
   },
   'chapter-moi': {
@@ -2950,7 +769,7 @@ var MANGA_FEATURED_DATA = {
     name: 'New Chapters & Spoilers',
     hero: {
       url: '/en/one-piece-chapter-1192-elbaf-uranus',
-      img: '/assets/img/news-one-piece-elbaf-uranus.jpg',
+      img: '/assets/img/news-one-piece-chapter-1192-elbaf-uranus.jpg',
       tag: 'Chapter 1192 · Spoiler',
       tagClass: 'tv',
       title: 'One Piece Chapter 1192: Elbaf Giant Warriors & Ancient Weapon Uranus',
@@ -2960,8 +779,8 @@ var MANGA_FEATURED_DATA = {
     sides: [
       { url: '/en/solo-leveling-ragnarok-manhwa-review', img: '/assets/img/news-solo-leveling-ragnarok-manhwa.jpg', tag: 'Chapter 48', tagClass: 'tc', title: 'Solo Leveling: Ragnarok Chapter 48', meta: 'REDICE Studio · 3h trước' },
       { url: '/en/kagurabachi-5-trieu-ban-xac-nhan-anime', img: '/assets/img/news-kagurabachi-anime-confirmation.jpg', tag: 'Chapter 46', tagClass: 'tv', title: 'Kagurabachi Chapter 46: Cloud Gouger Return', meta: 'Shonen Jump · Hôm nay' },
-      { url: '/en/chainsaw-man-season3', img: '/assets/img/056525167f-chainsaw-man-season3-hero.jpg', tag: 'Chapter 192', tagClass: 'tv', title: 'Chainsaw Man Chapter 192', meta: 'Gia Bảo · 6h trước' },
-      { url: '/en/detective-conan-final-chapter', img: '/assets/img/f7dc6ecf13-138006l.jpg', tag: 'Chapter 1140', tagClass: 'ts', title: 'Detective Conan Chapter 1140', meta: 'Gosho Aoyama · 1 ngày trước' }
+      { url: '/en/chainsaw-man-season3', img: '/assets/img/10728427f3-chainsaw-man-hero.jpg', tag: 'Chapter 192', tagClass: 'tv', title: 'Chainsaw Man Chapter 192', meta: 'Gia Bảo · 6h trước' },
+      { url: '/en/detective-conan-final-chapter', img: '/assets/img/news-kagurabachi-anime-confirmation.jpg', tag: 'Chapter 1140', tagClass: 'ts', title: 'Detective Conan Chapter 1140', meta: 'Gosho Aoyama · 1 ngày trước' }
     ]
   }
 };
@@ -2992,14 +811,13 @@ function updateMangaHero(cat){
     setTimeout(function(){ heroCard.style.animation = 'heroPulseFade .4s ease-out'; }, 10);
   }
 
-  if(data && data.sides && data.sides.length >= 4){
-    for(var i = 0; i < 4; i++){
+  if(data && data.sides){
+    data.sides.forEach(function(item, i){
       var sc = document.getElementById('mangaSideCard' + i);
       var sImg = document.getElementById('mangaSideImg' + i);
       var sTag = document.getElementById('mangaSideTag' + i);
       var sTitle = document.getElementById('mangaSideTitle' + i);
       var sMeta = document.getElementById('mangaSideMeta' + i);
-      var item = data.sides[i];
       if(sc && item){
         sc.href = item.url;
         if(sImg){ sImg.src = item.img; sImg.alt = item.title; }
@@ -3011,7 +829,7 @@ function updateMangaHero(cat){
           setTimeout(function(){ cardElement.style.animation = 'heroPulseFade .4s ease-out'; }, 20 + idx * 30);
         })(sc, i);
       }
-    }
+    });
   }
 
   var banner = document.getElementById('mangaFilterBanner');
@@ -3060,37 +878,7 @@ function setMangaFilterByCat(cat){
 
 function setMangaFilter(btn, cat){
   setMangaFilterByCat(cat);
-} else {
-      t.classList.remove('on');
-    }
-  });
-
-  updateMangaHero(cat);
-
-  var visibleCount = 0;
-  document.querySelectorAll('.content-layout .ac').forEach(function(card){
-    if(cat === 'all'){
-      card.classList.remove('cat-hidden');
-      visibleCount++;
-      return;
-    }
-    var cats = (card.getAttribute('data-cat') || '').toLowerCase().split(' ');
-    if(cats.indexOf(cat.toLowerCase()) > -1){
-      card.classList.remove('cat-hidden');
-      visibleCount++;
-    } else {
-      card.classList.add('cat-hidden');
-    }
-  });
-
-  var filterCount = document.getElementById('mangaFilterCount');
-  if(filterCount) filterCount.textContent = visibleCount;
 }
-
-function setMangaFilter(btn, cat){
-  setMangaFilterByCat(cat);
-}
-
 </script>
 <script defer src="/assets/search.js"></script>
 
