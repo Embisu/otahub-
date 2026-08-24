@@ -2546,7 +2546,9 @@ function buildArticlePreviewHtml() {
   }
 
   html = html.replace('<head>', '<head><base href="https://otahub.asia/">');
-  html = html.replace('</body>', ART_BRIDGE_SCRIPT + '</body>');
+  html = html.replace('</div></div>
+</a>
+</body>', ART_BRIDGE_SCRIPT + '</body>');
   return html;
 }
 
