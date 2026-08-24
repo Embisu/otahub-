@@ -1011,7 +1011,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 /* REVEAL */
 
 
-.rv{opacity:1!important;transform:none!important}
+.rv{opacity:1;transform:translateY(0);transition:opacity .5s var(--ease),transform .5s var(--ease)}
 
 
 .rv.vis{opacity:1;transform:translateY(0)}
@@ -1162,26 +1162,47 @@ input,select,textarea{font-size:16px!important}
 
 
 
-
-/* Modern Filter Bar Styles */
-.filter-bar{position:sticky;top:60px;z-index:200;background:rgba(11,2,32,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);margin-bottom:28px}
+/* ══ UNIFIED MASTER HUB STYLES ══ */
+.rv{opacity:1!important;transform:none!important}
+.filter-bar{position:sticky;top:60px;z-index:200;background:rgba(11,2,32,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);margin-bottom:32px}
 .filter-in{max-width:1440px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none}
 .filter-in::-webkit-scrollbar{display:none}
 .ftab{background:none!important;border:none!important;outline:none!important;cursor:pointer;font-family:var(--fd);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:14px 20px;white-space:nowrap;border-bottom:2px solid transparent!important;transition:all .2s;flex-shrink:0;box-shadow:none!important}
-.ftab:hover:not(.on){color:rgba(240,238,255,.85)}
+.ftab:hover:not(.on){color:rgba(240,238,255,.9)}
 .ftab.on{color:var(--sakura)!important;border-bottom:2px solid var(--sakura)!important}
 .filter-sep{width:1px;height:24px;background:var(--border);flex-shrink:0;margin:0 6px}
 .cat-hidden{display:none!important}
-.content-layout{display:grid;grid-template-columns:1fr 340px;gap:32px;align-items:start}
-@media(max-width:1100px){.content-layout{grid-template-columns:1fr}}
-@keyframes heroPulseFade{0%{opacity:.4;transform:scale(.99)}100%{opacity:1;transform:scale(1)}}
 
-/* ══ UNIFIED HUB LAYOUT & SIDEBAR CSS ══ */
+.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:290px 230px;gap:3px;margin-bottom:48px}
+.fc{grid-row:1/3;grid-column:1/2;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;overflow:hidden;text-decoration:none;border-radius:2px;min-height:523px}
+.fc-img{position:absolute;inset:0;background-size:cover;background-position:center center;transition:transform .4s ease;z-index:0}
+.fc:hover .fc-img{transform:scale(1.03)}
+.fc-ov{position:absolute;inset:0;background:linear-gradient(to top,#060112 0%,rgba(6,1,18,.75) 50%,rgba(6,1,18,.1) 100%);z-index:1}
+.fc-body{position:relative;z-index:2}
+.sc{position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;overflow:hidden;text-decoration:none;border-radius:2px;background:var(--surf)}
+.sc-img{position:absolute;inset:0;z-index:0;overflow:hidden}
+.sc-img img{width:100%;height:100%;object-fit:cover;object-position:center center;transition:transform .3s ease}
+.sc:hover .sc-img img{transform:scale(1.05)}
+.sc::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,#060112 0%,rgba(6,1,18,.85) 60%,rgba(6,1,18,.2) 100%);z-index:1}
+.sc-body{position:relative;z-index:2}
+
 .content-layout{display:grid;grid-template-columns:1fr 340px;gap:36px;align-items:start;margin-bottom:60px}
+.ac-list{display:flex;flex-direction:column;gap:16px}
+.ac{display:grid;grid-template-columns:220px 1fr;gap:20px;padding:16px;background:var(--surf);border:1px solid var(--border);border-radius:4px;text-decoration:none;transition:all .2s}
+.ac:hover{background:var(--surf2);border-color:rgba(255,255,255,.15);transform:translateY(-2px)}
+.ac-thumb{position:relative;width:100%;height:130px;overflow:hidden;border-radius:2px;background:var(--surf2)}
+.ac-thumb img{width:100%;height:100%;object-fit:cover;object-position:center center;transition:transform .3s ease}
+.ac:hover .ac-thumb img{transform:scale(1.05)}
+.ac-info{display:flex;flex-direction:column;justify-content:space-between}
+.ac-tags{display:flex;gap:6px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
+.ac-title{font-family:var(--fd);font-size:16px;font-weight:600;line-height:1.4;color:var(--white);margin-bottom:8px;transition:color .2s}
+.ac:hover .ac-title{color:var(--sakura)}
+.ac-meta{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px}
+
 .side-col{display:flex;flex-direction:column;gap:24px}
 .side-box{background:var(--surf);border:1px solid var(--border);border-radius:4px;overflow:hidden}
 .side-head{font-family:var(--fd);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--white);font-weight:600;padding:16px 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.02)}
-.side-badge{font-size:9px;padding:2px 7px;border:1px solid var(--border);color:var(--theme);letter-spacing:.08em;border-radius:2px}
+.side-badge{font-size:9px;padding:2px 7px;border:1px solid var(--border);color:var(--sakura);letter-spacing:.08em;border-radius:2px}
 .rk{display:flex;align-items:center;gap:14px;padding:12px 18px;border-bottom:1px solid var(--border);text-decoration:none;transition:background .2s}
 .rk:last-child{border-bottom:none}
 .rk:hover{background:var(--surf2)}
@@ -1193,14 +1214,26 @@ input,select,textarea{font-size:16px!important}
 .rk-poster img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center center;display:block}
 .rk-info{flex:1;min-width:0}
 .rk-title{font-family:var(--fd);font-size:13px;font-weight:600;line-height:1.3;color:rgba(240,238,255,.9);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px;transition:color .2s}
-.rk:hover .rk-title{color:var(--theme)}
+.rk:hover .rk-title{color:var(--sakura)}
 .rk-sub{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rk-score{font-family:var(--fd);font-size:15px;font-weight:700;color:var(--amber);flex-shrink:0;margin-left:auto}
 .sched-item{padding:14px 18px;border-bottom:1px solid var(--border)}
 .sched-item:last-child{border-bottom:none}
 .sched-title{font-weight:600;font-size:13px;color:var(--white);margin-bottom:2px}
 .sched-meta{font-size:11px;color:var(--muted)}
-@media(max-width:1100px){.content-layout{grid-template-columns:1fr}}
+
+@media(max-width:1100px){
+  .f-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .fc{grid-row:auto;grid-column:1/3}
+  .content-layout{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .f-grid{grid-template-columns:1fr;grid-template-rows:auto}
+  .fc{grid-column:auto}
+  .ac{grid-template-columns:1fr}
+  .ac-thumb{height:180px}
+}
+@keyframes heroPulseFade{0%{opacity:.4;transform:scale(.99)}100%{opacity:1;transform:scale(1)}}
 
 </style>
 
@@ -1337,7 +1370,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 /* Scroll reveal, works properly */
 
 
-.rv{opacity:1!important;transform:none!important}
+.rv{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}
 
 
 .rv.vis{opacity:1;transform:translateY(0)}
@@ -1506,11 +1539,6 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   <div class="sec-h"><span class="sec-t" id="animeSecTitle">Tiêu điểm <em>Anime</em></span><div class="sec-l"></div><a href="/news" class="sec-more">Xem tất cả</a></div>
 
   <!-- 5-Card Featured Grid -->
-  <div id="animeFilterBanner" class="filter-banner" style="display:none;margin-bottom:18px;background:rgba(255,48,128,.08);border:1px solid rgba(255,48,128,.3);padding:10px 18px;align-items:center;justify-content:space-between;border-radius:4px">
-    <span style="font-size:13px;color:var(--white)">Đang xem chuyên mục: <strong id="animeFilterName" style="color:var(--sakura)">Tất cả</strong> (<span id="animeFilterCount" style="color:var(--sakura)">0</span> bài viết)</span>
-    <button type="button" onclick="setAnimeFilterByCat('all')" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:4px 12px;font-size:11px;font-weight:600;text-transform:uppercase;cursor:pointer;letter-spacing:.05em;transition:all .2s">✕ Xóa lọc</button>
-  </div>
-
   <div class="f-grid">
     <a class="fc" id="animeHeroCard" href="/jujutsu-kaisen-mua-3-culling-game-teaser">
       <div class="fc-img" id="animeHeroImg" style="background-image:url(/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg);background-position:center center"></div><div class="fc-ov"></div>
@@ -1543,71 +1571,279 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     </a>
   </div>
 
-  <!-- Lower 2-Column Layout (Articles Stream + Sidebar) -->
+  <!-- Lower 2-Column Layout -->
   <div class="content-layout">
     <div>
       <div class="sec-h" style="padding:0 0 16px;border-bottom:1px solid var(--border);margin-bottom:20px"><span class="sec-t">Bài viết <em>mới nhất</em></span></div>
 
       <div class="ac-list">
-        <!-- ADMIN:ARTICLES_START -->
-        <a href="/jujutsu-kaisen-mua-3-culling-game-teaser" class="ac" data-cat="news action shonen">
-          <div class="ac-thumb"><img src="/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg" alt="Jujutsu Kaisen Season 3 Teaser MAPPA" loading="lazy" width="480" height="360"></div>
+
+        <a href="/anime-moi-crunchyroll-2026-romelia-black-torch" class="ac" data-cat="mua-he-2026 review">
+          <div class="ac-thumb"><img src="/assets/img/anime-nyc-2026-hero-v2.png" alt="Anime Mới Trên Crunchyroll 2026: Romelia War Chronicle, BLACK TORCH Và Hơn Thế Nữa · OtaHub" loading="lazy" width="480" height="360"></div>
           <div class="ac-info">
-            <div><div class="ac-tags"><span class="tag ts">Anime</span><span class="tag tag-live">Breaking</span></div>
-            <div class="ac-title">Jujutsu Kaisen Mùa 3 (Culling Game Arc) Tung Teaser Trailer Đầu Tiên: MAPPA Ấn Định Lên Sóng Đầu Năm 2027</div></div>
-            <div class="ac-meta"><span>OtaHub Editorial</span><span class="sep">·</span><span>Vừa xong</span><span class="sep">·</span><span>7 min</span></div>
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Anime Mới Trên Crunchyroll 2026: Romelia War Chronicle, BLACK TORCH Và Hơn Thế Nữa · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
           </div>
         </a>
 
-        <a href="/senren-banka-anime-2027" class="ac" data-cat="news isekai">
-          <div class="ac-thumb"><img src="/assets/img/news-senren-banka-anime-2027.jpg" alt="Senren Banka Anime" loading="lazy" width="480" height="360"></div>
+        <a href="/apothecary-diaries-season3-trailer" class="ac" data-cat="review news">
+          <div class="ac-thumb"><img src="/assets/img/ba56514692-apothecary-diaries-s3-key-visual.jpg" alt="The Apothecary Diaries Mùa 3 Tung Trailer, Key Visual Mới, Ấn Định Ngày 2/10 · OtaHub" loading="lazy" width="480" height="360"></div>
           <div class="ac-info">
-            <div><div class="ac-tags"><span class="tag ts">Anime</span></div>
-            <div class="ac-title">Senren＊Banka Được Chuyển Thể Anime, Dàn Cast Gốc Trở Lại, Ra Mắt 2027</div></div>
-            <div class="ac-meta"><span>Lan Anh</span><span class="sep">·</span><span>13 giờ trước</span><span class="sep">·</span><span>6 min</span></div>
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">The Apothecary Diaries Mùa 3 Tung Trailer, Key Visual Mới, Ấn Định Ngày 2/10 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-17 5 phút đọc OtaHub Editorial</span></div>
           </div>
         </a>
 
-        <a href="/konosuba-season-4-2027" class="ac" data-cat="news isekai">
-          <div class="ac-thumb"><img src="/assets/img/news-konosuba-season-4-2027.jpg" alt="KONOSUBA Season 4" loading="lazy" width="480" height="360"></div>
+        <a href="/avengers-doomsday-homework-watchlist" class="ac" data-cat="review">
+          <div class="ac-thumb"><img src="/assets/img/news-avengers-doomsday-homework-watchlist.jpg" alt="Marvel Xác Nhận Danh Sách 15 Phim/Series Phải Xem Trước Avengers: Doomsday · OtaHub" loading="lazy" width="480" height="360"></div>
           <div class="ac-info">
-            <div><div class="ac-tags"><span class="tag ts">Anime</span></div>
-            <div class="ac-title">KONOSUBA Mùa 4 Ấn Định Ra Mắt 2027, Đổi Sang Studio ENGI</div></div>
-            <div class="ac-meta"><span>Như Quỳnh</span><span class="sep">·</span><span>14 giờ trước</span><span class="sep">·</span><span>5 min</span></div>
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Marvel Xác Nhận Danh Sách 15 Phim/Series Phải Xem Trước Avengers: Doomsday · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-19 6 phút đọc OtaHub Editorial</span></div>
           </div>
         </a>
 
-        <a href="/free-fire-daybreak-anime-2027" class="ac" data-cat="news action">
-          <div class="ac-thumb"><img src="/assets/img/news-free-fire-daybreak-anime-2027.jpg" alt="Free Fire Daybreak" loading="lazy" width="480" height="360"></div>
+        <a href="/ball-x-pit-naturalist-update" class="ac" data-cat="review">
+          <div class="ac-thumb"><img src="/assets/img/news-ball-x-pit-naturalist-update.jpg" alt="Ball x Pit Ra Mắt Bản Cập Nhật Miễn Phí Cuối The Naturalist, Thêm 2 Nhân Vật Mới · OtaHub" loading="lazy" width="480" height="360"></div>
           <div class="ac-info">
-            <div><div class="ac-tags"><span class="tag ts">Anime</span></div>
-            <div class="ac-title">Free Fire Daybreak Tung Key Visual Đầu Tiên, Ấn Định Mùa Xuân 2027</div></div>
-            <div class="ac-meta"><span>Anh Đức</span><span class="sep">·</span><span>15 giờ trước</span><span class="sep">·</span><span>6 min</span></div>
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Ball x Pit Ra Mắt Bản Cập Nhật Miễn Phí Cuối The Naturalist, Thêm 2 Nhân Vật Mới · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
           </div>
         </a>
 
-        <a href="/ranma-half-season-3-visual" class="ac" data-cat="news action">
-          <div class="ac-thumb"><img src="/assets/img/news-ranma-half-season-3-visual.jpg" alt="Ranma 1/2 Season 3" loading="lazy" width="480" height="360"></div>
+        <a href="/chinh-sach-bao-mat" class="ac" data-cat="action">
+          <div class="ac-thumb"><img src="/assets/img/05cef7e2e1-img.jpg" alt="Chính Sách Bảo Mật &amp; Quyền Riêng Tư · OtaHub" loading="lazy" width="480" height="360"></div>
           <div class="ac-info">
-            <div><div class="ac-tags"><span class="tag ts">Anime</span></div>
-            <div class="ac-title">Ranma 1/2 Mùa 3 Công Bố Key Visual, 5 Diễn Viên Mới Và Ngày Lên Sóng 3/10</div></div>
-            <div class="ac-meta"><span>Gia Bảo</span><span class="sep">·</span><span>16 giờ trước</span><span class="sep">·</span><span>7 min</span></div>
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Chính Sách Bảo Mật &amp; Quyền Riêng Tư · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>📅 Cập nhật: 01/06/2024 🌐 Áp dụng: otahub.asia 📖 Ngôn ngữ: Tiếng Việt</span></div>
           </div>
         </a>
 
-        <a href="/frieren-season2" class="ac" data-cat="review mua-he-2026">
-          <div class="ac-thumb"><img src="/assets/img/3f4f599cac-frieren-s2-hero.jpg" alt="Frieren Season 2 Review" loading="lazy" width="480" height="360"></div>
+        <a href="/crunchyroll-makoto-shinkai-next-film" class="ac" data-cat="review">
+          <div class="ac-thumb"><img src="/assets/img/c2c43ada05-shinkai-next-film-crunchyroll-hero.jpg" alt="Crunchyroll Giành Quyền Phát Hành Phim Mới Shinkai · OtaHub" loading="lazy" width="480" height="360"></div>
           <div class="ac-info">
-            <div><div class="ac-tags"><span class="tag ta">Review · 9.8</span><span class="tag ts">Anime</span></div>
-            <div class="ac-title">Frieren: Beyond Journey’s End Mùa 2 Review: Đỉnh Cao Của Anime Kỳ Ảo Nhân Sinh</div></div>
-            <div class="ac-meta"><span>OtaHub Editorial</span><span class="sep">·</span><span>Hôm qua</span><span class="sep">·</span><span>8 min</span></div>
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Crunchyroll Giành Quyền Phát Hành Phim Mới Shinkai · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-14 6 phút đọc OtaHub Editorial</span></div>
           </div>
         </a>
-        <!-- ADMIN:ARTICLES_END -->
+
+        <a href="/demon-slayer-infinity-castle-review" class="ac" data-cat="review action">
+          <div class="ac-thumb"><img src="/assets/img/5418135572-demon-slayer-infinity-castle-review-hero.jpg" alt="Demon Slayer: Infinity Castle Review: Kiệt Tác Ufotable · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Demon Slayer: Infinity Castle Review: Kiệt Tác Ufotable · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/demon-slayer-infinity-castle-trailer-chinh-thuc" class="ac" data-cat="review action news">
+          <div class="ac-thumb"><img src="/assets/img/news-demon-slayer-infinity-castle-trailer.jpg" alt="Demon Slayer: Infinity Castle Part 1 Tung Trailer 3 Phút Mãn Nhãn, Ấn Định Chiếu Rạp Toàn Cầu · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Demon Slayer: Infinity Castle Part 1 Tung Trailer 3 Phút Mãn Nhãn, Ấn Định Chiếu Rạp Toàn Cầu · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-22 7 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/dragon-ball-sparking-zero-neo-dlc" class="ac" data-cat="review">
+          <div class="ac-thumb"><img src="/assets/img/news-dragon-ball-sparking-zero-neo-dlc.jpg" alt="Dragon Ball: Sparking Zero Tung DLC Super Limit-Breaking Neo Với 33 Nhân Vật Mới · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Dragon Ball: Sparking Zero Tung DLC Super Limit-Breaking Neo Với 33 Nhân Vật Mới · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/elden-ring-dlc2" class="ac" data-cat="review">
+          <div class="ac-thumb"><img src="/assets/img/b80150127d-library_hero.jpg" alt="Elden Ring Tarnished Pack: Chi Tiết 2 Class Mới Heavy Knight Và Idus Knight · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Elden Ring Tarnished Pack: Chi Tiết 2 Class Mới Heavy Knight Và Idus Knight · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-06-12 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/free-fire-daybreak-anime-2027" class="ac" data-cat="review">
+          <div class="ac-thumb"><img src="/assets/img/news-free-fire-daybreak-anime-2027.jpg" alt="Free Fire Daybreak Tung Key Visual Đầu Tiên, Ấn Định Mùa Xuân 2027 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Free Fire Daybreak Tung Key Visual Đầu Tiên, Ấn Định Mùa Xuân 2027 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/galaxy-express-999-new-film" class="ac" data-cat="review news">
+          <div class="ac-thumb"><img src="/assets/img/news-galaxy-express-999-new-film.jpg" alt="Toei Animation Xác Nhận Phim Galaxy Express 999 Mới, Rintaro Viết Cốt Truyện · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Toei Animation Xác Nhận Phim Galaxy Express 999 Mới, Rintaro Viết Cốt Truyện · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/huong-dan" class="ac" data-cat="action">
+          <div class="ac-thumb"><img src="/assets/img/05cef7e2e1-img.jpg" alt="Hướng Dẫn Elden Ring: Nightreign, Boss, Build, Bản Đồ · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Hướng Dẫn Elden Ring: Nightreign, Boss, Build, Bản Đồ · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Nền tảng</span></div>
+          </div>
+        </a>
+
+        <a href="/lien-he" class="ac" data-cat="action">
+          <div class="ac-thumb"><img src="/assets/img/05cef7e2e1-img.jpg" alt="Liên Hệ · OtaHub | Hợp Tác, Quảng Cáo &amp; Góp Ý" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Liên Hệ · OtaHub | Hợp Tác, Quảng Cáo &amp; Góp Ý</div>
+            </div>
+            <div class="ac-meta"><span>OtaHub Editorial · Hôm nay</span></div>
+          </div>
+        </a>
+
+        <a href="/made-in-abyss-awakening-mystery" class="ac" data-cat="review">
+          <div class="ac-thumb"><img src="/assets/img/b05891325a-made-in-abyss-awakening-mystery-hero.jpg" alt="Made in Abyss: Awakening Mystery Tung Trailer 23/10 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Made in Abyss: Awakening Mystery Tung Trailer 23/10 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-14 7 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/magical-buffs-fate-rewinder-crunchyroll" class="ac" data-cat="review">
+          <div class="ac-thumb"><img src="/assets/img/news-magical-buffs-fate-rewinder-crunchyroll.jpg" alt="Crunchyroll Xác Nhận Magical Buffs Và Fate Rewinder Sau Showcase Anime Expo 2026 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Crunchyroll Xác Nhận Magical Buffs Và Fate Rewinder Sau Showcase Anime Expo 2026 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/metal-gear-solid-delta-review" class="ac" data-cat="review">
+          <div class="ac-thumb"><img src="/assets/img/ce3825d43e-mgs-delta-snake-eater-review-hero.jpg" alt="Metal Gear Solid Δ: Snake Eater Review: Bản Remake Trung Thành Đến Từng Chi Tiết · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Metal Gear Solid Δ: Snake Eater Review: Bản Remake Trung Thành Đến Từng Chi Tiết · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 7 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/metal-gear-solid-master-collection-vol2" class="ac" data-cat="review">
+          <div class="ac-thumb"><img src="/assets/img/bffb8c0a75-mgs-master-collection-vol2.jpg" alt="Metal Gear Solid: Master Collection Vol. 2 Ấn Định Ngày Ra Mắt 27/8 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Metal Gear Solid: Master Collection Vol. 2 Ấn Định Ngày Ra Mắt 27/8 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-12 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/mushoku-tensei-s3-chaos-breaker" class="ac" data-cat="review isekai">
+          <div class="ac-thumb"><img src="/assets/img/77948dbff7-mushoku-tensei-s3-chaosbreaker.jpg" alt="Mushoku Tensei Season 3: Chaos Breaker Arc Tung Trailer, Khởi Chiếu 16/8 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Mushoku Tensei Season 3: Chaos Breaker Arc Tung Trailer, Khởi Chiếu 16/8 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-12 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/ranma-half-season-3-visual" class="ac" data-cat="review">
+          <div class="ac-thumb"><img src="/assets/img/news-ranma-half-season-3-visual.jpg" alt="Ranma 1/2 Mùa 3 Công Bố Key Visual, 5 Diễn Viên Mới Và Ngày Lên Sóng 3/10 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Ranma 1/2 Mùa 3 Công Bố Key Visual, 5 Diễn Viên Mới Và Ngày Lên Sóng 3/10 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/rezero-10th-anniversary-visual" class="ac" data-cat="review isekai">
+          <div class="ac-thumb"><img src="/assets/img/news-rezero-10th-anniversary-visual.jpg" alt="Re:ZERO Tung Visual Kỷ Niệm 10 Năm, Hé Lộ Triển Lãm Tại Tokyo Tháng 9 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Re:ZERO Tung Visual Kỷ Niệm 10 Năm, Hé Lộ Triển Lãm Tại Tokyo Tháng 9 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/space-marine-2-chaos-rising-review" class="ac" data-cat="review">
+          <div class="ac-thumb"><img src="/assets/img/4dfd7a0e34-library_hero.jpg" alt="Space Marine 2: Bản Cập Nhật Confrontation Review, Khép Lại Năm 2 Ấn Tượng · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Space Marine 2: Bản Cập Nhật Confrontation Review, Khép Lại Năm 2 Ấn Tượng · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/space-marine-2-dlc" class="ac" data-cat="review">
+          <div class="ac-thumb"><img src="/assets/img/4dfd7a0e34-library_hero.jpg" alt="Space Marine 2 Năm 3: Chaos Siege Mode, Class Mới Và Season Pass 3 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">Space Marine 2 Năm 3: Chaos Siege Mode, Class Mới Và Season Pass 3 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-07-30 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/the-ribbon-hero-netflix" class="ac" data-cat="review">
+          <div class="ac-thumb"><img src="/assets/img/632c9aeaf5-the-ribbon-hero-netflix-hero.jpg" alt="The Ribbon Hero: Netflix Chuyển Thể Đầu Tiên Của Princess Knight, Tác Phẩm Khai Sinh Dòng Magical Girl · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag ts">ANIME</span></div>
+              <div class="ac-title">The Ribbon Hero: Netflix Chuyển Thể Đầu Tiên Của Princess Knight, Tác Phẩm Khai Sinh Dòng Magical Girl · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-14 7 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
       </div>
     </div>
 
-    <!-- Sidebar -->
     <!-- Sidebar -->
     <aside class="side-col">
       <div class="side-box">
@@ -1659,7 +1895,6 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 var ANIME_FEATURED_DATA = {
   all: {
     secTitle: 'Tiêu điểm <em>Anime</em>',
-    name: 'Tất cả bài viết',
     hero: {
       url: '/jujutsu-kaisen-mua-3-culling-game-teaser',
       img: '/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg',
@@ -1678,7 +1913,6 @@ var ANIME_FEATURED_DATA = {
   },
   'mua-he-2026': {
     secTitle: 'Anime <em>Mùa Hè 2026</em>',
-    name: 'Mùa Hè 2026',
     hero: {
       url: '/frieren-season2',
       img: '/assets/img/3f4f599cac-frieren-s2-hero.jpg',
@@ -1697,7 +1931,6 @@ var ANIME_FEATURED_DATA = {
   },
   review: {
     secTitle: 'Đánh Giá & <em>Review Anime</em>',
-    name: 'Review Anime',
     hero: {
       url: '/demon-slayer-infinity-castle-review',
       img: '/assets/img/5418135572-demon-slayer-infinity-castle-review-hero.jpg',
@@ -1716,7 +1949,6 @@ var ANIME_FEATURED_DATA = {
   },
   action: {
     secTitle: 'Anime <em>Hành Động & Shonen</em>',
-    name: 'Hành Động / Shonen',
     hero: {
       url: '/chainsaw-man-reze-arc-review',
       img: '/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg',
@@ -1735,7 +1967,6 @@ var ANIME_FEATURED_DATA = {
   },
   isekai: {
     secTitle: 'Anime <em>Isekai & Kỳ Ảo</em>',
-    name: 'Isekai & Fantasy',
     hero: {
       url: '/mushoku-tensei-s3-chaos-breaker',
       img: '/assets/img/77948dbff7-mushoku-tensei-s3-chaosbreaker.jpg',
@@ -1754,7 +1985,6 @@ var ANIME_FEATURED_DATA = {
   },
   news: {
     secTitle: 'Anime <em>Chiếu Rạp & Movie</em>',
-    name: 'Tin Chiếu Rạp',
     hero: {
       url: '/demon-slayer-infinity-castle-trailer-chinh-thuc',
       img: '/assets/img/news-demon-slayer-infinity-castle-trailer.jpg',
@@ -1786,15 +2016,11 @@ function updateAnimeHero(cat){
   if(heroCard && data && data.hero){
     heroCard.href = data.hero.url;
     if(heroImg) heroImg.style.backgroundImage = 'url(' + data.hero.img + ')';
-    if(heroTag){
-      heroTag.className = 'tag ' + data.hero.tagClass;
-      heroTag.textContent = data.hero.tag;
-    }
+    if(heroTag){ heroTag.className = 'tag ' + data.hero.tagClass; heroTag.textContent = data.hero.tag; }
     if(heroTitle) heroTitle.textContent = data.hero.title;
     if(heroSub) heroSub.textContent = data.hero.sub;
     if(heroMeta) heroMeta.textContent = data.hero.meta;
     if(secTitle) secTitle.innerHTML = data.secTitle;
-
     heroCard.style.animation = 'none';
     setTimeout(function(){ heroCard.style.animation = 'heroPulseFade .4s ease-out'; }, 10);
   }
@@ -1819,17 +2045,6 @@ function updateAnimeHero(cat){
       }
     });
   }
-
-  var banner = document.getElementById('animeFilterBanner');
-  var filterName = document.getElementById('animeFilterName');
-  if(banner && filterName){
-    if(cat === 'all'){
-      banner.style.display = 'none';
-    } else {
-      banner.style.display = 'flex';
-      filterName.textContent = data ? data.name : cat;
-    }
-  }
 }
 
 function setAnimeFilterByCat(cat){
@@ -1844,24 +2059,18 @@ function setAnimeFilterByCat(cat){
 
   updateAnimeHero(cat);
 
-  var visibleCount = 0;
   document.querySelectorAll('.ac[data-cat]').forEach(function(card){
     if(cat === 'all'){
       card.classList.remove('cat-hidden');
-      visibleCount++;
       return;
     }
     var cats = (card.getAttribute('data-cat') || '').toLowerCase().split(' ');
     if(cats.indexOf(cat.toLowerCase()) > -1){
       card.classList.remove('cat-hidden');
-      visibleCount++;
     } else {
       card.classList.add('cat-hidden');
     }
   });
-
-  var filterCount = document.getElementById('animeFilterCount');
-  if(filterCount) filterCount.textContent = visibleCount;
 }
 
 function setAnimeFilter(btn, cat){
@@ -1869,15 +2078,6 @@ function setAnimeFilter(btn, cat){
 }
 </script>
 <script defer src="/assets/search.js"></script>
-
-
-<script defer src="/assets/enhance.js"></script>
-
-
-<script defer src="/assets/engage.js?v=20260818b"></script>
-
-
-
 <script>
 (function(){
   document.querySelectorAll('.rv').forEach(function(el){
@@ -1888,8 +2088,4 @@ function setAnimeFilter(btn, cat){
 })();
 </script>
 </body>
-
-
 </html>
-
-

@@ -493,9 +493,6 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 
 .filter-sep{width:1px;height:28px;background:var(--border);flex-shrink:0;margin:0 4px}
 
-/* Ẩn card khi bị lọc bởi filter tab (setFilter/setSub) */
-.cat-hidden{display:none!important}
-
 
 
 
@@ -875,7 +872,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 
 
 
-/* Featured grid (đồng bộ với trang chủ) */
+/* Featured grid (matches homepage) */
 
 
 .f-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:290px 230px;gap:3px;margin-top:3px}
@@ -1349,7 +1346,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 /* ─── REVEAL ─── */
 
 
-.rv{opacity:1!important;transform:none!important}
+.rv{opacity:1;transform:translateY(0);transition:opacity .5s var(--ease),transform .5s var(--ease)}
 
 
 .rv.vis{opacity:1;transform:translateY(0)}
@@ -1536,26 +1533,47 @@ input,select,textarea{font-size:16px!important}
 
 
 
-
-/* Modern Filter Bar Styles */
-.filter-bar{position:sticky;top:60px;z-index:200;background:rgba(4,8,20,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);margin-bottom:28px}
+/* ══ UNIFIED MASTER HUB STYLES ══ */
+.rv{opacity:1!important;transform:none!important}
+.filter-bar{position:sticky;top:60px;z-index:200;background:rgba(4,8,20,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);margin-bottom:32px}
 .filter-in{max-width:1440px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none}
 .filter-in::-webkit-scrollbar{display:none}
 .ftab{background:none!important;border:none!important;outline:none!important;cursor:pointer;font-family:var(--fd);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:14px 20px;white-space:nowrap;border-bottom:2px solid transparent!important;transition:all .2s;flex-shrink:0;box-shadow:none!important}
-.ftab:hover:not(.on){color:rgba(240,238,255,.85)}
+.ftab:hover:not(.on){color:rgba(240,238,255,.9)}
 .ftab.on{color:var(--cyan)!important;border-bottom:2px solid var(--cyan)!important}
 .filter-sep{width:1px;height:24px;background:var(--border);flex-shrink:0;margin:0 6px}
 .cat-hidden{display:none!important}
-.content-layout{display:grid;grid-template-columns:1fr 340px;gap:32px;align-items:start}
-@media(max-width:1100px){.content-layout{grid-template-columns:1fr}}
-@keyframes heroPulseFade{0%{opacity:.4;transform:scale(.99)}100%{opacity:1;transform:scale(1)}}
 
-/* ══ UNIFIED HUB LAYOUT & SIDEBAR CSS ══ */
+.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:290px 230px;gap:3px;margin-bottom:48px}
+.fc{grid-row:1/3;grid-column:1/2;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;overflow:hidden;text-decoration:none;border-radius:2px;min-height:523px}
+.fc-img{position:absolute;inset:0;background-size:cover;background-position:center center;transition:transform .4s ease;z-index:0}
+.fc:hover .fc-img{transform:scale(1.03)}
+.fc-ov{position:absolute;inset:0;background:linear-gradient(to top,#060112 0%,rgba(6,1,18,.75) 50%,rgba(6,1,18,.1) 100%);z-index:1}
+.fc-body{position:relative;z-index:2}
+.sc{position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;overflow:hidden;text-decoration:none;border-radius:2px;background:var(--surf)}
+.sc-img{position:absolute;inset:0;z-index:0;overflow:hidden}
+.sc-img img{width:100%;height:100%;object-fit:cover;object-position:center center;transition:transform .3s ease}
+.sc:hover .sc-img img{transform:scale(1.05)}
+.sc::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,#060112 0%,rgba(6,1,18,.85) 60%,rgba(6,1,18,.2) 100%);z-index:1}
+.sc-body{position:relative;z-index:2}
+
 .content-layout{display:grid;grid-template-columns:1fr 340px;gap:36px;align-items:start;margin-bottom:60px}
+.ac-list{display:flex;flex-direction:column;gap:16px}
+.ac{display:grid;grid-template-columns:220px 1fr;gap:20px;padding:16px;background:var(--surf);border:1px solid var(--border);border-radius:4px;text-decoration:none;transition:all .2s}
+.ac:hover{background:var(--surf2);border-color:rgba(255,255,255,.15);transform:translateY(-2px)}
+.ac-thumb{position:relative;width:100%;height:130px;overflow:hidden;border-radius:2px;background:var(--surf2)}
+.ac-thumb img{width:100%;height:100%;object-fit:cover;object-position:center center;transition:transform .3s ease}
+.ac:hover .ac-thumb img{transform:scale(1.05)}
+.ac-info{display:flex;flex-direction:column;justify-content:space-between}
+.ac-tags{display:flex;gap:6px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
+.ac-title{font-family:var(--fd);font-size:16px;font-weight:600;line-height:1.4;color:var(--white);margin-bottom:8px;transition:color .2s}
+.ac:hover .ac-title{color:var(--cyan)}
+.ac-meta{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px}
+
 .side-col{display:flex;flex-direction:column;gap:24px}
 .side-box{background:var(--surf);border:1px solid var(--border);border-radius:4px;overflow:hidden}
 .side-head{font-family:var(--fd);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--white);font-weight:600;padding:16px 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.02)}
-.side-badge{font-size:9px;padding:2px 7px;border:1px solid var(--border);color:var(--theme);letter-spacing:.08em;border-radius:2px}
+.side-badge{font-size:9px;padding:2px 7px;border:1px solid var(--border);color:var(--cyan);letter-spacing:.08em;border-radius:2px}
 .rk{display:flex;align-items:center;gap:14px;padding:12px 18px;border-bottom:1px solid var(--border);text-decoration:none;transition:background .2s}
 .rk:last-child{border-bottom:none}
 .rk:hover{background:var(--surf2)}
@@ -1567,14 +1585,26 @@ input,select,textarea{font-size:16px!important}
 .rk-poster img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center center;display:block}
 .rk-info{flex:1;min-width:0}
 .rk-title{font-family:var(--fd);font-size:13px;font-weight:600;line-height:1.3;color:rgba(240,238,255,.9);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px;transition:color .2s}
-.rk:hover .rk-title{color:var(--theme)}
+.rk:hover .rk-title{color:var(--cyan)}
 .rk-sub{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rk-score{font-family:var(--fd);font-size:15px;font-weight:700;color:var(--amber);flex-shrink:0;margin-left:auto}
 .sched-item{padding:14px 18px;border-bottom:1px solid var(--border)}
 .sched-item:last-child{border-bottom:none}
 .sched-title{font-weight:600;font-size:13px;color:var(--white);margin-bottom:2px}
 .sched-meta{font-size:11px;color:var(--muted)}
-@media(max-width:1100px){.content-layout{grid-template-columns:1fr}}
+
+@media(max-width:1100px){
+  .f-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .fc{grid-row:auto;grid-column:1/3}
+  .content-layout{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .f-grid{grid-template-columns:1fr;grid-template-rows:auto}
+  .fc{grid-column:auto}
+  .ac{grid-template-columns:1fr}
+  .ac-thumb{height:180px}
+}
+@keyframes heroPulseFade{0%{opacity:.4;transform:scale(.99)}100%{opacity:1;transform:scale(1)}}
 
 </style>
 
@@ -1711,7 +1741,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 /* Scroll reveal, works properly */
 
 
-.rv{opacity:1!important;transform:none!important}
+.rv{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}
 
 
 .rv.vis{opacity:1;transform:translateY(0)}
@@ -1840,7 +1870,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   <div class="nav-in">
 
 
-    <a href="/en" class="logo">
+    <a href="/en/index" class="logo">
 
 
       <svg viewbox="0 0 34 34" fill="none">
@@ -2017,11 +2047,6 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   <div class="sec-h"><span class="sec-t" id="gamingSecTitle">Gaming <em>Featured</em></span><div class="sec-l"></div><a href="/news" class="sec-more">View all</a></div>
 
   <!-- 5-Card Featured Grid -->
-  <div id="gamingFilterBanner" class="filter-banner" style="display:none;margin-bottom:18px;background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.3);padding:10px 18px;align-items:center;justify-content:space-between;border-radius:4px">
-    <span style="font-size:13px;color:var(--white)">Viewing category: <strong id="gamingFilterName" style="color:var(--cyan)">All</strong> (<span id="gamingFilterCount" style="color:var(--cyan)">0</span> articles)</span>
-    <button type="button" onclick="setGamingFilterByCat('all')" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:4px 12px;font-size:11px;font-weight:600;text-transform:uppercase;cursor:pointer;letter-spacing:.05em;transition:all .2s">✕ Clear filter</button>
-  </div>
-
   <div class="f-grid">
     <a class="fc" id="gamingHeroCard" href="/en/monster-hunter-wilds-ban-cap-nhat-mua-thu-2026">
       <div class="fc-img" id="gamingHeroImg" style="background-image:url(/assets/img/news-monster-hunter-wilds-autumn-update.jpg);background-position:center center"></div><div class="fc-ov"></div>
@@ -2060,47 +2085,1263 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       <div class="sec-h" style="padding:0 0 16px;border-bottom:1px solid var(--border);margin-bottom:20px"><span class="sec-t">Latest <em>Gaming News</em></span></div>
 
       <div class="ac-list">
-        <!-- ADMIN:ARTICLES_START -->
-        <a href="/en/honkai-star-rail-ban-cap-nhat-amphoreus-banner-cyrene" class="ac" data-cat="mobile preview">
-          <div class="ac-thumb"><img src="/assets/img/news-honkai-star-rail-31-amphoreus.jpg" alt="Honkai Star Rail 3.1 Amphoreus Cyrene" loading="lazy" width="600" height="338"></div>
+
+        <a href="/en/anime-mua-he-2026" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/10728427f3-chainsaw-man-hero.jpg" alt="Anime Mùa Hè 2026: Lịch Phát Sóng Và Những Tựa Đáng Xem Nhất · OtaHub" loading="lazy" width="480" height="360"></div>
           <div class="ac-info">
-            <div><div class="ac-tags"><span class="tag ts">Mobile</span><span class="tag tc">Gacha 3.1</span></div>
-            <div class="ac-title">Honkai: Star Rail Announces Version 3.1: Amphoreus Expansion & 5-Star Cyrene</div></div>
-            <div class="ac-meta"><span>Anh Kiệt</span><span class="sep">·</span><span>Just now</span><span class="sep">·</span><span>8 min</span></div>
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Anime Mùa Hè 2026: Lịch Phát Sóng Và Những Tựa Đáng Xem Nhất · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-06-18 8 phút đọc OtaHub Editorial</span></div>
           </div>
         </a>
 
-        <a href="/en/honor-of-kings-global-mua-giai-moi-tuong-lan-ling-wang" class="ac" data-cat="mobile esports">
-          <div class="ac-thumb"><img src="/assets/img/news-honor-of-kings-lanling-wang.jpg" alt="Honor of Kings Global Lanling Wang" loading="lazy" width="600" height="338"></div>
+        <a href="/en/anime-nyc-2026-crunchyroll" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/anime-nyc-2026-hero-v2.png" alt="Anime NYC 2026: các premiere và panel đáng chú ý · OtaHub" loading="lazy" width="480" height="360"></div>
           <div class="ac-info">
-            <div><div class="ac-tags"><span class="tag ts">Mobile</span><span class="tag tg">MOBA</span></div>
-            <div class="ac-title">Honor of Kings Global New Season: Stealth Assassin Lanling Wang & Jungle Overhaul</div></div>
-            <div class="ac-meta"><span>Gia Linh</span><span class="sep">·</span><span>1 hour ago</span><span class="sep">·</span><span>8 min</span></div>
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Anime NYC 2026: các premiere và panel đáng chú ý · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-18 7 phút đọc OtaHub Editorial</span></div>
           </div>
         </a>
 
-        <a href="/en/genshin-impact-70-top-5-doi-hinh-la-hoan-snezhnaya" class="ac" data-cat="mobile guide">
-          <div class="ac-thumb"><img src="/assets/img/news-genshin-impact-70-abyss-teams.jpg" alt="Genshin Impact 7.0 Top 5 Spiral Abyss Mobile Teams" loading="lazy" width="600" height="338"></div>
+        <a href="/en/article" class="ac" data-cat="review guide">
+          <div class="ac-thumb"><img src="/assets/img/64af1fba74-img.jpg" alt="article.html" loading="lazy" width="480" height="360"></div>
           <div class="ac-info">
-            <div><div class="ac-tags"><span class="tag tg">Guide</span><span class="tag ts">Mobile</span></div>
-            <div class="ac-title">Genshin Impact 7.0: Top 5 Spiral Abyss Teams for Snezhnaya Season on Mobile</div></div>
-            <div class="ac-meta"><span>Bích Ngọc</span><span class="sep">·</span><span>2 hours ago</span><span class="sep">·</span><span>9 min</span></div>
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">article.html</div>
+            </div>
+            <div class="ac-meta"><span>OtaHub Editorial</span></div>
           </div>
         </a>
 
-        <a href="/en/solo-leveling-arise-ban-cap-nhat-monarch-transcendence" class="ac" data-cat="mobile preview">
-          <div class="ac-thumb"><img src="/assets/img/news-solo-leveling-arise-monarch-update.jpg" alt="Solo Leveling Arise 50M Downloads" loading="lazy" width="600" height="338"></div>
+        <a href="/en/attack-on-titan-wit-teaser" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/a7548f6c8e-attack-on-titan-wit-teaser-hero.jpg" alt="WIT Studio Hé Lộ Công Bố Bí Ẩn Attack on Titan Ngày 20/8 · OtaHub" loading="lazy" width="480" height="360"></div>
           <div class="ac-info">
-            <div><div class="ac-tags"><span class="tag ts">Mobile</span><span class="tag tv">Action RPG</span></div>
-            <div class="ac-title">Solo Leveling: Arise Hits 50M Downloads: Monarch Transcendence Launched</div></div>
-            <div class="ac-meta"><span>Minh Tuấn</span><span class="sep">·</span><span>3 hours ago</span><span class="sep">·</span><span>8 min</span></div>
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">WIT Studio Hé Lộ Công Bố Bí Ẩn Attack on Titan Ngày 20/8 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-15 5 phút đọc OtaHub Editorial</span></div>
           </div>
         </a>
-        <!-- ADMIN:ARTICLES_END -->
+
+        <a href="/en/bai-viet" class="ac" data-cat="review guide">
+          <div class="ac-thumb"><img src="/assets/img/05cef7e2e1-img.jpg" alt="Bài Viết · OtaHub | Tin tức Game, Anime &amp; Manga châu Á" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Bài Viết · OtaHub | Tin tức Game, Anime &amp; Manga châu Á</div>
+            </div>
+            <div class="ac-meta"><span>MK</span></div>
+          </div>
+        </a>
+
+        <a href="/en/beast-of-reincarnation" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/5f8467072b-beast-of-reincarnation-hero.jpg" alt="Beast of Reincarnation: Game Freak Ra Mắt Tựa AAA Đầu Tiên Ngoài Pokémon · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Beast of Reincarnation: Game Freak Ra Mắt Tựa AAA Đầu Tiên Ngoài Pokémon · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-14 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/berserk-arc-cuoi" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/7b5a968234-maxresdefault.jpg" alt="Berserk Arc Cuối: Studio Gaga Hoàn Thành Di Sản Của Miura · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Berserk Arc Cuối: Studio Gaga Hoàn Thành Di Sản Của Miura · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Manga 2026-06-16 7 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/big-walk-house-house" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/d4b52b428d-big-walk-house-house-hero.jpg" alt="Big Walk: Cha Đẻ Untitled Goose Game Ra Mắt Game Co-op Mới Cực Chill · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Big Walk: Cha Đẻ Untitled Goose Game Ra Mắt Game Co-op Mới Cực Chill · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-15 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/black-clover-final-volume-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/75f4272c97-black-clover-final-volume-hero.jpg" alt="Black Clover Kết Thúc Review: 11 Năm, Cái Kết Trọn Vẹn · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Black Clover Kết Thúc Review: 11 Năm, Cái Kết Trọn Vẹn · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/black-clover-season-2" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/00ecd3dafc-banner.jpg" alt="Black Clover Season 2 Tung Trailer, Trở Lại Tháng 10 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Black Clover Season 2 Tung Trailer, Trở Lại Tháng 10 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-12 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/black-myth-wukong-bi-quyet-danh-trum-an" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-black-myth-wukong-boss-an-guide.jpg" alt="Black Myth: Wukong: Bí Quyết Đánh Bại 5 Boss Ẩn Khó Nhất &amp; Hướng Dẫn Mở Khóa Đủ Bộ Pháp Bảo Tề Thiên · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Black Myth: Wukong: Bí Quyết Đánh Bại 5 Boss Ẩn Khó Nhất &amp; Hướng Dẫn Mở Khóa Đủ Bộ Pháp Bảo Tề Thiên · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-24 9 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/black-myth-wukong-dlc-rebirth-great-sage" class="ac" data-cat="pc review preview">
+          <div class="ac-thumb"><img src="/assets/img/news-black-myth-wukong-dlc-rebirth.jpg" alt="Black Myth: Wukong Kỷ Niệm 2 Năm, Game Science Chính Thức Công Bố DLC Cốt Truyện 'Rebirth of the Great Sage' · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Black Myth: Wukong Kỷ Niệm 2 Năm, Game Science Chính Thức Công Bố DLC Cốt Truyện 'Rebirth of the Great Sage' · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-22 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/black-myth-wukong-huong-dan" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/6eef9e5628-library_hero.jpg" alt="Black Myth: Wukong, Hướng Dẫn Người Mới Bắt Đầu Từ A Đến Z · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Black Myth: Wukong, Hướng Dẫn Người Mới Bắt Đầu Từ A Đến Z · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-06-13 9 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/black-myth-wukong-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/6eef9e5628-library_hero.jpg" alt="Black Myth: Wukong Review: Kiệt Tác Souls-like TQ · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Black Myth: Wukong Review: Kiệt Tác Souls-like TQ · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 9 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/bleach-tybw-calamity-opening-ending" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-bleach-tybw-calamity-opening-ending.jpg" alt="Bleach TYBW: The Calamity Công Bố OP 'I-BULL' Và ED 'Rasen' · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Bleach TYBW: The Calamity Công Bố OP 'I-BULL' Và ED 'Rasen' · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/blue-protocol-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/3578d308d7-library_hero.jpg" alt="Blue Protocol Review: MMORPG Anime Đẹp Nhất Và Những Vấn Đề Cốt Lõi · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Blue Protocol Review: MMORPG Anime Đẹp Nhất Và Những Vấn Đề Cốt Lõi · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-06-17 10 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/chained-soldier-season-3" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/cc1f44dabd-chained-soldier-s3.jpg" alt="Chained Soldier Chính Thức Được Xác Nhận Season 3 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Chained Soldier Chính Thức Được Xác Nhận Season 3 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-12 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/chainsaw-man-anime-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/6b2483c562-chainsaw-man-anime-hero.jpg" alt="Chainsaw Man Anime Review: MAPPA Làm Nên Kiệt Tác · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Chainsaw Man Anime Review: MAPPA Làm Nên Kiệt Tác · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-16 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/chainsaw-man-manga-part2-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/10728427f3-chainsaw-man-hero.jpg" alt="Chainsaw Man Manga Review: Từ Denji Đến Asa Mitaka · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Chainsaw Man Manga Review: Từ Denji Đến Asa Mitaka · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-16 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/chainsaw-man-reze-arc-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg" alt="Chainsaw Man – Reze Arc Review: MAPPA Lên Màn Ảnh Rộng · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Chainsaw Man – Reze Arc Review: MAPPA Lên Màn Ảnh Rộng · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 7 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/chainsaw-man-season3" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/2656ba8ffc-maxresdefault.jpg" alt="Chainsaw Man Assassins Arc: MAPPA Ra Mắt Anime Kinh Điển · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Chainsaw Man Assassins Arc: MAPPA Ra Mắt Anime Kinh Điển · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-06-14 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/dandadan-manga-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/2c0d7f7a34-dandadan-manga-hero.jpg" alt="Dandadan Review: Cơn Lốc Hài Hước, Kinh Dị, Lãng Mạn · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Dandadan Review: Cơn Lốc Hài Hước, Kinh Dị, Lãng Mạn · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-16 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/dandadan-season-2-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/322e6e6826-dandadan-season-2-review-hero.jpg" alt="Dan Da Dan Season 2 Review: Science SARU Nâng Tầm · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Dan Da Dan Season 2 Review: Science SARU Nâng Tầm · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/death-stranding-2-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/9c68ea445d-death-stranding-2-on-the-beach-review-hero.jpg" alt="Death Stranding 2 Review: Kojima Vượt Qua Chính Mình · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Death Stranding 2 Review: Kojima Vượt Qua Chính Mình · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 9 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/doraemon-steam-time-machine-film" class="ac" data-cat="review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-doraemon-steam-time-machine-film.jpg" alt="Doraemon Công Bố Phim Thứ 46: Nobita Đến London Bằng Tàu Thời Gian Hơi Nước · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Doraemon Công Bố Phim Thứ 46: Nobita Đến London Bằng Tàu Thời Gian Hơi Nước · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/dragon-ball-daima" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/1f0540d7a3-maxresdefault.jpg" alt="Dragon Ball DAIMA: Di Sản Của Toriyama Và Tương Lai Anime · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Dragon Ball DAIMA: Di Sản Của Toriyama Và Tương Lai Anime · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-06-03 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/elden-ring-tarnished-edition" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/adbee997e8-elden-ring-tarnished-edition-hero.jpg" alt="Elden Ring: Tarnished Edition Đổ Bộ Switch 2 Ngày 28/8 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Elden Ring: Tarnished Edition Đổ Bộ Switch 2 Ngày 28/8 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-15 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/final-fantasy-7-revelation-gamescom" class="ac" data-cat="review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/b14d8c1cc7-ff7-revelation-gamescom-hero.jpg" alt="FF7 Revelation Lộ Diện Tại Gamescom Opening Night 25/8 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">FF7 Revelation Lộ Diện Tại Gamescom Opening Night 25/8 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-17 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/flamecraft-ps5-demo" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-flamecraft-ps5-demo.jpg" alt="Flamecraft Xác Nhận Ra Mắt PS5, Xbox Series Và Switch, Demo Có Từ 28/7 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Flamecraft Xác Nhận Ra Mắt PS5, Xbox Series Và Switch, Demo Có Từ 28/7 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/frieren-season2" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/3f4f599cac-frieren-s2-hero.jpg" alt="Frieren: Beyond Journey's End Mùa 2 Trở Lại · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Frieren: Beyond Journey's End Mùa 2 Trở Lại · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-06-18 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/genshin-54-citlali" class="ac" data-cat="mobile review preview guide tierlist">
+          <div class="ac-thumb"><img src="/assets/img/ae2a55e940-genshin-citlali-hero.jpg" alt="Genshin Impact 7.0: Tier List Đội Hình Meta Mạnh Nhất Mùa Snezhnaya · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Genshin Impact 7.0: Tier List Đội Hình Meta Mạnh Nhất Mùa Snezhnaya · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-14 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/genshin-70-snezhnaya-review" class="ac" data-cat="mobile pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/fd097eb675-genshin-70-snezhnaya-hero.jpg" alt="Genshin Impact 7.0: Snezhnaya Review: Chương Cuối · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Genshin Impact 7.0: Snezhnaya Review: Chương Cuối · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-16 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/genshin-impact-70-snezhnaya" class="ac" data-cat="mobile pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/fd097eb675-genshin-70-snezhnaya-hero.jpg" alt="Genshin Impact 7.0: Snezhnaya Mở Cửa, Odette Ra Mắt · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Genshin Impact 7.0: Snezhnaya Mở Cửa, Odette Ra Mắt · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-13 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/genshin-impact-70-top-5-doi-hinh-la-hoan-snezhnaya" class="ac" data-cat="mobile review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-genshin-impact-70-abyss-teams.jpg" alt="Genshin Impact 7.0: Top 5 Đội Hình Leo La Hoàn Thâm Cảnh Mùa Snezhnaya Dễ Chơi Nhất Trên Mobile · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Genshin Impact 7.0: Top 5 Đội Hình Leo La Hoàn Thâm Cảnh Mùa Snezhnaya Dễ Chơi Nhất Trên Mobile · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-24 9 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/genshin-natlan-review" class="ac" data-cat="mobile pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/65d27cd1a0-library_hero.jpg" alt="Genshin Impact Natlan: Vùng Đất Của Lửa Và Bí Mật Về Celestia · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Genshin Impact Natlan: Vùng Đất Của Lửa Và Bí Mật Về Celestia · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-06-04 10 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/ghost-of-yotei-complete-edition" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/0a878e4709-ghost-of-yotei-complete-edition-hero.jpg" alt="Ghost of Yōtei Complete Edition Ra Mắt Ngày 1/10 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Ghost of Yōtei Complete Edition Ra Mắt Ngày 1/10 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-14 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/ghost-of-yotei-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/3c84e61b4e-ghost-of-yotei-review-hero.jpg" alt="Ghost of Yōtei Review: Sucker Punch Vượt Qua Tsushima · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Ghost of Yōtei Review: Sucker Punch Vượt Qua Tsushima · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 9 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/gta6-preview" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/c8cd09fede-maxresdefault.jpg" alt="GTA 6: Tất Cả Những Gì Chúng Ta Biết Về Bom Tấn Lớn Nhất 2026 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">GTA 6: Tất Cả Những Gì Chúng Ta Biết Về Bom Tấn Lớn Nhất 2026 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-06-10 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/gta6-trailer3-netflix-premiere" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/ccd6b922bc-gta6-trailer3-netflix-hero.jpg" alt="GTA 6 Tung Trailer 3, Công Chiếu Trên Netflix 27/8 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">GTA 6 Tung Trailer 3, Công Chiếu Trên Netflix 27/8 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-17 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/haikyu-movie2-little-giant-teaser" class="ac" data-cat="pc review preview">
+          <div class="ac-thumb"><img src="/assets/img/news-haikyu-movie2-little-giant-teaser.jpg" alt="Haikyu!! The Movie: VS The Little Giant Hé Lộ Visual Mới Tại Sự Kiện Haikyu!! Day 2026 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Haikyu!! The Movie: VS The Little Giant Hé Lộ Visual Mới Tại Sự Kiện Haikyu!! Day 2026 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-20 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/halo-campaign-evolved-modernizes" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-halo-campaign-evolved-modernizes.jpg" alt="Halo: Campaign Evolved Ra Mắt 28/7, Nêu 13 Thay Đổi Hiện Đại Hóa Chiến Dịch · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Halo: Campaign Evolved Ra Mắt 28/7, Nêu 13 Thay Đổi Hiện Đại Hóa Chiến Dịch · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/hollow-knight-silksong-sea-of-sorrow" class="ac" data-cat="review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/4f81303202-silksong-hero.jpg" alt="Hollow Knight: Silksong Công Bố DLC Miễn Phí Sea of Sorrow · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Hollow Knight: Silksong Công Bố DLC Miễn Phí Sea of Sorrow · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-13 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/honkai-star-rail-30" class="ac" data-cat="mobile pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/b67b849f0b-library_hero.jpg" alt="Honkai: Star Rail 3.0, Amphoreus Và Kỷ Nguyên Mới · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Honkai: Star Rail 3.0, Amphoreus Và Kỷ Nguyên Mới · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-06-11 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/honkai-star-rail-ban-cap-nhat-amphoreus-banner-cyrene" class="ac" data-cat="mobile pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-honkai-star-rail-31-amphoreus.jpg" alt="Honkai: Star Rail Công Bố Phiên Bản 3.1: Mở Rộng Thế Giới Amphoreus Và Banner Nhân Vật 5 Sao Cyrene · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Honkai: Star Rail Công Bố Phiên Bản 3.1: Mở Rộng Thế Giới Amphoreus Và Banner Nhân Vật 5 Sao Cyrene · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-24 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/honkai-star-rail-zzz-crossover" class="ac" data-cat="mobile pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/d2b409c61d-hsr-zzz-pompom-scene.jpg" alt="Honkai: Star Rail Chính Thức Xác Nhận Crossover Với Zenless Zone Zero · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Honkai: Star Rail Chính Thức Xác Nhận Crossover Với Zenless Zone Zero · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-16 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/honor-of-kings-global-mua-giai-moi-tuong-lan-ling-wang" class="ac" data-cat="mobile review preview guide esports">
+          <div class="ac-thumb"><img src="/assets/img/news-honor-of-kings-lanling-wang.jpg" alt="Honor of Kings Global Khởi Động Mùa Giải Mới: Ra Mắt Tướng Sát Thủ Lanling Wang Và Đại Tu Bản Đồ Rừng · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Honor of Kings Global Khởi Động Mùa Giải Mới: Ra Mắt Tướng Sát Thủ Lanling Wang Và Đại Tu Bản Đồ Rừng · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-24 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/jojo-golden-spirit-launch" class="ac" data-cat="mobile review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/c299f2d727-jojo-golden-spirit-hero.jpg" alt="JoJo's Bizarre Adventure: Golden Spirit Ra Mắt Toàn Cầu 13/8 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">JoJo's Bizarre Adventure: Golden Spirit Ra Mắt Toàn Cầu 13/8 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-12 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/jujutsu-kaisen-anime-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/26ef7fc2d2-jujutsu-kaisen-anime-hero.jpg" alt="Jujutsu Kaisen Anime Review: Trấn Chú Vươn Tầm Toàn Cầu · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Jujutsu Kaisen Anime Review: Trấn Chú Vươn Tầm Toàn Cầu · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/jujutsu-kaisen-ket-thuc" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/d662bae70f-maxresdefault.jpg" alt="Jujutsu Kaisen Kết Thúc: Phân Tích Ending Gây Tranh Cãi Nhất Năm 2025 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Jujutsu Kaisen Kết Thúc: Phân Tích Ending Gây Tranh Cãi Nhất Năm 2025 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Manga 2026-06-01 9 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/jujutsu-kaisen-mua-3-culling-game-teaser" class="ac" data-cat="review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg" alt="Jujutsu Kaisen Mùa 3 (Culling Game Arc) Tung Teaser Trailer Đầu Tiên: MAPPA Ấn Định Lên Sóng Đầu Năm 2027 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Jujutsu Kaisen Mùa 3 (Culling Game Arc) Tung Teaser Trailer Đầu Tiên: MAPPA Ấn Định Lên Sóng Đầu Năm 2027 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-24 7 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/jump-giga-summer-2026-oneshots" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/320021956a-food-wars-jump-giga-hero.jpg" alt="Food Wars, We Never Learn Trở Lại Trên Jump GIGA Hè 2026 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Food Wars, We Never Learn Trở Lại Trên Jump GIGA Hè 2026 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Manga 2026-08-17 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/kagurabachi-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/1acdb70bf9-kagurabachi-review-hero.jpg" alt="Kagurabachi Review · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Kagurabachi Review · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 7 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/kaiju-no-8-manga-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/7917847814-kaiju8-hero.jpg" alt="Kaiju No.8 Review: Shonen Quái Vật Hiện Tượng Của Jump+ · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Kaiju No.8 Review: Shonen Quái Vật Hiện Tượng Của Jump+ · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 7 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/kaiju-no-8-the-game-anniversary" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/7917847814-kaiju8-hero.jpg" alt="Kaiju No.8 THE GAME: Lộ Trình Cập Nhật 1 Năm · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Kaiju No.8 THE GAME: Lộ Trình Cập Nhật 1 Năm · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-12 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/kaiju-no-8-the-game-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/7917847814-kaiju8-hero.jpg" alt="Kaiju No.8 THE GAME Review: Chuyển Thể Xứng Đáng · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Kaiju No.8 THE GAME Review: Chuyển Thể Xứng Đáng · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-16 7 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/kingdom-come-deliverance-2" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/50c4f9b171-library_hero.jpg" alt="Kingdom Come Deliverance 2 Review: RPG Lịch Sử Hay Nhất · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Kingdom Come Deliverance 2 Review: RPG Lịch Sử Hay Nhất · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-06-10 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/konosuba-season-4-2027" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-konosuba-season-4-2027.jpg" alt="KONOSUBA Mùa 4 Ấn Định Ra Mắt 2027, Đổi Sang Studio ENGI · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">KONOSUBA Mùa 4 Ấn Định Ra Mắt 2027, Đổi Sang Studio ENGI · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-18 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/lego-donkey-kong-arcade" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-lego-donkey-kong-arcade.jpg" alt="LEGO Donkey Kong Arcade (Bộ 72051) Mở Bán 1/8, Giá 199,99 USD, 1.367 Mảnh Ghép · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">LEGO Donkey Kong Arcade (Bộ 72051) Mở Bán 1/8, Giá 199,99 USD, 1.367 Mảnh Ghép · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/lies-of-p-complete-edition-switch2" class="ac" data-cat="pc review preview">
+          <div class="ac-thumb"><img src="/assets/img/news-lies-of-p-complete-edition-switch2.jpg" alt="Lies of P: Complete Edition Chính Thức Ra Mắt Trên Nintendo Switch 2 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Lies of P: Complete Edition Chính Thức Ra Mắt Trên Nintendo Switch 2 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-20 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/link-click-season3-premiere" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/1f8bc2e797-link-click-s3-hero.jpg" alt="Link Click Season 3 Phần 1 Chính Thức Lên Sóng Hôm Nay · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Link Click Season 3 Phần 1 Chính Thức Lên Sóng Hôm Nay · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-14 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/lous-lagoon-ps5-august-27" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-lous-lagoon-ps5-august-27.jpg" alt="Lou's Lagoon Ấn Định Ra Mắt PS5 Ngày 27/8, Công Bố Deluxe Edition · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Lou's Lagoon Ấn Định Ra Mắt PS5 Ngày 27/8, Công Bố Deluxe Edition · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/mafia-old-country-man-of-honor" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/6e5a3f1ae0-mafia-old-country-manofhonor-hero.jpg" alt="Mafia: Old Country · DLC Man of Honor Ra Mắt Hôm Nay · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Mafia: Old Country · DLC Man of Honor Ra Mắt Hôm Nay · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-14 7 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/mafia-old-country-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/6e5a3f1ae0-mafia-old-country-manofhonor-hero.jpg" alt="Mafia: The Old Country Review: Về Cội Nguồn Sicily · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Mafia: The Old Country Review: Về Cội Nguồn Sicily · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/marvel-tokon-phoenix-cyclops-dlc" class="ac" data-cat="review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-marvel-tokon-phoenix-cyclops-dlc.jpg" alt="MARVEL Tōkon: Fighting Souls Công Bố Phoenix Cyclops Là DLC Year 1 Đầu Tiên · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">MARVEL Tōkon: Fighting Souls Công Bố Phoenix Cyclops Là DLC Year 1 Đầu Tiên · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/marvel-wolverine-story-trailer" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-marvel-wolverine-story-trailer.jpg" alt="Marvel's Wolverine Tung Trailer Cốt Truyện Tại Comic-Con, Xác Nhận Ra Mắt 15/9 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Marvel's Wolverine Tung Trailer Cốt Truyện Tại Comic-Con, Xác Nhận Ra Mắt 15/9 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/monster-hunter-wilds-ban-cap-nhat-mua-thu-2026" class="ac" data-cat="pc review preview">
+          <div class="ac-thumb"><img src="/assets/img/news-monster-hunter-wilds-autumn-update.jpg" alt="Monster Hunter Wilds: Capcom Công Bố Bản Cập Nhật Mùa Thu 2026, Giới Thiệu Cổ Long Mới Và Hệ Thống Vũ Khí Mở Rộng · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Monster Hunter Wilds: Capcom Công Bố Bản Cập Nhật Mùa Thu 2026, Giới Thiệu Cổ Long Mới Và Hệ Thống Vũ Khí Mở Rộng · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-24 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/monster-hunter-wilds-huong-dan-focus-mode-seikret" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-monster-hunter-wilds-focus-mode-guide.jpg" alt="Monster Hunter Wilds: Cẩm Nang Làm Chủ Hệ Thống Focus Mode &amp; Combo 14 Vũ Khí Trên Lưng Thú Cưỡi Seikret · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Monster Hunter Wilds: Cẩm Nang Làm Chủ Hệ Thống Focus Mode &amp; Combo 14 Vũ Khí Trên Lưng Thú Cưỡi Seikret · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-24 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/mortal-shell-2-release" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/697812e0ec-mortal-shell-2-key-art.jpg" alt="Mortal Shell II Ấn Định Ngày Ra Mắt 20/8/2026 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Mortal Shell II Ấn Định Ngày Ra Mắt 20/8/2026 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-17 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/mushoku-tensei-chaos-breaker-arc" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/ef42374676-mushoku-tensei-chaos-breaker-hero.jpg" alt="Mushoku Tensei Mùa 3: Chaos Breaker Arc Chính Thức Bắt Đầu Từ Tập 8 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Mushoku Tensei Mùa 3: Chaos Breaker Arc Chính Thức Bắt Đầu Từ Tập 8 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-16 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/nintendo-switch-2-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/d7d77f5de9-maxresdefault.jpg" alt="Nintendo Switch 2 Review: Console Hoàn Hảo Hay Chỉ Là Nâng Cấp? · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Nintendo Switch 2 Review: Console Hoàn Hảo Hay Chỉ Là Nâng Cấp? · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-05-28 9 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/oblivion-remastered-switch-2" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-oblivion-remastered-switch-2.jpg" alt="Oblivion Remastered Chính Thức Lên Nintendo Switch 2, Chạy 1080p Docked/900p Handheld · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Oblivion Remastered Chính Thức Lên Nintendo Switch 2, Chạy 1080p Docked/900p Handheld · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/one-piece-chapter-1191-elbaf-return" class="ac" data-cat="pc review preview">
+          <div class="ac-thumb"><img src="/assets/img/news-one-piece-chapter-1191-elbaf-return.jpg" alt="One Piece Trở Lại Với Chapter 1191, Luffy Đối Đầu Imu Vòng 2 Trong Arc Elbaf · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">One Piece Trở Lại Với Chapter 1191, Luffy Đối Đầu Imu Vòng 2 Trong Arc Elbaf · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Manga 2026-08-20 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/one-piece-egghead-arc-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/d187ae6a67-one-piece-egghead-arc-hero.jpg" alt="One Piece: Egghead Arc Review: Khi Vegapunk Kể Lại Lịch Sử Thế Giới · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">One Piece: Egghead Arc Review: Khi Vegapunk Kể Lại Lịch Sử Thế Giới · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/one-piece-egghead-arc" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/8d631824e5-maxresdefault.jpg" alt="One Piece Arc Egghead: Vegapunk, Lời Tiên Tri Và Bí Mật Của Thế Giới · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">One Piece Arc Egghead: Vegapunk, Lời Tiên Tri Và Bí Mật Của Thế Giới · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Manga 2026-06-07 10 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/one-piece-final-saga-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/d653b4c00a-one-piece-hero.jpg" alt="One Piece: Final Saga Review: 25 Năm Đến Laugh Tale · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">One Piece: Final Saga Review: 25 Năm Đến Laugh Tale · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/one-piece-final-saga" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/d653b4c00a-one-piece-hero.jpg" alt="One Piece Final Saga: Oda Tiết Lộ Bản Đồ Laugh Tale · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">One Piece Final Saga: Oda Tiết Lộ Bản Đồ Laugh Tale · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Manga 2026-08-11 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/order-of-the-sinking-star-ps5" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-order-of-the-sinking-star-ps5.jpg" alt="Order Of The Sinking Star Xác Nhận Bản PS5, Ra Mắt Ngày 8/10 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Order Of The Sinking Star Xác Nhận Bản PS5, Ra Mắt Ngày 8/10 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/oshi-no-ko-anime-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/9506aefbae-oshi-no-ko-hero.jpg" alt="Oshi no Ko Anime Review: Góc Khuất Ngành Giải Trí · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Oshi no Ko Anime Review: Góc Khuất Ngành Giải Trí · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-16 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/oshi-no-ko-season4-teaser" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/02716b9688-oshi-no-ko-season4-teaser-hero.jpg" alt="Oshi no Ko Mùa 4 (Cuối) Tung Teaser, Trailer Đầu Tiên · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Oshi no Ko Mùa 4 (Cuối) Tung Teaser, Trailer Đầu Tiên · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-16 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/phantom-blade-zero-state-of-play" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/891449aa89-phantom-blade-zero-state-of-play-hero.jpg" alt="Phantom Blade Zero: State of Play 17/8, Mở Pre-Order · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Phantom Blade Zero: State of Play 17/8, Mở Pre-Order · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-17 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/playstation-plus-august-2026" class="ac" data-cat="review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-playstation-plus-august-2026.jpg" alt="PlayStation Plus Tháng 8/2026 Chốt Danh Sách: Dying Light 2 Reloaded, Big Walk Và Signalis · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">PlayStation Plus Tháng 8/2026 Chốt Danh Sách: Dying Light 2 Reloaded, Big Walk Và Signalis · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/quit-laughing-shijima-horikoshi" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/b95ebcacec-quit-laughing-shijima-horikoshi-hero.jpg" alt="Cha Đẻ My Hero Academia Trở Lại Với One-shot Kinh Dị · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Cha Đẻ My Hero Academia Trở Lại Với One-shot Kinh Dị · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Manga 2026-08-15 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/re-zero-season4-recapture-arc" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/087af8ed98-rezero-s4-hero.jpg" alt="Re:Zero Season 4: Recapture Arc Lên Sóng Hôm Nay · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Re:Zero Season 4: Recapture Arc Lên Sóng Hôm Nay · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-12 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/recommend" class="ac" data-cat="pc">
+          <div class="ac-thumb"><img src="/assets/img/05cef7e2e1-img.jpg" alt="Hôm Nay Chơi Gì? · OtaHub | Gợi Ý Game Phù Hợp Nhất" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Hôm Nay Chơi Gì? · OtaHub | Gợi Ý Game Phù Hợp Nhất</div>
+            </div>
+            <div class="ac-meta"><span>OtaHub Editorial · Hôm nay</span></div>
+          </div>
+        </a>
+
+        <a href="/en/reincarnated-as-a-sword-season2-premiere" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/ae00527a02-reincarnated-as-a-sword-s2-hero.jpg" alt="Reincarnated As A Sword Mùa 2 Ấn Định Ngày 7/10 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Reincarnated As A Sword Mùa 2 Ấn Định Ngày 7/10 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-17 4 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/resident-evil-9-announcement" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/4d865718ab-library_hero.jpg" alt="Resident Evil Requiem: Tất Cả Những Gì Cần Biết Về Phần Tiếp Theo · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Resident Evil Requiem: Tất Cả Những Gì Cần Biết Về Phần Tiếp Theo · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-06-10 7 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/resonance-plague-tale-legacy-release" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/4e114f95a9-plague-tale-legacy-minotaur-island.jpg" alt="Resonance: A Plague Tale Legacy Ra Mắt 27/8/2026, Tiền Truyện 15 Năm Trước Innocence · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Resonance: A Plague Tale Legacy Ra Mắt 27/8/2026, Tiền Truyện 15 Năm Trước Innocence · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-17 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/rhythm-heaven-groove-nintendo" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-rhythm-heaven-groove-nintendo.jpg" alt="Rhythm Heaven Groove Chính Thức Ra Mắt Sau 11 Năm, Demo Miễn Phí Vẫn Đang Mở · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Rhythm Heaven Groove Chính Thức Ra Mắt Sau 11 Năm, Demo Miễn Phí Vẫn Đang Mở · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/sap-ra-mat" class="ac" data-cat="preview">
+          <div class="ac-thumb"><img src="/assets/img/05cef7e2e1-img.jpg" alt="Sắp Ra Mắt 2026, Game, Anime, Manga · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Sắp Ra Mắt 2026, Game, Anime, Manga · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>${cat.toUpperCase()} ${item.platforms ? platIcons(item.platforms) : (item.type||'').toUpperCase()}</span></div>
+          </div>
+        </a>
+
+        <a href="/en/senren-banka-anime-2027" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-senren-banka-anime-2027.jpg" alt="Senren＊Banka Được Chuyển Thể Anime, Dàn Cast Gốc Trở Lại, Ra Mắt 2027 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Senren＊Banka Được Chuyển Thể Anime, Dàn Cast Gốc Trở Lại, Ra Mắt 2027 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/shueisha-manga-million" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/5463b8f413-Manga-Million-KV.jpg" alt="Shueisha Ra Mắt MANGA MILLION: Đọc Miễn Phí 400 Bộ · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Shueisha Ra Mắt MANGA MILLION: Đọc Miễn Phí 400 Bộ · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Manga 2026-08-12 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/silent-hill-townfall-gameplay" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-silent-hill-townfall-gameplay.jpg" alt="Silent Hill: Townfall Hé Lộ Bối Cảnh Scotland 1996 Và Thiết Bị CRTV · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Silent Hill: Townfall Hé Lộ Bối Cảnh Scotland 1996 Và Thiết Bị CRTV · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/sinking-city-2-launch" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-sinking-city-2-launch.jpg" alt="The Sinking City 2 Ra Mắt 18/8: Frogwares Chuyển Hẳn Sang Kinh Dị Sinh Tồn · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">The Sinking City 2 Ra Mắt 18/8: Frogwares Chuyển Hẳn Sang Kinh Dị Sinh Tồn · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-19 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/skip-and-loafer-season2-teaser" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/2715e60035-skip-and-loafer-s2-teaser.jpg" alt="Skip and Loafer Mùa 2 Tung Teaser, Ấn Định Tháng 4/2027 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Skip and Loafer Mùa 2 Tung Teaser, Ấn Định Tháng 4/2027 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-08-17 4 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/solo-leveling-arise-ban-cap-nhat-monarch-transcendence" class="ac" data-cat="mobile review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-solo-leveling-arise-monarch-update.jpg" alt="Solo Leveling: Arise Cán Mốc 50 Triệu Lượt Tải, Netmarble Ra Mắt Tính Năng Thức Tỉnh Quân Vương Hắc Ám · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Solo Leveling: Arise Cán Mốc 50 Triệu Lượt Tải, Netmarble Ra Mắt Tính Năng Thức Tỉnh Quân Vương Hắc Ám · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-24 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/solo-leveling-season2" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/d98cf42206-maxresdefault.jpg" alt="Solo Leveling Mùa 2: Jeju Island Và Hành Trình Vươn Đến Đỉnh Cao · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Solo Leveling Mùa 2: Jeju Island Và Hành Trình Vươn Đến Đỉnh Cao · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Anime 2026-06-19 7 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/splatoon-raiders-launch" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-splatoon-raiders-launch.jpg" alt="Splatoon Raiders Chính Thức Ra Mắt Trên Nintendo Switch 2 Ngày 23/7 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Splatoon Raiders Chính Thức Ra Mắt Trên Nintendo Switch 2 Ngày 23/7 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/split-fiction-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/4c8ef98e63-split-fiction-review-hero.jpg" alt="Split Fiction Review: Hazelight Tái Định Nghĩa Game Co-op Lần Nữa · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Split Fiction Review: Hazelight Tái Định Nghĩa Game Co-op Lần Nữa · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/star-wars-zero-company" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/b293aa2b32-swzc-hero.jpg" alt="Star Wars Zero Company: Chiến Thuật Theo Lượt Mới Từ EA, Ra Mắt 27/8 · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Star Wars Zero Company: Chiến Thuật Theo Lượt Mới Từ EA, Ra Mắt 27/8 · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-12 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/stellar-blade-2" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/f845d7c936-library_hero.jpg" alt="Stellar Blade: Blood Rain Chính Thức Lộ Diện, Giới Thiệu Nữ Chính Mới Evie · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Stellar Blade: Blood Rain Chính Thức Lộ Diện, Giới Thiệu Nữ Chính Mới Evie · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-06-08 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/stellar-blade-dlc" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/ec5a6e3960-maxresdefault.jpg" alt="Stellar Blade x NIKKE: DLC Crossover Miễn Phí Với Boss Scarlet Và Loạt Trang Phục Mới · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Stellar Blade x NIKKE: DLC Crossover Miễn Phí Với Boss Scarlet Và Loạt Trang Phục Mới · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-06-11 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/suikoden-star-leap-review" class="ac" data-cat="mobile pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/3a6da459ec-suikoden-star-leap-hero.jpg" alt="Suikoden STAR LEAP Review: Konami Hồi Sinh Huyền Thoại Trên Mobile · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Suikoden STAR LEAP Review: Konami Hồi Sinh Huyền Thoại Trên Mobile · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 7 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/suikoden-star-leap" class="ac" data-cat="mobile review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/3a6da459ec-suikoden-star-leap-hero.jpg" alt="Suikoden STAR LEAP Ra Mắt Mobile Nhật Bản: 108 Ngôi Sao Định Mệnh Mới, Bối Cảnh Giữa Suikoden V Và I · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Suikoden STAR LEAP Ra Mắt Mobile Nhật Bản: 108 Ngôi Sao Định Mệnh Mới, Bối Cảnh Giữa Suikoden V Và I · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-14 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/tekken8-season2" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/31f849a512-library_hero.jpg" alt="Tekken 8 Season 2: Nhân Vật Mới, Hệ Thống Cập Nhật · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Tekken 8 Season 2: Nhân Vật Mới, Hệ Thống Cập Nhật · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-06-10 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/top-anime-2025" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/1619ce791a-solo-leveling-hero.jpg" alt="Top 10 Anime Hay Nhất 2025: Năm Của Những Đỉnh Cao · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Top 10 Anime Hay Nhất 2025: Năm Của Những Đỉnh Cao · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Rankings 2026-06-21 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/top-game-pc-2026" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/6eef9e5628-library_hero.jpg" alt="Top 10 Game PC Hay Nhất 2026: Danh Sách Không Thể Bỏ Lỡ · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Top 10 Game PC Hay Nhất 2026: Danh Sách Không Thể Bỏ Lỡ · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Rankings 2026-06-20 9 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/vct-pacific-2026" class="ac" data-cat="pc review preview guide esports">
+          <div class="ac-thumb"><img src="/assets/img/4c17ff1a96-Valorant_Champions_Los_Angeles_2023.jpg" alt="VCT Pacific 2026: Paper Rex Thống Trị Mùa Giải, Hướng Đến Champions · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">VCT Pacific 2026: Paper Rex Thống Trị Mùa Giải, Hướng Đến Champions · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-11 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/vinland-saga-manga-review" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/7807ea1948-vinland-saga-manga-hero.jpg" alt="Vinland Saga Manga Review: Khép Lại Sau 20 Năm Bằng Một Cái Kết Xứng Đáng · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Vinland Saga Manga Review: Khép Lại Sau 20 Năm Bằng Một Cái Kết Xứng Đáng · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Reviews 2026-08-16 9 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/viz-manga-phat-hanh-18-8-2026" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/5492106922-undead-unluck-hero.jpg" alt="Manga VIZ Phát Hành Ngày 18/8/2026: Vagabond, Undead Unluck Và Kingdom · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Manga VIZ Phát Hành Ngày 18/8/2026: Vagabond, Undead Unluck Và Kingdom · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Manga 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/wuthering-waves-24" class="ac" data-cat="mobile review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/0c18ade4ba-library_hero.jpg" alt="Wuthering Waves 3.6: Ren Realm, Sword Flight Và 2 Nhân Vật Mới Qingxiao, Jingran · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Wuthering Waves 3.6: Ren Realm, Sword Flight Và 2 Nhân Vật Mới Qingxiao, Jingran · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-15 5 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/wuthering-waves-cam-nang-phi-kiem-ren-realm" class="ac" data-cat="mobile review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-wuthering-waves-guide-ren-realm.jpg" alt="Wuthering Waves 3.6: Cẩm Nang Khám Phá Bản Đồ Ren Realm &amp; Hướng Dẫn Cơ Chế Phi Kiếm Bay Lượn Toàn Diện · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Wuthering Waves 3.6: Cẩm Nang Khám Phá Bản Đồ Ren Realm &amp; Hướng Dẫn Cơ Chế Phi Kiếm Bay Lượn Toàn Diện · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-24 9 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/xbox-game-pass-july-wave-2" class="ac" data-cat="review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-xbox-game-pass-july-wave-2.jpg" alt="Xbox Game Pass Wave 2 Tháng 7: Halo Campaign Evolved Dẫn Đầu Cùng Beast Of Reincarnation · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Xbox Game Pass Wave 2 Tháng 7: Halo Campaign Evolved Dẫn Đầu Cùng Beast Of Reincarnation · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/xbox-showcase-2026" class="ac" data-cat="pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/baa8311563-maxresdefault.jpg" alt="Xbox Games Showcase 2026: Tất Cả Game Được Công Bố · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Xbox Games Showcase 2026: Tất Cả Game Được Công Bố · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-06-08 8 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
+
+        <a href="/en/zenless-zone-zero-20-hoshimi-miyabi" class="ac" data-cat="mobile pc review preview guide">
+          <div class="ac-thumb"><img src="/assets/img/news-zenless-zone-zero-20-miyabi.jpg" alt="Zenless Zone Zero Bản 2.0 'Kỳ Nghỉ Trên Mặt Trăng': HoYoverse Giới Thiệu Phe Mới Hoshimi Miyabi và Vùng Đất Hollow Zero Mở Rộng · OtaHub" loading="lazy" width="480" height="360"></div>
+          <div class="ac-info">
+            <div>
+              <div class="ac-tags"><span class="tag tc">GAMING</span></div>
+              <div class="ac-title">Zenless Zone Zero Bản 2.0 'Kỳ Nghỉ Trên Mặt Trăng': HoYoverse Giới Thiệu Phe Mới Hoshimi Miyabi và Vùng Đất Hollow Zero Mở Rộng · OtaHub</div>
+            </div>
+            <div class="ac-meta"><span>Gaming 2026-08-24 7 phút đọc OtaHub Editorial</span></div>
+          </div>
+        </a>
       </div>
     </div>
 
-    <!-- Sidebar -->
     <!-- Sidebar -->
     <aside class="side-col">
       <div class="side-box">
@@ -2152,7 +3393,6 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 var GAMING_FEATURED_DATA = {
   all: {
     secTitle: 'Gaming <em>Featured</em>',
-    name: 'All Articles',
     hero: {
       url: '/en/monster-hunter-wilds-ban-cap-nhat-mua-thu-2026',
       img: '/assets/img/news-monster-hunter-wilds-autumn-update.jpg',
@@ -2171,7 +3411,6 @@ var GAMING_FEATURED_DATA = {
   },
   pc: {
     secTitle: 'PC & <em>Console Games</em>',
-    name: 'PC / Console',
     hero: {
       url: '/en/monster-hunter-wilds-ban-cap-nhat-mua-thu-2026',
       img: '/assets/img/news-monster-hunter-wilds-autumn-update.jpg',
@@ -2190,7 +3429,6 @@ var GAMING_FEATURED_DATA = {
   },
   mobile: {
     secTitle: 'Mobile <em>Gaming & Gacha</em>',
-    name: 'Mobile Games',
     hero: {
       url: '/en/honkai-star-rail-ban-cap-nhat-amphoreus-banner-cyrene',
       img: '/assets/img/news-honkai-star-rail-31-amphoreus.jpg',
@@ -2209,7 +3447,6 @@ var GAMING_FEATURED_DATA = {
   },
   review: {
     secTitle: 'Đánh Giá & <em>Review Game</em>',
-    name: 'Game Reviews',
     hero: {
       url: '/en/kingdom-come-deliverance-2',
       img: '/assets/img/50c4f9b171-library_hero.jpg',
@@ -2228,7 +3465,6 @@ var GAMING_FEATURED_DATA = {
   },
   preview: {
     secTitle: 'Game <em>Sắp Ra Mắt & Previews</em>',
-    name: 'Game Previews',
     hero: {
       url: '/en/stellar-blade-2',
       img: '/assets/img/7bc69a799e-library_hero.jpg',
@@ -2247,7 +3483,6 @@ var GAMING_FEATURED_DATA = {
   },
   guide: {
     secTitle: 'Cẩm Nang & <em>Hướng Dẫn Chơi Game</em>',
-    name: 'Game Guides',
     hero: {
       url: '/en/wuthering-waves-cam-nang-phi-kiem-ren-realm',
       img: '/assets/img/news-wuthering-waves-guide-ren-realm.jpg',
@@ -2266,7 +3501,6 @@ var GAMING_FEATURED_DATA = {
   },
   esports: {
     secTitle: 'Tin Tức <em>Esports & Giải Đấu</em>',
-    name: 'Esports',
     hero: {
       url: '/en/vct-pacific-2026',
       img: '/assets/img/0a878e4709-ghost-of-yotei-complete-edition-hero.jpg',
@@ -2285,7 +3519,6 @@ var GAMING_FEATURED_DATA = {
   },
   tierlist: {
     secTitle: 'Bảng Xếp Hạng & <em>Tier Lists</em>',
-    name: 'Tier Lists',
     hero: {
       url: '/en/genshin-54-citlali',
       img: '/assets/img/ae2a55e940-genshin-citlali-hero.jpg',
@@ -2317,15 +3550,11 @@ function updateGamingHero(cat){
   if(heroCard && data && data.hero){
     heroCard.href = data.hero.url;
     if(heroImg) heroImg.style.backgroundImage = 'url(' + data.hero.img + ')';
-    if(heroTag){
-      heroTag.className = 'tag ' + data.hero.tagClass;
-      heroTag.textContent = data.hero.tag;
-    }
+    if(heroTag){ heroTag.className = 'tag ' + data.hero.tagClass; heroTag.textContent = data.hero.tag; }
     if(heroTitle) heroTitle.textContent = data.hero.title;
     if(heroSub) heroSub.textContent = data.hero.sub;
     if(heroMeta) heroMeta.textContent = data.hero.meta;
     if(secTitle) secTitle.innerHTML = data.secTitle;
-
     heroCard.style.animation = 'none';
     setTimeout(function(){ heroCard.style.animation = 'heroPulseFade .4s ease-out'; }, 10);
   }
@@ -2350,17 +3579,6 @@ function updateGamingHero(cat){
       }
     });
   }
-
-  var banner = document.getElementById('gamingFilterBanner');
-  var filterName = document.getElementById('gamingFilterName');
-  if(banner && filterName){
-    if(cat === 'all'){
-      banner.style.display = 'none';
-    } else {
-      banner.style.display = 'flex';
-      filterName.textContent = data ? data.name : cat;
-    }
-  }
 }
 
 function setGamingFilterByCat(cat){
@@ -2375,24 +3593,18 @@ function setGamingFilterByCat(cat){
 
   updateGamingHero(cat);
 
-  var visibleCount = 0;
   document.querySelectorAll('.ac[data-cat]').forEach(function(card){
     if(cat === 'all'){
       card.classList.remove('cat-hidden');
-      visibleCount++;
       return;
     }
     var cats = (card.getAttribute('data-cat') || '').toLowerCase().split(' ');
     if(cats.indexOf(cat.toLowerCase()) > -1){
       card.classList.remove('cat-hidden');
-      visibleCount++;
     } else {
       card.classList.add('cat-hidden');
     }
   });
-
-  var filterCount = document.getElementById('gamingFilterCount');
-  if(filterCount) filterCount.textContent = visibleCount;
 }
 
 function setGamingFilter(btn, cat){
@@ -2400,15 +3612,6 @@ function setGamingFilter(btn, cat){
 }
 </script>
 <script defer src="/assets/search.js"></script>
-
-
-<script defer src="/assets/enhance.js"></script>
-
-
-<script defer src="/assets/engage.js?v=20260818b"></script>
-
-
-
 <script>
 (function(){
   document.querySelectorAll('.rv').forEach(function(el){
@@ -2419,6 +3622,4 @@ function setGamingFilter(btn, cat){
 })();
 </script>
 </body>
-
-
 </html>
