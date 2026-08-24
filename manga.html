@@ -1534,7 +1534,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     <button class="ftab" onclick="setMangaFilter(this,'manhwa')">Manhwa & Webtoon</button>
     <div class="filter-sep"></div>
     <button class="ftab" onclick="setMangaFilter(this,'reviews')">Đánh Giá & Review</button>
-    <button class="ftab" onclick="setMangaFilter(this,'manhua')">Manhua Tu Tiên</button>
+    <button class="ftab" onclick="setMangaFilter(this,'seinen')">Seinen & Hành Động</button>
     <button class="ftab" onclick="setMangaFilter(this,'spoilers')">Spoilers & Phát Hành</button>
   </div>
 </div>
@@ -1835,46 +1835,46 @@ var MANGA_FEATURED_DATA = {
       meta: 'Manhwa · OtaHub Editorial · 24/8'
     },
     sides: [
+      { url: '/solo-leveling-arise-ban-cap-nhat-monarch-transcendence', img: '/assets/img/news-solo-leveling-arise-monarch-update.jpg', tag: 'Solo Leveling', tagClass: 'tc', title: 'Solo Leveling Arise: Quân Vương Thức Tỉnh Cấp 90', meta: 'Netmarble · Hôm nay' },
       { url: '/manga-detail?t=Omniscient%20Reader', img: '/assets/img/news-omniscient-reader-manhwa.jpg', tag: 'Webtoon', tagClass: 'tc', title: 'Toàn Trí Độc Giả: Kim Dokja & Kịch Bản Cuối Cùng', meta: 'Redice Studio · 9.6' },
       { url: '/manga-detail?t=The%20Beginning%20After%20The%20End', img: '/assets/img/news-tbate-manhwa.jpg', tag: 'Manhwa', tagClass: 'tc', title: 'TBATE: Arthur Leywin & Cuộc Chiến Lục Địa Dicathen', meta: 'TurtleMe · 9.2' },
-      { url: '/manga-detail?t=Tower%20of%20God', img: '/assets/img/news-tower-of-god-manhwa.jpg', tag: 'Webtoon', tagClass: 'ts', title: 'Tower of God: Baam & Trận Chiến Đỉnh Tháp', meta: 'SIU · 9.4 Score' },
       { url: '/manga-detail?t=God%20of%20Blackfield', img: '/assets/img/god-of-blackfield-cover.jpg', tag: 'Action Manhwa', tagClass: 'tg', title: 'God of Blackfield: Thần Kiếm Kang Chan Tái Xuất', meta: 'KakaoPage · 9.0' }
     ]
   },
   reviews: {
     secTitle: 'Đánh Giá & <em>Review Truyện Tranh</em>',
     hero: {
-      url: '/kagurabachi-review',
-      img: '/assets/img/1acdb70bf9-kagurabachi-review-hero.jpg',
-      tag: 'Review · 9.6/10',
+      url: '/vinland-saga-manga-review',
+      img: '/assets/img/7807ea1948-vinland-saga-manga-hero.jpg',
+      tag: 'Review · 9.9/10',
       tagClass: 'ta',
-      title: 'Kagurabachi Review: Kiệt Tác Kiếm Hiệp Đen Tối Định Nghĩa Lại Shonen Hiện Đại',
-      sub: 'Sự kết hợp giữa nhịp truyện dồn dập, bố cục khung tranh điện ảnh và chiều sâu kiếm đạo của Chihiro.',
-      meta: 'Review · OtaHub Editorial · 9 phút đọc'
+      title: 'Vinland Saga Manga Review: Bản Hùng Ca Vĩ Đại Của Makoto Yukimura',
+      sub: 'Khắc họa triết lý sâu sắc về tự do, sự chuộc tội và hành trình tìm kiếm vùng đất bình yên của Thorfinn.',
+      meta: 'Review · OtaHub Editorial · 9.9 Score'
     },
     sides: [
-      { url: '/solo-leveling-ragnarok-manhwa-review', img: '/assets/img/news-solo-leveling-ragnarok-manhwa.jpg', tag: 'Review · 9.2', tagClass: 'ta', title: 'Solo Leveling Ragnarok: Đánh Giá Xứng Đáng Bom Tấn', meta: 'REDICE · 9.2 Score' },
-      { url: '/vinland-saga-manga-review', img: '/assets/img/7807ea1948-vinland-saga-manga-hero.jpg', tag: 'Review · 9.9', tagClass: 'ta', title: 'Vinland Saga: Bản Hùng Ca Vĩ Đại Của Makoto Yukimura', meta: 'Kodansha · 9.9 Score' },
-      { url: '/chainsaw-man-manga-part2-review', img: '/assets/img/10728427f3-chainsaw-man-hero.jpg', tag: 'Review · 9.4', tagClass: 'ta', title: 'Chainsaw Man Phần 2 Review: Kiệt Tác Dị Biệt', meta: 'Fujimoto · 9.4 Score' },
-      { url: '/dandadan-manga-review', img: '/assets/img/2c0d7f7a34-dandadan-manga-hero.jpg', tag: 'Review · 9.5', tagClass: 'ta', title: 'Dandadan: Cơn Lốc Sáng Tạo Điên Rồ Của Shonen Jump', meta: 'Tatsu · 9.5 Score' }
+      { url: '/kagurabachi-review', img: '/assets/img/1acdb70bf9-kagurabachi-review-hero.jpg', tag: 'Review · 9.6', tagClass: 'ta', title: 'Kagurabachi: Kiệt Tác Kiếm Hiệp Đen Tối', meta: 'Shonen Jump · 9.6 Score' },
+      { url: '/one-piece-final-saga', img: '/assets/img/d187ae6a67-one-piece-egghead-arc-hero.jpg', tag: 'Review · 9.8', tagClass: 'ta', title: 'One Piece: Đỉnh Cao Arc Egghead 25 Năm', meta: 'Oda · 9.8 Score' },
+      { url: '/chainsaw-man-manga-part2-review', img: '/assets/img/10728427f3-chainsaw-man-hero.jpg', tag: 'Review · 9.4', tagClass: 'ta', title: 'Chainsaw Man Phần 2: Đỉnh Cao Nghệ Thuật Dị Biệt', meta: 'Fujimoto · 9.4 Score' },
+      { url: '/dandadan-manga-review', img: '/assets/img/2c0d7f7a34-dandadan-manga-hero.jpg', tag: 'Review · 9.5', tagClass: 'ta', title: 'Dandadan: Cơn Lốc Sáng Tạo Điên Rồ Shonen Jump', meta: 'Tatsu · 9.5 Score' }
     ]
   },
-  manhua: {
-    secTitle: 'Manhua & <em>Truyện Tranh Tu Tiên</em>',
+  seinen: {
+    secTitle: 'Seinen & <em>Truyện Tranh Hành Động</em>',
     hero: {
-      url: '/manga-detail?t=Battle%20Through%20the%20Heavens',
-      img: '/assets/img/1f0540d7a3-maxresdefault.jpg',
-      tag: 'Manhua · 9.1/10',
-      tagClass: 'ts',
-      title: 'Đấu Phá Thương Khung: Tiêu Viêm Thống Trị Đấu Khí Đại Lục',
-      sub: 'Hành trình chinh phục 23 loại Dị Hỏa và đỉnh cao Đấu Đế của Tiêu Viêm trong siêu phẩm Manhua tu tiên.',
-      meta: 'Manhua · Thiên Tàm Thổ Đậu'
+      url: '/berserk-arc-cuoi',
+      img: '/assets/img/7b5a968234-maxresdefault.jpg',
+      tag: 'Seinen · Masterpiece',
+      tagClass: 'tv',
+      title: 'Berserk Arc Cuối: Studio Gaga & Kouji Mori Tiếp Tục Di Sản Vĩ Đại Của Kentaro Miura',
+      sub: 'Hành trình sinh tử của Kiếm Sĩ Đen Guts trong thế giới hắc ám tàn bạo nhất lịch sử manga.',
+      meta: 'Seinen · Hakusensha · 9.9 Score'
     },
     sides: [
-      { url: '/manga-detail?t=Swallowed%20Star', img: '/assets/img/7807ea1948-vinland-saga-manga-hero.jpg', tag: 'Sci-Fi Tu Tiên', tagClass: 'ts', title: 'Thôn Phệ Tinh Không: La Phong Chinh Phục Vũ Trụ', meta: 'Ngã Cật Tây Hồng Thị · 8.9' },
-      { url: '/manga-detail?t=Martial%20Universe', img: '/assets/img/news-tower-of-god-manhwa.jpg', tag: 'Manhua', tagClass: 'ts', title: 'Vũ Động Càn Khôn: Lâm Động & Tổ Phù', meta: 'Manhua · 8.7' },
-      { url: '/manga-detail?t=Urban%20Immortal%20Cultivator', img: '/assets/img/news-tbate-manhwa.jpg', tag: 'Đô Thị Tu Tiên', tagClass: 'ts', title: 'Trọng Sinh Đô Thị Tu Tiên: Trần Bắc Huyền', meta: 'Manhua · 8.5' },
-      { url: '/manga-detail?t=The%20Great%20Ruler', img: '/assets/img/news-omniscient-reader-manhwa.jpg', tag: 'Tu Chân', tagClass: 'ts', title: 'Đại Chúa Tể: Mục Trần & Đại Thiên Thế Giới', meta: 'Manhua · 8.3' }
+      { url: '/vinland-saga-manga-review', img: '/assets/img/7807ea1948-vinland-saga-manga-hero.jpg', tag: 'Seinen', tagClass: 'ta', title: 'Vinland Saga: Bản Hùng Ca Viking Thorfinn', meta: 'Makoto Yukimura · 9.9' },
+      { url: '/manga-detail?t=Vagabond', img: '/assets/img/118caef59f-vagabond.jpg', tag: 'Samurai Seinen', tagClass: 'ts', title: 'Vagabond: Đỉnh Cao Kiếm Đạo Miyamoto Musashi', meta: 'Takehiko Inoue · 9.8' },
+      { url: '/manga-detail?t=Kaiju%20No%208', img: '/assets/img/1cd80a8a56-kaiju-no8-cover.jpg', tag: 'Monster Action', tagClass: 'tc', title: 'Kaiju No. 8: Quái Thú Thức Tỉnh Kafka Hibino', meta: 'Naoya Matsumoto · 9.1' },
+      { url: '/manga-detail?t=Dungeon%20Meshi', img: '/assets/img/1a63d75aaa-dungeon-meshi-cover.jpg', tag: 'Fantasy Seinen', tagClass: 'tg', title: 'Dungeon Meshi: Mỹ Vị Hầm Ngục & Thần Thoại', meta: 'Ryoko Kui · 9.3' }
     ]
   },
   spoilers: {
