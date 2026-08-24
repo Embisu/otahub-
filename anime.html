@@ -1161,6 +1161,17 @@ input,select,textarea{font-size:16px!important}
 }
 
 
+
+.filter-bar{position:sticky;top:60px;z-index:200;background:rgba(11,2,32,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.filter-in{max-width:1440px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none}
+.filter-in::-webkit-scrollbar{display:none}
+.ftab{background:none!important;border:none!important;outline:none!important;cursor:pointer;font-family:var(--fd);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:14px 20px;white-space:nowrap;border-bottom:2px solid transparent!important;transition:all .2s;flex-shrink:0;box-shadow:none!important}
+.ftab:hover:not(.on){color:rgba(240,238,255,.85)}
+.ftab.on{color:var(--sakura)!important;border-bottom:2px solid var(--sakura)!important}
+.filter-sep{width:1px;height:24px;background:var(--border);flex-shrink:0;margin:0 6px}
+.cat-hidden{display:none!important}
+@keyframes heroPulseFade{0%{opacity:.4;transform:scale(.99)}100%{opacity:1;transform:scale(1)}}
+
 </style>
 
 
@@ -1449,11 +1460,12 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 <!-- ══ ANIME FILTER BAR ══ -->
-<div class="filter-bar" style="position:sticky;top:60px;z-index:200;background:rgba(11,2,32,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);margin-bottom:24px">
-  <div class="filter-in" style="max-width:1440px;margin:0 auto;padding:0 24px;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;align-items:center">
+<div class="filter-bar">
+  <div class="filter-in">
     <button class="ftab on" onclick="setAnimeFilter(this,'all')">Tất cả</button>
     <button class="ftab" onclick="setAnimeFilter(this,'mua-he-2026')">Mùa Hè 2026</button>
     <button class="ftab" onclick="setAnimeFilter(this,'review')">Đánh Giá & Review</button>
+    <div class="filter-sep"></div>
     <button class="ftab" onclick="setAnimeFilter(this,'action')">Hành Động / Shonen</button>
     <button class="ftab" onclick="setAnimeFilter(this,'isekai')">Isekai & Fantasy</button>
     <button class="ftab" onclick="setAnimeFilter(this,'news')">Tin Chiếu Rạp</button>
@@ -1472,35 +1484,42 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
       
-    <div id="animeFilterBanner" class="filter-banner" style="display:none;margin-bottom:18px;background:rgba(255,48,128,.06);border:1px solid rgba(255,48,128,.25);padding:10px 18px;display:flex;align-items:center;justify-content:space-between;border-radius:4px">
+    <div id="animeFilterBanner" class="filter-banner" style="display:none;margin-bottom:18px;background:rgba(255,48,128,.08);border:1px solid rgba(255,48,128,.3);padding:10px 18px;align-items:center;justify-content:space-between;border-radius:4px">
       <span style="font-size:13px;color:var(--white)">Đang xem chuyên mục: <strong id="animeFilterName" style="color:var(--sakura)">Tất cả</strong> (<span id="animeFilterCount" style="color:var(--sakura)">0</span> bài viết)</span>
       <button type="button" onclick="setAnimeFilterByCat('all')" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:4px 12px;font-size:11px;font-weight:600;text-transform:uppercase;cursor:pointer;letter-spacing:.05em;transition:all .2s">✕ Xóa lọc</button>
     </div>
-      <div class="f-grid">
 
+    <div class="f-grid">
+      <a class="fc" id="animeHeroCard" href="/jujutsu-kaisen-mua-3-culling-game-teaser">
+        <div class="fc-img" id="animeHeroImg" style="background-image:url(/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg);background-position:center center"></div><div class="fc-ov"></div>
+        <div class="fc-body">
+          <span class="tag ts" id="animeHeroTag">Anime · Breaking</span>
+          <h2 class="fc-title" id="animeHeroTitle">Jujutsu Kaisen Mùa 3: Culling Game Tung Teaser 90 Giây Bùng Nổ, MAPPA Xác Nhận Phát Sóng 2026</h2>
+          <p class="fc-sub" id="animeHeroSub">MAPPA chính thức hé lộ tạo hình Okkotsu Yuta và Hakari Kinji trong trận chiến sinh tử Culling Game tàn khốc.</p>
+          <div class="fc-meta" id="animeHeroMeta"><span>Anime</span> · OtaHub Editorial · 24/8/2026</div>
+        </div>
+      </a>
 
-        <a class="fc" href="/attack-on-titan-wit-teaser">
+      <a class="sc" id="animeSideCard0" href="/demon-slayer-infinity-castle-trailer-chinh-thuc">
+        <div class="sc-img"><img id="animeSideImg0" src="/assets/img/news-demon-slayer-infinity-castle-trailer.jpg" alt="Demon Slayer Infinity Castle" width="1200" height="675" fetchpriority="high" decoding="async"></div>
+        <div class="sc-body"><span class="tag ts" id="animeSideTag0" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Movie</span><div class="sc-title" id="animeSideTitle0">Demon Slayer: Pháo Đài Vô Tận Phần 1 Tung Trailer 3 Phút Mãn Nhãn</div><div class="sc-meta" id="animeSideMeta0">OtaHub Editorial · Hôm nay</div></div>
+      </a>
 
+      <a class="sc" id="animeSideCard1" href="/frieren-season2">
+        <div class="sc-img"><img id="animeSideImg1" src="/assets/img/2951ca7ab4-frieren-season-2-review-hero.jpg" alt="Frieren Season 2" loading="lazy" width="1200" height="675"></div>
+        <div class="sc-body"><span class="tag ta" id="animeSideTag1" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Review · 9.8</span><div class="sc-title" id="animeSideTitle1">Frieren: Beyond Journey's End Season 2 · Review</div><div class="sc-meta" id="animeSideMeta1">OtaHub Editorial · 12/8</div></div>
+      </a>
 
-          <div class="fc-img" style="background-image:url(/assets/img/a7548f6c8e-attack-on-titan-wit-teaser-hero.jpg)"></div><div class="fc-ov"></div>
+      <a class="sc" id="animeSideCard2" href="/chainsaw-man-reze-arc-review">
+        <div class="sc-img"><img id="animeSideImg2" src="/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg" alt="Chainsaw Man Reze Arc" loading="lazy" width="1200" height="675"></div>
+        <div class="sc-body"><span class="tag tv" id="animeSideTag2" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Movie</span><div class="sc-title" id="animeSideTitle2">Chainsaw Man – Movie: Reze Arc · Đỉnh Cao Bom Tấn MAPPA</div><div class="sc-meta" id="animeSideMeta2">Gia Bảo · 2 ngày trước</div></div>
+      </a>
 
-
-          <div class="fc-body">
-
-
-            <span class="tag ts">Anime</span>
-
-
-            <h2 class="fc-title">WIT Studio Hé Lộ Công Bố Bí Ẩn Attack on Titan Ngày 20/8</h2>
-
-
-            <p class="fc-sub">WIT Studio tung hình ảnh teaser bí ẩn với 6 nhân vật Attack on Titan, hẹn công bố chính thức vào ngày 20/8/2026. Mikasa đeo miếng che mắt, Eren cầm đũa mì.</p>
-
-
-            <div class="fc-meta"><span>Anime</span> · Minh Tuấn · 4 giờ trước</div>
-
-
-          </div>
+      <a class="sc" id="animeSideCard3" href="/mushoku-tensei-s3-chaos-breaker">
+        <div class="sc-img"><img id="animeSideImg3" src="/assets/img/a4f75364fc-maxresdefault.jpg" alt="Mushoku Tensei Season 3" loading="lazy" width="1280" height="720"></div>
+        <div class="sc-body"><span class="tag tv" id="animeSideTag3" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Isekai</span><div class="sc-title" id="animeSideTitle3">Mushoku Tensei Season 3: Đại Chiến Pháo Đài Bay Chaos Breaker</div><div class="sc-meta" id="animeSideMeta3">Gia Bảo · 9 giờ trước</div></div>
+      </a>
+    </div>
 
 
         </a>
@@ -2179,73 +2198,121 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSearch(
 
 
 
-/* ─── ANIME DYNAMIC CATEGORY FILTERING ─── */
+/* ─── ANIME DYNAMIC 5-CARD SWITCHER ─── */
 var ANIME_FEATURED_DATA = {
   all: {
     secTitle: 'Tin tức <em>Anime</em>',
     name: 'Tất cả bài viết',
-    url: '/demon-slayer-infinity-castle-trailer-chinh-thuc',
-    img: '/assets/img/news-demon-slayer-infinity-castle-trailer.jpg',
-    tag: 'Anime · Breaking',
-    tagClass: 'ts',
-    title: 'Demon Slayer: Infinity Castle Part 1 Tung Trailer 3 Phút Mãn Nhãn, Chiếu Rạp Toàn Cầu',
-    sub: 'ufotable chính thức phát hành trailer 3 phút cho Phần 1 Pháo Đài Vô Tận, xác nhận phát hành định dạng IMAX và Dolby Cinema toàn cầu.',
-    meta: 'Anime · OtaHub Editorial · 22/8/2026'
+    hero: {
+      url: '/jujutsu-kaisen-mua-3-culling-game-teaser',
+      img: '/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg',
+      tag: 'Anime · Breaking',
+      tagClass: 'ts',
+      title: 'Jujutsu Kaisen Mùa 3: Culling Game Tung Teaser 90 Giây Bùng Nổ, MAPPA Xác Nhận Phát Sóng 2026',
+      sub: 'MAPPA chính thức hé lộ tạo hình Okkotsu Yuta và Hakari Kinji trong trận chiến sinh tử Culling Game tàn khốc.',
+      meta: 'Anime · OtaHub Editorial · 24/8/2026'
+    },
+    sides: [
+      { url: '/demon-slayer-infinity-castle-trailer-chinh-thuc', img: '/assets/img/news-demon-slayer-infinity-castle-trailer.jpg', tag: 'Movie', tagClass: 'ts', title: 'Demon Slayer: Pháo Đài Vô Tận Phần 1 Tung Trailer 3 Phút Mãn Nhãn', meta: 'OtaHub Editorial · Hôm nay' },
+      { url: '/frieren-season2', img: '/assets/img/2951ca7ab4-frieren-season-2-review-hero.jpg', tag: 'Review · 9.8', tagClass: 'ta', title: 'Frieren Season 2 · Review', meta: 'OtaHub Editorial · 12/8' },
+      { url: '/chainsaw-man-reze-arc-review', img: '/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg', tag: 'Movie', tagClass: 'tv', title: 'Chainsaw Man – Movie: Reze Arc · Đỉnh Cao Bom Tấn', meta: 'Gia Bảo · 2 ngày trước' },
+      { url: '/mushoku-tensei-s3-chaos-breaker', img: '/assets/img/a4f75364fc-maxresdefault.jpg', tag: 'Isekai', tagClass: 'tv', title: 'Mushoku Tensei S3: Đại Chiến Pháo Đài Bay Chaos Breaker', meta: 'Gia Bảo · 9 giờ trước' }
+    ]
   },
   'mua-he-2026': {
     secTitle: 'Anime <em>Mùa Hè 2026</em>',
     name: 'Mùa Hè 2026',
-    url: '/frieren-season2',
-    img: '/assets/img/3f4f599cac-frieren-s2-hero.jpg',
-    tag: 'Summer 2026 · Top 1',
-    tagClass: 'ts',
-    title: 'Frieren Season 2 Review: Vượt Qua Cái Bóng Của Chính Mình',
-    sub: 'Madhouse tiếp tục nâng tầm kiệt tác kỳ ảo với hành trình đầy cảm xúc của nhóm Frieren, Fern và Stark.',
-    meta: 'Mùa Hè 2026 · Lan Anh · Hôm nay'
+    hero: {
+      url: '/frieren-season2',
+      img: '/assets/img/3f4f599cac-frieren-s2-hero.jpg',
+      tag: 'Summer 2026 · Top 1',
+      tagClass: 'ts',
+      title: 'Frieren Season 2 Review: Vượt Qua Cái Bóng Của Chính Mình',
+      sub: 'Madhouse tiếp tục nâng tầm kiệt tác kỳ ảo với hành trình đầy cảm xúc của nhóm Frieren, Fern và Stark.',
+      meta: 'Mùa Hè 2026 · Lan Anh · Hôm nay'
+    },
+    sides: [
+      { url: '/dandadan-season-2-review', img: '/assets/img/6789b706c2-dandadan-s2-hero.jpg', tag: 'Summer 2026', tagClass: 'ts', title: 'Dandadan Season 2 · Siêu Phẩm Hành Động Khoa Học Viễn Tưởng', meta: 'OtaHub Editorial · 2 ngày trước' },
+      { url: '/oshi-no-ko-anime-review', img: '/assets/img/a66ffdbf5e-oshi-no-ko-hero.jpg', tag: 'Drama', tagClass: 'ta', title: 'Oshi no Ko Season 3 · Bí Mật Đằng Sau Ánh Hào Quang', meta: 'Anh Đức · 3 ngày trước' },
+      { url: '/kaiju-no-8-the-game-review', img: '/assets/img/7664426fc0-kaiju-no-8-the-game-review-hero.jpg', tag: 'Shonen', tagClass: 'tv', title: 'Kaiju No. 8 Mùa 2: Kafka Hibino Đối Đầu Siêu Thú Biến Dị', meta: 'Minh Tuấn · 4 ngày trước' },
+      { url: '/dragon-ball-daima', img: '/assets/img/4e70e2a901-dragon-ball-daima-hero.jpg', tag: 'Action', tagClass: 'tg', title: 'Dragon Ball Daima: Di Sản Cuối Cùng Của Akira Toriyama', meta: 'Gia Bảo · 1 tuần trước' }
+    ]
   },
   review: {
     secTitle: 'Đánh Giá & <em>Review Anime</em>',
     name: 'Review Anime',
-    url: '/demon-slayer-infinity-castle-review',
-    img: '/assets/img/5418135572-demon-slayer-infinity-castle-review-hero.jpg',
-    tag: 'Review · 9.9/10',
-    tagClass: 'ta',
-    title: 'Demon Slayer: Infinity Castle Review: Kiệt Tác Phòng Vé Lịch Sử',
-    sub: 'ufotable đã làm điều không tưởng với chất lượng hoạt họa đỉnh cao nhất lịch sử anime cùng âm nhạc giao hưởng hùng tráng.',
-    meta: 'Review · OtaHub Editorial · 8 phút đọc'
+    hero: {
+      url: '/demon-slayer-infinity-castle-review',
+      img: '/assets/img/5418135572-demon-slayer-infinity-castle-review-hero.jpg',
+      tag: 'Review · 9.9/10',
+      tagClass: 'ta',
+      title: 'Demon Slayer: Infinity Castle Review: Kiệt Tác Phòng Vé Lịch Sử',
+      sub: 'ufotable đã làm điều không tưởng với chất lượng hoạt họa đỉnh cao nhất lịch sử anime cùng âm nhạc giao hưởng hùng tráng.',
+      meta: 'Review · OtaHub Editorial · 8 phút đọc'
+    },
+    sides: [
+      { url: '/frieren-season2', img: '/assets/img/2951ca7ab4-frieren-season-2-review-hero.jpg', tag: 'Review · 9.8', tagClass: 'ta', title: 'Frieren Season 2: Kiệt Tác Khắc Họa Nhân Sinh', meta: 'OtaHub Editorial · 9.8 Score' },
+      { url: '/chainsaw-man-reze-arc-review', img: '/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg', tag: 'Review · 9.6', tagClass: 'ta', title: 'Chainsaw Man Reze Arc: Bản Giao Hưởng Đẫm Lệ', meta: 'Gia Bảo · 9.6 Score' },
+      { url: '/attack-on-titan-final-season-review', img: '/assets/img/841ec7cefd-attack-on-titan-final-season-review-hero.jpg', tag: 'Review · 9.7', tagClass: 'ta', title: 'Attack on Titan: Hồi Kết Trọn Vẹn Của Một Kỷ Nguyên', meta: 'Hà Trung · 9.7 Score' },
+      { url: '/jujutsu-kaisen-anime-review', img: '/assets/img/017c669145-jujutsu-kaisen-anime-review-hero.jpg', tag: 'Review · 9.5', tagClass: 'ta', title: 'Jujutsu Kaisen Biến Cố Shibuya: Đỉnh Cao Đen Tối MAPPA', meta: 'Minh Tuấn · 9.5 Score' }
+    ]
   },
   action: {
     secTitle: 'Anime <em>Hành Động & Shonen</em>',
     name: 'Hành Động / Shonen',
-    url: '/chainsaw-man-reze-arc-review',
-    img: '/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg',
-    tag: 'Shonen · Action',
-    tagClass: 'tv',
-    title: 'Chainsaw Man – The Movie: Reze Arc Review: Bom Tấn Điện Ảnh Đẫm Máu',
-    sub: 'MAPPA bùng nổ với màn trình diễn hoạt họa đỉnh cao trong cuộc chiến bi kịch giữa Denji và Reze.',
-    meta: 'Action · Gia Bảo · 2 ngày trước'
+    hero: {
+      url: '/chainsaw-man-reze-arc-review',
+      img: '/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg',
+      tag: 'Shonen · Action',
+      tagClass: 'tv',
+      title: 'Chainsaw Man – The Movie: Reze Arc Review: Bom Tấn Điện Ảnh Đẫm Máu',
+      sub: 'MAPPA bùng nổ với màn trình diễn hoạt họa đỉnh cao trong cuộc chiến bi kịch giữa Denji và Reze.',
+      meta: 'Action · Gia Bảo · 2 ngày trước'
+    },
+    sides: [
+      { url: '/jujutsu-kaisen-mua-3-culling-game-teaser', img: '/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg', tag: 'Shonen', tagClass: 'tv', title: 'Jujutsu Kaisen S3: Đại Chiến Culling Game', meta: 'MAPPA · 2026' },
+      { url: '/solo-leveling-season2', img: '/assets/img/1619ce791a-solo-leveling-hero.jpg', tag: 'Action', tagClass: 'ts', title: 'Solo Leveling Mùa 2: Quân Vương Thức Tỉnh', meta: 'A-1 Pictures · 9.4' },
+      { url: '/ranma-half-season-3-visual', img: '/assets/img/news-ranma-half-season-3-visual.jpg', tag: 'Martial Arts', tagClass: 'ts', title: 'Ranma 1/2 Mùa 3: Võ Thuật Hài Hước Kinh Điển', meta: 'MAPPA · 3/10' },
+      { url: '/free-fire-daybreak-anime-2027', img: '/assets/img/news-free-fire-daybreak-anime-2027.jpg', tag: 'Battle Royale', tagClass: 'ts', title: 'Free Fire Daybreak: Anime Sinh Tồn Đỉnh Cao', meta: 'Garena · 2027' }
+    ]
   },
   isekai: {
     secTitle: 'Anime <em>Isekai & Kỳ Ảo</em>',
     name: 'Isekai & Fantasy',
-    url: '/mushoku-tensei-s3-chaos-breaker',
-    img: '/assets/img/a4f75364fc-maxresdefault.jpg',
-    tag: 'Isekai · 9.1/10',
-    tagClass: 'tv',
-    title: 'Mushoku Tensei Season 3: Rudeus Đối Mặt Cuộc Chiến Lớn Nhất Cuộc Đời',
-    sub: 'Studio Bind khắc họa bước trưởng thành vượt bậc của Rudeus trong arc pháo đài bay Chaos Breaker.',
-    meta: 'Isekai · Gia Bảo · 9 giờ trước'
+    hero: {
+      url: '/mushoku-tensei-s3-chaos-breaker',
+      img: '/assets/img/a4f75364fc-maxresdefault.jpg',
+      tag: 'Isekai · 9.1/10',
+      tagClass: 'tv',
+      title: 'Mushoku Tensei Season 3: Rudeus Đối Mặt Cuộc Chiến Lớn Nhất Cuộc Đời',
+      sub: 'Studio Bind khắc họa bước trưởng thành vượt bậc của Rudeus trong arc pháo đài bay Chaos Breaker.',
+      meta: 'Isekai · Gia Bảo · 9 giờ trước'
+    },
+    sides: [
+      { url: '/konosuba-season-4-2027', img: '/assets/img/news-konosuba-season-4-2027.jpg', tag: 'Isekai Comedy', tagClass: 'ts', title: 'KONOSUBA Mùa 4: Bựa Nhân Kazuma Tái Xuất', meta: 'Studio ENGI · 2027' },
+      { url: '/re-zero-season4-recapture-arc', img: '/assets/img/news-re-zero-season-4-recapture-arc.jpg', tag: 'Dark Fantasy', tagClass: 'ts', title: 'Re:Zero Season 4: Chiến Dịch Tái Chiếm Pristella', meta: 'White Fox · 2026' },
+      { url: '/reincarnated-as-a-sword-season2-premiere', img: '/assets/img/news-reincarnated-as-a-sword-season-2.jpg', tag: 'Fantasy', tagClass: 'ts', title: 'Chuyển Sinh Thành Kiếm Mùa 2: Fran & Thầy Kiếm', meta: 'C2C · 2026' },
+      { url: '/senren-banka-anime-2027', img: '/assets/img/news-senren-banka-anime-2027.jpg', tag: 'Supernatural', tagClass: 'ts', title: 'Senren＊Banka Anime: Chuyện Tình Kỳ Ảo Thần Xã', meta: '2027 Premiere' }
+    ]
   },
   news: {
     secTitle: 'Anime <em>Chiếu Rạp & Movie</em>',
-    name: 'Chiếu Rạp',
-    url: '/demon-slayer-infinity-castle-trailer-chinh-thuc',
-    img: '/assets/img/news-demon-slayer-infinity-castle-trailer.jpg',
-    tag: 'Cinema · Global',
-    tagClass: 'ts',
-    title: 'Demon Slayer: Infinity Castle Part 1 Tung Trailer 3 Phút Mãn Nhãn, Chiếu Rạp Toàn Cầu',
-    sub: 'Xác nhận công chiếu định dạng IMAX, Dolby Cinema và 4DX tại hơn 140 quốc gia.',
-    meta: 'Cinema · OtaHub Editorial · Hôm nay'
+    name: 'Tin Chiếu Rạp',
+    hero: {
+      url: '/demon-slayer-infinity-castle-trailer-chinh-thuc',
+      img: '/assets/img/news-demon-slayer-infinity-castle-trailer.jpg',
+      tag: 'Cinema · Global',
+      tagClass: 'ts',
+      title: 'Demon Slayer: Infinity Castle Part 1 Tung Trailer 3 Phút Mãn Nhãn, Chiếu Rạp Toàn Cầu',
+      sub: 'Xác nhận công chiếu định dạng IMAX, Dolby Cinema và 4DX tại hơn 140 quốc gia.',
+      meta: 'Cinema · OtaHub Editorial · Hôm nay'
+    },
+    sides: [
+      { url: '/chainsaw-man-reze-arc-review', img: '/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg', tag: 'Movie', tagClass: 'tv', title: 'Chainsaw Man: Reze Arc Chiếu Rạp Toàn Cầu', meta: 'MAPPA · 9.6 Score' },
+      { url: '/doraemon-steam-time-machine-film', img: '/assets/img/news-doraemon-steam-time-machine.jpg', tag: 'Movie', tagClass: 'ts', title: 'Doraemon Movie 2026: Chuyến Du Hành Hơi Nước', meta: 'Toho · 2026' },
+      { url: '/galaxy-express-999-new-film', img: '/assets/img/news-galaxy-express-999-new-film.jpg', tag: 'Movie', tagClass: 'ts', title: 'Galaxy Express 999: Bản Điện Ảnh Kỷ Niệm 50 Năm', meta: 'Toei · 2026' },
+      { url: '/crunchyroll-makoto-shinkai-next-film', img: '/assets/img/news-crunchyroll-makoto-shinkai-next-film.jpg', tag: 'Movie', tagClass: 'ts', title: 'Makoto Shinkai Công Bố Dự Án Điện Ảnh Mới', meta: 'CoMix Wave · 2026' }
+    ]
   }
 };
 
@@ -2259,26 +2326,47 @@ function updateAnimeHero(cat){
   var heroMeta = document.getElementById('animeHeroMeta');
   var secTitle = document.getElementById('animeSecTitle');
 
-  if(heroCard && data){
-    heroCard.href = data.url;
-    if(heroImg) heroImg.style.backgroundImage = 'url(' + data.img + ')';
+  if(heroCard && data && data.hero){
+    heroCard.href = data.hero.url;
+    if(heroImg) heroImg.style.backgroundImage = 'url(' + data.hero.img + ')';
     if(heroTag){
-      heroTag.className = 'tag ' + data.tagClass;
-      heroTag.textContent = data.tag;
+      heroTag.className = 'tag ' + data.hero.tagClass;
+      heroTag.textContent = data.hero.tag;
     }
-    if(heroTitle) heroTitle.textContent = data.title;
-    if(heroSub) heroSub.textContent = data.sub;
-    if(heroMeta) heroMeta.textContent = data.meta;
+    if(heroTitle) heroTitle.textContent = data.hero.title;
+    if(heroSub) heroSub.textContent = data.hero.sub;
+    if(heroMeta) heroMeta.textContent = data.hero.meta;
     if(secTitle) secTitle.innerHTML = data.secTitle;
 
     heroCard.style.animation = 'none';
     setTimeout(function(){ heroCard.style.animation = 'heroPulseFade .4s ease-out'; }, 10);
   }
 
+  if(data && data.sides && data.sides.length >= 4){
+    for(var i = 0; i < 4; i++){
+      var sc = document.getElementById('animeSideCard' + i);
+      var sImg = document.getElementById('animeSideImg' + i);
+      var sTag = document.getElementById('animeSideTag' + i);
+      var sTitle = document.getElementById('animeSideTitle' + i);
+      var sMeta = document.getElementById('animeSideMeta' + i);
+      var item = data.sides[i];
+      if(sc && item){
+        sc.href = item.url;
+        if(sImg){ sImg.src = item.img; sImg.alt = item.title; }
+        if(sTag){ sTag.className = 'tag ' + item.tagClass; sTag.textContent = item.tag; }
+        if(sTitle) sTitle.textContent = item.title;
+        if(sMeta) sMeta.textContent = item.meta;
+        (function(cardElement, idx){
+          cardElement.style.animation = 'none';
+          setTimeout(function(){ cardElement.style.animation = 'heroPulseFade .4s ease-out'; }, 20 + idx * 30);
+        })(sc, i);
+      }
+    }
+  }
+
   var banner = document.getElementById('animeFilterBanner');
   var filterName = document.getElementById('animeFilterName');
-  var filterCount = document.getElementById('animeFilterCount');
-  if(banner && filterName && filterCount){
+  if(banner && filterName){
     if(cat === 'all'){
       banner.style.display = 'none';
     } else {
@@ -2294,6 +2382,35 @@ function setAnimeFilterByCat(cat){
     if(onclickAttr.indexOf("'" + cat + "'") > -1 || (cat === 'all' && onclickAttr.indexOf("'all'") > -1)){
       t.classList.add('on');
     } else {
+      t.classList.remove('on');
+    }
+  });
+
+  updateAnimeHero(cat);
+
+  var visibleCount = 0;
+  document.querySelectorAll('.ac[data-cat]').forEach(function(card){
+    if(cat === 'all'){
+      card.classList.remove('cat-hidden');
+      visibleCount++;
+      return;
+    }
+    var cats = (card.getAttribute('data-cat') || '').toLowerCase().split(' ');
+    if(cats.indexOf(cat.toLowerCase()) > -1){
+      card.classList.remove('cat-hidden');
+      visibleCount++;
+    } else {
+      card.classList.add('cat-hidden');
+    }
+  });
+
+  var filterCount = document.getElementById('animeFilterCount');
+  if(filterCount) filterCount.textContent = visibleCount;
+}
+
+function setAnimeFilter(btn, cat){
+  setAnimeFilterByCat(cat);
+} else {
       t.classList.remove('on');
     }
   });

@@ -1118,6 +1118,17 @@ input,select,textarea{font-size:16px!important}
 }
 
 
+
+.filter-bar{position:sticky;top:60px;z-index:200;background:rgba(9,3,22,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.filter-in{max-width:1440px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none}
+.filter-in::-webkit-scrollbar{display:none}
+.ftab{background:none!important;border:none!important;outline:none!important;cursor:pointer;font-family:var(--fd);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:14px 20px;white-space:nowrap;border-bottom:2px solid transparent!important;transition:all .2s;flex-shrink:0;box-shadow:none!important}
+.ftab:hover:not(.on){color:rgba(240,238,255,.85)}
+.ftab.on{color:var(--lavender)!important;border-bottom:2px solid var(--lavender)!important}
+.filter-sep{width:1px;height:24px;background:var(--border);flex-shrink:0;margin:0 6px}
+.cat-hidden{display:none!important}
+@keyframes heroPulseFade{0%{opacity:.4;transform:scale(.99)}100%{opacity:1;transform:scale(1)}}
+
 </style>
 
 
@@ -1510,13 +1521,14 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 <!-- ══ MANGA FILTER BAR ══ -->
-<div class="filter-bar" style="position:sticky;top:60px;z-index:200;background:rgba(11,2,32,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);margin-bottom:24px">
-  <div class="filter-in" style="max-width:1440px;margin:0 auto;padding:0 24px;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;align-items:center">
+<div class="filter-bar">
+  <div class="filter-in">
     <button class="ftab on" onclick="setMangaFilter(this,'all')">All</button>
     <button class="ftab" onclick="setMangaFilter(this,'shonen')">Weekly Shonen Jump</button>
     <button class="ftab" onclick="setMangaFilter(this,'manhwa')">Manhwa & Webtoon</button>
-    <button class="ftab" onclick="setMangaFilter(this,'reviews')">Manga Reviews</button>
-    <button class="ftab" onclick="setMangaFilter(this,'manhua')">Manhua (Chinese Manga)</button>
+    <div class="filter-sep"></div>
+    <button class="ftab" onclick="setMangaFilter(this,'reviews')">Reviews</button>
+    <button class="ftab" onclick="setMangaFilter(this,'manhua')">Manhua Tu Tiên</button>
     <button class="ftab" onclick="setMangaFilter(this,'chapter-moi')">New Chapters & Spoilers</button>
   </div>
 </div>
@@ -1534,35 +1546,42 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
       
-    <div id="mangaFilterBanner" class="filter-banner" style="display:none;margin-bottom:18px;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.3);padding:10px 18px;display:flex;align-items:center;justify-content:space-between;border-radius:4px">
-      <span style="font-size:13px;color:var(--white)">Viewing Category: <strong id="mangaFilterName" style="color:var(--lavender)">All</strong> (<span id="mangaFilterCount" style="color:var(--lavender)">0</span> articles)</span>
-      <button type="button" onclick="setMangaFilterByCat('all')" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:4px 12px;font-size:11px;font-weight:600;text-transform:uppercase;cursor:pointer;letter-spacing:.05em;transition:all .2s">✕ Clear Filter</button>
+    <div id="mangaFilterBanner" class="filter-banner" style="display:none;margin-bottom:18px;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.3);padding:10px 18px;align-items:center;justify-content:space-between;border-radius:4px">
+      <span style="font-size:13px;color:var(--white)">Viewing category: <strong id="mangaFilterName" style="color:var(--lavender)">All</strong> (<span id="mangaFilterCount" style="color:var(--lavender)">0</span> articles)</span>
+      <button type="button" onclick="setMangaFilterByCat('all')" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:4px 12px;font-size:11px;font-weight:600;text-transform:uppercase;cursor:pointer;letter-spacing:.05em;transition:all .2s">✕ Clear filter</button>
     </div>
-      <div class="f-grid">
 
+    <div class="f-grid">
+      <a class="fc" id="mangaHeroCard" href="/en/kagurabachi-5-trieu-ban-xac-nhan-anime">
+        <div class="fc-img" id="mangaHeroImg" style="background-image:url(/assets/img/news-kagurabachi-anime-confirmation.jpg);background-position:center center"></div><div class="fc-ov"></div>
+        <div class="fc-body">
+          <span class="tag tv" id="mangaHeroTag">Manga · Breaking</span>
+          <h2 class="fc-title" id="mangaHeroTitle">Kagurabachi Hits 5 Million Copies, Shonen Jump Confirms TV Anime</h2>
+          <p class="fc-sub" id="mangaHeroSub">Takeru Hokazono celebrates the massive sales milestone as Shueisha prepares the global anime rollout.</p>
+          <div class="fc-meta" id="mangaHeroMeta"><span>Manga</span> · Minh Tuấn · Vừa xong</div>
+        </div>
+      </a>
 
-        <a class="fc" href="/en/berserk-arc-cuoi">
+      <a class="sc" id="mangaSideCard0" href="/en/solo-leveling-ragnarok-manhwa-review">
+        <div class="sc-img"><img id="mangaSideImg0" src="/assets/img/news-solo-leveling-ragnarok-manhwa.jpg" alt="Solo Leveling Ragnarok Manhwa" width="1200" height="675" fetchpriority="high" decoding="async"></div>
+        <div class="sc-body"><span class="tag tc" id="mangaSideTag0" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Manhwa</span><div class="sc-title" id="mangaSideTitle0">Solo Leveling: Ragnarok Manhwa Premiere Review</div><div class="sc-meta" id="mangaSideMeta0">OtaHub Editorial · 24/8</div></div>
+      </a>
 
+      <a class="sc" id="mangaSideCard1" href="/en/one-piece-chapter-1192-elbaf-uranus">
+        <div class="sc-img"><img id="mangaSideImg1" src="/assets/img/news-one-piece-elbaf-uranus.jpg" alt="One Piece Chapter 1192 Elbaf" loading="lazy" width="1200" height="675"></div>
+        <div class="sc-body"><span class="tag tv" id="mangaSideTag1" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Chapter 1192</span><div class="sc-title" id="mangaSideTitle1">One Piece Chapter 1192: Elbaf & Ancient Weapon Uranus</div><div class="sc-meta" id="mangaSideMeta1">Trọng Khang · 22/8</div></div>
+      </a>
 
-          <div class="fc-img" style="background-image:url(/assets/img/7b5a968234-maxresdefault.jpg)"></div><div class="fc-ov"></div>
+      <a class="sc" id="mangaSideCard2" href="/en/black-clover-final-volume-guidebook">
+        <div class="sc-img"><img id="mangaSideImg2" src="/assets/img/75f4272c97-black-clover-final-volume-hero.jpg" alt="Black Clover Final Volume" loading="lazy" width="1600" height="900"></div>
+        <div class="sc-body"><span class="tag tv" id="mangaSideTag2" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Final Volume</span><div class="sc-title" id="mangaSideTitle2">Black Clover Concludes with Volume 38</div><div class="sc-meta" id="mangaSideMeta2">Gia Bảo · 10 giờ trước</div></div>
+      </a>
 
-
-          <div class="fc-body">
-
-
-            <span class="tag tv">Manga</span>
-
-
-            <h2 class="fc-title">Berserk Final Arc · Dark Horse Editor Reveals Details About Miura's Posthumous Completion Plan</h2>
-
-
-            <p class="fc-sub">Berserk Final Arc: Studio Gaga and Kouji Mori continue Kentaro Miura's legendary dark fantasy masterpiece toward its epic conclusion.</p>
-
-
-            <div class="fc-meta"><span>Manga</span> · Ha Trung · 2 hours ago</div>
-
-
-          </div>
+      <a class="sc" id="mangaSideCard3" href="/en/chainsaw-man-season3">
+        <div class="sc-img"><img id="mangaSideImg3" src="/assets/img/056525167f-chainsaw-man-season3-hero.jpg" alt="Chainsaw Man Part 3" loading="lazy" width="1280" height="720"></div>
+        <div class="sc-body"><span class="tag tv" id="mangaSideTag3" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Manga Theory</span><div class="sc-title" id="mangaSideTitle3">Chainsaw Man Part 3: Denji and Pochita Destiny</div><div class="sc-meta" id="mangaSideMeta3">Gia Bảo · 12 giờ trước</div></div>
+      </a>
+    </div>
 
 
         </a>
@@ -2829,73 +2848,121 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSearch(
 
 
 
-/* ─── MANGA DYNAMIC CATEGORY FILTERING ─── */
+/* ─── MANGA DYNAMIC 5-CARD SWITCHER ─── */
 var MANGA_FEATURED_DATA = {
   all: {
-    secTitle: 'Manga <em>News</em>',
+    secTitle: 'Manga & <em>Webtoon News</em>',
     name: 'All Articles',
-    url: '/en/one-piece-chapter-1192-elbaf-uranus',
-    img: '/assets/img/news-one-piece-chapter-1192-elbaf-uranus.jpg',
-    tag: 'Manga · Breaking',
-    tagClass: 'tv',
-    title: 'One Piece Chapter 1192: Oda Reveals Imu\'s True Power & Ancient Weapon Uranus Secrets',
-    sub: 'Weekly Shonen Jump drives the Elbaf Arc into its climax with revelations on Uranus and the Empty Throne.',
-    meta: 'Manga · OtaHub Editorial · Aug 22, 2026'
+    hero: {
+      url: '/en/kagurabachi-5-trieu-ban-xac-nhan-anime',
+      img: '/assets/img/news-kagurabachi-anime-confirmation.jpg',
+      tag: 'Manga · Breaking',
+      tagClass: 'tv',
+      title: 'Kagurabachi Hits 5 Million Copies, Shonen Jump Confirms TV Anime',
+      sub: 'Takeru Hokazono celebrates the massive sales milestone as Shueisha prepares the global anime rollout.',
+      meta: 'Manga · Minh Tuấn · Vừa xong'
+    },
+    sides: [
+      { url: '/en/solo-leveling-ragnarok-manhwa-review', img: '/assets/img/news-solo-leveling-ragnarok-manhwa.jpg', tag: 'Manhwa', tagClass: 'tc', title: 'Solo Leveling: Ragnarok Manhwa Review', meta: 'OtaHub Editorial · 24/8' },
+      { url: '/en/one-piece-chapter-1192-elbaf-uranus', img: '/assets/img/news-one-piece-elbaf-uranus.jpg', tag: 'Chapter 1192', tagClass: 'tv', title: 'One Piece Chapter 1192: Elbaf & Uranus', meta: 'Trọng Khang · 22/8' },
+      { url: '/en/black-clover-final-volume-guidebook', img: '/assets/img/75f4272c97-black-clover-final-volume-hero.jpg', tag: 'Final Volume', tagClass: 'tv', title: 'Black Clover Concludes with Volume 38', meta: 'Gia Bảo · 10 giờ trước' },
+      { url: '/en/chainsaw-man-season3', img: '/assets/img/056525167f-chainsaw-man-season3-hero.jpg', tag: 'Manga Theory', tagClass: 'tv', title: 'Chainsaw Man Part 3: Denji and Pochita Destiny', meta: 'Gia Bảo · 12 giờ trước' }
+    ]
   },
   shonen: {
-    secTitle: 'Weekly <em>Shonen Jump Highlights</em>',
+    secTitle: 'Weekly <em>Shonen Jump</em>',
     name: 'Weekly Shonen Jump',
-    url: '/en/one-piece-chapter-1192-elbaf-uranus',
-    img: '/assets/img/news-one-piece-chapter-1192-elbaf-uranus.jpg',
-    tag: 'Shonen · Chapter 1192',
-    tagClass: 'tv',
-    title: 'One Piece Chapter 1192: Oda Reveals Imu\'s True Power & Ancient Weapon Uranus Secrets',
-    sub: 'Shueisha shocks the manga world with deep Void Century revelations and Luffy Gear 5 battle.',
-    meta: 'Shonen · OtaHub Editorial · Today'
+    hero: {
+      url: '/en/kagurabachi-5-trieu-ban-xac-nhan-anime',
+      img: '/assets/img/news-kagurabachi-anime-confirmation.jpg',
+      tag: 'Shonen Jump · Hit',
+      tagClass: 'tv',
+      title: 'Kagurabachi: The New King of Weekly Shonen Jump',
+      sub: 'Chihiro Rokuhira leads the modern dark fantasy movement in Weekly Shonen Jump.',
+      meta: 'Shonen Jump · Minh Tuấn · Hôm nay'
+    },
+    sides: [
+      { url: '/en/one-piece-chapter-1192-elbaf-uranus', img: '/assets/img/news-one-piece-elbaf-uranus.jpg', tag: 'Shonen Jump', tagClass: 'tv', title: 'One Piece: Elbaf Uranus Revelation', meta: 'Oda Eiichiro · 22/8' },
+      { url: '/en/jujutsu-kaisen-ket-thuc', img: '/assets/img/d662bae70f-maxresdefault.jpg', tag: 'Shonen Jump', tagClass: 'tv', title: 'Jujutsu Kaisen Final Chapter Legacy', meta: 'OtaHub · 8.9 Score' },
+      { url: '/en/dandadan-manga-review', img: '/assets/img/d03e5c92c8-dandadan-hero.jpg', tag: 'Jump+', tagClass: 'ts', title: 'Dandadan Manga Review', meta: 'Yukinobu Tatsu · 9.7' },
+      { url: '/en/chainsaw-man-manga-part2-review', img: '/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg', tag: 'Jump+', tagClass: 'tv', title: 'Chainsaw Man Part 2 Review', meta: 'Gia Bảo · 9.4 Score' }
+    ]
   },
   manhwa: {
-    secTitle: 'Manhwa & <em>Webtoon Universe</em>',
+    secTitle: 'Manhwa & <em>Webtoon Bom Tấn</em>',
     name: 'Manhwa & Webtoon',
-    url: '/en/solo-leveling-season2',
-    img: '/assets/img/1619ce791a-solo-leveling-hero.jpg',
-    tag: 'Manhwa · Solo Leveling',
-    tagClass: 'tc',
-    title: 'Solo Leveling: Ragnarok Chapter Breakdown & Sung Suho Power Scaling',
-    sub: 'Redice Studio continues the legendary legacy with the Shadow Monarch successor facing new Monarchs.',
-    meta: 'Manhwa · Minh Tuấn · 3 hours ago'
+    hero: {
+      url: '/en/solo-leveling-ragnarok-manhwa-review',
+      img: '/assets/img/news-solo-leveling-ragnarok-manhwa.jpg',
+      tag: 'Webtoon · Top 1',
+      tagClass: 'tc',
+      title: 'Solo Leveling: Ragnarok Manhwa Premiere Review: Sung Suho Inherits the Throne',
+      sub: 'REDICE Studio delivers breathtaking art as Sung Suho awakens the monarch powers.',
+      meta: 'Manhwa · OtaHub Editorial · 24/8'
+    },
+    sides: [
+      { url: '/en/solo-leveling-arise-ban-cap-nhat-monarch-transcendence', img: '/assets/img/news-solo-leveling-arise-monarch-update.jpg', tag: 'Solo Leveling', tagClass: 'tc', title: 'Solo Leveling Arise 50M Downloads', meta: 'Netmarble · Hôm nay' },
+      { url: '/manga-detail?t=Omniscient%20Reader', img: '/assets/img/3dfc8fa432-159677l.jpg', tag: 'Manhwa', tagClass: 'tc', title: 'Omniscient Reader Webtoon Update', meta: 'Redice Studio · 9.6' },
+      { url: '/manga-detail?t=The%20Beginning%20After%20The%20End', img: '/assets/img/f47ae5a676-158003l.jpg', tag: 'Manhwa', tagClass: 'tc', title: 'The Beginning After The End Season 6', meta: 'TurtleMe · 9.2' },
+      { url: '/manga-detail?t=Solo%20Leveling%3A%20Ragnarok', img: '/assets/img/news-solo-leveling-arise-monarch-update.jpg', tag: 'Manhwa', tagClass: 'tc', title: 'Solo Leveling Ragnarok Chapter 48', meta: 'REDICE · 9.5' }
+    ]
   },
   reviews: {
-    secTitle: 'Manga <em>Reviews & Longforms</em>',
-    name: 'Manga Reviews',
-    url: '/en/one-piece-final-saga-review',
-    img: '/assets/img/d653b4c00a-one-piece-hero.jpg',
-    tag: 'Review · 9.8/10',
-    tagClass: 'ta',
-    title: 'One Piece: Final Saga Review: 25 Years Marching Towards Laugh Tale',
-    sub: 'Eiichiro Oda masterfully connects every plot thread in modern manga\'s most ambitious finale.',
-    meta: 'Review · OtaHub Editorial · 10 min read'
+    secTitle: 'Đánh Giá & <em>Review Truyện Tranh</em>',
+    name: 'Review Manga & Manhwa',
+    hero: {
+      url: '/en/kagurabachi-review',
+      img: '/assets/img/3241b71457-kagurabachi-review-hero.jpg',
+      tag: 'Review · 9.6/10',
+      tagClass: 'ta',
+      title: 'Kagurabachi Manga Review: The Modern Katana Masterpiece',
+      sub: 'Takeru Hokazono creates an exceptional manga with cinematic paneling and emotional stakes.',
+      meta: 'Review · OtaHub Editorial · 9 phút đọc'
+    },
+    sides: [
+      { url: '/en/solo-leveling-ragnarok-manhwa-review', img: '/assets/img/news-solo-leveling-ragnarok-manhwa.jpg', tag: 'Review · 9.2', tagClass: 'ta', title: 'Solo Leveling Ragnarok Review', meta: 'REDICE · 9.2 Score' },
+      { url: '/en/vinland-saga-manga-review', img: '/assets/img/934ca4aa13-vinland-saga-hero.jpg', tag: 'Review · 9.9', tagClass: 'ta', title: 'Vinland Saga Manga Review', meta: 'Kodansha · 9.9 Score' },
+      { url: '/en/one-piece-final-saga-review', img: '/assets/img/7e382d56ae-one-piece-egghead-arc-review-hero.jpg', tag: 'Review · 9.8', tagClass: 'ta', title: 'One Piece Final Saga Review', meta: 'Oda · 9.8 Score' },
+      { url: '/en/dandadan-manga-review', img: '/assets/img/d03e5c92c8-dandadan-hero.jpg', tag: 'Review · 9.5', tagClass: 'ta', title: 'Dandadan Manga Review', meta: 'Tatsu · 9.5 Score' }
+    ]
   },
   manhua: {
-    secTitle: 'Manhua <em>Xianxia & Cultivation</em>',
-    name: 'Manhua',
-    url: '/en/manga-detail?t=Battle%20Through%20the%20Heavens',
-    img: '/assets/img/1f0540d7a3-maxresdefault.jpg',
-    tag: 'Manhua · Đấu Phá',
-    tagClass: 'ts',
-    title: 'Battle Through the Heavens: Top 10 Best Fight Scenes of the Grand Sect Arc',
-    sub: 'Xiao Yan unleashes devastating Heavenly Flames in the pinnacle cultivation showdown.',
-    meta: 'Manhua · Quang Đại · 9 hours ago'
+    secTitle: 'Manhua & <em>Truyện Tranh Tu Tiên</em>',
+    name: 'Manhua Tu Tiên',
+    hero: {
+      url: '/manga-detail?t=Battle%20Through%20the%20Heavens',
+      img: '/assets/img/6323076b06-158003l.jpg',
+      tag: 'Manhua · 9.1/10',
+      tagClass: 'ts',
+      title: 'Battle Through the Heavens: Xiao Yan Dominates the Dou Qi Continent',
+      sub: 'Relive the epic journey of Xiao Yan mastering the Heavenly Flames.',
+      meta: 'Manhua · Thiên Tàm Thổ Đậu'
+    },
+    sides: [
+      { url: '/manga-detail?t=Swallowed%20Star', img: '/assets/img/7429db2141-bleach-tybw-cover.jpg', tag: 'Sci-Fi Tu Tiên', tagClass: 'ts', title: 'Swallowed Star Manhua', meta: 'Ngã Cật Tây Hồng Thị · 8.9' },
+      { url: '/manga-detail?t=Doupo%20Cangqiong', img: '/assets/img/6323076b06-158003l.jpg', tag: 'Manhua', tagClass: 'ts', title: 'Martial Universe Manhua', meta: 'Manhua · 8.7' },
+      { url: '/manga-detail?t=Rebirth%20Urban%20Immortal', img: '/assets/img/641c702735-157897l.jpg', tag: 'Đô Thị Tu Tiên', tagClass: 'ts', title: 'Urban Immortal Cultivator', meta: 'Manhua · 8.5' },
+      { url: '/manga-detail?t=Wu%20Shen%20Zhu%20Zai', img: '/assets/img/a7f0eee58e-122795l.jpg', tag: 'Tu Chân', tagClass: 'ts', title: 'The Great Ruler Manhua', meta: 'Manhua · 8.3' }
+    ]
   },
   'chapter-moi': {
-    secTitle: 'New Chapters & <em>Weekly Spoilers</em>',
+    secTitle: 'New <em>Chapters & Spoilers</em>',
     name: 'New Chapters & Spoilers',
-    url: '/en/one-piece-chapter-1192-elbaf-uranus',
-    img: '/assets/img/news-one-piece-chapter-1192-elbaf-uranus.jpg',
-    tag: 'Spoilers · Hot',
-    tagClass: 'tv',
-    title: 'One Piece Chapter 1192: Oda Reveals Imu\'s True Power & Ancient Weapon Uranus Secrets',
-    sub: 'Live discussion and verified panel breakdown of this week\'s most explosive chapter release.',
-    meta: 'Spoilers · OtaHub Editorial · Today'
+    hero: {
+      url: '/en/one-piece-chapter-1192-elbaf-uranus',
+      img: '/assets/img/news-one-piece-elbaf-uranus.jpg',
+      tag: 'Chapter 1192 · Spoiler',
+      tagClass: 'tv',
+      title: 'One Piece Chapter 1192: Elbaf Giant Warriors & Ancient Weapon Uranus',
+      sub: 'Luffy and the Straw Hats arrive at Elbaf as the ultimate war for the One Piece draws near.',
+      meta: 'One Piece · Trọng Khang · 22/8'
+    },
+    sides: [
+      { url: '/en/solo-leveling-ragnarok-manhwa-review', img: '/assets/img/news-solo-leveling-ragnarok-manhwa.jpg', tag: 'Chapter 48', tagClass: 'tc', title: 'Solo Leveling: Ragnarok Chapter 48', meta: 'REDICE Studio · 3h trước' },
+      { url: '/en/kagurabachi-5-trieu-ban-xac-nhan-anime', img: '/assets/img/news-kagurabachi-anime-confirmation.jpg', tag: 'Chapter 46', tagClass: 'tv', title: 'Kagurabachi Chapter 46: Cloud Gouger Return', meta: 'Shonen Jump · Hôm nay' },
+      { url: '/en/chainsaw-man-season3', img: '/assets/img/056525167f-chainsaw-man-season3-hero.jpg', tag: 'Chapter 192', tagClass: 'tv', title: 'Chainsaw Man Chapter 192', meta: 'Gia Bảo · 6h trước' },
+      { url: '/en/detective-conan-final-chapter', img: '/assets/img/f7dc6ecf13-138006l.jpg', tag: 'Chapter 1140', tagClass: 'ts', title: 'Detective Conan Chapter 1140', meta: 'Gosho Aoyama · 1 ngày trước' }
+    ]
   }
 };
 
@@ -2909,26 +2976,47 @@ function updateMangaHero(cat){
   var heroMeta = document.getElementById('mangaHeroMeta');
   var secTitle = document.getElementById('mangaSecTitle');
 
-  if(heroCard && data){
-    heroCard.href = data.url;
-    if(heroImg) heroImg.style.backgroundImage = 'url(' + data.img + ')';
+  if(heroCard && data && data.hero){
+    heroCard.href = data.hero.url;
+    if(heroImg) heroImg.style.backgroundImage = 'url(' + data.hero.img + ')';
     if(heroTag){
-      heroTag.className = 'tag ' + data.tagClass;
-      heroTag.textContent = data.tag;
+      heroTag.className = 'tag ' + data.hero.tagClass;
+      heroTag.textContent = data.hero.tag;
     }
-    if(heroTitle) heroTitle.textContent = data.title;
-    if(heroSub) heroSub.textContent = data.sub;
-    if(heroMeta) heroMeta.textContent = data.meta;
+    if(heroTitle) heroTitle.textContent = data.hero.title;
+    if(heroSub) heroSub.textContent = data.hero.sub;
+    if(heroMeta) heroMeta.textContent = data.hero.meta;
     if(secTitle) secTitle.innerHTML = data.secTitle;
 
     heroCard.style.animation = 'none';
     setTimeout(function(){ heroCard.style.animation = 'heroPulseFade .4s ease-out'; }, 10);
   }
 
+  if(data && data.sides && data.sides.length >= 4){
+    for(var i = 0; i < 4; i++){
+      var sc = document.getElementById('mangaSideCard' + i);
+      var sImg = document.getElementById('mangaSideImg' + i);
+      var sTag = document.getElementById('mangaSideTag' + i);
+      var sTitle = document.getElementById('mangaSideTitle' + i);
+      var sMeta = document.getElementById('mangaSideMeta' + i);
+      var item = data.sides[i];
+      if(sc && item){
+        sc.href = item.url;
+        if(sImg){ sImg.src = item.img; sImg.alt = item.title; }
+        if(sTag){ sTag.className = 'tag ' + item.tagClass; sTag.textContent = item.tag; }
+        if(sTitle) sTitle.textContent = item.title;
+        if(sMeta) sMeta.textContent = item.meta;
+        (function(cardElement, idx){
+          cardElement.style.animation = 'none';
+          setTimeout(function(){ cardElement.style.animation = 'heroPulseFade .4s ease-out'; }, 20 + idx * 30);
+        })(sc, i);
+      }
+    }
+  }
+
   var banner = document.getElementById('mangaFilterBanner');
   var filterName = document.getElementById('mangaFilterName');
-  var filterCount = document.getElementById('mangaFilterCount');
-  if(banner && filterName && filterCount){
+  if(banner && filterName){
     if(cat === 'all'){
       banner.style.display = 'none';
     } else {
@@ -2944,6 +3032,35 @@ function setMangaFilterByCat(cat){
     if(onclickAttr.indexOf("'" + cat + "'") > -1 || (cat === 'all' && onclickAttr.indexOf("'all'") > -1)){
       t.classList.add('on');
     } else {
+      t.classList.remove('on');
+    }
+  });
+
+  updateMangaHero(cat);
+
+  var visibleCount = 0;
+  document.querySelectorAll('.ac[data-cat]').forEach(function(card){
+    if(cat === 'all'){
+      card.classList.remove('cat-hidden');
+      visibleCount++;
+      return;
+    }
+    var cats = (card.getAttribute('data-cat') || '').toLowerCase().split(' ');
+    if(cats.indexOf(cat.toLowerCase()) > -1){
+      card.classList.remove('cat-hidden');
+      visibleCount++;
+    } else {
+      card.classList.add('cat-hidden');
+    }
+  });
+
+  var filterCount = document.getElementById('mangaFilterCount');
+  if(filterCount) filterCount.textContent = visibleCount;
+}
+
+function setMangaFilter(btn, cat){
+  setMangaFilterByCat(cat);
+} else {
       t.classList.remove('on');
     }
   });
