@@ -1128,6 +1128,12 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
   </div>
 
 
+  
+  <div class="rk-editorial-notice" style="background:linear-gradient(135deg,rgba(0,229,255,.06),rgba(124,58,237,.06));border:1px solid rgba(0,229,255,.15);border-radius:4px;padding:12px 18px;margin-bottom:20px;display:flex;align-items:center;gap:12px;font-size:13px;color:rgba(240,238,255,.8)">
+    <span style="font-size:16px">💡</span>
+    <span><strong>Editorial Notice:</strong> Click on any game, anime, or manga title to view the in-depth review and detailed score breakdown.</span>
+  </div>
+
   <div id="rk-content"></div>
 
 
@@ -1341,18 +1347,50 @@ const CATS = {
 
 
 
+const ARTICLE_MAP = {
+  'Elden Ring: Shadow of Erdtree II': '/en/elden-ring-shadow-of-the-erdtree-review',
+  'Elden Ring: Shadow of the Erdtree': '/en/elden-ring-shadow-of-the-erdtree-review',
+  'Monster Hunter Wilds': '/en/monster-hunter-wilds-review',
+  'Ghost of Yōtei: Complete Edition': '/en/ghost-of-yotei-review',
+  'Big Walk': '/en/big-walk-house-house',
+  'Black Myth: Wukong': '/en/black-myth-wukong-review',
+  'Blue Protocol: Resonance': '/en/blue-protocol-review',
+  'Final Fantasy VII Rebirth': '/en/game-detail?t=Final%20Fantasy%20VII%20Rebirth',
+  'Stellar Blade': '/en/stellar-blade-2',
+  'Persona 3 Reload DLC': '/en/game-detail?t=Persona%203%20Reload%20DLC',
+  'Armored Core VI DLC': '/en/game-detail?t=Armored%20Core%20VI%20DLC',
+  'Wuthering Waves': '/en/wuthering-waves-review',
+  'Honkai: Star Rail': '/en/honkai-star-rail-review',
+  'Genshin Impact': '/en/genshin-70-snezhnaya-review',
+  'Suikoden STAR LEAP': '/en/suikoden-star-leap-review',
+  'Honor of Kings Global': '/en/honor-of-kings-global-mua-giai-moi-tuong-lan-ling-wang',
+  'Zenless Zone Zero': '/en/zenless-zone-zero-20-hoshimi-miyabi',
+  'Brawl Stars': '/en/game-detail?t=Brawl%20Stars',
+  'Undawn': '/en/game-detail?t=Undawn',
+  'Demon Slayer: Infinity Castle': '/en/demon-slayer-infinity-castle-review',
+  'Chainsaw Man Part 3': '/en/chainsaw-man-reze-arc-review',
+  'Frieren Season 2': '/en/frieren-season2',
+  'Jujutsu Kaisen Final Arc': '/en/jujutsu-kaisen-anime-review',
+  'Bleach: TYBW Part 5': '/en/bleach-tybw-calamity-opening-ending',
+  'Solo Leveling Season 3': '/en/solo-leveling-season2',
+  'Dungeon Meshi Season 2': '/en/anime-detail?t=Dungeon%20Meshi%20Season%202',
+  'Kaiju No.8 Season 2': '/en/kaiju-no-8-manga-review',
+  'Jujutsu Kaisen': '/en/manga-detail?t=Jujutsu%20Kaisen',
+  'Solo Leveling: Ragnarok': '/en/solo-leveling-ragnarok-manhwa-review',
+  'One Piece': '/en/one-piece-final-saga-review',
+  'Chainsaw Man': '/en/chainsaw-man-manga-part2-review',
+  'Berserk': '/en/berserk-arc-cuoi',
+  'The Beginning After The End': '/en/manga-detail?t=The%20Beginning%20After%20The%20End',
+  'Spy x Family': '/en/anime-detail?t=Spy%20x%20Family',
+  'Battle Through the Heavens': '/en/manga-detail?t=Battle%20Through%20the%20Heavens'
+};
+
 const CAT_TYPE = {pc:'game', mobile:'game', anime:'anime', manga:'manga'};
 
-
 function resolveHref(title, catKey){
-
-
+  if(ARTICLE_MAP[title]) return ARTICLE_MAP[title];
   const t = CAT_TYPE[catKey] || 'game';
-
-
-  return '/' + t + '-detail?t=' + encodeURIComponent(title);
-
-
+  return '/en/' + t + '-detail?t=' + encodeURIComponent(title);
 }
 
 
