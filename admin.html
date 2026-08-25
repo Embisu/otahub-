@@ -41,88 +41,251 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── 1. LOGIN / SETUP SCREEN (WordPress VIP Dark Theme) ── */
+/* ── 1. VIP CYBER GLASSMORPHIC LOGIN PORTAL ── */
 #setup-screen {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: radial-gradient(ellipse at center, #23282d 0%, #101417 100%);
+  position: relative;
+  background: radial-gradient(ellipse 90% 55% at 50% -10%, rgba(0,229,255,.22), transparent),
+              radial-gradient(ellipse 65% 45% at 100% 90%, rgba(124,58,237,.28), transparent),
+              radial-gradient(ellipse 55% 45% at 0% 80%, rgba(255,48,128,.15), transparent),
+              #070210;
+  overflow: hidden;
   padding: 24px;
 }
-.setup-card {
-  background: #1d2327;
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: 12px;
-  padding: 36px 32px;
-  max-width: 420px;
-  width: 100%;
-  box-shadow: 0 16px 40px rgba(0,0,0,.45);
-  color: #c3c4c7;
+#setup-screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
 }
-.setup-card h1 {
-  font-size: 22px;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 8px;
+.login-glow-orb {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: .25;
+  pointer-events: none;
+  animation: floatOrb 12s ease-in-out infinite alternate;
+}
+.lgo-1 { top: -100px; left: 15%; background: #00e5ff; }
+.lgo-2 { bottom: -120px; right: 10%; background: #7c3aed; animation-delay: -5s; }
+.lgo-3 { top: 40%; left: -100px; background: #ff3080; opacity: .16; animation-delay: -8s; }
+
+@keyframes floatOrb {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(30px) scale(1.08); }
+  100% { transform: translateY(-20px) scale(0.95); }
+}
+
+.setup-card {
+  position: relative;
+  z-index: 10;
+  background: rgba(19, 9, 48, 0.78);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 229, 255, 0.32);
+  border-radius: 20px;
+  padding: 40px 36px;
+  max-width: 440px;
+  width: 100%;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.7), 0 0 35px rgba(0, 229, 255, 0.14);
+  color: #f0eeff;
+  animation: cardFadeIn .6s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes cardFadeIn {
+  from { opacity: 0; transform: translateY(20px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.auth-logo-box {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  background: linear-gradient(135deg, rgba(0,229,255,.15), rgba(124,58,237,.25));
+  border: 1px solid rgba(0,229,255,.45);
+  border-radius: 16px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  box-shadow: 0 0 25px rgba(0,229,255,.25);
+  transition: transform .3s ease, box-shadow .3s ease;
 }
-.setup-card .sub {
-  font-size: 12px;
-  color: #8c8f94;
-  margin-bottom: 24px;
-  line-height: 1.6;
+.auth-logo-box:hover {
+  transform: scale(1.06) rotate(3deg);
+  box-shadow: 0 0 35px rgba(0,229,255,.5);
 }
-.field { margin-bottom: 16px; }
-.field label {
-  display: block;
-  font-size: 11.5px;
-  font-weight: 600;
-  color: #c3c4c7;
-  margin-bottom: 6px;
-  text-transform: uppercase;
-  letter-spacing: .05em;
-}
-.field input, .field select {
-  width: 100%;
-  background: #2c3338;
-  border: 1px solid #4f5459;
-  border-radius: 4px;
-  padding: 10px 12px;
+.auth-brand {
+  font-family: var(--fd);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: .02em;
   color: #ffffff;
-  font-size: 13.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.auth-logo-ota { color: #ffffff; }
+.auth-logo-hub { color: var(--cyan); }
+.auth-badge {
+  background: linear-gradient(135deg, var(--sakura), var(--violet));
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  padding: 2px 7px;
+  border-radius: 4px;
+  margin-left: 4px;
+  text-transform: uppercase;
+}
+.auth-sub {
+  font-size: 12.5px;
+  color: rgba(240,238,255,.6);
+  line-height: 1.5;
+}
+
+.field {
+  margin-bottom: 18px;
+}
+.field-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.field-label-row label {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(240,238,255,.85);
+  letter-spacing: .03em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.input-icon {
+  position: absolute;
+  left: 14px;
+  font-size: 15px;
+  color: rgba(240,238,255,.45);
+  pointer-events: none;
+}
+.field input {
+  width: 100%;
+  background: rgba(26, 16, 64, 0.65);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 8px;
+  padding: 12px 14px 12px 42px;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 14px;
   outline: none;
-  transition: border .15s, box-shadow .15s;
+  transition: all .2s ease;
 }
-.field input:focus, .field select:focus {
-  border-color: var(--wp-blue-light);
-  box-shadow: 0 0 0 1px var(--wp-blue-light);
+.field input:focus {
+  border-color: var(--cyan);
+  background: rgba(26, 16, 64, 0.9);
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.35);
 }
+.field input::placeholder {
+  color: rgba(240,238,255,.3);
+  font-size: 13px;
+}
+.btn-toggle-pw {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: rgba(240,238,255,.45);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px;
+  transition: color .15s;
+}
+.btn-toggle-pw:hover { color: var(--cyan); }
+
 .setup-submit {
   width: 100%;
-  margin-top: 10px;
-  padding: 11px;
-  font-size: 13.5px;
-  font-weight: 700;
-  background: var(--wp-blue);
-  color: #ffffff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background .15s;
-}
-.setup-submit:hover { background: var(--wp-blue-hover); }
-.setup-error {
-  background: rgba(214,54,56,.15);
-  border: 1px solid rgba(214,54,56,.4);
-  border-radius: 4px;
-  padding: 10px 14px;
-  color: #ff8099;
-  font-size: 12px;
   margin-top: 14px;
+  padding: 13px;
+  font-family: var(--fd);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--cyan) 0%, #00a3cc 50%, var(--violet) 100%);
+  color: #070210;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 229, 255, 0.35);
+  transition: all .22s cubic-bezier(.16,1,.3,1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.setup-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(0, 229, 255, 0.6);
+  filter: brightness(1.1);
+}
+.setup-submit:active { transform: translateY(0); }
+
+.setup-error {
+  background: rgba(255,48,128,.14);
+  border: 1px solid rgba(255,48,128,.4);
+  border-radius: 8px;
+  padding: 11px 14px;
+  color: #ff8099;
+  font-size: 12.5px;
+  margin-top: 16px;
   display: none;
+  text-align: center;
+}
+
+.auth-footer {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: center;
+  font-size: 11px;
+  color: rgba(240,238,255,.4);
+}
+.auth-edge-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #72e086;
+  font-weight: 600;
+}
+.auth-edge-pill::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: #72e086;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #72e086;
 }
 
 /* ── 2. TOP ADMIN BAR ── */
@@ -702,22 +865,55 @@ body {
 </head>
 <body>
 
-<!-- ── SETUP SCREEN ── -->
+<!-- ── VIP CYBER GLASSMORPHIC LOGIN PORTAL ── -->
 <div id="setup-screen">
+  <div class="login-glow-orb lgo-1"></div>
+  <div class="login-glow-orb lgo-2"></div>
+  <div class="login-glow-orb lgo-3"></div>
+
   <div class="setup-card">
-    <h1>🎮 OtaHub Admin</h1>
-    <p class="sub">Đăng nhập bằng tài khoản quản trị để chỉnh sửa nội dung trực tiếp trên browser. Mọi thay đổi sẽ tự deploy lên Cloudflare.</p>
+    <div class="auth-header">
+      <div class="auth-logo-box">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="2" fill="rgba(0,229,255,.15)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg>
+      </div>
+      <div class="auth-brand">
+        <span class="auth-logo-ota">Ota</span><span class="auth-logo-hub">Hub</span>
+        <span class="auth-badge">STUDIO</span>
+      </div>
+      <p class="auth-sub">Hệ Thống Quản Trị Nội Dung Đa Phương Tiện Châu Á</p>
+    </div>
 
     <div class="field">
-      <label>Tên đăng nhập</label>
-      <input type="text" id="setup-username" placeholder="ten-dang-nhap" autocomplete="username" onkeydown="if(event.key==='Enter')doLogin()"/>
+      <div class="field-label-row">
+        <label><span>👤</span> Tên đăng nhập</label>
+      </div>
+      <div class="input-wrap">
+        <span class="input-icon">👤</span>
+        <input type="text" id="setup-username" placeholder="Nhập tài khoản quản trị..." autocomplete="username" onkeydown="if(event.key==='Enter')doLogin()"/>
+      </div>
     </div>
+
     <div class="field">
-      <label>Mật khẩu</label>
-      <input type="password" id="setup-password" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"/>
+      <div class="field-label-row">
+        <label><span>🔒</span> Mật khẩu</label>
+      </div>
+      <div class="input-wrap">
+        <span class="input-icon">🔒</span>
+        <input type="password" id="setup-password" placeholder="••••••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"/>
+        <button type="button" class="btn-toggle-pw" onclick="togglePwVisibility()" title="Hiện/ẩn mật khẩu">👁️</button>
+      </div>
     </div>
-    <button class="btn btn-primary setup-submit" onclick="doLogin()">Đăng nhập →</button>
+
+    <button type="button" class="setup-submit" onclick="doLogin()">
+      <span>Đăng nhập Studio</span> <span>→</span>
+    </button>
+
     <div id="setup-error" class="setup-error"></div>
+
+    <div class="auth-footer">
+      <div class="auth-edge-pill">Cloudflare Pages Edge Runtime · 100% Live</div>
+      <div>256-Bit SSL Encrypted Session · OtaHub Media Global</div>
+    </div>
   </div>
 </div>
 
@@ -1059,6 +1255,13 @@ window.onload = async () => {
     }
   } catch(e) { /* chưa đăng nhập — cứ để màn hình đăng nhập hiện ra */ }
 };
+
+
+function togglePwVisibility() {
+  const pw = document.getElementById('setup-password');
+  if (!pw) return;
+  pw.type = pw.type === 'password' ? 'text' : 'password';
+}
 
 async function doLogin() {
   const username = document.getElementById('setup-username').value.trim();
@@ -1989,18 +2192,25 @@ function renderEditor(file, html) {
         <div class="visual-iframe-wrap" style="margin-bottom:18px">
           <iframe id="art-visual-iframe" class="home-visual-iframe"></iframe>
         </div>
+        ${BODY_BLOCKS ? '' : `<div style="display:flex;justify-content:flex-end;margin:-10px 0 18px">
+          <button class="btn btn-secondary btn-sm" onclick="legacyBodyInsertImage()">🖼️ Thêm ảnh vào cuối bài</button>
+        </div>`}
 
-        <!-- Body VI — ô soạn thảo là trung tâm, giống khung viết bài WordPress -->
+        <!-- Body VI — bài có block data (mới) vẫn dùng khối kéo-thả bên dưới; bài
+             cũ (không có block) giờ sửa trực tiếp trong khung xem trước thật ở
+             trên (kể cả ảnh) — ô "Trực quan" tối màu tách riêng trước đây đã bỏ
+             khỏi giao diện, chỉ còn giữ ngầm làm nơi lưu dữ liệu HTML gốc + đồng
+             bộ với tab "Mã HTML" bên dưới cho ai cần sửa tay. -->
         <div class="body-editor" style="margin-bottom:16px">
           <div class="body-mode-tabs">
             ${BODY_BLOCKS ? `<button class="body-mode-tab active" id="body-mode-tab-blocks" onclick="switchBodyMode('blocks')">🧱 Khối (kéo-thả)</button>` : ''}
-            <button class="body-mode-tab ${BODY_BLOCKS ? '' : 'active'}" id="body-mode-tab-visual" onclick="switchBodyMode('visual')">🖱️ Trực quan</button>
-            <button class="body-mode-tab" id="body-mode-tab-code" onclick="switchBodyMode('code')">🔤 HTML</button>
+            <button class="body-mode-tab" id="body-mode-tab-visual" style="display:none" onclick="switchBodyMode('visual')">🖱️ Trực quan</button>
+            <button class="body-mode-tab" id="body-mode-tab-code" onclick="switchBodyMode('code')">🔤 Mã HTML (nâng cao)</button>
           </div>
           <div id="body-blocks-wrap" style="display:${BODY_BLOCKS ? 'block' : 'none'}">
             <div id="body-blocks-editor"></div>
           </div>
-          <div class="body-toolbar" id="body-toolbar-visual" style="display:${BODY_BLOCKS ? 'none' : 'flex'}">
+          <div class="body-toolbar" id="body-toolbar-visual" style="display:none">
             <button class="tb-btn" title="Tiêu đề H2" onclick="visH2()"><b>H2</b></button>
             <button class="tb-btn" title="Tiêu đề H3" onclick="visH3()">H3</button>
             <button class="tb-btn" title="Đoạn văn" onclick="visPara()">¶</button>
@@ -2026,7 +2236,7 @@ function renderEditor(file, html) {
             <button class="tb-btn" title="Đoạn văn" onclick="insertPara()">¶</button>
             <button class="tb-btn" title="Trích dẫn" onclick="insertBlock()">❝</button>
           </div>
-          <div id="body-visual-wrap" style="display:${BODY_BLOCKS ? 'none' : 'block'}">
+          <div id="body-visual-wrap" style="display:none">
             <div id="body-visual" contenteditable="true">${bodyVi}</div>
           </div>
           <div id="body-code-wrap" style="display:none">
@@ -2806,7 +3016,7 @@ function buildArticlePreviewHtml() {
 
   const bodyTagged = BODY_BLOCKS
     ? blocksToHtmlTagged(BODY_BLOCKS)
-    : `<div data-oh-jump="body-editor">${document.getElementById('body-visual')?.innerHTML || ''}</div>`;
+    : tagLegacyBodyForInlineEdit(document.getElementById('body-visual')?.innerHTML || '');
   if (/<article class="art-body">[\s\S]*?<\/article>/.test(html)) {
     html = html.replace(/<article class="art-body">[\s\S]*?<\/article>/, `<article class="art-body">\n${bodyTagged}\n</article>`);
   } else {
@@ -2820,6 +3030,16 @@ function buildArticlePreviewHtml() {
   return html;
 }
 
+// Bài cũ (không có block data): thay vì chỉ "nhảy" xuống ô Trực quan ẩn bên
+// dưới như trước, cho sửa CHỮ trực tiếp ngay trong khung xem trước thật (cả
+// khối được bọc contenteditable), và ẢNH trong bài được đánh dấu riêng bằng
+// data-oh-jump để bấm vào mở bảng đổi ảnh — không bị coi là chữ để gõ đè lên.
+function tagLegacyBodyForInlineEdit(html) {
+  let i = 0;
+  const tagged = html.replace(/<img\b([^>]*)>/gi, (m, attrs) => `<img${attrs} data-oh-jump="body-img-${i++}">`);
+  return `<div data-ohfield="body" contenteditable="true">${tagged}</div>`;
+}
+
 const ART_BRIDGE_SCRIPT = `<script>(function(){
   var style = document.createElement('style');
   style.textContent =
@@ -2828,25 +3048,38 @@ const ART_BRIDGE_SCRIPT = `<script>(function(){
     '[contenteditable="true"]{outline-offset:3px;transition:outline .12s;cursor:text}' +
     '[contenteditable="true"]:hover{outline:2px dashed rgba(0,229,255,.5)}' +
     '[contenteditable="true"]:focus{outline:2px solid #00e5ff}' +
+    '[data-ohfield="body"]:hover{outline:none}' +
     'figcaption:empty:before{content:"+ Thêm chú thích ảnh (bấm để nhập)";opacity:.45}' +
     'cite:empty:before{content:"+ Thêm nguồn / tác giả (tuỳ chọn)";opacity:.45}' +
     '.oh-img-empty{display:flex;align-items:center;justify-content:center;min-height:160px;border:2px dashed rgba(255,255,255,.25);background:rgba(255,255,255,.03)}' +
     '.oh-img-empty-hint{color:rgba(240,238,255,.5);font-size:14px}';
   document.head.appendChild(style);
 
+  // Bấm vào 1 phần tử: nếu phần tử GẦN target hơn (đi ngược lên từ target) là
+  // [data-oh-jump] thì coi là "nhảy/mở bảng chỉnh" (vd: ảnh trong thân bài dù
+  // nằm trong vùng contenteditable cha), còn nếu [contenteditable="true"] gần
+  // hơn thì để trình duyệt tự xử lý gõ chữ bình thường (vd: chú thích ảnh nằm
+  // trong khối kéo-thả). Đi từ target lên, ai gặp trước thắng.
   document.addEventListener('click', function(e){
-    var editable = e.target.closest('[contenteditable="true"]');
-    if (editable) return; // để trình duyệt tự đặt con trỏ, gõ bình thường
-    var jumpEl = e.target.closest('[data-oh-jump]');
-    e.preventDefault();
-    e.stopPropagation();
-    if (jumpEl) parent.postMessage({ type:'art-jump', target: jumpEl.getAttribute('data-oh-jump') }, '*');
+    var node = e.target;
+    while (node && node.nodeType === 1) {
+      if (node.hasAttribute('data-oh-jump')) {
+        e.preventDefault();
+        e.stopPropagation();
+        parent.postMessage({ type:'art-jump', target: node.getAttribute('data-oh-jump') }, '*');
+        return;
+      }
+      if (node.getAttribute('contenteditable') === 'true') return; // để trình duyệt tự đặt con trỏ, gõ bình thường
+      node = node.parentElement;
+    }
   }, true);
 
   document.addEventListener('input', function(e){
     var fieldEl = e.target.closest('[data-ohfield]');
     if (fieldEl) {
-      parent.postMessage({ type:'art-field-input', field: fieldEl.getAttribute('data-ohfield'), value: fieldEl.innerText }, '*');
+      var field = fieldEl.getAttribute('data-ohfield');
+      var value = field === 'body' ? fieldEl.innerHTML : fieldEl.innerText;
+      parent.postMessage({ type:'art-field-input', field: field, value: value }, '*');
       return;
     }
     var blockEl = e.target.closest('[data-ohb]');
@@ -2878,6 +3111,13 @@ function bindArticleBridgeMessages() {
         }
       }
       else if (d.field === 'excerpt') ART_EXCERPT = d.value;
+      else if (d.field === 'body') {
+        // Đồng bộ ngược vào #body-visual (ẩn) — nguồn dữ liệu thật khi build
+        // lại HTML lúc lưu/tự động lưu nháp, và khi chuyển sang tab "Mã HTML".
+        const bv = document.getElementById('body-visual');
+        if (bv) bv.innerHTML = d.value;
+        updateWordCount();
+      }
       markChangedNoRebuild();
     } else if (d.type === 'art-block-input') {
       const b = BODY_BLOCKS && BODY_BLOCKS[d.idx];
@@ -2898,12 +3138,40 @@ function articleJumpTo(target) {
   else if (target === 'cat') el = document.getElementById('ed-cat');
   else if (target === 'body-editor') el = document.getElementById('body-blocks-wrap') || document.getElementById('body-visual-wrap');
   else if (target && target.startsWith('block-')) { blockScrollTo(parseInt(target.slice(6), 10)); return; }
+  else if (target && target.startsWith('body-img-')) { legacyBodyPickImage(parseInt(target.slice('body-img-'.length), 10)); return; }
   if (!el) return;
   el.scrollIntoView({ behavior: 'smooth', block: 'center' });
   el.classList.add('block-item-flash');
   (el.closest('.side-box') || el).classList.add('block-item-flash');
   setTimeout(() => { el.classList.remove('block-item-flash'); (el.closest('.side-box') || el).classList.remove('block-item-flash'); }, 1200);
   try { el.focus({ preventScroll: true }); } catch(e) {}
+}
+
+// Bấm vào 1 ảnh trong thân bài (bài cũ, không có block data) ngay trong khung
+// xem trước thật → mở bảng chọn/tải ảnh, đổi trực tiếp src của đúng ảnh đó
+// trong #body-visual (nguồn dữ liệu thật), rồi dựng lại khung xem trước.
+function legacyBodyPickImage(idx) {
+  const vis = document.getElementById('body-visual');
+  if (!vis) return;
+  const img = vis.querySelectorAll('img')[idx];
+  if (!img) return;
+  openMediaModal(res => {
+    if (res.src) img.src = res.src;
+    if (res.alt) img.alt = res.alt;
+    markChanged();
+  }, 'image');
+}
+
+// Thêm ảnh mới vào CUỐI thân bài (bài cũ) — thay cho nút "Chèn ảnh" trong ô
+// Trực quan trước đây (đã ẩn khỏi giao diện). Muốn chèn ảnh ở vị trí giữa bài
+// thì dùng tab "Mã HTML" bên dưới.
+function legacyBodyInsertImage() {
+  const vis = document.getElementById('body-visual');
+  if (!vis) return;
+  openMediaModal(res => {
+    vis.innerHTML += res.html;
+    markChanged();
+  }, 'image');
 }
 
 function scheduleArticlePreviewRefresh() {
