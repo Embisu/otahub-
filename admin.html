@@ -861,6 +861,331 @@ body {
   .wp-sidebar .wp-nav-text, .wp-sidebar .wp-nav-badge, .wp-sidebar .wp-nav-badge-red { display: none; }
   .wp-main { padding: 14px 12px 60px; }
 }
+
+/* ── Khoi phuc CSS content-area bi mat (page-header/article-card/form/v.v.) tu commit c8a94c1, doi bien mau sang wp-* de khop theme trang ── */
+/* Sidebar giữ nguyên bảng màu tối gốc (kiểu wp-admin: sidebar tối, nội dung sáng) */
+/* Các khối "xem trước trực tiếp" mô phỏng đúng giao diện tối của site công khai — giữ tối để xem trước chính xác */
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--wp-bg); color: var(--wp-title); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.6; min-height: 100vh; }
+/* ── Layout ── */
+.layout { display: grid; grid-template-columns: 72px 1fr; min-height: 100vh; }
+.sidebar { background: var(--wp-card); border-right: 1px solid var(--wp-border); display: flex; flex-direction: column; align-items: center; position: sticky; top: 0; height: 100vh; overflow: visible; padding: 4px 0 14px; gap: 2px; }
+.main { overflow-y: auto; }
+/* ── Sidebar ── */
+.logo { padding: 10px 0 14px; width: 100%; border-bottom: 1px solid var(--wp-border); display: flex; flex-direction: column; align-items: center; gap: 6px; margin-bottom: 6px; }
+.logo-clickable { cursor: pointer; }
+.logo-mark { width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, var(--wp-blue), var(--wp-blue)); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; letter-spacing: -.02em; color: #0a0a12; transition: transform .15s, box-shadow .15s; }
+.logo-clickable:hover .logo-mark { transform: scale(1.06); box-shadow: 0 4px 16px rgba(0,229,255,.35); }
+.logo-text { font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
+.logo-text span { color: var(--wp-blue); }
+.logo-badge { font-size: 9px; background: var(--wp-blue); color: #fff; padding: 2px 7px; border-radius: 20px; font-weight: 600; letter-spacing: .05em; }
+.sidebar-section { padding: 12px 12px 4px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--wp-muted); }
+/* Collapsed icon nav with hover flyout submenus (WordPress-style) */
+.nav-group { position: relative; width: 100%; display: flex; justify-content: center; }
+.nav-group.sidebar-footer-group { margin-top: auto; }
+.nav-group-head { width: 46px; height: 46px; border-radius: 11px; border: none; background: none; color: var(--wp-text); display: flex; align-items: center; justify-content: center; font-size: 19px; cursor: pointer; transition: all .15s; }
+.nav-group-head:hover { background: var(--wp-bg); color: var(--wp-title); }
+.cmdk-sidebar-btn { width: 46px; height: 46px; border-radius: 11px; border: 1px dashed var(--wp-border); background: none; color: var(--wp-muted); display: flex; align-items: center; justify-content: center; font-size: 17px; cursor: pointer; transition: all .15s; margin: 0 0 10px; flex-shrink: 0; }
+.cmdk-sidebar-btn:hover { background: var(--wp-bg); color: var(--wp-blue); border-color: rgba(0,229,255,.35); border-style: solid; }
+.nav-flyout { position: absolute; left: calc(100% + 10px); top: -6px; min-width: 240px; background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 12px; padding: 8px; box-shadow: 0 16px 40px rgba(0,0,0,.45); display: none; z-index: 60; }
+.nav-group:hover .nav-flyout, .nav-group:focus-within .nav-flyout { display: block; }
+.flyout-title { padding: 6px 10px 8px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--wp-muted); }
+.nav-flyout .nav-item { white-space: nowrap; }
+.nav-flyout .connected-info { padding: 4px 10px 2px; }
+.nav-flyout .disconnect-btn { width: calc(100% - 16px); margin: 8px 8px 2px; }
+.nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 16px; border-radius: 8px; margin: 2px 8px; cursor: pointer; color: var(--wp-text); transition: all .15s; font-size: 13.5px; border: none; background: none; width: calc(100% - 16px); text-align: left; }
+.nav-item:hover { background: var(--wp-bg); color: var(--wp-title); }
+.nav-item .icon { width: 16px; text-align: center; flex-shrink: 0; opacity: .8; }
+.nav-item .badge { margin-left: auto; background: var(--wp-blue); color: #fff; font-size: 10px; padding: 1px 6px; border-radius: 10px; }
+.draft-badge { display: inline-flex; align-items: center; gap: 3px; background: var(--wp-amber); color: #1d1300; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px; white-space: nowrap; }
+.sidebar-footer { margin-top: auto; padding: 16px; border-top: 1px solid var(--wp-border); }
+.connected-info { font-size: 11px; color: var(--wp-muted); line-height: 1.7; }
+.connected-info strong { color: var(--wp-text); }
+.disconnect-btn { margin-top: 8px; padding: 5px 10px; background: rgba(255,48,128,.12); border: 1px solid rgba(255,48,128,.3); color: var(--wp-red); border-radius: 6px; cursor: pointer; font-size: 11px; width: 100%; }
+.disconnect-btn:hover { background: rgba(255,48,128,.22); }
+/* ── Header ── */
+.page-header { padding: 24px 32px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.page-title { font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
+.page-title small { font-size: 12px; color: var(--wp-muted); font-weight: 400; display: block; margin-top: 2px; }
+.header-actions { display: flex; gap: 10px; align-items: center; }
+/* ── Buttons ── */
+.btn-icon { padding: 7px; border-radius: 7px; }
+/* ── Setup screen ── */
+#setup-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 24px; }
+/* ── Article list ── */
+.content-area { padding: 24px 32px 48px; }
+.search-row { display: flex; gap: 10px; margin-bottom: 20px; }
+.search-input { flex: 1; background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 8px; padding: 9px 14px; color: var(--wp-title); font-size: 13px; outline: none; }
+.search-input:focus { border-color: var(--wp-blue); }
+.filter-select { background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 8px; padding: 9px 12px; color: var(--wp-title); font-size: 13px; outline: none; }
+.articles-grid { display: grid; gap: 8px; }
+.article-card { background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 12px; padding: 12px 16px; display: grid; grid-template-columns: 68px 1fr auto; gap: 14px; align-items: center; transition: border .15s, transform .15s, box-shadow .15s; cursor: pointer; }
+.article-card:hover { border-color: rgba(0,229,255,.35); transform: translateX(2px); box-shadow: 0 6px 18px rgba(0,0,0,.2); }
+.article-card:hover { border-color: rgba(0,229,255,.35); }
+.art-thumb-wrap { position: relative; width: 68px; height: 46px; border-radius: 8px; overflow: hidden; background: var(--wp-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.art-thumb-ph { font-size: 19px; opacity: .5; }
+.art-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .25s; }
+.art-thumb.loaded, .art-thumb[src]:not([src=""]) { opacity: 1; }
+.art-info { min-width: 0; }
+.art-title { font-size: 13.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--wp-title); }
+.art-meta { font-size: 11px; color: var(--wp-muted); margin-top: 4px; display: flex; align-items: center; gap: 10px; }
+.art-meta .art-file { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 260px; }
+.art-cat { background: rgba(34,113,177,.12); color: var(--wp-blue); padding: 1px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; letter-spacing: .02em; flex-shrink: 0; }
+.art-actions { display: flex; gap: 6px; flex-shrink: 0; }
+/* ── Editor (bố cục kiểu WordPress: tiêu đề to, ô soạn thảo là trung tâm,
+      hộp "Xuất bản" cố định bên phải) ── */
+.editor-main {}
+.pb-link { color: var(--wp-blue); text-decoration: none; font-size: 11.5px; }
+.pb-link:hover { text-decoration: underline; }
+.pb-savelog { margin-top: 10px; font-size: 10.5px; color: var(--wp-muted); line-height: 1.7; max-height: 70px; overflow-y: auto; }
+.meta-box-collapsed { background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 12px; margin-top: 8px; }
+.meta-box-head { padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
+.meta-box-head .field-group-title { margin: 0; padding: 0; border: none; }
+.meta-box-head .chev { color: var(--wp-muted); transition: transform .15s; font-size: 12px; }
+.meta-box-content { padding: 0 20px 20px; display: none; }
+.field-group { background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,.14); }
+.field-group-title { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--wp-muted); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--wp-border); }
+.form-input { width: 100%; background: var(--wp-bg); border: 1px solid var(--wp-border); border-radius: 8px; padding: 9px 12px; color: var(--wp-title); font-size: 13px; outline: none; transition: border .15s; font-family: inherit; }
+.form-input:focus { border-color: var(--wp-blue); }
+textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
+.form-label { display: block; font-size: 11px; font-weight: 600; color: var(--wp-text); margin-bottom: 5px; letter-spacing: .03em; margin-top: 12px; }
+.form-label:first-child { margin-top: 0; }
+.img-preview { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-top: 8px; background: var(--wp-bg); display: block; }
+.img-preview-placeholder { width: 100%; height: 120px; border-radius: 8px; margin-top: 8px; background: var(--wp-bg); border: 2px dashed var(--wp-border); display: flex; align-items: center; justify-content: center; color: var(--wp-muted); font-size: 12px; }
+/* Body editor — thanh công cụ kiểu WordPress: nút icon nhỏ gọn, sát nhau */
+.tb-sep { width: 1px; background: var(--wp-border); margin: 4px 4px; }
+#body-textarea { width: 100%; min-height: 400px; background: transparent; border: none; padding: 14px; color: var(--wp-text); font-size: 13px; line-height: 1.8; resize: vertical; outline: none; font-family: 'Consolas', 'Monaco', monospace; }
+/* Body mode tabs (Khối / Trực quan / HTML) */
+/* Visual (WYSIWYG) editor — approximates live article prose styling */
+#body-visual { width: 100%; min-height: 400px; max-height: 700px; overflow-y: auto; background: var(--wp-bg); padding: 18px 20px; color: var(--wp-title); font-size: 15px; line-height: 1.8; outline: none; }
+#body-visual h2 { font-size: 22px; font-weight: 800; margin: 24px 0 12px; color: var(--wp-title); }
+#body-visual h3 { font-size: 18px; font-weight: 700; margin: 20px 0 10px; color: var(--wp-title); }
+#body-visual p { margin: 0 0 14px; color: var(--wp-text); }
+#body-visual strong { color: var(--wp-title); }
+#body-visual figure { margin: 18px 0; }
+#body-visual figure img { width: 100%; max-height: 340px; object-fit: cover; border-radius: 10px; display: block; transition: box-shadow .3s; }
+#body-visual figcaption { font-size: 12px; color: var(--wp-muted); margin-top: 6px; text-align: center; }
+#body-visual figure.vis-img-flash img { box-shadow: 0 0 0 3px var(--wp-blue); }
+#body-visual blockquote { border-left: 3px solid var(--wp-blue); margin: 18px 0; padding: 4px 0 4px 16px; color: var(--wp-text); font-style: italic; }
+#body-visual blockquote cite { display: block; margin-top: 6px; font-size: 12px; color: var(--wp-muted); font-style: normal; }
+#body-visual ul, #body-visual ol { margin: 0 0 14px; padding-left: 22px; color: var(--wp-text); }
+#body-visual a { color: var(--wp-blue); }
+#body-visual:empty:before { content: 'Bắt đầu viết nội dung...'; color: var(--wp-muted); }
+/* Block editor (kéo-thả) — canvas kiểu Elementor/Gutenberg: mỗi khối hiển thị
+   đúng như bài thật, sửa trực tiếp trên khối, kéo-thả để sắp xếp lại. */
+.block-canvas { background: var(--wp-bg); padding: 24px; }
+.block-item { position: relative; margin-bottom: 6px; border: 1px dashed transparent; border-radius: 10px; padding: 10px 16px 10px 34px; transition: border-color .12s, background .12s; }
+.block-item:hover, .block-item.dragging { border-color: rgba(0,229,255,.3); background: rgba(0,229,255,.035); }
+.block-toolbar-mini { display: none; position: absolute; top: 8px; right: 10px; gap: 2px; background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 7px; padding: 3px; z-index: 5; box-shadow: 0 4px 14px rgba(0,0,0,.3); }
+.block-item:hover .block-toolbar-mini, .block-item:focus-within .block-toolbar-mini { display: flex; }
+.block-mini-btn { width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; background: transparent; border: none; border-radius: 5px; color: var(--wp-text); cursor: pointer; font-size: 12px; }
+.block-mini-btn:hover { background: rgba(34,113,177,.12); color: var(--wp-blue); }
+.block-drag { position: absolute; left: 6px; top: 10px; width: 22px; height: 26px; display: flex; align-items: center; justify-content: center; cursor: grab; color: var(--wp-muted); font-size: 15px; border-radius: 5px; opacity: 0; transition: opacity .12s; }
+.block-item:hover .block-drag, .block-item:focus-within .block-drag { opacity: 1; }
+.block-drag:hover { color: var(--wp-blue); background: rgba(34,113,177,.12); }
+.block-drag:active { cursor: grabbing; }
+.block-type-tag { position: absolute; top: 8px; left: 34px; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--wp-blue); background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 6px; padding: 2px 7px; display: none; }
+.block-item:hover .block-type-tag, .block-item:focus-within .block-type-tag { display: block; }
+.block-canvas h2 { font-size: 20px; font-weight: 800; color: var(--wp-title); outline: none; margin-top: 6px; }
+.block-canvas h3 { font-size: 17px; font-weight: 700; color: var(--wp-title); outline: none; margin-top: 6px; }
+.block-canvas p { font-size: 15px; line-height: 1.8; color: var(--wp-text); outline: none; min-height: 1.6em; }
+.block-canvas p:empty:before { content: 'Nhập đoạn văn...'; color: var(--wp-muted); }
+.block-canvas blockquote { border-left: 3px solid var(--wp-blue); padding: 4px 0 4px 16px; color: var(--wp-text); font-style: italic; }
+.block-canvas blockquote p { outline: none; }
+.block-canvas figure { text-align: center; }
+.block-canvas figure img { max-width: 100%; max-height: 220px; border-radius: 8px; }
+.block-canvas figcaption { font-size: 12px; color: var(--wp-muted); margin-top: 6px; }
+.block-add-bar { display: flex; gap: 8px; flex-wrap: wrap; padding: 14px 18px 18px; border-top: 1px solid var(--wp-border); margin-top: 4px; }
+.block-field-row { display: grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap: 8px; margin-top: 8px; }
+.block-img-empty { width: 100%; height: 90px; border: 2px dashed var(--wp-border); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--wp-muted); font-size: 12px; }
+/* ── Ảnh trong khối: thu gọn / dải xem nhanh (cho bài nhiều ảnh) ── */
+.block-gallery-strip { background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 10px; padding: 12px 14px; margin-bottom: 14px; }
+.block-gallery-label { font-size: 11px; color: var(--wp-muted); margin-bottom: 8px; }
+.block-gallery-thumbs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+.block-gallery-thumb { width: 44px; height: 44px; object-fit: cover; border-radius: 6px; border: 1px solid var(--wp-border); cursor: pointer; flex-shrink: 0; transition: transform .12s, border-color .12s; }
+.block-gallery-thumb:hover { transform: scale(1.08); border-color: var(--wp-blue); }
+.block-gallery-actions { display: flex; gap: 8px; margin-top: 10px; }
+.block-item-collapsed { padding-top: 6px; padding-bottom: 6px; }
+.block-img-collapsed-row { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 4px 2px; border-radius: 8px; }
+.block-img-collapsed-row:hover { background: rgba(34,113,177,.12); }
+.block-img-collapsed-thumb { width: 40px; height: 40px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
+.block-img-collapsed-empty { display: flex; align-items: center; justify-content: center; background: var(--wp-bg); border: 1px dashed var(--wp-border); font-size: 15px; }
+.block-img-collapsed-info { min-width: 0; flex: 1; }
+.block-img-collapsed-alt { font-size: 13px; color: var(--wp-title); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.block-img-collapsed-caption { font-size: 11px; color: var(--wp-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@keyframes blockFlash { 0%, 100% { background: transparent; } 30% { background: rgba(34,113,177,.12); } }
+.block-item-flash { animation: blockFlash 1.2s ease-out; border-radius: 10px; }
+/* Sidebar widgets */
+.status-indicator { display: flex; align-items: center; gap: 8px; font-size: 12px; padding: 10px 0; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--wp-green); flex-shrink: 0; animation: pulse 2s infinite; }
+.status-dot.saving { background: var(--wp-amber); animation: none; }
+.status-dot.error { background: var(--wp-red); animation: none; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+.save-log { font-size: 11px; color: var(--wp-muted); line-height: 1.7; max-height: 120px; overflow-y: auto; }
+.deploy-info { background: rgba(0,229,255,.05); border: 1px solid rgba(34,113,177,.12); border-radius: 8px; padding: 12px; font-size: 11px; color: var(--wp-text); line-height: 1.8; }
+.deploy-info strong { color: var(--wp-blue); }
+/* ── Loading ── */
+@keyframes spin { to { transform: rotate(360deg); } }
+/* ── Toast ── */
+#toast { position: fixed; bottom: 24px; right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+.toast-item { background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 10px; padding: 12px 16px; font-size: 13px; min-width: 260px; display: flex; align-items: center; gap: 10px; animation: toastIn .2s ease; box-shadow: 0 8px 32px rgba(0,0,0,.5); }
+.toast-item.success { border-color: rgba(52,211,153,.4); }
+.toast-item.error { border-color: rgba(255,48,128,.4); }
+.toast-icon { font-size: 16px; flex-shrink: 0; }
+@keyframes toastIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none} }
+/* ── Empty state ── */
+.empty-state { text-align: center; padding: 60px 24px; color: var(--wp-muted); }
+.empty-icon { font-size: 48px; margin-bottom: 16px; opacity: .5; }
+/* ── Rankings editor ── */
+.rank-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--wp-border); margin-bottom: 20px; flex-wrap: wrap; }
+.rank-tab { padding: 9px 18px; border: none; background: none; color: var(--wp-muted); cursor: pointer; font-size: 13px; font-weight: 600; border-bottom: 2px solid transparent; transition: all .15s; }
+.rank-tab:hover { color: var(--wp-title); }
+.rank-entry { display: grid; grid-template-columns: 72px 1fr; gap: 12px; align-items: start; padding: 12px; border: 1px solid var(--wp-border); border-radius: 10px; margin-bottom: 8px; background: var(--wp-card); transition: border .15s, box-shadow .15s; }
+.rank-entry:hover { border-color: rgba(0,229,255,.3); box-shadow: 0 4px 14px rgba(0,0,0,.16); }
+.rank-entry.top3 { border-color: rgba(0,229,255,.3); background: rgba(0,229,255,.03); }
+.rank-num { font-size: 20px; font-weight: 800; color: var(--wp-blue); text-align: center; padding-top: 6px; }
+.rank-num.gold { color: #fbbf24; }
+.rank-num.silver { color: #a0aec0; }
+.rank-num.bronze { color: #cd7f32; }
+.rank-img-prev { width: 72px; height: 54px; object-fit: cover; border-radius: 6px; background: var(--wp-bg); display: block; margin-top: 6px; }
+.rank-fields { display: grid; gap: 6px; }
+.rank-row { display: grid; grid-template-columns: 1fr 90px 90px; gap: 8px; }
+.rank-input-sm { background: var(--wp-bg); border: 1px solid var(--wp-border); border-radius: 6px; padding: 5px 8px; color: var(--wp-title); font-size: 12px; outline: none; width: 100%; }
+.rank-input-sm:focus { border-color: var(--wp-blue); }
+/* ── Live preview cards (xem trước trực tiếp, sửa chữ ngay trên thẻ) ── */
+.live-hero-card, .live-fc-card { position: relative; width: 100%; border-radius: 12px; overflow: hidden; background-size: cover; background-position: center; background-color: var(--wp-bg); display: flex; align-items: flex-end; margin-bottom: 14px; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+.live-hero-card { min-height: 240px; }
+.live-fc-card { min-height: 170px; }
+.live-hero-card::before, .live-fc-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.4) 55%, rgba(0,0,0,.05) 100%); }
+.live-card-body { position: relative; z-index: 1; padding: 20px; width: 100%; }
+.live-tag { display: inline-block; background: var(--wp-blue); color: #000; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.live-title { font-size: 22px; font-weight: 800; color: #fff; line-height: 1.3; outline: none; text-shadow: 0 2px 10px rgba(0,0,0,.5); border-radius: 4px; padding: 2px 4px; margin: -2px -4px; }
+.live-title:focus, .live-sub:focus, .sc-title-live:focus, .ticker-text:focus { background: rgba(0,229,255,.12); box-shadow: 0 0 0 1px var(--wp-blue); }
+.live-title:empty:before { content: attr(data-ph); color: rgba(255,255,255,.4); }
+.live-sub { font-size: 13px; color: rgba(255,255,255,.88); margin-top: 8px; outline: none; max-width: 640px; border-radius: 4px; padding: 2px 4px; margin-left: -4px; }
+.live-sub:empty:before { content: attr(data-ph); color: rgba(255,255,255,.35); }
+.live-edit-hint { font-size: 10.5px; color: var(--wp-muted); margin: -8px 0 14px; }
+.live-section-badge { position: absolute; top: 14px; left: 14px; z-index: 2; font-size: 10px; font-weight: 800; letter-spacing: .08em; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; box-shadow: 0 4px 12px rgba(0,0,0,.35); }
+.live-badge-hero { background: var(--wp-blue); color: #001018; }
+.live-badge-fc { background: var(--wp-blue); color: #fff; }
+.toc-link { display: flex; align-items: center; gap: 8px; padding: 8px 6px; border-radius: 7px; font-size: 12.5px; color: var(--wp-text); text-decoration: none; transition: background .15s, color .15s; }
+.toc-link:hover { background: var(--wp-bg); color: var(--wp-title); }
+.live-edit-hint strong { color: var(--wp-text); }
+/* ── Trình soạn thảo trang chủ kiểu Elementor (iframe + click-to-edit) ── */
+.home-visual-editor { grid-template-columns: 1fr 340px; }
+.visual-hint { font-size: 12px; color: var(--wp-text); background: rgba(34,113,177,.12); border: 1px solid rgba(0,229,255,.25); border-radius: 8px; padding: 9px 14px; margin-bottom: 14px; }
+.visual-iframe-wrap { background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,.14); height: calc(100vh - 220px); min-height: 500px; }
+.home-visual-iframe { width: 100%; height: 100%; border: 0; display: block; background: #150a2c; }
+.block-nav-item { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 8px 8px; border-radius: 7px; font-size: 12.5px; color: var(--wp-text); background: none; border: none; cursor: pointer; transition: background .15s, color .15s; font-family: inherit; }
+.block-nav-item:hover { background: var(--wp-bg); color: var(--wp-title); }
+.home-block-panel { background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 12px; padding: 16px 18px; max-height: calc(100vh - 340px); overflow-y: auto; }
+.home-panel-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--wp-border); }
+.home-panel-head h3 { margin: 0; font-size: 13px; color: var(--wp-title); }
+.home-item-card { background: var(--wp-bg); border: 1px solid var(--wp-border); border-radius: 9px; padding: 12px; margin-bottom: 10px; }
+.home-item-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; font-size: 11px; font-weight: 700; color: var(--wp-muted); }
+.home-item-actions { display: flex; gap: 4px; }
+.home-item-actions button { background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 6px; width: 24px; height: 24px; color: var(--wp-text); cursor: pointer; font-size: 11px; }
+.home-item-actions button:hover { color: var(--wp-title); border-color: var(--wp-blue); }
+.home-ticker-row { display: flex; gap: 6px; align-items: center; margin-bottom: 8px; }
+.home-ticker-row .form-input { margin: 0; }
+.empty-state-mini { font-size: 12.5px; color: var(--wp-muted); text-align: center; padding: 24px 8px; }
+.home-item-collapsed { padding: 8px 10px; }
+.home-item-collapsed .home-item-head { margin-bottom: 4px; }
+.home-item-summary { display: flex; align-items: center; gap: 9px; cursor: pointer; }
+.home-item-thumb { width: 34px; height: 34px; border-radius: 6px; object-fit: cover; flex-shrink: 0; background: var(--wp-card); }
+.home-item-thumb-empty { display: flex; align-items: center; justify-content: center; color: var(--wp-muted); font-size: 16px; }
+.home-item-summary-text { font-size: 12.5px; color: var(--wp-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* ── Layout sidebar Home editor: pane xem trước + danh sách khối luôn cố định
+   trong tầm nhìn, chỉ phần panel chỉnh sửa (có thể rất dài) tự cuộn riêng —
+   tránh việc cả trang phải cuộn khiến iframe xem trước bị trôi mất khỏi màn
+   hình như trước (lỗi báo cáo: sidebar dài làm mất đồng bộ với bản xem trước). ──*/
+.home-visual-editor .home-block-panel { flex: 1 1 auto; min-height: 0; max-height: none; }
+.home-tab-bar { display: flex; gap: 4px; margin-bottom: 12px; background: var(--wp-bg); border-radius: 8px; padding: 3px; }
+.home-tab-btn { flex: 1; background: none; border: none; border-radius: 6px; padding: 7px 4px; font-size: 11.5px; color: var(--wp-muted); cursor: pointer; font-family: inherit; transition: background .15s, color .15s; }
+/* ── Command palette (Ctrl/Cmd+K) — tìm nhanh kiểu Linear/Vercel/Notion ── */
+.cmdk-trigger { display: flex; align-items: center; gap: 8px; width: 100%; padding: 9px 12px; background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 8px; color: var(--wp-muted); font-size: 12.5px; cursor: pointer; transition: border-color .15s, background .15s; font-family: inherit; }
+.cmdk-trigger:hover { border-color: rgba(0,229,255,.35); background: var(--wp-bg); }
+.cmdk-trigger kbd { margin-left: auto; font-family: inherit; font-size: 10px; font-weight: 700; color: var(--wp-text); background: rgba(0,0,0,.05); border: 1px solid var(--wp-border); border-radius: 5px; padding: 2px 6px; }
+@keyframes cmdkIn { from { opacity: 0; transform: translateY(-8px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.cmdk-esc { font-size: 10px; font-weight: 700; color: var(--wp-muted); background: rgba(0,0,0,.05); border: 1px solid var(--wp-border); border-radius: 5px; padding: 2px 6px; flex-shrink: 0; }
+.cmdk-group-label { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--wp-muted); padding: 10px 10px 6px; }
+.cmdk-item-icon { width: 30px; height: 30px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: var(--wp-bg); border-radius: 7px; font-size: 14px; }
+.cmdk-item-body { flex: 1; min-width: 0; }
+.cmdk-item-title { font-size: 13.5px; color: var(--wp-title); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cmdk-item-hint { font-size: 11px; color: var(--wp-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; }
+.cmdk-item-tag { font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--wp-blue); background: rgba(0,229,255,.1); border-radius: 5px; padding: 3px 7px; flex-shrink: 0; }
+/* ── Media Inserter (kiểu "Add Media" của WordPress) ────────────────────── */
+.media-modal-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.media-modal-or { font-size: 12px; color: var(--wp-muted); }
+.media-preview-empty { color: var(--wp-muted); font-size: 12px; padding: 30px; text-align: center; }
+.media-video-embed-wrap { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; }
+.media-video-embed-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.block-video-embed { border-radius: 8px; overflow: hidden; }
+/* ── SEO Score panel (kiểu Yoast SEO / Rank Math) ────────────────────────── */
+.seo-score-head { display: flex; align-items: center; gap: 14px; padding: 4px 0 16px; }
+.seo-score-badge { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 800; flex-shrink: 0; transition: background .2s, color .2s; }
+.seo-score-badge.seo-good { background: rgba(34,197,94,.15); color: #16a34a; }
+.seo-score-badge.seo-ok { background: rgba(245,158,11,.15); color: #d97706; }
+.seo-score-badge.seo-bad { background: rgba(239,68,68,.15); color: #dc2626; }
+.seo-score-label { font-size: 13.5px; font-weight: 700; }
+.seo-score-sub { font-size: 11px; color: var(--wp-muted); margin-top: 2px; }
+.seo-score-label.seo-good { color: #16a34a; }
+.seo-score-label.seo-ok { color: #d97706; }
+.seo-score-label.seo-bad { color: #dc2626; }
+.seo-checklist { display: flex; flex-direction: column; gap: 9px; margin-top: 4px; }
+.seo-check-item { display: flex; gap: 9px; align-items: flex-start; font-size: 12px; }
+.seo-check-icon { flex-shrink: 0; margin-top: 1px; font-size: 12px; }
+.seo-check-label { color: var(--wp-title); font-weight: 600; }
+.seo-check-hint { color: var(--wp-muted); margin-top: 2px; line-height: 1.5; }
+.sc-card { display: flex; gap: 12px; padding: 10px; border: 1px solid var(--wp-border); border-radius: 10px; margin-bottom: 8px; background: var(--wp-card); transition: border .15s, box-shadow .15s, opacity .15s; }
+.sc-card:hover { border-color: rgba(0,229,255,.3); box-shadow: 0 4px 14px rgba(0,0,0,.16); }
+.sc-card.dragging { opacity: .35; }
+.sc-drag-handle { cursor: grab; color: var(--wp-muted); display: flex; align-items: center; padding: 0 2px; font-size: 15px; user-select: none; }
+.sc-drag-handle:active { cursor: grabbing; }
+.sc-thumb { width: 96px; height: 66px; object-fit: cover; border-radius: 8px; background: var(--wp-bg); flex-shrink: 0; }
+.sc-body { flex: 1; min-width: 0; }
+.sc-title-live { font-size: 14px; font-weight: 700; color: var(--wp-title); outline: none; border-radius: 4px; padding: 1px 3px; margin: -1px -3px; }
+.sc-title-live:empty:before { content: 'Tiêu đề tin phụ...'; color: var(--wp-muted); }
+.sc-fields-row { display: flex; gap: 6px; margin-top: 8px; }
+.sc-actions-col { display: flex; flex-direction: column; gap: 4px; justify-content: center; }
+.ticker-chip { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border: 1px solid var(--wp-border); border-radius: 8px; background: var(--wp-card); margin-bottom: 6px; transition: border .15s, opacity .15s; }
+.ticker-chip:hover { border-color: rgba(0,229,255,.3); }
+.ticker-chip.dragging { opacity: .35; }
+.ticker-chip .drag-handle { cursor: grab; color: var(--wp-muted); flex-shrink: 0; font-size: 14px; user-select: none; }
+.ticker-chip .drag-handle:active { cursor: grabbing; }
+.ticker-text { flex: 1; outline: none; font-size: 13px; color: var(--wp-title); min-width: 0; border-radius: 4px; padding: 2px 4px; margin: -2px -4px; }
+/* ── Bảng tin (Dashboard) ── */
+.dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+.dash-stat-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 2px; border-bottom: 1px dashed var(--wp-border); font-size: 13px; color: var(--wp-text); }
+.dash-stat-row:last-child { border-bottom: none; }
+.dash-stat-row strong { color: var(--wp-title); font-size: 14px; }
+.dash-stat-total { font-weight: 700; color: var(--wp-title); margin-bottom: 2px; }
+.dash-stat-total strong { color: var(--wp-blue); font-size: 20px; }
+.dash-recent-row { display: flex; align-items: center; gap: 10px; padding: 9px 6px; border-radius: 8px; cursor: pointer; transition: background .15s; }
+.dash-recent-row:hover { background: var(--wp-bg); }
+.dash-recent-cat { flex-shrink: 0; }
+.dash-recent-title { flex: 1; min-width: 0; font-size: 13px; color: var(--wp-title); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dash-recent-go { font-size: 11px; color: var(--wp-blue); opacity: 0; transition: opacity .15s; flex-shrink: 0; }
+.dash-recent-row:hover .dash-recent-go { opacity: 1; }
+@media(max-width:900px) { .dash-grid { grid-template-columns: 1fr; } }
+/* ── Pages grid ── */
+.pages-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); gap: 10px; }
+.page-card { background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 10px; padding: 14px; cursor: pointer; transition: border .15s; }
+.page-card:hover { border-color: rgba(0,229,255,.35); }
+.page-card .pc-icon { font-size: 24px; margin-bottom: 8px; }
+.page-card .pc-name { font-size: 13px; font-weight: 600; color: var(--wp-title); margin-bottom: 4px; }
+.page-card .pc-file { font-size: 10px; color: var(--wp-muted); }
+.page-card .pc-actions { display: flex; gap: 6px; margin-top: 10px; }
+/* ── Responsive ── */
+@media(max-width:768px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; width: 100%; align-items: stretch; }
+  .nav-group { display: block; }
+  .nav-group-head { display: none; }
+  .nav-flyout { position: static; display: block !important; box-shadow: none; border: none; padding: 0; background: none; min-width: 0; }
+  .flyout-title { padding: 14px 12px 4px; }
+}
 </style>
 </head>
 <body>
