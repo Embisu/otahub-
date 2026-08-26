@@ -2061,6 +2061,13 @@ function showView(view) {
   else if (view === 'rankings') loadRankings();
   else if (view === 'users') loadUsers();
   else if (view === 'auditlog') loadAuditLog();
+  else {
+    // 'media' va 'rankmath' co nut o sidebar/dashboard nhung chua tung duoc
+    // xay thanh man hinh rieng — truoc day bam vao thi khong co gi xay ra
+    // (setMain khong duoc goi), trang cu do khong bi xoa nen nguoi dung tuong
+    // nhu bam khong an thua. Hien placeholder ro rang thay vi im lang.
+    setMain(`<div class="empty-state"><div class="empty-icon">🚧</div><p>Man hinh nay chua duoc xay dung.</p></div>`);
+  }
 }
 
 // ── Bảng tin (Dashboard) ──────────────────────────────────────────────────
