@@ -102,11 +102,6 @@
 
 
 <style>
-
-
-
-
-
 :root{--bg:#0b0418;--surf:#150a2c;--surf2:#1d1040;--card:#190c36;--cyan:#00e5ff;--sakura:#ff3080;--violet:#7c3aed;--lav:#a78bfa;--amber:#fbbf24;--green:#34d399;--white:#f0eeff;--dim:rgba(240,238,255,.72);--muted:rgba(240,238,255,.38);--border:rgba(255,255,255,.07);--bcyan:rgba(0,229,255,.18);--ease:cubic-bezier(.16,1,.3,1);--fd:'Rajdhani',sans-serif;--fb:'Space Grotesk',sans-serif}
 
 
@@ -393,39 +388,36 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 .ft-bot{max-width:1440px;margin:0 auto;padding:16px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .ft-copy{font-size:11px;color:rgba(240,238,255,.22);letter-spacing:.04em}
 @media(max-width:1024px){.ft-in{grid-template-columns:1fr 1fr}}
-@media(max-width:768px){.ft-in{grid-template-columns:1fr;gap:28px}.ft-bot{flex-direction:column;gap:10px}}
 
-
-@media(max-width:900px){
-
-
-.art-hero{height:340px}
-
-
-.art-layout{grid-template-columns:1fr;gap:0}
-
-
-.art-sidebar{display:none}
-
-
-.related-grid{grid-template-columns:1fr}
-
-
-.ham{display:flex}
-
-
-.nav-links{display:none}
-
-
-.mobile-nav{display:flex}
-
-
+@media(max-width: 900px) {
+  .art-layout { grid-template-columns: 1fr; gap: 0; }
+  .art-sidebar { display: none; }
+  .related-grid { grid-template-columns: 1fr; }
 }
-
-
-
-
-
+@media(max-width: 768px) {
+  .nav-links { display: none !important; }
+  .ham { display: flex; }
+  .mobile-nav { display: flex; }
+  .art-hero { height: auto; min-height: 320px; padding: 48px 16px 24px; }
+  .art-hero-title { font-size: clamp(22px, 5.5vw, 30px); line-height: 1.22; }
+  .art-hero-excerpt { font-size: 13.5px; line-height: 1.55; }
+  .art-main { padding: 0 16px; }
+  .art-body { font-size: 16px; line-height: 1.75; }
+  .art-body h2 { font-size: 20px; margin: 28px 0 12px; }
+  .art-body h3 { font-size: 17px; margin: 20px 0 8px; }
+  .highlight-box { padding: 16px 18px; margin-bottom: 24px; }
+  .score-box { flex-direction: column; text-align: center; gap: 12px; padding: 18px 16px; }
+  .share-row { flex-wrap: wrap; gap: 8px; }
+  .share-btn { padding: 8px 14px; font-size: 12px; }
+}
+@media(max-width: 480px) {
+  .art-hero { min-height: 280px; padding: 36px 14px 20px; }
+  .art-hero-title { font-size: 21px; }
+  .art-meta { font-size: 11px; gap: 6px; padding: 10px 0; margin-bottom: 20px; }
+  .breadcrumb { font-size: 11.5px; margin-bottom: 14px; }
+  .art-body { font-size: 15px; line-height: 1.7; }
+  .highlight-box { padding: 14px 14px; }
+}
 </style>
 
 

@@ -190,41 +190,36 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 .ft-bot{max-width:1440px;margin:0 auto;padding:16px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .ft-copy{font-size:11px;color:rgba(240,238,255,.22);letter-spacing:.04em}
 @media(max-width:1024px){.ft-in{grid-template-columns:1fr 1fr}}
-@media(max-width:768px){.ft-in{grid-template-columns:1fr;gap:28px}.ft-bot{flex-direction:column;gap:10px}}
-@media(max-width:900px){
-.art-hero{height:320px}
-.art-hero-content{bottom:24px;padding:0 18px}
-.art-hero-excerpt{display:none}
-.art-layout{grid-template-columns:1fr;gap:0;padding:0 18px}
-.art-main{padding:24px 0 60px}
-.art-sidebar{display:none}
-.related-grid{grid-template-columns:1fr}
-.ham{display:flex}
-.nav-links{display:none}
-.mobile-nav{display:flex}
-.score-box{flex-direction:column;text-align:center;gap:10px}
-.art-body{font-size:17px;line-height:1.8}
-.art-body h2{font-size:22px;margin:32px 0 14px}
-.art-body h3{font-size:18px;margin:24px 0 10px}
-.highlight-box{padding:18px 20px;margin-bottom:28px}
-.info-table{grid-template-columns:1fr}
-.share-row{gap:8px}
-}
-@media(max-width:480px){
-.art-hero{height:280px}
-.art-hero-title{font-size:24px}
-.art-meta{gap:10px;font-size:12px;padding:12px 0;margin-bottom:24px}
-.breadcrumb{font-size:12px;margin-bottom:18px}
-}
-.art-layout{grid-template-columns:1fr;gap:0}
-.art-sidebar{display:none}
-.related-grid{grid-template-columns:1fr}
-.ham{display:flex}
-.nav-links{display:none}
-.mobile-nav{display:flex}
-.score-box{flex-direction:column;text-align:center;gap:10px}
-}
 
+@media(max-width: 900px) {
+  .art-layout { grid-template-columns: 1fr; gap: 0; }
+  .art-sidebar { display: none; }
+  .related-grid { grid-template-columns: 1fr; }
+}
+@media(max-width: 768px) {
+  .nav-links { display: none !important; }
+  .ham { display: flex; }
+  .mobile-nav { display: flex; }
+  .art-hero { height: auto; min-height: 320px; padding: 48px 16px 24px; }
+  .art-hero-title { font-size: clamp(22px, 5.5vw, 30px); line-height: 1.22; }
+  .art-hero-excerpt { font-size: 13.5px; line-height: 1.55; }
+  .art-main { padding: 0 16px; }
+  .art-body { font-size: 16px; line-height: 1.75; }
+  .art-body h2 { font-size: 20px; margin: 28px 0 12px; }
+  .art-body h3 { font-size: 17px; margin: 20px 0 8px; }
+  .highlight-box { padding: 16px 18px; margin-bottom: 24px; }
+  .score-box { flex-direction: column; text-align: center; gap: 12px; padding: 18px 16px; }
+  .share-row { flex-wrap: wrap; gap: 8px; }
+  .share-btn { padding: 8px 14px; font-size: 12px; }
+}
+@media(max-width: 480px) {
+  .art-hero { min-height: 280px; padding: 36px 14px 20px; }
+  .art-hero-title { font-size: 21px; }
+  .art-meta { font-size: 11px; gap: 6px; padding: 10px 0; margin-bottom: 20px; }
+  .breadcrumb { font-size: 11.5px; margin-bottom: 14px; }
+  .art-body { font-size: 15px; line-height: 1.7; }
+  .highlight-box { padding: 14px 14px; }
+}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://otahub.asia/"},{"@type":"ListItem","position":2,"name":"Manga","item":"https://otahub.asia/manga"},{"@type":"ListItem","position":3,"name":"Jujutsu Kaisen Kết Thúc: Phân Tích Ending Gây Tranh Cãi Nhất Năm 2025","item":"https://otahub.asia/jujutsu-kaisen-ket-thuc"}]}</script>
 </head>
