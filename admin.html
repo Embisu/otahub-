@@ -1246,14 +1246,26 @@ function cmdkKeydown(e) {
 
 // ── Đăng nhập ──────────────────────────────────────────────────────────────
 window.onload = async () => {
+  let authed = false;
   try {
     const r = await fetch('/api/admin/me', { credentials: 'same-origin' });
     if (r.ok) {
       const data = await r.json();
       CURRENT_USER = data.user;
-      startApp();
+      authed = true;
     }
   } catch(e) { /* chưa đăng nhập — cứ để màn hình đăng nhập hiện ra */ }
+  if (authed) {
+    // startApp() tách khỏi try/catch phía trên: nếu nó lỗi (vd tham chiếu 1 id
+    // không còn tồn tại trong HTML), lỗi cần hiện ra rõ ràng thay vì bị nuốt
+    // âm thầm bởi catch ở trên — trước đây đúng kiểu lỗi này đã khiến cả trang
+    // kẹt mãi ở "Đang tải..." mà không có bất kỳ thông báo nào.
+    try { startApp(); }
+    catch(e) {
+      console.error('startApp() that bai:', e);
+      setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Loi khoi dong trang: ${esc(e.message)}</p></div>`);
+    }
+  }
 };
 
 
@@ -1301,8 +1313,14 @@ function startApp() {
   document.getElementById('setup-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
   const roleTxt = ROLE_LABEL[CURRENT_USER.role] || CURRENT_USER.role || '';
-  document.getElementById('conn-info').innerHTML =
-    `<strong>${esc(CURRENT_USER.username)}</strong>${roleTxt ? ' · ' + esc(roleTxt) : ''}<br>Embisu/otahub-`;
+  // Header WP-style dùng #wtb-user-name/#wtb-avatar (không phải #conn-info của
+  // giao diện sidebar cũ) — tham chiếu nhầm id cũ từng khiến startApp() văng
+  // lỗi âm thầm ngay từ dòng này, kẹt cả trang ở "Đang tải..." vĩnh viễn vì
+  // loadArticles() phía dưới không bao giờ được gọi tới.
+  const userNameEl = document.getElementById('wtb-user-name');
+  if (userNameEl) userNameEl.textContent = 'Chào, ' + (CURRENT_USER.username || '') + (roleTxt ? ' · ' + roleTxt : '');
+  const avatarEl = document.getElementById('wtb-avatar');
+  if (avatarEl) avatarEl.textContent = (CURRENT_USER.username || 'AD').slice(0, 2).toUpperCase();
   // Quản lý tài khoản chỉ danh cho admin — an tuong nhung sai vai tro se bi
   // chan lai o backend, nhung an di cho gon giao dien.
   const usersNav = document.getElementById('nav-users');
