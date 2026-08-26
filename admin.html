@@ -944,6 +944,9 @@ body { background: var(--wp-bg); color: var(--wp-title); font-family: 'Segoe UI'
 .meta-box-head .field-group-title { margin: 0; padding: 0; border: none; }
 .meta-box-head .chev { color: var(--wp-muted); transition: transform .15s; font-size: 12px; }
 .meta-box-content { padding: 0 20px 20px; display: none; }
+.meta-box-content.open { display: block; }
+.meta-box-head .chev { display: inline-block; }
+.meta-box-head.open .chev { transform: rotate(90deg); }
 .field-group { background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,.14); }
 .field-group-title { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--wp-muted); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--wp-border); }
 .form-input { width: 100%; background: var(--wp-bg); border: 1px solid var(--wp-border); border-radius: 8px; padding: 9px 12px; color: var(--wp-title); font-size: 13px; outline: none; transition: border .15s; font-family: inherit; }
@@ -1437,6 +1440,12 @@ let HAS_UNSAVED_CHANGES = false; // cảnh báo khi rời trang nếu còn thay 
 // ── Trạng thái trình soạn thảo Elementor (iframe xem trước thật + click-to-edit) ──
 let ART_TITLE = '';
 let ART_EXCERPT = '';
+// Khối "Tóm tắt điểm nhấn" (.highlight-box) nằm NGOÀI <article class="art-body">
+// nên trước đây không được đưa vào body-visual → không sửa được. Theo dõi
+// riêng 2 field này để tag contenteditable trong buildArticlePreviewHtml().
+let ART_HB_LABEL = '';
+let ART_HB_TEXT = '';
+let ART_HAS_HB = false;
 let ART_PREVIEW_TIMER = null;
 let ART_BLOCKLIST_TIMER = null;
 let ART_SLUG_TOUCHED = false; // true khi user tự tay sửa ô URL — ngừng tự sinh từ tiêu đề
@@ -1447,6 +1456,19 @@ window.addEventListener('beforeunload', (e) => {
   e.preventDefault();
   e.returnValue = '';
 });
+
+// Cảnh báo TRONG admin (không đóng/refresh tab) khi chuyển sang sửa bài/trang
+// khác trong lúc còn thay đổi chưa lưu — showView() đã tự check việc này khi
+// chuyển giữa các mục sidebar (Dashboard/Bài viết/...), nhưng mở thẳng 1 bài/
+// trang khác (bấm vào bài trong danh sách, "Viết bài mới", Command Palette,
+// mở Home/Hub editor...) trước đây KHÔNG qua showView() nên bỏ qua luôn cảnh
+// báo này — gọi hàm dùng chung này ở đầu mỗi điểm vào đó.
+function confirmDiscardUnsaved() {
+  if (!HAS_UNSAVED_CHANGES) return true;
+  const ok = confirm('Bạn có thay đổi chưa lưu. Rời khỏi đây sẽ mất các thay đổi đó — tiếp tục?');
+  if (ok) HAS_UNSAVED_CHANGES = false;
+  return ok;
+}
 
 // Phím tắt Ctrl/Cmd+S để lưu nhanh — bấm nút "Lưu & Deploy" đang hiển thị (nếu có)
 // Phím tắt Ctrl/Cmd+K để mở Command Palette (tìm nhanh, kiểu Linear/Vercel/Notion)
@@ -2044,6 +2066,14 @@ function extractExcerpt(html) {
   const m = html.match(/<p class="art-hero-excerpt">([^<]*)<\/p>/);
   return m ? unesc(m[1]).trim() : '';
 }
+// Khối tóm tắt (.highlight-box > .hb-label + .hb-text) — dùng ở gần như mọi
+// bài viết, nằm ngay trước <article class="art-body">.
+function extractHighlightBox(html) {
+  if (!/<div class="highlight-box">/.test(html)) return null;
+  const label = extract(html, /<div class="hb-label">([^<]*)<\/div>/) || '';
+  const m = html.match(/<div class="hb-text">([\s\S]*?)<\/div>/);
+  return { label, text: m ? m[1].trim() : '' };
+}
 
 // ── Views ──────────────────────────────────────────────────────────────────
 function setMain(html) { document.getElementById('main-content').innerHTML = html; }
@@ -2464,6 +2494,7 @@ async function loadThumb(imgEl) {
 
 // ── Editor ─────────────────────────────────────────────────────────────────
 async function editArticle(file) {
+  if (!confirmDiscardUnsaved()) return;
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải bài viết...</span></div>`);
   try {
     const data = await ghGet(file);
@@ -2513,6 +2544,10 @@ function renderEditor(file, html) {
   const keyword = extract(html, /name="focus-keyword" content="([^"]*)"/) || '';
   ART_TITLE = title;
   ART_EXCERPT = excerpt;
+  const hb = extractHighlightBox(html);
+  ART_HAS_HB = !!hb;
+  ART_HB_LABEL = hb ? hb.label : '';
+  ART_HB_TEXT = hb ? hb.text : '';
 
   // Chế độ Khối (kéo-thả) chỉ khả dụng cho bài có sẵn dữ liệu block ẩn (bài mới
   // tạo qua nút "Viết bài mới" — xem newArticle()). Bài cũ (~130 bài) không có
@@ -2555,7 +2590,7 @@ function renderEditor(file, html) {
           <div class="body-mode-tabs">
             ${BODY_BLOCKS ? `<button class="body-mode-tab active" id="body-mode-tab-blocks" onclick="switchBodyMode('blocks')">🧱 Khối (kéo-thả)</button>` : ''}
             <button class="body-mode-tab" id="body-mode-tab-visual" style="display:none" onclick="switchBodyMode('visual')">🖱️ Trực quan</button>
-            <button class="body-mode-tab" id="body-mode-tab-code" onclick="switchBodyMode('code')">🔤 Mã HTML (nâng cao)</button>
+            <button class="body-mode-tab" id="body-mode-tab-code" onclick="switchBodyMode(BODY_MODE === 'code' ? 'visual' : 'code')">🔤 Mã HTML (nâng cao)</button>
           </div>
           <div id="body-blocks-wrap" style="display:${BODY_BLOCKS ? 'block' : 'none'}">
             <div id="body-blocks-editor"></div>
@@ -2670,11 +2705,11 @@ function renderEditor(file, html) {
             <input class="form-input" id="ed-hero" style="flex:1" value="${esc(heroUrl)}" placeholder="URL ảnh bìa..." oninput="updateHeroPreview(this.value)"/>
             <button class="btn btn-secondary btn-sm btn-icon" title="Tải ảnh lên từ máy" onclick="triggerImageUpload(url => { const el = document.getElementById('ed-hero'); el.value = url; updateHeroPreview(url); })">📤</button>
           </div>
-          <div style="position:relative;overflow:hidden;border-radius:8px;margin-top:8px">
-            <img id="hero-preview" src="${heroUrl}" alt="Hero preview"
-              style="width:100%;height:130px;object-fit:cover;object-position:center ${heroPos}%;display:${heroUrl?'block':'none'};transition:object-position .1s"
+          <div style="position:relative;overflow:hidden;border-radius:8px;margin-top:8px" title="Bấm để chọn/đổi ảnh bìa">
+            <img id="hero-preview" src="${heroUrl}" alt="Hero preview" onclick="pickHeroImage()"
+              style="width:100%;height:130px;object-fit:cover;object-position:center ${heroPos}%;display:${heroUrl?'block':'none'};transition:object-position .1s;cursor:pointer"
               onerror="this.style.display='none';document.getElementById('hero-placeholder').style.display='flex'"/>
-            <div id="hero-placeholder" style="width:100%;height:130px;border-radius:8px;background:var(--surf2);border:2px dashed var(--border);display:${heroUrl?'none':'flex'};align-items:center;justify-content:center;color:var(--muted);font-size:12px">Chưa có ảnh bìa</div>
+            <div id="hero-placeholder" onclick="pickHeroImage()" style="width:100%;height:130px;border-radius:8px;background:var(--surf2);border:2px dashed var(--border);display:${heroUrl?'none':'flex'};align-items:center;justify-content:center;color:var(--muted);font-size:12px;cursor:pointer">🖼️ Chưa có ảnh bìa — bấm để chọn</div>
           </div>
           <div style="margin-top:10px">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
@@ -2924,6 +2959,18 @@ function updateSeoScore() {
         </div>
       </div>`).join('');
   }
+}
+
+// Bấm vào ảnh bìa (trong sidebar hoặc trong khung xem trước iframe) → mở
+// thẳng bảng chọn/tải ảnh, thay vì chỉ nhảy con trỏ tới ô URL trống (trước đây
+// người dùng bấm vào ảnh không thấy gì xảy ra vì ô URL nằm khuất phía trên).
+function pickHeroImage() {
+  openMediaModal(res => {
+    if (!res.src) return;
+    const el = document.getElementById('ed-hero');
+    if (el) el.value = res.src;
+    updateHeroPreview(res.src);
+  }, 'image');
 }
 
 function updateHeroPreview(url) {
@@ -3364,6 +3411,15 @@ function buildArticlePreviewHtml() {
     (m, p1, p2) => `${p1} data-oh-jump="cat">${esc(cat)}${p2}`);
   html = html.replace(/(<span class="am-tag">)[^<]*(<\/span>)/, (m, p1, p2) => p1 + esc(cat) + p2);
 
+  // Khối "Tóm tắt điểm nhấn" (.highlight-box) — nằm ngoài <article class="art-body">
+  // nên phải tag contenteditable riêng ở đây (xem extractHighlightBox()).
+  if (ART_HAS_HB) {
+    html = html.replace(/(<div class="hb-label")>[^<]*(<\/div>)/,
+      (m, p1, p2) => `${p1} contenteditable="true" data-ohfield="hbLabel">${esc(ART_HB_LABEL)}${p2}`);
+    html = html.replace(/(<div class="hb-text")>[\s\S]*?(<\/div>)/,
+      (m, p1, p2) => `${p1} contenteditable="true" data-ohfield="hbText">${ART_HB_TEXT}${p2}`);
+  }
+
   const bodyTagged = BODY_BLOCKS
     ? blocksToHtmlTagged(BODY_BLOCKS)
     : tagLegacyBodyForInlineEdit(document.getElementById('body-visual')?.innerHTML || '');
@@ -3428,7 +3484,7 @@ const ART_BRIDGE_SCRIPT = `<script>(function(){
     var fieldEl = e.target.closest('[data-ohfield]');
     if (fieldEl) {
       var field = fieldEl.getAttribute('data-ohfield');
-      var value = field === 'body' ? fieldEl.innerHTML : fieldEl.innerText;
+      var value = (field === 'body' || field === 'hbText') ? fieldEl.innerHTML : fieldEl.innerText;
       parent.postMessage({ type:'art-field-input', field: field, value: value }, '*');
       return;
     }
@@ -3461,6 +3517,8 @@ function bindArticleBridgeMessages() {
         }
       }
       else if (d.field === 'excerpt') ART_EXCERPT = d.value;
+      else if (d.field === 'hbLabel') ART_HB_LABEL = d.value;
+      else if (d.field === 'hbText') ART_HB_TEXT = d.value;
       else if (d.field === 'body') {
         // Đồng bộ ngược vào #body-visual (ẩn) — nguồn dữ liệu thật khi build
         // lại HTML lúc lưu/tự động lưu nháp, và khi chuyển sang tab "Mã HTML".
@@ -3484,7 +3542,7 @@ function bindArticleBridgeMessages() {
 
 function articleJumpTo(target) {
   let el = null;
-  if (target === 'heroimg') el = document.getElementById('ed-hero');
+  if (target === 'heroimg') { pickHeroImage(); return; }
   else if (target === 'cat') el = document.getElementById('ed-cat');
   else if (target === 'body-editor') el = document.getElementById('body-blocks-wrap') || document.getElementById('body-visual-wrap');
   else if (target && target.startsWith('block-')) { blockScrollTo(parseInt(target.slice(6), 10)); return; }
@@ -3599,6 +3657,11 @@ function applyArticleEditsToHtml(baseHtml) {
   // chưa từng được đọc/lưu — nay là field thật, xem extractExcerpt()).
   if (/<p class="art-hero-excerpt">[^<]*<\/p>/.test(html)) {
     html = html.replace(/(<p class="art-hero-excerpt">)[^<]*(<\/p>)/, `$1${esc(excerpt)}$2`);
+  }
+  // Khối "Tóm tắt điểm nhấn" (.highlight-box) — xem extractHighlightBox()/ART_HB_*.
+  if (ART_HAS_HB) {
+    html = html.replace(/(<div class="hb-label">)[^<]*(<\/div>)/, `$1${esc(ART_HB_LABEL)}$2`);
+    html = html.replace(/(<div class="hb-text">)[\s\S]*?(<\/div>)/, `$1${ART_HB_TEXT}$2`);
   }
   // Body — hỗ trợ cả mẫu hiện tại (art-body) lẫn mẫu cũ (art-body lang-vi active)
   if (/<article class="art-body">[\s\S]*?<\/article>/.test(html)) {
@@ -3742,6 +3805,7 @@ async function saveArticleDraftNow() {
 // khung sườn thật của bài viết đang chạy trên site — để bài mới tạo từ admin
 // trông giống hệt bài thật ngay từ đầu, thay vì trang trơ trụi thiếu CSS/nav.
 function newArticle(prefillTitle) {
+  if (!confirmDiscardUnsaved()) return;
   // Không hỏi tên file qua popup nữa — vào thẳng trình soạn thảo giống WordPress
   // "Add New Post". URL/slug tự sinh từ tiêu đề (nếu có) hoặc placeholder tạm,
   // và có thể chỉnh trực tiếp trong sidebar (ô "Đường dẫn URL") cho tới khi lưu.
@@ -3751,7 +3815,10 @@ function newArticle(prefillTitle) {
   const now = new Date();
   const iso = now.toISOString();
   const dateDisp = iso.slice(0,10);
-  const heroImg = 'https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg';
+  // Trước đây để tạm link ảnh Rick Astley (rickroll) làm placeholder — trông
+  // như lỗi/ảnh sai với người dùng thật. Để trống để hiện đúng khung "chưa có
+  // ảnh, bấm để tải lên" (xem updateHeroPreview()) thay vì 1 ảnh không liên quan.
+  const heroImg = '';
   const title = prefillTitle || 'Tiêu đề bài viết';
   const desc = 'Mô tả ngắn cho SEO (150-160 ký tự)';
   const cat = 'Gaming';
@@ -4291,6 +4358,7 @@ function bindHubBridgeMessages() {
 }
 
 async function hubEditor(file, label) {
+  if (!confirmDiscardUnsaved()) return;
   HAS_UNSAVED_CHANGES = false;
   HUB_LABEL = label || HUB_LABEL || 'Trang chuyên mục';
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải ${HUB_LABEL}...</span></div>`);
@@ -4889,6 +4957,7 @@ const HOME_BLOCKS = [
 function getArr(path) { return path.split('.').reduce((o,k)=>o[k], HOME_DATA); }
 
 async function homeEditor(file) {
+  if (!confirmDiscardUnsaved()) return;
   HAS_UNSAVED_CHANGES = false;
   file = file || 'index.html';
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải trang chủ...</span></div>`);
@@ -5424,6 +5493,7 @@ let ARR_DATA = [];
 let ARR_SHA = null;
 
 async function arrayEditor(cfgKey) {
+  if (!confirmDiscardUnsaved()) return;
   const cfg = ARRAY_PAGE_CONFIGS[cfgKey];
   if (!cfg) return;
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải ${cfg.label}...</span></div>`);

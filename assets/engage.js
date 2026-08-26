@@ -60,6 +60,12 @@ if(reviewArticle&&document.querySelector('.score-box')&&!reviewArticle.querySele
 }
 var row=document.querySelector('.share-row');
 if(!row)return;
+// Khi trang này đang được nhúng trong khung xem trước của trang admin (iframe
+// srcdoc, dùng để soạn bài) — reaction/bình luận không thể gọi được API thật
+// (iframe srcdoc có origin rỗng, bị chặn CORS) và về logic cũng không nên cho
+// tương tác thật lên bài đang soạn dở. Phát hiện trường hợp này để hiện UI ở
+// trạng thái vô hiệu hoá rõ ràng, thay vì im lặng không phản hồi khi bấm.
+var inPreviewFrame=(function(){try{return window.top!==window.self;}catch(e){return true;}})();
 var slug=(location.pathname.replace(/^\//,'')||'index.html').split('?')[0];
 var EMOJI={like:'👍',love:'❤️',wow:'😮'};
 
@@ -108,58 +114,69 @@ function renderReactions(counts){
   });
 }
 
-fetch('/api/engagement?slug='+encodeURIComponent(slug))
-  .then(function(r){return r.json();})
-  .then(function(d){
-    if(!d.ok){
-      if(d.error==='kv_not_bound'){
-        statusEl.textContent='Bình luận đang được thiết lập, quay lại sau nhé.';
-        form.style.display='none';
-      }
-      return;
-    }
-    renderReactions(d.reactions||{like:0,love:0,wow:0});
-    renderComments(d.comments||[]);
-  })
-  .catch(function(){statusEl.textContent='Không tải được bình luận — thử tải lại trang.';});
-
-wrap.querySelectorAll('.react-btn').forEach(function(btn){
-  btn.addEventListener('click',function(){
-    var e=btn.getAttribute('data-e');
-    var doneKey='otahub_react_'+slug+'_'+e;
-    if(localStorage.getItem(doneKey)){return;}
+if(inPreviewFrame){
+  // Đang xem trước trong admin — không gọi API thật, chỉ hiện rõ trạng thái
+  // "chỉ hoạt động trên bài đã xuất bản" thay vì để nút bấm không phản hồi gì.
+  statusEl.textContent='👁️ Đây là khung xem trước — reaction & bình luận chỉ hoạt động trên bài đã xuất bản.';
+  wrap.querySelectorAll('.react-btn').forEach(function(btn){
     btn.disabled=true;
-    fetch('/api/engagement',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slug:slug,type:'react',emoji:e})})
-      .then(function(r){return r.json();})
-      .then(function(d){
-        if(d.ok){renderReactions(d.reactions);localStorage.setItem(doneKey,'1');btn.classList.add('reacted');}
-        btn.disabled=false;
-      })
-      .catch(function(){btn.disabled=false;});
+    btn.title='Chỉ hoạt động trên bài đã xuất bản';
   });
-});
-
-form.addEventListener('submit', function(e){
-  e.preventDefault();
-  var name=form.querySelector('.c-name').value;
-  var text=form.querySelector('.c-text').value.trim();
-  var hp=form.querySelector('.hp-field').value;
-  if(!text)return;
-  var submitBtn=form.querySelector('.c-submit');
-  submitBtn.disabled=true;submitBtn.textContent='Đang gửi…';
-  fetch('/api/engagement',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slug:slug,type:'comment',name:name,text:text,hp:hp})})
+  form.querySelectorAll('input,textarea,button').forEach(function(el){ el.disabled=true; });
+} else {
+  fetch('/api/engagement?slug='+encodeURIComponent(slug))
     .then(function(r){return r.json();})
     .then(function(d){
-      submitBtn.disabled=false;submitBtn.textContent='Gửi bình luận';
-      if(d.ok&&d.comments){
-        renderComments(d.comments);
-        form.querySelector('.c-text').value='';
-      }else if(!d.ok){
-        statusEl.textContent='Gửi bình luận thất bại, thử lại sau.';
+      if(!d.ok){
+        if(d.error==='kv_not_bound'){
+          statusEl.textContent='Bình luận đang được thiết lập, quay lại sau nhé.';
+          form.style.display='none';
+        }
+        return;
       }
+      renderReactions(d.reactions||{like:0,love:0,wow:0});
+      renderComments(d.comments||[]);
     })
-    .catch(function(){submitBtn.disabled=false;submitBtn.textContent='Gửi bình luận';statusEl.textContent='Gửi bình luận thất bại, thử lại sau.';});
-});
+    .catch(function(){statusEl.textContent='Không tải được bình luận — thử tải lại trang.';});
+
+  wrap.querySelectorAll('.react-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var e=btn.getAttribute('data-e');
+      var doneKey='otahub_react_'+slug+'_'+e;
+      if(localStorage.getItem(doneKey)){return;}
+      btn.disabled=true;
+      fetch('/api/engagement',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slug:slug,type:'react',emoji:e})})
+        .then(function(r){return r.json();})
+        .then(function(d){
+          if(d.ok){renderReactions(d.reactions);localStorage.setItem(doneKey,'1');btn.classList.add('reacted');}
+          btn.disabled=false;
+        })
+        .catch(function(){btn.disabled=false;});
+    });
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name=form.querySelector('.c-name').value;
+    var text=form.querySelector('.c-text').value.trim();
+    var hp=form.querySelector('.hp-field').value;
+    if(!text)return;
+    var submitBtn=form.querySelector('.c-submit');
+    submitBtn.disabled=true;submitBtn.textContent='Đang gửi…';
+    fetch('/api/engagement',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slug:slug,type:'comment',name:name,text:text,hp:hp})})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        submitBtn.disabled=false;submitBtn.textContent='Gửi bình luận';
+        if(d.ok&&d.comments){
+          renderComments(d.comments);
+          form.querySelector('.c-text').value='';
+        }else if(!d.ok){
+          statusEl.textContent='Gửi bình luận thất bại, thử lại sau.';
+        }
+      })
+      .catch(function(){submitBtn.disabled=false;submitBtn.textContent='Gửi bình luận';statusEl.textContent='Gửi bình luận thất bại, thử lại sau.';});
+  });
+}
 
 var css='.engage-block{margin-top:8px;padding-top:8px}'+
 '.react-bar{display:flex;gap:10px;padding:20px 0;border-top:1px solid var(--border,rgba(255,255,255,.07))}'+
