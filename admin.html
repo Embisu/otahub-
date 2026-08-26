@@ -920,6 +920,17 @@ body { background: var(--wp-bg); color: var(--wp-title); font-family: 'Segoe UI'
 .search-input:focus { border-color: var(--wp-blue); }
 .filter-select { background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 8px; padding: 9px 12px; color: var(--wp-title); font-size: 13px; outline: none; }
 .articles-grid { display: grid; gap: 8px; }
+/* ── Media Library ── */
+.media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
+.media-card { background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; transition: border .15s, box-shadow .15s; }
+.media-card:hover { border-color: rgba(0,229,255,.35); box-shadow: 0 6px 18px rgba(0,0,0,.15); }
+.media-thumb-wrap { width: 100%; aspect-ratio: 4/3; background: var(--wp-bg); cursor: pointer; overflow: hidden; }
+.media-thumb-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.media-info { padding: 8px 10px 0; }
+.media-name { font-size: 11.5px; color: var(--wp-title); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.media-size { font-size: 10.5px; color: var(--wp-muted); margin-top: 2px; }
+.media-actions { display: flex; gap: 6px; padding: 8px 10px 10px; }
+.media-actions .btn { flex: 1; padding: 5px 6px; font-size: 11px; }
 .article-card { background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 12px; padding: 12px 16px; display: grid; grid-template-columns: 68px 1fr auto; gap: 14px; align-items: center; transition: border .15s, transform .15s, box-shadow .15s; cursor: pointer; }
 .article-card:hover { border-color: rgba(0,229,255,.35); transform: translateX(2px); box-shadow: 0 6px 18px rgba(0,0,0,.2); }
 .article-card:hover { border-color: rgba(0,229,255,.35); }
@@ -1717,6 +1728,21 @@ async function ghPut(path, content, sha, message) {
   return r.json();
 }
 
+async function ghDelete(path, sha, message) {
+  const r = await fetch(`/api/admin/gh/${path}`, {
+    method: 'DELETE',
+    credentials: 'same-origin',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ sha, message })
+  });
+  if (r.status === 401) { location.reload(); throw new Error('Phiên đăng nhập đã hết hạn.'); }
+  if (!r.ok) {
+    const e = await r.json().catch(()=>({}));
+    throw new Error(e.error || 'Lỗi khi xoá file');
+  }
+  return r.json();
+}
+
 // ── Bản nháp (draft) — KHÔNG commit lên GitHub, chỉ lưu tạm trong KV để
 // autosave liên tục mà không tạo hàng loạt commit "rác" trên production.
 // "Lưu & Deploy" mới thật sự xuất bản (ghPut) — sau khi xuất bản thành công,
@@ -2083,7 +2109,7 @@ function showView(view) {
   HAS_UNSAVED_CHANGES = false;
   CURRENT_VIEW = view;
   document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  const navMap = { dashboard: 'nav-dashboard', articles: 'nav-articles', rankings: 'nav-rankings', users: 'nav-users', auditlog: 'nav-auditlog' };
+  const navMap = { dashboard: 'nav-dashboard', articles: 'nav-articles', rankings: 'nav-rankings', users: 'nav-users', auditlog: 'nav-auditlog', media: 'nav-media', rankmath: 'nav-rankmath' };
   document.getElementById(navMap[view] || 'nav-articles')?.classList.add('active');
 
   if (view === 'dashboard') renderDashboard();
@@ -2091,11 +2117,9 @@ function showView(view) {
   else if (view === 'rankings') loadRankings();
   else if (view === 'users') loadUsers();
   else if (view === 'auditlog') loadAuditLog();
+  else if (view === 'media') renderMedia();
+  else if (view === 'rankmath') renderSeoDashboard();
   else {
-    // 'media' va 'rankmath' co nut o sidebar/dashboard nhung chua tung duoc
-    // xay thanh man hinh rieng — truoc day bam vao thi khong co gi xay ra
-    // (setMain khong duoc goi), trang cu do khong bi xoa nen nguoi dung tuong
-    // nhu bam khong an thua. Hien placeholder ro rang thay vi im lang.
     setMain(`<div class="empty-state"><div class="empty-icon">🚧</div><p>Man hinh nay chua duoc xay dung.</p></div>`);
   }
 }
@@ -2397,6 +2421,102 @@ function renderAuditLog(log) {
   `);
 }
 
+// ── Media Library — kiểu WordPress: liệt kê ảnh trong assets/img/ (kể cả
+// assets/img/uploads/) qua GitHub Contents API (ghGet trên 1 thư mục trả về
+// mảng file thay vì 1 file), cho tìm/copy URL/xoá (admin+editor). ─────────────
+let MEDIA_FILES = null;
+async function renderMedia() {
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải thư viện ảnh...</span></div>`);
+  try {
+    if (!MEDIA_FILES) await loadMediaFiles();
+    renderMediaPage();
+  } catch(e) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải Media: ${esc(e.message)}</p></div>`);
+  }
+}
+async function loadMediaFiles() {
+  const IMG_RE = /\.(jpe?g|png|webp|gif|svg)$/i;
+  const root = await ghGet('assets/img');
+  const rootList = Array.isArray(root) ? root : [];
+  let uploads = [];
+  if (rootList.some(f => f.type === 'dir' && f.name === 'uploads')) {
+    try {
+      const u = await ghGet('assets/img/uploads');
+      uploads = Array.isArray(u) ? u : [];
+    } catch(e) { /* thư mục uploads/ có thể rỗng/chưa tồn tại trên GitHub — bỏ qua */ }
+  }
+  const all = [...rootList, ...uploads].filter(f => f.type === 'file' && IMG_RE.test(f.name));
+  MEDIA_FILES = all.map(f => ({ name: f.name, path: f.path, sha: f.sha, size: f.size, url: '/' + f.path }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+function mediaFmtSize(bytes) {
+  if (!bytes && bytes !== 0) return '';
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+}
+function renderMediaPage() {
+  const canDelete = CURRENT_USER?.role === 'admin' || CURRENT_USER?.role === 'editor';
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">Media <small>${MEDIA_FILES.length} ảnh trong assets/img/</small></div>
+      <div class="header-actions">
+        <button class="btn btn-secondary btn-sm" onclick="triggerImageUpload(url => { toast('success', '✅ Đã tải ảnh lên: ' + url); MEDIA_FILES = null; renderMedia(); })">📤 Tải ảnh lên</button>
+      </div>
+    </div>
+    <div class="content-area">
+      <div class="search-row">
+        <input class="search-input" id="media-search" placeholder="Tìm theo tên file..." oninput="mediaApplyFilter()"/>
+      </div>
+      <div class="media-grid" id="media-grid"></div>
+    </div>
+  `);
+  window.__mediaCanDelete = canDelete;
+  mediaApplyFilter();
+}
+function mediaCardHtml(f) {
+  const canDelete = window.__mediaCanDelete;
+  return `<div class="media-card" id="media-card-${esc(f.sha)}">
+    <div class="media-thumb-wrap" onclick="window.open('${esc(f.url)}','_blank')" title="Bấm để xem ảnh gốc">
+      <img src="${esc(f.url)}" loading="lazy" alt="${esc(f.name)}" onerror="this.style.opacity=.25"/>
+    </div>
+    <div class="media-info">
+      <div class="media-name" title="${esc(f.name)}">${esc(f.name)}</div>
+      <div class="media-size">${mediaFmtSize(f.size)}</div>
+    </div>
+    <div class="media-actions">
+      <button class="btn btn-secondary btn-sm" onclick="mediaCopyUrl('${esc(f.url)}')">📋 Copy</button>
+      ${canDelete ? `<button class="btn btn-secondary btn-sm" onclick="mediaDeleteFile('${esc(f.path)}','${esc(f.sha)}')" title="Xoá ảnh">🗑️</button>` : ''}
+    </div>
+  </div>`;
+}
+function mediaApplyFilter() {
+  const q = (document.getElementById('media-search')?.value || '').toLowerCase().trim();
+  const filtered = q ? MEDIA_FILES.filter(f => f.name.toLowerCase().includes(q)) : MEDIA_FILES;
+  const grid = document.getElementById('media-grid');
+  if (!grid) return;
+  grid.innerHTML = filtered.length ? filtered.map(mediaCardHtml).join('') :
+    '<p style="color:var(--muted);font-size:12px">Không tìm thấy ảnh nào khớp.</p>';
+}
+function mediaCopyUrl(url) {
+  const full = location.origin + url;
+  navigator.clipboard.writeText(full).then(
+    () => toast('success', '📋 Đã copy: ' + full),
+    () => toast('error', 'Không copy được — trình duyệt chặn clipboard.')
+  );
+}
+async function mediaDeleteFile(path, sha) {
+  if (!confirm(`Xoá ảnh này khỏi thư viện?\n\n${path}\n\n⚠️ Nếu ảnh này đang được dùng làm ảnh bìa/trong nội dung bài viết khác, ảnh ở đó sẽ bị vỡ (hiện lỗi không tải được). Chỉ xoá nếu chắc chắn không còn bài nào dùng ảnh này.`)) return;
+  try {
+    await ghDelete(path, sha, `xoa anh qua Media Library: ${path}`);
+    MEDIA_FILES = MEDIA_FILES.filter(f => f.sha !== sha);
+    document.getElementById(`media-card-${sha}`)?.remove();
+    toast('success', '✅ Đã xoá ảnh.');
+  } catch(e) {
+    toast('error', 'Lỗi xoá ảnh: ' + e.message);
+  }
+}
+
 const CAT_ICON = { Gaming:'🎮', Anime:'⛩️', Manga:'📚', Reviews:'⭐', Rankings:'📊', Guide:'📘', News:'📰' };
 const HERO_CACHE = new Map();
 let thumbObserver = null;
@@ -2515,17 +2635,40 @@ async function editArticle(file) {
 // nội dung hiển thị trong editor là từ nháp hay không — điều này đảm bảo lần
 // "Lưu & Deploy" kế tiếp vẫn so khớp đúng với sha thật trên GitHub.
 async function resolveDraftOrPublished(file, publishedHtml) {
+  LAST_DRAFT_INFO = null;
+  if (FORCE_PUBLISHED_NEXT) {
+    FORCE_PUBLISHED_NEXT = false;
+    try { await deleteDraft(file); } catch(e) {}
+    return publishedHtml;
+  }
   try {
     const draft = await getDraft(file);
     if (draft && typeof draft.html === 'string') {
       const when = draft.updatedAt ? timeAgoVi(new Date(draft.updatedAt).toISOString()) : '';
       const who = draft.updatedBy ? ` bởi ${draft.updatedBy}` : '';
       const useDraft = confirm(`Có bản nháp chưa xuất bản (lưu ${when}${who}).\n\nBấm OK để tiếp tục từ bản nháp, hoặc Cancel để bỏ nháp và mở bản đã xuất bản.`);
-      if (useDraft) return draft.html;
+      if (useDraft) { LAST_DRAFT_INFO = { when, who }; return draft.html; }
       await deleteDraft(file);
     }
   } catch(e) { /* không có nháp hoặc lỗi tải nháp — dùng bản đã xuất bản */ }
   return publishedHtml;
+}
+
+// Banner cảnh báo rõ ràng khi editor đang hiển thị 1 bản NHÁP (không phải bản
+// đã xuất bản/live thật) — trước đây chỉ có 1 lần confirm() lúc mở, bấm nhầm OK
+// là "kẹt" trong bản nháp cũ mà không còn dấu hiệu gì nhắc lại, khiến admin
+// trông như đang hiển thị nội dung cũ/sai khác hẳn otahub.asia thật.
+function draftBannerHtml(reopenExpr) {
+  if (!LAST_DRAFT_INFO) return '';
+  return `<div style="background:#fff8e1;border:1px solid #f0c674;border-radius:8px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+    <div style="font-size:12.5px;color:#8a6100;line-height:1.5">📝 Đang xem <strong>BẢN NHÁP</strong> chưa xuất bản (lưu ${esc(LAST_DRAFT_INFO.when)}${esc(LAST_DRAFT_INFO.who)}) — <strong>khác với</strong> nội dung đang chạy thật trên otahub.asia.</div>
+    <button type="button" class="btn btn-secondary btn-sm" onclick="${reopenExpr}">👁️ Xem bản đã xuất bản (live)</button>
+  </div>`;
+}
+function discardDraftAndReopen(reopenFn) {
+  if (!confirm('Bỏ bản nháp này và mở lại đúng bản đang chạy live trên otahub.asia?')) return;
+  FORCE_PUBLISHED_NEXT = true;
+  reopenFn();
 }
 
 function renderEditor(file, html) {
@@ -2567,6 +2710,7 @@ function renderEditor(file, html) {
         <button class="btn btn-secondary" onclick="showView('articles')">← Quay lại</button>
       </div>
     </div>
+    ${draftBannerHtml(`discardDraftAndReopen(() => editArticle('${file}'))`)}
 
     <div class="editor-layout">
       <div class="editor-main">
@@ -2861,12 +3005,19 @@ function getCurrentBodyHtml() {
   if (BODY_MODE === 'code') return document.getElementById('body-textarea')?.value || '';
   return document.getElementById('body-visual')?.innerHTML || '';
 }
+// Dùng cho SEO Score panel trong editor 1 bài (đọc field đang mở trong DOM).
 function computeSeoScore() {
   const title = ART_TITLE || '';
   const desc = document.getElementById('ed-desc')?.value || '';
   const keyword = (document.getElementById('ed-keyword')?.value || '').trim();
   const slug = (currentFile || '').replace(/\.html$/, '');
   const bodyHtml = getCurrentBodyHtml();
+  return computeSeoScoreCore(title, desc, keyword, slug, bodyHtml);
+}
+// Lõi chấm điểm dùng chung — tách riêng để Rank Math SEO Dashboard (quét toàn
+// bộ bài viết từ HTML thô lấy về, không có DOM editor đang mở) dùng lại được
+// ĐÚNG 1 bộ luật, tránh 2 nơi tính điểm lệch nhau.
+function computeSeoScoreCore(title, desc, keyword, slug, bodyHtml) {
   const bodyText = bodyHtml.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
   const words = bodyText.match(/\S+/g) || [];
   const wordCount = words.length;
@@ -2938,6 +3089,149 @@ function seoScoreLabel(score) {
   if (score >= 80) return { text: 'Tốt', cls: 'seo-good' };
   if (score >= 50) return { text: 'Cần cải thiện', cls: 'seo-ok' };
   return { text: 'Kém', cls: 'seo-bad' };
+}
+
+// ── Rank Math SEO Score Dashboard — quét điểm SEO (dùng chung logic với SEO
+// Score panel trong editor 1 bài, xem computeSeoScoreCore()) trên TOÀN BỘ bài
+// viết, để tìm nhanh bài nào cần sửa nhất thay vì mở từng bài một. ──────────
+let SEO_SCORES = {}; // { [file]: { score, checks } } — cache trong phiên làm việc
+let SEO_SCAN_RUNNING = false;
+function extractSeoInputsFromHtml(html, file) {
+  const title = extract(html, /<title>([^<]+)<\/title>/) || '';
+  const desc = extract(html, /name="description" content="([^"]+)"/) || '';
+  const keyword = extract(html, /name="focus-keyword" content="([^"]*)"/) || '';
+  const slug = file.replace(/\.html$/, '');
+  const bodyHtml = extractBody(html);
+  return { title, desc, keyword, slug, bodyHtml };
+}
+async function renderSeoDashboard() {
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải danh sách bài viết...</span></div>`);
+  try {
+    if (!ARTICLES.length) {
+      const data = await ghGet('assets/search.js');
+      const js = decodeURIComponent(escape(atob(data.content)));
+      const m = js.match(/var IDX\s*=\s*(\[[\s\S]*?\]);/);
+      if (m) {
+        const idx = new Function('return ' + m[1])();
+        const SKIP_CATS = new Set(['Chuyên mục', 'Trang']);
+        ARTICLES = idx
+          .filter(e => e.u && e.u.indexOf('?') === -1 && !SKIP_CATS.has(e.c) && !e.u.startsWith('/en/'))
+          .map(e => ({ file: e.u.replace(/^\//, '') + '.html', sha: null, title: e.t || e.u, desc: e.s || '', hero: '', cat: e.c || 'Gaming', date: '' }));
+      }
+    }
+  } catch(e) { /* dùng ARTICLES đã cache nếu có, hoặc mảng rỗng — vẫn render được khung trang */ }
+  renderSeoDashboardPage();
+}
+function seoDashboardStats() {
+  const scored = Object.keys(SEO_SCORES);
+  const scores = scored.map(f => SEO_SCORES[f].score);
+  const avg = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : null;
+  const good = scores.filter(s => s >= 80).length;
+  const ok = scores.filter(s => s >= 50 && s < 80).length;
+  const bad = scores.filter(s => s < 50).length;
+  return { scanned: scored.length, total: ARTICLES.length, avg, good, ok, bad };
+}
+function renderSeoDashboardPage() {
+  const st = seoDashboardStats();
+  const rows = ARTICLES
+    .map(a => ({ a, s: SEO_SCORES[a.file] }))
+    .sort((x, y) => {
+      // Bài chưa quét xuống cuối; trong nhóm đã quét, điểm thấp lên trước (cần sửa gấp nhất).
+      if (!x.s && !y.s) return 0;
+      if (!x.s) return 1;
+      if (!y.s) return -1;
+      return x.s.score - y.s.score;
+    })
+    .map(({ a, s }) => {
+      const lbl = s ? seoScoreLabel(s.score) : null;
+      const badge = s
+        ? `<span class="wp-seo-score-pill ${lbl.cls}" style="min-width:32px;text-align:center;display:inline-block">${s.score}</span>`
+        : `<span class="wp-seo-score-pill" style="min-width:32px;text-align:center;display:inline-block;opacity:.5">–</span>`;
+      const topIssue = s ? (s.checks.find(c => c.status === 'bad') || s.checks.find(c => c.status === 'ok')) : null;
+      return `<div class="dash-recent-row" onclick="editArticle('${esc(a.file)}')">
+        <span class="dash-recent-cat">${badge}</span>
+        <span class="dash-recent-title">${esc(a.title)} <span style="color:var(--wp-muted);font-weight:400">· ${esc(a.cat)}</span>${topIssue ? ` <span style="color:var(--wp-muted);font-weight:400">— ${esc(topIssue.label)}</span>` : ''}</span>
+        <span class="dash-recent-go">${s ? '' : 'chưa quét'}</span>
+      </div>`;
+    }).join('');
+
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">Rank Math SEO Score Dashboard <small>${st.total} bài viết</small></div>
+      <div class="header-actions">
+        <button class="btn btn-primary btn-sm" id="seo-scan-btn" onclick="seoDashboardRunFullScan()" ${SEO_SCAN_RUNNING ? 'disabled' : ''}>
+          ${SEO_SCAN_RUNNING ? '⏳ Đang quét...' : (st.scanned ? '🔄 Quét lại' : '🔍 Phân tích toàn bộ SEO')}
+        </button>
+      </div>
+    </div>
+    <div class="content-area">
+      <div style="font-size:11.5px;color:var(--wp-muted);margin:-10px 0 16px;line-height:1.6">
+        Dùng đúng bộ quy tắc chấm điểm với SEO Score trong từng bài (từ khóa, tiêu đề, mô tả, độ dài nội dung, heading, alt ảnh...). Bấm "Phân tích toàn bộ" để tải & chấm điểm từng bài — mất khoảng 1-2 phút cho ${st.total} bài viết lần đầu; các lần sau chỉ mất vài giây (đã lưu tạm trong phiên làm việc).
+      </div>
+      ${st.scanned ? `
+      <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap">
+        <div class="side-box" style="flex:1;min-width:140px;text-align:center;padding:14px">
+          <div style="font-size:26px;font-weight:800;color:var(--wp-title)">${st.avg ?? '–'}</div>
+          <div style="font-size:11px;color:var(--wp-muted);margin-top:2px">Điểm trung bình</div>
+        </div>
+        <div class="side-box" style="flex:1;min-width:140px;text-align:center;padding:14px">
+          <div style="font-size:26px;font-weight:800;color:#16a34a">${st.good}</div>
+          <div style="font-size:11px;color:var(--wp-muted);margin-top:2px">Bài điểm Tốt (≥80)</div>
+        </div>
+        <div class="side-box" style="flex:1;min-width:140px;text-align:center;padding:14px">
+          <div style="font-size:26px;font-weight:800;color:#d97706">${st.ok}</div>
+          <div style="font-size:11px;color:var(--wp-muted);margin-top:2px">Cần cải thiện (50-79)</div>
+        </div>
+        <div class="side-box" style="flex:1;min-width:140px;text-align:center;padding:14px">
+          <div style="font-size:26px;font-weight:800;color:#dc2626">${st.bad}</div>
+          <div style="font-size:11px;color:var(--wp-muted);margin-top:2px">Bài điểm Kém (&lt;50)</div>
+        </div>
+      </div>` : ''}
+      <div id="seo-scan-progress" style="display:${SEO_SCAN_RUNNING ? 'block' : 'none'};margin-bottom:14px">
+        <div style="height:6px;background:var(--wp-border);border-radius:99px;overflow:hidden"><div id="seo-scan-bar" style="height:100%;width:0%;background:var(--wp-blue);transition:width .2s"></div></div>
+        <div id="seo-scan-label" style="font-size:11px;color:var(--wp-muted);margin-top:6px"></div>
+      </div>
+      <div class="field-group">${rows || '<p style="color:var(--wp-muted);font-size:12px">Không có bài viết nào.</p>'}</div>
+    </div>
+  `);
+}
+async function seoDashboardRunFullScan() {
+  if (SEO_SCAN_RUNNING) return;
+  SEO_SCAN_RUNNING = true;
+  const btn = document.getElementById('seo-scan-btn');
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ Đang quét...'; }
+  const prog = document.getElementById('seo-scan-progress');
+  if (prog) prog.style.display = 'block';
+  const queue = ARTICLES.slice();
+  let done = 0;
+  const total = queue.length;
+  const updateProgress = () => {
+    const bar = document.getElementById('seo-scan-bar');
+    const label = document.getElementById('seo-scan-label');
+    const pct = total ? Math.round((done / total) * 100) : 100;
+    if (bar) bar.style.width = pct + '%';
+    if (label) label.textContent = `Đã quét ${done}/${total} bài (${pct}%)`;
+  };
+  updateProgress();
+  const CONCURRENCY = 6;
+  async function worker() {
+    while (queue.length) {
+      const a = queue.shift();
+      try {
+        const data = await ghGet(a.file);
+        const html = decodeURIComponent(escape(atob(data.content)));
+        const { title, desc, keyword, slug, bodyHtml } = extractSeoInputsFromHtml(html, a.file);
+        SEO_SCORES[a.file] = computeSeoScoreCore(title, desc, keyword, slug, bodyHtml);
+      } catch(e) {
+        // Bỏ qua bài lỗi tải (không chặn cả đợt quét) — sẽ hiện "chưa quét" cho bài đó.
+      }
+      done++;
+      updateProgress();
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(CONCURRENCY, total) }, worker));
+  SEO_SCAN_RUNNING = false;
+  if (CURRENT_VIEW === 'rankmath') renderSeoDashboardPage();
 }
 function updateSeoScore() {
   const badge = document.getElementById('seo-score-badge');
@@ -4409,6 +4703,7 @@ function renderHubEditor() {
         <button class="btn btn-secondary btn-sm" onclick="hubEditor('${isEn ? HUB_FILE.replace(/^en\//, '') : 'en/' + HUB_FILE}','${HUB_LABEL}')">${isEn ? '🇻🇳 Xem bản VI' : '🇬🇧 Xem bản EN'}</button>
       </div>
     </div>
+    ${draftBannerHtml(`discardDraftAndReopen(() => hubEditor('${HUB_FILE}','${HUB_LABEL}'))`)}
 
     <div class="editor-layout">
       <div class="editor-main">
@@ -4535,6 +4830,12 @@ async function autosaveHubDraft() {
 
 // ── Trình soạn thảo trang chủ kiểu Elementor (iframe + click-to-edit) ────────
 let HOME_FILE = '', HOME_RAW = '', HOME_DATA = null, HOME_PANEL = null;
+// Khi resolveDraftOrPublished() trả về nội dung từ 1 bản nháp cũ (thay vì bản
+// đã xuất bản thật) — theo dõi để hiện banner cảnh báo rõ ràng trong editor,
+// tránh tình trạng admin hiển thị nội dung khác hẳn otahub.asia thật mà không
+// ai biết vì sao (bản nháp bị quên không xoá, "nháp" trông giống "live").
+let LAST_DRAFT_INFO = null; // { when, who } nếu đang xem nháp; null nếu đang xem bản live
+let FORCE_PUBLISHED_NEXT = false; // set true để ép resolveDraftOrPublished() bỏ qua nháp 1 lần
 let HOME_SUBTAB = {};
 // Danh sách item nào đang MỞ RỘNG (mặc định thu gọn) — key "path#i", chỉ dùng
 // cho UI, không lưu ra file. Thu gọn giúp danh sách dài (10-20 mục) không còn
@@ -5039,6 +5340,7 @@ function renderVisualHomeEditor() {
         <button class="btn btn-secondary btn-sm" onclick="homeEditor('${isEn ? HOME_FILE.replace(/^en\//, '') : 'en/' + HOME_FILE}')">${isEn ? '🇻🇳 Xem bản VI' : '🇬🇧 Xem bản EN'}</button>
       </div>
     </div>
+    ${draftBannerHtml(`discardDraftAndReopen(() => homeEditor('${HOME_FILE}'))`)}
 
     <div class="editor-layout home-visual-editor">
       <div class="editor-main">

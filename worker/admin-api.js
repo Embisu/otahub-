@@ -1,7 +1,7 @@
 import {
   hashPassword, verifyPassword, parseCookies, sessionCookie, clearSessionCookie,
   getSessionUser, createSession, deleteSession, json,
-  normalizeRole, canManageUsers, canWritePath, canDraftPath, canUploadImage, hasValidImageSignature,
+  normalizeRole, canManageUsers, canWritePath, canDraftPath, canUploadImage, canDeleteImage, hasValidImageSignature,
   checkLoginLock, recordLoginFailure, clearLoginFailures,
   logAudit, getAuditLog,
   putDraft, getDraftRaw, deleteDraft, listDrafts, canViewDraft,
@@ -219,6 +219,38 @@ async function handleGhPut(request, env, ghPath) {
   return json(await r.json());
 }
 
+// Xoa 1 anh trong Media Library (assets/img/) — chi admin/editor, chi file
+// anh (xem canDeleteImage). Can sha cua file (client da co san tu luc liet ke
+// thu muc) de GitHub Contents API biet dang xoa dung ban moi nhat.
+async function handleGhDelete(request, env, ghPath) {
+  const user = await getSessionUser(request, env);
+  if (!user) return json({ error: 'Chua dang nhap.' }, 401);
+  if (!ghPath) return json({ error: 'Thieu duong dan file.' }, 400);
+  if (!canDeleteImage(user, ghPath)) {
+    return json({ error: `Vai tro "${user.role}" khong duoc xoa file nay.` }, 403);
+  }
+  let body;
+  try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
+  const { sha, message } = body || {};
+  if (!sha) return json({ error: 'Thieu sha cua file can xoa.' }, 400);
+  const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}`, {
+    method: 'DELETE',
+    headers: { ...ghHeaders(env), 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      message: `[${user.username}] ${message || 'xoa anh qua Media Library'}`,
+      sha,
+      branch: GH_BRANCH,
+    }),
+  });
+  if (!r.ok) {
+    const e = await r.json().catch(() => ({}));
+    await logAudit(env, { action: 'delete_failed', username: user.username, file: ghPath, error: e.message || r.status });
+    return json({ error: e.message || ('GitHub API error: ' + r.status) }, r.status);
+  }
+  await logAudit(env, { action: 'delete', username: user.username, file: ghPath });
+  return json({ ok: true });
+}
+
 // Lich su commit cua 1 file cu the — dung GitHub Commits API co san, khong can
 // tu xay kho luu phien ban rieng. Toi da 30 commit gan nhat cho gon.
 async function handleGhHistory(request, env, ghPath) {
@@ -339,6 +371,7 @@ export async function handleAdminApi(request, env, url) {
     const ghPath = path.slice('/api/admin/gh/'.length);
     if (method === 'GET') return handleGhGet(request, env, ghPath, url);
     if (method === 'PUT') return handleGhPut(request, env, ghPath);
+    if (method === 'DELETE') return handleGhDelete(request, env, ghPath);
   }
 
   return json({ error: 'Not found' }, 404);

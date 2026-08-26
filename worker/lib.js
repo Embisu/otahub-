@@ -88,6 +88,16 @@ export function canUploadImage(user, ghPath) {
   return UPLOAD_IMAGE_RE.test(ghPath);
 }
 
+// Xoa anh trong Media Library (assets/img/, ke ca assets/img/uploads/) — chi
+// admin/editor, vi xoa 1 anh dang duoc bai viet khac tham chieu se lam vo
+// hinh anh o noi khac tren site (author/contributor khong duoc xoa).
+const DELETE_IMAGE_RE = /^assets\/img\/[a-z0-9._/-]+\.(jpe?g|png|webp|gif|svg)$/i;
+export function canDeleteImage(user, ghPath) {
+  if (!user) return false;
+  if (user.role !== 'admin' && user.role !== 'editor') return false;
+  return DELETE_IMAGE_RE.test(ghPath);
+}
+
 // Khong chi tin vao duoi file: xac minh magic bytes cua anh sau khi decode
 // base64 de ngan HTML/JS doi ten thanh .png/.jpg duoc day len cung origin.
 export function hasValidImageSignature(ghPath, base64Content) {
