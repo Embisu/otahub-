@@ -153,23 +153,14 @@
 </head>
 <body>
 
-<nav class="nav">
-  <div class="nav-in">
-    <a href="/" class="logo">
-      <svg viewBox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg>
-      <span class="logo-t">Ota<span class="logo-hub">Hub</span></span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="/choi-gi">Chơi Gì?</a></li>
-      <li><a href="/gaming">Gaming</a></li>
-      <li><a href="/anime">Anime</a></li>
-      <li><a href="/manga">Manga</a></li>
-      <li><a href="/reviews">Reviews</a></li>
-      <li><a href="/rankings">Rankings</a></li>
-    </ul>
-    <div class="nav-r"><a href="/#newsletter" class="cta">Subscribe</a></div>
-  </div>
-</nav>
+<div id="amb"><div class="orb o1"></div><div class="orb o2"></div></div>
+<div id="gtex"></div>
+<nav class="nav"><div class="nav-in"><a class="logo" href="/"><span><svg viewbox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="5" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect></svg></span><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews" class="active">Reviews</a></li><li><a href="/rankings">Rankings</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><div class="nav-r"><button class="ham" id="ham" aria-label="Menu" onclick="toggleMob()"><span></span><span></span><span></span></button></div></div></nav><nav class="mobile-nav" id="mobnav"><a href="/choi-gi">Chơi Gì?</a>
+<a href="/gaming">Gaming</a>
+<a href="/anime">Anime</a>
+<a href="/manga">Manga</a>
+<a href="/reviews">Reviews</a>
+<a href="/rankings">Rankings</a><a href="/chuyen-sau">Chuyên sâu</a></nav>
 
 <article class="article-wrap">
   <nav class="bc" aria-label="Breadcrumb">
@@ -253,16 +244,17 @@
   <div class="art-body">
     
         <h2>1. Đột Phá Về Trải Nghiệm Chiến Đấu</h2>
-        <p>Wuthering Waves của Kuro Games đã chứng minh vị thế dẫn đầu trong phân khúc Action RPG thế giới mở. Cơ chế chiến đấu đòi hỏi kỹ năng cao với các pha phản xạ đỡ đòn (Parry) và né tránh hoàn hảo (Perfect Dodge) mang lại cảm giác hưng phấn tột độ.</p>
-        <h2>2. Thang Điểm 9.5 & Giải Thích Chi Tiết</h2>
-        <p>OtaHub chấm Wuthering Waves <strong>9.5/10</strong> nhờ sự kết hợp hoàn mỹ giữa chuyển động mượt mà của nhân vật, đồ họa Unreal Engine sắc nét và sự tự do tuyệt đối trong việc săn tìm các Echo quý hiếm.</p>
-      
+        <p>Wuthering Waves của Kuro Games đã chứng minh vị thế dẫn đầu trong phân khúc Action RPG thế giới mở. Cơ chế chiến đấu đòi hỏi kỹ năng cao với các pha phản xạ đỡ đòn (Parry) và né tránh hoàn hảo (Perfect Dodge) mang lại cảm giác hưng phấn tột độ, khác biệt hoàn toàn với lối chiến đấu bán tự động thường thấy ở các game gacha cùng phân khúc.</p>
+        <h2>2. Hệ Thống Echo: Chiều Sâu Xây Dựng Đội Hình Vô Hạn</h2>
+        <p>Điểm khác biệt lớn nhất của Wuthering Waves so với các đối thủ nằm ở hệ thống Echo — cho phép người chơi thu phục "linh hồn" của quái vật đã đánh bại và biến chúng thành kỹ năng có thể trang bị cho bất kỳ nhân vật nào. Cơ chế này mở ra hàng trăm cách kết hợp đội hình khác nhau, khiến việc tối ưu hóa build trở thành một trò chơi trong chính trò chơi.</p>
+        <h2>3. Ngự Kiếm Phi Hành & Thế Giới Mở Liền Mạch</h2>
+        <p>Từ bản cập nhật 2.4 trở đi, cơ chế Ngự Kiếm Phi Hành (Sky Realm) cho phép người chơi lượn tự do trên bầu trời mà không bị giới hạn bởi thanh thể lực như nhiều tựa game thế giới mở khác — biến việc khám phá bản đồ khổng lồ của Solaris-3 trở thành một trải nghiệm mượt mà, không còn cảm giác gò bó.</p>
+        <h2>4. Thang Điểm 9.5 & Giải Thích Chi Tiết</h2>
+        <p>OtaHub chấm Wuthering Waves <strong>9.5/10</strong> nhờ sự kết hợp hoàn mỹ giữa chuyển động mượt mà của nhân vật, đồ họa Unreal Engine sắc nét và sự tự do tuyệt đối trong việc săn tìm các Echo quý hiếm — khẳng định vị thế dẫn đầu phân khúc mobile action RPG thế giới mở hiện nay.</p>
   </div>
 </article>
 
-<footer>
-  <p>© 2026 OtaHub.asia · All Rights Reserved.</p>
-</footer>
+<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><svg viewbox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
 
 <script defer src="/assets/search.js"></script>
 </body>
