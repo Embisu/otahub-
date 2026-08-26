@@ -3024,9 +3024,9 @@ function buildArticlePreviewHtml() {
   }
 
   html = html.replace('<head>', '<head><base href="https://otahub.asia/">');
-  html = html.replace('</div></div>
+  html = html.replace(`</div></div>
 </a>
-</body>', ART_BRIDGE_SCRIPT + '</body>');
+</body>`, ART_BRIDGE_SCRIPT + '</body>');
   return html;
 }
 
@@ -3431,6 +3431,2363 @@ function newArticle(prefillTitle) {
 <meta name="twitter:title" content="${title} · OtaHub">
 <meta name="twitter:description" content="${desc}">
 <meta name="twitter:image" content="${heroImg}">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "${title}",
+  "description": "${desc}",
+  "image": "${heroImg}",
+  "datePublished": "${iso}",
+  "dateModified": "${iso}",
+  "author": { "@type": "Organization", "name": "OtaHub Editorial", "url": "https://otahub.asia" },
+  "publisher": { "@type": "Organization", "name": "OtaHub", "url": "https://otahub.asia", "logo": { "@type": "ImageObject", "url": "https://otahub.asia/favicon-192.png" } },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "${url}" },
+  "keywords": "",
+  "inLanguage": "vi"
+}
+<\/script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="manifest" href="/manifest.json">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-12852ZFD0K"><\/script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-12852ZFD0K');
+<\/script>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<meta name="theme-color" content="#0b0418">
+<link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
 
+<style>
+:root{--bg:#0b0418;--surf:#150a2c;--surf2:#1d1040;--card:#190c36;--cyan:#00e5ff;--sakura:#ff3080;--violet:#7c3aed;--lav:#a78bfa;--amber:#fbbf24;--green:#34d399;--white:#f0eeff;--dim:rgba(240,238,255,.72);--muted:rgba(240,238,255,.38);--border:rgba(255,255,255,.07);--bcyan:rgba(0,229,255,.18);--ease:cubic-bezier(.16,1,.3,1);--fd:'Rajdhani',sans-serif;--fb:'Space Grotesk',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:300;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+#amb{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(110px)}
+.o1{width:600px;height:600px;background:radial-gradient(circle,var(--violet),transparent 70%);opacity:.07;top:-150px;left:-100px;animation:fa 18s ease-in-out infinite}
+.o2{width:450px;height:450px;background:radial-gradient(circle,var(--cyan),transparent 70%);opacity:.05;bottom:10%;right:-80px;animation:fb 23s ease-in-out infinite}
+@keyframes fa{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,-30px)}}
+@keyframes fb{0%,100%{transform:translate(0,0)}50%{transform:translate(-35px,25px)}}
+#gtex{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(124,58,237,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.04) 1px,transparent 1px);background-size:48px 48px}
+.nav{position:sticky;top:0;z-index:300;height:60px;background:rgba(11,4,24,.92);border-bottom:1px solid var(--bcyan);backdrop-filter:blur(24px);display:flex;align-items:center}
+.nav-in{max-width:1440px;margin:0 auto;padding:0 24px;width:100%;display:flex;align-items:center;gap:0}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0;margin-right:32px}
+.logo svg{width:30px;height:30px;animation:lp 3s ease-in-out infinite}
+@keyframes lp{0%,100%{filter:drop-shadow(0 0 4px #00e5ff)}50%{filter:drop-shadow(0 0 12px #00e5ff)}}
+.logo-t{font-family:var(--fd);font-weight:700;font-size:20px}
+.logo-ota{color:var(--white)}.logo-hub{color:var(--cyan)}
+.nav-links{display:flex;align-items:center;list-style:none;gap:0;flex:1}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;font-weight:400;letter-spacing:.07em;text-transform:uppercase;padding:0 13px;height:60px;display:flex;align-items:center;position:relative;transition:color .2s}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:2px;background:var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-r{display:flex;align-items:center;gap:8px;margin-left:auto}
+.ham{min-width:44px;min-height:44px;display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px;align-items:center;justify-content:center}
+.ham span{display:block;width:22px;height:2px;background:rgba(240,238,255,.45);border-radius:2px;transition:all .3s}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:#00e5ff}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:#00e5ff}
+.mobile-nav{display:none;position:fixed;inset:0;top:62px;z-index:290;background:rgba(11,2,32,.97);backdrop-filter:blur(24px);padding:28px 24px;flex-direction:column;gap:0;transform:translateY(-8px);opacity:0;transition:transform .3s,opacity .3s;pointer-events:none}
+.mobile-nav.open{transform:translateY(0);opacity:1;pointer-events:all}
+.mobile-nav a{display:block;color:rgba(240,238,255,.62);text-decoration:none;font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08);transition:color .2s;min-height:44px}
+.mobile-nav a:hover{color:#00e5ff}
+.art-hero{position:relative;z-index:1;height:610px;overflow:hidden}
+.art-hero-img{position:absolute;inset:0;background-size:cover;background-position:center;animation:heroPulse 6s ease-in-out infinite alternate}
+@keyframes heroPulse{0%{opacity:.82;filter:saturate(1.05) brightness(.98)}100%{opacity:1;filter:saturate(1.2) brightness(1.06)}}
+.art-hero-grad{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,4,24,.2) 0%,rgba(11,4,24,.98) 100%)}
+.art-hero-content{position:absolute;bottom:40px;left:0;right:0;max-width:860px;margin:0 auto;padding:0 24px}
+.art-hero-cat{display:inline-block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:5px 14px;border:1px solid rgba(0,229,255,.4);color:var(--cyan);background:rgba(11,4,24,.6);backdrop-filter:blur(8px);margin-bottom:14px}
+.art-hero-title{font-family:var(--fd);font-weight:700;font-size:clamp(28px,4vw,52px);line-height:1.05;color:var(--white);margin-bottom:14px}
+.art-hero-excerpt{font-size:19px;color:var(--dim);line-height:1.75;max-width:660px}
+.art-layout{max-width:860px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.art-main{padding:36px 0 80px}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);margin-bottom:24px;flex-wrap:wrap}
+.breadcrumb a{color:var(--muted);text-decoration:none;transition:color .2s}
+.breadcrumb a:hover{color:var(--cyan)}
+.breadcrumb-sep{opacity:.4}
+.art-meta{display:flex;align-items:center;gap:16px;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;flex-wrap:wrap}
+.am-tag{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.am-date{font-size:14px;color:var(--muted)}
+.am-sep{width:1px;height:18px;background:var(--border)}
+.am-badge{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:rgba(255,48,128,.12);border:1px solid rgba(255,48,128,.3);color:var(--sakura)}
+.art-body{font-size:19px;color:var(--dim);line-height:1.9}
+.art-body h2{font-family:var(--fd);font-weight:700;font-size:clamp(20px,2.5vw,28px);color:var(--white);margin:48px 0 16px;letter-spacing:-.01em;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.art-body h3{font-family:var(--fd);font-weight:700;font-size:clamp(17px,2vw,22px);color:var(--white);margin:32px 0 12px}
+.art-body p{margin-bottom:20px}
+.art-body ul{margin:0 0 20px 0;list-style:none}
+.art-body ul li{padding:7px 0 7px 20px;border-bottom:1px solid rgba(255,255,255,.04);position:relative;line-height:1.75}
+.art-body ul li::before{content:'▸';position:absolute;left:0;color:var(--cyan);font-size:11px;top:10px}
+.art-body strong{color:var(--white);font-weight:600}
+.art-body a{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(0,229,255,.3)}
+.art-body a:hover{border-color:var(--cyan)}
+.art-body blockquote{border-left:3px solid var(--cyan);padding:18px 22px;background:rgba(0,229,255,.04);margin:28px 0;font-style:italic;color:var(--dim);font-size:15px;line-height:1.8}
+.art-body blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.art-body figure{margin:32px 0;overflow:hidden;background:var(--surf);border:1px solid var(--border)}
+.art-body figure img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+.art-body figcaption{font-size:12px;color:var(--muted);padding:10px 14px;letter-spacing:.03em;line-height:1.5;border-top:1px solid var(--border);font-style:italic}
+.highlight-box{background:rgba(0,229,255,.05);border:1px solid rgba(0,229,255,.15);padding:22px 26px;margin:0 0 36px;position:relative}
+.highlight-box::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--cyan)}
+.hb-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px;font-weight:600}
+.hb-text{font-size:17px;color:var(--dim);line-height:1.8}
+.share-row{display:flex;align-items:center;gap:10px;padding:24px 0;border-top:1px solid var(--border);margin-top:48px;flex-wrap:wrap}
+.share-lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.share-btn{display:flex;align-items:center;gap:7px;padding:7px 16px;border:1px solid var(--border);font-size:12px;color:var(--dim);cursor:pointer;background:none;transition:all .2s;font-family:var(--fd);font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;min-height:44px}
+.share-btn:hover{border-color:rgba(0,229,255,.3);color:var(--cyan);background:rgba(0,229,255,.04)}
+footer{position:relative;z-index:1;background:var(--surf);border-top:1px solid var(--border);padding:40px 24px 24px;margin-top:0}
+.ft-in{max-width:1160px;margin:0 auto}
+.ft-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:16px}
+.ft-brand{font-family:var(--fd);font-weight:700;font-size:18px}
+.ft-links{display:flex;gap:20px;flex-wrap:wrap}
+.ft-links a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.ft-links a:hover{color:var(--cyan)}
+.ft-copy{font-size:11px;color:var(--muted);padding-top:20px;border-top:1px solid var(--border)}
+@media(max-width:900px){
+.art-hero{height:340px}
+.ham{display:flex}
+.nav-links{display:none}
+.mobile-nav{display:flex}
+}
+</style>
+</head>
+<body>
+<div id="amb"><div class="orb o1"></div><div class="orb o2"></div></div>
+<div id="gtex"></div>
+<nav class="nav"><div class="nav-in"><a class="logo" href="/"><span><svg viewbox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="5" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect></svg></span><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><div class="nav-r"><button class="ham" id="ham" aria-label="Menu" onclick="toggleMob()"><span></span><span></span><span></span></button></div></div></nav><nav class="mobile-nav" id="mobnav"><a href="/choi-gi">Chơi Gì?</a>
+<a href="/gaming">Gaming</a>
+<a href="/anime">Anime</a>
+<a href="/manga">Manga</a>
+<a href="/reviews">Reviews</a>
+<a href="/rankings">Rankings</a><a href="/chuyen-sau">Chuyên sâu</a></nav>
+
+<section class="art-hero">
+<div class="art-hero-img" style="background-image:url(${heroImg});background-color:#0b0418;"></div>
+<div class="art-hero-grad"></div>
+<div class="art-hero-content">
+<span class="art-hero-cat">${cat}</span>
+<h1 class="art-hero-title">${title}</h1>
+<p class="art-hero-excerpt">Mô tả ngắn xuất hiện dưới tiêu đề, ngay trên ảnh bìa.</p>
+</div>
+</section>
+<div class="art-layout">
+<main class="art-main">
+<nav class="breadcrumb" aria-label="breadcrumb">
+<a href="/">OtaHub</a>
+<span class="breadcrumb-sep">›</span>
+<a href="/gaming">${cat}</a>
+<span class="breadcrumb-sep">›</span>
+<span>${title}</span>
+</nav>
+<div class="art-meta">
+<span class="am-tag">${cat}</span>
+<span class="am-sep"></span>
+<span class="am-date">${dateDisp}</span>
+<span class="am-sep"></span>
+<span class="am-read">5 phút đọc</span>
+<span class="am-sep"></span>
+<span class="am-badge">OtaHub Editorial</span>
+</div>
+<div class="highlight-box">
+<div class="hb-label">Tóm Tắt</div>
+<div class="hb-text">Tóm tắt nhanh 2-3 câu về bài viết này, hiển thị nổi bật ngay đầu bài.</div>
+</div>
+<article class="art-body">
+<p>Nội dung bài viết ở đây...</p>
+<h2>Tiêu đề phần 1</h2>
+<p>Nội dung phần 1.</p>
+</article>
+<script type="application/json" id="admin-block-data">[{"type":"paragraph","html":"Nội dung bài viết ở đây..."},{"type":"heading","level":2,"text":"Tiêu đề phần 1"},{"type":"paragraph","html":"Nội dung phần 1."}]<\/script>
+<div class="share-row"><span class="share-lbl">Chia sẻ:</span><a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=${url}" target="_blank" rel="noopener">Facebook</a><a class="share-btn" href="https://twitter.com/intent/tweet?url=${url}" target="_blank" rel="noopener">Twitter / X</a><a class="share-btn" href="https://www.reddit.com/submit?url=${url}" target="_blank" rel="noopener">Reddit</a><button class="share-btn" type="button" onclick="copyArticleLink(this)">Sao chép link</button></div>
+</main>
+</div>
+<footer><div class="ft-in">
+<div class="ft-top">
+<span class="ft-brand"><span style="color:var(--white)">Ota</span><span style="color:var(--cyan)">Hub</span></span>
+<div class="ft-links">
+<a href="/about">Về chúng tôi</a>
+<a href="/lien-he">Liên hệ</a>
+<a href="/chinh-sach-bao-mat">Chính sách bảo mật</a>
+</div>
+</div>
+<div class="ft-copy">© 2026 OtaHub · Gaming · Anime · Manga</div>
+</div></footer>
+
+<script>
+function toggleMob(){
+  var h=document.getElementById('ham');
+  var m=document.getElementById('mobnav');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+  document.body.style.overflow=m.classList.contains('open')?'hidden':'';
+}
+function copyArticleLink(button){
+  navigator.clipboard.writeText(location.href).then(function(){
+    var original = button.textContent;
+    button.textContent = "Đã sao chép";
+    setTimeout(function(){ button.textContent = original; }, 1800);
+  });
+}
+<\/script>
+<script defer src="/assets/search.js"><\/script>
+<script defer src="/assets/enhance.js"><\/script>
+<script defer src="/assets/engage.js"><\/script>
+
+</body>
+</html>`;
+
+  // Fake a "new file" edit
+  currentFile = filename;
+  currentSha = null; // null = new file
+  ARTICLES.push({ file: filename, sha: null, title: 'Bài viết mới', desc: '', hero: '', cat: 'Gaming', date: '' });
+
+  // Override ghPut for new files (no sha needed)
+  renderEditor(filename, template);
+  toast('success', `Tạo bài mới: ${filename}`);
+}
+
+// ── Rankings Editor ────────────────────────────────────────────────────────
+let rankingsHtml = '';
+let rankingsSha  = '';
+let CATS_DATA    = null;
+let currentRankTab = 'pc';
+
+async function loadRankings() {
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải bảng xếp hạng...</span></div>`);
+  try {
+    const data = await ghGet('rankings.html');
+    rankingsHtml = decodeURIComponent(escape(atob(data.content)));
+    rankingsSha  = data.sha;
+    // Extract CATS object
+    const m = rankingsHtml.match(/const CATS\s*=\s*(\{[\s\S]*?\n\})\s*;/);
+    if (!m) throw new Error('Không tìm thấy dữ liệu CATS trong rankings.html');
+    CATS_DATA = new Function('return ' + m[1])();
+    renderRankingsEditor();
+  } catch(e) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi: ${e.message}</p></div>`);
+  }
+}
+
+function renderRankingsEditor() {
+  const tabs = Object.keys(CATS_DATA).map(k => `
+    <button class="rank-tab ${k===currentRankTab?'active':''}" onclick="switchRankTab('${k}')">
+      ${CATS_DATA[k].icon} ${CATS_DATA[k].label}
+    </button>`).join('');
+
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">Bảng xếp hạng <small>rankings.html</small></div>
+      <div class="header-actions">
+        <a class="btn btn-secondary btn-sm" href="https://otahub.asia/rankings" target="_blank">🔗 Xem live</a>
+        <button class="btn btn-primary" id="rank-save-btn" onclick="saveRankings()">💾 Lưu & Deploy</button>
+      </div>
+    </div>
+    <div class="content-area">
+      <div style="background:var(--surf);border:1px solid var(--border);border-radius:12px;padding:20px">
+        <div class="rank-tabs" id="rank-tabs">${tabs}</div>
+        <div id="rank-content"></div>
+      </div>
+    </div>
+  `);
+  renderRankTab(currentRankTab);
+}
+
+function switchRankTab(key) {
+  currentRankTab = key;
+  document.querySelectorAll('.rank-tab').forEach((t,i) => {
+    t.classList.toggle('active', Object.keys(CATS_DATA)[i] === key);
+  });
+  renderRankTab(key);
+}
+
+function renderRankTab(key) {
+  const cat = CATS_DATA[key];
+  if (!cat) return;
+  const el = document.getElementById('rank-content');
+  if (!el) return;
+
+  const topHtml = (cat.top||[]).map((e,i) => renderRankEntry(key,'top',i,e,true)).join('');
+  const restHtml = (cat.rest||[]).map((e,i) => renderRankEntry(key,'rest',i,e,false)).join('');
+
+  el.innerHTML = `
+    <div style="font-size:11px;color:var(--muted);margin-bottom:12px">
+      💡 Chỉnh URL ảnh, tên, điểm số rồi nhấn <strong style="color:var(--cyan)">💾 Lưu & Deploy</strong>
+    </div>
+    <div style="font-size:12px;font-weight:700;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">🏆 Top 3</div>
+    ${topHtml}
+    ${restHtml ? `<div style="font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin:16px 0 8px">Còn lại</div>${restHtml}` : ''}
+  `;
+}
+
+function renderRankEntry(catKey, listKey, idx, e, isTop) {
+  const numLabel = listKey==='top' ? ['🥇','🥈','🥉'][idx]||`#${idx+1}` : `#${idx+4}`;
+  const numClass = listKey==='top' ? ['gold','silver','bronze'][idx]||'' : '';
+  const imgId    = `ri_${catKey}_${listKey}_${idx}`;
+  const titleId  = `rt_${catKey}_${listKey}_${idx}`;
+  const studioId = `rs_${catKey}_${listKey}_${idx}`;
+  const scoreId  = `rsc_${catKey}_${listKey}_${idx}`;
+  const trendId  = `rtr_${catKey}_${listKey}_${idx}`;
+
+  return `
+    <div class="rank-entry${isTop?' top3':''}">
+      <div style="text-align:center">
+        <div class="rank-num ${numClass}">${numLabel}</div>
+        <img class="rank-img-prev" id="prev_${imgId}" src="${esc(e.img||'')}"
+          onerror="this.style.opacity=.3" alt="${esc(e.title||'')}"/>
+      </div>
+      <div class="rank-fields">
+        <div>
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px">URL ảnh</div>
+          <input class="rank-input-sm" style="width:100%" id="${imgId}" value="${esc(e.img||'')}"
+            oninput="document.getElementById('prev_${imgId}').src=this.value;updateRankData('${catKey}','${listKey}',${idx},'img',this.value)"/>
+        </div>
+        <div class="rank-row">
+          <div>
+            <div style="font-size:10px;color:var(--muted);margin-bottom:3px">Tên</div>
+            <input class="rank-input-sm" id="${titleId}" value="${esc(e.title||'')}"
+              oninput="updateRankData('${catKey}','${listKey}',${idx},'title',this.value)"/>
+          </div>
+          <div>
+            <div style="font-size:10px;color:var(--muted);margin-bottom:3px">Điểm</div>
+            <input class="rank-input-sm" id="${scoreId}" value="${esc(e.score||'')}"
+              oninput="updateRankData('${catKey}','${listKey}',${idx},'score',this.value)"/>
+          </div>
+          <div>
+            <div style="font-size:10px;color:var(--muted);margin-bottom:3px">Trend</div>
+            <input class="rank-input-sm" id="${trendId}" value="${esc(e.trend||'')}"
+              oninput="updateRankData('${catKey}','${listKey}',${idx},'trend',this.value)"/>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px">Studio / Thể loại</div>
+          <input class="rank-input-sm" style="width:100%" id="${studioId}"
+            value="${esc(e.studio||e.sub||'')}"
+            oninput="updateRankData('${catKey}','${listKey}',${idx},e.studio!==undefined?'studio':'sub',this.value)"/>
+        </div>
+      </div>
+    </div>`;
+}
+
+function updateRankData(catKey, listKey, idx, field, value) {
+  if (!CATS_DATA[catKey]) return;
+  const list = CATS_DATA[catKey][listKey];
+  if (!list || !list[idx]) return;
+  list[idx][field] = value;
+}
+
+async function saveRankings() {
+  const btn = document.getElementById('rank-save-btn');
+  btn.textContent = '⏳ Đang lưu...'; btn.disabled = true;
+  try {
+    // Re-fetch to get latest SHA
+    const latest = await ghGet('rankings.html');
+    const sha = latest.sha;
+    let html = decodeURIComponent(escape(atob(latest.content)));
+
+    // Rebuild CATS entries via targeted replacements
+    // Replace each entry's img and title in the CATS block
+    for (const catKey of Object.keys(CATS_DATA)) {
+      const cat = CATS_DATA[catKey];
+      for (const listKey of ['top','rest']) {
+        (cat[listKey]||[]).forEach((entry, idx) => {
+          // Replace img URL
+          if (entry._origImg && entry._origImg !== entry.img) {
+            html = html.replace(
+              new RegExp(entry._origImg.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'g'),
+              entry.img
+            );
+          }
+        });
+      }
+    }
+
+    // Better: replace full CATS block with serialized version
+    const newCats = 'const CATS = ' + serializeCats(CATS_DATA) + ';';
+    html = html.replace(/const CATS\s*=\s*\{[\s\S]*?\n\}\s*;/, newCats);
+
+    await ghPut('rankings.html', html, sha, '[admin] cap nhat bang xep hang');
+    toast('success', '✅ Đã lưu bảng xếp hạng! Deploy trong ~1-2 phút.');
+  } catch(e) {
+    toast('error', 'Lỗi lưu: ' + e.message);
+  } finally {
+    btn.textContent = '💾 Lưu & Deploy'; btn.disabled = false;
+  }
+}
+
+function serializeCats(cats) {
+  // Custom serializer to keep JS object style
+  function serEntry(e) {
+    const parts = [];
+    for (const [k,v] of Object.entries(e)) {
+      if (v === null) parts.push(`${k}:null`);
+      else if (typeof v === 'object') parts.push(`${k}:${JSON.stringify(v)}`);
+      else if (typeof v === 'string') parts.push(`${k}:'${v.replace(/'/g,"\\'")}'`);
+      else parts.push(`${k}:${v}`);
+    }
+    return '{' + parts.join(',') + '}';
+  }
+  function serList(arr) {
+    return '[' + arr.map(serEntry).join(',\n      ') + ']';
+  }
+  const catParts = Object.entries(cats).map(([k,cat]) => {
+    const entryParts = [];
+    for (const [ck,cv] of Object.entries(cat)) {
+      if (Array.isArray(cv)) entryParts.push(`${ck}:${serList(cv)}`);
+      else if (typeof cv === 'string') entryParts.push(`${ck}:'${cv.replace(/'/g,"\\'")}'`);
+      else entryParts.push(`${ck}:${JSON.stringify(cv)}`);
+    }
+    return `  ${k}:{\n    ${entryParts.join(',\n    ')}\n  }`;
+  });
+  return '{\n' + catParts.join(',\n') + '\n}';
+}
+
+// ── Pages View ─────────────────────────────────────────────────────────────
+// (Đã gỡ "Trang khác" — toàn bộ 9 trang trước đây hỏng nay có trình soạn thảo riêng trong sidebar.)
+
+// ── Shared card-field helpers (dùng chung cho trang chủ + trang chuyên mục) ──
+function fieldGet(raw, re) { const m = raw.match(re); return m ? m[1] : ''; }
+function replaceField(raw, pattern, newVal) {
+  if (newVal === undefined) return raw;
+  return pattern.test(raw) ? raw.replace(pattern, (full, p1, p2) => p1 + esc(newVal) + p2) : raw;
+}
+function splitBlocks(html, startPattern) {
+  const re = new RegExp(startPattern.source, 'g');
+  const starts = [];
+  let mm;
+  while ((mm = re.exec(html))) starts.push(mm.index);
+  const blocks = [];
+  for (let i = 0; i < starts.length; i++) blocks.push(html.slice(starts[i], i + 1 < starts.length ? starts[i + 1] : html.length));
+  return blocks;
+}
+async function ghSpliceInsert(path, anchorPattern, insertHtml, after, commitMsg) {
+  const data = await ghGet(path);
+  let content = decodeURIComponent(escape(atob(data.content)));
+  if (!anchorPattern.test(content)) throw new Error('Không tìm thấy điểm chèn trong ' + path);
+  content = after
+    ? content.replace(anchorPattern, (m) => m + insertHtml)
+    : content.replace(anchorPattern, (m) => insertHtml + m);
+  await ghPut(path, content, data.sha, commitMsg);
+}
+
+// ── .ac card fields (trang Gaming/Anime/Manga) ───────────────────────────────
+function acFields(raw) {
+  return {
+    href: fieldGet(raw, /<a href="([^"]*)"/),
+    img: fieldGet(raw, /<img src="([^"]*)"/),
+    alt: fieldGet(raw, /<img[^>]+alt="([^"]*)"/),
+    title: fieldGet(raw, /class="ac-title">([^<]*)</),
+    tag: fieldGet(raw, /class="tag[^"]*"[^>]*>([^<]*)</),
+  };
+}
+function acApply(raw, f) {
+  let out = raw;
+  out = replaceField(out, /(<a href=")[^"]*(")/, f.href);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
+  out = replaceField(out, /(class="ac-title">)[^<]*(<)/, f.title);
+  out = replaceField(out, /(class="tag[^"]*"[^>]*>)[^<]*(<)/, f.tag);
+  return out;
+}
+
+// ── Trình soạn thảo trang chuyên mục (Gaming / Anime / Manga) ────────────────
+let HUB_FILE = '', HUB_LABEL = '', HUB_CARDS = [], HUB_RAW = '';
+let HUB_PREVIEW_TIMER = null;
+
+// Bản xem trước thật của trang chuyên mục — ghép HUB_CARDS hiện tại vào đúng
+// vị trí trong HUB_RAW (y hệt logic saveHub() nhưng không commit), đánh dấu
+// data-oh-jump trên từng thẻ để bấm vào bản xem trước sẽ nhảy tới đúng thẻ
+// đang sửa bên danh sách — giống cách bài viết jump tới ảnh/danh mục.
+function buildHubPreviewHtml() {
+  const taggedCards = HUB_CARDS.map((c, i) => c.raw.replace(/^(<a\s+)/, `$1data-oh-jump="card-${i}" `));
+  const newSection = '\n      ' + taggedCards.join('\n\n      ') + '\n      ';
+  let html = HUB_RAW.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/, (m, p1, p2) => p1 + newSection + p2);
+  html = html.replace('<head>', '<head><base href="https://otahub.asia/">');
+  html = html.replace('</body>', HUB_BRIDGE_SCRIPT + '</body>');
+  return html;
+}
+const HUB_BRIDGE_SCRIPT = `<script>(function(){
+  var style = document.createElement('style');
+  style.textContent = '[data-oh-jump]{cursor:pointer;outline-offset:-2px;transition:outline .12s}[data-oh-jump]:hover{outline:3px dashed #00e5ff !important}';
+  document.head.appendChild(style);
+  document.addEventListener('click', function(e){
+    var el = e.target.closest ? e.target.closest('[data-oh-jump]') : null;
+    if (!el) return;
+    e.preventDefault();
+    e.stopPropagation();
+    parent.postMessage({ type:'hub-jump', target: el.getAttribute('data-oh-jump') }, '*');
+  }, true);
+})();<\/script>`;
+function scheduleHubPreviewRefresh() {
+  if (HUB_PREVIEW_TIMER) clearTimeout(HUB_PREVIEW_TIMER);
+  HUB_PREVIEW_TIMER = setTimeout(() => {
+    const iframe = document.getElementById('hub-visual-iframe');
+    if (iframe) iframe.srcdoc = buildHubPreviewHtml();
+  }, 700);
+}
+function hubJumpTo(target) {
+  if (!target || !target.startsWith('card-')) return;
+  const el = document.getElementById('hub-' + target);
+  if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  el.classList.add('block-item-flash');
+  setTimeout(() => el.classList.remove('block-item-flash'), 1200);
+  const titleEl = el.querySelector('.sc-title-live');
+  try { titleEl?.focus({ preventScroll: true }); } catch(e) {}
+}
+let __hubMsgBound = false;
+function bindHubBridgeMessages() {
+  if (__hubMsgBound) return;
+  __hubMsgBound = true;
+  window.addEventListener('message', function(e) {
+    if (!e.data || e.data.type !== 'hub-jump') return;
+    hubJumpTo(e.data.target);
+  });
+}
+
+async function hubEditor(file, label) {
+  HAS_UNSAVED_CHANGES = false;
+  HUB_LABEL = label || HUB_LABEL || 'Trang chuyên mục';
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải ${HUB_LABEL}...</span></div>`);
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-hub-' + (file.includes('gaming') ? 'gaming' : file.includes('anime') ? 'anime' : 'manga'))?.classList.add('active');
+  try {
+    const data = await ghGet(file);
+    const raw = decodeURIComponent(escape(atob(data.content)));
+    HUB_FILE = file;
+    HUB_RAW = await resolveDraftOrPublished(file, raw);
+    const m = HUB_RAW.match(/<!-- ADMIN:ARTICLES_START -->([\s\S]*?)<!-- ADMIN:ARTICLES_END -->/);
+    if (!m) throw new Error('Trang này chưa có marker ADMIN:ARTICLES nên chưa hỗ trợ sửa qua trình soạn thảo này.');
+    HUB_CARDS = splitBlocks(m[1], /<a href="[^"]*" class="ac"/).map(r => ({ raw: r }));
+    renderHubEditor();
+  } catch(e) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải ${HUB_LABEL}: ${e.message}</p></div>`);
+  }
+}
+
+function renderHubEditor() {
+  const isEn = HUB_FILE.startsWith('en/');
+  const viewPath = (isEn ? HUB_FILE.replace(/^en\//, 'en/') : HUB_FILE).replace('.html', '');
+  const rows = HUB_CARDS.map((c, i) => {
+    const f = acFields(c.raw);
+    return `<div class="sc-card" id="hub-card-${i}" draggable="true" ondragstart="hubDragStart(event,${i})" ondragover="event.preventDefault()" ondragend="this.classList.remove('dragging')" ondrop="hubDrop(event,${i})">
+      <div class="sc-drag-handle" title="Kéo để sắp xếp">⠿</div>
+      <img class="sc-thumb" src="${esc(f.img)}" onerror="this.style.opacity=.3" alt=""/>
+      <div class="sc-body">
+        <div class="sc-title-live" contenteditable="true" oninput="hubUpdate(${i},'title',this.textContent)">${esc(f.title)}</div>
+        <div class="sc-fields-row">
+          <input class="rank-input-sm" placeholder="Link" value="${esc(f.href)}" oninput="hubUpdate(${i},'href',this.value)"/>
+          <input class="rank-input-sm" placeholder="Nhãn" style="max-width:96px" value="${esc(f.tag)}" oninput="hubUpdate(${i},'tag',this.value)"/>
+          <button class="btn btn-secondary btn-sm" style="flex-shrink:0" onclick="hubPickImage(${i})">🖼️ Chọn ảnh</button>
+        </div>
+      </div>
+      <div class="sc-actions-col">
+        <button class="tb-btn" onclick="hubMove(${i},-1)" title="Lên">↑</button>
+        <button class="tb-btn" onclick="hubMove(${i},1)" title="Xuống">↓</button>
+        <button class="btn btn-danger btn-sm btn-icon" onclick="hubDelete(${i})" title="Xoá">🗑</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">${esc(HUB_LABEL)} <small>${HUB_FILE}</small></div>
+      <div class="header-actions">
+        <button class="btn btn-secondary btn-sm" onclick="hubEditor('${isEn ? HUB_FILE.replace(/^en\//, '') : 'en/' + HUB_FILE}','${HUB_LABEL}')">${isEn ? '🇻🇳 Xem bản VI' : '🇬🇧 Xem bản EN'}</button>
+      </div>
+    </div>
+
+    <div class="editor-layout">
+      <div class="editor-main">
+
+        <div class="visual-hint">🖱️ Bấm vào một thẻ trong bản xem trước bên dưới để nhảy tới đúng thẻ đó trong danh sách chỉnh sửa. Sửa tiêu đề/link/ảnh trực tiếp trên từng thẻ trong danh sách.</div>
+        <div class="visual-iframe-wrap" style="height:420px;min-height:340px;margin-bottom:18px">
+          <iframe id="hub-visual-iframe" class="home-visual-iframe"></iframe>
+        </div>
+
+        <div class="field-group" id="sec-cards">
+          <div class="field-group-title">🗂️ Danh sách thẻ bài viết</div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:14px">💡 Kéo ⠿ để sắp xếp lại, bấm vào tiêu đề trên thẻ để sửa trực tiếp. Tác giả/ngày/thời lượng đọc được giữ nguyên để không sai định dạng.</div>
+          <button class="btn btn-secondary btn-sm" style="margin-bottom:14px" onclick="hubAdd()">➕ Thêm thẻ bài viết vào đầu danh sách</button>
+          ${rows}
+        </div>
+
+      </div>
+
+      <div class="editor-sidebar">
+        <div class="publish-box">
+          <div class="pb-head">🚀 Xuất bản</div>
+          <div class="pb-body">
+            <div class="pb-row"><span class="pb-label">Trạng thái</span><span class="pb-val" style="display:flex;align-items:center;gap:6px"><span class="status-dot" id="status-dot"></span><span id="status-text">Chưa có thay đổi</span></span></div>
+            <div class="pb-actions">
+              <button class="btn btn-primary" id="save-btn" onclick="saveHub()">💾 Lưu & Deploy</button>
+            </div>
+            <div style="display:flex;gap:14px;margin-top:12px;flex-wrap:wrap">
+              <a class="pb-link" href="https://otahub.asia/${viewPath}" target="_blank">🔗 Xem live</a>
+              <a class="pb-link" href="#" onclick="event.preventDefault();if(confirm('Bỏ thay đổi?'))hubEditor('${HUB_FILE}','${HUB_LABEL}')">↺ Hoàn tác</a>
+              <a class="pb-link" href="#" onclick="event.preventDefault();openHistoryModal('${HUB_FILE}', () => hubEditor('${HUB_FILE}','${HUB_LABEL}'))">🕐 Lịch sử</a>
+            </div>
+            <div class="pb-savelog" id="save-log"></div>
+          </div>
+        </div>
+
+        <div class="side-box">
+          <div class="side-box-title">📊 Thống kê</div>
+          <div class="pb-row"><span class="pb-label">Tổng số thẻ</span><span class="pb-val">${HUB_CARDS.length}</span></div>
+        </div>
+      </div>
+    </div>
+  `);
+
+  const hubIframe = document.getElementById('hub-visual-iframe');
+  if (hubIframe) hubIframe.srcdoc = buildHubPreviewHtml();
+  bindHubBridgeMessages();
+}
+
+function hubUpdate(i, field, value) { HUB_CARDS[i].raw = acApply(HUB_CARDS[i].raw, { [field]: value }); markChanged(); }
+function hubPickImage(i) {
+  openMediaModal(res => {
+    hubUpdate(i, 'img', res.src);
+    if (res.alt) hubUpdate(i, 'alt', res.alt);
+    renderHubEditor();
+  }, 'image');
+}
+function hubMove(i, dir) { const j = i + dir; if (j < 0 || j >= HUB_CARDS.length) return; const t = HUB_CARDS[i]; HUB_CARDS[i] = HUB_CARDS[j]; HUB_CARDS[j] = t; markChanged(); renderHubEditor(); }
+let DRAG_HUB_IDX = null;
+function hubDragStart(e, i) { DRAG_HUB_IDX = i; e.dataTransfer.effectAllowed = 'move'; e.currentTarget.classList.add('dragging'); }
+function hubDrop(e, i) {
+  e.preventDefault();
+  document.querySelectorAll('.sc-card.dragging').forEach(el => el.classList.remove('dragging'));
+  if (DRAG_HUB_IDX === null || DRAG_HUB_IDX === i) return;
+  const item = HUB_CARDS.splice(DRAG_HUB_IDX, 1)[0];
+  HUB_CARDS.splice(i, 0, item);
+  DRAG_HUB_IDX = null;
+  markChanged();
+  renderHubEditor();
+}
+function hubDelete(i) { if (!confirm('Gỡ thẻ này khỏi danh sách? (Không xoá file bài viết gốc)')) return; HUB_CARDS.splice(i, 1); markChanged(); renderHubEditor(); }
+function hubAdd() {
+  if (!HUB_CARDS.length) { toast('error', 'Không có thẻ mẫu để nhân bản.'); return; }
+  const clone = { raw: acApply(HUB_CARDS[0].raw, { href: '/duong-dan-bai-viet-moi', img: '/assets/img/placeholder.svg', alt: 'Tiêu đề bài viết mới', title: 'Tiêu đề bài viết mới' }) };
+  HUB_CARDS.unshift(clone);
+  markChanged();
+  renderHubEditor();
+  toast('success', 'Đã thêm thẻ mới — nhớ sửa link/ảnh/tiêu đề trước khi lưu.');
+}
+// Ghép danh sách thẻ bài viết hiện tại (HUB_CARDS) vào 1 HTML nền — dùng chung
+// cho saveHub() (xuất bản thật) lẫn autosaveHubDraft() (bản nháp).
+function buildHubHtml(baseHtml) {
+  const newSection = '\n      ' + HUB_CARDS.map(c => c.raw.trim()).join('\n\n      ') + '\n      ';
+  return baseHtml.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/, (m, p1, p2) => p1 + newSection + p2);
+}
+async function saveHub() {
+  const btn = document.getElementById('save-btn');
+  const dot = document.getElementById('status-dot');
+  const txt = document.getElementById('status-text');
+  if (btn) { btn.textContent = '⏳ Đang lưu...'; btn.disabled = true; }
+  if (dot) dot.className = 'status-dot saving';
+  if (txt) txt.textContent = 'Đang commit lên GitHub...';
+  try {
+    const latest = await ghGet(HUB_FILE);
+    let html = decodeURIComponent(escape(atob(latest.content)));
+    html = buildHubHtml(html);
+    await ghPut(HUB_FILE, html, latest.sha, `[admin] cap nhat danh sach bai viet ${HUB_FILE}`);
+    await deleteDraft(HUB_FILE);
+    HAS_UNSAVED_CHANGES = false;
+    if (dot) dot.className = 'status-dot';
+    if (txt) txt.textContent = 'Đã lưu • ' + new Date().toLocaleTimeString('vi-VN');
+    const log = document.getElementById('save-log');
+    if (log) log.innerHTML = `✅ Commit lúc ${new Date().toLocaleTimeString('vi-VN')}<br>` + log.innerHTML;
+    toast('success', '✅ Đã lưu! Deploy trong ~1-2 phút.');
+  } catch(e) {
+    if (dot) dot.className = 'status-dot error';
+    if (txt) txt.textContent = 'Lỗi khi lưu';
+    toast('error', 'Lỗi lưu: ' + e.message);
+  } finally {
+    if (btn) { btn.textContent = '💾 Lưu & Deploy'; btn.disabled = false; }
+  }
+}
+// Autosave bản nháp Hub editor — dùng HUB_RAW (đã cache khi mở editor) làm
+// nền thay vì gọi lại GitHub, giữ tốc độ nhanh cho autosave định kỳ.
+async function autosaveHubDraft() {
+  if (!HUB_FILE || !HUB_RAW) return;
+  try {
+    const html = buildHubHtml(HUB_RAW);
+    await putDraft(HUB_FILE, html);
+    setDraftIndicator('📝 Đã lưu nháp tự động lúc ' + new Date().toLocaleTimeString('vi-VN'));
+  } catch(e) {
+    setDraftIndicator('⚠️ Lưu nháp tự động thất bại: ' + e.message);
+  }
+}
+
+// ── Trình soạn thảo trang chủ kiểu Elementor (iframe + click-to-edit) ────────
+let HOME_FILE = '', HOME_RAW = '', HOME_DATA = null, HOME_PANEL = null;
+let HOME_SUBTAB = {};
+// Danh sách item nào đang MỞ RỘNG (mặc định thu gọn) — key "path#i", chỉ dùng
+// cho UI, không lưu ra file. Thu gọn giúp danh sách dài (10-20 mục) không còn
+// dài lê thê như trước, giống card thu gọn/mở của khối ảnh trong bài viết.
+let HOME_ITEM_EXPANDED = new Set();
+
+function scFields(raw) {
+  return {
+    href: fieldGet(raw, /<a class="sc" href="([^"]*)"/),
+    img: fieldGet(raw, /<img src="([^"]*)"/),
+    alt: fieldGet(raw, /<img[^>]+alt="([^"]*)"/),
+    tag: fieldGet(raw, /class="tag[^"]*"[^>]*>([^<]*)</),
+    title: fieldGet(raw, /class="sc-title">([^<]*)</),
+  };
+}
+function scApply(raw, f) {
+  let out = raw;
+  out = replaceField(out, /(<a class="sc" href=")[^"]*(")/, f.href);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
+  out = replaceField(out, /(class="tag[^"]*"[^>]*>)[^<]*(<)/, f.tag);
+  out = replaceField(out, /(class="sc-title">)[^<]*(<)/, f.title);
+  return out;
+}
+function fcFields(raw) {
+  return {
+    href: fieldGet(raw, /<a class="fc" href="([^"]*)"/),
+    img: fieldGet(raw, /background-image:url\(([^)]*)\)/),
+    tag: fieldGet(raw, /class="tag[^"]*"[^>]*>([^<]*)</),
+    title: fieldGet(raw, /class="fc-title">([^<]*)</),
+    sub: fieldGet(raw, /class="fc-sub">([^<]*)</),
+  };
+}
+function fcApply(raw, f) {
+  let out = raw;
+  out = replaceField(out, /(<a class="fc" href=")[^"]*(")/, f.href);
+  out = replaceField(out, /(background-image:url\()[^)]*(\))/, f.img);
+  out = replaceField(out, /(class="tag[^"]*"[^>]*>)[^<]*(<)/, f.tag);
+  out = replaceField(out, /(class="fc-title">)[^<]*(<)/, f.title);
+  out = replaceField(out, /(class="fc-sub">)[^<]*(<)/, f.sub);
+  return out;
+}
+
+function homeHeroFields(html) {
+  return {
+    title: fieldGet(html, /id="h-title">([^<]*)</),
+    sub: fieldGet(html, /id="h-sub">([^<]*)</),
+    cat: fieldGet(html, /class="h-meta-cat">([^<]*)</),
+    date: fieldGet(html, /id="h-time">([^<]*)</),
+    href: fieldGet(html, /<a href="([^"]*)" class="read-more" id="h-read"/),
+    img: fieldGet(html, /\.h-img\{[^}]*background:url\('([^']*)'\)/),
+  };
+}
+
+// ── Bộ phân tích/tái tạo HTML trang chủ (đã kiểm chứng round-trip byte-perfect) ──
+function hUnesc(s) { return String(s ?? '').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'"); }
+function splitBlocksTrimmed(html, startPattern, closeTag) {
+  const re = new RegExp(startPattern.source, 'g');
+  const starts = [];
+  let mm;
+  while ((mm = re.exec(html))) starts.push(mm.index);
+  const blocks = [];
+  for (let i = 0; i < starts.length; i++) {
+    const raw = html.slice(starts[i], i + 1 < starts.length ? starts[i + 1] : html.length);
+    const ci = raw.indexOf(closeTag);
+    blocks.push(ci === -1 ? raw : raw.slice(0, ci + closeTag.length));
+  }
+  return blocks;
+}
+function hSection(str, startAnchor, endAnchor) {
+  const si = str.indexOf(startAnchor);
+  if (si === -1) return { ok: false };
+  const from = si + startAnchor.length;
+  const ei = str.indexOf(endAnchor, from);
+  if (ei === -1) return { ok: false };
+  return { ok: true, raw: str.slice(from, ei) };
+}
+function hReplaceSection(html, startAnchor, endAnchor, rebuildFn) {
+  const si = html.indexOf(startAnchor);
+  if (si === -1) { console.log('MISSING SECTION:', startAnchor); return html; }
+  const from = si + startAnchor.length;
+  const ei = html.indexOf(endAnchor, from);
+  if (ei === -1) { console.log('MISSING END ANCHOR for:', startAnchor); return html; }
+  return html.slice(0, from) + rebuildFn() + html.slice(ei);
+}
+
+// ── s-art (Nổi bật hôm nay / hero-side) ──
+function sArtFields(item) {
+  return {
+    href: fieldGet(item, /onclick="location\.href='([^']*)'"/),
+    img: fieldGet(item, /<img src="([^"]*)"/),
+    alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
+    cat: fieldGet(item, /class="sa-c"[^>]*>([^<]*)</),
+    title: fieldGet(item, /class="sa-t">([^<]*)</),
+    meta: fieldGet(item, /class="sa-m">([^<]*)</),
+  };
+}
+function sArtApply(item, f) {
+  let out = item;
+  if (f.href !== undefined) out = out.replace(/(onclick="location\.href=')[^']*(')/, (m,p1,p2)=>p1+f.href.replace(/'/g,"\\'")+p2);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
+  out = replaceField(out, /(class="sa-c"[^>]*>)[^<]*(<)/, f.cat);
+  out = replaceField(out, /(class="sa-t">)[^<]*(<)/, f.title);
+  out = replaceField(out, /(class="sa-m">)[^<]*(<)/, f.meta);
+  return out;
+}
+
+// ── mq-item (marquee) ──
+function mqItemFields(item) {
+  return {
+    href: fieldGet(item, /<a class="mq-item" href="([^"]*)"/),
+    label: fieldGet(item, /<strong>([^<]*)<\/strong>/),
+    text: fieldGet(item, /<\/strong>\s*([^<]*)<\/a>/),
+  };
+}
+function mqItemApply(item, f) {
+  let out = item;
+  out = replaceField(out, /(<a class="mq-item" href=")[^"]*(")/, f.href);
+  out = replaceField(out, /(<strong>)[^<]*(<\/strong>)/, f.label);
+  out = replaceField(out, /(<\/strong>\s*)[^<]*(<\/a>)/, f.text);
+  return out;
+}
+
+// ── rk-item (bảng xếp hạng) ──
+function rkItemFields(item) {
+  return {
+    href: fieldGet(item, /<a class="rk-item[^"]*" href="([^"]*)"/),
+    img: fieldGet(item, /<img src="([^"]*)"/),
+    alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
+    name: fieldGet(item, /class="rk-name">([^<]*)</),
+    sub: fieldGet(item, /class="rk-sub">([^<]*)</),
+    score: fieldGet(item, /class="rk-score"[^>]*>([^<]*)</),
+  };
+}
+function rkItemApply(item, f) {
+  let out = item;
+  out = replaceField(out, /(<a class="rk-item[^"]*" href=")[^"]*(")/, f.href);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
+  out = replaceField(out, /(class="rk-name">)[^<]*(<)/, f.name);
+  out = replaceField(out, /(class="rk-sub">)[^<]*(<)/, f.sub);
+  out = replaceField(out, /(class="rk-score"[^>]*>)[^<]*(<)/, f.score);
+  if (f.score !== undefined) {
+    const pct = Math.max(0, Math.min(100, parseFloat(f.score) * 10));
+    out = out.replace(/(data-w=")[^"]*(")/, (m,p1,p2)=>p1+pct+'%'+p2);
+  }
+  return out;
+}
+
+// ── manga-item ──
+function mangaItemFields(item) {
+  return {
+    href: fieldGet(item, /<a class="manga-item[^"]*" href="([^"]*)"/),
+    img: fieldGet(item, /<img src="([^"]*)"/),
+    alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
+    title: fieldGet(item, /class="mi-title">([^<]*)</),
+    meta: fieldGet(item, /class="mi-meta">([^<]*)</),
+    score: fieldGet(item, /class="mi-score"[^>]*>([^<]*)</),
+  };
+}
+function mangaItemApply(item, f) {
+  let out = item;
+  out = replaceField(out, /(<a class="manga-item[^"]*" href=")[^"]*(")/, f.href);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
+  out = replaceField(out, /(class="mi-title">)[^<]*(<)/, f.title);
+  out = replaceField(out, /(class="mi-meta">)[^<]*(<)/, f.meta);
+  out = replaceField(out, /(class="mi-score"[^>]*>)[^<]*(<)/, f.score);
+  return out;
+}
+
+// ── w-card (tin mới nhất) ──
+function wCardFields(item) {
+  return {
+    href: fieldGet(item, /<a href="([^"]*)"/),
+    img: fieldGet(item, /<img src="([^"]*)"/),
+    alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
+    cat: fieldGet(item, /class="wc-c"[^>]*>([^<]*)</),
+    title: fieldGet(item, /class="wc-t">([^<]*)</),
+    meta: fieldGet(item, /class="wc-m">([^<]*)</),
+  };
+}
+function wCardApply(item, f) {
+  let out = item;
+  out = replaceField(out, /(<a href=")[^"]*(")/, f.href);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
+  out = replaceField(out, /(class="wc-c"[^>]*>)[^<]*(<)/, f.cat);
+  out = replaceField(out, /(class="wc-t">)[^<]*(<)/, f.title);
+  out = replaceField(out, /(class="wc-m">)[^<]*(<)/, f.meta);
+  return out;
+}
+
+// ── t-item (đang hot) ──
+function tItemFields(item) {
+  return {
+    href: fieldGet(item, /<a class="t-item" href="([^"]*)"/),
+    img: fieldGet(item, /<img src="([^"]*)"/),
+    alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
+    title: fieldGet(item, /class="ti-t">([^<]*)</),
+    meta: fieldGet(item, /class="ti-m">([^<]*)</),
+  };
+}
+function tItemApply(item, f) {
+  let out = item;
+  out = replaceField(out, /(<a class="t-item" href=")[^"]*(")/, f.href);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
+  out = replaceField(out, /(class="ti-t">)[^<]*(<)/, f.title);
+  out = replaceField(out, /(class="ti-m">)[^<]*(<)/, f.meta);
+  return out;
+}
+
+// ── cat-b (danh mục) ──
+function catTileFields(item) {
+  return {
+    href: fieldGet(item, /<a href="([^"]*)"/),
+    name: fieldGet(item, /class="cat-name">([^<]*)</),
+    count: fieldGet(item, /class="cat-ct">([^<]*) bài viết</),
+  };
+}
+function catTileApply(item, f) {
+  let out = item;
+  out = replaceField(out, /(<a href=")[^"]*(")/, f.href);
+  out = replaceField(out, /(class="cat-name">)[^<]*(<)/, f.name);
+  if (f.count !== undefined) out = out.replace(/(class="cat-ct">)[^<]*( bài viết<)/, (m,p1,p2)=>p1+esc(f.count)+p2);
+  return out;
+}
+
+// ── mục anime theo mùa (đối tượng JS thuần) ──
+function animeItemStr(f) {
+  return `{title:'${String(f.title).replace(/'/g,"\\'")}',genre:'${String(f.genre).replace(/'/g,"\\'")}',score:'${f.score}',day:'${String(f.day).replace(/'/g,"\\'")}',ep:'${String(f.ep).replace(/'/g,"\\'")}',status:'${f.status}',img:'${f.img}'}`;
+}
+
+function loadHomeData(raw) {
+  const hero = homeHeroFields(raw);
+
+  const heroSideSec = hSection(raw, '<aside class="hero-side">', '</aside>');
+  const heroSidePrefix = heroSideSec.ok ? heroSideSec.raw.slice(0, heroSideSec.raw.indexOf('<article')) : '';
+  const heroSide = heroSideSec.ok ? splitBlocksTrimmed(heroSideSec.raw, /<article class="s-art"/, '</article>').map(r => ({ raw: r })) : [];
+
+  const tickerSec = hSection(raw, '<div class="tick-track">', '</div></div>');
+  const ticker = tickerSec.ok ? [...tickerSec.raw.matchAll(/<span class="tick-item">([^<]*)<\/span>/g)].map(m => hUnesc(m[1])) : [];
+
+  const marqueeSec = hSection(raw, '<div class="mq-track">', '</div>');
+  const marquee = marqueeSec.ok ? splitBlocksTrimmed(marqueeSec.raw, /<a class="mq-item"/, '</a>').map(r => ({ raw: r })) : [];
+
+  const fm = raw.match(/<!-- ADMIN:FEATURED_START -->([\s\S]*?)<!-- ADMIN:FEATURED_END -->/);
+  let featured = { fc: '', sc: [] };
+  if (fm) {
+    const featuredHtml = fm[1];
+    const scStart = featuredHtml.indexOf('<a class="sc"');
+    const fcRaw = (scStart === -1 ? featuredHtml : featuredHtml.slice(0, scStart)).trim();
+    const scBlocks = scStart === -1 ? [] : splitBlocksTrimmed(featuredHtml.slice(scStart), /<a class="sc" href="[^"]*"/, '</a>');
+    featured = { fc: fcRaw, sc: scBlocks.map(r => ({ raw: r })) };
+  }
+
+  const rankSec = hSection(raw, '<div class="rank-grid">', '<div class="wrap rv">\n\n\n  <div class="sec-h"><span class="sec-t">Anime');
+  let rankings = { pc: [], mobile: [], pcPrefix: '', mobilePrefix: '' };
+  if (rankSec.ok) {
+    const cardsRaw = rankSec.raw.split('<div class="rk-card">').slice(1);
+    function parseCard(cardChunk) {
+      const firstItemIdx = cardChunk.indexOf('<a class="rk-item');
+      const prefix = firstItemIdx === -1 ? cardChunk : cardChunk.slice(0, firstItemIdx);
+      const items = firstItemIdx === -1 ? [] : splitBlocksTrimmed(cardChunk.slice(firstItemIdx), /<a class="rk-item[^"]*"/, '</a>');
+      return { prefix, items: items.map(r => ({ raw: r })) };
+    }
+    if (cardsRaw[0]) { const c = parseCard(cardsRaw[0]); rankings.pc = c.items; rankings.pcPrefix = c.prefix; }
+    if (cardsRaw[1]) { const c = parseCard(cardsRaw[1]); rankings.mobile = c.items; rankings.mobilePrefix = c.prefix; }
+  }
+
+  const mangaSec = hSection(raw, '<div class="manga-grid">', '<div class="wrap rv" style="padding-top:0">');
+  let manga = { manga: [], manhwa: [], manhua: [], mangaPrefix: '', manhwaPrefix: '', manhuaPrefix: '' };
+  if (mangaSec.ok) {
+    const colsRaw = mangaSec.raw.split('<div class="manga-col">').slice(1);
+    const keys = ['manga', 'manhwa', 'manhua'];
+    colsRaw.forEach((chunk, i) => {
+      if (!keys[i]) return;
+      const firstItemIdx = chunk.indexOf('<a class="manga-item');
+      const prefix = firstItemIdx === -1 ? chunk : chunk.slice(0, firstItemIdx);
+      const items = firstItemIdx === -1 ? [] : splitBlocksTrimmed(chunk.slice(firstItemIdx), /<a class="manga-item[^"]*"/, '</a>');
+      manga[keys[i]] = items.map(r => ({ raw: r }));
+      manga[keys[i] + 'Prefix'] = prefix;
+    });
+  }
+
+  const latestSec = hSection(raw, '<div class="latest-wrap">', '<div class="wrap rv" style="padding-bottom:0">');
+  let latestNews = [], trending = [], latestSuffix = '', trendingPrefix = '';
+  if (latestSec.ok) {
+    latestNews = splitBlocksTrimmed(latestSec.raw, /<article class="w-card">/, '</article>').map(r => ({ raw: r }));
+    const lastArticleEnd = latestSec.raw.lastIndexOf('</article>') + '</article>'.length;
+    const asideStart = latestSec.raw.indexOf('<aside class="latest-side">');
+    latestSuffix = latestSec.raw.slice(lastArticleEnd, asideStart);
+    const asideSec = latestSec.raw.slice(asideStart);
+    const trendHeadEnd = asideSec.indexOf('<a class="t-item"');
+    trendingPrefix = asideSec.slice(0, trendHeadEnd);
+    trending = splitBlocksTrimmed(asideSec.slice(trendHeadEnd), /<a class="t-item"/, '</a>').map(r => ({ raw: r }));
+  }
+
+  const catSec = hSection(raw, '<div class="cat-grid">', '<section class="nl"');
+  const catGrid = catSec.ok ? splitBlocksTrimmed(catSec.raw, /<a href="[^"]*" class="cat-b/, '</a>').map(r => ({ raw: r })) : [];
+
+  const newsletter = {
+    title: hUnesc(fieldGet(raw, /id="nl-title">([^<]*)</)), sub: hUnesc(fieldGet(raw, /id="nl-sub">([^<]*)</)),
+    label: hUnesc(fieldGet(raw, /id="nl-label">([^<]*)</)), note: hUnesc(fieldGet(raw, /id="nl-note">([^<]*)</)),
+    btn: hUnesc(fieldGet(raw, /id="nl-btn">([^<]*)</)),
+  };
+  const footer = { desc: hUnesc(fieldGet(raw, /class="ft-desc">([^<]*)</)), copy: hUnesc(fieldGet(raw, /class="ft-copy">([^<]*)</)) };
+
+  const animeMatch = raw.match(/const ANIME=\{([\s\S]*?)\n\};/);
+  let anime = { summer: [], spring: [], winter: [], fall: [] };
+  if (animeMatch) {
+    const body = animeMatch[1];
+    const seasonRe = /(summer|spring|winter|fall):\[([\s\S]*?)\n  \],?\n/g;
+    let sm2;
+    while ((sm2 = seasonRe.exec(body))) {
+      const items = [...sm2[2].matchAll(/\{title:'([^']*)',genre:'([^']*)',score:'([^']*)',day:'([^']*)',ep:'([^']*)',status:'([^']*)',img:'([^']*)'\}/g)];
+      anime[sm2[1]] = items.map(m => ({ title: hUnesc(m[1]), genre: hUnesc(m[2]), score: m[3], day: hUnesc(m[4]), ep: hUnesc(m[5]), status: m[6], img: m[7] }));
+    }
+  }
+
+  return { hero, heroSide, heroSidePrefix, ticker, marquee, featured, rankings, manga, latestNews, trending, latestSuffix, trendingPrefix, catGrid, newsletter, footer, anime };
+}
+
+function buildHomeHtml(rawHtml, D) {
+  let html = rawHtml;
+  const h = D.hero;
+  html = html.replace(/(id="h-title">)[^<]*(<)/, (m,p1,p2)=>p1+esc(h.title)+p2);
+  html = html.replace(/(id="h-sub">)[^<]*(<)/, (m,p1,p2)=>p1+esc(h.sub)+p2);
+  html = html.replace(/(class="h-meta-cat">)[^<]*(<)/, (m,p1,p2)=>p1+esc(h.cat)+p2);
+  html = html.replace(/(id="h-time">)[^<]*(<)/, (m,p1,p2)=>p1+esc(h.date)+p2);
+  html = html.replace(/(<a href=")[^"]*(" class="read-more" id="h-read")/, (m,p1,p2)=>p1+esc(h.href)+p2);
+  html = html.replace(/(<div class="hero-main" onclick="location\.href=')[^']*(')/, (m,p1,p2)=>p1+h.href.replace(/\\/g,'\\\\').replace(/'/g,"\\'")+p2);
+  html = html.replace(/(\.h-img\{[^}]*background:url\(')[^']*('\))/, (m,p1,p2)=>p1+h.img.replace(/\\/g,'\\\\').replace(/'/g,"\\'")+p2);
+
+  html = hReplaceSection(html, '<aside class="hero-side">', '</aside>', () =>
+    D.heroSidePrefix + D.heroSide.map(x=>x.raw).join('\n\n\n    ') + '\n\n\n  ');
+
+  html = hReplaceSection(html, '<div class="tick-track">', '</div></div>', () =>
+    D.ticker.map(t=>`<span class="tick-item">${esc(t)}</span>`).join(''));
+
+  html = hReplaceSection(html, '<div class="mq-track">', '</div>', () =>
+    D.marquee.map(x=>x.raw).join(''));
+
+  const newFeatured = '\n    ' + D.featured.fc.trim() + '\n\n\n    ' + D.featured.sc.map(c=>c.raw.trim()).join('\n\n\n    ') + '\n    ';
+  html = html.replace(/(<!-- ADMIN:FEATURED_START -->)[\s\S]*?(<!-- ADMIN:FEATURED_END -->)/, (m,p1,p2)=>p1+newFeatured+p2);
+
+  html = hReplaceSection(html, '<div class="rank-grid">', '<div class="wrap rv">\n\n\n  <div class="sec-h"><span class="sec-t">Anime', () => {
+    const cardClose = '\n\n\n      </div>\n\n\n    </div>';
+    const pcCard = '<div class="rk-card">' + D.rankings.pcPrefix + D.rankings.pc.map(x=>x.raw).join('\n\n\n        ') + cardClose;
+    const mobCard = '<div class="rk-card">' + D.rankings.mobilePrefix + D.rankings.mobile.map(x=>x.raw).join('\n\n\n        ') + cardClose;
+    return '\n\n\n    ' + pcCard + '\n\n\n    ' + mobCard + '\n\n\n  </div>\n\n\n</div>\n\n\n';
+  });
+
+  html = hReplaceSection(html, '<div class="manga-grid">', '<div class="wrap rv" style="padding-top:0">', () => {
+    const cols = ['manga','manhwa','manhua'].map(k =>
+      '<div class="manga-col">' + D.manga[k+'Prefix'] + D.manga[k].map(x=>x.raw).join('\n\n\n      ') + '\n\n\n    </div>'
+    );
+    return '\n\n\n    ' + cols.join('\n\n\n    ') + '\n\n\n  </div>\n\n\n</div>\n\n\n';
+  });
+
+  html = hReplaceSection(html, '<div class="latest-wrap">', '<div class="wrap rv" style="padding-bottom:0">', () => {
+    const newsCol = '\n\n\n    <div>\n\n\n      ' + D.latestNews.map(x=>x.raw).join('\n\n\n      ') + D.latestSuffix;
+    const trendCol = D.trendingPrefix + D.trending.map(x=>x.raw).join('\n\n\n      ') + '\n\n\n    </aside>\n\n\n  </div>\n\n\n</div>\n\n\n';
+    return newsCol + trendCol;
+  });
+
+  html = hReplaceSection(html, '<div class="cat-grid">', '<section class="nl"', () =>
+    '\n\n\n    ' + D.catGrid.map(x=>x.raw).join('\n\n\n    ') + '\n\n\n  </div>\n\n\n</div>\n\n\n');
+
+  const nl = D.newsletter;
+  html = html.replace(/(id="nl-title">)[^<]*(<)/, (m,p1,p2)=>p1+esc(nl.title)+p2);
+  html = html.replace(/(id="nl-sub">)[^<]*(<)/, (m,p1,p2)=>p1+esc(nl.sub)+p2);
+  html = html.replace(/(id="nl-label">)[^<]*(<)/, (m,p1,p2)=>p1+esc(nl.label)+p2);
+  html = html.replace(/(id="nl-note">)[^<]*(<)/, (m,p1,p2)=>p1+esc(nl.note)+p2);
+  html = html.replace(/(id="nl-btn">)[^<]*(<)/, (m,p1,p2)=>p1+esc(nl.btn)+p2);
+
+  const ft = D.footer;
+  html = html.replace(/(class="ft-desc">)[^<]*(<)/, (m,p1,p2)=>p1+esc(ft.desc)+p2);
+  html = html.replace(/(class="ft-copy">)[^<]*(<)/, (m,p1,p2)=>p1+esc(ft.copy)+p2);
+
+  html = hReplaceSection(html, 'const ANIME={', '\n};', () => {
+    const seasons = ['summer','spring','winter','fall'].map(k => {
+      const items = D.anime[k].map(x => '    ' + animeItemStr(x) + ',\n\n\n').join('');
+      return `\n\n\n  ${k}:[\n\n\n${items}  ],`;
+    });
+    return seasons.join('') + '\n\n';
+  });
+
+  return html;
+}
+
+// ── Đăng ký loại khối danh sách (get/apply đúng nguyên bản, không phá hỏng phần chưa mô tả) ──
+const HOME_ITEM_TYPES = {
+  heroSide:   { get: sArtFields,    apply: sArtApply,    fields: [['title','Tiêu đề'],['cat','Chuyên mục'],['meta','Meta (tác giả · ngày)'],['href','Link (slug)'],['img','URL ảnh'],['alt','Alt ảnh']] },
+  marquee:    { get: mqItemFields,  apply: mqItemApply,  fields: [['label','Nhãn'],['text','Nội dung'],['href','Link']] },
+  rankItem:   { get: rkItemFields,  apply: rkItemApply,  fields: [['name','Tên'],['sub','Phụ đề'],['score','Điểm (vd 8.7)'],['href','Link'],['img','URL ảnh'],['alt','Alt ảnh']] },
+  mangaItem:  { get: mangaItemFields, apply: mangaItemApply, fields: [['title','Tiêu đề'],['meta','Meta'],['score','Điểm'],['href','Link'],['img','URL ảnh'],['alt','Alt ảnh']] },
+  latestNews: { get: wCardFields,   apply: wCardApply,   fields: [['title','Tiêu đề'],['cat','Chuyên mục'],['meta','Meta'],['href','Link'],['img','URL ảnh'],['alt','Alt ảnh']] },
+  trending:   { get: tItemFields,   apply: tItemApply,   fields: [['title','Tiêu đề'],['meta','Meta'],['href','Link'],['img','URL ảnh'],['alt','Alt ảnh']] },
+  catGrid:    { get: catTileFields, apply: catTileApply, fields: [['name','Tên danh mục'],['count','Số bài (chỉ hiển thị)'],['href','Link']] },
+};
+
+const HOME_BLOCKS = [
+  { key: 'hero', label: '🎬 Tin chính (Hero)' },
+  { key: 'heroSide', label: '⭐ Nổi bật hôm nay' },
+  { key: 'ticker', label: '📰 Ticker chạy tin' },
+  { key: 'marquee', label: '📢 Marquee' },
+  { key: 'featured', label: '🗞️ Tin nổi bật (lưới)' },
+  { key: 'rankings', label: '🏆 Bảng xếp hạng' },
+  { key: 'anime', label: '📺 Anime theo mùa' },
+  { key: 'manga', label: '📖 Manga/Manhwa/Manhua' },
+  { key: 'latest', label: '🆕 Tin mới nhất + Đang hot' },
+  { key: 'catGrid', label: '🗂️ Danh mục' },
+  { key: 'newsletter', label: '✉️ Đăng ký nhận tin' },
+  { key: 'footer', label: '🔻 Chân trang' },
+];
+
+function getArr(path) { return path.split('.').reduce((o,k)=>o[k], HOME_DATA); }
+
+async function homeEditor(file) {
+  HAS_UNSAVED_CHANGES = false;
+  file = file || 'index.html';
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải trang chủ...</span></div>`);
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-home')?.classList.add('active');
+  try {
+    const data = await ghGet(file);
+    const raw = decodeURIComponent(escape(atob(data.content)));
+    HOME_FILE = file;
+    HOME_RAW = await resolveDraftOrPublished(file, raw);
+    HOME_DATA = loadHomeData(HOME_RAW);
+    HOME_ITEM_EXPANDED = new Set();
+    renderVisualHomeEditor();
+  } catch(e) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải trang chủ: ${e.message}</p></div>`);
+  }
+}
+
+const HOME_BRIDGE_SCRIPT = `<script>(function(){
+  var BLOCKS = [
+    {key:'hero', sel:'.hero-main'},
+    {key:'heroSide', sel:'.hero-side'},
+    {key:'ticker', sel:'.ticker'},
+    {key:'marquee', sel:'.marquee'},
+    {key:'featured', sel:'.f-grid'},
+    {key:'rankings', sel:'.rank-grid'},
+    {key:'manga', sel:'.manga-grid'},
+    {key:'latest', sel:'.latest-wrap'},
+    {key:'catGrid', sel:'.cat-grid'},
+    {key:'newsletter', sel:'#newsletter'},
+    {key:'footer', sel:'footer'}
+  ];
+  function tag(){
+    BLOCKS.forEach(function(b){
+      var el = document.querySelector(b.sel);
+      if (el) { el.setAttribute('data-oh-block', b.key); el.classList.add('oh-editable'); }
+    });
+    var seasonTabs = document.querySelector('.season-tabs');
+    if (seasonTabs && seasonTabs.parentElement) {
+      seasonTabs.parentElement.setAttribute('data-oh-block', 'anime');
+      seasonTabs.parentElement.classList.add('oh-editable');
+    }
+  }
+  tag();
+  var style = document.createElement('style');
+  style.textContent = '.oh-editable{outline-offset:-3px;cursor:pointer;transition:outline .12s}.oh-editable:hover{outline:3px dashed #00e5ff !important}';
+  document.head.appendChild(style);
+  document.addEventListener('click', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    var el = e.target.closest ? e.target.closest('[data-oh-block]') : null;
+    if (el) parent.postMessage({ type:'oh-click', block: el.getAttribute('data-oh-block') }, '*');
+  }, true);
+})();<\/script>`;
+
+function homeBuildIframeSrcdoc() {
+  const built = buildHomeHtml(HOME_RAW, HOME_DATA);
+  let out = built.replace('<head>', '<head><base href="https://otahub.asia/">');
+  out = out.replace('</body>', HOME_BRIDGE_SCRIPT + '</body>');
+  return out;
+}
+
+let HOME_REFRESH_TIMER = null;
+function schedulePreviewRefresh() {
+  if (HOME_REFRESH_TIMER) clearTimeout(HOME_REFRESH_TIMER);
+  HOME_REFRESH_TIMER = setTimeout(() => {
+    const iframe = document.getElementById('home-visual-iframe');
+    if (iframe) iframe.srcdoc = homeBuildIframeSrcdoc();
+  }, 700);
+}
+
+function renderVisualHomeEditor() {
+  const isEn = HOME_FILE.startsWith('en/');
+  const navHtml = HOME_BLOCKS.map(b => `<button class="block-nav-item" data-block="${b.key}" onclick="openHomeBlockPanel('${b.key}')">${b.label}</button>`).join('');
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">Trang chủ <small>${HOME_FILE}</small></div>
+      <div class="header-actions">
+        <button class="btn btn-secondary btn-sm" onclick="homeEditor('${isEn ? HOME_FILE.replace(/^en\//, '') : 'en/' + HOME_FILE}')">${isEn ? '🇻🇳 Xem bản VI' : '🇬🇧 Xem bản EN'}</button>
+      </div>
+    </div>
+
+    <div class="editor-layout home-visual-editor">
+      <div class="editor-main">
+        <div class="visual-hint">💡 Bấm vào bất kỳ khối nào trên bản xem trước bên dưới để chỉnh sửa — giống Elementor. Khối khó bấm (chân trang, đăng ký nhận tin...) mở nhanh từ danh sách bên phải.</div>
+        <div class="visual-iframe-wrap">
+          <iframe id="home-visual-iframe" class="home-visual-iframe"></iframe>
+        </div>
+      </div>
+
+      <div class="editor-sidebar">
+        <div class="publish-box">
+          <div class="pb-head">🚀 Xuất bản</div>
+          <div class="pb-body">
+            <div class="pb-row"><span class="pb-label">Trạng thái</span><span class="pb-val" style="display:flex;align-items:center;gap:6px"><span class="status-dot" id="status-dot"></span><span id="status-text">Chưa có thay đổi</span></span></div>
+            <div class="pb-actions">
+              <button class="btn btn-primary" id="save-btn" onclick="saveVisualHome()">💾 Lưu & Deploy</button>
+            </div>
+            <div style="display:flex;gap:14px;margin-top:12px;flex-wrap:wrap">
+              <a class="pb-link" href="https://otahub.asia/${isEn ? 'en/' : ''}" target="_blank">🔗 Xem live</a>
+              <a class="pb-link" href="#" onclick="event.preventDefault();if(confirm('Bỏ thay đổi?'))homeEditor('${HOME_FILE}')">↺ Hoàn tác</a>
+              <a class="pb-link" href="#" onclick="event.preventDefault();openHistoryModal('${HOME_FILE}', () => homeEditor('${HOME_FILE}'))">🕐 Lịch sử</a>
+            </div>
+            <div class="pb-savelog" id="save-log"></div>
+          </div>
+        </div>
+
+        <div class="side-box home-nav-box">
+          <div class="side-box-title">📑 Các khối trên trang</div>
+          ${navHtml}
+        </div>
+
+        <div id="home-block-panel" class="home-block-panel">
+          <div class="empty-state-mini">👈 Click một khối trong bản xem trước hoặc trong danh sách để bắt đầu chỉnh sửa</div>
+        </div>
+      </div>
+    </div>
+  `);
+
+  const iframe = document.getElementById('home-visual-iframe');
+  if (iframe) iframe.srcdoc = homeBuildIframeSrcdoc();
+  HOME_PANEL = null;
+
+  if (!window.__homeMsgBound) {
+    window.__homeMsgBound = true;
+    window.addEventListener('message', function(e) {
+      if (!e.data || e.data.type !== 'oh-click') return;
+      openHomeBlockPanel(e.data.block);
+    });
+  }
+}
+
+function openHomeBlockPanel(key) {
+  HOME_PANEL = key;
+  document.querySelectorAll('.block-nav-item').forEach(b => b.classList.toggle('active', b.dataset.block === key));
+  const panel = document.getElementById('home-block-panel');
+  if (panel) panel.innerHTML = homeRenderPanel(key);
+}
+
+function homeSetSubtab(blockKey, tabKey) { HOME_SUBTAB[blockKey] = tabKey; openHomeBlockPanel(blockKey); }
+
+function homeRenderPanel(key) {
+  switch (key) {
+    case 'hero': return homeSimplePanelHtml('hero', '🎬 Tin chính (Hero)', [['title','Tiêu đề'],['sub','Mô tả ngắn','textarea'],['cat','Chuyên mục'],['date','Ngày'],['href','Link (slug)'],['img','URL ảnh nền']]);
+    case 'heroSide': return homeItemListPanelHtml('heroSide', 'heroSide', `⭐ Nổi bật hôm nay (${HOME_DATA.heroSide.length})`);
+    case 'ticker': return homeTickerPanelHtml();
+    case 'marquee': return homeItemListPanelHtml('marquee', 'marquee', `📢 Marquee (${HOME_DATA.marquee.length})`);
+    case 'featured': return homeFeaturedPanelHtml();
+    case 'rankings': return homeTabbedListPanel('rankings', [['pc','PC/Console','rankItem','rankings.pc'],['mobile','Mobile','rankItem','rankings.mobile']], '🏆 Bảng xếp hạng');
+    case 'manga': return homeTabbedListPanel('manga', [['manga','Manga','mangaItem','manga.manga'],['manhwa','Manhwa','mangaItem','manga.manhwa'],['manhua','Manhua','mangaItem','manga.manhua']], '📖 Manga/Manhwa/Manhua');
+    case 'latest': return homeTabbedListPanel('latest', [['news','Tin mới nhất','latestNews','latestNews'],['trending','Đang hot','trending','trending']], '🆕 Tin mới nhất + Đang hot');
+    case 'catGrid': return homeItemListPanelHtml('catGrid', 'catGrid', `🗂️ Danh mục (${HOME_DATA.catGrid.length})`);
+    case 'newsletter': return homeSimplePanelHtml('newsletter', '✉️ Đăng ký nhận tin', [['title','Tiêu đề'],['sub','Mô tả','textarea'],['label','Nhãn ô nhập'],['note','Ghi chú nhỏ'],['btn','Chữ nút']]);
+    case 'footer': return homeSimplePanelHtml('footer', '🔻 Chân trang', [['desc','Mô tả website','textarea'],['copy','Dòng bản quyền']]);
+    case 'anime': return homeAnimeTabbedPanel();
+    default: return '<div class="empty-state-mini">👈 Click một khối trong bản xem trước để bắt đầu chỉnh sửa</div>';
+  }
+}
+
+// ── Panel đơn (hero / newsletter / footer) ──
+function homeSimplePanelHtml(objKey, title, fields) {
+  const obj = HOME_DATA[objKey];
+  const rows = fields.map(([k,label,type]) => type === 'textarea'
+    ? `<label class="form-label">${label}</label><textarea class="form-input" oninput="homeSimpleEdit('${objKey}','${k}',this.value)">${esc(obj[k]||'')}</textarea>`
+    : k === 'img'
+    ? `<label class="form-label">${label}</label><div style="display:flex;gap:6px"><input class="form-input" style="flex:1" value="${esc(obj[k]||'')}" oninput="homeSimpleEdit('${objKey}','${k}',this.value)"><button class="btn btn-secondary btn-sm" style="flex-shrink:0" onclick="homeSimplePickImage('${objKey}','${k}')">🖼️ Chọn</button></div>`
+    : `<label class="form-label">${label}</label><input class="form-input" value="${esc(obj[k]||'')}" oninput="homeSimpleEdit('${objKey}','${k}',this.value)">`
+  ).join('');
+  return `<div class="home-panel-head"><h3>${title}</h3></div><div class="home-item-card">${rows}</div>`;
+}
+function homeSimpleEdit(objKey, key, val) { HOME_DATA[objKey][key] = val; markChanged(); schedulePreviewRefresh(); }
+function homeSimplePickImage(objKey, key) {
+  openMediaModal(res => {
+    homeSimpleEdit(objKey, key, res.src);
+    openHomeBlockPanel(HOME_PANEL);
+  }, 'image');
+}
+
+// ── Panel danh sách chung (dùng cho heroSide/marquee/rank/manga/latest/trending/catGrid) ──
+// Mỗi mục mặc định THU GỌN (chỉ hiện ảnh mini + tên + nút thao tác) — bấm để
+// mở rộng sửa đầy đủ field. Tránh danh sách 10-20 mục dài lê thê như trước.
+function homeItemListBody(typeKey, path) {
+  const type = HOME_ITEM_TYPES[typeKey];
+  const arr = getArr(path);
+  const primaryKey = (type.fields.find(([k]) => k === 'title' || k === 'name' || k === 'text') || type.fields[0])[0];
+  const imgKey = type.fields.some(([k]) => k === 'img') ? 'img' : null;
+  const rows = arr.map((item, i) => {
+    const f = type.get(item.raw);
+    const ek = path + '#' + i;
+    const expanded = HOME_ITEM_EXPANDED.has(ek);
+    const head = `<div class="home-item-head"><span>#${i+1}</span><div class="home-item-actions">
+        <button title="${expanded ? 'Thu gọn' : 'Mở rộng để sửa'}" onclick="homeItemToggleExpand('${ek}')">${expanded ? '▾' : '▸'}</button>
+        <button title="Lên" onclick="homeItemMove('${path}',${i},-1)">↑</button>
+        <button title="Xuống" onclick="homeItemMove('${path}',${i},1)">↓</button>
+        <button title="Xoá" onclick="homeItemDelete('${path}',${i})">🗑</button>
+      </div></div>`;
+    if (!expanded) {
+      const thumb = imgKey && f[imgKey] ? `<img class="home-item-thumb" src="${esc(f[imgKey])}" alt="" onerror="this.style.opacity=.2">` : `<div class="home-item-thumb home-item-thumb-empty">·</div>`;
+      return `<div class="home-item-card home-item-collapsed">${head}<div class="home-item-summary" onclick="homeItemToggleExpand('${ek}')">${thumb}<span class="home-item-summary-text">${esc(f[primaryKey] || '(chưa có nội dung)')}</span></div></div>`;
+    }
+    const fieldsHtml = type.fields.map(([k,label]) => k === 'img'
+      ? `<label class="form-label">${label}</label><div style="display:flex;gap:6px"><input class="form-input" style="flex:1" value="${esc(f[k]||'')}" oninput="homeItemFieldEdit('${path}',${i},'${typeKey}','${k}',this.value)"><button class="btn btn-secondary btn-sm" style="flex-shrink:0" onclick="homeItemPickImage('${path}',${i},'${typeKey}','${k}')">🖼️ Chọn</button></div>`
+      : `<label class="form-label">${label}</label><input class="form-input" value="${esc(f[k]||'')}" oninput="homeItemFieldEdit('${path}',${i},'${typeKey}','${k}',this.value)">`
+    ).join('');
+    return `<div class="home-item-card">${head}${fieldsHtml}</div>`;
+  }).join('');
+  return `<button class="btn btn-secondary btn-sm" style="margin-bottom:10px" onclick="homeItemAdd('${path}','${typeKey}')">➕ Thêm mục</button><div class="home-item-list">${rows || '<div class="empty-state-mini">Chưa có mục nào.</div>'}</div>`;
+}
+function homeItemToggleExpand(ek) {
+  if (HOME_ITEM_EXPANDED.has(ek)) HOME_ITEM_EXPANDED.delete(ek); else HOME_ITEM_EXPANDED.add(ek);
+  openHomeBlockPanel(HOME_PANEL);
+}
+function homeItemListPanelHtml(typeKey, path, title) {
+  return `<div class="home-panel-head"><h3>${title}</h3></div>${homeItemListBody(typeKey, path)}`;
+}
+function homeTabbedListPanel(blockKey, tabs, title) {
+  const active = HOME_SUBTAB[blockKey] || tabs[0][0];
+  HOME_SUBTAB[blockKey] = active;
+  const tabBar = tabs.map(([tk,label]) => `<button class="home-tab-btn ${tk===active?'active':''}" onclick="homeSetSubtab('${blockKey}','${tk}')">${label}</button>`).join('');
+  const cur = tabs.find(t => t[0] === active);
+  const typeKey = cur[2], path = cur[3];
+  return `<div class="home-panel-head"><h3>${title}</h3></div><div class="home-tab-bar">${tabBar}</div>${homeItemListBody(typeKey, path)}`;
+}
+
+function homeItemFieldEdit(path, i, typeKey, key, val) {
+  const arr = getArr(path);
+  const type = HOME_ITEM_TYPES[typeKey];
+  arr[i].raw = type.apply(arr[i].raw, { [key]: val });
+  markChanged();
+  schedulePreviewRefresh();
+}
+function homeItemPickImage(path, i, typeKey, key) {
+  openMediaModal(res => {
+    homeItemFieldEdit(path, i, typeKey, key, res.src);
+    openHomeBlockPanel(HOME_PANEL);
+  }, 'image');
+}
+function homeItemMove(path, i, dir) {
+  const arr = getArr(path);
+  const j = i + dir;
+  if (j < 0 || j >= arr.length) return;
+  const t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+  markChanged();
+  openHomeBlockPanel(HOME_PANEL);
+  schedulePreviewRefresh();
+}
+function homeItemDelete(path, i) {
+  if (!confirm('Xoá mục này?')) return;
+  getArr(path).splice(i, 1);
+  markChanged();
+  openHomeBlockPanel(HOME_PANEL);
+  schedulePreviewRefresh();
+}
+function homeItemAdd(path, typeKey) {
+  const arr = getArr(path);
+  const type = HOME_ITEM_TYPES[typeKey];
+  if (!arr.length) { toast('error', 'Không có mục mẫu để nhân bản.'); return; }
+  const ph = {};
+  type.fields.forEach(([k]) => {
+    if (k === 'href') ph[k] = '/duong-dan-moi';
+    else if (k === 'img') ph[k] = '/assets/img/placeholder.svg';
+    else if (k === 'alt') ph[k] = 'Ảnh minh hoạ';
+    else if (k === 'score') ph[k] = '8.0';
+    else if (k === 'count') ph[k] = '0';
+    else ph[k] = 'Nội dung mới';
+  });
+  const clone = { raw: type.apply(arr[0].raw, ph) };
+  arr.unshift(clone);
+  markChanged();
+  openHomeBlockPanel(HOME_PANEL);
+  schedulePreviewRefresh();
+}
+
+// ── Ticker (mảng chuỗi thuần) ──
+function homeTickerPanelHtml() {
+  const rows = HOME_DATA.ticker.map((t,i) => `
+    <div class="home-ticker-row">
+      <input class="form-input" value="${esc(t)}" oninput="homeTickerEdit(${i},this.value)">
+      <div class="home-item-actions">
+        <button title="Lên" onclick="homeTickerMove(${i},-1)">↑</button>
+        <button title="Xuống" onclick="homeTickerMove(${i},1)">↓</button>
+        <button title="Xoá" onclick="homeTickerDelete(${i})">🗑</button>
+      </div>
+    </div>`).join('');
+  return `<div class="home-panel-head"><h3>📰 Ticker chạy tin (${HOME_DATA.ticker.length})</h3></div><button class="btn btn-secondary btn-sm" style="margin-bottom:10px" onclick="homeTickerAdd()">➕ Thêm dòng tin</button><div class="home-item-list">${rows}</div>`;
+}
+function homeTickerEdit(i,val) { HOME_DATA.ticker[i] = val; markChanged(); schedulePreviewRefresh(); }
+function homeTickerMove(i,dir) { const arr=HOME_DATA.ticker; const j=i+dir; if (j<0||j>=arr.length) return; const t=arr[i]; arr[i]=arr[j]; arr[j]=t; markChanged(); openHomeBlockPanel('ticker'); schedulePreviewRefresh(); }
+function homeTickerDelete(i) { HOME_DATA.ticker.splice(i,1); markChanged(); openHomeBlockPanel('ticker'); schedulePreviewRefresh(); }
+function homeTickerAdd() { HOME_DATA.ticker.unshift('Tin mới'); markChanged(); openHomeBlockPanel('ticker'); schedulePreviewRefresh(); }
+
+// ── Tin nổi bật (fc + sc) ──
+function homeFeaturedPanelHtml() {
+  const fc = fcFields(HOME_DATA.featured.fc);
+  const fcFieldsDef = [['title','Tiêu đề'],['sub','Mô tả ngắn','textarea'],['tag','Nhãn chuyên mục'],['href','Link'],['img','URL ảnh']];
+  const fcHtml = fcFieldsDef.map(([k,label,type]) => type === 'textarea'
+    ? `<label class="form-label">${label}</label><textarea class="form-input" oninput="homeFcEdit('${k}',this.value)">${esc(fc[k]||'')}</textarea>`
+    : k === 'img'
+    ? `<label class="form-label">${label}</label><div style="display:flex;gap:6px"><input class="form-input" style="flex:1" value="${esc(fc[k]||'')}" oninput="homeFcEdit('${k}',this.value)"><button class="btn btn-secondary btn-sm" style="flex-shrink:0" onclick="homeFcPickImage('${k}')">🖼️ Chọn</button></div>`
+    : `<label class="form-label">${label}</label><input class="form-input" value="${esc(fc[k]||'')}" oninput="homeFcEdit('${k}',this.value)">`
+  ).join('');
+  const scFieldsDef = [['title','Tiêu đề'],['tag','Nhãn'],['href','Link'],['img','URL ảnh']];
+  const scRows = HOME_DATA.featured.sc.map((c,i) => {
+    const f = scFields(c.raw);
+    const fieldsHtml = scFieldsDef.map(([k,label]) => k === 'img'
+      ? `<label class="form-label">${label}</label><div style="display:flex;gap:6px"><input class="form-input" style="flex:1" value="${esc(f[k]||'')}" oninput="homeScEdit(${i},'${k}',this.value)"><button class="btn btn-secondary btn-sm" style="flex-shrink:0" onclick="homeScPickImage(${i},'${k}')">🖼️ Chọn</button></div>`
+      : `<label class="form-label">${label}</label><input class="form-input" value="${esc(f[k]||'')}" oninput="homeScEdit(${i},'${k}',this.value)">`
+    ).join('');
+    return `<div class="home-item-card"><div class="home-item-head"><span>Tin phụ #${i+1}</span><div class="home-item-actions"><button title="Lên" onclick="homeScMove(${i},-1)">↑</button><button title="Xuống" onclick="homeScMove(${i},1)">↓</button><button title="Xoá" onclick="homeScDelete(${i})">🗑</button></div></div>${fieldsHtml}</div>`;
+  }).join('');
+  return `<div class="home-panel-head"><h3>🗞️ Tin nổi bật — tin chính</h3></div><div class="home-item-card">${fcHtml}</div>
+    <div class="home-panel-head" style="margin-top:16px"><h3>🗞️ Tin nổi bật — tin phụ (${HOME_DATA.featured.sc.length})</h3></div>
+    <button class="btn btn-secondary btn-sm" style="margin-bottom:10px" onclick="homeScAdd()">➕ Thêm thẻ tin phụ</button>
+    <div class="home-item-list">${scRows}</div>`;
+}
+function homeFcEdit(key, val) { HOME_DATA.featured.fc = fcApply(HOME_DATA.featured.fc, { [key]: val }); markChanged(); schedulePreviewRefresh(); }
+function homeFcPickImage(key) { openMediaModal(res => { homeFcEdit(key, res.src); openHomeBlockPanel('featured'); }, 'image'); }
+function homeScEdit(i, key, val) { HOME_DATA.featured.sc[i].raw = scApply(HOME_DATA.featured.sc[i].raw, { [key]: val }); markChanged(); schedulePreviewRefresh(); }
+function homeScPickImage(i, key) { openMediaModal(res => { homeScEdit(i, key, res.src); openHomeBlockPanel('featured'); }, 'image'); }
+function homeScMove(i, dir) { const arr=HOME_DATA.featured.sc; const j=i+dir; if (j<0||j>=arr.length) return; const t=arr[i]; arr[i]=arr[j]; arr[j]=t; markChanged(); openHomeBlockPanel('featured'); schedulePreviewRefresh(); }
+function homeScDelete(i) { if (!confirm('Xoá thẻ tin phụ này?')) return; HOME_DATA.featured.sc.splice(i,1); markChanged(); openHomeBlockPanel('featured'); schedulePreviewRefresh(); }
+function homeScAdd() {
+  if (!HOME_DATA.featured.sc.length) { toast('error', 'Không có thẻ mẫu để nhân bản.'); return; }
+  const clone = { raw: scApply(HOME_DATA.featured.sc[0].raw, { href: '/duong-dan-moi', img: '/assets/img/placeholder.svg', alt: 'Ảnh minh hoạ', title: 'Tiêu đề mới' }) };
+  HOME_DATA.featured.sc.unshift(clone);
+  markChanged();
+  openHomeBlockPanel('featured');
+  schedulePreviewRefresh();
+}
+
+// ── Anime theo mùa (đối tượng JS thuần, không phải raw HTML) ──
+function homeAnimeTabbedPanel() {
+  const seasons = [['summer','Mùa Hè'],['spring','Mùa Xuân'],['winter','Mùa Đông'],['fall','Mùa Thu']];
+  const active = HOME_SUBTAB.anime || 'summer';
+  HOME_SUBTAB.anime = active;
+  const tabBar = seasons.map(([sk,label]) => `<button class="home-tab-btn ${sk===active?'active':''}" onclick="homeSetSubtab('anime','${sk}')">${label}</button>`).join('');
+  const items = HOME_DATA.anime[active] || [];
+  const fieldsDef = [['title','Tiêu đề'],['genre','Thể loại'],['score','Điểm'],['day','Ngày phát'],['ep','Số tập'],['status','Trạng thái (airing/soon/done)'],['img','URL ảnh']];
+  const rows = items.map((it,i) => {
+    const fieldsHtml = fieldsDef.map(([k,label]) => k === 'img'
+      ? `<label class="form-label">${label}</label><div style="display:flex;gap:6px"><input class="form-input" style="flex:1" value="${esc(it[k]||'')}" oninput="homeAnimeEdit('${active}',${i},'${k}',this.value)"><button class="btn btn-secondary btn-sm" style="flex-shrink:0" onclick="homeAnimePickImage('${active}',${i},'${k}')">🖼️ Chọn</button></div>`
+      : `<label class="form-label">${label}</label><input class="form-input" value="${esc(it[k]||'')}" oninput="homeAnimeEdit('${active}',${i},'${k}',this.value)">`
+    ).join('');
+    return `<div class="home-item-card"><div class="home-item-head"><span>#${i+1}</span><div class="home-item-actions"><button title="Lên" onclick="homeAnimeMove('${active}',${i},-1)">↑</button><button title="Xuống" onclick="homeAnimeMove('${active}',${i},1)">↓</button><button title="Xoá" onclick="homeAnimeDelete('${active}',${i})">🗑</button></div></div>${fieldsHtml}</div>`;
+  }).join('');
+  return `<div class="home-panel-head"><h3>📺 Anime theo mùa</h3></div><div class="home-tab-bar">${tabBar}</div><button class="btn btn-secondary btn-sm" style="margin-bottom:10px" onclick="homeAnimeAdd('${active}')">➕ Thêm anime</button><div class="home-item-list">${rows || '<div class="empty-state-mini">Chưa có mục nào.</div>'}</div>`;
+}
+function homeAnimeEdit(season, i, key, val) { HOME_DATA.anime[season][i][key] = val; markChanged(); schedulePreviewRefresh(); }
+function homeAnimePickImage(season, i, key) { openMediaModal(res => { homeAnimeEdit(season, i, key, res.src); openHomeBlockPanel('anime'); }, 'image'); }
+function homeAnimeMove(season, i, dir) { const arr=HOME_DATA.anime[season]; const j=i+dir; if (j<0||j>=arr.length) return; const t=arr[i]; arr[i]=arr[j]; arr[j]=t; markChanged(); openHomeBlockPanel('anime'); schedulePreviewRefresh(); }
+function homeAnimeDelete(season, i) { if (!confirm('Xoá anime này?')) return; HOME_DATA.anime[season].splice(i,1); markChanged(); openHomeBlockPanel('anime'); schedulePreviewRefresh(); }
+function homeAnimeAdd(season) {
+  HOME_DATA.anime[season].unshift({ title:'Anime mới', genre:'Action', score:'8.0', day:'Chủ nhật', ep:'1/12', status:'airing', img:'/assets/img/placeholder.svg' });
+  markChanged();
+  openHomeBlockPanel('anime');
+  schedulePreviewRefresh();
+}
+
+async function saveVisualHome() {
+  const btn = document.getElementById('save-btn');
+  const dot = document.getElementById('status-dot');
+  const txt = document.getElementById('status-text');
+  if (btn) { btn.textContent = '⏳ Đang lưu...'; btn.disabled = true; }
+  if (dot) dot.className = 'status-dot saving';
+  if (txt) txt.textContent = 'Đang commit lên GitHub...';
+  try {
+    const latest = await ghGet(HOME_FILE);
+    const latestRaw = decodeURIComponent(escape(atob(latest.content)));
+    const html = buildHomeHtml(latestRaw, HOME_DATA);
+    await ghPut(HOME_FILE, html, latest.sha, '[admin] cap nhat trang chu (visual editor)');
+    await deleteDraft(HOME_FILE);
+    HOME_RAW = latestRaw;
+    HAS_UNSAVED_CHANGES = false;
+    if (dot) dot.className = 'status-dot';
+    if (txt) txt.textContent = 'Đã lưu • ' + new Date().toLocaleTimeString('vi-VN');
+    const log = document.getElementById('save-log');
+    if (log) log.innerHTML = `✅ Commit lúc ${new Date().toLocaleTimeString('vi-VN')}<br>` + log.innerHTML;
+    toast('success', '✅ Đã lưu trang chủ! Deploy trong ~1-2 phút.');
+  } catch(e) {
+    if (dot) dot.className = 'status-dot error';
+    if (txt) txt.textContent = 'Lỗi khi lưu';
+    toast('error', 'Lỗi lưu: ' + e.message);
+  } finally {
+    if (btn) { btn.textContent = '💾 Lưu & Deploy'; btn.disabled = false; }
+  }
+}
+// Autosave bản nháp Home editor — dùng HOME_RAW (đã cache khi mở editor) làm
+// nền thay vì gọi lại GitHub, giữ tốc độ nhanh cho autosave định kỳ.
+async function autosaveHomeDraft() {
+  if (!HOME_FILE || !HOME_RAW || !HOME_DATA) return;
+  try {
+    const html = buildHomeHtml(HOME_RAW, HOME_DATA);
+    await putDraft(HOME_FILE, html);
+    setDraftIndicator('📝 Đã lưu nháp tự động lúc ' + new Date().toLocaleTimeString('vi-VN'));
+  } catch(e) {
+    setDraftIndicator('⚠️ Lưu nháp tự động thất bại: ' + e.message);
+  }
+}
+
+// ── Tự động đồng bộ bài viết mới ra toàn site ────────────────────────────────
+async function syncNewArticle(meta) {
+  const slug = meta.file.replace(/\.html$/, '');
+  const url = '/' + slug;
+  const CAT_MAP = {
+    Gaming: { hub: 'gaming.html', story: 'gaming', tag: 'tc' },
+    Anime:  { hub: 'anime.html',  story: 'anime',  tag: 'ts' },
+    Manga:  { hub: 'manga.html',  story: 'manga',  tag: 'tv' },
+  };
+  const info = CAT_MAP[meta.cat] || CAT_MAP.Gaming;
+  const now = new Date();
+  const dateStr = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
+  const isoDate = now.toISOString().slice(0, 10);
+  const hero = meta.hero || '/assets/img/placeholder.svg';
+  const results = [];
+
+  try {
+    const newsCard = `<a href="${url}" style="display:block;background:#150a2c;border:1px solid rgba(255,255,255,.12);color:#f3efff;text-decoration:none"><img src="${hero}" alt="${esc(meta.title)}" width="1200" height="675" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover"><div style="padding:18px"><span style="color:#00e5ff;font-size:11px;letter-spacing:.15em">${meta.cat.toUpperCase()}</span><h3 style="font-size:20px;line-height:1.3;margin:8px 0">${esc(meta.title)}</h3><p style="color:#aaa1ba;font-size:14px">${esc(meta.desc)}</p></div></a>`;
+    const data = await ghGet('news.html');
+    let content = decodeURIComponent(escape(atob(data.content)));
+    const gridAnchor = /gap:18px">/;
+    if (!gridAnchor.test(content)) throw new Error('Không tìm thấy điểm chèn trong news.html');
+    content = content.replace(gridAnchor, (m) => m + newsCard);
+    content = content.replace(/(\d+)( tin mới đã kiểm chứng)/, (m, n, rest) => (parseInt(n, 10) + 1) + rest);
+    await ghPut('news.html', content, data.sha, `[admin] them bai moi vao news.html: ${meta.title.slice(0, 50)}`);
+    results.push('✅ news.html');
+  } catch(e) { results.push('❌ news.html — ' + e.message); }
+
+  try {
+    const cardHtml = `\n      <a href="${url}" class="ac" data-cat="pc"><div class="ac-thumb"><img src="${hero}" alt="${esc(meta.title)}" loading="lazy" width="1280" height="720"></div><div class="ac-info"><div><div class="ac-top"><span class="tag ${info.tag}">${meta.cat}</span></div><div class="ac-title">${esc(meta.title)}</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>Hôm nay</span><span class="ac-meta-sep">·</span><span>5 min</span></div></div></a>`;
+    await ghSpliceInsert(info.hub, /<!-- ADMIN:ARTICLES_START -->/, cardHtml, true, `[admin] them bai moi vao ${info.hub}: ${meta.title.slice(0, 50)}`);
+    results.push(`✅ ${info.hub}`);
+  } catch(e) { results.push(`❌ ${info.hub} — ` + e.message); }
+
+  try {
+    const wcard = `<article class="w-card"><a href="${slug}" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">${meta.cat} · OtaHub Editorial</div><div class="wc-t">${esc(meta.title)}</div><div class="wc-m">OtaHub Editorial · ${dateStr} · 5 min</div></div><div class="wc-thumb"><img src="${hero}" alt="${esc(meta.title)}" loading="lazy" width="2000" height="1125"></div></a></article>\n\n`;
+    await ghSpliceInsert('index.html', /<article class="w-card">/, wcard, false, `[admin] them bai moi vao trang chu: ${meta.title.slice(0, 50)}`);
+    results.push('✅ index.html');
+  } catch(e) { results.push('❌ index.html — ' + e.message); }
+
+  try {
+    const entry = JSON.stringify({ u: url, t: meta.title, c: meta.cat, s: (meta.desc || '').slice(0, 150) }) + ',';
+    await ghSpliceInsert('assets/search.js', /var IDX=\[/, entry, true, `[admin] them bai moi vao search index: ${meta.title.slice(0, 50)}`);
+    results.push('✅ search.js');
+  } catch(e) { results.push('❌ search.js — ' + e.message); }
+
+  try {
+    const urlBlock = `<url><loc>https://otahub.asia${url}</loc><lastmod>${isoDate}</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>\n`;
+    await ghSpliceInsert('sitemap.xml', /<\/urlset>/, urlBlock, false, `[admin] them bai moi vao sitemap: ${meta.title.slice(0, 50)}`);
+    results.push('✅ sitemap.xml');
+  } catch(e) { results.push('❌ sitemap.xml — ' + e.message); }
+
+  try {
+    const item = `  <item><title>${esc(meta.title)}</title><link>https://otahub.asia${url}</link><guid isPermaLink="true">https://otahub.asia${url}</guid><pubDate>${now.toUTCString()}</pubDate><description>${esc(meta.desc)}</description><media:content url="https://otahub.asia${hero}" medium="image"/></item>\n`;
+    await ghSpliceInsert('feed.xml', /<item>/, item, false, `[admin] them bai moi vao feed.xml: ${meta.title.slice(0, 50)}`);
+    results.push('✅ feed.xml');
+  } catch(e) { results.push('❌ feed.xml — ' + e.message); }
+
+  alert('Kết quả đồng bộ bài viết mới:\n\n' + results.join('\n') + '\n\nLưu ý: chỉ đồng bộ bản Tiếng Việt. Nếu cần bản Tiếng Anh, tạo và nối thủ công vào en/.');
+}
+
+// ── Trình soạn thảo dữ liệu dạng mảng (Reviews, Chơi Gì, Recommend, Lịch phát sóng) ──
+// Các trang này không dùng thẻ HTML lặp lại như trang chuyên mục, mà lưu dữ liệu
+// trong 1 mảng JS (const TEN_BIEN = [...]) rồi tự render bằng JS trên trình duyệt.
+// Vì vậy ta parse mảng đó thành object thật, cho sửa qua form, rồi ghi đè lại
+// bằng JSON.stringify (vẫn là cú pháp JS hợp lệ để gán cho const).
+const ARRAY_PAGE_CONFIGS = {
+  reviews: {
+    file: 'reviews.html', varName: 'REVIEWS', label: 'Reviews', urlBase: 'https://otahub.asia/reviews',
+    titleField: 'title', imgField: 'img',
+    fields: [
+      { key: 'title', label: 'Tiêu đề', type: 'text' },
+      { key: 'url', label: 'Link bài viết', type: 'text' },
+      { key: 'img', label: 'URL ảnh', type: 'text' },
+      { key: 'type', label: 'Loại (game/anime/manga)', type: 'text' },
+      { key: 'score', label: 'Điểm', type: 'text' },
+      { key: 'verdict', label: 'Kết luận', type: 'text' },
+      { key: 'cat', label: 'Danh mục hiển thị', type: 'text' },
+      { key: 'sub', label: 'Phụ đề', type: 'text' },
+      { key: 'desc', label: 'Mô tả', type: 'textarea' },
+      { key: 'author', label: 'Tác giả', type: 'text' },
+      { key: 'date', label: 'Ngày (hiển thị)', type: 'text' },
+      { key: 'time', label: 'Thời gian đọc', type: 'text' },
+    ],
+    newEntry: () => ({ id: 'r' + Date.now().toString(36), type: 'game', url: '/', img: '/assets/img/placeholder.svg', title: 'Tiêu đề mới', sub: '', desc: '', score: '8.0', sc: 'var(--cyan)', verdict: 'Tốt', cat: 'Gaming', catC: 'var(--cyan)', author: 'OtaHub Editorial', date: 'Hôm nay', time: '5 phút', cats: [], date_ts: 0 }),
+  },
+  choigi: {
+    file: 'choi-gi.html', varName: 'GAMES', label: 'Cơ sở dữ liệu game (Chơi Gì?)', urlBase: 'https://otahub.asia/choi-gi',
+    titleField: 'name', imgField: 'img',
+    fields: [
+      { key: 'name', label: 'Tên game', type: 'text' },
+      { key: 'dev', label: 'Nhà phát triển / Năm', type: 'text' },
+      { key: 'platform', label: 'Nền tảng (pc/mobile/console...)', type: 'text' },
+      { key: 'genre', label: 'Thể loại', type: 'text' },
+      { key: 'moods', label: 'Mood (cách nhau dấu phẩy)', type: 'array' },
+      { key: 'time', label: 'Thời lượng chơi', type: 'text' },
+      { key: 'score', label: 'Điểm', type: 'number' },
+      { key: 'img', label: 'URL ảnh', type: 'text' },
+      { key: 'icon', label: 'Icon (emoji)', type: 'text' },
+      { key: 'why', label: 'Lý do nên chơi', type: 'textarea' },
+    ],
+    newEntry: () => ({ id: 'g' + Date.now().toString(36), name: 'Tên game mới', dev: '', platform: 'pc', genre: '', moods: [], time: '', score: 8.0, img: '', icon: '🎮', color: ['#150a2c', '#1d1040'], why: '' }),
+  },
+  recommend: {
+    file: 'recommend.html', varName: 'GAMES', label: 'Vòng quay gợi ý game (Recommend)', urlBase: 'https://otahub.asia/recommend',
+    titleField: 'title', imgField: null,
+    fields: [
+      { key: 'title', label: 'Tên game', type: 'text' },
+      { key: 'genre', label: 'Thể loại', type: 'text' },
+      { key: 'platform', label: 'Nền tảng', type: 'text' },
+      { key: 'score', label: 'Điểm', type: 'text' },
+      { key: 'time', label: 'Thời lượng', type: 'text' },
+    ],
+    note: '💡 Trang này có nền màu/gradient riêng cho từng game — thêm mới nên dùng ô "JSON thô" bên dưới và sao chép style từ 1 mục có sẵn.',
+  },
+  lichphatsong: {
+    file: 'lich-phat-song.html', varName: 'MANGA_DATA', label: 'Lịch cập nhật Manga/Manhwa/Manhua', urlBase: 'https://otahub.asia/lich-phat-song',
+    titleField: 'title', imgField: 'img',
+    fields: [
+      { key: 'title', label: 'Tên truyện', type: 'text' },
+      { key: 'type', label: 'Loại (manga/manhwa/manhua)', type: 'text' },
+      { key: 'chapter', label: 'Chương mới nhất', type: 'text' },
+      { key: 'genres', label: 'Thể loại (cách nhau dấu phẩy)', type: 'array' },
+      { key: 'time', label: 'Thời gian cập nhật', type: 'text' },
+      { key: 'img', label: 'URL ảnh', type: 'text' },
+      { key: 'link', label: 'Link chi tiết', type: 'text' },
+    ],
+    newEntry: () => ({ type: 'manga', title: 'Tên truyện mới', chapter: 'Chapter 1', genres: [], time: 'Vừa xong', img: '/assets/img/placeholder.svg', link: '/' }),
+  },
+};
+
+let ARR_CFG = null;
+let ARR_DATA = [];
+let ARR_SHA = null;
+
+async function arrayEditor(cfgKey) {
+  const cfg = ARRAY_PAGE_CONFIGS[cfgKey];
+  if (!cfg) return;
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải ${cfg.label}...</span></div>`);
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-arr-' + cfgKey)?.classList.add('active');
+  try {
+    const data = await ghGet(cfg.file);
+    const raw = decodeURIComponent(escape(atob(data.content)));
+    const re = new RegExp('const\\s+' + cfg.varName + '\\s*=\\s*(\\[[\\s\\S]*?\\n\\]);');
+    const m = raw.match(re);
+    if (!m) throw new Error(`Không tìm thấy mảng dữ liệu "${cfg.varName}" trong ${cfg.file}`);
+    ARR_CFG = { ...cfg, key: cfgKey };
+    ARR_DATA = new Function('return ' + m[1])();
+    ARR_SHA = data.sha;
+    renderArrayEditor();
+  } catch(e) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải ${cfg.label}: ${e.message}</p></div>`);
+  }
+}
+
+function renderArrayEditor() {
+  const cfg = ARR_CFG;
+  const rows = ARR_DATA.map((entry, i) => {
+    const thumb = cfg.imgField && entry[cfg.imgField]
+      ? `<img class="rank-img-prev" src="${esc(entry[cfg.imgField])}" onerror="this.style.opacity=.3" alt=""/>`
+      : `<div class="rank-img-prev" style="display:flex;align-items:center;justify-content:center;font-size:16px">📄</div>`;
+
+    const fieldInputs = cfg.fields.map(f => {
+      const val = entry[f.key];
+      const displayVal = f.type === 'array' ? (Array.isArray(val) ? val.join(', ') : (val || '')) : (val ?? '');
+      if (f.type === 'textarea') {
+        return `<div style="grid-column:1/-1"><div style="font-size:10px;color:var(--muted);margin-bottom:3px">${esc(f.label)}</div><textarea class="rank-input-sm" style="width:100%;min-height:50px;font-family:inherit" oninput="arrUpdate(${i},'${f.key}','${f.type}',this.value)">${esc(displayVal)}</textarea></div>`;
+      }
+      return `<div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">${esc(f.label)}</div><input class="rank-input-sm" style="width:100%" value="${esc(displayVal)}" oninput="arrUpdate(${i},'${f.key}','${f.type}',this.value)"/></div>`;
+    }).join('');
+
+    return `<div class="rank-entry" style="grid-template-columns:70px 1fr">
+      <div style="text-align:center">${thumb}<div style="display:flex;gap:4px;justify-content:center;margin-top:6px">
+        <button class="tb-btn" onclick="arrMove(${i},-1)" title="Lên">↑</button>
+        <button class="tb-btn" onclick="arrMove(${i},1)" title="Xuống">↓</button>
+      </div></div>
+      <div>
+        <div class="rank-row" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">${fieldInputs}</div>
+        <details style="margin-top:8px">
+          <summary style="font-size:11px;color:var(--muted);cursor:pointer">⚙️ JSON thô (sửa mọi trường, kể cả trường không có ở trên)</summary>
+          <textarea class="rank-input-sm" style="width:100%;min-height:80px;font-family:monospace;font-size:11px;margin-top:6px" onblur="arrUpdateJson(${i},this.value)">${esc(JSON.stringify(entry, null, 2))}</textarea>
+        </details>
+        <button class="btn btn-danger btn-sm" style="margin-top:8px" onclick="arrDelete(${i})">🗑 Xoá mục này</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">${esc(cfg.label)} <small>${cfg.file} · ${ARR_DATA.length} mục</small></div>
+      <div class="header-actions">
+        <a class="btn btn-secondary btn-sm" href="${cfg.urlBase}" target="_blank">🔗 Xem live</a>
+        <button class="btn btn-primary" onclick="saveArrayEditor()">💾 Lưu & Deploy</button>
+      </div>
+    </div>
+    <div class="content-area">
+      ${cfg.note ? `<div style="font-size:11px;color:var(--muted);margin-bottom:14px">${cfg.note}</div>` : ''}
+      <button class="btn btn-secondary" style="margin-bottom:14px" onclick="arrAdd()">➕ Thêm mục mới vào đầu danh sách</button>
+      ${rows}
+    </div>
+  `);
+}
+
+function arrUpdate(i, key, type, value) {
+  if (type === 'array') {
+    ARR_DATA[i][key] = value.split(',').map(s => s.trim()).filter(Boolean);
+  } else if (type === 'number') {
+    ARR_DATA[i][key] = parseFloat(value) || 0;
+  } else {
+    ARR_DATA[i][key] = value;
+  }
+}
+function arrUpdateJson(i, text) {
+  try {
+    ARR_DATA[i] = JSON.parse(text);
+    renderArrayEditor();
+  } catch(e) {
+    toast('error', 'JSON không hợp lệ, chưa áp dụng thay đổi này.');
+  }
+}
+function arrMove(i, dir) {
+  const j = i + dir;
+  if (j < 0 || j >= ARR_DATA.length) return;
+  const t = ARR_DATA[i]; ARR_DATA[i] = ARR_DATA[j]; ARR_DATA[j] = t;
+  renderArrayEditor();
+}
+function arrDelete(i) {
+  if (!confirm('Xoá mục này?')) return;
+  ARR_DATA.splice(i, 1);
+  renderArrayEditor();
+}
+function arrAdd() {
+  const entry = ARR_CFG.newEntry ? ARR_CFG.newEntry() : JSON.parse(JSON.stringify(ARR_DATA[0] || {}));
+  ARR_DATA.unshift(entry);
+  renderArrayEditor();
+  toast('success', 'Đã thêm mục mới — nhớ điền thông tin trước khi lưu.');
+}
+async function saveArrayEditor() {
+  const cfg = ARR_CFG;
+  try {
+    const latest = await ghGet(cfg.file);
+    let raw = decodeURIComponent(escape(atob(latest.content)));
+    const re = new RegExp('const\\s+' + cfg.varName + '\\s*=\\s*\\[[\\s\\S]*?\\n\\];');
+    const newBlock = 'const ' + cfg.varName + ' = ' + JSON.stringify(ARR_DATA, null, 2) + ';';
+    if (!re.test(raw)) throw new Error(`Không tìm thấy mảng "${cfg.varName}" để ghi lại.`);
+    raw = raw.replace(re, newBlock);
+    await ghPut(cfg.file, raw, latest.sha, `[admin] cap nhat ${cfg.varName} trong ${cfg.file}`);
+    toast('success', '✅ Đã lưu! Deploy trong ~1-2 phút.');
+  } catch(e) {
+    toast('error', 'Lỗi lưu: ' + e.message);
+  }
+}
+
+// ── Trình soạn thảo "Đang Hot" (choi-gi.html) ─────────────────────────────
+// Khối này là 8 thẻ <div class="hot-card"> lồng nhau nhiều cấp — không dùng
+// regex non-greedy đơn giản được vì có nhiều div con. Ta đếm độ sâu thẻ <div>
+// để tìm đúng vị trí đóng của khối "hot-grid".
+function extractBalancedBlock(html, startTag) {
+  const startIdx = html.indexOf(startTag);
+  if (startIdx === -1) return null;
+  let i = startIdx + startTag.length;
+  let depth = 1;
+  while (depth > 0 && i < html.length) {
+    const nextOpen = html.indexOf('<div', i);
+    const nextClose = html.indexOf('</div>', i);
+    if (nextClose === -1) return null;
+    if (nextOpen !== -1 && nextOpen < nextClose) { depth++; i = html.indexOf('>', nextOpen) + 1; }
+    else { depth--; i = nextClose + 6; }
+  }
+  return { start: startIdx, end: i, block: html.slice(startIdx, i) };
+}
+
+const HOT_COLORS = {
+  amber: '251,191,36', cyan: '0,229,255', green: '52,211,153',
+  lavender: '167,139,250', sakura: '255,48,128', violet: '124,58,237',
+};
+let HOT_CARDS = [];
+
+function hotFields(raw) {
+  const colorM = raw.match(/background:var\(--([a-z]+)\);width:0/);
+  return {
+    name: fieldGet(raw, /class="hot-name">([^<]*)</),
+    meta: fieldGet(raw, /class="hot-meta">([^<]*)</),
+    width: fieldGet(raw, /data-w="([^"]*)"/),
+    badge: fieldGet(raw, /class="hot-badge">([^<]*)</),
+    pill: fieldGet(raw, /class="hot-pill"[^>]*>([^<]*)</),
+    color: colorM ? colorM[1] : 'cyan',
+    gameId: fieldGet(raw, /pickGame\('([^']*)'\)/),
+  };
+}
+function hotApply(raw, f) {
+  let out = raw;
+  out = replaceField(out, /(class="hot-name">)[^<]*(<)/, f.name);
+  out = replaceField(out, /(class="hot-meta">)[^<]*(<)/, f.meta);
+  out = replaceField(out, /(data-w=")[^"]*(")/, f.width);
+  out = replaceField(out, /(class="hot-badge">)[^<]*(<)/, f.badge);
+  out = replaceField(out, /(class="hot-pill"[^>]*>)[^<]*(<)/, f.pill);
+  out = replaceField(out, /(pickGame\(')[^']*('\))/, f.gameId);
+  if (f.color && HOT_COLORS[f.color]) {
+    out = out.replace(/background:var\(--[a-z]+\);width:0/, `background:var(--${f.color});width:0`);
+    out = out.replace(/border-color:rgba\([^)]*\);color:var\(--[a-z]+\)/, `border-color:rgba(${HOT_COLORS[f.color]},.3);color:var(--${f.color})`);
+  }
+  return out;
+}
+
+async function hotGridEditor() {
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải Đang Hot...</span></div>`);
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-hotgrid')?.classList.add('active');
+  try {
+    const data = await ghGet('choi-gi.html');
+    const raw = decodeURIComponent(escape(atob(data.content)));
+    const grid = extractBalancedBlock(raw, '<div class="hot-grid">');
+    if (!grid) throw new Error('Không tìm thấy khối "hot-grid" trong choi-gi.html');
+    const inner = grid.block.slice('<div class="hot-grid">'.length, -'</div>'.length);
+    HOT_CARDS = splitBlocks(inner, /<div class="hot-card"/).map(r => ({ raw: r }));
+    renderHotGridEditor();
+  } catch(e) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải: ${e.message}</p></div>`);
+  }
+}
+
+function renderHotGridEditor() {
+  const colorOpts = Object.keys(HOT_COLORS).map(c => `<option value="${c}">${c}</option>`).join('');
+  const rows = HOT_CARDS.map((c, i) => {
+    const f = hotFields(c.raw);
+    return `<div class="rank-entry">
+      <div style="text-align:center"><div class="rank-num">#${i+1}</div><div style="font-size:20px;font-weight:700;color:var(--cyan)">${esc(f.badge)}</div></div>
+      <div class="rank-fields">
+        <div class="rank-row">
+          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Tên game</div><input class="rank-input-sm" value="${esc(f.name)}" oninput="hotUpdate(${i},'name',this.value)"/></div>
+          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Meta (nền tảng · thể loại · giờ)</div><input class="rank-input-sm" value="${esc(f.meta)}" oninput="hotUpdate(${i},'meta',this.value)"/></div>
+          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Điểm</div><input class="rank-input-sm" value="${esc(f.badge)}" oninput="hotUpdate(${i},'badge',this.value)"/></div>
+        </div>
+        <div class="rank-row" style="margin-top:6px">
+          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">% thanh điểm (vd 95%)</div><input class="rank-input-sm" value="${esc(f.width)}" oninput="hotUpdate(${i},'width',this.value)"/></div>
+          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Nhãn pill</div><input class="rank-input-sm" value="${esc(f.pill)}" oninput="hotUpdate(${i},'pill',this.value)"/></div>
+          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Màu</div><select class="rank-input-sm" onchange="hotUpdate(${i},'color',this.value)">${colorOpts.replace(`value="${f.color}"`,`value="${f.color}" selected`)}</select></div>
+        </div>
+        <div style="margin-top:8px;display:flex;gap:6px">
+          <button class="tb-btn" onclick="hotMove(${i},-1)">↑ Lên</button>
+          <button class="tb-btn" onclick="hotMove(${i},1)">↓ Xuống</button>
+          <button class="btn btn-danger btn-sm" onclick="hotDelete(${i})">🗑 Xoá</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">Đang Hot <small>choi-gi.html · top ${HOT_CARDS.length}</small></div>
+      <div class="header-actions">
+        <a class="btn btn-secondary btn-sm" href="https://otahub.asia/choi-gi" target="_blank">🔗 Xem live</a>
+        <button class="btn btn-primary" onclick="saveHotGrid()">💾 Lưu & Deploy</button>
+      </div>
+    </div>
+    <div class="content-area">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:14px">💡 Thứ hạng (#1-#${HOT_CARDS.length}) tự tính theo vị trí trong danh sách. Không thêm/xoá mục ở đây — chỉ sắp xếp lại và sửa nội dung.</div>
+      ${rows}
+    </div>
+  `);
+}
+
+function hotUpdate(i, field, value) { HOT_CARDS[i].raw = hotApply(HOT_CARDS[i].raw, { [field]: value }); }
+function hotMove(i, dir) { const j = i + dir; if (j < 0 || j >= HOT_CARDS.length) return; const t = HOT_CARDS[i]; HOT_CARDS[i] = HOT_CARDS[j]; HOT_CARDS[j] = t; renderHotGridEditor(); }
+function hotDelete(i) { if (!confirm('Xoá mục này?')) return; HOT_CARDS.splice(i, 1); renderHotGridEditor(); }
+async function saveHotGrid() {
+  try {
+    const latest = await ghGet('choi-gi.html');
+    let raw = decodeURIComponent(escape(atob(latest.content)));
+    const grid = extractBalancedBlock(raw, '<div class="hot-grid">');
+    if (!grid) throw new Error('Không tìm thấy khối "hot-grid" để lưu.');
+    const ranks = HOT_CARDS.map((c, i) => c.raw.replace(/class="hot-rank">[^<]*</, `class="hot-rank">${String(i+1).padStart(2,'0')}<`));
+    const newInner = ranks.map(r => r.trim()).join('');
+    const newBlock = '<div class="hot-grid">' + newInner + '</div>';
+    raw = raw.slice(0, grid.start) + newBlock + raw.slice(grid.end);
+    await ghPut('choi-gi.html', raw, latest.sha, '[admin] cap nhat Dang Hot choi-gi.html');
+    toast('success', '✅ Đã lưu! Deploy trong ~1-2 phút.');
+  } catch(e) {
+    toast('error', 'Lỗi lưu: ' + e.message);
+  }
+}
+
+// ── Trình soạn thảo Sắp ra mắt (sap-ra-mat.html) ──────────────────────────
+// RELEASES là object lồng 2 cấp: { game:[{month,items:[...]}], anime:[...], manga:[...] }
+const RELEASES_FIELDS = {
+  game:  [ {key:'title',label:'Tên game',type:'text'}, {key:'dev',label:'Nhà phát triển',type:'text'}, {key:'platforms',label:'Nền tảng (vd pc, ps5, xbox)',type:'array'}, {key:'genres',label:'Thể loại',type:'array'}, {key:'date',label:'Ngày (hiển thị)',type:'text'}, {key:'dateRaw',label:'Ngày (YYYY-MM-DD, để sắp xếp)',type:'text'}, {key:'hot',label:'Nổi bật? (true/false)',type:'text'}, {key:'img',label:'URL ảnh',type:'text'} ],
+  anime: [ {key:'title',label:'Tên anime',type:'text'}, {key:'type',label:'Loại (tv/movie/ona)',type:'text'}, {key:'studio',label:'Studio',type:'text'}, {key:'genres',label:'Thể loại',type:'array'}, {key:'date',label:'Ngày (hiển thị)',type:'text'}, {key:'dateRaw',label:'Ngày (YYYY-MM-DD)',type:'text'}, {key:'hot',label:'Nổi bật? (true/false)',type:'text'}, {key:'img',label:'URL ảnh',type:'text'} ],
+  manga: [ {key:'title',label:'Tên manga',type:'text'}, {key:'publisher',label:'NXB',type:'text'}, {key:'genres',label:'Thể loại',type:'array'}, {key:'date',label:'Ngày (hiển thị)',type:'text'}, {key:'dateRaw',label:'Ngày (YYYY-MM-DD)',type:'text'}, {key:'hot',label:'Nổi bật? (true/false)',type:'text'}, {key:'img',label:'URL ảnh',type:'text'} ],
+};
+let RELEASES_DATA = null;
+let RELEASES_TAB = 'game';
+
+async function releasesEditor() {
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải Sắp ra mắt...</span></div>`);
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-releases')?.classList.add('active');
+  try {
+    const data = await ghGet('sap-ra-mat.html');
+    const raw = decodeURIComponent(escape(atob(data.content)));
+    const m = raw.match(/const RELEASES\s*=\s*(\{[\s\S]*?\n\s*\});/);
+    if (!m) throw new Error('Không tìm thấy dữ liệu RELEASES trong sap-ra-mat.html');
+    RELEASES_DATA = new Function('return ' + m[1])();
+    renderReleasesEditor();
+  } catch(e) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải: ${e.message}</p></div>`);
+  }
+}
+
+function renderReleasesEditor() {
+  const cats = Object.keys(RELEASES_DATA);
+  const tabs = cats.map(c => `<button class="rank-tab ${c===RELEASES_TAB?'active':''}" onclick="switchReleasesTab('${c}')">${c==='game'?'🎮 Game':c==='anime'?'⛩️ Anime':'📚 Manga'}</button>`).join('');
+
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">Sắp ra mắt <small>sap-ra-mat.html</small></div>
+      <div class="header-actions">
+        <a class="btn btn-secondary btn-sm" href="https://otahub.asia/sap-ra-mat" target="_blank">🔗 Xem live</a>
+        <button class="btn btn-primary" onclick="saveReleases()">💾 Lưu & Deploy</button>
+      </div>
+    </div>
+    <div class="content-area">
+      <div style="background:var(--surf);border:1px solid var(--border);border-radius:12px;padding:20px">
+        <div class="rank-tabs">${tabs}</div>
+        <div id="releases-content"></div>
+      </div>
+    </div>
+  `);
+  renderReleasesTab();
+}
+
+function switchReleasesTab(c) { RELEASES_TAB = c; renderReleasesEditor(); }
+
+function renderReleasesTab() {
+  const el = document.getElementById('releases-content');
+  const groups = RELEASES_DATA[RELEASES_TAB] || [];
+  const fields = RELEASES_FIELDS[RELEASES_TAB];
+
+  const groupsHtml = groups.map((g, gi) => {
+    const itemsHtml = (g.items || []).map((item, ii) => {
+      const inputs = fields.map(f => {
+        const val = item[f.key];
+        const displayVal = f.type === 'array' ? (Array.isArray(val) ? val.join(', ') : (val || '')) : (val ?? '');
+        return `<div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">${esc(f.label)}</div><input class="rank-input-sm" style="width:100%" value="${esc(displayVal)}" oninput="releasesUpdate('${RELEASES_TAB}',${gi},${ii},'${f.key}','${f.type}',this.value)"/></div>`;
+      }).join('');
+      return `<div class="rank-entry" style="grid-template-columns:1fr">
+        <div>
+          <div class="rank-row" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">${inputs}</div>
+          <div style="margin-top:6px;display:flex;gap:6px">
+            <button class="tb-btn" onclick="releasesMoveItem('${RELEASES_TAB}',${gi},${ii},-1)">↑</button>
+            <button class="tb-btn" onclick="releasesMoveItem('${RELEASES_TAB}',${gi},${ii},1)">↓</button>
+            <button class="btn btn-danger btn-sm" onclick="releasesDeleteItem('${RELEASES_TAB}',${gi},${ii})">🗑 Xoá mục</button>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+
+    return `<div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <input class="rank-input-sm" style="font-weight:700;font-size:14px;width:220px" value="${esc(g.month||'')}" oninput="releasesUpdateMonth('${RELEASES_TAB}',${gi},this.value)"/>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-secondary btn-sm" onclick="releasesAddItem('${RELEASES_TAB}',${gi})">➕ Thêm mục</button>
+          <button class="btn btn-danger btn-sm" onclick="releasesDeleteGroup('${RELEASES_TAB}',${gi})">🗑 Xoá cả tháng này</button>
+        </div>
+      </div>
+      ${itemsHtml || '<div style="color:var(--muted);font-size:12px">Chưa có mục nào trong tháng này.</div>'}
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div style="font-size:11px;color:var(--muted);margin-bottom:8px">💡 Mỗi nhóm là 1 tháng/quý. "Nổi bật?" gõ đúng chữ <code style="color:var(--cyan)">true</code> hoặc <code style="color:var(--cyan)">false</code>.</div>
+    <button class="btn btn-secondary" onclick="releasesAddGroup('${RELEASES_TAB}')">➕ Thêm nhóm tháng mới</button>
+    ${groupsHtml}
+  `;
+}
+
+function releasesUpdate(cat, gi, ii, key, type, value) {
+  const item = RELEASES_DATA[cat][gi].items[ii];
+  if (type === 'array') item[key] = value.split(',').map(s => s.trim()).filter(Boolean);
+  else if (key === 'hot') item[key] = value.trim().toLowerCase() === 'true';
+  else item[key] = value;
+}
+function releasesUpdateMonth(cat, gi, value) { RELEASES_DATA[cat][gi].month = value; }
+function releasesMoveItem(cat, gi, ii, dir) {
+  const arr = RELEASES_DATA[cat][gi].items;
+  const j = ii + dir;
+  if (j < 0 || j >= arr.length) return;
+  const t = arr[ii]; arr[ii] = arr[j]; arr[j] = t;
+  renderReleasesTab();
+}
+function releasesDeleteItem(cat, gi, ii) {
+  if (!confirm('Xoá mục này?')) return;
+  RELEASES_DATA[cat][gi].items.splice(ii, 1);
+  renderReleasesTab();
+}
+function releasesAddItem(cat, gi) {
+  const cur = RELEASES_DATA[cat][gi].items;
+  const template = cur[0] ? JSON.parse(JSON.stringify(cur[0])) : { cat, title: 'Tên mới', date: '', dateRaw: '', hot: false, img: '', genres: [] };
+  template.title = 'Tên mới'; template.hot = false;
+  cur.unshift(template);
+  renderReleasesTab();
+}
+function releasesDeleteGroup(cat, gi) {
+  if (!confirm('Xoá cả nhóm tháng này (và mọi mục bên trong)?')) return;
+  RELEASES_DATA[cat].splice(gi, 1);
+  renderReleasesTab();
+}
+function releasesAddGroup(cat) {
+  RELEASES_DATA[cat].unshift({ month: 'Tháng mới', items: [] });
+  renderReleasesTab();
+}
+async function saveReleases() {
+  try {
+    const latest = await ghGet('sap-ra-mat.html');
+    let raw = decodeURIComponent(escape(atob(latest.content)));
+    const re = /const RELEASES\s*=\s*\{[\s\S]*?\n\s*\};/;
+    if (!re.test(raw)) throw new Error('Không tìm thấy RELEASES để ghi lại.');
+    const newBlock = 'const RELEASES = ' + JSON.stringify(RELEASES_DATA, null, 2) + ';';
+    raw = raw.replace(re, newBlock);
+    await ghPut('sap-ra-mat.html', raw, latest.sha, '[admin] cap nhat RELEASES trong sap-ra-mat.html');
+    toast('success', '✅ Đã lưu! Deploy trong ~1-2 phút.');
+  } catch(e) {
+    toast('error', 'Lỗi lưu: ' + e.message);
+  }
+}
+
+// ── Trình soạn thảo Đội ngũ (about.html · .team-grid) ─────────────────────
+let TEAM_CARDS = [];
+
+function teamFields(raw) {
+  return {
+    img: fieldGet(raw, /<img src="([^"]*)"/),
+    alt: fieldGet(raw, /<img[^>]+alt="([^"]*)"/),
+    badge: fieldGet(raw, /class="tc-role-badge">([^<]*)</),
+    name: fieldGet(raw, /class="tc-name">([^<]*)</),
+    role: fieldGet(raw, /class="tc-role">([^<]*)</),
+    bio: fieldGet(raw, /class="tc-bio">([^<]*)</),
+  };
+}
+function teamApply(raw, f) {
+  let out = raw;
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
+  out = replaceField(out, /(class="tc-role-badge">)[^<]*(<)/, f.badge);
+  out = replaceField(out, /(class="tc-name">)[^<]*(<)/, f.name);
+  out = replaceField(out, /(class="tc-role">)[^<]*(<)/, f.role);
+  out = replaceField(out, /(class="tc-bio">)[^<]*(<)/, f.bio);
+  return out;
+}
+
+async function teamEditor() {
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải Đội ngũ...</span></div>`);
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-team')?.classList.add('active');
+  try {
+    const data = await ghGet('about.html');
+    const raw = decodeURIComponent(escape(atob(data.content)));
+    const grid = extractBalancedBlock(raw, '<div class="team-grid">');
+    if (!grid) throw new Error('Không tìm thấy khối "team-grid" trong about.html');
+    const inner = grid.block.slice('<div class="team-grid">'.length, -'</div>'.length);
+    TEAM_CARDS = splitBlocks(inner, /<div class="team-card">/).map(r => ({ raw: r }));
+    renderTeamEditor();
+  } catch(e) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải: ${e.message}</p></div>`);
+  }
+}
+
+function renderTeamEditor() {
+  const rows = TEAM_CARDS.map((c, i) => {
+    const f = teamFields(c.raw);
+    return `<div class="rank-entry">
+      <div style="text-align:center">
+        <div class="rank-num">#${i+1}</div>
+        <img src="${esc(f.img)}" style="width:52px;height:52px;object-fit:cover;border-radius:6px;margin-top:6px" onerror="this.style.display='none'"/>
+      </div>
+      <div class="rank-fields">
+        <div class="rank-row">
+          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Họ tên</div><input class="rank-input-sm" value="${esc(f.name)}" oninput="teamUpdate(${i},'name',this.value)"/></div>
+          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Chức danh (badge trên ảnh)</div><input class="rank-input-sm" value="${esc(f.badge)}" oninput="teamUpdate(${i},'badge',this.value)"/></div>
+        </div>
+        <div class="rank-row" style="margin-top:6px">
+          <div style="grid-column:1/-1"><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Vai trò · chuyên môn (dòng dưới tên)</div><input class="rank-input-sm" style="width:100%" value="${esc(f.role)}" oninput="teamUpdate(${i},'role',this.value)"/></div>
+        </div>
+        <div class="rank-row" style="margin-top:6px">
+          <div style="grid-column:1/-1"><div style="font-size:10px;color:var(--muted);margin-bottom:3px">URL ảnh</div><input class="rank-input-sm" style="width:100%" value="${esc(f.img)}" oninput="teamUpdate(${i},'img',this.value)"/></div>
+        </div>
+        <div style="margin-top:6px"><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Giới thiệu ngắn (bio)</div><textarea class="rank-input-sm" style="width:100%;min-height:50px;resize:vertical" oninput="teamUpdate(${i},'bio',this.value)">${esc(f.bio)}</textarea></div>
+        <div style="margin-top:8px;display:flex;gap:6px">
+          <button class="tb-btn" onclick="teamMove(${i},-1)">↑ Lên</button>
+          <button class="tb-btn" onclick="teamMove(${i},1)">↓ Xuống</button>
+          <button class="btn btn-danger btn-sm" onclick="teamDelete(${i})">🗑 Xoá</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">Đội ngũ <small>about.html · ${TEAM_CARDS.length} thành viên</small></div>
+      <div class="header-actions">
+        <a class="btn btn-secondary btn-sm" href="https://otahub.asia/about#team" target="_blank">🔗 Xem live</a>
+        <button class="btn btn-secondary" onclick="teamAdd()">➕ Thêm thành viên</button>
+        <button class="btn btn-primary" onclick="saveTeam()">💾 Lưu & Deploy</button>
+      </div>
+    </div>
+    <div class="content-area">
+      ${rows || '<div class="empty-state"><p>Chưa có thành viên nào.</p></div>'}
+    </div>
+  `);
+}
+
+function teamUpdate(i, field, value) { TEAM_CARDS[i].raw = teamApply(TEAM_CARDS[i].raw, { [field]: value }); }
+function teamMove(i, dir) { const j = i + dir; if (j < 0 || j >= TEAM_CARDS.length) return; const t = TEAM_CARDS[i]; TEAM_CARDS[i] = TEAM_CARDS[j]; TEAM_CARDS[j] = t; renderTeamEditor(); }
+function teamDelete(i) { if (!confirm('Xoá thành viên này?')) return; TEAM_CARDS.splice(i, 1); renderTeamEditor(); }
+function teamAdd() {
+  TEAM_CARDS.push({ raw: `
+
+
+    <div class="team-card">
+
+
+      <div class="tc-img">
+
+
+        <img src="/assets/img/placeholder.jpg" alt="Thành viên mới" loading="lazy" width="400" height="400">
+
+
+        <div class="tc-grad"></div>
+
+
+        <span class="tc-role-badge">Editor</span>
+
+
+      </div>
+
+
+      <div class="tc-body">
+
+
+        <div class="tc-name">Thành viên mới</div>
+
+
+        <div class="tc-role">Editor · Chuyên môn</div>
+
+
+        <div class="tc-bio">Giới thiệu ngắn về thành viên.</div>
+
+
+
+
+      </div>
+
+
+    </div>
+
+
+` });
+  renderTeamEditor();
+}
+
+async function saveTeam() {
+  try {
+    const latest = await ghGet('about.html');
+    let raw = decodeURIComponent(escape(atob(latest.content)));
+    const grid = extractBalancedBlock(raw, '<div class="team-grid">');
+    if (!grid) throw new Error('Không tìm thấy khối "team-grid" để lưu.');
+    const newInner = TEAM_CARDS.map(c => c.raw).join('');
+    const newBlock = '<div class="team-grid">' + newInner + '</div>';
+    raw = raw.slice(0, grid.start) + newBlock + raw.slice(grid.end);
+    await ghPut('about.html', raw, latest.sha, '[admin] cap nhat doi ngu about.html');
+    toast('success', '✅ Đã lưu! Deploy trong ~1-2 phút.');
+  } catch(e) {
+    toast('error', 'Lỗi lưu: ' + e.message);
+  }
+}
+
+// ── Trình soạn thảo nội dung thô (lien-he.html / chinh-sach-bao-mat.html) ──
+// Hai trang này là văn bản tự do (không có cấu trúc thẻ lặp lại), nên dùng
+// ô soạn thảo HTML thô, giới hạn trong vùng đánh dấu ADMIN:CONTENT_START/END
+// để không đụng tới header/nav/footer dùng chung.
+const SECTION_CONTENT_RE = /<!-- ADMIN:CONTENT_START -->([\s\S]*?)<!-- ADMIN:CONTENT_END -->/;
+let SECTION_CTX = null;
+
+async function sectionEditor(file, navId, label, liveUrl) {
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải ${esc(label)}...</span></div>`);
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById(navId)?.classList.add('active');
+  try {
+    const data = await ghGet(file);
+    const raw = decodeURIComponent(escape(atob(data.content)));
+    const m = raw.match(SECTION_CONTENT_RE);
+    if (!m) throw new Error(`Không tìm thấy vùng nội dung (ADMIN:CONTENT) trong ${file}`);
+    SECTION_CTX = { file, navId, label, liveUrl };
+    setMain(`
+      <div class="page-header">
+        <div class="page-title">${esc(label)} <small>${esc(file)}</small></div>
+        <div class="header-actions">
+          <a class="btn btn-secondary btn-sm" href="${esc(liveUrl)}" target="_blank">🔗 Xem live</a>
+          <button class="btn btn-primary" onclick="saveSection()">💾 Lưu & Deploy</button>
+        </div>
+      </div>
+      <div class="content-area">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:14px">💡 Trang này là văn bản tự do, chưa có form theo từng ô — sửa trực tiếp mã HTML bên dưới. Chỉ phần nội dung chính (không đụng menu/footer) mới hiển thị ở đây.</div>
+        <div style="background:var(--surf);border:1px solid var(--border);border-radius:12px;overflow:hidden">
+          <textarea id="section-textarea" class="form-input" style="border:none;border-radius:0;min-height:520px;font-family:monospace;font-size:12px">${esc(m[1])}</textarea>
+        </div>
+      </div>
+    `);
+  } catch(e) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải: ${e.message}</p></div>`);
+  }
+}
+
+async function saveSection() {
+  if (!SECTION_CTX) return;
+  try {
+    const newInner = document.getElementById('section-textarea')?.value || '';
+    const latest = await ghGet(SECTION_CTX.file);
+    let raw = decodeURIComponent(escape(atob(latest.content)));
+    if (!SECTION_CONTENT_RE.test(raw)) throw new Error(`Không tìm thấy vùng nội dung (ADMIN:CONTENT) trong ${SECTION_CTX.file}`);
+    raw = raw.replace(SECTION_CONTENT_RE, `<!-- ADMIN:CONTENT_START -->${newInner}<!-- ADMIN:CONTENT_END -->`);
+    await ghPut(SECTION_CTX.file, raw, latest.sha, `[admin] cap nhat noi dung ${SECTION_CTX.file}`);
+    toast('success', '✅ Đã lưu! Deploy trong ~1-2 phút.');
+  } catch(e) {
+    toast('error', 'Lỗi lưu: ' + e.message);
+  }
+}
+
+// ── Trình soạn thảo trang News ────────────────────────────────────────────
+let NEWS_CARDS = [];
+const NEWS_CARD_START = /<a href="[^"]*" style="display:block;background:#150a2c/;
+
+function newsFields(raw) {
+  return {
+    href: fieldGet(raw, /<a href="([^"]*)"/),
+    img: fieldGet(raw, /<img src="([^"]*)"/),
+    alt: fieldGet(raw, /<img[^>]+alt="([^"]*)"/),
+    cat: fieldGet(raw, /letter-spacing:\.15em">([^<]*)</),
+    title: fieldGet(raw, /<h3[^>]*>([^<]*)<\/h3>/),
+    desc: fieldGet(raw, /<p[^>]*>([^<]*)<\/p>/),
+  };
+}
+function newsApply(raw, f) {
+  let out = raw;
+  out = replaceField(out, /(<a href=")[^"]*(")/, f.href);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
+  out = replaceField(out, /(letter-spacing:\.15em">)[^<]*(<)/, f.cat);
+  out = replaceField(out, /(<h3[^>]*>)[^<]*(<\/h3>)/, f.title);
+  out = replaceField(out, /(<p[^>]*>)[^<]*(<\/p>)/, f.desc);
+  return out;
+}
+
+async function newsEditor() {
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải News...</span></div>`);
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-news')?.classList.add('active');
+  try {
+    const data = await ghGet('news.html');
+    const raw = decodeURIComponent(escape(atob(data.content)));
+    const m = raw.match(/<!-- OTAHUB_NEW30_START -->([\s\S]*?)<!-- OTAHUB_NEW30_END -->/);
+    if (!m) throw new Error('Không tìm thấy khối tin tức (thiếu marker OTAHUB_NEW30).');
+    NEWS_CARDS = splitBlocks(m[1], NEWS_CARD_START).map(r => ({ raw: r }));
+    renderNewsEditor();
+  } catch(e) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải News: ${e.message}</p></div>`);
+  }
+}
+
+function renderNewsEditor() {
+  const rows = NEWS_CARDS.map((c, i) => {
+    const f = newsFields(c.raw);
+    return `<div class="rank-entry">
+      <div style="text-align:center"><img class="rank-img-prev" src="${esc(f.img)}" onerror="this.style.opacity=.3" alt=""/></div>
+      <div class="rank-fields">
+        <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Tiêu đề</div><input class="rank-input-sm" style="width:100%" value="${esc(f.title)}" oninput="newsUpdate(${i},'title',this.value)"/></div>
+        <div style="margin-top:6px"><div style="font-size:10px;color:var(--muted);margin-bottom:3px">URL ảnh</div><input class="rank-input-sm" style="width:100%" value="${esc(f.img)}" oninput="newsUpdate(${i},'img',this.value)"/></div>
+        <div style="margin-top:6px"><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Mô tả</div><input class="rank-input-sm" style="width:100%" value="${esc(f.desc)}" oninput="newsUpdate(${i},'desc',this.value)"/></div>
+        <div class="rank-row" style="margin-top:6px;grid-template-columns:1fr 1fr auto">
+          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Link</div><input class="rank-input-sm" value="${esc(f.href)}" oninput="newsUpdate(${i},'href',this.value)"/></div>
+          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Danh mục (GAMING/ANIME/MANGA)</div><input class="rank-input-sm" value="${esc(f.cat)}" oninput="newsUpdate(${i},'cat',this.value)"/></div>
+          <div style="display:flex;gap:4px;align-items:end">
+            <button class="tb-btn" onclick="newsMove(${i},-1)" title="Lên">↑</button>
+            <button class="tb-btn" onclick="newsMove(${i},1)" title="Xuống">↓</button>
+            <button class="btn btn-danger btn-sm btn-icon" onclick="newsDelete(${i})" title="Xoá">🗑</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">News <small>news.html · ${NEWS_CARDS.length} tin</small></div>
+      <div class="header-actions">
+        <a class="btn btn-secondary btn-sm" href="https://otahub.asia/news" target="_blank">🔗 Xem live</a>
+        <button class="btn btn-primary" onclick="saveNews()">💾 Lưu & Deploy</button>
+      </div>
+    </div>
+    <div class="content-area">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:14px">💡 Số "N tin mới đã kiểm chứng" trên site sẽ tự cập nhật theo số lượng thẻ tin bên dưới.</div>
+      <button class="btn btn-secondary" style="margin-bottom:14px" onclick="newsAdd()">➕ Thêm tin vào đầu danh sách</button>
+      ${rows}
+    </div>
+  `);
+}
+
+function newsUpdate(i, field, value) { NEWS_CARDS[i].raw = newsApply(NEWS_CARDS[i].raw, { [field]: value }); }
+function newsMove(i, dir) { const j = i + dir; if (j < 0 || j >= NEWS_CARDS.length) return; const t = NEWS_CARDS[i]; NEWS_CARDS[i] = NEWS_CARDS[j]; NEWS_CARDS[j] = t; renderNewsEditor(); }
+function newsDelete(i) { if (!confirm('Xoá tin này?')) return; NEWS_CARDS.splice(i, 1); renderNewsEditor(); }
+function newsAdd() {
+  if (!NEWS_CARDS.length) { toast('error', 'Không có thẻ mẫu để nhân bản.'); return; }
+  const clone = { raw: newsApply(NEWS_CARDS[0].raw, { href: '/duong-dan-tin-moi', img: '/assets/img/placeholder.svg', alt: 'Tiêu đề tin mới', title: 'Tiêu đề tin mới', desc: 'Mô tả ngắn...' }) };
+  NEWS_CARDS.unshift(clone);
+  renderNewsEditor();
+  toast('success', 'Đã thêm tin mới — nhớ điền link/ảnh/tiêu đề trước khi lưu.');
+}
+async function saveNews() {
+  try {
+    const latest = await ghGet('news.html');
+    let html = decodeURIComponent(escape(atob(latest.content)));
+    const newSection = NEWS_CARDS.map(c => c.raw.trim()).join('');
+    html = html.replace(/(<!-- OTAHUB_NEW30_START -->[\s\S]*?<h2[^>]*>)\d+( tin mới đã kiểm chứng<\/h2><div[^>]*>)[\s\S]*?(<\/div><\/section><!-- OTAHUB_NEW30_END -->)/,
+      (m, p1, p2, p3) => p1 + NEWS_CARDS.length + p2 + newSection + p3);
+    await ghPut('news.html', html, latest.sha, `[admin] cap nhat danh sach tin tuc news.html`);
+    toast('success', '✅ Đã lưu! Deploy trong ~1-2 phút.');
+  } catch(e) {
+    toast('error', 'Lỗi lưu: ' + e.message);
+  }
+}
+
+// ── Helpers ────────────────────────────────────────────────────────────────
+function openSite()   { window.open('https://otahub.asia', '_blank'); }
+function openGitHub() { window.open('https://github.com/Embisu/otahub-', '_blank'); }
+
+function toast(type, msg) {
+  const el = document.createElement('div');
+  el.className = `toast-item ${type}`;
+  el.innerHTML = `<span class="toast-icon">${type==='success'?'✅':'❌'}</span><span>${msg}</span>`;
+  document.getElementById('toast').appendChild(el);
+  setTimeout(() => el.remove(), 4000);
+}
+</script>
 </body>
 </html>
