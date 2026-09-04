@@ -1,6 +1,10 @@
 /* OtaHub site search — tự động sinh, chỉnh trong assets/search.js */
 (function(){
 var IDX=[
+{"u": "/wuthering-waves-2-0-the-black-shores-camellya-update", "t": "Wuthering Waves 2.0: Bờ Biển Đen Mở Rộng, Ra Mắt Shorekeeper & Hỗ Trợ 120 FPS PC", "c": "Gaming", "s": "Kuro Games chính thức công bố phiên bản 2.0 The Black Shores (Bờ Biển Đen) cho Wuthering Waves với nhân vật 5 sao Shorekeeper, bản đồ quần đảo ngầm và mở khóa 120 FPS trên PC"},
+
+{"u": "/kimetsu-no-yaiba-vo-han-thanh-movie-1-trailer-release", "t": "Kimetsu no Yaiba: Vô Hạn Thành - Ufotable Công Bố Trailer & Lịch Chiếu Toàn Cầu", "c": "Anime", "s": "Ufotable chính thức công bố trailer đầu tiên cho Movie 1 thuộc bộ ba phim điện ảnh Vô Hạn Thành, tái hiện trận đại chiến sinh tử giữa Sát Quỷ Đoàn và Chúa Quỷ Muzan Kibutsuji với định dạng IMAX và 4DX"},
+
 {"u": "/call-of-duty-modern-warfare-4-gamescom-playable", "t": "Call of Duty: Modern Warfare 4 Cho Chơi Thử Multiplayer Tại Gamescom 2026, Xác Nhận Ra Mắt Trên Nintendo Switch 2", "c": "Gaming", "s": "Call of Duty: Modern Warfare 4 xuất hiện tại gian hàng Xbox ở Gamescom 2026 với bản demo Core 6v6 Multiplayer, xác nhận ra mắt 23/10 trên cả Nintendo Switch 2"},
 {"u": "/jujutsu-kaisen-juju-fes-2026-anniversary", "t": "Jujutsu Kaisen Mở Màn Juju Fes 2026 Kỷ Niệm 5 Năm Hôm Nay, Fan Chờ Đợi Cập Nhật Mùa 4", "c": "Anime", "s": "Juju Fes 2026 -5th Anniversary- chính thức khai mạc 29-30/8 tại K-Arena Yokohama với live-dubbing, ban nhạc sống và khả năng hé lộ cập nhật Mùa 4"},
 {"u": "/one-punch-man-murata-son-bodybuilder-cover", "t": "One Punch Man: Yusuke Murata Dùng Chính Con Trai Vận Động Viên Thể Hình Làm Mẫu Vẽ Bìa Chương Mới", "c": "Manga", "s": "Họa sĩ One Punch Man Yusuke Murata tiết lộ đã dùng con trai Keisuke — vận động viên thể hình — làm mẫu tham khảo cho bìa chương 283"},
