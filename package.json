@@ -1,0 +1,13 @@
+﻿{
+  "name": "otahub-source",
+  "version": "2.0.0",
+  "description": "OtaHub.asia - Comprehensive Anime, Gaming & Pop-Culture Portal",
+  "type": "module",
+  "scripts": {
+    "publish": "node scripts/publish-article.mjs",
+    "ping": "node scripts/ping-indexnow.mjs",
+    "audit": "node scripts/live-audit.mjs"
+  },
+  "author": "OtaHub Team",
+  "license": "ISC"
+}

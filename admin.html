@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>OtaHub Admin</title>
 <meta name="robots" content="noindex, nofollow"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root {
   --wp-dark: #1d2327;
@@ -1329,10 +1330,10 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
           </div>
         </li>
 
-        <li class="wp-nav-item" id="nav-leads">
-          <button class="wp-nav-btn" onclick="showView('leads')">
-            <span class="wp-nav-label"><span class="wp-nav-icon">💬</span><span class="wp-nav-text">Phản hồi (Leads)</span></span>
-            <span class="wp-nav-badge-red">Mới</span>
+        <li class="wp-nav-item" id="nav-comments">
+          <button class="wp-nav-btn" onclick="showView('comments')">
+            <span class="wp-nav-label"><span class="wp-nav-icon">💬</span><span class="wp-nav-text">Bình luận</span></span>
+            <span class="wp-nav-badge-red" id="cmt-badge-count">Live</span>
           </button>
         </li>
 
@@ -1516,6 +1517,7 @@ function cmdkStaticActions() {
     { icon: '👥', title: 'Đội ngũ / Giới thiệu', hint: 'Trang about', tag: 'Đi tới', run: () => teamEditor() },
     { icon: '✉️', title: 'Liên hệ', hint: 'Trang lien-he.html', tag: 'Đi tới', run: () => sectionEditor('lien-he.html', 'nav-lienhe', 'Liên hệ', 'https://otahub.asia/lien-he') },
     { icon: '🔒', title: 'Chính sách bảo mật', hint: 'Trang chinh-sach-bao-mat.html', tag: 'Đi tới', run: () => sectionEditor('chinh-sach-bao-mat.html', 'nav-chinhsach', 'Chính sách bảo mật', 'https://otahub.asia/chinh-sach-bao-mat') },
+    { icon: '💬', title: 'Bình luận', hint: 'Duyệt và kiểm duyệt bình luận độc giả', tag: 'Đi tới', run: () => showView('comments') },
     { icon: '👤', title: 'Người dùng', hint: 'Quản lý tài khoản admin', tag: 'Đi tới', run: () => showView('users') },
     { icon: '📜', title: 'Nhật ký hoạt động', hint: 'Ai sửa gì, lúc nào', tag: 'Đi tới', minRole: 'editor', run: () => showView('auditlog') },
   ];
@@ -2109,11 +2111,12 @@ function showView(view) {
   HAS_UNSAVED_CHANGES = false;
   CURRENT_VIEW = view;
   document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  const navMap = { dashboard: 'nav-dashboard', articles: 'nav-articles', rankings: 'nav-rankings', users: 'nav-users', auditlog: 'nav-auditlog', media: 'nav-media', rankmath: 'nav-rankmath' };
+  const navMap = { dashboard: 'nav-dashboard', articles: 'nav-articles', rankings: 'nav-rankings', users: 'nav-users', auditlog: 'nav-auditlog', media: 'nav-media', rankmath: 'nav-rankmath', comments: 'nav-comments' };
   document.getElementById(navMap[view] || 'nav-articles')?.classList.add('active');
 
   if (view === 'dashboard') renderDashboard();
   else if (view === 'articles') renderArticleList();
+  else if (view === 'comments') loadCommentsView();
   else if (view === 'rankings') loadRankings();
   else if (view === 'users') loadUsers();
   else if (view === 'auditlog') loadAuditLog();
@@ -2183,7 +2186,7 @@ function renderDashboard() {
         <div>
           <div class="wp-wp-col-title">Thao tác khác</div>
           <ul class="wp-wp-links">
-            <li><button onclick="showView('leads')"><span>💬</span> <span>Quản lý Độc giả & Phản hồi</span></button></li>
+            <li><button onclick="showView('comments')"><span>💬</span> <span>Quản lý Bình luận & Tương tác</span></button></li>
             <li><button onclick="showView('rankmath')"><span>🎯</span> <span>Rank Math SEO Score Dashboard</span></button></li>
             <li><button onclick="homeEditor('index.html')"><span>🏠</span> <span>Chỉnh sửa Tiêu điểm Trang chủ</span></button></li>
             <li><button onclick="showView('settings')"><span>⚙️</span> <span>Cài đặt thông tin pháp nhân & SEO Maps</span></button></li>
@@ -6522,6 +6525,321 @@ async function saveNews() {
     toast('success', '✅ Đã lưu! Deploy trong ~1-2 phút.');
   } catch(e) {
     toast('error', 'Lỗi lưu: ' + e.message);
+  }
+}
+
+// ── 💬 Supabase Comments Moderation Panel ──────────────────────────────────
+let ADMIN_COMMENTS = [];
+let COMMENT_FILTER = 'all';
+let COMMENT_SEARCH = '';
+let COMMENT_REALTIME_SUB = null;
+
+function getAdminSupabase() {
+  if (!window.adminSupabaseClient && window.supabase && window.supabase.createClient) {
+    window.adminSupabaseClient = window.supabase.createClient(
+      'https://xmrctipywjevrknxzjau.supabase.co',
+      'sb_publishable_pojfdFC8-XJP-OAC0PCj9A_cXqMrs_r'
+    );
+  }
+  return window.adminSupabaseClient;
+}
+
+async function loadCommentsView() {
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải bình luận cộng đồng từ Supabase...</span></div>`);
+  const sb = getAdminSupabase();
+  if (!sb) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Không thể kết nối tới Supabase JS SDK.</p></div>`);
+    return;
+  }
+
+  try {
+    const { data, error } = await sb
+      .from('comments')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    ADMIN_COMMENTS = data || [];
+
+    if (!COMMENT_REALTIME_SUB) {
+      COMMENT_REALTIME_SUB = sb
+        .channel('admin_comments_channel')
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'comments' }, payload => {
+          if (payload.eventType === 'INSERT') {
+            ADMIN_COMMENTS.unshift(payload.new);
+            toast('success', `💬 Có bình luận mới từ ${payload.new.author_name}!`);
+          } else if (payload.eventType === 'UPDATE') {
+            const idx = ADMIN_COMMENTS.findIndex(c => c.id === payload.new.id);
+            if (idx >= 0) ADMIN_COMMENTS[idx] = payload.new;
+          } else if (payload.eventType === 'DELETE') {
+            ADMIN_COMMENTS = ADMIN_COMMENTS.filter(c => c.id !== payload.old.id);
+          }
+          if (CURRENT_VIEW === 'comments') renderCommentsView();
+        })
+        .subscribe();
+    }
+
+    renderCommentsView();
+  } catch(e) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải bình luận: ${esc(e.message)}</p></div>`);
+  }
+}
+
+function renderCommentsView() {
+  const total = ADMIN_COMMENTS.length;
+  const approved = ADMIN_COMMENTS.filter(c => (c.status || 'approved') === 'approved').length;
+  const pending = ADMIN_COMMENTS.filter(c => c.status === 'pending').length;
+  const spam = ADMIN_COMMENTS.filter(c => c.status === 'spam').length;
+
+  let filtered = ADMIN_COMMENTS;
+  if (COMMENT_FILTER !== 'all') {
+    filtered = filtered.filter(c => (c.status || 'approved') === COMMENT_FILTER);
+  }
+  if (COMMENT_SEARCH.trim()) {
+    const q = COMMENT_SEARCH.toLowerCase().trim();
+    filtered = filtered.filter(c => 
+      (c.author_name && c.author_name.toLowerCase().includes(q)) ||
+      (c.article_slug && c.article_slug.toLowerCase().includes(q)) ||
+      (c.content && c.content.toLowerCase().includes(q))
+    );
+  }
+
+  const rows = filtered.map(c => {
+    const status = c.status || 'approved';
+    const statusBadge = status === 'approved' 
+      ? '<span style="background:rgba(0,138,32,0.15);color:#72e086;border:1px solid #72e086;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">✓ Đã duyệt</span>'
+      : (status === 'pending' 
+        ? '<span style="background:rgba(219,166,23,0.15);color:#dba617;border:1px solid #dba617;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">⏳ Chờ duyệt</span>'
+        : '<span style="background:rgba(214,54,56,0.15);color:#ff8099;border:1px solid #d63638;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">🚫 Spam</span>');
+
+    const dateStr = new Date(c.created_at).toLocaleString('vi-VN', { dateStyle: 'short', timeStyle: 'short' });
+    const slugUrl = `https://otahub.asia/${c.article_slug}`;
+
+    return `
+      <div class="article-card" style="grid-template-columns: 50px 1fr auto; gap: 14px; align-items: start; margin-bottom: 10px;">
+        <img src="${esc(c.author_avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100')}" style="width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 1px solid var(--wp-border);" alt=""/>
+        <div class="art-info">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px; flex-wrap:wrap">
+            <strong style="color:var(--wp-title); font-size:13.5px">${esc(c.author_name || 'Độc giả')}</strong>
+            ${statusBadge}
+            <span style="font-size:11px; color:var(--wp-muted)">${dateStr}</span>
+            <span style="font-size:11px; color:var(--wp-muted)">· Bài viết: <a href="${slugUrl}" target="_blank" style="color:var(--wp-blue); text-decoration:none; font-weight:600">/${esc(c.article_slug)}</a></span>
+          </div>
+          <div style="background:var(--wp-bg); border:1px solid var(--wp-border); border-radius:8px; padding:10px 14px; font-size:13px; color:var(--wp-text); line-height:1.6; margin-top:6px; white-space:pre-wrap">${esc(c.content || '')}</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px; min-width:110px">
+          ${status !== 'approved' ? `<button class="btn btn-primary btn-sm" onclick="approveComment('${c.id}')">✓ Duyệt bài</button>` : ''}
+          ${status !== 'spam' ? `<button class="btn btn-secondary btn-sm" onclick="markSpamComment('${c.id}')">🚫 Báo Spam</button>` : ''}
+          <button class="btn btn-danger btn-sm" onclick="deleteComment('${c.id}')">🗑 Xóa</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">💬 Quản lý Bình luận & Tương tác Cộng đồng <small>${total} bình luận</small></div>
+      <div class="header-actions">
+        <button class="btn btn-secondary btn-sm" onclick="loadCommentsView()">🔄 Làm mới</button>
+      </div>
+    </div>
+    
+    <div class="content-area">
+      <!-- Stats Row -->
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 20px;">
+        <div class="side-box" style="text-align:center; padding: 14px;">
+          <div style="font-size:24px; font-weight:800; color:var(--wp-title)">${total}</div>
+          <div style="font-size:11px; color:var(--wp-muted); margin-top:2px">Tổng bình luận</div>
+        </div>
+        <div class="side-box" style="text-align:center; padding: 14px;">
+          <div style="font-size:24px; font-weight:800; color:#16a34a">${approved}</div>
+          <div style="font-size:11px; color:var(--wp-muted); margin-top:2px">Đã hiển thị (Approved)</div>
+        </div>
+        <div class="side-box" style="text-align:center; padding: 14px;">
+          <div style="font-size:24px; font-weight:800; color:#d97706">${pending}</div>
+          <div style="font-size:11px; color:var(--wp-muted); margin-top:2px">Đang chờ duyệt</div>
+        </div>
+        <div class="side-box" style="text-align:center; padding: 14px;">
+          <div style="font-size:24px; font-weight:800; color:#dc2626">${spam}</div>
+          <div style="font-size:11px; color:var(--wp-muted); margin-top:2px">Spam / Đã chặn</div>
+        </div>
+      </div>
+
+      <!-- Filter and Search Row -->
+      <div class="search-row" style="margin-bottom: 16px;">
+        <div class="home-tab-bar" style="margin-bottom:0; flex:1">
+          <button class="home-tab-btn ${COMMENT_FILTER==='all'?'active':''}" onclick="setCommentFilter('all')">Tất cả (${total})</button>
+          <button class="home-tab-btn ${COMMENT_FILTER==='approved'?'active':''}" onclick="setCommentFilter('approved')">Đã duyệt (${approved})</button>
+          <button class="home-tab-btn ${COMMENT_FILTER==='pending'?'active':''}" onclick="setCommentFilter('pending')">Chờ duyệt (${pending})</button>
+          <button class="home-tab-btn ${COMMENT_FILTER==='spam'?'active':''}" onclick="setCommentFilter('spam')">Spam (${spam})</button>
+        </div>
+        <input type="text" class="search-input" style="max-width: 280px;" placeholder="Tìm theo tên, bài viết, nội dung..." value="${esc(COMMENT_SEARCH)}" oninput="setCommentSearch(this.value)"/>
+      </div>
+
+      <div class="field-group">
+        ${rows || '<div class="empty-state"><div class="empty-icon">💬</div><p>Không tìm thấy bình luận nào.</p></div>'}
+      </div>
+    </div>
+  `);
+}
+
+function setCommentFilter(filter) {
+  COMMENT_FILTER = filter;
+  renderCommentsView();
+}
+
+function setCommentSearch(val) {
+  COMMENT_SEARCH = val;
+  renderCommentsView();
+}
+
+async function approveComment(id) {
+  const sb = getAdminSupabase();
+  if (!sb) return;
+  try {
+    const { error } = await sb.from('comments').update({ status: 'approved' }).eq('id', id);
+    if (error) throw error;
+    const item = ADMIN_COMMENTS.find(c => c.id === id);
+    if (item) item.status = 'approved';
+    toast('success', '✅ Đã duyệt bình luận!');
+    renderCommentsView();
+  } catch(e) {
+    toast('error', 'Lỗi duyệt: ' + e.message);
+  }
+}
+
+async function markSpamComment(id) {
+  const sb = getAdminSupabase();
+  if (!sb) return;
+  try {
+    const { error } = await sb.from('comments').update({ status: 'spam' }).eq('id', id);
+    if (error) throw error;
+    const item = ADMIN_COMMENTS.find(c => c.id === id);
+    if (item) item.status = 'spam';
+    toast('success', '🚫 Đã đánh dấu spam!');
+    renderCommentsView();
+  } catch(e) {
+    toast('error', 'Lỗi: ' + e.message);
+  }
+}
+
+async function deleteComment(id) {
+  if (!confirm('Xóa vĩnh viễn bình luận này khỏi cơ sở dữ liệu?')) return;
+  const sb = getAdminSupabase();
+  if (!sb) return;
+  try {
+    const { error } = await sb.from('comments').delete().eq('id', id);
+    if (error) throw error;
+    ADMIN_COMMENTS = ADMIN_COMMENTS.filter(c => c.id !== id);
+    toast('success', '🗑 Đã xóa bình luận thành công!');
+    renderCommentsView();
+  } catch(e) {
+    toast('error', 'Lỗi xóa: ' + e.message);
+  }
+}
+
+// ── 🚀 Tự động hóa Dồn bài & Đồng bộ toàn hệ thống (Auto-Cascade) ──────────
+async function syncNewArticle(art) {
+  const { file, title, desc, cat, hero } = art;
+  const slug = file.replace(/\.html$/, '');
+  
+  toast('success', '🚀 Bắt đầu tự động dồn bài & đồng bộ toàn site...');
+  
+  try {
+    // 1. Update assets/search.js
+    toast('success', '🔍 Đang cập nhật chỉ mục tìm kiếm...');
+    const searchData = await ghGet('assets/search.js');
+    let searchJs = decodeURIComponent(escape(atob(searchData.content)));
+    const searchMatch = searchJs.match(/var IDX\s*=\s*(\[[\s\S]*?\]);/);
+    if (searchMatch) {
+      let idxList = new Function('return ' + searchMatch[1])();
+      idxList = idxList.filter(item => item.u !== `/${slug}` && item.u !== `/${slug}.html`);
+      idxList.unshift({ u: `/${slug}`, c: cat || 'Gaming', t: title, s: desc || '' });
+      searchJs = searchJs.replace(/var IDX\s*=\s*\[[\s\S]*?\];/, `var IDX = ${JSON.stringify(idxList, null, 2)};`);
+      await ghPut('assets/search.js', searchJs, searchData.sha, `[admin] cap nhat search index cho /${slug}`);
+    }
+
+    // 2. Update sitemap.xml
+    toast('success', '🗺️ Đang cập nhật sitemap.xml...');
+    const sitemapData = await ghGet('sitemap.xml');
+    let sitemapXml = decodeURIComponent(escape(atob(sitemapData.content)));
+    const urlVI = `https://otahub.asia/${slug}`;
+    if (!sitemapXml.includes(`<loc>${urlVI}</loc>`)) {
+      const today = new Date().toISOString().split('T')[0];
+      const entryVI = `  <url>\n    <loc>${urlVI}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
+      sitemapXml = sitemapXml.replace('</urlset>', `${entryVI}</urlset>`);
+      await ghPut('sitemap.xml', sitemapXml, sitemapData.sha, `[admin] them /${slug} vao sitemap`);
+    }
+
+    // 3. Update Category Hub (gaming.html / anime.html / manga.html)
+    let targetHub = 'gaming.html';
+    const c = (cat || '').toLowerCase();
+    if (c.includes('anime')) targetHub = 'anime.html';
+    else if (c.includes('manga') || c.includes('manhwa')) targetHub = 'manga.html';
+
+    toast('success', `📁 Đang dồn bài vào chuyên mục ${targetHub}...`);
+    try {
+      const hubData = await ghGet(targetHub);
+      let hubHtml = decodeURIComponent(escape(atob(hubData.content)));
+      const markerMatch = hubHtml.match(/(<!-- ADMIN:ARTICLES_START -->)([\s\S]*?)(<!-- ADMIN:ARTICLES_END -->)/);
+      if (markerMatch && !markerMatch[2].includes(`href="/${slug}"`)) {
+        const cardHtml = `\n      <a href="/${slug}" class="ac">\n        <div class="ac-thumb"><img src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy"><span class="tag">${esc(cat || 'TIN MỚI')}</span></div>\n        <div class="ac-body">\n          <h3 class="ac-title">${esc(title)}</h3>\n          <div class="ac-meta"><span class="ac-author">OtaHub Editorial</span> · <span class="ac-date">Vừa xong</span></div>\n        </div>\n      </a>\n`;
+        hubHtml = hubHtml.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/, markerMatch[1] + cardHtml + markerMatch[2] + markerMatch[3]);
+        await ghPut(targetHub, hubHtml, hubData.sha, `[admin] don bai /${slug} vao ${targetHub}`);
+      }
+    } catch(e) { console.warn('Hub sync error:', e); }
+
+    // 4. Update news.html
+    toast('success', '📰 Đang cập nhật luồng tin tức news.html...');
+    try {
+      const newsData = await ghGet('news.html');
+      let newsHtml = decodeURIComponent(escape(atob(newsData.content)));
+      const newsMatch = newsHtml.match(/(<!-- OTAHUB_NEW30_START -->[\s\S]*?<h2[^>]*>)(\d+)( tin mới đã kiểm chứng<\/h2><div[^>]*>)([\s\S]*?)(<\/div><\/section><!-- OTAHUB_NEW30_END -->)/);
+      if (newsMatch && !newsMatch[4].includes(`href="/${slug}"`)) {
+        const count = parseInt(newsMatch[2], 10) || 30;
+        const newCard = `\n    <a href="/${slug}" style="display:block;background:#150a2c;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;text-decoration:none;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,255,0.4)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,229,255,0.12)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none';this.style.boxShadow='none'">\n      <div style="position:relative;width:100%;height:180px;background:#0d051e;overflow:hidden;">\n        <img src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">\n        <span style="position:absolute;top:10px;left:10px;background:linear-gradient(135deg,#ff3080,#7c3aed);color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px;letter-spacing:.15em;text-transform:uppercase;">${esc(cat || 'HOT')}</span>\n      </div>\n      <div style="padding:16px;">\n        <h3 style="color:#ffffff;font-size:15px;font-weight:700;line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(title)}</h3>\n        <p style="color:rgba(240,238,255,0.65);font-size:12.5px;line-height:1.5;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(desc || '')}</p>\n        <div style="display:flex;align-items:center;justify-content:space-between;color:rgba(240,238,255,0.4);font-size:11px;">\n          <span>⚡ OtaHub News</span>\n          <span>Vừa xong</span>\n        </div>\n      </div>\n    </a>\n`;
+        newsHtml = newsHtml.replace(/(<!-- OTAHUB_NEW30_START -->[\s\S]*?<!-- OTAHUB_NEW30_END -->)/, `${newsMatch[1]}${count + 1}${newsMatch[3]}${newCard}${newsMatch[4]}${newsMatch[5]}`);
+        await ghPut('news.html', newsHtml, newsData.sha, `[admin] them tin /${slug} vao news.html`);
+      }
+    } catch(e) { console.warn('News sync error:', e); }
+
+    // 5. Update index.html
+    toast('success', '🏠 Đang dồn bài lên đầu Trang chủ...');
+    try {
+      const homeData = await ghGet('index.html');
+      let homeHtml = decodeURIComponent(escape(atob(homeData.content)));
+      
+      if (homeHtml.includes('<div class="tick-track">') && !homeHtml.includes(esc(title))) {
+        homeHtml = homeHtml.replace('<div class="tick-track">', `<div class="tick-track">\n    <span class="tick-item">🔥 <strong>${esc(cat || 'TIN MỚI')}:</strong> ${esc(title)}</span>`);
+      }
+      
+      const latestMatch = homeHtml.match(/(<div class="latest-wrap">[\s\S]*?<div class="latest-col">)([\s\S]*?)(<\/div>\s*<aside class="latest-side">)/);
+      if (latestMatch && !latestMatch[2].includes(`href="/${slug}"`)) {
+        const wCard = `\n        <article class="w-card">\n          <a href="/${slug}">\n            <img src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy">\n          </a>\n          <div class="wc-body">\n            <span class="wc-c">${esc(cat || 'Gaming')}</span>\n            <h3 class="wc-t"><a href="/${slug}">${esc(title)}</a></h3>\n            <div class="wc-m"><span>OtaHub</span> · <span>Vừa xong</span></div>\n          </div>\n        </article>\n`;
+        homeHtml = homeHtml.replace(latestMatch[0], `${latestMatch[1]}${wCard}${latestMatch[2]}${latestMatch[3]}`);
+      }
+      await ghPut('index.html', homeHtml, homeData.sha, `[admin] don tin /${slug} len index.html`);
+    } catch(e) { console.warn('Home sync error:', e); }
+
+    // 6. Ping IndexNow API
+    toast('success', '📡 Báo cáo URL lên IndexNow & Search Engines...');
+    try {
+      fetch('https://api.indexnow.org/indexnow', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          host: 'otahub.asia',
+          key: '4c7a6e12e34149e69123b392b5d44849',
+          keyLocation: 'https://otahub.asia/4c7a6e12e34149e69123b392b5d44849.txt',
+          urlList: [`https://otahub.asia/${slug}`]
+        })
+      }).catch(()=>{});
+    } catch(e) {}
+
+    toast('success', '🎉 Hoàn tất tự động dồn bài trên toàn bộ hệ thống!');
+  } catch(err) {
+    console.error('Lỗi sync bài mới:', err);
+    toast('error', 'Lỗi đồng bộ: ' + err.message);
   }
 }
 
