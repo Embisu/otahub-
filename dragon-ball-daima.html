@@ -195,291 +195,41 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 .ft-bot{max-width:1440px;margin:0 auto;padding:16px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .ft-copy{font-size:11px;color:rgba(240,238,255,.22);letter-spacing:.04em}
 @media(max-width:1024px){.ft-in{grid-template-columns:1fr 1fr}}
-
-@media(max-width: 900px) {
-  .art-layout { grid-template-columns: 1fr; gap: 0; }
-  .art-sidebar { display: none; }
-  .related-grid { grid-template-columns: 1fr; }
+@media(max-width:768px){.ft-in{grid-template-columns:1fr;gap:28px}.ft-bot{flex-direction:column;gap:10px}}
+@media(max-width:900px){
+.art-hero{height:320px}
+.art-hero-content{bottom:24px;padding:0 18px}
+.art-hero-excerpt{display:none}
+.art-layout{grid-template-columns:1fr;gap:0;padding:0 18px}
+.art-main{padding:24px 0 60px}
+.art-sidebar{display:none}
+.related-grid{grid-template-columns:1fr}
+.ham{display:flex}
+.nav-links{display:none}
+.mobile-nav{display:flex}
+.score-box{flex-direction:column;text-align:center;gap:10px}
+.art-body{font-size:17px;line-height:1.8}
+.art-body h2{font-size:22px;margin:32px 0 14px}
+.art-body h3{font-size:18px;margin:24px 0 10px}
+.highlight-box{padding:18px 20px;margin-bottom:28px}
+.info-table{grid-template-columns:1fr}
+.share-row{gap:8px}
 }
-@media(max-width: 768px) {
-  .nav-links { display: none !important; }
-  .ham { display: flex; }
-  .mobile-nav { display: flex; }
-  .art-hero { height: auto; min-height: 320px; padding: 48px 16px 24px; }
-  .art-hero-title { font-size: clamp(22px, 5.5vw, 30px); line-height: 1.22; }
-  .art-hero-excerpt { font-size: 13.5px; line-height: 1.55; }
-  .art-main { padding: 0 16px; }
-  .art-body { font-size: 16px; line-height: 1.75; }
-  .art-body h2 { font-size: 20px; margin: 28px 0 12px; }
-  .art-body h3 { font-size: 17px; margin: 20px 0 8px; }
-  .highlight-box { padding: 16px 18px; margin-bottom: 24px; }
-  .score-box { flex-direction: column; text-align: center; gap: 12px; padding: 18px 16px; }
-  .share-row { flex-wrap: wrap; gap: 8px; }
-  .share-btn { padding: 8px 14px; font-size: 12px; }
+@media(max-width:480px){
+.art-hero{height:280px}
+.art-hero-title{font-size:24px}
+.art-meta{gap:10px;font-size:12px;padding:12px 0;margin-bottom:24px}
+.breadcrumb{font-size:12px;margin-bottom:18px}
 }
-@media(max-width: 480px) {
-  .art-hero { min-height: 280px; padding: 36px 14px 20px; }
-  .art-hero-title { font-size: 21px; }
-  .art-meta { font-size: 11px; gap: 6px; padding: 10px 0; margin-bottom: 20px; }
-  .breadcrumb { font-size: 11.5px; margin-bottom: 14px; }
-  .art-body { font-size: 15px; line-height: 1.7; }
-  .highlight-box { padding: 14px 14px; }
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   HIGH-CONTRAST & FLAWLESS VIETNAMESE TYPOGRAPHY (FEEDBACK FIXES)
-   ═══════════════════════════════════════════════════════════════ */
-:root {
-  --font-display: 'Plus Jakarta Sans', 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-body: 'Be Vietnam Pro', 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --fd: var(--font-display);
-  --fb: var(--font-body);
-
-  /* High contrast colors on dark background */
-  --text-main: #f8fafc;
-  --text-sub: #e2e8f0;
-  --text-muted: #cbd5e1;
-  --muted: #94a3b8;
-  --dim: #e2e8f0;
-  --white: #ffffff;
-  --border: rgba(255, 255, 255, 0.12);
-  --surf: rgba(19, 9, 48, 0.7);
-  --surf2: rgba(30, 16, 72, 0.85);
+.art-layout{grid-template-columns:1fr;gap:0}
+.art-sidebar{display:none}
+.related-grid{grid-template-columns:1fr}
+.ham{display:flex}
+.nav-links{display:none}
+.mobile-nav{display:flex}
+.score-box{flex-direction:column;text-align:center;gap:10px}
 }
 
-body {
-  font-family: var(--fb);
-  color: var(--text-main);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .art-h1, .art-hero-title {
-  font-family: var(--fd);
-  color: #ffffff;
-  letter-spacing: -0.015em;
-}
-
-/* ── Item 1 Fix: Sharp, Ultra-Vibrant Ranking Numbers ── */
-.rk-num, .rki-num, .ti-num, .t-num, .mi-num, .an-num {
-  font-family: var(--fd);
-  font-weight: 800;
-  line-height: 1;
-  text-align: center;
-  flex-shrink: 0;
-  opacity: 1 !important;
-  color: #94a3b8;
-  font-size: 18px;
-}
-.rk-item:nth-child(1) .rk-num, .rki-item:nth-child(1) .rki-num, .rk-item.t1 .rki-num, .t-item:nth-child(1) .t-num {
-  color: #fbbf24 !important;
-  font-size: 22px;
-  text-shadow: 0 0 14px rgba(251, 191, 36, 0.6);
-}
-.rk-item:nth-child(2) .rk-num, .rki-item:nth-child(2) .rki-num, .rk-item.t2 .rki-num, .t-item:nth-child(2) .t-num {
-  color: #e2e8f0 !important;
-  font-size: 20px;
-  text-shadow: 0 0 12px rgba(226, 232, 240, 0.5);
-}
-.rk-item:nth-child(3) .rk-num, .rki-item:nth-child(3) .rki-num, .rk-item.t3 .rki-num, .t-item:nth-child(3) .t-num {
-  color: #fb923c !important;
-  font-size: 19px;
-  text-shadow: 0 0 12px rgba(251, 146, 60, 0.5);
-}
-.rk-item:nth-child(n+4) .rk-num, .rki-item:nth-child(n+4) .rki-num, .t-item:nth-child(n+4) .t-num {
-  color: #a5f3fc !important;
-  font-size: 17px;
-  text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
-}
-
-.an-score-num, .rk-sc, .rki-score, .sc-big, .score-num {
-  color: #fbbf24 !important;
-  font-family: var(--fd);
-  font-weight: 800;
-  text-shadow: 0 0 10px rgba(251, 191, 36, 0.4);
-}
-
-/* ── Item 5 Fix: Ranking Thumbnails Aspect Ratio & Quality ── */
-.rk-thumb, .rki-thumb, .ti-thumb {
-  width: 64px;
-  height: 48px;
-  border-radius: 6px;
-  overflow: hidden;
-  flex-shrink: 0;
-  background: var(--surf2);
-  border: 1px solid rgba(255,255,255,0.1);
-}
-.rk-thumb img, .rki-thumb img, .ti-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-/* ── Item 3 Fix: Glowing Hot This Week Sidebar ── */
-.hero-side {
-  background: rgba(17, 8, 42, 0.85) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 229, 255, 0.25) !important;
-  border-radius: 14px;
-  box-shadow: 0 12px 36px rgba(0,0,0,0.55), 0 0 24px rgba(0,229,255,0.08);
-  padding: 24px 22px;
-}
-.side-head {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: linear-gradient(90deg, rgba(255,48,128,0.25), rgba(0,229,255,0.2));
-  border: 1px solid rgba(0,229,255,0.45);
-  color: #00e5ff !important;
-  font-family: var(--fd);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  border-radius: 6px;
-  margin-bottom: 16px;
-  text-shadow: 0 0 10px rgba(0,229,255,0.5);
-}
-.sa-t {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  font-size: 15px;
-  line-height: 1.3;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
-  transition: color .2s ease;
-}
-.s-art:hover .sa-t { color: #00e5ff !important; }
-.sa-m { color: #cbd5e1 !important; font-size: 12px; }
-.sa-thumb {
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.12);
-}
-
-/* ── Item 4 Fix: High Contrast Global Text ── */
-.wc-t { color: #ffffff !important; font-weight: 700; font-size: 16.5px; }
-.wc-m { color: #cbd5e1 !important; font-size: 12px; }
-.w-card:hover .wc-t { color: #00e5ff !important; }
-.fc-title { color: #ffffff !important; font-weight: 700; }
-.fc-sub { color: #f1f5f9 !important; font-size: 14px; }
-.h-sub { color: #f8fafc !important; font-size: 15px; text-shadow: 0 2px 10px rgba(0,0,0,0.85); }
-.sec-t { color: #ffffff !important; font-size: 17px; font-weight: 800; letter-spacing: .08em; }
-.ft-desc { color: #cbd5e1 !important; }
-.ft-links a { color: #cbd5e1 !important; transition: color .2s; }
-.ft-links a:hover { color: #00e5ff !important; }
-
-/* ── Item 7 Fix: Fast & Fully Clickable Breaking News Ticker ── */
-.ticker {
-  background: linear-gradient(90deg, #881337 0%, #e11d48 50%, #7c2d12 100%);
-  height: 36px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  position: relative;
-  z-index: 10;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
-}
-.tick-label {
-  background: rgba(0,0,0,0.5);
-  font-family: var(--fd);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  color: #ffffff;
-  padding: 0 16px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-shrink: 0;
-  border-right: 1px solid rgba(255,255,255,0.25);
-  z-index: 2;
-  white-space: nowrap;
-}
-.tick-label::before {
-  content: '';
-  width: 7px;
-  height: 7px;
-  background: #22c55e;
-  border-radius: 50%;
-  box-shadow: 0 0 8px #22c55e;
-  animation: blink 1.2s infinite ease-in-out;
-}
-.tick-wrap { overflow: hidden; flex: 1; min-width: 0; }
-.tick-track {
-  display: flex;
-  animation: ticker 22s linear infinite;
-  white-space: nowrap;
-}
-.tick-track:hover { animation-play-state: paused; }
-.tick-item {
-  color: #ffffff !important;
-  text-decoration: none !important;
-  font-size: 12.5px;
-  font-weight: 600;
-  padding: 0 28px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  transition: color .15s ease;
-}
-.tick-item:hover { color: #38bdf8 !important; text-decoration: underline !important; }
-.tick-item::before { content: '⚡'; font-size: 11px; opacity: 0.9; }
-
-/* ── Item 8 Fix: Floating Mobile Ergonomic Action Dock (Bottom Right / Center) ── */
-.mobile-thumb-dock {
-  display: none;
-}
-@media(max-width: 768px) {
-  .mobile-thumb-dock {
-    display: flex;
-    position: fixed;
-    bottom: 16px;
-    right: 16px;
-    left: 16px;
-    margin: 0 auto;
-    max-width: 380px;
-    background: rgba(15, 6, 38, 0.88);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 229, 255, 0.35);
-    border-radius: 28px;
-    padding: 6px 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(0,229,255,0.2);
-    z-index: 999;
-    align-items: center;
-    justify-content: space-around;
-  }
-  .mtd-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    color: #cbd5e1;
-    text-decoration: none;
-    font-size: 9.5px;
-    font-family: var(--fd);
-    font-weight: 700;
-    letter-spacing: .04em;
-    padding: 6px 8px;
-    border-radius: 12px;
-    transition: all .2s ease;
-    cursor: pointer;
-    background: none;
-    border: none;
-  }
-  .mtd-item svg { width: 18px; height: 18px; fill: currentColor; }
-  .mtd-item:hover, .mtd-item.active {
-    color: #00e5ff;
-    background: rgba(0, 229, 255, 0.12);
-  }
-  body { padding-bottom: 72px; }
-}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://otahub.asia/"},{"@type":"ListItem","position":2,"name":"Anime","item":"https://otahub.asia/anime"},{"@type":"ListItem","position":3,"name":"Dragon Ball DAIMA: Di Sản Của Toriyama Và Tương Lai Anime","item":"https://otahub.asia/dragon-ball-daima"}]}</script>
 </head>
@@ -545,10 +295,6 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 <p>Dragon Ball DAIMA không phải là tác phẩm hoàn hảo nhưng đây là Dragon Ball tốt nhất kể từ những năm đỉnh cao của Z, và là lời từ biệt đẹp đẽ nhất mà người hâm mộ có thể mong đợi từ Toriyama.</p>
 </article>
 <div class="share-row"><span class="share-lbl">Chia sẻ:</span><a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https://otahub.asia/dragon-ball-daima" target="_blank" rel="noopener">Facebook</a><a class="share-btn" href="https://twitter.com/intent/tweet?url=https://otahub.asia/dragon-ball-daima&amp;text=Dragon%20Ball%20DAIMA%3A%20Di%20S%E1%BA%A3n%20C%E1%BB%A7a%20Toriyama%20V%C3%A0%20T%C6%B0%C6%A1ng%20Lai%20Anime" target="_blank" rel="noopener">Twitter / X</a><a class="share-btn" href="https://www.reddit.com/submit?url=https://otahub.asia/dragon-ball-daima" target="_blank" rel="noopener">Reddit</a><button class="share-btn" type="button" onclick="copyArticleLink(this)">Sao chép link</button></div>
-
-<div id="otahub-reactions"></div>
-<div id="otahub-comments"></div>
-
 </main>
 <aside class="art-sidebar"><div class="sidebar-block"><div class="sb-title">Bài liên quan</div><a class="sb-art" href="/chainsaw-man-season3"><img class="sb-thumb" src="/assets/img/2656ba8ffc-maxresdefault.jpg" alt="Chainsaw Man Assassins Arc: MAPPA ra mắt anime kinh điển" loading="lazy" width="460" height="653"><div><div class="sb-cat">Anime</div><div class="sb-t">Chainsaw Man Assassins Arc: MAPPA Ra Mắt Anime Kinh Điển</div></div></a><a class="sb-art" href="/anime-mua-he-2026"><img class="sb-thumb" src="/assets/img/10728427f3-chainsaw-man-hero.jpg" alt="Anime Mùa Hè 2026: Lịch Phát Sóng Và Những Tựa Đáng Xem Nhất" loading="lazy" width="1920" height="404"><div><div class="sb-cat">Anime</div><div class="sb-t">Anime Mùa Hè 2026: Lịch Phát Sóng Và Những Tựa Đáng Xem Nhất</div></div></a><a class="sb-art" href="/solo-leveling-season2"><img class="sb-thumb" src="/assets/img/d98cf42206-maxresdefault.jpg" alt="Solo Leveling Mùa 2: Jeju Island Và Hành Trình Vươn Đến Đỉnh Cao" loading="lazy" width="1280" height="720"><div><div class="sb-cat">Anime</div><div class="sb-t">Solo Leveling Mùa 2: Jeju Island Và Hành Trình Vươn Đến Đỉnh Cao</div></div></a></div><div class="sidebar-block"><div class="sb-title">Tags</div><div class="sb-tags"><a class="sb-tag" href="/anime">Dragon Ball</a><a class="sb-tag" href="/anime">Toriyama</a><a class="sb-tag" href="/anime">Toei</a><a class="sb-tag" href="/anime">Anime</a><a class="sb-tag" href="/anime">Daima</a><a class="sb-tag" href="/anime">Review</a></div></div></aside>
 </div>
@@ -592,7 +338,5 @@ function copyArticleLink(button){
 <script defer src="/assets/enhance.js"></script>
 <script defer src="/assets/engage.js?v=20260818b"></script>
 
-<script defer src="/assets/supabase-client.js"></script>
-<script defer src="/assets/otahub-community.js"></script>
 </body>
 </html>

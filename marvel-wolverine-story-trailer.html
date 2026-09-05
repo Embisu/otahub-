@@ -195,291 +195,41 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 .ft-bot{max-width:1440px;margin:0 auto;padding:16px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .ft-copy{font-size:11px;color:rgba(240,238,255,.22);letter-spacing:.04em}
 @media(max-width:1024px){.ft-in{grid-template-columns:1fr 1fr}}
-
-@media(max-width: 900px) {
-  .art-layout { grid-template-columns: 1fr; gap: 0; }
-  .art-sidebar { display: none; }
-  .related-grid { grid-template-columns: 1fr; }
+@media(max-width:768px){.ft-in{grid-template-columns:1fr;gap:28px}.ft-bot{flex-direction:column;gap:10px}}
+@media(max-width:900px){
+.art-hero{height:320px}
+.art-hero-content{bottom:24px;padding:0 18px}
+.art-hero-excerpt{display:none}
+.art-layout{grid-template-columns:1fr;gap:0;padding:0 18px}
+.art-main{padding:24px 0 60px}
+.art-sidebar{display:none}
+.related-grid{grid-template-columns:1fr}
+.ham{display:flex}
+.nav-links{display:none}
+.mobile-nav{display:flex}
+.score-box{flex-direction:column;text-align:center;gap:10px}
+.art-body{font-size:17px;line-height:1.8}
+.art-body h2{font-size:22px;margin:32px 0 14px}
+.art-body h3{font-size:18px;margin:24px 0 10px}
+.highlight-box{padding:18px 20px;margin-bottom:28px}
+.info-table{grid-template-columns:1fr}
+.share-row{gap:8px}
 }
-@media(max-width: 768px) {
-  .nav-links { display: none !important; }
-  .ham { display: flex; }
-  .mobile-nav { display: flex; }
-  .art-hero { height: auto; min-height: 320px; padding: 48px 16px 24px; }
-  .art-hero-title { font-size: clamp(22px, 5.5vw, 30px); line-height: 1.22; }
-  .art-hero-excerpt { font-size: 13.5px; line-height: 1.55; }
-  .art-main { padding: 0 16px; }
-  .art-body { font-size: 16px; line-height: 1.75; }
-  .art-body h2 { font-size: 20px; margin: 28px 0 12px; }
-  .art-body h3 { font-size: 17px; margin: 20px 0 8px; }
-  .highlight-box { padding: 16px 18px; margin-bottom: 24px; }
-  .score-box { flex-direction: column; text-align: center; gap: 12px; padding: 18px 16px; }
-  .share-row { flex-wrap: wrap; gap: 8px; }
-  .share-btn { padding: 8px 14px; font-size: 12px; }
+@media(max-width:480px){
+.art-hero{height:280px}
+.art-hero-title{font-size:24px}
+.art-meta{gap:10px;font-size:12px;padding:12px 0;margin-bottom:24px}
+.breadcrumb{font-size:12px;margin-bottom:18px}
 }
-@media(max-width: 480px) {
-  .art-hero { min-height: 280px; padding: 36px 14px 20px; }
-  .art-hero-title { font-size: 21px; }
-  .art-meta { font-size: 11px; gap: 6px; padding: 10px 0; margin-bottom: 20px; }
-  .breadcrumb { font-size: 11.5px; margin-bottom: 14px; }
-  .art-body { font-size: 15px; line-height: 1.7; }
-  .highlight-box { padding: 14px 14px; }
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   HIGH-CONTRAST & FLAWLESS VIETNAMESE TYPOGRAPHY (FEEDBACK FIXES)
-   ═══════════════════════════════════════════════════════════════ */
-:root {
-  --font-display: 'Plus Jakarta Sans', 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-body: 'Be Vietnam Pro', 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --fd: var(--font-display);
-  --fb: var(--font-body);
-
-  /* High contrast colors on dark background */
-  --text-main: #f8fafc;
-  --text-sub: #e2e8f0;
-  --text-muted: #cbd5e1;
-  --muted: #94a3b8;
-  --dim: #e2e8f0;
-  --white: #ffffff;
-  --border: rgba(255, 255, 255, 0.12);
-  --surf: rgba(19, 9, 48, 0.7);
-  --surf2: rgba(30, 16, 72, 0.85);
+.art-layout{grid-template-columns:1fr;gap:0}
+.art-sidebar{display:none}
+.related-grid{grid-template-columns:1fr}
+.ham{display:flex}
+.nav-links{display:none}
+.mobile-nav{display:flex}
+.score-box{flex-direction:column;text-align:center;gap:10px}
 }
 
-body {
-  font-family: var(--fb);
-  color: var(--text-main);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .art-h1, .art-hero-title {
-  font-family: var(--fd);
-  color: #ffffff;
-  letter-spacing: -0.015em;
-}
-
-/* ── Item 1 Fix: Sharp, Ultra-Vibrant Ranking Numbers ── */
-.rk-num, .rki-num, .ti-num, .t-num, .mi-num, .an-num {
-  font-family: var(--fd);
-  font-weight: 800;
-  line-height: 1;
-  text-align: center;
-  flex-shrink: 0;
-  opacity: 1 !important;
-  color: #94a3b8;
-  font-size: 18px;
-}
-.rk-item:nth-child(1) .rk-num, .rki-item:nth-child(1) .rki-num, .rk-item.t1 .rki-num, .t-item:nth-child(1) .t-num {
-  color: #fbbf24 !important;
-  font-size: 22px;
-  text-shadow: 0 0 14px rgba(251, 191, 36, 0.6);
-}
-.rk-item:nth-child(2) .rk-num, .rki-item:nth-child(2) .rki-num, .rk-item.t2 .rki-num, .t-item:nth-child(2) .t-num {
-  color: #e2e8f0 !important;
-  font-size: 20px;
-  text-shadow: 0 0 12px rgba(226, 232, 240, 0.5);
-}
-.rk-item:nth-child(3) .rk-num, .rki-item:nth-child(3) .rki-num, .rk-item.t3 .rki-num, .t-item:nth-child(3) .t-num {
-  color: #fb923c !important;
-  font-size: 19px;
-  text-shadow: 0 0 12px rgba(251, 146, 60, 0.5);
-}
-.rk-item:nth-child(n+4) .rk-num, .rki-item:nth-child(n+4) .rki-num, .t-item:nth-child(n+4) .t-num {
-  color: #a5f3fc !important;
-  font-size: 17px;
-  text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
-}
-
-.an-score-num, .rk-sc, .rki-score, .sc-big, .score-num {
-  color: #fbbf24 !important;
-  font-family: var(--fd);
-  font-weight: 800;
-  text-shadow: 0 0 10px rgba(251, 191, 36, 0.4);
-}
-
-/* ── Item 5 Fix: Ranking Thumbnails Aspect Ratio & Quality ── */
-.rk-thumb, .rki-thumb, .ti-thumb {
-  width: 64px;
-  height: 48px;
-  border-radius: 6px;
-  overflow: hidden;
-  flex-shrink: 0;
-  background: var(--surf2);
-  border: 1px solid rgba(255,255,255,0.1);
-}
-.rk-thumb img, .rki-thumb img, .ti-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-/* ── Item 3 Fix: Glowing Hot This Week Sidebar ── */
-.hero-side {
-  background: rgba(17, 8, 42, 0.85) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 229, 255, 0.25) !important;
-  border-radius: 14px;
-  box-shadow: 0 12px 36px rgba(0,0,0,0.55), 0 0 24px rgba(0,229,255,0.08);
-  padding: 24px 22px;
-}
-.side-head {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: linear-gradient(90deg, rgba(255,48,128,0.25), rgba(0,229,255,0.2));
-  border: 1px solid rgba(0,229,255,0.45);
-  color: #00e5ff !important;
-  font-family: var(--fd);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  border-radius: 6px;
-  margin-bottom: 16px;
-  text-shadow: 0 0 10px rgba(0,229,255,0.5);
-}
-.sa-t {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  font-size: 15px;
-  line-height: 1.3;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
-  transition: color .2s ease;
-}
-.s-art:hover .sa-t { color: #00e5ff !important; }
-.sa-m { color: #cbd5e1 !important; font-size: 12px; }
-.sa-thumb {
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.12);
-}
-
-/* ── Item 4 Fix: High Contrast Global Text ── */
-.wc-t { color: #ffffff !important; font-weight: 700; font-size: 16.5px; }
-.wc-m { color: #cbd5e1 !important; font-size: 12px; }
-.w-card:hover .wc-t { color: #00e5ff !important; }
-.fc-title { color: #ffffff !important; font-weight: 700; }
-.fc-sub { color: #f1f5f9 !important; font-size: 14px; }
-.h-sub { color: #f8fafc !important; font-size: 15px; text-shadow: 0 2px 10px rgba(0,0,0,0.85); }
-.sec-t { color: #ffffff !important; font-size: 17px; font-weight: 800; letter-spacing: .08em; }
-.ft-desc { color: #cbd5e1 !important; }
-.ft-links a { color: #cbd5e1 !important; transition: color .2s; }
-.ft-links a:hover { color: #00e5ff !important; }
-
-/* ── Item 7 Fix: Fast & Fully Clickable Breaking News Ticker ── */
-.ticker {
-  background: linear-gradient(90deg, #881337 0%, #e11d48 50%, #7c2d12 100%);
-  height: 36px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  position: relative;
-  z-index: 10;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
-}
-.tick-label {
-  background: rgba(0,0,0,0.5);
-  font-family: var(--fd);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  color: #ffffff;
-  padding: 0 16px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-shrink: 0;
-  border-right: 1px solid rgba(255,255,255,0.25);
-  z-index: 2;
-  white-space: nowrap;
-}
-.tick-label::before {
-  content: '';
-  width: 7px;
-  height: 7px;
-  background: #22c55e;
-  border-radius: 50%;
-  box-shadow: 0 0 8px #22c55e;
-  animation: blink 1.2s infinite ease-in-out;
-}
-.tick-wrap { overflow: hidden; flex: 1; min-width: 0; }
-.tick-track {
-  display: flex;
-  animation: ticker 22s linear infinite;
-  white-space: nowrap;
-}
-.tick-track:hover { animation-play-state: paused; }
-.tick-item {
-  color: #ffffff !important;
-  text-decoration: none !important;
-  font-size: 12.5px;
-  font-weight: 600;
-  padding: 0 28px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  transition: color .15s ease;
-}
-.tick-item:hover { color: #38bdf8 !important; text-decoration: underline !important; }
-.tick-item::before { content: '⚡'; font-size: 11px; opacity: 0.9; }
-
-/* ── Item 8 Fix: Floating Mobile Ergonomic Action Dock (Bottom Right / Center) ── */
-.mobile-thumb-dock {
-  display: none;
-}
-@media(max-width: 768px) {
-  .mobile-thumb-dock {
-    display: flex;
-    position: fixed;
-    bottom: 16px;
-    right: 16px;
-    left: 16px;
-    margin: 0 auto;
-    max-width: 380px;
-    background: rgba(15, 6, 38, 0.88);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 229, 255, 0.35);
-    border-radius: 28px;
-    padding: 6px 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(0,229,255,0.2);
-    z-index: 999;
-    align-items: center;
-    justify-content: space-around;
-  }
-  .mtd-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    color: #cbd5e1;
-    text-decoration: none;
-    font-size: 9.5px;
-    font-family: var(--fd);
-    font-weight: 700;
-    letter-spacing: .04em;
-    padding: 6px 8px;
-    border-radius: 12px;
-    transition: all .2s ease;
-    cursor: pointer;
-    background: none;
-    border: none;
-  }
-  .mtd-item svg { width: 18px; height: 18px; fill: currentColor; }
-  .mtd-item:hover, .mtd-item.active {
-    color: #00e5ff;
-    background: rgba(0, 229, 255, 0.12);
-  }
-  body { padding-bottom: 72px; }
-}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://otahub.asia/"},{"@type":"ListItem","position":2,"name":"Gaming","item":"https://otahub.asia/gaming"},{"@type":"ListItem","position":3,"name":"Marvel's Wolverine Tung Trailer Cốt Truyện Tại Comic-Con, Xác Nhận Ra Mắt 15/9","item":"https://otahub.asia/marvel-wolverine-story-trailer"}]}</script>
 </head>
@@ -528,30 +278,17 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 <div class="hb-label">Tóm Tắt</div>
 <div class="hb-text"><strong>Insomniac Games</strong> công bố trailer cốt truyện mới cho <strong>Marvel's Wolverine</strong> tại San Diego Comic-Con, hé lộ chi tiết về The Hand và màn đối đầu với Jean Grey. Game ấn định ra mắt <strong>PS5</strong> ngày <strong>15/9/2026</strong>, với phần nhạc nền do nhà soạn nhạc <strong>David Fleming</strong> (The Last of Us) đảm nhận, soundtrack đầy đủ phát hành ngày <strong>28/8</strong>.</div>
 </div>
-<div class="art-body">
-      <div class="callout-box">
-        <div class="cb-title">Tuyệt Phẩm Hành Động 18+ Từ Insomniac Games</div>
-        <div class="cb-desc">Sony Interactive Entertainment và Insomniac Games chính thức tung Trailer Cốt Truyện đầu tiên của Marvel's Wolverine trên PS5: Lối chơi hành động đẫm máu xếp hạng M (Mature 18+), đồ họa thế hệ mới và bối cảnh Madripoor ngập tràn nguy hiểm.</div>
-      </div>
-
-      <h2>1. Logan Trở Lại: Bản Năng Hoang Dã & Lời Nguyền Adamantium</h2>
-      <p>Sau thành công rực rỡ của thương hiệu <em>Marvel's Spider-Man</em>, Insomniac Games đã dồn toàn lực để phát triển <strong>Marvel's Wolverine</strong> — tựa game siêu anh hùng đen tối và tàn bạo nhất trong lịch sử của hãng. Đoạn trailer đưa người chơi theo chân <strong>Logan (Wolverine)</strong> trong hành trình truy tìm nguồn gốc ký ức bị đánh cắp và tổ chức bí mật Weapon X.</p>
-      <p>Bối cảnh trò chơi trải dài từ những cánh rừng tuyết lạnh giá của Canada, các quán bar ngầm tại thành phố cảng tội phạm <strong>Madripoor</strong> ở Đông Nam Á, cho đến những phòng thí nghiệm công nghệ cao tối tân, tạo nên một không khí trinh thám pha lẫn hành động sinh tồn nghẹt thở.</p>
-
-      <h2>2. Cơ Chế Chiến Đấu Chặt Chém Tàn Bạo Chuẩn Nhãn 18+</h2>
-      <p>Insomniac Games xác nhận tựa game sẽ giữ trọn vẹn nhãn <strong>Mature 18+</strong> với hệ thống chặt chém vật lý chân thực: móng vuốt Adamantium có thể cắt đứt kim loại, vũ khí và cơ thể kẻ địch với độ chính xác cao. Cơ chế hồi phục tế bào (Healing Factor) thời gian thực của Logan sẽ thể hiện rõ từng vết thương rách toạc trên da thịt tự liền lại ngay giữa giao tranh, đem lại cảm giác quyền năng vô song cho người chơi.</p>
-
-      <h2>3. Phát Hành Độc Quyền Trên PlayStation 5 & PS5 Pro</h2>
-      <p>Tận dụng sức mạnh của ổ cứng SSD tốc độ cao và phản hồi xúc giác DualSense, Marvel's Wolverine sẽ tái hiện chân thực cảm giác sắc bén của từng nhát chém và tiếng rít kim loại rợn người. Trò chơi dự kiến sẽ ra mắt độc quyền trên hệ máy PS5 vào mùa Thu 2026.</p>
-    </div>
-
+<article class="art-body">
+<p>Insomniac Games đã công bố trailer cốt truyện mới cho Marvel's Wolverine tại San Diego Comic-Con, đồng thời xác nhận ngày ra mắt chính thức là 15/9/2026 trên PS5.</p>
+<figure><img src="/assets/img/news-marvel-wolverine-story-trailer.jpg" alt="Marvel's Wolverine tung trailer cốt truyện tại Comic-Con, xác nhận ra mắt 15/9" width="1280" height="720" fetchpriority="high" decoding="async"></figure>
+<p>Trailer hé lộ thêm chi tiết cốt truyện xoay quanh tổ chức sát thủ The Hand cùng màn đối đầu giữa Logan và Jean Grey, tiếp tục xây dựng tông màu trưởng thành, gai góc cho dự án siêu anh hùng đầu tiên của Insomniac mang chất bạo lực rõ nét hơn hẳn loạt Spider-Man trước đó.</p>
+<p>Insomniac cũng chính thức công bố nhà soạn nhạc đảm nhận phần âm nhạc của game là David Fleming, người từng ghi dấu ấn qua các dự án như The Last of Us, Jim Henson Idea Man và Widow's Bay. Theo studio, phần nhạc của Fleming mang lại tác động lớn cho mạch truyện, với các giai điệu và cao trào thay đổi linh hoạt theo hành trình đầy khốc liệt của Logan khắp thế giới. Một bản nhạc trong game đã được công bố để người hâm mộ nghe trước, còn soundtrack đầy đủ sẽ phát hành ngày 28/8/2026.</p>
+<p>Panel tại Comic-Con cũng giới thiệu thêm artwork chính thức mới cho game, khép lại một đợt quảng bá dày đặc thông tin trước thềm ra mắt vào tháng 9. Bạn có thể xem thêm <a href="/news">tin mới nhất</a> và chuyên mục <a href="/gaming">Gaming</a> của OtaHub.</p>
+<p><strong>Nguồn:</strong> <a href="https://blog.playstation.com/2026/07/23/marvels-wolverine-story-trailer-new-art-composer-details-and-more/" rel="nofollow noopener" target="_blank">blog.playstation.com</a>.</p>
+</article>
 <div class="share-row"><span class="share-lbl">Chia sẻ:</span><a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https://otahub.asia/marvel-wolverine-story-trailer" target="_blank" rel="noopener">Facebook</a><a class="share-btn" href="https://twitter.com/intent/tweet?url=https://otahub.asia/marvel-wolverine-story-trailer&amp;text=Marvel's%20Wolverine%20Tung%20Trailer%20C%E1%BB%91t%20Truy%E1%BB%87n%20T%E1%BA%A1i%20Comic-Con%2C%20X%C3%A1c%20Nh%E1%BA%ADn%20Ra%20M%E1%BA%AFt%2015%2F9" target="_blank" rel="noopener">Twitter / X</a><a class="share-btn" href="https://www.reddit.com/submit?url=https://otahub.asia/marvel-wolverine-story-trailer" target="_blank" rel="noopener">Reddit</a><button class="share-btn" type="button" onclick="copyArticleLink(this)">Sao chép link</button></div>
-
-<div id="otahub-reactions"></div>
-<div id="otahub-comments"></div>
-
 </main>
-<aside class="art-sidebar"><div class="sidebar-block"><div class="sb-title">Bài liên quan</div><a class="sb-art" href="/phantom-blade-zero-state-of-play"><img class="sb-thumb" src="/assets/img/891449aa89-phantom-blade-zero-state-of-play-hero.jpg" alt="Phantom Blade Zero: State of Play 17/8, Mở Pre-Order" width="1920" height="1080" fetchpriority="high" decoding="async"><div><div class="sb-cat">Gaming</div><div class="sb-t">Phantom Blade Zero: State of Play 17/8, Mở Pre-Order</div></div></a><a class="sb-art" href="/ghost-of-yotei-complete-edition"><img class="sb-thumb" src="/assets/img/0a878e4709-ghost-of-yotei-complete-edition-hero.jpg" alt="Ghost of Yōtei Complete Edition Ra Mắt Ngày 1/10" loading="lazy" width="1920" height="1080"><div><div class="sb-cat">Gaming</div><div class="sb-t">Ghost of Yōtei Complete Edition Ra Mắt Ngày 1/10</div></div></a><a class="sb-art" href="/stellar-blade-2"><img class="sb-thumb" src="/assets/img/f845d7c936-library_hero.jpg" alt="Stellar Blade: Blood Rain Chính Thức Lộ Diện, Giới Thiệu Nữ Chính Mới Evie" loading="lazy" width="1920" height="620"><div><div class="sb-cat">Gaming</div><div class="sb-t">Stellar Blade: Blood Rain Chính Thức Lộ Diện, Giới Thiệu Nữ Chính Mới Evie</div></div></a></div><div class="sidebar-block"><div class="sb-title">Tags</div><div class="sb-tags"><a class="sb-tag" href="/gaming">Marvel’s Wolverine</a><a class="sb-tag" href="/gaming">Insomniac Games</a><a class="sb-tag" href="/gaming">PlayStation 5</a><a class="sb-tag" href="/gaming">Trailer cốt truyện</a></div></div></aside>
+<aside class="art-sidebar"><div class="sidebar-block"><div class="sb-title">Bài liên quan</div><a class="sb-art" href="/phantom-blade-zero-state-of-play"><img class="sb-thumb" src="/assets/img/891449aa89-phantom-blade-zero-state-of-play-hero.jpg" alt="Phantom Blade Zero: State of Play 17/8, Mở Pre-Order" loading="lazy" width="1920" height="1080"><div><div class="sb-cat">Gaming</div><div class="sb-t">Phantom Blade Zero: State of Play 17/8, Mở Pre-Order</div></div></a><a class="sb-art" href="/ghost-of-yotei-complete-edition"><img class="sb-thumb" src="/assets/img/0a878e4709-ghost-of-yotei-complete-edition-hero.jpg" alt="Ghost of Yōtei Complete Edition Ra Mắt Ngày 1/10" loading="lazy" width="1920" height="1080"><div><div class="sb-cat">Gaming</div><div class="sb-t">Ghost of Yōtei Complete Edition Ra Mắt Ngày 1/10</div></div></a><a class="sb-art" href="/stellar-blade-2"><img class="sb-thumb" src="/assets/img/f845d7c936-library_hero.jpg" alt="Stellar Blade: Blood Rain Chính Thức Lộ Diện, Giới Thiệu Nữ Chính Mới Evie" loading="lazy" width="1920" height="620"><div><div class="sb-cat">Gaming</div><div class="sb-t">Stellar Blade: Blood Rain Chính Thức Lộ Diện, Giới Thiệu Nữ Chính Mới Evie</div></div></a></div><div class="sidebar-block"><div class="sb-title">Tags</div><div class="sb-tags"><a class="sb-tag" href="/gaming">Marvel’s Wolverine</a><a class="sb-tag" href="/gaming">Insomniac Games</a><a class="sb-tag" href="/gaming">PlayStation 5</a><a class="sb-tag" href="/gaming">Trailer cốt truyện</a></div></div></aside>
 </div>
 <!--
   PARTIAL: Footer dùng chung cho TRANG BÀI VIẾT.
@@ -593,7 +330,5 @@ function copyArticleLink(button){
 <script defer src="/assets/enhance.js"></script>
 <script defer src="/assets/engage.js?v=20260818b"></script>
 
-<script defer src="/assets/supabase-client.js"></script>
-<script defer src="/assets/otahub-community.js"></script>
 </body>
 </html>

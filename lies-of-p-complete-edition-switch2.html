@@ -50,10 +50,21 @@
     "@type": "WebPage",
     "@id": "https://otahub.asia/lies-of-p-complete-edition-switch2"
   },
-  "keywords": "Lies of P, Complete Edition, Nintendo Switch 2, Neowiz, Round8 Studio, Overture DLC",
+  "keywords": "Gaming, OtaHub, Lies of P: Complete Edition Chính Thức Ra Mắt Trên Nintendo Switch 2",
   "inLanguage": "vi"
 }
 </script>
+<!--
+  PARTIAL: Phần <head> KHÔNG đổi theo từng bài viết (khác với title/description/OG/
+  JSON-LD — những thứ đó vẫn là biến riêng từng trang, xử lý ở build.js).
+
+  Chèn vào <head>, sau khối meta+OG+JSON-LD riêng của từng bài, trước 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+</head>.
+-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -70,6 +81,13 @@
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
 
 <style>
+/*
+  PARTIAL: CSS dùng chung cho TRANG BÀI VIẾT (article template).
+  Xác nhận: byte-giống-hệt giữa frieren-season2.html (bài cũ) và mortal-shell-2-release.html
+  (bài mới) tại thời điểm audit 18/8/2026 — an toàn để tách ra dùng chung.
+  Trang hub (gaming.html, anime.html...) và trang detail (game-detail.html...) dùng
+  CSS khác, sẽ tách thành article-style-hub.css / article-style-detail.css ở đợt sau.
+*/
 :root{--bg:#0b0418;--surf:#150a2c;--surf2:#1d1040;--card:#190c36;--cyan:#00e5ff;--sakura:#ff3080;--violet:#7c3aed;--lav:#a78bfa;--amber:#fbbf24;--green:#34d399;--white:#f0eeff;--dim:rgba(240,238,255,.72);--muted:rgba(240,238,255,.38);--border:rgba(255,255,255,.07);--bcyan:rgba(0,229,255,.18);--ease:cubic-bezier(.16,1,.3,1);--fd:'Rajdhani',sans-serif;--fb:'Space Grotesk',sans-serif}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -177,300 +195,49 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 .ft-bot{max-width:1440px;margin:0 auto;padding:16px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .ft-copy{font-size:11px;color:rgba(240,238,255,.22);letter-spacing:.04em}
 @media(max-width:1024px){.ft-in{grid-template-columns:1fr 1fr}}
-
-@media(max-width: 900px) {
-  .art-layout { grid-template-columns: 1fr; gap: 0; }
-  .art-sidebar { display: none; }
-  .related-grid { grid-template-columns: 1fr; }
+@media(max-width:768px){.ft-in{grid-template-columns:1fr;gap:28px}.ft-bot{flex-direction:column;gap:10px}}
+@media(max-width:900px){
+.art-hero{height:320px}
+.art-hero-content{bottom:24px;padding:0 18px}
+.art-hero-excerpt{display:none}
+.art-layout{grid-template-columns:1fr;gap:0;padding:0 18px}
+.art-main{padding:24px 0 60px}
+.art-sidebar{display:none}
+.related-grid{grid-template-columns:1fr}
+.ham{display:flex}
+.nav-links{display:none}
+.mobile-nav{display:flex}
+.score-box{flex-direction:column;text-align:center;gap:10px}
+.art-body{font-size:17px;line-height:1.8}
+.art-body h2{font-size:22px;margin:32px 0 14px}
+.art-body h3{font-size:18px;margin:24px 0 10px}
+.highlight-box{padding:18px 20px;margin-bottom:28px}
+.info-table{grid-template-columns:1fr}
+.share-row{gap:8px}
 }
-@media(max-width: 768px) {
-  .nav-links { display: none !important; }
-  .ham { display: flex; }
-  .mobile-nav { display: flex; }
-  .art-hero { height: auto; min-height: 320px; padding: 48px 16px 24px; }
-  .art-hero-title { font-size: clamp(22px, 5.5vw, 30px); line-height: 1.22; }
-  .art-hero-excerpt { font-size: 13.5px; line-height: 1.55; }
-  .art-main { padding: 0 16px; }
-  .art-body { font-size: 16px; line-height: 1.75; }
-  .art-body h2 { font-size: 20px; margin: 28px 0 12px; }
-  .art-body h3 { font-size: 17px; margin: 20px 0 8px; }
-  .highlight-box { padding: 16px 18px; margin-bottom: 24px; }
-  .score-box { flex-direction: column; text-align: center; gap: 12px; padding: 18px 16px; }
-  .share-row { flex-wrap: wrap; gap: 8px; }
-  .share-btn { padding: 8px 14px; font-size: 12px; }
+@media(max-width:480px){
+.art-hero{height:280px}
+.art-hero-title{font-size:24px}
+.art-meta{gap:10px;font-size:12px;padding:12px 0;margin-bottom:24px}
+.breadcrumb{font-size:12px;margin-bottom:18px}
 }
-@media(max-width: 480px) {
-  .art-hero { min-height: 280px; padding: 36px 14px 20px; }
-  .art-hero-title { font-size: 21px; }
-  .art-meta { font-size: 11px; gap: 6px; padding: 10px 0; margin-bottom: 20px; }
-  .breadcrumb { font-size: 11.5px; margin-bottom: 14px; }
-  .art-body { font-size: 15px; line-height: 1.7; }
-  .highlight-box { padding: 14px 14px; }
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   HIGH-CONTRAST & FLAWLESS VIETNAMESE TYPOGRAPHY (FEEDBACK FIXES)
-   ═══════════════════════════════════════════════════════════════ */
-:root {
-  --font-display: 'Plus Jakarta Sans', 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-body: 'Be Vietnam Pro', 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --fd: var(--font-display);
-  --fb: var(--font-body);
-
-  /* High contrast colors on dark background */
-  --text-main: #f8fafc;
-  --text-sub: #e2e8f0;
-  --text-muted: #cbd5e1;
-  --muted: #94a3b8;
-  --dim: #e2e8f0;
-  --white: #ffffff;
-  --border: rgba(255, 255, 255, 0.12);
-  --surf: rgba(19, 9, 48, 0.7);
-  --surf2: rgba(30, 16, 72, 0.85);
+.art-layout{grid-template-columns:1fr;gap:0}
+.art-sidebar{display:none}
+.related-grid{grid-template-columns:1fr}
+.ham{display:flex}
+.nav-links{display:none}
+.mobile-nav{display:flex}
+.score-box{flex-direction:column;text-align:center;gap:10px}
 }
 
-body {
-  font-family: var(--fb);
-  color: var(--text-main);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .art-h1, .art-hero-title {
-  font-family: var(--fd);
-  color: #ffffff;
-  letter-spacing: -0.015em;
-}
-
-/* ── Item 1 Fix: Sharp, Ultra-Vibrant Ranking Numbers ── */
-.rk-num, .rki-num, .ti-num, .t-num, .mi-num, .an-num {
-  font-family: var(--fd);
-  font-weight: 800;
-  line-height: 1;
-  text-align: center;
-  flex-shrink: 0;
-  opacity: 1 !important;
-  color: #94a3b8;
-  font-size: 18px;
-}
-.rk-item:nth-child(1) .rk-num, .rki-item:nth-child(1) .rki-num, .rk-item.t1 .rki-num, .t-item:nth-child(1) .t-num {
-  color: #fbbf24 !important;
-  font-size: 22px;
-  text-shadow: 0 0 14px rgba(251, 191, 36, 0.6);
-}
-.rk-item:nth-child(2) .rk-num, .rki-item:nth-child(2) .rki-num, .rk-item.t2 .rki-num, .t-item:nth-child(2) .t-num {
-  color: #e2e8f0 !important;
-  font-size: 20px;
-  text-shadow: 0 0 12px rgba(226, 232, 240, 0.5);
-}
-.rk-item:nth-child(3) .rk-num, .rki-item:nth-child(3) .rki-num, .rk-item.t3 .rki-num, .t-item:nth-child(3) .t-num {
-  color: #fb923c !important;
-  font-size: 19px;
-  text-shadow: 0 0 12px rgba(251, 146, 60, 0.5);
-}
-.rk-item:nth-child(n+4) .rk-num, .rki-item:nth-child(n+4) .rki-num, .t-item:nth-child(n+4) .t-num {
-  color: #a5f3fc !important;
-  font-size: 17px;
-  text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
-}
-
-.an-score-num, .rk-sc, .rki-score, .sc-big, .score-num {
-  color: #fbbf24 !important;
-  font-family: var(--fd);
-  font-weight: 800;
-  text-shadow: 0 0 10px rgba(251, 191, 36, 0.4);
-}
-
-/* ── Item 5 Fix: Ranking Thumbnails Aspect Ratio & Quality ── */
-.rk-thumb, .rki-thumb, .ti-thumb {
-  width: 64px;
-  height: 48px;
-  border-radius: 6px;
-  overflow: hidden;
-  flex-shrink: 0;
-  background: var(--surf2);
-  border: 1px solid rgba(255,255,255,0.1);
-}
-.rk-thumb img, .rki-thumb img, .ti-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-/* ── Item 3 Fix: Glowing Hot This Week Sidebar ── */
-.hero-side {
-  background: rgba(17, 8, 42, 0.85) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 229, 255, 0.25) !important;
-  border-radius: 14px;
-  box-shadow: 0 12px 36px rgba(0,0,0,0.55), 0 0 24px rgba(0,229,255,0.08);
-  padding: 24px 22px;
-}
-.side-head {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: linear-gradient(90deg, rgba(255,48,128,0.25), rgba(0,229,255,0.2));
-  border: 1px solid rgba(0,229,255,0.45);
-  color: #00e5ff !important;
-  font-family: var(--fd);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  border-radius: 6px;
-  margin-bottom: 16px;
-  text-shadow: 0 0 10px rgba(0,229,255,0.5);
-}
-.sa-t {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  font-size: 15px;
-  line-height: 1.3;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
-  transition: color .2s ease;
-}
-.s-art:hover .sa-t { color: #00e5ff !important; }
-.sa-m { color: #cbd5e1 !important; font-size: 12px; }
-.sa-thumb {
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.12);
-}
-
-/* ── Item 4 Fix: High Contrast Global Text ── */
-.wc-t { color: #ffffff !important; font-weight: 700; font-size: 16.5px; }
-.wc-m { color: #cbd5e1 !important; font-size: 12px; }
-.w-card:hover .wc-t { color: #00e5ff !important; }
-.fc-title { color: #ffffff !important; font-weight: 700; }
-.fc-sub { color: #f1f5f9 !important; font-size: 14px; }
-.h-sub { color: #f8fafc !important; font-size: 15px; text-shadow: 0 2px 10px rgba(0,0,0,0.85); }
-.sec-t { color: #ffffff !important; font-size: 17px; font-weight: 800; letter-spacing: .08em; }
-.ft-desc { color: #cbd5e1 !important; }
-.ft-links a { color: #cbd5e1 !important; transition: color .2s; }
-.ft-links a:hover { color: #00e5ff !important; }
-
-/* ── Item 7 Fix: Fast & Fully Clickable Breaking News Ticker ── */
-.ticker {
-  background: linear-gradient(90deg, #881337 0%, #e11d48 50%, #7c2d12 100%);
-  height: 36px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  position: relative;
-  z-index: 10;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
-}
-.tick-label {
-  background: rgba(0,0,0,0.5);
-  font-family: var(--fd);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  color: #ffffff;
-  padding: 0 16px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-shrink: 0;
-  border-right: 1px solid rgba(255,255,255,0.25);
-  z-index: 2;
-  white-space: nowrap;
-}
-.tick-label::before {
-  content: '';
-  width: 7px;
-  height: 7px;
-  background: #22c55e;
-  border-radius: 50%;
-  box-shadow: 0 0 8px #22c55e;
-  animation: blink 1.2s infinite ease-in-out;
-}
-.tick-wrap { overflow: hidden; flex: 1; min-width: 0; }
-.tick-track {
-  display: flex;
-  animation: ticker 22s linear infinite;
-  white-space: nowrap;
-}
-.tick-track:hover { animation-play-state: paused; }
-.tick-item {
-  color: #ffffff !important;
-  text-decoration: none !important;
-  font-size: 12.5px;
-  font-weight: 600;
-  padding: 0 28px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  transition: color .15s ease;
-}
-.tick-item:hover { color: #38bdf8 !important; text-decoration: underline !important; }
-.tick-item::before { content: '⚡'; font-size: 11px; opacity: 0.9; }
-
-/* ── Item 8 Fix: Floating Mobile Ergonomic Action Dock (Bottom Right / Center) ── */
-.mobile-thumb-dock {
-  display: none;
-}
-@media(max-width: 768px) {
-  .mobile-thumb-dock {
-    display: flex;
-    position: fixed;
-    bottom: 16px;
-    right: 16px;
-    left: 16px;
-    margin: 0 auto;
-    max-width: 380px;
-    background: rgba(15, 6, 38, 0.88);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 229, 255, 0.35);
-    border-radius: 28px;
-    padding: 6px 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(0,229,255,0.2);
-    z-index: 999;
-    align-items: center;
-    justify-content: space-around;
-  }
-  .mtd-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    color: #cbd5e1;
-    text-decoration: none;
-    font-size: 9.5px;
-    font-family: var(--fd);
-    font-weight: 700;
-    letter-spacing: .04em;
-    padding: 6px 8px;
-    border-radius: 12px;
-    transition: all .2s ease;
-    cursor: pointer;
-    background: none;
-    border: none;
-  }
-  .mtd-item svg { width: 18px; height: 18px; fill: currentColor; }
-  .mtd-item:hover, .mtd-item.active {
-    color: #00e5ff;
-    background: rgba(0, 229, 255, 0.12);
-  }
-  body { padding-bottom: 72px; }
-}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://otahub.asia/"},{"@type":"ListItem","position":2,"name":"Gaming","item":"https://otahub.asia/gaming"},{"@type":"ListItem","position":3,"name":"Lies of P: Complete Edition Chính Thức Ra Mắt Trên Nintendo Switch 2","item":"https://otahub.asia/lies-of-p-complete-edition-switch2"}]}</script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-
 </head>
 <body>
+<!--
+  PARTIAL: Nav + Mobile Nav dùng cho TRANG BÀI VIẾT (article template).
+  Nguồn duy nhất cho thanh điều hướng — sửa ở đây, build lại là mọi bài viết đổi theo.
+-->
 <div id="amb"><div class="orb o1"></div><div class="orb o2"></div></div>
 <div id="gtex"></div>
 <nav class="nav"><div class="nav-in"><a class="logo" href="/"><span><svg viewbox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="5" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect></svg></span><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming" class="active">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><div class="nav-r"><button class="ham" id="ham" aria-label="Menu" onclick="toggleMob()"><span></span><span></span><span></span></button></div></div></nav><nav class="mobile-nav" id="mobnav"><a href="/choi-gi">Chơi Gì?</a>
@@ -486,7 +253,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 <div class="art-hero-content">
 <span class="art-hero-cat">Gaming</span>
 <h1 class="art-hero-title">Lies of P: Complete Edition Chính Thức Ra Mắt Trên Nintendo Switch 2</h1>
-<p class="art-hero-excerpt">Neowiz và Round8 Studio đưa trọn bộ Lies of P cùng DLC Overture lên hệ máy Switch 2, tối ưu hiệu năng riêng cho phần cứng.</p>
+<p class="art-hero-excerpt">Neowiz và Round8 Studio phát hành Lies of P: Complete Edition trên Nintendo Switch 2 từ 6/8/2026, gộp game gốc và DLC Overture, giá 69,99 USD, bản đĩa vật lý ra ngày 2/10/2026.</p>
 </div>
 </section>
 <div class="art-layout">
@@ -509,15 +276,10 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 </div>
 <div class="highlight-box">
 <div class="hb-label">Tóm Tắt</div>
-<div class="hb-text"><strong>Neowiz</strong> và <strong>Round8 Studio</strong> chính thức phát hành <strong>Lies of P: Complete Edition</strong> trên <strong>Nintendo Switch 2</strong> từ ngày 6/8/2026, gộp chung game gốc và DLC Overture, giá 69,99 USD; bản đĩa vật lý ra mắt ngày 2/10/2026.</div>
+<div class="hb-text">Neowiz và Round8 Studio chính thức phát hành Lies of P: Complete Edition trên Nintendo Switch 2, tích hợp toàn bộ bản mở rộng cốt truyện DLC, chế độ đồ họa 60 FPS và hỗ trợ điều khiển cảm ứng chuyển động.</div>
 </div>
-<div class="art-body">
-      <div class="callout-box">
-        <div class="cb-title">Kiệt Tác Souls-Like Đổ Bộ Hệ Máy Mới</div>
-        <div class="cb-desc">Neowiz và Round8 Studio chính thức phát hành Lies of P: Complete Edition trên Nintendo Switch 2, tích hợp toàn bộ bản mở rộng cốt truyện DLC, chế độ đồ họa 60 FPS và hỗ trợ điều khiển cảm ứng chuyển động.</div>
-      </div>
-
-      <h2>1. Hành Trình Đẫm Máu Của Chú Bé Người Gỗ Pinocchio</h2>
+<article class="art-body">
+<h2>1. Hành Trình Đẫm Máu Của Chú Bé Người Gỗ Pinocchio</h2>
       <p>Được vinh danh là một trong những tựa game Souls-like xuất sắc nhất thập kỷ, <strong>Lies of P</strong> đã tái hiện câu chuyện cổ tích kinh điển về chú bé người gỗ Pinocchio dưới lăng kính đen tối thời kỳ Belle Époque tại thành phố sụp đổ <strong>Krat</strong> — nơi những con rối cơ khí bị điên loạn và tàn sát toàn bộ cư dân.</p>
       <p>Hệ thống chiến đấu với cơ chế đỡ đòn hoàn hảo <em>Perfect Guard</em>, cánh tay cơ khí <em>Legion Arm</em> tùy biến đa dạng và cơ chế kết hợp lưỡi kiếm - chuôi kiếm độc nhất vô nhị đã mang lại chiều sâu chiến thuật đỉnh cao, sánh ngang với các tuyệt phẩm của FromSoftware.</p>
 
@@ -526,18 +288,31 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 
       <h2>3. Hiệu Năng Vượt Trội Trên Nintendo Switch 2</h2>
       <p>Tận dụng chip xử lý thế hệ mới, Lies of P vận hành mượt mà ở độ phân giải 1080p 60 FPS ở chế độ cầm tay và 1440p 60 FPS ở chế độ cắm TV Dock, mang lại trải nghiệm hành động mượt mà và chân thực cho các game thủ đam mê thử thách mọi lúc mọi nơi.</p>
-    </div>
-
+</article>
 <div class="share-row"><span class="share-lbl">Chia sẻ:</span><a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https://otahub.asia/lies-of-p-complete-edition-switch2" target="_blank" rel="noopener">Facebook</a><a class="share-btn" href="https://twitter.com/intent/tweet?url=https://otahub.asia/lies-of-p-complete-edition-switch2&amp;text=Lies%20of%20P%3A%20Complete%20Edition%20Ch%C3%ADnh%20Th%E1%BB%A9c%20Ra%20M%E1%BA%AFt%20Tr%C3%AAn%20Nintendo%20Switch%202" target="_blank" rel="noopener">Twitter / X</a><a class="share-btn" href="https://www.reddit.com/submit?url=https://otahub.asia/lies-of-p-complete-edition-switch2" target="_blank" rel="noopener">Reddit</a><button class="share-btn" type="button" onclick="copyArticleLink(this)">Sao chép link</button></div>
-
-<div id="otahub-reactions"></div>
-<div id="otahub-comments"></div>
-
 </main>
-<aside class="art-sidebar"><div class="sidebar-block"><div class="sb-title">Bài liên quan</div><a class="sb-art" href="/elden-ring-tarnished-edition"><img class="sb-thumb" src="/assets/img/adbee997e8-elden-ring-tarnished-edition-hero.jpg" alt="Elden Ring: Tarnished Edition" width="1280" height="720" fetchpriority="high" decoding="async"><div><div class="sb-cat">Gaming</div><div class="sb-t">Elden Ring: Tarnished Edition Đổ Bộ Switch 2 Ngày 28/8</div></div></a><a class="sb-art" href="/metal-gear-solid-master-collection-vol2"><img class="sb-thumb" src="/assets/img/bffb8c0a75-mgs-master-collection-vol2.jpg" alt="Metal Gear Solid Master Collection Vol.2" loading="lazy" width="1280" height="720"><div><div class="sb-cat">Gaming</div><div class="sb-t">Metal Gear Solid: Master Collection Vol. 2 Ấn Định Ngày Ra Mắt 27/8</div></div></a><a class="sb-art" href="/oblivion-remastered-switch-2"><img class="sb-thumb" src="/assets/img/news-oblivion-remastered-switch-2.jpg" alt="Oblivion Remastered trên Switch 2" loading="lazy" width="1280" height="720"><div><div class="sb-cat">Gaming</div><div class="sb-t">Oblivion Remastered Chính Thức Lên Nintendo Switch 2</div></div></a></div><div class="sidebar-block"><div class="sb-title">Tags</div><div class="sb-tags"><a class="sb-tag" href="/gaming">Lies of P</a><a class="sb-tag" href="/gaming">Nintendo Switch 2</a><a class="sb-tag" href="/gaming">Neowiz</a></div></div></aside>
+<aside class="art-sidebar"><div class="sidebar-block"><div class="sb-title">Bài liên quan</div><a class="sb-art" href="/kimetsu-no-yaiba-vo-han-thanh-movie-1-trailer-release"><img class="sb-thumb" src="/assets/img/news-demon-slayer-infinity-castle-official.jpg" alt="Kimetsu no Yaiba Vô Hạn Thành" loading="lazy" width="1920" height="1080"><div><div class="sb-cat">Anime</div><div class="sb-t">Kimetsu no Yaiba: Vô Hạn Thành - Ufotable Công Bố Trailer &amp; Lịch Chiếu Toàn Cầu</div></div></a><a class="sb-art" href="/wuthering-waves-2-0-the-black-shores-camellya-update"><img class="sb-thumb" src="/assets/img/news-wuthering-waves-black-shores-shorekeeper.jpg" alt="Wuthering Waves 2.0 The Black Shores" loading="lazy" width="1920" height="1080"><div><div class="sb-cat">Gaming</div><div class="sb-t">Wuthering Waves 2.0: Bờ Biển Đen Mở Rộng, Ra Mắt Shorekeeper &amp; Hỗ Trợ 120 FPS PC</div></div></a><a class="sb-art" href="/bleach-thousand-year-blood-war-part-4-the-farewell-release-date"><img class="sb-thumb" src="/assets/img/news-bleach-tybw-part4-farewell.jpg" alt="Bleach TYBW Part 4" loading="lazy" width="1200" height="675"><div><div class="sb-cat">Anime</div><div class="sb-t">Bleach TYBW Part 4 The Farewell: Pierrot Hé Lộ Trailer Khốc Liệt</div></div></a></div><div class="sidebar-block"><div class="sb-title">Tags</div><div class="sb-tags"><a class="sb-tag" href="/gaming">Gaming</a><a class="sb-tag" href="/gaming">OtaHub News</a><a class="sb-tag" href="/reviews">Tiêu Điểm</a></div></div></aside>
 </div>
+<!--
+  PARTIAL: Footer dùng chung cho TRANG BÀI VIẾT.
+  Không có biến — nội dung cố định 100%. Sửa 1 lần ở đây, mọi bài viết đổi theo.
+  Đồng bộ với hub-footer.html (cùng 1 bố cục 4 cột) để toàn site nhất quán —
+  trước đây trang bài viết dùng bản tối giản 1 dòng, gây lệch giao diện so với trang hub.
+-->
 <footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><svg viewbox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
 
+<!--
+  PARTIAL: Script cuối trang dùng chung cho TRANG BÀI VIẾT.
+
+  QUAN TRỌNG: đây là nơi chuẩn hoá nút "Sao chép link". Khi audit phát hiện
+  2 cách cài đặt khác nhau đang tồn tại song song trên site:
+    - Bài cũ (VD frieren-season2.html): <button onclick="copyArticleLink(this)">
+      + hàm copyArticleLink() khai báo riêng ở cuối file.
+    - Bài mới (VD mortal-shell-2-release.html): JS viết trực tiếp trong onclick,
+      không dùng hàm chung, text phản hồi khác nhau ("Đã sao chép" vs "Đã copy!").
+  Từ partial này trở đi, TOÀN BỘ bài viết dùng chung 1 hàm copyArticleLink() duy nhất,
+  gọi qua onclick="copyArticleLink(this)" trong share-row (xem article-body-example.html).
+-->
 <script>
 function toggleMob(){
   var h=document.getElementById('ham');
@@ -558,7 +333,5 @@ function copyArticleLink(button){
 <script defer src="/assets/enhance.js"></script>
 <script defer src="/assets/engage.js?v=20260818b"></script>
 
-<script defer src="/assets/supabase-client.js"></script>
-<script defer src="/assets/otahub-community.js"></script>
 </body>
 </html>
