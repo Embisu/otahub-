@@ -1,6 +1,8 @@
 /* OtaHub site search — tự động sinh, chỉnh trong assets/search.js */
 (function(){
 var IDX=[
+{"u": "/frieren-phap-su-tien-tang-mua-2-trailer-aureole", "t": "Frieren: Pháp Sư Tiễn Táng Mùa 2 - Madhouse Tung Trailer Mới, Tiếp Nối Hành Trình Đến Vùng Đất Linh Hồn Aureole", "c": "Anime", "s": "Studio Madhouse và TOHO Animation vừa chính thức tung trailer mới cho Frieren Mùa 2, ấn định hành trình vượt qua Cao Nguyên Phía Bắc tiến vào Aureole"},
+{"u": "/honkai-star-rail-3-0-amphoreus-banner-cyrene-trailer", "t": "Honkai: Star Rail 3.0: HoYoverse Công Bố Thế Giới Mới Amphoreus & Hệ Thống Ký Ức", "c": "Gaming", "s": "HoYoverse công bố Honkai Star Rail 3.0 mở ra thế giới thần thoại Hy Lạp Amphoreus, cơ chế Vận Mệnh Ký Ức và dàn nhân vật 5 sao mới"},
 {"u": "/wuthering-waves-2-0-the-black-shores-camellya-update", "t": "Wuthering Waves 2.0: Bờ Biển Đen Mở Rộng, Ra Mắt Shorekeeper & Hỗ Trợ 120 FPS PC", "c": "Gaming", "s": "Kuro Games chính thức công bố phiên bản 2.0 The Black Shores (Bờ Biển Đen) cho Wuthering Waves với nhân vật 5 sao Shorekeeper, bản đồ quần đảo ngầm và mở khóa 120 FPS trên PC"},
 
 {"u": "/kimetsu-no-yaiba-vo-han-thanh-movie-1-trailer-release", "t": "Kimetsu no Yaiba: Vô Hạn Thành - Ufotable Công Bố Trailer & Lịch Chiếu Toàn Cầu", "c": "Anime", "s": "Ufotable chính thức công bố trailer đầu tiên cho Movie 1 thuộc bộ ba phim điện ảnh Vô Hạn Thành, tái hiện trận đại chiến sinh tử giữa Sát Quỷ Đoàn và Chúa Quỷ Muzan Kibutsuji với định dạng IMAX và 4DX"},
