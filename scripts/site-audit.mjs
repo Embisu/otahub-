@@ -55,11 +55,14 @@ for (const file of htmlFiles) {
   if (h1s.length === 0 && !templatePage) issues.push({ type: 'missing-h1', file: rel });
   if (h1s.length > 1 && !templatePage) issues.push({ type: 'multiple-h1', file: rel, detail: h1s.length });
 
-  const ids = [...html.matchAll(/\bid=(["'])(.*?)\1/gi)].map((m) => m[2]);
-  for (const id of new Set(ids)) if (ids.filter((value) => value === id).length > 1) issues.push({ type: 'duplicate-id', file: rel, detail: id });
-
-  // Strip scripts when checking HTML <a> tags to prevent regex inside JS from being parsed as links
+  // Strip scripts when checking HTML DOM elements to prevent regex/templates inside JS from being parsed as HTML
   const htmlWithoutScripts = html.replace(/<script\b[\s\S]*?<\/script>/gi, '');
+
+  if (!templatePage) {
+    const ids = [...htmlWithoutScripts.matchAll(/\bid=(["'])(.*?)\1/gi)].map((m) => m[2]);
+    for (const id of new Set(ids)) if (ids.filter((value) => value === id).length > 1) issues.push({ type: 'duplicate-id', file: rel, detail: id });
+  }
+
   for (const m of htmlWithoutScripts.matchAll(/<a\b[^>]*\bhref=(["'])(.*?)\1[^>]*>/gi)) {
     counts.links++;
     if (m[2].includes('${')) continue;
@@ -87,9 +90,9 @@ for (const file of htmlFiles) {
     if (m[1].includes('${')) continue;
     try { JSON.parse(m[1]); } catch (error) { issues.push({ type: 'invalid-jsonld', file: rel, detail: error.message }); }
   }
-  for (const m of html.matchAll(/<link\b[^>]*\bhreflang=(["'])(.*?)\1[^>]*>/gi)) {
+  for (const m of htmlWithoutScripts.matchAll(/<link\b[^>]*\bhreflang=(["'])(.*?)\1[^>]*>/gi)) {
     const a = attrs(m[0]);
-    if (!a.href?.startsWith('https://otahub.asia/')) continue;
+    if (!a.href?.startsWith('https://otahub.asia/') || templatePage) continue;
     const localPath = new URL(a.href).pathname;
     const target = localTarget(file, localPath);
     if (target === false) issues.push({ type: 'broken-hreflang', file: rel, detail: `${a.hreflang}: ${a.href}` });

@@ -4,9 +4,6 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>OtaHub Admin</title>
-<link rel="alternate" hreflang="vi" href="https://otahub.asia/admin">
-<link rel="alternate" hreflang="x-default" href="https://otahub.asia/admin">
-<link rel="canonical" href="https://otahub.asia/admin">
 <meta name="robots" content="noindex, nofollow"/>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -2081,7 +2078,7 @@ function extractHero(html) {
     const u = m[1].match(/url\(([^)]+)\)/);
     return u ? u[1] : '';
   }
-  const f = html.match(/<figure><img  src="([^" width="1200" height="675"]+)"/);
+  const f = html.match(/<figure><img src="([^"]+)"/);
   return f ? f[1] : '';
 }
 
@@ -3458,7 +3455,7 @@ function visJumpImage() {
 
 // ── Trình soạn thảo Khối (kéo-thả, kiểu Elementor/Gutenberg) ───────────────
 // Chỉ dùng cho bài viết MỚI (xem newArticle()) — dữ liệu khối lưu ẩn trong
-// <script type="application/json" id="admin-block-data-8582"> ngay sau </article>,
+// <script type="application/json" id="admin-block-data"> ngay sau </article>,
 // vô hình với người đọc, chỉ admin.html đọc lại để chỉnh sửa lần sau. Bài cũ
 // không có marker này nên không hiện chế độ Khối, tránh tự suy diễn sai.
 const BLOCK_TYPES = {
@@ -3731,41 +3728,7 @@ function buildArticlePreviewHtml() {
   }
 
   html = html.replace('<head>', '<head><base href="https://otahub.asia/">');
-  html = html.replace(`</div></div>
-</a>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-  const adminSupabase = window.supabase.createClient('https://xmrctipywjevrknxzjau.supabase.co', 'sb_publishable_pojfdFC8-XJP-OAC0PCj9A_cXqMrs_r');
-
-  async function otahubSupabaseStorageUpload(file) {
-    if (!file) return null;
-    const ext = file.name.split('.').pop();
-    const cleanName = file.name.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
-    const fileName = 'media_' + Date.now() + '_' + cleanName + '.' + ext;
-    
-    const { data, error } = await adminSupabase.storage
-      .from('otahub-media')
-      .upload(fileName, file, {
-        cacheControl: '3600',
-        upsert: false
-      });
-
-    if (error) {
-      console.error('Upload error:', error);
-      alert('Tải ảnh thất bại: ' + error.message);
-      return null;
-    }
-
-    const { data: publicUrlData } = adminSupabase.storage
-      .from('otahub-media')
-      .getPublicUrl(fileName);
-
-    return publicUrlData.publicUrl;
-  }
-</script>
-
-</body>`, ART_BRIDGE_SCRIPT + '</body>');
+  html = html.replace('</body>', ART_BRIDGE_SCRIPT + '</body>');
   return html;
 }
 
@@ -3935,10 +3898,36 @@ function scheduleBlockListRefresh() {
 function patchNewArticleUrls(html, file) {
   const finalSlug = file.replace(/\.html$/, '');
   const finalUrl = `https://otahub.asia/${finalSlug}`;
-  html = html.replace(/(
-, &, ")
+  html = html.replace(/(<link rel="alternate" hreflang="vi" href=")[^"]*(")/, `$1${finalUrl}$2`);
+  html = html.replace(/(<link rel="alternate" hreflang="en" href=")[^"]*(")/, `$1https://otahub.asia/en/${finalSlug}$2`);
+  html = html.replace(/(<link rel="alternate" hreflang="x-default" href=")[^"]*(")/, `$1${finalUrl}$2`);
+  html = html.replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${finalUrl}$2`);
+  html = html.replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${finalUrl}$2`);
+  html = html.replace(/("mainEntityOfPage": \{ "@type": "WebPage", "@id": ")[^"]*(")/, `$1${finalUrl}$2`);
+  return html;
+}
+
+// Áp toàn bộ field đang có trong editor (tiêu đề, mô tả, ảnh bìa, nội dung...)
+// vào 1 chuỗi HTML nền — dùng chung cho cả "Lưu & Deploy" thật (saveArticle)
+// lẫn autosave bản nháp (autosaveArticleDraft), để 2 đường không bao giờ lệch
+// logic với nhau. KHÔNG đọc/ghi state ngoài field DOM hiện tại + tham số vào.
+function applyArticleEditsToHtml(baseHtml) {
+  const title   = ART_TITLE || '';
+  const excerpt = ART_EXCERPT || '';
+  const desc    = document.getElementById('ed-desc')?.value || '';
+  const keyword = (document.getElementById('ed-keyword')?.value || '').trim();
+  const hero    = document.getElementById('ed-hero')?.value || '';
+  const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
+  const cat     = document.getElementById('ed-cat')?.value || 'Gaming';
+  const bodyVi  = document.getElementById('body-textarea')?.value || '';
+
+  let html = baseHtml;
+  // Apply edits (esc() để tránh vỡ HTML nếu tiêu đề/mô tả chứa <, >, &, ")
   html = html.replace(/<title>[^<]+<\/title>/, `<title>${esc(title)} · OtaHub</title>`);
-  html = html.replace(/(<meta name="description" content="[^ cùng cẩm nang phân tích chuyên sâu độc quyền tại OtaHub.">\n?/;
+  html = html.replace(/(<meta name="description" content=")[^"]*(")/,   `$1${esc(desc)}$2`);
+  // Từ khóa trọng tâm (SEO Score) — lưu dạng meta ẩn, chỉ admin.html đọc lại,
+  // không ảnh hưởng SEO thật (không phải meta keywords cũ mà Google đã bỏ dùng).
+  const kwRe = /<meta name="focus-keyword" content="[^"]*">\n?/;
   if (keyword) {
     const kwTag = `<meta name="focus-keyword" content="${esc(keyword)}">\n`;
     html = kwRe.test(html) ? html.replace(kwRe, kwTag) : html.replace(/(<meta name="description" content="[^"]*">\n?)/, `$1${kwTag}`);
@@ -3981,9 +3970,9 @@ function patchNewArticleUrls(html, file) {
   // Nếu vẫn đang dùng Khối: ghi lại JSON khối mới nhất để lần sau mở lại vẫn
   // chỉnh được bằng kéo-thả. Nếu đã "tốt nghiệp" sang Trực quan/HTML (BODY_BLOCKS
   // = null) nhưng file vẫn còn marker cũ: gỡ bỏ để không lưu dữ liệu khối lỗi thời.
-  const blockMarkerRe = /<script type="application\/json" id="admin-block-data-6089">[\s\S]*?<\/script>\n?/;
+  const blockMarkerRe = /<script type="application\/json" id="admin-block-data">[\s\S]*?<\/script>\n?/;
   if (BODY_BLOCKS) {
-    const newMarker = `<script type="application/json" id="admin-block-data-6406">${JSON.stringify(BODY_BLOCKS)}<\/script>\n`;
+    const newMarker = `<script type="application/json" id="admin-block-data">${JSON.stringify(BODY_BLOCKS)}<\/script>\n`;
     html = blockMarkerRe.test(html) ? html.replace(blockMarkerRe, newMarker) : html.replace(/<\/article>/, `</article>\n${newMarker}`);
   } else if (blockMarkerRe.test(html)) {
     html = html.replace(blockMarkerRe, '');
@@ -4138,6 +4127,7 @@ function newArticle(prefillTitle) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="${desc}">
 <meta name="author" content="OtaHub Editorial">
+<link rel="alternate" hreflang="vi" href="${url}"><link rel="alternate" hreflang="en" href="https://otahub.asia/en/${cleanSlug}"><link rel="alternate" hreflang="x-default" href="${url}"><link rel="canonical" href="${url}">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta property="og:type" content="article">
 <meta property="og:title" content="${title} · OtaHub">
@@ -4326,7 +4316,7 @@ footer{position:relative;z-index:1;background:var(--surf);border-top:1px solid v
 <h2>Tiêu đề phần 1</h2>
 <p>Nội dung phần 1.</p>
 </article>
-<script type="application/json" id="admin-block-data-3717">[{"type":"paragraph","html":"Nội dung bài viết ở đây..."},{"type":"heading","level":2,"text":"Tiêu đề phần 1"},{"type":"paragraph","html":"Nội dung phần 1."}]<\/script>
+<script type="application/json" id="admin-block-data">[{"type":"paragraph","html":"Nội dung bài viết ở đây..."},{"type":"heading","level":2,"text":"Tiêu đề phần 1"},{"type":"paragraph","html":"Nội dung phần 1."}]<\/script>
 <div class="share-row"><span class="share-lbl">Chia sẻ:</span><a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=${url}" target="_blank" rel="noopener">Facebook</a><a class="share-btn" href="https://twitter.com/intent/tweet?url=${url}" target="_blank" rel="noopener">Twitter / X</a><a class="share-btn" href="https://www.reddit.com/submit?url=${url}" target="_blank" rel="noopener">Reddit</a><button class="share-btn" type="button" onclick="copyArticleLink(this)">Sao chép link</button></div>
 </main>
 <aside class="art-sidebar"><div class="sidebar-block"><div class="sb-title">Bài liên quan</div><a class="sb-art" href="/kimetsu-no-yaiba-vo-han-thanh-movie-1-trailer-release"><img class="sb-thumb" src="/assets/img/news-demon-slayer-infinity-castle-official.jpg" alt="Kimetsu no Yaiba" loading="lazy" width="1920" height="1080"><div><div class="sb-cat">Anime</div><div class="sb-t">Kimetsu no Yaiba: Vô Hạn Thành - Ufotable Công Bố Trailer &amp; Lịch Chiếu Toàn Cầu</div></div></a><a class="sb-art" href="/wuthering-waves-2-0-the-black-shores-camellya-update"><img class="sb-thumb" src="/assets/img/news-wuthering-waves-black-shores-shorekeeper.jpg" alt="Wuthering Waves 2.0" loading="lazy" width="1920" height="1080"><div><div class="sb-cat">Gaming</div><div class="sb-t">Wuthering Waves 2.0: Bờ Biển Đen Mở Rộng, Ra Mắt Shorekeeper &amp; Hỗ Trợ 120 FPS PC</div></div></a><a class="sb-art" href="/bleach-thousand-year-blood-war-part-4-the-farewell-release-date"><img class="sb-thumb" src="/assets/img/news-bleach-tybw-part4-farewell.jpg" alt="Bleach TYBW Part 4" loading="lazy" width="1200" height="675"><div><div class="sb-cat">Anime</div><div class="sb-t">Bleach TYBW Part 4 "The Farewell": Studio Pierrot Hé Lộ Trailer Khốc Liệt</div></div></a></div><div class="sidebar-block"><div class="sb-title">Tags</div><div class="sb-tags"><a class="sb-tag" href="/gaming">Gaming</a><a class="sb-tag" href="/anime">Anime</a><a class="sb-tag" href="/manga">Manga</a><a class="sb-tag" href="/reviews">Reviews</a></div></div></aside>
@@ -4593,7 +4583,7 @@ async function ghSpliceInsert(path, anchorPattern, insertHtml, after, commitMsg)
 function acFields(raw) {
   return {
     href: fieldGet(raw, /<a href="([^"]*)"/),
-    img: fieldGet(raw, /<img  src="([^" width="1200" height="675"]*)"/),
+    img: fieldGet(raw, /<img src="([^"]*)"/),
     alt: fieldGet(raw, /<img[^>]+alt="([^"]*)"/),
     title: fieldGet(raw, /class="ac-title">([^<]*)</),
     tag: fieldGet(raw, /class="tag[^"]*"[^>]*>([^<]*)</),
@@ -4602,7 +4592,7 @@ function acFields(raw) {
 function acApply(raw, f) {
   let out = raw;
   out = replaceField(out, /(<a href=")[^"]*(")/, f.href);
-  out = replaceField(out, /(<img  src=")[^" width="1200" height="675"]*(")/, f.img);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="ac-title">)[^<]*(<)/, f.title);
   out = replaceField(out, /(class="tag[^"]*"[^>]*>)[^<]*(<)/, f.tag);
@@ -4739,16 +4729,16 @@ function renderHubEditor() {
         <div class="publish-box">
           <div class="pb-head">🚀 Xuất bản</div>
           <div class="pb-body">
-            <div class="pb-row"><span class="pb-label">Trạng thái</span><span class="pb-val" style="display:flex;align-items:center;gap:6px"><span class="status-dot" id="status-dot-8041"></span><span id="status-text-1673">Chưa có thay đổi</span></span></div>
+            <div class="pb-row"><span class="pb-label">Trạng thái</span><span class="pb-val" style="display:flex;align-items:center;gap:6px"><span class="status-dot" id="status-dot"></span><span id="status-text">Chưa có thay đổi</span></span></div>
             <div class="pb-actions">
-              <button class="btn btn-primary" id="save-btn-2351" onclick="saveHub()">💾 Lưu & Deploy</button>
+              <button class="btn btn-primary" id="save-btn" onclick="saveHub()">💾 Lưu & Deploy</button>
             </div>
             <div style="display:flex;gap:14px;margin-top:12px;flex-wrap:wrap">
               <a class="pb-link" href="https://otahub.asia/${viewPath}" target="_blank">🔗 Xem live</a>
               <a class="pb-link" href="#" onclick="event.preventDefault();if(confirm('Bỏ thay đổi?'))hubEditor('${HUB_FILE}','${HUB_LABEL}')">↺ Hoàn tác</a>
               <a class="pb-link" href="#" onclick="event.preventDefault();openHistoryModal('${HUB_FILE}', () => hubEditor('${HUB_FILE}','${HUB_LABEL}'))">🕐 Lịch sử</a>
             </div>
-            <div class="pb-savelog" id="save-log-4316"></div>
+            <div class="pb-savelog" id="save-log"></div>
           </div>
         </div>
 
@@ -4858,7 +4848,7 @@ let HOME_ITEM_EXPANDED = new Set();
 function scFields(raw) {
   return {
     href: fieldGet(raw, /<a class="sc" href="([^"]*)"/),
-    img: fieldGet(raw, /<img  src="([^" width="1200" height="675"]*)"/),
+    img: fieldGet(raw, /<img src="([^"]*)"/),
     alt: fieldGet(raw, /<img[^>]+alt="([^"]*)"/),
     tag: fieldGet(raw, /class="tag[^"]*"[^>]*>([^<]*)</),
     title: fieldGet(raw, /class="sc-title">([^<]*)</),
@@ -4867,7 +4857,7 @@ function scFields(raw) {
 function scApply(raw, f) {
   let out = raw;
   out = replaceField(out, /(<a class="sc" href=")[^"]*(")/, f.href);
-  out = replaceField(out, /(<img  src=")[^" width="1200" height="675"]*(")/, f.img);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="tag[^"]*"[^>]*>)[^<]*(<)/, f.tag);
   out = replaceField(out, /(class="sc-title">)[^<]*(<)/, f.title);
@@ -4939,7 +4929,7 @@ function hReplaceSection(html, startAnchor, endAnchor, rebuildFn) {
 function sArtFields(item) {
   return {
     href: fieldGet(item, /onclick="location\.href='([^']*)'"/),
-    img: fieldGet(item, /<img  src="([^" width="1200" height="675"]*)"/),
+    img: fieldGet(item, /<img src="([^"]*)"/),
     alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
     cat: fieldGet(item, /class="sa-c"[^>]*>([^<]*)</),
     title: fieldGet(item, /class="sa-t">([^<]*)</),
@@ -4949,7 +4939,7 @@ function sArtFields(item) {
 function sArtApply(item, f) {
   let out = item;
   if (f.href !== undefined) out = out.replace(/(onclick="location\.href=')[^']*(')/, (m,p1,p2)=>p1+f.href.replace(/'/g,"\\'")+p2);
-  out = replaceField(out, /(<img  src=")[^" width="1200" height="675"]*(")/, f.img);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="sa-c"[^>]*>)[^<]*(<)/, f.cat);
   out = replaceField(out, /(class="sa-t">)[^<]*(<)/, f.title);
@@ -4977,7 +4967,7 @@ function mqItemApply(item, f) {
 function rkItemFields(item) {
   return {
     href: fieldGet(item, /<a class="rk-item[^"]*" href="([^"]*)"/),
-    img: fieldGet(item, /<img  src="([^" width="1200" height="675"]*)"/),
+    img: fieldGet(item, /<img src="([^"]*)"/),
     alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
     name: fieldGet(item, /class="rk-name">([^<]*)</),
     sub: fieldGet(item, /class="rk-sub">([^<]*)</),
@@ -4987,7 +4977,7 @@ function rkItemFields(item) {
 function rkItemApply(item, f) {
   let out = item;
   out = replaceField(out, /(<a class="rk-item[^"]*" href=")[^"]*(")/, f.href);
-  out = replaceField(out, /(<img  src=")[^" width="1200" height="675"]*(")/, f.img);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="rk-name">)[^<]*(<)/, f.name);
   out = replaceField(out, /(class="rk-sub">)[^<]*(<)/, f.sub);
@@ -5003,7 +4993,7 @@ function rkItemApply(item, f) {
 function mangaItemFields(item) {
   return {
     href: fieldGet(item, /<a class="manga-item[^"]*" href="([^"]*)"/),
-    img: fieldGet(item, /<img  src="([^" width="1200" height="675"]*)"/),
+    img: fieldGet(item, /<img src="([^"]*)"/),
     alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
     title: fieldGet(item, /class="mi-title">([^<]*)</),
     meta: fieldGet(item, /class="mi-meta">([^<]*)</),
@@ -5013,7 +5003,7 @@ function mangaItemFields(item) {
 function mangaItemApply(item, f) {
   let out = item;
   out = replaceField(out, /(<a class="manga-item[^"]*" href=")[^"]*(")/, f.href);
-  out = replaceField(out, /(<img  src=")[^" width="1200" height="675"]*(")/, f.img);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="mi-title">)[^<]*(<)/, f.title);
   out = replaceField(out, /(class="mi-meta">)[^<]*(<)/, f.meta);
@@ -5025,7 +5015,7 @@ function mangaItemApply(item, f) {
 function wCardFields(item) {
   return {
     href: fieldGet(item, /<a href="([^"]*)"/),
-    img: fieldGet(item, /<img  src="([^" width="1200" height="675"]*)"/),
+    img: fieldGet(item, /<img src="([^"]*)"/),
     alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
     cat: fieldGet(item, /class="wc-c"[^>]*>([^<]*)</),
     title: fieldGet(item, /class="wc-t">([^<]*)</),
@@ -5035,7 +5025,7 @@ function wCardFields(item) {
 function wCardApply(item, f) {
   let out = item;
   out = replaceField(out, /(<a href=")[^"]*(")/, f.href);
-  out = replaceField(out, /(<img  src=")[^" width="1200" height="675"]*(")/, f.img);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="wc-c"[^>]*>)[^<]*(<)/, f.cat);
   out = replaceField(out, /(class="wc-t">)[^<]*(<)/, f.title);
@@ -5047,7 +5037,7 @@ function wCardApply(item, f) {
 function tItemFields(item) {
   return {
     href: fieldGet(item, /<a class="t-item" href="([^"]*)"/),
-    img: fieldGet(item, /<img  src="([^" width="1200" height="675"]*)"/),
+    img: fieldGet(item, /<img src="([^"]*)"/),
     alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
     title: fieldGet(item, /class="ti-t">([^<]*)</),
     meta: fieldGet(item, /class="ti-m">([^<]*)</),
@@ -5056,7 +5046,7 @@ function tItemFields(item) {
 function tItemApply(item, f) {
   let out = item;
   out = replaceField(out, /(<a class="t-item" href=")[^"]*(")/, f.href);
-  out = replaceField(out, /(<img  src=")[^" width="1200" height="675"]*(")/, f.img);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="ti-t">)[^<]*(<)/, f.title);
   out = replaceField(out, /(class="ti-m">)[^<]*(<)/, f.meta);
@@ -5177,11 +5167,11 @@ function loadHomeData(raw) {
 function buildHomeHtml(rawHtml, D) {
   let html = rawHtml;
   const h = D.hero;
-  html = html.replace(/(id="h-title-9770">)[^<]*(<)/, (m,p1,p2)=>p1+esc(h.title)+p2);
-  html = html.replace(/(id="h-sub-1282">)[^<]*(<)/, (m,p1,p2)=>p1+esc(h.sub)+p2);
+  html = html.replace(/(id="h-title">)[^<]*(<)/, (m,p1,p2)=>p1+esc(h.title)+p2);
+  html = html.replace(/(id="h-sub">)[^<]*(<)/, (m,p1,p2)=>p1+esc(h.sub)+p2);
   html = html.replace(/(class="h-meta-cat">)[^<]*(<)/, (m,p1,p2)=>p1+esc(h.cat)+p2);
-  html = html.replace(/(id="h-time-4923">)[^<]*(<)/, (m,p1,p2)=>p1+esc(h.date)+p2);
-  html = html.replace(/(<a href=")[^"]*(" class="read-more" id="h-read-7297")/, (m,p1,p2)=>p1+esc(h.href)+p2);
+  html = html.replace(/(id="h-time">)[^<]*(<)/, (m,p1,p2)=>p1+esc(h.date)+p2);
+  html = html.replace(/(<a href=")[^"]*(" class="read-more" id="h-read")/, (m,p1,p2)=>p1+esc(h.href)+p2);
   html = html.replace(/(<div class="hero-main" onclick="location\.href=')[^']*(')/, (m,p1,p2)=>p1+h.href.replace(/\\/g,'\\\\').replace(/'/g,"\\'")+p2);
   html = html.replace(/(\.h-img\{[^}]*background:url\(')[^']*('\))/, (m,p1,p2)=>p1+h.img.replace(/\\/g,'\\\\').replace(/'/g,"\\'")+p2);
 
@@ -5221,11 +5211,11 @@ function buildHomeHtml(rawHtml, D) {
     '\n\n\n    ' + D.catGrid.map(x=>x.raw).join('\n\n\n    ') + '\n\n\n  </div>\n\n\n</div>\n\n\n');
 
   const nl = D.newsletter;
-  html = html.replace(/(id="nl-title-1081">)[^<]*(<)/, (m,p1,p2)=>p1+esc(nl.title)+p2);
-  html = html.replace(/(id="nl-sub-9492">)[^<]*(<)/, (m,p1,p2)=>p1+esc(nl.sub)+p2);
-  html = html.replace(/(id="nl-label-1656">)[^<]*(<)/, (m,p1,p2)=>p1+esc(nl.label)+p2);
-  html = html.replace(/(id="nl-note-8206">)[^<]*(<)/, (m,p1,p2)=>p1+esc(nl.note)+p2);
-  html = html.replace(/(id="nl-btn-7607">)[^<]*(<)/, (m,p1,p2)=>p1+esc(nl.btn)+p2);
+  html = html.replace(/(id="nl-title">)[^<]*(<)/, (m,p1,p2)=>p1+esc(nl.title)+p2);
+  html = html.replace(/(id="nl-sub">)[^<]*(<)/, (m,p1,p2)=>p1+esc(nl.sub)+p2);
+  html = html.replace(/(id="nl-label">)[^<]*(<)/, (m,p1,p2)=>p1+esc(nl.label)+p2);
+  html = html.replace(/(id="nl-note">)[^<]*(<)/, (m,p1,p2)=>p1+esc(nl.note)+p2);
+  html = html.replace(/(id="nl-btn">)[^<]*(<)/, (m,p1,p2)=>p1+esc(nl.btn)+p2);
 
   const ft = D.footer;
   html = html.replace(/(class="ft-desc">)[^<]*(<)/, (m,p1,p2)=>p1+esc(ft.desc)+p2);
@@ -5367,16 +5357,16 @@ function renderVisualHomeEditor() {
         <div class="publish-box">
           <div class="pb-head">🚀 Xuất bản</div>
           <div class="pb-body">
-            <div class="pb-row"><span class="pb-label">Trạng thái</span><span class="pb-val" style="display:flex;align-items:center;gap:6px"><span class="status-dot" id="status-dot-5502"></span><span id="status-text-7242">Chưa có thay đổi</span></span></div>
+            <div class="pb-row"><span class="pb-label">Trạng thái</span><span class="pb-val" style="display:flex;align-items:center;gap:6px"><span class="status-dot" id="status-dot"></span><span id="status-text">Chưa có thay đổi</span></span></div>
             <div class="pb-actions">
-              <button class="btn btn-primary" id="save-btn-5852" onclick="saveVisualHome()">💾 Lưu & Deploy</button>
+              <button class="btn btn-primary" id="save-btn" onclick="saveVisualHome()">💾 Lưu & Deploy</button>
             </div>
             <div style="display:flex;gap:14px;margin-top:12px;flex-wrap:wrap">
               <a class="pb-link" href="https://otahub.asia/${isEn ? 'en/' : ''}" target="_blank">🔗 Xem live</a>
               <a class="pb-link" href="#" onclick="event.preventDefault();if(confirm('Bỏ thay đổi?'))homeEditor('${HOME_FILE}')">↺ Hoàn tác</a>
               <a class="pb-link" href="#" onclick="event.preventDefault();openHistoryModal('${HOME_FILE}', () => homeEditor('${HOME_FILE}'))">🕐 Lịch sử</a>
             </div>
-            <div class="pb-savelog" id="save-log-5357"></div>
+            <div class="pb-savelog" id="save-log"></div>
           </div>
         </div>
 
@@ -6205,7 +6195,7 @@ let TEAM_CARDS = [];
 
 function teamFields(raw) {
   return {
-    img: fieldGet(raw, /<img  src="([^" width="1200" height="675"]*)"/),
+    img: fieldGet(raw, /<img src="([^"]*)"/),
     alt: fieldGet(raw, /<img[^>]+alt="([^"]*)"/),
     badge: fieldGet(raw, /class="tc-role-badge">([^<]*)</),
     name: fieldGet(raw, /class="tc-name">([^<]*)</),
@@ -6215,7 +6205,7 @@ function teamFields(raw) {
 }
 function teamApply(raw, f) {
   let out = raw;
-  out = replaceField(out, /(<img  src=")[^" width="1200" height="675"]*(")/, f.img);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="tc-role-badge">)[^<]*(<)/, f.badge);
   out = replaceField(out, /(class="tc-name">)[^<]*(<)/, f.name);
@@ -6409,7 +6399,7 @@ const NEWS_CARD_START = /<a href="[^"]*" style="display:block;background:#150a2c
 function newsFields(raw) {
   return {
     href: fieldGet(raw, /<a href="([^"]*)"/),
-    img: fieldGet(raw, /<img  src="([^" width="1200" height="675"]*)"/),
+    img: fieldGet(raw, /<img src="([^"]*)"/),
     alt: fieldGet(raw, /<img[^>]+alt="([^"]*)"/),
     cat: fieldGet(raw, /letter-spacing:\.15em">([^<]*)</),
     title: fieldGet(raw, /<h3[^>]*>([^<]*)<\/h3>/),
@@ -6419,7 +6409,7 @@ function newsFields(raw) {
 function newsApply(raw, f) {
   let out = raw;
   out = replaceField(out, /(<a href=")[^"]*(")/, f.href);
-  out = replaceField(out, /(<img  src=")[^" width="1200" height="675"]*(")/, f.img);
+  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(letter-spacing:\.15em">)[^<]*(<)/, f.cat);
   out = replaceField(out, /(<h3[^>]*>)[^<]*(<\/h3>)/, f.title);
@@ -6519,6 +6509,34 @@ function getAdminSupabase() {
     );
   }
   return window.adminSupabaseClient;
+}
+
+async function otahubSupabaseStorageUpload(file) {
+  if (!file) return null;
+  const sb = getAdminSupabase();
+  if (!sb) return null;
+  const ext = file.name.split('.').pop();
+  const cleanName = file.name.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
+  const fileName = 'media_' + Date.now() + '_' + cleanName + '.' + ext;
+
+  const { data, error } = await sb.storage
+    .from('otahub-media')
+    .upload(fileName, file, {
+      cacheControl: '3600',
+      upsert: false
+    });
+
+  if (error) {
+    console.error('Upload error:', error);
+    toast('error', 'Tải ảnh thất bại: ' + error.message);
+    return null;
+  }
+
+  const { data: publicUrlData } = sb.storage
+    .from('otahub-media')
+    .getPublicUrl(fileName);
+
+  return publicUrlData.publicUrl;
 }
 
 async function loadCommentsView() {
