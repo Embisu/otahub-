@@ -198,3 +198,33 @@ var css2='.ot-saved-fab{position:fixed;left:18px;bottom:22px;width:46px;height:4
 '@media(max-width:720px){.ot-saved-fab{left:14px;bottom:18px;width:42px;height:42px}.ot-saved-panel{left:14px;width:calc(100vw - 28px);max-width:320px}}';
 var st5=document.createElement('style');st5.textContent=css2;document.head.appendChild(st5);
 })();
+
+/* ── 🏷️ Dynamic Universal Tag Routing & Activation ── */
+(function(){
+  function activateTags() {
+    var tagEls = document.querySelectorAll('.sb-tag, .am-tag, .tag-row .tag, .ac-tags .tag, .sc-body .tag');
+    tagEls.forEach(function(el) {
+      var tagText = el.textContent.trim().replace(/^#/, '');
+      if (!tagText || tagText.length < 2) return;
+      
+      // If it is already an <a> tag
+      if (el.tagName.toLowerCase() === 'a') {
+        el.href = '/tag?q=' + encodeURIComponent(tagText);
+      } else if (!el.closest('a')) {
+        // If not wrapped in an anchor, convert to clickable tag link
+        el.style.cursor = 'pointer';
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.location.href = '/tag?q=' + encodeURIComponent(tagText);
+        });
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', activateTags);
+  } else {
+    activateTags();
+  }
+})();
+

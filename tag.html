@@ -1,0 +1,475 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chủ Đề &amp; Thẻ Bài Viết · OtaHub</title>
+<meta name="description" content="Khám phá toàn bộ bài viết, tin tức, đánh giá và phân tích chuyên sâu theo chủ đề và tag tại OtaHub.asia">
+<link rel="canonical" href="https://otahub.asia/tag">
+<meta property="og:title" content="Chủ Đề &amp; Thẻ Bài Viết · OtaHub">
+<meta property="og:description" content="Khám phá toàn bộ bài viết, tin tức, đánh giá và phân tích chuyên sâu theo chủ đề và tag tại OtaHub.asia">
+<meta property="og:url" content="https://otahub.asia/tag">
+<meta property="og:site_name" content="OtaHub.asia">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root {
+  --bg: #070210;
+  --card-bg: rgba(21, 10, 44, 0.75);
+  --cyan: #00e5ff;
+  --sakura: #ff3080;
+  --violet: #7c3aed;
+  --text-muted: rgba(240, 238, 255, 0.6);
+  --border: rgba(255, 255, 255, 0.08);
+}
+body {
+  background: var(--bg);
+  color: #f0eeff;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.tag-hero-sec {
+  position: relative;
+  padding: 120px 24px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+.tag-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 229, 255, 0.12);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  color: var(--cyan);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.tag-hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(28px, 4.5vw, 46px);
+  font-weight: 800;
+  margin: 0 0 12px;
+  line-height: 1.2;
+}
+.tag-hero-title span {
+  background: linear-gradient(135deg, var(--cyan), #9d4edd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.tag-hero-sub {
+  color: var(--text-muted);
+  font-size: 15px;
+  max-width: 600px;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+/* Tag Cloud */
+.tag-cloud-wrap {
+  margin-bottom: 36px;
+}
+.tag-cloud-lbl {
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(240, 238, 255, 0.5);
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+.tag-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  color: rgba(240, 238, 255, 0.8);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(.16,1,.3,1);
+  cursor: pointer;
+}
+.tag-chip:hover, .tag-chip.active {
+  background: rgba(0, 229, 255, 0.15);
+  border-color: var(--cyan);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 229, 255, 0.25);
+}
+.tag-chip.active {
+  background: linear-gradient(135deg, var(--sakura), var(--violet));
+  border-color: transparent;
+}
+
+/* Filter bar */
+.tag-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.tag-search-input {
+  flex: 1;
+  min-width: 240px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 13.5px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.tag-search-input:focus {
+  border-color: var(--cyan);
+}
+.tag-count-badge {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Articles Grid */
+.tag-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 22px;
+  margin-bottom: 60px;
+}
+.tag-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.22s cubic-bezier(.16,1,.3,1), border-color 0.22s, box-shadow 0.22s;
+}
+.tag-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 229, 255, 0.45);
+  box-shadow: 0 12px 32px rgba(0, 229, 255, 0.15);
+}
+.tag-card-thumb-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #110826;
+  overflow: hidden;
+}
+.tag-card-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.tag-card:hover .tag-card-thumb {
+  transform: scale(1.05);
+}
+.tag-card-cat {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: linear-gradient(135deg, var(--sakura), var(--violet));
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.tag-card-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.tag-card-title {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.45;
+  margin: 0 0 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color 0.15s;
+}
+.tag-card:hover .tag-card-title {
+  color: var(--cyan);
+}
+.tag-card-excerpt {
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0 0 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+.tag-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: rgba(240, 238, 255, 0.45);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 12px;
+}
+.tag-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--card-bg);
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+  color: var(--text-muted);
+}
+.tag-empty-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="brand">
+      <svg width="30" height="30" viewBox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="2" fill="rgba(0,229,255,.15)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg>
+      <span class="brand-ota">Ota</span><span class="brand-hub">Hub</span>
+    </a>
+    <nav class="nav">
+      <a href="/gaming" class="nav-item">Gaming</a>
+      <a href="/anime" class="nav-item">Anime</a>
+      <a href="/manga" class="nav-item">Manga</a>
+      <a href="/reviews" class="nav-item">Reviews</a>
+      <a href="/rankings" class="nav-item">Rankings</a>
+      <a href="/news" class="nav-item">News</a>
+    </nav>
+  </div>
+</header>
+
+<main class="tag-hero-sec">
+  <div class="tag-hero-badge">🏷️ Topic Discovery Hub</div>
+  <h1 class="tag-hero-title">Chủ đề &amp; Tag: <span id="current-tag-label">Tất Cả Bài Viết</span></h1>
+  <p class="tag-hero-sub" id="current-tag-desc">Khám phá toàn bộ bài viết, tin tức nổi bật và phân tích chuyên sâu được gắn thẻ chủ đề trên OtaHub Asia.</p>
+
+  <!-- Popular Tags Cloud -->
+  <div class="tag-cloud-wrap">
+    <div class="tag-cloud-lbl">🔥 CHỦ ĐỀ ĐƯỢC QUAN TÂM NHẤT:</div>
+    <div class="tag-chips" id="popular-tags-container">
+      <button class="tag-chip active" data-tag="">🌟 Tất cả</button>
+      <button class="tag-chip" data-tag="One Piece">🏴‍☠️ One Piece</button>
+      <button class="tag-chip" data-tag="Madhouse">⛩️ Madhouse</button>
+      <button class="tag-chip" data-tag="MAPPA">🔥 MAPPA</button>
+      <button class="tag-chip" data-tag="Ufotable">⚔️ Ufotable</button>
+      <button class="tag-chip" data-tag="Genshin Impact">✨ Genshin Impact</button>
+      <button class="tag-chip" data-tag="Honkai: Star Rail">🚆 Honkai: Star Rail</button>
+      <button class="tag-chip" data-tag="Black Myth: Wukong">🐵 Wukong</button>
+      <button class="tag-chip" data-tag="Solo Leveling">🗡️ Solo Leveling</button>
+      <button class="tag-chip" data-tag="Chainsaw Man">🪚 Chainsaw Man</button>
+      <button class="tag-chip" data-tag="Jujutsu Kaisen">👁️ Jujutsu Kaisen</button>
+      <button class="tag-chip" data-tag="Frieren">🧝 Frieren</button>
+      <button class="tag-chip" data-tag="Nintendo Switch 2">🎮 Switch 2</button>
+      <button class="tag-chip" data-tag="GTA 6">🌴 GTA 6</button>
+      <button class="tag-chip" data-tag="Bleach">⚡ Bleach</button>
+      <button class="tag-chip" data-tag="Wuthering Waves">🌊 Wuthering Waves</button>
+    </div>
+  </div>
+
+  <!-- Search & Filter bar -->
+  <div class="tag-filter-bar">
+    <input type="text" id="tag-search-input" class="tag-search-input" placeholder="🔍 Lọc bài viết theo từ khóa hoặc tag...">
+    <div class="tag-count-badge" id="tag-count-badge">Đang tải...</div>
+  </div>
+
+  <!-- Grid of articles -->
+  <div class="tag-grid" id="tag-articles-grid">
+    <div class="tag-empty">
+      <div class="tag-empty-icon">⏳</div>
+      <div>Đang nạp dữ liệu bài viết từ chỉ mục OtaHub...</div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-copy">© 2026 OtaHub.asia · All Rights Reserved. Asia's Gaming &amp; Anime Portal.</div>
+  </div>
+</footer>
+
+<script src="/assets/search.js"></script>
+<script>
+(function(){
+  function getQueryTag() {
+    const params = new URLSearchParams(window.location.search);
+    return (params.get('q') || params.get('tag') || params.get('t') || '').trim();
+  }
+
+  function norm(str) {
+    return (str || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').trim();
+  }
+
+  const tagLabel = document.getElementById('current-tag-label');
+  const tagDesc = document.getElementById('current-tag-desc');
+  const searchInput = document.getElementById('tag-search-input');
+  const grid = document.getElementById('tag-articles-grid');
+  const countBadge = document.getElementById('tag-count-badge');
+  const chips = document.querySelectorAll('.tag-chip');
+
+  let currentQuery = getQueryTag();
+
+  function updateTagView(query) {
+    currentQuery = query;
+    searchInput.value = query;
+
+    // Update active chip
+    chips.forEach(chip => {
+      const tagVal = chip.getAttribute('data-tag');
+      chip.classList.toggle('active', norm(tagVal) === norm(query) || (!tagVal && !query));
+    });
+
+    if (query) {
+      tagLabel.textContent = '#' + query;
+      tagDesc.textContent = `Danh sách toàn bộ các bài viết, tin tức và cập nhật liên quan tới chủ đề "${query}".`;
+      document.title = `Chủ đề: #${query} · OtaHub`;
+    } else {
+      tagLabel.textContent = 'Tất Cả Bài Viết';
+      tagDesc.textContent = 'Khám phá toàn bộ bài viết, tin tức nổi bật và phân tích chuyên sâu được gắn thẻ chủ đề trên OtaHub Asia.';
+      document.title = 'Chủ Đề & Thẻ Bài Viết · OtaHub';
+    }
+
+    if (!window.IDX || !Array.isArray(window.IDX)) {
+      grid.innerHTML = '<div class="tag-empty"><div class="tag-empty-icon">⚠️</div><div>Chưa tải được chỉ mục bài viết. Vui lòng tải lại trang.</div></div>';
+      return;
+    }
+
+    // Filter articles
+    const qNorm = norm(query);
+    const SKIP_CATS = new Set(['Chuyên mục', 'Trang']);
+    
+    let matches = window.IDX.filter(item => {
+      if (!item.u || item.u.startsWith('/en/') || SKIP_CATS.has(item.c)) return false;
+      if (!qNorm) return true;
+      const tNorm = norm(item.t);
+      const sNorm = norm(item.s);
+      const cNorm = norm(item.c);
+      const uNorm = norm(item.u);
+      return tNorm.includes(qNorm) || sNorm.includes(qNorm) || cNorm.includes(qNorm) || uNorm.includes(qNorm);
+    });
+
+    countBadge.textContent = `Tìm thấy ${matches.length} bài viết`;
+
+    if (!matches.length) {
+      grid.innerHTML = `
+        <div class="tag-empty">
+          <div class="tag-empty-icon">🔍</div>
+          <div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:6px">Không tìm thấy bài viết nào phù hợp</div>
+          <div>Không có bài viết nào khớp với từ khóa "${escapeHtml(query)}". Hãy thử chọn một tag khác ở trên!</div>
+        </div>`;
+      return;
+    }
+
+    grid.innerHTML = matches.map(item => {
+      const hero = item.hero || '/assets/img/placeholder.svg';
+      const cat = item.c || 'Tin tức';
+      const title = item.t || 'Bài viết';
+      const desc = item.s || 'Xem chi tiết bài viết tại OtaHub...';
+      const url = item.u.startsWith('/') ? item.u : '/' + item.u;
+
+      return `
+        <a href="${url}" class="tag-card">
+          <div class="tag-card-thumb-wrap">
+            <img src="${hero}" alt="${escapeHtml(title)}" class="tag-card-thumb" loading="lazy" onerror="this.src='/assets/img/placeholder.svg'">
+            <span class="tag-card-cat">${escapeHtml(cat)}</span>
+          </div>
+          <div class="tag-card-body">
+            <h2 class="tag-card-title">${escapeHtml(title)}</h2>
+            <p class="tag-card-excerpt">${escapeHtml(desc)}</p>
+            <div class="tag-card-meta">
+              <span>⚡ OtaHub Editorial</span>
+              <span>Xem chi tiết →</span>
+            </div>
+          </div>
+        </a>`;
+    }).join('');
+  }
+
+  function escapeHtml(str) {
+    return (str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  // Setup click on chips
+  chips.forEach(chip => {
+    chip.addEventListener('click', function() {
+      const tag = this.getAttribute('data-tag');
+      const newUrl = tag ? `/tag?q=${encodeURIComponent(tag)}` : '/tag';
+      window.history.pushState({}, '', newUrl);
+      updateTagView(tag);
+    });
+  });
+
+  // Search input typing
+  let searchTimer = null;
+  searchInput.addEventListener('input', function() {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      const val = this.value.trim();
+      const newUrl = val ? `/tag?q=${encodeURIComponent(val)}` : '/tag';
+      window.history.pushState({}, '', newUrl);
+      updateTagView(val);
+    }, 250);
+  });
+
+  // Listen to popstate
+  window.addEventListener('popstate', () => {
+    updateTagView(getQueryTag());
+  });
+
+  // Initial render when IDX is ready
+  function checkIdxReady() {
+    if (window.IDX && Array.isArray(window.IDX)) {
+      updateTagView(currentQuery);
+    } else {
+      setTimeout(checkIdxReady, 50);
+    }
+  }
+  checkIdxReady();
+})();
+</script>
+</body>
+</html>
