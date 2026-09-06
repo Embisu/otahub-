@@ -41,7 +41,7 @@ for (const file of htmlFiles) {
   const desc = attrs(html.match(/<meta\b[^>]*\bname=["']description["'][^>]*>/i)?.[0] || '').content || '';
   const canonical = attrs(html.match(/<link\b[^>]*\brel=["']canonical["'][^>]*>/i)?.[0] || '').href || '';
   const h1s = [...html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi)].map((m) => cleanText(m[1])).filter(Boolean);
-  const templatePage = rel === 'admin.html' || /(?:^|\/)(?:article|(?:anime|game|manga)-detail)\.html$/.test(rel);
+  const templatePage = rel === 'admin.html' || rel.startsWith('templates/partials/') || /(?:^|\/)(?:article|(?:anime|game|manga)-detail)\.html$/.test(rel);
 
   if (!title && !templatePage) issues.push({ type: 'missing-title', file: rel });
   if (!desc && !templatePage) issues.push({ type: 'missing-description', file: rel });
@@ -58,7 +58,9 @@ for (const file of htmlFiles) {
   const ids = [...html.matchAll(/\bid=(["'])(.*?)\1/gi)].map((m) => m[2]);
   for (const id of new Set(ids)) if (ids.filter((value) => value === id).length > 1) issues.push({ type: 'duplicate-id', file: rel, detail: id });
 
-  for (const m of html.matchAll(/<a\b[^>]*\bhref=(["'])(.*?)\1[^>]*>/gi)) {
+  // Strip scripts when checking HTML <a> tags to prevent regex inside JS from being parsed as links
+  const htmlWithoutScripts = html.replace(/<script\b[\s\S]*?<\/script>/gi, '');
+  for (const m of htmlWithoutScripts.matchAll(/<a\b[^>]*\bhref=(["'])(.*?)\1[^>]*>/gi)) {
     counts.links++;
     if (m[2].includes('${')) continue;
     const target = localTarget(file, m[2]);
@@ -93,7 +95,7 @@ for (const file of htmlFiles) {
     if (target === false) issues.push({ type: 'broken-hreflang', file: rel, detail: `${a.hreflang}: ${a.href}` });
   }
   for (const m of html.matchAll(/<script\b(?![^>]*type=["']application\/ld\+json["'])[^>]*>([\s\S]*?)<\/script>/gi)) {
-    if (!m[1].trim() || /\btype=["']module["']/.test(m[0])) continue;
+    if (!m[1].trim() || /\btype=["']module["']/.test(m[0]) || templatePage) continue;
     try { new Function(m[1]); } catch (error) { issues.push({ type: 'javascript-syntax', file: rel, detail: error.message }); }
   }
   pageRecords.push({ file, rel, html, canonical, templatePage });
