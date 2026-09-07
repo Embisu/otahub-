@@ -1,0 +1,37 @@
+# OtaHub Asia (English Edition)
+
+> OtaHub Asia is a premier bilingual digital publication providing breaking news, in-depth reviews, gameplay guides, and cultural analysis on Asian Anime, Gaming, Manga, Light Novels, and Otaku Culture.
+
+## Core Hubs & Content Categories
+
+- [Anime Hub](https://otahub.asia/en/anime): Latest anime announcements, seasonal broadcast schedules, trailer breakdowns, and studio spotlights (MAPPA, Ufotable, Wit Studio, Kyoto Animation, CloverWorks, A-1 Pictures).
+- [Gaming Hub](https://otahub.asia/en/gaming): PC, Console (PS5, Switch, Xbox), and Mobile gaming news, Souls-like coverage, JRPGs, Gacha guides, and major updates.
+- [Manga Hub](https://otahub.asia/en/manga): Shonen Jump, Kodansha, and Kadokawa release dates, weekly plot summaries, and author profiles.
+- [Reviews](https://otahub.asia/en/reviews): Unbiased, score-based reviews of AAA blockbusters, indie gems, and theatrical anime features.
+- [Rankings](https://otahub.asia/en/rankings): Community character polls, seasonal top lists, meta tier lists, and box-office tracking.
+- [Tag Explorer](https://otahub.asia/tag): Dynamic tag search for studios, genres, franchises, and voice actors.
+
+## Bilingual Editions
+
+- [Vietnamese Edition (Main)](https://otahub.asia/): Comprehensive coverage with 300+ full-length guides and analysis.
+- [English Edition](https://otahub.asia/en/): Curated international news and English localization.
+
+## Major Covered Franchises
+
+- Anime/Manga: One Piece, Jujutsu Kaisen, Chainsaw Man, Demon Slayer, Attack on Titan, Solo Leveling, Bleach, Frieren, Black Clover, Dandadan, Blue Lock, The Apothecary Diaries.
+- Gaming: Black Myth: Wukong, Elden Ring, Genshin Impact, Honkai: Star Rail, Zenless Zone Zero, Girls' Frontline 2: Exilium, Ghost of Yōtei, Death Stranding 2, Final Fantasy VII Rebirth, Monster Hunter Wilds, Switch 2, League of Legends (LCK / Worlds 2026), VALORANT.
+
+## Syndication & Machine-Readable Feeds
+
+- [Sitemap XML](https://otahub.asia/sitemap.xml): Full URL hierarchy for all pages and localized editions.
+- [RSS Feed](https://otahub.asia/feed.xml): Real-time XML syndication feed.
+- [JSON Feed](https://otahub.asia/feed.json): Standard JSON feed endpoint for automated aggregators.
+
+## Organization & Editorial E-E-A-T
+
+- Organization: ANBU Media · OtaHub Asia (https://otahub.asia)
+- Founder & Editor-in-Chief: Embisu / Phan Dat (https://otahub.asia/en/about#team)
+- Editorial Board: ANBU x OtaHub Editorial Team (Embisu, Tik, Mambu, Lin, Anna, Quinn) (https://otahub.asia/en/about#team)
+- Contact & Inquiries: https://otahub.asia/en/contact
+- Privacy Policy: https://otahub.asia/en/privacy
+- Terms of Service: https://otahub.asia/en/terms

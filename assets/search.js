@@ -2,37 +2,151 @@
 (function() {
   window.IDX = [
   {
-    "title": "Nintendo Direct Tháng 9/2026: Trình Làng Mario Kart 9, Zelda Mới &amp; Ngày Mở Bán Nintendo Switch 2",
+    "title": "Bleach: Huyết Chiến Ngàn Năm Phần 4 – Pierrot Tung Trailer Đại Chiến Aizen, Ichigo & Yhwach",
+    "url": "/bleach-thousand-year-blood-war-cour-4-trailer-lich-chieu",
+    "cat": "Anime",
+    "date": "2026-09-07",
+    "excerpt": "Studio Pierrot chính thức tung trailer bùng nổ cho Bleach: Huyết Chiến Ngàn Năm Phần 4, mở màn trận đại chiến tối hậu giữa Ichigo, Aizen và Yhwach tại Linh Vương Cung.",
+    "img": "/assets/img/news-bleach-tybw-cour-4-trailer.jpg",
+    "tags": []
+  },
+  {
+    "title": "Chainsaw Man Movie: Reze Arc – MAPPA Tung Trailer Mới, Hé Lộ Ca Khúc Chủ Đề & Lịch Chiếu Toàn Cầu",
+    "url": "/chainsaw-man-movie-reze-arc-trailer-chinh-thuc-lich-chieu",
+    "cat": "Anime",
+    "date": "2026-09-07",
+    "excerpt": "MAPPA chính thức công bố trailer bùng nổ cho phim điện ảnh Chainsaw Man: Reze Arc, hé lộ bài hát chủ đề mới và lịch khởi chiếu tại các rạp chiếu phim toàn cầu.",
+    "img": "/assets/img/news-chainsaw-man-movie-reze-arc.jpg",
+    "tags": [
+      "Girls Frontline 2",
+      "Chainsaw Man",
+      "Ghost of Yotei",
+      "Anime 2026",
+      "PS5 Pro"
+    ]
+  },
+  {
+    "title": "Dandadan Mùa 2: Science SARU Tung Trailer Chính Thức Arc Evil Eye & Lịch Chiếu Netflix",
+    "url": "/dandadan-season-2-trailer-evil-eye-lich-chieu-netflix",
+    "cat": "Anime",
+    "date": "2026-09-07",
+    "excerpt": "Science SARU chính thức tung trailer bùng nổ cho Dandadan Mùa 2, mở màn arc Cung Điện Quỷ (Evil Eye Arc) với phong cách hình ảnh ảo giác và lịch chiếu Netflix toàn cầu.",
+    "img": "/assets/img/news-dandadan-season-2-evil-eye.jpg",
+    "tags": []
+  },
+  {
+    "title": "Genshin Impact 7.0 Snezhnaya: Hé Lộ Kỹ Năng Băng Thần Tsaritsa & Phản Ứng Nhiệt Độ Mới",
+    "url": "/genshin-impact-7-0-tsaritsa-cryo-archon-banner-gameplay",
+    "cat": "Gaming",
+    "date": "2026-09-07",
+    "excerpt": "HoYoverse công bố chi tiết kỹ năng Băng Thần Tsaritsa, cơ chế phản ứng nhiệt độ Frostbite và chuỗi banner phiên bản 7.0 Vương Quốc Snezhnaya.",
+    "img": "/assets/img/news-genshin-7-0-tsaritsa-banner.jpg",
+    "tags": []
+  },
+  {
+    "title": "Ghost of Yōtei: Sucker Punch Hé Lộ Gameplay Song Kiếm, Vũ Khí Mới & Thế Giới Ezo 1603 Đỉnh Cao PS5 Pro",
+    "url": "/ghost-of-yotei-chi-tiet-vu-khi-gameplay-map-ezo",
+    "cat": "Gaming",
+    "date": "2026-09-07",
+    "excerpt": "Sucker Punch công bố chi tiết gameplay Ghost of Yōtei: Cơ chế song kiếm song hành, vũ khí liềm xích Kusarigama và thế giới tuyết trắng Ezo 1603 trên PS5 Pro.",
+    "img": "/assets/img/news-ghost-of-yotei-weapons-gameplay.jpg",
+    "tags": [
+      "Girls Frontline 2",
+      "Chainsaw Man",
+      "Ghost of Yotei",
+      "Anime 2026",
+      "PS5 Pro"
+    ]
+  },
+  {
+    "title": "Girls' Frontline 2: Lưu Đày – Hướng Dẫn Tân Thủ, Cách Reroll & Top 5 Đội Hình Búp Bê SSR Mạnh Nhất",
+    "url": "/girls-frontline-2-huong-dan-tan-thu-doi-hinh-reroll",
+    "cat": "Guides",
+    "date": "2026-09-07",
+    "excerpt": "Cẩm nang Girls' Frontline 2: Lưu Đày: Hướng dẫn reroll 10 phút, mẹo quản lý điểm Ổn Định, cơ chế Cover 3D và top 5 đội hình búp bê SSR chuẩn Meta.",
+    "img": "/assets/img/news-gfl2-guide-team-build.jpg",
+    "tags": [
+      "Girls Frontline 2",
+      "Chainsaw Man",
+      "Ghost of Yotei",
+      "Anime 2026",
+      "PS5 Pro"
+    ]
+  },
+  {
+    "title": "Kimetsu no Yaiba: Vô Hạn Thành Phim 1 – Phá Kỷ Lục Doanh Thu Phòng Vé & Kỹ Xảo 3D Ufotable",
+    "url": "/kimetsu-no-yaiba-vo-han-thanh-movie-1-doanh-thu-ky-luc-ufotable",
+    "cat": "Anime",
+    "date": "2026-09-07",
+    "excerpt": "Phim điện ảnh Kimetsu no Yaiba: Vô Hạn Thành Phần 1 tạo nên cột mốc lịch sử với hơn 150 triệu USD doanh thu mở màn toàn cầu, khẳng định đẳng cấp hoạt họa 3D vô cực từ Ufotable.",
+    "img": "/assets/img/news-kimetsu-no-yaiba-infinity-castle-movie-1.jpg",
+    "tags": []
+  },
+  {
+    "title": "Chung Kết LCK Mùa Hè 2026: T1 vs Gen.G – Faker Đại Chiến Chovy Giành Ngôi Vương & Vé CKTG",
+    "url": "/lck-summer-2026-finals-t1-vs-geng-nhan-dinh-faker-chovy",
+    "cat": "Gaming",
+    "date": "2026-09-07",
+    "excerpt": "Phân tích siêu kinh điển T1 vs Gen.G tại chung kết LCK Mùa Hè 2026: Cuộc so tài đỉnh cao giữa Faker và Chovy giành ngôi vương Hàn Quốc và tấm vé hạt giống số 1 CKTG.",
+    "img": "/assets/img/news-lck-summer-2026-t1-geng-finals.jpg",
+    "tags": []
+  },
+  {
+    "title": "Monster Hunter Wilds: Cẩm Nang Tối Ưu PC 4K 60FPS, Khắc Chế Arkveld & Combo Focus Mode",
+    "url": "/monster-hunter-wilds-huong-dan-toi-uu-settings-pc-arkveld",
+    "cat": "Guides",
+    "date": "2026-09-07",
+    "excerpt": "Cẩm nang toàn diện Monster Hunter Wilds: Thiết lập settings đồ họa PC chuẩn 4K 60FPS, mẹo săn trùm bạch long Arkveld và combo vũ khí tối ưu sát thương Focus Mode.",
+    "img": "/assets/img/news-mhw-guide-arkveld-pc-settings.jpg",
+    "tags": []
+  },
+  {
+    "title": "Nintendo Direct Tháng 9/2026: Trình Làng Mario Kart 9, Zelda Mới & Ngày Mở Bán Nintendo Switch 2",
     "url": "/nintendo-direct-september-2026-switch-2-mario-kart-9",
     "cat": "Gaming",
-    "date": "2026-09-06",
-    "excerpt": "Nintendo chính thức ấn định buổi phát sóng Nintendo Direct đặc biệt dài 45 phút vào giữa tháng 9/2026, trọng tâm xoay quanh hệ máy Nintendo Switch 2 và bom tấn Mario Kart 9.",
+    "date": "2026-09-07",
+    "excerpt": "Nintendo chính thức ấn định buổi phát sóng Nintendo Direct đặc biệt dài 45 phút, trọng tâm xoay quanh hệ máy Nintendo Switch 2 và bom tấn Mario Kart 9.",
     "img": "/assets/img/news-nintendo-direct-sept-2026-switch2-mario-kart.jpg",
     "tags": [
-      "Nintendo Direct",
-      "Nintendo Switch 2",
-      "Mario Kart 9",
-      "Zelda",
-      "Nintendo",
-      "Gaming 2026"
+      "Girls Frontline 2",
+      "Chainsaw Man",
+      "Ghost of Yotei",
+      "Anime 2026",
+      "PS5 Pro"
     ]
+  },
+  {
+    "title": "One Piece Chương 1194: Oda Hé Lộ Trái Ác Quỷ Của Loki, Cây Thần Yggdrasil & Vũ Khí Uranus",
+    "url": "/one-piece-chapter-1194-spoilers-loki-uranus-elbaf",
+    "cat": "Manga",
+    "date": "2026-09-07",
+    "excerpt": "Tóm tắt spoiler One Piece chương 1194: Eiichiro Oda hé lộ sức mạnh Trái Ác Quỷ huyền thoại của Hoàng tử Loki tại Elbaf, bí mật Cây Thần Yggdrasil và manh mối Vũ Khí Cổ Đại Uranus.",
+    "img": "/assets/img/news-one-piece-1194-loki-elbaf.jpg",
+    "tags": []
   },
   {
     "title": "Solo Leveling: Ragnarok – Webtoon Hậu Truyện Về Sung Suho Chính Thức Công Bố Dự Án Anime Toàn Cầu",
     "url": "/solo-leveling-ragnarok-anime-chuyen-the-va-trailer-dau-tien",
     "cat": "Anime",
-    "date": "2026-09-06",
-    "excerpt": "REDICE Studio, D&C Media và Aniplex chính thức công bố dự án chuyển thể anime cho siêu phẩm hậu truyện Solo Leveling: Ragnarok, tiếp nối huyền thoại Hoàng Đế Bóng Tối qua góc nhìn của Sung Suho.",
+    "date": "2026-09-07",
+    "excerpt": "REDICE Studio, D&C Media và Aniplex công bố dự án anime chuyển thể Solo Leveling: Ragnarok, hé lộ hành trình kế thừa ngai vàng Bóng Tối của Sung Suho.",
     "img": "/assets/img/news-solo-leveling-ragnarok-official-announcement.jpg",
     "tags": [
-      "Solo Leveling",
-      "Ragnarok",
-      "Sung Suho",
-      "Sung Jinwoo",
-      "A-1 Pictures",
-      "Aniplex",
-      "Anime 2026"
+      "Girls Frontline 2",
+      "Chainsaw Man",
+      "Ghost of Yotei",
+      "Anime 2026",
+      "PS5 Pro"
     ]
+  },
+  {
+    "title": "Zenless Zone Zero 2.2: Ra Mắt Yanagi Section 6, Mở Rộng Hollow Zero Vô Tận & Giftcode Mới",
+    "url": "/zenless-zone-zero-2-2-section-6-yanagi-hollow-zero",
+    "cat": "Gaming",
+    "date": "2026-09-07",
+    "excerpt": "HoYoverse công bố chi tiết bản cập nhật Zenless Zone Zero 2.2: Nhân vật cấp S Yanagi thuộc Section 6, mở rộng chế độ Hollow Zero vô tận và tặng 1600 Polychrome miễn phí.",
+    "img": "/assets/img/news-zzz-2-2-section6-yanagi.jpg",
+    "tags": []
   },
   {
     "title": "Frieren: Pháp Sư Tiễn Táng Mùa 2 - Madhouse Tung Trailer Mới, Tiếp Nối Hành Trình Đến Vùng Đất Linh Hồn Aureole",

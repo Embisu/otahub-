@@ -1,0 +1,489 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "OtaHub Feed",
+  "home_page_url": "https://otahub.asia/",
+  "feed_url": "https://otahub.asia/feed.json",
+  "description": "Asian Gaming, Anime and Manga News Hub",
+  "items": [
+    {
+      "id": "https://otahub.asia/anime-detail",
+      "url": "https://otahub.asia/anime-detail",
+      "title": "Thông Tin Anime",
+      "summary": "Điểm số, thể loại, studio, lịch chiếu và thông tin chi tiết đầy đủ về anime bạn đang tìm, dữ liệu được OtaHub cập nhật liên tục và chính xác.",
+      "image": "https://otahub.asia/og-image.png",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/bleach-thousand-year-blood-war-cour-4-trailer-lich-chieu",
+      "url": "https://otahub.asia/bleach-thousand-year-blood-war-cour-4-trailer-lich-chieu",
+      "title": "Bleach: Huyết Chiến Ngàn Năm Phần 4 – Pierrot Tung Trailer Đại Chiến Aizen, Ichigo & Yhwach",
+      "summary": "Studio Pierrot chính thức tung trailer bùng nổ cho Bleach: Huyết Chiến Ngàn Năm Phần 4, mở màn trận đại chiến tối hậu giữa Ichigo, Aizen và Yhwach tại Linh Vương Cung.",
+      "image": "https://otahub.asia/assets/img/news-bleach-tybw-cour-4-trailer.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/chainsaw-man-movie-reze-arc-trailer-chinh-thuc-lich-chieu",
+      "url": "https://otahub.asia/chainsaw-man-movie-reze-arc-trailer-chinh-thuc-lich-chieu",
+      "title": "Chainsaw Man Movie: Reze Arc – MAPPA Tung Trailer Mới, Hé Lộ Ca Khúc Chủ Đề & Lịch Chiếu Toàn Cầu",
+      "summary": "MAPPA chính thức công bố trailer bùng nổ cho phim điện ảnh Chainsaw Man: Reze Arc, hé lộ bài hát chủ đề mới và lịch khởi chiếu tại các rạp chiếu phim toàn cầu.",
+      "image": "https://otahub.asia/assets/img/news-chainsaw-man-movie-reze-arc.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/chinh-sach-bao-mat",
+      "url": "https://otahub.asia/chinh-sach-bao-mat",
+      "title": "Chính Sách Bảo Mật &amp; Quyền Riêng Tư",
+      "summary": "Chính sách bảo mật của OtaHub, tìm hiểu cách chúng tôi thu thập, sử dụng, lưu trữ và bảo vệ thông tin cá nhân của bạn khi truy cập và sử dụng website.",
+      "image": "https://otahub.asia/og-image.png",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/dandadan-season-2-trailer-evil-eye-lich-chieu-netflix",
+      "url": "https://otahub.asia/dandadan-season-2-trailer-evil-eye-lich-chieu-netflix",
+      "title": "Dandadan Mùa 2: Science SARU Tung Trailer Chính Thức Arc Evil Eye & Lịch Chiếu Netflix",
+      "summary": "Science SARU chính thức tung trailer bùng nổ cho Dandadan Mùa 2, mở màn arc Cung Điện Quỷ (Evil Eye Arc) với phong cách hình ảnh ảo giác và lịch chiếu Netflix toàn cầu.",
+      "image": "https://otahub.asia/assets/img/news-dandadan-season-2-evil-eye.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/akira-toriyama-eisner-hall-of-fame",
+      "url": "https://otahub.asia/en/akira-toriyama-eisner-hall-of-fame",
+      "title": "Akira Toriyama Inducted Into the Eisner Hall of Fame",
+      "summary": "Akira Toriyama was officially inducted into the Eisner Hall of Fame at Comic-Con International 2026, a posthumous honor recognizing Dragon Ball's global impact.",
+      "image": "https://otahub.asia/assets/img/news-akira-toriyama-eisner-hall-of-fame.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/anime-detail",
+      "url": "https://otahub.asia/en/anime-detail",
+      "title": "Anime Information",
+      "summary": "Full scores, genres, studios, broadcast schedules, and detailed information about the anime you're looking for, all continuously and accurately updated by OtaHub.",
+      "image": "https://otahub.asia/og-image.png",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/ball-x-pit-naturalist-update",
+      "url": "https://otahub.asia/en/ball-x-pit-naturalist-update",
+      "title": "Ball x Pit Launches Final Free Update The Naturalist With Two New Characters",
+      "summary": "Ball x Pit released The Naturalist, its final free content update, adding two new characters, 11 new balls, and five new passives on August 6.",
+      "image": "https://otahub.asia/assets/img/news-ball-x-pit-naturalist-update.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/black-myth-wukong-dlc-release-date-bosses",
+      "url": "https://otahub.asia/en/black-myth-wukong-dlc-release-date-bosses",
+      "title": "Black Myth: Wukong DLC \"Rebirth of the Great Sage\": Game Science Reveals 12 New Bosses & Heavenly Realm | OtaHub",
+      "summary": "Game Science lifts the veil on the massive story expansion for Black Myth: Wukong, featuring 12 new mythological bosses, heavenly palace vistas, and.",
+      "image": "https://otahub.asia/assets/img/news-wukong-dlc-heaven-bosses.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/bleach-thousand-year-blood-war-cour-4-trailer-lich-chieu",
+      "url": "https://otahub.asia/en/bleach-thousand-year-blood-war-cour-4-trailer-lich-chieu",
+      "title": "Bleach: Thousand-Year Blood War Part 4 – Pierrot Drops Climax Trailer & Release Window",
+      "summary": "Studio Pierrot releases the thrilling official trailer for Bleach: Thousand-Year Blood War Part 4, teasing the epic final battle between Ichigo, Aizen, and Yhwach.",
+      "image": "https://otahub.asia/assets/img/news-bleach-tybw-cour-4-trailer.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/bleach-thousand-year-blood-war-part-4-the-farewell-release-date",
+      "url": "https://otahub.asia/en/bleach-thousand-year-blood-war-part-4-the-farewell-release-date",
+      "title": "Bleach TYBW Part 4 \"The Farewell\": Pierrot Unveils Epic Final Cour Trailer & October Release | OtaHub",
+      "summary": "Studio Pierrot and Tite Kubo unveil the official trailer for Bleach: Thousand-Year Blood War Part 4 (The Farewell), concluding the legendary supernatural war.",
+      "image": "https://otahub.asia/assets/img/news-bleach-tybw-part4-farewell.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/bleach-tybw-calamity-opening-ending",
+      "url": "https://otahub.asia/en/bleach-tybw-calamity-opening-ending",
+      "title": "Bleach TYBW: The Calamity Reveals OP \"I-BULL\" and ED \"Rasen\"",
+      "summary": "Bleach: Thousand-Year Blood War - The Calamity reveals opening \\ cùng cẩm nang phân tích chuyên sâu độc quyền tại OtaHub.",
+      "image": "https://otahub.asia/assets/img/news-bleach-tybw-calamity-opening-ending.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/call-of-duty-modern-warfare-4-gamescom-playable",
+      "url": "https://otahub.asia/en/call-of-duty-modern-warfare-4-gamescom-playable",
+      "title": "Call of Duty: Modern Warfare 4 Goes Playable At Gamescom 2026, Confirmed For Nintendo Switch 2",
+      "summary": "Call of Duty: Modern Warfare 4 hit the Xbox booth at Gamescom 2026 with a hands-on Core 6v6 Multiplayer demo, confirming an October 23 release on Nintendo.",
+      "image": "https://otahub.asia/assets/img/news-call-of-duty-modern-warfare-4-gamescom-playable.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/chainsaw-man-chapter-180-death-devil",
+      "url": "https://otahub.asia/en/chainsaw-man-chapter-180-death-devil",
+      "title": "Chainsaw Man Chapter 180: The Death Devil Arrives & Denji's Darkest Awakening | OtaHub",
+      "summary": "Tatsuki Fujimoto shocks manga readers worldwide in Chapter 180 with the formal descent of the Death Devil, the ultimate primordial fear.",
+      "image": "https://otahub.asia/assets/img/news-chainsaw-man-death-devil.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/chainsaw-man-movie-reze-arc-trailer-chinh-thuc-lich-chieu",
+      "url": "https://otahub.asia/en/chainsaw-man-movie-reze-arc-trailer-chinh-thuc-lich-chieu",
+      "title": "Chainsaw Man Movie: Reze Arc – MAPPA Unveils New Trailer, Theme Song & Global Theatrical Release Date",
+      "summary": "MAPPA officially releases a breathtaking trailer for the upcoming Chainsaw Man: Reze Arc movie, revealing the new theme song and global theatrical release schedule.",
+      "image": "https://otahub.asia/assets/img/news-chainsaw-man-movie-reze-arc.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/chainsaw-man-reze-arc-box-office-season3",
+      "url": "https://otahub.asia/en/chainsaw-man-reze-arc-box-office-season3",
+      "title": "Chainsaw Man – The Movie Reze Arc: Surpasses $191.4M Worldwide, MAPPA Greenlights Assassins Arc Season 3",
+      "summary": "Chainsaw Man Reze Arc movie crosses $191.4M globally. Studio MAPPA officially confirms TV Anime Season 3 covering International Assassins Arc.",
+      "image": "https://otahub.asia/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/chinh-sach-bao-mat",
+      "url": "https://otahub.asia/en/chinh-sach-bao-mat",
+      "title": "Security &amp; Privacy Policy",
+      "summary": "OtaHub Privacy Policy: Learn how we protect user data, respect privacy rights, and ensure transparent browsing for anime and gaming enthusiasts.",
+      "image": "https://otahub.asia/og-image.png",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/crunchyroll-manga-black-torch-hana-kimi",
+      "url": "https://otahub.asia/en/crunchyroll-manga-black-torch-hana-kimi",
+      "title": "Crunchyroll Manga Adds Black Torch, Hana-Kimi in July Update",
+      "summary": "Crunchyroll Manga added Black Torch, Hana-Kimi and more titles on July 13, 2026, exclusively for subscribers in the US and Canada.",
+      "image": "https://otahub.asia/assets/img/news-crunchyroll-manga-black-torch-hana-kimi.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/dandadan-season-2-trailer-evil-eye-lich-chieu-netflix",
+      "url": "https://otahub.asia/en/dandadan-season-2-trailer-evil-eye-lich-chieu-netflix",
+      "title": "Dandadan Season 2: Science SARU Drops Official Evil Eye Arc Trailer & Global Netflix Date",
+      "summary": "Science SARU officially releases the mind-bending trailer for Dandadan Season 2, kicking off the Evil Eye Arc alongside a worldwide Netflix premiere schedule.",
+      "image": "https://otahub.asia/assets/img/news-dandadan-season-2-evil-eye.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/demon-slayer-infinity-castle-review",
+      "url": "https://otahub.asia/en/demon-slayer-infinity-castle-review",
+      "title": "Demon Slayer: Infinity Castle Review: Ufotable Historic Cinematic Triumph (9.9/10)",
+      "summary": "Demon Slayer Infinity Castle review: 3D Infinity Castle choreography, Tanjiro and Giyuu vs Akaza clash, soundtrack mastery, and 9.9 score.",
+      "image": "https://otahub.asia/assets/img/5418135572-demon-slayer-infinity-castle-review-hero.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/detective-conan-final-chapter",
+      "url": "https://otahub.asia/en/detective-conan-final-chapter",
+      "title": "Gosho Aoyama Confirms He Has Already Drafted Detective Conan's Final Chapter Storyboard",
+      "summary": "Gosho Aoyama, creator of Detective Conan, confirms he has already drawn a draft storyboard for the manga's final chapter, though he hasn't revealed any details or a timeline.",
+      "image": "https://otahub.asia/assets/img/news-detective-conan-final-chapter.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/doraemon-steam-time-machine-film",
+      "url": "https://otahub.asia/en/doraemon-steam-time-machine-film",
+      "title": "Doraemon Announces 46th Film: Steam-Powered Time Machine",
+      "summary": "Doraemon: Nobita and the Steam Time Machine anime movie 2026 officially announced with new key visuals, teaser trailer, and release date.",
+      "image": "https://otahub.asia/assets/img/news-doraemon-steam-time-machine-film.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/dragon-ball-sparking-zero-neo-dlc",
+      "url": "https://otahub.asia/en/dragon-ball-sparking-zero-neo-dlc",
+      "title": "Dragon Ball: Sparking Zero Launches Super Limit-Breaking Neo DLC With 33 New Characters",
+      "summary": "Sparking Zero’s biggest DLC, Super Limit-Breaking Neo, launched July 30, adding 33 characters, the Limit Breaker Journey mode, and new combat mechanics.",
+      "image": "https://otahub.asia/assets/img/news-dragon-ball-sparking-zero-neo-dlc.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/elden-ring-nightreign-coop-multiplayer-reveal",
+      "url": "https://otahub.asia/en/elden-ring-nightreign-coop-multiplayer-reveal",
+      "title": "Elden Ring: Nightreign: FromSoftware Unveils Standalone Co-op Survival Action Spin-Off | OtaHub",
+      "summary": "FromSoftware and Bandai Namco surprise fans with Elden Ring: Nightreign, a standalone cooperative multiplayer survival spin-off title.",
+      "image": "https://otahub.asia/assets/img/news-elden-ring-nightreign-coop.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/elden-ring-shadow-of-the-erdtree-review",
+      "url": "https://otahub.asia/en/elden-ring-shadow-of-the-erdtree-review",
+      "title": "Elden Ring: Shadow of the Erdtree Review: FromSoftware 9.7 Masterpiece Expansion",
+      "summary": "In-depth review of Elden Ring Shadow of the Erdtree: Scadutree Fragment progression, multi-layered vertical world design, boss mechanics, and score justification.",
+      "image": "https://otahub.asia/assets/img/elden-ring-shadow-erdtree-review-hero.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/flamecraft-ps5-demo",
+      "url": "https://otahub.asia/en/flamecraft-ps5-demo",
+      "title": "Flamecraft Confirms PS5, Xbox Series, And Switch Versions, Demo Live Since July 28",
+      "summary": "Flamecraft, the board game adaptation from Monster Couch, confirms PS5, Xbox Series, and Switch versions, with a free demo available since July 28.",
+      "image": "https://otahub.asia/assets/img/news-flamecraft-ps5-demo.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/free-fire-daybreak-anime-2027",
+      "url": "https://otahub.asia/en/free-fire-daybreak-anime-2027",
+      "title": "Free Fire Daybreak Reveals Key Visual, Sets Spring 2027 Debut",
+      "summary": "Free Fire Daybreak: Garena and KADOKAWA announce official anime adaptation slated for 2027 with high-octane battle royale action.",
+      "image": "https://otahub.asia/assets/img/news-free-fire-daybreak-anime-2027.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/frieren-phap-su-tien-tang-mua-2-trailer-aureole",
+      "url": "https://otahub.asia/en/frieren-phap-su-tien-tang-mua-2-trailer-aureole",
+      "title": "Frieren Season 2: Beyond Journey's End – Madhouse Unveils New Trailer & Aureole Journey",
+      "summary": "Madhouse and TOHO Animation unveil a brand-new trailer for Frieren: Beyond Journey's End Season 2, spotlighting the Northern Plateau expedition and the quest for Aureole.",
+      "image": "https://otahub.asia/assets/img/news-frieren-season-2-official-visual.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/frieren-season2",
+      "url": "https://otahub.asia/en/frieren-season2",
+      "title": "Frieren: Beyond Journey's End Season 2 Review: A Philosophical Masterpiece on Time and Memory (9.8/10)",
+      "summary": "Frieren Season 2 full review: Evan Call musical mastery, character growth of Frieren, Fern, and Stark, and complete 9.8 score breakdown.",
+      "image": "https://otahub.asia/assets/img/3f4f599cac-frieren-s2-hero.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/galaxy-express-999-new-film",
+      "url": "https://otahub.asia/en/galaxy-express-999-new-film",
+      "title": "Toei Confirms New Galaxy Express 999 Film With Rintaro",
+      "summary": "Toei Animation confirms a new Galaxy Express 999 theatrical film with original story by Rintaro, the franchise's first new film in 28 years.",
+      "image": "https://otahub.asia/assets/img/news-galaxy-express-999-new-film.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/game-detail",
+      "url": "https://otahub.asia/en/game-detail",
+      "title": "Gaming Information",
+      "summary": "Scores, developers, genres, platforms, and full details about the game you cùng cẩm nang phân tích chuyên sâu độc quyền tại OtaHub.",
+      "image": "https://otahub.asia/og-image.png",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/gamescom-2026-playstation-highlights",
+      "url": "https://otahub.asia/en/gamescom-2026-playstation-highlights",
+      "title": "Gamescom 2026: PlayStation Reveals Over 20 Games at Opening Night Live, From Final Fantasy VII Revelation to Rainbow Six Tactics",
+      "summary": "Gamescom Opening Night Live 2026 in Cologne: PlayStation showcased over 20 new titles, including a Final Fantasy VII Revelation trailer, Control Resonant.",
+      "image": "https://otahub.asia/assets/img/news-gamescom-2026-playstation-highlights.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/genshin-impact-7-0-tsaritsa-cryo-archon-banner-gameplay",
+      "url": "https://otahub.asia/en/genshin-impact-7-0-tsaritsa-cryo-archon-banner-gameplay",
+      "title": "Genshin Impact 7.0 Snezhnaya: Tsaritsa Kit Revealed, Cryo Archon Banner & Frostbite Reactions",
+      "summary": "HoYoverse reveals Tsaritsa Cryo Archon kit, new Frostbite elemental temperature reactions, and Version 7.0 Snezhnaya banner schedules.",
+      "image": "https://otahub.asia/assets/img/news-genshin-7-0-tsaritsa-banner.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/genshin-impact-70-sandrone-reveal",
+      "url": "https://otahub.asia/en/genshin-impact-70-sandrone-reveal",
+      "title": "Genshin Impact 7.0: HoYoverse Introduces 7th Fatui Harbinger Sandrone & Cryo Marionette Combat",
+      "summary": "HoYoverse officially reveals 7th Fatui Harbinger Sandrone (The Marionette) Cryo skillset and Snezhnaya storyline expansion in Genshin Impact 7.0.",
+      "image": "https://otahub.asia/assets/img/news-genshin-impact-70-abyss-teams.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/genshin-impact-70-snezhnaya-map-gameplay",
+      "url": "https://otahub.asia/en/genshin-impact-70-snezhnaya-map-gameplay",
+      "title": "Genshin Impact 7.0 Snezhnaya: Massive Map Expansion, Mechanical Skiffs & Survival System | OtaHub",
+      "summary": "HoYoverse unveils the colossal geography of Snezhnaya in Genshin Impact 7.0, introducing motor skiffs, deep snow mechanics, and Tsaritsa lore.",
+      "image": "https://otahub.asia/assets/img/news-genshin-70-snezhnaya-map.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/ghost-of-yotei-chi-tiet-vu-khi-gameplay-map-ezo",
+      "url": "https://otahub.asia/en/ghost-of-yotei-chi-tiet-vu-khi-gameplay-map-ezo",
+      "title": "Ghost of Yōtei: Sucker Punch Reveals Dual-Wielding Gameplay, New Arsenal & Vast 1603 Ezo Open World on PS5 Pro",
+      "summary": "Sucker Punch reveals deep gameplay details for Ghost of Yōtei: Dual-katana combat mechanics, Kusarigama chain-sickles, and the vast 1603 Ezo world on PS5 Pro.",
+      "image": "https://otahub.asia/assets/img/news-ghost-of-yotei-weapons-gameplay.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/girls-frontline-2-exilium-review",
+      "url": "https://otahub.asia/en/girls-frontline-2-exilium-review",
+      "title": "Girls' Frontline 2: Exilium Review: Tactical 3D Masterpiece & Cel-Shaded Artistry | OtaHub",
+      "summary": "Comprehensive editorial review of Girls cùng cẩm nang phân tích chuyên sâu độc quyền tại OtaHub.",
+      "image": "https://otahub.asia/assets/img/news-gfl2-exilium-vietnam-launch.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/girls-frontline-2-huong-dan-tan-thu-doi-hinh-reroll",
+      "url": "https://otahub.asia/en/girls-frontline-2-huong-dan-tan-thu-doi-hinh-reroll",
+      "title": "Girls' Frontline 2: Exilium – Beginner's Guide, Reroll Tier List & Top 5 SSR Squad Comps",
+      "summary": "Complete tactical guide for Girls' Frontline 2: Exilium: Fast 10-min reroll route, Stability & Cover mechanics breakdown, and top 5 meta SSR doll team comps.",
+      "image": "https://otahub.asia/assets/img/news-gfl2-guide-team-build.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/girls-frontline-2-luu-day-vietnam-launch",
+      "url": "https://otahub.asia/en/girls-frontline-2-luu-day-vietnam-launch",
+      "title": "Girls' Frontline 2: Exilium Officially Launches in Vietnam | OtaHub",
+      "summary": "THS Game officially launches the Vietnamese server for Girls cùng cẩm nang phân tích chuyên sâu độc quyền tại OtaHub.",
+      "image": "https://otahub.asia/assets/img/news-gfl2-exilium-vietnam-launch.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/gta6-gameplay-reveal-preorder",
+      "url": "https://otahub.asia/en/gta6-gameplay-reveal-preorder",
+      "title": "GTA 6: Rockstar Drops 26-Minute \"Extended Look\" On Netflix, Quiets Leak-Fueled Downgrade Fears Ahead Of Nov 19",
+      "summary": "Rockstar Games released a 26-minute Extended Look on Netflix August 27, quieting leak-driven &quot;downgrade&quot; fears and reconfirming GTA 6's November 19, 2026 launch.",
+      "image": "https://otahub.asia/assets/img/news-gta6-gameplay-reveal-vice-city.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/haikyu-movie2-little-giant-teaser",
+      "url": "https://otahub.asia/en/haikyu-movie2-little-giant-teaser",
+      "title": "Haikyu!! The Movie: VS The Little Giant Reveals New Visual at Haikyu!! Day 2026",
+      "summary": "The Haikyu!! Day 2026 event on August 19 revealed a new visual for Haikyu!! The Movie: VS The Little Giant and details on the special anime Where Monsters.",
+      "image": "https://otahub.asia/assets/img/news-haikyu-movie2-little-giant-teaser.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/halo-campaign-evolved-modernizes",
+      "url": "https://otahub.asia/en/halo-campaign-evolved-modernizes",
+      "title": "Halo: Campaign Evolved Launches July 28, Outlines 13 Changes Modernizing The Campaign",
+      "summary": "Halo: Campaign Evolved launched July 28 on Xbox, PC, and PS5 for the first time, detailing 13 changes that modernize the original Combat Evolved campaign.",
+      "image": "https://otahub.asia/assets/img/news-halo-campaign-evolved-modernizes.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/hanako-kun-manga-resumes",
+      "url": "https://otahub.asia/en/hanako-kun-manga-resumes",
+      "title": "Toilet-Bound Hanako-kun Manga Returns After 10-Month Health Hiatus",
+      "summary": "Toilet-Bound Hanako-kun officially resumed serialization on August 18, 2026 in Monthly GFantasy, ending a roughly 10-month hiatus while creator AidaIro.",
+      "image": "https://otahub.asia/assets/img/news-hanako-kun-manga-resumes.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/honkai-star-rail-3-0-amphoreus-banner-cyrene-trailer",
+      "url": "https://otahub.asia/en/honkai-star-rail-3-0-amphoreus-banner-cyrene-trailer",
+      "title": "Honkai: Star Rail 3.0: HoYoverse Unveils New World Amphoreus & Memory Resonance System",
+      "summary": "HoYoverse officially reveals Honkai: Star Rail 3.0, introducing the Greco-Roman world Amphoreus (Eternal Land), the brand-new Remembrance combat mechanic.",
+      "image": "https://otahub.asia/assets/img/news-honkai-star-rail-30-amphoreus.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/honkai-star-rail-review",
+      "url": "https://otahub.asia/en/honkai-star-rail-review",
+      "title": "Honkai: Star Rail Review: The Turn-Based Symphony by HoYoverse (9.2/10)",
+      "summary": "Honkai Star Rail review: Storytelling brilliance, HOYO-MiX soundtrack, turn-based combat depth, and OtaHub scoring justification.",
+      "image": "https://otahub.asia/assets/img/news-honkai-star-rail-31-amphoreus.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/in-depth",
+      "url": "https://otahub.asia/en/in-depth",
+      "title": "In-Depth · Game, Anime and Manga Analysis",
+      "summary": "OtaHub in-depth features: analysis of games, anime and manga based on hands-on experience, production context and reliable facts.",
+      "image": "https://otahub.asia/og-image.png",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/jujutsu-kaisen-chapter-271-final-climax-epilogue",
+      "url": "https://otahub.asia/en/jujutsu-kaisen-chapter-271-final-climax-epilogue",
+      "title": "Jujutsu Kaisen Nears Final Climax: Gege Akutami Confirms Series Finale & 5-Chapter Epilogue | OtaHub",
+      "summary": "Weekly Shonen Jump and Gege Akutami confirm the exact release date for Jujutsu Kaisen's climactic final chapter and special 5-part epilogue arc.",
+      "image": "https://otahub.asia/assets/img/news-jjk-chapter-271-climax-epilogue.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/jujutsu-kaisen-juju-fes-2026-anniversary",
+      "url": "https://otahub.asia/en/jujutsu-kaisen-juju-fes-2026-anniversary",
+      "title": "Jujutsu Kaisen Kicks Off Juju Fes 2026 Anniversary Event Today, Fans Await Season 4 Update",
+      "summary": "Juju Fes 2026 -5th Anniversary- officially opens August 29-30 at K-Arena Yokohama with live-dubbing, a live band, and possible Jujutsu Kaisen Season 4 news.",
+      "image": "https://otahub.asia/assets/img/news-jujutsu-kaisen-juju-fes-2026-anniversary.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/jujutsu-kaisen-season-3-culling-game-release",
+      "url": "https://otahub.asia/en/jujutsu-kaisen-season-3-culling-game-release",
+      "title": "Jujutsu Kaisen Season 3 Culling Game: Official Release Window, New Characters & Battle Forecast",
+      "summary": "Jujutsu Kaisen Season 3 news: MAPPA broadcast window, Culling Game rules, Yuta Okkotsu domain expansion, and production details.",
+      "image": "https://otahub.asia/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/kimetsu-no-yaiba-vo-han-thanh-movie-1-doanh-thu-ky-luc-ufotable",
+      "url": "https://otahub.asia/en/kimetsu-no-yaiba-vo-han-thanh-movie-1-doanh-thu-ky-luc-ufotable",
+      "title": "Demon Slayer: Infinity Castle Movie 1 Smashes Global Box Office Records with Ufotable Visuals",
+      "summary": "Demon Slayer: Infinity Castle Movie 1 achieves history with over $150M global opening box office, spotlighting Ufotable’s boundary-pushing 3D camera cinematography.",
+      "image": "https://otahub.asia/assets/img/news-kimetsu-no-yaiba-infinity-castle-movie-1.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/kimetsu-no-yaiba-vo-han-thanh-movie-1-trailer-release",
+      "url": "https://otahub.asia/en/kimetsu-no-yaiba-vo-han-thanh-movie-1-trailer-release",
+      "title": "Demon Slayer: Infinity Castle Movie 1 – Ufotable Reveals Explosive Trailer & Global Date | OtaHub",
+      "summary": "Ufotable and Aniplex officially release the first cinematic trailer for Demon Slayer: Kimetsu no Yaiba - Infinity Castle Movie 1, setting global IMAX &.",
+      "image": "https://otahub.asia/assets/img/news-demon-slayer-infinity-castle-official.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/konosuba-season-4-2027",
+      "url": "https://otahub.asia/en/konosuba-season-4-2027",
+      "title": "KONOSUBA Season 4 Confirmed For 2027, Moves To Studio ENGI",
+      "summary": "KONOSUBA confirms Season 4 for 2027, moving production to studio ENGI while director Takaomi Kanasaki and the full original voice cast return.",
+      "image": "https://otahub.asia/assets/img/news-konosuba-season-4-2027.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/lck-summer-2026-finals-t1-vs-geng-nhan-dinh-faker-chovy",
+      "url": "https://otahub.asia/en/lck-summer-2026-finals-t1-vs-geng-nhan-dinh-faker-chovy",
+      "title": "LCK Summer 2026 Finals: T1 vs Gen.G – Faker and Chovy Clash for Championship & Worlds #1 Seed",
+      "summary": "In-depth preview of the LCK Summer 2026 Grand Finals between T1 and Gen.G: Faker vs. Chovy battle for the Korean crown and the coveted Worlds #1 seed.",
+      "image": "https://otahub.asia/assets/img/news-lck-summer-2026-t1-geng-finals.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/lego-donkey-kong-arcade",
+      "url": "https://otahub.asia/en/lego-donkey-kong-arcade",
+      "title": "LEGO Donkey Kong Arcade (Set 72051) Launches August 1 At $199.99, 1,367 Pieces",
+      "summary": "LEGO Donkey Kong Arcade, set 72051 with 1,367 pieces, recreates the 1981 arcade cabinet with working mechanisms, priced $199.99, launching August 1.",
+      "image": "https://otahub.asia/assets/img/news-lego-donkey-kong-arcade.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/lich-phat-song",
+      "url": "https://otahub.asia/en/lich-phat-song",
+      "title": "Anime Broadcast Schedule &amp; Manga Chapter Tracker 2026",
+      "summary": "Full 2026 anime broadcast schedule by season, plus a tracker for the latest manga, manhwa and manhua chapter updates in one place.",
+      "image": "https://otahub.asia/og-image.png",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/lien-he",
+      "url": "https://otahub.asia/en/lien-he",
+      "title": "Contact",
+      "summary": "Contact the OtaHub team to cooperate in advertising, suggest articles, report errors or give suggestions for improving the website. We respond quickly via.",
+      "image": "https://otahub.asia/og-image.png",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/lies-of-p-complete-edition-switch2",
+      "url": "https://otahub.asia/en/lies-of-p-complete-edition-switch2",
+      "title": "Lies of P: Complete Edition Now Available on Nintendo Switch 2",
+      "summary": "Neowiz and Round8 Studio have released Lies of P: Complete Edition on Nintendo Switch 2, bundling the base game with the Overture DLC for $69.99, physical.",
+      "image": "https://otahub.asia/assets/img/news-lies-of-p-complete-edition-switch2.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/lous-lagoon-ps5-august-27",
+      "url": "https://otahub.asia/en/lous-lagoon-ps5-august-27",
+      "title": "Lou’s Lagoon Confirms PS5 Launch On August 27, Reveals Deluxe Edition",
+      "summary": "Lou’s Lagoon, the cozy building adventure from Tiny Roar, confirms an August 27 PS5 launch with a new gameplay walkthrough and Deluxe Edition.",
+      "image": "https://otahub.asia/assets/img/news-lous-lagoon-ps5-august-27.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/magical-buffs-fate-rewinder-crunchyroll",
+      "url": "https://otahub.asia/en/magical-buffs-fate-rewinder-crunchyroll",
+      "title": "Crunchyroll Confirms Magical Buffs, Fate Rewinder After AX 2026",
+      "summary": "Crunchyroll confirms Magical Buffs (Jan. 2027) and Fate Rewinder (Apr. 2027) at its July 3 Anime Expo 2026 showcase at the Peacock Theater in Los Angeles.",
+      "image": "https://otahub.asia/assets/img/news-magical-buffs-fate-rewinder-crunchyroll.jpg",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    },
+    {
+      "id": "https://otahub.asia/en/manga-detail",
+      "url": "https://otahub.asia/en/manga-detail",
+      "title": "Manga Information",
+      "summary": "Scores, authors, genres, publication status, and full details about the manga/manhwa you're looking for, data continuously updated by OtaHub.",
+      "image": "https://otahub.asia/og-image.png",
+      "date_published": "2026-09-07T08:00:00+07:00"
+    }
+  ]
+}

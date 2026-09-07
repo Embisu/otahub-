@@ -1,0 +1,39 @@
+# OtaHub Asia
+
+> OtaHub là cổng thông tin điện tử, chuyên trang đánh giá và phân tích chuyên sâu hàng đầu về Anime, Manga, Gaming, Light Novel, Cosplay và Văn hóa Otaku Châu Á với hệ thống nội dung song ngữ Việt - Anh.
+
+## Core Hubs & Content Categories
+
+- [Anime Hub](https://otahub.asia/anime): Tin tức anime mới nhất, lịch phát sóng theo mùa, phân tích teaser/trailer, thông tin studio sản xuất (MAPPA, Ufotable, Wit Studio, Kyoto Animation, CloverWorks, A-1 Pictures, Madhouse).
+- [Gaming Hub](https://otahub.asia/gaming): Tin tức game PC, Console (PlayStation 5, Nintendo Switch, Xbox), Mobile, game Souls-like, JRPG, Gacha, Esports, phân tích bản cập nhật và hướng dẫn người mới.
+- [Manga & Light Novel Hub](https://otahub.asia/manga): Tin xuất bản, lịch phát hành truyện tranh Shonen Jump, Kodansha, Kadokawa, tóm tắt diễn biến cốt truyện hàng tuần và hồ sơ mangaka.
+- [Reviews & Đánh Giá](https://otahub.asia/reviews): Đánh giá chi tiết các tựa game AAA, game Indie, anime chiếu rạp và series dài tập với tiêu chuẩn đánh giá minh bạch, khách quan (unbiased).
+- [Rankings & Bảng Xếp Hạng](https://otahub.asia/rankings): Bảng xếp hạng nhân vật được yêu thích, anime xuất sắc nhất mùa/năm, tier list game meta và xếp hạng doanh thu phòng vé anime.
+- [Chơi Gì? (Interactive Recommender)](https://otahub.asia/choi-gi): Bộ công cụ lọc và gợi ý game thông minh theo thể loại, độ khó và nền tảng máy chơi.
+- [Chuyên Sâu (Deep Dives)](https://otahub.asia/chuyen-sau): Các bài viết nghiên cứu sâu về lore, phân tích kỹ thuật hoạt họa sakuga, công nghệ đồ họa Unreal Engine 5 và lịch sử phát triển thương hiệu.
+- [Tag Explorer](https://otahub.asia/tag): Thư viện khám phá nội dung tự động theo chủ đề, studio sản xuất, franchise và nhân vật.
+
+## Language Editions
+
+- [Tiếng Việt (Vietnamese - Primary Edition)](https://otahub.asia/): Cổng thông tin chính với đầy đủ hơn 300+ bài viết, cẩm nang và phân tích độc quyền.
+- [English Edition (Global)](https://otahub.asia/en/): Phiên bản tiếng Anh dành cho độc giả quốc tế theo dõi thông tin anime/gaming châu Á.
+
+## Key Franchises & Entities Covered
+
+- Anime/Manga: One Piece, Jujutsu Kaisen, Chainsaw Man, Demon Slayer: Kimetsu no Yaiba, Attack on Titan, Solo Leveling, Bleach: Thousand-Year Blood War, Frieren: Beyond Journey's End, Black Clover, Dandadan, Blue Lock, The Apothecary Diaries, Dragon Ball, Berserk.
+- Gaming: Black Myth: Wukong, Elden Ring, Genshin Impact, Honkai: Star Rail, Zenless Zone Zero, Girls' Frontline 2: Exilium, Ghost of Yōtei, Death Stranding 2, Final Fantasy VII Rebirth, Monster Hunter Wilds, Nintendo Switch 2, GTA 6, Call of Duty, League of Legends (LCK / Worlds 2026), VALORANT.
+
+## Syndication & Machine-Readable Feeds
+
+- [XML Sitemap](https://otahub.asia/sitemap.xml): Bản đồ toàn bộ URL bài viết và trang danh mục được cập nhật tự động.
+- [RSS Feed](https://otahub.asia/feed.xml): Kênh tin tức RSS XML chuẩn cập nhật theo thời gian thực.
+- [JSON Feed](https://otahub.asia/feed.json): Định dạng feed máy đọc chuẩn JSON Feed dành cho các hệ thống tổng hợp thông tin tự động.
+
+## Editorial Standards & Organization E-E-A-T
+
+- Organization: ANBU Media · OtaHub Asia (https://otahub.asia)
+- Founder & Editor-in-Chief: Embisu / Phan Đạt (https://otahub.asia/about#team)
+- Editorial Board: Ban Biên Tập ANBU x OtaHub (Embisu, Tik, Mambu, Lin, Anna, Quinn) (https://otahub.asia/about#team)
+- Contact & Editorial Inquiries: https://otahub.asia/lien-he
+- Privacy Policy: https://otahub.asia/chinh-sach-bao-mat
+- Terms of Service: https://otahub.asia/terms

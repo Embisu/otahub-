@@ -1203,6 +1203,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 }
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://otahub.asia/"},{"@type":"ListItem","position":2,"name":"${cat}","item":"https://otahub.asia/anime"},{"@type":"ListItem","position":3,"name":"OtaHub Admin","item":"https://otahub.asia/admin"}]}</script>
+<script src="/assets/search.js"></script>
 </head>
 <body>
 
@@ -1691,7 +1692,7 @@ function startApp() {
   const auditNav = document.getElementById('nav-auditlog');
   if (auditNav) auditNav.style.display = (CURRENT_USER.role === 'admin' || CURRENT_USER.role === 'editor') ? '' : 'none';
   const canEditSystem = CURRENT_USER.role === 'admin' || CURRENT_USER.role === 'editor';
-  ['nav-group-special-pages', 'nav-group-special-editors'].forEach((id) => {
+  ['nav-special-pages', 'nav-settings'].forEach((id) => {
     const group = document.getElementById(id);
     if (group) group.style.display = canEditSystem ? '' : 'none';
   });
@@ -2037,22 +2038,51 @@ function mediaConfirmInsert() {
 async function loadArticles(landOnDashboard) {
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải danh sách bài viết...</span></div>`);
   try {
-    const data = await ghGet('assets/search.js');
-    const js = decodeURIComponent(escape(atob(data.content)));
-    const m = js.match(/var IDX\s*=\s*(\[[\s\S]*?\]);/);
-    if (!m) throw new Error('Không đọc được danh sách bài viết từ assets/search.js');
-    const idx = new Function('return ' + m[1])();
+    let js = '';
+    try {
+      const data = await ghGet('assets/search.js');
+      js = decodeURIComponent(escape(atob(data.content)));
+    } catch(err) {
+      try {
+        const r = await fetch('/assets/search.js');
+        if (r.ok) js = await r.text();
+      } catch(e) {}
+    }
+    let idx = null;
+    if (js) {
+      const m = js.match(/(?:var|window\.)?\s*IDX\s*=\s*(\[[\s\S]*?\]);/m);
+      if (m) {
+        try { idx = new Function('return ' + m[1])(); } catch(e) {}
+      }
+      if (!idx) {
+        try {
+          const fn = new Function('window', js + '; return window.IDX;');
+          const fakeWin = {};
+          idx = fn(fakeWin);
+        } catch(e) {}
+      }
+    }
+    if ((!idx || !Array.isArray(idx)) && typeof window !== 'undefined' && Array.isArray(window.IDX)) {
+      idx = window.IDX;
+    }
+    if (!idx || !Array.isArray(idx)) {
+      throw new Error('Không đọc được danh sách bài viết từ assets/search.js');
+    }
     const SKIP_CATS = new Set(['Chuyên mục','Trang']);
     ARTICLES = idx
-      .filter(e => e.u && e.u.indexOf('?') === -1 && !SKIP_CATS.has(e.c) && !e.u.startsWith('/en/'))
+      .filter(e => {
+        const u = e.url || e.u;
+        const c = e.cat || e.c;
+        return u && u.indexOf('?') === -1 && !SKIP_CATS.has(c) && !u.startsWith('/en/');
+      })
       .map(e => ({
-        file: e.u.replace(/^\//,'') + '.html',
+        file: (e.url || e.u).replace(/^\//,'').replace(/\.html$/, '') + '.html',
         sha: null,
-        title: e.t || e.u,
-        desc: e.s || '',
-        hero: '',
-        cat: e.c || 'Gaming',
-        date: '',
+        title: e.title || e.t || (e.url || e.u),
+        desc: e.excerpt || e.s || '',
+        hero: e.img || e.hero || '',
+        cat: e.cat || e.c || 'Gaming',
+        date: e.date || '',
       }));
     document.getElementById('article-count').textContent = ARTICLES.length;
     refreshDraftFiles().then(() => {
@@ -3112,15 +3142,50 @@ async function renderSeoDashboard() {
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải danh sách bài viết...</span></div>`);
   try {
     if (!ARTICLES.length) {
-      const data = await ghGet('assets/search.js');
-      const js = decodeURIComponent(escape(atob(data.content)));
-      const m = js.match(/var IDX\s*=\s*(\[[\s\S]*?\]);/);
-      if (m) {
-        const idx = new Function('return ' + m[1])();
+      let js = '';
+      try {
+        const data = await ghGet('assets/search.js');
+        js = decodeURIComponent(escape(atob(data.content)));
+      } catch(err) {
+        try {
+          const r = await fetch('/assets/search.js');
+          if (r.ok) js = await r.text();
+        } catch(e) {}
+      }
+      let idx = null;
+      if (js) {
+        const m = js.match(/(?:var|window\.)?\s*IDX\s*=\s*(\[[\s\S]*?\]);/m);
+        if (m) {
+          try { idx = new Function('return ' + m[1])(); } catch(e) {}
+        }
+        if (!idx) {
+          try {
+            const fn = new Function('window', js + '; return window.IDX;');
+            const fakeWin = {};
+            idx = fn(fakeWin);
+          } catch(e) {}
+        }
+      }
+      if ((!idx || !Array.isArray(idx)) && typeof window !== 'undefined' && Array.isArray(window.IDX)) {
+        idx = window.IDX;
+      }
+      if (idx && Array.isArray(idx)) {
         const SKIP_CATS = new Set(['Chuyên mục', 'Trang']);
         ARTICLES = idx
-          .filter(e => e.u && e.u.indexOf('?') === -1 && !SKIP_CATS.has(e.c) && !e.u.startsWith('/en/'))
-          .map(e => ({ file: e.u.replace(/^\//, '') + '.html', sha: null, title: e.t || e.u, desc: e.s || '', hero: '', cat: e.c || 'Gaming', date: '' }));
+          .filter(e => {
+            const u = e.url || e.u;
+            const c = e.cat || e.c;
+            return u && u.indexOf('?') === -1 && !SKIP_CATS.has(c) && !u.startsWith('/en/');
+          })
+          .map(e => ({
+            file: (e.url || e.u).replace(/^\//, '').replace(/\.html$/, '') + '.html',
+            sha: null,
+            title: e.title || e.t || (e.url || e.u),
+            desc: e.excerpt || e.s || '',
+            hero: e.img || e.hero || '',
+            cat: e.cat || e.c || 'Gaming',
+            date: e.date || ''
+          }));
       }
     }
   } catch(e) { /* dùng ARTICLES đã cache nếu có, hoặc mảng rỗng — vẫn render được khung trang */ }
@@ -4153,11 +4218,30 @@ function newArticle(prefillTitle) {
   "image": "${heroImg}",
   "datePublished": "${iso}",
   "dateModified": "${iso}",
-  "author": { "@type": "Organization", "name": "OtaHub Editorial", "url": "https://otahub.asia" },
-  "publisher": { "@type": "Organization", "name": "OtaHub", "url": "https://otahub.asia", "logo": { "@type": "ImageObject", "url": "https://otahub.asia/favicon-192.png" } },
+  "inLanguage": "vi",
   "mainEntityOfPage": { "@type": "WebPage", "@id": "${url}" },
-  "keywords": "",
-  "inLanguage": "vi"
+  "author": {
+    "@type": "Person",
+    "name": "OtaHub Editorial",
+    "url": "https://otahub.asia/about",
+    "jobTitle": "Editorial Board",
+    "worksFor": {
+      "@type": "Organization",
+      "@id": "https://otahub.asia/#organization",
+      "name": "OtaHub",
+      "url": "https://otahub.asia"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://otahub.asia/#organization",
+    "name": "OtaHub",
+    "url": "https://otahub.asia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://otahub.asia/favicon-192.png"
+    }
+  }
 }
 <\/script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -5703,8 +5787,8 @@ async function syncNewArticle(meta) {
   } catch(e) { results.push('❌ index.html — ' + e.message); }
 
   try {
-    const entry = JSON.stringify({ u: url, t: meta.title, c: meta.cat, s: (meta.desc || '').slice(0, 150) }) + ',';
-    await ghSpliceInsert('assets/search.js', /var IDX=\[/, entry, true, `[admin] them bai moi vao search index: ${meta.title.slice(0, 50)}`);
+    const entry = JSON.stringify({ url: url, title: meta.title, cat: meta.cat, excerpt: (meta.desc || '').slice(0, 150), img: hero || '', date: isoDate, tags: [] }) + ',';
+    await ghSpliceInsert('assets/search.js', /(?:var|window\.)?\s*IDX\s*=\s*\[/, entry, true, `[admin] them bai moi vao search index: ${meta.title.slice(0, 50)}`);
     results.push('✅ search.js');
   } catch(e) { results.push('❌ search.js — ' + e.message); }
 
@@ -6745,12 +6829,20 @@ async function syncNewArticle(art) {
     toast('success', '🔍 Đang cập nhật chỉ mục tìm kiếm...');
     const searchData = await ghGet('assets/search.js');
     let searchJs = decodeURIComponent(escape(atob(searchData.content)));
-    const searchMatch = searchJs.match(/var IDX\s*=\s*(\[[\s\S]*?\]);/);
+    const searchMatch = searchJs.match(/(?:var|window\.)?\s*IDX\s*=\s*(\[[\s\S]*?\]);/m);
     if (searchMatch) {
       let idxList = new Function('return ' + searchMatch[1])();
-      idxList = idxList.filter(item => item.u !== `/${slug}` && item.u !== `/${slug}.html`);
-      idxList.unshift({ u: `/${slug}`, c: cat || 'Gaming', t: title, s: desc || '' });
-      searchJs = searchJs.replace(/var IDX\s*=\s*\[[\s\S]*?\];/, `var IDX = ${JSON.stringify(idxList, null, 2)};`);
+      idxList = idxList.filter(item => (item.url || item.u) !== `/${slug}` && (item.url || item.u) !== `/${slug}.html`);
+      idxList.unshift({
+        title: title,
+        url: `/${slug}`,
+        cat: cat || 'Gaming',
+        date: new Date().toISOString().split('T')[0],
+        excerpt: desc || '',
+        img: hero || '',
+        tags: []
+      });
+      searchJs = searchJs.replace(/(?:var|window\.)?\s*IDX\s*=\s*\[[\s\S]*?\];/, `window.IDX = ${JSON.stringify(idxList, null, 2)};`);
       await ghPut('assets/search.js', searchJs, searchData.sha, `[admin] cap nhat search index cho /${slug}`);
     }
 

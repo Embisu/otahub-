@@ -98,47 +98,50 @@
 
 
 <script type="application/ld+json">
-
-
 {
-
-
   "@context": "https://schema.org",
-
-
-  "@type": "AboutPage",
-
-
-  "name": "Giới thiệu",
-
-
-  "url": "https://otahub.asia/about",
-
-
-  "description": "OtaHub là hub tin tức Gaming, Anime và Manga châu Á. Tin nhanh, review chuyên sâu, không bias, từ team yêu game và anime thực sự.",
-
-
-  "inLanguage": "vi",
-
-
-  "isPartOf": {
-
-
-    "@type": "WebSite",
-
-
-    "name": "OtaHub",
-
-
-    "url": "https://otahub.asia"
-
-
-  }
-
-
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://otahub.asia/#organization",
+      "name": "OtaHub",
+      "alternateName": "OtaHub Asia",
+      "url": "https://otahub.asia",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://otahub.asia/#logo",
+        "url": "https://otahub.asia/favicon-192.png",
+        "width": 192,
+        "height": 192,
+        "caption": "OtaHub"
+      },
+      "image": "https://otahub.asia/og-image.png",
+      "sameAs": [
+        "https://twitter.com/OtaHubAsia",
+        "https://facebook.com/otahubasia"
+      ],
+      "description": "OtaHub là chuyên trang tin tức, đánh giá và phân tích chuyên sâu về Gaming, Anime, Manga, Light Novel và Văn hóa Otaku Châu Á.",
+      "publishingPrinciples": "https://otahub.asia/terms"
+    },
+    {
+      "@type": "AboutPage",
+      "@id": "https://otahub.asia/about#webpage",
+      "url": "https://otahub.asia/about",
+      "name": "Giới thiệu về OtaHub",
+      "description": "OtaHub là hub tin tức Gaming, Anime và Manga châu Á. Tin nhanh, review chuyên sâu, không bias, từ team yêu game và anime thực sự.",
+      "inLanguage": "vi",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://otahub.asia/#website",
+        "name": "OtaHub",
+        "url": "https://otahub.asia"
+      },
+      "about": {
+        "@id": "https://otahub.asia/#organization"
+      }
+    }
+  ]
 }
-
-
 </script>
 
 
@@ -1669,188 +1672,86 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 <div class="wrap rv" id="team">
-
-
-  <div class="sec-h"><span class="sec-t">Đội <em>ngũ</em></span><div class="sec-l"></div></div>
-
-
+  <div class="sec-h"><span class="sec-t">Đội ngũ <em>ANBU x OtaHub</em></span><div class="sec-l"></div></div>
   <div class="team-grid">
-
-
-
-
-
     <div class="team-card">
-
-
       <div class="tc-img">
-
-
-        <img src="/assets/img/3fd1252c85-img.jpg" alt="Nguyễn Minh Khôi" width="400" height="400" fetchpriority="high" decoding="async">
-
-
+        <img src="/assets/img/team/embisu.jpg" alt="Embisu (Phan Đạt)" width="400" height="400" fetchpriority="high" decoding="async">
         <div class="tc-grad"></div>
-
-
-        <span class="tc-role-badge">Editor-in-Chief</span>
-
-
+        <span class="tc-role-badge">Founder &amp; Editor-in-Chief</span>
       </div>
-
-
       <div class="tc-body">
-
-
-        <div class="tc-name">Nguyễn Minh Khôi</div>
-
-
-        <div class="tc-role">Editor-in-Chief · Game PC</div>
-
-
-        <div class="tc-bio">10 năm kinh nghiệm viết về game châu Á. Chuyên sâu FromSoftware, Capcom và indie game Nhật Bản.</div>
-
-
-
-
-
+        <div class="tc-name">Embisu (Phan Đạt)</div>
+        <div class="tc-role">Founder &amp; Tổng Biên Tập</div>
+        <div class="tc-bio">Sáng lập viên ANBU &amp; OtaHub. Hơn 10 năm kinh nghiệm nghiên cứu thị trường Game, Anime và chiến lược nội dung số Châu Á.</div>
       </div>
-
-
     </div>
 
-
-
-
-
     <div class="team-card">
-
-
       <div class="tc-img">
-
-
-        <img src="/assets/img/6e3b80a2ff-img.jpg" alt="Trần Thu Hương" loading="lazy" width="400" height="400">
-
-
+        <img src="/assets/img/team/tik.jpg" alt="Tik (Khánh Quỳnh)" loading="lazy" width="400" height="400">
         <div class="tc-grad"></div>
-
-
-        <span class="tc-role-badge">Anime Editor</span>
-
-
+        <span class="tc-role-badge">Editorial Director</span>
       </div>
-
-
       <div class="tc-body">
-
-
-        <div class="tc-name">Trần Thu Hương</div>
-
-
-        <div class="tc-role">Senior Editor · Anime &amp; Manga</div>
-
-
-        <div class="tc-bio">Cựu biên tập Tạp chí Otaku VN. Đam mê slice-of-life, historical và psychological thriller anime.</div>
-
-
-
-
-
+        <div class="tc-name">Tik (Khánh Quỳnh)</div>
+        <div class="tc-role">Giám Đốc Biên Tập · Lead Editor</div>
+        <div class="tc-bio">Phụ trách định hướng nội dung, kiểm duyệt chất lượng bài viết phân tích, tin độc quyền và chuẩn hóa quy chuẩn E-E-A-T.</div>
       </div>
-
-
     </div>
 
-
-
-
-
     <div class="team-card">
-
-
       <div class="tc-img">
-
-
-        <img src="/assets/img/b13e592bf5-img.jpg" alt="Lê Quốc Bảo" loading="lazy" width="400" height="400">
-
-
+        <img src="/assets/img/team/manbu.jpg" alt="Mambu (Đức Anh)" loading="lazy" width="400" height="400">
         <div class="tc-grad"></div>
-
-
-        <span class="tc-role-badge">Mobile Editor</span>
-
-
+        <span class="tc-role-badge">Gaming &amp; Esports Lead</span>
       </div>
-
-
       <div class="tc-body">
-
-
-        <div class="tc-name">Lê Quốc Bảo</div>
-
-
-        <div class="tc-role">Editor · Mobile Gaming</div>
-
-
-        <div class="tc-bio">Chuyên gia gacha và mobile RPG châu Á. Đã review hơn 300 tựa mobile từ HoYoverse đến Kuro Games.</div>
-
-
-
-
-
+        <div class="tc-name">Mambu (Đức Anh)</div>
+        <div class="tc-role">Trưởng Ban Gaming &amp; Esports</div>
+        <div class="tc-bio">Chuyên gia phân tích chiến thuật, meta game RPG, Souls-like, gacha và theo dõi các giải đấu thể thao điện tử LCK, VCT, Worlds.</div>
       </div>
-
-
     </div>
 
-
-
-
-
     <div class="team-card">
-
-
       <div class="tc-img">
-
-
-        <img src="/assets/img/52f4761345-img.jpg" alt="Phạm Lan Anh" loading="lazy" width="400" height="400">
-
-
+        <img src="/assets/img/team/lin.jpg" alt="Lin (Khánh Linh)" loading="lazy" width="400" height="400">
         <div class="tc-grad"></div>
-
-
-        <span class="tc-role-badge">Manga Editor</span>
-
-
+        <span class="tc-role-badge">Manga &amp; Manhwa Lead</span>
       </div>
-
-
       <div class="tc-body">
-
-
-        <div class="tc-name">Phạm Lan Anh</div>
-
-
-        <div class="tc-role">Editor · Manga &amp; Manhwa</div>
-
-
-        <div class="tc-bio">Đọc manga từ năm 12 tuổi. Chuyên theo dõi Jump, Magazine và các manhwa fantasy Hàn Quốc.</div>
-
-
-
-
-
+        <div class="tc-name">Lin (Khánh Linh)</div>
+        <div class="tc-role">Biên Tập Viên Manga &amp; Manhwa</div>
+        <div class="tc-bio">Theo dõi sát sao các bảng xếp hạng Shonen Jump, Kodansha, Kadokawa và xu hướng Webtoon/Manhwa Hàn Quốc thịnh hành.</div>
       </div>
-
-
     </div>
 
+    <div class="team-card">
+      <div class="tc-img">
+        <img src="/assets/img/team/anna.jpg" alt="Anna (Vân Anh)" loading="lazy" width="400" height="400">
+        <div class="tc-grad"></div>
+        <span class="tc-role-badge">Anime &amp; Community Lead</span>
+      </div>
+      <div class="tc-body">
+        <div class="tc-name">Anna (Vân Anh)</div>
+        <div class="tc-role">Biên Tập Viên Anime &amp; Pop Culture</div>
+        <div class="tc-bio">Chuyên gia theo dõi lịch phát sóng anime theo mùa, đánh giá kỹ xảo hoạt họa Sakuga và các sự kiện triển lãm anime quốc tế.</div>
+      </div>
+    </div>
 
-
-
-
+    <div class="team-card">
+      <div class="tc-img">
+        <img src="/assets/img/team/quinn.png" alt="Quinn" loading="lazy" width="400" height="400">
+        <div class="tc-grad"></div>
+        <span class="tc-role-badge">Creative Lead</span>
+      </div>
+      <div class="tc-body">
+        <div class="tc-name">Quinn</div>
+        <div class="tc-role">Giám Đốc Sáng Tạo · Visual Designer</div>
+        <div class="tc-bio">Định hình phong cách đồ họa Cyberpunk / Neo-Tokyo, thiết kế visual key art và tối ưu hóa trải nghiệm đọc cho độc giả.</div>
+      </div>
+    </div>
   </div>
-
-
 </div>
 
 
