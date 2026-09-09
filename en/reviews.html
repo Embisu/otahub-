@@ -1019,6 +1019,21 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 
 <body>
 
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <input class="search-input" id="searchInput" type="text" placeholder="Search games, anime, manga...">
+    <button class="search-close" onclick="closeSearch()">✕</button>
+  </div>
+  <div class="search-hint">Press ESC to close · Ctrl+K to open</div>
+  <div class="search-tags">
+    <a href="/en/gaming" class="stag">Gaming</a>
+    <a href="/en/anime" class="stag">Anime</a>
+    <a href="/en/manga" class="stag">Manga</a>
+    <a href="/en/reviews" class="stag">Reviews</a>
+    <a href="/en/rankings" class="stag">Rankings</a>
+  </div>
+</div>
+
 
 <div id="ambient"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
 
@@ -1744,6 +1759,14 @@ function toggleMobileNav(){
 
 <script defer src="/assets/supabase-client.js"></script>
 <script defer src="/assets/otahub-community.js"></script>
+
+<script>
+function openSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.add('open');setTimeout(function(){var i=document.getElementById('searchInput');if(i)i.focus();},50);document.body.style.overflow='hidden';}}
+function closeSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.remove('open');var i=document.getElementById('searchInput');if(i)i.value='';document.body.style.overflow='';}}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSearch();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch();}});
+var _sO=document.getElementById('searchOverlay');if(_sO){_sO.addEventListener('click',function(e){if(e.target===this)closeSearch();});}
+</script>
+
 </body>
 
 

@@ -741,10 +741,13 @@ body {
 .media-modal-box {
   background: #ffffff;
   border-radius: 8px;
-  max-width: 580px;
+  max-width: 680px;
   width: 100%;
   box-shadow: 0 20px 50px rgba(0,0,0,.4);
   overflow: hidden;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
 }
 .media-modal-head {
   padding: 12px 18px;
@@ -753,27 +756,34 @@ body {
   align-items: center;
   justify-content: space-between;
   background: #f6f7f7;
+  flex-shrink: 0;
 }
-.media-modal-tabs { display: flex; gap: 8px; }
+.media-modal-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
 .media-tab {
   background: none;
   border: 1px solid transparent;
-  padding: 4px 10px;
+  padding: 5px 12px;
   font-size: 12px;
   font-weight: 600;
   border-radius: 4px;
   cursor: pointer;
+  color: var(--wp-text);
+  transition: all .15s;
 }
-.media-tab.active { background: #ffffff; border-color: var(--wp-border); color: var(--wp-blue); }
+.media-tab:hover { color: var(--wp-blue); }
+.media-tab.active { background: #ffffff; border-color: var(--wp-border); color: var(--wp-blue); box-shadow: 0 1px 3px rgba(0,0,0,.08); }
 .media-modal-close { background: none; border: none; font-size: 16px; cursor: pointer; color: var(--wp-muted); }
-.media-modal-body { padding: 18px; }
+.media-modal-close:hover { color: var(--wp-red); }
+.media-modal-body { padding: 18px; overflow-y: auto; flex: 1; min-height: 240px; }
 .media-modal-foot {
   padding: 12px 18px;
   border-top: 1px solid var(--wp-border);
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 8px;
   background: #f6f7f7;
+  flex-shrink: 0;
 }
 .media-modal-preview {
   margin-top: 12px;
@@ -788,6 +798,152 @@ body {
   overflow: hidden;
 }
 .media-modal-preview img { max-width: 100%; max-height: 220px; object-fit: cover; }
+.media-modal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+  gap: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 4px;
+  margin-top: 10px;
+  border: 1px solid var(--wp-border);
+  border-radius: 6px;
+  background: #fbfbfb;
+}
+.media-modal-thumb-item {
+  position: relative;
+  aspect-ratio: 16/10;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 2px solid var(--wp-border);
+  cursor: pointer;
+  background: #fff;
+  transition: all .15s;
+}
+.media-modal-thumb-item:hover {
+  border-color: var(--wp-blue);
+  transform: scale(1.02);
+}
+.media-modal-thumb-item.selected {
+  border-color: var(--wp-blue);
+  box-shadow: 0 0 0 2px var(--wp-blue);
+}
+.media-modal-thumb-item.selected::after {
+  content: '✓';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: var(--wp-blue);
+  color: #fff;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 800;
+}
+.media-modal-thumb-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.media-modal-thumb-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,.75);
+  color: #fff;
+  font-size: 9.5px;
+  padding: 3px 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.media-dropzone {
+  border: 2px dashed #ccd0d4;
+  border-radius: 10px;
+  padding: 36px 20px;
+  text-align: center;
+  background: #fafafa;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.media-dropzone:hover, .media-dropzone.dragover {
+  border-color: var(--wp-blue);
+  background: #f0f6fc;
+}
+
+/* Link Inserter Suggestions & Tables */
+.link-sug-box {
+  max-height: 180px;
+  overflow-y: auto;
+  border: 1px solid var(--wp-border);
+  border-radius: 6px;
+  margin-top: 6px;
+  background: #fafafa;
+}
+.link-sug-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-bottom: 1px solid #f0f0f1;
+  cursor: pointer;
+  transition: background .12s ease;
+}
+.link-sug-item:last-child { border-bottom: none; }
+.link-sug-item:hover, .link-sug-item.selected { background: #e8f3fc; }
+.link-sug-cat {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: #2271b1;
+  color: #fff;
+  flex-shrink: 0;
+}
+.link-sug-title {
+  font-size: 12.5px;
+  color: var(--wp-text);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+.link-sug-url { font-size: 11px; color: var(--wp-muted); flex-shrink: 0; }
+
+.art-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 16px 0;
+  border-radius: 8px;
+  border: 1px solid var(--wp-border);
+  background: #fff;
+}
+.art-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+  color: var(--wp-text);
+}
+.art-table th {
+  background: #f0f6fc;
+  color: var(--wp-blue);
+  font-weight: 700;
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--wp-border);
+}
+.art-table td {
+  padding: 8px 14px;
+  border-bottom: 1px solid #f0f0f1;
+}
+.art-table tr:last-child td { border-bottom: none; }
+.art-table tr:hover td { background: #fafafa; }
 
 /* Command Palette */
 .cmdk-box {
@@ -1374,37 +1530,137 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 <div id="toast"></div>
 <input type="file" id="global-upload-input" accept="image/*" style="display:none" onchange="handleGlobalUpload(this)"/>
 
-<!-- Media Inserter (kiểu "Add Media" WordPress) — dùng chung cho toolbar Trực
-     quan và các khối Ảnh/Video trong chế độ Khối. -->
+<!-- Media Inserter (kiểu "Add Media" WordPress) — Đầy đủ Thư viện / Tải lên / URL / Video -->
 <div class="media-modal-ov" id="media-modal-ov" onclick="if(event.target===this)closeMediaModal()">
   <div class="media-modal-box">
     <div class="media-modal-head">
       <div class="media-modal-tabs">
-        <button class="media-tab active" id="media-tab-image" onclick="mediaSwitchTab('image')">🖼️ Ảnh</button>
+        <button class="media-tab active" id="media-tab-library" onclick="mediaSwitchTab('library')">📁 Thư viện Media</button>
+        <button class="media-tab" id="media-tab-upload" onclick="mediaSwitchTab('upload')">📤 Tải ảnh từ máy</button>
+        <button class="media-tab" id="media-tab-url" onclick="mediaSwitchTab('url')">🔗 Dán URL ảnh</button>
         <button class="media-tab" id="media-tab-video" onclick="mediaSwitchTab('video')">🎬 Video</button>
       </div>
       <button class="media-modal-close" onclick="closeMediaModal()">✕</button>
     </div>
     <div class="media-modal-body">
-      <div id="media-panel-image">
-        <div class="media-modal-row">
-          <button class="btn btn-secondary btn-sm" onclick="mediaTriggerUpload()">📤 Tải ảnh lên từ máy</button>
-          <span class="media-modal-or">hoặc dán URL ảnh:</span>
+      <!-- 1. Tab Thư viện Media -->
+      <div id="media-panel-library">
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
+          <input class="form-input" id="media-modal-search" placeholder="🔍 Tìm kiếm ảnh trong thư viện..." oninput="renderMediaModalLibrary()"/>
+          <button class="btn btn-secondary btn-sm" onclick="mediaTriggerUpload()">📤 Tải ảnh mới</button>
         </div>
+        <div class="media-modal-grid" id="media-modal-grid">
+          <div style="grid-column:1/-1;padding:24px;text-align:center;color:var(--wp-muted)">Đang tải thư viện ảnh...</div>
+        </div>
+        <div style="margin-top:12px;display:flex;gap:10px">
+          <input class="form-input" id="media-img-alt" placeholder="Alt text (Mô tả ảnh cho SEO)" style="flex:1"/>
+          <input class="form-input" id="media-img-caption" placeholder="Chú thích ảnh (tuỳ chọn)" style="flex:1"/>
+        </div>
+      </div>
+
+      <!-- 2. Tab Tải ảnh lên -->
+      <div id="media-panel-upload" style="display:none">
+        <div class="media-dropzone" id="media-modal-dropzone" ondragover="event.preventDefault()" ondrop="handleDropUpload(event)" onclick="document.getElementById('global-upload-input')?.click()">
+          <div style="font-size:36px;margin-bottom:8px">📤</div>
+          <strong style="font-size:14px;color:var(--wp-title)">Bấm để chọn file ảnh hoặc Kéo thả ảnh vào đây</strong>
+          <div style="font-size:11px;color:var(--wp-muted);margin-top:6px">Hỗ trợ JPG, PNG, WEBP, GIF tối đa 8MB</div>
+        </div>
+      </div>
+
+      <!-- 3. Tab Dán URL ảnh -->
+      <div id="media-panel-url" style="display:none">
+        <label class="form-label" style="margin-top:0">Đường dẫn URL ảnh (Link trực tiếp)</label>
         <input class="form-input" id="media-img-url" placeholder="https://..." oninput="mediaUpdatePreview()"/>
         <div class="media-modal-preview" id="media-img-preview"><div class="media-preview-empty">Chưa có ảnh</div></div>
-        <input class="form-input" id="media-img-alt" placeholder="Alt text (mô tả ảnh — quan trọng cho SEO)" style="margin-top:10px"/>
-        <input class="form-input" id="media-img-caption" placeholder="Chú thích ảnh (tuỳ chọn)" style="margin-top:10px"/>
       </div>
+
+      <!-- 4. Tab Video -->
       <div id="media-panel-video" style="display:none">
-        <input class="form-input" id="media-video-url" placeholder="Dán link YouTube hoặc Vimeo..." oninput="mediaUpdateVideoPreview()"/>
-        <div class="media-modal-preview" id="media-video-preview"><div class="media-preview-empty">Dán link để xem trước</div></div>
+        <label class="form-label" style="margin-top:0">Link YouTube hoặc Vimeo</label>
+        <input class="form-input" id="media-video-url" placeholder="https://www.youtube.com/watch?v=..." oninput="mediaUpdateVideoPreview()"/>
+        <div class="media-modal-preview" id="media-video-preview"><div class="media-preview-empty">Dán link video để xem trước</div></div>
         <input class="form-input" id="media-video-caption" placeholder="Chú thích video (tuỳ chọn)" style="margin-top:10px"/>
       </div>
     </div>
     <div class="media-modal-foot">
       <button class="btn btn-secondary" onclick="closeMediaModal()">Huỷ</button>
-      <button class="btn btn-primary" onclick="mediaConfirmInsert()">✓ Chèn vào bài</button>
+      <button class="btn btn-primary" onclick="mediaConfirmInsert()">✓ Chọn / Chèn ảnh</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Chỉnh sửa & Xóa ảnh trong thân bài viết -->
+<div class="media-modal-ov" id="image-edit-modal-ov" onclick="if(event.target===this)closeImageEditModal()">
+  <div class="media-modal-box" style="max-width:540px">
+    <div class="media-modal-head">
+      <strong style="font-size:13.5px">🖼️ Chỉnh sửa / Xóa Ảnh trong bài</strong>
+      <button class="media-modal-close" onclick="closeImageEditModal()">✕</button>
+    </div>
+    <div class="media-modal-body">
+      <div style="display:flex;gap:14px;align-items:flex-start">
+        <div style="width:140px;height:100px;border-radius:6px;overflow:hidden;border:1px solid var(--wp-border);background:var(--wp-bg);flex-shrink:0">
+          <img id="ied-preview" src="" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.src='/favicon-192.png'">
+        </div>
+        <div style="flex:1;min-width:0">
+          <label class="form-label" style="margin-top:0">Đổi ảnh khác:</label>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="iedChangeFromLibrary()">📁 Thư viện Media</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="iedUploadNew()">📤 Tải ảnh mới</button>
+          </div>
+        </div>
+      </div>
+      <label class="form-label" style="margin-top:12px">URL ảnh</label>
+      <input class="form-input" id="ied-src" placeholder="https://..." oninput="document.getElementById('ied-preview').src = this.value"/>
+      <label class="form-label" style="margin-top:10px">Alt text (Mô tả ảnh cho SEO & Google Images)</label>
+      <input class="form-input" id="ied-alt" placeholder="Mô tả nội dung bức ảnh..."/>
+      <label class="form-label" style="margin-top:10px">Chú thích ảnh (Caption)</label>
+      <input class="form-input" id="ied-caption" placeholder="Chú thích hiển thị dưới ảnh..."/>
+    </div>
+    <div class="media-modal-foot" style="justify-content:space-between">
+      <button class="btn btn-danger" onclick="iedDeleteImage()">🗑️ Xóa ảnh khỏi bài</button>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-secondary" onclick="closeImageEditModal()">Hủy</button>
+        <button class="btn btn-primary" onclick="iedSaveImage()">✓ Cập nhật</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Chèn / Sửa Liên kết (Link Inserter & Internal Link Search) -->
+<div class="media-modal-ov" id="link-modal-ov" onclick="if(event.target===this)closeLinkModal()">
+  <div class="media-modal-box" style="max-width:540px">
+    <div class="media-modal-head">
+      <strong style="font-size:13.5px">🔗 Chèn / Sửa Liên kết</strong>
+      <button class="media-modal-close" onclick="closeLinkModal()">✕</button>
+    </div>
+    <div class="media-modal-body">
+      <label class="form-label" style="margin-top:0">Đường dẫn URL liên kết</label>
+      <input class="form-input" id="link-url" placeholder="https://... hoặc /ten-bai-viet" oninput="linkUrlChanged()"/>
+
+      <label class="form-label" style="margin-top:10px">Văn bản hiển thị (Anchor text)</label>
+      <input class="form-input" id="link-text" placeholder="Chữ hiển thị của liên kết..."/>
+
+      <div style="margin-top:14px;border-top:1px solid var(--wp-border);padding-top:12px">
+        <label class="form-label" style="margin-top:0">🔍 Tìm bài viết trên OtaHub để gắn link nội bộ (Internal SEO Link):</label>
+        <input class="form-input" id="link-search" placeholder="Gõ tên game, anime hoặc từ khóa..." oninput="renderLinkArticleList()"/>
+        <div class="link-sug-box" id="link-sug-box"></div>
+      </div>
+
+      <div style="margin-top:14px;display:flex;gap:18px;flex-wrap:wrap">
+        <label style="display:flex;align-items:center;gap:6px;font-size:12px;cursor:pointer">
+          <input type="checkbox" id="link-target-blank" checked/> Mở trong tab mới (<code>target="_blank"</code>)
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12px;cursor:pointer">
+          <input type="checkbox" id="link-rel-nofollow"/> Gắn <code>rel="nofollow"</code> (Link tài trợ/ngoài)
+        </label>
+      </div>
+    </div>
+    <div class="media-modal-foot" style="justify-content:space-between">
+      <button class="btn btn-danger" id="link-btn-remove" onclick="linkRemove()" style="display:none">🗑️ Gỡ liên kết</button>
+      <div style="display:flex;gap:8px;margin-left:auto">
+        <button class="btn btn-secondary" onclick="closeLinkModal()">Hủy</button>
+        <button class="btn btn-primary" onclick="linkConfirmInsert()">✓ Áp dụng link</button>
+      </div>
     </div>
   </div>
 </div>
@@ -1485,15 +1741,32 @@ function confirmDiscardUnsaved() {
 }
 
 // Phím tắt Ctrl/Cmd+S để lưu nhanh — bấm nút "Lưu & Deploy" đang hiển thị (nếu có)
-// Phím tắt Ctrl/Cmd+K để mở Command Palette (tìm nhanh, kiểu Linear/Vercel/Notion)
+// Phím tắt Ctrl/Cmd+K để mở Link Modal khi đang soạn thảo hoặc mở Command Palette
 document.addEventListener('keydown', (e) => {
   if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
+    e.preventDefault();
     const saveBtn = document.getElementById('save-btn');
-    if (saveBtn) { e.preventDefault(); saveBtn.click(); }
+    if (saveBtn) { saveBtn.click(); }
+    else if (currentFile) { saveArticle(); }
   }
   if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
     e.preventDefault();
-    openCmdk();
+    const activeEl = document.activeElement;
+    const isEditorActive = activeEl && (
+      activeEl.id === 'body-visual' ||
+      activeEl.id === 'body-textarea' ||
+      activeEl.closest?.('#body-blocks-editor') ||
+      activeEl.closest?.('#body-visual-wrap') ||
+      activeEl.closest?.('#art-preview-wrap')
+    );
+    const selText = window.getSelection ? window.getSelection().toString() : '';
+    if (isEditorActive || (currentFile && selText)) {
+      if (BODY_MODE === 'visual') visLink();
+      else if (BODY_MODE === 'code') wrapLink();
+      else openLinkModal({ text: selText, url: '' });
+    } else {
+      openCmdk();
+    }
   }
 });
 
@@ -1870,19 +2143,21 @@ async function handleGlobalUpload(inputEl) {
 // Dùng chung cho toolbar Trực quan (chèn tại vị trí con trỏ) và các khối
 // Ảnh/Video trong chế độ Khối (kéo-thả) — thay cho prompt() cũ, cho xem
 // trước ảnh/video ngay trong modal trước khi chèn.
-let MEDIA_MODAL_TAB = 'image';
+let MEDIA_MODAL_TAB = 'library';
 let MEDIA_MODAL_CB = null;
+let MEDIA_MODAL_SELECTED_IMG = null;
 
 function openMediaModal(cb, defaultTab) {
   MEDIA_MODAL_CB = cb;
+  MEDIA_MODAL_SELECTED_IMG = null;
   const img = document.getElementById('media-img-url'), alt = document.getElementById('media-img-alt'),
         cap = document.getElementById('media-img-caption'), vid = document.getElementById('media-video-url'),
-        vcap = document.getElementById('media-video-caption');
+        vcap = document.getElementById('media-video-caption'), search = document.getElementById('media-modal-search');
   if (img) img.value = ''; if (alt) alt.value = ''; if (cap) cap.value = '';
-  if (vid) vid.value = ''; if (vcap) vcap.value = '';
+  if (vid) vid.value = ''; if (vcap) vcap.value = ''; if (search) search.value = '';
   mediaUpdatePreview();
   mediaUpdateVideoPreview();
-  mediaSwitchTab(defaultTab || 'image');
+  mediaSwitchTab(defaultTab || 'library');
   document.getElementById('media-modal-ov')?.classList.add('open');
 }
 function closeMediaModal() {
@@ -1965,21 +2240,94 @@ function closeHistoryModal() {
 }
 function mediaSwitchTab(tab) {
   MEDIA_MODAL_TAB = tab;
-  document.getElementById('media-tab-image')?.classList.toggle('active', tab === 'image');
-  document.getElementById('media-tab-video')?.classList.toggle('active', tab === 'video');
-  const pi = document.getElementById('media-panel-image'), pv = document.getElementById('media-panel-video');
-  if (pi) pi.style.display = tab === 'image' ? 'block' : 'none';
-  if (pv) pv.style.display = tab === 'video' ? 'block' : 'none';
+  ['library', 'upload', 'url', 'video'].forEach(t => {
+    document.getElementById(`media-tab-${t}`)?.classList.toggle('active', tab === t);
+    const panel = document.getElementById(`media-panel-${t}`);
+    if (panel) panel.style.display = tab === t ? 'block' : 'none';
+  });
+  if (tab === 'library') {
+    renderMediaModalLibrary();
+  }
 }
+
+async function renderMediaModalLibrary() {
+  const grid = document.getElementById('media-modal-grid');
+  if (!grid) return;
+  if (!MEDIA_FILES) {
+    grid.innerHTML = '<div style="grid-column:1/-1;padding:28px;text-align:center;color:var(--wp-muted)"><div class="spinner" style="margin:0 auto 10px"></div>Đang tải thư viện ảnh...</div>';
+    try {
+      await loadMediaFiles();
+    } catch(e) {
+      grid.innerHTML = `<div style="grid-column:1/-1;padding:20px;text-align:center;color:var(--wp-red)">⚠️ Lỗi tải thư viện: ${esc(e.message)}</div>`;
+      return;
+    }
+  }
+  const q = (document.getElementById('media-modal-search')?.value || '').toLowerCase().trim();
+  const list = q ? MEDIA_FILES.filter(f => f.name.toLowerCase().includes(q)) : MEDIA_FILES;
+  if (!list.length) {
+    grid.innerHTML = '<div style="grid-column:1/-1;padding:28px;text-align:center;color:var(--wp-muted)">Không tìm thấy ảnh nào khớp với từ khóa tìm kiếm.</div>';
+    return;
+  }
+  grid.innerHTML = list.map(f => {
+    const isSel = MEDIA_MODAL_SELECTED_IMG && (MEDIA_MODAL_SELECTED_IMG.url === f.url || MEDIA_MODAL_SELECTED_IMG.url === f.path);
+    return `<div class="media-modal-thumb-item ${isSel ? 'selected' : ''}" onclick="mediaModalSelectImage('${esc(f.url)}', '${esc(f.name)}')" ondblclick="mediaModalSelectImage('${esc(f.url)}', '${esc(f.name)}'); mediaConfirmInsert();" title="${esc(f.name)}">
+      <img src="${esc(f.url)}" loading="lazy" alt="${esc(f.name)}" onerror="this.style.opacity=.2"/>
+      <div class="media-modal-thumb-name">${esc(f.name)}</div>
+    </div>`;
+  }).join('');
+}
+
+function mediaModalSelectImage(url, name) {
+  MEDIA_MODAL_SELECTED_IMG = { url, name };
+  const imgUrl = document.getElementById('media-img-url');
+  if (imgUrl) imgUrl.value = url;
+  const altInput = document.getElementById('media-img-alt');
+  if (altInput && !altInput.value) {
+    const cleanName = (name || url.split('/').pop() || '')
+      .replace(/\.[^.]+$/, '')
+      .replace(/[-_]+/g, ' ')
+      .trim();
+    altInput.value = cleanName;
+  }
+  // Update selected class in grid
+  document.querySelectorAll('.media-modal-thumb-item').forEach(item => {
+    const isThis = item.getAttribute('title') === name;
+    item.classList.toggle('selected', isThis);
+  });
+  mediaUpdatePreview();
+}
+
 function mediaTriggerUpload() {
-  triggerImageUpload(url => {
-    const el = document.getElementById('media-img-url');
-    if (el) el.value = url;
-    mediaUpdatePreview();
+  triggerImageUpload(async url => {
+    MEDIA_FILES = null;
+    await loadMediaFiles();
+    const fileName = url.split('/').pop();
+    mediaModalSelectImage(url, fileName);
+    mediaSwitchTab('library');
   });
 }
+
+async function handleDropUpload(e) {
+  e.preventDefault();
+  const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+  if (!file) return;
+  toast('success', '⏳ Đang tải ảnh lên...');
+  try {
+    const url = await uploadImageFile(file);
+    if (url) {
+      toast('success', '✅ Đã tải ảnh lên: ' + url.split('/').pop());
+      MEDIA_FILES = null;
+      await loadMediaFiles();
+      mediaModalSelectImage(url, file.name);
+      mediaSwitchTab('library');
+    }
+  } catch (err) {
+    toast('error', 'Lỗi tải ảnh: ' + err.message);
+  }
+}
+
 function mediaUpdatePreview() {
-  const url = (document.getElementById('media-img-url')?.value || '').trim();
+  const url = (document.getElementById('media-img-url')?.value || (MEDIA_MODAL_SELECTED_IMG && MEDIA_MODAL_SELECTED_IMG.url) || '').trim();
   const prev = document.getElementById('media-img-preview');
   if (!prev) return;
   if (!url) { prev.innerHTML = `<div class="media-preview-empty">Chưa có ảnh</div>`; return; }
@@ -1987,6 +2335,7 @@ function mediaUpdatePreview() {
   const img = prev.querySelector('img');
   if (img) img.onerror = () => { prev.innerHTML = `<div class="media-preview-empty">⚠️ Không tải được ảnh, kiểm tra lại URL</div>`; };
 }
+
 // Nhận diện link YouTube/Vimeo phổ biến (watch, shorts, youtu.be, embed, vimeo) → video ID để dựng iframe nhúng.
 function parseVideoUrl(url) {
   url = (url || '').trim();
@@ -1996,6 +2345,7 @@ function parseVideoUrl(url) {
   if (m) return { provider: 'vimeo', id: m[1], embedUrl: `https://player.vimeo.com/video/${m[1]}` };
   return null;
 }
+
 function mediaUpdateVideoPreview() {
   const url = document.getElementById('media-video-url')?.value || '';
   const prev = document.getElementById('media-video-preview');
@@ -2005,22 +2355,16 @@ function mediaUpdateVideoPreview() {
     ? `<div class="media-video-embed-wrap"><iframe src="${esc(v.embedUrl)}" frameborder="0" allowfullscreen loading="lazy"></iframe></div>`
     : (url ? `<div class="media-preview-empty">⚠️ Không nhận diện được link YouTube/Vimeo</div>` : `<div class="media-preview-empty">Dán link để xem trước</div>`);
 }
+
 // Wrapper responsive tự chứa (padding-bottom trick, không phụ thuộc CSS trang thật)
 // để nhúng được an toàn vào MỌI bài viết, kể cả ~150 bài cũ chưa có class video sẵn.
 function videoEmbedHtml(embedUrl, caption, forPreviewOnly) {
   return `<figure class="art-video-embed"><div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px${forPreviewOnly ? ';pointer-events:none' : ''}"><iframe src="${esc(embedUrl)}" title="Video" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>${caption ? `<figcaption${forPreviewOnly ? ' data-ohf="caption"' : ''}>${esc(caption)}</figcaption>` : ''}</figure>`;
 }
+
 function mediaConfirmInsert() {
   if (!MEDIA_MODAL_CB) { closeMediaModal(); return; }
-  if (MEDIA_MODAL_TAB === 'image') {
-    const src = (document.getElementById('media-img-url')?.value || '').trim();
-    if (!src) { toast('error', 'Chưa có ảnh để chèn'); return; }
-    const alt = (document.getElementById('media-img-alt')?.value || '').trim();
-    const caption = (document.getElementById('media-img-caption')?.value || '').trim();
-    const html = `<figure><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy">${caption ? `<figcaption>${esc(caption)}</figcaption>` : ''}</figure>`;
-    const cb = MEDIA_MODAL_CB; closeMediaModal();
-    cb({ kind: 'image', src, alt, caption, html });
-  } else {
+  if (MEDIA_MODAL_TAB === 'video') {
     const url = (document.getElementById('media-video-url')?.value || '').trim();
     const v = parseVideoUrl(url);
     if (!v) { toast('error', 'Link video không hợp lệ (chỉ hỗ trợ YouTube/Vimeo)'); return; }
@@ -2028,7 +2372,323 @@ function mediaConfirmInsert() {
     const html = videoEmbedHtml(v.embedUrl, caption, false);
     const cb = MEDIA_MODAL_CB; closeMediaModal();
     cb({ kind: 'video', provider: v.provider, embedUrl: v.embedUrl, caption, html });
+    return;
   }
+
+  let src = '';
+  if (MEDIA_MODAL_TAB === 'url') {
+    src = (document.getElementById('media-img-url')?.value || '').trim();
+  } else {
+    src = (MEDIA_MODAL_SELECTED_IMG && MEDIA_MODAL_SELECTED_IMG.url) || (document.getElementById('media-img-url')?.value || '').trim();
+  }
+
+  if (!src) { toast('error', 'Vui lòng chọn 1 ảnh từ Thư viện hoặc dán URL'); return; }
+  const alt = (document.getElementById('media-img-alt')?.value || '').trim();
+  const caption = (document.getElementById('media-img-caption')?.value || '').trim();
+  const html = `<figure><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy">${caption ? `<figcaption>${esc(caption)}</figcaption>` : ''}</figure>`;
+  const cb = MEDIA_MODAL_CB; closeMediaModal();
+  cb({ kind: 'image', src, alt, caption, html });
+}
+
+// ── Modal Chỉnh sửa & Xóa ảnh trong thân bài viết ─────────────────────────
+let CURRENT_IMAGE_EDIT = null;
+
+function openImageEditModal(data) {
+  CURRENT_IMAGE_EDIT = data;
+  const srcEl = document.getElementById('ied-src');
+  const altEl = document.getElementById('ied-alt');
+  const capEl = document.getElementById('ied-caption');
+  const prevEl = document.getElementById('ied-preview');
+
+  if (srcEl) srcEl.value = data.src || '';
+  if (altEl) altEl.value = data.alt || '';
+  if (capEl) capEl.value = data.caption || '';
+  if (prevEl) prevEl.src = data.src || '/favicon-192.png';
+
+  document.getElementById('image-edit-modal-ov')?.classList.add('open');
+}
+
+function closeImageEditModal() {
+  document.getElementById('image-edit-modal-ov')?.classList.remove('open');
+  CURRENT_IMAGE_EDIT = null;
+}
+
+function iedChangeFromLibrary() {
+  openMediaModal(res => {
+    if (res && res.src) {
+      const srcEl = document.getElementById('ied-src');
+      const prevEl = document.getElementById('ied-preview');
+      const altEl = document.getElementById('ied-alt');
+      if (srcEl) srcEl.value = res.src;
+      if (prevEl) prevEl.src = res.src;
+      if (altEl && !altEl.value && res.alt) altEl.value = res.alt;
+    }
+  }, 'library');
+}
+
+function iedUploadNew() {
+  triggerImageUpload(url => {
+    const srcEl = document.getElementById('ied-src');
+    const prevEl = document.getElementById('ied-preview');
+    if (srcEl) srcEl.value = url;
+    if (prevEl) prevEl.src = url;
+    toast('success', '✅ Đã tải ảnh lên');
+  });
+}
+
+function iedSaveImage() {
+  if (!CURRENT_IMAGE_EDIT) { closeImageEditModal(); return; }
+  const src = (document.getElementById('ied-src')?.value || '').trim();
+  const alt = (document.getElementById('ied-alt')?.value || '').trim();
+  const caption = (document.getElementById('ied-caption')?.value || '').trim();
+
+  if (!src) { toast('error', 'URL ảnh không được để trống'); return; }
+
+  if (CURRENT_IMAGE_EDIT.kind === 'legacy') {
+    const vis = document.getElementById('body-visual');
+    if (vis) {
+      const imgs = vis.querySelectorAll('img');
+      const img = imgs[CURRENT_IMAGE_EDIT.idx];
+      if (img) {
+        img.src = src;
+        img.alt = alt;
+        const fig = img.closest('figure');
+        if (fig) {
+          let figcap = fig.querySelector('figcaption');
+          if (caption) {
+            if (!figcap) {
+              figcap = document.createElement('figcaption');
+              fig.appendChild(figcap);
+            }
+            figcap.textContent = caption;
+          } else if (figcap) {
+            figcap.remove();
+          }
+        } else if (caption) {
+          const newFig = document.createElement('figure');
+          img.parentNode.insertBefore(newFig, img);
+          newFig.appendChild(img);
+          const figcap = document.createElement('figcaption');
+          figcap.textContent = caption;
+          newFig.appendChild(figcap);
+        }
+        markChanged();
+        toast('success', '✅ Đã cập nhật ảnh');
+      }
+    }
+  } else if (CURRENT_IMAGE_EDIT.kind === 'block') {
+    const b = BODY_BLOCKS && BODY_BLOCKS[CURRENT_IMAGE_EDIT.idx];
+    if (b) {
+      b.src = src;
+      b.alt = alt;
+      b.caption = caption;
+      renderBlockEditor();
+      markChanged();
+      toast('success', '✅ Đã cập nhật ảnh trong khối');
+    }
+  }
+  closeImageEditModal();
+}
+
+function iedDeleteImage() {
+  if (!CURRENT_IMAGE_EDIT) { closeImageEditModal(); return; }
+  if (!confirm('Xóa bức ảnh này khỏi bài viết?')) return;
+
+  if (CURRENT_IMAGE_EDIT.kind === 'legacy') {
+    const vis = document.getElementById('body-visual');
+    if (vis) {
+      const imgs = vis.querySelectorAll('img');
+      const img = imgs[CURRENT_IMAGE_EDIT.idx];
+      if (img) {
+        const fig = img.closest('figure');
+        if (fig) fig.remove();
+        else img.remove();
+        markChanged();
+        toast('success', '🗑️ Đã xóa ảnh khỏi bài');
+      }
+    }
+  } else if (CURRENT_IMAGE_EDIT.kind === 'block') {
+    if (BODY_BLOCKS) {
+      BODY_BLOCKS.splice(CURRENT_IMAGE_EDIT.idx, 1);
+      renderBlockEditor();
+      markChanged();
+      toast('success', '🗑️ Đã xóa khối ảnh');
+    }
+  }
+  closeImageEditModal();
+}
+
+// ── Modal Chèn / Sửa Liên kết (Link Inserter & Internal Link Search) ────────
+let LINK_MODAL_CB = null;
+
+function openLinkModal(data, cb) {
+  LINK_MODAL_CB = cb;
+  const urlEl = document.getElementById('link-url');
+  const textEl = document.getElementById('link-text');
+  const searchEl = document.getElementById('link-search');
+  const blankEl = document.getElementById('link-target-blank');
+  const nofEl = document.getElementById('link-rel-nofollow');
+  const removeBtn = document.getElementById('link-btn-remove');
+
+  if (urlEl) urlEl.value = data?.url || '';
+  if (textEl) textEl.value = data?.text || '';
+  if (searchEl) searchEl.value = '';
+  if (blankEl) {
+    if (data?.targetBlank !== undefined) blankEl.checked = !!data.targetBlank;
+    else if (data?.url) blankEl.checked = data.url.startsWith('http') && !data.url.includes('otahub.asia');
+    else blankEl.checked = true;
+  }
+  if (nofEl) nofEl.checked = !!data?.nofollow;
+  if (removeBtn) removeBtn.style.display = data?.isExisting ? 'inline-block' : 'none';
+
+  renderLinkArticleList();
+  document.getElementById('link-modal-ov')?.classList.add('open');
+  setTimeout(() => {
+    if (!urlEl?.value && searchEl) searchEl.focus();
+    else if (urlEl) urlEl.focus();
+  }, 100);
+}
+
+function closeLinkModal() {
+  document.getElementById('link-modal-ov')?.classList.remove('open');
+  LINK_MODAL_CB = null;
+}
+
+function renderLinkArticleList() {
+  const box = document.getElementById('link-sug-box');
+  if (!box) return;
+  const q = (document.getElementById('link-search')?.value || '').toLowerCase().trim();
+  const list = q
+    ? ARTICLES.filter(a => (a.title || '').toLowerCase().includes(q) || (a.file || '').toLowerCase().includes(q)).slice(0, 15)
+    : ARTICLES.slice(0, 8);
+
+  if (!list.length) {
+    box.innerHTML = '<div style="padding:14px;text-align:center;color:var(--wp-muted);font-size:12px">Không tìm thấy bài viết nào khớp từ khóa.</div>';
+    return;
+  }
+
+  box.innerHTML = list.map(a => {
+    const slug = a.file ? a.file.replace(/\.html$/, '') : '';
+    const linkUrl = '/' + slug;
+    return `<div class="link-sug-item" onclick="selectLinkArticle('${esc(linkUrl)}', '${esc(a.title || '')}')">
+      <span class="link-sug-cat">${esc(a.cat || 'Bài viết')}</span>
+      <span class="link-sug-title" title="${esc(a.title || '')}">${esc(a.title || '')}</span>
+      <span class="link-sug-url">/${esc(slug)}</span>
+    </div>`;
+  }).join('');
+}
+
+function selectLinkArticle(url, title) {
+  const urlEl = document.getElementById('link-url');
+  const textEl = document.getElementById('link-text');
+  const blankEl = document.getElementById('link-target-blank');
+
+  if (urlEl) urlEl.value = url;
+  if (textEl && !textEl.value) textEl.value = title;
+  if (blankEl) blankEl.checked = false; // Internal link default in same tab
+}
+
+function linkUrlChanged() {
+  const url = (document.getElementById('link-url')?.value || '').trim();
+  const blankEl = document.getElementById('link-target-blank');
+  if (blankEl && url.startsWith('http') && !url.includes('otahub.asia')) {
+    blankEl.checked = true;
+  }
+}
+
+function linkConfirmInsert() {
+  if (!LINK_MODAL_CB) { closeLinkModal(); return; }
+  const url = (document.getElementById('link-url')?.value || '').trim();
+  if (!url) { toast('error', 'Vui lòng nhập đường dẫn liên kết'); return; }
+  const text = (document.getElementById('link-text')?.value || '').trim();
+  const targetBlank = document.getElementById('link-target-blank')?.checked;
+  const nofollow = document.getElementById('link-rel-nofollow')?.checked;
+
+  const cb = LINK_MODAL_CB;
+  closeLinkModal();
+  cb({ url, text, targetBlank, nofollow });
+}
+
+function linkRemove() {
+  if (!LINK_MODAL_CB) { closeLinkModal(); return; }
+  const cb = LINK_MODAL_CB;
+  closeLinkModal();
+  cb({ remove: true });
+}
+
+// ── Bộ lọc sạch định dạng khi dán từ Word / Google Docs ─────────────────────
+function sanitizePastedHtml(html) {
+  if (!html) return '';
+  html = html.replace(/<!--[\s\S]*?-->/g, '');
+  html = html.replace(/<style[\s\S]*?<\/style>/gi, '');
+  html = html.replace(/<script[\s\S]*?<\/script>/gi, '');
+  html = html.replace(/<xml[\s\S]*?<\/xml>/gi, '');
+  html = html.replace(/<meta[\s\S]*?>/gi, '');
+  html = html.replace(/<link[\s\S]*?>/gi, '');
+
+  var parser = new DOMParser();
+  var doc = parser.parseFromString(html, 'text/html');
+
+  var allowedTags = new Set([
+    'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'strong', 'b', 'em', 'i', 'u', 's', 'strike',
+    'ul', 'ol', 'li', 'a', 'blockquote', 'table', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td',
+    'figure', 'figcaption', 'img', 'iframe', 'code', 'pre', 'hr', 'br', 'cite'
+  ]);
+
+  function cleanNode(node) {
+    if (node.nodeType === 3) return;
+    if (node.nodeType !== 1) { node.remove(); return; }
+
+    var tag = node.tagName.toLowerCase();
+    if (tag === 'div') {
+      var p = doc.createElement('p');
+      while (node.firstChild) p.appendChild(node.firstChild);
+      node.parentNode.replaceChild(p, node);
+      node = p;
+      tag = 'p';
+    } else if (tag === 'span') {
+      while (node.firstChild) node.parentNode.insertBefore(node.firstChild, node);
+      var dead = node;
+      node = node.nextSibling;
+      dead.remove();
+      return;
+    } else if (!allowedTags.has(tag)) {
+      while (node.firstChild) node.parentNode.insertBefore(node.firstChild, node);
+      var deadNode = node;
+      node = node.nextSibling;
+      deadNode.remove();
+      return;
+    }
+
+    var attrs = Array.from(node.attributes);
+    for (var i = 0; i < attrs.length; i++) {
+      var a = attrs[i].name.toLowerCase();
+      if (tag === 'a' && (a === 'href' || a === 'target' || a === 'rel' || a === 'title')) continue;
+      if (tag === 'img' && (a === 'src' || a === 'alt' || a === 'title' || a === 'loading' || a === 'width' || a === 'height')) continue;
+      if (tag === 'iframe' && (a === 'src' || a === 'title' || a === 'allow' || a === 'allowfullscreen' || a === 'loading')) continue;
+      if (tag === 'th' && (a === 'colspan' || a === 'rowspan')) continue;
+      if (tag === 'td' && (a === 'colspan' || a === 'rowspan')) continue;
+      node.removeAttribute(attrs[i].name);
+    }
+
+    var child = node.firstChild;
+    while (child) {
+      var next = child.nextSibling;
+      cleanNode(child);
+      child = next;
+    }
+  }
+
+  var body = doc.body;
+  var rootChild = body.firstChild;
+  while (rootChild) {
+    var nextRoot = rootChild.nextSibling;
+    cleanNode(rootChild);
+    rootChild = nextRoot;
+  }
+
+  var cleanHtml = body.innerHTML.replace(/<p>\s*(?:&nbsp;|<br\s*\/?>)*\s*<\/p>/gi, '').trim();
+  return cleanHtml;
 }
 
 // ── Load articles ──────────────────────────────────────────────────────────
@@ -2103,20 +2763,27 @@ function extract(html, re) {
 }
 
 function extractHero(html) {
-  const m = html.match(/class="art-hero-img"\s+style="([^"]+)"/);
+  let m = html.match(/class="(?:art-hero-bg|art-hero-img)"\s+style="([^"]+)"/);
   if (m) {
-    const u = m[1].match(/url\(([^)]+)\)/);
-    return u ? u[1] : '';
+    let u = m[1].match(/url\(['"]?([^'")]+)['"]?\)/);
+    if (u && u[1]) return u[1];
   }
-  const f = html.match(/<figure><img src="([^"]+)"/);
-  return f ? f[1] : '';
+  m = html.match(/<meta property="og:image" content="([^"]+)"/);
+  if (m && m[1]) return m[1].replace('https://otahub.asia', '');
+  m = html.match(/<meta name="twitter:image" content="([^"]+)"/);
+  if (m && m[1]) return m[1].replace('https://otahub.asia', '');
+  m = html.match(/<figure><img src="([^"]+)"/);
+  if (m && m[1]) return m[1];
+  m = html.match(/<header class="hero">[\s\S]*?<img src="([^"]+)"/);
+  if (m && m[1]) return m[1];
+  return '';
 }
 
 function extractHeroPos(html) {
-  const m = html.match(/class="art-hero-img"\s+style="([^"]+)"/);
+  const m = html.match(/class="(?:art-hero-bg|art-hero-img)"\s+style="([^"]+)"/);
   if (!m) return 50;
   const p = m[1].match(/background-position[^:]*:\s*center\s+(\d+)%/);
-  return p ? parseInt(p[1]) : 50;
+  return p ? parseInt(p[1], 10) : 50;
 }
 
 // Mô tả ngắn hiển thị ngay dưới tiêu đề, trên ảnh bìa — trước đây tồn tại trong
@@ -2778,13 +3445,17 @@ function renderEditor(file, html) {
             <button class="tb-btn" title="Tiêu đề H3" onclick="visH3()">H3</button>
             <button class="tb-btn" title="Đoạn văn" onclick="visPara()">¶</button>
             <div class="tb-sep"></div>
-            <button class="tb-btn" title="In đậm" onclick="visBold()"><b>B</b></button>
-            <button class="tb-btn" title="In nghiêng" onclick="visItalic()"><i>I</i></button>
+            <button class="tb-btn" title="In đậm (Ctrl+B)" onclick="visBold()"><b>B</b></button>
+            <button class="tb-btn" title="In nghiêng (Ctrl+I)" onclick="visItalic()"><i>I</i></button>
+            <button class="tb-btn" title="Gạch chân (Ctrl+U)" onclick="visUnderline()"><u>U</u></button>
+            <button class="tb-btn" title="Chèn liên kết / Tìm bài nội bộ (Ctrl+K)" onclick="visLink()">🔗 Link</button>
             <button class="tb-btn" title="Danh sách" onclick="visList()">☰</button>
             <div class="tb-sep"></div>
-            <button class="tb-btn" title="Chèn ảnh" onclick="visImg()">📷</button>
-            <button class="tb-btn" title="Nhúng video (YouTube/Vimeo)" onclick="visVideo()">🎬</button>
-            <button class="tb-btn" title="Trích dẫn" onclick="visQuote()">❝</button>
+            <button class="tb-btn" title="Chèn ảnh" onclick="visImg()">📷 Ảnh</button>
+            <button class="tb-btn" title="Nhúng video (YouTube/Vimeo)" onclick="visVideo()">🎬 Video</button>
+            <button class="tb-btn" title="Chèn Bảng thông số (Responsive Cyber Table)" onclick="visTable()">📊 Bảng</button>
+            <button class="tb-btn" title="Trích dẫn" onclick="visQuote()">❝ Trích dẫn</button>
+            <button class="tb-btn" title="Xóa rác định dạng" onclick="visClean()">🧹 Lọc rác</button>
             <div class="tb-sep"></div>
             <button class="tb-btn" id="vis-jump-img-btn" title="Nhảy tới ảnh tiếp theo trong bài" onclick="visJumpImage()" style="display:none">🖼️ <span id="vis-img-count">0</span></button>
           </div>
@@ -2794,10 +3465,14 @@ function renderEditor(file, html) {
             <div class="tb-sep"></div>
             <button class="tb-btn" title="In đậm" onclick="wrapSel('&lt;strong&gt;','&lt;/strong&gt;')"><b>B</b></button>
             <button class="tb-btn" title="In nghiêng" onclick="wrapSel('&lt;em&gt;','&lt;/em&gt;')"><i>I</i></button>
+            <button class="tb-btn" title="Gạch chân" onclick="wrapSel('&lt;u&gt;','&lt;/u&gt;')"><u>U</u></button>
+            <button class="tb-btn" title="Chèn liên kết" onclick="wrapLink()">🔗 Link</button>
             <div class="tb-sep"></div>
-            <button class="tb-btn" title="Chèn ảnh" onclick="insertImg()">📷</button>
-            <button class="tb-btn" title="Đoạn văn" onclick="insertPara()">¶</button>
-            <button class="tb-btn" title="Trích dẫn" onclick="insertBlock()">❝</button>
+            <button class="tb-btn" title="Chèn ảnh" onclick="insertImg()">📷 Ảnh</button>
+            <button class="tb-btn" title="Nhúng video" onclick="visVideo()">🎬 Video</button>
+            <button class="tb-btn" title="Chèn Bảng" onclick="insertTableCode()">📊 Bảng</button>
+            <button class="tb-btn" title="Đoạn văn" onclick="insertPara()">¶ Đoạn văn</button>
+            <button class="tb-btn" title="Trích dẫn" onclick="insertBlock()">❝ Trích dẫn</button>
           </div>
           <div id="body-visual-wrap" style="display:none">
             <div id="body-visual" contenteditable="true">${bodyVi}</div>
@@ -2877,30 +3552,59 @@ function renderEditor(file, html) {
           </select>
         </div>
 
-        <div class="side-box">
-          <div class="side-box-title">🖼️ Ảnh bìa (Hero)</div>
-          <div style="display:flex;gap:6px">
-            <input class="form-input" id="ed-hero" style="flex:1" value="${esc(heroUrl)}" placeholder="URL ảnh bìa..." oninput="updateHeroPreview(this.value)"/>
-            <button class="btn btn-secondary btn-sm btn-icon" title="Tải ảnh lên từ máy" onclick="triggerImageUpload(url => { const el = document.getElementById('ed-hero'); el.value = url; updateHeroPreview(url); })">📤</button>
+        <div class="side-box" id="side-box-hb">
+          <div class="side-box-title" style="display:flex;justify-content:space-between;align-items:center">
+            <span>⚡ Tóm tắt điểm nhấn</span>
+            ${ART_HAS_HB ? `<button type="button" onclick="removeHighlightBox()" style="font-size:11px;color:var(--wp-red,#d63638);background:none;border:none;cursor:pointer;font-weight:600">🗑️ Xóa tóm tắt</button>` : ''}
           </div>
-          <div style="position:relative;overflow:hidden;border-radius:8px;margin-top:8px" title="Bấm để chọn/đổi ảnh bìa">
-            <img id="hero-preview" src="${heroUrl}" alt="Hero preview" onclick="pickHeroImage()"
-              style="width:100%;height:130px;object-fit:cover;object-position:center ${heroPos}%;display:${heroUrl?'block':'none'};transition:object-position .1s;cursor:pointer"
+          ${ART_HAS_HB ? `
+            <div style="margin-top:8px">
+              <label class="form-label" style="margin:0 0 4px">Nhãn tóm tắt</label>
+              <input class="form-input" id="ed-hb-label" value="${esc(ART_HB_LABEL)}" placeholder="Tóm Tắt / Điểm nhấn..." oninput="updateHbLabel(this.value)"/>
+              <label class="form-label" style="margin:8px 0 4px">Nội dung tóm tắt nhanh (2-3 câu)</label>
+              <textarea class="form-input" id="ed-hb-text" rows="3" placeholder="Tóm tắt nội dung chính của bài viết..." oninput="updateHbText(this.value)">${esc(ART_HB_TEXT)}</textarea>
+            </div>
+          ` : `
+            <div style="margin-top:8px;text-align:center;padding:12px 8px;background:var(--wp-bg);border:1px dashed var(--wp-border);border-radius:6px">
+              <div style="font-size:11px;color:var(--wp-muted);margin-bottom:8px">Chưa có khung tóm tắt đầu bài</div>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="addHighlightBox()">+ Thêm khung Tóm tắt (Key Takeaways)</button>
+            </div>
+          `}
+        </div>
+
+        <div class="side-box" id="side-box-hero">
+          <div class="side-box-title" style="display:flex;justify-content:space-between;align-items:center">
+            <span>🖼️ Ảnh bìa (Hero)</span>
+            <button type="button" class="btn-link-danger" onclick="removeHeroImage()" style="font-size:11px;color:var(--wp-red,#d63638);background:none;border:none;cursor:pointer;font-weight:600;display:${heroUrl?'inline-block':'none'}" id="btn-remove-hero">🗑️ Xóa ảnh bìa</button>
+          </div>
+          <div style="position:relative;overflow:hidden;border-radius:8px;margin-top:8px;border:1px solid var(--wp-border);background:var(--wp-bg)" title="Bấm để chọn/đổi ảnh bìa">
+            <img id="hero-preview" src="${heroUrl}" alt="Hero preview" onclick="pickHeroImage('library')"
+              style="width:100%;height:140px;object-fit:cover;object-position:center ${heroPos}%;display:${heroUrl?'block':'none'};transition:object-position .1s;cursor:pointer"
               onerror="this.style.display='none';document.getElementById('hero-placeholder').style.display='flex'"/>
-            <div id="hero-placeholder" onclick="pickHeroImage()" style="width:100%;height:130px;border-radius:8px;background:var(--surf2);border:2px dashed var(--border);display:${heroUrl?'none':'flex'};align-items:center;justify-content:center;color:var(--muted);font-size:12px;cursor:pointer">🖼️ Chưa có ảnh bìa — bấm để chọn</div>
+            <div id="hero-placeholder" onclick="pickHeroImage('library')" style="width:100%;height:140px;border-radius:8px;background:var(--wp-bg);border:2px dashed var(--wp-border);display:${heroUrl?'none':'flex'};flex-direction:column;gap:6px;align-items:center;justify-content:center;color:var(--wp-muted);font-size:12px;cursor:pointer">
+              <span style="font-size:24px">🖼️</span>
+              <span>Bấm để chọn hoặc tải ảnh bìa lên</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:6px;margin-top:10px">
+            <button type="button" class="btn btn-secondary btn-sm" style="flex:1" onclick="pickHeroImage('upload')">📤 Tải ảnh lên</button>
+            <button type="button" class="btn btn-secondary btn-sm" style="flex:1" onclick="pickHeroImage('library')">📁 Thư viện Media</button>
+          </div>
+          <div style="margin-top:10px">
+            <input class="form-input" id="ed-hero" value="${esc(heroUrl)}" placeholder="URL ảnh bìa..." oninput="updateHeroPreview(this.value)"/>
           </div>
           <div style="margin-top:10px">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-              <label class="form-label" style="margin:0">↕ Vị trí ảnh</label>
-              <span id="hero-pos-label" style="color:var(--cyan);font-size:12px;font-weight:600">${heroPos}%</span>
+              <label class="form-label" style="margin:0">↕ Vị trí ảnh (Căn dọc)</label>
+              <span id="hero-pos-label" style="color:var(--wp-blue);font-size:12px;font-weight:600">${heroPos}%</span>
             </div>
             <input type="range" id="ed-hero-pos" min="0" max="100" value="${heroPos}"
-              style="width:100%;accent-color:var(--cyan);cursor:pointer"
+              style="width:100%;accent-color:var(--wp-blue);cursor:pointer"
               oninput="updateHeroPosLabel(this.value)"/>
           </div>
-          <div style="font-size:10.5px;color:var(--muted);margin-top:10px;line-height:1.6">
-            💡 YouTube: <code style="color:var(--cyan)">i.ytimg.com/vi/ID/maxresdefault.jpg</code><br>
-            💡 Steam: <code style="color:var(--cyan)">cdn.akamai.steamstatic.com/steam/apps/ID/header.jpg</code>
+          <div style="font-size:10.5px;color:var(--wp-muted);margin-top:10px;line-height:1.6">
+            💡 YouTube: <code style="color:var(--wp-blue)">i.ytimg.com/vi/ID/maxresdefault.jpg</code><br>
+            💡 Steam: <code style="color:var(--wp-blue)">cdn.akamai.steamstatic.com/steam/apps/ID/header.jpg</code>
           </div>
         </div>
 
@@ -3327,26 +4031,36 @@ function updateSeoScore() {
 // Bấm vào ảnh bìa (trong sidebar hoặc trong khung xem trước iframe) → mở
 // thẳng bảng chọn/tải ảnh, thay vì chỉ nhảy con trỏ tới ô URL trống (trước đây
 // người dùng bấm vào ảnh không thấy gì xảy ra vì ô URL nằm khuất phía trên).
-function pickHeroImage() {
+function pickHeroImage(defaultTab = 'library') {
   openMediaModal(res => {
     if (!res.src) return;
     const el = document.getElementById('ed-hero');
     if (el) el.value = res.src;
     updateHeroPreview(res.src);
-  }, 'image');
+  }, defaultTab);
+}
+
+function removeHeroImage() {
+  const el = document.getElementById('ed-hero');
+  if (el) el.value = '';
+  updateHeroPreview('');
+  toast('success', '🗑️ Đã xóa ảnh bìa');
 }
 
 function updateHeroPreview(url) {
   const img = document.getElementById('hero-preview');
   const ph  = document.getElementById('hero-placeholder');
+  const btnRemove = document.getElementById('btn-remove-hero');
   if (!img || !ph) return;
   if (url) {
     img.src = url;
     img.style.display = 'block';
     ph.style.display  = 'none';
+    if (btnRemove) btnRemove.style.display = 'inline-block';
   } else {
     img.style.display = 'none';
     ph.style.display  = 'flex';
+    if (btnRemove) btnRemove.style.display = 'none';
   }
   markChanged();
 }
@@ -3403,17 +4117,41 @@ function wrapSel(open, close) {
   markChanged();
 }
 
+function wrapLink() {
+  const ta = document.getElementById('body-textarea');
+  if (!ta) return;
+  const s = ta.selectionStart, e = ta.selectionEnd;
+  const selText = ta.value.slice(s, e);
+  openLinkModal({ text: selText, url: '' }, res => {
+    if (res.url) {
+      const targetAttr = res.targetBlank ? ' target="_blank"' : '';
+      const relAttr = (res.targetBlank || res.nofollow) ? ` rel="${[res.nofollow ? 'nofollow' : '', res.targetBlank ? 'noopener' : ''].filter(Boolean).join(' ')}"` : '';
+      const anchorText = res.text || selText || res.url;
+      const html = `<a href="${esc(res.url)}"${targetAttr}${relAttr}>${esc(anchorText)}</a>`;
+      ta.value = ta.value.slice(0, s) + html + ta.value.slice(e);
+      ta.selectionStart = ta.selectionEnd = s + html.length;
+      markChanged();
+    }
+  });
+}
+
 function insertImg() {
-  const url = prompt('URL ảnh:');
-  if (!url) return;
-  const alt = prompt('Alt text (mô tả ảnh):') || '';
-  const cap = prompt('Caption (chú thích):') || '';
-  const html = `\n<figure><img src="${url}" alt="${alt}" loading="lazy"/>${cap?`<figcaption>${cap}</figcaption>`:''}</figure>\n`;
-  insertAt(html);
+  openMediaModal(res => {
+    if (res.html) insertAt('\n' + res.html + '\n');
+  }, 'library');
 }
 
 function insertPara() { insertAt('\n<p></p>\n'); }
 function insertBlock() { insertAt('\n<blockquote>\n\n<cite></cite>\n</blockquote>\n'); }
+
+function insertTableCode(cols = 2, rows = 3) {
+  let thead = '<tr>' + Array.from({ length: cols }, (_, i) => `<th>Cột ${i+1}</th>`).join('') + '</tr>';
+  let tbody = Array.from({ length: rows }, (_, r) =>
+    '<tr>' + Array.from({ length: cols }, (_, c) => `<td>Dòng ${r+1} Cột ${c+1}</td>`).join('') + '</tr>'
+  ).join('');
+  let tableHtml = `\n<div class="art-table-wrap">\n<table class="art-table">\n  <thead>${thead}</thead>\n  <tbody>\n    ${tbody}\n  </tbody>\n</table>\n</div>\n`;
+  insertAt(tableHtml);
+}
 
 function insertAt(text) {
   const ta = document.getElementById('body-textarea');
@@ -3447,8 +4185,6 @@ function switchBodyMode(mode) {
   const ta = document.getElementById('body-textarea');
 
   if (BODY_MODE === 'blocks' && mode !== 'blocks') {
-    // Rời khỏi chế độ Khối = "tốt nghiệp" sang HTML tự do — không thể quay lại
-    // chỉnh theo khối cho bài này nữa (nhưng nội dung HTML vẫn giữ nguyên).
     if (!confirm('Chuyển khỏi chế độ Khối sẽ không thể quay lại chỉnh theo khối (kéo-thả) cho bài này nữa — nội dung vẫn được giữ nguyên dưới dạng HTML. Tiếp tục?')) return;
     const rendered = blocksToHtml(BODY_BLOCKS);
     if (vis) vis.innerHTML = rendered;
@@ -3482,15 +4218,106 @@ function visH3() { visExec('formatBlock', 'H3'); }
 function visPara() { visExec('formatBlock', 'P'); }
 function visBold() { visExec('bold'); }
 function visItalic() { visExec('italic'); }
+function visUnderline() { visExec('underline'); }
 function visList() { visExec('insertUnorderedList'); }
 function visImg() {
-  openMediaModal(res => visExec('insertHTML', res.html + '<p><br></p>'), 'image');
+  openMediaModal(res => visExec('insertHTML', res.html + '<p><br></p>'), 'library');
 }
 function visVideo() {
   openMediaModal(res => visExec('insertHTML', res.html + '<p><br></p>'), 'video');
 }
 function visQuote() {
   visExec('insertHTML', '<blockquote><p>Trích dẫn...</p><cite></cite></blockquote><p><br></p>');
+}
+function visTable(cols = 2, rows = 3) {
+  let thead = '<tr>' + Array.from({ length: cols }, (_, i) => `<th>Cột ${i+1}</th>`).join('') + '</tr>';
+  let tbody = Array.from({ length: rows }, (_, r) =>
+    '<tr>' + Array.from({ length: cols }, (_, c) => `<td>Dòng ${r+1} Cột ${c+1}</td>`).join('') + '</tr>'
+  ).join('');
+  let tableHtml = `<div class="art-table-wrap"><table class="art-table"><thead>${thead}</thead><tbody>${tbody}</tbody></table></div><p><br></p>`;
+  visExec('insertHTML', tableHtml);
+}
+function visClean() {
+  const vis = document.getElementById('body-visual');
+  if (!vis) return;
+  vis.innerHTML = sanitizePastedHtml(vis.innerHTML);
+  markChanged();
+  toast('success', '🧹 Đã lọc sạch rác định dạng văn bản');
+}
+function visLink() {
+  const sel = window.getSelection();
+  const text = sel ? sel.toString() : '';
+  openLinkModal({ text, url: '' }, res => {
+    if (res.remove) {
+      document.execCommand('unlink');
+      markChanged();
+      return;
+    }
+    if (res.url) {
+      const targetAttr = res.targetBlank ? ' target="_blank"' : '';
+      const relAttr = (res.targetBlank || res.nofollow) ? ` rel="${[res.nofollow ? 'nofollow' : '', res.targetBlank ? 'noopener' : ''].filter(Boolean).join(' ')}"` : '';
+      const anchorText = res.text || text || res.url;
+      const html = `<a href="${esc(res.url)}"${targetAttr}${relAttr}>${esc(anchorText)}</a>`;
+      if (text && text === res.text) {
+        document.execCommand('createLink', false, res.url);
+      } else {
+        document.execCommand('insertHTML', false, html);
+      }
+      markChanged();
+    }
+  });
+}
+
+// ── Quản lý Khối Tóm tắt điểm nhấn (Highlight Box) ─────────────────────────
+function addHighlightBox() {
+  ART_HAS_HB = true;
+  ART_HB_LABEL = ART_HB_LABEL || 'Tóm Tắt';
+  ART_HB_TEXT = ART_HB_TEXT || 'Tóm tắt nhanh 2-3 câu về nội dung chính của bài viết...';
+  markChanged();
+  renderHighlightBoxSidebar();
+  toast('success', '⚡ Đã thêm khung Tóm tắt điểm nhấn');
+}
+
+function removeHighlightBox() {
+  if (!confirm('Xóa khung Tóm tắt điểm nhấn khỏi bài viết này?')) return;
+  ART_HAS_HB = false;
+  markChanged();
+  renderHighlightBoxSidebar();
+  toast('success', '🗑️ Đã xóa khung Tóm tắt');
+}
+
+function updateHbLabel(val) {
+  ART_HB_LABEL = val;
+  markChanged();
+}
+
+function updateHbText(val) {
+  ART_HB_TEXT = val;
+  markChanged();
+}
+
+function renderHighlightBoxSidebar() {
+  const box = document.getElementById('side-box-hb');
+  if (!box) return;
+  box.innerHTML = `
+    <div class="side-box-title" style="display:flex;justify-content:space-between;align-items:center">
+      <span>⚡ Tóm tắt điểm nhấn</span>
+      ${ART_HAS_HB ? `<button type="button" onclick="removeHighlightBox()" style="font-size:11px;color:var(--wp-red,#d63638);background:none;border:none;cursor:pointer;font-weight:600">🗑️ Xóa tóm tắt</button>` : ''}
+    </div>
+    ${ART_HAS_HB ? `
+      <div style="margin-top:8px">
+        <label class="form-label" style="margin:0 0 4px">Nhãn tóm tắt</label>
+        <input class="form-input" id="ed-hb-label" value="${esc(ART_HB_LABEL)}" placeholder="Tóm Tắt / Điểm nhấn..." oninput="updateHbLabel(this.value)"/>
+        <label class="form-label" style="margin:8px 0 4px">Nội dung tóm tắt nhanh (2-3 câu)</label>
+        <textarea class="form-input" id="ed-hb-text" rows="3" placeholder="Tóm tắt nội dung chính của bài viết..." oninput="updateHbText(this.value)">${esc(ART_HB_TEXT)}</textarea>
+      </div>
+    ` : `
+      <div style="margin-top:8px;text-align:center;padding:12px 8px;background:var(--wp-bg);border:1px dashed var(--wp-border);border-radius:6px">
+        <div style="font-size:11px;color:var(--wp-muted);margin-bottom:8px">Chưa có khung tóm tắt đầu bài</div>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="addHighlightBox()">+ Thêm khung Tóm tắt (Key Takeaways)</button>
+      </div>
+    `}
+  `;
 }
 
 // Bài nhiều ảnh ở chế độ Trực quan: đếm ảnh + cho phép nhảy nhanh qua từng ảnh
@@ -3530,6 +4357,7 @@ const BLOCK_TYPES = {
   video:     { label: 'Video',    icon: '🎬' },
   quote:     { label: 'Trích dẫn', icon: '❝' },
   list:      { label: 'Danh sách', icon: '•' },
+  table:     { label: 'Bảng',     icon: '📊' },
 };
 let DRAG_FROM_IDX = null;
 
@@ -3539,6 +4367,7 @@ function newBlockData(type) {
   if (type === 'video') return { type, provider: '', embedUrl: '', caption: '' };
   if (type === 'quote') return { type, text: '', cite: '' };
   if (type === 'list') return { type, items: [''] };
+  if (type === 'table') return { type, headers: ['Cột 1', 'Cột 2', 'Cột 3'], rows: [['Nội dung 1', 'Nội dung 2', 'Nội dung 3'], ['Nội dung 4', 'Nội dung 5', 'Nội dung 6']] };
   return { type: 'paragraph', html: '' };
 }
 function blockToHtml(b) {
@@ -3547,6 +4376,11 @@ function blockToHtml(b) {
   if (b.type === 'video') return b.embedUrl ? videoEmbedHtml(b.embedUrl, b.caption || '', false) : '';
   if (b.type === 'quote') return `<blockquote><p>${b.text || ''}</p>${b.cite ? `<cite>${esc(b.cite)}</cite>` : ''}</blockquote>`;
   if (b.type === 'list') { const items = (b.items || []).map(s => s.trim()).filter(Boolean); return items.length ? `<ul>${items.map(i => `<li>${esc(i)}</li>`).join('')}</ul>` : ''; }
+  if (b.type === 'table') {
+    const headers = (b.headers || []).map(h => `<th>${esc(h)}</th>`).join('');
+    const rows = (b.rows || []).map(r => `<tr>${(r || []).map(c => `<td>${esc(c)}</td>`).join('')}</tr>`).join('');
+    return `<div class="art-table-wrap"><table class="art-table"><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table></div>`;
+  }
   return b.html ? `<p>${b.html}</p>` : '';
 }
 function blocksToHtml(blocks) { return (blocks || []).map(blockToHtml).filter(Boolean).join('\n'); }
@@ -3575,6 +4409,11 @@ function blockToHtmlTagged(b, i) {
   if (b.type === 'list') {
     const items = (b.items || []).map(s => s.trim()).filter(Boolean);
     return `<ul data-ohb="${i}" data-ohf="items" contenteditable="true">${items.length ? items.map(it => `<li>${esc(it)}</li>`).join('') : '<li>Mục đầu tiên...</li>'}</ul>`;
+  }
+  if (b.type === 'table') {
+    const headers = (b.headers || []).map((h, ci) => `<th data-ohb="${i}" data-ohf="th-${ci}" contenteditable="true">${esc(h)}</th>`).join('');
+    const rows = (b.rows || []).map((r, ri) => `<tr>${(r || []).map((c, ci) => `<td data-ohb="${i}" data-ohf="td-${ri}-${ci}" contenteditable="true">${esc(c)}</td>`).join('')}</tr>`).join('');
+    return `<div class="art-table-wrap" data-oh-jump="block-${i}"><table class="art-table"><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table></div>`;
   }
   return `<p data-ohb="${i}" data-ohf="html" contenteditable="true">${b.html || ''}</p>`;
 }
@@ -3636,6 +4475,25 @@ async function renderBlockEditor() {
       const val = (b.items || ['']).join('\n');
       body = `<textarea class="rank-input-sm" style="width:100%;min-height:70px;font-family:inherit" placeholder="Mỗi dòng 1 mục" oninput="blockListInput(${i},this)">${esc(val)}</textarea>
         <ul id="block-list-prev-${i}" style="margin-top:8px;padding-left:20px;color:var(--dim);font-size:14px">${(b.items||[]).filter(Boolean).map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`;
+    } else if (b.type === 'table') {
+      const headers = b.headers || ['Cột 1', 'Cột 2', 'Cột 3'];
+      const rows = b.rows || [['', '', '']];
+      const thInputs = headers.map((h, ci) => `<input class="rank-input-sm" style="flex:1" value="${esc(h)}" placeholder="Cột ${ci+1}" oninput="blockTableColInput(${i},${ci},this.value)"/>`).join('');
+      const rowInputs = rows.map((r, ri) => `
+        <div style="display:flex;gap:4px;margin-bottom:4px;align-items:center">
+          <span style="font-size:11px;color:var(--muted);width:20px">${ri+1}.</span>
+          ${(r || []).map((c, ci) => `<input class="rank-input-sm" style="flex:1" value="${esc(c)}" placeholder="Ô ${ri+1},${ci+1}" oninput="blockTableCellInput(${i},${ri},${ci},this.value)"/>`).join('')}
+          <button class="block-mini-btn" style="color:var(--wp-red,#d63638)" onclick="blockTableRemoveRow(${i},${ri})" title="Xoá hàng">×</button>
+        </div>`).join('');
+      body = `
+        <div style="margin-bottom:6px;font-weight:600;font-size:12px;color:var(--wp-blue,#2271b1)">Tiêu đề cột:</div>
+        <div style="display:flex;gap:4px;margin-bottom:8px">${thInputs}</div>
+        <div style="margin-bottom:6px;font-weight:600;font-size:12px;color:var(--wp-blue,#2271b1)">Các hàng dữ liệu:</div>
+        <div>${rowInputs}</div>
+        <div style="display:flex;gap:6px;margin-top:8px">
+          <button class="btn btn-secondary btn-sm" onclick="blockTableAddRow(${i})">+ Thêm hàng</button>
+          <button class="btn btn-secondary btn-sm" onclick="blockTableAddCol(${i})">+ Thêm cột</button>
+        </div>`;
     } else if (b.type === 'image') {
       if (isCollapsedImg) {
         body = `<div class="block-img-collapsed-row" onclick="blockToggleCollapse(${i})" title="Bấm để mở rộng">
@@ -3714,13 +4572,15 @@ function blockAdd(type) {
   BODY_BLOCKS.push(newBlockData(type)); renderBlockEditor(); markChanged();
 }
 function blockPickImage(i) {
-  openMediaModal(res => {
-    if (!BODY_BLOCKS[i]) return;
-    BODY_BLOCKS[i].src = res.src;
-    BODY_BLOCKS[i].alt = res.alt;
-    if (res.caption) BODY_BLOCKS[i].caption = res.caption;
-    renderBlockEditor(); markChanged();
-  }, 'image');
+  const b = BODY_BLOCKS && BODY_BLOCKS[i];
+  if (!b) return;
+  openImageEditModal({
+    kind: 'block',
+    idx: i,
+    src: b.src || '',
+    alt: b.alt || '',
+    caption: b.caption || ''
+  });
 }
 function blockPickVideo(i) {
   openMediaModal(res => {
@@ -3737,6 +4597,40 @@ function blockMove(i, dir) {
   const j = i + dir;
   if (j < 0 || j >= BODY_BLOCKS.length) return;
   const t = BODY_BLOCKS[i]; BODY_BLOCKS[i] = BODY_BLOCKS[j]; BODY_BLOCKS[j] = t;
+  renderBlockEditor(); markChanged();
+}
+function blockTableColInput(i, ci, val) {
+  if (BODY_BLOCKS[i]) {
+    if (!BODY_BLOCKS[i].headers) BODY_BLOCKS[i].headers = [];
+    BODY_BLOCKS[i].headers[ci] = val;
+    markChanged();
+  }
+}
+function blockTableCellInput(i, ri, ci, val) {
+  if (BODY_BLOCKS[i] && BODY_BLOCKS[i].rows && BODY_BLOCKS[i].rows[ri]) {
+    BODY_BLOCKS[i].rows[ri][ci] = val;
+    markChanged();
+  }
+}
+function blockTableAddRow(i) {
+  if (!BODY_BLOCKS[i]) return;
+  const colCount = (BODY_BLOCKS[i].headers || ['Cột 1', 'Cột 2', 'Cột 3']).length;
+  if (!BODY_BLOCKS[i].rows) BODY_BLOCKS[i].rows = [];
+  BODY_BLOCKS[i].rows.push(new Array(colCount).fill(''));
+  renderBlockEditor(); markChanged();
+}
+function blockTableAddCol(i) {
+  if (!BODY_BLOCKS[i]) return;
+  if (!BODY_BLOCKS[i].headers) BODY_BLOCKS[i].headers = ['Cột 1', 'Cột 2'];
+  BODY_BLOCKS[i].headers.push(`Cột ${BODY_BLOCKS[i].headers.length + 1}`);
+  if (!BODY_BLOCKS[i].rows) BODY_BLOCKS[i].rows = [new Array(BODY_BLOCKS[i].headers.length).fill('')];
+  else BODY_BLOCKS[i].rows.forEach(r => r.push(''));
+  renderBlockEditor(); markChanged();
+}
+function blockTableRemoveRow(i, ri) {
+  if (!BODY_BLOCKS[i] || !BODY_BLOCKS[i].rows) return;
+  BODY_BLOCKS[i].rows.splice(ri, 1);
+  if (BODY_BLOCKS[i].rows.length === 0) BODY_BLOCKS[i].rows.push(new Array((BODY_BLOCKS[i].headers || ['Cột 1']).length).fill(''));
   renderBlockEditor(); markChanged();
 }
 function blockDragStart(e, i) { DRAG_FROM_IDX = i; e.dataTransfer.effectAllowed = 'move'; }
@@ -3759,8 +4653,15 @@ function buildArticlePreviewHtml() {
   const hero    = document.getElementById('ed-hero')?.value || '';
   const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
 
-  html = html.replace(/(class="art-hero-img"\s+style=")[^"]*(")/,
-    `$1background-image:url(${hero});background-position:center ${heroPos}%;background-color:#0b0418;$2 data-oh-jump="heroimg"`);
+  if (/class="art-hero-bg"\s+style="[^"]*"/.test(html)) {
+    html = html.replace(/(class="art-hero-bg"\s+style=")[^"]*(")/,
+      `$1background-image:url('${hero}');background-position:center ${heroPos}%;$2 data-oh-jump="heroimg"`);
+  } else if (/class="art-hero-img"\s+style="[^"]*"/.test(html)) {
+    html = html.replace(/(class="art-hero-img"\s+style=")[^"]*(")/,
+      `$1background-image:url('${hero}');background-position:center ${heroPos}%;background-color:#0b0418;$2 data-oh-jump="heroimg"`);
+  } else if (/<header class="hero">[\s\S]*?<img\s+src="[^"]*"/.test(html)) {
+    html = html.replace(/(<header class="hero">[\s\S]*?<img\s+src=")[^"]*(")/, `$1${hero}$2 data-oh-jump="heroimg"`);
+  }
 
   const titleTag = /<h1 class="art-hero-title">/.test(html) ? 'art-hero-title' : 'art-hero-title lang-vi active';
   html = html.replace(new RegExp(`(<h1 class="${titleTag}")>[^<]*(<\\/h1>)`),
@@ -3777,10 +4678,17 @@ function buildArticlePreviewHtml() {
   // Khối "Tóm tắt điểm nhấn" (.highlight-box) — nằm ngoài <article class="art-body">
   // nên phải tag contenteditable riêng ở đây (xem extractHighlightBox()).
   if (ART_HAS_HB) {
-    html = html.replace(/(<div class="hb-label")>[^<]*(<\/div>)/,
-      (m, p1, p2) => `${p1} contenteditable="true" data-ohfield="hbLabel">${esc(ART_HB_LABEL)}${p2}`);
-    html = html.replace(/(<div class="hb-text")>[\s\S]*?(<\/div>)/,
-      (m, p1, p2) => `${p1} contenteditable="true" data-ohfield="hbText">${ART_HB_TEXT}${p2}`);
+    if (/<div class="highlight-box">[\s\S]*?<\/div>\s*<\/div>/i.test(html)) {
+      html = html.replace(/(<div class="hb-label")[^>]*>[^<]*(<\/div>)/,
+        (m, p1, p2) => `${p1} contenteditable="true" data-ohfield="hbLabel">${esc(ART_HB_LABEL || 'Tóm Tắt')}${p2}`);
+      html = html.replace(/(<div class="hb-text")[^>]*>[\s\S]*?(<\/div>)/,
+        (m, p1, p2) => `${p1} contenteditable="true" data-ohfield="hbText">${ART_HB_TEXT || ''}${p2}`);
+    } else {
+      const hbHtml = `<div class="highlight-box" data-oh-jump="hb-box">\n  <div class="hb-label" contenteditable="true" data-ohfield="hbLabel">${esc(ART_HB_LABEL || 'Tóm Tắt')}</div>\n  <div class="hb-text" contenteditable="true" data-ohfield="hbText">${ART_HB_TEXT || ''}</div>\n</div>\n\n`;
+      html = html.replace(/(<article class="art-body)/, `${hbHtml}$1`);
+    }
+  } else {
+    html = html.replace(/<div class="highlight-box">[\s\S]*?<\/div>\s*<\/div>\s*/gi, '');
   }
 
   const bodyTagged = BODY_BLOCKS
@@ -3819,8 +4727,218 @@ const ART_BRIDGE_SCRIPT = `<script>(function(){
     'figcaption:empty:before{content:"+ Thêm chú thích ảnh (bấm để nhập)";opacity:.45}' +
     'cite:empty:before{content:"+ Thêm nguồn / tác giả (tuỳ chọn)";opacity:.45}' +
     '.oh-img-empty{display:flex;align-items:center;justify-content:center;min-height:160px;border:2px dashed rgba(255,255,255,.25);background:rgba(255,255,255,.03)}' +
-    '.oh-img-empty-hint{color:rgba(240,238,255,.5);font-size:14px}';
+    '.oh-img-empty-hint{color:rgba(240,238,255,.5);font-size:14px}' +
+    '#oh-floating-bubble{position:fixed;display:none;z-index:999999;background:rgba(19,9,48,0.94);backdrop-filter:blur(16px);border:1px solid rgba(0,229,255,0.45);border-radius:8px;padding:4px;box-shadow:0 12px 36px rgba(0,0,0,0.65),0 0 15px rgba(0,229,255,0.22);align-items:center;gap:3px;user-select:none;transform:translateX(-50%)}' +
+    '#oh-floating-bubble button{background:transparent;border:1px solid transparent;border-radius:4px;color:#f0eeff;font-family:system-ui,-apple-system,sans-serif;font-size:12px;font-weight:600;padding:4px 8px;cursor:pointer;line-height:1.2;transition:all .12s;display:inline-flex;align-items:center;justify-content:center}' +
+    '#oh-floating-bubble button:hover{background:rgba(0,229,255,0.18);border-color:rgba(0,229,255,0.4);color:#00e5ff;transform:translateY(-1px)}' +
+    '#oh-floating-bubble .fb-sep{width:1px;height:16px;background:rgba(255,255,255,0.15);margin:0 2px}';
   document.head.appendChild(style);
+
+  // Floating Formatting Bubble (Elementor style)
+  var bubble = document.createElement('div');
+  bubble.id = 'oh-floating-bubble';
+  bubble.innerHTML =
+    '<button type="button" data-cmd="bold" title="Đậm (Ctrl+B)"><b>B</b></button>' +
+    '<button type="button" data-cmd="italic" title="Nghiêng (Ctrl+I)"><i>I</i></button>' +
+    '<button type="button" data-cmd="underline" title="Gạch chân (Ctrl+U)"><u>U</u></button>' +
+    '<button type="button" data-cmd="link" title="Chèn liên kết (Ctrl+K)">🔗</button>' +
+    '<span class="fb-sep"></span>' +
+    '<button type="button" data-block="H2" title="Tiêu đề H2">H2</button>' +
+    '<button type="button" data-block="H3" title="Tiêu đề H3">H3</button>' +
+    '<button type="button" data-block="P" title="Đoạn văn (¶)">¶</button>' +
+    '<button type="button" data-block="BLOCKQUOTE" title="Trích dẫn (Quote)">❝</button>' +
+    '<span class="fb-sep"></span>' +
+    '<button type="button" data-cmd="clean" title="Xoá định dạng (Clean)">🧹</button>';
+  document.body.appendChild(bubble);
+
+  var savedRange = null;
+
+  function saveCurrentSelection() {
+    var sel = window.getSelection();
+    if (sel && sel.rangeCount > 0) {
+      savedRange = sel.getRangeAt(0).cloneRange();
+    }
+  }
+
+  function restoreSavedSelection() {
+    if (!savedRange) return false;
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(savedRange);
+    return true;
+  }
+
+  function updateBubble() {
+    var sel = window.getSelection();
+    if (!sel || sel.isCollapsed || !sel.rangeCount) {
+      bubble.style.display = 'none';
+      return;
+    }
+    var range = sel.getRangeAt(0);
+    var container = range.commonAncestorContainer;
+    var editable = container.nodeType === 1 ? container.closest('[contenteditable="true"]') : container.parentElement ? container.parentElement.closest('[contenteditable="true"]') : null;
+    if (!editable) {
+      bubble.style.display = 'none';
+      return;
+    }
+    savedRange = range.cloneRange();
+    var rect = range.getBoundingClientRect();
+    if (rect.width === 0 && rect.height === 0) {
+      bubble.style.display = 'none';
+      return;
+    }
+    bubble.style.display = 'flex';
+    var top = rect.top - 46;
+    if (top < 10) top = rect.bottom + 10;
+    var left = rect.left + rect.width / 2;
+    bubble.style.top = Math.max(10, top) + 'px';
+    bubble.style.left = Math.max(150, Math.min(window.innerWidth - 150, left)) + 'px';
+  }
+
+  document.addEventListener('selectionchange', function(){
+    setTimeout(updateBubble, 10);
+  });
+  document.addEventListener('mouseup', function(){
+    setTimeout(updateBubble, 20);
+  });
+  document.addEventListener('keyup', function(e){
+    if (['Shift', 'Control', 'Alt', 'Meta'].includes(e.key)) return;
+    setTimeout(updateBubble, 20);
+  });
+
+  bubble.addEventListener('mousedown', function(e){
+    e.preventDefault(); // Giữ selection không bị mất khi bấm nút trên bubble
+  });
+
+  bubble.addEventListener('click', function(e){
+    var btn = e.target.closest('button');
+    if (!btn) return;
+    restoreSavedSelection();
+    var cmd = btn.getAttribute('data-cmd');
+    var block = btn.getAttribute('data-block');
+
+    if (cmd === 'bold' || cmd === 'italic' || cmd === 'underline') {
+      document.execCommand(cmd, false, null);
+    } else if (cmd === 'clean') {
+      document.execCommand('removeFormat', false, null);
+    } else if (cmd === 'link') {
+      var sel = window.getSelection();
+      var text = sel ? sel.toString() : '';
+      var anchor = null;
+      if (sel && sel.rangeCount > 0) {
+        var node = sel.getRangeAt(0).commonAncestorContainer;
+        anchor = node.nodeType === 1 ? node.closest('a') : node.parentElement ? node.parentElement.closest('a') : null;
+      }
+      parent.postMessage({
+        type: 'art-open-link-modal',
+        text: text || (anchor ? anchor.innerText : ''),
+        href: anchor ? (anchor.getAttribute('href') || '') : '',
+        isNewTab: anchor ? (anchor.getAttribute('target') === '_blank') : false,
+        isNofollow: anchor ? ((anchor.getAttribute('rel') || '').includes('nofollow')) : false
+      }, '*');
+      bubble.style.display = 'none';
+      return;
+    } else if (block) {
+      document.execCommand('formatBlock', false, '<' + block + '>');
+    }
+
+    var selAfter = window.getSelection();
+    if (selAfter && selAfter.rangeCount > 0) {
+      var n = selAfter.getRangeAt(0).commonAncestorContainer;
+      var el = n.nodeType === 1 ? n.closest('[contenteditable="true"]') : n.parentElement ? n.parentElement.closest('[contenteditable="true"]') : null;
+      if (el) el.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+    updateBubble();
+  });
+
+  // Clean Paste Sanitizer trong iframe
+  document.addEventListener('paste', function(e){
+    var editable = e.target.closest('[contenteditable="true"]');
+    if (!editable) return;
+    var rawHtml = e.clipboardData ? e.clipboardData.getData('text/html') : '';
+    if (rawHtml) {
+      e.preventDefault();
+      var clean = rawHtml
+        .replace(/<!--[\s\S]*?-->/g, '')
+        .replace(/<style[\s\S]*?<\/style>/gi, '')
+        .replace(/<xml[\s\S]*?<\/xml>/gi, '')
+        .replace(/<meta[\s\S]*?>/gi, '')
+        .replace(/<link[\s\S]*?>/gi, '')
+        .replace(/ class="Mso[^"]*"/gi, '')
+        .replace(/ style="[^"]*"/gi, '')
+        .replace(/ dir="[^"]*"/gi, '')
+        .replace(/<o:p>[\s\S]*?<\/o:p>/gi, '')
+        .replace(/<span[^>]*>/gi, '').replace(/<\/span>/gi, '')
+        .replace(/<div>/gi, '<p>').replace(/<\/div>/gi, '</p>')
+        .replace(/<p>(\s|&nbsp;|<br\s*\/?>)*<\/p>/gi, '')
+        .trim();
+      document.execCommand('insertHTML', false, clean || e.clipboardData.getData('text/plain'));
+      editable.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  }, true);
+
+  // Phím tắt trong Iframe
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
+      e.preventDefault();
+      parent.postMessage({ type: 'art-save-shortcut' }, '*');
+    }
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      saveCurrentSelection();
+      var sel = window.getSelection();
+      var text = sel ? sel.toString() : '';
+      var anchor = null;
+      if (sel && sel.rangeCount > 0) {
+        var node = sel.getRangeAt(0).commonAncestorContainer;
+        anchor = node.nodeType === 1 ? node.closest('a') : node.parentElement ? node.parentElement.closest('a') : null;
+      }
+      parent.postMessage({
+        type: 'art-open-link-modal',
+        text: text || (anchor ? anchor.innerText : ''),
+        href: anchor ? (anchor.getAttribute('href') || '') : '',
+        isNewTab: anchor ? (anchor.getAttribute('target') === '_blank') : false,
+        isNofollow: anchor ? ((anchor.getAttribute('rel') || '').includes('nofollow')) : false
+      }, '*');
+    }
+  });
+
+  // Lắng nghe link được parent áp dụng vào
+  window.addEventListener('message', function(e){
+    var d = e.data;
+    if (!d || !d.type) return;
+    if (d.type === 'art-apply-link') {
+      restoreSavedSelection();
+      if (d.remove) {
+        document.execCommand('unlink', false, null);
+      } else if (d.url) {
+        var targetAttr = d.targetBlank ? ' target="_blank"' : '';
+        var relAttr = (d.targetBlank || d.nofollow) ? ' rel="' + [d.nofollow ? 'nofollow' : '', d.targetBlank ? 'noopener' : ''].filter(Boolean).join(' ') + '"' : '';
+        var sel = window.getSelection();
+        var curText = sel ? sel.toString() : '';
+        var anchorText = d.text || curText || d.url;
+        var html = '<a href="' + d.url.replace(/"/g, '&quot;') + '"' + targetAttr + relAttr + '>' + anchorText + '</a>';
+        if (curText && curText === d.text) {
+          document.execCommand('createLink', false, d.url);
+          var anchorNode = sel.getRangeAt(0).commonAncestorContainer;
+          var a = anchorNode.nodeType === 1 ? anchorNode.closest('a') : anchorNode.parentElement ? anchorNode.parentElement.closest('a') : null;
+          if (a) {
+            if (d.targetBlank) a.setAttribute('target', '_blank'); else a.removeAttribute('target');
+            if (relAttr) a.setAttribute('rel', [d.nofollow ? 'nofollow' : '', d.targetBlank ? 'noopener' : ''].filter(Boolean).join(' ')); else a.removeAttribute('rel');
+          }
+        } else {
+          document.execCommand('insertHTML', false, html);
+        }
+      }
+      var selNow = window.getSelection();
+      if (selNow && selNow.rangeCount > 0) {
+        var nn = selNow.getRangeAt(0).commonAncestorContainer;
+        var elNow = nn.nodeType === 1 ? nn.closest('[contenteditable="true"]') : nn.parentElement ? nn.parentElement.closest('[contenteditable="true"]') : null;
+        if (elNow) elNow.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+      bubble.style.display = 'none';
+    }
+  });
 
   // Bấm vào 1 phần tử: nếu phần tử GẦN target hơn (đi ngược lên từ target) là
   // [data-oh-jump] thì coi là "nhảy/mở bảng chỉnh" (vd: ảnh trong thân bài dù
@@ -3836,7 +4954,7 @@ const ART_BRIDGE_SCRIPT = `<script>(function(){
         parent.postMessage({ type:'art-jump', target: node.getAttribute('data-oh-jump') }, '*');
         return;
       }
-      if (node.getAttribute('contenteditable') === 'true') return; // để trình duyệt tự đặt con trỏ, gõ bình thường
+      if (node.getAttribute('contenteditable') === 'true') return;
       node = node.parentElement;
     }
   }, true);
@@ -3868,8 +4986,6 @@ function bindArticleBridgeMessages() {
     if (d.type === 'art-field-input') {
       if (d.field === 'title') {
         ART_TITLE = d.value;
-        // Bài mới chưa lưu + user chưa tự sửa URL → tự sinh URL theo tiêu đề,
-        // giống permalink tự cập nhật theo tiêu đề của WordPress lúc đang soạn.
         const slugEl = document.getElementById('ed-slug');
         if (slugEl && !currentSha && !ART_SLUG_TOUCHED) {
           const autoSlug = slugifyFilename(d.value) || currentFile.replace(/\.html$/, '');
@@ -3878,11 +4994,17 @@ function bindArticleBridgeMessages() {
         }
       }
       else if (d.field === 'excerpt') ART_EXCERPT = d.value;
-      else if (d.field === 'hbLabel') ART_HB_LABEL = d.value;
-      else if (d.field === 'hbText') ART_HB_TEXT = d.value;
+      else if (d.field === 'hbLabel') {
+        ART_HB_LABEL = d.value;
+        const hbLabelInput = document.getElementById('ed-hb-label');
+        if (hbLabelInput) hbLabelInput.value = d.value;
+      }
+      else if (d.field === 'hbText') {
+        ART_HB_TEXT = d.value;
+        const hbTextInput = document.getElementById('ed-hb-text');
+        if (hbTextInput) hbTextInput.value = d.value;
+      }
       else if (d.field === 'body') {
-        // Đồng bộ ngược vào #body-visual (ẩn) — nguồn dữ liệu thật khi build
-        // lại HTML lúc lưu/tự động lưu nháp, và khi chuyển sang tab "Mã HTML".
         const bv = document.getElementById('body-visual');
         if (bv) bv.innerHTML = d.value;
         updateWordCount();
@@ -3892,11 +5014,48 @@ function bindArticleBridgeMessages() {
       const b = BODY_BLOCKS && BODY_BLOCKS[d.idx];
       if (!b) return;
       if (d.field === 'items') b.items = parseListItemsFromHtml(d.value);
-      else b[d.field] = d.value;
+      else if (d.field && d.field.startsWith('th-')) {
+        const ci = parseInt(d.field.slice(3), 10);
+        if (!b.headers) b.headers = [];
+        b.headers[ci] = d.value;
+      } else if (d.field && d.field.startsWith('td-')) {
+        const parts = d.field.slice(3).split('-');
+        const ri = parseInt(parts[0], 10);
+        const ci = parseInt(parts[1], 10);
+        if (!b.rows) b.rows = [];
+        if (!b.rows[ri]) b.rows[ri] = [];
+        b.rows[ri][ci] = d.value;
+      } else {
+        b[d.field] = d.value;
+      }
       markChangedNoRebuild();
       scheduleBlockListRefresh();
     } else if (d.type === 'art-jump') {
       articleJumpTo(d.target);
+    } else if (d.type === 'art-save-shortcut') {
+      const saveBtn = document.getElementById('save-btn');
+      if (saveBtn) saveBtn.click();
+      else if (currentFile) saveArticle();
+    } else if (d.type === 'art-open-link-modal') {
+      openLinkModal({
+        url: d.href || '',
+        text: d.text || '',
+        targetBlank: d.isNewTab !== undefined ? d.isNewTab : (d.href ? d.href.startsWith('http') && !d.href.includes('otahub.asia') : true),
+        nofollow: d.isNofollow,
+        isExisting: !!d.href
+      }, res => {
+        const iframe = document.getElementById('art-visual-iframe');
+        if (iframe && iframe.contentWindow) {
+          iframe.contentWindow.postMessage({
+            type: 'art-apply-link',
+            remove: res.remove,
+            url: res.url,
+            text: res.text,
+            targetBlank: res.targetBlank,
+            nofollow: res.nofollow
+          }, '*');
+        }
+      });
     }
   });
 }
@@ -3906,8 +5065,19 @@ function articleJumpTo(target) {
   if (target === 'heroimg') { pickHeroImage(); return; }
   else if (target === 'cat') el = document.getElementById('ed-cat');
   else if (target === 'body-editor') el = document.getElementById('body-blocks-wrap') || document.getElementById('body-visual-wrap');
-  else if (target && target.startsWith('block-')) { blockScrollTo(parseInt(target.slice(6), 10)); return; }
-  else if (target && target.startsWith('body-img-')) { legacyBodyPickImage(parseInt(target.slice('body-img-'.length), 10)); return; }
+  else if (target && target.startsWith('block-')) {
+    const bIdx = parseInt(target.slice(6), 10);
+    if (BODY_BLOCKS && BODY_BLOCKS[bIdx]?.type === 'image') {
+      blockPickImage(bIdx);
+      return;
+    }
+    blockScrollTo(bIdx);
+    return;
+  }
+  else if (target && target.startsWith('body-img-')) {
+    legacyBodyPickImage(parseInt(target.slice('body-img-'.length), 10));
+    return;
+  }
   if (!el) return;
   el.scrollIntoView({ behavior: 'smooth', block: 'center' });
   el.classList.add('block-item-flash');
@@ -3917,30 +5087,33 @@ function articleJumpTo(target) {
 }
 
 // Bấm vào 1 ảnh trong thân bài (bài cũ, không có block data) ngay trong khung
-// xem trước thật → mở bảng chọn/tải ảnh, đổi trực tiếp src của đúng ảnh đó
-// trong #body-visual (nguồn dữ liệu thật), rồi dựng lại khung xem trước.
+// xem trước thật → mở bảng chỉnh sửa / thay thế / đổi alt-caption / xóa ảnh.
 function legacyBodyPickImage(idx) {
   const vis = document.getElementById('body-visual');
   if (!vis) return;
-  const img = vis.querySelectorAll('img')[idx];
+  const imgs = vis.querySelectorAll('img');
+  const img = imgs[idx];
   if (!img) return;
-  openMediaModal(res => {
-    if (res.src) img.src = res.src;
-    if (res.alt) img.alt = res.alt;
-    markChanged();
-  }, 'image');
+  const fig = img.closest('figure');
+  const figcap = fig ? fig.querySelector('figcaption') : null;
+  const caption = figcap ? figcap.textContent.trim() : '';
+  openImageEditModal({
+    kind: 'legacy',
+    idx: idx,
+    src: img.getAttribute('src') || img.src || '',
+    alt: img.getAttribute('alt') || '',
+    caption: caption
+  });
 }
 
-// Thêm ảnh mới vào CUỐI thân bài (bài cũ) — thay cho nút "Chèn ảnh" trong ô
-// Trực quan trước đây (đã ẩn khỏi giao diện). Muốn chèn ảnh ở vị trí giữa bài
-// thì dùng tab "Mã HTML" bên dưới.
+// Thêm ảnh mới vào CUỐI thân bài (bài cũ)
 function legacyBodyInsertImage() {
   const vis = document.getElementById('body-visual');
   if (!vis) return;
   openMediaModal(res => {
     vis.innerHTML += res.html;
     markChanged();
-  }, 'image');
+  }, 'library');
 }
 
 function scheduleArticlePreviewRefresh() {
@@ -4005,9 +5178,24 @@ function applyArticleEditsToHtml(baseHtml) {
   html = html.replace(/(<meta name="twitter:description" content=")[^"]*(")/,  `$1${esc(desc)}$2`);
   html = html.replace(/("headline": ")[^"]*(")/,  `$1${title.replace(/\\/g,'\\\\').replace(/"/g,'\\"')}$2`);
   html = html.replace(/(<meta property="article:section" content=")[^"]*(")/,  `$1${esc(cat)}$2`);
-  // Hero
-  html = html.replace(/(class="art-hero-img"\s+style=")[^"]*(")/,
-    `$1background-image:url(${hero});background-position:center ${heroPos}%;background-color:#0b0418;$2`);
+  // Hero Image (đồng bộ toàn bộ cấu trúc bài viết, meta tag & schema)
+  if (hero) {
+    if (/class="art-hero-bg"\s+style="[^"]*"/.test(html)) {
+      html = html.replace(/(class="art-hero-bg"\s+style=")[^"]*(")/,
+        `$1background-image:url('${hero}');background-position:center ${heroPos}%;$2`);
+    }
+    if (/class="art-hero-img"\s+style="[^"]*"/.test(html)) {
+      html = html.replace(/(class="art-hero-img"\s+style=")[^"]*(")/,
+        `$1background-image:url('${hero}');background-position:center ${heroPos}%;background-color:#0b0418;$2`);
+    }
+    if (/<header class="hero">[\s\S]*?<img\s+src="[^"]*"/.test(html)) {
+      html = html.replace(/(<header class="hero">[\s\S]*?<img\s+src=")[^"]*(")/, `$1${hero}$2`);
+    }
+    const fullHeroUrl = hero.startsWith('http') ? hero : `https://otahub.asia${hero.startsWith('/') ? '' : '/'}${hero}`;
+    html = html.replace(/(<meta property="og:image" content=")[^"]*(")/, `$1${fullHeroUrl}$2`);
+    html = html.replace(/(<meta name="twitter:image" content=")[^"]*(")/, `$1${fullHeroUrl}$2`);
+    html = html.replace(/("image": ")[^"]*(")/, `$1${fullHeroUrl}$2`);
+  }
   // H1 — hỗ trợ cả mẫu hiện tại (art-hero-title) lẫn mẫu cũ (art-hero-title lang-vi active)
   if (/<h1 class="art-hero-title">[^<]*<\/h1>/.test(html)) {
     html = html.replace(/(<h1 class="art-hero-title">)[^<]*(<\/h1>)/, `$1${esc(title)}$2`);
@@ -4021,8 +5209,15 @@ function applyArticleEditsToHtml(baseHtml) {
   }
   // Khối "Tóm tắt điểm nhấn" (.highlight-box) — xem extractHighlightBox()/ART_HB_*.
   if (ART_HAS_HB) {
-    html = html.replace(/(<div class="hb-label">)[^<]*(<\/div>)/, `$1${esc(ART_HB_LABEL)}$2`);
-    html = html.replace(/(<div class="hb-text">)[\s\S]*?(<\/div>)/, `$1${ART_HB_TEXT}$2`);
+    if (/<div class="highlight-box">[\s\S]*?<\/div>\s*<\/div>/i.test(html)) {
+      html = html.replace(/(<div class="hb-label">)[^<]*(<\/div>)/, `$1${esc(ART_HB_LABEL || 'Tóm Tắt')}$2`);
+      html = html.replace(/(<div class="hb-text">)[\s\S]*?(<\/div>)/, `$1${ART_HB_TEXT || ''}$2`);
+    } else {
+      const hbHtml = `<div class="highlight-box">\n<div class="hb-label">${esc(ART_HB_LABEL || 'Tóm Tắt')}</div>\n<div class="hb-text">${ART_HB_TEXT || ''}</div>\n</div>\n\n`;
+      html = html.replace(/(<article class="art-body)/, `${hbHtml}$1`);
+    }
+  } else {
+    html = html.replace(/<div class="highlight-box">[\s\S]*?<\/div>\s*<\/div>\s*/gi, '');
   }
   // Body — hỗ trợ cả mẫu hiện tại (art-body) lẫn mẫu cũ (art-body lang-vi active)
   if (/<article class="art-body">[\s\S]*?<\/article>/.test(html)) {

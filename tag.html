@@ -269,22 +269,25 @@ body {
 </head>
 <body>
 
-<header class="header">
-  <div class="header-inner">
-    <a href="/" class="brand">
-      <svg width="30" height="30" viewBox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="2" fill="rgba(0,229,255,.15)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg>
-      <span class="brand-ota">Ota</span><span class="brand-hub">Hub</span>
-    </a>
-    <nav class="nav">
-      <a href="/gaming" class="nav-item">Gaming</a>
-      <a href="/anime" class="nav-item">Anime</a>
-      <a href="/manga" class="nav-item">Manga</a>
-      <a href="/reviews" class="nav-item">Reviews</a>
-      <a href="/rankings" class="nav-item">Rankings</a>
-      <a href="/news" class="nav-item">News</a>
-    </nav>
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <input class="search-input" id="searchInput" type="text" placeholder="Tìm kiếm game, anime, manga...">
+    <button class="search-close" onclick="closeSearch()">✕</button>
   </div>
-</header>
+  <div class="search-hint">Nhấn ESC để đóng · Ctrl+K để mở</div>
+  <div class="search-tags">
+    <a href="/gaming" class="stag">Gaming</a>
+    <a href="/anime" class="stag">Anime</a>
+    <a href="/manga" class="stag">Manga</a>
+    <a href="/reviews" class="stag">Reviews</a>
+    <a href="/rankings" class="stag">Rankings</a>
+  </div>
+</div>
+
+<div id="amb"><div class="orb o1"></div><div class="orb o2"></div></div>
+<div id="gtex"></div>
+<nav class="nav"><div class="nav-in"><a class="logo" href="/"><span><svg viewbox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="5" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect></svg></span><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><button class="ham" id="ham" aria-label="Menu" onclick="toggleMob()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="Tìm kiếm" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="/#newsletter" class="cta" id="cta-sub">Subscribe</a></div></div></nav>
+<nav class="mobile-nav" id="mobnav"><a href="/choi-gi">Chơi Gì?</a><a href="/gaming">Gaming</a><a href="/anime">Anime</a><a href="/manga">Manga</a><a href="/reviews">Reviews</a><a href="/rankings">Rankings</a><a href="/chuyen-sau">Chuyên sâu</a><div class="m-sub"><a href="/about">Giới thiệu</a><a href="/#newsletter">Newsletter</a><a href="/about#contact">Liên hệ</a></div></nav>
 
 <main class="tag-hero-sec">
   <div class="tag-hero-badge">🏷️ Topic Discovery Hub</div>
@@ -476,5 +479,25 @@ body {
   checkIdxReady();
 })();
 </script>
+
+<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><svg viewbox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
+
+<script>
+function toggleMob(){
+  var h=document.getElementById('ham')||document.getElementById('hamBtn');
+  var m=document.getElementById('mobnav')||document.getElementById('mobileNav');
+  if(!m)return;
+  var open=m.classList.toggle('open');
+  if(h)h.classList.toggle('open',open);
+  document.body.style.overflow=open?'hidden':'';
+}
+function toggleMobileNav(){toggleMob();}
+function openSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.add('open');setTimeout(function(){var i=document.getElementById('searchInput');if(i)i.focus();},50);document.body.style.overflow='hidden';}}
+function closeSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.remove('open');var i=document.getElementById('searchInput');if(i)i.value='';document.body.style.overflow='';}}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSearch();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch();}});
+var _sO=document.getElementById('searchOverlay');if(_sO){_sO.addEventListener('click',function(e){if(e.target===this)closeSearch();});}
+</script>
+<script defer src="/assets/search.js"></script>
+
 </body>
 </html>
