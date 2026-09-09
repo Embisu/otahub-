@@ -45,8 +45,8 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .m-sub a:hover{color:var(--lav)!important;padding-left:0!important}
 
 /* ── Search Overlay ── */
-.search-overlay{position:fixed;inset:0;z-index:500;background:rgba(11,2,32,.96);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;opacity:0;pointer-events:none;transition:opacity .25s var(--ease)}
-.search-overlay.open{opacity:1;pointer-events:all}
+.search-overlay{display:none;position:fixed!important;inset:0!important;z-index:99999!important;background:rgba(11,2,32,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:20px;opacity:0;pointer-events:none;transition:opacity .25s var(--ease)}
+.search-overlay.open{display:flex!important;opacity:1!important;pointer-events:all!important}
 .search-box{width:min(640px,90vw);position:relative}
 .search-input{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--bcyan);outline:none;color:var(--white);font-family:var(--fb);font-size:22px;padding:18px 56px 18px 20px;transition:border-color .2s,box-shadow .2s}
 .search-input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,229,255,.12),0 0 32px rgba(0,229,255,.1)}
