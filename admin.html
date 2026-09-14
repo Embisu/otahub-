@@ -1560,7 +1560,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 
       <!-- 2. Tab Tải ảnh lên -->
       <div id="media-panel-upload" style="display:none">
-        <div class="media-dropzone" id="media-modal-dropzone" ondragover="event.preventDefault()" ondrop="handleDropUpload(event)" onclick="document.getElementById('global-upload-input')?.click()">
+        <div class="media-dropzone" id="media-modal-dropzone" ondragover="event.preventDefault()" ondrop="handleDropUpload(event)" onclick="mediaTriggerUpload()">
           <div style="font-size:36px;margin-bottom:8px">📤</div>
           <strong style="font-size:14px;color:var(--wp-title)">Bấm để chọn file ảnh hoặc Kéo thả ảnh vào đây</strong>
           <div style="font-size:11px;color:var(--wp-muted);margin-top:6px">Hỗ trợ JPG, PNG, WEBP, GIF tối đa 8MB</div>
@@ -2085,23 +2085,28 @@ function onSlugInput(value) {
 
 async function uploadImageFile(file) {
   if (!file) return null;
-  const allowedImageTypes = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/gif']);
-  if (!allowedImageTypes.has(file.type)) throw new Error('Chỉ chấp nhận ảnh JPG, PNG, WEBP hoặc GIF.');
+  const allowedExts = new Set(['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'avif']);
+  let ext = (file.name.split('.').pop() || '').toLowerCase().replace('jpeg', 'jpg');
+  if (!allowedExts.has(ext)) {
+    ext = (file.type.split('/')[1] || '').toLowerCase().replace('jpeg', 'jpg').replace('svg+xml', 'svg');
+  }
+  if (!allowedExts.has(ext)) {
+    throw new Error('Chỉ chấp nhận ảnh định dạng JPG, PNG, WEBP, GIF hoặc SVG.');
+  }
   if (file.size > 8 * 1024 * 1024) throw new Error('Ảnh quá lớn (tối đa 8MB).');
-  const ext = (file.type.split('/')[1] || 'jpg').replace('jpeg', 'jpg').replace('svg+xml', 'svg');
+  
   const hash = Math.random().toString(36).slice(2, 10);
   const cleanName = slugifyFilename(file.name.replace(/\.[a-z0-9]+$/i, '')) || 'anh';
-  // Tai vao assets/img/uploads/ (khong phai thang assets/img/) — day la duong
-  // dan rieng ma quyen canUploadImage() o backend cho phep ca author tai anh
-  // len (cac vai tro khac ngoai admin/editor khong duoc ghi truc tiep vao
-  // assets/ noi chung, nhung uploads/ duoc mo rieng, gioi han dinh dang + kich
-  // thuoc, de tranh loi dung ghi de file khac trong assets/).
   const destPath = `assets/img/uploads/${hash}-${cleanName}.${ext}`;
 
   const b64 = await new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.onload = () => resolve(String(reader.result).split(',')[1] || '');
-    reader.onerror = () => reject(new Error('Không đọc được file ảnh.'));
+    reader.onload = () => {
+      const res = String(reader.result || '');
+      const parts = res.split(',');
+      resolve(parts.length > 1 ? parts[1].replace(/\s/g, '') : '');
+    };
+    reader.onerror = () => reject(new Error('Không đọc được file ảnh từ máy của bạn.'));
     reader.readAsDataURL(file);
   });
 
@@ -2114,7 +2119,7 @@ async function uploadImageFile(file) {
   if (r.status === 401) { location.reload(); throw new Error('Phiên đăng nhập đã hết hạn.'); }
   if (!r.ok) {
     const e = await r.json().catch(() => ({}));
-    throw new Error(e.error || ('Lỗi tải ảnh lên: ' + r.status));
+    throw new Error(e.error || e.message || ('Lỗi tải ảnh lên: HTTP ' + r.status));
   }
   return `https://otahub.asia/${destPath}`;
 }
@@ -2127,13 +2132,24 @@ function triggerImageUpload(onUploaded) {
 async function handleGlobalUpload(inputEl) {
   const file = inputEl.files && inputEl.files[0];
   inputEl.value = '';
-  if (!file || !UPLOAD_TARGET_CB) return;
+  if (!file) return;
   const cb = UPLOAD_TARGET_CB;
   UPLOAD_TARGET_CB = null;
   toast('success', '⏳ Đang tải ảnh lên...');
   try {
     const url = await uploadImageFile(file);
-    if (url) { cb(url); toast('success', '✅ Đã tải ảnh lên: ' + url.split('/').pop()); }
+    if (url) {
+      toast('success', '✅ Đã tải ảnh lên: ' + url.split('/').pop());
+      MEDIA_FILES = null;
+      await loadMediaFiles();
+      if (cb) {
+        cb(url);
+      } else {
+        const fileName = url.split('/').pop();
+        mediaModalSelectImage(url, fileName);
+        mediaSwitchTab('library');
+      }
+    }
   } catch (e) {
     toast('error', 'Lỗi tải ảnh: ' + e.message);
   }
@@ -2157,9 +2173,37 @@ function openMediaModal(cb, defaultTab) {
   if (vid) vid.value = ''; if (vcap) vcap.value = ''; if (search) search.value = '';
   mediaUpdatePreview();
   mediaUpdateVideoPreview();
-  mediaSwitchTab(defaultTab || 'library');
+  let tab = defaultTab || 'library';
+  if (tab === 'image') tab = 'library';
+  mediaSwitchTab(tab);
   document.getElementById('media-modal-ov')?.classList.add('open');
 }
+
+// Lắng nghe dán ảnh trực tiếp từ Clipboard (Ctrl+V) khi mở Media Modal
+window.addEventListener('paste', function(e) {
+  const modal = document.getElementById('media-modal-ov');
+  if (modal && modal.classList.contains('open')) {
+    if (e.clipboardData && e.clipboardData.files && e.clipboardData.files.length > 0) {
+      const file = e.clipboardData.files[0];
+      if (file.type && file.type.startsWith('image/')) {
+        e.preventDefault();
+        toast('success', '⏳ Đang tải ảnh dán từ clipboard...');
+        uploadImageFile(file).then(async url => {
+          if (url) {
+            toast('success', '✅ Đã tải ảnh lên: ' + url.split('/').pop());
+            MEDIA_FILES = null;
+            await loadMediaFiles();
+            mediaModalSelectImage(url, file.name);
+            mediaSwitchTab('library');
+          }
+        }).catch(err => {
+          toast('error', 'Lỗi tải ảnh: ' + err.message);
+        });
+      }
+    }
+  }
+});
+
 function closeMediaModal() {
   document.getElementById('media-modal-ov')?.classList.remove('open');
   MEDIA_MODAL_CB = null;
@@ -4851,10 +4895,31 @@ const ART_BRIDGE_SCRIPT = `<script>(function(){
     updateBubble();
   });
 
-  // Clean Paste Sanitizer trong iframe
+  // Clean Paste Sanitizer & Image Paste trong iframe
   document.addEventListener('paste', function(e){
     var editable = e.target.closest('[contenteditable="true"]');
     if (!editable) return;
+    if (e.clipboardData && e.clipboardData.files && e.clipboardData.files.length > 0) {
+      var file = e.clipboardData.files[0];
+      if (file.type && file.type.indexOf('image/') === 0) {
+        e.preventDefault();
+        if (parent && parent.uploadImageFile) {
+          parent.toast('success', '⏳ Đang tải ảnh dán từ clipboard...');
+          parent.uploadImageFile(file).then(function(url){
+            if (url) {
+              var alt = file.name.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ');
+              var figHtml = '<figure><img src="' + url + '" alt="' + alt + '" loading="lazy"></figure><p><br></p>';
+              document.execCommand('insertHTML', false, figHtml);
+              editable.dispatchEvent(new Event('input', { bubbles: true }));
+              parent.toast('success', '✅ Đã tải và chèn ảnh dán từ clipboard!');
+            }
+          }).catch(function(err){
+            parent.toast('error', 'Lỗi tải ảnh clipboard: ' + err.message);
+          });
+        }
+        return;
+      }
+    }
     var rawHtml = e.clipboardData ? e.clipboardData.getData('text/html') : '';
     if (rawHtml) {
       e.preventDefault();
@@ -4876,6 +4941,39 @@ const ART_BRIDGE_SCRIPT = `<script>(function(){
       editable.dispatchEvent(new Event('input', { bubbles: true }));
     }
   }, true);
+
+  // Drag & Drop ảnh trực tiếp vào thân bài viết
+  document.addEventListener('dragover', function(e){
+    if (e.dataTransfer && e.dataTransfer.types && Array.from(e.dataTransfer.types).includes('Files')) {
+      e.preventDefault();
+    }
+  });
+  document.addEventListener('drop', function(e){
+    var editable = e.target.closest('[contenteditable="true"]');
+    if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      var file = e.dataTransfer.files[0];
+      if (file.type && file.type.indexOf('image/') === 0) {
+        e.preventDefault();
+        if (parent && parent.uploadImageFile) {
+          parent.toast('success', '⏳ Đang tải ảnh thả vào...');
+          parent.uploadImageFile(file).then(function(url){
+            if (url) {
+              var alt = file.name.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ');
+              var figHtml = '<figure><img src="' + url + '" alt="' + alt + '" loading="lazy"></figure><p><br></p>';
+              if (editable) {
+                editable.focus();
+                document.execCommand('insertHTML', false, figHtml);
+                editable.dispatchEvent(new Event('input', { bubbles: true }));
+              }
+              parent.toast('success', '✅ Đã tải và chèn ảnh thành công!');
+            }
+          }).catch(function(err){
+            parent.toast('error', 'Lỗi tải ảnh: ' + err.message);
+          });
+        }
+      }
+    }
+  });
 
   // Phím tắt trong Iframe
   document.addEventListener('keydown', function(e){
