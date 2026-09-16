@@ -1,6 +1,82 @@
-// OtaHub Global Search & Tag Index
-(function() {
-  window.IDX = [
+var IDX = [
+  {
+    "title": "Black Myth: Wukong DLC \"Rebirth of the Great Sage\": Game Science Confirms Release Date & Celestial Realm Battlefields",
+    "url": "/en/black-myth-wukong-dlc-tai-sinh-dai-thanh-ngay-phat-hanh-boss-thien-dinh",
+    "cat": "Gaming",
+    "date": "2026-09-16",
+    "excerpt": "Game Science reveals the official release schedule for Black Myth: Wukong's DLC \"Rebirth of the Great Sage,\" plunging the Destined One into the Celestial Realm.",
+    "img": "/assets/img/news-black-myth-wukong-dlc-rebirth.jpg",
+    "tags": [
+      "gaming",
+      "hot",
+      "breaking"
+    ]
+  },
+  {
+    "title": "Black Myth: Wukong DLC \"Tái Sinh Đại Thánh\": Game Science Ấn Định Ngày Phát Hành & Chi Tiết Chiến Trường Thiên Đình Mới",
+    "url": "/black-myth-wukong-dlc-tai-sinh-dai-thanh-ngay-phat-hanh-boss-thien-dinh",
+    "cat": "Gaming",
+    "date": "2026-09-16",
+    "excerpt": "Game Science chính thức công bố ngày ra mắt bản mở rộng DLC \"Tái Sinh Đại Thánh\" cho Black Myth: Wukong, đưa Thiên Mệnh Nhân vào cuộc chiến chấn động tam giới.",
+    "img": "/assets/img/news-black-myth-wukong-dlc-rebirth.jpg",
+    "tags": [
+      "gaming",
+      "hot",
+      "breaking"
+    ]
+  },
+  {
+    "title": "Solo Leveling Season 2 \"Arise from the Shadow\": Shatters Global Streaming Records with Jeju Island Arc & Beru Climax",
+    "url": "/en/solo-leveling-season-2-jeju-island-shadow-army-record",
+    "cat": "Anime",
+    "date": "2026-09-16",
+    "excerpt": "Solo Leveling Season 2 breaks worldwide Crunchyroll viewership records as Sung Jin-woo unleashes the shadow army in the thrilling Jeju Island climax.",
+    "img": "/assets/img/news-solo-leveling-s2-jeju-beru.jpg",
+    "tags": [
+      "anime",
+      "hot",
+      "breaking"
+    ]
+  },
+  {
+    "title": "Solo Leveling Mùa 2 \"Arise from the Shadow\": Đột Phá Kỷ Lục Lượt Xem Toàn Cầu, Sung Jin-woo Triệu Hồi Quân Đoàn Bóng Tối Đảo Jeju",
+    "url": "/solo-leveling-season-2-jeju-island-shadow-army-record",
+    "cat": "Anime",
+    "date": "2026-09-16",
+    "excerpt": "Solo Leveling Mùa 2 xác lập kỷ lục phát trực tuyến toàn cầu mới trên Crunchyroll khi phân cảnh Sung Jin-woo giải phóng Quân đoàn bóng tối trên đảo Jeju đạt đỉnh cao thị giác.",
+    "img": "/assets/img/news-solo-leveling-s2-jeju-beru.jpg",
+    "tags": [
+      "anime",
+      "hot",
+      "breaking"
+    ]
+  },
+  {
+    "title": "Monster Hunter Wilds Autumn 2026 Update: New Region & Ancient Apex Monsters Revealed Following Arkveld Climax",
+    "url": "/en/monster-hunter-wilds-autumn-update-2026-new-monsters",
+    "cat": "Gaming",
+    "date": "2026-09-16",
+    "excerpt": "Capcom officially announces Monster Hunter Wilds Autumn 2026 update featuring a brand-new biome, variant weapon trees, and ancient apex monster hunts.",
+    "img": "/assets/img/monster-hunter-wilds-autumn-update-hero.jpg",
+    "tags": [
+      "gaming",
+      "hot",
+      "breaking"
+    ]
+  },
+  {
+    "title": "Monster Hunter Wilds: Bản Cập Nhật Mùa Thu 2026 Bổ Sung Vùng Đất Mới & Hé Lộ Quái Vật Cổ Đại Sau Kỳ Tích Arkveld",
+    "url": "/monster-hunter-wilds-autumn-update-2026-new-monsters",
+    "cat": "Gaming",
+    "date": "2026-09-16",
+    "excerpt": "Capcom chính thức công bố bản cập nhật Mùa Thu 2026 cho Monster Hunter Wilds với phân vùng sinh thái mới, vũ khí biến dị và cuộc đụng độ quái vật cổ đại đầy kịch tính.",
+    "img": "/assets/img/monster-hunter-wilds-autumn-update-hero.jpg",
+    "tags": [
+      "gaming",
+      "hot",
+      "breaking"
+    ]
+  },
   {
     "title": "Bleach: Huyết Chiến Ngàn Năm Phần 4 – Pierrot Tung Trailer Đại Chiến Aizen, Ichigo & Yhwach",
     "url": "/bleach-thousand-year-blood-war-cour-4-trailer-lich-chieu",
@@ -2845,51 +2921,4 @@
     ]
   }
 ];
-
-  function initGlobalSearch() {
-    var inputs = document.querySelectorAll('#site-search, .search-input, #search-input');
-    inputs.forEach(function(input) {
-      if (input.dataset.searchBound) return;
-      input.dataset.searchBound = 'true';
-      input.addEventListener('input', function(e) {
-        var query = e.target.value.trim().toLowerCase();
-        var resultsBox = document.querySelector('#search-results, .search-results-dropdown');
-        if (!resultsBox) return;
-        if (query.length < 2) {
-          resultsBox.innerHTML = '';
-          resultsBox.style.display = 'none';
-          return;
-        }
-        var filtered = window.IDX.filter(function(item) {
-          return (item.title && item.title.toLowerCase().includes(query)) ||
-                 (item.excerpt && item.excerpt.toLowerCase().includes(query)) ||
-                 (item.tags && item.tags.some(function(t) { return t.toLowerCase().includes(query); })) ||
-                 (item.cat && item.cat.toLowerCase().includes(query));
-        }).slice(0, 8);
-
-        if (!filtered.length) {
-          resultsBox.innerHTML = '<div class="sr-empty">Không tìm thấy bài viết phù hợp.</div>';
-          resultsBox.style.display = 'block';
-          return;
-        }
-
-        resultsBox.innerHTML = filtered.map(function(item) {
-          return '<a href="' + item.url + '" class="sr-item">' +
-            '<img src="' + item.img + '" alt="" class="sr-thumb">' +
-            '<div class="sr-meta">' +
-              '<span class="sr-cat">' + item.cat + '</span>' +
-              '<span class="sr-title">' + item.title + '</span>' +
-            '</div>' +
-          '</a>';
-        }).join('');
-        resultsBox.style.display = 'block';
-      });
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initGlobalSearch);
-  } else {
-    initGlobalSearch();
-  }
-})();
+if (typeof window !== 'undefined') window.IDX = IDX;

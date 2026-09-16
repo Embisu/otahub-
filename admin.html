@@ -2085,13 +2085,13 @@ function onSlugInput(value) {
 
 async function uploadImageFile(file) {
   if (!file) return null;
-  const allowedExts = new Set(['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'avif']);
+  const allowedExts = new Set(['jpg', 'jpeg', 'png', 'webp', 'gif', 'avif']);
   let ext = (file.name.split('.').pop() || '').toLowerCase().replace('jpeg', 'jpg');
   if (!allowedExts.has(ext)) {
-    ext = (file.type.split('/')[1] || '').toLowerCase().replace('jpeg', 'jpg').replace('svg+xml', 'svg');
+    ext = (file.type.split('/')[1] || '').toLowerCase().replace('jpeg', 'jpg');
   }
   if (!allowedExts.has(ext)) {
-    throw new Error('Chỉ chấp nhận ảnh định dạng JPG, PNG, WEBP, GIF hoặc SVG.');
+    throw new Error('Chỉ chấp nhận ảnh định dạng JPG, PNG, WEBP, GIF hoặc AVIF.');
   }
   if (file.size > 8 * 1024 * 1024) throw new Error('Ảnh quá lớn (tối đa 8MB).');
   
@@ -2110,16 +2110,22 @@ async function uploadImageFile(file) {
     reader.readAsDataURL(file);
   });
 
-  const r = await fetch(`/api/admin/gh/${destPath}`, {
-    method: 'PUT',
-    credentials: 'same-origin',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ content: b64, sha: null, message: `tai anh len qua admin: ${destPath}` }),
-  });
-  if (r.status === 401) { location.reload(); throw new Error('Phiên đăng nhập đã hết hạn.'); }
+  let r;
+  try {
+    r = await fetch(`/api/admin/gh/${destPath}`, {
+      method: 'PUT',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: b64, sha: null, message: `tai anh len qua admin: ${destPath}` }),
+    });
+  } catch(netErr) {
+    throw new Error('Không thể kết nối máy chủ API tải ảnh. Vui lòng kiểm tra kết nối mạng hoặc thử lại trên https://otahub.asia/admin (' + netErr.message + ')');
+  }
+
+  if (r.status === 401) { location.reload(); throw new Error('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.'); }
   if (!r.ok) {
     const e = await r.json().catch(() => ({}));
-    throw new Error(e.error || e.message || ('Lỗi tải ảnh lên: HTTP ' + r.status));
+    throw new Error(e.error || e.message || ('Lỗi máy chủ khi tải ảnh (HTTP ' + r.status + ')'));
   }
   return `https://otahub.asia/${destPath}`;
 }
@@ -6994,67 +7000,6 @@ async function autosaveHomeDraft() {
   } catch(e) {
     setDraftIndicator('⚠️ Lưu nháp tự động thất bại: ' + e.message);
   }
-}
-
-// ── Tự động đồng bộ bài viết mới ra toàn site ────────────────────────────────
-async function syncNewArticle(meta) {
-  const slug = meta.file.replace(/\.html$/, '');
-  const url = '/' + slug;
-  const CAT_MAP = {
-    Gaming: { hub: 'gaming.html', story: 'gaming', tag: 'tc' },
-    Anime:  { hub: 'anime.html',  story: 'anime',  tag: 'ts' },
-    Manga:  { hub: 'manga.html',  story: 'manga',  tag: 'tv' },
-  };
-  const info = CAT_MAP[meta.cat] || CAT_MAP.Gaming;
-  const now = new Date();
-  const dateStr = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
-  const isoDate = now.toISOString().slice(0, 10);
-  const hero = meta.hero || '/assets/img/placeholder.svg';
-  const results = [];
-
-  try {
-    const newsCard = `<a href="${url}" style="display:block;background:#150a2c;border:1px solid rgba(255,255,255,.12);color:#f3efff;text-decoration:none"><img src="${hero}" alt="${esc(meta.title)}" width="1200" height="675" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover"><div style="padding:18px"><span style="color:#00e5ff;font-size:11px;letter-spacing:.15em">${meta.cat.toUpperCase()}</span><h3 style="font-size:20px;line-height:1.3;margin:8px 0">${esc(meta.title)}</h3><p style="color:#aaa1ba;font-size:14px">${esc(meta.desc)}</p></div></a>`;
-    const data = await ghGet('news.html');
-    let content = decodeURIComponent(escape(atob(data.content)));
-    const gridAnchor = /gap:18px">/;
-    if (!gridAnchor.test(content)) throw new Error('Không tìm thấy điểm chèn trong news.html');
-    content = content.replace(gridAnchor, (m) => m + newsCard);
-    content = content.replace(/(\d+)( tin mới đã kiểm chứng)/, (m, n, rest) => (parseInt(n, 10) + 1) + rest);
-    await ghPut('news.html', content, data.sha, `[admin] them bai moi vao news.html: ${meta.title.slice(0, 50)}`);
-    results.push('✅ news.html');
-  } catch(e) { results.push('❌ news.html — ' + e.message); }
-
-  try {
-    const cardHtml = `\n      <a href="${url}" class="ac" data-cat="pc"><div class="ac-thumb"><img src="${hero}" alt="${esc(meta.title)}" loading="lazy" width="1280" height="720"></div><div class="ac-info"><div><div class="ac-top"><span class="tag ${info.tag}">${meta.cat}</span></div><div class="ac-title">${esc(meta.title)}</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>Hôm nay</span><span class="ac-meta-sep">·</span><span>5 min</span></div></div></a>`;
-    await ghSpliceInsert(info.hub, /<!-- ADMIN:ARTICLES_START -->/, cardHtml, true, `[admin] them bai moi vao ${info.hub}: ${meta.title.slice(0, 50)}`);
-    results.push(`✅ ${info.hub}`);
-  } catch(e) { results.push(`❌ ${info.hub} — ` + e.message); }
-
-  try {
-    const wcard = `<article class="w-card"><a href="${slug}" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">${meta.cat} · OtaHub Editorial</div><div class="wc-t">${esc(meta.title)}</div><div class="wc-m">OtaHub Editorial · ${dateStr} · 5 min</div></div><div class="wc-thumb"><img src="${hero}" alt="${esc(meta.title)}" loading="lazy" width="2000" height="1125"></div></a></article>\n\n`;
-    await ghSpliceInsert('index.html', /<article class="w-card">/, wcard, false, `[admin] them bai moi vao trang chu: ${meta.title.slice(0, 50)}`);
-    results.push('✅ index.html');
-  } catch(e) { results.push('❌ index.html — ' + e.message); }
-
-  try {
-    const entry = JSON.stringify({ url: url, title: meta.title, cat: meta.cat, excerpt: (meta.desc || '').slice(0, 150), img: hero || '', date: isoDate, tags: [] }) + ',';
-    await ghSpliceInsert('assets/search.js', /(?:var|window\.)?\s*IDX\s*=\s*\[/, entry, true, `[admin] them bai moi vao search index: ${meta.title.slice(0, 50)}`);
-    results.push('✅ search.js');
-  } catch(e) { results.push('❌ search.js — ' + e.message); }
-
-  try {
-    const urlBlock = `<url><loc>https://otahub.asia${url}</loc><lastmod>${isoDate}</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>\n`;
-    await ghSpliceInsert('sitemap.xml', /<\/urlset>/, urlBlock, false, `[admin] them bai moi vao sitemap: ${meta.title.slice(0, 50)}`);
-    results.push('✅ sitemap.xml');
-  } catch(e) { results.push('❌ sitemap.xml — ' + e.message); }
-
-  try {
-    const item = `  <item><title>${esc(meta.title)}</title><link>https://otahub.asia${url}</link><guid isPermaLink="true">https://otahub.asia${url}</guid><pubDate>${now.toUTCString()}</pubDate><description>${esc(meta.desc)}</description><media:content url="https://otahub.asia${hero}" medium="image"/></item>\n`;
-    await ghSpliceInsert('feed.xml', /<item>/, item, false, `[admin] them bai moi vao feed.xml: ${meta.title.slice(0, 50)}`);
-    results.push('✅ feed.xml');
-  } catch(e) { results.push('❌ feed.xml — ' + e.message); }
-
-  alert('Kết quả đồng bộ bài viết mới:\n\n' + results.join('\n') + '\n\nLưu ý: chỉ đồng bộ bản Tiếng Việt. Nếu cần bản Tiếng Anh, tạo và nối thủ công vào en/.');
 }
 
 // ── Trình soạn thảo dữ liệu dạng mảng (Reviews, Chơi Gì, Recommend, Lịch phát sóng) ──

@@ -2700,4 +2700,40 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://otahub.asia/monster-hunter-wilds-autumn-update-2026-new-monsters</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/monster-hunter-wilds-autumn-update-2026-new-monsters</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/solo-leveling-season-2-jeju-island-shadow-army-record</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/solo-leveling-season-2-jeju-island-shadow-army-record</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/black-myth-wukong-dlc-tai-sinh-dai-thanh-ngay-phat-hanh-boss-thien-dinh</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/black-myth-wukong-dlc-tai-sinh-dai-thanh-ngay-phat-hanh-boss-thien-dinh</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

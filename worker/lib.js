@@ -81,7 +81,7 @@ export function canDraftPath(user, ghPath) {
 // tinh contributor, vi contributor chua duoc "xuat ban" bat ky thu gi truc
 // tiep) deu duoc tai anh, nhung CHI vao thu muc uploads/ va CHI dinh dang anh
 // an toan — khong the loi dung de ghi de file khac trong assets/.
-const UPLOAD_IMAGE_RE = /^assets\/img\/uploads\/[a-z0-9]{4,16}-[a-z0-9._-]{1,100}\.(jpe?g|png|webp|gif)$/i;
+const UPLOAD_IMAGE_RE = /^assets\/img\/uploads\/[a-z0-9]{4,16}-[a-z0-9._-]{1,100}\.(jpe?g|png|webp|gif|avif)$/i;
 export function canUploadImage(user, ghPath) {
   if (!user) return false;
   if (user.role === 'contributor') return false;
@@ -91,7 +91,7 @@ export function canUploadImage(user, ghPath) {
 // Xoa anh trong Media Library (assets/img/, ke ca assets/img/uploads/) — chi
 // admin/editor, vi xoa 1 anh dang duoc bai viet khac tham chieu se lam vo
 // hinh anh o noi khac tren site (author/contributor khong duoc xoa).
-const DELETE_IMAGE_RE = /^assets\/img\/[a-z0-9._/-]+\.(jpe?g|png|webp|gif|svg)$/i;
+const DELETE_IMAGE_RE = /^assets\/img\/[a-z0-9._/-]+\.(jpe?g|png|webp|gif|svg|avif)$/i;
 export function canDeleteImage(user, ghPath) {
   if (!user) return false;
   if (user.role !== 'admin' && user.role !== 'editor') return false;
@@ -113,6 +113,7 @@ export function hasValidImageSignature(ghPath, base64Content) {
   if (ext === 'png' && ends([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a])) return true;
   if (ext === 'gif' && (new TextDecoder().decode(bytes.slice(0, 6)) === 'GIF87a' || new TextDecoder().decode(bytes.slice(0, 6)) === 'GIF89a')) return true;
   if (ext === 'webp' && new TextDecoder().decode(bytes.slice(0, 4)) === 'RIFF' && new TextDecoder().decode(bytes.slice(8, 12)) === 'WEBP') return true;
+  if (ext === 'avif' && new TextDecoder().decode(bytes.slice(4, 12)).startsWith('ftypavi')) return true;
   return false;
 }
 
