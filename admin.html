@@ -2086,17 +2086,17 @@ function onSlugInput(value) {
 async function uploadImageFile(file) {
   if (!file) return null;
   const allowedExts = new Set(['jpg', 'jpeg', 'png', 'webp', 'gif', 'avif']);
-  let ext = (file.name.split('.').pop() || '').toLowerCase().replace('jpeg', 'jpg');
+  let ext = (file.name ? file.name.split('.').pop() : '').toLowerCase().replace('jpeg', 'jpg');
   if (!allowedExts.has(ext)) {
-    ext = (file.type.split('/')[1] || '').toLowerCase().replace('jpeg', 'jpg');
+    ext = ((file.type || '').split('/')[1] || '').toLowerCase().replace('jpeg', 'jpg');
   }
   if (!allowedExts.has(ext)) {
-    throw new Error('Chỉ chấp nhận ảnh định dạng JPG, PNG, WEBP, GIF hoặc AVIF.');
+    ext = 'jpg';
   }
   if (file.size > 8 * 1024 * 1024) throw new Error('Ảnh quá lớn (tối đa 8MB).');
   
   const hash = Math.random().toString(36).slice(2, 10);
-  const cleanName = slugifyFilename(file.name.replace(/\.[a-z0-9]+$/i, '')) || 'anh';
+  const cleanName = slugifyFilename((file.name || 'anh').replace(/\.[a-z0-9]+$/i, '')) || 'anh';
   const destPath = `assets/img/uploads/${hash}-${cleanName}.${ext}`;
 
   const b64 = await new Promise((resolve, reject) => {
@@ -2110,24 +2110,43 @@ async function uploadImageFile(file) {
     reader.readAsDataURL(file);
   });
 
-  let r;
+  const dataUrl = `data:${file.type || 'image/jpeg'};base64,${b64}`;
+
+  // Thử đẩy trực tiếp lên GitHub repository qua Cloudflare Worker
   try {
-    r = await fetch(`/api/admin/gh/${destPath}`, {
+    const r = await fetch(`/api/admin/gh/${destPath}`, {
       method: 'PUT',
       credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ content: b64, sha: null, message: `tai anh len qua admin: ${destPath}` }),
     });
-  } catch(netErr) {
-    throw new Error('Không thể kết nối máy chủ API tải ảnh. Vui lòng kiểm tra kết nối mạng hoặc thử lại trên https://otahub.asia/admin (' + netErr.message + ')');
-  }
 
-  if (r.status === 401) { location.reload(); throw new Error('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.'); }
-  if (!r.ok) {
-    const e = await r.json().catch(() => ({}));
-    throw new Error(e.error || e.message || ('Lỗi máy chủ khi tải ảnh (HTTP ' + r.status + ')'));
+    if (r.status === 401) {
+      location.reload();
+      throw new Error('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.');
+    }
+
+    if (r.ok) {
+      return `https://otahub.asia/${destPath}`;
+    }
+
+    const errData = await r.json().catch(() => ({}));
+    const errMsg = errData.error || errData.message || ('HTTP ' + r.status);
+    console.warn('GitHub Upload API failed, falling back to data URL:', errMsg);
+
+    // Xử lý khi Token GitHub thiếu quyền ghi hoặc Supabase bị giới hạn quota
+    if (errMsg.includes('Resource not accessible') || errMsg.includes('personal access token') || r.status === 403) {
+      toast('warning', '⚠️ GitHub Token trên Cloudflare Worker thiếu quyền ghi. Đã tự động chèn ảnh trực tiếp để bài viết không bị gián đoạn!');
+      return dataUrl;
+    }
+
+    toast('warning', `⚠️ Máy chủ lưu trữ ảnh: ${errMsg}. Đã tự động chèn ảnh trực tiếp!`);
+    return dataUrl;
+  } catch(netErr) {
+    console.warn('Network error during image upload, using data URL fallback:', netErr);
+    toast('warning', '⚠️ Không thể kết nối API lưu file tĩnh. Đã tự động chèn ảnh trực tiếp vào bài viết!');
+    return dataUrl;
   }
-  return `https://otahub.asia/${destPath}`;
 }
 
 let UPLOAD_TARGET_CB = null;
@@ -2141,17 +2160,17 @@ async function handleGlobalUpload(inputEl) {
   if (!file) return;
   const cb = UPLOAD_TARGET_CB;
   UPLOAD_TARGET_CB = null;
-  toast('success', '⏳ Đang tải ảnh lên...');
+  toast('success', '⏳ Đang xử lý tải ảnh lên...');
   try {
     const url = await uploadImageFile(file);
     if (url) {
-      toast('success', '✅ Đã tải ảnh lên: ' + url.split('/').pop());
+      const fileName = file.name || 'ảnh mới';
+      toast('success', '✅ Đã tải ảnh lên: ' + fileName);
       MEDIA_FILES = null;
-      await loadMediaFiles();
+      loadMediaFiles().catch(() => {});
       if (cb) {
         cb(url);
       } else {
-        const fileName = url.split('/').pop();
         mediaModalSelectImage(url, fileName);
         mediaSwitchTab('library');
       }
@@ -2196,10 +2215,11 @@ window.addEventListener('paste', function(e) {
         toast('success', '⏳ Đang tải ảnh dán từ clipboard...');
         uploadImageFile(file).then(async url => {
           if (url) {
-            toast('success', '✅ Đã tải ảnh lên: ' + url.split('/').pop());
+            const fileName = file.name || 'anh-clipboard';
+            toast('success', '✅ Đã tải ảnh lên: ' + fileName);
             MEDIA_FILES = null;
-            await loadMediaFiles();
-            mediaModalSelectImage(url, file.name);
+            loadMediaFiles().catch(() => {});
+            mediaModalSelectImage(url, fileName);
             mediaSwitchTab('library');
           }
         }).catch(err => {
@@ -3458,6 +3478,8 @@ function renderEditor(file, html) {
         <small>${file}</small>
       </div>
       <div class="header-actions">
+        <button class="btn btn-secondary" onclick="openFullArticlePreview()" title="Mở trang xem trước bản nháp đầy đủ trong tab mới">👁️ Xem trước</button>
+        <button class="btn btn-primary" onclick="${isContributor ? 'saveArticleDraftNow()' : 'saveArticle()'}">${isContributor ? '📝 Lưu bản nháp' : '💾 Lưu & Deploy'}</button>
         <button class="btn btn-secondary" onclick="showView('articles')">← Quay lại</button>
       </div>
     </div>
@@ -3571,10 +3593,15 @@ function renderEditor(file, html) {
             <div class="pb-actions">
               <button class="btn btn-primary" id="save-btn" onclick="${isContributor ? 'saveArticleDraftNow()' : 'saveArticle()'}">${isContributor ? '📝 Lưu bản nháp' : '💾 Lưu & Deploy'}</button>
             </div>
-            <div style="display:flex;gap:14px;margin-top:12px;flex-wrap:wrap">
-              <a class="pb-link" id="ed-live-link" href="https://otahub.asia/${file.replace(/\.html$/,'')}" target="_blank">🔗 Xem live</a>
-              <a class="pb-link" href="#" onclick="event.preventDefault();if(confirm('Bỏ thay đổi?'))editArticle(currentFile)">↺ Hoàn tác</a>
-              ${isNewFile ? '' : `<a class="pb-link" href="#" onclick="event.preventDefault();openHistoryModal('${file}', () => editArticle('${file}'))">🕐 Lịch sử</a>`}
+            <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center">
+              <button type="button" class="btn btn-secondary btn-sm" onclick="openFullArticlePreview()" title="Mở bản xem trước đầy đủ trong tab mới (không lo lỗi 404)">👁️ Xem trước</button>
+              ${isNewFile ? `
+                <span style="font-size:11px;color:var(--wp-muted);line-height:1.4">💡 Bài mới đang là bản nháp — bấm <strong>Xem trước</strong> để xem thử hoặc <strong>Lưu & Deploy</strong> để xuất bản link thật.</span>
+              ` : `
+                <a class="pb-link" id="ed-live-link" href="https://otahub.asia/${file.replace(/\.html$/,'')}" target="_blank" title="Mở bài viết đã xuất bản trên website thật">🔗 Xem live</a>
+                <a class="pb-link" href="#" onclick="event.preventDefault();if(confirm('Bỏ thay đổi?'))editArticle(currentFile)">↺ Hoàn tác</a>
+                <a class="pb-link" href="#" onclick="event.preventDefault();openHistoryModal('${file}', () => editArticle('${file}'))">🕐 Lịch sử</a>
+              `}
             </div>
             <div class="pb-savelog" id="save-log"></div>
           </div>
@@ -5230,6 +5257,28 @@ function scheduleArticlePreviewRefresh() {
 function scheduleBlockListRefresh() {
   if (ART_BLOCKLIST_TIMER) clearTimeout(ART_BLOCKLIST_TIMER);
   ART_BLOCKLIST_TIMER = setTimeout(() => { if (BODY_BLOCKS) renderBlockEditor(); }, 900);
+}
+
+// Mở trang xem trước bản nháp ĐẦY ĐỦ trong tab mới mà không bị lỗi 404 (kể cả bài chưa lưu/chưa deploy)
+function openFullArticlePreview() {
+  syncArticleBodyToTextarea();
+  let html = currentRawHtml || '';
+  if (!currentSha) html = patchNewArticleUrls(html, currentFile);
+  html = applyArticleEditsToHtml(html);
+  
+  try {
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    const blobUrl = URL.createObjectURL(blob);
+    const win = window.open(blobUrl, '_blank');
+    if (!win) {
+      toast('warning', '⚠️ Trình duyệt chặn mở popup. Vui lòng cho phép mở tab mới trên trình duyệt.');
+    } else {
+      toast('success', '👁️ Đang mở bản xem trước đầy đủ trong tab mới...');
+    }
+  } catch(e) {
+    console.error('Preview error:', e);
+    toast('error', 'Lỗi mở bản xem trước: ' + e.message);
+  }
 }
 
 // ── Save ───────────────────────────────────────────────────────────────────
