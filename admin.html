@@ -2082,6 +2082,27 @@ function onSlugInput(value) {
   applySlug(clean);
   markChanged();
 }
+function onTitleInput(value) {
+  ART_TITLE = value;
+  if (!currentSha && !ART_SLUG_TOUCHED) {
+    const slugEl = document.getElementById('ed-slug');
+    const autoSlug = slugifyFilename(value) || 'bai-viet-moi';
+    if (slugEl) slugEl.value = autoSlug;
+    applySlug(autoSlug);
+  }
+  const iframe = document.getElementById('art-visual-iframe');
+  const doc = iframe?.contentDocument;
+  if (doc) {
+    const h1 = doc.querySelector('[data-ohfield="title"]') || doc.querySelector('h1.art-hero-title') || doc.querySelector('h1');
+    if (h1 && (h1.innerText || '').trim() !== value) {
+      h1.innerText = value;
+    }
+    const bcSpan = doc.querySelector('nav.breadcrumb span:last-child');
+    if (bcSpan) bcSpan.innerText = value;
+  }
+  markChanged();
+  updateSeoScore();
+}
 
 async function uploadImageFile(file) {
   if (!file) return null;
@@ -3448,7 +3469,7 @@ function renderEditor(file, html) {
   const isNewFile = !currentSha;
   const isContributor = CURRENT_USER?.role === 'contributor';
   ART_SLUG_TOUCHED = false;
-  const title   = extract(html, /<title>([^<]+)<\/title>/) || '';
+  const title   = (extract(html, /<h1\b[^>]*>([\s\S]*?)<\/h1>/i) || extract(html, /<title>([^<]+)<\/title>/) || '').replace(/\s*·\s*OtaHub$/i, '').trim();
   const desc    = extract(html, /name="description" content="([^"]+)"/) || '';
   const heroUrl = extractHero(html);
   const heroPos = extractHeroPos(html);
@@ -3605,6 +3626,12 @@ function renderEditor(file, html) {
             </div>
             <div class="pb-savelog" id="save-log"></div>
           </div>
+        </div>
+
+        <div class="side-box">
+          <div class="side-box-title">📝 Tiêu đề bài viết</div>
+          <input class="form-input" id="ed-title" value="${esc(ART_TITLE || title)}" placeholder="Nhập tiêu đề bài viết..." oninput="onTitleInput(this.value)"/>
+          <div style="font-size:10.5px;color:var(--wp-muted);margin-top:6px;line-height:1.5">💡 Bạn có thể nhập ở đây hoặc bấm sửa trực tiếp trên tiêu đề khung xem trước.</div>
         </div>
 
         <div class="side-box">
@@ -4740,17 +4767,32 @@ function buildArticlePreviewHtml() {
     html = html.replace(/(<header class="hero">[\s\S]*?<img\s+src=")[^"]*(")/, `$1${hero}$2 data-oh-jump="heroimg"`);
   }
 
-  const titleTag = /<h1 class="art-hero-title">/.test(html) ? 'art-hero-title' : 'art-hero-title lang-vi active';
-  html = html.replace(new RegExp(`(<h1 class="${titleTag}")>[^<]*(<\\/h1>)`),
-    (m, p1, p2) => `${p1} contenteditable="true" data-ohfield="title">${esc(ART_TITLE)}${p2}`);
+  const title   = ART_TITLE || 'Tiêu đề bài viết';
+  const excerpt = ART_EXCERPT || '';
 
-  if (/<p class="art-hero-excerpt">/.test(html)) {
-    html = html.replace(/(<p class="art-hero-excerpt")>[^<]*(<\/p>)/,
-      (m, p1, p2) => `${p1} contenteditable="true" data-ohfield="excerpt">${esc(ART_EXCERPT)}${p2}`);
+  if (/<h1\b[^>]*\bclass="[^"]*art-hero-title[^"]*"[^>]*>/i.test(html)) {
+    html = html.replace(/(<h1\b[^>]*\bclass="[^"]*art-hero-title[^"]*")[^>]*>[\s\S]*?(<\/h1>)/i,
+      `$1 contenteditable="true" data-ohfield="title">${esc(title)}$2`);
+  } else if (/<h1\b[^>]*>/i.test(html)) {
+    html = html.replace(/(<h1\b[^>]*)>[\s\S]*?(<\/h1>)/i,
+      `<h1 class="art-hero-title" contenteditable="true" data-ohfield="title">${esc(title)}$2`);
   }
-  html = html.replace(/(<span class="art-hero-cat")>[^<]*(<\/span>)/,
-    (m, p1, p2) => `${p1} data-oh-jump="cat">${esc(cat)}${p2}`);
-  html = html.replace(/(<span class="am-tag">)[^<]*(<\/span>)/, (m, p1, p2) => p1 + esc(cat) + p2);
+
+  if (/<p\b[^>]*\bclass="[^"]*art-hero-excerpt[^"]*"[^>]*>/i.test(html)) {
+    html = html.replace(/(<p\b[^>]*\bclass="[^"]*art-hero-excerpt[^"]*")[^>]*>[\s\S]*?(<\/p>)/i,
+      `$1 contenteditable="true" data-ohfield="excerpt">${esc(excerpt)}$2`);
+  }
+  html = html.replace(/(<span\b[^>]*\bclass="[^"]*art-hero-cat[^"]*")[^>]*>[\s\S]*?(<\/span>)/i,
+    `$1 data-oh-jump="cat">${esc(cat)}$2`);
+  html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-tag[^"]*")[^>]*>[\s\S]*?(<\/span>)/i,
+    `$1>${esc(cat)}$2`);
+
+  // Breadcrumbs in preview iframe
+  const catSlug = cat.toLowerCase();
+  html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<a\s+href="\/)[^"]*(">[^<]*<\/a>)/i,
+    `$1${catSlug}">${esc(cat)}</a>`);
+  html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<span>)[\s\S]*?(<\/span>)/i,
+    `$1${esc(title)}$2`);
 
   // Khối "Tóm tắt điểm nhấn" (.highlight-box) — nằm ngoài <article class="art-body">
   // nên phải tag contenteditable riêng ở đây (xem extractHighlightBox()).
@@ -5117,6 +5159,8 @@ function bindArticleBridgeMessages() {
     if (d.type === 'art-field-input') {
       if (d.field === 'title') {
         ART_TITLE = d.value;
+        const titleInput = document.getElementById('ed-title');
+        if (titleInput && titleInput.value !== d.value) titleInput.value = d.value;
         const slugEl = document.getElementById('ed-slug');
         if (slugEl && !currentSha && !ART_SLUG_TOUCHED) {
           const autoSlug = slugifyFilename(d.value) || currentFile.replace(/\.html$/, '');
@@ -5124,7 +5168,11 @@ function bindArticleBridgeMessages() {
           applySlug(autoSlug);
         }
       }
-      else if (d.field === 'excerpt') ART_EXCERPT = d.value;
+      else if (d.field === 'excerpt') {
+        ART_EXCERPT = d.value;
+        const descInput = document.getElementById('ed-desc');
+        if (descInput && !descInput.value) descInput.value = d.value;
+      }
       else if (d.field === 'hbLabel') {
         ART_HB_LABEL = d.value;
         const hbLabelInput = document.getElementById('ed-hb-label');
@@ -5247,9 +5295,65 @@ function legacyBodyInsertImage() {
   }, 'library');
 }
 
+function syncArticleFieldsFromIframe() {
+  const iframe = document.getElementById('art-visual-iframe');
+  const doc = iframe?.contentDocument;
+  if (!doc) return;
+  
+  // Title
+  const titleEl = doc.querySelector('[data-ohfield="title"]') || doc.querySelector('h1.art-hero-title') || doc.querySelector('h1');
+  if (titleEl) {
+    const t = (titleEl.innerText || titleEl.textContent || '').trim();
+    if (t) {
+      ART_TITLE = t;
+      const titleInput = document.getElementById('ed-title');
+      if (titleInput && titleInput.value !== t) titleInput.value = t;
+    }
+  }
+
+  // Excerpt
+  const excerptEl = doc.querySelector('[data-ohfield="excerpt"]') || doc.querySelector('.art-hero-excerpt');
+  if (excerptEl) {
+    const ex = (excerptEl.innerText || excerptEl.textContent || '').trim();
+    if (ex) {
+      ART_EXCERPT = ex;
+      const descInput = document.getElementById('ed-desc');
+      if (descInput && !descInput.value) descInput.value = ex;
+    }
+  }
+
+  // Highlight Box Label & Text
+  const hbLabelEl = doc.querySelector('[data-ohfield="hbLabel"]') || doc.querySelector('.hb-label');
+  if (hbLabelEl) {
+    const hl = (hbLabelEl.innerText || hbLabelEl.textContent || '').trim();
+    if (hl) {
+      ART_HB_LABEL = hl;
+      const hbLabelInput = document.getElementById('ed-hb-label');
+      if (hbLabelInput && hbLabelInput.value !== hl) hbLabelInput.value = hl;
+    }
+  }
+  const hbTextEl = doc.querySelector('[data-ohfield="hbText"]') || doc.querySelector('.hb-text');
+  if (hbTextEl) {
+    const ht = (hbTextEl.innerHTML || '').trim();
+    if (ht) {
+      ART_HB_TEXT = ht;
+      const hbTextInput = document.getElementById('ed-hb-text');
+      if (hbTextInput && hbTextInput.value !== ht) hbTextInput.value = ht;
+    }
+  }
+
+  // Body
+  const bodyEl = doc.querySelector('[data-ohfield="body"]');
+  if (bodyEl) {
+    const bv = document.getElementById('body-visual');
+    if (bv) bv.innerHTML = bodyEl.innerHTML;
+  }
+}
+
 function scheduleArticlePreviewRefresh() {
   if (ART_PREVIEW_TIMER) clearTimeout(ART_PREVIEW_TIMER);
   ART_PREVIEW_TIMER = setTimeout(() => {
+    syncArticleFieldsFromIframe();
     const iframe = document.getElementById('art-visual-iframe');
     if (iframe) iframe.srcdoc = buildArticlePreviewHtml();
   }, 700);
@@ -5261,6 +5365,7 @@ function scheduleBlockListRefresh() {
 
 // Mở trang xem trước bản nháp ĐẦY ĐỦ trong tab mới mà không bị lỗi 404 (kể cả bài chưa lưu/chưa deploy)
 function openFullArticlePreview() {
+  syncArticleFieldsFromIframe();
   syncArticleBodyToTextarea();
   let html = currentRawHtml || '';
   if (!currentSha) html = patchNewArticleUrls(html, currentFile);
@@ -5332,8 +5437,9 @@ function applyArticleEditsToHtml(baseHtml) {
 
   let html = baseHtml;
   // Apply edits (esc() để tránh vỡ HTML nếu tiêu đề/mô tả chứa <, >, &, ")
-  html = html.replace(/<title>[^<]+<\/title>/, `<title>${esc(title)} · OtaHub</title>`);
-  html = html.replace(/(<meta name="description" content=")[^"]*(")/,   `$1${esc(desc)}$2`);
+  html = html.replace(/<title>[^<]*<\/title>/i, `<title>${esc(title)} · OtaHub</title>`);
+  html = html.replace(/(<meta\s+name="description"\s+content=")[^"]*(")/i,   `$1${esc(desc)}$2`);
+
   // Từ khóa trọng tâm (SEO Score) — lưu dạng meta ẩn, chỉ admin.html đọc lại,
   // không ảnh hưởng SEO thật (không phải meta keywords cũ mà Google đã bỏ dùng).
   const kwRe = /<meta name="focus-keyword" content="[^"]*">\n?/;
@@ -5343,12 +5449,29 @@ function applyArticleEditsToHtml(baseHtml) {
   } else if (kwRe.test(html)) {
     html = html.replace(kwRe, '');
   }
-  html = html.replace(/(<meta property="og:title" content=")[^"]*(")/,  `$1${esc(title)} · OtaHub$2`);
-  html = html.replace(/(<meta property="og:description" content=")[^"]*(")/,  `$1${esc(desc)}$2`);
-  html = html.replace(/(<meta name="twitter:title" content=")[^"]*(")/,  `$1${esc(title)} · OtaHub$2`);
-  html = html.replace(/(<meta name="twitter:description" content=")[^"]*(")/,  `$1${esc(desc)}$2`);
-  html = html.replace(/("headline": ")[^"]*(")/,  `$1${title.replace(/\\/g,'\\\\').replace(/"/g,'\\"')}$2`);
-  html = html.replace(/(<meta property="article:section" content=")[^"]*(")/,  `$1${esc(cat)}$2`);
+
+  html = html.replace(/(<meta\s+property="og:title"\s+content=")[^"]*(")/i,  `$1${esc(title)} · OtaHub$2`);
+  html = html.replace(/(<meta\s+property="og:description"\s+content=")[^"]*(")/i,  `$1${esc(desc)}$2`);
+  html = html.replace(/(<meta\s+name="twitter:title"\s+content=")[^"]*(")/i,  `$1${esc(title)} · OtaHub$2`);
+  html = html.replace(/(<meta\s+name="twitter:description"\s+content=")[^"]*(")/i,  `$1${esc(desc)}$2`);
+  html = html.replace(/("headline":\s*")[^"]*(")/i,  `$1${title.replace(/\\/g,'\\\\').replace(/"/g,'\\"')}$2`);
+  html = html.replace(/(<meta\s+property="article:section"\s+content=")[^"]*(")/i,  `$1${esc(cat)}$2`);
+
+  // Category in UI (.art-hero-cat and .am-tag)
+  html = html.replace(/(<span\b[^>]*\bclass="[^"]*art-hero-cat[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${esc(cat)}$2`);
+  html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-tag[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${esc(cat)}$2`);
+
+  // Breadcrumbs in HTML & BreadcrumbList Schema
+  const catSlug = cat.toLowerCase();
+  html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<a\s+href="\/)[^"]*(">[^<]*<\/a>)/i,
+    `$1${catSlug}">${esc(cat)}</a>`);
+  html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<span>)[\s\S]*?(<\/span>)/i,
+    `$1${esc(title)}$2`);
+  html = html.replace(/(\{\s*"@type":\s*"ListItem",\s*"position":\s*2,\s*"name":\s*")[^"]*(",\s*"item":\s*"https:\/\/otahub\.asia\/)[^"]*(")/i,
+    `$1${cat.replace(/"/g, '\\"')}$2${catSlug}$3`);
+  html = html.replace(/(\{\s*"@type":\s*"ListItem",\s*"position":\s*3,\s*"name":\s*")[^"]*(")/i,
+    `$1${title.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}$2`);
+
   // Hero Image (đồng bộ toàn bộ cấu trúc bài viết, meta tag & schema)
   if (hero) {
     if (/class="art-hero-bg"\s+style="[^"]*"/.test(html)) {
@@ -5362,23 +5485,25 @@ function applyArticleEditsToHtml(baseHtml) {
     if (/<header class="hero">[\s\S]*?<img\s+src="[^"]*"/.test(html)) {
       html = html.replace(/(<header class="hero">[\s\S]*?<img\s+src=")[^"]*(")/, `$1${hero}$2`);
     }
-    const fullHeroUrl = hero.startsWith('http') ? hero : `https://otahub.asia${hero.startsWith('/') ? '' : '/'}${hero}`;
-    html = html.replace(/(<meta property="og:image" content=")[^"]*(")/, `$1${fullHeroUrl}$2`);
-    html = html.replace(/(<meta name="twitter:image" content=")[^"]*(")/, `$1${fullHeroUrl}$2`);
-    html = html.replace(/("image": ")[^"]*(")/, `$1${fullHeroUrl}$2`);
+    const fullHeroUrl = hero.startsWith('http') || hero.startsWith('data:') ? hero : `https://otahub.asia${hero.startsWith('/') ? '' : '/'}${hero}`;
+    html = html.replace(/(<meta\s+property="og:image"\s+content=")[^"]*(")/i, `$1${fullHeroUrl}$2`);
+    html = html.replace(/(<meta\s+name="twitter:image"\s+content=")[^"]*(")/i, `$1${fullHeroUrl}$2`);
+    html = html.replace(/("image":\s*")[^"]*(")/i, `$1${fullHeroUrl}$2`);
   }
-  // H1 — hỗ trợ cả mẫu hiện tại (art-hero-title) lẫn mẫu cũ (art-hero-title lang-vi active)
-  if (/<h1 class="art-hero-title">[^<]*<\/h1>/.test(html)) {
-    html = html.replace(/(<h1 class="art-hero-title">)[^<]*(<\/h1>)/, `$1${esc(title)}$2`);
-  } else {
-    html = html.replace(/(<h1 class="art-hero-title lang-vi active">)[^<]*(<\/h1>)/, `$1${esc(title)}$2`);
+
+  // H1 — hỗ trợ cả mẫu hiện tại (art-hero-title) lẫn bất kỳ class/thuộc tính nào
+  if (/<h1\b[^>]*\bclass="[^"]*art-hero-title[^"]*"[^>]*>/i.test(html)) {
+    html = html.replace(/(<h1\b[^>]*\bclass="[^"]*art-hero-title[^"]*"[^>]*>)[\s\S]*?(<\/h1>)/i, `$1${esc(title)}$2`);
+  } else if (/<h1\b[^>]*>/i.test(html)) {
+    html = html.replace(/(<h1\b[^>]*>)[\s\S]*?(<\/h1>)/i, `$1${esc(title)}$2`);
   }
-  // Mô tả ngắn dưới tiêu đề, trên ảnh bìa (trước đây tồn tại trong mẫu nhưng
-  // chưa từng được đọc/lưu — nay là field thật, xem extractExcerpt()).
-  if (/<p class="art-hero-excerpt">[^<]*<\/p>/.test(html)) {
-    html = html.replace(/(<p class="art-hero-excerpt">)[^<]*(<\/p>)/, `$1${esc(excerpt)}$2`);
+
+  // Mô tả ngắn dưới tiêu đề, trên ảnh bìa
+  if (/<p\b[^>]*\bclass="[^"]*art-hero-excerpt[^"]*"[^>]*>/i.test(html)) {
+    html = html.replace(/(<p\b[^>]*\bclass="[^"]*art-hero-excerpt[^"]*"[^>]*>)[\s\S]*?(<\/p>)/i, `$1${esc(excerpt)}$2`);
   }
-  // Khối "Tóm tắt điểm nhấn" (.highlight-box) — xem extractHighlightBox()/ART_HB_*.
+
+  // Khối "Tóm tắt điểm nhấn" (.highlight-box)
   if (ART_HAS_HB) {
     if (/<div class="highlight-box">[\s\S]*?<\/div>\s*<\/div>/i.test(html)) {
       html = html.replace(/(<div class="hb-label">)[^<]*(<\/div>)/, `$1${esc(ART_HB_LABEL || 'Tóm Tắt')}$2`);
@@ -5390,6 +5515,7 @@ function applyArticleEditsToHtml(baseHtml) {
   } else {
     html = html.replace(/<div class="highlight-box">[\s\S]*?<\/div>\s*<\/div>\s*/gi, '');
   }
+
   // Body — hỗ trợ cả mẫu hiện tại (art-body) lẫn mẫu cũ (art-body lang-vi active)
   if (/<article class="art-body">[\s\S]*?<\/article>/.test(html)) {
     html = html.replace(/<article class="art-body">[\s\S]*?<\/article>/, `<article class="art-body">\n${bodyVi}\n</article>`);
@@ -5398,9 +5524,6 @@ function applyArticleEditsToHtml(baseHtml) {
   }
 
   // Dữ liệu Khối ẩn (admin-block-data) — chỉ tồn tại cho bài dùng chế độ Khối.
-  // Nếu vẫn đang dùng Khối: ghi lại JSON khối mới nhất để lần sau mở lại vẫn
-  // chỉnh được bằng kéo-thả. Nếu đã "tốt nghiệp" sang Trực quan/HTML (BODY_BLOCKS
-  // = null) nhưng file vẫn còn marker cũ: gỡ bỏ để không lưu dữ liệu khối lỗi thời.
   const blockMarkerRe = /<script type="application\/json" id="admin-block-data">[\s\S]*?<\/script>\n?/;
   if (BODY_BLOCKS) {
     const newMarker = `<script type="application/json" id="admin-block-data">${JSON.stringify(BODY_BLOCKS)}<\/script>\n`;
@@ -5425,6 +5548,7 @@ function syncArticleBodyToTextarea() {
 }
 
 async function saveArticle() {
+  syncArticleFieldsFromIframe();
   syncArticleBodyToTextarea();
   const title = ART_TITLE || '';
   const desc  = document.getElementById('ed-desc')?.value || '';
@@ -5494,6 +5618,7 @@ async function saveArticle() {
 // hơn và phù hợp vì bản nháp vốn không phải bản chốt cuối cùng.
 async function autosaveArticleDraft() {
   if (!currentFile || !currentRawHtml) return false;
+  syncArticleFieldsFromIframe();
   syncArticleBodyToTextarea();
   try {
     let html = currentRawHtml;
