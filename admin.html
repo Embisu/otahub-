@@ -697,77 +697,112 @@ body {
   display: inline-block;
 }
 
-/* ── 7. POST EDITOR & GUTENBERG / ELEMENTOR / WORDPRESS CLASSIC LAYOUT ── */
-.editor-layout { display: grid; grid-template-columns: 1fr 300px; gap: 20px; align-items: start; }
-.editor-sidebar { position: sticky; top: 40px; }
+/* ── 7. WORDPRESS CLASSIC EDITOR (AUTHENTIC WP-ADMIN 1:1) ── */
+.editor-layout { display: grid; grid-template-columns: 1fr 280px; gap: 20px; align-items: start; margin-top: 10px; }
+.editor-sidebar { position: sticky; top: 32px; }
 
-/* WP Post Title Field */
-#titlediv { margin-bottom: 10px; position: relative; }
-.wp-title-input, #ed-title, #title {
-  width: 100%;
-  background: #ffffff;
-  border: 1px solid #ccd0d4;
-  border-radius: 4px;
-  outline: none;
+/* WP Post Header */
+.wp-heading-inline {
+  font-size: 23px;
+  font-weight: 400;
+  margin: 0;
+  padding: 9px 0 4px;
+  line-height: 1.3;
   color: #1d2327;
-  font-size: 1.6em;
-  font-weight: 600;
-  line-height: 100%;
-  padding: 9px 12px;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,.07);
-  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-  font-family: inherit;
+  display: inline-block;
 }
-.wp-title-input:focus, #ed-title:focus, #title:focus {
+.page-title-action {
+  margin-left: 8px;
+  padding: 4px 8px;
+  position: relative;
+  top: -3px;
+  text-decoration: none;
+  border: 1px solid #2271b1;
+  border-radius: 3px;
+  background: #f6f7f7;
+  text-shadow: none;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: normal;
+  color: #2271b1;
+  cursor: pointer;
+  display: inline-block;
+}
+.page-title-action:hover {
+  background: #2271b1;
+  color: #fff;
+}
+
+/* WP Post Title Input */
+#titlediv { margin-bottom: 12px; position: relative; }
+#titlediv #title {
+  padding: 4px 10px;
+  font-size: 1.7em;
+  line-height: 100%;
+  height: 1.7em;
+  width: 100%;
+  outline: 0;
+  background-color: #fff;
+  border: 1px solid #8c8f94;
+  border-radius: 4px;
+  color: #2c3338;
+  font-weight: 600;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 transparent;
+  transition: border-color .1s linear, box-shadow .1s linear;
+}
+#titlediv #title:focus {
   border-color: #2271b1;
   box-shadow: 0 0 0 1px #2271b1;
 }
 
-/* WP Permalink Bar (Edit Slug Box) */
+/* WP Edit Slug Box */
 #edit-slug-box {
   display: flex;
   align-items: center;
   gap: 6px;
   padding: 6px 10px;
-  font-size: 12px;
+  font-size: 13px;
   color: #646970;
   background: #f6f7f7;
   border: 1px solid #dcdcde;
   border-radius: 4px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   min-height: 32px;
   flex-wrap: wrap;
 }
 #edit-slug-box strong { color: #1d2327; }
-#sample-permalink { color: #2271b1; word-break: break-all; }
-#editable-post-name { font-weight: 700; color: #1d2327; background: #fff; padding: 1px 4px; border-radius: 2px; }
-.edit-slug-btn {
+#sample-permalink { color: #2271b1; }
+#editable-post-name { font-weight: 700; color: #1d2327; background: #fff; padding: 1px 4px; border-radius: 2px; border: 1px solid #dcdcde; }
+.button-small {
   background: #f6f7f7;
-  border: 1px solid #ccd0d4;
+  border: 1px solid #dcdcde;
   color: #2271b1;
-  padding: 2px 8px;
-  font-size: 11px;
+  padding: 0 8px 1px;
+  font-size: 11.5px;
   font-weight: 600;
   border-radius: 3px;
   cursor: pointer;
   text-decoration: none;
+  height: 24px;
   display: inline-flex;
   align-items: center;
+  box-shadow: 0 1px 0 #dcdcde;
 }
-.edit-slug-btn:hover {
+.button-small:hover {
   background: #f0f0f1;
   border-color: #2271b1;
   color: #135e96;
 }
 
-/* WP Classic Editor Wrap */
+/* WP Editor Wrap */
 .wp-editor-wrap {
   position: relative;
   background: #ffffff;
   border: 1px solid #ccd0d4;
   border-radius: 4px;
   box-shadow: 0 1px 1px rgba(0,0,0,.04);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 .wp-editor-tools {
   display: flex;
@@ -785,17 +820,18 @@ body {
 }
 .wp-media-buttons .button {
   background: #f6f7f7;
-  border: 1px solid #c3c4c7;
+  border: 1px solid #8c8f94;
   color: #2c3338;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
-  padding: 4px 10px;
+  padding: 3px 10px 4px 8px;
   border-radius: 3px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  box-shadow: 0 1px 0 #ccd0d4;
   transition: all .15s ease;
+  height: 28px;
 }
 .wp-media-buttons .button:hover {
   background: #f0f0f1;
@@ -804,35 +840,36 @@ body {
 }
 .wp-editor-tabs {
   display: flex;
-  gap: 4px;
+  gap: 3px;
+  margin-bottom: -1px;
 }
 .wp-switch-editor {
   background: #ebebeb;
   border: 1px solid #dcdcde;
-  border-bottom: none;
+  border-bottom: 0;
   color: #646970;
-  padding: 5px 12px;
-  font-size: 12px;
+  padding: 4px 10px 5px;
+  font-size: 13px;
   font-weight: 600;
   border-radius: 4px 4px 0 0;
   cursor: pointer;
   transition: all .15s ease;
+  height: 28px;
 }
 .wp-switch-editor:hover {
   background: #ffffff;
   color: #2271b1;
 }
 .wp-switch-editor.active {
-  background: #ffffff;
-  color: #1d2327;
+  background: #f6f7f7;
+  color: #2c3338;
   border-color: #ccd0d4;
-  border-bottom: 1px solid #ffffff;
-  margin-bottom: -1px;
+  border-bottom: 1px solid #f6f7f7;
   position: relative;
   z-index: 2;
 }
 
-/* WP TinyMCE Ribbon Toolbar */
+/* TinyMCE 2-Row Toolbar */
 .mce-tinymce {
   background: #f6f7f7;
   border-bottom: 1px solid #dcdcde;
@@ -850,7 +887,7 @@ body {
   flex-wrap: wrap;
 }
 .mce-btn-group {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 1px;
   border-right: 1px solid #dcdcde;
@@ -865,19 +902,17 @@ body {
 .mce-btn {
   background: transparent;
   border: 1px solid transparent;
-  border-radius: 3px;
-  color: #2c3338;
-  height: 26px;
-  min-width: 26px;
-  padding: 0 5px;
-  font-size: 12px;
+  border-radius: 2px;
+  color: #50575e;
+  height: 28px;
+  min-width: 28px;
+  padding: 2px 4px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all .12s;
   user-select: none;
-  font-family: inherit;
 }
 .mce-btn:hover {
   background: #e5e5e5;
@@ -887,14 +922,15 @@ body {
 .mce-btn:active, .mce-btn.active {
   background: #dfdfdf;
   border-color: #8c8f94;
+  color: #1d2327;
 }
 .mce-select {
   background: #ffffff;
   border: 1px solid #8c8f94;
   border-radius: 3px;
   color: #2c3338;
-  font-size: 12px;
-  height: 26px;
+  font-size: 13px;
+  height: 28px;
   padding: 0 6px;
   outline: none;
   cursor: pointer;
@@ -904,14 +940,14 @@ body {
   box-shadow: 0 0 0 1px #2271b1;
 }
 
-/* WP Post Editor Area */
+/* WP Post Editor Content */
 .wp-editor-area {
   width: 100%;
-  min-height: 420px;
+  min-height: 460px;
   border: none;
   outline: none;
   padding: 16px 20px;
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.7;
   color: #2c3338;
   background: #ffffff;
@@ -920,27 +956,27 @@ body {
 }
 #body-visual {
   width: 100%;
-  min-height: 420px;
+  min-height: 460px;
   max-height: 750px;
   overflow-y: auto;
   background: #ffffff;
-  padding: 18px 22px;
+  padding: 20px 24px;
   color: #2c3338;
-  font-size: 14.5px;
+  font-size: 15px;
   line-height: 1.8;
   outline: none;
 }
 #body-visual h1 { font-size: 24px; font-weight: 700; margin: 24px 0 12px; color: #1d2327; }
-#body-visual h2 { font-size: 20px; font-weight: 700; margin: 20px 0 10px; color: #1d2327; }
-#body-visual h3 { font-size: 16.5px; font-weight: 700; margin: 16px 0 8px; color: #1d2327; }
-#body-visual h4 { font-size: 14.5px; font-weight: 700; margin: 14px 0 6px; color: #1d2327; }
-#body-visual p { margin-bottom: 14px; }
-#body-visual blockquote { border-left: 4px solid #2271b1; padding: 4px 16px; margin: 16px 0; color: #50575e; font-style: italic; background: #f6f7f7; }
+#body-visual h2 { font-size: 21px; font-weight: 700; margin: 22px 0 10px; color: #1d2327; }
+#body-visual h3 { font-size: 17px; font-weight: 700; margin: 18px 0 8px; color: #1d2327; }
+#body-visual h4 { font-size: 15px; font-weight: 700; margin: 14px 0 6px; color: #1d2327; }
+#body-visual p { margin-bottom: 16px; }
+#body-visual blockquote { border-left: 4px solid #2271b1; padding: 6px 18px; margin: 18px 0; color: #50575e; font-style: italic; background: #f6f7f7; }
 #body-visual blockquote p { margin-bottom: 4px; }
 #body-visual blockquote cite { font-size: 12px; color: #646970; font-style: normal; }
-#body-visual ul, #body-visual ol { margin: 0 0 14px 24px; }
-#body-visual li { margin-bottom: 4px; }
-#body-visual figure { margin: 18px 0; text-align: center; }
+#body-visual ul, #body-visual ol { margin: 0 0 16px 24px; }
+#body-visual li { margin-bottom: 6px; }
+#body-visual figure { margin: 20px 0; text-align: center; }
 #body-visual figure img { max-width: 100%; height: auto; border-radius: 4px; }
 #body-visual figcaption { font-size: 12px; color: #646970; margin-top: 6px; }
 
@@ -952,17 +988,17 @@ body {
   padding: 6px 12px;
   background: #f6f7f7;
   border-top: 1px solid #dcdcde;
-  font-size: 11.5px;
+  font-size: 12px;
   color: #646970;
 }
 
-/* WP Authentic Postboxes (Sidebar & Meta Boxes) */
+/* WP Authentic Postboxes */
 .postbox {
   background: #ffffff;
   border: 1px solid #ccd0d4;
   box-shadow: 0 1px 1px rgba(0,0,0,.04);
   border-radius: 4px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   position: relative;
 }
 .postbox-header {
@@ -1002,7 +1038,7 @@ body {
   padding: 12px 14px;
 }
 
-/* Publish Box Details */
+/* Publish Box */
 #minor-publishing-actions {
   display: flex;
   justify-content: space-between;
@@ -1013,7 +1049,7 @@ body {
 }
 .misc-pub-section {
   padding: 6px 0;
-  font-size: 12.5px;
+  font-size: 13px;
   color: #50575e;
   border-bottom: 1px dashed #f0f0f1;
 }
@@ -1030,7 +1066,7 @@ body {
 .submitdelete {
   color: #b32d2e;
   text-decoration: underline;
-  font-size: 12px;
+  font-size: 12.5px;
   cursor: pointer;
   background: none;
   border: none;
@@ -1039,8 +1075,23 @@ body {
 .submitdelete:hover {
   color: #a00;
 }
+.button-primary {
+  background: #2271b1;
+  border-color: #2271b1;
+  color: #ffffff;
+  padding: 4px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 3px;
+  cursor: pointer;
+  box-shadow: 0 1px 0 #135e96;
+}
+.button-primary:hover {
+  background: #135e96;
+  border-color: #135e96;
+}
 
-/* Category Checkbox Tree */
+/* Categories Box */
 .category-tabs {
   display: flex;
   gap: 2px;
@@ -1080,7 +1131,7 @@ body {
 }
 .categorychecklist li {
   padding: 3px 0;
-  font-size: 12.5px;
+  font-size: 13px;
   color: #2c3338;
 }
 .categorychecklist label {
@@ -1094,7 +1145,7 @@ body {
   cursor: pointer;
 }
 
-/* Featured Image Box */
+/* Featured Image */
 .featured-image-holder {
   background: #f0f0f1;
   border: 1px solid #dcdcde;
@@ -1117,7 +1168,7 @@ body {
   align-items: center;
   justify-content: center;
   color: #646970;
-  font-size: 12px;
+  font-size: 12.5px;
   gap: 6px;
 }
 .featured-image-links {
@@ -1127,7 +1178,7 @@ body {
   margin-top: 8px;
 }
 .featured-image-links a {
-  font-size: 12px;
+  font-size: 12.5px;
   color: #2271b1;
   text-decoration: underline;
   cursor: pointer;
@@ -1991,7 +2042,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
   border: 1px solid #ccd0d4;
   background: #ffffff;
   border-radius: 4px;
-  margin-top: 20px;
+  margin-top: 24px;
   overflow: hidden;
 }
 .rank-math-header-title {
@@ -1999,20 +2050,17 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
   align-items: center;
   gap: 8px;
 }
-.rank-math-logo-badge svg {
-  display: block;
-}
 .rm-title-text {
-  font-size: 13.5px;
+  font-size: 14px;
   font-weight: 700;
   color: #1d2327;
 }
 .rm-pro-badge {
   background: linear-gradient(135deg, #005ae0, #7c3aed);
   color: #ffffff;
-  font-size: 9.5px;
+  font-size: 9px;
   font-weight: 800;
-  padding: 1px 6px;
+  padding: 2px 6px;
   border-radius: 3px;
   letter-spacing: .05em;
 }
@@ -2050,8 +2098,8 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
   padding: 2px 8px 2px 4px;
 }
 .rm-circular-chart {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
 }
 .rm-circle-bg {
   fill: none;
@@ -2074,7 +2122,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
   text-anchor: middle;
 }
 .rm-score-max {
-  font-size: 10px;
+  font-size: 10.5px;
   font-weight: 600;
   color: #646970;
 }
@@ -2084,7 +2132,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
   display: flex;
   background: #f6f7f7;
   border-bottom: 1px solid #dcdcde;
-  padding: 0 8px;
+  padding: 0 10px;
   gap: 2px;
   overflow-x: auto;
 }
@@ -2093,7 +2141,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
   border: none;
   border-bottom: 2px solid transparent;
   padding: 10px 14px;
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 600;
   color: #646970;
   cursor: pointer;
@@ -2115,10 +2163,10 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 
 /* Rank Math Tab Panels & Sections */
 .rank-math-inside {
-  padding: 16px 20px;
+  padding: 18px 22px;
 }
 .rm-section {
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 .rm-section:last-child {
   margin-bottom: 0;
@@ -2132,14 +2180,14 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
   gap: 8px;
 }
 .rm-label {
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 700;
   text-transform: uppercase;
   color: #50575e;
   letter-spacing: .03em;
 }
 .rm-badge-tip {
-  font-size: 11px;
+  font-size: 11.5px;
   color: #646970;
 }
 
@@ -2153,7 +2201,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
   border: 1px solid #8c8f94;
   border-radius: 4px;
   padding: 6px 8px;
-  min-height: 40px;
+  min-height: 42px;
   cursor: text;
 }
 .rm-tags-input-container:focus-within {
@@ -2169,9 +2217,9 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
   background: #f0f6fc;
   border: 1px solid #c8e1ff;
   color: #2271b1;
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 600;
-  padding: 3px 8px;
+  padding: 3px 10px;
   border-radius: 14px;
   display: inline-flex;
   align-items: center;
@@ -2184,7 +2232,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 }
 .rm-tag-star {
   cursor: pointer;
-  font-size: 12px;
+  font-size: 13px;
 }
 .rm-tag-remove {
   cursor: pointer;
@@ -2228,8 +2276,8 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .rm-dev-btn {
   background: none;
   border: none;
-  padding: 3px 8px;
-  font-size: 11px;
+  padding: 4px 10px;
+  font-size: 11.5px;
   font-weight: 600;
   color: #646970;
   cursor: pointer;
@@ -2241,13 +2289,55 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
   box-shadow: 0 1px 2px rgba(0,0,0,.08);
 }
 
+/* Google SERP Box */
+.seo-serp-box {
+  background: #ffffff;
+  border: 1px solid #dfe1e5;
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin: 10px 0 16px;
+  font-family: Roboto, arial, sans-serif;
+  box-shadow: 0 1px 6px rgba(32,33,36,.08);
+}
+.seo-serp-url-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #202124;
+  margin-bottom: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.seo-serp-favicon { width: 18px; height: 18px; border-radius: 50%; background: #f1f3f4; }
+.seo-serp-title {
+  font-size: 19px;
+  line-height: 1.3;
+  color: #1a0dab;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 400;
+  margin-bottom: 6px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.seo-serp-title:hover { text-decoration: underline; }
+.seo-serp-desc {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #4d5156;
+  word-wrap: break-word;
+}
+
 /* Snippet Progress Meter */
 .rm-meter-bar-track {
   height: 4px;
   background: #f0f0f1;
   border-radius: 2px;
   overflow: hidden;
-  margin-top: 4px;
+  margin-top: 5px;
 }
 .rm-meter-bar-fill {
   height: 100%;
@@ -2261,32 +2351,32 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4px;
-  font-size: 11.5px;
+  margin-bottom: 5px;
+  font-size: 12px;
 }
 .rm-meter-count {
-  font-size: 11px;
+  font-size: 11.5px;
   color: #646970;
 }
 .rm-field-group {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 .rm-hint {
-  font-size: 11px;
+  font-size: 11.5px;
   color: #646970;
   margin-top: 4px;
 }
 .rm-checkbox-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 8px;
-  margin-top: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
 }
 .rm-checkbox-grid label {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 12.5px;
+  gap: 8px;
+  font-size: 13px;
   cursor: pointer;
 }
 
@@ -2294,18 +2384,69 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .rm-schema-preview-box {
   background: #1e1e1e;
   border-radius: 6px;
-  padding: 12px 14px;
-  margin-top: 8px;
+  padding: 14px 16px;
+  margin-top: 10px;
 }
 .rm-schema-code {
   color: #9cdcfe;
   font-family: Consolas, Monaco, monospace;
-  font-size: 12px;
+  font-size: 12.5px;
   line-height: 1.5;
-  max-height: 240px;
+  max-height: 250px;
   overflow-y: auto;
   white-space: pre-wrap;
   word-break: break-all;
+}
+
+/* SEO Checklist Cards */
+.seo-checklist-group {
+  margin-bottom: 16px;
+  background: #fdfdfd;
+  border: 1px solid #dcdcde;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.seo-checklist-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #1d2327;
+  padding: 10px 14px;
+  background: #f6f7f7;
+  border-bottom: 1px solid #dcdcde;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.seo-checklist {
+  display: flex;
+  flex-direction: column;
+}
+.seo-check-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 12.5px;
+  padding: 10px 14px;
+  border-bottom: 1px solid #f0f0f1;
+}
+.seo-check-item:last-child {
+  border-bottom: none;
+}
+.seo-check-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-size: 13px;
+}
+.seo-check-label {
+  color: #1d2327;
+  font-weight: 600;
+}
+.seo-check-hint {
+  color: #646970;
+  margin-top: 2px;
+  line-height: 1.5;
+  font-size: 12px;
 }
 
 /* ── Responsive Device Toolbar & Frame Container ── */
@@ -5540,7 +5681,6 @@ function renderEditor(file, html) {
   ART_HB_LABEL = hb ? cleanPlainText(hb.label) : '';
   ART_HB_TEXT = hb ? hb.text : '';
 
-  // Parse keywords list
   FOCUS_KEYWORDS = keyword ? keyword.split(',').map(k => k.trim()).filter(Boolean) : [];
 
   const blockMatch = html.match(/<script type="application\/json" id="admin-block-data">([\s\S]*?)<\/script>/);
@@ -5548,18 +5688,19 @@ function renderEditor(file, html) {
   BODY_MODE = BODY_BLOCKS ? 'blocks' : 'visual';
 
   setMain(`
-    <div class="page-header" style="padding-bottom:14px">
-      <div class="page-title">
-        Chỉnh sửa bài viết
-        <small>${file}</small>
+    <!-- WordPress Classic Header -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:10px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <h1 class="wp-heading-inline">Chỉnh sửa bài viết</h1>
+        <button type="button" class="page-title-action" onclick="newArticle()">Thêm bài mới</button>
       </div>
-      <div class="header-actions">
-        <button type="button" class="btn btn-secondary" onclick="openHeadingsOutline()" title="Mục lục các thẻ tiêu đề (H2, H3)">📑 Mục lục</button>
-        <button type="button" class="btn btn-secondary" onclick="copyArticleJson()" title="Sao chép toàn bộ cấu trúc bài viết dạng JSON">📋 Sao chép JSON</button>
-        <button type="button" class="btn btn-secondary" id="zen-mode-btn" onclick="toggleZenMode()" title="Toàn màn hình không vướng bận">⛶ Toàn màn hình</button>
-        <button type="button" class="btn btn-secondary" onclick="openFullArticlePreview()" title="Mở trang xem trước bản nháp đầy đủ trong tab mới">👁️ Xem trước</button>
-        <button type="button" class="btn btn-primary" onclick="${isContributor ? 'saveArticleDraftNow()' : 'saveArticle()'}">${isContributor ? '📝 Lưu bản nháp' : (isNewFile ? '🚀 Đăng bài' : '💾 Cập nhật')}</button>
-        <button type="button" class="btn btn-secondary" onclick="showView('articles')">← Quay lại</button>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="openHeadingsOutline()" title="Mục lục các thẻ tiêu đề">📑 Mục lục</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="copyArticleJson()" title="Sao chép JSON">📋 Copy JSON</button>
+        <button type="button" class="btn btn-secondary btn-sm" id="zen-mode-btn" onclick="toggleZenMode()" title="Toàn màn hình">⛶ Toàn màn hình</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="openFullArticlePreview()">👁️ Xem trước</button>
+        <button type="button" class="button-primary" onclick="${isContributor ? 'saveArticleDraftNow()' : 'saveArticle()'}">${isContributor ? '📝 Lưu bản nháp' : (isNewFile ? '🚀 Đăng bài' : '💾 Cập nhật')}</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="showView('articles')">← Danh sách</button>
       </div>
     </div>
     ${draftBannerHtml(`discardDraftAndReopen(() => editArticle('${file}'))`)}
@@ -5567,54 +5708,54 @@ function renderEditor(file, html) {
     <div class="editor-layout">
       <div class="editor-main" id="post-body-content">
 
-        <!-- AI Copilot Assistant Toolbar -->
+        <!-- AI Copilot Toolbar -->
         <div class="ai-copilot-bar">
           <div class="ai-copilot-title">
             <span class="ai-badge">✨ AI COPILOT</span>
-            <span style="color:#646970;font-size:12px">Trợ lý biên tập thông minh:</span>
+            <span style="color:#646970;font-size:12px">Trợ lý biên tập:</span>
           </div>
           <div class="ai-copilot-actions">
-            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiGenerateViralTitles()" title="Tự động phân tích và tạo 5 gợi ý tiêu đề hấp dẫn chuẩn SEO">✨ Gợi ý Tiêu đề</button>
-            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiGenerateMetaSummary()" title="Tạo tóm tắt ngắn chuẩn SEO 140-160 ký tự">📝 Tóm tắt Meta</button>
-            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiAddFaqSchemaBlock()" title="Thêm khối FAQ có gắn Schema Rich Snippet chuẩn Google">❓ Thêm FAQ Schema</button>
-            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiAutoTranslateToEnglish()" title="Dịch tự động sang Tiếng Anh bảo toàn cấu trúc SEO">🌐 Dịch sang EN</button>
-            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiCloneViToEn()" title="Tạo bản sao tiếng Anh (en-*.html) từ bài viết này">📄 Nhân bản EN</button>
-            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="openDocsImportModal()" title="Nhập nội dung từ file Docs / Word / Markdown">📥 Nhập Docs/Word</button>
+            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiGenerateViralTitles()">✨ Gợi ý Tiêu đề</button>
+            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiGenerateMetaSummary()">📝 Tóm tắt Meta</button>
+            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiAddFaqSchemaBlock()">❓ Thêm FAQ Schema</button>
+            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiAutoTranslateToEnglish()">🌐 Dịch EN</button>
+            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiCloneViToEn()">📄 Nhân bản EN</button>
+            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="openDocsImportModal()">📥 Nhập Docs/Word</button>
           </div>
         </div>
 
-        <!-- WordPress Title Div -->
+        <!-- WordPress Title Input -->
         <div id="titlediv">
-          <input type="text" name="post_title" size="30" value="${esc(ART_TITLE || title)}" id="title" class="wp-title-input" spellcheck="true" autocomplete="off" placeholder="Nhập tiêu đề tại đây" oninput="onTitleInput(this.value)"/>
+          <input type="text" name="post_title" size="30" value="${esc(ART_TITLE || title)}" id="title" spellcheck="true" autocomplete="off" placeholder="Nhập tiêu đề tại đây" oninput="onTitleInput(this.value)"/>
           <input type="hidden" id="ed-title" value="${esc(ART_TITLE || title)}"/>
         </div>
 
-        <!-- WordPress Permalink Edit Bar -->
+        <!-- WordPress Permalink Edit Box -->
         <div id="edit-slug-box">
           <strong>Liên kết tĩnh:</strong>
           <span id="sample-permalink">
             https://otahub.asia/<span id="editable-post-name">${esc((file||'').replace(/\.html$/,''))}</span>/
           </span>
           <span id="edit-slug-buttons">
-            <button type="button" class="edit-slug-btn" onclick="promptEditSlug()" id="btn-edit-slug">Chỉnh sửa</button>
+            <button type="button" class="button-small" onclick="promptEditSlug()" id="btn-edit-slug">Chỉnh sửa</button>
           </span>
-          <a href="https://otahub.asia/${(file||'').replace(/\.html$/,'')}" target="_blank" class="edit-slug-btn" id="view-post-btn" style="margin-left:auto">Xem bài viết</a>
-          <button type="button" class="edit-slug-btn" onclick="openFullArticlePreview()">Xem trước</button>
+          <a href="https://otahub.asia/${(file||'').replace(/\.html$/,'')}" target="_blank" class="button-small" id="view-post-btn" style="margin-left:auto">Xem bài viết</a>
+          <button type="button" class="button-small" onclick="openFullArticlePreview()">Xem trước</button>
           <input type="hidden" id="ed-slug" value="${esc((file||'').replace(/\.html$/,''))}"/>
         </div>
 
-        <!-- WordPress Classic Editor Container -->
+        <!-- WordPress Classic Editor Wrap -->
         <div id="wp-content-wrap" class="wp-editor-wrap">
           <div id="wp-content-editor-tools" class="wp-editor-tools">
             <div id="wp-content-media-buttons" class="wp-media-buttons">
-              <button type="button" class="button insert-media add_media" onclick="visImg()" title="Thêm Media từ thư viện hoặc tải lên">
-                <span class="wp-media-buttons-icon">📷</span> Thêm Media
+              <button type="button" class="button insert-media" onclick="visImg()" title="Thêm Media từ thư viện hoặc tải lên">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style="margin-right:4px"><path d="M2.5 4h15a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-15a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5zm14.5 1H3v10h14V5zm-9 2a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm6.5 7H4.5l3.5-4.5 2.5 3 2-2.5 3 4z"/></svg> Thêm Media
               </button>
               <button type="button" class="button add-video" onclick="visVideo()" title="Nhúng Video YouTube/Vimeo">
-                <span class="wp-media-buttons-icon">🎬</span> Nhúng Video
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg> Nhúng Video
               </button>
               <button type="button" class="button add-table" onclick="visTable()" title="Chèn Bảng dữ liệu">
-                <span class="wp-media-buttons-icon">📊</span> Bảng
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 2v3H4V5h16zm-9 5h4v5h-4v-5zm-2 0v5H4v-5h5zm-5 7h5v4H4v-4zm7 4v-4h4v4h-4zm6 0v-4h5v4h-5zm5-6h-5v-5h5v5z"/></svg> Bảng
               </button>
             </div>
             <div class="wp-editor-tabs">
@@ -5625,7 +5766,7 @@ function renderEditor(file, html) {
             </div>
           </div>
 
-          <!-- TinyMCE Toolbar Row 1 & Row 2 -->
+          <!-- TinyMCE Toolbar (2 Rows with Sharp SVG Icons) -->
           <div class="mce-tinymce mce-container" id="wp-tinymce-toolbar-wrap" style="display:${BODY_MODE==='visual'?'block':'none'}">
             <div class="mce-toolbar-grp">
               <!-- Row 1 -->
@@ -5641,52 +5782,52 @@ function renderEditor(file, html) {
                   </select>
                 </div>
                 <div class="mce-btn-group">
-                  <button type="button" class="mce-btn" title="In đậm (Ctrl+B)" onclick="wpExecCmd('bold')"><strong>B</strong></button>
-                  <button type="button" class="mce-btn" title="In nghiêng (Ctrl+I)" onclick="wpExecCmd('italic')"><em>I</em></button>
-                  <button type="button" class="mce-btn" title="Gạch ngang" onclick="wpExecCmd('strikeThrough')"><del>ABC</del></button>
+                  <button type="button" class="mce-btn" title="In đậm (Ctrl+B)" onclick="wpExecCmd('bold')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.6 10.79c.97-.67 1.65-1.77 1.65-2.79 0-2.26-1.75-4-4-4H7v14h7.04c2.09 0 3.71-1.7 3.71-3.79 0-1.52-.86-2.82-2.15-3.42zM10 6.5h3c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-3v-3zm3.5 9H10v-3h3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z"/></svg></button>
+                  <button type="button" class="mce-btn" title="In nghiêng (Ctrl+I)" onclick="wpExecCmd('italic')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10 4v3h2.21l-3.42 8H6v3h8v-3h-2.21l3.42-8H18V4z"/></svg></button>
+                  <button type="button" class="mce-btn" title="Gạch ngang" onclick="wpExecCmd('strikeThrough')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10 19h4v-3h-4v3zM5 4v3h5v3h4V7h5V4H5zM3 14h18v-2H3v2z"/></svg></button>
                 </div>
                 <div class="mce-btn-group">
-                  <button type="button" class="mce-btn" title="Danh sách không thứ tự" onclick="wpExecCmd('insertUnorderedList')">• ☰</button>
-                  <button type="button" class="mce-btn" title="Danh sách có thứ tự" onclick="wpExecCmd('insertOrderedList')">1. ☰</button>
-                  <button type="button" class="mce-btn" title="Trích dẫn" onclick="visQuote()">❝</button>
+                  <button type="button" class="mce-btn" title="Danh sách không thứ tự" onclick="wpExecCmd('insertUnorderedList')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-6c-.83 0-1.5.67-1.5 1.5S3.17 7.5 4 7.5 5.5 6.83 5.5 6 4.83 4.5 4 4.5zm0 12c-.83 0-1.5.68-1.5 1.5s.68 1.5 1.5 1.5 1.5-.68 1.5-1.5-.67-1.5-1.5-1.5zM7 19h14v-2H7v2zm0-6h14v-2H7v2zm0-8v2h14V5H7z"/></svg></button>
+                  <button type="button" class="mce-btn" title="Danh sách có thứ tự" onclick="wpExecCmd('insertOrderedList')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2 17h2v.5H3v1h1v.5H2v1h3v-4H2v1zm1-9h1V4H2v1h1v3zm-1 3h1.8L2 13.1v.9h3v-1H3.2L5 10.9V10H2v1zm5-6v2h14V5H7zm0 14h14v-2H7v2zm0-6h14v-2H7v2z"/></svg></button>
+                  <button type="button" class="mce-btn" title="Trích dẫn" onclick="visQuote()"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/></svg></button>
                 </div>
                 <div class="mce-btn-group">
-                  <button type="button" class="mce-btn" title="Căn trái" onclick="wpExecCmd('justifyLeft')">⇤</button>
-                  <button type="button" class="mce-btn" title="Căn giữa" onclick="wpExecCmd('justifyCenter')">≡</button>
-                  <button type="button" class="mce-btn" title="Căn phải" onclick="wpExecCmd('justifyRight')">⇥</button>
+                  <button type="button" class="mce-btn" title="Căn trái" onclick="wpExecCmd('justifyLeft')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15 15H3v2h12v-2zm0-8H3v2h12V7zM3 13h18v-2H3v2zm0 8h18v-2H3v2zM3 3v2h18V3H3z"/></svg></button>
+                  <button type="button" class="mce-btn" title="Căn giữa" onclick="wpExecCmd('justifyCenter')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 15v2h10v-2H7zm-4 6h18v-2H3v2zm0-8h18v-2H3v2zm4-6v2h10V7H7zM3 3v2h18V3H3z"/></svg></button>
+                  <button type="button" class="mce-btn" title="Căn phải" onclick="wpExecCmd('justifyRight')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21h18v-2H3v2zm6-4h12v-2H9v2zm-6-4h18v-2H3v2zm6-4h12V7H9v2zM3 3v2h18V3H3z"/></svg></button>
                 </div>
                 <div class="mce-btn-group">
-                  <button type="button" class="mce-btn" title="Chèn/Sửa liên kết (Ctrl+K)" onclick="visLink()">🔗</button>
-                  <button type="button" class="mce-btn" title="Bỏ liên kết" onclick="wpExecCmd('unlink')">🚫</button>
-                  <button type="button" class="mce-btn" title="Chèn thẻ Đọc tiếp" onclick="wpExecCmd('insertHTML', '<!--more--><hr class=\"wp-more-tag\"/><p><br></p>')">🏷️</button>
+                  <button type="button" class="mce-btn" title="Chèn/Sửa liên kết (Ctrl+K)" onclick="visLink()"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></button>
+                  <button type="button" class="mce-btn" title="Bỏ liên kết" onclick="wpExecCmd('unlink')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17 7h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.43-.98 2.63-2.31 2.98l1.46 1.46C20.88 15.61 22 13.95 22 12c0-2.76-2.24-5-5-5zm-1 4h-2.19l2 2H16v-2zM2 4.27l3.11 3.11C3.29 8.12 2 9.91 2 12c0 2.76 2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1 0-1.59 1.21-2.9 2.76-3.07L8.73 11H8v2h2.73L19.73 22 21 20.73 3.27 3 2 4.27z"/></svg></button>
+                  <button type="button" class="mce-btn" title="Chèn thẻ Đọc tiếp" onclick="wpExecCmd('insertHTML', '<!--more--><hr class=\"wp-more-tag\"/><p><br></p>')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v-2H3v2zm4 0h2v-2H7v2zm4 0h2v-2h-2v2zm4 0h2v-2h-2v2zm4 0h2v-2h-2v2zM3 5v4h18V5H3zm0 14h18v-4H3v4z"/></svg></button>
                 </div>
                 <div class="mce-btn-group">
-                  <button type="button" class="mce-btn" title="Thanh công cụ mở rộng (Kitchen Sink)" onclick="toggleKitchenSink()">🎛️</button>
+                  <button type="button" class="mce-btn" title="Thanh công cụ mở rộng (Kitchen Sink)" onclick="toggleKitchenSink()"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"/></svg></button>
                 </div>
               </div>
 
               <!-- Row 2 (Kitchen Sink) -->
               <div class="mce-toolbar mce-toolbar-row2" id="mce-kitchen-sink" style="display:flex">
                 <div class="mce-btn-group">
-                  <button type="button" class="mce-btn" title="Gạch chân (Ctrl+U)" onclick="wpExecCmd('underline')"><u>U</u></button>
-                  <button type="button" class="mce-btn" title="Căn đều hai bên" onclick="wpExecCmd('justifyFull')">☰</button>
+                  <button type="button" class="mce-btn" title="Gạch chân (Ctrl+U)" onclick="wpExecCmd('underline')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17c3.31 0 6-2.69 6-6V3h-2.5v8c0 1.93-1.57 3.5-3.5 3.5S8.5 12.93 8.5 11V3H6v8c0 3.31 2.69 6 6 6zm-7 2v2h14v-2H5z"/></svg></button>
+                  <button type="button" class="mce-btn" title="Căn đều hai bên" onclick="wpExecCmd('justifyFull')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18V7H3v2zm0-6v2h18V3H3z"/></svg></button>
                   <div style="position:relative;display:inline-flex;align-items:center" title="Màu văn bản">
-                    <input type="color" id="wp-text-color-picker" onchange="wpExecCmd('foreColor', this.value)" style="opacity:0;position:absolute;width:24px;height:24px;cursor:pointer;left:0;top:0"/>
+                    <input type="color" id="wp-text-color-picker" onchange="wpExecCmd('foreColor', this.value)" style="opacity:0;position:absolute;width:28px;height:28px;cursor:pointer;left:0;top:0"/>
                     <button type="button" class="mce-btn" style="pointer-events:none">
-                      <span style="font-weight:700;border-bottom:3px solid #2271b1">A</span>
+                      <span style="font-weight:700;border-bottom:3px solid #2271b1;line-height:1">A</span>
                     </button>
                   </div>
                 </div>
                 <div class="mce-btn-group">
-                  <button type="button" class="mce-btn" title="Xóa định dạng" onclick="visClean()">🧹</button>
-                  <button type="button" class="mce-btn" title="Ký tự đặc biệt (Ω)" onclick="openSpecialCharsModal()">Ω</button>
-                  <button type="button" class="mce-btn" title="Giảm lùi dòng" onclick="wpExecCmd('outdent')">⇤</button>
-                  <button type="button" class="mce-btn" title="Tăng lùi dòng" onclick="wpExecCmd('indent')">⇥</button>
+                  <button type="button" class="mce-btn" title="Xóa định dạng" onclick="visClean()"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3.27 5L2 6.27l6.97 6.97L6.5 19h3l1.57-3.66L16.73 21 18 19.73 3.27 5zM6 5v.18L8.82 8h2.4l-.72 1.68 2.1 2.1L14.21 8H20V5H6z"/></svg></button>
+                  <button type="button" class="mce-btn" title="Ký tự đặc biệt (Ω)" onclick="openSpecialCharsModal()"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C7.58 3 4 6.58 4 11c0 2.61 1.25 4.93 3.19 6.38L6 20h3.5l1.04-2.61c.47.07.96.11 1.46.11s.99-.04 1.46-.11L14.5 20H18l-1.19-2.62C18.75 15.93 20 13.61 20 11c0-4.42-3.58-8-8-8zm0 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg></button>
+                  <button type="button" class="mce-btn" title="Giảm lùi dòng" onclick="wpExecCmd('outdent')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11 17h10v-2H11v2zm-8-5l4 4V8l-4 4zm0 9h18v-2H3v2zM3 3v2h18V3H3zm8 6h10V7H11v2zm0 4h10v-2H11v2z"/></svg></button>
+                  <button type="button" class="mce-btn" title="Tăng lùi dòng" onclick="wpExecCmd('indent')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21h18v-2H3v2zM3 8v8l4-4-4-4zm8 9h10v-2H11v2zM3 3v2h18V3H3zm8 6h10V7H11v2zm0 4h10v-2H11v2z"/></svg></button>
                 </div>
                 <div class="mce-btn-group">
-                  <button type="button" class="mce-btn" title="Hoàn tác (Ctrl+Z)" onclick="wpExecCmd('undo')">↺</button>
-                  <button type="button" class="mce-btn" title="Làm lại (Ctrl+Y)" onclick="wpExecCmd('redo')">↻</button>
-                  <button type="button" class="mce-btn" title="Phím tắt trợ giúp" onclick="openShortcutsModal()">❓</button>
+                  <button type="button" class="mce-btn" title="Hoàn tác (Ctrl+Z)" onclick="wpExecCmd('undo')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/></svg></button>
+                  <button type="button" class="mce-btn" title="Làm lại (Ctrl+Y)" onclick="wpExecCmd('redo')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.4 10.6C16.55 8.99 14.15 8 11.5 8c-4.65 0-8.58 3.03-9.96 7.22L3.9 16c1.05-3.19 4.05-5.5 7.6-5.5 1.95 0 3.73.72 5.12 1.88L13 16h9V7l-3.6 3.6z"/></svg></button>
+                  <button type="button" class="mce-btn" title="Phím tắt trợ giúp" onclick="openShortcutsModal()"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-2h2v2zm1.07-7.75l-.9.92C12.45 11.9 12 12.5 12 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg></button>
                 </div>
               </div>
             </div>
@@ -5759,10 +5900,10 @@ function renderEditor(file, html) {
 
         <!-- Rank Math & Yoast SEO Studio Pro Meta Box -->
         <div class="postbox rank-math-metabox" id="rank-math-metabox">
-          <div class="postbox-header">
+          <div class="postbox-header" onclick="togglePostbox(this)">
             <div class="rank-math-header-title">
               <div class="rank-math-logo-badge">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#005ae0"/><path d="M5 16L9 8L13 14L16 11L19 16" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="5" fill="#005ae0"/><path d="M5 16L9 8L13 14L16 11L19 16" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
               <span class="rm-title-text">Rank Math SEO</span>
               <span class="rm-pro-badge">PRO</span>
@@ -5782,7 +5923,7 @@ function renderEditor(file, html) {
                 </svg>
                 <span class="rm-score-max">/100</span>
               </div>
-              <button type="button" class="postbox-toggle-btn" onclick="toggleMetaBox(this.closest('.postbox'))">▾</button>
+              <button type="button" class="postbox-toggle-btn">▾</button>
             </div>
           </div>
           
@@ -5997,7 +6138,7 @@ function renderEditor(file, html) {
                   ${isNewFile ? '' : `<button type="button" class="submitdelete" onclick="if(confirm('Chuyển bài viết này vào thùng rác?'))trashArticle('${file}')">Bỏ vào thùng rác</button>`}
                 </div>
                 <div id="publishing-action">
-                  <button type="button" class="btn btn-primary" id="publish" onclick="${isContributor ? 'saveArticleDraftNow()' : 'saveArticle()'}">${isContributor ? '📝 Gửi duyệt' : (isNewFile ? '🚀 Đăng bài' : '💾 Cập nhật')}</button>
+                  <button type="button" class="button-primary" id="publish" onclick="${isContributor ? 'saveArticleDraftNow()' : 'saveArticle()'}">${isContributor ? '📝 Gửi duyệt' : (isNewFile ? '🚀 Đăng bài' : '💾 Cập nhật')}</button>
                 </div>
               </div>
               <div class="pb-savelog" id="save-log" style="margin-top:10px"></div>
