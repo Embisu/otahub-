@@ -3909,23 +3909,58 @@ function onTitleInput(value) {
   markChangedNoRebuild();
 }
 
-function onDescInput(value) {
-  const clean = cleanPlainText(value);
+
+function onExcerptInput(val) {
+  const clean = cleanPlainText(val);
   ART_EXCERPT = clean;
+  
+  // Sync to Rank Math snippet textarea if exists
+  const edDesc = document.getElementById('ed-desc');
+  if (edDesc && edDesc.value !== clean) edDesc.value = clean;
+  
+  // Sync to excerpt textarea if exists
+  const ex = document.getElementById('excerpt');
+  if (ex && ex.value !== clean) ex.value = clean;
+  
+  // Sync to social desc
+  const socDesc = document.getElementById('rm-social-desc');
+  if (socDesc && !socDesc.dataset.custom) socDesc.value = clean;
+  
+  // Sync preview
+  const serpDesc = document.getElementById('serp-preview-desc');
+  if (serpDesc) serpDesc.textContent = clean || 'Mô tả ngắn của bài viết sẽ hiển thị ở đây trên kết quả tìm kiếm Google...';
+  
+  const socPrevDesc = document.getElementById('social-preview-desc');
+  if (socPrevDesc) socPrevDesc.textContent = clean || 'Khám phá bài viết mới nhất trên OtaHub...';
+  
+  // Update char counts & meters
+  const countEl = document.getElementById('serp-desc-count');
+  if (countEl) countEl.textContent = `${clean.length} / 160 ký tự`;
+  
+  const exCountEl = document.getElementById('excerpt-char-count');
+  if (exCountEl) exCountEl.textContent = `${clean.length} / 160 ký tự (${clean.length >= 120 && clean.length <= 160 ? '✅ Chuẩn SEO' : (clean.length > 160 ? '⚠️ Quá dài' : '⚠️ Cần thêm')})`;
+  
+  const bar = document.getElementById('serp-desc-bar');
+  if (bar) {
+    bar.style.width = Math.min(100, (clean.length / 160) * 100) + '%';
+    bar.className = 'rm-meter-bar-fill ' + (clean.length >= 120 && clean.length <= 160 ? 'good' : clean.length > 160 ? 'bad' : 'ok');
+  }
+
   const iframe = document.getElementById('art-visual-iframe');
   const doc = iframe?.contentDocument;
   if (doc) {
     const exEl = doc.querySelector('[data-ohfield="excerpt"]') || doc.querySelector('.art-hero-excerpt');
-    if (exEl && (exEl.innerText || '').trim() !== clean) {
-      exEl.innerText = clean;
-    }
+    if (exEl && (exEl.innerText || '').trim() !== clean) exEl.innerText = clean;
   }
-  updateDescCharCount(clean);
-  updateSerpPreview();
-  updateSocialPreview();
-  updateSeoScore();
+
   markChangedNoRebuild();
+  updateSeoScore();
 }
+
+function onDescInput(value) {
+  onExcerptInput(value);
+}
+
 
 function onKeywordInput(value) {
   updateSerpPreview();
@@ -6154,6 +6189,7 @@ function handleWpBulkAction() {
 
 // Lazy-load thumbnail ảnh thật (og:image) cho từng bài khi cuộn tới, có cache trong phiên làm việc
 function observeThumbs() {
+  if (typeof IntersectionObserver === 'undefined') return;
   if (thumbObserver) thumbObserver.disconnect();
   thumbObserver = new IntersectionObserver((entries) => {
     entries.forEach(en => {
@@ -6189,75 +6225,132 @@ async function loadThumb(imgEl) {
 // ── Editor ─────────────────────────────────────────────────────────────────
 async function editArticle(file) {
   if (!confirmDiscardUnsaved()) return;
-  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải bài viết...</span></div>`);
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải bài viết: <code style="color:var(--wp-blue)">${esc(file)}</code>...</span></div>`);
   try {
     let html = '';
     let sha = '';
+    let loadSource = 'GitHub API';
+
+    // Tier 1: Cloudflare Worker GitHub API proxy (có sha để commit)
     try {
       const data = await ghGet(file);
-      html = decodeURIComponent(escape(atob(data.content)));
-      sha = data.sha;
+      if (data && data.content) {
+        html = decodeURIComponent(escape(atob(data.content)));
+        sha = data.sha || '';
+        loadSource = 'GitHub API';
+      }
     } catch(ghErr) {
-      console.warn('ghGet error, fallback to direct fetch:', file, ghErr);
-      const cleanPath = file.replace(/^\/+/, '');
-      const r = await fetch('/' + cleanPath + '?t=' + Date.now());
-      if (r.ok) {
-        html = await r.text();
-        toast('info', 'ℹ️ Đã mở bài viết từ bản live trực tiếp (GitHub API 403 / giới hạn).');
-      } else {
-        throw ghErr;
+      console.warn('ghGet error, falling back to Tier 2 (GitHub Raw CDN):', file, ghErr);
+    }
+
+    // Tier 2: GitHub Raw CDN (không cần token, không bao giờ bị rate-limit 403, lấy trực tiếp nội dung gốc từ repo)
+    if (!html) {
+      try {
+        const rawRes = await fetch(`https://raw.githubusercontent.com/Embisu/otahub-/main/${file}?t=${Date.now()}`);
+        if (rawRes.ok) {
+          const rawText = await rawRes.text();
+          if (rawText && rawText.includes('<html') && (rawText.includes('art-body') || rawText.includes('<article') || rawText.includes('<title>'))) {
+            html = rawText;
+            loadSource = 'GitHub Raw CDN';
+          }
+        }
+      } catch(rawErr) {
+        console.warn('GitHub Raw fetch error:', rawErr);
       }
     }
+
+    // Tier 3: Direct live site clean URL & static variants
+    if (!html) {
+      const cleanPath = file.replace(/^\/+/, '');
+      const cleanNoExt = cleanPath.replace(/\.html$/, '');
+      const candidates = [
+        `/${cleanPath}?t=${Date.now()}`,
+        `/${cleanNoExt}?t=${Date.now()}`,
+        `https://otahub.asia/${cleanNoExt}?t=${Date.now()}`,
+        `./${cleanPath}?t=${Date.now()}`
+      ];
+      for (const url of candidates) {
+        try {
+          const r = await fetch(url);
+          if (r.ok) {
+            const text = await r.text();
+            if (text && text.includes('<html') && (text.includes('art-body') || text.includes('<article') || text.includes('<title>'))) {
+              html = text;
+              loadSource = 'Live Site';
+              break;
+            }
+          }
+        } catch(e) {}
+      }
+    }
+
+    if (!html) {
+      throw new Error(`Không thể nạp nội dung bài viết ${file}. Vui lòng kiểm tra lại kết nối mạng hoặc thử lại.`);
+    }
+
     currentFile = file;
     currentSha = sha;
-    const finalHtml = await resolveDraftOrPublished(file, html);
-    renderEditor(file, finalHtml);
+
+    // Kiểm tra bản nháp độc lập cho đúng file này
+    await checkArticleDraftNotice(file, html);
+    renderEditor(file, html);
+
+    if (loadSource !== 'GitHub API') {
+      toast('info', `ℹ️ Đã mở bài viết trực tiếp từ ${loadSource}.`);
+    }
   } catch(e) {
+    console.error('editArticle error:', e);
     toast('error', 'Không tải được bài: ' + e.message);
     showView('articles');
   }
 }
 
-// Kiểm tra xem file này có bản nháp chưa xuất bản không; nếu có, hỏi người
-// dùng muốn tiếp tục từ nháp hay bỏ nháp và dùng bản đã xuất bản. Lưu ý:
-// currentSha vẫn luôn trỏ tới bản đã xuất bản thật (lấy từ ghGet ở trên) dù
-// nội dung hiển thị trong editor là từ nháp hay không — điều này đảm bảo lần
-// "Lưu & Deploy" kế tiếp vẫn so khớp đúng với sha thật trên GitHub.
-async function resolveDraftOrPublished(file, publishedHtml) {
+// Kiểm tra xem file này có bản nháp chưa xuất bản không (hiển thị thông báo không chặn)
+async function checkArticleDraftNotice(file, publishedHtml) {
   LAST_DRAFT_INFO = null;
   if (FORCE_PUBLISHED_NEXT) {
     FORCE_PUBLISHED_NEXT = false;
     try { await deleteDraft(file); } catch(e) {}
-    return publishedHtml;
+    return;
   }
   try {
     const draft = await getDraft(file);
-    if (draft && typeof draft.html === 'string') {
+    if (draft && draft.file === file && typeof draft.html === 'string' && draft.html.trim().length > 50 && draft.html.trim() !== publishedHtml.trim()) {
       const when = draft.updatedAt ? timeAgoVi(new Date(draft.updatedAt).toISOString()) : '';
       const who = draft.updatedBy ? ` bởi ${draft.updatedBy}` : '';
-      const useDraft = confirm(`Có bản nháp chưa xuất bản (lưu ${when}${who}).\n\nBấm OK để tiếp tục từ bản nháp, hoặc Cancel để bỏ nháp và mở bản đã xuất bản.`);
-      if (useDraft) { LAST_DRAFT_INFO = { when, who }; return draft.html; }
-      await deleteDraft(file);
+      LAST_DRAFT_INFO = { when, who, draftHtml: draft.html, file };
     }
-  } catch(e) { /* không có nháp hoặc lỗi tải nháp — dùng bản đã xuất bản */ }
-  return publishedHtml;
+  } catch(e) {}
 }
 
-// Banner cảnh báo rõ ràng khi editor đang hiển thị 1 bản NHÁP (không phải bản
-// đã xuất bản/live thật) — trước đây chỉ có 1 lần confirm() lúc mở, bấm nhầm OK
-// là "kẹt" trong bản nháp cũ mà không còn dấu hiệu gì nhắc lại, khiến admin
-// trông như đang hiển thị nội dung cũ/sai khác hẳn otahub.asia thật.
-function draftBannerHtml(reopenExpr) {
-  if (!LAST_DRAFT_INFO) return '';
-  return `<div style="background:#fff8e1;border:1px solid #f0c674;border-radius:8px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-    <div style="font-size:12.5px;color:#8a6100;line-height:1.5">📝 Đang xem <strong>BẢN NHÁP</strong> chưa xuất bản (lưu ${esc(LAST_DRAFT_INFO.when)}${esc(LAST_DRAFT_INFO.who)}) — <strong>khác với</strong> nội dung đang chạy thật trên otahub.asia.</div>
-    <button type="button" class="btn btn-secondary btn-sm" onclick="${reopenExpr}">👁️ Xem bản đã xuất bản (live)</button>
-  </div>`;
+function restoreCurrentDraft() {
+  if (!LAST_DRAFT_INFO || !LAST_DRAFT_INFO.draftHtml) return;
+  renderEditor(currentFile, LAST_DRAFT_INFO.draftHtml);
+  toast('success', '✅ Đã khôi phục nội dung từ bản nháp!');
 }
-function discardDraftAndReopen(reopenFn) {
-  if (!confirm('Bỏ bản nháp này và mở lại đúng bản đang chạy live trên otahub.asia?')) return;
-  FORCE_PUBLISHED_NEXT = true;
-  reopenFn();
+
+async function discardCurrentDraft() {
+  if (!confirm('Xóa bản nháp này và tiếp tục với bản gốc đã xuất bản?')) return;
+  if (currentFile) {
+    try { await deleteDraft(currentFile); } catch(e) {}
+  }
+  LAST_DRAFT_INFO = null;
+  const banner = document.getElementById('wp-draft-notice-banner');
+  if (banner) banner.remove();
+  toast('info', '🗑️ Đã hủy bản nháp.');
+}
+
+function draftBannerHtml() {
+  if (!LAST_DRAFT_INFO) return '';
+  return `<div id="wp-draft-notice-banner" class="notice notice-warning is-dismissible" style="background:#fff8e5;border-left:4px solid #dba617;padding:12px 16px;margin:0 0 16px 0;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.05);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+    <div style="font-size:13px;color:#614700;line-height:1.5">
+      ⚠️ <strong>Có bản nháp chưa xuất bản:</strong> Lưu ${esc(LAST_DRAFT_INFO.when)}${esc(LAST_DRAFT_INFO.who)}.
+    </div>
+    <div style="display:flex;gap:8px">
+      <button type="button" class="button button-small" style="background:#2271b1;color:#fff;border-color:#2271b1;cursor:pointer" onclick="restoreCurrentDraft()">↺ Khôi phục bản nháp</button>
+      <button type="button" class="button button-small" style="cursor:pointer" onclick="discardCurrentDraft()">🗑️ Xóa bản nháp</button>
+    </div>
+  </div>`;
 }
 
 
@@ -6336,13 +6429,17 @@ function switchRmTab(tabId) {
   if (tabId === 'outline') renderHeadingsOutline();
 }
 
-function toggleSnippetEditor() {
+function toggleSnippetEditor(forceOpen) {
   const panel = document.getElementById('rm-snippet-editor-panel');
   const btn = document.getElementById('btn-toggle-snippet-editor');
   if (!panel) return;
   const isHidden = panel.style.display === 'none' || !panel.style.display;
-  panel.style.display = isHidden ? 'block' : 'none';
-  if (btn) btn.textContent = isHidden ? '✕ Đóng chỉnh sửa' : '✏️ Chỉnh sửa Snippet';
+  const shouldOpen = forceOpen !== undefined ? forceOpen : isHidden;
+  panel.style.display = shouldOpen ? 'block' : 'none';
+  if (btn) btn.textContent = shouldOpen ? '✕ Đóng chỉnh sửa' : '✏️ Chỉnh sửa Snippet';
+  if (shouldOpen) {
+    document.getElementById('serp-edit-title')?.focus();
+  }
 }
 
 function setSerpDevice(mode) {
@@ -6682,7 +6779,7 @@ function renderEditor(file, html) {
         <button type="button" class="btn btn-secondary btn-sm" onclick="showView('articles')">← Danh sách</button>
       </div>
     </div>
-    ${draftBannerHtml(`discardDraftAndReopen(() => editArticle('${file}'))`)}
+    ${draftBannerHtml()}
 
     <div class="editor-layout">
       <div class="editor-main" id="post-body-content">
@@ -6900,6 +6997,26 @@ function renderEditor(file, html) {
           </div>
         </div>
 
+        
+        <!-- WordPress Classic Excerpt / Description Postbox -->
+        <div class="postbox" id="postexcerpt">
+          <div class="postbox-header" onclick="togglePostbox(this)">
+            <h2><span>📝</span> Trích đoạn (Mô tả bài viết / Meta Description)</h2>
+            <button type="button" class="postbox-toggle-btn">▾</button>
+          </div>
+          <div class="inside" style="padding:14px 16px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+              <label class="screen-reader-text" for="excerpt">Trích đoạn</label>
+              <span id="excerpt-char-count" style="font-size:11.5px;color:var(--wp-muted)">${desc.length} / 160 ký tự (${desc.length >= 120 && desc.length <= 160 ? '✅ Chuẩn SEO' : (desc.length > 160 ? '⚠️ Quá dài' : '⚠️ Cần thêm')})</span>
+            </div>
+            <textarea rows="3" cols="40" name="excerpt" id="excerpt" class="form-input" placeholder="Viết một đoạn tóm tắt ngắn gọn mô tả bài viết tại đây..." oninput="onExcerptInput(this.value)">${esc(desc || excerpt)}</textarea>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+              <span style="font-size:11.5px;color:var(--wp-muted)">💡 Trích đoạn được dùng làm thẻ <code>meta description</code> SEO, hiển thị trên Google SERP và mạng xã hội.</span>
+              <button type="button" class="btn-link" onclick="aiGenerateMetaSummary()" style="color:var(--wp-blue);font-size:11.5px;background:none;border:none;cursor:pointer;font-weight:600">✨ AI Viết tóm tắt</button>
+            </div>
+          </div>
+        </div>
+
         <!-- Rank Math & Yoast SEO Studio Pro Meta Box -->
         <div class="postbox rank-math-metabox" id="rank-math-metabox">
           <div class="postbox-header" onclick="togglePostbox(this)">
@@ -7021,7 +7138,7 @@ function renderEditor(file, html) {
                 </div>
 
                 <!-- Google SERP Card Preview -->
-                <div class="seo-serp-box" id="seo-serp-box-preview">
+                <div class="seo-serp-box" id="seo-serp-box-preview" onclick="toggleSnippetEditor(true)" style="cursor:pointer" title="Bấm vào đây để chỉnh sửa Tiêu đề & Mô tả SEO">
                   <div class="seo-serp-url-row">
                     <img src="/favicon-32.png" class="seo-serp-favicon" alt="Favicon" onerror="this.src='https://otahub.asia/favicon-32.png'"/>
                     <span id="serp-preview-url">https://otahub.asia › ${cat.toLowerCase()} › ${(file||'').replace(/\.html$/,'')}</span>
