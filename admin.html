@@ -1879,7 +1879,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 #body-visual p { margin: 0 0 14px; color: var(--wp-text); }
 #body-visual strong { color: var(--wp-title); }
 #body-visual figure { margin: 18px 0; }
-#body-visual figure img { width: 100%; max-height: 340px; object-fit: cover; border-radius: 10px; display: block; transition: box-shadow .3s; }
+#body-visual figure img, #body-visual img { max-width: 100%; height: auto; border-radius: 6px; display: block; margin: 0 auto; transition: box-shadow .2s; }
 #body-visual figcaption { font-size: 12px; color: var(--wp-muted); margin-top: 6px; text-align: center; }
 #body-visual figure.vis-img-flash img { box-shadow: 0 0 0 3px var(--wp-blue); }
 #body-visual blockquote { border-left: 3px solid var(--wp-blue); margin: 18px 0; padding: 4px 0 4px 16px; color: var(--wp-text); font-style: italic; }
@@ -2327,6 +2327,252 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
   background: #2271b1 !important;
   color: #fff !important;
 }
+
+
+/* ── Authentic WordPress List Table Styling ── */
+.subsubsub {
+  list-style: none;
+  margin: 8px 0 14px;
+  padding: 0;
+  font-size: 13px;
+  color: #646970;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.subsubsub li {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.subsubsub a {
+  color: #2271b1;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+.subsubsub a:hover {
+  color: #135e96;
+}
+.subsubsub a.current {
+  font-weight: 700;
+  color: #1d2327;
+}
+.subsubsub .count {
+  color: #50575e;
+  font-weight: 400;
+}
+.subsubsub .sep {
+  color: #c3c4c7;
+  margin-left: 2px;
+}
+
+.tablenav {
+  clear: both;
+  height: auto;
+  margin: 10px 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tablenav .actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.tablenav select {
+  font-size: 13px;
+  line-height: 2;
+  color: #2c3338;
+  border: 1px solid #8c8f94;
+  border-radius: 4px;
+  padding: 0 24px 0 8px;
+  height: 32px;
+  background: #fff;
+  cursor: pointer;
+}
+.tablenav .button {
+  height: 32px;
+  line-height: 30px;
+  padding: 0 12px;
+  font-size: 13px;
+  border: 1px solid #2271b1;
+  border-radius: 4px;
+  background: #f6f7f7;
+  color: #2271b1;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all .15s;
+}
+.tablenav .button:hover {
+  background: #f0f0f1;
+  border-color: #135e96;
+  color: #135e96;
+}
+.tablenav-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.tablenav-search input[type="search"] {
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid #8c8f94;
+  border-radius: 4px;
+  font-size: 13px;
+  width: 240px;
+}
+
+.wp-list-table {
+  border-collapse: collapse;
+  margin-top: 0;
+  width: 100%;
+  clear: both;
+  background: #ffffff;
+  border: 1px solid #c3c4c7;
+  box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+.wp-list-table thead th, .wp-list-table tfoot th {
+  color: #2c3338;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.4em;
+  text-align: left;
+  padding: 10px 10px;
+  background: #f6f7f7;
+  border-bottom: 1px solid #c3c4c7;
+}
+.wp-list-table tfoot th {
+  border-top: 1px solid #c3c4c7;
+  border-bottom: none;
+}
+.wp-list-table tbody tr {
+  border-bottom: 1px solid #f0f0f1;
+  transition: background .1s;
+}
+.wp-list-table tbody tr:hover {
+  background: #f6f7f7;
+}
+.wp-list-table tbody tr.selected {
+  background: #f0f6fc;
+}
+.wp-list-table tbody td, .wp-list-table tbody th {
+  padding: 10px 10px;
+  vertical-align: top;
+  font-size: 13px;
+  color: #50575e;
+}
+.wp-list-table .check-column {
+  width: 28px;
+  padding: 11px 0 0 10px;
+  vertical-align: top;
+  text-align: center;
+}
+.wp-list-table .check-column input[type="checkbox"] {
+  margin: 0;
+  cursor: pointer;
+}
+.wp-list-table .column-thumb {
+  width: 62px;
+  padding: 8px 6px 8px 10px;
+  vertical-align: middle;
+}
+.wp-post-thumb-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #f0f0f1;
+  border: 1px solid #dcdcde;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.wp-post-thumb-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.wp-list-table .column-title {
+  font-size: 14px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+.wp-list-table .row-title-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2271b1;
+  text-decoration: none;
+}
+.wp-list-table .row-title-link:hover {
+  color: #135e96;
+}
+.wp-list-table .post-state {
+  font-size: 11px;
+  font-weight: 700;
+  color: #646970;
+  background: #f0f0f1;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-left: 4px;
+}
+.wp-list-table .post-state-trash {
+  background: #fcf0f1;
+  color: #d63638;
+}
+.wp-list-table .row-actions {
+  color: #a7aaad;
+  font-size: 12px;
+  padding: 3px 0 0;
+  position: relative;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.wp-list-table .row-actions a {
+  color: #2271b1;
+  text-decoration: none;
+}
+.wp-list-table .row-actions a:hover {
+  color: #135e96;
+}
+.wp-list-table .row-actions .submitdelete {
+  color: #b32d2e;
+}
+.wp-list-table .row-actions .submitdelete:hover {
+  color: #a00;
+}
+.wp-cat-pill {
+  display: inline-block;
+  background: #f0f0f1;
+  color: #2c3338;
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid #dcdcde;
+}
+.wp-seo-score-pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.wp-seo-score-pill.seo-good { background: #edfaef; color: #008a20; border: 1px solid #72e086; }
+.wp-seo-score-pill.seo-ok { background: #fff8e1; color: #d97706; border: 1px solid #f0c674; }
+.wp-seo-score-pill.seo-bad { background: #fef2f2; color: #dc2626; border: 1px solid #f87171; }
 
 /* ── 8. RANK MATH SEO PRO & YOAST SEO SUITE ── */
 .rank-math-metabox {
@@ -3104,22 +3350,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
     </div>
   </div>
 </div>
-      <label class="form-label" style="margin-top:12px">URL ảnh</label>
-      <input class="form-input" id="ied-src" placeholder="https://..." oninput="document.getElementById('ied-preview').src = this.value"/>
-      <label class="form-label" style="margin-top:10px">Alt text (Mô tả ảnh cho SEO & Google Images)</label>
-      <input class="form-input" id="ied-alt" placeholder="Mô tả nội dung bức ảnh..."/>
-      <label class="form-label" style="margin-top:10px">Chú thích ảnh (Caption)</label>
-      <input class="form-input" id="ied-caption" placeholder="Chú thích hiển thị dưới ảnh..."/>
-    </div>
-    <div class="media-modal-foot" style="justify-content:space-between">
-      <button class="btn btn-danger" onclick="iedDeleteImage()">🗑️ Xóa ảnh khỏi bài</button>
-      <div style="display:flex;gap:8px">
-        <button class="btn btn-secondary" onclick="closeImageEditModal()">Hủy</button>
-        <button class="btn btn-primary" onclick="iedSaveImage()">✓ Cập nhật</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 <!-- Modal Chèn / Sửa Liên kết (Link Inserter & Internal Link Search) -->
 <div class="media-modal-ov" id="link-modal-ov" onclick="if(event.target===this)closeLinkModal()">
@@ -5681,7 +5912,6 @@ function renderArticleList(filter='', cat='', tab='all') {
   CURRENT_ART_TAB = tab;
   const trashed = getTrashedArticles();
   
-  // Calculate tab counts
   const totalCount = ARTICLES.length;
   const draftCount = ARTICLES.filter(a => DRAFT_FILES.has(a.file)).length;
   const publishedCount = totalCount - draftCount;
@@ -5692,122 +5922,214 @@ function renderArticleList(filter='', cat='', tab='all') {
   else if (tab === 'drafts') baseList = ARTICLES.filter(a => DRAFT_FILES.has(a.file));
 
   const filtered = baseList.filter(a => {
-    const q = filter.toLowerCase();
-    const matchQ = !q || a.title.toLowerCase().includes(q) || a.file.includes(q);
+    const q = filter.toLowerCase().trim();
+    const matchQ = !q || a.title.toLowerCase().includes(q) || a.file.toLowerCase().includes(q);
     const matchCat = !cat || a.cat === cat;
     return matchQ && matchCat;
   });
 
   const cats = [...new Set([...ARTICLES, ...trashed].map(a => a.cat))].sort();
-  const catOpts = `<option value="">Tất cả danh mục</option>` +
-    cats.map(c => `<option value="${c}" ${c===cat?'selected':''}>${c}</option>`).join('');
+  const catOpts = `<option value="">Tất cả chuyên mục</option>` +
+    cats.map(c => `<option value="${esc(c)}" ${c===cat?'selected':''}>${esc(c)}</option>`).join('');
 
   const isTrashTab = tab === 'trash';
 
-  const cards = filtered.length ? filtered.map(a => {
+  const rows = filtered.length ? filtered.map(a => {
     const isSelected = SELECTED_ARTICLE_FILES.has(a.file);
+    const seoData = SEO_SCORES[a.file];
+    const seoScore = seoData ? seoData.score : null;
+    let seoPillCls = 'seo-ok';
+    let seoText = '--';
+    if (seoScore !== null) {
+      if (seoScore >= 80) seoPillCls = 'seo-good';
+      else if (seoScore < 50) seoPillCls = 'seo-bad';
+      seoText = `${seoScore}/100`;
+    }
+
     return `
-      <div class="article-card" onclick="${isTrashTab ? '' : `editArticle('${a.file}')`}">
-        <div class="article-card-select-wrap" onclick="event.stopPropagation()">
-          <input type="checkbox" class="article-card-checkbox" data-file="${a.file}" ${isSelected ? 'checked' : ''} onchange="toggleSelectArticle('${a.file}', this.checked, event)"/>
-        </div>
-        <div class="art-thumb-wrap">
-          <span class="art-thumb-ph">${CAT_ICON[a.cat] || '📄'}</span>
-          <img class="art-thumb" data-file="${a.file}" alt="" loading="lazy" onload="this.classList.add('loaded')" onerror="this.remove()"/>
-        </div>
-        <div class="art-info">
-          <div class="art-title">
-            ${esc(a.title)}
-            ${DRAFT_FILES.has(a.file) ? ' <span class="draft-badge" title="Có bản nháp chưa xuất bản">📝 Nháp</span>' : ''}
-            ${isTrashTab ? ' <span style="font-size:10px;background:#ffebee;color:#c62828;padding:1px 6px;border-radius:4px;font-weight:700">🗑️ Thùng rác</span>' : ''}
+      <tr id="post-${esc(a.file)}" class="iedit author-self level-0 post status-publish entry ${isSelected ? 'selected' : ''}">
+        <th scope="row" class="check-column" onclick="event.stopPropagation()">
+          <input type="checkbox" class="article-card-checkbox" data-file="${esc(a.file)}" ${isSelected ? 'checked' : ''} onchange="toggleSelectArticle('${esc(a.file)}', this.checked, event)">
+        </th>
+        <td class="column-thumb" onclick="event.stopPropagation()">
+          <div class="wp-post-thumb-box" onclick="editArticle('${esc(a.file)}')">
+            <img class="art-thumb" data-file="${esc(a.file)}" alt="" loading="lazy" onload="this.style.display='block';this.nextElementSibling.style.display='none'" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <div class="wp-thumb-placeholder" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:#8c8f94">
+              <svg width="22" height="22" viewBox="0 0 20 20" fill="currentColor"><path d="M2.5 4h15a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-15a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5zm14.5 1H3v10h14V5zm-9 2a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm6.5 7H4.5l3.5-4.5 2.5 3 2-2.5 3 4z"/></svg>
+            </div>
           </div>
-          <div class="art-meta">
-            <span class="art-cat">${esc(a.cat)}</span>
-            <span class="art-file">${esc(a.file)}</span>
-            ${a.date ? `<span>${esc(a.date.slice(0,10))}</span>` : ''}
+        </td>
+        <td class="title column-title has-row-actions column-primary page-title" data-colname="Tiêu đề">
+          <strong class="row-title">
+            <a class="row-title-link" href="javascript:void(0)" onclick="editArticle('${esc(a.file)}')">${esc(a.title)}</a>
+            ${DRAFT_FILES.has(a.file) ? ' — <span class="post-state">Bản nháp</span>' : ''}
+            ${isTrashTab ? ' — <span class="post-state post-state-trash">Thùng rác</span>' : ''}
+          </strong>
+          <div class="row-actions" onclick="event.stopPropagation()">
+            ${isTrashTab ? `
+              <span class="untrash"><a href="javascript:void(0)" onclick="restoreArticleFromTrash('${esc(a.file)}', event)">Khôi phục</a> | </span>
+              <span class="delete"><a href="javascript:void(0)" class="submitdelete" onclick="deleteArticlePermanently('${esc(a.file)}', event)">Xóa vĩnh viễn</a></span>
+            ` : `
+              <span class="edit"><a href="javascript:void(0)" onclick="editArticle('${esc(a.file)}')">Chỉnh sửa</a> | </span>
+              <span class="inline hide-if-no-js"><a href="javascript:void(0)" onclick="openQuickEdit('${esc(a.file)}', event)">Sửa nhanh</a> | </span>
+              <span class="trash"><a href="javascript:void(0)" class="submitdelete" onclick="moveArticleToTrash('${esc(a.file)}', event)">Bỏ vào thùng rác</a> | </span>
+              <span class="view"><a href="https://otahub.asia/${esc(a.file)}" target="_blank" rel="bookmark">Xem bài viết</a></span>
+            `}
           </div>
-        </div>
-        <div class="art-actions" onclick="event.stopPropagation()">
-          ${isTrashTab ? `
-            <button type="button" class="btn btn-secondary btn-sm" onclick="restoreArticleFromTrash('${a.file}', event)">🔄 Khôi phục</button>
-            <button type="button" class="btn btn-danger btn-sm" onclick="deleteArticlePermanently('${a.file}', event)" title="Xóa vĩnh viễn khỏi server">💥 Xóa vĩnh viễn</button>
-          ` : `
-            <a class="btn btn-secondary btn-sm btn-icon" href="https://otahub.asia/${a.file}" target="_blank" title="Xem live">🔗</a>
-            <button type="button" class="btn btn-secondary btn-sm" onclick="openQuickEdit('${a.file}', event)" title="Sửa nhanh tiêu đề, danh mục, mô tả">⚡ Sửa nhanh</button>
-            <button type="button" class="btn btn-secondary btn-sm" onclick="editArticle('${a.file}')">Chỉnh sửa</button>
-            <button type="button" class="btn btn-secondary btn-sm" onclick="moveArticleToTrash('${a.file}', event)" title="Chuyển vào thùng rác" style="color:var(--wp-red,#d63638)">🗑️</button>
-          `}
-        </div>
-      </div>
+        </td>
+        <td class="author column-author" data-colname="Tác giả">
+          <span style="color:#2271b1;font-weight:600">Embisù</span>
+        </td>
+        <td class="categories column-categories" data-colname="Chuyên mục">
+          <span class="wp-cat-pill">${esc(a.cat)}</span>
+        </td>
+        <td class="seo column-seo" data-colname="SEO Score">
+          <span class="wp-seo-score-pill ${seoPillCls}">${seoText}</span>
+        </td>
+        <td class="date column-date" data-colname="Ngày">
+          <span style="font-size:12px;color:#50575e">${isTrashTab ? 'Đã xóa' : (DRAFT_FILES.has(a.file) ? 'Bản nháp' : 'Đã xuất bản')}</span><br>
+          <abbr title="${esc(a.date || '')}" style="font-size:12px;color:#646970">${esc(a.date ? a.date.slice(0, 10) : '2026-09-16')}</abbr>
+        </td>
+      </tr>
     `;
-  }).join('') : `<div class="empty-state"><div class="empty-icon">🔍</div><p>Không tìm thấy bài viết nào trong mục này.</p></div>`;
+  }).join('') : `
+    <tr>
+      <td colspan="7" style="text-align:center;padding:36px 16px;color:#646970">
+        <div style="font-size:24px;margin-bottom:8px">🔍</div>
+        <strong>Không tìm thấy bài viết nào phù hợp với bộ lọc.</strong>
+      </td>
+    </tr>
+  `;
 
   setMain(`
-    <div class="page-header">
-      <div class="page-title">Quản lý bài viết <small>${filtered.length}/${baseList.length} bài</small></div>
-      <div class="header-actions">
-        <button class="btn btn-secondary btn-sm" onclick="loadArticles()">🔄 Tải lại</button>
-        <button class="btn btn-primary" onclick="newArticle()">✏️ Viết mới</button>
-      </div>
-    </div>
-    <div class="content-area">
-      <!-- Filter Tabs (WordPress Style) -->
-      <div class="art-tab-bar">
-        <button type="button" class="art-tab-btn ${tab==='all'?'active':''}" onclick="renderArticleList('${esc(filter)}','${esc(cat)}','all')">
-          📌 Tất cả <span class="art-tab-count">${totalCount}</span>
-        </button>
-        <button type="button" class="art-tab-btn ${tab==='published'?'active':''}" onclick="renderArticleList('${esc(filter)}','${esc(cat)}','published')">
-          🌐 Đã xuất bản <span class="art-tab-count">${publishedCount}</span>
-        </button>
-        <button type="button" class="art-tab-btn ${tab==='drafts'?'active':''}" onclick="renderArticleList('${esc(filter)}','${esc(cat)}','drafts')">
-          📝 Bản nháp <span class="art-tab-count">${draftCount}</span>
-        </button>
-        <button type="button" class="art-tab-btn ${tab==='trash'?'active':''}" onclick="renderArticleList('${esc(filter)}','${esc(cat)}','trash')">
-          🗑️ Thùng rác <span class="art-tab-count">${trashCount}</span>
-        </button>
-      </div>
-
-      <!-- Bulk Actions Bar -->
-      <div class="bulk-actions-bar" id="bulk-actions-bar" style="display:${SELECTED_ARTICLE_FILES.size > 0 ? 'flex' : 'none'}">
-        <div class="bulk-actions-left">
-          <span id="bulk-selected-count">Đã chọn ${SELECTED_ARTICLE_FILES.size} bài viết</span>
-        </div>
-        <div class="bulk-actions-right">
-          ${isTrashTab ? `
-            <button type="button" class="btn btn-secondary btn-sm" onclick="bulkRestoreFromTrash()">🔄 Khôi phục hàng loạt</button>
-            <button type="button" class="btn btn-danger btn-sm" onclick="bulkDeletePermanently()">💥 Xóa vĩnh viễn hàng loạt</button>
-          ` : `
-            <button type="button" class="btn btn-secondary btn-sm" onclick="bulkChangeCategoryPrompt()">🗂️ Đổi danh mục hàng loạt</button>
-            <button type="button" class="btn btn-danger btn-sm" onclick="bulkMoveToTrash()">🗑️ Bỏ vào thùng rác</button>
-          `}
-          <button type="button" class="btn btn-secondary btn-sm" onclick="SELECTED_ARTICLE_FILES.clear();updateBulkBar();renderArticleList('${esc(filter)}','${esc(cat)}','${tab}')">✕ Bỏ chọn</button>
+    <div class="wrap">
+      <div class="page-header" style="margin-bottom:12px">
+        <h1 class="wp-heading-inline" style="font-size:23px;font-weight:600;margin:0;color:#1d2327">
+          Bài viết
+          <a href="javascript:void(0)" class="page-title-action" onclick="newArticle()" style="margin-left:8px;font-size:13px;padding:4px 8px;border:1px solid #2271b1;border-radius:3px;color:#2271b1;text-decoration:none;font-weight:600;background:#f6f7f7">Viết bài mới</a>
+        </h1>
+        <div class="header-actions">
+          <button class="btn btn-secondary btn-sm" onclick="loadArticles()">🔄 Tải lại dữ liệu</button>
         </div>
       </div>
 
-      <div class="search-row" style="display:flex;align-items:center;gap:10px">
-        <label style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--wp-muted);cursor:pointer;white-space:nowrap">
-          <input type="checkbox" id="select-all-articles" onchange="toggleSelectAllArticles(this.checked)"/>
-          <span>Chọn tất cả</span>
-        </label>
-        <input class="search-input" placeholder="🔍 Tìm kiếm theo tiêu đề hoặc tên file..." value="${esc(filter)}" oninput="renderArticleList(this.value, document.getElementById('cat-filter').value, '${tab}')" />
-        <select class="filter-select" id="cat-filter" onchange="renderArticleList(document.querySelector('.search-input').value, this.value, '${tab}')">
-          ${catOpts}
-        </select>
+      <!-- WordPress Subsubsub Filter Tabs -->
+      <ul class="subsubsub">
+        <li class="all">
+          <a href="javascript:void(0)" class="${tab==='all'?'current':''}" onclick="renderArticleList('${esc(filter)}','${esc(cat)}','all')">
+            Tất cả <span class="count">(${totalCount})</span>
+          </a> <span class="sep">|</span>
+        </li>
+        <li class="publish">
+          <a href="javascript:void(0)" class="${tab==='published'?'current':''}" onclick="renderArticleList('${esc(filter)}','${esc(cat)}','published')">
+            Đã xuất bản <span class="count">(${publishedCount})</span>
+          </a> <span class="sep">|</span>
+        </li>
+        <li class="draft">
+          <a href="javascript:void(0)" class="${tab==='drafts'?'current':''}" onclick="renderArticleList('${esc(filter)}','${esc(cat)}','drafts')">
+            Bản nháp <span class="count">(${draftCount})</span>
+          </a> <span class="sep">|</span>
+        </li>
+        <li class="trash">
+          <a href="javascript:void(0)" class="${tab==='trash'?'current':''}" onclick="renderArticleList('${esc(filter)}','${esc(cat)}','trash')">
+            Thùng rác <span class="count">(${trashCount})</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Table Navigation Top -->
+      <div class="tablenav top">
+        <div class="actions bulkactions">
+          <select id="bulk-action-selector-top">
+            <option value="-1">Hành động hàng loạt</option>
+            ${isTrashTab ? `
+              <option value="restore">Khôi phục</option>
+              <option value="delete_perm">Xóa vĩnh viễn</option>
+            ` : `
+              <option value="trash">Bỏ vào thùng rác</option>
+              <option value="change_cat">Đổi chuyên mục</option>
+            `}
+          </select>
+          <button type="button" class="button action" onclick="handleWpBulkAction()">Áp dụng</button>
+        </div>
+
+        <div class="actions">
+          <select id="cat-filter-top" onchange="renderArticleList(document.getElementById('post-search-input').value, this.value, '${tab}')">
+            ${catOpts}
+          </select>
+          <button type="button" class="button" onclick="renderArticleList(document.getElementById('post-search-input').value, document.getElementById('cat-filter-top').value, '${tab}')">Lọc</button>
+        </div>
+
+        <div class="tablenav-search">
+          <input type="search" id="post-search-input" placeholder="Tìm kiếm bài viết..." value="${esc(filter)}" oninput="renderArticleList(this.value, document.getElementById('cat-filter-top').value, '${tab}')"/>
+        </div>
       </div>
 
-      ${isTrashTab ? `
-        <div style="background:#fff3e0;border:1px solid #ffe082;border-radius:6px;padding:10px 14px;margin-bottom:14px;font-size:12px;color:#e65100;display:flex;align-items:center;gap:8px">
-          <span>💡 Các bài trong Thùng rác được lưu an toàn. Bạn có thể khôi phục lại bất cứ lúc nào hoặc xóa vĩnh viễn khỏi server.</span>
-        </div>
-      ` : ''}
+      <!-- WordPress List Table -->
+      <table class="wp-list-table widefat fixed striped table-view-list posts">
+        <thead>
+          <tr>
+            <td id="cb" class="manage-column column-cb check-column">
+              <input id="cb-select-all-1" type="checkbox" onchange="toggleSelectAllArticles(this.checked)">
+            </td>
+            <th scope="col" class="manage-column column-thumb" style="width:62px">Ảnh</th>
+            <th scope="col" class="manage-column column-title column-primary">Tiêu đề</th>
+            <th scope="col" class="manage-column column-author" style="width:110px">Tác giả</th>
+            <th scope="col" class="manage-column column-categories" style="width:130px">Chuyên mục</th>
+            <th scope="col" class="manage-column column-seo" style="width:110px">SEO Rank Math</th>
+            <th scope="col" class="manage-column column-date" style="width:130px">Ngày</th>
+          </tr>
+        </thead>
+        <tbody id="the-list">
+          ${rows}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td class="manage-column column-cb check-column">
+              <input id="cb-select-all-2" type="checkbox" onchange="toggleSelectAllArticles(this.checked)">
+            </td>
+            <th scope="col" class="manage-column column-thumb">Ảnh</th>
+            <th scope="col" class="manage-column column-title column-primary">Tiêu đề</th>
+            <th scope="col" class="manage-column column-author">Tác giả</th>
+            <th scope="col" class="manage-column column-categories">Chuyên mục</th>
+            <th scope="col" class="manage-column column-seo">SEO Rank Math</th>
+            <th scope="col" class="manage-column column-date">Ngày</th>
+          </tr>
+        </tfoot>
+      </table>
 
-      <div class="articles-grid">${cards}</div>
+      <!-- Table Navigation Bottom -->
+      <div class="tablenav bottom" style="margin-top:12px">
+        <div class="alignleft actions bulkactions">
+          <span style="font-size:12px;color:#646970">Hiển thị ${filtered.length} / ${baseList.length} bài viết</span>
+        </div>
+      </div>
     </div>
   `);
 
-  const searchEl = document.querySelector('.search-input');
-  if (searchEl) { searchEl.value = filter; searchEl.focus(); searchEl.selectionStart = searchEl.selectionEnd = filter.length; }
+  const searchEl = document.getElementById('post-search-input');
+  if (searchEl && filter) {
+    searchEl.focus();
+    searchEl.selectionStart = searchEl.selectionEnd = filter.length;
+  }
   observeThumbs();
+}
+
+function handleWpBulkAction() {
+  const sel = document.getElementById('bulk-action-selector-top');
+  const action = sel ? sel.value : '-1';
+  if (action === '-1') {
+    toast('warning', 'Vui lòng chọn một hành động.');
+    return;
+  }
+  if (!SELECTED_ARTICLE_FILES.size) {
+    toast('warning', 'Vui lòng tích chọn ít nhất 1 bài viết trong bảng.');
+    return;
+  }
+  if (action === 'trash') bulkMoveToTrash();
+  else if (action === 'restore') bulkRestoreFromTrash();
+  else if (action === 'delete_perm') bulkDeletePermanently();
+  else if (action === 'change_cat') bulkChangeCategoryPrompt();
 }
 
 // Lazy-load thumbnail ảnh thật (og:image) cho từng bài khi cuộn tới, có cache trong phiên làm việc
