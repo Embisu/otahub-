@@ -3243,12 +3243,14 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
         </div>
       </div>
 
-      <!-- 2. Tab Tải ảnh lên -->
+      <!-- 2. Tab Tải ảnh lên (Upload Files) -->
       <div id="media-panel-upload" style="display:none">
-        <div class="media-dropzone" id="media-modal-dropzone" ondragover="event.preventDefault()" ondrop="handleDropUpload(event)" onclick="mediaTriggerUpload()">
-          <div style="font-size:36px;margin-bottom:8px">📤</div>
-          <strong style="font-size:14px;color:var(--wp-title)">Bấm để chọn file ảnh hoặc Kéo thả ảnh vào đây</strong>
-          <div style="font-size:11px;color:var(--wp-muted);margin-top:6px">Hỗ trợ JPG, PNG, WEBP, GIF tối đa 8MB</div>
+        <div class="media-dropzone" id="media-modal-dropzone" ondragover="event.preventDefault()" ondrop="handleDropUpload(event)" onclick="mediaTriggerUpload()" style="padding:40px 20px;text-align:center;cursor:pointer;border:2px dashed #8c8f94;border-radius:8px;background:#f6f7f7">
+          <div style="font-size:48px;margin-bottom:12px;color:#2271b1">📤</div>
+          <strong style="font-size:16px;color:#1d2327;display:block;margin-bottom:6px">Kéo và thả tập tin để tải lên</strong>
+          <span style="font-size:13px;color:#646970;display:block;margin-bottom:14px">hoặc</span>
+          <button type="button" class="btn btn-primary" onclick="event.stopPropagation(); mediaTriggerUpload()" style="font-size:13.5px;padding:8px 24px;font-weight:600">Chọn tập tin ảnh từ máy</button>
+          <div style="font-size:11.5px;color:#646970;margin-top:16px">Kích thước tập tin tải lên tối đa: 8 MB. Hỗ trợ JPG, PNG, WEBP, GIF.</div>
         </div>
       </div>
 
@@ -4289,7 +4291,7 @@ function insertHtmlAtCursor(html) {
     }
   }
   if (!inserted) {
-    vis.insertAdjacentHTML('beforeend', html);
+    vis.insertAdjacentHTML('beforeend', '<p><br></p>' + html + '<p><br></p>');
   }
   markChanged();
   updateWordCount();
@@ -4734,6 +4736,8 @@ function videoEmbedHtml(embedUrl, caption, forPreviewOnly) {
 
 function mediaConfirmInsert() {
   if (!MEDIA_MODAL_CB) { closeMediaModal(); return; }
+
+  // 1. Video Tab
   if (MEDIA_MODAL_TAB === 'video') {
     const url = (document.getElementById('media-video-url')?.value || '').trim();
     const v = parseVideoUrl(url);
@@ -4745,6 +4749,12 @@ function mediaConfirmInsert() {
     return;
   }
 
+  // 2. Upload Tab without selected image -> trigger upload
+  if (MEDIA_MODAL_TAB === 'upload' && !MEDIA_MODAL_SELECTED_IMG && !(document.getElementById('media-img-url')?.value || '').trim()) {
+    mediaTriggerUpload();
+    return;
+  }
+
   let src = '';
   if (MEDIA_MODAL_TAB === 'url') {
     src = (document.getElementById('media-img-url')?.value || '').trim();
@@ -4752,10 +4762,20 @@ function mediaConfirmInsert() {
     src = (MEDIA_MODAL_SELECTED_IMG && MEDIA_MODAL_SELECTED_IMG.url) || (document.getElementById('media-img-url')?.value || '').trim();
   }
 
-  if (!src) { toast('error', 'Vui lòng chọn 1 ảnh từ Thư viện hoặc dán URL'); return; }
+  // Fallback: If no image is selected but Library has items, take the first one
+  if (!src && MEDIA_FILES && MEDIA_FILES.length > 0) {
+    mediaModalSelectImage(MEDIA_FILES[0].url, MEDIA_FILES[0].name);
+    src = MEDIA_FILES[0].url;
+  }
+
+  if (!src) {
+    toast('warning', 'Vui lòng chọn 1 ảnh từ Thư viện Media hoặc bấm "Chọn tập tin ảnh"');
+    return;
+  }
+
   const alt = (document.getElementById('media-img-alt')?.value || '').trim();
   const caption = (document.getElementById('media-img-caption')?.value || '').trim();
-  const html = `<figure><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy">${caption ? `<figcaption>${esc(caption)}</figcaption>` : ''}</figure>`;
+  const html = `<figure class="aligncenter"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy"/>${caption ? `<figcaption>${esc(caption)}</figcaption>` : ''}</figure><p><br></p>`;
   const cb = MEDIA_MODAL_CB; closeMediaModal();
   cb({ kind: 'image', src, alt, caption, html });
 }
@@ -6644,7 +6664,7 @@ function renderEditor(file, html) {
 
   const blockMatch = html.match(/<script type="application\/json" id="admin-block-data">([\s\S]*?)<\/script>/);
   BODY_BLOCKS = blockMatch ? JSON.parse(blockMatch[1]) : null;
-  BODY_MODE = BODY_BLOCKS ? 'blocks' : 'visual';
+  BODY_MODE = 'visual';
 
   setMain(`
     <!-- WordPress Classic Header -->
@@ -8876,7 +8896,32 @@ function visList() { visExec('insertUnorderedList'); }
 function visImg() {
   saveEditorSelection();
   openMediaModal(res => {
-    insertHtmlAtCursor(res.html + '<p><br></p>');
+    if (!res) return;
+    if (BODY_MODE === 'blocks' && BODY_BLOCKS) {
+      BODY_BLOCKS.push({ type: 'image', src: res.src, alt: res.alt || '', caption: res.caption || '', collapsed: false });
+      renderBlockEditor();
+      markChanged();
+      toast('success', '✅ Đã thêm ảnh vào bài viết');
+      return;
+    }
+    if (BODY_MODE === 'code') {
+      const ta = document.getElementById('body-textarea');
+      if (ta) {
+        const start = ta.selectionStart || 0;
+        const end = ta.selectionEnd || 0;
+        ta.value = ta.value.slice(0, start) + res.html + ta.value.slice(end);
+        ta.selectionStart = ta.selectionEnd = start + res.html.length;
+        ta.focus();
+        markChanged();
+        updateWordCount();
+        updateSeoScore();
+        toast('success', '✅ Đã chèn ảnh vào bài viết');
+        return;
+      }
+    }
+    // Default visual mode
+    insertHtmlAtCursor(res.html);
+    toast('success', '✅ Đã chèn ảnh vào bài viết');
   }, 'library');
 }
 function visVideo() {
@@ -13200,8 +13245,9 @@ function openGitHub() { window.open('https://github.com/Embisu/otahub-', '_blank
 function toast(type, msg) {
   const el = document.createElement('div');
   el.className = `toast-item ${type}`;
-  el.innerHTML = `<span class="toast-icon">${type==='success'?'✅':'❌'}</span><span>${msg}</span>`;
-  document.getElementById('toast').appendChild(el);
+  const icon = type === 'success' ? '✅' : (type === 'info' ? 'ℹ️' : (type === 'warning' ? '⚠️' : '❌'));
+  el.innerHTML = `<span class="toast-icon">${icon}</span><span>${msg}</span>`;
+  document.getElementById('toast')?.appendChild(el);
   setTimeout(() => el.remove(), 4000);
 }
 </script>
