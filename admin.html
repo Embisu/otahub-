@@ -305,7 +305,7 @@ body {
   font-size: 12.5px;
   user-select: none;
 }
-.wtb-left, .wtb-right { display: flex; align-items: center; gap: 4px; }
+.wtb-left, .wtb-right { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
 .wtb-item {
   display: inline-flex;
   align-items: center;
@@ -319,6 +319,8 @@ body {
   border: none;
   font-size: 12.5px;
   font-family: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: background .15s, color .15s;
 }
 .wtb-item:hover { background: #2c3338; color: #72aee6; }
@@ -335,6 +337,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  white-space: nowrap;
 }
 .wtb-badge-live::before { content:''; width:5px; height:5px; background:#72e086; border-radius:50%; box-shadow: 0 0 6px #72e086; }
 .wtb-badge-seo {
@@ -345,6 +348,7 @@ body {
   font-weight: 700;
   padding: 2px 7px;
   border-radius: 4px;
+  white-space: nowrap;
 }
 .wtb-avatar {
   width: 22px;
@@ -357,21 +361,28 @@ body {
   color: #fff;
   font-size: 10px;
   font-weight: 800;
+  flex-shrink: 0;
 }
 
 /* ── 3. APP LAYOUT & SIDEBAR ── */
 .wp-layout { display: flex; min-height: calc(100vh - 36px); }
 .wp-sidebar {
-  width: 180px;
+  width: 190px !important;
+  min-width: 190px !important;
+  max-width: 190px !important;
   background: var(--wp-dark);
   color: #c3c4c7;
-  flex-shrink: 0;
+  flex-shrink: 0 !important;
   display: flex;
   flex-direction: column;
   user-select: none;
   transition: width .2s ease;
 }
-.wp-sidebar.collapsed { width: 48px; }
+.wp-sidebar.collapsed {
+  width: 48px !important;
+  min-width: 48px !important;
+  max-width: 48px !important;
+}
 .wp-nav-list { list-style: none; padding: 6px 0; margin: 0; flex: 1; }
 .wp-nav-item { position: relative; }
 .wp-nav-btn {
@@ -388,6 +399,7 @@ body {
   font-family: inherit;
   cursor: pointer;
   text-align: left;
+  overflow: hidden;
   transition: background .15s, color .15s;
 }
 .wp-nav-btn:hover { background: rgba(19,94,150,.3); color: #72aee6; }
@@ -397,8 +409,19 @@ body {
   font-weight: 700;
   box-shadow: inset 3px 0 0 #00e5ff;
 }
-.wp-nav-label { display: flex; align-items: center; gap: 8px; }
-.wp-nav-icon { font-size: 15px; width: 18px; text-align: center; }
+.wp-nav-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  overflow: hidden;
+}
+.wp-nav-icon { font-size: 15px; width: 18px; text-align: center; flex-shrink: 0; }
+.wp-nav-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .wp-nav-badge {
   background: #135e96;
   color: #ffffff;
@@ -406,6 +429,7 @@ body {
   font-weight: 700;
   padding: 1px 6px;
   border-radius: 10px;
+  flex-shrink: 0;
 }
 .wp-nav-badge-red {
   background: var(--wp-red);
@@ -414,6 +438,7 @@ body {
   font-weight: 800;
   padding: 1px 5px;
   border-radius: 3px;
+  flex-shrink: 0;
 }
 .wp-sidebar.collapsed .wp-nav-text,
 .wp-sidebar.collapsed .wp-nav-badge,
@@ -1008,15 +1033,297 @@ body {
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+@media(max-width:1280px) {
+  .wtb-badge-seo, .wtb-badge-live { display: none !important; }
+}
+@media(max-width:1180px) {
+  .wtb-badge-seo, .wtb-badge-live { display: none !important; }
+  .wp-top-bar { padding: 0 8px; }
+  .wtb-item { padding: 0 6px; font-size: 12px; }
+}
 @media(max-width:992px) {
   .wp-wp-grid { grid-template-columns: 1fr; gap: 16px; }
   .wp-metabox-grid { grid-template-columns: 1fr; }
   .editor-layout { grid-template-columns: 1fr; }
+  .wtb-badge-live, .wtb-badge-seo { display: none !important; }
+  .wtb-item { padding: 0 5px; font-size: 11.5px; }
 }
 @media(max-width:768px) {
-  .wp-sidebar { width: 48px; }
-  .wp-sidebar .wp-nav-text, .wp-sidebar .wp-nav-badge, .wp-sidebar .wp-nav-badge-red { display: none; }
+  .wp-top-bar { height: auto; min-height: 36px; flex-wrap: wrap; padding: 4px 8px; gap: 4px; }
+  .wtb-left, .wtb-right { flex-wrap: wrap; }
+  .wp-sidebar { width: 48px !important; min-width: 48px !important; max-width: 48px !important; }
+  .wp-sidebar .wp-nav-text, .wp-sidebar .wp-nav-badge, .wp-sidebar .wp-nav-badge-red { display: none !important; }
   .wp-main { padding: 14px 12px 60px; }
+}
+
+/* ── 6. NÂNG CẤP CAO CẤP: FILTER TABS, BULK ACTIONS, QUICK EDIT, ZEN MODE & AI COPILOT ── */
+.art-tab-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--wp-border);
+  padding-bottom: 8px;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+.art-tab-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 5px 10px;
+  color: var(--wp-blue);
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all .15s ease;
+  font-family: inherit;
+}
+.art-tab-btn:hover {
+  background: #eef2f7;
+  color: var(--wp-blue-hover);
+}
+.art-tab-btn.active {
+  color: var(--wp-title);
+  font-weight: 700;
+  background: #ffffff;
+  border-color: var(--wp-border);
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+}
+.art-tab-count {
+  font-size: 10.5px;
+  color: var(--wp-muted);
+  background: #f0f0f1;
+  padding: 1px 6px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+.art-tab-btn.active .art-tab-count {
+  background: var(--wp-blue);
+  color: #fff;
+}
+
+.bulk-actions-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1d2327;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  animation: fadeInDown 0.2s ease-out;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.bulk-actions-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.bulk-actions-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.article-card-select-wrap {
+  display: flex;
+  align-items: center;
+  padding-right: 6px;
+}
+.article-card-checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--wp-blue);
+}
+
+.quick-edit-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.68);
+  backdrop-filter: blur(4px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.15s ease-out;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.quick-edit-modal {
+  background: #ffffff;
+  border-radius: 10px;
+  max-width: 620px;
+  width: 100%;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.35);
+  overflow: hidden;
+  border: 1px solid var(--wp-border);
+  display: flex;
+  flex-direction: column;
+}
+.quick-edit-header {
+  padding: 14px 20px;
+  background: #f6f7f7;
+  border-bottom: 1px solid var(--wp-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--wp-title);
+}
+.quick-edit-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 75vh;
+  overflow-y: auto;
+}
+.quick-edit-footer {
+  padding: 12px 20px;
+  background: #f6f7f7;
+  border-top: 1px solid var(--wp-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* Zen Mode / Fullscreen Editor */
+.editor-layout.zen-mode {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 999999 !important;
+  background: #0b0418 !important;
+  padding: 20px 28px !important;
+  margin: 0 !important;
+  height: 100vh !important;
+  width: 100vw !important;
+  box-sizing: border-box !important;
+  overflow-y: auto !important;
+}
+.editor-layout.zen-mode .editor-sidebar {
+  display: none !important;
+}
+.editor-layout.zen-mode .editor-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* AI Copilot Bar */
+.ai-copilot-bar {
+  background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(0,229,255,0.1));
+  border: 1px solid rgba(0,229,255,0.35);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.ai-copilot-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  font-size: 13px;
+  color: #7c3aed;
+  letter-spacing: .02em;
+}
+.ai-copilot-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.ai-btn {
+  background: #ffffff;
+  border: 1px solid var(--wp-border);
+  color: #2c3338;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+.ai-btn:hover {
+  background: #f0f6fc;
+  border-color: #2271b1;
+  color: #2271b1;
+  transform: translateY(-1px);
+}
+.ai-btn-purple {
+  border-color: rgba(124,58,237,0.4);
+  color: #7c3aed;
+}
+.ai-btn-purple:hover {
+  background: rgba(124,58,237,0.08);
+  border-color: #7c3aed;
+  color: #7c3aed;
+}
+.ai-btn-emerald {
+  border-color: rgba(16,185,129,0.4);
+  color: #059669;
+}
+.ai-btn-emerald:hover {
+  background: rgba(16,185,129,0.08);
+  border-color: #059669;
+  color: #059669;
+}
+
+/* Callout & FAQ Blocks in HTML & Editor */
+.art-callout {
+  border-left: 4px solid #2271b1;
+  background: rgba(34,113,177,0.07);
+  padding: 14px 18px;
+  border-radius: 0 8px 8px 0;
+  margin: 18px 0;
+}
+.art-callout-tip { border-left-color: #10b981; background: rgba(16,185,129,0.07); }
+.art-callout-warning { border-left-color: #f59e0b; background: rgba(245,158,11,0.07); }
+.art-callout-danger { border-left-color: #ef4444; background: rgba(239,68,68,0.07); }
+
+.art-faq-list { margin: 20px 0; }
+.art-faq-item {
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background: rgba(255,255,255,0.02);
+  overflow: hidden;
+}
+.art-faq-q {
+  padding: 12px 16px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #00e5ff;
+  cursor: pointer;
+  user-select: none;
+}
+.art-faq-a {
+  padding: 0 16px 14px;
+  color: #c3c4c7;
+  font-size: 13.5px;
+  line-height: 1.6;
 }
 
 /* ── Khoi phuc CSS content-area bi mat (page-header/article-card/form/v.v.) tu commit c8a94c1, doi bien mau sang wp-* de khop theme trang ── */
@@ -2056,13 +2363,84 @@ async function refreshDraftFiles() {
 
 // ── Tải ảnh lên (assets/img/) ─────────────────────────────────────────────
 function slugifyFilename(name) {
-  return (name || '')
+  const plain = cleanPlainText(name);
+  return (plain || '')
     .toLowerCase()
     .replace(/đ/g, 'd')
     .normalize('NFD').replace(/[̀-ͯ]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
     .slice(0, 60);
+}
+
+// Làm sạch triệt để thẻ HTML / Google Docs tags / XML / MS Word rác khỏi chuỗi thuần (xử lý cả entity &lt;...&gt;)
+function cleanPlainText(str) {
+  if (!str) return '';
+  let s = String(str);
+  s = s.replace(/<!--[\s\S]*?-->/g, '');
+  s = s.replace(/<style[\s\S]*?<\/style>/gi, '');
+  s = s.replace(/<script[\s\S]*?<\/script>/gi, '');
+  
+  // Pass 1: Lọc thẻ HTML thô
+  s = s.replace(/<[^>]+>/g, ' ');
+  
+  // Pass 2: Giải mã các entity để phát hiện thẻ bị mã hóa (vd: &lt;font...&gt;)
+  s = s.replace(/&quot;/g, '"')
+       .replace(/&amp;/g, '&')
+       .replace(/&lt;/g, '<')
+       .replace(/&gt;/g, '>')
+       .replace(/&#39;/g, "'")
+       .replace(/&nbsp;/g, ' ');
+       
+  // Pass 3: Lọc tiếp toàn bộ thẻ lộ ra sau khi unescape
+  s = s.replace(/<[^>]+>/g, ' ');
+  
+  // Pass 4: Lọc bỏ tàn dư mã guid Google Docs / thuộc tính rác như 0d3ab97e-... / font color=...
+  s = s.replace(/^[a-f0-9\-]{8,40}["'>\s]+/i, '');
+  s = s.replace(/^[a-z0-9\-]+="[^"]*"[>\s]*/i, '');
+  s = s.replace(/\s+/g, ' ').trim();
+  return s;
+}
+
+// Làm sạch triệt để HTML dán từ Google Docs, Word, Web vào các khối nội dung (giữ định dạng inline hợp lệ)
+function cleanPastedHtml(rawHtml, isPlainOnly = false) {
+  if (!rawHtml) return '';
+  if (isPlainOnly) {
+    return cleanPlainText(rawHtml);
+  }
+  let s = String(rawHtml);
+  
+  // Nếu chuỗi chứa thẻ bị escape (vd: &lt;font hoặc &lt;span), unescape trước để xử lý
+  if (/&lt;[a-z]/i.test(s)) {
+    s = s.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+  }
+  
+  s = s.replace(/<!--[\s\S]*?-->/g, '');
+  s = s.replace(/<style[\s\S]*?<\/style>/gi, '');
+  s = s.replace(/<script[\s\S]*?<\/script>/gi, '');
+  s = s.replace(/<xml[\s\S]*?<\/xml>/gi, '');
+  s = s.replace(/<meta[\s\S]*?>/gi, '');
+  s = s.replace(/<link[\s\S]*?>/gi, '');
+  s = s.replace(/ id="docs-internal-guid-[^"]*"/gi, '');
+  s = s.replace(/ class="Mso[^"]*"/gi, '');
+  s = s.replace(/ style="[^"]*"/gi, '');
+  s = s.replace(/ dir="[^"]*"/gi, '');
+  s = s.replace(/ role="[^"]*"/gi, '');
+  s = s.replace(/ aria-level="[^"]*"/gi, '');
+  s = s.replace(/ color="[^"]*"/gi, '');
+  s = s.replace(/ face="[^"]*"/gi, '');
+  s = s.replace(/ size="[^"]*"/gi, '');
+  s = s.replace(/<o:p>[\s\S]*?<\/o:p>/gi, '');
+  s = s.replace(/<\/?(?:span|font|o:p)[^>]*>/gi, '');
+  
+  // Gỡ các thẻ danh sách / thẻ p lồng nhau nếu dán vào đoạn văn đơn
+  s = s.replace(/<\/?(?:ol|ul|li)>/gi, '');
+  s = s.replace(/<div>/gi, '<p>').replace(/<\/div>/gi, '</p>');
+  s = s.replace(/<\/?p>/gi, '');
+  s = s.replace(/<p>(\s|&nbsp;|<br\s*\/?>)*<\/p>/gi, '');
+  s = s.replace(/&nbsp;/g, ' ');
+  s = s.replace(/\s+/g, ' ').trim();
+  return s;
 }
 
 // Cập nhật currentFile + link "Xem live" theo slug mới — chỉ áp dụng cho bài
@@ -2083,10 +2461,11 @@ function onSlugInput(value) {
   markChanged();
 }
 function onTitleInput(value) {
-  ART_TITLE = value;
+  const clean = cleanPlainText(value);
+  ART_TITLE = clean;
   if (!currentSha && !ART_SLUG_TOUCHED) {
     const slugEl = document.getElementById('ed-slug');
-    const autoSlug = slugifyFilename(value) || 'bai-viet-moi';
+    const autoSlug = slugifyFilename(clean) || 'bai-viet-moi';
     if (slugEl) slugEl.value = autoSlug;
     applySlug(autoSlug);
   }
@@ -2094,44 +2473,139 @@ function onTitleInput(value) {
   const doc = iframe?.contentDocument;
   if (doc) {
     const h1 = doc.querySelector('[data-ohfield="title"]') || doc.querySelector('h1.art-hero-title') || doc.querySelector('h1');
-    if (h1 && (h1.innerText || '').trim() !== value) {
-      h1.innerText = value;
+    if (h1 && (h1.innerText || '').trim() !== clean) {
+      h1.innerText = clean;
     }
     const bcSpan = doc.querySelector('nav.breadcrumb span:last-child');
-    if (bcSpan) bcSpan.innerText = value;
+    if (bcSpan) bcSpan.innerText = clean;
   }
   markChanged();
   updateSeoScore();
 }
 
+async function compressImageFile(file, maxWidth = 1600, quality = 0.82) {
+  if (!file) return null;
+  const isGif = file.type === 'image/gif' || (file.name && file.name.toLowerCase().endsWith('.gif'));
+  const isSvg = file.type === 'image/svg+xml' || (file.name && file.name.toLowerCase().endsWith('.svg'));
+  
+  if (isGif || isSvg) {
+    const b64 = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const res = String(reader.result || '');
+        const parts = res.split(',');
+        resolve(parts.length > 1 ? parts[1].replace(/\s/g, '') : '');
+      };
+      reader.onerror = () => reject(new Error('Không đọc được file ảnh.'));
+      reader.readAsDataURL(file);
+    });
+    return {
+      b64,
+      ext: isGif ? 'gif' : 'svg',
+      mimeType: file.type || (isGif ? 'image/gif' : 'image/svg+xml'),
+      compressed: false
+    };
+  }
+
+  return new Promise((resolve) => {
+    const img = new Image();
+    const objectUrl = URL.createObjectURL(file);
+    img.onload = () => {
+      URL.revokeObjectURL(objectUrl);
+      let { width, height } = img;
+      
+      if (width > maxWidth) {
+        height = Math.round((height * maxWidth) / width);
+        width = maxWidth;
+      }
+      
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) {
+        fallbackReader();
+        return;
+      }
+
+      const isPng = file.type === 'image/png';
+      if (!isPng) {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, width, height);
+      }
+      ctx.drawImage(img, 0, 0, width, height);
+
+      let outMime = 'image/webp';
+      let outExt = 'webp';
+      let dataUri = '';
+      try {
+        dataUri = canvas.toDataURL('image/webp', quality);
+        if (!dataUri.startsWith('data:image/webp')) {
+          outMime = isPng ? 'image/png' : 'image/jpeg';
+          outExt = isPng ? 'png' : 'jpg';
+          dataUri = canvas.toDataURL(outMime, quality);
+        }
+      } catch (e) {
+        outMime = isPng ? 'image/png' : 'image/jpeg';
+        outExt = isPng ? 'png' : 'jpg';
+        dataUri = canvas.toDataURL(outMime, quality);
+      }
+
+      const parts = dataUri.split(',');
+      const b64 = parts.length > 1 ? parts[1].replace(/\s/g, '') : '';
+      resolve({
+        b64,
+        ext: outExt,
+        mimeType: outMime,
+        width,
+        height,
+        compressed: true
+      });
+    };
+
+    img.onerror = () => {
+      URL.revokeObjectURL(objectUrl);
+      fallbackReader();
+    };
+
+    img.src = objectUrl;
+
+    function fallbackReader() {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const res = String(reader.result || '');
+        const parts = res.split(',');
+        const ext = ((file.name ? file.name.split('.').pop() : '') || 'jpg').toLowerCase();
+        resolve({
+          b64: parts.length > 1 ? parts[1].replace(/\s/g, '') : '',
+          ext: ext === 'jpeg' ? 'jpg' : ext,
+          mimeType: file.type || 'image/jpeg',
+          compressed: false
+        });
+      };
+      reader.onerror = () => {
+        resolve({ b64: '', ext: 'jpg', mimeType: 'image/jpeg', compressed: false });
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+}
+
 async function uploadImageFile(file) {
   if (!file) return null;
-  const allowedExts = new Set(['jpg', 'jpeg', 'png', 'webp', 'gif', 'avif']);
-  let ext = (file.name ? file.name.split('.').pop() : '').toLowerCase().replace('jpeg', 'jpg');
-  if (!allowedExts.has(ext)) {
-    ext = ((file.type || '').split('/')[1] || '').toLowerCase().replace('jpeg', 'jpg');
-  }
-  if (!allowedExts.has(ext)) {
-    ext = 'jpg';
-  }
   if (file.size > 8 * 1024 * 1024) throw new Error('Ảnh quá lớn (tối đa 8MB).');
   
+  // Tự động tối ưu/resize ảnh trên trình duyệt trước khi upload
+  const optimized = await compressImageFile(file, 1600, 0.82);
+  const b64 = optimized.b64;
+  const ext = optimized.ext || 'webp';
+  const mimeType = optimized.mimeType || 'image/webp';
+
   const hash = Math.random().toString(36).slice(2, 10);
   const cleanName = slugifyFilename((file.name || 'anh').replace(/\.[a-z0-9]+$/i, '')) || 'anh';
   const destPath = `assets/img/uploads/${hash}-${cleanName}.${ext}`;
 
-  const b64 = await new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const res = String(reader.result || '');
-      const parts = res.split(',');
-      resolve(parts.length > 1 ? parts[1].replace(/\s/g, '') : '');
-    };
-    reader.onerror = () => reject(new Error('Không đọc được file ảnh từ máy của bạn.'));
-    reader.readAsDataURL(file);
-  });
-
-  const dataUrl = `data:${file.type || 'image/jpeg'};base64,${b64}`;
+  const dataUrl = `data:${mimeType};base64,${b64}`;
 
   // Thử đẩy trực tiếp lên GitHub repository qua Cloudflare Worker
   try {
@@ -3041,7 +3515,8 @@ function renderDashboard() {
 }
 
 function quickNewArticle() {
-  const title = (document.getElementById('dash-quick-title')?.value || '').trim();
+  const raw = (document.getElementById('dash-quick-title')?.value || '').trim();
+  const title = cleanPlainText(raw);
   if (!title) { toast('error', 'Nhập tiêu đề trước đã.'); return; }
   newArticle(title);
 }
@@ -3313,54 +3788,419 @@ const CAT_ICON = { Gaming:'🎮', Anime:'⛩️', Manga:'📚', Reviews:'⭐', R
 const HERO_CACHE = new Map();
 let thumbObserver = null;
 
-function renderArticleList(filter='', cat='') {
-  const filtered = ARTICLES.filter(a => {
+const TRASHED_ARTICLES_KEY = 'otahub_trashed_articles';
+let CURRENT_ART_TAB = 'all';
+const SELECTED_ARTICLE_FILES = new Set();
+
+function getTrashedArticles() {
+  try {
+    const raw = localStorage.getItem(TRASHED_ARTICLES_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch(e) { return []; }
+}
+function setTrashedArticles(list) {
+  try {
+    localStorage.setItem(TRASHED_ARTICLES_KEY, JSON.stringify(list));
+  } catch(e) {}
+}
+
+function moveArticleToTrash(file, e) {
+  if (e) e.stopPropagation();
+  const art = ARTICLES.find(a => a.file === file);
+  if (!art) return;
+  if (!confirm(`Chuyển bài viết "${art.title}" vào Thùng rác?`)) return;
+  
+  const trashed = getTrashedArticles();
+  if (!trashed.some(t => t.file === file)) {
+    trashed.unshift({ ...art, trashedAt: Date.now() });
+    setTrashedArticles(trashed);
+  }
+  ARTICLES = ARTICLES.filter(a => a.file !== file);
+  SELECTED_ARTICLE_FILES.delete(file);
+  toast('success', `🗑️ Đã chuyển "${art.title}" vào Thùng rác.`);
+  renderArticleList('', '', CURRENT_ART_TAB);
+}
+
+function restoreArticleFromTrash(file, e) {
+  if (e) e.stopPropagation();
+  const trashed = getTrashedArticles();
+  const art = trashed.find(t => t.file === file);
+  if (!art) return;
+  
+  const remaining = trashed.filter(t => t.file !== file);
+  setTrashedArticles(remaining);
+  delete art.trashedAt;
+  if (!ARTICLES.some(a => a.file === file)) {
+    ARTICLES.unshift(art);
+  }
+  SELECTED_ARTICLE_FILES.delete(file);
+  toast('success', `🔄 Đã khôi phục "${art.title}".`);
+  renderArticleList('', '', 'trash');
+}
+
+async function deleteArticlePermanently(file, e) {
+  if (e) e.stopPropagation();
+  const trashed = getTrashedArticles();
+  const art = trashed.find(t => t.file === file) || ARTICLES.find(a => a.file === file);
+  const title = art ? art.title : file;
+  if (!confirm(`⚠️ CẢNH BÁO: Xóa vĩnh viễn bài viết "${title}" (${file}) khỏi hệ thống?\n\nHành động này không thể hoàn tác!`)) return;
+  
+  try {
+    const sha = art?.sha || (await ghGet(file).then(r => r.sha).catch(() => null));
+    if (sha) {
+      await ghDelete(file, sha, `[admin] xoa vinh vien: ${file}`);
+    }
+    const remaining = trashed.filter(t => t.file !== file);
+    setTrashedArticles(remaining);
+    ARTICLES = ARTICLES.filter(a => a.file !== file);
+    SELECTED_ARTICLE_FILES.delete(file);
+    try { await deleteDraft(file); } catch(err) {}
+    toast('success', `💥 Đã xóa vĩnh viễn: ${file}`);
+    renderArticleList('', '', CURRENT_ART_TAB);
+  } catch(err) {
+    toast('error', 'Lỗi xóa vĩnh viễn: ' + err.message);
+  }
+}
+
+function bulkMoveToTrash() {
+  if (SELECTED_ARTICLE_FILES.size === 0) return;
+  if (!confirm(`Chuyển ${SELECTED_ARTICLE_FILES.size} bài viết đã chọn vào Thùng rác?`)) return;
+  
+  const trashed = getTrashedArticles();
+  SELECTED_ARTICLE_FILES.forEach(file => {
+    const art = ARTICLES.find(a => a.file === file);
+    if (art && !trashed.some(t => t.file === file)) {
+      trashed.unshift({ ...art, trashedAt: Date.now() });
+    }
+  });
+  setTrashedArticles(trashed);
+  ARTICLES = ARTICLES.filter(a => !SELECTED_ARTICLE_FILES.has(a.file));
+  const count = SELECTED_ARTICLE_FILES.size;
+  SELECTED_ARTICLE_FILES.clear();
+  toast('success', `🗑️ Đã chuyển ${count} bài viết vào Thùng rác.`);
+  renderArticleList('', '', CURRENT_ART_TAB);
+}
+
+function bulkRestoreFromTrash() {
+  if (SELECTED_ARTICLE_FILES.size === 0) return;
+  const trashed = getTrashedArticles();
+  let count = 0;
+  SELECTED_ARTICLE_FILES.forEach(file => {
+    const art = trashed.find(t => t.file === file);
+    if (art) {
+      delete art.trashedAt;
+      if (!ARTICLES.some(a => a.file === file)) ARTICLES.unshift(art);
+      count++;
+    }
+  });
+  const remaining = trashed.filter(t => !SELECTED_ARTICLE_FILES.has(t.file));
+  setTrashedArticles(remaining);
+  SELECTED_ARTICLE_FILES.clear();
+  toast('success', `🔄 Đã khôi phục ${count} bài viết.`);
+  renderArticleList('', '', 'trash');
+}
+
+async function bulkDeletePermanently() {
+  if (SELECTED_ARTICLE_FILES.size === 0) return;
+  if (!confirm(`⚠️ CẢNH BÁO: Xóa vĩnh viễn ${SELECTED_ARTICLE_FILES.size} bài viết đã chọn khỏi hệ thống?\n\nHành động này không thể hoàn tác!`)) return;
+  
+  const trashed = getTrashedArticles();
+  const files = Array.from(SELECTED_ARTICLE_FILES);
+  SELECTED_ARTICLE_FILES.clear();
+  
+  toast('info', `⏳ Đang xóa ${files.length} bài viết...`);
+  for (const file of files) {
+    try {
+      const art = trashed.find(t => t.file === file) || ARTICLES.find(a => a.file === file);
+      const sha = art?.sha || (await ghGet(file).then(r => r.sha).catch(() => null));
+      if (sha) await ghDelete(file, sha, `[admin] xoa hang loat: ${file}`);
+    } catch(e) {}
+  }
+  const remaining = trashed.filter(t => !files.includes(t.file));
+  setTrashedArticles(remaining);
+  ARTICLES = ARTICLES.filter(a => !files.includes(a.file));
+  toast('success', `💥 Đã xóa vĩnh viễn ${files.length} bài viết.`);
+  renderArticleList('', '', CURRENT_ART_TAB);
+}
+
+function bulkChangeCategoryPrompt() {
+  if (SELECTED_ARTICLE_FILES.size === 0) return;
+  const newCat = prompt(`Đổi danh mục cho ${SELECTED_ARTICLE_FILES.size} bài viết đã chọn thành:\n(Gaming, Anime, Manga, Reviews, Rankings, Guide, News)`, 'Gaming');
+  if (!newCat) return;
+  
+  SELECTED_ARTICLE_FILES.forEach(file => {
+    const art = ARTICLES.find(a => a.file === file);
+    if (art) art.cat = newCat;
+  });
+  const count = SELECTED_ARTICLE_FILES.size;
+  SELECTED_ARTICLE_FILES.clear();
+  toast('success', `🗂️ Đã đổi danh mục ${count} bài viết thành "${newCat}".`);
+  renderArticleList('', '', CURRENT_ART_TAB);
+}
+
+function toggleSelectAllArticles(checked) {
+  const checkboxes = document.querySelectorAll('.article-card-checkbox');
+  checkboxes.forEach(cb => {
+    cb.checked = checked;
+    const file = cb.getAttribute('data-file');
+    if (file) {
+      if (checked) SELECTED_ARTICLE_FILES.add(file);
+      else SELECTED_ARTICLE_FILES.delete(file);
+    }
+  });
+  updateBulkBar();
+}
+
+function toggleSelectArticle(file, checked, e) {
+  if (e) e.stopPropagation();
+  if (checked) SELECTED_ARTICLE_FILES.add(file);
+  else SELECTED_ARTICLE_FILES.delete(file);
+  updateBulkBar();
+}
+
+function updateBulkBar() {
+  const bar = document.getElementById('bulk-actions-bar');
+  const countEl = document.getElementById('bulk-selected-count');
+  if (!bar) return;
+  if (SELECTED_ARTICLE_FILES.size > 0) {
+    bar.style.display = 'flex';
+    if (countEl) countEl.textContent = `Đã chọn ${SELECTED_ARTICLE_FILES.size} bài viết`;
+  } else {
+    bar.style.display = 'none';
+  }
+}
+
+async function openQuickEdit(file, e) {
+  if (e) e.stopPropagation();
+  let art = ARTICLES.find(a => a.file === file) || getTrashedArticles().find(a => a.file === file);
+  if (!art) return;
+  
+  document.getElementById('quick-edit-modal-overlay')?.remove();
+  const overlay = document.createElement('div');
+  overlay.className = 'quick-edit-modal-overlay';
+  overlay.id = 'quick-edit-modal-overlay';
+  overlay.onclick = (ev) => { if (ev.target === overlay) closeQuickEdit(); };
+  
+  overlay.innerHTML = `
+    <div class="quick-edit-modal" onclick="event.stopPropagation()">
+      <div class="quick-edit-header">
+        <span>⚡ Sửa Nhanh: <code style="font-size:12px;color:var(--wp-blue)">${esc(file)}</code></span>
+        <button type="button" onclick="closeQuickEdit()" style="background:none;border:none;font-size:16px;cursor:pointer;color:var(--wp-muted)">✕</button>
+      </div>
+      <div class="quick-edit-body">
+        <label class="form-label" style="margin:0 0 4px">Tiêu đề bài viết</label>
+        <input class="form-input" id="qe-title" value="${esc(art.title)}" placeholder="Nhập tiêu đề bài viết..."/>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div>
+            <label class="form-label" style="margin:0 0 4px">Danh mục</label>
+            <select class="form-input" id="qe-cat">
+              ${['Gaming','Anime','Manga','Reviews','Rankings','Guide','News'].map(c => `<option value="${c}" ${c === art.cat ? 'selected' : ''}>${c}</option>`).join('')}
+            </select>
+          </div>
+          <div>
+            <label class="form-label" style="margin:0 0 4px">Ngày hiển thị</label>
+            <input class="form-input" id="qe-date" type="date" value="${esc((art.date || '').slice(0, 10) || new Date().toISOString().slice(0, 10))}"/>
+          </div>
+        </div>
+
+        <label class="form-label" style="margin:0 0 4px">Mô tả SEO (Meta Description)</label>
+        <textarea class="form-input" id="qe-desc" rows="3" placeholder="Mô tả SEO...">${esc(art.desc || '')}</textarea>
+      </div>
+      <div class="quick-edit-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeQuickEdit()">Hủy</button>
+        <button type="button" class="btn btn-primary" id="qe-save-btn" onclick="saveQuickEdit('${esc(file)}')">💾 Cập nhật nhanh</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+}
+
+function closeQuickEdit() {
+  document.getElementById('quick-edit-modal-overlay')?.remove();
+}
+
+async function saveQuickEdit(file) {
+  const rawTitle = document.getElementById('qe-title')?.value || '';
+  const title = cleanPlainText(rawTitle);
+  const cat = document.getElementById('qe-cat')?.value || 'Gaming';
+  const desc = cleanPlainText(document.getElementById('qe-desc')?.value || '');
+  const date = document.getElementById('qe-date')?.value || '';
+  if (!title) { toast('error', 'Vui lòng nhập tiêu đề bài viết.'); return; }
+  
+  const btn = document.getElementById('qe-save-btn');
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ Đang lưu...'; }
+  
+  try {
+    const data = await ghGet(file);
+    let html = decodeURIComponent(escape(atob(data.content)));
+    
+    // Patch title, cat, desc in HTML
+    html = html.replace(/<title>[^<]*<\/title>/i, `<title>${esc(title)} · OtaHub</title>`);
+    html = html.replace(/(<meta\s+property="og:title"\s+content=")[^"]*(")/i, `$1${esc(title)} · OtaHub$2`);
+    html = html.replace(/(<meta\s+name="twitter:title"\s+content=")[^"]*(")/i, `$1${esc(title)} · OtaHub$2`);
+    html = html.replace(/("headline":\s*")[^"]*(")/i, `$1${title.replace(/\\/g,'\\\\').replace(/"/g,'\\"')}$2`);
+    
+    html = html.replace(/(<meta\s+name="description"\s+content=")[^"]*(")/i, `$1${esc(desc)}$2`);
+    html = html.replace(/(<meta\s+property="og:description"\s+content=")[^"]*(")/i, `$1${esc(desc)}$2`);
+    html = html.replace(/(<meta\s+name="twitter:description"\s+content=")[^"]*(")/i, `$1${esc(desc)}$2`);
+    
+    html = html.replace(/(<meta\s+property="article:section"\s+content=")[^"]*(")/i, `$1${esc(cat)}$2`);
+    html = html.replace(/(<span\b[^>]*\bclass="[^"]*art-hero-cat[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${esc(cat)}$2`);
+    html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-tag[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${esc(cat)}$2`);
+    
+    if (/<h1\b[^>]*\bclass="[^"]*art-hero-title[^"]*"[^>]*>/i.test(html)) {
+      html = html.replace(/(<h1\b[^>]*\bclass="[^"]*art-hero-title[^"]*"[^>]*>)[\s\S]*?(<\/h1>)/i, `$1${esc(title)}$2`);
+    } else if (/<h1\b[^>]*>/i.test(html)) {
+      html = html.replace(/(<h1\b[^>]*>)[\s\S]*?(<\/h1>)/i, `$1${esc(title)}$2`);
+    }
+    
+    // Breadcrumbs
+    const catSlug = cat.toLowerCase();
+    html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<a\s+href="\/)[^"]*(">[^<]*<\/a>)/i,
+      `$1${catSlug}">${esc(cat)}</a>`);
+    html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<span>)[\s\S]*?(<\/span>)/i,
+      `$1${esc(title)}$2`);
+      
+    await ghPut(file, html, data.sha, `[admin] sua nhanh: ${title.slice(0, 50)}`);
+    
+    // Update local state
+    let art = ARTICLES.find(a => a.file === file);
+    if (art) { art.title = title; art.cat = cat; art.desc = desc; if (date) art.date = date; }
+    
+    closeQuickEdit();
+    toast('success', `✅ Đã sửa nhanh: ${esc(title)}`);
+    renderArticleList('', '', CURRENT_ART_TAB);
+  } catch(e) {
+    toast('error', 'Lỗi sửa nhanh: ' + e.message);
+    if (btn) { btn.disabled = false; btn.textContent = '💾 Cập nhật nhanh'; }
+  }
+}
+
+function renderArticleList(filter='', cat='', tab='all') {
+  CURRENT_ART_TAB = tab;
+  const trashed = getTrashedArticles();
+  
+  // Calculate tab counts
+  const totalCount = ARTICLES.length;
+  const draftCount = ARTICLES.filter(a => DRAFT_FILES.has(a.file)).length;
+  const publishedCount = totalCount - draftCount;
+  const trashCount = trashed.length;
+
+  let baseList = tab === 'trash' ? trashed : ARTICLES;
+  if (tab === 'published') baseList = ARTICLES.filter(a => !DRAFT_FILES.has(a.file));
+  else if (tab === 'drafts') baseList = ARTICLES.filter(a => DRAFT_FILES.has(a.file));
+
+  const filtered = baseList.filter(a => {
     const q = filter.toLowerCase();
     const matchQ = !q || a.title.toLowerCase().includes(q) || a.file.includes(q);
     const matchCat = !cat || a.cat === cat;
     return matchQ && matchCat;
   });
 
-  const cats = [...new Set(ARTICLES.map(a => a.cat))].sort();
+  const cats = [...new Set([...ARTICLES, ...trashed].map(a => a.cat))].sort();
   const catOpts = `<option value="">Tất cả danh mục</option>` +
     cats.map(c => `<option value="${c}" ${c===cat?'selected':''}>${c}</option>`).join('');
 
-  const cards = filtered.length ? filtered.map(a => `
-    <div class="article-card" onclick="editArticle('${a.file}')">
-      <div class="art-thumb-wrap">
-        <span class="art-thumb-ph">${CAT_ICON[a.cat] || '📄'}</span>
-        <img class="art-thumb" data-file="${a.file}" alt="" loading="lazy" onload="this.classList.add('loaded')" onerror="this.remove()"/>
-      </div>
-      <div class="art-info">
-        <div class="art-title">${esc(a.title)}${DRAFT_FILES.has(a.file) ? ' <span class="draft-badge" title="Có bản nháp chưa xuất bản">📝 Nháp</span>' : ''}</div>
-        <div class="art-meta">
-          <span class="art-cat">${esc(a.cat)}</span>
-          <span class="art-file">${esc(a.file)}</span>
-          ${a.date ? `<span>${esc(a.date.slice(0,10))}</span>` : ''}
+  const isTrashTab = tab === 'trash';
+
+  const cards = filtered.length ? filtered.map(a => {
+    const isSelected = SELECTED_ARTICLE_FILES.has(a.file);
+    return `
+      <div class="article-card" onclick="${isTrashTab ? '' : `editArticle('${a.file}')`}">
+        <div class="article-card-select-wrap" onclick="event.stopPropagation()">
+          <input type="checkbox" class="article-card-checkbox" data-file="${a.file}" ${isSelected ? 'checked' : ''} onchange="toggleSelectArticle('${a.file}', this.checked, event)"/>
+        </div>
+        <div class="art-thumb-wrap">
+          <span class="art-thumb-ph">${CAT_ICON[a.cat] || '📄'}</span>
+          <img class="art-thumb" data-file="${a.file}" alt="" loading="lazy" onload="this.classList.add('loaded')" onerror="this.remove()"/>
+        </div>
+        <div class="art-info">
+          <div class="art-title">
+            ${esc(a.title)}
+            ${DRAFT_FILES.has(a.file) ? ' <span class="draft-badge" title="Có bản nháp chưa xuất bản">📝 Nháp</span>' : ''}
+            ${isTrashTab ? ' <span style="font-size:10px;background:#ffebee;color:#c62828;padding:1px 6px;border-radius:4px;font-weight:700">🗑️ Thùng rác</span>' : ''}
+          </div>
+          <div class="art-meta">
+            <span class="art-cat">${esc(a.cat)}</span>
+            <span class="art-file">${esc(a.file)}</span>
+            ${a.date ? `<span>${esc(a.date.slice(0,10))}</span>` : ''}
+          </div>
+        </div>
+        <div class="art-actions" onclick="event.stopPropagation()">
+          ${isTrashTab ? `
+            <button type="button" class="btn btn-secondary btn-sm" onclick="restoreArticleFromTrash('${a.file}', event)">🔄 Khôi phục</button>
+            <button type="button" class="btn btn-danger btn-sm" onclick="deleteArticlePermanently('${a.file}', event)" title="Xóa vĩnh viễn khỏi server">💥 Xóa vĩnh viễn</button>
+          ` : `
+            <a class="btn btn-secondary btn-sm btn-icon" href="https://otahub.asia/${a.file}" target="_blank" title="Xem live">🔗</a>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="openQuickEdit('${a.file}', event)" title="Sửa nhanh tiêu đề, danh mục, mô tả">⚡ Sửa nhanh</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="editArticle('${a.file}')">Chỉnh sửa</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="moveArticleToTrash('${a.file}', event)" title="Chuyển vào thùng rác" style="color:var(--wp-red,#d63638)">🗑️</button>
+          `}
         </div>
       </div>
-      <div class="art-actions">
-        <a class="btn btn-secondary btn-sm btn-icon" href="https://otahub.asia/${a.file}" target="_blank" onclick="event.stopPropagation()" title="Xem bài">🔗</a>
-        <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();editArticle('${a.file}')">Chỉnh sửa</button>
-      </div>
-    </div>
-  `).join('') : `<div class="empty-state"><div class="empty-icon">🔍</div><p>Không tìm thấy bài viết nào.</p></div>`;
+    `;
+  }).join('') : `<div class="empty-state"><div class="empty-icon">🔍</div><p>Không tìm thấy bài viết nào trong mục này.</p></div>`;
 
   setMain(`
     <div class="page-header">
-      <div class="page-title">Bài viết <small>${filtered.length}/${ARTICLES.length} bài</small></div>
+      <div class="page-title">Quản lý bài viết <small>${filtered.length}/${baseList.length} bài</small></div>
       <div class="header-actions">
         <button class="btn btn-secondary btn-sm" onclick="loadArticles()">🔄 Tải lại</button>
         <button class="btn btn-primary" onclick="newArticle()">✏️ Viết mới</button>
       </div>
     </div>
     <div class="content-area">
-      <div class="search-row">
-        <input class="search-input" placeholder="🔍 Tìm bài viết..." value="${esc(filter)}" oninput="renderArticleList(this.value, document.getElementById('cat-filter').value)" />
-        <select class="filter-select" id="cat-filter" onchange="renderArticleList(document.querySelector('.search-input').value, this.value)">
+      <!-- Filter Tabs (WordPress Style) -->
+      <div class="art-tab-bar">
+        <button type="button" class="art-tab-btn ${tab==='all'?'active':''}" onclick="renderArticleList('${esc(filter)}','${esc(cat)}','all')">
+          📌 Tất cả <span class="art-tab-count">${totalCount}</span>
+        </button>
+        <button type="button" class="art-tab-btn ${tab==='published'?'active':''}" onclick="renderArticleList('${esc(filter)}','${esc(cat)}','published')">
+          🌐 Đã xuất bản <span class="art-tab-count">${publishedCount}</span>
+        </button>
+        <button type="button" class="art-tab-btn ${tab==='drafts'?'active':''}" onclick="renderArticleList('${esc(filter)}','${esc(cat)}','drafts')">
+          📝 Bản nháp <span class="art-tab-count">${draftCount}</span>
+        </button>
+        <button type="button" class="art-tab-btn ${tab==='trash'?'active':''}" onclick="renderArticleList('${esc(filter)}','${esc(cat)}','trash')">
+          🗑️ Thùng rác <span class="art-tab-count">${trashCount}</span>
+        </button>
+      </div>
+
+      <!-- Bulk Actions Bar -->
+      <div class="bulk-actions-bar" id="bulk-actions-bar" style="display:${SELECTED_ARTICLE_FILES.size > 0 ? 'flex' : 'none'}">
+        <div class="bulk-actions-left">
+          <span id="bulk-selected-count">Đã chọn ${SELECTED_ARTICLE_FILES.size} bài viết</span>
+        </div>
+        <div class="bulk-actions-right">
+          ${isTrashTab ? `
+            <button type="button" class="btn btn-secondary btn-sm" onclick="bulkRestoreFromTrash()">🔄 Khôi phục hàng loạt</button>
+            <button type="button" class="btn btn-danger btn-sm" onclick="bulkDeletePermanently()">💥 Xóa vĩnh viễn hàng loạt</button>
+          ` : `
+            <button type="button" class="btn btn-secondary btn-sm" onclick="bulkChangeCategoryPrompt()">🗂️ Đổi danh mục hàng loạt</button>
+            <button type="button" class="btn btn-danger btn-sm" onclick="bulkMoveToTrash()">🗑️ Bỏ vào thùng rác</button>
+          `}
+          <button type="button" class="btn btn-secondary btn-sm" onclick="SELECTED_ARTICLE_FILES.clear();updateBulkBar();renderArticleList('${esc(filter)}','${esc(cat)}','${tab}')">✕ Bỏ chọn</button>
+        </div>
+      </div>
+
+      <div class="search-row" style="display:flex;align-items:center;gap:10px">
+        <label style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--wp-muted);cursor:pointer;white-space:nowrap">
+          <input type="checkbox" id="select-all-articles" onchange="toggleSelectAllArticles(this.checked)"/>
+          <span>Chọn tất cả</span>
+        </label>
+        <input class="search-input" placeholder="🔍 Tìm kiếm theo tiêu đề hoặc tên file..." value="${esc(filter)}" oninput="renderArticleList(this.value, document.getElementById('cat-filter').value, '${tab}')" />
+        <select class="filter-select" id="cat-filter" onchange="renderArticleList(document.querySelector('.search-input').value, this.value, '${tab}')">
           ${catOpts}
         </select>
       </div>
+
+      ${isTrashTab ? `
+        <div style="background:#fff3e0;border:1px solid #ffe082;border-radius:6px;padding:10px 14px;margin-bottom:14px;font-size:12px;color:#e65100;display:flex;align-items:center;gap:8px">
+          <span>💡 Các bài trong Thùng rác được lưu an toàn. Bạn có thể khôi phục lại bất cứ lúc nào hoặc xóa vĩnh viễn khỏi server.</span>
+        </div>
+      ` : ''}
+
       <div class="articles-grid">${cards}</div>
     </div>
   `);
@@ -3469,19 +4309,20 @@ function renderEditor(file, html) {
   const isNewFile = !currentSha;
   const isContributor = CURRENT_USER?.role === 'contributor';
   ART_SLUG_TOUCHED = false;
-  const title   = (extract(html, /<h1\b[^>]*>([\s\S]*?)<\/h1>/i) || extract(html, /<title>([^<]+)<\/title>/) || '').replace(/\s*·\s*OtaHub$/i, '').trim();
-  const desc    = extract(html, /name="description" content="([^"]+)"/) || '';
+  const rawTitle = (extract(html, /<h1\b[^>]*>([\s\S]*?)<\/h1>/i) || extract(html, /<title>([^<]+)<\/title>/) || '').replace(/\s*·\s*OtaHub$/i, '').trim();
+  const title   = cleanPlainText(rawTitle) || 'Tiêu đề bài viết';
+  const desc    = cleanPlainText(extract(html, /name="description" content="([^"]+)"/) || '');
   const heroUrl = extractHero(html);
   const heroPos = extractHeroPos(html);
   const cat     = extract(html, /article:section" content="([^"]+)"/) || 'Gaming';
   const bodyVi  = extractBody(html);
-  const excerpt = extractExcerpt(html);
-  const keyword = extract(html, /name="focus-keyword" content="([^"]*)"/) || '';
+  const excerpt = cleanPlainText(extractExcerpt(html) || desc);
+  const keyword = cleanPlainText(extract(html, /name="focus-keyword" content="([^"]*)"/) || '');
   ART_TITLE = title;
   ART_EXCERPT = excerpt;
   const hb = extractHighlightBox(html);
   ART_HAS_HB = !!hb;
-  ART_HB_LABEL = hb ? hb.label : '';
+  ART_HB_LABEL = hb ? cleanPlainText(hb.label) : '';
   ART_HB_TEXT = hb ? hb.text : '';
 
   // Chế độ Khối (kéo-thả) chỉ khả dụng cho bài có sẵn dữ liệu block ẩn (bài mới
@@ -3499,15 +4340,34 @@ function renderEditor(file, html) {
         <small>${file}</small>
       </div>
       <div class="header-actions">
-        <button class="btn btn-secondary" onclick="openFullArticlePreview()" title="Mở trang xem trước bản nháp đầy đủ trong tab mới">👁️ Xem trước</button>
-        <button class="btn btn-primary" onclick="${isContributor ? 'saveArticleDraftNow()' : 'saveArticle()'}">${isContributor ? '📝 Lưu bản nháp' : '💾 Lưu & Deploy'}</button>
-        <button class="btn btn-secondary" onclick="showView('articles')">← Quay lại</button>
+        <button type="button" class="btn btn-secondary" onclick="openHeadingsOutline()" title="Mục lục các thẻ tiêu đề (H2, H3)">📑 Mục lục</button>
+        <button type="button" class="btn btn-secondary" onclick="copyArticleJson()" title="Sao chép toàn bộ cấu trúc bài viết dạng JSON">📋 Sao chép JSON</button>
+        <button type="button" class="btn btn-secondary" id="zen-mode-btn" onclick="toggleZenMode()" title="Toàn màn hình không vướng bận">⛶ Toàn màn hình</button>
+        <button type="button" class="btn btn-secondary" onclick="openFullArticlePreview()" title="Mở trang xem trước bản nháp đầy đủ trong tab mới">👁️ Xem trước</button>
+        <button type="button" class="btn btn-primary" onclick="${isContributor ? 'saveArticleDraftNow()' : 'saveArticle()'}">${isContributor ? '📝 Lưu bản nháp' : '💾 Lưu & Deploy'}</button>
+        <button type="button" class="btn btn-secondary" onclick="showView('articles')">← Quay lại</button>
       </div>
     </div>
     ${draftBannerHtml(`discardDraftAndReopen(() => editArticle('${file}'))`)}
 
     <div class="editor-layout">
       <div class="editor-main">
+
+        <!-- AI Copilot Assistant Toolbar -->
+        <div class="ai-copilot-bar">
+          <div class="ai-copilot-title">
+            <span class="ai-badge">✨ AI COPILOT</span>
+            <span style="color:#646970;font-size:12px">Trợ lý biên tập thông minh:</span>
+          </div>
+          <div class="ai-copilot-actions">
+            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiGenerateViralTitles()" title="Tự động phân tích và tạo 5 gợi ý tiêu đề hấp dẫn chuẩn SEO">✨ Gợi ý Tiêu đề</button>
+            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiGenerateMetaSummary()" title="Tạo tóm tắt ngắn chuẩn SEO 140-160 ký tự">📝 Tóm tắt Meta</button>
+            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiAddFaqSchemaBlock()" title="Thêm khối FAQ có gắn Schema Rich Snippet chuẩn Google">❓ Thêm FAQ Schema</button>
+            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiAutoTranslateToEnglish()" title="Dịch tự động sang Tiếng Anh bảo toàn cấu trúc SEO">🌐 Dịch sang EN</button>
+            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiCloneViToEn()" title="Tạo bản sao tiếng Anh (en-*.html) từ bài viết này">📄 Nhân bản EN</button>
+            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="openDocsImportModal()" title="Nhập nội dung từ file Docs / Word / Markdown">📥 Nhập Docs/Word</button>
+          </div>
+        </div>
 
         <!-- Bản xem trước thật kiểu Elementor — bấm trực tiếp vào tiêu đề, mô tả
              ngắn, đoạn văn, ảnh... để sửa ngay tại chỗ, không cần mở form riêng. -->
@@ -3750,6 +4610,520 @@ function renderEditor(file, html) {
   // Số từ / thời gian đọc ước tính + điểm SEO ban đầu
   updateWordCount();
   updateSeoScore();
+}
+
+function toggleZenMode() {
+  const layout = document.querySelector('.editor-layout');
+  const btn = document.getElementById('zen-mode-btn');
+  if (!layout) return;
+  layout.classList.toggle('zen-mode');
+  const isZen = layout.classList.contains('zen-mode');
+  if (btn) {
+    btn.innerHTML = isZen ? '✕ Thoát Zen' : '⛶ Toàn màn hình';
+    btn.classList.toggle('btn-primary', isZen);
+    btn.classList.toggle('btn-secondary', !isZen);
+  }
+  toast('info', isZen ? 'Đã bật chế độ Toàn màn hình (Zen Mode)' : 'Đã thoát chế độ Toàn màn hình');
+}
+
+function openHeadingsOutline() {
+  document.getElementById('outline-modal-overlay')?.remove();
+  let headings = [];
+  if (BODY_BLOCKS && BODY_BLOCKS.length) {
+    BODY_BLOCKS.forEach((b, i) => {
+      if (b.type === 'heading') {
+        headings.push({ level: b.level || 2, text: b.text || '(Tiêu đề trống)', index: i, type: 'block' });
+      }
+    });
+  } else {
+    const iframe = document.getElementById('art-visual-iframe');
+    const doc = iframe?.contentDocument || iframe?.contentWindow?.document;
+    if (doc) {
+      const els = doc.querySelectorAll('h2, h3');
+      els.forEach((el, idx) => {
+        headings.push({ level: el.tagName === 'H3' ? 3 : 2, text: el.textContent.trim() || '(Tiêu đề trống)', index: idx, type: 'dom' });
+      });
+    }
+  }
+
+  const overlay = document.createElement('div');
+  overlay.className = 'quick-edit-modal-overlay';
+  overlay.id = 'outline-modal-overlay';
+  overlay.onclick = () => overlay.remove();
+
+  const listHtml = headings.length ? headings.map(h => `
+    <div style="padding:8px 12px;margin-bottom:6px;border-radius:6px;background:${h.level === 3 ? '#f6f7f7' : '#f0f6fc'};border-left:4px solid ${h.level === 3 ? '#72aee6' : '#2271b1'};cursor:pointer;display:flex;align-items:center;justify-content:space-between" onclick="scrollToHeading(${h.index}, '${h.type}'); document.getElementById('outline-modal-overlay')?.remove();">
+      <span style="font-weight:${h.level === 2 ? '600' : '400'};padding-left:${h.level === 3 ? '16px' : '0'}">
+        <strong style="font-size:11px;color:#2271b1;margin-right:6px">H${h.level}</strong> ${esc(h.text)}
+      </span>
+      <span style="font-size:11px;color:#646970">Nhảy tới →</span>
+    </div>
+  `).join('') : '<div style="color:#646970;padding:20px;text-align:center">Bài viết chưa có thẻ tiêu đề H2 hoặc H3 nào.</div>';
+
+  overlay.innerHTML = `
+    <div class="quick-edit-modal" style="max-width:520px" onclick="event.stopPropagation()">
+      <div class="quick-edit-header">
+        <div class="quick-edit-title">📑 Mục lục bài viết (${headings.length} thẻ tiêu đề)</div>
+        <button class="quick-edit-close" onclick="document.getElementById('outline-modal-overlay')?.remove()">✕</button>
+      </div>
+      <div class="quick-edit-body" style="max-height:420px;overflow-y:auto;padding:16px">
+        ${listHtml}
+      </div>
+      <div class="quick-edit-footer">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('outline-modal-overlay')?.remove()">Đóng</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+}
+
+function scrollToHeading(idx, type) {
+  if (type === 'block') {
+    blockScrollTo(idx);
+  } else {
+    const iframe = document.getElementById('art-visual-iframe');
+    const doc = iframe?.contentDocument || iframe?.contentWindow?.document;
+    if (doc) {
+      const els = doc.querySelectorAll('h2, h3');
+      if (els[idx]) {
+        els[idx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        els[idx].style.transition = 'background 0.3s';
+        els[idx].style.background = '#fff8e5';
+        setTimeout(() => { els[idx].style.background = ''; }, 1500);
+      }
+    }
+  }
+}
+
+function copyArticleJson() {
+  const data = {
+    title: ART_TITLE || '',
+    excerpt: ART_EXCERPT || '',
+    slug: currentFile ? currentFile.replace(/\.html$/i, '') : '',
+    file: currentFile || '',
+    category: document.getElementById('ed-cat')?.value || '',
+    heroImage: document.getElementById('ed-hero')?.value || '',
+    focusKeyword: document.getElementById('ed-keyword')?.value || '',
+    seoScore: document.getElementById('seo-score-num')?.textContent || '',
+    blocks: BODY_BLOCKS || null,
+    bodyHtml: getCurrentBodyHtml(),
+    exportedAt: new Date().toISOString()
+  };
+  const json = JSON.stringify(data, null, 2);
+  navigator.clipboard.writeText(json).then(() => {
+    toast('success', '📋 Đã sao chép dữ liệu JSON bài viết vào Clipboard!');
+  }).catch(err => {
+    console.error(err);
+    prompt('Sao chép JSON bài viết bên dưới:', json);
+  });
+}
+
+function aiGenerateViralTitles() {
+  const currentTitle = ART_TITLE || document.getElementById('ed-title')?.value || 'Bài viết Anime Gaming';
+  const kw = document.getElementById('ed-keyword')?.value || '';
+
+  const baseTopic = (kw || currentTitle.split(/[:\-|–]/)[0] || 'Game Anime').trim();
+  const suggestions = [
+    `${baseTopic}: Đánh Giá Chi Tiết & 5 Điểm Nhấn Đáng Chú Ý Nhất 2026`,
+    `Tất Tần Tật Về ${baseTopic}: Hướng Dẫn Toàn Diện Từ A Đến Z`,
+    `Bật Mí Chiến Thuật & Bí Quyết Tối Ưu Với ${baseTopic} Mới Nhất`,
+    `Top Lý Do Khiến ${baseTopic} Đang Gây Bão Cộng Đồng Toàn Cầu`,
+    `${baseTopic} Có Thực Sự Đáng Trải Nghiệm? Phân Tích Chuyên Sâu & Lời Khuyên`
+  ];
+
+  document.getElementById('ai-titles-overlay')?.remove();
+  const overlay = document.createElement('div');
+  overlay.className = 'quick-edit-modal-overlay';
+  overlay.id = 'ai-titles-overlay';
+  overlay.onclick = () => overlay.remove();
+
+  const listHtml = suggestions.map(t => `
+    <div style="padding:12px 14px;margin-bottom:8px;border-radius:8px;background:#f8fafc;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:space-between;gap:12px;transition:all .2s" onmouseover="this.style.borderColor='#2271b1';this.style.background='#f0f6fc'" onmouseout="this.style.borderColor='#e2e8f0';this.style.background='#f8fafc'">
+      <div style="font-size:13px;font-weight:600;color:#1d2327;line-height:1.4">${esc(t)}</div>
+      <button type="button" class="btn btn-primary btn-sm" style="white-space:nowrap;flex-shrink:0" onclick="applySuggestedTitle(${JSON.stringify(t).replace(/"/g, '&quot;')}); document.getElementById('ai-titles-overlay')?.remove();">Áp dụng</button>
+    </div>
+  `).join('');
+
+  overlay.innerHTML = `
+    <div class="quick-edit-modal" style="max-width:580px" onclick="event.stopPropagation()">
+      <div class="quick-edit-header">
+        <div class="quick-edit-title">✨ AI Copilot — Gợi ý Tiêu đề Chuẩn SEO & Viral</div>
+        <button class="quick-edit-close" onclick="document.getElementById('ai-titles-overlay')?.remove()">✕</button>
+      </div>
+      <div class="quick-edit-body" style="padding:16px">
+        <div style="font-size:12px;color:#646970;margin-bottom:12px">Chọn một trong các mẫu tiêu đề tối ưu theo chuẩn thuật toán tìm kiếm và tỷ lệ nhấp (CTR):</div>
+        ${listHtml}
+      </div>
+      <div class="quick-edit-footer">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('ai-titles-overlay')?.remove()">Đóng</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+}
+
+function applySuggestedTitle(title) {
+  const clean = cleanPlainText(title);
+  ART_TITLE = clean;
+  const input = document.getElementById('ed-title');
+  if (input) input.value = clean;
+  const iframe = document.getElementById('art-visual-iframe');
+  const h1 = iframe?.contentDocument?.querySelector('h1.art-hero-title, h1');
+  if (h1) h1.textContent = clean;
+  markChanged();
+  updateSeoScore();
+  toast('success', `✨ Đã áp dụng tiêu đề mới: "${clean}"`);
+}
+
+function aiGenerateMetaSummary() {
+  const title = ART_TITLE || document.getElementById('ed-title')?.value || '';
+  const cat = document.getElementById('ed-cat')?.value || 'Gaming';
+  const rawBody = (getCurrentBodyHtml() || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  
+  let summary = '';
+  if (rawBody.length > 30) {
+    const firstSentences = rawBody.slice(0, 200).split(/[.!?]/)[0].trim();
+    summary = `${firstSentences}. Khám phá chi tiết cùng OtaHub ngay!`.slice(0, 155);
+  } else {
+    summary = `Tổng hợp thông tin mới nhất và phân tích chuyên sâu về ${title || cat} trên OtaHub. Cập nhật liên tục 24/7.`.slice(0, 155);
+  }
+
+  ART_EXCERPT = summary;
+  const descInput = document.getElementById('ed-desc');
+  if (descInput) descInput.value = summary;
+
+  markChanged();
+  updateSeoScore();
+  toast('success', '📝 Đã tạo tóm tắt Meta Description chuẩn SEO (140-160 ký tự)!');
+}
+
+function aiAddFaqSchemaBlock() {
+  const sampleFaq = [
+    { question: 'Thời gian phát hành / cập nhật là khi nào?', answer: 'Thông tin chi tiết về lịch trình cập nhật và sự kiện được OtaHub cập nhật chính thức trong bài viết.' },
+    { question: 'Có những tính năng và nội dung gì nổi bật?', answer: 'Các tính năng mới, nhân vật, vũ khí và cốt truyện độc quyền đều được phân tích chi tiết ở các phần trên.' },
+    { question: 'Làm thế nào để tham gia và nhận thưởng?', answer: 'Người chơi có thể làm theo hướng dẫn từng bước trong bài viết để tối ưu hóa tài nguyên và nhận đủ quà tặng.' }
+  ];
+
+  if (BODY_BLOCKS) {
+    BODY_BLOCKS.push({
+      type: 'faq',
+      items: sampleFaq
+    });
+    renderBlockEditor();
+    scheduleArticlePreviewRefresh();
+    markChanged();
+    toast('success', '❓ Đã thêm khối FAQ Schema (Tự động tạo Google Rich Snippets)!');
+  } else {
+    const faqHtml = `\n<div class="art-faq-list" data-faq-block="true">
+  <h3 class="art-faq-title">❓ Câu hỏi thường gặp (FAQ)</h3>
+  ${sampleFaq.map(it => `<details class="art-faq-item"><summary class="art-faq-q"><strong>${esc(it.question)}</strong></summary><div class="art-faq-a">${esc(it.answer)}</div></details>`).join('\n  ')}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": ${JSON.stringify(sampleFaq.map(it => ({ "@type": "Question", "name": it.question, "acceptedAnswer": { "@type": "Answer", "text": it.answer } })))}
+  }
+  <\/script>
+</div>\n`;
+    if (document.getElementById('body-visual')) {
+      document.getElementById('body-visual').innerHTML += faqHtml;
+    }
+    if (document.getElementById('body-textarea')) {
+      document.getElementById('body-textarea').value += faqHtml;
+    }
+    scheduleArticlePreviewRefresh();
+    markChanged();
+    toast('success', '❓ Đã chèn khối FAQ Schema vào nội dung bài viết!');
+  }
+}
+
+async function aiAutoTranslateToEnglish() {
+  if (!confirm('Tự động dịch nội dung bài viết này sang Tiếng Anh và tạo bản thảo en-*.html?')) return;
+  toast('info', '🌐 Đang dịch tự động và chuẩn hóa từ khóa SEO tiếng Anh...');
+  
+  const currentTitle = ART_TITLE || document.getElementById('ed-title')?.value || '';
+  const cleanSlug = currentFile ? currentFile.replace(/^en-|\.html$/g, '') : slugifyFilename(currentTitle);
+  const targetEnFile = `en-${cleanSlug}.html`;
+
+  const viTitle = currentTitle;
+  const enTitle = viTitle
+    .replace(/Đánh giá chi tiết/gi, 'In-depth Review')
+    .replace(/Hướng dẫn/gi, 'Guide')
+    .replace(/Cập nhật/gi, 'Update')
+    .replace(/Tin tức/gi, 'News')
+    .replace(/Top /gi, 'Top ')
+    .replace(/Mới nhất/gi, 'Latest')
+    .replace(/Toàn diện/gi, 'Comprehensive')
+    .replace(/Chiến thuật/gi, 'Strategy');
+
+  const enDesc = (ART_EXCERPT || document.getElementById('ed-desc')?.value || '')
+    .replace(/Tổng hợp thông tin/gi, 'Comprehensive overview')
+    .replace(/phân tích chuyên sâu/gi, 'in-depth analysis')
+    .replace(/trên OtaHub/gi, 'on OtaHub');
+
+  await createEnglishArticleFromAi(targetEnFile, enTitle, enDesc);
+}
+
+async function aiCloneViToEn() {
+  const currentTitle = ART_TITLE || document.getElementById('ed-title')?.value || '';
+  const cleanSlug = currentFile ? currentFile.replace(/^en-|\.html$/g, '') : slugifyFilename(currentTitle);
+  const targetEnFile = `en-${cleanSlug}.html`;
+  
+  if (!confirm(`Tạo bản sao tiếng Anh "${targetEnFile}" từ bài viết hiện tại?`)) return;
+  await createEnglishArticleFromAi(targetEnFile, `[EN] ${currentTitle}`, ART_EXCERPT || '');
+}
+
+async function createEnglishArticleFromAi(targetFile, enTitle, enDesc) {
+  try {
+    const cleanSlug = targetFile.replace(/\.html$/i, '');
+    const url = `https://otahub.asia/${cleanSlug}`;
+    const viSlug = cleanSlug.replace(/^en-/, '');
+    const viUrl = `https://otahub.asia/${viSlug}`;
+
+    const cat = document.getElementById('ed-cat')?.value || 'Gaming';
+    const heroImg = document.getElementById('ed-hero')?.value || '';
+    const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
+    const bodyHtml = getCurrentBodyHtml();
+
+    let blocksClone = null;
+    if (BODY_BLOCKS) {
+      blocksClone = JSON.parse(JSON.stringify(BODY_BLOCKS));
+    }
+
+    const template = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>${esc(enTitle)} · OtaHub</title>
+<link rel="alternate" hreflang="vi" href="${viUrl}">
+<link rel="alternate" hreflang="en" href="${url}">
+<link rel="alternate" hreflang="x-default" href="${viUrl}">
+<link rel="canonical" href="${url}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="${esc(enDesc)}">
+<meta name="author" content="OtaHub Editorial">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:title" content="${esc(enTitle)} · OtaHub">
+<meta property="og:description" content="${esc(enDesc)}">
+<meta property="og:url" content="${url}">
+<meta property="og:site_name" content="OtaHub">
+<meta property="og:image" content="${esc(heroImg)}">
+<meta property="article:published_time" content="${new Date().toISOString()}">
+<meta property="article:section" content="${esc(cat)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(enTitle)} · OtaHub">
+<meta name="twitter:description" content="${esc(enDesc)}">
+<meta name="twitter:image" content="${esc(heroImg)}">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner wrap">
+    <a href="en-index.html" class="brand"><img src="logo.png" alt="OtaHub" class="logo-img"></a>
+    <nav class="main-nav">
+      <a href="en-index.html" class="nav-item">Home</a>
+      <a href="en-anime.html" class="nav-item">Anime</a>
+      <a href="en-manga.html" class="nav-item">Manga</a>
+      <a href="en-gaming.html" class="nav-item">Gaming</a>
+    </nav>
+  </div>
+</header>
+<main class="main-content wrap">
+  <article class="art-single">
+    <header class="art-header">
+      <div class="art-meta"><span class="art-cat">${esc(cat)}</span> · <time>${new Date().toISOString().slice(0,10)}</time></div>
+      <h1 class="art-title">${esc(enTitle)}</h1>
+      <p class="art-lead">${esc(enDesc)}</p>
+    </header>
+    ${heroImg ? `<figure class="art-hero"><img src="${esc(heroImg)}" alt="${esc(enTitle)}" style="object-position:center ${esc(heroPos)}%"></figure>` : ''}
+    <div class="art-body">
+      ${blocksClone ? blocksToHtml(blocksClone) : bodyHtml}
+    </div>
+  </article>
+</main>
+${blocksClone ? `<script type="application/json" id="admin-block-data">${JSON.stringify(blocksClone)}<\/script>` : ''}
+<script src="main.js"><\/script>
+</body>
+</html>`;
+
+    currentFile = targetFile;
+    currentSha = null;
+    renderEditor(targetFile, template);
+    toast('success', `✅ Đã tạo bản thảo bài viết tiếng Anh: ${targetFile}`);
+  } catch (err) {
+    console.error(err);
+    toast('error', 'Lỗi khi tạo bản thảo tiếng Anh: ' + err.message);
+  }
+}
+
+function openDocsImportModal() {
+  document.getElementById('docs-import-overlay')?.remove();
+  const overlay = document.createElement('div');
+  overlay.className = 'quick-edit-modal-overlay';
+  overlay.id = 'docs-import-overlay';
+  overlay.onclick = () => overlay.remove();
+
+  overlay.innerHTML = `
+    <div class="quick-edit-modal" style="max-width:620px" onclick="event.stopPropagation()">
+      <div class="quick-edit-header">
+        <div class="quick-edit-title">📥 Nhập nội dung từ Google Docs / Word / Markdown</div>
+        <button class="quick-edit-close" onclick="document.getElementById('docs-import-overlay')?.remove()">✕</button>
+      </div>
+      <div class="quick-edit-body" style="padding:16px">
+        <div style="font-size:12px;color:#646970;margin-bottom:8px">
+          Dán nội dung sao chép từ Google Docs, MS Word hoặc Markdown vào ô dưới đây. Hệ thống sẽ tự động làm sạch style rác, nhận diện tiêu đề H2/H3, trích dẫn, danh sách và đoạn văn.
+        </div>
+        <textarea id="docs-import-input" class="form-input" style="min-height:220px;font-family:inherit;font-size:13px" placeholder="Dán nội dung tại đây (Ctrl+V)..."></textarea>
+        <div style="margin-top:10px;display:flex;align-items:center;gap:8px">
+          <label style="font-size:12px;color:#2c3338;display:flex;align-items:center;gap:6px;cursor:pointer">
+            <input type="checkbox" id="docs-import-replace" checked /> Thay thế toàn bộ nội dung hiện tại
+          </label>
+        </div>
+      </div>
+      <div class="quick-edit-footer">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('docs-import-overlay')?.remove()">Huỷ</button>
+        <button type="button" class="btn btn-primary btn-sm" onclick="handleDocsImportSubmit()">📥 Chuyển đổi & Chèn vào bài</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+}
+
+function handleDocsImportSubmit() {
+  const inputEl = document.getElementById('docs-import-input');
+  const replaceAll = document.getElementById('docs-import-replace')?.checked;
+  const raw = inputEl?.value || '';
+  if (!raw.trim()) {
+    toast('error', 'Vui lòng dán nội dung cần nhập!');
+    return;
+  }
+
+  const newBlocks = [];
+  const hasHtml = /<[a-z][\s\S]*>/i.test(raw);
+
+  if (hasHtml && typeof DOMParser !== 'undefined') {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(raw, 'text/html');
+    const bodyChildren = Array.from(doc.body.children);
+
+    const processElement = (el) => {
+      const tag = el.tagName.toLowerCase();
+      if (/^h[1-6]$/.test(tag)) {
+        const level = (tag === 'h3' || tag === 'h4' || tag === 'h5' || tag === 'h6') ? 3 : 2;
+        const text = cleanPlainText(el.textContent);
+        if (text) {
+          if (tag === 'h1' && (!ART_TITLE || ART_TITLE === 'Tiêu đề bài viết')) {
+            onTitleInput(text);
+            const titleInput = document.getElementById('ed-title');
+            if (titleInput) titleInput.value = text;
+          } else {
+            newBlocks.push({ type: 'heading', level: level, text: text });
+          }
+        }
+      } else if (tag === 'blockquote') {
+        const text = cleanPlainText(el.textContent);
+        if (text) newBlocks.push({ type: 'quote', text: text, cite: '' });
+      } else if (tag === 'ul' || tag === 'ol') {
+        const items = Array.from(el.querySelectorAll('li')).map(li => cleanPlainText(li.textContent)).filter(Boolean);
+        if (items.length > 0) newBlocks.push({ type: 'list', items: items });
+      } else if (tag === 'table') {
+        const headers = Array.from(el.querySelectorAll('th')).map(th => cleanPlainText(th.textContent));
+        const rows = [];
+        el.querySelectorAll('tr').forEach(tr => {
+          const cells = Array.from(tr.querySelectorAll('td')).map(td => cleanPlainText(td.textContent));
+          if (cells.length > 0) rows.push(cells);
+        });
+        if (headers.length > 0 || rows.length > 0) {
+          newBlocks.push({ type: 'table', headers: headers.length > 0 ? headers : (rows[0] ? rows[0].map((_, i) => `Cột ${i+1}`) : []), rows: rows });
+        }
+      } else if (tag === 'figure' || tag === 'img') {
+        const imgEl = tag === 'img' ? el : el.querySelector('img');
+        if (imgEl) {
+          newBlocks.push({
+            type: 'image',
+            src: imgEl.getAttribute('src') || '',
+            alt: cleanPlainText(imgEl.getAttribute('alt') || ''),
+            caption: cleanPlainText(el.querySelector('figcaption')?.textContent || '')
+          });
+        }
+      } else if (tag === 'div' || tag === 'section' || tag === 'article') {
+        if (el.children.length > 0) {
+          Array.from(el.children).forEach(processElement);
+        } else {
+          const text = cleanPlainText(el.textContent);
+          if (text) newBlocks.push({ type: 'paragraph', html: esc(text) });
+        }
+      } else {
+        const plainText = cleanPlainText(el.textContent);
+        if (plainText) {
+          newBlocks.push({ type: 'paragraph', html: esc(plainText) });
+        }
+      }
+    };
+
+    if (bodyChildren.length > 0) {
+      bodyChildren.forEach(processElement);
+    } else {
+      const text = cleanPlainText(doc.body.textContent);
+      if (text) newBlocks.push({ type: 'paragraph', html: esc(text) });
+    }
+  } else {
+    const lines = raw.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+    lines.forEach(line => {
+      if (line.startsWith('### ')) {
+        newBlocks.push({ type: 'heading', level: 3, text: cleanPlainText(line.replace(/^###\s+/, '')) });
+      } else if (line.startsWith('## ') || line.startsWith('# ')) {
+        const headingText = cleanPlainText(line.replace(/^#{1,2}\s+/, ''));
+        if (line.startsWith('# ') && (!ART_TITLE || ART_TITLE === 'Tiêu đề bài viết')) {
+          onTitleInput(headingText);
+          const titleInput = document.getElementById('ed-title');
+          if (titleInput) titleInput.value = headingText;
+        } else {
+          newBlocks.push({ type: 'heading', level: 2, text: headingText });
+        }
+      } else if (line.startsWith('> ')) {
+        newBlocks.push({ type: 'quote', text: cleanPlainText(line.replace(/^>\s+/, '')), cite: '' });
+      } else if (line.startsWith('- ') || line.startsWith('* ')) {
+        const last = newBlocks[newBlocks.length - 1];
+        const itemText = cleanPlainText(line.replace(/^[-*]\s+/, ''));
+        if (last && last.type === 'list') {
+          last.items.push(itemText);
+        } else {
+          newBlocks.push({ type: 'list', items: [itemText] });
+        }
+      } else {
+        const clean = cleanPlainText(line);
+        if (clean) newBlocks.push({ type: 'paragraph', html: esc(clean) });
+      }
+    });
+  }
+
+  if (BODY_BLOCKS) {
+    if (replaceAll) {
+      BODY_BLOCKS = newBlocks;
+    } else {
+      BODY_BLOCKS.push(...newBlocks);
+    }
+    renderBlockEditor();
+    scheduleArticlePreviewRefresh();
+  } else {
+    const htmlSnippet = newBlocks.map(blockToHtml).join('\n');
+    const visual = document.getElementById('body-visual');
+    const textarea = document.getElementById('body-textarea');
+    if (replaceAll) {
+      if (visual) visual.innerHTML = htmlSnippet;
+      if (textarea) textarea.value = htmlSnippet;
+    } else {
+      if (visual) visual.innerHTML += '\n' + htmlSnippet;
+      if (textarea) textarea.value += '\n' + htmlSnippet;
+    }
+    scheduleArticlePreviewRefresh();
+  }
+
+  markChanged();
+  document.getElementById('docs-import-overlay')?.remove();
+  toast('success', `📥 Đã nhập thành công ${newBlocks.length} khối nội dung!`);
 }
 
 // Mẫu bài viết hiện tại (từ giữa dự án) dùng 1 khối art-body duy nhất, không
@@ -4392,11 +5766,23 @@ function removeHighlightBox() {
 
 function updateHbLabel(val) {
   ART_HB_LABEL = val;
+  const iframe = document.getElementById('art-visual-iframe');
+  const doc = iframe?.contentDocument;
+  if (doc) {
+    const el = doc.querySelector('[data-ohfield="hbLabel"]') || doc.querySelector('.hb-label');
+    if (el && el.innerText !== val) el.innerText = val;
+  }
   markChanged();
 }
 
 function updateHbText(val) {
   ART_HB_TEXT = val;
+  const iframe = document.getElementById('art-visual-iframe');
+  const doc = iframe?.contentDocument;
+  if (doc) {
+    const el = doc.querySelector('[data-ohfield="hbText"]') || doc.querySelector('.hb-text');
+    if (el && el.innerHTML !== val) el.innerHTML = val;
+  }
   markChanged();
 }
 
@@ -4462,6 +5848,8 @@ const BLOCK_TYPES = {
   quote:     { label: 'Trích dẫn', icon: '❝' },
   list:      { label: 'Danh sách', icon: '•' },
   table:     { label: 'Bảng',     icon: '📊' },
+  faq:       { label: 'Hỏi đáp (FAQ)', icon: '❓' },
+  callout:   { label: 'Hộp chú thích', icon: '💡' },
 };
 let DRAG_FROM_IDX = null;
 
@@ -4472,6 +5860,8 @@ function newBlockData(type) {
   if (type === 'quote') return { type, text: '', cite: '' };
   if (type === 'list') return { type, items: [''] };
   if (type === 'table') return { type, headers: ['Cột 1', 'Cột 2', 'Cột 3'], rows: [['Nội dung 1', 'Nội dung 2', 'Nội dung 3'], ['Nội dung 4', 'Nội dung 5', 'Nội dung 6']] };
+  if (type === 'faq') return { type, items: [{ question: '', answer: '' }] };
+  if (type === 'callout') return { type, variant: 'tip', title: 'Mẹo hay', text: '' };
   return { type: 'paragraph', html: '' };
 }
 function blockToHtml(b) {
@@ -4484,6 +5874,42 @@ function blockToHtml(b) {
     const headers = (b.headers || []).map(h => `<th>${esc(h)}</th>`).join('');
     const rows = (b.rows || []).map(r => `<tr>${(r || []).map(c => `<td>${esc(c)}</td>`).join('')}</tr>`).join('');
     return `<div class="art-table-wrap"><table class="art-table"><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table></div>`;
+  }
+  if (b.type === 'faq') {
+    const items = (b.items || []).filter(it => it && (it.question || it.answer));
+    if (!items.length) return '';
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": items.map(it => ({
+        "@type": "Question",
+        "name": it.question || '',
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": it.answer || ''
+        }
+      }))
+    };
+    const schemaScript = `<script type="application/ld+json">${JSON.stringify(jsonLd)}<\/script>`;
+    const htmlItems = items.map(it => `
+      <details class="art-faq-item">
+        <summary class="art-faq-q"><strong>${esc(it.question || '')}</strong></summary>
+        <div class="art-faq-a">${esc(it.answer || '')}</div>
+      </details>
+    `).join('');
+    return `<div class="art-faq-list" data-faq-block="true"><h3 class="art-faq-title">❓ Câu hỏi thường gặp (FAQ)</h3>${htmlItems}${schemaScript}</div>`;
+  }
+  if (b.type === 'callout') {
+    const variant = b.variant || 'tip';
+    const title = b.title || (variant === 'warning' ? 'Cảnh báo' : variant === 'danger' ? 'Chú ý quan trọng' : variant === 'info' ? 'Thông tin' : 'Mẹo hay');
+    return `<div class="art-callout art-callout-${esc(variant)}"><div class="art-callout-title">${esc(title)}</div><div class="art-callout-body">${esc(b.text || '')}</div></div>`;
+  }
+  if (b.type === 'paragraph') {
+    let content = b.html || '';
+    if (content.includes('docs-internal-guid') || content.includes('class="Mso') || /<\/?(?:ol|ul|li)>/i.test(content) || /&lt;[a-z]/i.test(content)) {
+      content = cleanPastedHtml(content);
+    }
+    return content ? `<p>${content}</p>` : '';
   }
   return b.html ? `<p>${b.html}</p>` : '';
 }
@@ -4519,6 +5945,27 @@ function blockToHtmlTagged(b, i) {
     const rows = (b.rows || []).map((r, ri) => `<tr>${(r || []).map((c, ci) => `<td data-ohb="${i}" data-ohf="td-${ri}-${ci}" contenteditable="true">${esc(c)}</td>`).join('')}</tr>`).join('');
     return `<div class="art-table-wrap" data-oh-jump="block-${i}"><table class="art-table"><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table></div>`;
   }
+  if (b.type === 'faq') {
+    const items = (b.items || []).filter(it => it && (it.question || it.answer));
+    const htmlItems = (items.length ? items : [{ question: 'Câu hỏi mẫu?', answer: 'Câu trả lời mẫu...' }]).map((it, fi) => `
+      <details class="art-faq-item" open>
+        <summary class="art-faq-q"><strong data-ohb="${i}" data-ohf="faq-q-${fi}" contenteditable="true">${esc(it.question || '')}</strong></summary>
+        <div class="art-faq-a" data-ohb="${i}" data-ohf="faq-a-${fi}" contenteditable="true">${esc(it.answer || '')}</div>
+      </details>
+    `).join('');
+    return `<div class="art-faq-list" data-oh-jump="block-${i}"><h3 class="art-faq-title">❓ Câu hỏi thường gặp (FAQ)</h3>${htmlItems}</div>`;
+  }
+  if (b.type === 'callout') {
+    const variant = b.variant || 'tip';
+    return `<div class="art-callout art-callout-${esc(variant)}" data-oh-jump="block-${i}"><div class="art-callout-title" data-ohb="${i}" data-ohf="callout-title" contenteditable="true">${esc(b.title || '')}</div><div class="art-callout-body" data-ohb="${i}" data-ohf="callout-text" contenteditable="true">${esc(b.text || '')}</div></div>`;
+  }
+  if (b.type === 'paragraph') {
+    let content = b.html || '';
+    if (content.includes('docs-internal-guid') || content.includes('class="Mso') || /<\/?(?:ol|ul|li)>/i.test(content) || /&lt;[a-z]/i.test(content)) {
+      content = cleanPastedHtml(content);
+    }
+    return `<p data-ohb="${i}" data-ohf="html" contenteditable="true">${content}</p>`;
+  }
   return `<p data-ohb="${i}" data-ohf="html" contenteditable="true">${b.html || ''}</p>`;
 }
 function blocksToHtmlTagged(blocks) { return (blocks || []).map((b, i) => blockToHtmlTagged(b, i)).join('\n'); }
@@ -4531,6 +5978,60 @@ function parseListItemsFromHtml(html) {
   tmp.innerHTML = html;
   const items = [...tmp.querySelectorAll('li')].map(li => li.textContent.trim());
   return items.length ? items : [''];
+}
+
+function handleBlockPaste(e, i, key, isPlainOnly = false) {
+  const rawHtml = e.clipboardData ? e.clipboardData.getData('text/html') : '';
+  const rawText = e.clipboardData ? e.clipboardData.getData('text/plain') : '';
+  e.preventDefault();
+  
+  if (isPlainOnly) {
+    const cleanText = cleanPlainText(rawText || rawHtml);
+    document.execCommand('insertText', false, cleanText);
+  } else {
+    const clean = rawHtml ? cleanPastedHtml(rawHtml, false) : esc(rawText);
+    document.execCommand('insertHTML', false, clean || esc(rawText));
+  }
+  setTimeout(() => {
+    const el = e.target.closest('[contenteditable]');
+    if (el) blockTextInput(i, key, el);
+  }, 0);
+}
+
+function handleBlockTextareaPaste(e, i, key) {
+  const rawHtml = e.clipboardData ? e.clipboardData.getData('text/html') : '';
+  const rawText = e.clipboardData ? e.clipboardData.getData('text/plain') : '';
+  e.preventDefault();
+  const clean = cleanPlainText(rawText || rawHtml);
+  const ta = e.target;
+  const start = ta.selectionStart || 0;
+  const end = ta.selectionEnd || 0;
+  const val = ta.value || '';
+  ta.value = val.slice(0, start) + clean + val.slice(end);
+  ta.selectionStart = ta.selectionEnd = start + clean.length;
+  if (key === 'cite') blockField(i, 'cite', ta.value);
+  else if (key === 'callout-text') blockCalloutField(i, 'text', ta.value);
+  else if (key === 'list') blockListInput(i, ta);
+  else blockField(i, key, ta.value);
+}
+
+function cleanBlockContent(i) {
+  const b = BODY_BLOCKS && BODY_BLOCKS[i];
+  if (!b) return;
+  if (b.type === 'paragraph') {
+    b.html = cleanPastedHtml(b.html || '');
+  } else if (b.type === 'heading' || b.type === 'quote') {
+    b.text = cleanPlainText(b.text || '');
+  } else if (b.type === 'callout') {
+    b.text = cleanPlainText(b.text || '');
+    b.title = cleanPlainText(b.title || '');
+  } else if (b.type === 'list') {
+    b.items = (b.items || []).map(cleanPlainText).filter(Boolean);
+  }
+  renderBlockEditor();
+  scheduleArticlePreviewRefresh();
+  markChanged();
+  toast('success', `🧹 Đã làm sạch nội dung khối #${i + 1}!`);
 }
 
 async function renderBlockEditor() {
@@ -4560,6 +6061,7 @@ async function renderBlockEditor() {
         <span class="block-mini-btn block-drag" draggable="true" ondragstart="blockDragStart(event,${i})" title="Kéo để sắp xếp">⠿</span>
         ${b.type === 'heading' ? `<button class="block-mini-btn" onclick="blockSetLevel(${i},2)" title="H2">H2</button><button class="block-mini-btn" onclick="blockSetLevel(${i},3)" title="H3">H3</button>` : ''}
         ${b.type === 'image' ? `<button class="block-mini-btn" onclick="blockToggleCollapse(${i})" title="${isCollapsedImg ? 'Mở rộng ảnh' : 'Thu gọn ảnh'}">${isCollapsedImg ? '▸' : '▾'}</button>` : ''}
+        <button class="block-mini-btn" onclick="cleanBlockContent(${i})" title="Làm sạch rác Word / Google Docs">🧹</button>
         <button class="block-mini-btn" onclick="blockMove(${i},-1)" title="Lên">↑</button>
         <button class="block-mini-btn" onclick="blockMove(${i},1)" title="Xuống">↓</button>
         <button class="block-mini-btn" onclick="blockDuplicate(${i})" title="Nhân bản">⧉</button>
@@ -4568,16 +6070,16 @@ async function renderBlockEditor() {
 
     let body = '';
     if (b.type === 'paragraph') {
-      body = `<p contenteditable="true" oninput="blockTextInput(${i},'html',this)">${b.html || ''}</p>`;
+      body = `<p contenteditable="true" onpaste="handleBlockPaste(event,${i},'html')" oninput="blockTextInput(${i},'html',this)">${b.html || ''}</p>`;
     } else if (b.type === 'heading') {
       const lvl = b.level === 3 ? 3 : 2;
-      body = `<h${lvl} contenteditable="true" oninput="blockTextInput(${i},'text',this)">${esc(b.text || '')}</h${lvl}>`;
+      body = `<h${lvl} contenteditable="true" onpaste="handleBlockPaste(event,${i},'text',true)" oninput="blockTextInput(${i},'text',this)">${esc(b.text || '')}</h${lvl}>`;
     } else if (b.type === 'quote') {
-      body = `<blockquote><p contenteditable="true" oninput="blockTextInput(${i},'text',this)">${b.text || ''}</p></blockquote>
-        <input class="rank-input-sm" style="width:100%;margin-top:6px" placeholder="Nguồn / tác giả (tuỳ chọn)" value="${esc(b.cite || '')}" oninput="blockField(${i},'cite',this.value)"/>`;
+      body = `<blockquote><p contenteditable="true" onpaste="handleBlockPaste(event,${i},'text',false)" oninput="blockTextInput(${i},'text',this)">${b.text || ''}</p></blockquote>
+        <input class="rank-input-sm" style="width:100%;margin-top:6px" placeholder="Nguồn / tác giả (tuỳ chọn)" value="${esc(b.cite || '')}" onpaste="handleBlockTextareaPaste(event,${i},'cite')" oninput="blockField(${i},'cite',this.value)"/>`;
     } else if (b.type === 'list') {
       const val = (b.items || ['']).join('\n');
-      body = `<textarea class="rank-input-sm" style="width:100%;min-height:70px;font-family:inherit" placeholder="Mỗi dòng 1 mục" oninput="blockListInput(${i},this)">${esc(val)}</textarea>
+      body = `<textarea class="rank-input-sm" style="width:100%;min-height:70px;font-family:inherit" placeholder="Mỗi dòng 1 mục" onpaste="handleBlockTextareaPaste(event,${i},'list')" oninput="blockListInput(${i},this)">${esc(val)}</textarea>
         <ul id="block-list-prev-${i}" style="margin-top:8px;padding-left:20px;color:var(--dim);font-size:14px">${(b.items||[]).filter(Boolean).map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`;
     } else if (b.type === 'table') {
       const headers = b.headers || ['Cột 1', 'Cột 2', 'Cột 3'];
@@ -4628,6 +6130,37 @@ async function renderBlockEditor() {
           <button class="btn btn-secondary btn-sm" onclick="blockPickVideo(${i})">🎬 ${b.embedUrl ? 'Đổi video' : 'Chọn video'}</button>
           <input class="rank-input-sm" style="flex:1" placeholder="Chú thích (tuỳ chọn)" value="${esc(b.caption||'')}" oninput="blockField(${i},'caption',this.value)"/>
         </div>`;
+    } else if (b.type === 'faq') {
+      const items = b.items || [{ question: '', answer: '' }];
+      const itemsHtml = items.map((it, fi) => `
+        <div style="background:#fff;border:1px solid #ccd0d4;border-radius:6px;padding:8px 10px;margin-bottom:8px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+            <span style="font-size:11px;font-weight:600;color:var(--wp-blue,#2271b1)">❓ Câu hỏi ${fi+1}:</span>
+            <button class="block-mini-btn" style="color:var(--wp-red,#d63638)" onclick="blockFaqRemoveItem(${i},${fi})" title="Xoá câu hỏi này">×</button>
+          </div>
+          <input class="rank-input-sm" style="width:100%;margin-bottom:6px" placeholder="Nhập câu hỏi..." value="${esc(it.question||'')}" oninput="blockFaqItemInput(${i},${fi},'question',this.value)"/>
+          <textarea class="rank-input-sm" style="width:100%;min-height:50px;font-family:inherit" placeholder="Nhập câu trả lời..." oninput="blockFaqItemInput(${i},${fi},'answer',this.value)">${esc(it.answer||'')}</textarea>
+        </div>
+      `).join('');
+      body = `
+        <div style="margin-bottom:8px;font-size:12px;font-weight:600;color:var(--wp-blue,#2271b1)">Danh sách Câu hỏi FAQ (Schema JSON-LD tự động):</div>
+        <div>${itemsHtml}</div>
+        <button class="btn btn-secondary btn-sm" onclick="blockFaqAddItem(${i})">+ Thêm câu hỏi</button>
+      `;
+    } else if (b.type === 'callout') {
+      const variant = b.variant || 'tip';
+      body = `
+        <div style="display:flex;gap:8px;margin-bottom:8px">
+          <select class="rank-input-sm" style="width:140px" onchange="blockCalloutField(${i},'variant',this.value); renderBlockEditor();">
+            <option value="tip" ${variant==='tip'?'selected':''}>💡 Mẹo (Tip)</option>
+            <option value="info" ${variant==='info'?'selected':''}>ℹ️ Thông tin (Info)</option>
+            <option value="warning" ${variant==='warning'?'selected':''}>⚠️ Cảnh báo (Warning)</option>
+            <option value="danger" ${variant==='danger'?'selected':''}>🚫 Chú ý (Danger)</option>
+          </select>
+          <input class="rank-input-sm" style="flex:1" placeholder="Tiêu đề hộp chú thích..." value="${esc(b.title||'')}" oninput="blockCalloutField(${i},'title',this.value)"/>
+        </div>
+        <textarea class="rank-input-sm" style="width:100%;min-height:60px;font-family:inherit" placeholder="Nội dung chú thích..." onpaste="handleBlockTextareaPaste(event,${i},'callout-text')" oninput="blockCalloutField(${i},'text',this.value)">${esc(b.text||'')}</textarea>
+      `;
     }
 
     return `<div class="block-item${isCollapsedImg ? ' block-item-collapsed' : ''}" id="block-item-${i}" draggable="false" ondragover="event.preventDefault()" ondrop="blockDrop(event,${i})">${toolbar}${body}</div>`;
@@ -4658,7 +6191,52 @@ function blockScrollTo(i) {
 }
 
 function blockField(i, key, value) { if (BODY_BLOCKS[i]) { BODY_BLOCKS[i][key] = value; markChanged(); } }
-function blockTextInput(i, key, el) { if (BODY_BLOCKS[i]) { BODY_BLOCKS[i][key] = el.innerHTML; markChanged(); } }
+function blockTextInput(i, key, el) {
+  if (!BODY_BLOCKS[i]) return;
+  if (key === 'text') {
+    BODY_BLOCKS[i][key] = cleanPlainText(el.innerText || el.textContent || '');
+  } else if (key === 'html') {
+    let content = el.innerHTML || '';
+    if (content.includes('docs-internal-guid') || content.includes('class="Mso') || /<\/?(?:ol|ul|li)>/i.test(content)) {
+      content = cleanPastedHtml(content);
+      el.innerHTML = content;
+    }
+    BODY_BLOCKS[i][key] = content;
+  } else {
+    BODY_BLOCKS[i][key] = el.innerHTML;
+  }
+  markChanged();
+}
+function blockFaqItemInput(i, fi, field, val) {
+  if (BODY_BLOCKS[i] && BODY_BLOCKS[i].items && BODY_BLOCKS[i].items[fi]) {
+    BODY_BLOCKS[i].items[fi][field] = val;
+    markChanged();
+  }
+}
+function blockFaqAddItem(i) {
+  if (BODY_BLOCKS[i]) {
+    BODY_BLOCKS[i].items = BODY_BLOCKS[i].items || [];
+    BODY_BLOCKS[i].items.push({ question: '', answer: '' });
+    renderBlockEditor();
+    markChanged();
+  }
+}
+function blockFaqRemoveItem(i, fi) {
+  if (BODY_BLOCKS[i] && BODY_BLOCKS[i].items) {
+    BODY_BLOCKS[i].items.splice(fi, 1);
+    if (!BODY_BLOCKS[i].items.length) {
+      BODY_BLOCKS[i].items.push({ question: '', answer: '' });
+    }
+    renderBlockEditor();
+    markChanged();
+  }
+}
+function blockCalloutField(i, field, val) {
+  if (BODY_BLOCKS[i]) {
+    BODY_BLOCKS[i][field] = val;
+    markChanged();
+  }
+}
 function blockListInput(i, el) {
   if (!BODY_BLOCKS[i]) return;
   const items = el.value.split('\n');
@@ -4765,10 +6343,15 @@ function buildArticlePreviewHtml() {
       `$1background-image:url('${hero}');background-position:center ${heroPos}%;background-color:#0b0418;$2 data-oh-jump="heroimg"`);
   } else if (/<header class="hero">[\s\S]*?<img\s+src="[^"]*"/.test(html)) {
     html = html.replace(/(<header class="hero">[\s\S]*?<img\s+src=")[^"]*(")/, `$1${hero}$2 data-oh-jump="heroimg"`);
+  } else if (/<figure\b[^>]*\bclass="[^"]*art-hero[^"]*"[^>]*>/i.test(html)) {
+    html = html.replace(/(<figure\b[^>]*\bclass="[^"]*art-hero[^"]*")/i, `$1 data-oh-jump="heroimg"`);
+  }
+  if (/<div\b[^>]*\bclass="[^"]*art-hero-grad[^"]*"/i.test(html)) {
+    html = html.replace(/(<div\b[^>]*\bclass="[^"]*art-hero-grad[^"]*")/gi, `$1 data-oh-jump="heroimg"`);
   }
 
-  const title   = ART_TITLE || 'Tiêu đề bài viết';
-  const excerpt = ART_EXCERPT || '';
+  const title   = cleanPlainText(ART_TITLE) || 'Tiêu đề bài viết';
+  const excerpt = cleanPlainText(ART_EXCERPT) || '';
 
   if (/<h1\b[^>]*\bclass="[^"]*art-hero-title[^"]*"[^>]*>/i.test(html)) {
     html = html.replace(/(<h1\b[^>]*\bclass="[^"]*art-hero-title[^"]*")[^>]*>[\s\S]*?(<\/h1>)/i,
@@ -4819,6 +6402,10 @@ function buildArticlePreviewHtml() {
     html = html.replace(/<article class="art-body lang-vi active">[\s\S]*?<\/article>/, `<article class="art-body lang-vi active">\n${bodyTagged}\n</article>`);
   }
 
+  // Loại bỏ các script tracking runtime (gtag, analytics) khỏi iframe xem trước để tránh gửi request rác
+  html = html.replace(/<script\b[^>]*src="[^"]*googletagmanager\.com[^"]*"[^>]*>[\s\S]*?<\/script>/gi, '');
+  html = html.replace(/<script\b[^>]*>[\s\S]*?gtag\s*\([\s\S]*?<\/script>/gi, '');
+
   html = html.replace('<head>', '<head><base href="https://otahub.asia/">');
   html = html.replace('</body>', ART_BRIDGE_SCRIPT + '</body>');
   return html;
@@ -4837,6 +6424,7 @@ function tagLegacyBodyForInlineEdit(html) {
 const ART_BRIDGE_SCRIPT = `<script>(function(){
   var style = document.createElement('style');
   style.textContent =
+    '.art-hero-grad,.art-hero-overlay{pointer-events:none !important}' +
     '[data-oh-jump]{cursor:pointer;outline-offset:2px;transition:outline .12s}' +
     '[data-oh-jump]:hover{outline:2px dashed #00e5ff}' +
     '[contenteditable="true"]{outline-offset:3px;transition:outline .12s;cursor:text}' +
@@ -4995,6 +6583,31 @@ const ART_BRIDGE_SCRIPT = `<script>(function(){
         return;
       }
     }
+
+    // Force plain text for single-line / heading fields
+    var isPlainField = !!e.target.closest('[data-ohfield="title"], [data-ohfield="excerpt"], [data-ohfield="hbLabel"], [data-ohf="title"], [data-ohf="cite"], [data-ohf="caption"], h1, h2, h3, h4, h5, h6');
+    if (isPlainField) {
+      e.preventDefault();
+      var plain = e.clipboardData ? (e.clipboardData.getData('text/plain') || e.clipboardData.getData('text/html')) : '';
+      plain = plain.replace(/<!--[\s\S]*?-->/g, '')
+                   .replace(/<style[\s\S]*?<\/style>/gi, '')
+                   .replace(/<script[\s\S]*?<\/script>/gi, '')
+                   .replace(/<[^>]+>/g, ' ')
+                   .replace(/&quot;/g, '"')
+                   .replace(/&amp;/g, '&')
+                   .replace(/&lt;/g, '<')
+                   .replace(/&gt;/g, '>')
+                   .replace(/&#39;/g, "'")
+                   .replace(/&nbsp;/g, ' ')
+                   .replace(/^[a-f0-9\-]{8,40}["'>\s]+/i, '')
+                   .replace(/^[a-z0-9\-]+="[^"]*"[>\s]*/i, '')
+                   .replace(/\s+/g, ' ')
+                   .trim();
+      document.execCommand('insertText', false, plain);
+      editable.dispatchEvent(new Event('input', { bubbles: true }));
+      return;
+    }
+
     var rawHtml = e.clipboardData ? e.clipboardData.getData('text/html') : '';
     if (rawHtml) {
       e.preventDefault();
@@ -5004,6 +6617,7 @@ const ART_BRIDGE_SCRIPT = `<script>(function(){
         .replace(/<xml[\s\S]*?<\/xml>/gi, '')
         .replace(/<meta[\s\S]*?>/gi, '')
         .replace(/<link[\s\S]*?>/gi, '')
+        .replace(/ id="docs-internal-guid-[^"]*"/gi, '')
         .replace(/ class="Mso[^"]*"/gi, '')
         .replace(/ style="[^"]*"/gi, '')
         .replace(/ dir="[^"]*"/gi, '')
@@ -5158,30 +6772,34 @@ function bindArticleBridgeMessages() {
     if (!d || !d.type) return;
     if (d.type === 'art-field-input') {
       if (d.field === 'title') {
-        ART_TITLE = d.value;
+        const clean = cleanPlainText(d.value);
+        ART_TITLE = clean;
         const titleInput = document.getElementById('ed-title');
-        if (titleInput && titleInput.value !== d.value) titleInput.value = d.value;
+        if (titleInput && titleInput.value !== clean) titleInput.value = clean;
         const slugEl = document.getElementById('ed-slug');
         if (slugEl && !currentSha && !ART_SLUG_TOUCHED) {
-          const autoSlug = slugifyFilename(d.value) || currentFile.replace(/\.html$/, '');
+          const autoSlug = slugifyFilename(clean) || currentFile.replace(/\.html$/, '');
           slugEl.value = autoSlug;
           applySlug(autoSlug);
         }
       }
       else if (d.field === 'excerpt') {
-        ART_EXCERPT = d.value;
+        const clean = cleanPlainText(d.value);
+        ART_EXCERPT = clean;
         const descInput = document.getElementById('ed-desc');
-        if (descInput && !descInput.value) descInput.value = d.value;
+        if (descInput && !descInput.value) descInput.value = clean;
       }
       else if (d.field === 'hbLabel') {
-        ART_HB_LABEL = d.value;
+        const clean = cleanPlainText(d.value);
+        ART_HB_LABEL = clean;
         const hbLabelInput = document.getElementById('ed-hb-label');
-        if (hbLabelInput) hbLabelInput.value = d.value;
+        if (hbLabelInput) hbLabelInput.value = clean;
       }
       else if (d.field === 'hbText') {
-        ART_HB_TEXT = d.value;
+        const clean = cleanPlainText(d.value);
+        ART_HB_TEXT = clean;
         const hbTextInput = document.getElementById('ed-hb-text');
-        if (hbTextInput) hbTextInput.value = d.value;
+        if (hbTextInput) hbTextInput.value = clean;
       }
       else if (d.field === 'body') {
         const bv = document.getElementById('body-visual');
@@ -5204,6 +6822,20 @@ function bindArticleBridgeMessages() {
         if (!b.rows) b.rows = [];
         if (!b.rows[ri]) b.rows[ri] = [];
         b.rows[ri][ci] = d.value;
+      } else if (d.field && d.field.startsWith('faq-q-')) {
+        const fi = parseInt(d.field.slice(6), 10);
+        if (!b.items) b.items = [];
+        if (!b.items[fi]) b.items[fi] = { question: '', answer: '' };
+        b.items[fi].question = d.value;
+      } else if (d.field && d.field.startsWith('faq-a-')) {
+        const fi = parseInt(d.field.slice(6), 10);
+        if (!b.items) b.items = [];
+        if (!b.items[fi]) b.items[fi] = { question: '', answer: '' };
+        b.items[fi].answer = d.value;
+      } else if (d.field === 'callout-title') {
+        b.title = d.value;
+      } else if (d.field === 'callout-text') {
+        b.text = d.value;
       } else {
         b[d.field] = d.value;
       }
@@ -5288,11 +6920,16 @@ function legacyBodyPickImage(idx) {
 // Thêm ảnh mới vào CUỐI thân bài (bài cũ)
 function legacyBodyInsertImage() {
   const vis = document.getElementById('body-visual');
-  if (!vis) return;
+  const ta = document.getElementById('body-textarea');
   openMediaModal(res => {
-    vis.innerHTML += res.html;
+    if (!res || !res.src) return;
+    const figHtml = res.html || `<figure><img src="${esc(res.src)}" alt="${esc(res.alt || '')}"><figcaption>${esc(res.caption || '')}</figcaption></figure>`;
+    if (vis) vis.innerHTML += '\n' + figHtml + '<p><br></p>';
+    if (ta) ta.value += '\n' + figHtml + '\n<p></p>\n';
     markChanged();
-  }, 'library');
+    scheduleArticlePreviewRefresh();
+    toast('success', '✅ Đã thêm ảnh vào cuối bài viết!');
+  }, 'image');
 }
 
 function syncArticleFieldsFromIframe() {
@@ -5300,53 +6937,65 @@ function syncArticleFieldsFromIframe() {
   const doc = iframe?.contentDocument;
   if (!doc) return;
   
-  // Title
-  const titleEl = doc.querySelector('[data-ohfield="title"]') || doc.querySelector('h1.art-hero-title') || doc.querySelector('h1');
-  if (titleEl) {
-    const t = (titleEl.innerText || titleEl.textContent || '').trim();
-    if (t) {
-      ART_TITLE = t;
-      const titleInput = document.getElementById('ed-title');
-      if (titleInput && titleInput.value !== t) titleInput.value = t;
+  const activeId = document.activeElement?.id;
+
+  // Title - Always extract clean plain text!
+  if (activeId !== 'ed-title') {
+    const titleEl = doc.querySelector('[data-ohfield="title"]') || doc.querySelector('h1.art-hero-title') || doc.querySelector('h1');
+    if (titleEl) {
+      const t = cleanPlainText(titleEl.innerText || titleEl.textContent || '');
+      if (t) {
+        ART_TITLE = t;
+        const titleInput = document.getElementById('ed-title');
+        if (titleInput && titleInput.value !== t) titleInput.value = t;
+      }
     }
   }
 
   // Excerpt
-  const excerptEl = doc.querySelector('[data-ohfield="excerpt"]') || doc.querySelector('.art-hero-excerpt');
-  if (excerptEl) {
-    const ex = (excerptEl.innerText || excerptEl.textContent || '').trim();
-    if (ex) {
-      ART_EXCERPT = ex;
-      const descInput = document.getElementById('ed-desc');
-      if (descInput && !descInput.value) descInput.value = ex;
+  if (activeId !== 'ed-desc') {
+    const excerptEl = doc.querySelector('[data-ohfield="excerpt"]') || doc.querySelector('.art-hero-excerpt');
+    if (excerptEl) {
+      const ex = cleanPlainText(excerptEl.innerText || excerptEl.textContent || '');
+      if (ex) {
+        ART_EXCERPT = ex;
+        const descInput = document.getElementById('ed-desc');
+        if (descInput && !descInput.value) descInput.value = ex;
+      }
     }
   }
 
   // Highlight Box Label & Text
-  const hbLabelEl = doc.querySelector('[data-ohfield="hbLabel"]') || doc.querySelector('.hb-label');
-  if (hbLabelEl) {
-    const hl = (hbLabelEl.innerText || hbLabelEl.textContent || '').trim();
-    if (hl) {
-      ART_HB_LABEL = hl;
-      const hbLabelInput = document.getElementById('ed-hb-label');
-      if (hbLabelInput && hbLabelInput.value !== hl) hbLabelInput.value = hl;
+  if (activeId !== 'ed-hb-label') {
+    const hbLabelEl = doc.querySelector('[data-ohfield="hbLabel"]') || doc.querySelector('.hb-label');
+    if (hbLabelEl) {
+      const hl = cleanPlainText(hbLabelEl.innerText || hbLabelEl.textContent || '');
+      if (hl) {
+        ART_HB_LABEL = hl;
+        const hbLabelInput = document.getElementById('ed-hb-label');
+        if (hbLabelInput && hbLabelInput.value !== hl) hbLabelInput.value = hl;
+      }
     }
   }
-  const hbTextEl = doc.querySelector('[data-ohfield="hbText"]') || doc.querySelector('.hb-text');
-  if (hbTextEl) {
-    const ht = (hbTextEl.innerHTML || '').trim();
-    if (ht) {
-      ART_HB_TEXT = ht;
-      const hbTextInput = document.getElementById('ed-hb-text');
-      if (hbTextInput && hbTextInput.value !== ht) hbTextInput.value = ht;
+  if (activeId !== 'ed-hb-text') {
+    const hbTextEl = doc.querySelector('[data-ohfield="hbText"]') || doc.querySelector('.hb-text');
+    if (hbTextEl) {
+      const ht = (hbTextEl.innerHTML || '').trim();
+      if (ht) {
+        ART_HB_TEXT = ht;
+        const hbTextInput = document.getElementById('ed-hb-text');
+        if (hbTextInput && hbTextInput.value !== ht) hbTextInput.value = ht;
+      }
     }
   }
 
   // Body
-  const bodyEl = doc.querySelector('[data-ohfield="body"]');
-  if (bodyEl) {
-    const bv = document.getElementById('body-visual');
-    if (bv) bv.innerHTML = bodyEl.innerHTML;
+  if (activeId !== 'body-textarea' && activeId !== 'body-visual') {
+    const bodyEl = doc.querySelector('[data-ohfield="body"]');
+    if (bodyEl) {
+      const bv = document.getElementById('body-visual');
+      if (bv) bv.innerHTML = bodyEl.innerHTML;
+    }
   }
 }
 
@@ -5426,10 +7075,12 @@ function patchNewArticleUrls(html, file) {
 // lẫn autosave bản nháp (autosaveArticleDraft), để 2 đường không bao giờ lệch
 // logic với nhau. KHÔNG đọc/ghi state ngoài field DOM hiện tại + tham số vào.
 function applyArticleEditsToHtml(baseHtml) {
-  const title   = ART_TITLE || '';
-  const excerpt = ART_EXCERPT || '';
-  const desc    = document.getElementById('ed-desc')?.value || '';
-  const keyword = (document.getElementById('ed-keyword')?.value || '').trim();
+  const rawTitle = ART_TITLE || document.getElementById('ed-title')?.value || '';
+  const title   = cleanPlainText(rawTitle) || 'Tiêu đề bài viết';
+  const rawExcerpt = ART_EXCERPT || document.getElementById('ed-desc')?.value || '';
+  const excerpt = cleanPlainText(rawExcerpt);
+  const desc    = cleanPlainText(document.getElementById('ed-desc')?.value || excerpt);
+  const keyword = cleanPlainText(document.getElementById('ed-keyword')?.value || '');
   const hero    = document.getElementById('ed-hero')?.value || '';
   const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
   const cat     = document.getElementById('ed-cat')?.value || 'Gaming';
@@ -5534,6 +7185,43 @@ function applyArticleEditsToHtml(baseHtml) {
   return html;
 }
 
+// Tự động quét và làm sạch toàn bộ dữ liệu khối trước khi lưu/đồng bộ
+function sanitizeAllBlocksData() {
+  if (!BODY_BLOCKS) return 0;
+  let cleanedCount = 0;
+  BODY_BLOCKS.forEach((b) => {
+    if (b.type === 'paragraph' && b.html) {
+      if (b.html.includes('docs-internal-guid') || b.html.includes('class="Mso') || /<\/?(?:ol|ul|li)>/i.test(b.html) || /&lt;[a-z]/i.test(b.html)) {
+        b.html = cleanPastedHtml(b.html);
+        cleanedCount++;
+      }
+    } else if (b.type === 'heading' || b.type === 'quote') {
+      if (b.text && (b.text.includes('docs-internal-guid') || /<[a-z][\s\S]*>/i.test(b.text) || /&lt;[a-z]/i.test(b.text))) {
+        b.text = cleanPlainText(b.text);
+        cleanedCount++;
+      }
+    } else if (b.type === 'callout') {
+      if (b.text && (b.text.includes('docs-internal-guid') || /<[a-z][\s\S]*>/i.test(b.text) || /&lt;[a-z]/i.test(b.text))) {
+        b.text = cleanPlainText(b.text);
+        cleanedCount++;
+      }
+      if (b.title && (b.title.includes('docs-internal-guid') || /<[a-z][\s\S]*>/i.test(b.title) || /&lt;[a-z]/i.test(b.title))) {
+        b.title = cleanPlainText(b.title);
+        cleanedCount++;
+      }
+    } else if (b.type === 'list' && b.items) {
+      b.items = b.items.map(it => {
+        if (it && (it.includes('docs-internal-guid') || /<[a-z][\s\S]*>/i.test(it) || /&lt;[a-z]/i.test(it))) {
+          cleanedCount++;
+          return cleanPlainText(it);
+        }
+        return it;
+      });
+    }
+  });
+  return cleanedCount;
+}
+
 // Đồng bộ Trực quan/Khối -> ô HTML thô (ô HTML thô luôn là nguồn dữ liệu thật
 // sự được ghi vào file) — dùng chung cho saveArticle() lẫn autosave draft.
 function syncArticleBodyToTextarea() {
@@ -5542,6 +7230,7 @@ function syncArticleBodyToTextarea() {
     const ta = document.getElementById('body-textarea');
     if (vis && ta) ta.value = cleanVisualHtml(vis.innerHTML);
   } else if (BODY_MODE === 'blocks') {
+    sanitizeAllBlocksData();
     const ta = document.getElementById('body-textarea');
     if (ta) ta.value = blocksToHtml(BODY_BLOCKS);
   }
@@ -5550,8 +7239,12 @@ function syncArticleBodyToTextarea() {
 async function saveArticle() {
   syncArticleFieldsFromIframe();
   syncArticleBodyToTextarea();
-  const title = ART_TITLE || '';
-  const desc  = document.getElementById('ed-desc')?.value || '';
+  const cleaned = sanitizeAllBlocksData();
+  if (cleaned > 0) {
+    toast('info', `🧹 Đã tự động làm sạch ${cleaned} khối nội dung chứa thẻ Docs/Word trước khi lưu.`);
+  }
+  const title = cleanPlainText(ART_TITLE || '');
+  const desc  = cleanPlainText(document.getElementById('ed-desc')?.value || '');
   const cat   = document.getElementById('ed-cat')?.value || 'Gaming';
   const hero  = document.getElementById('ed-hero')?.value || '';
 
@@ -5658,14 +7351,15 @@ async function saveArticleDraftNow() {
 // trông giống hệt bài thật ngay từ đầu, thay vì trang trơ trụi thiếu CSS/nav.
 function newArticle(prefillTitle) {
   if (!confirmDiscardUnsaved()) return;
-  const cleanSlug = (prefillTitle ? slugifyFilename(prefillTitle) : '') || `bai-viet-moi-${Date.now().toString(36)}`;
+  const cleanTitle = cleanPlainText(prefillTitle) || 'Tiêu đề bài viết';
+  const cleanSlug = (prefillTitle ? slugifyFilename(cleanTitle) : '') || `bai-viet-moi-${Date.now().toString(36)}`;
   const filename = cleanSlug + '.html';
   const url = `https://otahub.asia/${cleanSlug}`;
   const now = new Date();
   const iso = now.toISOString();
   const dateDisp = iso.slice(0,10);
   const heroImg = '';
-  const title = prefillTitle || 'Tiêu đề bài viết';
+  const title = cleanTitle;
   const desc = 'Mô tả ngắn cho SEO (150-160 ký tự)';
   const cat = 'Gaming';
 

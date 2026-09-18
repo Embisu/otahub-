@@ -1,5 +1,6 @@
 /* OtaHub — reaction + bình luận, lưu qua Cloudflare KV (functions/api/engagement.js) */
 (function(){
+if (window.self !== window.top) return; // Do not run inside admin preview iframe
 document.addEventListener('error',function(event){
   var image=event.target;
   if(image&&image.tagName==='IMG'&&!image.dataset.otFallback){

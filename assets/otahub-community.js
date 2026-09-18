@@ -5,6 +5,9 @@
 (function () {
   'use strict';
 
+  // Do not execute tracking or community widgets inside admin preview iframes
+  if (window.self !== window.top) return;
+
   function getSlug() {
     const path = window.location.pathname.replace(/^\/en\//, '/').replace(/^\//, '').replace(/\.html$/, '') || 'home';
     return path;
