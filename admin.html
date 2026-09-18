@@ -697,58 +697,444 @@ body {
   display: inline-block;
 }
 
-/* ── 7. POST EDITOR & GUTENBERG / ELEMENTOR LAYOUT ── */
-.editor-layout { display: grid; grid-template-columns: 1fr 320px; gap: 24px; align-items: start; }
-.editor-sidebar { position: sticky; top: 50px; }
-.title-field {
+/* ── 7. POST EDITOR & GUTENBERG / ELEMENTOR / WORDPRESS CLASSIC LAYOUT ── */
+.editor-layout { display: grid; grid-template-columns: 1fr 300px; gap: 20px; align-items: start; }
+.editor-sidebar { position: sticky; top: 40px; }
+
+/* WP Post Title Field */
+#titlediv { margin-bottom: 10px; position: relative; }
+.wp-title-input, #ed-title, #title {
   width: 100%;
   background: #ffffff;
-  border: 1px solid var(--wp-border);
+  border: 1px solid #ccd0d4;
   border-radius: 4px;
   outline: none;
-  color: var(--wp-title);
-  font-size: 22px;
-  font-weight: 700;
-  padding: 10px 14px;
-  margin-bottom: 16px;
+  color: #1d2327;
+  font-size: 1.6em;
+  font-weight: 600;
+  line-height: 100%;
+  padding: 9px 12px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.07);
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  font-family: inherit;
 }
-.title-field:focus { border-color: var(--wp-blue); box-shadow: 0 0 0 1px var(--wp-blue); }
+.wp-title-input:focus, #ed-title:focus, #title:focus {
+  border-color: #2271b1;
+  box-shadow: 0 0 0 1px #2271b1;
+}
 
-.publish-box {
+/* WP Permalink Bar (Edit Slug Box) */
+#edit-slug-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  font-size: 12px;
+  color: #646970;
+  background: #f6f7f7;
+  border: 1px solid #dcdcde;
+  border-radius: 4px;
+  margin-bottom: 14px;
+  min-height: 32px;
+  flex-wrap: wrap;
+}
+#edit-slug-box strong { color: #1d2327; }
+#sample-permalink { color: #2271b1; word-break: break-all; }
+#editable-post-name { font-weight: 700; color: #1d2327; background: #fff; padding: 1px 4px; border-radius: 2px; }
+.edit-slug-btn {
+  background: #f6f7f7;
+  border: 1px solid #ccd0d4;
+  color: #2271b1;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.edit-slug-btn:hover {
+  background: #f0f0f1;
+  border-color: #2271b1;
+  color: #135e96;
+}
+
+/* WP Classic Editor Wrap */
+.wp-editor-wrap {
+  position: relative;
   background: #ffffff;
-  border: 1px solid var(--wp-border);
+  border: 1px solid #ccd0d4;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0,0,0,.04);
+  margin-bottom: 20px;
+}
+.wp-editor-tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  background: #f0f0f1;
+  padding: 8px 10px 0;
+  border-bottom: 1px solid #dcdcde;
+}
+.wp-media-buttons {
+  display: flex;
+  gap: 6px;
+  padding-bottom: 8px;
+  flex-wrap: wrap;
+}
+.wp-media-buttons .button {
+  background: #f6f7f7;
+  border: 1px solid #c3c4c7;
+  color: #2c3338;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all .15s ease;
+}
+.wp-media-buttons .button:hover {
+  background: #f0f0f1;
+  border-color: #2271b1;
+  color: #2271b1;
+}
+.wp-editor-tabs {
+  display: flex;
+  gap: 4px;
+}
+.wp-switch-editor {
+  background: #ebebeb;
+  border: 1px solid #dcdcde;
+  border-bottom: none;
+  color: #646970;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 4px 4px 0 0;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.wp-switch-editor:hover {
+  background: #ffffff;
+  color: #2271b1;
+}
+.wp-switch-editor.active {
+  background: #ffffff;
+  color: #1d2327;
+  border-color: #ccd0d4;
+  border-bottom: 1px solid #ffffff;
+  margin-bottom: -1px;
+  position: relative;
+  z-index: 2;
+}
+
+/* WP TinyMCE Ribbon Toolbar */
+.mce-tinymce {
+  background: #f6f7f7;
+  border-bottom: 1px solid #dcdcde;
+}
+.mce-toolbar-grp {
+  padding: 4px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.mce-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+}
+.mce-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  border-right: 1px solid #dcdcde;
+  padding-right: 4px;
+  margin-right: 4px;
+}
+.mce-btn-group:last-child {
+  border-right: none;
+  padding-right: 0;
+  margin-right: 0;
+}
+.mce-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: #2c3338;
+  height: 26px;
+  min-width: 26px;
+  padding: 0 5px;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .12s;
+  user-select: none;
+  font-family: inherit;
+}
+.mce-btn:hover {
+  background: #e5e5e5;
+  border-color: #c3c4c7;
+  color: #1d2327;
+}
+.mce-btn:active, .mce-btn.active {
+  background: #dfdfdf;
+  border-color: #8c8f94;
+}
+.mce-select {
+  background: #ffffff;
+  border: 1px solid #8c8f94;
+  border-radius: 3px;
+  color: #2c3338;
+  font-size: 12px;
+  height: 26px;
+  padding: 0 6px;
+  outline: none;
+  cursor: pointer;
+}
+.mce-select:focus {
+  border-color: #2271b1;
+  box-shadow: 0 0 0 1px #2271b1;
+}
+
+/* WP Post Editor Area */
+.wp-editor-area {
+  width: 100%;
+  min-height: 420px;
+  border: none;
+  outline: none;
+  padding: 16px 20px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #2c3338;
+  background: #ffffff;
+  font-family: Consolas, Monaco, monospace;
+  resize: vertical;
+}
+#body-visual {
+  width: 100%;
+  min-height: 420px;
+  max-height: 750px;
+  overflow-y: auto;
+  background: #ffffff;
+  padding: 18px 22px;
+  color: #2c3338;
+  font-size: 14.5px;
+  line-height: 1.8;
+  outline: none;
+}
+#body-visual h1 { font-size: 24px; font-weight: 700; margin: 24px 0 12px; color: #1d2327; }
+#body-visual h2 { font-size: 20px; font-weight: 700; margin: 20px 0 10px; color: #1d2327; }
+#body-visual h3 { font-size: 16.5px; font-weight: 700; margin: 16px 0 8px; color: #1d2327; }
+#body-visual h4 { font-size: 14.5px; font-weight: 700; margin: 14px 0 6px; color: #1d2327; }
+#body-visual p { margin-bottom: 14px; }
+#body-visual blockquote { border-left: 4px solid #2271b1; padding: 4px 16px; margin: 16px 0; color: #50575e; font-style: italic; background: #f6f7f7; }
+#body-visual blockquote p { margin-bottom: 4px; }
+#body-visual blockquote cite { font-size: 12px; color: #646970; font-style: normal; }
+#body-visual ul, #body-visual ol { margin: 0 0 14px 24px; }
+#body-visual li { margin-bottom: 4px; }
+#body-visual figure { margin: 18px 0; text-align: center; }
+#body-visual figure img { max-width: 100%; height: auto; border-radius: 4px; }
+#body-visual figcaption { font-size: 12px; color: #646970; margin-top: 6px; }
+
+/* WP Post Status Info Bar */
+#post-status-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  background: #f6f7f7;
+  border-top: 1px solid #dcdcde;
+  font-size: 11.5px;
+  color: #646970;
+}
+
+/* WP Authentic Postboxes (Sidebar & Meta Boxes) */
+.postbox {
+  background: #ffffff;
+  border: 1px solid #ccd0d4;
+  box-shadow: 0 1px 1px rgba(0,0,0,.04);
   border-radius: 4px;
   margin-bottom: 16px;
-  box-shadow: 0 1px 1px rgba(0,0,0,.04);
+  position: relative;
 }
-.pb-head {
-  padding: 10px 14px;
-  border-bottom: 1px solid var(--wp-border);
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--wp-title);
+.postbox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
   background: #f6f7f7;
+  border-bottom: 1px solid #ccd0d4;
+  border-radius: 4px 4px 0 0;
+  cursor: pointer;
+  user-select: none;
 }
-.pb-body { padding: 14px; }
-.pb-row { display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; padding: 6px 0; border-bottom: 1px dashed #f0f0f1; }
-.pb-row:last-of-type { border-bottom: none; }
-.pb-actions { display: flex; gap: 8px; margin-top: 14px; }
-.side-box { background: #ffffff; border: 1px solid var(--wp-border); border-radius: 4px; padding: 14px; margin-bottom: 16px; }
-.side-box-title { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--wp-muted); margin-bottom: 10px; }
+.postbox-header h2, .postbox-header .postbox-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1d2327;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.postbox-toggle-btn {
+  background: none;
+  border: none;
+  color: #646970;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 3px;
+  transition: transform .15s ease;
+}
+.postbox.closed .postbox-toggle-btn { transform: rotate(-90deg); }
+.postbox.closed .inside { display: none; }
+.postbox .inside {
+  padding: 12px 14px;
+}
 
-.body-editor { background: #ffffff; border: 1px solid var(--wp-border); border-radius: 4px; overflow: hidden; margin-bottom: 16px; }
-.body-mode-tabs { display: flex; gap: 4px; padding: 8px 10px 0; background: #f6f7f7; border-bottom: 1px solid var(--wp-border); }
-.body-mode-tab { padding: 6px 14px; background: transparent; border: 1px solid transparent; border-bottom: none; border-radius: 4px 4px 0 0; color: var(--wp-muted); font-size: 12px; font-weight: 600; cursor: pointer; }
-.body-mode-tab.active { background: #ffffff; color: var(--wp-blue); border-color: var(--wp-border); }
-.body-toolbar { display: flex; gap: 2px; padding: 6px 10px; border-bottom: 1px solid var(--wp-border); background: #f6f7f7; flex-wrap: wrap; }
-.tb-btn { min-width: 28px; height: 28px; padding: 0 6px; background: transparent; border: none; border-radius: 3px; color: var(--wp-text); font-size: 12px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
-.tb-btn:hover { background: #e5e5e5; color: var(--wp-blue); }
-#body-textarea { width: 100%; min-height: 400px; background: #ffffff; border: none; padding: 14px; color: var(--wp-text); font-size: 13px; line-height: 1.7; resize: vertical; outline: none; font-family: monospace; }
-#body-visual { width: 100%; min-height: 400px; max-height: 700px; overflow-y: auto; background: #ffffff; padding: 18px 20px; color: var(--wp-text); font-size: 14px; line-height: 1.8; outline: none; }
-#body-visual h2 { font-size: 20px; font-weight: 700; margin: 20px 0 10px; color: var(--wp-title); }
-#body-visual h3 { font-size: 16px; font-weight: 700; margin: 16px 0 8px; color: var(--wp-title); }
-#body-visual p { margin-bottom: 12px; }
-#body-visual figure img { max-width: 100%; border-radius: 4px; }
+/* Publish Box Details */
+#minor-publishing-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f1;
+  margin-bottom: 10px;
+}
+.misc-pub-section {
+  padding: 6px 0;
+  font-size: 12.5px;
+  color: #50575e;
+  border-bottom: 1px dashed #f0f0f1;
+}
+.misc-pub-section:last-child { border-bottom: none; }
+.misc-pub-section strong { color: #1d2327; }
+#major-publishing-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #dcdcde;
+  margin-top: 10px;
+}
+.submitdelete {
+  color: #b32d2e;
+  text-decoration: underline;
+  font-size: 12px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+.submitdelete:hover {
+  color: #a00;
+}
+
+/* Category Checkbox Tree */
+.category-tabs {
+  display: flex;
+  gap: 2px;
+  border-bottom: 1px solid #dcdcde;
+  margin: -12px -14px 10px;
+  padding: 6px 10px 0;
+  background: #f6f7f7;
+  list-style: none;
+}
+.category-tabs li a {
+  display: block;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #646970;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 3px 3px 0 0;
+}
+.category-tabs li.active a {
+  background: #ffffff;
+  border-color: #dcdcde;
+  border-bottom: 1px solid #ffffff;
+  color: #1d2327;
+  margin-bottom: -1px;
+}
+.categorychecklist {
+  max-height: 160px;
+  overflow-y: auto;
+  border: 1px solid #dcdcde;
+  background: #ffffff;
+  border-radius: 3px;
+  padding: 6px 10px;
+  list-style: none;
+  margin-bottom: 10px;
+}
+.categorychecklist li {
+  padding: 3px 0;
+  font-size: 12.5px;
+  color: #2c3338;
+}
+.categorychecklist label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.categorychecklist input[type="checkbox"] {
+  accent-color: #2271b1;
+  cursor: pointer;
+}
+
+/* Featured Image Box */
+.featured-image-holder {
+  background: #f0f0f1;
+  border: 1px solid #dcdcde;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+}
+.featured-image-holder img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+}
+.featured-image-placeholder {
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #646970;
+  font-size: 12px;
+  gap: 6px;
+}
+.featured-image-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+.featured-image-links a {
+  font-size: 12px;
+  color: #2271b1;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.featured-image-links a.delete-link {
+  color: #b32d2e;
+}
 
 /* ── 8. MODALS & OVERLAYS (Hidden by Default!) ── */
 .media-modal-ov, .cmdk-ov {
@@ -1600,52 +1986,327 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .media-video-embed-wrap { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; }
 .media-video-embed-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .block-video-embed { border-radius: 8px; overflow: hidden; }
-/* ── SEO Studio & SERP Preview (Kiểu Yoast SEO / Rank Math Pro) ───────── */
-.seo-score-head { display: flex; align-items: center; gap: 14px; padding: 4px 0 16px; border-bottom: 1px solid var(--wp-border); margin-bottom: 14px; }
-.seo-score-badge { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 800; flex-shrink: 0; transition: background .2s, color .2s; }
-.seo-score-badge.seo-good { background: rgba(34,197,94,.15); color: #16a34a; }
-.seo-score-badge.seo-ok { background: rgba(245,158,11,.15); color: #d97706; }
-.seo-score-badge.seo-bad { background: rgba(239,68,68,.15); color: #dc2626; }
-.seo-score-label { font-size: 13.5px; font-weight: 700; }
-.seo-score-sub { font-size: 11px; color: var(--wp-muted); margin-top: 2px; }
-.seo-score-label.seo-good { color: #16a34a; }
-.seo-score-label.seo-ok { color: #d97706; }
-.seo-score-label.seo-bad { color: #dc2626; }
+/* ── 8. RANK MATH SEO PRO & YOAST SEO SUITE ── */
+.rank-math-metabox {
+  border: 1px solid #ccd0d4;
+  background: #ffffff;
+  border-radius: 4px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+.rank-math-header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.rank-math-logo-badge svg {
+  display: block;
+}
+.rm-title-text {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #1d2327;
+}
+.rm-pro-badge {
+  background: linear-gradient(135deg, #005ae0, #7c3aed);
+  color: #ffffff;
+  font-size: 9.5px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 3px;
+  letter-spacing: .05em;
+}
+.rm-header-score-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.yoast-traffic-lights {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.yoast-light-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.yoast-light-badge.good { background: #edfaef; color: #008a20; border: 1px solid #72e086; }
+.yoast-light-badge.ok { background: #fff8e1; color: #d97706; border: 1px solid #f0c674; }
+.yoast-light-badge.bad { background: #fef2f2; color: #dc2626; border: 1px solid #f87171; }
 
-.seo-tab-bar { display: flex; gap: 6px; margin-bottom: 14px; border-bottom: 1px solid var(--wp-border); padding-bottom: 6px; }
-.seo-tab-btn { background: none; border: none; padding: 6px 12px; font-size: 12px; font-weight: 600; color: var(--wp-muted); cursor: pointer; border-radius: 6px; transition: all .15s; }
-.seo-tab-btn:hover { background: var(--wp-bg); color: var(--wp-blue); }
-.seo-tab-btn.active { background: #f0f6fc; color: var(--wp-blue); font-weight: 700; }
+/* Rank Math Circular Chart */
+.rm-score-circle-mini {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #f6f7f7;
+  border: 1px solid #dcdcde;
+  border-radius: 20px;
+  padding: 2px 8px 2px 4px;
+}
+.rm-circular-chart {
+  width: 28px;
+  height: 28px;
+}
+.rm-circle-bg {
+  fill: none;
+  stroke: #e2e8f0;
+  stroke-width: 3.8;
+}
+.rm-circle {
+  fill: none;
+  stroke-width: 3.8;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.5s ease;
+}
+.rm-good .rm-circle { stroke: #10b981; }
+.rm-ok .rm-circle { stroke: #f59e0b; }
+.rm-bad .rm-circle { stroke: #ef4444; }
+.rm-circle-text {
+  fill: #1d2327;
+  font-size: 10.5px;
+  font-weight: 800;
+  text-anchor: middle;
+}
+.rm-score-max {
+  font-size: 10px;
+  font-weight: 600;
+  color: #646970;
+}
 
-.seo-serp-box { background: #ffffff; border: 1px solid #dfe1e5; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px; font-family: arial, sans-serif; box-shadow: 0 1px 6px rgba(32,33,36,.08); }
-.seo-serp-url-row { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #202124; margin-bottom: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.seo-serp-favicon { width: 18px; height: 18px; border-radius: 50%; background: #f1f3f4; }
-.seo-serp-title { font-size: 18px; line-height: 1.3; color: #1a0dab; cursor: pointer; text-decoration: none; font-weight: 400; margin-bottom: 6px; display: block; overflow: hidden; text-overflow: ellipsis; }
-.seo-serp-title:hover { text-decoration: underline; }
-.seo-serp-desc { font-size: 13px; line-height: 1.5; color: #4d5156; word-wrap: break-word; }
-.seo-serp-desc mark { background: #fff3bf; color: #202124; font-weight: 700; border-radius: 2px; padding: 0 2px; }
+/* Rank Math Sub-tabs */
+.rank-math-tabs {
+  display: flex;
+  background: #f6f7f7;
+  border-bottom: 1px solid #dcdcde;
+  padding: 0 8px;
+  gap: 2px;
+  overflow-x: auto;
+}
+.rm-tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 10px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #646970;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: all .15s ease;
+  font-family: inherit;
+}
+.rm-tab-btn:hover {
+  color: #2271b1;
+}
+.rm-tab-btn.active {
+  color: #2271b1;
+  border-bottom-color: #2271b1;
+  background: #ffffff;
+}
 
-.seo-social-card { border: 1px solid var(--wp-border); border-radius: 10px; overflow: hidden; background: #ffffff; margin-bottom: 16px; max-width: 520px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
-.seo-social-thumb { width: 100%; height: 210px; object-fit: cover; background: #0b0418; display: block; }
-.seo-social-body { padding: 12px 14px; background: #f0f2f5; }
-.seo-social-domain { font-size: 11px; text-transform: uppercase; color: #65676b; letter-spacing: .04em; font-weight: 600; margin-bottom: 2px; }
-.seo-social-title { font-size: 14.5px; font-weight: 700; color: #050505; line-height: 1.35; margin-bottom: 4px; }
-.seo-social-desc { font-size: 12px; color: #65676b; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+/* Rank Math Tab Panels & Sections */
+.rank-math-inside {
+  padding: 16px 20px;
+}
+.rm-section {
+  margin-bottom: 20px;
+}
+.rm-section:last-child {
+  margin-bottom: 0;
+}
+.rm-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.rm-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #50575e;
+  letter-spacing: .03em;
+}
+.rm-badge-tip {
+  font-size: 11px;
+  color: #646970;
+}
 
-.seo-char-wrap { display: flex; justify-content: space-between; align-items: center; margin-top: 4px; font-size: 11px; }
-.seo-char-badge { font-weight: 700; padding: 2px 7px; border-radius: 4px; font-size: 10.5px; }
-.seo-char-badge.good { background: rgba(34,197,94,.15); color: #16a34a; }
-.seo-char-badge.ok { background: rgba(245,158,11,.15); color: #d97706; }
-.seo-char-badge.bad { background: rgba(239,68,68,.15); color: #dc2626; }
+/* Tags Container for Focus Keywords */
+.rm-tags-input-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid #8c8f94;
+  border-radius: 4px;
+  padding: 6px 8px;
+  min-height: 40px;
+  cursor: text;
+}
+.rm-tags-input-container:focus-within {
+  border-color: #2271b1;
+  box-shadow: 0 0 0 1px #2271b1;
+}
+.rm-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.rm-tag-pill {
+  background: #f0f6fc;
+  border: 1px solid #c8e1ff;
+  color: #2271b1;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.rm-tag-pill.primary {
+  background: #005ae0;
+  border-color: #005ae0;
+  color: #ffffff;
+}
+.rm-tag-star {
+  cursor: pointer;
+  font-size: 12px;
+}
+.rm-tag-remove {
+  cursor: pointer;
+  font-weight: 700;
+  opacity: .7;
+  font-size: 13px;
+}
+.rm-tag-remove:hover {
+  opacity: 1;
+}
+.rm-kw-input {
+  border: none;
+  outline: none;
+  font-size: 13px;
+  font-family: inherit;
+  flex: 1;
+  min-width: 150px;
+  background: transparent;
+}
+.rm-kw-quick-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.rm-sug-kw-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
 
-.seo-checklist-group { margin-bottom: 14px; }
-.seo-checklist-title { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--wp-muted); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
-.seo-checklist { display: flex; flex-direction: column; gap: 8px; }
-.seo-check-item { display: flex; gap: 9px; align-items: flex-start; font-size: 12px; background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 6px; padding: 8px 10px; transition: border-color .15s; }
-.seo-check-item:hover { border-color: rgba(0,229,255,.3); }
-.seo-check-icon { flex-shrink: 0; margin-top: 1px; font-size: 12px; }
-.seo-check-label { color: var(--wp-title); font-weight: 600; }
-.seo-check-hint { color: var(--wp-muted); margin-top: 2px; line-height: 1.5; font-size: 11.5px; }
+/* Device Toggle for Snippets */
+.rm-device-toggle {
+  display: inline-flex;
+  background: #f0f0f1;
+  border-radius: 4px;
+  padding: 2px;
+  border: 1px solid #dcdcde;
+}
+.rm-dev-btn {
+  background: none;
+  border: none;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #646970;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.rm-dev-btn.active {
+  background: #ffffff;
+  color: #1d2327;
+  box-shadow: 0 1px 2px rgba(0,0,0,.08);
+}
+
+/* Snippet Progress Meter */
+.rm-meter-bar-track {
+  height: 4px;
+  background: #f0f0f1;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.rm-meter-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.2s ease, background 0.2s ease;
+}
+.rm-meter-bar-fill.good { background: #10b981; }
+.rm-meter-bar-fill.ok { background: #f59e0b; }
+.rm-meter-bar-fill.bad { background: #ef4444; }
+.rm-field-label-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  font-size: 11.5px;
+}
+.rm-meter-count {
+  font-size: 11px;
+  color: #646970;
+}
+.rm-field-group {
+  margin-bottom: 12px;
+}
+.rm-hint {
+  font-size: 11px;
+  color: #646970;
+  margin-top: 4px;
+}
+.rm-checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+.rm-checkbox-grid label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+/* Schema Code Box */
+.rm-schema-preview-box {
+  background: #1e1e1e;
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin-top: 8px;
+}
+.rm-schema-code {
+  color: #9cdcfe;
+  font-family: Consolas, Monaco, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  max-height: 240px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
 
 /* ── Responsive Device Toolbar & Frame Container ── */
 .preview-device-bar { display: flex; align-items: center; justify-content: space-between; padding: 8px 14px; background: #130930; border-radius: 8px 8px 0 0; border: 1px solid rgba(0,229,255,.2); border-bottom: none; }
@@ -4022,6 +4683,10 @@ async function deleteArticlePermanently(file, e) {
   }
 }
 
+async function trashArticle(file, e) {
+  return deleteArticlePermanently(file, e);
+}
+
 function bulkMoveToTrash() {
   if (SELECTED_ARTICLE_FILES.size === 0) return;
   if (!confirm(`Chuyển ${SELECTED_ARTICLE_FILES.size} bài viết đã chọn vào Thùng rác?`)) return;
@@ -4478,6 +5143,381 @@ function discardDraftAndReopen(reopenFn) {
   reopenFn();
 }
 
+
+// ── Global State for WordPress Classic Editor & Rank Math SEO ─────────────
+let FOCUS_KEYWORDS = [];
+let RM_ACTIVE_TAB = 'general';
+let RM_SERP_DEVICE = 'desktop';
+let RM_SOCIAL_TAB = 'fb';
+
+function renderFocusKeywords() {
+  const container = document.getElementById('rm-tags-list');
+  if (!container) return;
+  container.innerHTML = FOCUS_KEYWORDS.map((kw, idx) => `
+    <span class="rm-tag-pill ${idx === 0 ? 'primary' : ''}">
+      <span class="rm-tag-star" onclick="event.stopPropagation();setPrimaryKeyword(${idx})" title="${idx === 0 ? 'Từ khóa chính' : 'Bấm để đặt làm từ khóa chính'}">${idx === 0 ? '⭐' : '☆'}</span>
+      <span>${esc(kw)}</span>
+      <span class="rm-tag-remove" onclick="event.stopPropagation();removeFocusKeywordTag(${idx})" title="Xóa từ khóa">✖</span>
+    </span>
+  `).join('');
+  const hiddenKw = document.getElementById('ed-keyword');
+  if (hiddenKw) hiddenKw.value = FOCUS_KEYWORDS.join(', ');
+  updateSeoScore();
+}
+
+function addFocusKeywordTag(rawKw) {
+  const kw = cleanPlainText(rawKw || '').trim().toLowerCase();
+  if (!kw) return;
+  if (!FOCUS_KEYWORDS.includes(kw)) {
+    FOCUS_KEYWORDS.push(kw);
+    renderFocusKeywords();
+    markChangedNoRebuild();
+  }
+}
+
+function removeFocusKeywordTag(idx) {
+  if (idx >= 0 && idx < FOCUS_KEYWORDS.length) {
+    FOCUS_KEYWORDS.splice(idx, 1);
+    renderFocusKeywords();
+    markChangedNoRebuild();
+  }
+}
+
+function setPrimaryKeyword(idx) {
+  if (idx > 0 && idx < FOCUS_KEYWORDS.length) {
+    const item = FOCUS_KEYWORDS.splice(idx, 1)[0];
+    FOCUS_KEYWORDS.unshift(item);
+    renderFocusKeywords();
+    markChangedNoRebuild();
+  }
+}
+
+function handleKwKeydown(e) {
+  if (e.key === 'Enter' || e.key === ',') {
+    e.preventDefault();
+    const val = e.target.value.replace(/,/g, '').trim();
+    if (val) {
+      addFocusKeywordTag(val);
+      e.target.value = '';
+    }
+  } else if (e.key === 'Backspace' && !e.target.value && FOCUS_KEYWORDS.length) {
+    removeFocusKeywordTag(FOCUS_KEYWORDS.length - 1);
+  }
+}
+
+function switchRmTab(tabId) {
+  RM_ACTIVE_TAB = tabId;
+  ['general', 'advanced', 'schema', 'social', 'checklist'].forEach(t => {
+    const btn = document.getElementById('rm-tab-' + t);
+    const panel = document.getElementById('rm-panel-' + t);
+    if (btn) btn.classList.toggle('active', t === tabId);
+    if (panel) panel.style.display = (t === tabId ? 'block' : 'none');
+  });
+  if (tabId === 'schema') updateSchemaPreview();
+}
+
+function toggleSnippetEditor() {
+  const panel = document.getElementById('rm-snippet-editor-panel');
+  const btn = document.getElementById('btn-toggle-snippet-editor');
+  if (!panel) return;
+  const isHidden = panel.style.display === 'none' || !panel.style.display;
+  panel.style.display = isHidden ? 'block' : 'none';
+  if (btn) btn.textContent = isHidden ? '✕ Đóng chỉnh sửa' : '✏️ Chỉnh sửa Snippet';
+}
+
+function setSerpDevice(mode) {
+  RM_SERP_DEVICE = mode;
+  document.getElementById('rm-dev-desktop')?.classList.toggle('active', mode === 'desktop');
+  document.getElementById('rm-dev-mobile')?.classList.toggle('active', mode === 'mobile');
+  const box = document.getElementById('seo-serp-box-preview');
+  if (box) {
+    box.style.maxWidth = mode === 'mobile' ? '390px' : '100%';
+    box.style.borderRadius = mode === 'mobile' ? '12px' : '8px';
+  }
+}
+
+function setSocialTab(platform) {
+  RM_SOCIAL_TAB = platform;
+  document.getElementById('rm-soc-fb')?.classList.toggle('active', platform === 'fb');
+  document.getElementById('rm-soc-tw')?.classList.toggle('active', platform === 'tw');
+  const card = document.getElementById('seo-social-card-box');
+  if (card) {
+    card.style.maxWidth = platform === 'tw' ? '460px' : '520px';
+    card.style.borderRadius = platform === 'tw' ? '14px' : '10px';
+  }
+}
+
+function onSerpTitleInput(val) {
+  const clean = cleanPlainText(val);
+  ART_TITLE = clean;
+  const tInput = document.getElementById('title');
+  if (tInput && tInput.value !== clean) tInput.value = clean;
+  const tEd = document.getElementById('ed-title');
+  if (tEd && tEd.value !== clean) tEd.value = clean;
+  const prevTitle = document.getElementById('serp-preview-title');
+  if (prevTitle) prevTitle.textContent = (clean || 'Tiêu đề bài viết') + ' · OtaHub';
+  const socTitle = document.getElementById('social-preview-title');
+  if (socTitle) socTitle.textContent = (clean || 'Tiêu đề bài viết') + ' · OtaHub';
+  
+  const countEl = document.getElementById('serp-title-count');
+  if (countEl) countEl.textContent = `${clean.length} / 60 ký tự`;
+  const bar = document.getElementById('serp-title-bar');
+  if (bar) {
+    bar.style.width = Math.min(100, (clean.length / 60) * 100) + '%';
+    bar.className = 'rm-meter-bar-fill ' + (clean.length >= 40 && clean.length <= 60 ? 'good' : clean.length > 60 ? 'bad' : 'ok');
+  }
+
+  const iframe = document.getElementById('art-visual-iframe');
+  const doc = iframe?.contentDocument;
+  if (doc) {
+    const heroH1 = doc.querySelector('[data-ohfield="title"]') || doc.querySelector('h1.art-hero-title') || doc.querySelector('h1');
+    if (heroH1 && heroH1.innerText !== clean) heroH1.innerText = clean;
+  }
+  markChangedNoRebuild();
+  updateSeoScore();
+}
+
+function onSocialTitleInput(val) {
+  const clean = cleanPlainText(val) || ART_TITLE || 'Tiêu đề bài viết';
+  const socTitle = document.getElementById('social-preview-title');
+  if (socTitle) socTitle.textContent = clean + ' · OtaHub';
+  markChangedNoRebuild();
+}
+
+function onSocialDescInput(val) {
+  const clean = cleanPlainText(val) || document.getElementById('ed-desc')?.value || 'Mô tả ngắn...';
+  const socDesc = document.getElementById('social-preview-desc');
+  if (socDesc) socDesc.textContent = clean;
+  markChangedNoRebuild();
+}
+
+function promptEditSlug() {
+  const nameSpan = document.getElementById('editable-post-name');
+  const btnWrap = document.getElementById('edit-slug-buttons');
+  if (!nameSpan || !btnWrap) return;
+  const currentSlug = nameSpan.textContent.trim();
+  nameSpan.innerHTML = `<input type="text" id="temp-slug-input" value="${esc(currentSlug)}" style="padding:2px 6px;font-size:12px;border:1px solid #2271b1;border-radius:3px;outline:none"/>`;
+  btnWrap.innerHTML = `
+    <button type="button" class="edit-slug-btn" onclick="saveEditSlug()" style="background:#2271b1;color:#fff;border-color:#2271b1">OK</button>
+    <button type="button" class="edit-slug-btn" onclick="cancelEditSlug('${esc(currentSlug)}')">Hủy</button>
+  `;
+  document.getElementById('temp-slug-input')?.focus();
+}
+
+function saveEditSlug() {
+  const input = document.getElementById('temp-slug-input');
+  if (!input) return;
+  const newSlug = slugify(input.value) || 'bai-viet';
+  const nameSpan = document.getElementById('editable-post-name');
+  const btnWrap = document.getElementById('edit-slug-buttons');
+  if (nameSpan) nameSpan.textContent = newSlug;
+  if (btnWrap) btnWrap.innerHTML = `<button type="button" class="edit-slug-btn" onclick="promptEditSlug()" id="btn-edit-slug">Chỉnh sửa</button>`;
+  const hiddenSlug = document.getElementById('ed-slug');
+  if (hiddenSlug) hiddenSlug.value = newSlug;
+  const serpUrl = document.getElementById('serp-preview-url');
+  const cat = document.getElementById('ed-cat')?.value || 'gaming';
+  if (serpUrl) serpUrl.textContent = `https://otahub.asia › ${cat.toLowerCase()} › ${newSlug}`;
+  markChangedNoRebuild();
+  updateSeoScore();
+}
+
+function cancelEditSlug(origSlug) {
+  const nameSpan = document.getElementById('editable-post-name');
+  const btnWrap = document.getElementById('edit-slug-buttons');
+  if (nameSpan) nameSpan.textContent = origSlug;
+  if (btnWrap) btnWrap.innerHTML = `<button type="button" class="edit-slug-btn" onclick="promptEditSlug()" id="btn-edit-slug">Chỉnh sửa</button>`;
+}
+
+function togglePostbox(headerEl) {
+  const box = headerEl.closest('.postbox');
+  if (box) box.classList.toggle('closed');
+}
+
+function toggleKitchenSink() {
+  const row2 = document.getElementById('mce-kitchen-sink');
+  if (row2) row2.style.display = (row2.style.display === 'none' ? 'flex' : 'none');
+}
+
+function wpExecCmd(cmd, val = null) {
+  document.getElementById('body-visual')?.focus();
+  document.execCommand(cmd, false, val);
+  markChanged();
+  updateWordCount();
+  updateSeoScore();
+}
+
+function wpFormatBlock(tag) {
+  document.getElementById('body-visual')?.focus();
+  document.execCommand('formatBlock', false, tag);
+  markChanged();
+  updateWordCount();
+  updateSeoScore();
+}
+
+function toggleCatAdder() {
+  const box = document.getElementById('cat-add-box');
+  if (box) box.style.display = (box.style.display === 'none' ? 'block' : 'none');
+}
+
+function addNewCategoryFromSidebar() {
+  const input = document.getElementById('new-cat-name');
+  const catName = cleanPlainText(input?.value || '').trim();
+  if (!catName) return;
+  const list = document.getElementById('categorychecklist');
+  if (list) {
+    const li = document.createElement('li');
+    li.innerHTML = `<label><input value="${esc(catName)}" type="checkbox" name="post_category" checked onchange="onCategoryCheckboxChange(this)"/> ${esc(catName)}</label>`;
+    list.prepend(li);
+  }
+  const edCat = document.getElementById('ed-cat');
+  if (edCat) edCat.value = catName;
+  if (input) input.value = '';
+  toggleCatAdder();
+  markChanged();
+  toast('success', `Đã thêm chuyên mục "${catName}"`);
+}
+
+function onCategoryCheckboxChange(cb) {
+  if (cb.checked) {
+    const list = document.getElementById('categorychecklist');
+    list.querySelectorAll('input[type="checkbox"]').forEach(c => {
+      if (c !== cb) c.checked = false;
+    });
+    const edCat = document.getElementById('ed-cat');
+    if (edCat) edCat.value = cb.value;
+    const serpUrl = document.getElementById('serp-preview-url');
+    const slug = (currentFile || '').replace(/\.html$/, '');
+    if (serpUrl) serpUrl.textContent = `https://otahub.asia › ${cb.value.toLowerCase()} › ${slug}`;
+    markChanged();
+  }
+}
+
+function updateSchemaPreview() {
+  const type = document.getElementById('rm-schema-type')?.value || 'Article';
+  const title = ART_TITLE || 'Tiêu đề bài viết';
+  const desc = document.getElementById('ed-desc')?.value || '';
+  const hero = document.getElementById('ed-hero')?.value || 'https://otahub.asia/assets/img/og-image.png';
+  const slug = (currentFile || '').replace(/\.html$/, '');
+  const url = `https://otahub.asia/${slug}`;
+  const pubDate = new Date().toISOString();
+
+  let schemaObj = {};
+  if (type === 'FAQPage') {
+    schemaObj = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Nội dung chính của bài viết là gì?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": desc || title
+          }
+        }
+      ]
+    };
+  } else if (type === 'Review') {
+    schemaObj = {
+      "@context": "https://schema.org",
+      "@type": "Review",
+      "itemReviewed": {
+        "@type": "Thing",
+        "name": title
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "9.5",
+        "bestRating": "10"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "OtaHub Studio",
+        "url": "https://otahub.asia"
+      }
+    };
+  } else {
+    schemaObj = {
+      "@context": "https://schema.org",
+      "@type": type,
+      "headline": title,
+      "description": desc,
+      "image": [hero.startsWith('http') ? hero : `https://otahub.asia${hero.startsWith('/')?'':'/'}${hero}`],
+      "datePublished": pubDate,
+      "dateModified": pubDate,
+      "author": {
+        "@type": "Organization",
+        "name": "OtaHub Editorial Team",
+        "url": "https://otahub.asia"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "OtaHub",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://otahub.asia/assets/img/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": url
+      }
+    };
+  }
+
+  const block = document.getElementById('rm-schema-code-block');
+  if (block) block.textContent = JSON.stringify(schemaObj, null, 2);
+}
+
+function copySchemaJson() {
+  const block = document.getElementById('rm-schema-code-block');
+  if (block) {
+    navigator.clipboard.writeText(block.textContent).then(() => {
+      toast('success', '📋 Đã sao chép Schema JSON-LD vào Clipboard!');
+    });
+  }
+}
+
+function openSpecialCharsModal() {
+  const chars = ['©', '®', '™', '§', '¶', '•', '—', '–', '“', '”', '‘', '’', '«', '»', '←', '→', '↑', '↓', '↔', '±', '×', '÷', '≠', '≤', '≥', '∞', '∑', '√', 'π', 'Ω', '★', '☆', '♥', '♦', '▲', '▼', '◆'];
+  const modalHtml = `
+    <div class="media-modal-ov open" id="special-chars-ov" onclick="if(event.target===this)this.remove()">
+      <div class="media-modal-box" style="max-width:440px">
+        <div class="media-modal-head">
+          <strong style="font-size:14px">Ký tự đặc biệt</strong>
+          <button type="button" class="media-modal-close" onclick="document.getElementById('special-chars-ov').remove()">✕</button>
+        </div>
+        <div class="media-modal-body" style="display:grid;grid-template-columns:repeat(6, 1fr);gap:6px;padding:16px">
+          ${chars.map(c => `<button type="button" class="btn btn-secondary" style="font-size:16px;height:36px;justify-content:center" onclick="wpExecCmd('insertText', '${c}');document.getElementById('special-chars-ov').remove()">${c}</button>`).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.insertAdjacentHTML('beforeend', modalHtml);
+}
+
+function openShortcutsModal() {
+  const modalHtml = `
+    <div class="media-modal-ov open" id="shortcuts-ov" onclick="if(event.target===this)this.remove()">
+      <div class="media-modal-box" style="max-width:500px">
+        <div class="media-modal-head">
+          <strong style="font-size:14px">Phím tắt trình soạn thảo Classic</strong>
+          <button type="button" class="media-modal-close" onclick="document.getElementById('shortcuts-ov').remove()">✕</button>
+        </div>
+        <div class="media-modal-body" style="padding:16px;font-size:13px;line-height:1.8">
+          <div style="display:flex;justify-content:space-between;border-bottom:1px solid #f0f0f1;padding:4px 0"><span>In đậm:</span> <code>Ctrl + B</code></div>
+          <div style="display:flex;justify-content:space-between;border-bottom:1px solid #f0f0f1;padding:4px 0"><span>In nghiêng:</span> <code>Ctrl + I</code></div>
+          <div style="display:flex;justify-content:space-between;border-bottom:1px solid #f0f0f1;padding:4px 0"><span>Gạch chân:</span> <code>Ctrl + U</code></div>
+          <div style="display:flex;justify-content:space-between;border-bottom:1px solid #f0f0f1;padding:4px 0"><span>Chèn liên kết:</span> <code>Ctrl + K</code></div>
+          <div style="display:flex;justify-content:space-between;border-bottom:1px solid #f0f0f1;padding:4px 0"><span>Hoàn tác:</span> <code>Ctrl + Z</code></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0"><span>Làm lại:</span> <code>Ctrl + Y</code></div>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.insertAdjacentHTML('beforeend', modalHtml);
+}
+
 function renderEditor(file, html) {
   HAS_UNSAVED_CHANGES = false;
   currentRawHtml = html;
@@ -4500,16 +5540,15 @@ function renderEditor(file, html) {
   ART_HB_LABEL = hb ? cleanPlainText(hb.label) : '';
   ART_HB_TEXT = hb ? hb.text : '';
 
-  // Chế độ Khối (kéo-thả) chỉ khả dụng cho bài có sẵn dữ liệu block ẩn (bài mới
-  // tạo qua nút "Viết bài mới" — xem newArticle()). Bài cũ (~130 bài) không có
-  // marker này nên vẫn dùng Trực quan/HTML như trước, tránh rủi ro tự suy diễn
-  // cấu trúc HTML viết tay thành block sai lệch.
+  // Parse keywords list
+  FOCUS_KEYWORDS = keyword ? keyword.split(',').map(k => k.trim()).filter(Boolean) : [];
+
   const blockMatch = html.match(/<script type="application\/json" id="admin-block-data">([\s\S]*?)<\/script>/);
   BODY_BLOCKS = blockMatch ? JSON.parse(blockMatch[1]) : null;
   BODY_MODE = BODY_BLOCKS ? 'blocks' : 'visual';
 
   setMain(`
-    <div class="page-header">
+    <div class="page-header" style="padding-bottom:14px">
       <div class="page-title">
         Chỉnh sửa bài viết
         <small>${file}</small>
@@ -4519,14 +5558,14 @@ function renderEditor(file, html) {
         <button type="button" class="btn btn-secondary" onclick="copyArticleJson()" title="Sao chép toàn bộ cấu trúc bài viết dạng JSON">📋 Sao chép JSON</button>
         <button type="button" class="btn btn-secondary" id="zen-mode-btn" onclick="toggleZenMode()" title="Toàn màn hình không vướng bận">⛶ Toàn màn hình</button>
         <button type="button" class="btn btn-secondary" onclick="openFullArticlePreview()" title="Mở trang xem trước bản nháp đầy đủ trong tab mới">👁️ Xem trước</button>
-        <button type="button" class="btn btn-primary" onclick="${isContributor ? 'saveArticleDraftNow()' : 'saveArticle()'}">${isContributor ? '📝 Lưu bản nháp' : '💾 Lưu & Deploy'}</button>
+        <button type="button" class="btn btn-primary" onclick="${isContributor ? 'saveArticleDraftNow()' : 'saveArticle()'}">${isContributor ? '📝 Lưu bản nháp' : (isNewFile ? '🚀 Đăng bài' : '💾 Cập nhật')}</button>
         <button type="button" class="btn btn-secondary" onclick="showView('articles')">← Quay lại</button>
       </div>
     </div>
     ${draftBannerHtml(`discardDraftAndReopen(() => editArticle('${file}'))`)}
 
     <div class="editor-layout">
-      <div class="editor-main">
+      <div class="editor-main" id="post-body-content">
 
         <!-- AI Copilot Assistant Toolbar -->
         <div class="ai-copilot-bar">
@@ -4544,331 +5583,547 @@ function renderEditor(file, html) {
           </div>
         </div>
 
-        <!-- Bản xem trước thật kiểu Elementor — bấm trực tiếp vào tiêu đề, mô tả
-             ngắn, đoạn văn, ảnh... để sửa ngay tại chỗ, không cần mở form riêng. -->
-        <div class="visual-hint" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-          <span>🖱️ Bấm trực tiếp vào Tiêu đề, Mô tả ngắn, Đoạn văn hoặc Ảnh trong khung để sửa trực tiếp — giống Elementor.</span>
-          <span style="font-size:11px;color:var(--wp-blue);font-weight:600">⚡ Đồng bộ tức thì</span>
+        <!-- WordPress Title Div -->
+        <div id="titlediv">
+          <input type="text" name="post_title" size="30" value="${esc(ART_TITLE || title)}" id="title" class="wp-title-input" spellcheck="true" autocomplete="off" placeholder="Nhập tiêu đề tại đây" oninput="onTitleInput(this.value)"/>
+          <input type="hidden" id="ed-title" value="${esc(ART_TITLE || title)}"/>
         </div>
-        
-        <div class="preview-device-bar">
-          <div class="preview-device-btns">
-            <button type="button" class="preview-device-btn active" id="pbtn-desktop" onclick="setPreviewDevice('desktop')" title="Xem trước trên Máy tính (100%)">🖥️ Desktop</button>
-            <button type="button" class="preview-device-btn" id="pbtn-tablet" onclick="setPreviewDevice('tablet')" title="Xem trước trên Máy tính bảng (768px)">📟 Tablet</button>
-            <button type="button" class="preview-device-btn" id="pbtn-mobile" onclick="setPreviewDevice('mobile')" title="Xem trước trên Điện thoại (390px)">📱 Mobile</button>
-          </div>
-          <div style="display:flex;gap:8px;align-items:center">
-            <button type="button" class="btn btn-secondary btn-sm" onclick="scheduleArticlePreviewRefresh()" style="padding:3px 8px;font-size:11px;height:24px" title="Dựng lại khung xem trước">🔄 Làm mới</button>
-            <button type="button" class="btn btn-secondary btn-sm" onclick="openFullArticlePreview()" style="padding:3px 8px;font-size:11px;height:24px" title="Mở bản xem trước đầy đủ trong tab mới">👁️ Tab mới</button>
-          </div>
-        </div>
-        <div class="visual-iframe-wrap preview-iframe-wrap" id="art-visual-iframe-wrap" style="margin-bottom:18px;border-top-left-radius:0;border-top-right-radius:0">
-          <iframe id="art-visual-iframe" class="home-visual-iframe"></iframe>
-        </div>
-        ${BODY_BLOCKS ? '' : `<div style="display:flex;justify-content:flex-end;margin:-10px 0 18px">
-          <button class="btn btn-secondary btn-sm" onclick="legacyBodyInsertImage()">🖼️ Thêm ảnh vào cuối bài</button>
-        </div>`}
 
-        <!-- Body VI — bài có block data (mới) vẫn dùng khối kéo-thả bên dưới; bài
-             cũ (không có block) giờ sửa trực tiếp trong khung xem trước thật ở
-             trên (kể cả ảnh) — ô "Trực quan" tối màu tách riêng trước đây đã bỏ
-             khỏi giao diện, chỉ còn giữ ngầm làm nơi lưu dữ liệu HTML gốc + đồng
-             bộ với tab "Mã HTML" bên dưới cho ai cần sửa tay. -->
-        <div class="body-editor" style="margin-bottom:16px">
-          <div class="body-mode-tabs">
-            ${BODY_BLOCKS ? `<button class="body-mode-tab active" id="body-mode-tab-blocks" onclick="switchBodyMode('blocks')">🧱 Khối (kéo-thả)</button>` : ''}
-            <button class="body-mode-tab" id="body-mode-tab-visual" style="display:none" onclick="switchBodyMode('visual')">🖱️ Trực quan</button>
-            <button class="body-mode-tab" id="body-mode-tab-code" onclick="switchBodyMode(BODY_MODE === 'code' ? 'visual' : 'code')">🔤 Mã HTML (nâng cao)</button>
+        <!-- WordPress Permalink Edit Bar -->
+        <div id="edit-slug-box">
+          <strong>Liên kết tĩnh:</strong>
+          <span id="sample-permalink">
+            https://otahub.asia/<span id="editable-post-name">${esc((file||'').replace(/\.html$/,''))}</span>/
+          </span>
+          <span id="edit-slug-buttons">
+            <button type="button" class="edit-slug-btn" onclick="promptEditSlug()" id="btn-edit-slug">Chỉnh sửa</button>
+          </span>
+          <a href="https://otahub.asia/${(file||'').replace(/\.html$/,'')}" target="_blank" class="edit-slug-btn" id="view-post-btn" style="margin-left:auto">Xem bài viết</a>
+          <button type="button" class="edit-slug-btn" onclick="openFullArticlePreview()">Xem trước</button>
+          <input type="hidden" id="ed-slug" value="${esc((file||'').replace(/\.html$/,''))}"/>
+        </div>
+
+        <!-- WordPress Classic Editor Container -->
+        <div id="wp-content-wrap" class="wp-editor-wrap">
+          <div id="wp-content-editor-tools" class="wp-editor-tools">
+            <div id="wp-content-media-buttons" class="wp-media-buttons">
+              <button type="button" class="button insert-media add_media" onclick="visImg()" title="Thêm Media từ thư viện hoặc tải lên">
+                <span class="wp-media-buttons-icon">📷</span> Thêm Media
+              </button>
+              <button type="button" class="button add-video" onclick="visVideo()" title="Nhúng Video YouTube/Vimeo">
+                <span class="wp-media-buttons-icon">🎬</span> Nhúng Video
+              </button>
+              <button type="button" class="button add-table" onclick="visTable()" title="Chèn Bảng dữ liệu">
+                <span class="wp-media-buttons-icon">📊</span> Bảng
+              </button>
+            </div>
+            <div class="wp-editor-tabs">
+              ${BODY_BLOCKS ? `<button type="button" id="content-blocks-tab" class="wp-switch-editor ${BODY_MODE==='blocks'?'active':''}" onclick="switchBodyMode('blocks')">🧱 Khối</button>` : ''}
+              <button type="button" id="content-tmce-tab" class="wp-switch-editor ${BODY_MODE==='visual'?'active':''}" onclick="switchBodyMode('visual')">Trực quan</button>
+              <button type="button" id="content-html-tab" class="wp-switch-editor ${BODY_MODE==='code'?'active':''}" onclick="switchBodyMode('code')">Văn bản</button>
+              <button type="button" id="content-live-tab" class="wp-switch-editor ${BODY_MODE==='live'?'active':''}" onclick="switchBodyMode('live')" title="Bản xem trước trực tiếp trên giao diện website">👁️ Xem trực tiếp</button>
+            </div>
           </div>
-          <div id="body-blocks-wrap" style="display:${BODY_BLOCKS ? 'block' : 'none'}">
+
+          <!-- TinyMCE Toolbar Row 1 & Row 2 -->
+          <div class="mce-tinymce mce-container" id="wp-tinymce-toolbar-wrap" style="display:${BODY_MODE==='visual'?'block':'none'}">
+            <div class="mce-toolbar-grp">
+              <!-- Row 1 -->
+              <div class="mce-toolbar mce-toolbar-row1">
+                <div class="mce-btn-group">
+                  <select class="mce-select mce-format-select" onchange="wpFormatBlock(this.value);this.selectedIndex=0" title="Khối văn bản">
+                    <option value="" disabled selected>Đoạn văn</option>
+                    <option value="P">Đoạn văn</option>
+                    <option value="H2">Tiêu đề 2</option>
+                    <option value="H3">Tiêu đề 3</option>
+                    <option value="H4">Tiêu đề 4</option>
+                    <option value="PRE">Định dạng trước (Code)</option>
+                  </select>
+                </div>
+                <div class="mce-btn-group">
+                  <button type="button" class="mce-btn" title="In đậm (Ctrl+B)" onclick="wpExecCmd('bold')"><strong>B</strong></button>
+                  <button type="button" class="mce-btn" title="In nghiêng (Ctrl+I)" onclick="wpExecCmd('italic')"><em>I</em></button>
+                  <button type="button" class="mce-btn" title="Gạch ngang" onclick="wpExecCmd('strikeThrough')"><del>ABC</del></button>
+                </div>
+                <div class="mce-btn-group">
+                  <button type="button" class="mce-btn" title="Danh sách không thứ tự" onclick="wpExecCmd('insertUnorderedList')">• ☰</button>
+                  <button type="button" class="mce-btn" title="Danh sách có thứ tự" onclick="wpExecCmd('insertOrderedList')">1. ☰</button>
+                  <button type="button" class="mce-btn" title="Trích dẫn" onclick="visQuote()">❝</button>
+                </div>
+                <div class="mce-btn-group">
+                  <button type="button" class="mce-btn" title="Căn trái" onclick="wpExecCmd('justifyLeft')">⇤</button>
+                  <button type="button" class="mce-btn" title="Căn giữa" onclick="wpExecCmd('justifyCenter')">≡</button>
+                  <button type="button" class="mce-btn" title="Căn phải" onclick="wpExecCmd('justifyRight')">⇥</button>
+                </div>
+                <div class="mce-btn-group">
+                  <button type="button" class="mce-btn" title="Chèn/Sửa liên kết (Ctrl+K)" onclick="visLink()">🔗</button>
+                  <button type="button" class="mce-btn" title="Bỏ liên kết" onclick="wpExecCmd('unlink')">🚫</button>
+                  <button type="button" class="mce-btn" title="Chèn thẻ Đọc tiếp" onclick="wpExecCmd('insertHTML', '<!--more--><hr class=\"wp-more-tag\"/><p><br></p>')">🏷️</button>
+                </div>
+                <div class="mce-btn-group">
+                  <button type="button" class="mce-btn" title="Thanh công cụ mở rộng (Kitchen Sink)" onclick="toggleKitchenSink()">🎛️</button>
+                </div>
+              </div>
+
+              <!-- Row 2 (Kitchen Sink) -->
+              <div class="mce-toolbar mce-toolbar-row2" id="mce-kitchen-sink" style="display:flex">
+                <div class="mce-btn-group">
+                  <button type="button" class="mce-btn" title="Gạch chân (Ctrl+U)" onclick="wpExecCmd('underline')"><u>U</u></button>
+                  <button type="button" class="mce-btn" title="Căn đều hai bên" onclick="wpExecCmd('justifyFull')">☰</button>
+                  <div style="position:relative;display:inline-flex;align-items:center" title="Màu văn bản">
+                    <input type="color" id="wp-text-color-picker" onchange="wpExecCmd('foreColor', this.value)" style="opacity:0;position:absolute;width:24px;height:24px;cursor:pointer;left:0;top:0"/>
+                    <button type="button" class="mce-btn" style="pointer-events:none">
+                      <span style="font-weight:700;border-bottom:3px solid #2271b1">A</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="mce-btn-group">
+                  <button type="button" class="mce-btn" title="Xóa định dạng" onclick="visClean()">🧹</button>
+                  <button type="button" class="mce-btn" title="Ký tự đặc biệt (Ω)" onclick="openSpecialCharsModal()">Ω</button>
+                  <button type="button" class="mce-btn" title="Giảm lùi dòng" onclick="wpExecCmd('outdent')">⇤</button>
+                  <button type="button" class="mce-btn" title="Tăng lùi dòng" onclick="wpExecCmd('indent')">⇥</button>
+                </div>
+                <div class="mce-btn-group">
+                  <button type="button" class="mce-btn" title="Hoàn tác (Ctrl+Z)" onclick="wpExecCmd('undo')">↺</button>
+                  <button type="button" class="mce-btn" title="Làm lại (Ctrl+Y)" onclick="wpExecCmd('redo')">↻</button>
+                  <button type="button" class="mce-btn" title="Phím tắt trợ giúp" onclick="openShortcutsModal()">❓</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Code Toolbar when in Code/HTML mode -->
+          <div class="mce-tinymce mce-container" id="wp-code-toolbar-wrap" style="display:${BODY_MODE==='code'?'block':'none'}">
+            <div class="mce-toolbar-grp">
+              <div class="mce-toolbar mce-toolbar-row1">
+                <div class="mce-btn-group">
+                  <button type="button" class="mce-btn" title="H2" onclick="wrapSel('<h2>','</h2>')"><b>H2</b></button>
+                  <button type="button" class="mce-btn" title="H3" onclick="wrapSel('<h3>','</h3>')"><b>H3</b></button>
+                  <button type="button" class="mce-btn" title="H4" onclick="wrapSel('<h4>','</h4>')"><b>H4</b></button>
+                  <button type="button" class="mce-btn" title="Đoạn văn" onclick="insertPara()">p</button>
+                </div>
+                <div class="mce-btn-group">
+                  <button type="button" class="mce-btn" title="In đậm" onclick="wrapSel('<strong>','</strong>')">b</button>
+                  <button type="button" class="mce-btn" title="In nghiêng" onclick="wrapSel('<em>','</em>')">i</button>
+                  <button type="button" class="mce-btn" title="Gạch chân" onclick="wrapSel('<u>','</u>')">u</button>
+                  <button type="button" class="mce-btn" title="Link" onclick="wrapLink()">link</button>
+                  <button type="button" class="mce-btn" title="Blockquote" onclick="insertBlock()">b-quote</button>
+                </div>
+                <div class="mce-btn-group">
+                  <button type="button" class="mce-btn" title="Chèn ảnh" onclick="insertImg()">img</button>
+                  <button type="button" class="mce-btn" title="Chèn bảng" onclick="insertTableCode()">table</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visual Editable Area -->
+          <div id="body-visual-wrap" style="display:${BODY_MODE==='visual'?'block':'none'}">
+            <div id="body-visual" contenteditable="true" spellcheck="true">${bodyVi}</div>
+          </div>
+
+          <!-- Code Textarea Area -->
+          <div id="body-code-wrap" style="display:${BODY_MODE==='code'?'block':'none'}">
+            <textarea id="body-textarea" class="wp-editor-area" rows="20" spellcheck="false">${esc(bodyVi)}</textarea>
+          </div>
+
+          <!-- Live Preview Iframe Container -->
+          <div id="body-live-wrap" style="display:${BODY_MODE==='live'?'block':'none'}">
+            <div class="preview-device-bar">
+              <div class="preview-device-btns">
+                <button type="button" class="preview-device-btn active" id="pbtn-desktop" onclick="setPreviewDevice('desktop')">🖥️ Desktop</button>
+                <button type="button" class="preview-device-btn" id="pbtn-tablet" onclick="setPreviewDevice('tablet')">📟 Tablet</button>
+                <button type="button" class="preview-device-btn" id="pbtn-mobile" onclick="setPreviewDevice('mobile')">📱 Mobile</button>
+              </div>
+              <div style="display:flex;gap:8px;align-items:center">
+                <button type="button" class="btn btn-secondary btn-sm" onclick="scheduleArticlePreviewRefresh()" style="padding:3px 8px;font-size:11px;height:24px">🔄 Làm mới</button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="openFullArticlePreview()" style="padding:3px 8px;font-size:11px;height:24px">👁️ Tab mới</button>
+              </div>
+            </div>
+            <div class="visual-iframe-wrap preview-iframe-wrap" id="art-visual-iframe-wrap" style="border-top-left-radius:0;border-top-right-radius:0">
+              <iframe id="art-visual-iframe" class="home-visual-iframe"></iframe>
+            </div>
+          </div>
+
+          <!-- Block Editor (nếu có block) -->
+          <div id="body-blocks-wrap" style="display:${BODY_MODE==='blocks'?'block':'none'}">
             <div id="body-blocks-editor"></div>
           </div>
-          <div class="body-toolbar" id="body-toolbar-visual" style="display:none">
-            <button class="tb-btn" title="Tiêu đề H2" onclick="visH2()"><b>H2</b></button>
-            <button class="tb-btn" title="Tiêu đề H3" onclick="visH3()">H3</button>
-            <button class="tb-btn" title="Đoạn văn" onclick="visPara()">¶</button>
-            <div class="tb-sep"></div>
-            <button class="tb-btn" title="In đậm (Ctrl+B)" onclick="visBold()"><b>B</b></button>
-            <button class="tb-btn" title="In nghiêng (Ctrl+I)" onclick="visItalic()"><i>I</i></button>
-            <button class="tb-btn" title="Gạch chân (Ctrl+U)" onclick="visUnderline()"><u>U</u></button>
-            <button class="tb-btn" title="Chèn liên kết / Tìm bài nội bộ (Ctrl+K)" onclick="visLink()">🔗 Link</button>
-            <button class="tb-btn" title="Danh sách" onclick="visList()">☰</button>
-            <div class="tb-sep"></div>
-            <button class="tb-btn" title="Chèn ảnh" onclick="visImg()">📷 Ảnh</button>
-            <button class="tb-btn" title="Nhúng video (YouTube/Vimeo)" onclick="visVideo()">🎬 Video</button>
-            <button class="tb-btn" title="Chèn Bảng thông số (Responsive Cyber Table)" onclick="visTable()">📊 Bảng</button>
-            <button class="tb-btn" title="Trích dẫn" onclick="visQuote()">❝ Trích dẫn</button>
-            <button class="tb-btn" title="Xóa rác định dạng" onclick="visClean()">🧹 Lọc rác</button>
-            <div class="tb-sep"></div>
-            <button class="tb-btn" id="vis-jump-img-btn" title="Nhảy tới ảnh tiếp theo trong bài" onclick="visJumpImage()" style="display:none">🖼️ <span id="vis-img-count">0</span></button>
-          </div>
-          <div class="body-toolbar" id="body-toolbar-code" style="display:none">
-            <button class="tb-btn" title="H2" onclick="wrapSel('&lt;h2&gt;','&lt;/h2&gt;')"><b>H2</b></button>
-            <button class="tb-btn" title="H3" onclick="wrapSel('&lt;h3&gt;','&lt;/h3&gt;')">H3</button>
-            <div class="tb-sep"></div>
-            <button class="tb-btn" title="In đậm" onclick="wrapSel('&lt;strong&gt;','&lt;/strong&gt;')"><b>B</b></button>
-            <button class="tb-btn" title="In nghiêng" onclick="wrapSel('&lt;em&gt;','&lt;/em&gt;')"><i>I</i></button>
-            <button class="tb-btn" title="Gạch chân" onclick="wrapSel('&lt;u&gt;','&lt;/u&gt;')"><u>U</u></button>
-            <button class="tb-btn" title="Chèn liên kết" onclick="wrapLink()">🔗 Link</button>
-            <div class="tb-sep"></div>
-            <button class="tb-btn" title="Chèn ảnh" onclick="insertImg()">📷 Ảnh</button>
-            <button class="tb-btn" title="Nhúng video" onclick="visVideo()">🎬 Video</button>
-            <button class="tb-btn" title="Chèn Bảng" onclick="insertTableCode()">📊 Bảng</button>
-            <button class="tb-btn" title="Đoạn văn" onclick="insertPara()">¶ Đoạn văn</button>
-            <button class="tb-btn" title="Trích dẫn" onclick="insertBlock()">❝ Trích dẫn</button>
-          </div>
-          <div id="body-visual-wrap" style="display:none">
-            <div id="body-visual" contenteditable="true">${bodyVi}</div>
-          </div>
-          <div id="body-code-wrap" style="display:none">
-            <textarea id="body-textarea" class="form-input" style="border:none;border-radius:0;min-height:500px;font-family:monospace;font-size:12px">${esc(bodyVi)}</textarea>
+
+          <!-- Status info bar at bottom of editor -->
+          <div id="post-status-info">
+            <span id="wp-word-count" class="word-count">Số từ: 0</span>
+            <span class="autosave-info" id="wp-autosave-info">Bản nháp tự động lưu</span>
           </div>
         </div>
-        <div style="display:flex;justify-content:flex-end;align-items:center;gap:12px;margin:-8px 0 20px;flex-wrap:wrap">
-          <div id="word-count-bar" style="font-size:11px;color:var(--muted);white-space:nowrap">📝 0 từ · ~1 phút đọc</div>
-        </div>
 
-        <!-- OtaHub SEO Studio Pro -->
-        <div class="meta-box-collapsed">
-          <div class="meta-box-head open" onclick="toggleMetaBox(this)">
-            <div class="field-group-title" style="display:flex;align-items:center;gap:8px">
-              <span>🎯 OtaHub SEO Studio</span>
-              <span class="wp-seo-score-pill" id="seo-score-pill-header">SEO: --/100</span>
+        <!-- Rank Math & Yoast SEO Studio Pro Meta Box -->
+        <div class="postbox rank-math-metabox" id="rank-math-metabox">
+          <div class="postbox-header">
+            <div class="rank-math-header-title">
+              <div class="rank-math-logo-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#005ae0"/><path d="M5 16L9 8L13 14L16 11L19 16" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="rm-title-text">Rank Math SEO</span>
+              <span class="rm-pro-badge">PRO</span>
             </div>
-            <span class="chev">▸</span>
+            
+            <!-- Score Circle & Yoast Badges in Header -->
+            <div class="rm-header-score-wrap">
+              <div class="yoast-traffic-lights" title="Đánh giá nhanh Yoast SEO">
+                <span class="yoast-light-badge good" id="yoast-light-seo" title="Điểm SEO">● SEO</span>
+                <span class="yoast-light-badge good" id="yoast-light-read" title="Khả năng đọc">● Readability</span>
+              </div>
+              <div class="rm-score-circle-mini rm-good" id="rm-score-circle">
+                <svg viewBox="0 0 36 36" class="rm-circular-chart">
+                  <path class="rm-circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                  <path class="rm-circle" id="rm-circle-stroke" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                  <text x="18" y="20.35" class="rm-circle-text" id="rm-circle-text">0</text>
+                </svg>
+                <span class="rm-score-max">/100</span>
+              </div>
+              <button type="button" class="postbox-toggle-btn" onclick="toggleMetaBox(this.closest('.postbox'))">▾</button>
+            </div>
           </div>
-          <div class="meta-box-content open">
-            <div class="seo-score-head">
-              <div class="seo-score-badge seo-bad" id="seo-score-badge">–</div>
-              <div style="flex:1;min-width:0">
-                <div style="display:flex;align-items:center;gap:8px">
-                  <div class="seo-score-label seo-bad" id="seo-score-label">Chưa phân tích</div>
-                  <span id="seo-score-tag" style="font-size:11px;padding:2px 8px;border-radius:12px;background:rgba(0,0,0,0.05);font-weight:600">Điểm tối ưu</span>
+          
+          <div class="inside rank-math-inside">
+            <!-- Rank Math Main Tab Bar -->
+            <div class="rank-math-tabs">
+              <button type="button" class="rm-tab-btn active" id="rm-tab-general" onclick="switchRmTab('general')">
+                <span class="rm-tab-icon">⚙️</span> Tổng quan
+              </button>
+              <button type="button" class="rm-tab-btn" id="rm-tab-advanced" onclick="switchRmTab('advanced')">
+                <span class="rm-tab-icon">🔧</span> Nâng cao
+              </button>
+              <button type="button" class="rm-tab-btn" id="rm-tab-schema" onclick="switchRmTab('schema')">
+                <span class="rm-tab-icon">📑</span> Schema (Rich Snippet)
+              </button>
+              <button type="button" class="rm-tab-btn" id="rm-tab-social" onclick="switchRmTab('social')">
+                <span class="rm-tab-icon">📱</span> Mạng xã hội
+              </button>
+              <button type="button" class="rm-tab-btn" id="rm-tab-checklist" onclick="switchRmTab('checklist')">
+                <span class="rm-tab-icon">📊</span> Phân tích SEO (<span id="rm-checklist-count">0/16</span>)
+              </button>
+            </div>
+            
+            <!-- Tab 1: General (Focus Keyword + Snippet Preview/Editor) -->
+            <div id="rm-panel-general" class="rm-tab-panel">
+              <!-- Focus Keyword section with tag chips -->
+              <div class="rm-section rm-focus-kw-section">
+                <div class="rm-section-head">
+                  <label class="rm-label">🔑 Từ khóa trọng tâm (Focus Keywords)</label>
+                  <span class="rm-badge-tip">Bấm ⭐ để đặt từ khóa chính · Bấm ✖ để xóa</span>
                 </div>
-                <div class="seo-score-sub" id="seo-score-sub">Phân tích chuẩn SEO Google &amp; Mạng xã hội theo thời gian thực</div>
+                <div class="rm-tags-input-container" id="rm-tags-container" onclick="document.getElementById('rm-kw-input').focus()">
+                  <div id="rm-tags-list" class="rm-tags-list"></div>
+                  <input type="text" id="rm-kw-input" class="rm-kw-input" placeholder="Thêm từ khóa rồi bấm Enter hoặc dấu phẩy..." onkeydown="handleKwKeydown(event)"/>
+                </div>
+                <input type="hidden" id="ed-keyword" value="${esc(keyword)}"/>
+                <div class="rm-kw-quick-actions">
+                  <button type="button" class="btn btn-secondary btn-sm" onclick="aiSuggestFocusKeyword()">✨ AI Đề xuất từ khóa</button>
+                  <div id="suggested-keywords-row" class="rm-sug-kw-row"></div>
+                </div>
               </div>
-              <div style="display:flex;gap:6px;flex-wrap:wrap">
-                <button type="button" class="btn btn-secondary btn-sm" onclick="aiSuggestFocusKeyword()" title="AI tự động phân tích bài viết để đề xuất từ khóa">🔑 Gợi ý từ khóa</button>
-                <button type="button" class="btn btn-secondary btn-sm" onclick="aiGenerateMetaSummary()" title="AI tạo thẻ mô tả Meta Description chuẩn 155 ký tự">✨ Tạo mô tả</button>
+
+              <!-- SERP Snippet Preview & Editor Box -->
+              <div class="rm-section rm-snippet-section">
+                <div class="rm-section-head">
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <span class="rm-label">🔍 Google SERP Snippet</span>
+                    <div class="rm-device-toggle">
+                      <button type="button" class="rm-dev-btn active" id="rm-dev-desktop" onclick="setSerpDevice('desktop')" title="Xem dạng Desktop">🖥️ Desktop</button>
+                      <button type="button" class="rm-dev-btn" id="rm-dev-mobile" onclick="setSerpDevice('mobile')" title="Xem dạng Mobile">📱 Mobile</button>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-secondary btn-sm" onclick="toggleSnippetEditor()" id="btn-toggle-snippet-editor">✏️ Chỉnh sửa Snippet</button>
+                </div>
+
+                <!-- Google SERP Card Preview -->
+                <div class="seo-serp-box" id="seo-serp-box-preview">
+                  <div class="seo-serp-url-row">
+                    <img src="/favicon-32.png" class="seo-serp-favicon" alt="Favicon" onerror="this.src='https://otahub.asia/favicon-32.png'"/>
+                    <span id="serp-preview-url">https://otahub.asia › ${cat.toLowerCase()} › ${(file||'').replace(/\.html$/,'')}</span>
+                  </div>
+                  <a href="javascript:void(0)" class="seo-serp-title" id="serp-preview-title">${esc(title)} · OtaHub</a>
+                  <div class="seo-serp-desc" id="serp-preview-desc">${esc(desc || 'Mô tả ngắn của bài viết sẽ hiển thị ở đây trên kết quả tìm kiếm Google...')}</div>
+                </div>
+
+                <!-- Snippet Inline Editor (Collapsible) -->
+                <div class="rm-snippet-editor" id="rm-snippet-editor-panel" style="display:none">
+                  <!-- Title field with progress meter -->
+                  <div class="rm-field-group">
+                    <div class="rm-field-label-bar">
+                      <label>Tiêu đề SEO (Title Tag)</label>
+                      <span class="rm-meter-count" id="serp-title-count">${title.length} / 60 ký tự</span>
+                    </div>
+                    <input type="text" class="form-input" id="serp-edit-title" value="${esc(title)}" oninput="onSerpTitleInput(this.value)" placeholder="Tiêu đề hiển thị trên Google..."/>
+                    <div class="rm-meter-bar-track">
+                      <div class="rm-meter-bar-fill ${title.length >= 40 && title.length <= 60 ? 'good' : (title.length > 60 ? 'bad' : 'ok')}" id="serp-title-bar" style="width:${Math.min(100, (title.length/60)*100)}%"></div>
+                    </div>
+                  </div>
+
+                  <!-- Description field with progress meter -->
+                  <div class="rm-field-group">
+                    <div class="rm-field-label-bar">
+                      <label>Mô tả SEO (Meta Description)</label>
+                      <span class="rm-meter-count" id="serp-desc-count">${desc.length} / 160 ký tự</span>
+                    </div>
+                    <textarea class="form-input" id="ed-desc" rows="3" oninput="onDescInput(this.value)" placeholder="Nhập mô tả tóm tắt hấp dẫn chứa từ khóa chính...">${esc(desc)}</textarea>
+                    <div class="rm-meter-bar-track">
+                      <div class="rm-meter-bar-fill ${desc.length >= 120 && desc.length <= 160 ? 'good' : (desc.length > 160 ? 'bad' : 'ok')}" id="serp-desc-bar" style="width:${Math.min(100, (desc.length/160)*100)}%"></div>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px">
+                      <span style="font-size:11px;color:var(--wp-muted)">💡 Khuyên dùng 120-160 ký tự chứa từ khóa chính ngay đoạn mở đầu.</span>
+                      <button type="button" class="btn-link" onclick="aiGenerateMetaSummary()" style="color:var(--wp-blue);font-size:11px;background:none;border:none;cursor:pointer">✨ AI Viết lại Meta</button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div class="seo-tab-bar">
-              <button type="button" class="seo-tab-btn active" id="seo-tab-btn-overview" onclick="switchSeoTab('overview')">⚙️ Tối ưu cơ bản</button>
-              <button type="button" class="seo-tab-btn" id="seo-tab-btn-serp" onclick="switchSeoTab('serp')">🔍 Xem trước Google SERP</button>
-              <button type="button" class="seo-tab-btn" id="seo-tab-btn-social" onclick="switchSeoTab('social')">📱 Xem trước Mạng xã hội</button>
-              <button type="button" class="seo-tab-btn" id="seo-tab-btn-checklist" onclick="switchSeoTab('checklist')">📋 Tiêu chí SEO</button>
-            </div>
-
-            <!-- Tab 1: Overview & Inputs -->
-            <div id="seo-tab-panel-overview">
-              <label class="form-label" style="margin-top:0;display:flex;justify-content:space-between;align-items:center">
-                <span>🔑 Từ khóa trọng tâm (Focus Keyword)</span>
-                <span style="font-size:10.5px;color:var(--wp-muted)">Ví dụ: tên game, anime, review</span>
-              </label>
-              <div style="display:flex;gap:6px">
-                <input class="form-input" id="ed-keyword" value="${esc(keyword)}" placeholder="VD: monster hunter wilds, review anime..." oninput="onKeywordInput(this.value)"/>
-                <button type="button" class="btn btn-secondary btn-sm" onclick="aiSuggestFocusKeyword()" style="white-space:nowrap">✨ AI Tìm</button>
+            <!-- Tab 2: Advanced (Robots Meta & Canonical) -->
+            <div id="rm-panel-advanced" class="rm-tab-panel" style="display:none">
+              <div class="rm-section">
+                <label class="rm-label">Robots Meta</label>
+                <div class="rm-checkbox-grid">
+                  <label><input type="checkbox" id="rm-meta-index" checked onchange="markChanged()"/> Index (Cho phép Google lập chỉ mục)</label>
+                  <label><input type="checkbox" id="rm-meta-nofollow" onchange="markChanged()"/> No Follow (Không truyền link juice)</label>
+                  <label><input type="checkbox" id="rm-meta-noarchive" onchange="markChanged()"/> No Archive (Không lưu bản lưu cache)</label>
+                  <label><input type="checkbox" id="rm-meta-nosnippet" onchange="markChanged()"/> No Snippet (Không hiện mô tả snippet)</label>
+                </div>
               </div>
-              <div id="suggested-keywords-row" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"></div>
-
-              <div style="margin-top:14px">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-                  <label class="form-label" style="margin:0">Mô tả tóm tắt SEO (Meta Description)</label>
-                  <span id="desc-char-badge" class="seo-char-badge ${desc.length >= 120 && desc.length <= 160 ? 'good' : (desc.length === 0 ? 'bad' : 'ok')}">${desc.length}/160 ký tự</span>
-                </div>
-                <textarea class="form-input" id="ed-desc" rows="3" placeholder="Mô tả ngắn cho SEO (120-160 ký tự)..." oninput="onDescInput(this.value)">${esc(desc)}</textarea>
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px;font-size:11px;color:var(--wp-muted)">
-                  <span>💡 Khuyên dùng: 140 - 160 ký tự (chứa từ khóa chính ở đầu câu).</span>
-                  <button type="button" class="btn-link" onclick="aiGenerateMetaSummary()" style="background:none;border:none;color:var(--wp-blue);cursor:pointer;font-size:11px;padding:0">✨ AI Viết lại</button>
-                </div>
+              <div class="rm-section">
+                <label class="rm-label">Canonical URL</label>
+                <input type="text" class="form-input" id="rm-canonical-url" placeholder="https://otahub.asia/${(file||'').replace(/\.html$/,'')}" oninput="markChanged()"/>
+                <div class="rm-hint">Để trống nếu bài viết này là nguồn bài gốc chuẩn canonical.</div>
+              </div>
+              <div class="rm-section">
+                <label class="rm-label">Tiêu đề Breadcrumb</label>
+                <input type="text" class="form-input" id="rm-breadcrumb-title" placeholder="${esc(title)}" oninput="markChanged()"/>
               </div>
             </div>
 
-            <!-- Tab 2: Google SERP Preview -->
-            <div id="seo-tab-panel-serp" style="display:none">
-              <div style="font-size:11.5px;color:var(--wp-muted);margin-bottom:8px">Mô phỏng kết quả hiển thị của bài viết này trên trang tìm kiếm Google:</div>
-              <div class="seo-serp-box">
-                <div class="seo-serp-url-row">
-                  <img src="/favicon-32.png" class="seo-serp-favicon" alt="Favicon" onerror="this.src='https://otahub.asia/favicon-32.png'"/>
-                  <span id="serp-preview-url">https://otahub.asia › ${cat.toLowerCase()} › ${(file||'').replace(/\.html$/,'')}</span>
+            <!-- Tab 3: Schema (Rich Snippets) -->
+            <div id="rm-panel-schema" class="rm-tab-panel" style="display:none">
+              <div class="rm-section">
+                <div class="rm-section-head">
+                  <label class="rm-label">Loại Schema (Structured Data)</label>
+                  <select class="form-input" id="rm-schema-type" onchange="updateSchemaPreview()" style="width:220px">
+                    <option value="Article" selected>Article (Bài viết chung)</option>
+                    <option value="NewsArticle">NewsArticle (Tin tức)</option>
+                    <option value="BlogPosting">BlogPosting (Blog/Chia sẻ)</option>
+                    <option value="FAQPage">FAQPage (Hỏi đáp FAQ)</option>
+                    <option value="Review">Review (Đánh giá Game/Anime)</option>
+                  </select>
                 </div>
-                <a href="javascript:void(0)" class="seo-serp-title" id="serp-preview-title">${esc(title)} · OtaHub</a>
-                <div class="seo-serp-desc" id="serp-preview-desc">${esc(desc || 'Mô tả ngắn của bài viết sẽ hiển thị ở đây trên kết quả tìm kiếm Google...')}</div>
-              </div>
-            </div>
-
-            <!-- Tab 3: Social Card Preview -->
-            <div id="seo-tab-panel-social" style="display:none">
-              <div style="font-size:11.5px;color:var(--wp-muted);margin-bottom:8px">Mô phỏng thẻ chia sẻ liên kết trên Facebook, X (Twitter), Discord &amp; Zalo:</div>
-              <div class="seo-social-card">
-                <img id="social-preview-thumb" class="seo-social-thumb" src="${heroUrl || '/assets/img/og-image.png'}" alt="Social preview" onerror="this.src='/assets/img/og-image.png'"/>
-                <div class="seo-social-body">
-                  <div class="seo-social-domain">OTAHUB.ASIA</div>
-                  <div class="seo-social-title" id="social-preview-title">${esc(title)} · OtaHub</div>
-                  <div class="seo-social-desc" id="social-preview-desc">${esc(desc || 'Khám phá bài viết mới nhất trên OtaHub...')}</div>
+                <div class="rm-schema-preview-box">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                    <span style="font-size:12px;font-weight:600;color:#9cdcfe">Mã Schema JSON-LD tự sinh:</span>
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="copySchemaJson()">📋 Sao chép JSON-LD</button>
+                  </div>
+                  <pre class="rm-schema-code" id="rm-schema-code-block"></pre>
                 </div>
               </div>
             </div>
 
-            <!-- Tab 4: Full Checklist -->
-            <div id="seo-tab-panel-checklist" style="display:none">
+            <!-- Tab 4: Social (OG Card / Twitter Card Preview) -->
+            <div id="rm-panel-social" class="rm-tab-panel" style="display:none">
+              <div class="rm-section">
+                <div class="rm-section-head">
+                  <label class="rm-label">📱 Xem trước Mạng xã hội</label>
+                  <div class="rm-device-toggle">
+                    <button type="button" class="rm-dev-btn active" id="rm-soc-fb" onclick="setSocialTab('fb')">Facebook / Zalo</button>
+                    <button type="button" class="rm-dev-btn" id="rm-soc-tw" onclick="setSocialTab('tw')">X (Twitter) / Discord</button>
+                  </div>
+                </div>
+                <!-- Social Card Preview -->
+                <div class="seo-social-card" id="seo-social-card-box">
+                  <img id="social-preview-thumb" class="seo-social-thumb" src="${heroUrl || '/assets/img/og-image.png'}" alt="Social preview" onerror="this.src='/assets/img/og-image.png'"/>
+                  <div class="seo-social-body">
+                    <div class="seo-social-domain">OTAHUB.ASIA</div>
+                    <div class="seo-social-title" id="social-preview-title">${esc(title)} · OtaHub</div>
+                    <div class="seo-social-desc" id="social-preview-desc">${esc(desc || 'Khám phá bài viết mới nhất trên OtaHub...')}</div>
+                  </div>
+                </div>
+                <div class="rm-social-fields">
+                  <label class="form-label">Tiêu đề Mạng xã hội</label>
+                  <input type="text" class="form-input" id="rm-social-title" value="${esc(title)}" placeholder="Để trống nếu muốn dùng tiêu đề bài viết..." oninput="onSocialTitleInput(this.value)"/>
+                  <label class="form-label" style="margin-top:10px">Mô tả Mạng xã hội</label>
+                  <textarea class="form-input" id="rm-social-desc" rows="2" placeholder="Để trống nếu muốn dùng thẻ Meta Description..." oninput="onSocialDescInput(this.value)">${esc(desc)}</textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 5: Checklist (4-Tier Analysis) -->
+            <div id="rm-panel-checklist" class="rm-tab-panel" style="display:none">
               <div class="seo-checklist" id="seo-checklist"></div>
             </div>
-
           </div>
         </div>
 
       </div>
 
-      <!-- Editor sidebar -->
-      <div class="editor-sidebar">
-        <div class="publish-box">
-          <div class="pb-head">${isContributor ? '📝 Bản nháp' : '🚀 Xuất bản'}</div>
-          <div class="pb-body">
-            <div class="pb-row"><span class="pb-label">Trạng thái</span><span class="pb-val" style="display:flex;align-items:center;gap:6px"><span class="status-dot" id="status-dot"></span><span id="status-text">Chưa có thay đổi</span></span></div>
-            <div class="pb-row"><span class="pb-label">Hiển thị</span><span class="pb-val">${isContributor ? '🔒 Chưa công khai' : '🌐 Công khai'}</span></div>
-            <div class="pb-row"><span class="pb-label">${isContributor ? 'Quy trình' : 'Lưu = xuất bản sau'}</span><span class="pb-val" style="color:var(--cyan)">${isContributor ? 'Chờ biên tập duyệt' : '~1-2 phút'}</span></div>
-            <div class="pb-actions">
-              <button class="btn btn-primary" id="save-btn" onclick="${isContributor ? 'saveArticleDraftNow()' : 'saveArticle()'}">${isContributor ? '📝 Lưu bản nháp' : '💾 Lưu & Deploy'}</button>
+      <!-- WordPress Sidebar Postboxes -->
+      <div class="editor-sidebar" id="postbox-container-1">
+        
+        <!-- Postbox 1: Publish / Submit Post -->
+        <div class="postbox" id="submitdiv">
+          <div class="postbox-header" onclick="togglePostbox(this)">
+            <h2><span>🚀</span> Đăng bài</h2>
+            <button type="button" class="postbox-toggle-btn">▾</button>
+          </div>
+          <div class="inside">
+            <div class="submitbox" id="submitpost">
+              <div id="minor-publishing-actions">
+                <button type="button" class="btn btn-secondary btn-sm" id="save-post" onclick="${isContributor ? 'saveArticleDraftNow()' : 'autosaveDraft()'}">Lưu bản nháp</button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="openFullArticlePreview()">👁️ Xem trước</button>
+              </div>
+              <div id="misc-publishing-actions">
+                <div class="misc-pub-section misc-pub-post-status">
+                  <span>📌</span> Trạng thái: <strong>${isNewFile ? 'Bản nháp' : 'Đã xuất bản'}</strong>
+                </div>
+                <div class="misc-pub-section misc-pub-visibility">
+                  <span>👁️</span> Hiển thị: <strong>${isContributor ? 'Chưa công khai' : 'Công khai'}</strong>
+                </div>
+                <div class="misc-pub-section misc-pub-curtime">
+                  <span>📅</span> Xuất bản: <strong>Ngay lập tức</strong>
+                </div>
+                <div class="misc-pub-section misc-pub-seo">
+                  <span>🎯</span> Điểm SEO: <strong id="misc-seo-score" style="color:var(--wp-green)">--/100</strong>
+                </div>
+              </div>
+              <div id="major-publishing-actions">
+                <div id="delete-action">
+                  ${isNewFile ? '' : `<button type="button" class="submitdelete" onclick="if(confirm('Chuyển bài viết này vào thùng rác?'))trashArticle('${file}')">Bỏ vào thùng rác</button>`}
+                </div>
+                <div id="publishing-action">
+                  <button type="button" class="btn btn-primary" id="publish" onclick="${isContributor ? 'saveArticleDraftNow()' : 'saveArticle()'}">${isContributor ? '📝 Gửi duyệt' : (isNewFile ? '🚀 Đăng bài' : '💾 Cập nhật')}</button>
+                </div>
+              </div>
+              <div class="pb-savelog" id="save-log" style="margin-top:10px"></div>
             </div>
-            <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center">
-              <button type="button" class="btn btn-secondary btn-sm" onclick="openFullArticlePreview()" title="Mở bản xem trước đầy đủ trong tab mới (không lo lỗi 404)">👁️ Xem trước</button>
-              ${isNewFile ? `
-                <span style="font-size:11px;color:var(--wp-muted);line-height:1.4">💡 Bài mới đang là bản nháp — bấm <strong>Xem trước</strong> để xem thử hoặc <strong>Lưu & Deploy</strong> để xuất bản link thật.</span>
-              ` : `
-                <a class="pb-link" id="ed-live-link" href="https://otahub.asia/${file.replace(/\.html$/,'')}" target="_blank" title="Mở bài viết đã xuất bản trên website thật">🔗 Xem live</a>
-                <a class="pb-link" href="#" onclick="event.preventDefault();if(confirm('Bỏ thay đổi?'))editArticle(currentFile)">↺ Hoàn tác</a>
-                <a class="pb-link" href="#" onclick="event.preventDefault();openHistoryModal('${file}', () => editArticle('${file}'))">🕐 Lịch sử</a>
-              `}
-            </div>
-            <div class="pb-savelog" id="save-log"></div>
           </div>
         </div>
 
-        <div class="side-box">
-          <div class="side-box-title" style="display:flex;justify-content:space-between;align-items:center">
-            <span>📝 Tiêu đề bài viết</span>
-            <span id="title-char-badge" class="seo-char-badge ${title.length >= 40 && title.length <= 65 ? 'good' : (title.length === 0 ? 'bad' : 'ok')}">${title.length}/65 ký tự</span>
+        <!-- Postbox 2: Categories (Chuyên mục) -->
+        <div class="postbox" id="categorydiv">
+          <div class="postbox-header" onclick="togglePostbox(this)">
+            <h2><span>🗂️</span> Chuyên mục</h2>
+            <button type="button" class="postbox-toggle-btn">▾</button>
           </div>
-          <input class="form-input" id="ed-title" value="${esc(ART_TITLE || title)}" placeholder="Nhập tiêu đề bài viết..." oninput="onTitleInput(this.value)"/>
-          <div style="font-size:10.5px;color:var(--wp-muted);margin-top:6px;line-height:1.5">💡 Khuyên dùng 40-65 ký tự. Bấm trực tiếp trên tiêu đề khung xem trước để sửa nhanh.</div>
-        </div>
-
-        <div class="side-box">
-          <div class="side-box-title">🔗 Đường dẫn URL</div>
-          ${isNewFile ? `
-            <div style="display:flex;align-items:center;gap:4px;font-size:12px;color:var(--muted);margin-bottom:6px">
-              <span>otahub.asia/</span>
+          <div class="inside">
+            <ul class="category-tabs">
+              <li class="active"><a href="javascript:void(0)">Tất cả chuyên mục</a></li>
+            </ul>
+            <div id="category-all" class="tabs-panel">
+              <ul id="categorychecklist" class="categorychecklist">
+                ${['Gaming','Anime','Manga','Reviews','Rankings','Guide','News','Esports','Technology'].map(c => `
+                  <li>
+                    <label>
+                      <input value="${c}" type="checkbox" name="post_category" ${c===cat?'checked':''} onchange="onCategoryCheckboxChange(this)"/> ${c}
+                    </label>
+                  </li>
+                `).join('')}
+              </ul>
             </div>
-            <input class="form-input" id="ed-slug" value="${esc(file.replace(/\.html$/,''))}" placeholder="duong-dan-bai-viet" oninput="onSlugInput(this.value)"/>
-            <div style="font-size:10.5px;color:var(--muted);margin-top:8px;line-height:1.6">💡 Tự sinh từ tiêu đề — có thể sửa tự do cho tới khi bấm Lưu lần đầu. Sau khi lưu sẽ không đổi được nữa (tránh vỡ link đã chia sẻ).</div>
-          ` : `
-            <div class="form-input" style="background:var(--surf2);color:var(--muted);cursor:not-allowed;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">otahub.asia/${esc(file.replace(/\.html$/,''))}</div>
-            <div style="font-size:10.5px;color:var(--muted);margin-top:8px;line-height:1.6">🔒 Bài đã xuất bản — không đổi URL để tránh vỡ link đã chia sẻ.</div>
-          `}
-        </div>
-
-        <div class="side-box">
-          <div class="side-box-title">🗂️ Danh mục</div>
-          <select class="form-input" id="ed-cat" onchange="markChanged()">
-            ${['Gaming','Anime','Manga','Reviews','Rankings','Guide','News'].map(c =>
-              `<option value="${c}" ${c===cat?'selected':''}>${c}</option>`).join('')}
-          </select>
-        </div>
-
-        <div class="side-box" id="side-box-hb">
-          <div class="side-box-title" style="display:flex;justify-content:space-between;align-items:center">
-            <span>⚡ Tóm tắt điểm nhấn</span>
-            ${ART_HAS_HB ? `<button type="button" onclick="removeHighlightBox()" style="font-size:11px;color:var(--wp-red,#d63638);background:none;border:none;cursor:pointer;font-weight:600">🗑️ Xóa tóm tắt</button>` : ''}
-          </div>
-          ${ART_HAS_HB ? `
-            <div style="margin-top:8px">
-              <label class="form-label" style="margin:0 0 4px">Nhãn tóm tắt</label>
-              <input class="form-input" id="ed-hb-label" value="${esc(ART_HB_LABEL)}" placeholder="Tóm Tắt / Điểm nhấn..." oninput="updateHbLabel(this.value)"/>
-              <label class="form-label" style="margin:8px 0 4px">Nội dung tóm tắt nhanh (2-3 câu)</label>
-              <textarea class="form-input" id="ed-hb-text" rows="3" placeholder="Tóm tắt nội dung chính của bài viết..." oninput="updateHbText(this.value)">${esc(ART_HB_TEXT)}</textarea>
-            </div>
-          ` : `
-            <div style="margin-top:8px;text-align:center;padding:12px 8px;background:var(--wp-bg);border:1px dashed var(--wp-border);border-radius:6px">
-              <div style="font-size:11px;color:var(--wp-muted);margin-bottom:8px">Chưa có khung tóm tắt đầu bài</div>
-              <button type="button" class="btn btn-secondary btn-sm" onclick="addHighlightBox()">+ Thêm khung Tóm tắt (Key Takeaways)</button>
-            </div>
-          `}
-        </div>
-
-        <div class="side-box" id="side-box-hero">
-          <div class="side-box-title" style="display:flex;justify-content:space-between;align-items:center">
-            <span>🖼️ Ảnh bìa (Hero)</span>
-            <button type="button" class="btn-link-danger" onclick="removeHeroImage()" style="font-size:11px;color:var(--wp-red,#d63638);background:none;border:none;cursor:pointer;font-weight:600;display:${heroUrl?'inline-block':'none'}" id="btn-remove-hero">🗑️ Xóa ảnh bìa</button>
-          </div>
-          <div style="position:relative;overflow:hidden;border-radius:8px;margin-top:8px;border:1px solid var(--wp-border);background:var(--wp-bg)" title="Bấm để chọn/đổi ảnh bìa">
-            <img id="hero-preview" src="${heroUrl}" alt="Hero preview" onclick="pickHeroImage('library')"
-              style="width:100%;height:140px;object-fit:cover;object-position:center ${heroPos}%;display:${heroUrl?'block':'none'};transition:object-position .1s;cursor:pointer"
-              onerror="this.style.display='none';document.getElementById('hero-placeholder').style.display='flex'"/>
-            <div id="hero-placeholder" onclick="pickHeroImage('library')" style="width:100%;height:140px;border-radius:8px;background:var(--wp-bg);border:2px dashed var(--wp-border);display:${heroUrl?'none':'flex'};flex-direction:column;gap:6px;align-items:center;justify-content:center;color:var(--wp-muted);font-size:12px;cursor:pointer">
-              <span style="font-size:24px">🖼️</span>
-              <span>Bấm để chọn hoặc tải ảnh bìa lên</span>
+            <input type="hidden" id="ed-cat" value="${cat}"/>
+            <div id="category-adder" style="margin-top:8px">
+              <a href="javascript:void(0)" onclick="toggleCatAdder()" id="cat-add-toggle-link" style="font-size:12px;color:var(--wp-blue);text-decoration:underline">+ Thêm chuyên mục mới</a>
+              <div id="cat-add-box" style="display:none;margin-top:8px">
+                <input type="text" id="new-cat-name" class="form-input" placeholder="Tên chuyên mục..." style="padding:5px 8px;font-size:12px"/>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="addNewCategoryFromSidebar()" style="margin-top:6px;width:100%">Thêm chuyên mục</button>
+              </div>
             </div>
           </div>
-          <div style="display:flex;gap:6px;margin-top:10px">
-            <button type="button" class="btn btn-secondary btn-sm" style="flex:1" onclick="pickHeroImage('upload')">📤 Tải ảnh lên</button>
-            <button type="button" class="btn btn-secondary btn-sm" style="flex:1" onclick="pickHeroImage('library')">📁 Thư viện Media</button>
+        </div>
+
+        <!-- Postbox 3: Featured Image (Ảnh đại diện) -->
+        <div class="postbox" id="postimagediv">
+          <div class="postbox-header" onclick="togglePostbox(this)">
+            <h2><span>🖼️</span> Ảnh đại diện (Featured Image)</h2>
+            <button type="button" class="postbox-toggle-btn">▾</button>
           </div>
-          <div style="margin-top:10px">
-            <input class="form-input" id="ed-hero" value="${esc(heroUrl)}" placeholder="URL ảnh bìa..." oninput="updateHeroPreview(this.value)"/>
-          </div>
-          <div style="margin-top:10px">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-              <label class="form-label" style="margin:0">↕ Vị trí ảnh (Căn dọc)</label>
-              <span id="hero-pos-label" style="color:var(--wp-blue);font-size:12px;font-weight:600">${heroPos}%</span>
+          <div class="inside">
+            <div class="featured-image-holder" onclick="pickHeroImage('library')">
+              <img id="hero-preview" src="${heroUrl}" alt="Featured preview" style="display:${heroUrl?'block':'none'};object-position:center ${heroPos}%" onerror="this.style.display='none';document.getElementById('hero-placeholder').style.display='flex'"/>
+              <div id="hero-placeholder" class="featured-image-placeholder" style="display:${heroUrl?'none':'flex'}">
+                <span style="font-size:24px">🖼️</span>
+                <span>Đặt ảnh đại diện bài viết</span>
+              </div>
             </div>
-            <input type="range" id="ed-hero-pos" min="0" max="100" value="${heroPos}"
-              style="width:100%;accent-color:var(--wp-blue);cursor:pointer"
-              oninput="updateHeroPosLabel(this.value)"/>
-          </div>
-          <div style="font-size:10.5px;color:var(--wp-muted);margin-top:10px;line-height:1.6">
-            💡 YouTube: <code style="color:var(--wp-blue)">i.ytimg.com/vi/ID/maxresdefault.jpg</code><br>
-            💡 Steam: <code style="color:var(--wp-blue)">cdn.akamai.steamstatic.com/steam/apps/ID/header.jpg</code>
+            <input type="hidden" id="ed-hero" value="${esc(heroUrl)}"/>
+            <div class="featured-image-links">
+              <a href="javascript:void(0)" onclick="pickHeroImage('library')">${heroUrl ? 'Thay đổi ảnh đại diện' : 'Đặt ảnh đại diện'}</a>
+              <a href="javascript:void(0)" onclick="removeHeroImage()" class="delete-link" id="btn-remove-hero" style="display:${heroUrl?'inline':'none'}">Xóa ảnh đại diện</a>
+            </div>
+            <div style="margin-top:12px">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+                <label class="form-label" style="margin:0">↕ Vị trí căn dọc</label>
+                <span id="hero-pos-label" style="color:var(--wp-blue);font-size:12px;font-weight:600">${heroPos}%</span>
+              </div>
+              <input type="range" id="ed-hero-pos" min="0" max="100" value="${heroPos}" style="width:100%;accent-color:var(--wp-blue);cursor:pointer" oninput="updateHeroPosLabel(this.value)"/>
+            </div>
           </div>
         </div>
 
-        <div class="side-box">
-          <div class="side-box-title">🔗 Thêm ảnh nhanh</div>
-          <label class="form-label" style="margin-top:0">Video ID YouTube</label>
-          <input class="form-input" id="yt-id" placeholder="dQw4w9WgXcQ" oninput="updateYtPreview()"/>
-          <div style="font-size:11px;color:var(--muted);margin-top:6px" id="yt-urls"></div>
-          <label class="form-label" style="margin-top:12px">App ID Steam</label>
-          <input class="form-input" id="steam-id" placeholder="1091500" oninput="updateSteamUrls()"/>
-          <div style="font-size:11px;color:var(--muted);margin-top:6px" id="steam-urls"></div>
+        <!-- Postbox 4: Highlight Box (Tóm tắt điểm nhấn) -->
+        <div class="postbox" id="side-box-hb">
+          <div class="postbox-header" onclick="togglePostbox(this)">
+            <h2><span>⚡</span> Tóm tắt điểm nhấn (Key Takeaways)</h2>
+            <button type="button" class="postbox-toggle-btn">▾</button>
+          </div>
+          <div class="inside">
+            ${ART_HAS_HB ? `
+              <div>
+                <label class="form-label" style="margin:0 0 4px">Nhãn tóm tắt</label>
+                <input class="form-input" id="ed-hb-label" value="${esc(ART_HB_LABEL)}" placeholder="Tóm Tắt / Điểm nhấn..." oninput="updateHbLabel(this.value)"/>
+                <label class="form-label" style="margin:8px 0 4px">Nội dung tóm tắt (2-3 câu)</label>
+                <textarea class="form-input" id="ed-hb-text" rows="3" placeholder="Tóm tắt nội dung chính của bài viết..." oninput="updateHbText(this.value)">${esc(ART_HB_TEXT)}</textarea>
+                <button type="button" onclick="removeHighlightBox()" style="font-size:11px;color:#b32d2e;background:none;border:none;cursor:pointer;font-weight:600;margin-top:8px">🗑️ Xóa khung tóm tắt</button>
+              </div>
+            ` : `
+              <div style="text-align:center;padding:10px 4px;background:#f6f7f7;border:1px dashed #ccd0d4;border-radius:4px">
+                <div style="font-size:11.5px;color:#646970;margin-bottom:8px">Chưa bật khung tóm tắt đầu bài</div>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="addHighlightBox()">+ Thêm khung Tóm tắt</button>
+              </div>
+            `}
+          </div>
         </div>
 
-        <div class="side-box" style="font-size:10.5px;color:var(--muted);line-height:1.7">
-          ☁️ Lưu bài → commit lên <strong style="color:var(--dim)">GitHub</strong> → Cloudflare tự build & deploy trong <strong style="color:var(--cyan)">~1-2 phút</strong>.
+        <!-- Postbox 5: Quick Media Embeds -->
+        <div class="postbox" id="quickmediadiv">
+          <div class="postbox-header" onclick="togglePostbox(this)">
+            <h2><span>🔗</span> Thêm ảnh nhanh</h2>
+            <button type="button" class="postbox-toggle-btn">▾</button>
+          </div>
+          <div class="inside">
+            <label class="form-label" style="margin-top:0">YouTube Video ID</label>
+            <input class="form-input" id="yt-id" placeholder="dQw4w9WgXcQ" oninput="updateYtPreview()"/>
+            <div style="font-size:11px;color:var(--wp-muted);margin-top:4px" id="yt-urls"></div>
+            <label class="form-label" style="margin-top:10px">Steam App ID</label>
+            <input class="form-input" id="steam-id" placeholder="1091500" oninput="updateSteamUrls()"/>
+            <div style="font-size:11px;color:var(--wp-muted);margin-top:4px" id="steam-urls"></div>
+          </div>
         </div>
+
       </div>
     </div>
   `);
 
   // Mark as changed when edited
-  ['ed-desc','ed-hero','ed-hero-pos','body-textarea','body-visual'].forEach(id => {
+  ['ed-desc','ed-hero','ed-hero-pos','body-textarea','body-visual','title'].forEach(id => {
     document.getElementById(id)?.addEventListener('input', markChanged);
   });
 
-  // Trình soạn thảo trực quan: ưu tiên thẻ <p> khi Enter thay vì <div>
   try { document.execCommand('defaultParagraphSeparator', false, 'p'); } catch(e) {}
-  // BODY_MODE đã được set ở trên (blocks nếu có dữ liệu block, ngược lại visual) — không ghi đè lại ở đây.
 
   if (BODY_BLOCKS) renderBlockEditor();
 
-  // Dựng bản xem trước thật kiểu Elementor + gắn cầu nối postMessage cho phép
-  // gõ trực tiếp trong iframe (tiêu đề, mô tả ngắn, đoạn văn...) đồng bộ ngược
-  // về trạng thái editor mà không làm mất con trỏ/focus.
   const artIframe = document.getElementById('art-visual-iframe');
   if (artIframe) artIframe.srcdoc = buildArticlePreviewHtml();
   bindArticleBridgeMessages();
 
-  // Số từ / thời gian đọc ước tính + điểm SEO ban đầu
+  renderFocusKeywords();
   updateWordCount();
   updateSeoScore();
 }
@@ -5508,99 +6763,105 @@ function computeSeoScoreCore(title, desc, keyword, slug, bodyHtml) {
 
   const basicChecks = [];
   const addlChecks = [];
+  const titleChecks = [];
   const readChecks = [];
 
   const addBasic = (label, status, hint) => basicChecks.push({ label, status, hint });
   const addAddl = (label, status, hint) => addlChecks.push({ label, status, hint });
+  const addTitle = (label, status, hint) => titleChecks.push({ label, status, hint });
   const addRead = (label, status, hint) => readChecks.push({ label, status, hint });
 
-  // 1. Basic SEO
+  // 1. Basic SEO (5 rules)
   if (!keyword) {
-    addBasic('Chưa nhập từ khóa trọng tâm', 'bad', 'Nhập 1 từ khóa chính để phân tích SEO toàn diện (VD: tên game, anime, review...).');
+    addBasic('Chưa nhập từ khóa trọng tâm', 'bad', 'Nhập ít nhất 1 từ khóa chính để kích hoạt phân tích Rank Math.');
   } else {
     const titleHasKw = nTitle.includes(nKw);
-    addBasic('Từ khóa trong Tiêu đề bài viết', titleHasKw ? 'good' : 'bad',
-      titleHasKw ? 'Tiêu đề đã chứa từ khóa chính.' : 'Thêm từ khóa trọng tâm vào tiêu đề bài viết.');
-    
-    const titleStartsKw = nTitle.startsWith(nKw) || nTitle.indexOf(nKw) <= 15;
-    addBasic('Từ khóa nằm ở đầu Tiêu đề', titleStartsKw ? 'good' : 'ok',
-      titleStartsKw ? 'Từ khóa nằm ở vị trí đầu tiêu đề (tăng CTR tìm kiếm).' : 'Cân nhắc đưa từ khóa lên gần đầu tiêu đề để gây ấn tượng.');
+    addBasic('Từ khóa trong Tiêu đề SEO', titleHasKw ? 'good' : 'bad',
+      titleHasKw ? 'Tuyệt vời! Tiêu đề đã chứa từ khóa chính.' : 'Thêm từ khóa trọng tâm vào tiêu đề bài viết.');
 
     const descHasKw = nDesc.includes(nKw);
     addBasic('Từ khóa trong Meta Description', descHasKw ? 'good' : 'bad',
       descHasKw ? 'Thẻ mô tả đã chứa từ khóa chính.' : 'Thêm từ khóa trọng tâm vào đoạn mô tả SEO.');
 
     const slugHasKw = nSlug.includes(nKw);
-    addBasic('Từ khóa trong đường dẫn URL (Slug)', slugHasKw ? 'good' : 'ok',
-      slugHasKw ? 'URL đã chứa từ khóa chính.' : 'URL hiện chưa chứa từ khóa (chỉnh được khi viết bài mới).');
+    addBasic('Từ khóa trong URL Slug', slugHasKw ? 'good' : 'ok',
+      slugHasKw ? 'URL đã chứa từ khóa chính.' : 'URL hiện chưa chứa từ khóa.');
 
     const first100 = seoNormText(words.slice(0, 100).join(' '));
     const firstHasKw = first100.includes(nKw);
-    addBasic('Từ khóa trong 10% mở đầu bài', firstHasKw ? 'good' : 'ok',
-      firstHasKw ? 'Từ khóa xuất hiện sớm ngay trong đoạn mở đầu.' : 'Nên nhắc từ khóa chính trong 100 từ đầu tiên của bài.');
+    addBasic('Từ khóa trong 10% đầu bài viết', firstHasKw ? 'good' : 'ok',
+      firstHasKw ? 'Từ khóa xuất hiện sớm ngay đoạn mở đầu.' : 'Nên nhắc từ khóa chính trong 100 từ đầu tiên.');
 
     const kwCount = nKw ? Math.max(0, nBody.split(nKw).length - 1) : 0;
     const density = wordCount ? (kwCount / wordCount) * 100 : 0;
     const densStatus = density === 0 ? 'bad' : (density >= 0.8 && density <= 2.5 ? 'good' : 'ok');
-    addAddl(`Mật độ từ khóa (${density.toFixed(2)}%)`, densStatus,
+    addBasic(`Mật độ từ khóa (${density.toFixed(2)}% - ${kwCount} lần)`, densStatus,
       density === 0 ? 'Từ khóa chưa xuất hiện trong thân bài.' :
-      density > 2.5 ? 'Mật độ từ khóa hơi cao (> 2.5%), tránh lặp từ quá đà.' :
-      density < 0.8 ? 'Mật độ từ khóa hơi thấp (< 0.8%), nên nhắc thêm trong nội dung.' : 'Mật độ từ khóa lý tưởng (0.8% - 2.5%).');
+      density > 2.5 ? 'Mật độ từ khóa hơi cao (> 2.5%), tránh nhồi nhét từ khóa.' :
+      density < 0.8 ? 'Mật độ từ khóa hơi thấp (< 0.8%), nên nhắc thêm trong bài.' : 'Mật độ từ khóa lý tưởng (0.8% - 2.5%).');
   }
 
-  // Length checks
-  const titleLen = (title || '').length;
-  addBasic(`Độ dài tiêu đề (${titleLen}/65 ký tự)`, (titleLen >= 40 && titleLen <= 65) ? 'good' : (titleLen === 0 ? 'bad' : 'ok'),
-    titleLen === 0 ? 'Chưa nhập tiêu đề bài viết.' :
-    titleLen < 40 ? 'Tiêu đề hơi ngắn (< 40 ký tự), nên bổ sung để thu hút người đọc.' :
-    titleLen > 65 ? 'Tiêu đề hơi dài (> 65 ký tự), có thể bị cắt ngắn trên Google.' : 'Độ dài tiêu đề chuẩn SEO Google (40 - 65 ký tự).');
-
-  const descLen = (desc || '').length;
-  addBasic(`Độ dài mô tả (${descLen}/160 ký tự)`, (descLen >= 120 && descLen <= 160) ? 'good' : (descLen === 0 ? 'bad' : 'ok'),
-    descLen === 0 ? 'Chưa có thẻ mô tả Meta Description.' :
-    descLen < 120 ? 'Mô tả hơi ngắn (< 120 ký tự), nên viết từ 120-160 ký tự.' :
-    descLen > 160 ? 'Mô tả hơi dài (> 160 ký tự), đoạn cuối sẽ bị Google cắt thành "...".' : 'Độ dài mô tả lý tưởng (120 - 160 ký tự).');
-
-  addBasic(`Độ dài bài viết (${wordCount} từ)`, wordCount >= 600 ? 'good' : (wordCount >= 300 ? 'ok' : 'bad'),
-    wordCount < 300 ? 'Nội dung quá ngắn (< 300 từ). Bài viết chất lượng nên có tối thiểu 600 từ.' :
-    wordCount < 600 ? 'Độ dài trung bình. Bài viết từ 600+ từ thường có thứ hạng cao hơn.' : 'Độ dài bài viết rất tốt (> 600 từ).');
-
-  // 2. Additional SEO
+  // 2. Additional SEO (5 rules)
   const headingMatches = bodyHtml.match(/<h[23][^>]*>([\s\S]*?)<\/h[23]>/gi) || [];
   const headingsWithKw = keyword ? headingMatches.filter(h => seoNormText(h).includes(nKw)).length : 0;
-  addAddl('Thẻ tiêu đề phụ (H2/H3)', headingMatches.length >= 2 ? 'good' : (headingMatches.length === 1 ? 'ok' : 'bad'),
+  addAddl('Thẻ tiêu đề phụ (H2 / H3)', headingMatches.length >= 2 ? 'good' : (headingMatches.length === 1 ? 'ok' : 'bad'),
     headingMatches.length === 0 ? 'Bài chưa có thẻ H2/H3 nào. Hãy chia nhỏ bài viết thành các mục.' :
     headingsWithKw > 0 ? `Đã có ${headingMatches.length} thẻ H2/H3 và có chứa từ khóa.` : `Đã có ${headingMatches.length} thẻ H2/H3 (nên thêm từ khóa vào ít nhất 1 thẻ).`);
 
   const imgTags = bodyHtml.match(/<img[^>]*>/gi) || [];
   const imgsWithAlt = imgTags.filter(t => /alt="[^"]+"/i.test(t)).length;
-  addAddl(`Thẻ Alt hình ảnh (${imgsWithAlt}/${imgTags.length})`, imgTags.length === 0 ? 'ok' : (imgsWithAlt === imgTags.length ? 'good' : 'bad'),
+  addAddl(`Thuộc tính Alt hình ảnh (${imgsWithAlt}/${imgTags.length})`, imgTags.length === 0 ? 'ok' : (imgsWithAlt === imgTags.length ? 'good' : 'bad'),
     imgTags.length === 0 ? 'Chưa có ảnh trong thân bài.' :
     imgsWithAlt < imgTags.length ? 'Một số hình ảnh còn thiếu thuộc tính alt mô tả.' : 'Tất cả hình ảnh đã có thẻ Alt chuẩn SEO.');
 
   const linkCount = (bodyHtml.match(/<a\s+[^>]*href=/gi) || []).length;
-  addAddl(`Liên kết trong bài (${linkCount})`, linkCount >= 2 ? 'good' : (linkCount === 1 ? 'ok' : 'bad'),
+  addAddl(`Liên kết nội bộ & ngoài (${linkCount})`, linkCount >= 2 ? 'good' : (linkCount === 1 ? 'ok' : 'bad'),
     linkCount === 0 ? 'Chưa có liên kết nào. Hãy chèn thêm internal link tới bài viết liên quan.' : 'Đã có liên kết trong bài viết.');
+
+  addAddl(`Độ dài bài viết (${wordCount} từ)`, wordCount >= 600 ? 'good' : (wordCount >= 300 ? 'ok' : 'bad'),
+    wordCount < 300 ? 'Nội dung quá ngắn (< 300 từ). Bài viết chuẩn SEO nên có tối thiểu 600 từ.' :
+    wordCount < 600 ? 'Độ dài trung bình. Bài viết từ 600+ từ thường có thứ hạng cao hơn.' : 'Độ dài bài viết rất tốt (> 600 từ).');
 
   const hasHighlightBox = typeof ART_HAS_HB !== 'undefined' ? ART_HAS_HB : /class="highlight-box"/.test(bodyHtml);
   addAddl('Khung Tóm tắt / Điểm nhấn', hasHighlightBox ? 'good' : 'ok',
     hasHighlightBox ? 'Đã bật khung Tóm tắt điểm nhấn đầu bài (tăng Dwell Time).' : 'Chưa bật khung Tóm tắt đầu bài.');
 
-  // 3. Readability
+  // 3. Title Readability (3 rules)
+  const titleLen = (title || '').length;
+  addTitle(`Độ dài tiêu đề (${titleLen}/60 ký tự)`, (titleLen >= 40 && titleLen <= 60) ? 'good' : (titleLen === 0 ? 'bad' : 'ok'),
+    titleLen === 0 ? 'Chưa nhập tiêu đề bài viết.' :
+    titleLen < 40 ? 'Tiêu đề hơi ngắn (< 40 ký tự), nên bổ sung để thu hút người đọc.' :
+    titleLen > 60 ? 'Tiêu đề hơi dài (> 60 ký tự), có thể bị cắt ngắn trên Google.' : 'Độ dài tiêu đề chuẩn SEO Google (40 - 60 ký tự).');
+
+  const titleStartsKw = keyword && (nTitle.startsWith(nKw) || nTitle.indexOf(nKw) <= 15);
+  addTitle('Từ khóa ở đầu tiêu đề', titleStartsKw ? 'good' : 'ok',
+    titleStartsKw ? 'Từ khóa nằm ở vị trí đầu tiêu đề (tăng CTR tìm kiếm).' : 'Cân nhắc đưa từ khóa lên gần đầu tiêu đề để gây ấn tượng.');
+
+  const hasNumbersOrPowerWords = /[0-9]|top|review|đánh giá|hướng dẫn|bí mật|mới nhất|chi tiết|2026/i.test(title);
+  addTitle('Kích thích nhấp chuột (CTR Booster)', hasNumbersOrPowerWords ? 'good' : 'ok',
+    hasNumbersOrPowerWords ? 'Tiêu đề có chứa số hoặc từ khóa kích thích nhấp chuột.' : 'Nên thêm số (Top 5, 10...) hoặc từ gợi cảm xúc để tăng tỷ lệ nhấp.');
+
+  // 4. Content Readability (3 rules)
   const sentences = bodyText.split(/[.!?…]+/).map(s => s.trim()).filter(Boolean);
   const avgWps = sentences.length ? wordCount / sentences.length : 0;
   addRead(`Độ dài câu trung bình (${avgWps.toFixed(1)} từ/câu)`, (avgWps === 0 || avgWps <= 20) ? 'good' : 'ok',
     avgWps > 20 ? 'Nhiều câu quá dài (> 20 từ/câu). Nên tách câu ngắn hơn để dễ đọc trên di động.' : 'Độ dài câu ngắn gọn, mạch lạc, dễ đọc.');
 
-  const hasNumbersOrPowerWords = /[0-9]|top|review|đánh giá|hướng dẫn|bí mật|mới nhất|chi tiết|2026/i.test(title);
-  addRead('Tiêu đề thu hút nhấp chuột (CTR Booster)', hasNumbersOrPowerWords ? 'good' : 'ok',
-    hasNumbersOrPowerWords ? 'Tiêu đề có chứa số hoặc từ khóa kích thích nhấp chuột.' : 'Nên thêm số (Top 5, 10...) hoặc từ gợi cảm xúc (Đánh giá, Hướng dẫn) để tăng tỷ lệ nhấp.');
+  const descLen = (desc || '').length;
+  addRead(`Độ dài mô tả (${descLen}/160 ký tự)`, (descLen >= 120 && descLen <= 160) ? 'good' : (descLen === 0 ? 'bad' : 'ok'),
+    descLen === 0 ? 'Chưa có thẻ mô tả Meta Description.' :
+    descLen < 120 ? 'Mô tả hơi ngắn (< 120 ký tự), nên viết từ 120-160 ký tự.' :
+    descLen > 160 ? 'Mô tả hơi dài (> 160 ký tự), đoạn cuối sẽ bị Google cắt thành "...".' : 'Độ dài mô tả lý tưởng (120 - 160 ký tự).');
 
-  const allChecks = [...basicChecks, ...addlChecks, ...readChecks];
+  const hasMediaOrTable = imgTags.length > 0 || /<table|<iframe|<figure/i.test(bodyHtml);
+  addRead('Nội dung đa phương tiện phong phú', hasMediaOrTable ? 'good' : 'ok',
+    hasMediaOrTable ? 'Bài viết có đính kèm hình ảnh, video hoặc bảng biểu sinh động.' : 'Nên chèn thêm hình ảnh, video hoặc bảng biểu để tăng trải nghiệm.');
+
+  const allChecks = [...basicChecks, ...addlChecks, ...titleChecks, ...readChecks];
   const weights = { good: 100, ok: 55, bad: 0 };
   const score = allChecks.length ? Math.round(allChecks.reduce((s, c) => s + weights[c.status], 0) / allChecks.length) : 0;
 
-  return { score, basicChecks, addlChecks, readChecks, checks: allChecks };
+  return { score, basicChecks, addlChecks, titleChecks, readChecks, checks: allChecks };
 }
 
 function seoScoreLabel(score) {
@@ -5787,33 +7048,39 @@ async function seoDashboardRunFullScan() {
   if (CURRENT_VIEW === 'rankmath') renderSeoDashboardPage();
 }
 function updateSeoScore() {
-  const badge = document.getElementById('seo-score-badge');
-  if (!badge) return; // không ở màn hình có SEO box
   const res = computeSeoScore();
-  const { score, basicChecks, addlChecks, readChecks } = res;
+  const { score, basicChecks, addlChecks, titleChecks, readChecks, checks } = res;
   const lbl = seoScoreLabel(score);
-  
-  badge.className = 'seo-score-badge ' + lbl.cls;
-  badge.textContent = score;
-  
-  const pillHeader = document.getElementById('seo-score-pill-header');
-  if (pillHeader) {
-    pillHeader.textContent = `SEO: ${score}/100`;
-    pillHeader.style.color = score >= 80 ? '#008a20' : score >= 50 ? '#d97706' : '#dc2626';
-    pillHeader.style.borderColor = score >= 80 ? '#72e086' : score >= 50 ? '#f0c674' : '#f87171';
-    pillHeader.style.background = score >= 80 ? '#edfaef' : score >= 50 ? '#fff8e1' : '#fef2f2';
+
+  // 1. Update circular SVG chart in Rank Math header
+  const circleStroke = document.getElementById('rm-circle-stroke');
+  const circleText = document.getElementById('rm-circle-text');
+  const circleWrap = document.getElementById('rm-score-circle');
+  if (circleStroke && circleText && circleWrap) {
+    circleStroke.setAttribute('stroke-dasharray', `${score}, 100`);
+    circleText.textContent = score;
+    circleWrap.className = 'rm-score-circle-mini ' + (score >= 80 ? 'rm-good' : score >= 50 ? 'rm-ok' : 'rm-bad');
   }
 
-  const labelEl = document.getElementById('seo-score-label');
-  if (labelEl) { labelEl.textContent = lbl.text; labelEl.className = 'seo-score-label ' + lbl.cls; }
-
-  const subEl = document.getElementById('seo-score-sub');
-  if (subEl) {
-    subEl.textContent = score >= 80 ? '🎉 Bài viết đã được tối ưu SEO xuất sắc, sẵn sàng lên Top Google!' :
-                        score >= 50 ? '⚠️ Bài viết cơ bản ổn, hãy hoàn thiện thêm các tiêu chí bên dưới.' :
-                        '❌ Cần tối ưu thêm từ khóa, tiêu đề và mô tả để tăng thứ hạng.';
+  // 2. Update Yoast traffic light badges
+  const yoastSeo = document.getElementById('yoast-light-seo');
+  if (yoastSeo) {
+    yoastSeo.className = 'yoast-light-badge ' + (score >= 80 ? 'good' : score >= 50 ? 'ok' : 'bad');
+    yoastSeo.textContent = score >= 80 ? '● SEO: Tốt' : score >= 50 ? '● SEO: Khá' : '● SEO: Cần sửa';
+  }
+  const miscSeo = document.getElementById('misc-seo-score');
+  if (miscSeo) {
+    miscSeo.textContent = `${score}/100`;
+    miscSeo.style.color = score >= 80 ? '#008a20' : score >= 50 ? '#d97706' : '#dc2626';
   }
 
+  // 3. Update Checklist counter
+  const checkCount = document.getElementById('rm-checklist-count');
+  if (checkCount && checks) {
+    checkCount.textContent = `${checks.filter(c => c.status === 'good').length}/${checks.length}`;
+  }
+
+  // 4. Update Checklist Panels
   const list = document.getElementById('seo-checklist');
   if (list) {
     const renderChecklistGroup = (title, items) => `
@@ -5833,9 +7100,10 @@ function updateSeoScore() {
     `;
 
     list.innerHTML = [
-      renderChecklistGroup('🎯 1. Tiêu chí SEO Cơ bản', basicChecks || []),
-      renderChecklistGroup('⚡ 2. Cấu trúc & Tối ưu Nâng cao', addlChecks || []),
-      renderChecklistGroup('📖 3. Khả năng đọc & Trải nghiệm (UX)', readChecks || [])
+      renderChecklistGroup('🎯 1. Tiêu chí SEO Cơ bản (Basic SEO)', basicChecks || []),
+      renderChecklistGroup('⚡ 2. Cấu trúc & Tối ưu Nâng cao (Additional SEO)', addlChecks || []),
+      renderChecklistGroup('📝 3. Khả năng đọc Tiêu đề (Title Readability)', titleChecks || []),
+      renderChecklistGroup('📖 4. Khả năng đọc & Trải nghiệm (Content Readability)', readChecks || [])
     ].join('');
   }
 }
@@ -6035,6 +7303,7 @@ function switchBodyMode(mode) {
   if (mode === BODY_MODE) return;
   const vis = document.getElementById('body-visual');
   const ta = document.getElementById('body-textarea');
+  const liveWrap = document.getElementById('body-live-wrap');
 
   if (BODY_MODE === 'blocks' && mode !== 'blocks') {
     if (!confirm('Chuyển khỏi chế độ Khối sẽ không thể quay lại chỉnh theo khối (kéo-thả) cho bài này nữa — nội dung vẫn được giữ nguyên dưới dạng HTML. Tiếp tục?')) return;
@@ -6042,22 +7311,33 @@ function switchBodyMode(mode) {
     if (vis) vis.innerHTML = rendered;
     if (ta) ta.value = rendered;
     BODY_BLOCKS = null;
-    document.getElementById('body-mode-tab-blocks')?.remove();
+    document.getElementById('content-blocks-tab')?.remove();
   } else if (mode === 'code') {
     if (vis && ta) ta.value = cleanVisualHtml(vis.innerHTML);
   } else if (mode === 'visual' && BODY_MODE === 'code') {
     if (vis && ta) vis.innerHTML = ta.value;
+  } else if (mode === 'live') {
+    if (BODY_MODE === 'code' && vis && ta) vis.innerHTML = ta.value;
+    scheduleArticlePreviewRefresh();
   }
 
   BODY_MODE = mode;
-  document.getElementById('body-mode-tab-blocks')?.classList.toggle('active', mode === 'blocks');
-  document.getElementById('body-mode-tab-visual')?.classList.toggle('active', mode === 'visual');
-  document.getElementById('body-mode-tab-code')?.classList.toggle('active', mode === 'code');
-  document.getElementById('body-blocks-wrap').style.display = mode === 'blocks' ? 'block' : 'none';
-  document.getElementById('body-toolbar-visual').style.display = mode === 'visual' ? 'flex' : 'none';
-  document.getElementById('body-toolbar-code').style.display = mode === 'code' ? 'flex' : 'none';
-  document.getElementById('body-visual-wrap').style.display = mode === 'visual' ? 'block' : 'none';
-  document.getElementById('body-code-wrap').style.display = mode === 'code' ? 'block' : 'none';
+  document.getElementById('content-blocks-tab')?.classList.toggle('active', mode === 'blocks');
+  document.getElementById('content-tmce-tab')?.classList.toggle('active', mode === 'visual');
+  document.getElementById('content-html-tab')?.classList.toggle('active', mode === 'code');
+  document.getElementById('content-live-tab')?.classList.toggle('active', mode === 'live');
+
+  const blocksWrap = document.getElementById('body-blocks-wrap');
+  if (blocksWrap) blocksWrap.style.display = mode === 'blocks' ? 'block' : 'none';
+  const tmceTb = document.getElementById('wp-tinymce-toolbar-wrap');
+  if (tmceTb) tmceTb.style.display = mode === 'visual' ? 'block' : 'none';
+  const codeTb = document.getElementById('wp-code-toolbar-wrap');
+  if (codeTb) codeTb.style.display = mode === 'code' ? 'block' : 'none';
+  const visWrap = document.getElementById('body-visual-wrap');
+  if (visWrap) visWrap.style.display = mode === 'visual' ? 'block' : 'none';
+  const codeWrap = document.getElementById('body-code-wrap');
+  if (codeWrap) codeWrap.style.display = mode === 'code' ? 'block' : 'none';
+  if (liveWrap) liveWrap.style.display = mode === 'live' ? 'block' : 'none';
 }
 
 function visExec(cmd, val) {
