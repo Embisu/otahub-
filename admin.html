@@ -2037,6 +2037,297 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .media-video-embed-wrap { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; }
 .media-video-embed-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .block-video-embed { border-radius: 8px; overflow: hidden; }
+
+/* ── WordPress Floating Image Toolbar ── */
+.wp-img-toolbar-wrap {
+  position: absolute;
+  z-index: 1000;
+  display: none;
+  background: #1d2327;
+  border-radius: 4px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  padding: 4px;
+  gap: 2px;
+  align-items: center;
+  user-select: none;
+  pointer-events: auto;
+}
+.wp-img-toolbar-wrap.active {
+  display: flex;
+}
+.wp-img-tb-btn {
+  background: transparent;
+  border: none;
+  color: #f0f0f1;
+  width: 28px;
+  height: 28px;
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s, color 0.15s;
+}
+.wp-img-tb-btn:hover {
+  background: #3c434a;
+  color: #72aee6;
+}
+.wp-img-tb-btn.active {
+  background: #2271b1;
+  color: #fff;
+}
+.wp-img-tb-divider {
+  width: 1px;
+  height: 18px;
+  background: #50575e;
+  margin: 0 4px;
+}
+.wp-img-tb-text {
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 0 8px;
+  height: 26px;
+  width: auto;
+  gap: 4px;
+}
+.wp-img-tb-del:hover {
+  background: #d63638;
+  color: #fff;
+}
+#body-visual figure.wp-selected-img,
+#body-visual img.wp-selected-img {
+  outline: 2px solid #2271b1 !important;
+  outline-offset: 2px;
+}
+#body-visual.dragover-active {
+  border: 2px dashed #2271b1 !important;
+  background-color: #f0f6fc !important;
+}
+
+/* ── Image Alignment in Visual Editor & Output ── */
+#body-visual figure.alignleft,
+#body-visual img.alignleft {
+  float: left;
+  margin: 0 20px 16px 0;
+  max-width: 50%;
+}
+#body-visual figure.alignright,
+#body-visual img.alignright {
+  float: right;
+  margin: 0 0 16px 20px;
+  max-width: 50%;
+}
+#body-visual figure.aligncenter,
+#body-visual img.aligncenter {
+  display: block;
+  margin: 18px auto;
+  text-align: center;
+}
+#body-visual figure.alignnone,
+#body-visual img.alignnone {
+  display: block;
+  margin: 18px 0;
+}
+#body-visual figure figcaption {
+  font-size: 12px;
+  color: #646970;
+  margin-top: 6px;
+  text-align: center;
+  font-style: italic;
+}
+
+/* ── Image Edit Modal Options ── */
+.ied-align-group,
+.ied-size-group {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+.ied-btn-opt {
+  padding: 6px 12px;
+  border: 1px solid #dcdcde;
+  border-radius: 4px;
+  background: #f6f7f7;
+  color: #2c3338;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.ied-btn-opt:hover {
+  background: #f0f0f1;
+  border-color: #8c8f94;
+}
+.ied-btn-opt.active {
+  background: #2271b1;
+  color: #fff;
+  border-color: #2271b1;
+}
+
+/* ── SEO Outline & Heading Studio Tab ── */
+.rm-outline-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.rm-outline-card {
+  border: 1px solid #dcdcde;
+  border-radius: 6px;
+  background: #fff;
+  padding: 16px;
+}
+.rm-outline-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f0f1;
+}
+.rm-outline-card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1d2327;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.rm-heading-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.rm-heading-node {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  background: #fdfdfd;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.rm-heading-node:hover {
+  background: #f0f6fc;
+  border-color: #72aee6;
+}
+.rm-heading-node.h2 {
+  margin-left: 0;
+  border-left: 4px solid #2271b1;
+  font-weight: 600;
+}
+.rm-heading-node.h3 {
+  margin-left: 18px;
+  border-left: 4px solid #72aee6;
+  font-size: 12.5px;
+}
+.rm-heading-node.h4 {
+  margin-left: 36px;
+  border-left: 4px solid #a7aaad;
+  font-size: 12px;
+}
+.rm-heading-tag-badge {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: #eef3f8;
+  color: #2271b1;
+  margin-right: 8px;
+}
+.rm-heading-kw-badge {
+  background: #edfaef;
+  color: #008a20;
+  border: 1px solid #72e086;
+  font-size: 10px;
+  padding: 1px 5px;
+  border-radius: 10px;
+  margin-left: 6px;
+}
+.rm-heading-words-badge {
+  font-size: 11px;
+  color: #646970;
+  background: #f0f0f1;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+.rm-outline-tpl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+.rm-outline-tpl-card {
+  border: 1px solid #dcdcde;
+  border-radius: 6px;
+  padding: 12px;
+  background: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.rm-outline-tpl-card:hover {
+  border-color: #2271b1;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.rm-outline-tpl-title {
+  font-weight: 700;
+  font-size: 12.5px;
+  color: #1d2327;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.rm-outline-tpl-items {
+  font-size: 11.5px;
+  color: #50575e;
+  line-height: 1.5;
+  margin: 0;
+  padding-left: 16px;
+}
+
+/* ── 1-Click Actionable Fixes in Checklist ── */
+.seo-check-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0f0f1;
+}
+.seo-check-item:last-child {
+  border-bottom: none;
+}
+.seo-check-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1;
+}
+.seo-fix-btn {
+  font-size: 11px !important;
+  padding: 3px 8px !important;
+  white-space: nowrap;
+  background: #f0f6fc !important;
+  color: #2271b1 !important;
+  border: 1px solid #c8e1ff !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  font-weight: 600 !important;
+  transition: all 0.15s !important;
+}
+.seo-fix-btn:hover {
+  background: #2271b1 !important;
+  color: #fff !important;
+}
+
 /* ── 8. RANK MATH SEO PRO & YOAST SEO SUITE ── */
 .rank-math-metabox {
   border: 1px solid #ccd0d4;
@@ -2737,26 +3028,82 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
   </div>
 </div>
 
-<!-- Modal Chỉnh sửa & Xóa ảnh trong thân bài viết -->
+<!-- Modal Chỉnh sửa & Xóa ảnh chuẩn WordPress Classic Editor -->
 <div class="media-modal-ov" id="image-edit-modal-ov" onclick="if(event.target===this)closeImageEditModal()">
-  <div class="media-modal-box" style="max-width:540px">
+  <div class="media-modal-box" style="max-width:580px">
     <div class="media-modal-head">
-      <strong style="font-size:13.5px">🖼️ Chỉnh sửa / Xóa Ảnh trong bài</strong>
+      <strong style="font-size:14px;display:flex;align-items:center;gap:6px">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><path d="M2.5 4h15a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-15a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5zm14.5 1H3v10h14V5zm-9 2a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm6.5 7H4.5l3.5-4.5 2.5 3 2-2.5 3 4z"/></svg>
+        Chi tiết hình ảnh
+      </strong>
       <button class="media-modal-close" onclick="closeImageEditModal()">✕</button>
     </div>
-    <div class="media-modal-body">
-      <div style="display:flex;gap:14px;align-items:flex-start">
-        <div style="width:140px;height:100px;border-radius:6px;overflow:hidden;border:1px solid var(--wp-border);background:var(--wp-bg);flex-shrink:0">
-          <img id="ied-preview" src="" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.src='/favicon-192.png'">
+    <div class="media-modal-body" style="max-height:70vh;overflow-y:auto">
+      <div style="display:flex;gap:16px;align-items:flex-start">
+        <div style="width:160px;height:120px;border-radius:6px;overflow:hidden;border:1px solid var(--wp-border);background:var(--wp-bg);flex-shrink:0;display:flex;align-items:center;justify-content:center">
+          <img id="ied-preview" src="" alt="" style="max-width:100%;max-height:100%;object-fit:contain" onerror="this.src='/favicon-192.png'">
         </div>
         <div style="flex:1;min-width:0">
-          <label class="form-label" style="margin-top:0">Đổi ảnh khác:</label>
-          <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <label class="form-label" style="margin-top:0;font-weight:600">Thay thế ảnh:</label>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
             <button type="button" class="btn btn-secondary btn-sm" onclick="iedChangeFromLibrary()">📁 Thư viện Media</button>
             <button type="button" class="btn btn-secondary btn-sm" onclick="iedUploadNew()">📤 Tải ảnh mới</button>
           </div>
+          <input class="form-input" id="ied-src" placeholder="https://..." oninput="document.getElementById('ied-preview').src = this.value" style="font-size:12px"/>
         </div>
       </div>
+
+      <div style="margin-top:14px;border-top:1px solid var(--wp-border);padding-top:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <label class="form-label" style="margin:0;font-weight:600">Văn bản thay thế (Alt Text - Chuẩn SEO)</label>
+          <button type="button" class="btn-link" onclick="iedAddKeywordToAlt()" style="font-size:11px;color:var(--wp-blue);background:none;border:none;cursor:pointer">✨ Lấy theo từ khóa</button>
+        </div>
+        <input class="form-input" id="ied-alt" placeholder="Mô tả nội dung bức ảnh cho Google & độc giả khi ảnh không tải được..." style="margin-top:4px"/>
+        <div style="font-size:11px;color:var(--wp-muted);margin-top:3px">Mô tả rõ nội dung bức ảnh, chứa từ khóa trọng tâm để đạt điểm SEO tối đa.</div>
+      </div>
+
+      <div style="margin-top:12px">
+        <label class="form-label" style="margin:0 0 4px;font-weight:600">Chú thích hình ảnh (Caption)</label>
+        <input class="form-input" id="ied-caption" placeholder="Chú thích hiển thị bên dưới bức ảnh..."/>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;border-top:1px solid var(--wp-border);padding-top:12px">
+        <div>
+          <label class="form-label" style="margin:0 0 6px;font-weight:600">Căn lề hiển thị (Align)</label>
+          <div class="ied-align-group" id="ied-align-group">
+            <button type="button" class="ied-btn-opt" data-align="none" onclick="iedSetAlign('none')">Mặc định</button>
+            <button type="button" class="ied-btn-opt" data-align="left" onclick="iedSetAlign('left')">Trái</button>
+            <button type="button" class="ied-btn-opt" data-align="center" onclick="iedSetAlign('center')">Giữa</button>
+            <button type="button" class="ied-btn-opt" data-align="right" onclick="iedSetAlign('right')">Phải</button>
+          </div>
+          <input type="hidden" id="ied-align" value="none"/>
+        </div>
+        <div>
+          <label class="form-label" style="margin:0 0 6px;font-weight:600">Kích thước ảnh</label>
+          <div class="ied-size-group" id="ied-size-group">
+            <button type="button" class="ied-btn-opt" data-size="25%" onclick="iedSetSize('25%')">25%</button>
+            <button type="button" class="ied-btn-opt" data-size="50%" onclick="iedSetSize('50%')">50%</button>
+            <button type="button" class="ied-btn-opt" data-size="75%" onclick="iedSetSize('75%')">75%</button>
+            <button type="button" class="ied-btn-opt" data-size="100%" onclick="iedSetSize('100%')">100%</button>
+          </div>
+          <input type="hidden" id="ied-size" value="100%"/>
+        </div>
+      </div>
+
+      <div style="margin-top:12px">
+        <label class="form-label" style="margin:0 0 4px;font-weight:600">Liên kết khi bấm vào ảnh (Link To)</label>
+        <input class="form-input" id="ied-link" placeholder="Để trống nếu không muốn gắn link click ảnh..."/>
+      </div>
+    </div>
+    <div class="media-modal-foot" style="justify-content:space-between">
+      <button class="btn btn-danger" onclick="iedDeleteImage()">🗑️ Xóa ảnh khỏi bài</button>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-secondary" onclick="closeImageEditModal()">Hủy</button>
+        <button class="btn btn-primary" onclick="iedSaveImage()">✓ Cập nhật</button>
+      </div>
+    </div>
+  </div>
+</div>
       <label class="form-label" style="margin-top:12px">URL ảnh</label>
       <input class="form-input" id="ied-src" placeholder="https://..." oninput="document.getElementById('ied-preview').src = this.value"/>
       <label class="form-label" style="margin-top:10px">Alt text (Mô tả ảnh cho SEO & Google Images)</label>
@@ -3645,7 +3992,272 @@ let MEDIA_MODAL_TAB = 'library';
 let MEDIA_MODAL_CB = null;
 let MEDIA_MODAL_SELECTED_IMG = null;
 
+
+// ── WordPress Classic Selection Memory & Cursor Management ─────────────────
+let SAVED_EDITOR_RANGE = null;
+
+function saveEditorSelection() {
+  const vis = document.getElementById('body-visual');
+  if (!vis) return;
+  const sel = window.getSelection();
+  if (sel && sel.rangeCount > 0) {
+    const range = sel.getRangeAt(0);
+    if (vis.contains(range.commonAncestorContainer) || vis === range.commonAncestorContainer) {
+      SAVED_EDITOR_RANGE = range.cloneRange();
+    }
+  }
+}
+
+function restoreEditorSelection() {
+  const vis = document.getElementById('body-visual');
+  if (!vis) return false;
+  vis.focus();
+  const sel = window.getSelection();
+  if (SAVED_EDITOR_RANGE) {
+    try {
+      sel.removeAllRanges();
+      sel.addRange(SAVED_EDITOR_RANGE);
+      return true;
+    } catch(e) {}
+  }
+  return false;
+}
+
+function insertHtmlAtCursor(html) {
+  const vis = document.getElementById('body-visual');
+  if (!vis) return;
+  vis.focus();
+  let inserted = false;
+  if (SAVED_EDITOR_RANGE) {
+    try {
+      restoreEditorSelection();
+      const sel = window.getSelection();
+      if (sel && sel.rangeCount > 0) {
+        const range = sel.getRangeAt(0);
+        range.deleteContents();
+        const el = document.createElement('div');
+        el.innerHTML = html;
+        const frag = document.createDocumentFragment();
+        let node, lastNode;
+        while ((node = el.firstChild)) {
+          lastNode = frag.appendChild(node);
+        }
+        range.insertNode(frag);
+        if (lastNode) {
+          const newRange = range.cloneRange();
+          newRange.setStartAfter(lastNode);
+          newRange.collapse(true);
+          sel.removeAllRanges();
+          sel.addRange(newRange);
+          SAVED_EDITOR_RANGE = newRange.cloneRange();
+        }
+        inserted = true;
+      }
+    } catch(e) {
+      console.warn('insertHtmlAtCursor error:', e);
+    }
+  }
+  if (!inserted) {
+    vis.insertAdjacentHTML('beforeend', html);
+  }
+  markChanged();
+  updateWordCount();
+  updateSeoScore();
+  updateVisImageCount();
+  renderHeadingsOutline();
+}
+
+// ── Floating WordPress Image Toolbar & Direct Interactions ────────────────
+let CURRENT_ACTIVE_VIS_IMG = null;
+
+function setupVisualImageHandlers() {
+  const vis = document.getElementById('body-visual');
+  if (!vis) return;
+
+  // Track selection inside body-visual
+  ['keyup', 'mouseup', 'focus', 'click'].forEach(evt => {
+    vis.addEventListener(evt, () => {
+      saveEditorSelection();
+      updateWordCount();
+      updateSeoScore();
+      renderHeadingsOutline();
+    });
+  });
+
+  // Track global selection change when inside editor
+  document.addEventListener('selectionchange', () => {
+    const active = document.activeElement;
+    if (active && (active.id === 'body-visual' || active.closest?.('#body-visual'))) {
+      saveEditorSelection();
+    }
+  });
+
+  // Image clicking -> Floating Toolbar
+  vis.addEventListener('click', function(e) {
+    const img = e.target.closest('img');
+    if (img && vis.contains(img)) {
+      e.stopPropagation();
+      selectVisualImage(img);
+    } else {
+      hideVisualImageToolbar();
+    }
+  });
+
+  // Drag & drop image files directly into visual editor
+  vis.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    vis.classList.add('dragover-active');
+  });
+
+  vis.addEventListener('dragleave', function() {
+    vis.classList.remove('dragover-active');
+  });
+
+  vis.addEventListener('drop', async function(e) {
+    e.preventDefault();
+    vis.classList.remove('dragover-active');
+    if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      const file = e.dataTransfer.files[0];
+      if (file.type && file.type.startsWith('image/')) {
+        toast('info', '⏳ Đang tải ảnh kéo-thả vào bài viết...');
+        try {
+          const url = await uploadImageFile(file);
+          if (url) {
+            const cleanName = (file.name || 'Hinh anh').replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ');
+            const figHtml = `<figure class="aligncenter"><img src="${esc(url)}" alt="${esc(cleanName)}" loading="lazy"/><figcaption>${esc(cleanName)}</figcaption></figure><p><br></p>`;
+            insertHtmlAtCursor(figHtml);
+            toast('success', '✅ Đã chèn ảnh vào bài viết');
+          }
+        } catch(err) {
+          toast('error', 'Lỗi tải ảnh: ' + err.message);
+        }
+      }
+    }
+  });
+
+  // Direct clipboard paste (Ctrl+V) of image files into visual editor
+  vis.addEventListener('paste', async function(e) {
+    if (e.clipboardData && e.clipboardData.files && e.clipboardData.files.length > 0) {
+      const file = e.clipboardData.files[0];
+      if (file.type && file.type.startsWith('image/')) {
+        e.preventDefault();
+        toast('info', '⏳ Đang tải ảnh dán từ Clipboard...');
+        try {
+          const url = await uploadImageFile(file);
+          if (url) {
+            const kw = document.getElementById('ed-keyword')?.value || ART_TITLE || 'Hình ảnh';
+            const figHtml = `<figure class="aligncenter"><img src="${esc(url)}" alt="${esc(kw)}" loading="lazy"/><figcaption></figcaption></figure><p><br></p>`;
+            insertHtmlAtCursor(figHtml);
+            toast('success', '✅ Đã dán ảnh thành công');
+          }
+        } catch(err) {
+          toast('error', 'Lỗi tải ảnh: ' + err.message);
+        }
+      }
+    }
+  });
+
+  // Hide toolbar on click outside
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('#wp-img-floating-toolbar') && !e.target.closest('#body-visual img')) {
+      hideVisualImageToolbar();
+    }
+  });
+}
+
+function selectVisualImage(img) {
+  CURRENT_ACTIVE_VIS_IMG = img;
+  document.querySelectorAll('#body-visual .wp-selected-img').forEach(el => el.classList.remove('wp-selected-img'));
+  const figure = img.closest('figure') || img;
+  figure.classList.add('wp-selected-img');
+
+  const tb = document.getElementById('wp-img-floating-toolbar');
+  const visWrap = document.getElementById('body-visual-wrap');
+  if (!tb || !visWrap) return;
+
+  const rect = figure.getBoundingClientRect();
+  const wrapRect = visWrap.getBoundingClientRect();
+
+  const top = rect.top - wrapRect.top - 42;
+  const left = Math.max(10, Math.min(wrapRect.width - 240, rect.left - wrapRect.left));
+
+  tb.style.top = Math.max(4, top) + 'px';
+  tb.style.left = left + 'px';
+  tb.classList.add('active');
+
+  const isCenter = figure.classList.contains('aligncenter') || img.classList.contains('aligncenter');
+  const isLeft = figure.classList.contains('alignleft') || img.classList.contains('alignleft');
+  const isRight = figure.classList.contains('alignright') || img.classList.contains('alignright');
+
+  document.getElementById('wp-img-btn-align-center')?.classList.toggle('active', isCenter);
+  document.getElementById('wp-img-btn-align-left')?.classList.toggle('active', isLeft);
+  document.getElementById('wp-img-btn-align-right')?.classList.toggle('active', isRight);
+  document.getElementById('wp-img-btn-align-none')?.classList.toggle('active', !isCenter && !isLeft && !isRight);
+}
+
+function hideVisualImageToolbar() {
+  CURRENT_ACTIVE_VIS_IMG = null;
+  document.querySelectorAll('#body-visual .wp-selected-img').forEach(el => el.classList.remove('wp-selected-img'));
+  document.getElementById('wp-img-floating-toolbar')?.classList.remove('active');
+}
+
+function wpImgAlign(align) {
+  if (!CURRENT_ACTIVE_VIS_IMG) return;
+  const figure = CURRENT_ACTIVE_VIS_IMG.closest('figure') || CURRENT_ACTIVE_VIS_IMG;
+  figure.classList.remove('alignleft', 'alignright', 'aligncenter', 'alignnone');
+  CURRENT_ACTIVE_VIS_IMG.classList.remove('alignleft', 'alignright', 'aligncenter', 'alignnone');
+  
+  if (align !== 'none') {
+    figure.classList.add('align' + align);
+    CURRENT_ACTIVE_VIS_IMG.classList.add('align' + align);
+  } else {
+    figure.classList.add('alignnone');
+  }
+  
+  selectVisualImage(CURRENT_ACTIVE_VIS_IMG);
+  markChanged();
+}
+
+function wpImgEditCurrent() {
+  if (!CURRENT_ACTIVE_VIS_IMG) return;
+  const img = CURRENT_ACTIVE_VIS_IMG;
+  const figure = img.closest('figure');
+  const figcap = figure?.querySelector('figcaption');
+  const link = img.closest('a');
+
+  let align = 'none';
+  if (figure?.classList.contains('alignleft') || img.classList.contains('alignleft')) align = 'left';
+  else if (figure?.classList.contains('aligncenter') || img.classList.contains('aligncenter')) align = 'center';
+  else if (figure?.classList.contains('alignright') || img.classList.contains('alignright')) align = 'right';
+
+  const widthStyle = img.style.width || figure?.style.width || '100%';
+
+  openImageEditModal({
+    kind: 'active_node',
+    src: img.src || '',
+    alt: img.alt || '',
+    caption: figcap?.textContent || '',
+    align: align,
+    size: widthStyle,
+    link: link?.href || ''
+  });
+}
+
+function wpImgDeleteCurrent() {
+  if (!CURRENT_ACTIVE_VIS_IMG) return;
+  if (!confirm('Xóa hình ảnh này khỏi bài viết?')) return;
+  const figure = CURRENT_ACTIVE_VIS_IMG.closest('figure') || CURRENT_ACTIVE_VIS_IMG;
+  figure.remove();
+  hideVisualImageToolbar();
+  markChanged();
+  updateWordCount();
+  updateSeoScore();
+  updateVisImageCount();
+  toast('success', '🗑️ Đã xóa hình ảnh');
+}
+
 function openMediaModal(cb, defaultTab) {
+  saveEditorSelection();
   MEDIA_MODAL_CB = cb;
   MEDIA_MODAL_SELECTED_IMG = null;
   const img = document.getElementById('media-img-url'), alt = document.getElementById('media-img-alt'),
@@ -3920,47 +4532,50 @@ function mediaConfirmInsert() {
 // ── Modal Chỉnh sửa & Xóa ảnh trong thân bài viết ─────────────────────────
 let CURRENT_IMAGE_EDIT = null;
 
+
 function openImageEditModal(data) {
   CURRENT_IMAGE_EDIT = data;
   const srcEl = document.getElementById('ied-src');
   const altEl = document.getElementById('ied-alt');
   const capEl = document.getElementById('ied-caption');
   const prevEl = document.getElementById('ied-preview');
+  const linkEl = document.getElementById('ied-link');
 
   if (srcEl) srcEl.value = data.src || '';
   if (altEl) altEl.value = data.alt || '';
   if (capEl) capEl.value = data.caption || '';
   if (prevEl) prevEl.src = data.src || '/favicon-192.png';
+  if (linkEl) linkEl.value = data.link || '';
+
+  iedSetAlign(data.align || 'center');
+  iedSetSize(data.size || '100%');
 
   document.getElementById('image-edit-modal-ov')?.classList.add('open');
 }
 
-function closeImageEditModal() {
-  document.getElementById('image-edit-modal-ov')?.classList.remove('open');
-  CURRENT_IMAGE_EDIT = null;
-}
-
-function iedChangeFromLibrary() {
-  openMediaModal(res => {
-    if (res && res.src) {
-      const srcEl = document.getElementById('ied-src');
-      const prevEl = document.getElementById('ied-preview');
-      const altEl = document.getElementById('ied-alt');
-      if (srcEl) srcEl.value = res.src;
-      if (prevEl) prevEl.src = res.src;
-      if (altEl && !altEl.value && res.alt) altEl.value = res.alt;
-    }
-  }, 'library');
-}
-
-function iedUploadNew() {
-  triggerImageUpload(url => {
-    const srcEl = document.getElementById('ied-src');
-    const prevEl = document.getElementById('ied-preview');
-    if (srcEl) srcEl.value = url;
-    if (prevEl) prevEl.src = url;
-    toast('success', '✅ Đã tải ảnh lên');
+function iedSetAlign(align) {
+  const hidden = document.getElementById('ied-align');
+  if (hidden) hidden.value = align;
+  document.querySelectorAll('#ied-align-group .ied-btn-opt').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-align') === align);
   });
+}
+
+function iedSetSize(size) {
+  const hidden = document.getElementById('ied-size');
+  if (hidden) hidden.value = size;
+  document.querySelectorAll('#ied-size-group .ied-btn-opt').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-size') === size);
+  });
+}
+
+function iedAddKeywordToAlt() {
+  const kw = document.getElementById('ed-keyword')?.value || ART_TITLE || '';
+  const altEl = document.getElementById('ied-alt');
+  if (altEl && kw) {
+    altEl.value = (kw + ' - chi tiết hình ảnh bài viết').trim();
+    toast('success', '✨ Đã thêm từ khóa vào Alt Text');
+  }
 }
 
 function iedSaveImage() {
@@ -3968,53 +4583,72 @@ function iedSaveImage() {
   const src = (document.getElementById('ied-src')?.value || '').trim();
   const alt = (document.getElementById('ied-alt')?.value || '').trim();
   const caption = (document.getElementById('ied-caption')?.value || '').trim();
+  const align = document.getElementById('ied-align')?.value || 'none';
+  const size = document.getElementById('ied-size')?.value || '100%';
+  const link = (document.getElementById('ied-link')?.value || '').trim();
 
   if (!src) { toast('error', 'URL ảnh không được để trống'); return; }
 
-  if (CURRENT_IMAGE_EDIT.kind === 'legacy') {
+  let targetImg = null;
+  if (CURRENT_IMAGE_EDIT.kind === 'active_node' && CURRENT_ACTIVE_VIS_IMG) {
+    targetImg = CURRENT_ACTIVE_VIS_IMG;
+  } else if (CURRENT_IMAGE_EDIT.kind === 'legacy') {
     const vis = document.getElementById('body-visual');
-    if (vis) {
-      const imgs = vis.querySelectorAll('img');
-      const img = imgs[CURRENT_IMAGE_EDIT.idx];
-      if (img) {
-        img.src = src;
-        img.alt = alt;
-        const fig = img.closest('figure');
-        if (fig) {
-          let figcap = fig.querySelector('figcaption');
-          if (caption) {
-            if (!figcap) {
-              figcap = document.createElement('figcaption');
-              fig.appendChild(figcap);
-            }
-            figcap.textContent = caption;
-          } else if (figcap) {
-            figcap.remove();
-          }
-        } else if (caption) {
-          const newFig = document.createElement('figure');
-          img.parentNode.insertBefore(newFig, img);
-          newFig.appendChild(img);
-          const figcap = document.createElement('figcaption');
-          figcap.textContent = caption;
-          newFig.appendChild(figcap);
-        }
-        markChanged();
-        toast('success', '✅ Đã cập nhật ảnh');
+    if (vis) targetImg = vis.querySelectorAll('img')[CURRENT_IMAGE_EDIT.idx];
+  }
+
+  if (targetImg) {
+    targetImg.src = src;
+    targetImg.alt = alt;
+    targetImg.style.width = (size === '100%' ? '' : size);
+
+    let fig = targetImg.closest('figure');
+    if (!fig) {
+      fig = document.createElement('figure');
+      targetImg.parentNode.insertBefore(fig, targetImg);
+      fig.appendChild(targetImg);
+    }
+
+    fig.className = (align !== 'none' ? 'align' + align : 'alignnone');
+    fig.style.width = (size === '100%' ? '' : size);
+
+    let figcap = fig.querySelector('figcaption');
+    if (caption) {
+      if (!figcap) {
+        figcap = document.createElement('figcaption');
+        fig.appendChild(figcap);
+      }
+      figcap.textContent = caption;
+    } else if (figcap) {
+      figcap.remove();
+    }
+
+    if (link) {
+      let a = targetImg.closest('a');
+      if (!a) {
+        a = document.createElement('a');
+        targetImg.parentNode.insertBefore(a, targetImg);
+        a.appendChild(targetImg);
+      }
+      a.href = link;
+      a.target = '_blank';
+    } else {
+      const a = targetImg.closest('a');
+      if (a && a.parentNode) {
+        a.parentNode.insertBefore(targetImg, a);
+        a.remove();
       }
     }
-  } else if (CURRENT_IMAGE_EDIT.kind === 'block') {
-    const b = BODY_BLOCKS && BODY_BLOCKS[CURRENT_IMAGE_EDIT.idx];
-    if (b) {
-      b.src = src;
-      b.alt = alt;
-      b.caption = caption;
-      renderBlockEditor();
-      markChanged();
-      toast('success', '✅ Đã cập nhật ảnh trong khối');
-    }
+
+    markChanged();
+    updateWordCount();
+    updateSeoScore();
+    updateVisImageCount();
+    toast('success', '✅ Đã cập nhật chi tiết hình ảnh');
   }
+
   closeImageEditModal();
+  hideVisualImageToolbar();
 }
 
 function iedDeleteImage() {
@@ -5312,6 +5946,8 @@ function addFocusKeywordTag(rawKw) {
   if (!FOCUS_KEYWORDS.includes(kw)) {
     FOCUS_KEYWORDS.push(kw);
     renderFocusKeywords();
+  setupVisualImageHandlers();
+  renderHeadingsOutline();
     markChangedNoRebuild();
   }
 }
@@ -5348,13 +5984,14 @@ function handleKwKeydown(e) {
 
 function switchRmTab(tabId) {
   RM_ACTIVE_TAB = tabId;
-  ['general', 'advanced', 'schema', 'social', 'checklist'].forEach(t => {
+  ['general', 'outline', 'advanced', 'schema', 'social', 'checklist'].forEach(t => {
     const btn = document.getElementById('rm-tab-' + t);
     const panel = document.getElementById('rm-panel-' + t);
     if (btn) btn.classList.toggle('active', t === tabId);
     if (panel) panel.style.display = (t === tabId ? 'block' : 'none');
   });
   if (tabId === 'schema') updateSchemaPreview();
+  if (tabId === 'outline') renderHeadingsOutline();
 }
 
 function toggleSnippetEditor() {
@@ -5859,8 +6496,31 @@ function renderEditor(file, html) {
           </div>
 
           <!-- Visual Editable Area -->
-          <div id="body-visual-wrap" style="display:${BODY_MODE==='visual'?'block':'none'}">
+          <div id="body-visual-wrap" style="display:${BODY_MODE==='visual'?'block':'none'};position:relative">
             <div id="body-visual" contenteditable="true" spellcheck="true">${bodyVi}</div>
+            
+            <!-- Floating WordPress Image Toolbar -->
+            <div id="wp-img-floating-toolbar" class="wp-img-toolbar-wrap">
+              <button type="button" class="wp-img-tb-btn" id="wp-img-btn-align-left" title="Căn trái" onclick="wpImgAlign('left')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15 15H3v2h12v-2zm0-8H3v2h12V7zM3 13h18v-2H3v2zm0 8h18v-2H3v2zM3 3v2h18V3H3z"/></svg>
+              </button>
+              <button type="button" class="wp-img-tb-btn" id="wp-img-btn-align-center" title="Căn giữa" onclick="wpImgAlign('center')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 15v2h10v-2H7zm-4 6h18v-2H3v2zm0-8h18v-2H3v2zm4-6v2h10V7H7zM3 3v2h18V3H3z"/></svg>
+              </button>
+              <button type="button" class="wp-img-tb-btn" id="wp-img-btn-align-right" title="Căn phải" onclick="wpImgAlign('right')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21h18v-2H3v2zm6-4h12v-2H9v2zm-6-4h18v-2H3v2zm6-4h12V7H9v2zM3 3v2h18V3H3z"/></svg>
+              </button>
+              <button type="button" class="wp-img-tb-btn" id="wp-img-btn-align-none" title="Không căn (Mặc định)" onclick="wpImgAlign('none')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18V7H3v2zm0-6v2h18V3H3z"/></svg>
+              </button>
+              <div class="wp-img-tb-divider"></div>
+              <button type="button" class="wp-img-tb-btn wp-img-tb-text" title="Chỉnh sửa chi tiết" onclick="wpImgEditCurrent()">
+                ✏️ Sửa
+              </button>
+              <button type="button" class="wp-img-tb-btn wp-img-tb-del wp-img-tb-text" title="Xóa ảnh" onclick="wpImgDeleteCurrent()">
+                🗑️ Xóa
+              </button>
+            </div>
           </div>
 
           <!-- Code Textarea Area -->
@@ -5933,6 +6593,9 @@ function renderEditor(file, html) {
               <button type="button" class="rm-tab-btn active" id="rm-tab-general" onclick="switchRmTab('general')">
                 <span class="rm-tab-icon">⚙️</span> Tổng quan
               </button>
+              <button type="button" class="rm-tab-btn" id="rm-tab-outline" onclick="switchRmTab('outline')">
+                <span class="rm-tab-icon">📑</span> Dàn ý & Heading (<span id="rm-heading-count">0 mục</span>)
+              </button>
               <button type="button" class="rm-tab-btn" id="rm-tab-advanced" onclick="switchRmTab('advanced')">
                 <span class="rm-tab-icon">🔧</span> Nâng cao
               </button>
@@ -5947,6 +6610,42 @@ function renderEditor(file, html) {
               </button>
             </div>
             
+            
+            <!-- Tab: Dàn ý & Heading (SEO Outline & Hierarchy Studio) -->
+            <div id="rm-panel-outline" class="rm-tab-panel" style="display:none">
+              <div class="rm-outline-container">
+                <!-- Live Heading Structure Card -->
+                <div class="rm-outline-card">
+                  <div class="rm-outline-card-head">
+                    <div class="rm-outline-card-title">
+                      <span>📑</span> Cấu trúc Heading & Đếm từ theo phân đoạn
+                    </div>
+                    <div style="display:flex;gap:6px">
+                      <button type="button" class="btn btn-secondary btn-sm" onclick="renderHeadingsOutline()" title="Quét lại cấu trúc heading">🔄 Làm mới</button>
+                    </div>
+                  </div>
+                  <div style="font-size:12px;color:var(--wp-muted);margin-bottom:12px">
+                    Kiểm tra trực tiếp tính chuẩn mực của các thẻ Heading (H1/H2/H3/H4), đếm số từ từng đoạn và độ phủ của từ khóa trọng tâm.
+                  </div>
+                  <div id="rm-heading-tree-box" class="rm-heading-tree"></div>
+                </div>
+
+                <!-- SEO Outline Templates Generator Card -->
+                <div class="rm-outline-card">
+                  <div class="rm-outline-card-head">
+                    <div class="rm-outline-card-title">
+                      <span>✨</span> Gợi ý Dàn Bài Mẫu Chuẩn SEO Rank Math Pro
+                    </div>
+                    <span style="font-size:11px;color:#2271b1;font-weight:600">Tự động gắn theo Từ khóa chính</span>
+                  </div>
+                  <div style="font-size:12px;color:var(--wp-muted);margin-bottom:12px">
+                    Chọn một dàn ý cấu trúc chuẩn SEO bên dưới để áp dụng trực tiếp vào trình soạn thảo:
+                  </div>
+                  <div class="rm-outline-tpl-grid" id="rm-outline-templates-grid"></div>
+                </div>
+              </div>
+            </div>
+
             <!-- Tab 1: General (Focus Keyword + Snippet Preview/Editor) -->
             <div id="rm-panel-general" class="rm-tab-panel">
               <!-- Focus Keyword section with tag chips -->
@@ -7188,6 +7887,339 @@ async function seoDashboardRunFullScan() {
   SEO_SCAN_RUNNING = false;
   if (CURRENT_VIEW === 'rankmath') renderSeoDashboardPage();
 }
+
+// ── SEO Heading Outline Studio & AI Template Generator ────────────────────
+function analyzeHeadingsOutline() {
+  const vis = document.getElementById('body-visual');
+  const title = ART_TITLE || document.getElementById('title')?.value || 'Tiêu đề bài viết';
+  const keyword = (document.getElementById('ed-keyword')?.value || '').trim();
+  const nKw = seoNormText(keyword);
+
+  const nodes = [];
+  // H1 (Article Title)
+  nodes.push({
+    level: 1,
+    tag: 'H1',
+    text: title,
+    hasKw: nKw ? seoNormText(title).includes(nKw) : false,
+    words: 0
+  });
+
+  if (vis) {
+    const headingEls = Array.from(vis.querySelectorAll('h2, h3, h4'));
+    headingEls.forEach((h, idx) => {
+      const tag = h.tagName.toUpperCase();
+      const level = parseInt(tag.replace('H', ''), 10);
+      const text = h.innerText.trim() || '(Tiêu đề trống)';
+      const hasKw = nKw ? seoNormText(text).includes(nKw) : false;
+
+      let current = h.nextElementSibling;
+      let sectionText = '';
+      while (current && !['H2','H3','H4'].includes(current.tagName)) {
+        sectionText += ' ' + (current.textContent || '');
+        current = current.nextElementSibling;
+      }
+      const sectionWords = (sectionText.trim().match(/\S+/g) || []).length;
+
+      nodes.push({
+        level,
+        tag,
+        text,
+        hasKw,
+        words: sectionWords,
+        idx
+      });
+    });
+  }
+
+  return { nodes, totalHeadings: nodes.length - 1 };
+}
+
+function renderHeadingsOutline() {
+  const box = document.getElementById('rm-heading-tree-box');
+  const countBadge = document.getElementById('rm-heading-count');
+  const tplGrid = document.getElementById('rm-outline-templates-grid');
+  const keyword = document.getElementById('ed-keyword')?.value || ART_TITLE || 'Từ khóa bài viết';
+  const { nodes, totalHeadings } = analyzeHeadingsOutline();
+
+  if (countBadge) countBadge.textContent = `${totalHeadings} mục`;
+
+  if (box) {
+    if (nodes.length <= 1) {
+      box.innerHTML = `
+        <div style="text-align:center;padding:24px;background:#f9f9f9;border-radius:6px;border:1px dashed #ccd0d4">
+          <div style="font-size:20px;margin-bottom:6px">📑</div>
+          <div style="font-weight:600;color:#1d2327;margin-bottom:4px">Chưa có thẻ tiêu đề phụ (H2 / H3) nào</div>
+          <div style="font-size:12px;color:#646970;margin-bottom:12px">Thêm các thẻ H2 để chia nhỏ bài viết giúp người đọc dễ theo dõi và tăng điểm SEO.</div>
+          <button type="button" class="btn btn-primary btn-sm" onclick="seoFixInsertH2WithKeyword()">+ Thêm H2 chứa từ khóa</button>
+        </div>
+      `;
+    } else {
+      box.innerHTML = nodes.map((node) => {
+        if (node.level === 1) {
+          return `
+            <div class="rm-heading-node" style="background:#f0f6fc;border-left:4px solid #005ae0">
+              <div style="display:flex;align-items:center;min-width:0;gap:4px">
+                <span class="rm-heading-tag-badge" style="background:#005ae0;color:#fff">H1</span>
+                <span style="font-weight:700;color:#1d2327;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(node.text)}</span>
+                ${node.hasKw ? '<span class="rm-heading-kw-badge">🔑 Có từ khóa</span>' : ''}
+              </div>
+              <span style="font-size:11px;color:#005ae0;font-weight:600;flex-shrink:0">Tiêu đề bài viết</span>
+            </div>
+          `;
+        }
+
+        const lvlClass = 'h' + node.level;
+        return `
+          <div class="rm-heading-node ${lvlClass}" onclick="jumpToVisualHeading(${node.idx})" title="Bấm để nhảy tới vị trí heading này trong bài">
+            <div style="display:flex;align-items:center;min-width:0;gap:4px">
+              <span class="rm-heading-tag-badge">${node.tag}</span>
+              <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(node.text)}</span>
+              ${node.hasKw ? '<span class="rm-heading-kw-badge" title="Chứa từ khóa trọng tâm">🔑 Từ khóa</span>' : ''}
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;flex-shrink:0">
+              <span class="rm-heading-words-badge" title="Độ dài phân đoạn này">${node.words} từ</span>
+              <span style="font-size:11px;color:#2271b1">Nhảy tới →</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+  }
+
+  // Render Outline Templates
+  if (tplGrid) {
+    const templates = [
+      {
+        id: 'review',
+        title: '🎮 Bài Review / Đánh giá',
+        desc: 'Tối ưu chuẩn cho bài đánh giá Game, Anime, Phim ảnh, Sản phẩm công nghệ.',
+        items: [
+          `H2: Tổng quan & Giới thiệu về ${keyword}`,
+          `H2: Đánh giá Đồ họa, Âm thanh & Trải nghiệm thực tế`,
+          `H2: Phân tích Chi tiết Cốt truyện / Gameplay`,
+          `H2: Tổng hợp Ưu điểm & Nhược điểm cần lưu ý`,
+          `H2: Cấu hình yêu cầu & Hướng dẫn tải / trải nghiệm`,
+          `H2: Đánh giá tổng kết & Điểm số (Verdict)`
+        ]
+      },
+      {
+        id: 'guide',
+        title: '📖 Bài Hướng dẫn / Thủ thuật (How-To)',
+        desc: 'Cấu trúc bài viết hướng dẫn từng bước chi tiết, mẹo vặt và trả lời câu hỏi.',
+        items: [
+          `H2: Giới thiệu & Điều kiện chuẩn bị cho ${keyword}`,
+          `H2: Hướng dẫn chi tiết từng bước thực hiện (Step-by-Step)`,
+          `H2: Các mẹo hay & Lưu ý quan trọng cho người mới`,
+          `H2: Những lỗi thường gặp và cách khắc phục nhanh`,
+          `H2: Câu hỏi thường gặp (FAQ) về ${keyword}`,
+          `H2: Lời kết & Tóm tắt`
+        ]
+      },
+      {
+        id: 'news',
+        title: '⚡ Bài Tin tức / Cập nhật & Sự kiện',
+        desc: 'Cấu trúc tin nóng, bản cập nhật mới nhất, lịch trình sự kiện.',
+        items: [
+          `H2: Diễn biến mới nhất về ${keyword}`,
+          `H2: Chi tiết các nội dung cập nhật quan trọng`,
+          `H2: Phản ứng của cộng đồng game thủ & chuyên gia`,
+          `H2: Thời gian phát hành & Kế hoạch tiếp theo`,
+          `H2: Tổng kết nhận định`
+        ]
+      },
+      {
+        id: 'toplist',
+        title: '🏆 Bài Toplist / Bảng xếp hạng',
+        desc: 'Dạng bài Top 5, Top 10, so sánh tổng hợp thu hút lượt click cao.',
+        items: [
+          `H2: Tiêu chí xếp hạng & Lựa chọn danh sách ${keyword}`,
+          `H2: Top các ${keyword} đáng trải nghiệm nhất 2026`,
+          `H2: So sánh ưu nhược điểm giữa các sự lựa chọn`,
+          `H2: Nên chọn cái nào phù hợp nhất với nhu cầu của bạn?`,
+          `H2: Lời kết`
+        ]
+      }
+    ];
+
+    tplGrid.innerHTML = templates.map(tpl => `
+      <div class="rm-outline-tpl-card">
+        <div>
+          <div class="rm-outline-tpl-title">${tpl.title}</div>
+          <div style="font-size:11px;color:var(--wp-muted);margin:4px 0 8px">${tpl.desc}</div>
+          <ul class="rm-outline-tpl-items">
+            ${tpl.items.map(it => `<li>${esc(it)}</li>`).join('')}
+          </ul>
+        </div>
+        <div style="display:flex;gap:6px;margin-top:8px">
+          <button type="button" class="btn btn-primary btn-sm" onclick="applySeoOutlineTemplate('${tpl.id}')" style="flex:1">
+            + Áp dụng Dàn Ý này
+          </button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="copySeoOutlineTemplate('${tpl.id}')" title="Sao chép dạng văn bản">
+            📋 Copy
+          </button>
+        </div>
+      </div>
+    `).join('');
+  }
+}
+
+function jumpToVisualHeading(idx) {
+  const vis = document.getElementById('body-visual');
+  if (!vis) return;
+  const headings = Array.from(vis.querySelectorAll('h2, h3, h4'));
+  const target = headings[idx];
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    target.style.transition = 'all 0.3s';
+    target.style.outline = '2px solid #2271b1';
+    target.style.backgroundColor = '#eef3f8';
+    setTimeout(() => {
+      target.style.outline = '';
+      target.style.backgroundColor = '';
+    }, 1500);
+  }
+}
+
+function applySeoOutlineTemplate(type) {
+  const kw = (document.getElementById('ed-keyword')?.value || ART_TITLE || 'Từ khóa bài viết').trim();
+  let html = '';
+
+  if (type === 'review') {
+    html = `
+      <h2>1. Tổng quan & Giới thiệu về ${esc(kw)}</h2>
+      <p>Đoạn mở đầu giới thiệu bối cảnh, nguồn gốc và sức hút đặc biệt của ${esc(kw)}...</p>
+      <h2>2. Đánh giá Đồ họa, Âm thanh & Không khí</h2>
+      <p>Phân tích chi tiết về phong cách hình ảnh, hiệu ứng chuyển động, thiết kế nhân vật và chất lượng âm thanh...</p>
+      <h2>3. Chi tiết Cốt truyện & Lối chơi (Gameplay)</h2>
+      <p>Đi sâu vào cơ chế cốt lõi, điểm đổi mới sáng tạo và trải nghiệm mang lại cho người chơi...</p>
+      <h2>4. Ưu điểm & Nhược điểm cần lưu ý</h2>
+      <p>Tóm tắt các điểm sáng nổi bật cùng những hạn chế mà bạn đọc cần cân nhắc...</p>
+      <h2>5. Cấu hình yêu cầu & Hướng dẫn trải nghiệm ${esc(kw)}</h2>
+      <p>Thông số cấu hình tối thiểu, cấu hình đề nghị và các bước tải / tham gia nhanh chóng...</p>
+      <h2>6. Đánh giá tổng kết & Điểm số</h2>
+      <p>Lời kết cô đọng và nhận định chung: Có đáng để trải nghiệm ngay hôm nay không?</p>
+    `;
+  } else if (type === 'guide') {
+    html = `
+      <h2>1. Giới thiệu & Điều kiện chuẩn bị cho ${esc(kw)}</h2>
+      <p>Những điều bạn cần biết trước khi bắt đầu thực hiện ${esc(kw)}...</p>
+      <h2>2. Hướng dẫn chi tiết từng bước thực hiện ${esc(kw)}</h2>
+      <h3>Bước 1: Khởi động và thiết lập ban đầu</h3>
+      <p>Hướng dẫn bước đầu tiên một cách cụ thể...</p>
+      <h3>Bước 2: Tiến hành thao tác chính</h3>
+      <p>Các thao tác cốt lõi cần thực hiện chính xác...</p>
+      <h3>Bước 3: Hoàn tất và kiểm tra kết quả</h3>
+      <p>Cách kiểm tra để đảm bảo mọi thứ hoạt động hoàn hảo...</p>
+      <h2>3. Các mẹo hay & Lưu ý quan trọng cho tân thủ</h2>
+      <p>Kinh nghiệm thực chiến giúp tiết kiệm thời gian và đạt hiệu quả cao nhất...</p>
+      <h2>4. Những câu hỏi thường gặp (FAQ) về ${esc(kw)}</h2>
+      <p>Giải đáp các thắc mắc phổ biến nhất mà người đọc thường đặt ra...</p>
+      <h2>5. Lời kết</h2>
+      <p>Tóm lược nội dung chính và lời chúc thành công...</p>
+    `;
+  } else if (type === 'news') {
+    html = `
+      <h2>1. Diễn biến mới nhất về ${esc(kw)}</h2>
+      <p>Cập nhật toàn cảnh sự kiện vừa diễn ra với những thông tin nóng hổi nhất...</p>
+      <h2>2. Chi tiết các nội dung cập nhật quan trọng</h2>
+      <p>Phân tích sâu từng thay đổi đáng chú ý và tác động trực tiếp của chúng...</p>
+      <h2>3. Phản ứng từ cộng đồng & Nhận định chuyên môn</h2>
+      <p>Ghi nhận ý kiến đánh giá từ cộng đồng người hâm mộ và các phân tích chuyên sâu...</p>
+      <h2>4. Kế hoạch & Thời gian áp dụng tiếp theo</h2>
+      <p>Lộ trình phát triển và những cột mốc đáng mong đợi sắp tới...</p>
+      <h2>5. Lời kết</h2>
+      <p>Tổng kết lại ý nghĩa của sự kiện đối với ${esc(kw)}...</p>
+    `;
+  } else if (type === 'toplist') {
+    html = `
+      <h2>1. Tiêu chí lựa chọn danh sách ${esc(kw)}</h2>
+      <p>Giải thích các tiêu chí chất lượng và cơ sở đánh giá để chọn lọc ra danh sách này...</p>
+      <h2>2. Top các ${esc(kw)} nổi bật nhất 2026</h2>
+      <h3>Top 1: Lựa chọn xuất sắc toàn diện</h3>
+      <p>Mô tả điểm mạnh, tính năng nổi bật và lý do xếp vị trí đầu bảng...</p>
+      <h3>Top 2: Lựa chọn ấn tượng về trải nghiệm</h3>
+      <p>Đặc điểm nổi trội và phân khúc người dùng phù hợp nhất...</p>
+      <h3>Top 3: Lựa chọn tiết kiệm & Đáng giá nhất</h3>
+      <p>Ưu thế vượt trội về hiệu năng trên giá trị mang lại...</p>
+      <h2>3. So sánh ưu nhược điểm giữa các lựa chọn</h2>
+      <p>Bảng phân tích đối chiếu giúp người đọc dễ dàng đưa ra quyết định...</p>
+      <h2>4. Lời khuyên: Bạn nên lựa chọn cái nào?</h2>
+      <p>Gợi ý cụ thể theo từng nhu cầu và sở thích cá nhân...</p>
+      <h2>5. Lời kết</h2>
+      <p>Tóm tắt ngắn gọn và lời nhắn nhủ gửi tới độc giả...</p>
+    `;
+  }
+
+  insertHtmlAtCursor(html);
+  toast('success', '🎉 Đã áp dụng Dàn Ý Mẫu Chuẩn SEO vào bài viết!');
+}
+
+function copySeoOutlineTemplate(type) {
+  const kw = (document.getElementById('ed-keyword')?.value || ART_TITLE || 'Từ khóa bài viết').trim();
+  let text = '';
+  if (type === 'review') {
+    text = `## 1. Tổng quan & Giới thiệu về ${kw}\n## 2. Đánh giá Đồ họa, Âm thanh & Trải nghiệm\n## 3. Chi tiết Cốt truyện & Gameplay\n## 4. Ưu điểm & Nhược điểm cần lưu ý\n## 5. Cấu hình & Hướng dẫn tải\n## 6. Đánh giá tổng kết & Điểm số`;
+  } else if (type === 'guide') {
+    text = `## 1. Giới thiệu & Điều kiện chuẩn bị cho ${kw}\n## 2. Hướng dẫn chi tiết từng bước\n### Bước 1: Khởi động\n### Bước 2: Thao tác chính\n### Bước 3: Hoàn tất\n## 3. Các mẹo hay & Lưu ý\n## 4. Câu hỏi thường gặp (FAQ)\n## 5. Lời kết`;
+  } else if (type === 'news') {
+    text = `## 1. Diễn biến mới nhất về ${kw}\n## 2. Chi tiết các nội dung cập nhật\n## 3. Phản ứng cộng đồng & Nhận định\n## 4. Kế hoạch tiếp theo\n## 5. Lời kết`;
+  } else {
+    text = `## 1. Tiêu chí lựa chọn danh sách ${kw}\n## 2. Top các ${kw} nổi bật nhất 2026\n### Top 1\n### Top 2\n### Top 3\n## 3. So sánh ưu nhược điểm\n## 4. Lời khuyên chọn lựa\n## 5. Lời kết`;
+  }
+
+  navigator.clipboard.writeText(text).then(() => {
+    toast('success', '📋 Đã sao chép Dàn Ý vào Clipboard');
+  }).catch(() => {
+    toast('info', 'Dàn ý: ' + text);
+  });
+}
+
+// ── 1-Click Actionable Fixes in SEO Checklist ─────────────────────────────
+function seoFixAutoAltImages() {
+  const vis = document.getElementById('body-visual');
+  if (!vis) return;
+  const kw = (document.getElementById('ed-keyword')?.value || ART_TITLE || 'Hình ảnh').trim();
+  const imgs = Array.from(vis.querySelectorAll('img'));
+  let fixedCount = 0;
+
+  imgs.forEach((img, idx) => {
+    if (!img.alt || !img.alt.trim()) {
+      img.alt = `${kw} - hình ảnh minh họa chi tiết ${idx + 1}`;
+      fixedCount++;
+    }
+  });
+
+  if (fixedCount > 0) {
+    markChanged();
+    updateSeoScore();
+    toast('success', `✅ Đã tự động điền Alt chuẩn SEO cho ${fixedCount} hình ảnh!`);
+  } else {
+    toast('info', 'Tất cả hình ảnh đã có thẻ Alt đầy đủ.');
+  }
+}
+
+function seoFixInsertH2WithKeyword() {
+  const kw = (document.getElementById('ed-keyword')?.value || ART_TITLE || 'Nội dung chính').trim();
+  const html = `<h2>${esc(kw)}: Thông tin và đánh giá chi tiết</h2><p>Trình bày nội dung chi tiết xoay quanh ${esc(kw)} tại đây...</p>`;
+  insertHtmlAtCursor(html);
+  toast('success', '✅ Đã chèn thẻ H2 chứa từ khóa trọng tâm');
+}
+
+function seoFixKeywordInTitle() {
+  const kw = (document.getElementById('ed-keyword')?.value || '').trim();
+  if (!kw) {
+    toast('warning', 'Vui lòng nhập từ khóa trọng tâm trước.');
+    return;
+  }
+  let currentTitle = ART_TITLE || document.getElementById('title')?.value || '';
+  if (!seoNormText(currentTitle).includes(seoNormText(kw))) {
+    const newTitle = `${kw} - ${currentTitle || 'Đánh giá & Hướng dẫn chi tiết 2026'}`;
+    onTitleInput(newTitle);
+    toast('success', '✨ Đã cập nhật tiêu đề chứa từ khóa ở đầu');
+  }
+}
+
 function updateSeoScore() {
   const res = computeSeoScore();
   const { score, basicChecks, addlChecks, titleChecks, readChecks, checks } = res;
@@ -7221,20 +8253,46 @@ function updateSeoScore() {
     checkCount.textContent = `${checks.filter(c => c.status === 'good').length}/${checks.length}`;
   }
 
-  // 4. Update Checklist Panels
+  // 4. Update Checklist Panels with 1-Click Action Fixes
   const list = document.getElementById('seo-checklist');
   if (list) {
+    const getActionBtn = (c) => {
+      if (c.status === 'good') return '';
+      if (c.label.includes('Alt hình ảnh')) {
+        return `<button type="button" class="seo-fix-btn" onclick="seoFixAutoAltImages()">🔧 Tự điền Alt</button>`;
+      }
+      if (c.label.includes('H2 / H3') || c.label.includes('tiêu đề phụ')) {
+        return `<button type="button" class="seo-fix-btn" onclick="seoFixInsertH2WithKeyword()">+ Thêm H2</button>`;
+      }
+      if (c.label.includes('Tóm tắt')) {
+        return `<button type="button" class="seo-fix-btn" onclick="addHighlightBox()">⚡ Bật Tóm tắt</button>`;
+      }
+      if (c.label.includes('đầu tiêu đề') || c.label.includes('Tiêu đề SEO')) {
+        return `<button type="button" class="seo-fix-btn" onclick="seoFixKeywordInTitle()">✨ Đưa lên đầu</button>`;
+      }
+      if (c.label.includes('Mô tả') || c.label.includes('Meta Description')) {
+        return `<button type="button" class="seo-fix-btn" onclick="aiGenerateMetaSummary()">✨ AI Viết Meta</button>`;
+      }
+      if (c.label.includes('Liên kết')) {
+        return `<button type="button" class="seo-fix-btn" onclick="visLink()">🔗 Gắn Link</button>`;
+      }
+      return '';
+    };
+
     const renderChecklistGroup = (title, items) => `
       <div class="seo-checklist-group">
         <div class="seo-checklist-title">${title} (${items.filter(i=>i.status==='good').length}/${items.length})</div>
         <div class="seo-checklist">
           ${items.map(c => `
             <div class="seo-check-item">
-              <span class="seo-check-icon">${c.status === 'good' ? '✅' : c.status === 'ok' ? '⚠️' : '❌'}</span>
-              <div>
-                <div class="seo-check-label">${esc(c.label)}</div>
-                <div class="seo-check-hint">${esc(c.hint)}</div>
+              <div class="seo-check-left">
+                <span class="seo-check-icon">${c.status === 'good' ? '✅' : c.status === 'ok' ? '⚠️' : '❌'}</span>
+                <div>
+                  <div class="seo-check-label">${esc(c.label)}</div>
+                  <div class="seo-check-hint">${esc(c.hint)}</div>
+                </div>
               </div>
+              ${getActionBtn(c)}
             </div>`).join('')}
         </div>
       </div>
@@ -7494,10 +8552,16 @@ function visItalic() { visExec('italic'); }
 function visUnderline() { visExec('underline'); }
 function visList() { visExec('insertUnorderedList'); }
 function visImg() {
-  openMediaModal(res => visExec('insertHTML', res.html + '<p><br></p>'), 'library');
+  saveEditorSelection();
+  openMediaModal(res => {
+    insertHtmlAtCursor(res.html + '<p><br></p>');
+  }, 'library');
 }
 function visVideo() {
-  openMediaModal(res => visExec('insertHTML', res.html + '<p><br></p>'), 'video');
+  saveEditorSelection();
+  openMediaModal(res => {
+    insertHtmlAtCursor(res.html + '<p><br></p>');
+  }, 'video');
 }
 function visQuote() {
   visExec('insertHTML', '<blockquote><p>Trích dẫn...</p><cite></cite></blockquote><p><br></p>');
