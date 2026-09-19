@@ -1,5 +1,50 @@
 var IDX = [
   {
+      "title": "The One Piece: WIT Studio & Netflix Tung Trailer Chính Thức Đầu Tiên Về Arc East Blue",
+      "url": "/one-piece-remake-wit-studio-netflix-trailer-chinh-thuc",
+      "cat": "Anime",
+      "date": "2026-09-19",
+      "excerpt": "WIT Studio và Netflix chính thức phát hành đoạn trailer đầu tiên của The One Piece Remake, tái hiện arc East Blue bằng phong cách hoạt họa màu nước điện ảnh đỉnh cao.",
+      "img": "/assets/img/news-one-piece-remake-wit-studio-netflix-trailer.jpg",
+      "tags": [
+          "anime",
+          "hot",
+          "one-piece",
+          "netflix",
+          "wit-studio"
+      ]
+  },
+  {
+      "title": "Genshin Impact 7.0: Đại Băng Quốc Snezhnaya Ra Mắt, Băng Thần Tsaritsa Chính Thức Lộ Diện",
+      "url": "/genshin-impact-7-0-snezhnaya-tsaritsa-bang-than-chinh-thuc-lo-dien",
+      "cat": "Gaming",
+      "date": "2026-09-19",
+      "excerpt": "HoYoverse chính thức phát hành teaser trailer Genshin Impact 7.0 mở ra vùng đất thứ 7 Snezhnaya và tạo hình quyền uy của Băng Thần Tsaritsa tại Cung Điện Mùa Đông.",
+      "img": "/assets/img/news-genshin-7-0-tsaritsa-banner.jpg",
+      "tags": [
+          "gaming",
+          "hot",
+          "genshin",
+          "snezhnaya",
+          "tsaritsa"
+      ]
+  },
+  {
+      "title": "Stellar Blade 2 Chính Thức Được Bật Đèn Xanh: Shift Up Phô Diễn Đồ Họa Unreal Engine 5.5 Cực Đỉnh",
+      "url": "/stellar-blade-2-shift-up-trailer-unreal-engine-5-ps5",
+      "cat": "Gaming",
+      "date": "2026-09-19",
+      "excerpt": "Shift Up và Sony Interactive Entertainment chính thức xác nhận dự án Stellar Blade 2, phát triển trên nền tảng Unreal Engine 5.5 với đồ họa ray-tracing đột phá.",
+      "img": "/assets/img/news-stellar-blade-2-shift-up-ps5-reveal.jpg",
+      "tags": [
+          "gaming",
+          "hot",
+          "stellar-blade",
+          "ps5",
+          "shift-up"
+      ]
+  },
+  {
       "title": "Đánh Giá Girls' Frontline 2: Exilium: Đỉnh Cao Chiến Thuật XCOM Kết Hợp Waifu 3D Thực Sự Ra Sao?",
       "url": "/girls-frontline-2-exilium-danh-gia-chuyen-sau",
       "cat": "Reviews",
