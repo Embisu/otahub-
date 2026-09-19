@@ -21,8 +21,12 @@
  * đây là bước "diff" thật sự của quy trình, không cần build.js tự làm diff.
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const ROOT = path.resolve(__dirname, '..');
 const PAGES_DIR = path.join(ROOT, 'src', 'pages');

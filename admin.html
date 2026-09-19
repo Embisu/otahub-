@@ -3782,6 +3782,22 @@ async function refreshDraftFiles() {
   } catch(e) { /* bỏ qua — không có huy hiệu nháp thì thôi, không phải lỗi nghiêm trọng */ }
 }
 
+// Giải mã Base64 an toàn cho mọi chuỗi UTF-8 tiếng Việt (tránh lỗi URI malformed)
+function b64ToUtf8(str) {
+  if (!str) return '';
+  try {
+    const bin = atob(str.replace(/\s/g, ''));
+    const bytes = Uint8Array.from(bin, c => c.charCodeAt(0));
+    return new TextDecoder().decode(bytes);
+  } catch(e) {
+    try {
+      return decodeURIComponent(escape(atob(str)));
+    } catch(err) {
+      return atob(str);
+    }
+  }
+}
+
 // ── Tải ảnh lên (assets/img/) ─────────────────────────────────────────────
 function slugifyFilename(name) {
   const plain = cleanPlainText(name);
@@ -6212,7 +6228,7 @@ async function loadThumb(imgEl) {
   }
   try {
     const data = await ghGet(file);
-    const html = decodeURIComponent(escape(atob(data.content)));
+    const html = b64ToUtf8(data.content);
     const m = html.match(/property="og:image"\s+content="([^"]*)"/);
     const url = m ? m[1] : '';
     HERO_CACHE.set(file, url);
@@ -6235,7 +6251,7 @@ async function editArticle(file) {
     try {
       const data = await ghGet(file);
       if (data && data.content) {
-        html = decodeURIComponent(escape(atob(data.content)));
+        html = b64ToUtf8(data.content);
         sha = data.sha || '';
         loadSource = 'GitHub API';
       }

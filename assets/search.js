@@ -1,5 +1,89 @@
 var IDX = [
   {
+      "title": "Đánh Giá Girls' Frontline 2: Exilium: Đỉnh Cao Chiến Thuật XCOM Kết Hợp Waifu 3D Hay Bom Xịt Đắt Đỏ?",
+      "url": "/girls-frontline-2-exilium-danh-gia-chuyen-sau",
+      "cat": "Reviews",
+      "date": "2026-09-19",
+      "excerpt": "Đánh giá chi tiết Girls' Frontline 2: Exilium sau hàng chục giờ trải nghiệm: Lối chơi chiến thuật XCOM đột phá, đồ họa cel-shading xuất sắc và chiều sâu cốt truyện.",
+      "img": "/assets/img/f661df27f7-gfl2-exilium-hero.jpg",
+      "tags": [
+          "reviews",
+          "hot",
+          "gfl2",
+          "gaming"
+      ]
+  },
+  {
+      "title": "GTA 6 Tung Trailer Gameplay Mới: Rockstar Phô Diễn Bang Leonida Rực Lửa Và Cơ Chế Tội Phạm Đôi",
+      "url": "/gta-6-gameplay-trailer-rockstar-vice-city-leonida",
+      "cat": "Gaming",
+      "date": "2026-09-19",
+      "excerpt": "Rockstar Games chính thức ra mắt đoạn trailer gameplay chi tiết của GTA 6, hé lộ bản đồ bang Leonida khổng lồ, công nghệ NPC thế hệ mới và cơ chế cướp bóc cặp đôi Lucia - Jason.",
+      "img": "/assets/img/news-gta6-gameplay-trailer-leonida.jpg",
+      "tags": [
+          "gaming",
+          "hot",
+          "breaking",
+          "gta6"
+      ]
+  },
+  {
+      "title": "Chainsaw Man Movie: Reze Arc Phá Đảo Phòng Vé Nhật Bản, Ấn Định Lịch Chiếu Rạp Tại Việt Nam",
+      "url": "/chainsaw-man-movie-reze-arc-chieu-rap-viet-nam-doanh-thu-ky-luc",
+      "cat": "Anime",
+      "date": "2026-09-19",
+      "excerpt": "Chainsaw Man Movie: Reze Arc do MAPPA sản xuất đạt doanh thu 3 tỷ yên tuần đầu tại Nhật Bản, chính thức ấn định lịch chiếu rạp tại Việt Nam với định dạng IMAX và 4DX.",
+      "img": "/assets/img/news-chainsaw-man-movie-reze-arc.jpg",
+      "tags": [
+          "anime",
+          "hot",
+          "chainsaw-man",
+          "reze"
+      ]
+  },
+  {
+      "title": "Zenless Zone Zero 2.0: HoYoverse Khởi Động Kỷ Nguyên Outer Ring, Hoshimi Miyabi Xuất Trận",
+      "url": "/zenless-zone-zero-2-0-outer-ring-miyabi-update",
+      "cat": "Gaming",
+      "date": "2026-09-19",
+      "excerpt": "Bản cập nhật lớn Zenless Zone Zero 2.0 mang tên Khúc Ca Sa Mạc chính thức ra mắt với vùng đất Outer Ring, cơ chế mô tô tốc độ cao và đặc vụ S-Rank Hoshimi Miyabi.",
+      "img": "/assets/img/news-zzz-20-outer-ring.jpg",
+      "tags": [
+          "gaming",
+          "hot",
+          "zzz",
+          "hoyoverse"
+      ]
+  },
+  {
+      "title": "Jujutsu Kaisen Season 3: MAPPA Tung Teaser Tử Diệt Hồi Du (Culling Game), Định Ngày Lên Sóng",
+      "url": "/jujutsu-kaisen-season-3-culling-game-teaser-trailer-lich-chieu",
+      "cat": "Anime",
+      "date": "2026-09-19",
+      "excerpt": "Studio MAPPA chính thức hé lộ đoạn teaser đầu tiên cho Jujutsu Kaisen Mùa 3: Culling Game, hé lộ tạo hình tái xuất của Yuta Okkotsu, Kinji Hakari và cuộc thanh trừng sinh tử.",
+      "img": "/assets/img/news-jujutsu-kaisen-season3-culling-game.jpg",
+      "tags": [
+          "anime",
+          "hot",
+          "jjk",
+          "mappa"
+      ]
+  },
+  {
+      "title": "Nintendo Direct: Switch 2 Chốt Giá Bán 399 USD, Trình Làng Mario Kart Next-Gen Cực Đỉnh",
+      "url": "/nintendo-switch-2-direct-gia-ban-mario-kart-moi",
+      "cat": "Gaming",
+      "date": "2026-09-19",
+      "excerpt": "Nintendo Direct công bố toàn diện Nintendo Switch 2: Giá bán chính thức 399 USD, màn hình OLED 120Hz hỗ trợ DLSS, tương thích ngược 100% và Mario Kart thế hệ mới.",
+      "img": "/assets/img/news-nintendo-direct-sept-2026-switch2-mario-kart.jpg",
+      "tags": [
+          "gaming",
+          "hot",
+          "nintendo",
+          "switch2"
+      ]
+  },
+{
     "title": "Black Myth: Wukong DLC \"Rebirth of the Great Sage\": Game Science Confirms Release Date & Celestial Realm Battlefields",
     "url": "/en/black-myth-wukong-dlc-tai-sinh-dai-thanh-ngay-phat-hanh-boss-thien-dinh",
     "cat": "Gaming",
