@@ -1837,8 +1837,8 @@ body { background: var(--wp-bg); color: var(--wp-title); font-family: 'Segoe UI'
 .article-card:hover { border-color: rgba(0,229,255,.35); }
 .art-thumb-wrap { position: relative; width: 68px; height: 46px; border-radius: 8px; overflow: hidden; background: var(--wp-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .art-thumb-ph { font-size: 19px; opacity: .5; }
-.art-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .25s; }
-.art-thumb.loaded, .art-thumb[src]:not([src=""]) { opacity: 1; }
+.art-thumb-wrap .art-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .25s; }
+.art-thumb-wrap .art-thumb.loaded, .art-thumb-wrap .art-thumb[src]:not([src=""]) { opacity: 1; }
 .art-info { min-width: 0; }
 .art-title { font-size: 13.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--wp-title); }
 .art-meta { font-size: 11px; color: var(--wp-muted); margin-top: 4px; display: flex; align-items: center; gap: 10px; }
@@ -2429,6 +2429,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 }
 
 .wp-list-table {
+  table-layout: fixed;
   border-collapse: collapse;
   margin-top: 0;
   width: 100%;
@@ -2478,27 +2479,48 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
   cursor: pointer;
 }
 .wp-list-table .column-thumb {
-  width: 62px;
+  width: 68px !important;
+  max-width: 68px !important;
   padding: 8px 6px 8px 10px;
   vertical-align: middle;
+  overflow: hidden;
 }
 .wp-post-thumb-box {
-  width: 52px;
-  height: 52px;
+  position: relative !important;
+  width: 52px !important;
+  min-width: 52px !important;
+  max-width: 52px !important;
+  height: 52px !important;
+  min-height: 52px !important;
+  max-height: 52px !important;
   border-radius: 4px;
-  overflow: hidden;
+  overflow: hidden !important;
   background: #f0f0f1;
   border: 1px solid #dcdcde;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  flex-shrink: 0;
 }
-.wp-post-thumb-box img {
+.wp-post-thumb-box img,
+.wp-post-thumb-box .art-thumb {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 52px !important;
+  max-height: 52px !important;
+  object-fit: cover !important;
+  display: block;
+}
+.wp-post-thumb-box .wp-thumb-placeholder {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .wp-list-table .column-title {
   font-size: 14px;
@@ -6016,8 +6038,8 @@ function renderArticleList(filter='', cat='', tab='all') {
         </th>
         <td class="column-thumb" onclick="event.stopPropagation()">
           <div class="wp-post-thumb-box" onclick="editArticle('${esc(a.file)}')">
-            <img class="art-thumb" data-file="${esc(a.file)}" src="${esc(a.hero || '')}" alt="" loading="lazy" onload="this.style.display='block';this.nextElementSibling.style.display='none'" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="wp-thumb-placeholder" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:#8c8f94">
+            <img class="art-thumb" data-file="${esc(a.file)}" src="${esc(a.hero || '')}" alt="" loading="lazy" style="position:absolute;top:0;left:0;width:52px;height:52px;max-width:52px;max-height:52px;object-fit:cover;display:none" onload="this.style.display='block';this.nextElementSibling.style.display='none'" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <div class="wp-thumb-placeholder" style="display:flex;align-items:center;justify-content:center;width:52px;height:52px;color:#8c8f94">
               <svg width="22" height="22" viewBox="0 0 20 20" fill="currentColor"><path d="M2.5 4h15a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-15a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5zm14.5 1H3v10h14V5zm-9 2a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm6.5 7H4.5l3.5-4.5 2.5 3 2-2.5 3 4z"/></svg>
             </div>
           </div>
