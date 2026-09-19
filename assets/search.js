@@ -1,10 +1,10 @@
 var IDX = [
   {
-      "title": "Đánh Giá Girls' Frontline 2: Exilium: Đỉnh Cao Chiến Thuật XCOM Kết Hợp Waifu 3D Hay Bom Xịt Đắt Đỏ?",
+      "title": "Đánh Giá Girls' Frontline 2: Exilium: Đỉnh Cao Chiến Thuật XCOM Kết Hợp Waifu 3D Thực Sự Ra Sao?",
       "url": "/girls-frontline-2-exilium-danh-gia-chuyen-sau",
       "cat": "Reviews",
       "date": "2026-09-19",
-      "excerpt": "Đánh giá chi tiết Girls' Frontline 2: Exilium sau hàng chục giờ trải nghiệm: Lối chơi chiến thuật XCOM đột phá, đồ họa cel-shading xuất sắc và chiều sâu cốt truyện.",
+      "excerpt": "Đánh giá chuyên sâu Girls' Frontline 2: Exilium sau hơn 35 giờ thử nghiệm: Phân tích cơ chế Stability Break, tỷ lệ gacha vũ khí 70 lượt vs nhân vật 80 lượt, đồ họa cel-shading cùng những nhược điểm cần lưu ý.",
       "img": "/assets/img/f661df27f7-gfl2-exilium-hero.jpg",
       "tags": [
           "reviews",
