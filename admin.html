@@ -4188,8 +4188,8 @@ async function uploadImageFile(file) {
   if (!file) return null;
   if (file.size > 8 * 1024 * 1024) throw new Error('Ảnh quá lớn (tối đa 8MB).');
   
-  // Tự động tối ưu/resize ảnh trên trình duyệt trước khi upload
-  const optimized = await compressImageFile(file, 1600, 0.82);
+  // Tự động tối ưu/resize ảnh trên trình duyệt trước khi upload (chuẩn WebP chất lượng cao)
+  const optimized = await compressImageFile(file, 1600, 0.85);
   const b64 = optimized.b64;
   const ext = optimized.ext || 'webp';
   const mimeType = optimized.mimeType || 'image/webp';
@@ -4198,9 +4198,7 @@ async function uploadImageFile(file) {
   const cleanName = slugifyFilename((file.name || 'anh').replace(/\.[a-z0-9]+$/i, '')) || 'anh';
   const destPath = `assets/img/uploads/${hash}-${cleanName}.${ext}`;
 
-  const dataUrl = `data:${mimeType};base64,${b64}`;
-
-  // Thử đẩy trực tiếp lên GitHub repository qua Cloudflare Worker
+  // Đẩy trực tiếp lên Cloudflare Worker (tự động lưu vào KV Storage và đồng bộ Git)
   try {
     const r = await fetch(`/api/admin/gh/${destPath}`, {
       method: 'PUT',
@@ -4215,25 +4213,17 @@ async function uploadImageFile(file) {
     }
 
     if (r.ok) {
-      return `https://otahub.asia/${destPath}`;
+      const data = await r.json().catch(() => ({}));
+      return data.url || `https://otahub.asia/${destPath}`;
     }
 
     const errData = await r.json().catch(() => ({}));
     const errMsg = errData.error || errData.message || ('HTTP ' + r.status);
-    console.warn('GitHub Upload API failed, falling back to data URL:', errMsg);
-
-    // Xử lý khi Token GitHub thiếu quyền ghi hoặc Supabase bị giới hạn quota
-    if (errMsg.includes('Resource not accessible') || errMsg.includes('personal access token') || r.status === 403) {
-      toast('warning', '⚠️ GitHub Token trên Cloudflare Worker thiếu quyền ghi. Đã tự động chèn ảnh trực tiếp để bài viết không bị gián đoạn!');
-      return dataUrl;
-    }
-
-    toast('warning', `⚠️ Máy chủ lưu trữ ảnh: ${errMsg}. Đã tự động chèn ảnh trực tiếp!`);
-    return dataUrl;
+    console.warn('Upload API error, falling back to data URL:', errMsg);
+    return `data:${mimeType};base64,${b64}`;
   } catch(netErr) {
     console.warn('Network error during image upload, using data URL fallback:', netErr);
-    toast('warning', '⚠️ Không thể kết nối API lưu file tĩnh. Đã tự động chèn ảnh trực tiếp vào bài viết!');
-    return dataUrl;
+    return `data:${mimeType};base64,${b64}`;
   }
 }
 
@@ -4248,22 +4238,24 @@ async function handleGlobalUpload(inputEl) {
   if (!file) return;
   const cb = UPLOAD_TARGET_CB;
   UPLOAD_TARGET_CB = null;
-  toast('success', '⏳ Đang xử lý tải ảnh lên...');
+  const loadingToast = toast('info', 'Đang xử lý tải ảnh lên...');
   try {
     const url = await uploadImageFile(file);
     if (url) {
+      if (loadingToast && loadingToast.remove) loadingToast.remove();
       const fileName = file.name || 'ảnh mới';
-      toast('success', '✅ Đã tải ảnh lên: ' + fileName);
       MEDIA_FILES = null;
       loadMediaFiles().catch(() => {});
       if (cb) {
         cb(url);
       } else {
+        toast('success', 'Đã tải ảnh lên thư viện: ' + fileName);
         mediaModalSelectImage(url, fileName);
         mediaSwitchTab('library');
       }
     }
   } catch (e) {
+    if (loadingToast && loadingToast.remove) loadingToast.remove();
     toast('error', 'Lỗi tải ảnh: ' + e.message);
   }
 }
@@ -13404,12 +13396,36 @@ function openSite()   { window.open('https://otahub.asia', '_blank'); }
 function openGitHub() { window.open('https://github.com/Embisu/otahub-', '_blank'); }
 
 function toast(type, msg) {
+  const container = document.getElementById('toast');
+  if (!container) return null;
+
+  // Giới hạn tối đa 2 thông báo trên màn hình cùng lúc để không che giao diện
+  while (container.children.length >= 2) {
+    container.removeChild(container.firstChild);
+  }
+
+  // Làm sạch emoji trùng lặp ở đầu thông báo (nếu msg đã có emoji)
+  const cleanMsg = String(msg || '').replace(/^[\s✅⚠️ℹ️❌⏳]+/, '').trim();
+  const icon = type === 'success' ? '✅' : (type === 'info' ? 'ℹ️' : (type === 'warning' ? '⚠️' : '❌'));
+
   const el = document.createElement('div');
   el.className = `toast-item ${type}`;
-  const icon = type === 'success' ? '✅' : (type === 'info' ? 'ℹ️' : (type === 'warning' ? '⚠️' : '❌'));
-  el.innerHTML = `<span class="toast-icon">${icon}</span><span>${msg}</span>`;
-  document.getElementById('toast')?.appendChild(el);
-  setTimeout(() => el.remove(), 4000);
+  el.innerHTML = `<span class="toast-icon">${icon}</span><span>${cleanMsg}</span>`;
+  container.appendChild(el);
+
+  const timeoutMs = type === 'error' ? 5500 : 3500;
+  const timer = setTimeout(() => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(10px)';
+    setTimeout(() => el.remove(), 250);
+  }, timeoutMs);
+
+  el.onclick = () => {
+    clearTimeout(timer);
+    el.remove();
+  };
+
+  return el;
 }
 </script>
 </body>

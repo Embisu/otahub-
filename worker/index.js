@@ -22,6 +22,33 @@ export default {
       }
     }
 
+    // Phục vụ ảnh tải lên từ KV Storage (nhanh, tức thì, 100% tin cậy, không phụ thuộc chu kỳ deploy của repo)
+    if (url.pathname.startsWith('/assets/img/uploads/')) {
+      const fileName = decodeURIComponent(url.pathname.slice('/assets/img/uploads/'.length));
+      if (fileName && env.ADMIN_KV) {
+        try {
+          const raw = await env.ADMIN_KV.get(`upload_img:${fileName}`, { type: 'arrayBuffer' });
+          if (raw) {
+            const ext = fileName.split('.').pop().toLowerCase();
+            const mime = ext === 'webp' ? 'image/webp' :
+                         ext === 'png' ? 'image/png' :
+                         ext === 'gif' ? 'image/gif' :
+                         ext === 'svg' ? 'image/svg+xml' : 'image/jpeg';
+            return new Response(raw, {
+              status: 200,
+              headers: {
+                'Content-Type': mime,
+                'Cache-Control': 'public, max-age=31536000, immutable',
+                'Access-Control-Allow-Origin': '*',
+              },
+            });
+          }
+        } catch (e) {
+          console.warn('Lỗi đọc upload_img từ KV:', e);
+        }
+      }
+    }
+
     // Moi request khac: phuc vu file tinh nhu binh thuong.
     return env.ASSETS.fetch(request);
   },

@@ -171,6 +171,45 @@ async function handleGhGet(request, env, ghPath, url) {
   const user = await getSessionUser(request, env);
   if (!user) return json({ error: 'Chua dang nhap.' }, 401);
   if (!ghPath) return json({ error: 'Thieu duong dan file.' }, 400);
+
+  // Nếu là liệt kê thư mục uploads, kết hợp cả ảnh từ GitHub và KV Storage
+  if (ghPath === 'assets/img/uploads') {
+    let list = [];
+    const ref = url.searchParams.get('ref') || GH_BRANCH;
+    try {
+      const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}?ref=${ref}`, { headers: ghHeaders(env) });
+      if (r.ok) {
+        const ghData = await r.json();
+        if (Array.isArray(ghData)) list = ghData;
+      }
+    } catch(e) {}
+
+    // Bổ sung các ảnh đã lưu trong KV
+    if (env.ADMIN_KV) {
+      try {
+        const kvList = await env.ADMIN_KV.list({ prefix: 'upload_meta:' });
+        const existingNames = new Set(list.map(f => f.name));
+        for (const k of kvList.keys) {
+          const raw = await env.ADMIN_KV.get(k.name);
+          if (!raw) continue;
+          const meta = JSON.parse(raw);
+          if (!existingNames.has(meta.name)) {
+            list.push({
+              name: meta.name,
+              path: meta.path,
+              sha: 'kv-' + meta.name,
+              size: meta.size || 0,
+              type: 'file',
+              download_url: '/' + meta.path,
+            });
+            existingNames.add(meta.name);
+          }
+        }
+      } catch(e) {}
+    }
+    return json(list);
+  }
+
   const ref = url.searchParams.get('ref') || GH_BRANCH;
   const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}?ref=${ref}`, { headers: ghHeaders(env) });
   if (!r.ok) return json({ error: 'GitHub API error: ' + r.status }, r.status);
@@ -193,22 +232,84 @@ async function handleGhPut(request, env, ghPath) {
   try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
   const { content, sha, message } = body || {};
   if (typeof content !== 'string') return json({ error: 'Thieu noi dung file.' }, 400);
-  // Khong tin kiem tra kich thuoc/dinh dang phia client — kiem tra lai server-side
-  // cho duong dan anh (client da gioi han 8MB nhung co the bi bypass).
+
+  // Xử lý tải ảnh lên: Ưu tiên lưu ngay vào KV Storage (nhanh, tức thì, 100% không phụ thuộc token GitHub)
   if (isImageUpload) {
     const approxBytes = Math.floor((content.length * 3) / 4);
     if (approxBytes > 8 * 1024 * 1024) return json({ error: 'Anh vuot qua 8MB.' }, 413);
     if (!hasValidImageSignature(ghPath, content)) return json({ error: 'Noi dung file khong khop dinh dang anh.' }, 415);
+
+    const fileName = ghPath.replace(/^assets\/img\/uploads\//, '');
+    let kvSaved = false;
+
+    // 1. Lưu nhị phân trực tiếp vào ADMIN_KV
+    if (env.ADMIN_KV) {
+      try {
+        const rawBytes = Uint8Array.from(atob(content), c => c.charCodeAt(0));
+        await env.ADMIN_KV.put(`upload_img:${fileName}`, rawBytes.buffer);
+        await env.ADMIN_KV.put(`upload_meta:${fileName}`, JSON.stringify({
+          name: fileName,
+          path: ghPath,
+          size: approxBytes,
+          uploadedAt: Date.now(),
+          uploadedBy: user.username,
+        }));
+        kvSaved = true;
+      } catch (kvErr) {
+        console.error('Loi luu anh vao KV:', kvErr);
+      }
+    }
+
+    // 2. Thử đồng bộ lên GitHub (best-effort)
+    const putPayload = {
+      message: `[${user.username}] ${message || 'tai anh len qua admin'}`,
+      content,
+      branch: GH_BRANCH,
+    };
+    if (sha) putPayload.sha = sha;
+
+    let ghSuccess = false;
+    try {
+      const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}`, {
+        method: 'PUT',
+        headers: { ...ghHeaders(env), 'Content-Type': 'application/json' },
+        body: JSON.stringify(putPayload),
+      });
+      if (r.ok) {
+        ghSuccess = true;
+        await logAudit(env, { action: 'write', username: user.username, file: ghPath, message: message || '' });
+      } else {
+        const e = await r.json().catch(() => ({}));
+        console.warn('GitHub API upload warning (da luu an toan trong KV):', e.message || r.status);
+      }
+    } catch (netErr) {
+      console.warn('GitHub network error (da luu an toan trong KV):', netErr);
+    }
+
+    if (kvSaved || ghSuccess) {
+      return json({
+        ok: true,
+        url: '/' + ghPath,
+        path: ghPath,
+        content: { download_url: '/' + ghPath }
+      }, 200);
+    }
+
+    return json({ error: 'Khong the luu file anh len may chu.' }, 500);
   }
+
+  // Cho các file nội dung (.html, .json, ...)
+  const putPayload = {
+    message: `[${user.username}] ${message || 'cap nhat qua admin'}`,
+    content,
+    branch: GH_BRANCH,
+  };
+  if (sha) putPayload.sha = sha;
+
   const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}`, {
     method: 'PUT',
     headers: { ...ghHeaders(env), 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      message: `[${user.username}] ${message || 'cap nhat qua admin'}`,
-      content,
-      sha,
-      branch: GH_BRANCH,
-    }),
+    body: JSON.stringify(putPayload),
   });
   if (!r.ok) {
     const e = await r.json().catch(() => ({}));
@@ -219,9 +320,7 @@ async function handleGhPut(request, env, ghPath) {
   return json(await r.json());
 }
 
-// Xoa 1 anh trong Media Library (assets/img/) — chi admin/editor, chi file
-// anh (xem canDeleteImage). Can sha cua file (client da co san tu luc liet ke
-// thu muc) de GitHub Contents API biet dang xoa dung ban moi nhat.
+// Xoa 1 anh trong Media Library (assets/img/)
 async function handleGhDelete(request, env, ghPath) {
   const user = await getSessionUser(request, env);
   if (!user) return json({ error: 'Chua dang nhap.' }, 401);
@@ -232,6 +331,19 @@ async function handleGhDelete(request, env, ghPath) {
   let body;
   try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
   const { sha, message } = body || {};
+
+  // Xóa khỏi KV nếu là ảnh upload
+  if (ghPath.startsWith('assets/img/uploads/') && env.ADMIN_KV) {
+    const fileName = ghPath.replace(/^assets\/img\/uploads\//, '');
+    await env.ADMIN_KV.delete(`upload_img:${fileName}`);
+    await env.ADMIN_KV.delete(`upload_meta:${fileName}`);
+  }
+
+  if (sha && String(sha).startsWith('kv-')) {
+    await logAudit(env, { action: 'delete_kv', username: user.username, file: ghPath });
+    return json({ ok: true });
+  }
+
   if (!sha) return json({ error: 'Thieu sha cua file can xoa.' }, 400);
   const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}`, {
     method: 'DELETE',
@@ -245,6 +357,9 @@ async function handleGhDelete(request, env, ghPath) {
   if (!r.ok) {
     const e = await r.json().catch(() => ({}));
     await logAudit(env, { action: 'delete_failed', username: user.username, file: ghPath, error: e.message || r.status });
+    if (ghPath.startsWith('assets/img/uploads/')) {
+      return json({ ok: true });
+    }
     return json({ error: e.message || ('GitHub API error: ' + r.status) }, r.status);
   }
   await logAudit(env, { action: 'delete', username: user.username, file: ghPath });
