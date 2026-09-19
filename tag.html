@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/article-style.css">
 <style>
 :root {
   --bg: #070210;
@@ -334,12 +334,6 @@ body {
   </div>
 </main>
 
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-copy">© 2026 OtaHub.asia · All Rights Reserved. Asia's Gaming &amp; Anime Portal.</div>
-  </div>
-</footer>
-
 <script src="/assets/search.js"></script>
 <script>
 (function(){
@@ -349,7 +343,7 @@ body {
   }
 
   function norm(str) {
-    return (str || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').trim();
+    return (str || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/['"’“”]/g, '').replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
   }
 
   const tagLabel = document.getElementById('current-tag-label');
@@ -391,13 +385,21 @@ body {
     const SKIP_CATS = new Set(['Chuyên mục', 'Trang']);
     
     let matches = window.IDX.filter(item => {
-      if (!item.u || item.u.startsWith('/en/') || SKIP_CATS.has(item.c)) return false;
+      const url = item.url || item.u || '';
+      const cat = item.cat || item.c || '';
+      if (!url || url.startsWith('/en/') || SKIP_CATS.has(cat)) return false;
       if (!qNorm) return true;
-      const tNorm = norm(item.t);
-      const sNorm = norm(item.s);
-      const cNorm = norm(item.c);
-      const uNorm = norm(item.u);
-      return tNorm.includes(qNorm) || sNorm.includes(qNorm) || cNorm.includes(qNorm) || uNorm.includes(qNorm);
+      const title = item.title || item.t || '';
+      const excerpt = item.excerpt || item.s || '';
+      const tags = Array.isArray(item.tags) ? item.tags.join(' ') : (item.tags || '');
+
+      const tNorm = norm(title);
+      const sNorm = norm(excerpt);
+      const cNorm = norm(cat);
+      const uNorm = norm(url);
+      const tagNorm = norm(tags);
+
+      return tNorm.includes(qNorm) || sNorm.includes(qNorm) || cNorm.includes(qNorm) || uNorm.includes(qNorm) || tagNorm.includes(qNorm);
     });
 
     countBadge.textContent = `Tìm thấy ${matches.length} bài viết`;
@@ -413,11 +415,12 @@ body {
     }
 
     grid.innerHTML = matches.map(item => {
-      const hero = item.hero || '/assets/img/placeholder.svg';
-      const cat = item.c || 'Tin tức';
-      const title = item.t || 'Bài viết';
-      const desc = item.s || 'Xem chi tiết bài viết tại OtaHub...';
-      const url = item.u.startsWith('/') ? item.u : '/' + item.u;
+      const hero = item.img || item.hero || '/assets/img/placeholder.svg';
+      const cat = item.cat || item.c || 'Tin tức';
+      const title = item.title || item.t || 'Bài viết';
+      const desc = item.excerpt || item.s || 'Xem chi tiết bài viết tại OtaHub...';
+      const rawUrl = item.url || item.u || '#';
+      const url = rawUrl.startsWith('/') ? rawUrl : '/' + rawUrl;
 
       return `
         <a href="${url}" class="tag-card">

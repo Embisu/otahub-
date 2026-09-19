@@ -3113,7 +3113,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
       <a href="https://otahub.asia" target="_blank" class="wtb-item">🏠 Xem trang web (Live)</a>
       <div class="wtb-item"><span class="wtb-badge-live">Cloudflare Pages Edge: Live</span></div>
       <button onclick="newArticle()" class="wtb-item">➕ Thêm bài mới</button>
-      <div class="wtb-item"><span class="wtb-badge-seo">🎯 Rank Math SEO: 100/100</span></div>
+      <div class="wtb-item"><span class="wtb-badge-seo" id="wtb-top-seo-badge">🎯 Rank Math SEO: --/100</span></div>
     </div>
     <div class="wtb-right">
       <button onclick="openCmdk()" class="wtb-item" title="Tìm nhanh (Ctrl+K)">🔍 Tìm nhanh <kbd style="background:rgba(255,255,255,.1);padding:1px 4px;border-radius:2px;font-size:10px;margin-left:4px">Ctrl+K</kbd></button>
@@ -6024,7 +6024,7 @@ function renderArticleList(filter='', cat='', tab='all') {
         </th>
         <td class="column-thumb" onclick="event.stopPropagation()">
           <div class="wp-post-thumb-box" onclick="editArticle('${esc(a.file)}')">
-            <img class="art-thumb" data-file="${esc(a.file)}" alt="" loading="lazy" onload="this.style.display='block';this.nextElementSibling.style.display='none'" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <img class="art-thumb" data-file="${esc(a.file)}" src="${esc(a.hero || '')}" alt="" loading="lazy" onload="this.style.display='block';this.nextElementSibling.style.display='none'" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
             <div class="wp-thumb-placeholder" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:#8c8f94">
               <svg width="22" height="22" viewBox="0 0 20 20" fill="currentColor"><path d="M2.5 4h15a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-15a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5zm14.5 1H3v10h14V5zm-9 2a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm6.5 7H4.5l3.5-4.5 2.5 3 2-2.5 3 4z"/></svg>
             </div>
@@ -6226,21 +6226,34 @@ async function loadThumb(imgEl) {
     if (url) imgEl.src = url;
     return;
   }
+  // Ưu tiên 1: Lấy ngay từ bộ nhớ đệm ARTICLES (0 API call, tức thì)
+  const art = ARTICLES.find(x => x.file === file);
+  if (art && art.hero) {
+    HERO_CACHE.set(file, art.hero);
+    imgEl.src = art.hero;
+    return;
+  }
+  // Ưu tiên 2: Fallback GitHub Raw CDN (0 API call, không bao giờ tốn quota token)
   try {
-    const data = await ghGet(file);
-    const html = b64ToUtf8(data.content);
-    const m = html.match(/property="og:image"\s+content="([^"]*)"/);
-    const url = m ? m[1] : '';
-    HERO_CACHE.set(file, url);
-    if (url) imgEl.src = url;
+    const rawRes = await fetch(`https://raw.githubusercontent.com/Embisu/otahub-/main/${file}?t=${Date.now()}`);
+    if (rawRes.ok) {
+      const html = await rawRes.text();
+      const m = html.match(/property="og:image"\s+content="([^"]*)"/);
+      const url = m ? m[1] : '';
+      HERO_CACHE.set(file, url);
+      if (url) imgEl.src = url;
+    }
   } catch(e) {
     HERO_CACHE.set(file, '');
   }
 }
 
 // ── Editor ─────────────────────────────────────────────────────────────────
+let __editReqSeq = 0;
+
 async function editArticle(file) {
   if (!confirmDiscardUnsaved()) return;
+  const myReq = ++__editReqSeq;
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải bài viết: <code style="color:var(--wp-blue)">${esc(file)}</code>...</span></div>`);
   try {
     let html = '';
@@ -6250,6 +6263,7 @@ async function editArticle(file) {
     // Tier 1: Cloudflare Worker GitHub API proxy (có sha để commit)
     try {
       const data = await ghGet(file);
+      if (myReq !== __editReqSeq) return;
       if (data && data.content) {
         html = b64ToUtf8(data.content);
         sha = data.sha || '';
@@ -6258,11 +6272,13 @@ async function editArticle(file) {
     } catch(ghErr) {
       console.warn('ghGet error, falling back to Tier 2 (GitHub Raw CDN):', file, ghErr);
     }
+    if (myReq !== __editReqSeq) return;
 
     // Tier 2: GitHub Raw CDN (không cần token, không bao giờ bị rate-limit 403, lấy trực tiếp nội dung gốc từ repo)
     if (!html) {
       try {
         const rawRes = await fetch(`https://raw.githubusercontent.com/Embisu/otahub-/main/${file}?t=${Date.now()}`);
+        if (myReq !== __editReqSeq) return;
         if (rawRes.ok) {
           const rawText = await rawRes.text();
           if (rawText && rawText.includes('<html') && (rawText.includes('art-body') || rawText.includes('<article') || rawText.includes('<title>'))) {
@@ -6274,6 +6290,7 @@ async function editArticle(file) {
         console.warn('GitHub Raw fetch error:', rawErr);
       }
     }
+    if (myReq !== __editReqSeq) return;
 
     // Tier 3: Direct live site clean URL & static variants
     if (!html) {
@@ -6286,6 +6303,7 @@ async function editArticle(file) {
         `./${cleanPath}?t=${Date.now()}`
       ];
       for (const url of candidates) {
+        if (myReq !== __editReqSeq) return;
         try {
           const r = await fetch(url);
           if (r.ok) {
@@ -6299,6 +6317,7 @@ async function editArticle(file) {
         } catch(e) {}
       }
     }
+    if (myReq !== __editReqSeq) return;
 
     if (!html) {
       throw new Error(`Không thể nạp nội dung bài viết ${file}. Vui lòng kiểm tra lại kết nối mạng hoặc thử lại.`);
@@ -6309,12 +6328,14 @@ async function editArticle(file) {
 
     // Kiểm tra bản nháp độc lập cho đúng file này
     await checkArticleDraftNotice(file, html);
+    if (myReq !== __editReqSeq) return;
     renderEditor(file, html);
 
     if (loadSource !== 'GitHub API') {
       toast('info', `ℹ️ Đã mở bài viết trực tiếp từ ${loadSource}.`);
     }
   } catch(e) {
+    if (myReq !== __editReqSeq) return;
     console.error('editArticle error:', e);
     toast('error', 'Không tải được bài: ' + e.message);
     showView('articles');
@@ -8699,6 +8720,13 @@ function updateSeoScore() {
   const res = computeSeoScore();
   const { score, basicChecks, addlChecks, titleChecks, readChecks, checks } = res;
   const lbl = seoScoreLabel(score);
+
+  // 0. Update top admin bar badge
+  const topSeoBadge = document.getElementById('wtb-top-seo-badge');
+  if (topSeoBadge) {
+    topSeoBadge.innerHTML = `🎯 Rank Math SEO: <strong>${score}/100</strong>`;
+    topSeoBadge.style.color = score >= 80 ? '#00e5ff' : score >= 50 ? '#fbbf24' : '#ff4d4f';
+  }
 
   // 1. Update circular SVG chart in Rank Math header
   const circleStroke = document.getElementById('rm-circle-stroke');
