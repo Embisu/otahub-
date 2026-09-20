@@ -5,7 +5,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
-  Content-Security-Policy: default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'; img-src 'self' https: data:; font-src 'self' https://fonts.gstatic.com; frame-src https://www.youtube.com https://player.bilibili.com;
+  Content-Security-Policy: default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https: data: wss: https://*.supabase.co wss://*.supabase.co; img-src 'self' https: data:; font-src 'self' https://fonts.gstatic.com; frame-src https://www.youtube.com https://player.bilibili.com;
 
 /*.html
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400

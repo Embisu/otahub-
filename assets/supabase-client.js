@@ -3,6 +3,7 @@
  * Project URL: https://xmrctipywjevrknxzjau.supabase.co
  */
 (function () {
+  if (window.self !== window.top) return; // Do not run inside admin preview iframe
   const SUPABASE_URL = 'https://xmrctipywjevrknxzjau.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_pojfdFC8-XJP-OAC0PCj9A_cXqMrs_r';
 

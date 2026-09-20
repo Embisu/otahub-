@@ -1148,20 +1148,6 @@ var IDX = [
     ]
   },
   {
-    "title": "OtaHub Admin",
-    "url": "/admin",
-    "cat": "${cat}",
-    "date": "2026-08-20",
-    "excerpt": "Mô tả ngắn xuất hiện dưới tiêu đề, ngay trên ảnh bìa.",
-    "img": "${heroImg}",
-    "tags": [
-      "Gaming",
-      "Anime",
-      "Manga",
-      "Reviews"
-    ]
-  },
-  {
     "title": "Haikyu!! The Movie: VS The Little Giant Hé Lộ Visual Mới Tại Sự Kiện Haikyu!! Day 2026",
     "url": "/haikyu-movie2-little-giant-teaser",
     "cat": "Anime",

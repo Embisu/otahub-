@@ -1,4 +1,5 @@
 import { handleAdminApi } from './admin-api.js';
+import { handleEngagementApi } from './engagement.js';
 
 export default {
   async fetch(request, env, ctx) {
@@ -9,6 +10,17 @@ export default {
     if (url.protocol === 'http:') {
       url.protocol = 'https:';
       return Response.redirect(url.toString(), 301);
+    }
+
+    if (url.pathname === '/api/engagement' || url.pathname.startsWith('/api/engagement/')) {
+      try {
+        return await handleEngagementApi(request, env, url);
+      } catch (err) {
+        return new Response(JSON.stringify({ ok: false, error: 'Loi engagement server: ' + err.message }), {
+          status: 500,
+          headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+        });
+      }
     }
 
     if (url.pathname.startsWith('/api/admin/')) {

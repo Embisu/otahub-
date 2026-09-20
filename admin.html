@@ -3311,7 +3311,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
     <div class="media-modal-body" style="max-height:70vh;overflow-y:auto">
       <div style="display:flex;gap:16px;align-items:flex-start">
         <div style="width:160px;height:120px;border-radius:6px;overflow:hidden;border:1px solid var(--wp-border);background:var(--wp-bg);flex-shrink:0;display:flex;align-items:center;justify-content:center">
-          <img id="ied-preview" src="" alt="" style="max-width:100%;max-height:100%;object-fit:contain" onerror="this.src='/favicon-192.png'">
+          <img id="ied-preview" src="" alt="" style="max-width:100%;max-height:100%;object-fit:contain" onerror="this.onerror=null;this.src='/favicon-192.png'">
         </div>
         <div style="flex:1;min-width:0">
           <label class="form-label" style="margin-top:0;font-weight:600">Thay thế ảnh:</label>
@@ -3495,7 +3495,12 @@ function confirmDiscardUnsaved() {
 document.addEventListener('keydown', (e) => {
   if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
     e.preventDefault();
-    const saveBtn = document.getElementById('save-btn');
+    const saveBtn = document.getElementById('publish') ||
+                    document.getElementById('save-btn-article') ||
+                    document.getElementById('save-btn-top') ||
+                    document.getElementById('save-btn-hub') ||
+                    document.getElementById('save-btn-home') ||
+                    document.getElementById('save-btn');
     if (saveBtn) { saveBtn.click(); }
     else if (currentFile) { saveArticle(); }
   }
@@ -4048,7 +4053,7 @@ function updateSerpPreview() {
 function updateSocialPreview() {
   const title = (ART_TITLE || document.getElementById('ed-title')?.value || 'Tiêu đề bài viết').trim();
   const desc = (ART_EXCERPT || document.getElementById('ed-desc')?.value || '').trim();
-  const heroUrl = document.getElementById('ed-hero')?.value || 'https://otahub.asia/assets/img/og-image.png';
+  const heroUrl = document.getElementById('ed-hero')?.value || 'https://otahub.asia/og-image.png';
 
   const socTitleEl = document.getElementById('social-preview-title');
   const socDescEl = document.getElementById('social-preview-desc');
@@ -6664,7 +6669,7 @@ function updateSchemaPreview() {
   const type = document.getElementById('rm-schema-type')?.value || 'Article';
   const title = ART_TITLE || 'Tiêu đề bài viết';
   const desc = document.getElementById('ed-desc')?.value || '';
-  const hero = document.getElementById('ed-hero')?.value || 'https://otahub.asia/assets/img/og-image.png';
+  const hero = document.getElementById('ed-hero')?.value || 'https://otahub.asia/og-image.png';
   const slug = (currentFile || '').replace(/\.html$/, '');
   const url = `https://otahub.asia/${slug}`;
   const pubDate = new Date().toISOString();
@@ -6826,7 +6831,7 @@ function renderEditor(file, html) {
         <button type="button" class="btn btn-secondary btn-sm" onclick="copyArticleJson()" title="Sao chép JSON">📋 Copy JSON</button>
         <button type="button" class="btn btn-secondary btn-sm" id="zen-mode-btn" onclick="toggleZenMode()" title="Toàn màn hình">⛶ Toàn màn hình</button>
         <button type="button" class="btn btn-secondary btn-sm" onclick="openFullArticlePreview()">👁️ Xem trước</button>
-        <button type="button" class="button-primary" onclick="${isContributor ? 'saveArticleDraftNow()' : 'saveArticle()'}">${isContributor ? '📝 Lưu bản nháp' : (isNewFile ? '🚀 Đăng bài' : '💾 Cập nhật')}</button>
+        <button type="button" class="button-primary" id="save-btn-top" onclick="${isContributor ? 'saveArticleDraftNow()' : 'saveArticle()'}">${isContributor ? '📝 Lưu bản nháp' : (isNewFile ? '🚀 Đăng bài' : '💾 Cập nhật')}</button>
         <button type="button" class="btn btn-secondary btn-sm" onclick="showView('articles')">← Danh sách</button>
       </div>
     </div>
@@ -7191,7 +7196,7 @@ function renderEditor(file, html) {
                 <!-- Google SERP Card Preview -->
                 <div class="seo-serp-box" id="seo-serp-box-preview" onclick="toggleSnippetEditor(true)" style="cursor:pointer" title="Bấm vào đây để chỉnh sửa Tiêu đề & Mô tả SEO">
                   <div class="seo-serp-url-row">
-                    <img src="/favicon-32.png" class="seo-serp-favicon" alt="Favicon" onerror="this.src='https://otahub.asia/favicon-32.png'"/>
+                    <img src="/favicon-32.png" class="seo-serp-favicon" alt="Favicon" onerror="this.onerror=null;this.src='https://otahub.asia/favicon-32.png'"/>
                     <span id="serp-preview-url">https://otahub.asia › ${cat.toLowerCase()} › ${(file||'').replace(/\.html$/,'')}</span>
                   </div>
                   <a href="javascript:void(0)" class="seo-serp-title" id="serp-preview-title">${esc(title)} · OtaHub</a>
@@ -7288,7 +7293,7 @@ function renderEditor(file, html) {
                 </div>
                 <!-- Social Card Preview -->
                 <div class="seo-social-card" id="seo-social-card-box">
-                  <img id="social-preview-thumb" class="seo-social-thumb" src="${heroUrl || '/assets/img/og-image.png'}" alt="Social preview" onerror="this.src='/assets/img/og-image.png'"/>
+                  <img id="social-preview-thumb" class="seo-social-thumb" src="${heroUrl || '/og-image.png'}" alt="Social preview" onerror="this.onerror=null;this.src='/og-image.png'"/>
                   <div class="seo-social-body">
                     <div class="seo-social-domain">OTAHUB.ASIA</div>
                     <div class="seo-social-title" id="social-preview-title">${esc(title)} · OtaHub</div>
@@ -9751,6 +9756,9 @@ function buildArticlePreviewHtml() {
   if (/<div\b[^>]*\bclass="[^"]*art-hero-grad[^"]*"/i.test(html)) {
     html = html.replace(/(<div\b[^>]*\bclass="[^"]*art-hero-grad[^"]*")/gi, `$1 data-oh-jump="heroimg"`);
   }
+  if (/<section\b[^>]*\bclass="[^"]*art-hero[^"]*"/i.test(html)) {
+    html = html.replace(/(<section\b[^>]*\bclass="[^"]*art-hero[^"]*")/gi, `$1 data-oh-jump="heroimg"`);
+  }
 
   const title   = cleanPlainText(ART_TITLE) || 'Tiêu đề bài viết';
   const excerpt = cleanPlainText(ART_EXCERPT) || '';
@@ -10246,7 +10254,10 @@ function bindArticleBridgeMessages() {
     } else if (d.type === 'art-jump') {
       articleJumpTo(d.target);
     } else if (d.type === 'art-save-shortcut') {
-      const saveBtn = document.getElementById('save-btn');
+      const saveBtn = document.getElementById('publish') ||
+                      document.getElementById('save-btn-article') ||
+                      document.getElementById('save-btn-top') ||
+                      document.getElementById('save-btn');
       if (saveBtn) saveBtn.click();
       else if (currentFile) saveArticle();
     } else if (d.type === 'art-open-link-modal') {
@@ -10652,11 +10663,15 @@ async function saveArticle() {
 
   if (!currentFile) return;
 
-  const btn = document.getElementById('save-btn');
-  btn.textContent = '⏳ Đang lưu...'; btn.disabled = true;
+  const saveBtns = Array.from(document.querySelectorAll('#publish, #save-btn, #save-btn-article, #save-btn-top, [onclick*="saveArticle()"]'));
+  saveBtns.forEach(b => {
+    if (!b.dataset.origText) b.dataset.origText = b.textContent;
+    b.textContent = '⏳ Đang lưu...';
+    b.disabled = true;
+  });
 
-  const dot = document.getElementById('status-dot');
-  const txt = document.getElementById('status-text');
+  const dot = document.getElementById('status-dot-article') || document.getElementById('status-dot');
+  const txt = document.getElementById('status-text-article') || document.getElementById('status-text');
   if (dot) dot.className = 'status-dot saving';
   if (txt) txt.textContent = 'Đang commit lên GitHub...';
 
@@ -10689,7 +10704,7 @@ async function saveArticle() {
     HAS_UNSAVED_CHANGES = false;
     if (dot) dot.className = 'status-dot';
     if (txt) txt.textContent = 'Đã lưu • ' + new Date().toLocaleTimeString('vi-VN');
-    const log = document.getElementById('save-log');
+    const log = document.getElementById('save-log-article') || document.getElementById('save-log');
     if (log) log.innerHTML = `✅ Commit lúc ${new Date().toLocaleTimeString('vi-VN')}<br>` + log.innerHTML;
 
     toast('success', '✅ Đã lưu và deploy! Chờ ~1-2 phút để live.');
@@ -10702,7 +10717,10 @@ async function saveArticle() {
     if (txt) txt.textContent = 'Lỗi: ' + e.message;
     toast('error', 'Lỗi lưu: ' + e.message);
   } finally {
-    btn.textContent = '💾 Lưu & Deploy'; btn.disabled = false;
+    saveBtns.forEach(b => {
+      b.textContent = b.dataset.origText || (isNewFile ? '🚀 Đăng bài' : '💾 Cập nhật');
+      b.disabled = false;
+    });
   }
 }
 
@@ -10729,10 +10747,14 @@ async function autosaveArticleDraft() {
 }
 
 async function saveArticleDraftNow() {
-  const btn = document.getElementById('save-btn');
-  const dot = document.getElementById('status-dot');
-  const txt = document.getElementById('status-text');
-  if (btn) { btn.disabled = true; btn.textContent = '⏳ Đang lưu bản nháp...'; }
+  const draftBtns = Array.from(document.querySelectorAll('#save-post, #save-btn, #save-btn-article, #save-btn-top, [onclick*="saveArticleDraftNow"]'));
+  draftBtns.forEach(b => {
+    if (!b.dataset.origText) b.dataset.origText = b.textContent;
+    b.disabled = true;
+    b.textContent = '⏳ Đang lưu bản nháp...';
+  });
+  const dot = document.getElementById('status-dot-article') || document.getElementById('status-dot');
+  const txt = document.getElementById('status-text-article') || document.getElementById('status-text');
   const saved = await autosaveArticleDraft();
   if (saved) {
     HAS_UNSAVED_CHANGES = false;
@@ -10744,7 +10766,10 @@ async function saveArticleDraftNow() {
     if (txt) txt.textContent = 'Lưu bản nháp thất bại';
     toast('error', 'Không thể lưu bản nháp. Vui lòng thử lại.');
   }
-  if (btn) { btn.disabled = false; btn.textContent = '📝 Lưu bản nháp'; }
+  draftBtns.forEach(b => {
+    b.disabled = false;
+    b.textContent = b.dataset.origText || '📝 Lưu bản nháp';
+  });
 }
 
 // ── New article ────────────────────────────────────────────────────────────
@@ -10782,7 +10807,7 @@ function newArticle(prefillTitle) {
 <meta property="og:title" content="${title} · OtaHub">
 <meta property="og:description" content="${desc}">
 <meta property="og:url" content="${url}">
-<meta property="og:image" content="${heroImg || 'https://otahub.asia/assets/img/og-image.png'}">
+<meta property="og:image" content="${heroImg || 'https://otahub.asia/og-image.png'}">
 <meta property="og:site_name" content="OtaHub">
 <meta property="og:locale" content="vi_VN">
 <meta property="article:author" content="OtaHub Editorial">
@@ -10792,14 +10817,14 @@ function newArticle(prefillTitle) {
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${title} · OtaHub">
 <meta name="twitter:description" content="${desc}">
-<meta name="twitter:image" content="${heroImg || 'https://otahub.asia/assets/img/og-image.png'}">
+<meta name="twitter:image" content="${heroImg || 'https://otahub.asia/og-image.png'}">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "NewsArticle",
   "headline": "${title}",
   "description": "${desc}",
-  "image": "${heroImg || 'https://otahub.asia/assets/img/og-image.png'}",
+  "image": "${heroImg || 'https://otahub.asia/og-image.png'}",
   "datePublished": "${iso}",
   "dateModified": "${iso}",
   "inLanguage": "vi",
@@ -10877,7 +10902,7 @@ function newArticle(prefillTitle) {
 <nav class="mobile-nav" id="mobnav"><a href="/choi-gi">Chơi Gì?</a><a href="/gaming" class="active">Gaming</a><a href="/anime">Anime</a><a href="/manga">Manga</a><a href="/reviews">Reviews</a><a href="/rankings">Rankings</a><a href="/chuyen-sau">Chuyên sâu</a><div class="m-sub"><a href="/about">Giới thiệu</a><a href="/#newsletter">Newsletter</a><a href="/about#contact">Liên hệ</a></div></nav>
 
 <section class="art-hero">
-<div class="art-hero-img" style="background-image:url(${heroImg || '/assets/img/og-image.png'});background-color:#0b0418;"></div>
+<div class="art-hero-img" style="background-image:url(${heroImg || '/og-image.png'});background-color:#0b0418;"></div>
 <div class="art-hero-grad"></div>
 <div class="art-hero-content">
 <span class="art-hero-cat">${cat}</span>
@@ -11357,16 +11382,16 @@ function renderHubEditor() {
         <div class="publish-box">
           <div class="pb-head">🚀 Xuất bản</div>
           <div class="pb-body">
-            <div class="pb-row"><span class="pb-label">Trạng thái</span><span class="pb-val" style="display:flex;align-items:center;gap:6px"><span class="status-dot" id="status-dot"></span><span id="status-text">Chưa có thay đổi</span></span></div>
+            <div class="pb-row"><span class="pb-label">Trạng thái</span><span class="pb-val" style="display:flex;align-items:center;gap:6px"><span class="status-dot" id="status-dot-hub"></span><span id="status-text-hub">Chưa có thay đổi</span></span></div>
             <div class="pb-actions">
-              <button class="btn btn-primary" id="save-btn" onclick="saveHub()">💾 Lưu & Deploy</button>
+              <button class="btn btn-primary" id="save-btn-hub" onclick="saveHub()">💾 Lưu & Deploy</button>
             </div>
             <div style="display:flex;gap:14px;margin-top:12px;flex-wrap:wrap">
               <a class="pb-link" href="https://otahub.asia/${viewPath}" target="_blank">🔗 Xem live</a>
               <a class="pb-link" href="#" onclick="event.preventDefault();if(confirm('Bỏ thay đổi?'))hubEditor('${HUB_FILE}','${HUB_LABEL}')">↺ Hoàn tác</a>
               <a class="pb-link" href="#" onclick="event.preventDefault();openHistoryModal('${HUB_FILE}', () => hubEditor('${HUB_FILE}','${HUB_LABEL}'))">🕐 Lịch sử</a>
             </div>
-            <div class="pb-savelog" id="save-log"></div>
+            <div class="pb-savelog" id="save-log-hub"></div>
           </div>
         </div>
 
@@ -11420,9 +11445,9 @@ function buildHubHtml(baseHtml) {
   return baseHtml.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/, (m, p1, p2) => p1 + newSection + p2);
 }
 async function saveHub() {
-  const btn = document.getElementById('save-btn');
-  const dot = document.getElementById('status-dot');
-  const txt = document.getElementById('status-text');
+  const btn = document.getElementById('save-btn-hub') || document.getElementById('save-btn');
+  const dot = document.getElementById('status-dot-hub') || document.getElementById('status-dot');
+  const txt = document.getElementById('status-text-hub') || document.getElementById('status-text');
   if (btn) { btn.textContent = '⏳ Đang lưu...'; btn.disabled = true; }
   if (dot) dot.className = 'status-dot saving';
   if (txt) txt.textContent = 'Đang commit lên GitHub...';
@@ -11435,7 +11460,7 @@ async function saveHub() {
     HAS_UNSAVED_CHANGES = false;
     if (dot) dot.className = 'status-dot';
     if (txt) txt.textContent = 'Đã lưu • ' + new Date().toLocaleTimeString('vi-VN');
-    const log = document.getElementById('save-log');
+    const log = document.getElementById('save-log-hub') || document.getElementById('save-log');
     if (log) log.innerHTML = `✅ Commit lúc ${new Date().toLocaleTimeString('vi-VN')}<br>` + log.innerHTML;
     toast('success', '✅ Đã lưu! Deploy trong ~1-2 phút.');
   } catch(e) {
@@ -11985,16 +12010,16 @@ function renderVisualHomeEditor() {
         <div class="publish-box">
           <div class="pb-head">🚀 Xuất bản</div>
           <div class="pb-body">
-            <div class="pb-row"><span class="pb-label">Trạng thái</span><span class="pb-val" style="display:flex;align-items:center;gap:6px"><span class="status-dot" id="status-dot"></span><span id="status-text">Chưa có thay đổi</span></span></div>
+            <div class="pb-row"><span class="pb-label">Trạng thái</span><span class="pb-val" style="display:flex;align-items:center;gap:6px"><span class="status-dot" id="status-dot-home"></span><span id="status-text-home">Chưa có thay đổi</span></span></div>
             <div class="pb-actions">
-              <button class="btn btn-primary" id="save-btn" onclick="saveVisualHome()">💾 Lưu & Deploy</button>
+              <button class="btn btn-primary" id="save-btn-home" onclick="saveVisualHome()">💾 Lưu & Deploy</button>
             </div>
             <div style="display:flex;gap:14px;margin-top:12px;flex-wrap:wrap">
               <a class="pb-link" href="https://otahub.asia/${isEn ? 'en/' : ''}" target="_blank">🔗 Xem live</a>
               <a class="pb-link" href="#" onclick="event.preventDefault();if(confirm('Bỏ thay đổi?'))homeEditor('${HOME_FILE}')">↺ Hoàn tác</a>
               <a class="pb-link" href="#" onclick="event.preventDefault();openHistoryModal('${HOME_FILE}', () => homeEditor('${HOME_FILE}'))">🕐 Lịch sử</a>
             </div>
-            <div class="pb-savelog" id="save-log"></div>
+            <div class="pb-savelog" id="save-log-home"></div>
           </div>
         </div>
 
@@ -12250,9 +12275,9 @@ function homeAnimeAdd(season) {
 }
 
 async function saveVisualHome() {
-  const btn = document.getElementById('save-btn');
-  const dot = document.getElementById('status-dot');
-  const txt = document.getElementById('status-text');
+  const btn = document.getElementById('save-btn-home') || document.getElementById('save-btn');
+  const dot = document.getElementById('status-dot-home') || document.getElementById('status-dot');
+  const txt = document.getElementById('status-text-home') || document.getElementById('status-text');
   if (btn) { btn.textContent = '⏳ Đang lưu...'; btn.disabled = true; }
   if (dot) dot.className = 'status-dot saving';
   if (txt) txt.textContent = 'Đang commit lên GitHub...';
@@ -12266,7 +12291,7 @@ async function saveVisualHome() {
     HAS_UNSAVED_CHANGES = false;
     if (dot) dot.className = 'status-dot';
     if (txt) txt.textContent = 'Đã lưu • ' + new Date().toLocaleTimeString('vi-VN');
-    const log = document.getElementById('save-log');
+    const log = document.getElementById('save-log-home') || document.getElementById('save-log');
     if (log) log.innerHTML = `✅ Commit lúc ${new Date().toLocaleTimeString('vi-VN')}<br>` + log.innerHTML;
     toast('success', '✅ Đã lưu trang chủ! Deploy trong ~1-2 phút.');
   } catch(e) {
