@@ -1,134 +1,143 @@
-var IDX = [
+window.IDX = [
   {
-      "title": "The One Piece: WIT Studio & Netflix Tung Trailer Chính Thức Đầu Tiên Về Arc East Blue",
-      "url": "/one-piece-remake-wit-studio-netflix-trailer-chinh-thuc",
-      "cat": "Anime",
-      "date": "2026-09-19",
-      "excerpt": "WIT Studio và Netflix chính thức phát hành đoạn trailer đầu tiên của The One Piece Remake, tái hiện arc East Blue bằng phong cách hoạt họa màu nước điện ảnh đỉnh cao.",
-      "img": "/assets/img/news-one-piece-remake-wit-studio-netflix-trailer.jpg",
-      "tags": [
-          "anime",
-          "hot",
-          "one-piece",
-          "netflix",
-          "wit-studio"
-      ]
+    "title": "Record of Ragnarok: Odin thực sự đang chuẩn bị cho điều gì?",
+    "url": "/record-of-ragnarok-odin-thuc-su-dang-chuan-bi-cho-dieu-gi",
+    "cat": "Anime",
+    "date": "2026-09-20",
+    "excerpt": "Liệu trận chiến cuối cùng chỉ đơn thuần quyết định số phận nhân loại, hay Odin đã chuẩn bị một bước đi khác cho kế hoạch hồi sinh các Primordial Gods? Hãy cùng theo dõi những diễn biến mới nhất của Record of Ragnarok để tìm ra câu trả lời.",
+    "img": "/assets/img/uploads/onqih37d-record-of-ragnarok-shuumatsu-no-valkyrie-has-some-really-v0-.jpg",
+    "tags": []
   },
   {
-      "title": "Genshin Impact 7.0: Đại Băng Quốc Snezhnaya Ra Mắt, Băng Thần Tsaritsa Chính Thức Lộ Diện",
-      "url": "/genshin-impact-7-0-snezhnaya-tsaritsa-bang-than-chinh-thuc-lo-dien",
-      "cat": "Gaming",
-      "date": "2026-09-19",
-      "excerpt": "HoYoverse chính thức phát hành teaser trailer Genshin Impact 7.0 mở ra vùng đất thứ 7 Snezhnaya và tạo hình quyền uy của Băng Thần Tsaritsa tại Cung Điện Mùa Đông.",
-      "img": "/assets/img/news-genshin-7-0-tsaritsa-banner.jpg",
-      "tags": [
-          "gaming",
-          "hot",
-          "genshin",
-          "snezhnaya",
-          "tsaritsa"
-      ]
+    "title": "The One Piece: WIT Studio & Netflix Tung Trailer Chính Thức Đầu Tiên Về Arc East Blue",
+    "url": "/one-piece-remake-wit-studio-netflix-trailer-chinh-thuc",
+    "cat": "Anime",
+    "date": "2026-09-19",
+    "excerpt": "WIT Studio và Netflix chính thức phát hành đoạn trailer đầu tiên của The One Piece Remake, tái hiện arc East Blue bằng phong cách hoạt họa màu nước điện ảnh đỉnh cao.",
+    "img": "/assets/img/news-one-piece-remake-wit-studio-netflix-trailer.jpg",
+    "tags": [
+      "anime",
+      "hot",
+      "one-piece",
+      "netflix",
+      "wit-studio"
+    ]
   },
   {
-      "title": "Stellar Blade 2 Chính Thức Được Bật Đèn Xanh: Shift Up Phô Diễn Đồ Họa Unreal Engine 5.5 Cực Đỉnh",
-      "url": "/stellar-blade-2-shift-up-trailer-unreal-engine-5-ps5",
-      "cat": "Gaming",
-      "date": "2026-09-19",
-      "excerpt": "Shift Up và Sony Interactive Entertainment chính thức xác nhận dự án Stellar Blade 2, phát triển trên nền tảng Unreal Engine 5.5 với đồ họa ray-tracing đột phá.",
-      "img": "/assets/img/news-stellar-blade-2-shift-up-ps5-reveal.jpg",
-      "tags": [
-          "gaming",
-          "hot",
-          "stellar-blade",
-          "ps5",
-          "shift-up"
-      ]
+    "title": "Genshin Impact 7.0: Đại Băng Quốc Snezhnaya Ra Mắt, Băng Thần Tsaritsa Chính Thức Lộ Diện",
+    "url": "/genshin-impact-7-0-snezhnaya-tsaritsa-bang-than-chinh-thuc-lo-dien",
+    "cat": "Gaming",
+    "date": "2026-09-19",
+    "excerpt": "HoYoverse chính thức phát hành teaser trailer Genshin Impact 7.0 mở ra vùng đất thứ 7 Snezhnaya và tạo hình quyền uy của Băng Thần Tsaritsa tại Cung Điện Mùa Đông.",
+    "img": "/assets/img/news-genshin-7-0-tsaritsa-banner.jpg",
+    "tags": [
+      "gaming",
+      "hot",
+      "genshin",
+      "snezhnaya",
+      "tsaritsa"
+    ]
   },
   {
-      "title": "Đánh Giá Girls' Frontline 2: Exilium: Đỉnh Cao Chiến Thuật XCOM Kết Hợp Waifu 3D Thực Sự Ra Sao?",
-      "url": "/girls-frontline-2-exilium-danh-gia-chuyen-sau",
-      "cat": "Reviews",
-      "date": "2026-09-19",
-      "excerpt": "Đánh giá chuyên sâu Girls' Frontline 2: Exilium sau hơn 35 giờ thử nghiệm: Phân tích cơ chế Stability Break, tỷ lệ gacha vũ khí 70 lượt vs nhân vật 80 lượt, đồ họa cel-shading cùng những nhược điểm cần lưu ý.",
-      "img": "/assets/img/f661df27f7-gfl2-exilium-hero.jpg",
-      "tags": [
-          "reviews",
-          "hot",
-          "gfl2",
-          "gaming"
-      ]
+    "title": "Stellar Blade 2 Chính Thức Được Bật Đèn Xanh: Shift Up Phô Diễn Đồ Họa Unreal Engine 5.5 Cực Đỉnh",
+    "url": "/stellar-blade-2-shift-up-trailer-unreal-engine-5-ps5",
+    "cat": "Gaming",
+    "date": "2026-09-19",
+    "excerpt": "Shift Up và Sony Interactive Entertainment chính thức xác nhận dự án Stellar Blade 2, phát triển trên nền tảng Unreal Engine 5.5 với đồ họa ray-tracing đột phá.",
+    "img": "/assets/img/news-stellar-blade-2-shift-up-ps5-reveal.jpg",
+    "tags": [
+      "gaming",
+      "hot",
+      "stellar-blade",
+      "ps5",
+      "shift-up"
+    ]
   },
   {
-      "title": "GTA 6 Tung Trailer Gameplay Mới: Rockstar Phô Diễn Bang Leonida Rực Lửa Và Cơ Chế Tội Phạm Đôi",
-      "url": "/gta-6-gameplay-trailer-rockstar-vice-city-leonida",
-      "cat": "Gaming",
-      "date": "2026-09-19",
-      "excerpt": "Rockstar Games chính thức ra mắt đoạn trailer gameplay chi tiết của GTA 6, hé lộ bản đồ bang Leonida khổng lồ, công nghệ NPC thế hệ mới và cơ chế cướp bóc cặp đôi Lucia - Jason.",
-      "img": "/assets/img/news-gta6-gameplay-trailer-leonida.jpg",
-      "tags": [
-          "gaming",
-          "hot",
-          "breaking",
-          "gta6"
-      ]
+    "title": "Đánh Giá Girls' Frontline 2: Exilium: Đỉnh Cao Chiến Thuật XCOM Kết Hợp Waifu 3D Thực Sự Ra Sao?",
+    "url": "/girls-frontline-2-exilium-danh-gia-chuyen-sau",
+    "cat": "Reviews",
+    "date": "2026-09-19",
+    "excerpt": "Đánh giá chuyên sâu Girls' Frontline 2: Exilium sau hơn 35 giờ thử nghiệm: Phân tích cơ chế Stability Break, tỷ lệ gacha vũ khí 70 lượt vs nhân vật 80 lượt, đồ họa cel-shading cùng những nhược điểm cần lưu ý.",
+    "img": "/assets/img/f661df27f7-gfl2-exilium-hero.jpg",
+    "tags": [
+      "reviews",
+      "hot",
+      "gfl2",
+      "gaming"
+    ]
   },
   {
-      "title": "Chainsaw Man Movie: Reze Arc Phá Đảo Phòng Vé Nhật Bản, Ấn Định Lịch Chiếu Rạp Tại Việt Nam",
-      "url": "/chainsaw-man-movie-reze-arc-chieu-rap-viet-nam-doanh-thu-ky-luc",
-      "cat": "Anime",
-      "date": "2026-09-19",
-      "excerpt": "Chainsaw Man Movie: Reze Arc do MAPPA sản xuất đạt doanh thu 3 tỷ yên tuần đầu tại Nhật Bản, chính thức ấn định lịch chiếu rạp tại Việt Nam với định dạng IMAX và 4DX.",
-      "img": "/assets/img/news-chainsaw-man-movie-reze-arc.jpg",
-      "tags": [
-          "anime",
-          "hot",
-          "chainsaw-man",
-          "reze"
-      ]
+    "title": "GTA 6 Tung Trailer Gameplay Mới: Rockstar Phô Diễn Bang Leonida Rực Lửa Và Cơ Chế Tội Phạm Đôi",
+    "url": "/gta-6-gameplay-trailer-rockstar-vice-city-leonida",
+    "cat": "Gaming",
+    "date": "2026-09-19",
+    "excerpt": "Rockstar Games chính thức ra mắt đoạn trailer gameplay chi tiết của GTA 6, hé lộ bản đồ bang Leonida khổng lồ, công nghệ NPC thế hệ mới và cơ chế cướp bóc cặp đôi Lucia - Jason.",
+    "img": "/assets/img/news-gta6-gameplay-trailer-leonida.jpg",
+    "tags": [
+      "gaming",
+      "hot",
+      "breaking",
+      "gta6"
+    ]
   },
   {
-      "title": "Zenless Zone Zero 2.0: HoYoverse Khởi Động Kỷ Nguyên Outer Ring, Hoshimi Miyabi Xuất Trận",
-      "url": "/zenless-zone-zero-2-0-outer-ring-miyabi-update",
-      "cat": "Gaming",
-      "date": "2026-09-19",
-      "excerpt": "Bản cập nhật lớn Zenless Zone Zero 2.0 mang tên Khúc Ca Sa Mạc chính thức ra mắt với vùng đất Outer Ring, cơ chế mô tô tốc độ cao và đặc vụ S-Rank Hoshimi Miyabi.",
-      "img": "/assets/img/news-zzz-20-outer-ring.jpg",
-      "tags": [
-          "gaming",
-          "hot",
-          "zzz",
-          "hoyoverse"
-      ]
+    "title": "Chainsaw Man Movie: Reze Arc Phá Đảo Phòng Vé Nhật Bản, Ấn Định Lịch Chiếu Rạp Tại Việt Nam",
+    "url": "/chainsaw-man-movie-reze-arc-chieu-rap-viet-nam-doanh-thu-ky-luc",
+    "cat": "Anime",
+    "date": "2026-09-19",
+    "excerpt": "Chainsaw Man Movie: Reze Arc do MAPPA sản xuất đạt doanh thu 3 tỷ yên tuần đầu tại Nhật Bản, chính thức ấn định lịch chiếu rạp tại Việt Nam với định dạng IMAX và 4DX.",
+    "img": "/assets/img/news-chainsaw-man-movie-reze-arc.jpg",
+    "tags": [
+      "anime",
+      "hot",
+      "chainsaw-man",
+      "reze"
+    ]
   },
   {
-      "title": "Jujutsu Kaisen Season 3: MAPPA Tung Teaser Tử Diệt Hồi Du (Culling Game), Định Ngày Lên Sóng",
-      "url": "/jujutsu-kaisen-season-3-culling-game-teaser-trailer-lich-chieu",
-      "cat": "Anime",
-      "date": "2026-09-19",
-      "excerpt": "Studio MAPPA chính thức hé lộ đoạn teaser đầu tiên cho Jujutsu Kaisen Mùa 3: Culling Game, hé lộ tạo hình tái xuất của Yuta Okkotsu, Kinji Hakari và cuộc thanh trừng sinh tử.",
-      "img": "/assets/img/news-jujutsu-kaisen-season3-culling-game.jpg",
-      "tags": [
-          "anime",
-          "hot",
-          "jjk",
-          "mappa"
-      ]
+    "title": "Zenless Zone Zero 2.0: HoYoverse Khởi Động Kỷ Nguyên Outer Ring, Hoshimi Miyabi Xuất Trận",
+    "url": "/zenless-zone-zero-2-0-outer-ring-miyabi-update",
+    "cat": "Gaming",
+    "date": "2026-09-19",
+    "excerpt": "Bản cập nhật lớn Zenless Zone Zero 2.0 mang tên Khúc Ca Sa Mạc chính thức ra mắt với vùng đất Outer Ring, cơ chế mô tô tốc độ cao và đặc vụ S-Rank Hoshimi Miyabi.",
+    "img": "/assets/img/news-zzz-20-outer-ring.jpg",
+    "tags": [
+      "gaming",
+      "hot",
+      "zzz",
+      "hoyoverse"
+    ]
   },
   {
-      "title": "Nintendo Direct: Switch 2 Chốt Giá Bán 399 USD, Trình Làng Mario Kart Next-Gen Cực Đỉnh",
-      "url": "/nintendo-switch-2-direct-gia-ban-mario-kart-moi",
-      "cat": "Gaming",
-      "date": "2026-09-19",
-      "excerpt": "Nintendo Direct công bố toàn diện Nintendo Switch 2: Giá bán chính thức 399 USD, màn hình OLED 120Hz hỗ trợ DLSS, tương thích ngược 100% và Mario Kart thế hệ mới.",
-      "img": "/assets/img/news-nintendo-direct-sept-2026-switch2-mario-kart.jpg",
-      "tags": [
-          "gaming",
-          "hot",
-          "nintendo",
-          "switch2"
-      ]
+    "title": "Jujutsu Kaisen Season 3: MAPPA Tung Teaser Tử Diệt Hồi Du (Culling Game), Định Ngày Lên Sóng",
+    "url": "/jujutsu-kaisen-season-3-culling-game-teaser-trailer-lich-chieu",
+    "cat": "Anime",
+    "date": "2026-09-19",
+    "excerpt": "Studio MAPPA chính thức hé lộ đoạn teaser đầu tiên cho Jujutsu Kaisen Mùa 3: Culling Game, hé lộ tạo hình tái xuất của Yuta Okkotsu, Kinji Hakari và cuộc thanh trừng sinh tử.",
+    "img": "/assets/img/news-jujutsu-kaisen-season3-culling-game.jpg",
+    "tags": [
+      "anime",
+      "hot",
+      "jjk",
+      "mappa"
+    ]
   },
-{
+  {
+    "title": "Nintendo Direct: Switch 2 Chốt Giá Bán 399 USD, Trình Làng Mario Kart Next-Gen Cực Đỉnh",
+    "url": "/nintendo-switch-2-direct-gia-ban-mario-kart-moi",
+    "cat": "Gaming",
+    "date": "2026-09-19",
+    "excerpt": "Nintendo Direct công bố toàn diện Nintendo Switch 2: Giá bán chính thức 399 USD, màn hình OLED 120Hz hỗ trợ DLSS, tương thích ngược 100% và Mario Kart thế hệ mới.",
+    "img": "/assets/img/news-nintendo-direct-sept-2026-switch2-mario-kart.jpg",
+    "tags": [
+      "gaming",
+      "hot",
+      "nintendo",
+      "switch2"
+    ]
+  },
+  {
     "title": "Black Myth: Wukong DLC \"Rebirth of the Great Sage\": Game Science Confirms Release Date & Celestial Realm Battlefields",
     "url": "/en/black-myth-wukong-dlc-tai-sinh-dai-thanh-ngay-phat-hanh-boss-thien-dinh",
     "cat": "Gaming",
