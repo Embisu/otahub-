@@ -1,7 +1,11 @@
 import pg from 'pg';
 const { Client } = pg;
 
-const password = 'Tgnaboas210618';
+const password = process.env.SUPABASE_DB_PASSWORD;
+if (!password) {
+  console.error('Thieu bien moi truong SUPABASE_DB_PASSWORD. Vi du: SUPABASE_DB_PASSWORD=xxx node test_pooler.mjs');
+  process.exit(1);
+}
 const projectRef = 'xmrctipywjevrknxzjau';
 
 const configs = [
