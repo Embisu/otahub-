@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>OtaHub Admin</title>
 <meta name="robots" content="noindex, nofollow"/>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root {
   --wp-dark: #1d2327;
@@ -3195,12 +3194,6 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
           </div>
         </li>
 
-        <li class="wp-nav-item" id="nav-comments">
-          <button class="wp-nav-btn" onclick="showView('comments')">
-            <span class="wp-nav-label"><span class="wp-nav-icon">💬</span><span class="wp-nav-text">Bình luận</span></span>
-            <span class="wp-nav-badge-red" id="cmt-badge-count">Live</span>
-          </button>
-        </li>
 
         <li class="wp-nav-item" id="nav-users">
           <button class="wp-nav-btn" onclick="showView('users')">
@@ -3547,7 +3540,6 @@ function cmdkStaticActions() {
     { icon: '👥', title: 'Đội ngũ / Giới thiệu', hint: 'Trang about', tag: 'Đi tới', run: () => teamEditor() },
     { icon: '✉️', title: 'Liên hệ', hint: 'Trang lien-he.html', tag: 'Đi tới', run: () => sectionEditor('lien-he.html', 'nav-lienhe', 'Liên hệ', 'https://otahub.asia/lien-he') },
     { icon: '🔒', title: 'Chính sách bảo mật', hint: 'Trang chinh-sach-bao-mat.html', tag: 'Đi tới', run: () => sectionEditor('chinh-sach-bao-mat.html', 'nav-chinhsach', 'Chính sách bảo mật', 'https://otahub.asia/chinh-sach-bao-mat') },
-    { icon: '💬', title: 'Bình luận', hint: 'Duyệt và kiểm duyệt bình luận độc giả', tag: 'Đi tới', run: () => showView('comments') },
     { icon: '👤', title: 'Người dùng', hint: 'Quản lý tài khoản admin', tag: 'Đi tới', run: () => showView('users') },
     { icon: '📜', title: 'Nhật ký hoạt động', hint: 'Ai sửa gì, lúc nào', tag: 'Đi tới', minRole: 'editor', run: () => showView('auditlog') },
   ];
@@ -5291,12 +5283,11 @@ function showView(view) {
   HAS_UNSAVED_CHANGES = false;
   CURRENT_VIEW = view;
   document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  const navMap = { dashboard: 'nav-dashboard', articles: 'nav-articles', rankings: 'nav-rankings', users: 'nav-users', auditlog: 'nav-auditlog', media: 'nav-media', rankmath: 'nav-rankmath', comments: 'nav-comments' };
+  const navMap = { dashboard: 'nav-dashboard', articles: 'nav-articles', rankings: 'nav-rankings', users: 'nav-users', auditlog: 'nav-auditlog', media: 'nav-media', rankmath: 'nav-rankmath' };
   document.getElementById(navMap[view] || 'nav-articles')?.classList.add('active');
 
   if (view === 'dashboard') renderDashboard();
   else if (view === 'articles') renderArticleList();
-  else if (view === 'comments') loadCommentsView();
   else if (view === 'rankings') loadRankings();
   else if (view === 'users') loadUsers();
   else if (view === 'auditlog') loadAuditLog();
@@ -5366,7 +5357,6 @@ function renderDashboard() {
         <div>
           <div class="wp-wp-col-title">Thao tác khác</div>
           <ul class="wp-wp-links">
-            <li><button onclick="showView('comments')"><span>💬</span> <span>Quản lý Bình luận & Tương tác</span></button></li>
             <li><button onclick="showView('rankmath')"><span>🎯</span> <span>Rank Math SEO Score Dashboard</span></button></li>
             <li><button onclick="homeEditor('index.html')"><span>🏠</span> <span>Chỉnh sửa Tiêu điểm Trang chủ</span></button></li>
             <li><button onclick="showView('settings')"><span>⚙️</span> <span>Cài đặt thông tin pháp nhân & SEO Maps</span></button></li>
@@ -10993,9 +10983,6 @@ function copyArticleLink(button){
 <\/script>
 <script defer src="/assets/search.js"><\/script>
 <script defer src="/assets/enhance.js"><\/script>
-<script defer src="/assets/engage.js?v=20260818b"><\/script>
-<script defer src="/assets/supabase-client.js"><\/script>
-<script defer src="/assets/otahub-community.js"><\/script>
 </body>
 </html>`;
 
@@ -13084,219 +13071,6 @@ async function saveNews() {
     toast('success', '✅ Đã lưu! Deploy trong ~1-2 phút.');
   } catch(e) {
     toast('error', 'Lỗi lưu: ' + e.message);
-  }
-}
-
-// ── 💬 Supabase Comments Moderation Panel ──────────────────────────────────
-let ADMIN_COMMENTS = [];
-let COMMENT_FILTER = 'all';
-let COMMENT_SEARCH = '';
-let COMMENT_REALTIME_SUB = null;
-
-function getAdminSupabase() {
-  if (!window.adminSupabaseClient && window.supabase && window.supabase.createClient) {
-    window.adminSupabaseClient = window.supabase.createClient(
-      'https://xmrctipywjevrknxzjau.supabase.co',
-      'sb_publishable_pojfdFC8-XJP-OAC0PCj9A_cXqMrs_r'
-    );
-  }
-  return window.adminSupabaseClient;
-}
-
-async function loadCommentsView() {
-  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải bình luận cộng đồng...</span></div>`);
-
-  try {
-    const r = await fetch('/api/admin/comments', { credentials: 'same-origin' });
-    const d = await r.json();
-    if (!r.ok) throw new Error(d.error || ('Loi server: ' + r.status));
-    ADMIN_COMMENTS = d.comments || [];
-
-    // Kenh realtime chi dung de bao "co binh luan moi" (toast) — van dung anon
-    // key vi day chi la thong bao tien ich, du lieu that luon tai lai qua
-    // /api/admin/comments (co xac thuc) o tren.
-    const sb = getAdminSupabase();
-    if (sb && !COMMENT_REALTIME_SUB) {
-      COMMENT_REALTIME_SUB = sb
-        .channel('admin_comments_channel')
-        .on('postgres_changes', { event: '*', schema: 'public', table: 'comments' }, payload => {
-          if (payload.eventType === 'INSERT') {
-            ADMIN_COMMENTS.unshift(payload.new);
-            toast('success', `💬 Có bình luận mới từ ${payload.new.author_name}!`);
-          } else if (payload.eventType === 'UPDATE') {
-            const idx = ADMIN_COMMENTS.findIndex(c => c.id === payload.new.id);
-            if (idx >= 0) ADMIN_COMMENTS[idx] = payload.new;
-          } else if (payload.eventType === 'DELETE') {
-            ADMIN_COMMENTS = ADMIN_COMMENTS.filter(c => c.id !== payload.old.id);
-          }
-          if (CURRENT_VIEW === 'comments') renderCommentsView();
-        })
-        .subscribe();
-    }
-
-    renderCommentsView();
-  } catch(e) {
-    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải bình luận: ${esc(e.message)}</p></div>`);
-  }
-}
-
-function renderCommentsView() {
-  const total = ADMIN_COMMENTS.length;
-  const approved = ADMIN_COMMENTS.filter(c => (c.status || 'approved') === 'approved').length;
-  const pending = ADMIN_COMMENTS.filter(c => c.status === 'pending').length;
-  const spam = ADMIN_COMMENTS.filter(c => c.status === 'spam').length;
-
-  let filtered = ADMIN_COMMENTS;
-  if (COMMENT_FILTER !== 'all') {
-    filtered = filtered.filter(c => (c.status || 'approved') === COMMENT_FILTER);
-  }
-  if (COMMENT_SEARCH.trim()) {
-    const q = COMMENT_SEARCH.toLowerCase().trim();
-    filtered = filtered.filter(c => 
-      (c.author_name && c.author_name.toLowerCase().includes(q)) ||
-      (c.article_slug && c.article_slug.toLowerCase().includes(q)) ||
-      (c.content && c.content.toLowerCase().includes(q))
-    );
-  }
-
-  const rows = filtered.map(c => {
-    const status = c.status || 'approved';
-    const statusBadge = status === 'approved' 
-      ? '<span style="background:rgba(0,138,32,0.15);color:#72e086;border:1px solid #72e086;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">✓ Đã duyệt</span>'
-      : (status === 'pending' 
-        ? '<span style="background:rgba(219,166,23,0.15);color:#dba617;border:1px solid #dba617;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">⏳ Chờ duyệt</span>'
-        : '<span style="background:rgba(214,54,56,0.15);color:#ff8099;border:1px solid #d63638;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">🚫 Spam</span>');
-
-    const dateStr = new Date(c.created_at).toLocaleString('vi-VN', { dateStyle: 'short', timeStyle: 'short' });
-    const slugUrl = `https://otahub.asia/${c.article_slug}`;
-
-    return `
-      <div class="article-card" style="grid-template-columns: 50px 1fr auto; gap: 14px; align-items: start; margin-bottom: 10px;">
-        <img src="${esc(c.author_avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100')}" style="width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 1px solid var(--wp-border);" alt=""/>
-        <div class="art-info">
-          <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px; flex-wrap:wrap">
-            <strong style="color:var(--wp-title); font-size:13.5px">${esc(c.author_name || 'Độc giả')}</strong>
-            ${statusBadge}
-            <span style="font-size:11px; color:var(--wp-muted)">${dateStr}</span>
-            <span style="font-size:11px; color:var(--wp-muted)">· Bài viết: <a href="${slugUrl}" target="_blank" style="color:var(--wp-blue); text-decoration:none; font-weight:600">/${esc(c.article_slug)}</a></span>
-          </div>
-          <div style="background:var(--wp-bg); border:1px solid var(--wp-border); border-radius:8px; padding:10px 14px; font-size:13px; color:var(--wp-text); line-height:1.6; margin-top:6px; white-space:pre-wrap">${esc(c.content || '')}</div>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:6px; min-width:110px">
-          ${status !== 'approved' ? `<button class="btn btn-primary btn-sm" onclick="approveComment('${c.id}')">✓ Duyệt bài</button>` : ''}
-          ${status !== 'spam' ? `<button class="btn btn-secondary btn-sm" onclick="markSpamComment('${c.id}')">🚫 Báo Spam</button>` : ''}
-          <button class="btn btn-danger btn-sm" onclick="deleteComment('${c.id}')">🗑 Xóa</button>
-        </div>
-      </div>
-    `;
-  }).join('');
-
-  setMain(`
-    <div class="page-header">
-      <div class="page-title">💬 Quản lý Bình luận & Tương tác Cộng đồng <small>${total} bình luận</small></div>
-      <div class="header-actions">
-        <button class="btn btn-secondary btn-sm" onclick="loadCommentsView()">🔄 Làm mới</button>
-      </div>
-    </div>
-    
-    <div class="content-area">
-      <!-- Stats Row -->
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 20px;">
-        <div class="side-box" style="text-align:center; padding: 14px;">
-          <div style="font-size:24px; font-weight:800; color:var(--wp-title)">${total}</div>
-          <div style="font-size:11px; color:var(--wp-muted); margin-top:2px">Tổng bình luận</div>
-        </div>
-        <div class="side-box" style="text-align:center; padding: 14px;">
-          <div style="font-size:24px; font-weight:800; color:#16a34a">${approved}</div>
-          <div style="font-size:11px; color:var(--wp-muted); margin-top:2px">Đã hiển thị (Approved)</div>
-        </div>
-        <div class="side-box" style="text-align:center; padding: 14px;">
-          <div style="font-size:24px; font-weight:800; color:#d97706">${pending}</div>
-          <div style="font-size:11px; color:var(--wp-muted); margin-top:2px">Đang chờ duyệt</div>
-        </div>
-        <div class="side-box" style="text-align:center; padding: 14px;">
-          <div style="font-size:24px; font-weight:800; color:#dc2626">${spam}</div>
-          <div style="font-size:11px; color:var(--wp-muted); margin-top:2px">Spam / Đã chặn</div>
-        </div>
-      </div>
-
-      <!-- Filter and Search Row -->
-      <div class="search-row" style="margin-bottom: 16px;">
-        <div class="home-tab-bar" style="margin-bottom:0; flex:1">
-          <button class="home-tab-btn ${COMMENT_FILTER==='all'?'active':''}" onclick="setCommentFilter('all')">Tất cả (${total})</button>
-          <button class="home-tab-btn ${COMMENT_FILTER==='approved'?'active':''}" onclick="setCommentFilter('approved')">Đã duyệt (${approved})</button>
-          <button class="home-tab-btn ${COMMENT_FILTER==='pending'?'active':''}" onclick="setCommentFilter('pending')">Chờ duyệt (${pending})</button>
-          <button class="home-tab-btn ${COMMENT_FILTER==='spam'?'active':''}" onclick="setCommentFilter('spam')">Spam (${spam})</button>
-        </div>
-        <input type="text" class="search-input" style="max-width: 280px;" placeholder="Tìm theo tên, bài viết, nội dung..." value="${esc(COMMENT_SEARCH)}" oninput="setCommentSearch(this.value)"/>
-      </div>
-
-      <div class="field-group">
-        ${rows || '<div class="empty-state"><div class="empty-icon">💬</div><p>Không tìm thấy bình luận nào.</p></div>'}
-      </div>
-    </div>
-  `);
-}
-
-function setCommentFilter(filter) {
-  COMMENT_FILTER = filter;
-  renderCommentsView();
-}
-
-function setCommentSearch(val) {
-  COMMENT_SEARCH = val;
-  renderCommentsView();
-}
-
-async function moderateComment(id, status) {
-  const r = await fetch('/api/admin/comments/moderate', {
-    method: 'POST',
-    credentials: 'same-origin',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ id, status }),
-  });
-  const d = await r.json().catch(() => ({}));
-  if (!r.ok || d.error) throw new Error(d.error || ('Loi server: ' + r.status));
-}
-
-async function approveComment(id) {
-  try {
-    await moderateComment(id, 'approved');
-    const item = ADMIN_COMMENTS.find(c => c.id === id);
-    if (item) item.status = 'approved';
-    toast('success', '✅ Đã duyệt bình luận!');
-    renderCommentsView();
-  } catch(e) {
-    toast('error', 'Lỗi duyệt: ' + e.message);
-  }
-}
-
-async function markSpamComment(id) {
-  try {
-    await moderateComment(id, 'spam');
-    const item = ADMIN_COMMENTS.find(c => c.id === id);
-    if (item) item.status = 'spam';
-    toast('success', '🚫 Đã đánh dấu spam!');
-    renderCommentsView();
-  } catch(e) {
-    toast('error', 'Lỗi: ' + e.message);
-  }
-}
-
-async function deleteComment(id) {
-  if (!confirm('Xóa vĩnh viễn bình luận này khỏi cơ sở dữ liệu?')) return;
-  try {
-    const r = await fetch('/api/admin/comments?id=' + encodeURIComponent(id), {
-      method: 'DELETE',
-      credentials: 'same-origin',
-    });
-    const d = await r.json().catch(() => ({}));
-    if (!r.ok || d.error) throw new Error(d.error || ('Loi server: ' + r.status));
-    ADMIN_COMMENTS = ADMIN_COMMENTS.filter(c => c.id !== id);
-    toast('success', '🗑 Đã xóa bình luận thành công!');
-    renderCommentsView();
-  } catch(e) {
-    toast('error', 'Lỗi xóa: ' + e.message);
   }
 }
 
