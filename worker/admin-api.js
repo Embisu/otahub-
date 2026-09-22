@@ -28,6 +28,73 @@ function ghHeaders(env) {
   };
 }
 
+// ── Supabase (kiem duyet binh luan) ──────────────────────────────────────
+// Du lieu binh luan cong dong nam trong Supabase (bang public.comments), nhung
+// KHONG dung anon/publishable key tu trinh duyet cho thao tac duyet/xoa — anon
+// key la cong khai va RLS chi cho phep doc comment da "approved", nen admin
+// dung anon key se khong bao gio thay duoc comment "pending"/"spam" de duyet.
+// Thay vao do, Worker goi Supabase REST API bang SUPABASE_SERVICE_ROLE_KEY
+// (bi mat, chi luu server-side qua Cloudflare secret) — bo qua RLS, nhung chi
+// sau khi da xac thuc session + RBAC admin/editor ngay tai day.
+const SUPABASE_URL = 'https://xmrctipywjevrknxzjau.supabase.co';
+function supabaseHeaders(env) {
+  return {
+    'apikey': env.SUPABASE_SERVICE_ROLE_KEY,
+    'Authorization': 'Bearer ' + env.SUPABASE_SERVICE_ROLE_KEY,
+    'Content-Type': 'application/json',
+  };
+}
+function requireModerator(user) {
+  return !!user && (user.role === 'admin' || user.role === 'editor');
+}
+
+async function handleCommentsList(request, env) {
+  const user = await getSessionUser(request, env);
+  if (!user) return json({ error: 'Chua dang nhap.' }, 401);
+  if (!requireModerator(user)) return json({ error: 'Chi admin/editor moi duoc quan ly binh luan.' }, 403);
+  if (!env.SUPABASE_SERVICE_ROLE_KEY) return json({ error: 'Chua cau hinh SUPABASE_SERVICE_ROLE_KEY tren server.' }, 500);
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/comments?select=*&order=created_at.desc`, {
+    headers: supabaseHeaders(env),
+  });
+  if (!r.ok) return json({ error: 'Supabase API error: ' + r.status }, r.status);
+  return json({ comments: await r.json() });
+}
+
+async function handleCommentModerate(request, env) {
+  const user = await getSessionUser(request, env);
+  if (!user) return json({ error: 'Chua dang nhap.' }, 401);
+  if (!requireModerator(user)) return json({ error: 'Chi admin/editor moi duoc duyet binh luan.' }, 403);
+  if (!env.SUPABASE_SERVICE_ROLE_KEY) return json({ error: 'Chua cau hinh SUPABASE_SERVICE_ROLE_KEY tren server.' }, 500);
+  let body;
+  try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
+  const { id, status } = body || {};
+  if (!id || !['approved', 'pending', 'spam'].includes(status)) return json({ error: 'Thieu id hoac status khong hop le.' }, 400);
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/comments?id=eq.${encodeURIComponent(id)}`, {
+    method: 'PATCH',
+    headers: { ...supabaseHeaders(env), 'Prefer': 'return=minimal' },
+    body: JSON.stringify({ status }),
+  });
+  if (!r.ok) return json({ error: 'Supabase API error: ' + r.status }, r.status);
+  await logAudit(env, { action: 'comment_moderate', username: user.username, target: String(id), status });
+  return json({ ok: true });
+}
+
+async function handleCommentDelete(request, env, url) {
+  const user = await getSessionUser(request, env);
+  if (!user) return json({ error: 'Chua dang nhap.' }, 401);
+  if (!requireModerator(user)) return json({ error: 'Chi admin/editor moi duoc xoa binh luan.' }, 403);
+  if (!env.SUPABASE_SERVICE_ROLE_KEY) return json({ error: 'Chua cau hinh SUPABASE_SERVICE_ROLE_KEY tren server.' }, 500);
+  const id = url.searchParams.get('id');
+  if (!id) return json({ error: 'Thieu id.' }, 400);
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/comments?id=eq.${encodeURIComponent(id)}`, {
+    method: 'DELETE',
+    headers: { ...supabaseHeaders(env), 'Prefer': 'return=minimal' },
+  });
+  if (!r.ok) return json({ error: 'Supabase API error: ' + r.status }, r.status);
+  await logAudit(env, { action: 'comment_delete', username: user.username, target: String(id) });
+  return json({ ok: true });
+}
+
 async function handleLogin(request, env) {
   let body;
   try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
@@ -469,6 +536,10 @@ export async function handleAdminApi(request, env, url) {
   if (path === '/api/admin/users/role' && method === 'POST') return handleUsersRole(request, env);
   if (path === '/api/admin/auditlog' && method === 'GET') return handleAuditLog(request, env);
   if (path === '/api/admin/drafts' && method === 'GET') return handleDraftsList(request, env);
+
+  if (path === '/api/admin/comments' && method === 'GET') return handleCommentsList(request, env);
+  if (path === '/api/admin/comments/moderate' && method === 'POST') return handleCommentModerate(request, env);
+  if (path === '/api/admin/comments' && method === 'DELETE') return handleCommentDelete(request, env, url);
 
   if (path.startsWith('/api/admin/draft/')) {
     const ghPath = path.slice('/api/admin/draft/'.length);

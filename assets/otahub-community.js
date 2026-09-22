@@ -222,9 +222,10 @@
 
     function renderCommentItem(c) {
       const timeStr = new Date(c.created_at).toLocaleString('vi-VN', { dateStyle: 'short', timeStyle: 'short' });
+      const safeId = /^\d+$/.test(String(c.id)) ? c.id : '';
       return `
-        <div class="cmt-item" id="cmt-${c.id}">
-          <img src="${c.author_avatar || avatars[0]}" class="cmt-item-avatar" alt="${c.author_name}">
+        <div class="cmt-item" id="cmt-${safeId}">
+          <img src="${escapeHtml(safeAvatarUrl(c.author_avatar))}" class="cmt-item-avatar" alt="${escapeHtml(c.author_name)}">
           <div class="cmt-item-body">
             <div class="cmt-item-head">
               <span class="cmt-item-name">${escapeHtml(c.author_name)}</span>
@@ -237,8 +238,19 @@
       `;
     }
 
+    // Chi chap nhan URL http(s) hop le lam avatar — chan javascript:/data: URI va
+    // pha vo thuoc tinh src bang ky tu dac biet trong gia tri tra ve tu Supabase
+    // (bang comments cho phep INSERT cong khai, khong the tin gia tri author_avatar).
+    function safeAvatarUrl(url) {
+      try {
+        const u = new URL(url, window.location.href);
+        if (u.protocol === 'http:' || u.protocol === 'https:') return u.href;
+      } catch (e) {}
+      return avatars[0];
+    }
+
     function escapeHtml(str) {
-      return (str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      return (str || '').toString().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     }
 
     loadComments();

@@ -142,5 +142,7 @@ ON CONFLICT (id) DO NOTHING;
 
 -- Cho phép đọc ảnh công khai từ bucket otahub-media
 CREATE POLICY "Public Read Storage" ON storage.objects FOR SELECT USING (bucket_id = 'otahub-media');
--- Cho phép upload ảnh
-CREATE POLICY "Public Upload Storage" ON storage.objects FOR INSERT WITH CHECK (bucket_id = 'otahub-media');
+-- KHONG tao policy INSERT cong khai cho storage.objects: upload anh chi di qua
+-- Cloudflare Worker (endpoint /api/admin/gh/... hien co, da xac thuc session +
+-- RBAC) — xem supabase_hardening.sql. Cho phep INSERT cong khai tai day tung
+-- la 1 lo hong bao mat (ai cung upload duoc file bat ky, khong gioi han).
