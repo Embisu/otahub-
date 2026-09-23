@@ -217,50 +217,61 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 /* GRID */
 
 
-.anime-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2px;margin-bottom:60px}
+.anime-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:18px;margin-bottom:60px}
 
 
-.ac{background:var(--surf);display:flex;gap:0;overflow:hidden;border:1px solid transparent;transition:all .22s;cursor:pointer;text-decoration:none}
+.ac{background:var(--surf);display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--border);border-radius:10px;transition:all .22s;cursor:pointer;text-decoration:none}
 
 
-.ac:hover{border-color:rgba(255,48,128,.25);background:var(--surf2);transform:translateY(-2px)}
+.ac:hover{border-color:rgba(255,48,128,.4);background:var(--surf2);transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,.45)}
 
 
-.ac-cover{width:90px;min-height:130px;object-fit:cover;flex-shrink:0}
+.ac-cover-wrap{position:relative;width:100%;aspect-ratio:2/3;background:var(--surf2);overflow:hidden}
 
 
-.ac-body{padding:14px 14px 12px;flex:1;display:flex;flex-direction:column;gap:6px}
+.ac-cover{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
 
 
-.ac-type-badge{display:inline-flex;align-items:center;gap:5px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.ac:hover .ac-cover{transform:scale(1.05)}
 
 
-.ac-type-badge.tv{color:var(--cyan)}.ac-type-badge.movie{color:var(--amber)}.ac-type-badge.ona{color:var(--violet)}.ac-type-badge.ova{color:var(--green)}
+.ac-status-pill{position:absolute;top:8px;left:8px;display:flex;align-items:center;gap:5px;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:20px;background:rgba(10,6,20,.78);backdrop-filter:blur(6px);color:var(--dim)}
 
 
-.ac-title{font-family:var(--fd);font-weight:700;font-size:15px;line-height:1.2;color:var(--white)}
+.ac-status-pill .ac-air-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0}
 
 
-.ac-studio{font-size:11px;color:var(--muted)}
+.ac-status-pill.ended .ac-air-dot{background:var(--muted)}
 
 
-.ac-genres{display:flex;gap:4px;flex-wrap:wrap}
+.ac-status-pill.tba .ac-air-dot,.ac-status-pill.upcoming .ac-air-dot,.ac-status-pill.hiatus .ac-air-dot{background:var(--amber)}
 
 
-.ac-genre{font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted)}
+.ac-type-corner{position:absolute;top:8px;right:8px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:4px 8px;border-radius:6px;background:rgba(10,6,20,.78);backdrop-filter:blur(6px)}
 
 
-.ac-air{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--dim);margin-top:auto}
+.ac-type-corner.tv{color:var(--cyan)}.ac-type-corner.movie{color:var(--amber)}.ac-type-corner.ona{color:var(--violet)}.ac-type-corner.ova{color:var(--green)}.ac-type-corner.manga{color:var(--cyan)}.ac-type-corner.manhwa{color:var(--sakura)}.ac-type-corner.manhua{color:var(--amber)}
 
 
-.ac-air-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0}
+.ac-body{padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:6px}
 
 
-.ac-air-dot.ended{background:var(--muted)}
+.ac-title{font-family:var(--fd);font-weight:700;font-size:14px;line-height:1.25;color:var(--white);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
 
-.ac-air-dot.tba{background:var(--amber)}
-.ac-type-badge.manga{color:var(--cyan)}.ac-type-badge.manhwa{color:var(--sakura)}.ac-type-badge.manhua{color:var(--amber)}
+.ac-studio{font-size:10.5px;color:var(--muted)}
+
+
+.ac-synopsis{font-size:11px;line-height:1.5;color:var(--dim);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:2px}
+
+
+.ac-genres{display:flex;gap:4px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+
+
+.ac-genre{font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--muted);border-radius:4px}
+
+
+.ac-air{display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--dim);margin-top:2px}
 
 
 /* DAY SECTION HEADERS */
@@ -724,7 +735,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
     <div class="ph-eyebrow">📅 Lịch Chiếu &amp; Cập Nhật</div>
 
 
-    <h1 class="ph-title" id="pageTitle"><span id="modeLabel">Anime</span> <span style="color:var(--sakura)" id="seasonTitle">Mùa Hè 2026</span></h1>
+    <h1 class="ph-title" id="pageTitle"><span id="modeLabel">Anime</span> <span style="color:var(--sakura)" id="seasonTitle">Mùa Thu 2026</span></h1>
 
 
     <p class="ph-sub" id="pageSub">Cập nhật đầy đủ lịch chiếu, studio, thể loại cho từng anime theo mùa</p>
@@ -772,16 +783,16 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   <div class="season-tabs">
 
 
-    <button class="st-btn" onclick="setSeason('spring',this)"><span class="st-icon">🌸</span>Xuân (Tháng 1–3)</button>
+    <button class="st-btn" onclick="setSeason('winter',this)"><span class="st-icon">❄️</span>Đông (Tháng 1–3)</button>
 
 
-    <button class="st-btn active" onclick="setSeason('summer',this)"><span class="st-icon">☀️</span>Hè (Tháng 4–6)</button>
+    <button class="st-btn" onclick="setSeason('spring',this)"><span class="st-icon">🌸</span>Xuân (Tháng 4–6)</button>
 
 
-    <button class="st-btn" onclick="setSeason('fall',this)"><span class="st-icon">🍁</span>Thu (Tháng 7–9)</button>
+    <button class="st-btn" onclick="setSeason('summer',this)"><span class="st-icon">☀️</span>Hè (Tháng 7–9)</button>
 
 
-    <button class="st-btn" onclick="setSeason('winter',this)"><span class="st-icon">❄️</span>Đông (Tháng 10–12)</button>
+    <button class="st-btn active" onclick="setSeason('fall',this)"><span class="st-icon">🍁</span>Thu (Tháng 10–12)</button>
 
 
   </div>
@@ -868,243 +879,62 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 
 
 const DATA = {
-
-
-  summer: [
-
-
-    {type:'tv',title:'Demon Slayer: Infinity Castle',titleJp:'鬼滅の刃 無限城編',studio:'ufotable',day:'Thứ Bảy',genres:['Shounen','Action','Dark Fantasy'],air:'2026',status:'airing',img:'/assets/img/e497ae1e1b-demon-slayer-cover.jpg'},
-
-
-    {type:'tv',title:'Frieren Season 2',titleJp:'葬送のフリーレン 2期',studio:'Madhouse',day:'Thứ Tư',genres:['Fantasy','Slice of Life'],air:'2026',status:'airing',img:'/assets/img/4a7324f467-138006l.jpg'},
-
-
-    {type:'tv',title:'Solo Leveling Season 3',titleJp:'俺だけレベルアップな件 3期',studio:'A-1 Pictures',day:'Thứ Sáu',genres:['Action','Isekai'],air:'2026',status:'airing',img:'/assets/img/dfc2a226b6-339933l.jpg'},
-
-
-    {type:'tv',title:'Bleach: TYBW Part 5',titleJp:'BLEACH 千年血戦篇 Part5',studio:'Pierrot',day:'Thứ Tư',genres:['Shounen','Action'],air:'2026',status:'airing',img:'/assets/img/7429db2141-bleach-tybw-cover.jpg'},
-
-
-    {type:'tv',title:'Dungeon Meshi Season 2',titleJp:'ダンジョン飯 2期',studio:'Trigger',day:'Thứ Năm',genres:['Fantasy','Comedy','Adventure'],air:'2026',status:'airing',img:'/assets/img/1a63d75aaa-dungeon-meshi-cover.jpg'},
-
-
-    {type:'tv',title:'Chainsaw Man Part 3',titleJp:'チェンソーマン Part3',studio:'MAPPA',day:'Thứ Ba',genres:['Action','Horror'],air:'2026',status:'airing',img:'/assets/img/fced43ae52-216464l.jpg'},
-
-
-    {type:'tv',title:'Kaiju No.8 Season 2',titleJp:'怪獣8号 2期',studio:'Production I.G',day:'Thứ Hai',genres:['Action','Sci-Fi'],air:'2026',status:'airing',img:'/assets/img/1cd80a8a56-kaiju-no8-cover.jpg'},
-
-
-    {type:'tv',title:'Mushoku Tensei Season 3',titleJp:'無職転生 3期',studio:'Studio Bind',day:'Thứ Tư',genres:['Fantasy','Isekai'],air:'2026',status:'airing',img:'/assets/img/93dc86c38d-117776l.jpg'},
-
-
-    {type:'tv',title:'Sakamoto Days',titleJp:'サカモトデイズ',studio:'TMS Entertainment',day:'Thứ Sáu',genres:['Action','Comedy'],air:'2026',status:'airing',img:'/assets/img/43abe6812a-sakamoto-days-cover.jpg'},
-
-
-    {type:'tv',title:'Re:Zero Season 4 Part 2',titleJp:'Re:ゼロ 4th Season Part2',studio:'White Fox',day:'Thứ Tư',genres:['Isekai','Fantasy','Dark'],air:'12/8/2026',status:'airing',img:'/assets/img/087af8ed98-rezero-s4-hero.jpg'},
-
-
-    {type:'tv',title:'Link Click Season 3',titleJp:'时光代理人 3',studio:'LAN Studio',day:'Bilibili / Crunchyroll',genres:['Sci-Fi','Mystery','Drama'],air:'14/8/2026',status:'airing',img:'/assets/img/1f8bc2e797-link-click-s3-hero.jpg'},
-
-
-    {type:'ona',title:'The Ribbon Hero',titleJp:'The Ribbon Hero',studio:'OUTLINE',day:'Netflix',genres:['Adventure','Fantasy'],air:'8/8/2026',status:'ended',img:'/assets/img/632c9aeaf5-the-ribbon-hero-netflix-hero.jpg'},
-
-
-  ],
-
-
-  spring: [
-
-
-    {type:'tv',title:'Re:Zero Season 4',titleJp:'Re:ゼロ 4th Season',studio:'White Fox',day:'Thứ Tư',genres:['Isekai','Fantasy','Dark'],air:'4/2026',status:'ended',img:'/assets/img/087af8ed98-rezero-s4-hero.jpg'},
-
-
-    {type:'tv',title:'Witch Hat Atelier',titleJp:'とんがり帽子のアトリエ',studio:'Wit Studio',day:'Thứ Bảy',genres:['Fantasy','Slice of Life'],air:'4/2026',status:'ended',img:'/assets/img/53da1f083b-witch-hat-atelier-cover.jpg'},
-
-
-    {type:'tv',title:'Classroom of the Elite S4',titleJp:'ようこそ実力至上主義の教室へ S4',studio:'Lerche',day:'Thứ Hai',genres:['Psychological','Drama'],air:'4/2026',status:'ended',img:'/assets/img/cc0a4e0f5b-cote-cover.jpg'},
-
-
-    {type:'tv',title:'Sword Art Online: Alicization Arc 3',titleJp:'SAO アリシゼーション編 3',studio:'A-1 Pictures',day:'Thứ Sáu',genres:['Isekai','Action'],air:'4/2026',status:'ended',img:'/assets/img/4b50ed9261-sao-cover.jpg'},
-
-
-    {type:'tv',title:'Bleach: Thousand-Year Blood War Part 4',titleJp:'BLEACH 千年血戦篇 Part4',studio:'Pierrot',day:'Thứ Bảy',genres:['Shounen','Action'],air:'4/2026',status:'ended',img:'/assets/img/7429db2141-bleach-tybw-cover.jpg'},
-
-
-    {type:'movie',title:'Jujutsu Kaisen: Hidden Inventory Movie',titleJp:'呪術廻戦 隠し財産編',studio:'MAPPA',day:'Khởi chiếu 15/5',genres:['Action','Supernatural'],air:'15/5/2026',status:'ended',img:'/assets/img/a4d82e012d-138022l.jpg'},
-
-
-  ],
-
-
+  // Nguon: LiveChart.me, AnimeSchedule.net, Crunchyroll News, Anime News Network,
+  // GamesRadar, CBR (kiem chung thang 9/2026). Chi liet ke tua thuc su co xac
+  // nhan chinh thuc — khong doan/suy dien ngay gio phat song.
   fall: [
-
-
-    {type:'tv',title:'Black Clover Season 2',titleJp:'ブラッククローバー 2期',studio:'Pierrot',day:'TBA',genres:['Shounen','Fantasy','Action'],air:'10/2026',status:'upcoming',img:'/assets/img/bd3666212d-black-clover-cover.jpg'},
-
-
-    {type:'tv',title:'Gachiakuta Season 2',titleJp:'ガチアクタ 2期',studio:'Bones',day:'TBA',genres:['Action','Dark Fantasy'],air:'2026',status:'tba',img:'/assets/img/e9b5b5fae9-gachiakuta-cover.jpg?v=20260817e'},
-
-
-    {type:'tv',title:'Chained Soldier Season 3',titleJp:'鎖之勇士 3期',studio:'Studio Blanc',day:'TBA',genres:['Action','Fantasy'],air:'2026',status:'tba',img:'/assets/img/cc1f44dabd-chained-soldier-s3.jpg'},
-
-
-    {type:'movie',title:'Haikyu!! Movie: The Dumpster Battle',titleJp:'ハイキュー!! ゴミ捨て場の決戦',studio:'Production I.G',day:'2026',genres:['Sports','Drama'],air:'2026',status:'tba',img:'/assets/img/1aa6c988b4-haikyuu-cover.jpg'},
-
-
+    {type:'tv',title:'Black Clover Season 2',titleJp:'ブラッククローバー 2期',studio:'Pierrot',day:'Thứ Bảy, 3/10',genres:['Shounen','Action','Fantasy'],air:'3/10/2026',status:'upcoming',synopsis:'Asta và Yuno dẫn đầu những nhiệm vụ tuyệt vọng chống lại thế lực hắc ám đe dọa vương quốc Clover.'},
+    {type:'tv',title:'The Apothecary Diaries Season 3',titleJp:'薬屋のひとりごと 3期',studio:'OLM',day:'Thứ Sáu, 2/10',genres:['Drama','Historical','Mystery'],air:'2/10/2026',status:'upcoming',synopsis:'Maomao cảm nhận điều bất thường trong hậu cung và bắt đầu điều tra sự thật phía sau.'},
+    {type:'tv',title:'Ranma 1/2 Season 3',titleJp:'らんま1/2 3期',studio:'MAPPA',day:'Thứ Bảy, 3/10',genres:['Comedy','Martial Arts','Romance'],air:'3/10/2026',status:'upcoming',synopsis:'Ranma tiếp tục hành trình dở khóc dở cười giữa võ thuật, tình yêu và lời nguyền hóa thân.'},
+    {type:'tv',title:'Ao no Hako Season 2',titleJp:'アオのハコ 2期',studio:'Electric Circus',day:'Chủ Nhật, 4/10',genres:['Sports','Romance','School'],air:'4/10/2026',status:'upcoming',synopsis:'Taiki và Chinatsu tiếp tục vun đắp tình cảm giữa những buổi tập cầu lông và bóng rổ.'},
+    {type:'tv',title:'Tokyo Revengers: Santen Sensou-hen',titleJp:'東京リベンジャーズ 三天戦争編',studio:'LIDENFILMS',day:'Thứ Sáu, 2/10',genres:['Action','Drama','Time Travel'],air:'2/10/2026',status:'upcoming',synopsis:'Takemichi tiếp tục du hành thời gian để cứu những người anh trân trọng khỏi bi kịch.'},
+    {type:'tv',title:'Aoashi Season 2',titleJp:'アオアシ 2期',studio:'TMS Entertainment',day:'Chủ Nhật, 4/10',genres:['Sports','Soccer'],air:'4/10/2026',status:'upcoming',synopsis:'Ashito tiếp tục thử thách bản thân giữa dàn cầu thủ tinh anh ở giải U-18 Premier League.'},
+    {type:'tv',title:'Dragon Ball Super: Beerus',titleJp:'ドラゴンボール超 ビルス編',studio:'Toei Animation',day:'Chủ Nhật, 11/10',genres:['Action','Comedy','Martial Arts'],air:'11/10/2026',status:'upcoming',synopsis:'Bản dựng lại có vẽ mới của arc Beerus trong Dragon Ball Super, mở màn saga thần hủy diệt.'},
+    {type:'tv',title:'Reincarnated as a Sword II',titleJp:'転生したら剣でした II',studio:'C2C',day:'Thứ Tư, 30/9',genres:['Action','Isekai','Fantasy'],air:'30/9/2026',status:'upcoming',synopsis:'Thanh kiếm biết nói và Fran tiếp tục hành trình phiêu lưu ở thế giới dị giới.'},
+    {type:'tv',title:'Diamond no Ace act II (Cour 2)',titleJp:'ダイヤのA act II',studio:'OLM',day:'Chủ Nhật, 11/10',genres:['Sports','Baseball','School'],air:'11/10/2026',status:'upcoming',synopsis:'Đội Seido bước vào vòng đấu Koshien, đối đầu những đối thủ đáng gờm nhất.'},
   ],
-
-
+  summer: [
+    {type:'tv',title:'Mushoku Tensei Season 3: Chaos Breaker Arc',titleJp:'無職転生 3期',studio:'Studio Bind',day:'Chủ Nhật',genres:['Isekai','Fantasy','Drama'],air:'từ 16/8/2026',status:'airing',synopsis:'Rudeus cùng đồng đội tiến vào pháo đài bay của Perugius Dola, đối mặt thảm họa Chaos Breaker.'},
+    {type:'tv',title:'Bleach: TYBW Final Part — The Calamity',titleJp:'BLEACH 千年血戦篇 相剋譚',studio:'Pierrot',day:'Thứ Bảy',genres:['Shounen','Action','Supernatural'],air:'từ 25/7/2026',status:'airing',synopsis:'Chương cuối cùng của Thousand-Year Blood War, Ichigo đối đầu Yhwach trong trận chiến quyết định.'},
+    {type:'tv',title:'Youjo Senki II',titleJp:'幼女戦記 II',studio:'NUT',day:'Thứ Sáu',genres:['Military','Isekai','Action'],air:'2026',status:'airing',synopsis:'Tanya Degurechaff tiếp tục cuộc chiến khốc liệt trên chiến trường ma thuật.'},
+    {type:'tv',title:'Grand Blue Season 3',titleJp:'ぐらんぶる 3期',studio:'Saber Works',day:'Đã hoàn thành',genres:['Comedy','Seinen','Slice of Life'],air:'7–9/2026',status:'ended',synopsis:'Iori và hội lặn biển Grand Blue tiếp tục những trò náo loạn ở thị trấn biển Izu.'},
+    {type:'tv',title:'Ghost in the Shell (2026)',titleJp:'攻殻機動隊',studio:'Science SARU',day:'Đã hoàn thành',genres:['Sci-Fi','Psychological','Seinen'],air:'7–9/2026',status:'ended',synopsis:'Bản chuyển thể mới của Ghost in the Shell do Science SARU thực hiện, khai thác lại thế giới cyberpunk kinh điển.'},
+  ],
   winter: [
-
-
-    {type:'tv',title:'Jujutsu Kaisen Season 3',titleJp:'呪術廻戦 3期',studio:'MAPPA',day:'TBA',genres:['Action','Supernatural'],air:'2026',status:'tba',img:'/assets/img/a4d82e012d-138022l.jpg'},
-
-
-    {type:'tv',title:'Chainsaw Man Part 4',titleJp:'チェンソーマン Part4',studio:'MAPPA',day:'TBA',genres:['Action','Dark'],air:'2026',status:'tba',img:'/assets/img/fced43ae52-216464l.jpg'},
-
-
-  ]
-
-
+    {type:'tv',title:"Frieren: Beyond Journey's End Season 2",titleJp:'葬送のフリーレン 2期',studio:'Madhouse',day:'Đã kết thúc',genres:['Fantasy','Adventure','Drama'],air:'16/1 – 27/3/2026',status:'ended',synopsis:'Frieren tiếp tục hành trình chậm rãi khám phá ký ức và cảm xúc con người sau khi Hùng Đoàn giải tán.'},
+    {type:'tv',title:'Jujutsu Kaisen Season 3: Culling Game Part 1',titleJp:'呪術廻戦 3期',studio:'MAPPA',day:'Đã kết thúc (12 tập)',genres:['Action','Supernatural','Shounen'],air:'9/1 – 27/3/2026',status:'ended',synopsis:'Trò chơi thanh trừng bắt đầu, các chú thuật sư bị cuốn vào cuộc chiến sinh tồn khốc liệt.'},
+  ],
+  spring: [
+    {type:'tv',title:'JoJo no Kimyou na Bouken: Steel Ball Run',titleJp:'ジョジョの奇妙な冒険 スティール・ボール・ラン',studio:'david production',day:'Đang phát sóng',genres:['Action','Adventure','Mystery'],air:'từ 4/2026',status:'airing',synopsis:'Johnny Joestar tham gia cuộc đua xuyên lục địa Steel Ball Run đầy bí ẩn siêu nhiên.'},
+  ],
 };
-
-
-
-
 
 const REAL_LINK = {
-
-
-  'Demon Slayer: Infinity Castle':'/anime',
-
-
-  'Frieren Season 2':'/frieren-season2',
-
-
-  'Chainsaw Man Part 3':'/chainsaw-man-season3',
-
-
   'Black Clover Season 2':'/black-clover-season-2',
-
-
-  'Chained Soldier Season 3':'/chained-soldier-season-3',
-
-
-  'Mushoku Tensei Season 3':'/mushoku-tensei-s3-chaos-breaker',
-
-
+  'The Apothecary Diaries Season 3':'/apothecary-diaries-season3-trailer',
+  'Ranma 1/2 Season 3':'/ranma-half-season-3-visual',
   "Frieren: Beyond Journey's End Season 2":'/frieren-season2',
-
-
-  'Jujutsu Kaisen: Hidden Inventory Movie':'/jujutsu-kaisen-ket-thuc',
-
-
-  'Jujutsu Kaisen Season 3':'/jujutsu-kaisen-ket-thuc',
-
-
-  'Chainsaw Man Part 4':'/chainsaw-man-season3',
-
-
-  'Re:Zero Season 4 Part 2':'/re-zero-season4-recapture-arc',
-
-
-  'Re:Zero Season 4':'/re-zero-season4-recapture-arc',
-
-
-  'Link Click Season 3':'/link-click-season3-premiere',
-
-
-  'The Ribbon Hero':'/the-ribbon-hero-netflix',
-
-
+  'Jujutsu Kaisen Season 3: Culling Game Part 1':'/jujutsu-kaisen-season-3-culling-game-release',
+  'Mushoku Tensei Season 3: Chaos Breaker Arc':'/mushoku-tensei-s3-chaos-breaker',
+  'Bleach: TYBW Final Part — The Calamity':'/bleach-thousand-year-blood-war-part-4-the-farewell-release-date',
 };
 
-
 const REAL_IMG = {
-
-
-  'Demon Slayer: Infinity Castle':'/assets/img/0feb0c5f50-99889l.jpg',
-
-
-  'Frieren Season 2':'/assets/img/4a7324f467-138006l.jpg',
-
-
-  'Solo Leveling Season 3':'/assets/img/1619ce791a-solo-leveling-hero.jpg',
-
-
-  'Bleach: TYBW Part 5':'/assets/img/bleach-tybw-poster.jpg',
-
-
-  'Dungeon Meshi Season 2':'/assets/img/c76fab236e-142478l.jpg',
-
-
-  'Chainsaw Man Part 3':'/assets/img/2656ba8ffc-maxresdefault.jpg',
-
-
-  'Kaiju No.8 Season 2':'/assets/img/064c22bc8c-140362l.jpg',
-
-
-  'Mushoku Tensei Season 3':'/assets/img/93dc86c38d-117776l.jpg',
-
-
-  'Sakamoto Days':'/assets/img/53434489e9-146459l.jpg',
-
-
-  'Re:Zero Season 4 Part 2':'/assets/img/7402a5d53f-rezero.jpg',
-
-
-  'Link Click Season 3':'/assets/img/1f8bc2e797-link-click-s3-hero.jpg',
-
-
-  'The Ribbon Hero':'/assets/img/632c9aeaf5-the-ribbon-hero-netflix-hero.jpg',
-
-
-  'Gachiakuta Season 2':'/assets/img/e9b5b5fae9-gachiakuta.jpg?v=20260817e',
-
-
-  'Chained Soldier Season 3':'/assets/img/4763fea8c3-chainedsoldier.jpg',
-
-
-  'Haikyu!! Movie: The Dumpster Battle':'/assets/img/c46b018c88-haikyu.jpg',
-
-
-  'Re:Zero Season 4':'/assets/img/7402a5d53f-rezero.jpg',
-
-
-  'Witch Hat Atelier':'/assets/img/53da1f083b-witchhat.jpg',
-
-
-  'Classroom of the Elite S4':'/assets/img/cc0a4e0f5b-cote.jpg?v=20260817e',
-
-
-  'Sword Art Online: Alicization Arc 3':'/assets/img/566c86f5fb-sao.jpg',
-
-
-  'Bleach: Thousand-Year Blood War Part 4':'/assets/img/46ad3bbf21-bleach.jpg',
-
-
   'Black Clover Season 2':'/assets/img/00ecd3dafc-banner.jpg',
-
-
-  "Frieren: Beyond Journey's End Season 2":'/assets/img/4a7324f467-138006l.jpg',
-
-
-  'Jujutsu Kaisen: Hidden Inventory Movie':'/assets/img/d662bae70f-maxresdefault.jpg',
-
-
-  'Jujutsu Kaisen Season 3':'/assets/img/d662bae70f-maxresdefault.jpg',
-
-
-  'Chainsaw Man Part 4':'/assets/img/2656ba8ffc-maxresdefault.jpg',
-
-
+  'The Apothecary Diaries Season 3':'/assets/img/ba56514692-apothecary-diaries-s3-key-visual.jpg',
+  'Ranma 1/2 Season 3':'/assets/img/news-ranma-half-season-3-visual.jpg',
+  "Frieren: Beyond Journey's End Season 2":'/assets/img/3f4f599cac-frieren-s2-hero.jpg',
+  'Jujutsu Kaisen Season 3: Culling Game Part 1':'/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg',
+  'Mushoku Tensei Season 3: Chaos Breaker Arc':'/assets/img/77948dbff7-mushoku-tensei-s3-chaosbreaker.jpg',
+  'Bleach: TYBW Final Part — The Calamity':'/assets/img/news-bleach-tybw-part4-farewell.jpg',
 };
 
 
 function resolveLink(title){ return REAL_LINK[title] || ('/anime-detail?t=' + encodeURIComponent(title)); }
 
 
-function resolveImg(title, fallback){ return REAL_IMG[title] || '/assets/img/3f4f599cac-frieren-s2-hero.jpg'; }
+function resolveImg(title, fallback){ return REAL_IMG[title] || '/assets/img/placeholder.svg'; }
+const STATUS_LABEL = {airing:'Đang phát',ended:'Đã kết thúc',upcoming:'Sắp chiếu',tba:'Chưa rõ ngày'};
 
 
 
@@ -1113,7 +943,7 @@ function resolveImg(title, fallback){ return REAL_IMG[title] || '/assets/img/3f4
 const SEASON_NAMES = {spring:'Mùa Xuân',summer:'Mùa Hè',fall:'Mùa Thu',winter:'Mùa Đông'};
 
 
-let currentSeason = 'summer', currentFilter = 'all', currentYear = 2026;
+let currentSeason = 'fall', currentFilter = 'all', currentYear = 2026;
 
 
 
@@ -1147,32 +977,18 @@ function renderGrid(){
 
 
     <a href="${resolveLink(a.title)}" class="ac">
-
-
-      <img class="ac-cover" src="${resolveImg(a.title, a.img)}" alt="${a.title}" fetchpriority="high" decoding="async">
-
-
-      <div class="ac-body">
-
-
-        <div class="ac-type-badge ${a.type}">${a.type.toUpperCase()} · ${a.day}</div>
-
-
-        <div class="ac-title">${a.title}</div>
-
-
-        <div class="ac-studio">${a.studio}</div>
-
-
-        <div class="ac-genres">${a.genres.map(g=>`<span class="ac-genre">${g}</span>`).join('')}</div>
-
-
-        <div class="ac-air"><div class="ac-air-dot ${a.status}"></div>${a.air}</div>
-
-
+      <div class="ac-cover-wrap">
+        <img class="ac-cover" src="${resolveImg(a.title, a.img)}" alt="${a.title}" loading="lazy" decoding="async" onerror="this.src='/assets/img/placeholder.svg'">
+        <span class="ac-status-pill ${a.status}"><span class="ac-air-dot"></span>${STATUS_LABEL[a.status] || a.status}</span>
+        <span class="ac-type-corner ${a.type}">${a.type.toUpperCase()}</span>
       </div>
-
-
+      <div class="ac-body">
+        <div class="ac-title">${a.title}</div>
+        <div class="ac-studio">${a.studio}${a.studio ? ' · ' : ''}${a.day}</div>
+        ${a.synopsis ? `<div class="ac-synopsis">${a.synopsis}</div>` : ''}
+        <div class="ac-genres">${a.genres.map(g=>`<span class="ac-genre">${g}</span>`).join('')}</div>
+        <div class="ac-air">${a.air}</div>
+      </div>
     </a>`).join('');
 
 
@@ -1254,15 +1070,18 @@ function setYear(y, btn){
 function toggleMobileNav(){const b=document.getElementById('hamBtn'),n=document.getElementById('mobileNav');b.classList.toggle('open');n.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':''}
 
 /* ===== MANGA: bang cap nhat chapter moi nhat ===== */
+// Kiem chung thang 9/2026 qua VIZ, MANGA Plus, Popverse, Fandom wiki cua tung
+// bo — KHONG dung gio/phut gia dinh vi khong the biet chinh xac; chi ghi ngay
+// phat hanh chapter that va tinh trang (dang ra/tam ngung/da ket thuc).
 const MANGA_DATA = [
-  {type:'manga',title:'Jujutsu Kaisen',chapter:'Chapter 271',genres:['Action','Supernatural'],time:'2 giờ trước',img:'/assets/img/d662bae70f-maxresdefault.jpg',link:'/manga-detail?t=Jujutsu%20Kaisen'},
-  {type:'manga',title:'One Piece',chapter:'Chapter 1135',genres:['Adventure','Shonen'],time:'5 giờ trước',img:'/assets/img/8d631824e5-maxresdefault.jpg',link:'/manga-detail?t=One%20Piece'},
-  {type:'manhwa',title:'Solo Leveling: Ragnarok',chapter:'Chapter 48',genres:['Action','Fantasy'],time:'3 giờ trước',img:'/assets/img/a4f75364fc-maxresdefault.jpg',link:'/manga-detail?t=Solo%20Leveling%3A%20Ragnarok'},
-  {type:'manga',title:'Chainsaw Man',chapter:'Chapter 192',genres:['Action','Horror'],time:'6 giờ trước',img:'/assets/img/39c7dd4496-maxresdefault.jpg',link:'/manga-detail?t=Chainsaw%20Man'},
-  {type:'manhwa',title:'Omniscient Reader',chapter:'Chapter 214',genres:['Fantasy','Adventure'],time:'8 giờ trước',img:'/assets/img/d98cf42206-maxresdefault.jpg',link:'/manga-detail?t=Omniscient%20Reader'},
-  {type:'manhua',title:'Battle Through the Heavens',chapter:'Chapter 512',genres:['Xianxia','Action'],time:'9 giờ trước',img:'/assets/img/1f0540d7a3-maxresdefault.jpg',link:'/manga-detail?t=Battle%20Through%20the%20Heavens'},
-  {type:'manga',title:'Spy x Family',chapter:'Chapter 112',genres:['Comedy','Action'],time:'12 giờ trước',img:'/assets/img/a7f0eee58e-122795l.jpg',link:'/manga-detail?t=Spy%20x%20Family'},
-  {type:'manhwa',title:'The Beginning After The End',chapter:'Chapter 206',genres:['Fantasy','Isekai'],time:'14 giờ trước',img:'/assets/img/d98cf42206-maxresdefault.jpg',link:'/manga-detail?t=The%20Beginning%20After%20The%20End'},
+  {type:'manga',title:'One Piece',chapter:'Chapter 1194',status:'ongoing',time:'27/9/2026',genres:['Adventure','Shonen'],img:'/assets/img/8d631824e5-maxresdefault.jpg',link:'/manga-detail?t=One%20Piece'},
+  {type:'manga',title:'Spy x Family',chapter:'Chapter 140',status:'ongoing',time:'30/8/2026',genres:['Comedy','Action'],img:'/assets/img/a7f0eee58e-122795l.jpg',link:'/manga-detail?t=Spy%20x%20Family'},
+  {type:'manhwa',title:'The Beginning After The End',chapter:'Chapter 253',status:'ongoing',time:'17/9/2026',genres:['Fantasy','Isekai'],img:'/assets/img/d98cf42206-maxresdefault.jpg',link:'/manga-detail?t=The%20Beginning%20After%20The%20End'},
+  {type:'manhua',title:'Battle Through the Heavens',chapter:'Chapter 525',status:'ongoing',time:'4/8/2026',genres:['Xianxia','Action'],img:'/assets/img/1f0540d7a3-maxresdefault.jpg',link:'/manga-detail?t=Battle%20Through%20the%20Heavens'},
+  {type:'manga',title:'Chainsaw Man',chapter:'Chapter 232 (Chương cuối Phần 2)',status:'ended',time:'25/3/2026',genres:['Action','Horror'],img:'/assets/img/39c7dd4496-maxresdefault.jpg',link:'/manga-detail?t=Chainsaw%20Man'},
+  {type:'manga',title:'Jujutsu Kaisen',chapter:'Chapter 271 (Đã hoàn kết)',status:'ended',time:'9/2024',genres:['Action','Supernatural'],img:'/assets/img/d662bae70f-maxresdefault.jpg',link:'/manga-detail?t=Jujutsu%20Kaisen'},
+  {type:'manhwa',title:'Solo Leveling: Ragnarok',chapter:'Chapter 69',status:'hiatus',time:'tạm ngưng từ 1/2026',genres:['Action','Fantasy'],img:'/assets/img/a4f75364fc-maxresdefault.jpg',link:'/manga-detail?t=Solo%20Leveling%3A%20Ragnarok'},
+  {type:'manhwa',title:"Omniscient Reader's Viewpoint",chapter:'Chapter 311 (hết Season 1)',status:'hiatus',time:'tạm ngưng từ 19/5/2026',genres:['Fantasy','Adventure'],img:'/assets/img/d98cf42206-maxresdefault.jpg',link:'/manga-detail?t=Omniscient%20Reader'},
 ];
 let currentMangaFilter = 'all';
 
@@ -1274,14 +1093,19 @@ function renderMangaGrid(){
     grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">📖</div><p>Chưa có chapter mới cho loại này.</p></div>';
     return;
   }
+  const MANGA_STATUS_LABEL = {ongoing:'Đang ra',ended:'Đã hoàn kết',hiatus:'Tạm ngưng'};
   grid.innerHTML = items.map(m => `
     <a href="${m.link}" class="ac">
-      <img class="ac-cover" src="${m.img}" alt="${m.title}" fetchpriority="high" decoding="async">
+      <div class="ac-cover-wrap">
+        <img class="ac-cover" src="${m.img}" alt="${m.title}" loading="lazy" decoding="async" onerror="this.src='/assets/img/placeholder.svg'">
+        <span class="ac-status-pill ${m.status}"><span class="ac-air-dot"></span>${MANGA_STATUS_LABEL[m.status] || m.status}</span>
+        <span class="ac-type-corner ${m.type}">${m.type.toUpperCase()}</span>
+      </div>
       <div class="ac-body">
-        <div class="ac-type-badge ${m.type}">${m.type.toUpperCase()} · ${m.chapter}</div>
         <div class="ac-title">${m.title}</div>
+        <div class="ac-studio">${m.chapter}</div>
         <div class="ac-genres">${m.genres.map(g=>`<span class="ac-genre">${g}</span>`).join('')}</div>
-        <div class="ac-air"><div class="ac-air-dot"></div>Cập nhật ${m.time}</div>
+        <div class="ac-air">Ngày ra chapter: ${m.time}</div>
       </div>
     </a>`).join('');
 }
