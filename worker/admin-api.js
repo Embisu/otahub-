@@ -1,11 +1,12 @@
 import {
   hashPassword, verifyPassword, parseCookies, sessionCookie, clearSessionCookie,
   getSessionUser, createSession, deleteSession, json,
-  normalizeRole, canManageUsers, canWritePath, canDraftPath, canUploadImage, canDeleteImage, hasValidImageSignature,
+  normalizeRole, canManageUsers, canWritePath, canDraftPath, canUploadImage, canDeleteImage, canDeletePath, hasValidImageSignature,
   checkLoginLock, recordLoginFailure, clearLoginFailures,
   logAudit, getAuditLog,
   putDraft, getDraftRaw, deleteDraft, listDrafts, canViewDraft,
 } from './lib.js';
+import { handleNewsApi } from './news-pipeline.js';
 
 // Lay IP that cua nguoi goi tu header Cloudflare gan (CF-Connecting-IP luon
 // dang tin cay hon X-Forwarded-For vi Cloudflare tu dat, khong the gia mao
@@ -320,12 +321,12 @@ async function handleGhPut(request, env, ghPath) {
   return json(await r.json());
 }
 
-// Xoa 1 anh trong Media Library (assets/img/)
+// Xoa 1 file (anh trong Media Library hoac bai viet .html)
 async function handleGhDelete(request, env, ghPath) {
   const user = await getSessionUser(request, env);
   if (!user) return json({ error: 'Chua dang nhap.' }, 401);
   if (!ghPath) return json({ error: 'Thieu duong dan file.' }, 400);
-  if (!canDeleteImage(user, ghPath)) {
+  if (!canDeletePath(user, ghPath)) {
     return json({ error: `Vai tro "${user.role}" khong duoc xoa file nay.` }, 403);
   }
   let body;
@@ -349,7 +350,7 @@ async function handleGhDelete(request, env, ghPath) {
     method: 'DELETE',
     headers: { ...ghHeaders(env), 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      message: `[${user.username}] ${message || 'xoa anh qua Media Library'}`,
+      message: `[${user.username}] ${message || 'xoa file qua admin'}`,
       sha,
       branch: GH_BRANCH,
     }),
@@ -458,6 +459,8 @@ async function handleDraftsList(request, env) {
 export async function handleAdminApi(request, env, url) {
   const path = url.pathname;
   const method = request.method;
+
+  if (path.startsWith('/api/admin/news/')) return handleNewsApi(request, env, url);
 
   if (path === '/api/admin/login' && method === 'POST') return handleLogin(request, env);
   if (path === '/api/admin/logout' && method === 'POST') return handleLogout(request, env);

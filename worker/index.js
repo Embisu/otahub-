@@ -1,4 +1,5 @@
 import { handleAdminApi } from './admin-api.js';
+import { collectDueSources } from './news-pipeline.js';
 
 export default {
   async fetch(request, env, ctx) {
@@ -51,5 +52,8 @@ export default {
 
     // Moi request khac: phuc vu file tinh nhu binh thuong.
     return env.ASSETS.fetch(request);
+  },
+  async scheduled(controller, env, ctx) {
+    ctx.waitUntil(collectDueSources(env));
   },
 };

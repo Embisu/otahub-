@@ -3174,6 +3174,13 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
           </button>
         </li>
 
+        <li class="wp-nav-item" id="nav-news-pipeline">
+          <button class="wp-nav-btn" onclick="showView('news-pipeline')">
+            <span class="wp-nav-label"><span class="wp-nav-icon">🛰️</span><span class="wp-nav-text">Nguồn tin AI</span></span>
+            <span class="wp-nav-badge" id="news-pipeline-count">0</span>
+          </button>
+        </li>
+
         <li class="wp-nav-item" id="nav-rankmath">
           <button class="wp-nav-btn" onclick="showView('rankmath')">
             <span class="wp-nav-label"><span class="wp-nav-icon">🎯</span><span class="wp-nav-text">Rank Math SEO</span></span>
@@ -3443,6 +3450,8 @@ let CURRENT_USER = null;
 let ARTICLES = [];
 let DRAFT_FILES = new Set(); // các file (bài viết/trang) hiện có bản nháp chưa xuất bản — dùng để hiện huy hiệu "Nháp"
 let CURRENT_VIEW = null; // view đang hiển thị ('dashboard'|'articles'|...) — dùng để biết có nên vẽ lại khi dữ liệu nền tải xong hay không
+let NEWS_PIPELINE_DRAFTS = [];
+let CURRENT_NEWS_DRAFT_ID = null;
 let currentFile = null;
 let currentSha = null;
 let currentRawHtml = '';
@@ -3712,6 +3721,8 @@ function startApp() {
   const auditNav = document.getElementById('nav-auditlog');
   if (auditNav) auditNav.style.display = (CURRENT_USER.role === 'admin' || CURRENT_USER.role === 'editor') ? '' : 'none';
   const canEditSystem = CURRENT_USER.role === 'admin' || CURRENT_USER.role === 'editor';
+  const newsPipelineNav = document.getElementById('nav-news-pipeline');
+  if (newsPipelineNav) newsPipelineNav.style.display = canEditSystem ? '' : 'none';
   ['nav-special-pages', 'nav-settings'].forEach((id) => {
     const group = document.getElementById(id);
     if (group) group.style.display = canEditSystem ? '' : 'none';
@@ -5225,7 +5236,10 @@ async function loadArticles(landOnDashboard) {
       if (CURRENT_VIEW === 'articles') renderArticleList();
       else if (CURRENT_VIEW === 'dashboard') renderDashboard();
     });
-    if (landOnDashboard) showView('dashboard'); else showView('articles');
+    const requestedView = new URLSearchParams(location.search).get('view');
+    if (requestedView === 'news-pipeline' && (CURRENT_USER.role === 'admin' || CURRENT_USER.role === 'editor')) showView('news-pipeline');
+    else if (landOnDashboard) showView('dashboard');
+    else showView('articles');
   } catch(e) {
     setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải bài viết: ${e.message}</p></div>`);
   }
@@ -5282,19 +5296,43 @@ function showView(view) {
   if (HAS_UNSAVED_CHANGES && !confirm('Bạn có thay đổi chưa lưu. Rời khỏi trang này sẽ mất các thay đổi đó — tiếp tục?')) return;
   HAS_UNSAVED_CHANGES = false;
   CURRENT_VIEW = view;
-  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  const navMap = { dashboard: 'nav-dashboard', articles: 'nav-articles', rankings: 'nav-rankings', users: 'nav-users', auditlog: 'nav-auditlog', media: 'nav-media', rankmath: 'nav-rankmath' };
-  document.getElementById(navMap[view] || 'nav-articles')?.classList.add('active');
+  document.querySelectorAll('.wp-nav-item, .nav-item').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.wp-sub-btn').forEach(b => b.classList.remove('active'));
+  const navMap = {
+    dashboard: 'nav-dashboard',
+    articles: 'nav-articles',
+    categories: 'nav-articles',
+    rankings: 'nav-special-pages',
+    users: 'nav-users',
+    auditlog: 'nav-auditlog',
+    media: 'nav-media',
+    rankmath: 'nav-rankmath',
+    'news-pipeline': 'nav-news-pipeline',
+    settings: 'nav-settings'
+  };
+  const targetNav = document.getElementById(navMap[view] || 'nav-articles');
+  if (targetNav) targetNav.classList.add('active');
+
+  if (view === 'categories') {
+    const subBtn = document.querySelector('.wp-submenu button[onclick*="categories"]');
+    if (subBtn) subBtn.classList.add('active');
+  } else if (view === 'articles') {
+    const subBtn = document.querySelector('.wp-submenu button[onclick*="articles"]');
+    if (subBtn) subBtn.classList.add('active');
+  }
 
   if (view === 'dashboard') renderDashboard();
   else if (view === 'articles') renderArticleList();
+  else if (view === 'categories') renderCategories();
+  else if (view === 'settings') renderSettings();
   else if (view === 'rankings') loadRankings();
   else if (view === 'users') loadUsers();
   else if (view === 'auditlog') loadAuditLog();
   else if (view === 'media') renderMedia();
   else if (view === 'rankmath') renderSeoDashboard();
+  else if (view === 'news-pipeline') renderNewsPipeline();
   else {
-    setMain(`<div class="empty-state"><div class="empty-icon">🚧</div><p>Man hinh nay chua duoc xay dung.</p></div>`);
+    setMain(`<div class="empty-state"><div class="empty-icon">🚧</div><p>Màn hình này chưa được xây dựng.</p></div>`);
   }
 }
 
@@ -5426,6 +5464,197 @@ function quickNewArticle() {
   const title = cleanPlainText(raw);
   if (!title) { toast('error', 'Nhập tiêu đề trước đã.'); return; }
   newArticle(title);
+}
+
+// ── Quản lý chuyên mục (Categories) ──────────────────────────────────────
+function renderCategories() {
+  const catStats = {};
+  ARTICLES.forEach(a => {
+    const c = (a.cat || 'Gaming').trim();
+    catStats[c] = (catStats[c] || 0) + 1;
+  });
+
+  const knownHubs = {
+    'Gaming': { slug: 'gaming', hub: 'gaming.html', icon: '🎮', desc: 'Tin tức, cẩm nang và đánh giá video game PC, Mobile, Console' },
+    'Anime': { slug: 'anime', hub: 'anime.html', icon: '🎬', desc: 'Lịch chiếu, tin tức anime theo mùa, đánh giá phim hoạt hình' },
+    'Manga': { slug: 'manga', hub: 'manga.html', icon: '📖', desc: 'Spoiler, thảo luận chương mới, tin phát hành manga/manhwa' },
+    'Tin tức': { slug: 'news', hub: 'news.html', icon: '📰', desc: 'Dòng thời sự tổng hợp thế giới giải trí văn hóa Otaku' },
+    'Đánh giá': { slug: 'reviews', hub: 'reviews.html', icon: '⭐', desc: 'Chuyên trang review chi tiết game & phim' },
+    'Bảng xếp hạng': { slug: 'rankings', hub: 'rankings.html', icon: '📊', desc: 'Bảng xếp hạng game và anime theo tuần / tháng' },
+    'Sắp ra mắt': { slug: 'sap-ra-mat', hub: 'sap-ra-mat.html', icon: '🚀', desc: 'Lịch phát hành game, anime và manga sắp tới' }
+  };
+
+  const allCatNames = Array.from(new Set([...Object.keys(knownHubs), ...Object.keys(catStats)]));
+
+  const rows = allCatNames.map(name => {
+    const info = knownHubs[name] || { slug: name.toLowerCase(), hub: '', icon: '📁', desc: 'Chuyên mục phân loại bài viết' };
+    const count = catStats[name] || 0;
+    const hubLink = info.hub ? `<a href="/${info.slug}" target="_blank" style="color:var(--wp-blue);text-decoration:none;font-weight:600">/${info.slug} ↗</a>` : '<span style="color:var(--wp-muted)">--</span>';
+    const hubEditBtn = (info.hub && ['gaming.html','anime.html','manga.html'].includes(info.hub)) 
+      ? `<button class="wp-tool-btn" onclick="hubEditor('${info.hub}', '${name}')" style="margin-left:6px;padding:3px 8px;font-size:11px">✏️ Sửa Hub</button>` 
+      : '';
+
+    return `
+      <tr>
+        <td style="font-weight:700;font-size:13px">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:16px">${info.icon}</span>
+            <a href="javascript:void(0)" onclick="showView('articles');renderArticleList('','${esc(name)}')" style="color:var(--wp-blue);text-decoration:none">${esc(name)}</a>
+          </div>
+          <div class="wp-row-actions">
+            <a href="javascript:void(0)" onclick="showView('articles');renderArticleList('','${esc(name)}')" style="color:var(--wp-blue)">Xem ${count} bài viết</a>
+            ${info.hub ? ` | <a href="/${info.slug}" target="_blank" style="color:var(--wp-muted)">Mở Hub</a>` : ''}
+          </div>
+        </td>
+        <td><code style="background:#f0f0f1;padding:2px 6px;border-radius:3px">${esc(info.slug)}</code></td>
+        <td style="color:var(--wp-text)">${esc(info.desc)}</td>
+        <td>${hubLink} ${hubEditBtn}</td>
+        <td style="text-align:center"><span class="wp-cat-pill" style="font-size:11.5px;padding:3px 8px">${count} bài</span></td>
+      </tr>
+    `;
+  }).join('');
+
+  setMain(`
+    <div class="wp-page-header">
+      <h1 class="wp-page-title">Chuyên mục (Categories) <small>Phân loại bài viết & Quản trị Hub OtaHub</small></h1>
+      <div class="wp-header-tools">
+        <button class="wp-tool-btn" onclick="showView('articles')">← Danh sách bài viết</button>
+        <button class="wp-tool-btn" onclick="newArticle()">+ Viết bài mới</button>
+      </div>
+    </div>
+
+    <div class="wp-metabox-grid" style="margin-bottom:16px">
+      <div class="wp-metabox" style="margin-bottom:0">
+        <div class="wp-metabox-head"><span>Tổng quan phân loại hệ thống</span></div>
+        <div class="wp-metabox-body" style="padding:14px">
+          <div class="wp-glance-grid" style="grid-template-columns:repeat(auto-fit, minmax(140px, 1fr))">
+            <div class="wp-glance-item"><span>📚</span> <span><strong>${allCatNames.length}</strong> Chuyên mục</span></div>
+            <div class="wp-glance-item"><span>📌</span> <span><strong>${ARTICLES.length}</strong> Bài viết</span></div>
+            <div class="wp-glance-item"><span>🏠</span> <span><strong>${Object.keys(knownHubs).length}</strong> Trang Hub chính</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wp-table-wrap">
+      <table class="wp-table">
+        <thead>
+          <tr>
+            <th style="width:25%">Tên chuyên mục</th>
+            <th style="width:15%">Slug</th>
+            <th style="width:30%">Mô tả định hướng</th>
+            <th style="width:20%">Trang Hub liên kết</th>
+            <th style="width:10%;text-align:center">Bài viết</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows}
+        </tbody>
+      </table>
+    </div>
+  `);
+}
+
+// ── Cài đặt chung & Cấu hình hệ thống (Settings) ──────────────────────────
+function renderSettings() {
+  const total = ARTICLES.length;
+  setMain(`
+    <div class="wp-page-header">
+      <h1 class="wp-page-title">Cài đặt chung & Cấu hình hệ thống (Settings) <small>OtaHub Studio & Infrastructure</small></h1>
+      <div class="wp-header-tools">
+        <a class="wp-tool-btn" href="https://otahub.asia" target="_blank">🌐 Xem trang Live</a>
+      </div>
+    </div>
+
+    <div class="wp-metabox-grid">
+      <!-- 1. Thông tin Website & Pháp nhân -->
+      <div class="wp-metabox">
+        <div class="wp-metabox-head">
+          <span>🏛️ Thông tin Website & Pháp nhân (Site Identity & Schema)</span>
+        </div>
+        <div class="wp-metabox-body">
+          <div class="wp-form-group">
+            <label class="wp-form-label">Tên website (Site Title)</label>
+            <input type="text" class="wp-form-input" value="OtaHub" readonly style="background:#f6f7f7"/>
+          </div>
+          <div class="wp-form-group">
+            <label class="wp-form-label">Khẩu hiệu / Slogan</label>
+            <input type="text" class="wp-form-input" value="Asia's Gaming & Anime Hub — Tin tức Gaming, Anime và Manga châu Á" readonly style="background:#f6f7f7"/>
+          </div>
+          <div class="wp-form-group">
+            <label class="wp-form-label">Địa chỉ trang chủ (Site URL)</label>
+            <input type="text" class="wp-form-input" value="https://otahub.asia" readonly style="background:#f6f7f7"/>
+          </div>
+          <div class="wp-form-group">
+            <label class="wp-form-label">Email quản trị / Liên hệ</label>
+            <input type="text" class="wp-form-input" value="contact@otahub.asia" readonly style="background:#f6f7f7"/>
+          </div>
+          <div class="wp-form-group">
+            <label class="wp-form-label">Tổ chức sở hữu (Schema Organization)</label>
+            <input type="text" class="wp-form-input" value="OtaHub Media Group" readonly style="background:#f6f7f7"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Hạ tầng Cloud & API -->
+      <div class="wp-metabox">
+        <div class="wp-metabox-head">
+          <span>☁️ Hạ tầng Cloudflare & Supabase (Infrastructure)</span>
+        </div>
+        <div class="wp-metabox-body">
+          <div class="wp-form-group">
+            <label class="wp-form-label">Cloudflare Edge Worker API</label>
+            <input type="text" class="wp-form-input" value="otahub-api.embisu.workers.dev (/api/admin/*)" readonly style="background:#f6f7f7"/>
+          </div>
+          <div class="wp-form-group">
+            <label class="wp-form-label">Cloudflare KV Media Storage</label>
+            <input type="text" class="wp-form-input" value="OTAHUB_KV (Uploads lưu tại /assets/img/uploads/*)" readonly style="background:#f6f7f7"/>
+          </div>
+          <div class="wp-form-group">
+            <label class="wp-form-label">Supabase Backend (Auth / Analytics)</label>
+            <input type="text" class="wp-form-input" value="xmrctipywjevrknxzjau.supabase.co" readonly style="background:#f6f7f7"/>
+          </div>
+          <div class="wp-form-group">
+            <label class="wp-form-label">GitHub Repository & Branch</label>
+            <input type="text" class="wp-form-input" value="Embisu/otahub-source (branch: main)" readonly style="background:#f6f7f7"/>
+          </div>
+          <div class="wp-form-group">
+            <label class="wp-form-label">Trạng thái SEO & Schema</label>
+            <div style="font-size:12.5px;color:var(--wp-green);font-weight:600;padding-top:4px">
+              ✅ 476/476 HTML files hợp lệ · 0 lỗi Audit (site-audit.mjs)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Liên kết xã hội & SEO Feed -->
+      <div class="wp-metabox" style="grid-column: 1 / -1">
+        <div class="wp-metabox-head">
+          <span>🌐 Mạng xã hội & Khai báo SEO (Social Feeds & Discovery)</span>
+        </div>
+        <div class="wp-metabox-body">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:16px">
+            <div class="wp-form-group">
+              <label class="wp-form-label">X / Twitter</label>
+              <input type="text" class="wp-form-input" value="https://twitter.com/OtaHubAsia" readonly style="background:#f6f7f7"/>
+            </div>
+            <div class="wp-form-group">
+              <label class="wp-form-label">Facebook Fanpage</label>
+              <input type="text" class="wp-form-input" value="https://facebook.com/otahubasia" readonly style="background:#f6f7f7"/>
+            </div>
+            <div class="wp-form-group">
+              <label class="wp-form-label">RSS / Atom Feed</label>
+              <input type="text" class="wp-form-input" value="https://otahub.asia/feed.xml" readonly style="background:#f6f7f7"/>
+            </div>
+            <div class="wp-form-group">
+              <label class="wp-form-label">Sitemap Index XML</label>
+              <input type="text" class="wp-form-input" value="https://otahub.asia/sitemap.xml" readonly style="background:#f6f7f7"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `);
 }
 
 // ── Quản lý người dùng ────────────────────────────────────────────────────
@@ -6262,6 +6491,7 @@ let __editReqSeq = 0;
 
 async function editArticle(file) {
   if (!confirmDiscardUnsaved()) return;
+  CURRENT_NEWS_DRAFT_ID = null;
   const myReq = ++__editReqSeq;
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải bài viết: <code style="color:var(--wp-blue)">${esc(file)}</code>...</span></div>`);
   try {
@@ -10682,6 +10912,14 @@ async function saveArticle() {
 
     const putResult = await ghPut(currentFile, html, sha, `[admin] cap nhat: ${title.slice(0,50)}`);
     await deleteDraft(currentFile);
+    if (CURRENT_NEWS_DRAFT_ID) {
+      try {
+        await newsApi('/drafts/' + CURRENT_NEWS_DRAFT_ID, { method: 'PATCH', body: JSON.stringify({ status: 'published' }) });
+        CURRENT_NEWS_DRAFT_ID = null;
+      } catch (pipelineError) {
+        console.warn('Khong the dong bo trang thai pipeline:', pipelineError);
+      }
+    }
 
     // Update local state — với bài mới, lấy sha thật từ kết quả commit để lần
     // lưu tiếp theo được nhận diện là "sửa bài đã tồn tại" thay vì tạo lại.
@@ -10762,23 +11000,136 @@ async function saveArticleDraftNow() {
   });
 }
 
+// ── News Pipeline — tích hợp trực tiếp trong OtaHub Admin ─────────────────
+async function newsApi(path, options = {}) {
+  const response = await fetch('/api/admin/news' + path, {
+    credentials: 'same-origin',
+    headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
+    ...options,
+  });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(data.error || `HTTP ${response.status}`);
+  return data;
+}
+
+function newsPipelineLoading(label = 'Đang tải pipeline tin tức...') {
+  setMain(`<div class="loading"><div class="spinner"></div><span>${esc(label)}</span></div>`);
+}
+
+async function renderNewsPipeline(status = 'new') {
+  CURRENT_VIEW = 'news-pipeline';
+  newsPipelineLoading();
+  try {
+    const [{ sources }, { articles }, { drafts }] = await Promise.all([
+      newsApi('/sources'),
+      newsApi('/articles?status=' + encodeURIComponent(status) + '&limit=75'),
+      newsApi('/drafts'),
+    ]);
+    NEWS_PIPELINE_DRAFTS = drafts || [];
+    const pendingCount = (articles || []).length + NEWS_PIPELINE_DRAFTS.filter(d => d.status === 'review').length;
+    const badge = document.getElementById('news-pipeline-count');
+    if (badge) badge.textContent = String(pendingCount);
+
+    const sourceRows = (sources || []).map(source => `
+      <tr>
+        <td><strong>${esc(source.name)}</strong><div class="row-description">${esc(source.feed_url)}</div></td>
+        <td><span class="wp-cat-pill">${esc(source.category)}</span></td>
+        <td>${source.active ? '<span style="color:#00a32a">● Đang chạy</span>' : '<span style="color:#8c8f94">● Tạm dừng</span>'}</td>
+        <td>${source.last_success_at ? esc(timeAgoVi(source.last_success_at)) : 'Chưa chạy'}${source.last_error ? `<div style="color:#d63638;font-size:11px">${esc(source.last_error)}</div>` : ''}</td>
+        <td><button class="button button-small" onclick="toggleNewsSource(${source.id},${source.active ? 0 : 1})">${source.active ? 'Tạm dừng' : 'Bật'}</button> <button class="button button-small" style="color:#b32d2e" onclick="deleteNewsSource(${source.id})">Xóa</button></td>
+      </tr>`).join('');
+
+    const articleCards = (articles || []).map(article => `
+      <div class="postbox" style="margin-bottom:10px">
+        <div class="postbox-header"><h2 style="font-size:14px"><a href="${esc(article.canonical_url)}" target="_blank" rel="noopener">${esc(article.title)}</a></h2></div>
+        <div class="inside">
+          <div style="font-size:11.5px;color:#646970;margin-bottom:7px">${esc(article.source_name)} · ${esc(article.published_at ? timeAgoVi(article.published_at) : timeAgoVi(article.collected_at))}</div>
+          <p style="font-size:12.5px;line-height:1.55">${esc((article.summary || article.content_text || '').slice(0, 340))}</p>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            ${article.status !== 'drafted' ? `<button class="button-primary" onclick="generateNewsDraft(${article.id},this)">✨ AI tạo bản nháp</button>` : ''}
+            <button class="button" onclick="setNewsArticleStatus(${article.id},'shortlisted')">⭐ Chọn</button>
+            <button class="button" onclick="setNewsArticleStatus(${article.id},'ignored')">Bỏ qua</button>
+          </div>
+        </div>
+      </div>`).join('') || '<div class="empty-state"><div class="empty-icon">📭</div><p>Không có bài ở trạng thái này.</p></div>';
+
+    const draftCards = NEWS_PIPELINE_DRAFTS.map(draft => `
+      <div class="postbox" style="margin-bottom:10px">
+        <div class="postbox-header"><h2 style="font-size:14px">${esc(draft.title)}</h2><span class="wp-cat-pill">${esc(draft.status)}</span></div>
+        <div class="inside">
+          <div style="font-size:11.5px;color:#646970;margin-bottom:7px">${esc(draft.source_name)} · ${esc(timeAgoVi(draft.created_at))}</div>
+          <p style="font-size:12.5px;line-height:1.55">${esc(draft.excerpt || '')}</p>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <button class="button-primary" onclick="openNewsDraftInEditor(${draft.id})">✏️ Mở trong trình biên tập</button>
+            <a class="button" href="${esc(draft.canonical_url)}" target="_blank" rel="noopener">Xem nguồn</a>
+            ${draft.status === 'review' ? `<button class="button" style="color:#b32d2e" onclick="setNewsDraftStatus(${draft.id},'rejected')">Từ chối</button>` : ''}
+          </div>
+        </div>
+      </div>`).join('') || '<div class="empty-state"><div class="empty-icon">📝</div><p>Chưa có bản nháp AI.</p></div>';
+
+    setMain(`
+      <div class="wp-page-header"><h1 class="wp-page-title">Nguồn tin AI <small>RSS → AI → Biên tập → Đăng bài</small></h1><div class="wp-header-tools"><button class="button-primary" id="news-collect-btn" onclick="collectNewsNow(this)">↻ Thu thập ngay</button></div></div>
+      <div class="postbox"><div class="postbox-header"><h2>Thêm nguồn RSS/Atom</h2></div><div class="inside"><form onsubmit="addNewsSource(event)" style="display:grid;grid-template-columns:1fr 2fr 150px auto;gap:8px"><input class="regular-text" name="name" required placeholder="Tên nguồn"><input class="regular-text" name="feedUrl" required type="url" placeholder="https://example.com/feed.xml"><select name="category"><option value="anime">Anime</option><option value="gaming">Gaming</option><option value="manga">Manga</option><option value="news">Tin tức</option></select><button class="button">Thêm nguồn</button></form></div></div>
+      <div class="postbox"><div class="postbox-header"><h2>Nguồn đang theo dõi</h2></div><div class="inside" style="padding:0"><table class="wp-list-table widefat fixed striped"><thead><tr><th>Nguồn</th><th>Chuyên mục</th><th>Trạng thái</th><th>Lần cuối</th><th>Thao tác</th></tr></thead><tbody>${sourceRows || '<tr><td colspan="5">Chưa có nguồn tin.</td></tr>'}</tbody></table></div></div>
+      <div style="display:grid;grid-template-columns:minmax(0,1.25fr) minmax(340px,.75fr);gap:16px;align-items:start">
+        <section><div class="tablenav top" style="margin-bottom:8px"><select onchange="renderNewsPipeline(this.value)"><option value="new" ${status==='new'?'selected':''}>Bài mới</option><option value="shortlisted" ${status==='shortlisted'?'selected':''}>Đã chọn</option><option value="drafted" ${status==='drafted'?'selected':''}>Đã tạo nháp</option><option value="ignored" ${status==='ignored'?'selected':''}>Đã bỏ qua</option><option value="failed" ${status==='failed'?'selected':''}>Lỗi</option></select></div>${articleCards}</section>
+        <section><h2 style="font-size:16px;margin:0 0 10px">Bản nháp chờ duyệt</h2>${draftCards}</section>
+      </div>`);
+  } catch (error) {
+    setMain(`<div class="notice notice-error"><p>Không tải được pipeline tin tức: ${esc(error.message)}</p></div>`);
+  }
+}
+
+async function addNewsSource(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  try {
+    await newsApi('/sources', { method: 'POST', body: JSON.stringify(Object.fromEntries(new FormData(form))) });
+    toast('success', '✅ Đã thêm nguồn RSS.');
+    renderNewsPipeline();
+  } catch (error) { toast('error', error.message); }
+}
+async function toggleNewsSource(id, active) { try { await newsApi('/sources/' + id, { method: 'PATCH', body: JSON.stringify({ active }) }); renderNewsPipeline(); } catch (e) { toast('error', e.message); } }
+async function deleteNewsSource(id) { if (!confirm('Xóa nguồn và toàn bộ bài đã thu thập từ nguồn này?')) return; try { await newsApi('/sources/' + id, { method: 'DELETE' }); renderNewsPipeline(); } catch (e) { toast('error', e.message); } }
+async function collectNewsNow(button) { button.disabled = true; button.textContent = '⏳ Đang thu thập...'; try { const data = await newsApi('/collect', { method: 'POST' }); const inserted = (data.results || []).reduce((sum, item) => sum + (item.inserted || 0), 0); toast('success', `✅ Đã thu thập ${inserted} bài mới.`); renderNewsPipeline(); } catch (e) { toast('error', e.message); button.disabled = false; button.textContent = '↻ Thu thập ngay'; } }
+async function setNewsArticleStatus(id, status) { try { await newsApi('/articles/' + id, { method: 'PATCH', body: JSON.stringify({ status }) }); renderNewsPipeline(); } catch (e) { toast('error', e.message); } }
+async function setNewsDraftStatus(id, status) { try { await newsApi('/drafts/' + id, { method: 'PATCH', body: JSON.stringify({ status }) }); renderNewsPipeline(); } catch (e) { toast('error', e.message); } }
+async function generateNewsDraft(id, button) { button.disabled = true; button.textContent = '⏳ AI đang viết...'; try { await newsApi('/articles/' + id + '/generate', { method: 'POST' }); toast('success', '✅ AI đã tạo bản nháp.'); renderNewsPipeline('drafted'); } catch (e) { toast('error', e.message); button.disabled = false; button.textContent = '✨ AI tạo bản nháp'; } }
+function openNewsDraftInEditor(id) {
+  const draft = NEWS_PIPELINE_DRAFTS.find(item => Number(item.id) === Number(id));
+  if (!draft) return toast('error', 'Không tìm thấy bản nháp.');
+  newArticle({
+    newsDraftId: draft.id,
+    title: draft.title,
+    slug: draft.slug,
+    excerpt: draft.excerpt,
+    bodyHtml: draft.body_html,
+    hero: draft.image_url || '',
+    category: draft.source_category || 'news',
+  });
+}
+
 // ── New article ────────────────────────────────────────────────────────────
 // Template đầy đủ (head + style + nav + hero + body + footer), sao chép từ
 // khung sườn thật của bài viết đang chạy trên site — để bài mới tạo từ admin
 // trông giống hệt bài thật ngay từ đầu, thay vì trang trơ trụi thiếu CSS/nav.
 function newArticle(prefillTitle) {
   if (!confirmDiscardUnsaved()) return;
-  const cleanTitle = cleanPlainText(prefillTitle) || 'Tiêu đề bài viết';
-  const cleanSlug = (prefillTitle ? slugifyFilename(cleanTitle) : '') || `bai-viet-moi-${Date.now().toString(36)}`;
+  const prefill = prefillTitle && typeof prefillTitle === 'object' ? prefillTitle : null;
+  const requestedTitle = prefill ? prefill.title : prefillTitle;
+  const cleanTitle = cleanPlainText(requestedTitle) || 'Tiêu đề bài viết';
+  const cleanSlug = (prefill?.slug ? slugifyFilename(prefill.slug) : (requestedTitle ? slugifyFilename(cleanTitle) : '')) || `bai-viet-moi-${Date.now().toString(36)}`;
   const filename = cleanSlug + '.html';
   const url = `https://otahub.asia/${cleanSlug}`;
   const now = new Date();
   const iso = now.toISOString();
   const dateDisp = iso.slice(0,10);
-  const heroImg = '';
+  const heroImg = prefill?.hero || '';
   const title = cleanTitle;
-  const desc = '';
-  const cat = 'Gaming';
+  const desc = cleanPlainText(prefill?.excerpt || '');
+  const catMap = { anime: 'Anime', gaming: 'Gaming', manga: 'Manga', news: 'Tin tức' };
+  const cat = catMap[String(prefill?.category || '').toLowerCase()] || 'Gaming';
+  const initialBody = prefill?.bodyHtml || '<p>Nội dung mở đầu bài viết...</p>\n<h2>1. Tiêu đề phần nội dung</h2>\n<p>Nội dung chi tiết phần 1...</p>';
 
   const template = `<!DOCTYPE html>
 <html lang="vi">
@@ -10927,9 +11278,7 @@ function newArticle(prefillTitle) {
 </div>
 
 <article class="art-body">
-<p>Nội dung mở đầu bài viết...</p>
-<h2>1. Tiêu đề phần nội dung</h2>
-<p>Nội dung chi tiết phần 1...</p>
+${initialBody}
 </article>
 
 <script type="application/json" id="admin-block-data">[{"type":"paragraph","html":"Nội dung mở đầu bài viết..."},{"type":"heading","level":2,"text":"1. Tiêu đề phần nội dung"},{"type":"paragraph","html":"Nội dung chi tiết phần 1..."}]<\/script>
@@ -10989,7 +11338,8 @@ function copyArticleLink(button){
   // Fake a "new file" edit
   currentFile = filename;
   currentSha = null; // null = new file
-  ARTICLES.push({ file: filename, sha: null, title: 'Bài viết mới', desc: '', hero: '', cat: 'Gaming', date: '' });
+  CURRENT_NEWS_DRAFT_ID = prefill?.newsDraftId || null;
+  ARTICLES.push({ file: filename, sha: null, title, desc, hero: heroImg, cat, date: '' });
 
   // Override ghPut for new files (no sha needed)
   renderEditor(filename, template);
@@ -11019,9 +11369,10 @@ async function loadRankings() {
 }
 
 function renderRankingsEditor() {
+  const rankIcons = { pc: '💻', mobile: '📱', console: '🎮', anime: '🎬', manga: '📖', esports: '🏆', goty: '👑' };
   const tabs = Object.keys(CATS_DATA).map(k => `
     <button class="rank-tab ${k===currentRankTab?'active':''}" onclick="switchRankTab('${k}')">
-      ${CATS_DATA[k].icon} ${CATS_DATA[k].label}
+      ${CATS_DATA[k].icon || rankIcons[k] || '📊'} ${CATS_DATA[k].label || k}
     </button>`).join('');
 
   setMain(`

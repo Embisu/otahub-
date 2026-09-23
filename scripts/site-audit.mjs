@@ -74,7 +74,8 @@ for (const file of htmlFiles) {
     counts.images++;
     const a = attrs(m[0]);
     if ((a.src || '').includes('${') || templatePage) continue;
-    const target = localTarget(file, a.src || '');
+    const isKvUpload = (a.src || '').startsWith('/assets/img/uploads/') || (a.src || '').startsWith('assets/img/uploads/');
+    const target = isKvUpload ? true : localTarget(file, a.src || '');
     if (target === false) issues.push({ type: 'missing-image', file: rel, detail: a.src || '(empty)' });
     if (!('alt' in a)) issues.push({ type: 'missing-alt', file: rel, detail: a.src || '(empty)' });
     if (!a.width || !a.height) issues.push({ type: 'missing-image-size', file: rel, detail: a.src || '(empty)' });

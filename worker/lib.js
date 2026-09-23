@@ -98,6 +98,16 @@ export function canDeleteImage(user, ghPath) {
   return DELETE_IMAGE_RE.test(ghPath);
 }
 
+// Xoa file: ho tro ca anh va bai viet (.html) cho admin/editor
+export function canDeletePath(user, ghPath) {
+  if (!user) return false;
+  if (canDeleteImage(user, ghPath)) return true;
+  if ((user.role === 'admin' || user.role === 'editor') && isArticleFile(ghPath)) {
+    return true;
+  }
+  return false;
+}
+
 // Khong chi tin vao duoi file: xac minh magic bytes cua anh sau khi decode
 // base64 de ngan HTML/JS doi ten thanh .png/.jpg duoc day len cung origin.
 export function hasValidImageSignature(ghPath, base64Content) {

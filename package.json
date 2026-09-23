@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "otahub-source",
   "version": "2.0.0",
   "description": "OtaHub.asia - Comprehensive Anime, Gaming & Pop-Culture Portal",
@@ -6,8 +6,16 @@
   "scripts": {
     "publish": "node scripts/publish-article.mjs",
     "ping": "node scripts/ping-indexnow.mjs",
-    "audit": "node scripts/live-audit.mjs"
+    "audit": "node scripts/live-audit.mjs",
+    "news:db:local": "wrangler d1 migrations apply otahub-news --local",
+    "news:db:remote": "wrangler d1 migrations apply otahub-news --remote",
+    "news:dev": "wrangler dev --test-scheduled",
+    "deploy:check": "wrangler deploy --dry-run"
   },
   "author": "OtaHub Team",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^26.6.2",
+    "wrangler": "^4.136.3"
+  }
 }
