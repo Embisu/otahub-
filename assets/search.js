@@ -137,32 +137,8 @@ window.IDX = [
       "switch2"
     ]
   },
-  {
-    "title": "Black Myth: Wukong DLC \"Rebirth of the Great Sage\": Game Science Confirms Release Date & Celestial Realm Battlefields",
-    "url": "/en/black-myth-wukong-dlc-tai-sinh-dai-thanh-ngay-phat-hanh-boss-thien-dinh",
-    "cat": "Gaming",
-    "date": "2026-09-16",
-    "excerpt": "Game Science reveals the official release schedule for Black Myth: Wukong's DLC \"Rebirth of the Great Sage,\" plunging the Destined One into the Celestial Realm.",
-    "img": "/assets/img/news-black-myth-wukong-dlc-rebirth.jpg",
-    "tags": [
-      "gaming",
-      "hot",
-      "breaking"
-    ]
-  },
-  {
-    "title": "Black Myth: Wukong DLC \"Tái Sinh Đại Thánh\": Game Science Ấn Định Ngày Phát Hành & Chi Tiết Chiến Trường Thiên Đình Mới",
-    "url": "/black-myth-wukong-dlc-tai-sinh-dai-thanh-ngay-phat-hanh-boss-thien-dinh",
-    "cat": "Gaming",
-    "date": "2026-09-16",
-    "excerpt": "Game Science chính thức công bố ngày ra mắt bản mở rộng DLC \"Tái Sinh Đại Thánh\" cho Black Myth: Wukong, đưa Thiên Mệnh Nhân vào cuộc chiến chấn động tam giới.",
-    "img": "/assets/img/news-black-myth-wukong-dlc-rebirth.jpg",
-    "tags": [
-      "gaming",
-      "hot",
-      "breaking"
-    ]
-  },
+  
+  
   {
     "title": "Solo Leveling Season 2 \"Arise from the Shadow\": Shatters Global Streaming Records with Jeju Island Arc & Beru Climax",
     "url": "/en/solo-leveling-season-2-jeju-island-shadow-army-record",
@@ -586,23 +562,7 @@ window.IDX = [
       "Gaming 2026"
     ]
   },
-  {
-    "title": "Black Myth: Wukong DLC &quot;Tái Sinh Đại Thánh&quot;: Game Science Hé Lộ 12 Boss Mới &amp; Cốt Truyện Thiên Cung",
-    "url": "/black-myth-wukong-dlc-release-date-bosses",
-    "cat": "Gaming",
-    "date": "2026-08-29",
-    "excerpt": "Bản mở rộng cốt truyện đầu tiên đưa Thiên Mệnh Nhân đại náo 33 Tầng Trời, bổ sung 4 dạng Biến Thần Thoại và hệ thống vũ khí Thần Khí tối thượng.",
-    "img": "/assets/img/news-wukong-dlc-heaven-bosses.jpg",
-    "tags": [
-      "Black Myth Wukong",
-      "Game Science",
-      "Tây Du Ký",
-      "Tôn Ngộ Không",
-      "DLC",
-      "Action RPG",
-      "Gaming 2026"
-    ]
-  },
+  
   {
     "title": "Call of Duty: Modern Warfare 4 Cho Chơi Thử Multiplayer Tại Gamescom 2026, Xác Nhận Ra Mắt Trên Nintendo Switch 2",
     "url": "/call-of-duty-modern-warfare-4-gamescom-playable",
@@ -1094,21 +1054,7 @@ window.IDX = [
       "Anime Movie"
     ]
   },
-  {
-    "title": "Black Myth: Wukong Kỷ Niệm 2 Năm, Game Science Chính Thức Công Bố DLC Cốt Truyện 'Rebirth of the Great Sage'",
-    "url": "/black-myth-wukong-dlc-rebirth-great-sage",
-    "cat": "Gaming",
-    "date": "2026-08-22",
-    "excerpt": "Nhân dịp kỷ niệm 2 năm ra mắt kiệt tác Black Myth: Wukong, Game Science công bố DLC cốt truyện Rebirth of the Great Sage trên Unreal Engine 5.5.",
-    "img": "/assets/img/news-black-myth-wukong-dlc-rebirth.jpg",
-    "tags": [
-      "Black Myth: Wukong",
-      "Game Science",
-      "DLC",
-      "Gamescom 2026",
-      "Tôn Ngộ Không"
-    ]
-  },
+  
   {
     "title": "Demon Slayer: Infinity Castle Part 1 Tung Trailer 3 Phút Mãn Nhãn, Ấn Định Chiếu Rạp Toàn Cầu",
     "url": "/demon-slayer-infinity-castle-trailer-chinh-thuc",
