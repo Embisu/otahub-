@@ -6,6 +6,30 @@
   "description": "Asian Gaming, Anime and Manga News Hub",
   "items": [
     {
+      "id": "https://otahub.asia/tokyo-game-show-2026-roundup",
+      "url": "https://otahub.asia/tokyo-game-show-2026-roundup",
+      "title": "Tokyo Game Show 2026: Tổng Hợp Công Bố Lớn Nhất, 257.642 Lượt Tham Dự",
+      "content_text": "Tokyo Game Show 2026 diễn ra 17-20/9/2026 tại Makuhari Messe thu hút 257.642 lượt tham dự, với Ace Combat 8, Crazy Taxi: World Tour, Gachiakuta: Breakout và STRANGER THAN HEAVEN.",
+      "image": "https://otahub.asia/assets/img/placeholder.svg",
+      "date_published": "2026-09-23T13:00:00.000Z"
+    },
+    {
+      "id": "https://otahub.asia/steam-achievement-leak-persona-6-kingdom-hearts-4",
+      "url": "https://otahub.asia/steam-achievement-leak-persona-6-kingdom-hearts-4",
+      "title": "Rò Rỉ Achievement Steam Chấn Động: Persona 6, Kingdom Hearts IV, Fable Lộ Diện",
+      "content_text": "Sự cố backend Steam ngày 8/9/2026 làm lộ danh sách achievement của khoảng 50 game chưa phát hành, bao gồm Persona 6, Kingdom Hearts IV, Fable và Metro 2039.",
+      "image": "https://otahub.asia/assets/img/placeholder.svg",
+      "date_published": "2026-09-23T11:00:00.000Z"
+    },
+    {
+      "id": "https://otahub.asia/jujutsu-kaisen-culling-game-part-2-sukuna-teaser",
+      "url": "https://otahub.asia/jujutsu-kaisen-culling-game-part-2-sukuna-teaser",
+      "title": "Jujutsu Kaisen Culling Game Phần 2: Teaser Visual Sukuna Gây Sốt Tại Juju Fes 2026",
+      "content_text": "Tại Juju Fes 2026 kỷ niệm 5 năm anime, MAPPA tung teaser visual mới cho Culling Game Arc Phần 2, tập trung vào Sukuna.",
+      "image": "https://otahub.asia/assets/img/news-jujutsu-kaisen-season3-culling-game.jpg",
+      "date_published": "2026-09-23T09:30:00.000Z"
+    },
+    {
       "id": "https://otahub.asia/the-summer-hikaru-died-ket-thuc",
       "url": "https://otahub.asia/the-summer-hikaru-died-ket-thuc",
       "title": "The Summer Hikaru Died Sẽ Kết Thúc Sau 2 Chương, Chốt Ngày 20/10",

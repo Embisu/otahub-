@@ -1,5 +1,32 @@
 window.IDX = [
   {
+    "title": "Tokyo Game Show 2026: Tổng Hợp Công Bố Lớn Nhất, 257.642 Lượt Tham Dự",
+    "url": "/tokyo-game-show-2026-roundup",
+    "cat": "Gaming",
+    "date": "2026-09-23",
+    "excerpt": "TGS 2026 diễn ra 17-20/9 tại Makuhari Messe thu hút 257.642 lượt tham dự, với Ace Combat 8, Crazy Taxi: World Tour, Gachiakuta: Breakout và STRANGER THAN HEAVEN.",
+    "img": "/assets/img/placeholder.svg",
+    "tags": ["gaming", "tokyo game show", "ace combat"]
+  },
+  {
+    "title": "Jujutsu Kaisen Culling Game Phần 2: Teaser Visual Sukuna Gây Sốt Tại Juju Fes 2026",
+    "url": "/jujutsu-kaisen-culling-game-part-2-sukuna-teaser",
+    "cat": "Anime",
+    "date": "2026-09-23",
+    "excerpt": "Tại Juju Fes 2026 kỷ niệm 5 năm anime, MAPPA tung teaser visual mới cho Culling Game Arc Phần 2, tập trung vào Sukuna.",
+    "img": "/assets/img/news-jujutsu-kaisen-season3-culling-game.jpg",
+    "tags": ["anime", "jujutsu kaisen", "sukuna"]
+  },
+  {
+    "title": "Rò Rỉ Achievement Steam Chấn Động: Persona 6, Kingdom Hearts IV, Fable Lộ Diện",
+    "url": "/steam-achievement-leak-persona-6-kingdom-hearts-4",
+    "cat": "Gaming",
+    "date": "2026-09-23",
+    "excerpt": "Sự cố backend Steam làm lộ achievement của khoảng 50 game chưa phát hành, bao gồm Persona 6, Kingdom Hearts IV, Fable và Metro 2039.",
+    "img": "/assets/img/placeholder.svg",
+    "tags": ["gaming", "steam", "persona 6", "kingdom hearts"]
+  },
+  {
     "title": "The Summer Hikaru Died Sẽ Kết Thúc Sau 2 Chương, Chốt Ngày 20/10",
     "url": "/the-summer-hikaru-died-ket-thuc",
     "cat": "Manga",
