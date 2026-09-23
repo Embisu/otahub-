@@ -1,5 +1,70 @@
 window.IDX = [
   {
+    "title": "The Summer Hikaru Died Sẽ Kết Thúc Sau 2 Chương, Chốt Ngày 20/10",
+    "url": "/the-summer-hikaru-died-ket-thuc",
+    "cat": "Manga",
+    "date": "2026-09-23",
+    "excerpt": "Manga kinh dị The Summer Hikaru Died của Mokumokuren sẽ khép lại sau 2 chương cuối: chapter 50 ngày 13/10 và chapter 51 (chương cuối) ngày 20/10/2026.",
+    "img": "/assets/img/placeholder.svg",
+    "tags": [
+      "The Summer Hikaru Died",
+      "Mokumokuren",
+      "Manga"
+    ]
+  },
+  {
+    "title": "Hunter x Hunter Trở Lại Với Chapter 419, Nhưng Sắp Tạm Ngưng Lần Nữa",
+    "url": "/hunter-x-hunter-chapter-419-tro-lai",
+    "cat": "Manga",
+    "date": "2026-09-23",
+    "excerpt": "Hunter x Hunter chapter 419 phát hành ngày 30/8/2026, tiếp nối chuỗi trở lại từ tháng 6/2026 của Togashi. Bộ truyện sẽ rời Weekly Shonen Jump sau chapter 420.",
+    "img": "/assets/img/placeholder.svg",
+    "tags": [
+      "Hunter x Hunter",
+      "Togashi",
+      "Weekly Shonen Jump"
+    ]
+  },
+  {
+    "title": "Honkai: Star Rail 4.6 Ra Mắt 28/9, Giới Thiệu Pearl & Hé Lộ Crossover ZZZ",
+    "url": "/honkai-star-rail-4-6-pearl-zzz-crossover",
+    "cat": "Gaming",
+    "date": "2026-09-23",
+    "excerpt": "Honkai: Star Rail phiên bản 4.6 ra mắt 28/9/2026 với nhân vật 5 sao Pearl, tiếp nối cốt truyện Astropolis và hé lộ crossover với Zenless Zone Zero ở bản 4.8.",
+    "img": "/assets/img/news-honkai-star-rail-30-amphoreus.jpg",
+    "tags": [
+      "Honkai Star Rail",
+      "HoYoverse",
+      "Zenless Zone Zero"
+    ]
+  },
+  {
+    "title": "Silent Hill: Townfall Chính Thức Ra Mắt Ngày 24/9/2026",
+    "url": "/silent-hill-townfall-launch",
+    "cat": "Gaming",
+    "date": "2026-09-23",
+    "excerpt": "Silent Hill: Townfall của Screen Burn Interactive và Konami chính thức ra mắt PS5, Steam và Epic Games ngày 24/9/2026, đưa người chơi tới thị trấn St. Amelia năm 1996.",
+    "img": "/assets/img/news-silent-hill-townfall-gameplay.jpg",
+    "tags": [
+      "Silent Hill",
+      "Konami",
+      "Kinh dị sinh tồn"
+    ]
+  },
+  {
+    "title": "Marvel's Wolverine Ra Mắt: Chiến Đấu Tàn Bạo Nhưng Cốt Truyện Tuyến Tính",
+    "url": "/marvel-wolverine-review-roundup",
+    "cat": "Gaming",
+    "date": "2026-09-23",
+    "excerpt": "Marvel's Wolverine của Insomniac Games chính thức ra mắt PS5 ngày 15/9/2026, đạt 77 điểm Metacritic — thấp hơn Spider-Man 2 nhưng vẫn bán chạy hàng đầu năm.",
+    "img": "/assets/img/news-marvel-wolverine-story-trailer.jpg",
+    "tags": [
+      "Marvel Wolverine",
+      "Insomniac Games",
+      "PS5"
+    ]
+  },
+  {
     "title": "Record of Ragnarok: Odin thực sự đang chuẩn bị cho điều gì?",
     "url": "/record-of-ragnarok-odin-thuc-su-dang-chuan-bi-cho-dieu-gi",
     "cat": "Anime",
