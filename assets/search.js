@@ -1,6 +1,6 @@
 window.IDX = [
   {
-    "title": "Drama PUBG Asia Stars 2026: Himass Và TanVuu Bị KRAFTON Cấm Vĩnh Viễn, Toàn Bộ Diễn Biến",
+    "title": "Drama PUBG Asia Stars 2026: Himass Và TanVuu Bị KRAFTON Cấm Vĩnh Viễn",
     "url": "/pubg-asia-stars-2026-himass-tanvuu-bi-cam-vinh-vien",
     "cat": "Gaming",
     "date": "2026-09-24",
@@ -146,7 +146,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Record of Ragnarok: Odin thực sự đang chuẩn bị cho điều gì?",
+    "title": "Record of Ragnarok: Odin đang chuẩn bị điều gì?",
     "url": "/record-of-ragnarok-odin-thuc-su-dang-chuan-bi-cho-dieu-gi",
     "cat": "Anime",
     "date": "2026-09-20",
@@ -170,7 +170,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Đánh Giá Girls' Frontline 2: Exilium: Đỉnh Cao Chiến Thuật XCOM Kết Hợp Waifu 3D Thực Sự Ra Sao?",
+    "title": "Đánh Giá Girls' Frontline 2: Exilium: Đỉnh Cao Chiến Thuật XCOM Kết Hợp Waifu 3D",
     "url": "/girls-frontline-2-exilium-danh-gia-chuyen-sau",
     "cat": "Reviews",
     "date": "2026-09-19",
@@ -184,7 +184,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "GTA 6 Tung Trailer Gameplay Mới: Rockstar Phô Diễn Bang Leonida Rực Lửa Và Cơ Chế Tội Phạm Đôi",
+    "title": "GTA 6 Tung Trailer Gameplay Mới: Bang Leonida Rực Lửa",
     "url": "/gta-6-gameplay-trailer-rockstar-vice-city-leonida",
     "cat": "Gaming",
     "date": "2026-09-19",
@@ -290,7 +290,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Girls' Frontline 2: Lưu Đày – Hướng Dẫn Tân Thủ: Cover, Stability & Banner 50 Lượt",
+    "title": "Girls' Frontline 2: Lưu Đày – Hướng Dẫn Tân Thủ, Reroll",
     "url": "/girls-frontline-2-huong-dan-tan-thu-doi-hinh-reroll",
     "cat": "Guides",
     "date": "2026-09-07",
@@ -479,7 +479,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Genshin Impact 7.0 Snezhnaya: Bản Đồ Băng Giá Khổng Lồ, Phương Tiện Cơ Khí &amp; Cơ Chế Sinh Tồn Mới",
+    "title": "Genshin Impact 7.0 Snezhnaya: Bản Đồ Băng Giá Khổng Lồ",
     "url": "/genshin-impact-70-snezhnaya-map-gameplay",
     "cat": "Gaming",
     "date": "2026-09-02",
@@ -547,7 +547,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Call of Duty: Modern Warfare 4 Cho Chơi Thử Multiplayer Tại Gamescom 2026, Xác Nhận Ra Mắt Trên Nintendo Switch 2",
+    "title": "COD Modern Warfare 4 Cho Chơi Thử Tại Gamescom 2026",
     "url": "/call-of-duty-modern-warfare-4-gamescom-playable",
     "cat": "Gaming",
     "date": "2026-08-29",
@@ -564,7 +564,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Jujutsu Kaisen Mở Màn Juju Fes 2026 Kỷ Niệm 5 Năm Hôm Nay, Fan Chờ Đợi Cập Nhật Mùa 4",
+    "title": "Jujutsu Kaisen Mở Màn Juju Fes 2026 Kỷ Niệm 5 Năm",
     "url": "/jujutsu-kaisen-juju-fes-2026-anniversary",
     "cat": "Gaming",
     "date": "2026-08-29",
@@ -580,7 +580,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Gamescom 2026: PlayStation Hé Lộ Hơn 20 Game Mới Tại Opening Night Live, Từ Final Fantasy VII Revelation Đến Rainbow Six Tactics",
+    "title": "Gamescom 2026: PlayStation Hé Lộ Hơn 20 Game Mới",
     "url": "/gamescom-2026-playstation-highlights",
     "cat": "Gaming",
     "date": "2026-08-28",
@@ -597,7 +597,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Girls' Frontline 2: Exilium Review: Đỉnh Cao Chiến Thuật 3D XCOM &amp; Ký Túc Xá Cel-Shaded 8.6 Điểm",
+    "title": "Girls' Frontline 2: Exilium Review: 8.6 Điểm",
     "url": "/girls-frontline-2-exilium-review",
     "cat": "Reviews",
     "date": "2026-08-28",
@@ -614,7 +614,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Marvel Rivals Tung Bản Cập Nhật &quot;Endgame Encore&quot;: Mở Tab Infinity Saga, Tặng Coupon Giảm 20%",
+    "title": "Marvel Rivals Tung Bản Cập Nhật Endgame Encore",
     "url": "/marvel-rivals-endgame-encore-update",
     "cat": "Gaming",
     "date": "2026-08-28",
@@ -631,7 +631,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Sekiro: No Defeat – Anime Chuyển Thể Từ Game Huyền Thoại Của FromSoftware Chính Thức Ra Rạp Nhật 4/9, Không Dùng AI",
+    "title": "Sekiro: No Defeat Anime Ra Rạp Nhật 4/9, Không Dùng AI",
     "url": "/sekiro-no-defeat-anime-release",
     "cat": "Anime",
     "date": "2026-08-28",
@@ -647,7 +647,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Tokyopop Công Bố 7 Manga Bản Quyền Mới Tại Anime NYC 2026, Nổi Bật Garagarapon Và Bí Ẩn Kinh Dị &quot;And Then, She Became Mina&quot;",
+    "title": "Tokyopop Công Bố 7 Manga Bản Quyền Mới Tại Anime NYC 2026",
     "url": "/tokyopop-anime-nyc-2026-licenses",
     "cat": "Manga",
     "date": "2026-08-28",
@@ -663,7 +663,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Girls' Frontline 2: Lưu Đày Chính Thức Cập Bến Việt Nam",
+    "title": "Girls' Frontline 2: Lưu Đày Cập Bến Việt Nam",
     "url": "/girls-frontline-2-luu-day-vietnam-launch",
     "cat": "Gaming",
     "date": "2026-08-27",
@@ -676,7 +676,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "GTA 6: Rockstar Tung &quot;Extended Look&quot; Dài 26 Phút Trên Netflix, Dập Tắt Tranh Cãi Rò Rỉ Trước Ngày 19/11",
+    "title": "GTA 6: Rockstar Tung Extended Look 26 Phút Trên Netflix",
     "url": "/gta6-gameplay-reveal-preorder",
     "cat": "Gaming",
     "date": "2026-08-27",
@@ -692,7 +692,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "One Punch Man: Yusuke Murata Dùng Chính Con Trai Vận Động Viên Thể Hình Làm Mẫu Vẽ Bìa Chương Mới",
+    "title": "One Punch Man: Murata Dùng Con Trai Làm Mẫu Vẽ Bìa",
     "url": "/one-punch-man-murata-son-bodybuilder-cover",
     "cat": "Manga",
     "date": "2026-08-27",
@@ -725,7 +725,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Elden Ring: Shadow of the Erdtree Review: Tuyệt Tác Mở Rộng 9.7 Điểm Của FromSoftware",
+    "title": "Elden Ring: Shadow of the Erdtree Review: 9.7 Điểm",
     "url": "/elden-ring-shadow-of-the-erdtree-review",
     "cat": "Reviews",
     "date": "2026-08-25",
@@ -755,7 +755,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Honkai: Star Rail Review: Bản Giao Hưởng Turn-Based 9.2 Điểm Của HoYoverse",
+    "title": "Honkai: Star Rail Review: Bản Giao Hưởng 9.2 Điểm",
     "url": "/honkai-star-rail-review",
     "cat": "Reviews",
     "date": "2026-08-25",
@@ -785,7 +785,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Monster Hunter Wilds Review: Kỷ Nguyên Mới Của Dòng Game Săn Quái 9.4 Điểm",
+    "title": "Monster Hunter Wilds Review: Kỷ Nguyên Mới (9.4 Điểm)",
     "url": "/monster-hunter-wilds-review",
     "cat": "Reviews",
     "date": "2026-08-25",
@@ -798,7 +798,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "One Piece Chapter 1193 Spoilers: Bí Mật Thân Phận Của Hoàng Tử Loki &amp; Trận Chiến Tại Elbaf",
+    "title": "One Piece Chapter 1193: Bí Mật Thân Phận Hoàng Tử Loki",
     "url": "/one-piece-chapter-1193-loki-elbaf",
     "cat": "Manga",
     "date": "2026-08-25",
@@ -832,7 +832,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Wuthering Waves Review: Đỉnh Cao Chiến Đấu Nhập Vai Thế Giới Mở 9.5 Điểm",
+    "title": "Wuthering Waves Review: Đỉnh Cao Nhập Vai Mở (9.5 Điểm)",
     "url": "/wuthering-waves-review",
     "cat": "Reviews",
     "date": "2026-08-25",
@@ -890,7 +890,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "One Piece Chính Thức Công Bố 2 Phim Điện Ảnh Mới: God Valley (2027) Và BAAD (2029), Lần Đầu Chuyển Thể Canon Sau 26 Năm",
+    "title": "One Piece Công Bố 2 Phim Điện Ảnh Mới: God Valley, BAAD",
     "url": "/one-piece-god-valley-baad-films-announced",
     "cat": "Anime",
     "date": "2026-08-23",
@@ -907,7 +907,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "One Piece Chapter 1192: Oda Tiết Lộ Năng Lực Của Imu Và Bí Ẩn Vũ Khí Cổ Đại Uranus Tại Elbaf",
+    "title": "One Piece Chapter 1192: Oda Tiết Lộ Năng Lực Của Imu",
     "url": "/one-piece-chapter-1192-elbaf-uranus",
     "cat": "Manga",
     "date": "2026-08-22",
@@ -923,7 +923,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Seven Seas Entertainment Công Bố 18 Bản Quyền Manga, Manhwa Và Tiểu Thuyết Mới Tại Anime NYC 2026, Nổi Bật Faraway Wanderers",
+    "title": "Seven Seas Công Bố 18 Bản Quyền Mới Tại Anime NYC 2026",
     "url": "/seven-seas-18-licenses-anime-nyc-2026",
     "cat": "Manga",
     "date": "2026-08-21",
@@ -939,7 +939,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Haikyu!! The Movie: VS The Little Giant Hé Lộ Visual Mới Tại Sự Kiện Haikyu!! Day 2026",
+    "title": "Haikyu!! The Movie: VS The Little Giant Hé Lộ Visual Mới",
     "url": "/haikyu-movie2-little-giant-teaser",
     "cat": "Anime",
     "date": "2026-08-20",
@@ -952,7 +952,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Lies of P: Complete Edition Chính Thức Ra Mắt Trên Nintendo Switch 2",
+    "title": "Lies of P: Complete Edition Ra Mắt Trên Switch 2",
     "url": "/lies-of-p-complete-edition-switch2",
     "cat": "Gaming",
     "date": "2026-08-20",
@@ -965,7 +965,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "One Piece Trở Lại Với Chapter 1191, Luffy Đối Đầu Imu Vòng 2 Trong Arc Elbaf",
+    "title": "One Piece Chapter 1191: Luffy Đối Đầu Imu Tại Elbaf",
     "url": "/one-piece-chapter-1191-elbaf-return",
     "cat": "Manga",
     "date": "2026-08-20",
@@ -978,7 +978,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Marvel Xác Nhận Danh Sách 15 Phim/Series Phải Xem Trước Avengers: Doomsday",
+    "title": "Marvel Xác Nhận 15 Phim/Series Phải Xem Trước Doomsday",
     "url": "/avengers-doomsday-homework-watchlist",
     "cat": "Gaming",
     "date": "2026-08-19",
@@ -992,7 +992,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Gosho Aoyama Xác Nhận Đã Phác Thảo Storyboard Chương Cuối Thám Tử Lừng Danh Conan",
+    "title": "Gosho Aoyama Phác Thảo Storyboard Chương Cuối Conan",
     "url": "/detective-conan-final-chapter",
     "cat": "Anime",
     "date": "2026-08-19",
@@ -1006,7 +1006,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Toilet-Bound Hanako-kun Trở Lại Sau 10 Tháng Gián Đoạn Vì Sức Khỏe Tác Giả",
+    "title": "Toilet-Bound Hanako-kun Trở Lại Sau 10 Tháng Gián Đoạn",
     "url": "/hanako-kun-manga-resumes",
     "cat": "Manga",
     "date": "2026-08-19",
@@ -1020,7 +1020,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "The Sinking City 2 Ra Mắt 18/8: Frogwares Chuyển Hẳn Sang Kinh Dị Sinh Tồn",
+    "title": "The Sinking City 2 Ra Mắt 18/8, Đậm Chất Kinh Dị Sinh Tồn",
     "url": "/sinking-city-2-launch",
     "cat": "Gaming",
     "date": "2026-08-19",
@@ -1034,7 +1034,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Akira Toriyama Chính Thức Được Ghi Danh Vào Eisner Hall of Fame",
+    "title": "Akira Toriyama Được Ghi Danh Vào Eisner Hall of Fame",
     "url": "/akira-toriyama-eisner-hall-of-fame",
     "cat": "Manga",
     "date": "2026-08-18",
@@ -1048,7 +1048,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Anime Mới Trên Crunchyroll 2026: Romelia War Chronicle, BLACK TORCH Và Hơn Thế Nữa",
+    "title": "Crunchyroll Bổ Sung Romelia War Chronicle Và Mở Rộng Đội Hình Anime 2026",
     "url": "/anime-moi-crunchyroll-2026-romelia-black-torch",
     "cat": "Anime",
     "date": "2026-08-18",
@@ -1076,7 +1076,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Ball x Pit Ra Mắt Bản Cập Nhật Miễn Phí Cuối The Naturalist, Thêm 2 Nhân Vật Mới",
+    "title": "Ball x Pit Ra Mắt Bản Cập Nhật The Naturalist",
     "url": "/ball-x-pit-naturalist-update",
     "cat": "Gaming",
     "date": "2026-08-18",
@@ -1090,7 +1090,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Bleach TYBW: The Calamity Công Bố OP 'I-BULL' Và ED 'Rasen'",
+    "title": "Bleach TYBW: The Calamity Công Bố OP I-BULL Và ED Rasen",
     "url": "/bleach-tybw-calamity-opening-ending",
     "cat": "Anime",
     "date": "2026-08-18",
@@ -1104,7 +1104,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Crunchyroll Manga Bổ Sung Black Torch, Hana-Kimi Trong Đợt Cập Nhật Tháng 7",
+    "title": "Crunchyroll Manga Bổ Sung Black Torch, Hana-Kimi Tháng 7",
     "url": "/crunchyroll-manga-black-torch-hana-kimi",
     "cat": "Manga",
     "date": "2026-08-18",
@@ -1118,7 +1118,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Doraemon Công Bố Phim Thứ 46: Nobita Đến London Bằng Tàu Thời Gian Hơi Nước",
+    "title": "Doraemon Công Bố Phim Thứ 46: Nobita Đến London",
     "url": "/doraemon-steam-time-machine-film",
     "cat": "Anime",
     "date": "2026-08-18",
@@ -1132,7 +1132,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Dragon Ball: Sparking Zero Tung DLC Super Limit-Breaking Neo Với 33 Nhân Vật Mới",
+    "title": "Sparking Zero Tung DLC Neo Với 33 Nhân Vật Mới",
     "url": "/dragon-ball-sparking-zero-neo-dlc",
     "cat": "Gaming",
     "date": "2026-08-18",
@@ -1146,7 +1146,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Flamecraft Xác Nhận Ra Mắt PS5, Xbox Series Và Switch, Demo Có Từ 28/7",
+    "title": "Flamecraft Xác Nhận Ra Mắt PS5, Xbox Series, Switch",
     "url": "/flamecraft-ps5-demo",
     "cat": "Gaming",
     "date": "2026-08-18",
@@ -1160,7 +1160,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Free Fire Daybreak Tung Key Visual Đầu Tiên, Ấn Định Mùa Xuân 2027",
+    "title": "Free Fire Daybreak Tung Key Visual, Ấn Định Xuân 2027",
     "url": "/free-fire-daybreak-anime-2027",
     "cat": "Anime",
     "date": "2026-08-18",
@@ -1175,7 +1175,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Toei Animation Xác Nhận Phim Galaxy Express 999 Mới, Rintaro Viết Cốt Truyện",
+    "title": "Toei Xác Nhận Phim Galaxy Express 999 Mới",
     "url": "/galaxy-express-999-new-film",
     "cat": "Anime",
     "date": "2026-08-18",
@@ -1189,7 +1189,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Halo: Campaign Evolved Ra Mắt 28/7, Nêu 13 Thay Đổi Hiện Đại Hóa Chiến Dịch",
+    "title": "Halo: Campaign Evolved Ra Mắt 28/7 Với 13 Thay Đổi",
     "url": "/halo-campaign-evolved-modernizes",
     "cat": "Gaming",
     "date": "2026-08-18",
@@ -1203,7 +1203,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "KONOSUBA Mùa 4 Ấn Định Ra Mắt 2027, Đổi Sang Studio ENGI",
+    "title": "KONOSUBA Mùa 4 Ấn Định Ra Mắt 2027, Studio ENGI",
     "url": "/konosuba-season-4-2027",
     "cat": "Anime",
     "date": "2026-08-18",
@@ -1217,7 +1217,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "LEGO Donkey Kong Arcade (Bộ 72051) Mở Bán 1/8, Giá 199,99 USD, 1.367 Mảnh Ghép",
+    "title": "LEGO Donkey Kong Arcade Mở Bán 1/8, Giá 199,99 USD",
     "url": "/lego-donkey-kong-arcade",
     "cat": "Gaming",
     "date": "2026-08-18",
@@ -1231,7 +1231,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Lou's Lagoon Ấn Định Ra Mắt PS5 Ngày 27/8, Công Bố Deluxe Edition",
+    "title": "Lou's Lagoon Ấn Định Ra Mắt PS5, Công Bố Deluxe Edition",
     "url": "/lous-lagoon-ps5-august-27",
     "cat": "Gaming",
     "date": "2026-08-18",
@@ -1245,7 +1245,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Crunchyroll Xác Nhận Magical Buffs Và Fate Rewinder Sau Showcase Anime Expo 2026",
+    "title": "Crunchyroll Xác Nhận Magical Buffs Và Fate Rewinder",
     "url": "/magical-buffs-fate-rewinder-crunchyroll",
     "cat": "Anime",
     "date": "2026-08-18",
@@ -1259,7 +1259,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "MARVEL Tōkon: Fighting Souls Công Bố Phoenix Cyclops Là DLC Year 1 Đầu Tiên",
+    "title": "Marvel Tōkon: Fighting Souls Công Bố DLC Phoenix Cyclops",
     "url": "/marvel-tokon-phoenix-cyclops-dlc",
     "cat": "Gaming",
     "date": "2026-08-18",
@@ -1273,7 +1273,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Marvel's Wolverine Tung Trailer Cốt Truyện Tại Comic-Con, Xác Nhận Ra Mắt 15/9",
+    "title": "Marvel's Wolverine Tung Trailer Tại Comic-Con, Ra Mắt 15/9",
     "url": "/marvel-wolverine-story-trailer",
     "cat": "Gaming",
     "date": "2026-08-18",
@@ -1287,7 +1287,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Mii-chan and Miss Yamada Được Chuyển Thể Anime, Ra Mắt Năm 2027",
+    "title": "Mii-chan and Miss Yamada Được Chuyển Thể Anime 2027",
     "url": "/mii-chan-miss-yamada-anime",
     "cat": "Anime",
     "date": "2026-08-18",
@@ -1300,7 +1300,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Oblivion Remastered Chính Thức Lên Nintendo Switch 2, Chạy 1080p Docked/900p Handheld",
+    "title": "Oblivion Remastered Lên Switch 2, 1080p Docked",
     "url": "/oblivion-remastered-switch-2",
     "cat": "Gaming",
     "date": "2026-08-18",
@@ -1314,7 +1314,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Order Of The Sinking Star Xác Nhận Bản PS5, Ra Mắt Ngày 8/10",
+    "title": "Order of the Sinking Star Xác Nhận Bản PS5, Ra 8/10",
     "url": "/order-of-the-sinking-star-ps5",
     "cat": "Gaming",
     "date": "2026-08-18",
@@ -1328,7 +1328,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "PlayStation Plus Tháng 8/2026 Chốt Danh Sách: Dying Light 2 Reloaded, Big Walk Và Signalis",
+    "title": "PlayStation Plus Tháng 8/2026: Dying Light 2, Big Walk",
     "url": "/playstation-plus-august-2026",
     "cat": "Gaming",
     "date": "2026-08-18",
@@ -1342,7 +1342,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Ranma 1/2 Mùa 3 Công Bố Key Visual, 5 Diễn Viên Mới Và Ngày Lên Sóng 3/10",
+    "title": "Ranma 1/2 Mùa 3 Công Bố Key Visual, Lên Sóng 3/10",
     "url": "/ranma-half-season-3-visual",
     "cat": "Anime",
     "date": "2026-08-18",
@@ -1356,7 +1356,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Re:ZERO Tung Visual Kỷ Niệm 10 Năm, Hé Lộ Triển Lãm Tại Tokyo Tháng 9",
+    "title": "Re:ZERO Tung Visual Kỷ Niệm 10 Năm, Triển Lãm Tokyo",
     "url": "/rezero-10th-anniversary-visual",
     "cat": "Anime",
     "date": "2026-08-18",
@@ -1369,7 +1369,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Rhythm Heaven Groove Chính Thức Ra Mắt Sau 11 Năm, Demo Miễn Phí Vẫn Đang Mở",
+    "title": "Rhythm Heaven Groove Ra Mắt Sau 11 Năm Chờ Đợi",
     "url": "/rhythm-heaven-groove-nintendo",
     "cat": "Gaming",
     "date": "2026-08-18",
@@ -1383,7 +1383,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Senren＊Banka Được Chuyển Thể Anime, Dàn Cast Gốc Trở Lại, Ra Mắt 2027",
+    "title": "Senren Banka Được Chuyển Thể Anime, Ra Mắt 2027",
     "url": "/senren-banka-anime-2027",
     "cat": "Anime",
     "date": "2026-08-18",
@@ -1397,7 +1397,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Silent Hill: Townfall Hé Lộ Bối Cảnh Scotland 1996 Và Thiết Bị CRTV",
+    "title": "Silent Hill: Townfall Hé Lộ Bối Cảnh Scotland 1996",
     "url": "/silent-hill-townfall-gameplay",
     "cat": "Gaming",
     "date": "2026-08-18",
@@ -1411,7 +1411,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Splatoon Raiders Chính Thức Ra Mắt Trên Nintendo Switch 2 Ngày 23/7",
+    "title": "Splatoon Raiders Ra Mắt Trên Switch 2 Ngày 23/7",
     "url": "/splatoon-raiders-launch",
     "cat": "Gaming",
     "date": "2026-08-18",
@@ -1425,7 +1425,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Manga Studio Cabana Được Chuyển Thể Anime Tại JUVENAGE, Ra Mắt 2027",
+    "title": "Studio Cabana Được Chuyển Thể Anime, Ra Mắt 2027",
     "url": "/studio-cabana-anime-2027",
     "cat": "Anime",
     "date": "2026-08-18",
@@ -1438,7 +1438,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "The Bugle Call: Song of War Công Bố TV Anime Tại Studio CA Soa, Ra Mắt 2027",
+    "title": "The Bugle Call: Song of War Công Bố TV Anime 2027",
     "url": "/the-bugle-call-anime-2027",
     "cat": "Anime",
     "date": "2026-08-18",
@@ -1452,7 +1452,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Manga VIZ Phát Hành Ngày 18/8/2026: Vagabond, Undead Unluck Và Kingdom",
+    "title": "Loạt Manga VIZ Phát Hành Ngày 18/8: Vagabond, Undead Unluck Và Kingdom",
     "url": "/viz-manga-phat-hanh-18-8-2026",
     "cat": "Manga",
     "date": "2026-08-18",
@@ -1467,7 +1467,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Xbox Game Pass Wave 2 Tháng 7: Halo Campaign Evolved Dẫn Đầu Cùng Beast Of Reincarnation",
+    "title": "Xbox Game Pass Wave 2 Tháng 7: Halo Campaign Evolved",
     "url": "/xbox-game-pass-july-wave-2",
     "cat": "Gaming",
     "date": "2026-08-18",
@@ -1481,7 +1481,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Yen Press Cấp Phép Champignon Witch Cùng 9 Manga, Light Novel Mới Tại SDCC 2026",
+    "title": "Yen Press Cấp Phép Champignon Witch Tại SDCC 2026",
     "url": "/yen-press-champignon-witch-licenses",
     "cat": "Manga",
     "date": "2026-08-18",
@@ -1494,7 +1494,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "The Apothecary Diaries Mùa 3 Tung Trailer, Key Visual Mới, Ấn Định Ngày 2/10",
+    "title": "The Apothecary Diaries Mùa 3 Tung Trailer, Ấn Định 2/10",
     "url": "/apothecary-diaries-season3-trailer",
     "cat": "Anime",
     "date": "2026-08-17",
@@ -1508,7 +1508,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "FF7 Revelation Lộ Diện Tại Gamescom Opening Night 25/8",
+    "title": "Final Fantasy VII Revelation Lộ Diện Tại Gamescom Opening Night Live 25/8",
     "url": "/final-fantasy-7-revelation-gamescom",
     "cat": "Gaming",
     "date": "2026-08-17",
@@ -1522,7 +1522,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "GTA 6 Tung Trailer 3, Công Chiếu Trên Netflix 27/8",
+    "title": "GTA 6 Tung Trailer Thứ 3, Công Chiếu Độc Quyền Trên Netflix Ngày 27/8",
     "url": "/gta6-trailer3-netflix-premiere",
     "cat": "Gaming",
     "date": "2026-08-17",
@@ -1536,7 +1536,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Food Wars, We Never Learn Trở Lại Trên Jump GIGA Hè 2026",
+    "title": "Bộ Đôi Food Wars Và Tác Giả We Never Learn Trở Lại Trên Jump GIGA Hè 2026",
     "url": "/jump-giga-summer-2026-oneshots",
     "cat": "Manga",
     "date": "2026-08-17",
@@ -1564,7 +1564,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Phantom Blade Zero: State of Play 17/8, Mở Pre-Order",
+    "title": "Phantom Blade Zero: State of Play Gameplay Deep Dive Ngày 17/8, Mở Pre-Order",
     "url": "/phantom-blade-zero-state-of-play",
     "cat": "Gaming",
     "date": "2026-08-17",
@@ -1578,7 +1578,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Reincarnated As A Sword Mùa 2 Ấn Định Ngày 7/10",
+    "title": "Reincarnated As A Sword Mùa 2 Ấn Định Ngày Phát Sóng 7/10",
     "url": "/reincarnated-as-a-sword-season2-premiere",
     "cat": "Anime",
     "date": "2026-08-17",
@@ -1592,7 +1592,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Resonance: A Plague Tale Legacy Ra Mắt 27/8/2026, Tiền Truyện 15 Năm Trước Innocence",
+    "title": "Resonance: A Plague Tale Legacy Ra Mắt 27/8/2026",
     "url": "/resonance-plague-tale-legacy-release",
     "cat": "Gaming",
     "date": "2026-08-17",
@@ -1606,7 +1606,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Skip and Loafer Mùa 2 Tung Teaser, Ấn Định Tháng 4/2027",
+    "title": "Skip and Loafer Mùa 2 Tung Teaser, Ra Mắt 4/2027",
     "url": "/skip-and-loafer-season2-teaser",
     "cat": "Anime",
     "date": "2026-08-17",
@@ -1620,7 +1620,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Attack on Titan Final Season Review: Cái Kết Xứng Đáng Cho Một Huyền Thoại",
+    "title": "Attack on Titan Final Season Review: Cái Kết Xứng Đáng",
     "url": "/attack-on-titan-final-season-review",
     "cat": "Reviews",
     "date": "2026-08-16",
@@ -1634,7 +1634,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Chainsaw Man Anime Review: MAPPA Làm Nên Kiệt Tác",
+    "title": "Chainsaw Man Anime Review: MAPPA Biến Manga Điên Rồ Thành Kiệt Tác Hình Ảnh",
     "url": "/chainsaw-man-anime-review",
     "cat": "Reviews",
     "date": "2026-08-16",
@@ -1648,7 +1648,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Chainsaw Man Manga Review: Từ Denji Đến Asa Mitaka",
+    "title": "Chainsaw Man Manga Review: Trọn Vẹn Hành Trình Từ Denji Đến Asa Mitaka",
     "url": "/chainsaw-man-manga-part2-review",
     "cat": "Reviews",
     "date": "2026-08-16",
@@ -1662,7 +1662,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Dandadan Review: Cơn Lốc Hài Hước, Kinh Dị, Lãng Mạn",
+    "title": "Dandadan Review: Cơn Lốc Hài Hước, Kinh Dị Và Lãng Mạn Không Giống Ai",
     "url": "/dandadan-manga-review",
     "cat": "Reviews",
     "date": "2026-08-16",
@@ -1676,7 +1676,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Genshin Impact 7.0: Snezhnaya Review: Chương Cuối",
+    "title": "Genshin Impact 7.0: Snezhnaya Review: Chương Cuối Đầy Tham Vọng",
     "url": "/genshin-70-snezhnaya-review",
     "cat": "Reviews",
     "date": "2026-08-16",
@@ -1690,7 +1690,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Honkai: Star Rail Chính Thức Xác Nhận Crossover Với Zenless Zone Zero",
+    "title": "Honkai: Star Rail Xác Nhận Crossover Với ZZZ",
     "url": "/honkai-star-rail-zzz-crossover",
     "cat": "Gaming",
     "date": "2026-08-16",
@@ -1704,7 +1704,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Kaiju No.8 THE GAME Review: Chuyển Thể Xứng Đáng",
+    "title": "Kaiju No.8 THE GAME Review: Chuyển Thể Xứng Đáng Sau 1 Năm Vận Hành",
     "url": "/kaiju-no-8-the-game-review",
     "cat": "Reviews",
     "date": "2026-08-16",
@@ -1718,7 +1718,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Mushoku Tensei Mùa 3: Chaos Breaker Arc Chính Thức Bắt Đầu Từ Tập 8",
+    "title": "Mushoku Tensei Mùa 3: Chaos Breaker Arc Bắt Đầu Tập 8",
     "url": "/mushoku-tensei-chaos-breaker-arc",
     "cat": "Anime",
     "date": "2026-08-16",
@@ -1732,7 +1732,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Oshi no Ko Anime Review: Góc Khuất Ngành Giải Trí",
+    "title": "Oshi no Ko Anime Review: Góc Khuất Ngành Giải Trí Qua Lăng Kính Sắc Bén",
     "url": "/oshi-no-ko-anime-review",
     "cat": "Reviews",
     "date": "2026-08-16",
@@ -1746,7 +1746,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Oshi no Ko Mùa 4 (Cuối) Tung Teaser, Trailer Đầu Tiên",
+    "title": "Oshi no Ko Mùa 4 (Mùa Cuối) Tung Teaser Visual Và Trailer Đầu Tiên",
     "url": "/oshi-no-ko-season4-teaser",
     "cat": "Anime",
     "date": "2026-08-16",
@@ -1760,7 +1760,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Vinland Saga Manga Review: Khép Lại Sau 20 Năm Bằng Một Cái Kết Xứng Đáng",
+    "title": "Vinland Saga Manga Review: Cái Kết Sau 20 Năm",
     "url": "/vinland-saga-manga-review",
     "cat": "Reviews",
     "date": "2026-08-16",
@@ -1774,7 +1774,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "WIT Studio Hé Lộ Công Bố Bí Ẩn Attack on Titan Ngày 20/8",
+    "title": "WIT Studio Hé Lộ Bí Ẩn Attack on Titan Ngày 20/8",
     "url": "/attack-on-titan-wit-teaser",
     "cat": "Anime",
     "date": "2026-08-15",
@@ -1787,7 +1787,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Big Walk: Cha Đẻ Untitled Goose Game Ra Mắt Game Co-op Mới Cực Chill",
+    "title": "Big Walk: Cha Đẻ Untitled Goose Game Ra Game Co-op Mới",
     "url": "/big-walk-house-house",
     "cat": "Gaming",
     "date": "2026-08-15",
@@ -1801,7 +1801,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Black Clover Kết Thúc Review: 11 Năm, Cái Kết Trọn Vẹn",
+    "title": "Black Clover Kết Thúc Review: 11 Năm Và Một Cái Kết Trọn Vẹn",
     "url": "/black-clover-final-volume-review",
     "cat": "Reviews",
     "date": "2026-08-15",
@@ -1815,7 +1815,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Black Myth: Wukong Review: Kiệt Tác Souls-like TQ",
+    "title": "Black Myth: Wukong Review: Kiệt Tác Souls-like Đầu Tiên Của Trung Quốc",
     "url": "/black-myth-wukong-review",
     "cat": "Reviews",
     "date": "2026-08-15",
@@ -1829,7 +1829,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Chainsaw Man – Reze Arc Review: MAPPA Lên Màn Ảnh Rộng",
+    "title": "Chainsaw Man – The Movie: Reze Arc Review: MAPPA Đưa Denji Lên Màn Ảnh Rộng Ngoạn Mục",
     "url": "/chainsaw-man-reze-arc-review",
     "cat": "Reviews",
     "date": "2026-08-15",
@@ -1843,7 +1843,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Dan Da Dan Season 2 Review: Science SARU Nâng Tầm",
+    "title": "Dan Da Dan Season 2 Review: Science SARU Nâng Tầm Bộ Đôi Siêu Nhiên Độc Đáo",
     "url": "/dandadan-season-2-review",
     "cat": "Reviews",
     "date": "2026-08-15",
@@ -1857,7 +1857,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Death Stranding 2 Review: Kojima Vượt Qua Chính Mình",
+    "title": "Death Stranding 2: On the Beach Review: Kojima Vượt Qua Chính Mình",
     "url": "/death-stranding-2-review",
     "cat": "Reviews",
     "date": "2026-08-15",
@@ -1871,7 +1871,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Demon Slayer: Infinity Castle Review: Kiệt Tác Ufotable",
+    "title": "Demon Slayer: Infinity Castle Review: Kiệt Tác Điện Ảnh Khép Lại Kỷ Nguyên Ufotable",
     "url": "/demon-slayer-infinity-castle-review",
     "cat": "Reviews",
     "date": "2026-08-15",
@@ -1885,7 +1885,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Elden Ring: Tarnished Edition Đổ Bộ Switch 2 Ngày 28/8",
+    "title": "Elden Ring: Tarnished Edition Đổ Bộ Nintendo Switch 2 Ngày 28/8",
     "url": "/elden-ring-tarnished-edition",
     "cat": "Gaming",
     "date": "2026-08-15",
@@ -1899,7 +1899,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Ghost of Yōtei Review: Sucker Punch Vượt Qua Tsushima",
+    "title": "Ghost of Yōtei Review: Sucker Punch Vượt Qua Cái Bóng Của Tsushima",
     "url": "/ghost-of-yotei-review",
     "cat": "Reviews",
     "date": "2026-08-15",
@@ -1913,7 +1913,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Jujutsu Kaisen Anime Review: Trấn Chú Vươn Tầm Toàn Cầu",
+    "title": "Jujutsu Kaisen Anime Review: Series Trấn Chú Lên Tầm Toàn Cầu",
     "url": "/jujutsu-kaisen-anime-review",
     "cat": "Reviews",
     "date": "2026-08-15",
@@ -1927,7 +1927,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Kagurabachi Review",
+    "title": "Kagurabachi Review: Manga Bùng Nổ Phương Tây Mà Không Cần Anime",
     "url": "/kagurabachi-review",
     "cat": "Reviews",
     "date": "2026-08-15",
@@ -1941,7 +1941,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Kaiju No.8 Review: Shonen Quái Vật Hiện Tượng Của Jump+",
+    "title": "Kaiju No.8 Review: Shonen Quái Vật Của Jump+",
     "url": "/kaiju-no-8-manga-review",
     "cat": "Reviews",
     "date": "2026-08-15",
@@ -1955,7 +1955,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Mafia: The Old Country Review: Về Cội Nguồn Sicily",
+    "title": "Mafia: The Old Country Review: Trở Về Cội Nguồn Sicily Đầy Cảm Xúc",
     "url": "/mafia-old-country-review",
     "cat": "Reviews",
     "date": "2026-08-15",
@@ -1969,7 +1969,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Metal Gear Solid Δ: Snake Eater Review: Bản Remake Trung Thành Đến Từng Chi Tiết",
+    "title": "Metal Gear Solid Delta: Snake Eater Review Chi Tiết",
     "url": "/metal-gear-solid-delta-review",
     "cat": "Reviews",
     "date": "2026-08-15",
@@ -1983,7 +1983,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "One Piece: Egghead Arc Review: Khi Vegapunk Kể Lại Lịch Sử Thế Giới",
+    "title": "One Piece: Egghead Arc Review: Vegapunk Kể Lịch Sử",
     "url": "/one-piece-egghead-arc-review",
     "cat": "Reviews",
     "date": "2026-08-15",
@@ -1997,7 +1997,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "One Piece: Final Saga Review: 25 Năm Đến Laugh Tale",
+    "title": "One Piece: Final Saga Review: 25 Năm Tiến Gần Đến Laugh Tale",
     "url": "/one-piece-final-saga-review",
     "cat": "Reviews",
     "date": "2026-08-15",
@@ -2011,7 +2011,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Cha Đẻ My Hero Academia Trở Lại Với One-shot Kinh Dị",
+    "title": "Cha Đẻ My Hero Academia Trở Lại Jump Với One-shot Kinh Dị Mới",
     "url": "/quit-laughing-shijima-horikoshi",
     "cat": "Manga",
     "date": "2026-08-15",
@@ -2024,7 +2024,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Space Marine 2: Bản Cập Nhật Confrontation Review, Khép Lại Năm 2 Ấn Tượng",
+    "title": "Space Marine 2: Bản Cập Nhật Confrontation Review",
     "url": "/space-marine-2-chaos-rising-review",
     "cat": "Reviews",
     "date": "2026-08-15",
@@ -2038,7 +2038,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Split Fiction Review: Hazelight Tái Định Nghĩa Game Co-op Lần Nữa",
+    "title": "Split Fiction Review: Hazelight Tái Định Nghĩa Co-op",
     "url": "/split-fiction-review",
     "cat": "Reviews",
     "date": "2026-08-15",
@@ -2052,7 +2052,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Suikoden STAR LEAP Review: Konami Hồi Sinh Huyền Thoại Trên Mobile",
+    "title": "Suikoden STAR LEAP Review: Konami Hồi Sinh Huyền Thoại",
     "url": "/suikoden-star-leap-review",
     "cat": "Reviews",
     "date": "2026-08-15",
@@ -2066,7 +2066,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Wuthering Waves 3.6: Ren Realm, Sword Flight Và 2 Nhân Vật Mới Qingxiao, Jingran",
+    "title": "Wuthering Waves 3.6: Ren Realm Và 2 Nhân Vật Mới",
     "url": "/wuthering-waves-24",
     "cat": "Gaming",
     "date": "2026-08-15",
@@ -2082,7 +2082,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Beast of Reincarnation: Game Freak Ra Mắt Tựa AAA Đầu Tiên Ngoài Pokémon",
+    "title": "Beast of Reincarnation: Tựa AAA Đầu Tiên Của Game Freak",
     "url": "/beast-of-reincarnation",
     "cat": "Gaming",
     "date": "2026-08-14",
@@ -2097,7 +2097,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Black Clover Khép Lại Với Volume 38 Và Guidebook Perfect Grimoire, Kèm Truyện Ngắn 15 Trang Của Yuki Tabata",
+    "title": "Black Clover Khép Lại Với Volume 38 Và Guidebook Mới",
     "url": "/black-clover-final-volume-guidebook",
     "cat": "Manga",
     "date": "2026-08-14",
@@ -2112,7 +2112,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Crunchyroll Giành Quyền Phát Hành Phim Mới Shinkai",
+    "title": "Crunchyroll Và Sony Giành Quyền Phát Hành Toàn Cầu Phim Mới Của Makoto Shinkai",
     "url": "/crunchyroll-makoto-shinkai-next-film",
     "cat": "Anime",
     "date": "2026-08-14",
@@ -2127,7 +2127,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Genshin Impact 7.0: Tier List Đội Hình Meta Mạnh Nhất Mùa Snezhnaya",
+    "title": "Genshin Impact 7.0: Tier List Đội Hình Meta Snezhnaya",
     "url": "/genshin-54-citlali",
     "cat": "Gaming",
     "date": "2026-08-14",
@@ -2143,7 +2143,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Ghost of Yōtei Complete Edition Ra Mắt Ngày 1/10",
+    "title": "Ghost of Yōtei Complete Edition: Echoes of Sekigahara Và Chế Độ Roguelike Most Wanted Ra Mắt 1/10",
     "url": "/ghost-of-yotei-complete-edition",
     "cat": "Gaming",
     "date": "2026-08-14",
@@ -2158,7 +2158,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Link Click Season 3 Phần 1 Chính Thức Lên Sóng Hôm Nay",
+    "title": "Link Click Season 3 Phần 1 Lên Sóng Hôm Nay",
     "url": "/link-click-season3-premiere",
     "cat": "Anime",
     "date": "2026-08-14",
@@ -2173,7 +2173,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Made in Abyss: Awakening Mystery Tung Trailer 23/10",
+    "title": "Made in Abyss: Awakening Mystery Tung Trailer Chính, Riko Và Đồng Đội Xuống Tầng 7 Ngày 23/10",
     "url": "/made-in-abyss-awakening-mystery",
     "cat": "Anime",
     "date": "2026-08-14",
@@ -2188,7 +2188,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Mafia: Old Country · DLC Man of Honor Ra Mắt Hôm Nay",
+    "title": "Mafia: The Old Country · DLC Man of Honor Ra Mắt Hôm Nay, Đưa Ennio Salieri Trở Lại Sicily",
     "url": "/mafia-old-country-man-of-honor",
     "cat": "Gaming",
     "date": "2026-08-14",
@@ -2203,7 +2203,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "MANGA MILLION Mở Near-Simulcast Cho 30 Bộ Manga, One Piece Dẫn Đầu Với 96 Ngôn Ngữ",
+    "title": "MANGA MILLION Mở Near-Simulcast Cho 30 Bộ Manga",
     "url": "/manga-million-near-simulcast",
     "cat": "Manga",
     "date": "2026-08-14",
@@ -2218,7 +2218,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Suikoden STAR LEAP Ra Mắt Mobile Nhật Bản: 108 Ngôi Sao Định Mệnh Mới, Bối Cảnh Giữa Suikoden V Và I",
+    "title": "Suikoden STAR LEAP Ra Mắt Mobile Nhật Bản",
     "url": "/suikoden-star-leap",
     "cat": "Gaming",
     "date": "2026-08-14",
@@ -2233,7 +2233,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "The Ribbon Hero: Netflix Chuyển Thể Đầu Tiên Của Princess Knight, Tác Phẩm Khai Sinh Dòng Magical Girl",
+    "title": "The Ribbon Hero: Netflix Chuyển Thể Princess Knight",
     "url": "/the-ribbon-hero-netflix",
     "cat": "Anime",
     "date": "2026-08-14",
@@ -2248,7 +2248,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Genshin Impact 7.0: Snezhnaya Mở Cửa, Odette Ra Mắt",
+    "title": "Genshin Impact 7.0: Snezhnaya Chính Thức Mở Cửa, Odette Và Chế Độ Bắn Súng Mới",
     "url": "/genshin-impact-70-snezhnaya",
     "cat": "Gaming",
     "date": "2026-08-13",
@@ -2263,7 +2263,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Hollow Knight: Silksong Công Bố DLC Miễn Phí Sea of Sorrow",
+    "title": "Hollow Knight: Silksong Ra DLC Miễn Phí Sea of Sorrow",
     "url": "/hollow-knight-silksong-sea-of-sorrow",
     "cat": "Gaming",
     "date": "2026-08-13",
@@ -2278,7 +2278,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Black Clover Season 2 Tung Trailer, Trở Lại Tháng 10",
+    "title": "Black Clover Season 2 Tung Trailer Chính Thức, Trở Lại Tháng 10",
     "url": "/black-clover-season-2",
     "cat": "Anime",
     "date": "2026-08-12",
@@ -2307,7 +2307,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "JoJo's Bizarre Adventure: Golden Spirit Ra Mắt Toàn Cầu 13/8",
+    "title": "JoJo's Bizarre Adventure: Golden Spirit Ra Mắt 13/8",
     "url": "/jojo-golden-spirit-launch",
     "cat": "Gaming",
     "date": "2026-08-12",
@@ -2322,7 +2322,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Kaiju No.8 THE GAME: Lộ Trình Cập Nhật 1 Năm",
+    "title": "Kaiju No.8 THE GAME: Lộ Trình Cập Nhật 1 Năm, Reno Ichikawa Playable",
     "url": "/kaiju-no-8-the-game-anniversary",
     "cat": "Gaming",
     "date": "2026-08-12",
@@ -2337,7 +2337,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Metal Gear Solid: Master Collection Vol. 2 Ấn Định Ngày Ra Mắt 27/8",
+    "title": "MGS: Master Collection Vol. 2 Ấn Định Ra Mắt 27/8",
     "url": "/metal-gear-solid-master-collection-vol2",
     "cat": "Gaming",
     "date": "2026-08-12",
@@ -2352,7 +2352,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Mushoku Tensei Season 3: Chaos Breaker Arc Tung Trailer, Khởi Chiếu 16/8",
+    "title": "Mushoku Tensei S3: Chaos Breaker Tung Trailer, 16/8",
     "url": "/mushoku-tensei-s3-chaos-breaker",
     "cat": "Anime",
     "date": "2026-08-12",
@@ -2382,7 +2382,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Shueisha Ra Mắt MANGA MILLION: Đọc Miễn Phí 400 Bộ",
+    "title": "Shueisha Ra Mắt MANGA MILLION: Đọc Miễn Phí Gần 400 Bộ Manga",
     "url": "/shueisha-manga-million",
     "cat": "Manga",
     "date": "2026-08-12",
@@ -2397,7 +2397,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Star Wars Zero Company: Chiến Thuật Theo Lượt Mới Từ EA, Ra Mắt 27/8",
+    "title": "Star Wars Zero Company: Chiến Thuật Mới Từ EA, 27/8",
     "url": "/star-wars-zero-company",
     "cat": "Gaming",
     "date": "2026-08-12",
@@ -2412,7 +2412,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "One Piece Final Saga: Oda Tiết Lộ Bản Đồ Laugh Tale",
+    "title": "One Piece Final Saga: Oda Tiết Lộ Bản Đồ Laugh Tale Và Ý Nghĩa",
     "url": "/one-piece-final-saga",
     "cat": "Manga",
     "date": "2026-08-11",
@@ -2442,7 +2442,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Space Marine 2 Năm 3: Chaos Siege Mode, Class Mới Và Season Pass 3",
+    "title": "Space Marine 2 Năm 3: Chaos Siege Mode, Class Mới",
     "url": "/space-marine-2-dlc",
     "cat": "Gaming",
     "date": "2026-07-30",
@@ -2507,7 +2507,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Berserk Arc Cuối: Studio Gaga Hoàn Thành Di Sản Của Miura",
+    "title": "Berserk Arc Cuối: Studio Gaga Hoàn Thành Di Sản Miura",
     "url": "/berserk-arc-cuoi",
     "cat": "Manga",
     "date": "2026-06-16",
@@ -2523,7 +2523,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Elden Ring Tarnished Pack: Chi Tiết 2 Class Mới Heavy Knight Và Idus Knight",
+    "title": "Elden Ring Tarnished Pack: 2 Class Mới Heavy, Idus Knight",
     "url": "/elden-ring-dlc2",
     "cat": "Gaming",
     "date": "2026-06-12",
@@ -2569,7 +2569,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Kingdom Come Deliverance 2 Review: RPG Lịch Sử Hay Nhất",
+    "title": "Kingdom Come Deliverance 2 Review: RPG Lịch Sử Đỉnh Trong Thập Kỷ",
     "url": "/kingdom-come-deliverance-2",
     "cat": "Gaming",
     "date": "2026-06-10",
@@ -2585,7 +2585,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Resident Evil Requiem: Tất Cả Những Gì Cần Biết Về Phần Tiếp Theo",
+    "title": "Resident Evil Requiem: Những Điều Cần Biết",
     "url": "/resident-evil-9-announcement",
     "cat": "Gaming",
     "date": "2026-06-10",
@@ -2614,7 +2614,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Stellar Blade: Blood Rain Chính Thức Lộ Diện, Giới Thiệu Nữ Chính Mới Evie",
+    "title": "Stellar Blade: Blood Rain Lộ Diện, Nữ Chính Mới Evie",
     "url": "/stellar-blade-2",
     "cat": "Gaming",
     "date": "2026-06-08",
@@ -2644,7 +2644,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "One Piece Arc Egghead: Vegapunk, Lời Tiên Tri Và Bí Mật Của Thế Giới",
+    "title": "One Piece Egghead Arc: Vegapunk Và Bí Mật Thế Giới",
     "url": "/one-piece-egghead-arc",
     "cat": "Manga",
     "date": "2026-06-07",
@@ -2661,7 +2661,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Genshin Impact Natlan: Vùng Đất Của Lửa Và Bí Mật Về Celestia",
+    "title": "Genshin Impact Natlan: Vùng Đất Lửa Và Bí Mật Celestia",
     "url": "/genshin-natlan-review",
     "cat": "Reviews",
     "date": "2026-06-04",
@@ -2679,7 +2679,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Dragon Ball DAIMA: Di Sản Của Toriyama Và Tương Lai Anime",
+    "title": "Dragon Ball DAIMA: Di Sản Toriyama, Tương Lai Anime",
     "url": "/dragon-ball-daima",
     "cat": "Anime",
     "date": "2026-06-03",
@@ -2695,7 +2695,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Jujutsu Kaisen Kết Thúc: Phân Tích Ending Gây Tranh Cãi Nhất Năm 2025",
+    "title": "Jujutsu Kaisen Kết Thúc: Phân Tích Ending Gây Tranh Cãi",
     "url": "/jujutsu-kaisen-ket-thuc",
     "cat": "Manga",
     "date": "2026-06-01",
@@ -2712,7 +2712,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Nintendo Switch 2 Review: Console Hoàn Hảo Hay Chỉ Là Nâng Cấp?",
+    "title": "Nintendo Switch 2 Review: Hoàn Hảo Hay Chỉ Nâng Cấp?",
     "url": "/nintendo-switch-2-review",
     "cat": "Reviews",
     "date": "2026-05-28",

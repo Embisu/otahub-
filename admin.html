@@ -10869,6 +10869,78 @@ function syncArticleBodyToTextarea() {
   }
 }
 
+// Khi sửa tiêu đề bài đã có: cập nhật tiêu đề ở mọi nơi liệt kê bài (trang chủ, Breaking News, tin tức,
+// chuyên mục, tìm kiếm, RSS, sitemap tin tức) để không bị lệch với trang bài viết.
+async function propagateTitleChange(slug, newTitle) {
+  const escT = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const rules = [
+    ['<article class="w-card"><a href="/' + slug + '"', '<div class="wc-t">', '</div>', '</article>'],
+    ['<a href="/' + slug + '" class="ac"', '<div class="ac-title">', '</div>', '</a>'],
+    ['<a class="sc" href="/' + slug + '">', '<div class="sc-title">', '</div>', '</a>'],
+    ['<a class="fc" href="/' + slug + '">', '<h2 class="fc-title">', '</h2>', '</a>'],
+    ['<article class="s-art" onclick="location.href=\'/' + slug + '\'"', '<div class="sa-t">', '</div>', '</article>'],
+    ['<a href="/' + slug + '" style="display:block', '<h3', '</h3>', '</a>'],
+    ['<div class="hero-main" onclick="location.href=\'/' + slug + '\'"', 'id="h-title">', '</h1>', '<aside'],
+  ];
+  const swapTitle = (html) => {
+    let n = 0;
+    for (const [open, tOpen, tClose, stop] of rules) {
+      let from = 0;
+      for (;;) {
+        const i = html.indexOf(open, from);
+        if (i < 0) break;
+        const end = html.indexOf(stop, i + open.length);
+        const j = html.indexOf(tOpen, i);
+        if (j < 0 || (end > 0 && j > end)) { from = i + open.length; continue; }
+        let k = j + tOpen.length;
+        if (tOpen === '<h3') k = html.indexOf('>', j) + 1;
+        const c = html.indexOf(tClose, k);
+        if (c < 0) break;
+        const cur = html.slice(k, c);
+        if (!/</.test(cur) && cur.trim() && cur !== escT(newTitle)) { html = html.slice(0, k) + escT(newTitle) + html.slice(c); n++; }
+        from = k;
+      }
+    }
+    // thanh chạy tin
+    html = html.replace(new RegExp('(<span class="tick-item">[^<]*<strong>[^<]*</strong> <a href="/' + slug + '"[^>]*>)([^<]*)(</a>)', 'g'), (m, p, t, q) => { n++; return p + escT(newTitle) + q; });
+    return [html, n];
+  };
+  const files = ['index.html', 'news.html', 'gaming.html', 'anime.html', 'manga.html'];
+  for (const f of files) {
+    try {
+      const d = await ghGet(f);
+      const src = decodeURIComponent(escape(atob(d.content.replace(/\s/g, ''))));
+      if (!src.includes('/' + slug)) continue;
+      const [out, n] = swapTitle(src);
+      if (n > 0 && out !== src) await ghPut(f, out, d.sha, '[admin] dong bo tieu de /' + slug + ' trong ' + f);
+    } catch (e) { console.warn('Đồng bộ tiêu đề lỗi', f, e); }
+  }
+  try {
+    const d = await ghGet('assets/search.js');
+    let s = decodeURIComponent(escape(atob(d.content.replace(/\s/g, ''))));
+    const re = new RegExp('("title": )("(?:[^"\\\\]|\\\\.)*")(,\\s*"url": "/' + slug + '")');
+    if (re.test(s)) { s = s.replace(re, (m, p, t, q) => p + JSON.stringify(newTitle) + q); await ghPut('assets/search.js', s, d.sha, '[admin] dong bo tieu de /' + slug + ' trong search'); }
+  } catch (e) { console.warn('search title sync', e); }
+  try {
+    const d = await ghGet('feed.json');
+    const j = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\s/g, '')))));
+    const it = (j.items || []).find(x => x.url === 'https://otahub.asia/' + slug);
+    if (it && it.title !== newTitle) { it.title = newTitle; await ghPut('feed.json', JSON.stringify(j, null, 2), d.sha, '[admin] dong bo tieu de /' + slug + ' trong feed.json'); }
+  } catch (e) { console.warn('feed.json title sync', e); }
+  try {
+    const d = await ghGet('feed.xml');
+    let s = decodeURIComponent(escape(atob(d.content.replace(/\s/g, ''))));
+    const re = new RegExp('(<item>\\s*<title>)[^<]*(</title>\\s*<link>https://otahub.asia/' + slug + '</link>)');
+    if (re.test(s)) { s = s.replace(re, (m, p, q) => p + escT(newTitle) + q); await ghPut('feed.xml', s, d.sha, '[admin] dong bo tieu de /' + slug + ' trong feed.xml'); }
+  } catch (e) { console.warn('feed.xml title sync', e); }
+  try {
+    const d = await ghGet('sitemap-news.xml');
+    let s = decodeURIComponent(escape(atob(d.content.replace(/\s/g, ''))));
+    const re = new RegExp('(<url><loc>https://otahub.asia/' + slug + '</loc>(?:(?!</url>)[\\s\\S])*?<news:title>)[^<]*(</news:title>)');
+    if (re.test(s)) { s = s.replace(re, (m, p, q) => p + escT(newTitle) + q); await ghPut('sitemap-news.xml', s, d.sha, '[admin] dong bo tieu de /' + slug + ' trong sitemap-news.xml'); }
+  } catch (e) { console.warn('sitemap-news title sync', e); }
+}
+
 // Ảnh dán thẳng vào editor thường là base64 (mỗi ảnh vài MB, làm trang nặng hàng chục MB).
 // Trước khi lưu: đổi mỗi ảnh base64 thành file JPEG (tối đa 1200px) trong assets/img/uploads và thay bằng URL.
 async function externalizeInlineImages(html) {
@@ -10993,6 +11065,9 @@ async function saveArticle() {
 
     toast('success', '✅ Đã lưu và deploy! Chờ ~1-2 phút để live.');
 
+    if (!isNewFile && title) {
+      try { await propagateTitleChange(currentFile.replace(/\.html$/, ''), title); } catch (e) { console.warn('propagateTitleChange', e); }
+    }
     let needSync = isNewFile;
     if (!needSync) {
       try { const sj = await (await fetch('/assets/search.js?nocache=' + Date.now(), { cache: 'no-store' })).text(); needSync = !sj.includes('"/' + currentFile.replace(/\.html$/, '') + '"'); } catch (e) {}
