@@ -1423,12 +1423,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://otahub.asia/en/top-anime-2025</loc>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://otahub.asia/en/top-game-pc-2026</loc>
     <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
@@ -2271,12 +2265,6 @@
   <url>
     <loc>https://otahub.asia/tokyopop-anime-nyc-2026-licenses</loc>
     <lastmod>2026-08-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://otahub.asia/top-anime-2025</loc>
-    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

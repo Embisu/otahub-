@@ -161,7 +161,7 @@ window.IDX = [
     "url": "/chainsaw-man-movie-reze-arc-chieu-rap-viet-nam-doanh-thu-ky-luc",
     "cat": "Anime",
     "date": "2026-09-19",
-    "excerpt": "Chainsaw Man – The Movie: Reze Arc ra rạp Nhật ngày 19/9/2025 (mở màn khoảng 1,25 tỷ yên), khởi chiếu tại Việt Nam ngày 26/9/2025 và thu khoảng 191,4 triệu USD toàn cầu.",
+    "excerpt": "Chainsaw Man – The Movie: Reze Arc do MAPPA sản xuất ra rạp Nhật ngày 19/9/2025, khởi chiếu tại Việt Nam ngày 26/9/2025, thu khoảng 191,4 triệu USD toàn cầu và đạt 100% Rotten Tomatoes từ giới phê bình.",
     "img": "/assets/img/news-chainsaw-man-movie-reze-arc.jpg",
     "tags": [
       "anime",
@@ -2386,11 +2386,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "VCT Pacific 2026: Paper Rex Thống Trị Mùa Giải, Hướng Đến Champions",
+    "title": "VCT Pacific 2026 Stage 2: Global Esports Vô Địch, Paper Rex Xếp Hạng 5–6",
     "url": "/vct-pacific-2026",
     "cat": "Gaming",
     "date": "2026-08-11",
-    "excerpt": "Paper Rex khép lại vòng bảng VCT Pacific 2026 với thành tích bất bại tuyệt đối, khẳng định vị thế ứng viên vô địch hàng đầu khu vực trước vòng playoffs.",
+    "excerpt": "Global Esports vô địch VCT Pacific Stage 2 2026, Nongshim RedForce á quân, T1 hạng 3, VARREL hạng 4; Paper Rex về hạng 5–6 sau khi thua VARREL ở vòng bảng, nhưng đã có vé Champions Shanghai từ trước.",
     "img": "/assets/img/4c17ff1a96-Valorant_Champions_Los_Angeles_2023.jpg",
     "tags": [
       "VCT Pacific",
@@ -2415,23 +2415,6 @@ window.IDX = [
       "Season Pass 3",
       "PC",
       "PS5"
-    ]
-  },
-  {
-    "title": "Top 10 Anime Hay Nhất 2025: Năm Của Những Đỉnh Cao",
-    "url": "/top-anime-2025",
-    "cat": "Rankings",
-    "date": "2026-06-21",
-    "excerpt": "2025 chứng minh anime đang ở đỉnh cao nhất từ trước đến nay, với hàng loạt tựa đạt chất lượng vượt kỳ vọng trong cùng một năm.",
-    "img": "/assets/img/1619ce791a-solo-leveling-hero.jpg",
-    "tags": [
-      "Top Anime 2025",
-      "Dungeon Meshi",
-      "Dan Da Dan",
-      "Frieren",
-      "Rankings",
-      "Anime",
-      "Review"
     ]
   },
   {
@@ -2529,11 +2512,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "GTA 6: Tất Cả Những Gì Chúng Ta Biết Về Bom Tấn Lớn Nhất 2026",
+    "title": "GTA 6: Ra Mắt 19/11/2026 Trên PS5 Và Xbox, Giá 79,99 USD, Chưa Có Bản PC",
     "url": "/gta6-preview",
     "cat": "Gaming",
     "date": "2026-06-10",
-    "excerpt": "Vice City trở lại với nhân vật nữ chính đầu tiên trong lịch sử nhượng quyền GTA, và một thế giới mở hứa hẹn thay đổi định nghĩa thể loại mãi mãi.",
+    "excerpt": "Grand Theft Auto VI ra mắt ngày 19/11/2026 trên PS5/PS5 Pro và Xbox Series X|S; đặt trước từ 25/6, tải trước 12/11; bản Standard 79,99 USD, Ultimate 99,99 USD; Rockstar chưa công bố bản PC.",
     "img": "/assets/img/c8cd09fede-maxresdefault.jpg",
     "tags": [
       "GTA6",
