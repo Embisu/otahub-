@@ -2128,7 +2128,7 @@ window.IDX = [
   },
   {
     "title": "Genshin Impact 7.0: Tier List Đội Hình Meta Snezhnaya",
-    "url": "/genshin-54-citlali",
+    "url": "/genshin-70-tier-list-meta-snezhnaya",
     "cat": "Gaming",
     "date": "2026-08-14",
     "excerpt": "Tier list Genshin Impact 7.0 sau khi Snezhnaya mở cửa: Odette và Sandrone thống trị SS-tier, Sucrose được buff mạnh, đội hình Stellar-Conduct đáng build nhất hiện tại.",
