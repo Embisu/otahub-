@@ -108,7 +108,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .art-body blockquote,.art-content blockquote{border-left:3px solid var(--cyan);padding:18px 22px;background:rgba(0,229,255,.04);margin:28px 0;font-style:italic;color:var(--dim);font-size:15px;line-height:1.8}
 .art-body blockquote cite,.art-content blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .art-body figure,.art-content figure{margin:32px 0;overflow:hidden;background:var(--surf);border:1px solid var(--border)}
-.art-body figure img,.art-content figure img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+.art-body figure img,.art-content figure img{width:100%;display:block;height:auto;max-height:80vh;aspect-ratio:auto;object-fit:contain;background:#0b0418}
 .art-body figcaption,.art-content figcaption{font-size:12px;color:var(--muted);padding:10px 14px;letter-spacing:.03em;line-height:1.5;border-top:1px solid var(--border);font-style:italic}
 
 /* ── Cyberpunk Responsive Table ── */
