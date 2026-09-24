@@ -798,11 +798,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "One Piece Chapter 1193: Bí Mật Thân Phận Hoàng Tử Loki",
-    "url": "/one-piece-chapter-1193-loki-elbaf",
+    "title": "One Piece Chapter 1193 “I’m Still Practicing”: Zoro Đâm Xuyên Sommers, Luffy Gục Sau Dawn Thor Bullet (13/9/2026)",
+    "url": "/one-piece-chapter-1193-zoro-sommers-still-practicing",
     "cat": "Manga",
     "date": "2026-08-25",
-    "excerpt": "Eiichiro Oda hé lộ chi tiết chấn động về Trái Ác Quỷ Huyền Thoại của Loki và lời nguyền ngàn năm tại Xứ Sở Người Khổng Lồ.",
+    "excerpt": "One Piece chapter 1193 phát hành 13/9/2026: Luffy kiệt sức sau Gear 5, Loki biến hình lai, Zoro dùng Haki Bá Vương đâm xuyên Sommers và nói mình vẫn đang luyện tập.",
     "img": "/assets/img/news-one-piece-chapter-1192-elbaf-uranus.jpg",
     "tags": [
       "One Piece",
@@ -907,11 +907,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "One Piece Chapter 1192: Oda Tiết Lộ Năng Lực Của Imu",
-    "url": "/one-piece-chapter-1192-elbaf-uranus",
+    "title": "One Piece Chapter 1192 “We Will Never Forgive”: Dawn Thor Bullet Xuyên Lá Chắn Của Imu (6/9/2026)",
+    "url": "/one-piece-chapter-1192-dawn-thor-bullet-imu",
     "cat": "Manga",
     "date": "2026-08-22",
-    "excerpt": "Weekly Shonen Jump mở ra cao trào Arc Elbaf khi Eiichiro Oda hé lộ Vũ Khí Cổ Đại Uranus, ngọn lửa Mother Flame và sức mạnh bóng tối của Imu.",
+    "excerpt": "One Piece chapter 1192 phát hành 6/9/2026: Usopp lên tiếng, Luffy dùng búa và sấm của Loki tạo đòn Gomu Gomu no Dawn Thor Bullet xuyên lá chắn vô hình của Imu.",
     "img": "/assets/img/news-one-piece-chapter-1192-elbaf-uranus.jpg",
     "tags": [
       "One Piece",
@@ -965,11 +965,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "One Piece Chapter 1191: Luffy Đối Đầu Imu Tại Elbaf",
-    "url": "/one-piece-chapter-1191-elbaf-return",
+    "title": "One Piece Chapter 1191 “There’s Still Loki”: Luffy, Loki Và Hajrudin Cùng Tung Đòn Vào Imu (23/8/2026)",
+    "url": "/one-piece-chapter-1191-theres-still-loki",
     "cat": "Manga",
     "date": "2026-08-20",
-    "excerpt": "One Piece chính thức trở lại với chapter 1191 vào 23/8 sau kỳ nghỉ lễ Obon của Weekly Shonen Jump, tiếp nối trận đối đầu giữa Luffy và Imu trong arc Elbaf.",
+    "excerpt": "One Piece chapter 1191, tựa “There’s Still Loki”, phát hành 23/8/2026 sau kỳ nghỉ Obon: Imu lộ hình thái mới, Loki xuất hiện và cả ba cùng tung đòn phối hợp.",
     "img": "/assets/img/news-one-piece-chapter-1191-elbaf-return.jpg",
     "tags": [
       "Manga",
