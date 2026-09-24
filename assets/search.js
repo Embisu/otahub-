@@ -127,11 +127,11 @@ window.IDX = [
     "tags": []
   },
   {
-    "title": "The One Piece (Netflix x WIT): Teaser Ra Mắt 7/4/2026, Phát Hành Tháng 2/2027",
+    "title": "The One Piece (Netflix x WIT): Teaser Ra Mắt 24/6/2026, Phát Hành Tháng 2/2027",
     "url": "/one-piece-remake-wit-studio-netflix-trailer-chinh-thuc",
     "cat": "Anime",
     "date": "2026-09-19",
-    "excerpt": "Bản remake The One Piece do WIT Studio thực hiện cho Netflix tung teaser đầu tiên ngày 7/4/2026, dự kiến phát hành tháng 2/2027 với 7 tập, chuyển thể 50 chương đầu (East Blue).",
+    "excerpt": "Bản remake The One Piece do WIT Studio thực hiện cho Netflix tung teaser đầu tiên ngày 24/6/2026, dự kiến phát hành tháng 2/2027 với 7 tập, chuyển thể 50 chương đầu của truyện.",
     "img": "/assets/img/news-one-piece-remake-wit-studio-netflix-trailer.jpg",
     "tags": [
       "anime",
