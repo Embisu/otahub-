@@ -1,18 +1,5 @@
 window.IDX = [
   {
-    "title": "Cộng đồng game thủ Việt Nam quay lưng với PUBG",
-    "url": "/cong-dong-game-thu-viet-nam-quay-lung-voi-pubg",
-    "cat": "Gaming",
-    "date": "2026-09-24",
-    "excerpt": "Án phạt vĩnh viễn dành cho Himass và TanVuu đang khiến cộng đồng PUBG Việt Nam dậy sóng. Nhiều game thủ, streamer công khai xóa game để phản ứng trước quyết định từ KRAFTON, đồng thời đặt ra nhiều câu hỏi về tương lai của PUBG Esports tại Việt Nam.",
-    "img": "/assets/img/uploads/39nlv6pg-delete-pubgmobile-account-1200x900.jpg",
-    "tags": [
-      "PUBG",
-      "Himass",
-      "TanVuu"
-    ]
-  },
-  {
     "title": "Drama PUBG Asia Stars 2026: Himass Và TanVuu Bị KRAFTON Cấm Vĩnh Viễn, Toàn Bộ Diễn Biến",
     "url": "/pubg-asia-stars-2026-himass-tanvuu-bi-cam-vinh-vien",
     "cat": "Gaming",
@@ -23,6 +10,19 @@ window.IDX = [
       "PUBG",
       "Esports",
       "KRAFTON",
+      "Himass",
+      "TanVuu"
+    ]
+  },
+  {
+    "title": "Cộng đồng game thủ Việt Nam quay lưng với PUBG",
+    "url": "/cong-dong-game-thu-viet-nam-quay-lung-voi-pubg",
+    "cat": "Gaming",
+    "date": "2026-09-24",
+    "excerpt": "Án phạt vĩnh viễn dành cho Himass và TanVuu đang khiến cộng đồng PUBG Việt Nam dậy sóng. Nhiều game thủ, streamer công khai xóa game để phản ứng trước quyết định từ KRAFTON, đồng thời đặt ra nhiều câu hỏi về tương lai của PUBG Esports tại Việt Nam.",
+    "img": "/assets/img/uploads/39nlv6pg-delete-pubgmobile-account-1200x900.jpg",
+    "tags": [
+      "PUBG",
       "Himass",
       "TanVuu"
     ]
