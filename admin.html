@@ -10905,10 +10905,14 @@ async function saveArticle() {
       sha = undefined;
     } else {
       const data = await ghGet(currentFile);
-      html = decodeURIComponent(escape(atob(data.content)));
       sha = data.sha;
+      try { html = decodeURIComponent(escape(atob(String(data.content || '').replace(/\s/g, '')))); } catch (e) { html = ''; }
+      // GitHub có thể trả nội dung rỗng (file lớn / cache). Không bao giờ được ghi đè bằng nội dung rỗng:
+      // dùng bản đang mở trong editor làm nền.
+      if (!html || html.length < 200 || !/<html/i.test(html)) html = currentRawHtml;
     }
     html = applyArticleEditsToHtml(html);
+    if (!html || html.length < 500 || !/<html/i.test(html)) throw new Error('Nội dung bài viết trống bất thường — đã chặn lưu để tránh mất bài. Hãy tải lại trang admin rồi thử lại.');
 
     const putResult = await ghPut(currentFile, html, sha, `[admin] cap nhat: ${title.slice(0,50)}`);
     await deleteDraft(currentFile);

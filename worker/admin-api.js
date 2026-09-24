@@ -233,6 +233,7 @@ async function handleGhPut(request, env, ghPath) {
   try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
   const { content, sha, message } = body || {};
   if (typeof content !== 'string') return json({ error: 'Thieu noi dung file.' }, 400);
+  if (/\.html$/i.test(ghPath) && !isImageUpload && content.length < 400) return json({ error: 'Noi dung file HTML rong hoac qua ngan — tu choi ghi de de tranh mat bai.' }, 400);
 
   // Xử lý tải ảnh lên: Ưu tiên lưu ngay vào KV Storage (nhanh, tức thì, 100% không phụ thuộc token GitHub)
   if (isImageUpload) {
