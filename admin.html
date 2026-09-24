@@ -13524,8 +13524,28 @@ async function syncNewArticle(art) {
       const homeData = await ghGet('index.html');
       let homeHtml = decodeURIComponent(escape(atob(homeData.content)));
       
+      const isBreaking = confirm('Đưa bài này lên BREAKING NEWS (hero trang chủ + đầu thanh chạy tin)? OK = Breaking News, Hủy = chỉ thêm vào danh sách tin mới.');
       if (homeHtml.includes('<div class="tick-track">') && !homeHtml.includes(esc(title))) {
-        homeHtml = homeHtml.replace('<div class="tick-track">', `<div class="tick-track">\n    <span class="tick-item">🔥 <strong>${esc(cat || 'TIN MỚI')}:</strong> ${esc(title)}</span>`);
+        const tickIcon = isBreaking ? '🔴' : '🔥';
+        const tickLabel = isBreaking ? 'BREAKING · ' + (cat || 'TIN MỚI') : (cat || 'TIN MỚI');
+        homeHtml = homeHtml.replace('<div class="tick-track">', () => `<div class="tick-track">
+      <span class="tick-item">${tickIcon} <strong>${esc(tickLabel)}:</strong> <a href="/${slug}" style="color:inherit;text-decoration:none">${esc(title)}</a></span>`);
+      }
+      if (isBreaking) {
+        const hs = homeHtml.indexOf('<div class="hero-main"');
+        const he = homeHtml.indexOf('<aside class="hero-side">');
+        if (hs > 0 && he > hs) {
+          let h = homeHtml.slice(hs, he);
+          const sub = desc || title;
+          h = h.replace(/location\.href='[^']*'/, () => "location.href='/" + slug + "'")
+            .replace(/background-image:url\([^)]*\)/,() => 'background-image:url(' + (hero || '/assets/img/placeholder.svg') + ')')
+            .replace(/(id="h-tag"[^>]*>)[^<]*/, (m, p) => p + '🔴 BREAKING NEWS · ' + esc((cat || 'TIN MỚI').toUpperCase()))
+            .replace(/(id="h-title">)[^<]*/, (m, p) => p + esc(title))
+            .replace(/(id="h-sub">)[^<]*/, (m, p) => p + esc(sub))
+            .replace(/(id="h-time">)[^<]*/, (m, p) => p + new Date().toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' }))
+            .replace(/(<a href=")[^"]*(" class="read-more")/, (m, p, q) => p + '/' + slug + q);
+          homeHtml = homeHtml.slice(0, hs) + h + homeHtml.slice(he);
+        }
       }
       
       const latestMatch = homeHtml.match(/(<div class="latest-wrap">[\s\S]*?<div class="latest-col">)([\s\S]*?)(<\/div>\s*<aside class="latest-side">)/);
