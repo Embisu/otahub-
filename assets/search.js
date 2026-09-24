@@ -129,21 +129,6 @@ window.IDX = [
     ]
   },
   {
-    "title": "Genshin Impact 7.0: Đại Băng Quốc Snezhnaya Ra Mắt, Băng Thần Tsaritsa Chính Thức Lộ Diện",
-    "url": "/genshin-impact-7-0-snezhnaya-tsaritsa-bang-than-chinh-thuc-lo-dien",
-    "cat": "Gaming",
-    "date": "2026-09-19",
-    "excerpt": "HoYoverse chính thức phát hành teaser trailer Genshin Impact 7.0 mở ra vùng đất thứ 7 Snezhnaya và tạo hình quyền uy của Băng Thần Tsaritsa tại Cung Điện Mùa Đông.",
-    "img": "/assets/img/news-genshin-7-0-tsaritsa-banner.jpg",
-    "tags": [
-      "gaming",
-      "hot",
-      "genshin",
-      "snezhnaya",
-      "tsaritsa"
-    ]
-  },
-  {
     "title": "Stellar Blade 2: Shift Up Xác Nhận Đang Phát Triển, Tự Phát Hành, Chưa Có Ngày Ra Mắt",
     "url": "/stellar-blade-2-shift-up-trailer-unreal-engine-5-ps5",
     "cat": "Gaming",
@@ -264,15 +249,6 @@ window.IDX = [
     "tags": []
   },
   {
-    "title": "Genshin Impact 7.0 Snezhnaya: Hé Lộ Kỹ Năng Băng Thần Tsaritsa & Phản Ứng Nhiệt Độ Mới",
-    "url": "/genshin-impact-7-0-tsaritsa-cryo-archon-banner-gameplay",
-    "cat": "Gaming",
-    "date": "2026-09-07",
-    "excerpt": "HoYoverse công bố chi tiết kỹ năng Băng Thần Tsaritsa, cơ chế phản ứng nhiệt độ Frostbite và chuỗi banner phiên bản 7.0 Vương Quốc Snezhnaya.",
-    "img": "/assets/img/news-genshin-7-0-tsaritsa-banner.jpg",
-    "tags": []
-  },
-  {
     "title": "Ghost of Yōtei: Ra Mắt PS5 Ngày 2/10/2025, Atsu Dùng Song Kiếm Và Súng Hỏa Mai",
     "url": "/ghost-of-yotei-chi-tiet-vu-khi-gameplay-map-ezo",
     "cat": "Gaming",
@@ -309,15 +285,6 @@ window.IDX = [
     "date": "2026-09-07",
     "excerpt": "Phân tích siêu kinh điển T1 vs Gen.G tại chung kết LCK Mùa Hè 2026: Cuộc so tài đỉnh cao giữa Faker và Chovy giành ngôi vương Hàn Quốc và tấm vé hạt giống số 1 CKTG.",
     "img": "/assets/img/news-lck-summer-2026-t1-geng-finals.jpg",
-    "tags": []
-  },
-  {
-    "title": "Monster Hunter Wilds: Cẩm Nang Tối Ưu PC 4K 60FPS, Khắc Chế Arkveld & Combo Focus Mode",
-    "url": "/monster-hunter-wilds-huong-dan-toi-uu-settings-pc-arkveld",
-    "cat": "Guides",
-    "date": "2026-09-07",
-    "excerpt": "Cẩm nang toàn diện Monster Hunter Wilds: Thiết lập settings đồ họa PC chuẩn 4K 60FPS, mẹo săn trùm bạch long Arkveld và combo vũ khí tối ưu sát thương Focus Mode.",
-    "img": "/assets/img/news-mhw-guide-arkveld-pc-settings.jpg",
     "tags": []
   },
   {
@@ -852,35 +819,6 @@ window.IDX = [
     ]
   },
   {
-    "title": "Black Myth: Wukong: Bí Quyết Đánh Bại 5 Boss Ẩn Khó Nhất &amp; Hướng Dẫn Mở Khóa Đủ Bộ Pháp Bảo Tề Thiên",
-    "url": "/black-myth-wukong-bi-quyet-danh-trum-an",
-    "cat": "Gaming",
-    "date": "2026-08-24",
-    "excerpt": "Hướng dẫn toàn tập cách tìm kiếm và tiêu diệt Nhị Lang Thần Dương Tiễn, Tiểu Lôi Âm Tự Bí Ẩn cùng bí quyết kích hoạt True Ending Tái Sinh Tề Thiên.",
-    "img": "/assets/img/news-black-myth-wukong-boss-an-guide.jpg",
-    "tags": [
-      "Black Myth: Wukong",
-      "Guides",
-      "Boss Ẩn",
-      "Dương Tiễn"
-    ]
-  },
-  {
-    "title": "Genshin Impact 7.0: Top 5 Đội Hình Leo La Hoàn Thâm Cảnh Mùa Snezhnaya Dễ Chơi Nhất Trên Mobile",
-    "url": "/genshin-impact-70-top-5-doi-hinh-la-hoan-snezhnaya",
-    "cat": "Gaming",
-    "date": "2026-08-24",
-    "excerpt": "Hướng dẫn chi tiết cách sắp xếp đội hình, combo nút bấm cảm ứng đơn giản và tối ưu vòng quay năng lượng để vượt ải La Hoàn 7.0 trên điện thoại.",
-    "img": "/assets/img/news-genshin-impact-70-abyss-teams.jpg",
-    "tags": [
-      "Genshin Impact",
-      "Mobile Games",
-      "La Hoàn Thâm Cảnh",
-      "Snezhnaya",
-      "Guides"
-    ]
-  },
-  {
     "title": "Honor of Kings: Lanling Wang Là Tướng Sát Thủ Đi Rừng Trong Meta 2026",
     "url": "/honor-of-kings-global-mua-giai-moi-tuong-lan-ling-wang",
     "cat": "Gaming",
@@ -908,20 +846,6 @@ window.IDX = [
       "Shonen Jump",
       "Chihiro Rokuhira",
       "Anime 2027"
-    ]
-  },
-  {
-    "title": "Monster Hunter Wilds: Cẩm Nang Làm Chủ Hệ Thống Focus Mode &amp; Combo 14 Vũ Khí Trên Lưng Thú Cưỡi Seikret",
-    "url": "/monster-hunter-wilds-huong-dan-focus-mode-seikret",
-    "cat": "Gaming",
-    "date": "2026-08-24",
-    "excerpt": "Bí quyết giúp thợ săn tối ưu hóa DPS, phá hủy điểm yếu của quái vật Apex và thực hiện chuỗi combo đổi vũ khí mượt mà chuẩn pro.",
-    "img": "/assets/img/news-monster-hunter-wilds-focus-mode-guide.jpg",
-    "tags": [
-      "Monster Hunter Wilds",
-      "Guides",
-      "Focus Mode",
-      "Seikret"
     ]
   },
   {
@@ -2587,23 +2511,6 @@ window.IDX = [
       "Studio Gaga",
       "Young Animal",
       "Shonen"
-    ]
-  },
-  {
-    "title": "Black Myth: Wukong, Hướng Dẫn Người Mới Bắt Đầu Từ A Đến Z",
-    "url": "/black-myth-wukong-huong-dan",
-    "cat": "Gaming",
-    "date": "2026-06-13",
-    "excerpt": "Black Myth: Wukong phức tạp hơn vẻ bề ngoài, đây là hướng dẫn toàn diện để bạn chinh phục mọi boss từ chương 1 đến chương 6.",
-    "img": "/assets/img/6eef9e5628-library_hero.jpg",
-    "tags": [
-      "Black Myth Wukong",
-      "Game Science",
-      "Action RPG",
-      "Hướng Dẫn",
-      "Guide",
-      "PS5",
-      "PC"
     ]
   },
   {

@@ -157,20 +157,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://otahub.asia/black-myth-wukong-bi-quyet-danh-trum-an</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  
-  <url>
-    <loc>https://otahub.asia/black-myth-wukong-huong-dan</loc>
-    <lastmod>2026-06-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://otahub.asia/black-myth-wukong-review</loc>
     <lastmod>2026-08-15</lastmod>
     <changefreq>monthly</changefreq>
@@ -465,20 +451,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://otahub.asia/en/black-myth-wukong-bi-quyet-danh-trum-an</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  
-  <url>
-    <loc>https://otahub.asia/en/black-myth-wukong-huong-dan</loc>
-    <lastmod>2026-06-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://otahub.asia/en/black-myth-wukong-review</loc>
     <lastmod>2026-08-15</lastmod>
     <changefreq>monthly</changefreq>
@@ -713,12 +685,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://otahub.asia/en/genshin-impact-7-0-tsaritsa-cryo-archon-banner-gameplay</loc>
-    <lastmod>2026-09-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://otahub.asia/en/genshin-impact-70-sandrone-reveal</loc>
     <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>
@@ -733,12 +699,6 @@
   <url>
     <loc>https://otahub.asia/en/genshin-impact-70-snezhnaya</loc>
     <lastmod>2026-08-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://otahub.asia/en/genshin-impact-70-top-5-doi-hinh-la-hoan-snezhnaya</loc>
-    <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1074,18 +1034,6 @@
   </url>
   <url>
     <loc>https://otahub.asia/en/mii-chan-miss-yamada-anime</loc>
-    <lastmod>2026-09-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://otahub.asia/en/monster-hunter-wilds-huong-dan-focus-mode-seikret</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://otahub.asia/en/monster-hunter-wilds-huong-dan-toi-uu-settings-pc-arkveld</loc>
     <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -1607,12 +1555,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://otahub.asia/genshin-impact-7-0-tsaritsa-cryo-archon-banner-gameplay</loc>
-    <lastmod>2026-09-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://otahub.asia/genshin-impact-70-sandrone-reveal</loc>
     <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
@@ -1627,12 +1569,6 @@
   <url>
     <loc>https://otahub.asia/genshin-impact-70-snezhnaya</loc>
     <lastmod>2026-08-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://otahub.asia/genshin-impact-70-top-5-doi-hinh-la-hoan-snezhnaya</loc>
-    <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1963,18 +1899,6 @@
   <url>
     <loc>https://otahub.asia/mii-chan-miss-yamada-anime</loc>
     <lastmod>2026-08-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://otahub.asia/monster-hunter-wilds-huong-dan-focus-mode-seikret</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://otahub.asia/monster-hunter-wilds-huong-dan-toi-uu-settings-pc-arkveld</loc>
-    <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
