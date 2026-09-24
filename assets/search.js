@@ -216,11 +216,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Nintendo Direct: Switch 2 Chốt Giá Bán 399 USD, Trình Làng Mario Kart Next-Gen Cực Đỉnh",
+    "title": "Nintendo Switch 2 Tăng Giá Lên 499,99 USD, Gói Mario Kart World 549 USD Ra Mắt Cuối Tháng 9",
     "url": "/nintendo-switch-2-direct-gia-ban-mario-kart-moi",
     "cat": "Gaming",
     "date": "2026-09-19",
-    "excerpt": "Nintendo Direct công bố toàn diện Nintendo Switch 2: Giá bán chính thức 399 USD, màn hình OLED 120Hz hỗ trợ DLSS, tương thích ngược 100% và Mario Kart thế hệ mới.",
+    "excerpt": "Từ 1/9/2026 Nintendo tăng giá Switch 2 thêm 50 USD lên 499,99 USD; gói Mario Kart World (kèm bản digital và 90 ngày Nintendo Switch Online) giá 549 USD.",
     "img": "/assets/img/news-nintendo-direct-sept-2026-switch2-mario-kart.jpg",
     "tags": [
       "gaming",
@@ -365,7 +365,7 @@ window.IDX = [
     "tags": []
   },
   {
-    "title": "Chung Kết LCK Mùa Hè 2026: T1 vs Gen.G – Faker Đại Chiến Chovy Giành Ngôi Vương & Vé CKTG",
+    "title": "LCK Mùa Hè 2026: Gen.G Vô Địch Playoffs, Hanwha Life Esports Về Nhì",
     "url": "/lck-summer-2026-finals-t1-vs-geng-nhan-dinh-faker-chovy",
     "cat": "Gaming",
     "date": "2026-09-07",
@@ -383,7 +383,7 @@ window.IDX = [
     "tags": []
   },
   {
-    "title": "Nintendo Direct Tháng 9/2026: Trình Làng Mario Kart 9, Zelda Mới & Ngày Mở Bán Nintendo Switch 2",
+    "title": "Nintendo Direct Tháng 9/2026: Zelda 40 Năm Và Bản Làm Lại Ocarina of Time",
     "url": "/nintendo-direct-september-2026-switch-2-mario-kart-9",
     "cat": "Gaming",
     "date": "2026-09-07",
@@ -493,7 +493,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Nintendo Switch 2 Công Bố Cấu Hình Chi Tiết: Màn Hình OLED 120Hz, Chip NVIDIA DLSS &amp; Dàn Game Ra Mắt",
+    "title": "Nintendo Switch 2: Thông Số Kỹ Thuật Hệ Máy Ra Mắt Tháng 6/2025",
     "url": "/nintendo-switch-2-launch-lineup-specs",
     "cat": "Gaming",
     "date": "2026-09-04",
