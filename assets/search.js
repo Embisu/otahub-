@@ -242,11 +242,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Monster Hunter Wilds: Bản Cập Nhật Mùa Thu 2026 Bổ Sung Vùng Đất Mới & Hé Lộ Quái Vật Cổ Đại Sau Kỳ Tích Arkveld",
+    "title": "Monster Hunter Wilds: Title Update 4 (12/2025) Thêm Gogmazios, Bản Mở Rộng Ascendance Ra Mắt 2027",
     "url": "/monster-hunter-wilds-autumn-update-2026-new-monsters",
     "cat": "Gaming",
     "date": "2026-09-16",
-    "excerpt": "Capcom chính thức công bố bản cập nhật Mùa Thu 2026 cho Monster Hunter Wilds với phân vùng sinh thái mới, vũ khí biến dị và cuộc đụng độ quái vật cổ đại đầy kịch tính.",
+    "excerpt": "Monster Hunter Wilds Title Update 4 (tháng 12/2025) đưa Elder Dragon Gogmazios trở lại; bản mở rộng Ascendance được giới thiệu thêm tại TGS 2026 với Teostra và ra mắt năm 2027.",
     "img": "/assets/img/monster-hunter-wilds-autumn-update-hero.jpg",
     "tags": [
       "gaming",
@@ -360,11 +360,11 @@ window.IDX = [
     "tags": []
   },
   {
-    "title": "Solo Leveling: Ragnarok – Webtoon Hậu Truyện Về Sung Suho Chính Thức Công Bố Dự Án Anime Toàn Cầu",
+    "title": "Solo Leveling: Ragnarok — Webtoon Ra Mắt Từ 8/2024, Bản Tiếng Anh Tập 1 Ngày 21/7/2026",
     "url": "/solo-leveling-ragnarok-anime-chuyen-the-va-trailer-dau-tien",
     "cat": "Anime",
     "date": "2026-09-07",
-    "excerpt": "REDICE Studio, D&C Media và Aniplex công bố dự án anime chuyển thể Solo Leveling: Ragnarok, hé lộ hành trình kế thừa ngai vàng Bóng Tối của Sung Suho.",
+    "excerpt": "Webtoon Solo Leveling: Ragnarok (Dang Do viết, JIN của REDICE Studio vẽ) khởi đăng ngày 1/8/2024 về Sung Suho; tập 1 bản tiếng Anh do Yen Press phát hành 21/7/2026. Chưa có thông báo anime Ragnarok.",
     "img": "/assets/img/news-solo-leveling-ragnarok-official-announcement.jpg",
     "tags": [
       "Girls Frontline 2",
@@ -518,11 +518,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Monster Hunter Wilds Mở Đăng Ký Open Beta PC &amp; PS5: Cấu Hình Tối Thiểu, Ray Tracing &amp; Quà Thợ Săn",
+    "title": "Monster Hunter Wilds: Open Beta Diễn Ra Cuối 2024, Game Đã Ra Mắt 28/2/2025",
     "url": "/monster-hunter-wilds-pc-demo-system-requirements",
     "cat": "Gaming",
     "date": "2026-09-02",
-    "excerpt": "Capcom chính thức mở cửa giai đoạn thử nghiệm Open Beta miễn phí hỗ trợ Cross-Play trên Steam, PS5 và Xbox Series X/S cùng cơ chế săn bão thời tiết sống động.",
+    "excerpt": "Đợt open beta của Monster Hunter Wilds diễn ra vào cuối năm 2024; game chính thức ra mắt ngày 28/2/2025. Bài này thay thế bản tin cũ về đăng ký open beta.",
     "img": "/assets/img/news-mh-wilds-open-beta-pc.jpg",
     "tags": [
       "Monster Hunter Wilds",
@@ -837,11 +837,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "VCT Champions 2026: Paper Rex Và Sentinels Cùng Giành Vé, Hứa Hẹn Đại Chiến Á - Mỹ Tại Thượng Hải",
+    "title": "VCT Champions Shanghai 2026: Paper Rex Là Đội Đầu Tiên Giành Vé, Sentinels Bị Loại",
     "url": "/vct-champions-2026-prx-sentinels",
     "cat": "Gaming",
     "date": "2026-08-25",
-    "excerpt": "Cả đại diện Châu Á - Thái Bình Dương Paper Rex lẫn thế lực Bắc Mỹ Sentinels đều đã chính thức góp mặt tại VCT Champions 2026 ở Thượng Hải, mở ra viễn cảnh một trận đối đầu trong mơ giữa hai lối chơi trái ngược.",
+    "excerpt": "Paper Rex là đội đầu tiên giành vé dự VALORANT Champions Shanghai 2026; Sentinels bị loại khỏi Americas Stage 2 ngày 22/8. Giải có 16 đội, mỗi khu vực 4 đội.",
     "img": "/assets/img/news-vct-champions-2026-prx-sentinels.jpg",
     "tags": [
       "VCT Champions",
@@ -896,11 +896,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Honor of Kings Global Khởi Động Mùa Giải Mới: Ra Mắt Tướng Sát Thủ Lanling Wang Và Đại Tu Bản Đồ Rừng",
+    "title": "Honor of Kings: Lanling Wang Là Tướng Sát Thủ Đi Rừng Trong Meta 2026",
     "url": "/honor-of-kings-global-mua-giai-moi-tuong-lan-ling-wang",
     "cat": "Gaming",
     "date": "2026-08-24",
-    "excerpt": "Honor of Kings Global bước vào mùa giải xếp hạng bùng nổ với sự góp mặt của sát thủ Lanling Wang, cân bằng 12 tướng meta và giao diện điều khiển mobile mượt mà.",
+    "excerpt": "Lanling Wang (Prince of Lanling) là tướng sát thủ có sẵn trong Honor of Kings và được nhắc tới như lựa chọn đi rừng trong meta 2026; bài cũ nói đây là tướng mới ra mắt là không chính xác.",
     "img": "/assets/img/news-honor-of-kings-lanling-wang.jpg",
     "tags": [
       "Honor of Kings",
@@ -911,11 +911,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Kagurabachi Đạt Cột Mốc 5 Triệu Bản In, Shonen Jump Xác Nhận Đang Phát Triển Dự Án Anime Chuyển Thể",
+    "title": "Kagurabachi: Manga Vượt 4 Triệu Bản, Anime Do Cypic Sản Xuất Phát Sóng Tháng 4/2027",
     "url": "/kagurabachi-5-trieu-ban-xac-nhan-anime",
     "cat": "Manga",
     "date": "2026-08-24",
-    "excerpt": "Hiện tượng truyện tranh toàn cầu Kagurabachi của Takeru Hokazono chính thức đạt mốc 5 triệu bản in, mở đường cho dự án chuyển thể anime bom tấn được Shueisha bật đèn xanh.",
+    "excerpt": "Kagurabachi của Takeru Hokazono vượt 4 triệu bản lưu hành (gồm cả digital) khi tập 11 ra mắt 1/5/2026; anime do Cypic sản xuất sẽ phát sóng tháng 4/2027.",
     "img": "/assets/img/news-kagurabachi-anime-confirmation.jpg",
     "tags": [
       "Kagurabachi",
@@ -923,21 +923,6 @@ window.IDX = [
       "Shonen Jump",
       "Chihiro Rokuhira",
       "Anime 2027"
-    ]
-  },
-  {
-    "title": "Monster Hunter Wilds: Capcom Công Bố Bản Cập Nhật Mùa Thu 2026, Giới Thiệu Cổ Long Mới Và Hệ Thống Vũ Khí Mở Rộng",
-    "url": "/monster-hunter-wilds-ban-cap-nhat-mua-thu-2026",
-    "cat": "Gaming",
-    "date": "2026-08-24",
-    "excerpt": "Capcom công bố bản mở rộng Mùa Thu 2026 cho Monster Hunter Wilds với vùng đất Cấm Địa mới, biến thể Cổ Long sấm sét và nâng cấp hiệu năng 60 FPS mượt mà trên mọi hệ máy.",
-    "img": "/assets/img/news-monster-hunter-wilds-autumn-update.jpg",
-    "tags": [
-      "Monster Hunter Wilds",
-      "Capcom",
-      "Cổ Long",
-      "PS5",
-      "Gamescom 2026"
     ]
   },
   {
@@ -955,11 +940,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Solo Leveling: Arise Cán Mốc 50 Triệu Lượt Tải, Netmarble Ra Mắt Tính Năng Thức Tỉnh Quân Vương Hắc Ám",
+    "title": "Solo Leveling: Arise Đạt 50 Triệu Lượt Tải Chỉ Sau 5 Tháng Ra Mắt (2024)",
     "url": "/solo-leveling-arise-ban-cap-nhat-monarch-transcendence",
     "cat": "Gaming",
     "date": "2026-08-24",
-    "excerpt": "Netmarble kỷ niệm cột mốc 50 triệu người chơi Solo Leveling: Arise với quà tặng 100 Vé Tuyển Dụng và hệ thống tiến hóa sức mạnh bóng tối tối thượng cho Sung Jinwoo.",
+    "excerpt": "Solo Leveling: Arise của Netmarble vượt 50 triệu lượt tải sau khoảng 5 tháng kể từ khi ra mắt toàn cầu tháng 5/2024, kèm sự kiện điểm danh tặng tối đa 10.000 Essence Stones đến 31/10.",
     "img": "/assets/img/news-solo-leveling-arise-monarch-update.jpg",
     "tags": [
       "Solo Leveling Arise",
@@ -967,20 +952,6 @@ window.IDX = [
       "Netmarble",
       "Sung Jinwoo",
       "Action RPG"
-    ]
-  },
-  {
-    "title": "Solo Leveling: Ragnarok Manhwa Chính Thức Ra Mắt: Sung Suho Kế Thừa Di Sản Quân Vương Hắc Ám Cực Kỳ Mãn Nhãn",
-    "url": "/solo-leveling-ragnarok-manhwa-review",
-    "cat": "Manga",
-    "date": "2026-08-24",
-    "excerpt": "Hậu truyện Solo Leveling đưa con trai của Sung Jinwoo bước vào hành trình thức tỉnh sức mạnh bóng tối đối đầu các Cổ Thần Outer Gods.",
-    "img": "/assets/img/news-solo-leveling-ragnarok-manhwa.jpg",
-    "tags": [
-      "Solo Leveling",
-      "Ragnarok",
-      "Manhwa",
-      "Sung Suho"
     ]
   },
   {
