@@ -129,21 +129,6 @@ window.IDX = [
     ]
   },
   {
-    "title": "Stellar Blade 2: Shift Up Xác Nhận Đang Phát Triển, Tự Phát Hành, Chưa Có Ngày Ra Mắt",
-    "url": "/stellar-blade-2-shift-up-trailer-unreal-engine-5-ps5",
-    "cat": "Gaming",
-    "date": "2026-09-19",
-    "excerpt": "Shift Up xác nhận Stellar Blade 2 đang được phát triển (dùng Unreal Engine 5) và sẽ tự phát hành; game dự kiến được công bố chính thức trong năm 2026, chưa có ngày ra mắt hay nền tảng chính thức.",
-    "img": "/assets/img/news-stellar-blade-2-shift-up-ps5-reveal.jpg",
-    "tags": [
-      "gaming",
-      "hot",
-      "stellar-blade",
-      "ps5",
-      "shift-up"
-    ]
-  },
-  {
     "title": "Đánh Giá Girls' Frontline 2: Exilium: Đỉnh Cao Chiến Thuật XCOM Kết Hợp Waifu 3D Thực Sự Ra Sao?",
     "url": "/girls-frontline-2-exilium-danh-gia-chuyen-sau",
     "cat": "Reviews",
@@ -2450,11 +2435,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Top 10 Game PC Hay Nhất 2026: Danh Sách Không Thể Bỏ Lỡ",
+    "title": "Game PC Được Đánh Giá Cao Nhất 2026 (Tính Đến 9/2026)",
     "url": "/top-game-pc-2026",
     "cat": "Rankings",
     "date": "2026-06-20",
-    "excerpt": "2026 là năm bùng nổ của game PC với hàng loạt bom tấn đến cùng lúc, đây là 10 tựa game bạn nhất định phải trải nghiệm.",
+    "excerpt": "Forza Horizon 6 và Mina the Hollower cùng dẫn đầu game 2026 với 90 điểm Metacritic; Onimusha: Way of the Sword được khen về chiến đấu. GTA 6 ra mắt 19/11/2026 trên PS5 và Xbox, chưa có bản PC.",
     "img": "/assets/img/6eef9e5628-library_hero.jpg",
     "tags": [
       "Top Game 2026",
@@ -2528,11 +2513,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Stellar Blade x NIKKE: DLC Crossover Miễn Phí Với Boss Scarlet Và Loạt Trang Phục Mới",
+    "title": "Stellar Blade x NIKKE: DLC Crossover Miễn Phí Ra Mắt 12/6/2025, Boss Scarlet",
     "url": "/stellar-blade-dlc",
     "cat": "Gaming",
     "date": "2026-06-11",
-    "excerpt": "Shift Up phát hành DLC crossover miễn phí giữa Stellar Blade và Goddess of Victory: NIKKE, thêm nữ kiếm sĩ Scarlet làm boss mới, loạt trang phục Eve lấy cảm hứng từ dàn nhân vật NIKKE và một mini-game bắn súng hoàn toàn mới.",
+    "excerpt": "DLC crossover miễn phí Stellar Blade x Goddess of Victory: NIKKE ra mắt 12/6/2025 trên PS5 và PC, có boss Scarlet, trang phục cho EVE và minigame bắn súng.",
     "img": "/assets/img/ec5a6e3960-maxresdefault.jpg",
     "tags": [
       "Stellar Blade",
@@ -2590,11 +2575,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Tekken 8 Season 2: Nhân Vật Mới, Hệ Thống Cập Nhật",
+    "title": "Tekken 8 Season 2: Anna Williams, Fahkumram, Armor King Và Miary Zo (2025)",
     "url": "/tekken8-season2",
     "cat": "Gaming",
     "date": "2026-06-10",
-    "excerpt": "Season 2 của Tekken 8 là bản cập nhật lớn nhất lịch sử Bandai Namco dành cho một Fighting Game, và nó thay đổi nhiều thứ hơn bạn nghĩ.",
+    "excerpt": "Season 2 của Tekken 8 có 4 nhân vật DLC: Anna Williams (3/4/2025), Fahkumram, Armor King (đầy đủ từ 16/10/2025) và Miary Zo (truy cập sớm 2/12/2025).",
     "img": "/assets/img/31f849a512-library_hero.jpg",
     "tags": [
       "Tekken 8",
