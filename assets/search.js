@@ -1,5 +1,20 @@
 window.IDX = [
   {
+    "title": "Drama PUBG Asia Stars 2026: Himass Và TanVuu Bị KRAFTON Cấm Vĩnh Viễn, Toàn Bộ Diễn Biến",
+    "url": "/pubg-asia-stars-2026-himass-tanvuu-bi-cam-vinh-vien",
+    "cat": "Gaming",
+    "date": "2026-09-24",
+    "excerpt": "Tóm tắt drama PUBG Asia Stars 2026: Himass và TanVuu bị tố stream sniping Soopi ngày 17/9, KRAFTON xin lỗi ngày 21/9 rồi cấm vĩnh viễn tài khoản và các giải esports ngày 23/9; hai đội kháng nghị.",
+    "img": "/assets/img/cover-pubg-asia-stars-2026-himass-tanvuu-bi-cam-vinh-vien.jpg",
+    "tags": [
+      "PUBG",
+      "Esports",
+      "KRAFTON",
+      "Himass",
+      "TanVuu"
+    ]
+  },
+  {
     "title": "Esports Tại Asian Games 2026: 11 Nội Dung, Thi Đấu Từ 23/9 Đến 2/10 Ở Aichi",
     "url": "/asian-games-2026-esports-aichi-nagoya",
     "cat": "Gaming",
