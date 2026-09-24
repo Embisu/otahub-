@@ -150,7 +150,7 @@ window.IDX = [
     "url": "/girls-frontline-2-exilium-danh-gia-chuyen-sau",
     "cat": "Reviews",
     "date": "2026-09-19",
-    "excerpt": "Đánh giá chuyên sâu Girls' Frontline 2: Exilium sau hơn 35 giờ thử nghiệm: Phân tích cơ chế Stability Break, tỷ lệ gacha vũ khí 70 lượt vs nhân vật 80 lượt, đồ họa cel-shading cùng những nhược điểm cần lưu ý.",
+    "excerpt": "Đánh giá chuyên sâu Girls' Frontline 2: Exilium tổng hợp từ nguồn công khai: Phân tích cơ chế Stability Break, tỷ lệ gacha vũ khí 70 lượt vs nhân vật 80 lượt, đồ họa cel-shading cùng những nhược điểm cần lưu ý.",
     "img": "/assets/img/f661df27f7-gfl2-exilium-hero.jpg",
     "tags": [
       "reviews",
