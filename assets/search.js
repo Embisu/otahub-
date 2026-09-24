@@ -359,11 +359,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Kimetsu no Yaiba: Vô Hạn Thành Phần 1 Ra Rạp Nhật 18/7/2025, Doanh Thu Vượt 1 Tỷ USD",
+    "title": "Kimetsu no Yaiba: Vô Hạn Thành Phần 1 – Ra Rạp 18/7/2025, Thu Khoảng 793 Triệu USD Toàn Cầu",
     "url": "/kimetsu-no-yaiba-vo-han-thanh-movie-1-trailer-release",
     "cat": "Anime",
     "date": "2026-09-04",
-    "excerpt": "Demon Slayer: Infinity Castle – Phần 1: Akaza Returns ra rạp Nhật ngày 18/7/2025, lập kỷ lục doanh thu ngày đầu, chiếu ở Mỹ/Anh 12/9/2025 và vượt 1 tỷ USD toàn cầu.",
+    "excerpt": "Demon Slayer: Infinity Castle của Ufotable ra rạp Nhật 18/7/2025, thu 40,24 tỷ yên tại Nhật và khoảng 793 triệu USD toàn cầu; đây là phần đầu của bộ ba phim.",
     "img": "/assets/img/news-demon-slayer-infinity-castle-official.jpg",
     "tags": [
       "Kimetsu no Yaiba",
