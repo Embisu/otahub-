@@ -213,7 +213,7 @@ window.IDX = [
   },
   {
     "title": "Zenless Zone Zero 2.0 Ra Mắt 6/6/2025, Bản 2.1 Đưa Miyabi Và Yanagi Trở Lại",
-    "url": "/zenless-zone-zero-2-0-outer-ring-miyabi-update",
+    "url": "/zenless-zone-zero-2-0-ban-2-1-yuzuha-alice",
     "cat": "Gaming",
     "date": "2026-09-19",
     "excerpt": "ZZZ 2.0 ra mắt ngày 6/6/2025; bản 2.1 (16/7/2025) có Yuzuha cùng bản rerun Miyabi ở phase 1 và Alice cùng rerun Yanagi ở phase 2. Đến 2026 game đã lên các bản muộn hơn.",
@@ -241,7 +241,7 @@ window.IDX = [
   },
   {
     "title": "Monster Hunter Wilds Autumn 2026 Update: New Region & Ancient Apex Monsters Revealed Following Arkveld Climax",
-    "url": "/en/monster-hunter-wilds-autumn-update-2026-new-monsters",
+    "url": "/en/monster-hunter-wilds-title-update-4-gogmazios-ascendance-2027",
     "cat": "Gaming",
     "date": "2026-09-16",
     "excerpt": "Capcom officially announces Monster Hunter Wilds Autumn 2026 update featuring a brand-new biome, variant weapon trees, and ancient apex monster hunts.",
@@ -254,7 +254,7 @@ window.IDX = [
   },
   {
     "title": "Monster Hunter Wilds: Title Update 4 (12/2025) Thêm Gogmazios, Bản Mở Rộng Ascendance Ra Mắt 2027",
-    "url": "/monster-hunter-wilds-autumn-update-2026-new-monsters",
+    "url": "/monster-hunter-wilds-title-update-4-gogmazios-ascendance-2027",
     "cat": "Gaming",
     "date": "2026-09-16",
     "excerpt": "Monster Hunter Wilds Title Update 4 (tháng 12/2025) đưa Elder Dragon Gogmazios trở lại; bản mở rộng Ascendance được giới thiệu thêm tại TGS 2026 với Teostra và ra mắt năm 2027.",
@@ -267,7 +267,7 @@ window.IDX = [
   },
   {
     "title": "Dandadan Mùa 2: Ra Mắt 3/7/2025 Với Arc Cursed House Và Evil Eye",
-    "url": "/dandadan-season-2-trailer-evil-eye-lich-chieu-netflix",
+    "url": "/dandadan-mua-2-cursed-house-evil-eye",
     "cat": "Anime",
     "date": "2026-09-07",
     "excerpt": "Dandadan Mùa 2 lên sóng ngày 3/7/2025 trên Crunchyroll, Netflix, Hulu, chuyển thể arc Cursed House và Evil Eye; phim Dandadan: Evil Eye chiếu ngày 6/6/2025 tại Mỹ.",
@@ -306,7 +306,7 @@ window.IDX = [
   },
   {
     "title": "LCK Mùa Hè 2026: Gen.G Vô Địch Playoffs, Hanwha Life Esports Về Nhì",
-    "url": "/lck-summer-2026-finals-t1-vs-geng-nhan-dinh-faker-chovy",
+    "url": "/lck-summer-2026-gen-g-vo-dich-hanwha-life-a-quan",
     "cat": "Gaming",
     "date": "2026-09-07",
     "excerpt": "Phân tích siêu kinh điển T1 vs Gen.G tại chung kết LCK Mùa Hè 2026: Cuộc so tài đỉnh cao giữa Faker và Chovy giành ngôi vương Hàn Quốc và tấm vé hạt giống số 1 CKTG.",
@@ -354,7 +354,7 @@ window.IDX = [
   },
   {
     "title": "Frieren: Pháp Sư Tiễn Táng Mùa 2 Đã Phát Sóng Từ Tháng 1/2026 (10 Tập)",
-    "url": "/frieren-phap-su-tien-tang-mua-2-trailer-aureole",
+    "url": "/frieren-mua-2-phat-song-thang-1-2026",
     "cat": "Anime",
     "date": "2026-09-05",
     "excerpt": "Frieren: Beyond Journey's End Mùa 2 do Madhouse sản xuất đã phát sóng vào mùa đông 2026 (tháng 1–3) với 10 tập.",
@@ -369,7 +369,7 @@ window.IDX = [
   },
   {
     "title": "Honkai: Star Rail 3.0 Ra Mắt 15/1/2025, Mở Ra Thế Giới Amphoreus",
-    "url": "/honkai-star-rail-3-0-amphoreus-banner-cyrene-trailer",
+    "url": "/honkai-star-rail-3-0-amphoreus-remembrance",
     "cat": "Gaming",
     "date": "2026-09-05",
     "excerpt": "Honkai: Star Rail 3.0 ra mắt ngày 15/1/2025 với thế giới Amphoreus, Path of Remembrance và ba nhân vật mới; nhiệm vụ Amphoreus trải dài từ bản 3.0 đến 3.7.",
@@ -384,7 +384,7 @@ window.IDX = [
   },
   {
     "title": "Bleach: TYBW – The Calamity Lên Sóng 25/7/2026, 10 Tập, Kết Thúc 26/9",
-    "url": "/bleach-thousand-year-blood-war-part-4-the-farewell-release-date",
+    "url": "/bleach-tybw-the-calamity-25-7-2026",
     "cat": "Anime",
     "date": "2026-09-04",
     "excerpt": "Phần cuối Bleach: Thousand-Year Blood War – The Calamity lên sóng ngày 25/7/2026 (Hulu ở Mỹ, Disney+ quốc tế), mỗi thứ Bảy, tập 10 và cũng là tập cuối phát sóng ngày 26/9/2026.",
@@ -401,7 +401,7 @@ window.IDX = [
   },
   {
     "title": "Kimetsu no Yaiba: Vô Hạn Thành Phần 1 – Ra Rạp 18/7/2025, Thu Khoảng 793 Triệu USD Toàn Cầu",
-    "url": "/kimetsu-no-yaiba-vo-han-thanh-movie-1-trailer-release",
+    "url": "/kimetsu-no-yaiba-vo-han-thanh-doanh-thu-793-trieu-usd",
     "cat": "Anime",
     "date": "2026-09-04",
     "excerpt": "Demon Slayer: Infinity Castle của Ufotable ra rạp Nhật 18/7/2025, thu 40,24 tỷ yên tại Nhật và khoảng 793 triệu USD toàn cầu; đây là phần đầu của bộ ba phim.",
@@ -465,7 +465,7 @@ window.IDX = [
   },
   {
     "title": "Wuthering Waves 2.0 Ra Mắt 2/1/2025 Với Rinascita; Bản 3.6 Ra Mắt 20/8/2026",
-    "url": "/wuthering-waves-2-0-the-black-shores-camellya-update",
+    "url": "/wuthering-waves-2-0-rinascita-ban-3-6",
     "cat": "Gaming",
     "date": "2026-09-03",
     "excerpt": "Wuthering Waves 2.0 (Rinascita) ra mắt 2/1/2025. Bản 3.6 ra mắt 20/8/2026 với Ren Realm, Sword Flight, Guqin Performance và hai Resonator 5 sao Qingxiao, Jingran.",
@@ -677,7 +677,7 @@ window.IDX = [
   },
   {
     "title": "GTA 6: Rockstar Tung Extended Look 26 Phút Trên Netflix",
-    "url": "/gta6-gameplay-reveal-preorder",
+    "url": "/gta-6-extended-look-26-phut-netflix",
     "cat": "Gaming",
     "date": "2026-08-27",
     "excerpt": "Sau một tuần rò rỉ gameplay không kiểm soát gây tranh cãi &quot;downgrade&quot; đồ họa, Rockstar Games chính thức đáp trả bằng video Extended Look dài 26 phút, độc quyền trên Netflix trước khi phát rộng rãi trên YouTube.",
@@ -709,7 +709,7 @@ window.IDX = [
   },
   {
     "title": "Chainsaw Man: Anime Mùa 2 \"Assassins Arc\" Đang Sản Xuất, Chưa Có Ngày Phát Sóng",
-    "url": "/chainsaw-man-reze-arc-box-office-season3",
+    "url": "/chainsaw-man-mua-2-assassins-arc-dang-san-xuat",
     "cat": "Anime",
     "date": "2026-08-25",
     "excerpt": "MAPPA công bố tại Jump Festa 2026 rằng Chainsaw Man Mùa 2 (chuyển thể International Assassins Arc) đã bước vào sản xuất; chưa có ngày phát sóng, dự kiến sớm nhất là 2027.",
@@ -739,7 +739,7 @@ window.IDX = [
   },
   {
     "title": "Genshin Impact: Sandrone (Quan Chấp Hành Thứ 7) Ra Mắt Ở Bản 6.7, Không Phải 7.0",
-    "url": "/genshin-impact-70-sandrone-reveal",
+    "url": "/genshin-impact-sandrone-ban-6-7-khong-phai-7-0",
     "cat": "Gaming",
     "date": "2026-08-25",
     "excerpt": "Sandrone, Quan Chấp Hành thứ 7 của Fatui, là nhân vật Cryo chơi được từ bản 6.7 (dự kiến 1/7/2026). Bản 7.0 (12/8/2026) có Odette và Alyosha.",
@@ -861,7 +861,7 @@ window.IDX = [
   },
   {
     "title": "Kagurabachi: Manga Vượt 4 Triệu Bản, Anime Do Cypic Sản Xuất Phát Sóng Tháng 4/2027",
-    "url": "/kagurabachi-5-trieu-ban-xac-nhan-anime",
+    "url": "/kagurabachi-4-trieu-ban-anime-cypic-thang-4-2027",
     "cat": "Manga",
     "date": "2026-08-24",
     "excerpt": "Kagurabachi của Takeru Hokazono vượt 4 triệu bản lưu hành (gồm cả digital) khi tập 11 ra mắt 1/5/2026; anime do Cypic sản xuất sẽ phát sóng tháng 4/2027.",

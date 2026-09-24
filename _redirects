@@ -3,50 +3,50 @@
 # causes redirect loops when Pretty URLs is enabled.
 
 # Merged stale/duplicate news articles (2026-09-24)
-/zenless-zone-zero-20-hoshimi-miyabi /zenless-zone-zero-2-0-outer-ring-miyabi-update 301
-/en/zenless-zone-zero-20-hoshimi-miyabi /zenless-zone-zero-2-0-outer-ring-miyabi-update 301
-/zenless-zone-zero-20-new-eridu-outer-ring /zenless-zone-zero-2-0-outer-ring-miyabi-update 301
-/en/zenless-zone-zero-20-new-eridu-outer-ring /zenless-zone-zero-2-0-outer-ring-miyabi-update 301
-/zenless-zone-zero-2-2-section-6-yanagi-hollow-zero /zenless-zone-zero-2-0-outer-ring-miyabi-update 301
-/en/zenless-zone-zero-2-2-section-6-yanagi-hollow-zero /zenless-zone-zero-2-0-outer-ring-miyabi-update 301
-/honkai-star-rail-30 /honkai-star-rail-3-0-amphoreus-banner-cyrene-trailer 301
-/en/honkai-star-rail-30 /en/honkai-star-rail-3-0-amphoreus-banner-cyrene-trailer 301
-/honkai-star-rail-ban-cap-nhat-amphoreus-banner-cyrene /honkai-star-rail-3-0-amphoreus-banner-cyrene-trailer 301
-/en/honkai-star-rail-ban-cap-nhat-amphoreus-banner-cyrene /en/honkai-star-rail-3-0-amphoreus-banner-cyrene-trailer 301
+/zenless-zone-zero-20-hoshimi-miyabi /zenless-zone-zero-2-0-ban-2-1-yuzuha-alice 301
+/en/zenless-zone-zero-20-hoshimi-miyabi /zenless-zone-zero-2-0-ban-2-1-yuzuha-alice 301
+/zenless-zone-zero-20-new-eridu-outer-ring /zenless-zone-zero-2-0-ban-2-1-yuzuha-alice 301
+/en/zenless-zone-zero-20-new-eridu-outer-ring /zenless-zone-zero-2-0-ban-2-1-yuzuha-alice 301
+/zenless-zone-zero-2-2-section-6-yanagi-hollow-zero /zenless-zone-zero-2-0-ban-2-1-yuzuha-alice 301
+/en/zenless-zone-zero-2-2-section-6-yanagi-hollow-zero /zenless-zone-zero-2-0-ban-2-1-yuzuha-alice 301
+/honkai-star-rail-30 /honkai-star-rail-3-0-amphoreus-remembrance 301
+/en/honkai-star-rail-30 /en/honkai-star-rail-3-0-amphoreus-remembrance 301
+/honkai-star-rail-ban-cap-nhat-amphoreus-banner-cyrene /honkai-star-rail-3-0-amphoreus-remembrance 301
+/en/honkai-star-rail-ban-cap-nhat-amphoreus-banner-cyrene /en/honkai-star-rail-3-0-amphoreus-remembrance 301
 /solo-leveling-season-2-jeju-island-shadow-army-record /solo-leveling-season-2-arise-from-the-shadow-premiere 301
 /en/solo-leveling-season-2-jeju-island-shadow-army-record /en/solo-leveling-season-2-arise-from-the-shadow-premiere 301
 /solo-leveling-season2 /solo-leveling-season-2-arise-from-the-shadow-premiere 301
 /en/solo-leveling-season2 /en/solo-leveling-season-2-arise-from-the-shadow-premiere 301
-/dandadan-season-2-evil-eye-arc-announcement /dandadan-season-2-trailer-evil-eye-lich-chieu-netflix 301
-/en/dandadan-season-2-evil-eye-arc-announcement /en/dandadan-season-2-trailer-evil-eye-lich-chieu-netflix 301
+/dandadan-season-2-evil-eye-arc-announcement /dandadan-mua-2-cursed-house-evil-eye 301
+/en/dandadan-season-2-evil-eye-arc-announcement /en/dandadan-season-2-cursed-house-evil-eye-arcs 301
 /one-piece-anime-remake-wit-studio-trailer /one-piece-remake-wit-studio-netflix-trailer-chinh-thuc 301
 /en/one-piece-anime-remake-wit-studio-trailer /one-piece-remake-wit-studio-netflix-trailer-chinh-thuc 301
-/bleach-thousand-year-blood-war-cour-4-trailer-lich-chieu /bleach-thousand-year-blood-war-part-4-the-farewell-release-date 301
-/en/bleach-thousand-year-blood-war-cour-4-trailer-lich-chieu /en/bleach-thousand-year-blood-war-part-4-the-farewell-release-date 301
-/kimetsu-no-yaiba-vo-han-thanh-movie-1-doanh-thu-ky-luc-ufotable /kimetsu-no-yaiba-vo-han-thanh-movie-1-trailer-release 301
-/en/kimetsu-no-yaiba-vo-han-thanh-movie-1-doanh-thu-ky-luc-ufotable /en/kimetsu-no-yaiba-vo-han-thanh-movie-1-trailer-release 301
-/demon-slayer-infinity-castle-trailer-chinh-thuc /kimetsu-no-yaiba-vo-han-thanh-movie-1-trailer-release 301
-/en/demon-slayer-infinity-castle-trailer-chinh-thuc /en/kimetsu-no-yaiba-vo-han-thanh-movie-1-trailer-release 301
-/frieren-season2 /frieren-phap-su-tien-tang-mua-2-trailer-aureole 301
-/en/frieren-season2 /en/frieren-phap-su-tien-tang-mua-2-trailer-aureole 301
+/bleach-thousand-year-blood-war-cour-4-trailer-lich-chieu /bleach-tybw-the-calamity-25-7-2026 301
+/en/bleach-thousand-year-blood-war-cour-4-trailer-lich-chieu /en/bleach-tybw-the-calamity-premieres-july-25-2026 301
+/kimetsu-no-yaiba-vo-han-thanh-movie-1-doanh-thu-ky-luc-ufotable /kimetsu-no-yaiba-vo-han-thanh-doanh-thu-793-trieu-usd 301
+/en/kimetsu-no-yaiba-vo-han-thanh-movie-1-doanh-thu-ky-luc-ufotable /en/demon-slayer-infinity-castle-793-million-box-office 301
+/demon-slayer-infinity-castle-trailer-chinh-thuc /kimetsu-no-yaiba-vo-han-thanh-doanh-thu-793-trieu-usd 301
+/en/demon-slayer-infinity-castle-trailer-chinh-thuc /en/demon-slayer-infinity-castle-793-million-box-office 301
+/frieren-season2 /frieren-mua-2-phat-song-thang-1-2026 301
+/en/frieren-season2 /en/frieren-season-2-aired-january-2026 301
 /jujutsu-kaisen-mua-3-culling-game-teaser /jujutsu-kaisen-season-3-culling-game-release 301
 /en/jujutsu-kaisen-mua-3-culling-game-teaser /en/jujutsu-kaisen-season-3-culling-game-release 301
 /jujutsu-kaisen-season-3-culling-game-teaser-trailer-lich-chieu /jujutsu-kaisen-season-3-culling-game-release 301
 /en/jujutsu-kaisen-season-3-culling-game-teaser-trailer-lich-chieu /en/jujutsu-kaisen-season-3-culling-game-release 301
 
 # Merged stale/duplicate news articles (2026-09-24)
-/monster-hunter-wilds-ban-cap-nhat-mua-thu-2026 /monster-hunter-wilds-autumn-update-2026-new-monsters 301
-/en/monster-hunter-wilds-ban-cap-nhat-mua-thu-2026 /en/monster-hunter-wilds-autumn-update-2026-new-monsters 301
+/monster-hunter-wilds-ban-cap-nhat-mua-thu-2026 /monster-hunter-wilds-title-update-4-gogmazios-ascendance-2027 301
+/en/monster-hunter-wilds-ban-cap-nhat-mua-thu-2026 /en/monster-hunter-wilds-title-update-4-gogmazios-ascendance-2027 301
 /solo-leveling-ragnarok-manhwa-review /solo-leveling-ragnarok-anime-chuyen-the-va-trailer-dau-tien 301
-/en/solo-leveling-ragnarok-manhwa-review /en/solo-leveling-ragnarok-anime-chuyen-the-va-trailer-dau-tien 301
+/en/solo-leveling-ragnarok-manhwa-review /en/solo-leveling-ragnarok-webtoon-english-volume-1 301
 
 # Merged stale/duplicate news articles (2026-09-24)
 /chainsaw-man-movie-reze-arc-trailer-chinh-thuc-lich-chieu /chainsaw-man-movie-reze-arc-chieu-rap-viet-nam-doanh-thu-ky-luc 301
 /en/chainsaw-man-movie-reze-arc-trailer-chinh-thuc-lich-chieu /chainsaw-man-movie-reze-arc-chieu-rap-viet-nam-doanh-thu-ky-luc 301
-/chainsaw-man-season3 /chainsaw-man-reze-arc-box-office-season3 301
-/en/chainsaw-man-season3 /en/chainsaw-man-reze-arc-box-office-season3 301
-/wuthering-waves-cam-nang-phi-kiem-ren-realm /wuthering-waves-2-0-the-black-shores-camellya-update 301
-/en/wuthering-waves-cam-nang-phi-kiem-ren-realm /en/wuthering-waves-2-0-the-black-shores-camellya-update 301
+/chainsaw-man-season3 /chainsaw-man-mua-2-assassins-arc-dang-san-xuat 301
+/en/chainsaw-man-season3 /en/chainsaw-man-season-2-assassins-arc-in-production 301
+/wuthering-waves-cam-nang-phi-kiem-ren-realm /wuthering-waves-2-0-rinascita-ban-3-6 301
+/en/wuthering-waves-cam-nang-phi-kiem-ren-realm /en/wuthering-waves-2-0-rinascita-version-3-6 301
 
 # Removed unverifiable guides/false articles (2026-09-24)
 /black-myth-wukong-bi-quyet-danh-trum-an /black-myth-wukong-review 301
@@ -93,3 +93,35 @@
 /en/black-myth-wukong-dlc-rebirth-great-sage /en/black-myth-wukong-review 301
 /black-myth-wukong-dlc-release-date-bosses /black-myth-wukong-review 301
 /en/black-myth-wukong-dlc-release-date-bosses /en/black-myth-wukong-review 301
+
+/kagurabachi-5-trieu-ban-xac-nhan-anime /kagurabachi-4-trieu-ban-anime-cypic-thang-4-2027 301
+/en/kagurabachi-5-trieu-ban-xac-nhan-anime /en/kagurabachi-4-million-copies-cypic-anime-april-2027 301
+/lck-summer-2026-finals-t1-vs-geng-nhan-dinh-faker-chovy /lck-summer-2026-gen-g-vo-dich-hanwha-life-a-quan 301
+/en/lck-summer-2026-finals-t1-vs-geng-nhan-dinh-faker-chovy /en/lck-summer-2026-gen-g-win-playoffs-hle-runner-up 301
+/chainsaw-man-reze-arc-box-office-season3 /chainsaw-man-mua-2-assassins-arc-dang-san-xuat 301
+/en/chainsaw-man-reze-arc-box-office-season3 /en/chainsaw-man-season-2-assassins-arc-in-production 301
+/gta6-gameplay-reveal-preorder /gta-6-extended-look-26-phut-netflix 301
+/en/gta6-gameplay-reveal-preorder /en/gta-6-26-minute-extended-look-netflix 301
+/bleach-thousand-year-blood-war-part-4-the-farewell-release-date /bleach-tybw-the-calamity-25-7-2026 301
+/en/bleach-thousand-year-blood-war-part-4-the-farewell-release-date /en/bleach-tybw-the-calamity-premieres-july-25-2026 301
+/frieren-phap-su-tien-tang-mua-2-trailer-aureole /frieren-mua-2-phat-song-thang-1-2026 301
+/en/frieren-phap-su-tien-tang-mua-2-trailer-aureole /en/frieren-season-2-aired-january-2026 301
+/wuthering-waves-2-0-the-black-shores-camellya-update /wuthering-waves-2-0-rinascita-ban-3-6 301
+/en/wuthering-waves-2-0-the-black-shores-camellya-update /en/wuthering-waves-2-0-rinascita-version-3-6 301
+/honkai-star-rail-3-0-amphoreus-banner-cyrene-trailer /honkai-star-rail-3-0-amphoreus-remembrance 301
+/en/honkai-star-rail-3-0-amphoreus-banner-cyrene-trailer /en/honkai-star-rail-3-0-amphoreus-remembrance 301
+/dandadan-season-2-trailer-evil-eye-lich-chieu-netflix /dandadan-mua-2-cursed-house-evil-eye 301
+/en/dandadan-season-2-trailer-evil-eye-lich-chieu-netflix /en/dandadan-season-2-cursed-house-evil-eye-arcs 301
+/kimetsu-no-yaiba-vo-han-thanh-movie-1-trailer-release /kimetsu-no-yaiba-vo-han-thanh-doanh-thu-793-trieu-usd 301
+/en/kimetsu-no-yaiba-vo-han-thanh-movie-1-trailer-release /en/demon-slayer-infinity-castle-793-million-box-office 301
+/zenless-zone-zero-2-0-outer-ring-miyabi-update /zenless-zone-zero-2-0-ban-2-1-yuzuha-alice 301
+/genshin-impact-70-sandrone-reveal /genshin-impact-sandrone-ban-6-7-khong-phai-7-0 301
+/en/genshin-impact-70-sandrone-reveal /en/genshin-impact-sandrone-version-6-7-not-7-0 301
+/monster-hunter-wilds-autumn-update-2026-new-monsters /monster-hunter-wilds-title-update-4-gogmazios-ascendance-2027 301
+/en/monster-hunter-wilds-autumn-update-2026-new-monsters /en/monster-hunter-wilds-title-update-4-gogmazios-ascendance-2027 301
+/en/anime-mua-he-2026 /en/summer-2026-anime-verified-air-dates 301
+/en/girls-frontline-2-exilium-danh-gia-chuyen-sau /en/girls-frontline-2-exilium-in-depth-review 301
+/en/girls-frontline-2-huong-dan-tan-thu-doi-hinh-reroll /en/girls-frontline-2-exilium-beginners-guide 301
+/en/honor-of-kings-global-mua-giai-moi-tuong-lan-ling-wang /en/honor-of-kings-lanling-wang-jungle-assassin-2026 301
+/en/jujutsu-kaisen-ket-thuc /en/jujutsu-kaisen-ending-analysis 301
+/en/solo-leveling-ragnarok-anime-chuyen-the-va-trailer-dau-tien /en/solo-leveling-ragnarok-webtoon-english-volume-1 301
