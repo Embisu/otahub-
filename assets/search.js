@@ -497,7 +497,7 @@ window.IDX = [
     "url": "/nintendo-switch-2-launch-lineup-specs",
     "cat": "Gaming",
     "date": "2026-09-04",
-    "excerpt": "Nintendo chính thức xác nhận máy chơi game thế hệ mới sở hữu màn hình OLED 8 inch 120Hz, xuất hình 4K 60FPS qua Dock và tương thích ngược 100% thư viện game Switch 1.",
+    "excerpt": "Nintendo Switch 2 ra mắt 5/6/2025 với màn hình LCD 7,9 inch 1080p tới 120Hz, 12GB RAM, chip NVIDIA tùy biến hỗ trợ DLSS và xuất hình tối đa 4K khi gắn dock.",
     "img": "/assets/img/news-switch2-specs-oled.jpg",
     "tags": [
       "Nintendo Switch 2",
@@ -706,7 +706,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Girls' Frontline 2: Exilium Review: Đỉnh Cao Chiến Thuật 3D XCOM &amp; Ký Túc Xá Cel-Shaded 9.3 Điểm",
+    "title": "Girls' Frontline 2: Exilium Review: Đỉnh Cao Chiến Thuật 3D XCOM &amp; Ký Túc Xá Cel-Shaded 8.6 Điểm",
     "url": "/girls-frontline-2-exilium-review",
     "cat": "Reviews",
     "date": "2026-08-28",
@@ -2796,11 +2796,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Blue Protocol Review: MMORPG Anime Đẹp Nhất Và Những Vấn Đề Cốt Lõi",
+    "title": "Blue Protocol: Star Resonance — Tổng Quan Bản Global (Không Chấm Điểm)",
     "url": "/blue-protocol-review",
     "cat": "Reviews",
     "date": "2026-06-17",
-    "excerpt": "Blue Protocol có nền tảng kỹ thuật và visual xuất sắc nhưng thiếu content depth để giữ chân người chơi lâu dài, một tiềm năng chưa được khai thác đầy đủ.",
+    "excerpt": "Blue Protocol: Star Resonance ra mắt toàn cầu 9/10/2025 trên iOS, Android và PC (Steam, Epic) với cross-play; đánh giá n thác đầy đủ.",
     "img": "/assets/img/3578d308d7-library_hero.jpg",
     "tags": [
       "Blue Protocol",
