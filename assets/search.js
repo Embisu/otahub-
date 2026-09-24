@@ -341,11 +341,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Girls' Frontline 2: Lưu Đày – Hướng Dẫn Tân Thủ, Cách Reroll & Top 5 Đội Hình Búp Bê SSR Mạnh Nhất",
+    "title": "Girls' Frontline 2: Lưu Đày – Hướng Dẫn Tân Thủ: Cover, Stability & Banner 50 Lượt",
     "url": "/girls-frontline-2-huong-dan-tan-thu-doi-hinh-reroll",
     "cat": "Guides",
     "date": "2026-09-07",
-    "excerpt": "Cẩm nang Girls' Frontline 2: Lưu Đày: Hướng dẫn reroll 10 phút, mẹo quản lý điểm Ổn Định, cơ chế Cover 3D và top 5 đội hình búp bê SSR chuẩn Meta.",
+    "excerpt": "Hướng dẫn tân thủ Girls' Frontline 2: Lưu Đày: cơ chế Cover và Stability, banner tân thủ 50 lượt. THS Game phát hành tại Việt Nam từ 27/8/2026.",
     "img": "/assets/img/news-gfl2-guide-team-build.jpg",
     "tags": [
       "Girls Frontline 2",
