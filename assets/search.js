@@ -144,11 +144,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Stellar Blade 2 Chính Thức Được Bật Đèn Xanh: Shift Up Phô Diễn Đồ Họa Unreal Engine 5.5 Cực Đỉnh",
+    "title": "Stellar Blade 2: Shift Up Xác Nhận Đang Phát Triển, Tự Phát Hành, Chưa Có Ngày Ra Mắt",
     "url": "/stellar-blade-2-shift-up-trailer-unreal-engine-5-ps5",
     "cat": "Gaming",
     "date": "2026-09-19",
-    "excerpt": "Shift Up và Sony Interactive Entertainment chính thức xác nhận dự án Stellar Blade 2, phát triển trên nền tảng Unreal Engine 5.5 với đồ họa ray-tracing đột phá.",
+    "excerpt": "Shift Up xác nhận Stellar Blade 2 đang được phát triển (dùng Unreal Engine 5) và sẽ tự phát hành; game dự kiến được công bố chính thức trong năm 2026, chưa có ngày ra mắt hay nền tảng chính thức.",
     "img": "/assets/img/news-stellar-blade-2-shift-up-ps5-reveal.jpg",
     "tags": [
       "gaming",
@@ -187,11 +187,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Chainsaw Man Movie: Reze Arc Phá Đảo Phòng Vé Nhật Bản, Ấn Định Lịch Chiếu Rạp Tại Việt Nam",
+    "title": "Chainsaw Man – Reze Arc: Ra Rạp Nhật 19/9/2025, Việt Nam 26/9/2025, Thu 191,4 Triệu USD",
     "url": "/chainsaw-man-movie-reze-arc-chieu-rap-viet-nam-doanh-thu-ky-luc",
     "cat": "Anime",
     "date": "2026-09-19",
-    "excerpt": "Chainsaw Man Movie: Reze Arc do MAPPA sản xuất đạt doanh thu 3 tỷ yên tuần đầu tại Nhật Bản, chính thức ấn định lịch chiếu rạp tại Việt Nam với định dạng IMAX và 4DX.",
+    "excerpt": "Chainsaw Man – The Movie: Reze Arc ra rạp Nhật ngày 19/9/2025 (mở màn khoảng 1,25 tỷ yên), khởi chiếu tại Việt Nam ngày 26/9/2025 và thu khoảng 191,4 triệu USD toàn cầu.",
     "img": "/assets/img/news-chainsaw-man-movie-reze-arc.jpg",
     "tags": [
       "anime",
@@ -255,21 +255,6 @@ window.IDX = [
     ]
   },
   {
-    "title": "Chainsaw Man Movie: Reze Arc – MAPPA Tung Trailer Mới, Hé Lộ Ca Khúc Chủ Đề & Lịch Chiếu Toàn Cầu",
-    "url": "/chainsaw-man-movie-reze-arc-trailer-chinh-thuc-lich-chieu",
-    "cat": "Anime",
-    "date": "2026-09-07",
-    "excerpt": "MAPPA chính thức công bố trailer bùng nổ cho phim điện ảnh Chainsaw Man: Reze Arc, hé lộ bài hát chủ đề mới và lịch khởi chiếu tại các rạp chiếu phim toàn cầu.",
-    "img": "/assets/img/news-chainsaw-man-movie-reze-arc.jpg",
-    "tags": [
-      "Girls Frontline 2",
-      "Chainsaw Man",
-      "Ghost of Yotei",
-      "Anime 2026",
-      "PS5 Pro"
-    ]
-  },
-  {
     "title": "Dandadan Mùa 2: Ra Mắt 3/7/2025 Với Arc Cursed House Và Evil Eye",
     "url": "/dandadan-season-2-trailer-evil-eye-lich-chieu-netflix",
     "cat": "Anime",
@@ -288,11 +273,11 @@ window.IDX = [
     "tags": []
   },
   {
-    "title": "Ghost of Yōtei: Sucker Punch Hé Lộ Gameplay Song Kiếm, Vũ Khí Mới & Thế Giới Ezo 1603 Đỉnh Cao PS5 Pro",
+    "title": "Ghost of Yōtei: Ra Mắt PS5 Ngày 2/10/2025, Atsu Dùng Song Kiếm Và Súng Hỏa Mai",
     "url": "/ghost-of-yotei-chi-tiet-vu-khi-gameplay-map-ezo",
     "cat": "Gaming",
     "date": "2026-09-07",
-    "excerpt": "Sucker Punch công bố chi tiết gameplay Ghost of Yōtei: Cơ chế song kiếm song hành, vũ khí liềm xích Kusarigama và thế giới tuyết trắng Ezo 1603 trên PS5 Pro.",
+    "excerpt": "Ghost of Yōtei ra mắt độc quyền PS5 ngày 2/10/2025, lấy bối cảnh Ezo năm 1603 với nhân vật Atsu; Complete Edition (1/10/2026, 69,99 USD) gồm Legends co-op và bản mở rộng Echoes of Sekigahara.",
     "img": "/assets/img/news-ghost-of-yotei-weapons-gameplay.jpg",
     "tags": [
       "Girls Frontline 2",
@@ -351,11 +336,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "One Piece Chương 1194: Oda Hé Lộ Trái Ác Quỷ Của Loki, Cây Thần Yggdrasil & Vũ Khí Uranus",
+    "title": "One Piece Chapter 1194: Ra Mắt 27/9/2026 Sau Kỳ Nghỉ Silver Week",
     "url": "/one-piece-chapter-1194-spoilers-loki-uranus-elbaf",
     "cat": "Manga",
     "date": "2026-09-07",
-    "excerpt": "Tóm tắt spoiler One Piece chương 1194: Eiichiro Oda hé lộ sức mạnh Trái Ác Quỷ huyền thoại của Hoàng tử Loki tại Elbaf, bí mật Cây Thần Yggdrasil và manh mối Vũ Khí Cổ Đại Uranus.",
+    "excerpt": "One Piece chapter 1194 phát hành Chủ nhật 27/9/2026 lúc 7h sáng giờ PT (Nhật Bản 28/9) do kỳ nghỉ lễ; các bản xem trước nhắc tới Luffy cạn sức sau Gear 5 và dấu hiệu biến hình mới của Loki.",
     "img": "/assets/img/news-one-piece-1194-loki-elbaf.jpg",
     "tags": []
   },
@@ -730,11 +715,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Chainsaw Man – Movie Reze Arc: Cán Mốc 191,4 Triệu USD Toàn Cầu, MAPPA Bật Đèn Xanh Cho Assassins Arc Mùa 3",
+    "title": "Chainsaw Man: Anime Mùa 2 \"Assassins Arc\" Đang Sản Xuất, Chưa Có Ngày Phát Sóng",
     "url": "/chainsaw-man-reze-arc-box-office-season3",
     "cat": "Anime",
     "date": "2026-08-25",
-    "excerpt": "Thành công vang dội của bản điện ảnh giúp Chainsaw Man trở thành thương hiệu sinh lời hàng đầu của MAPPA — và ngay tại Jump Festa 2026, studio đã chính thức bật đèn xanh cho dự án tiếp theo mang tên &quot;Assassins Arc&quot;.",
+    "excerpt": "MAPPA công bố tại Jump Festa 2026 rằng Chainsaw Man Mùa 2 (chuyển thể International Assassins Arc) đã bước vào sản xuất; chưa có ngày phát sóng, dự kiến sớm nhất là 2027.",
     "img": "/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg",
     "tags": [
       "Chainsaw Man",
@@ -760,11 +745,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Genshin Impact 7.0: HoYoverse Giới Thiệu Quan Chấp Hành Thứ 7 Sandrone &amp; Cơ Chế Rối Băng Độc Đáo",
+    "title": "Genshin Impact: Sandrone (Quan Chấp Hành Thứ 7) Ra Mắt Ở Bản 6.7, Không Phải 7.0",
     "url": "/genshin-impact-70-sandrone-reveal",
     "cat": "Gaming",
     "date": "2026-08-25",
-    "excerpt": "Bản cập nhật Snezhnaya hé lộ cơ chế điều khiển robot khổng lồ trong chiến đấu và hé lộ vai trò quan trọng của Sandrone trong cuộc chiến chống Thiên Lý.",
+    "excerpt": "Sandrone, Quan Chấp Hành thứ 7 của Fatui, là nhân vật Cryo chơi được từ bản 6.7 (dự kiến 1/7/2026). Bản 7.0 (12/8/2026) có Odette và Alyosha.",
     "img": "/assets/img/news-genshin-impact-70-abyss-teams.jpg",
     "tags": [
       "Genshin Impact",
@@ -952,20 +937,6 @@ window.IDX = [
       "Netmarble",
       "Sung Jinwoo",
       "Action RPG"
-    ]
-  },
-  {
-    "title": "Wuthering Waves 3.6: Cẩm Nang Khám Phá Bản Đồ Ren Realm &amp; Hướng Dẫn Cơ Chế Phi Kiếm Bay Lượn Toàn Diện",
-    "url": "/wuthering-waves-cam-nang-phi-kiem-ren-realm",
-    "cat": "Gaming",
-    "date": "2026-08-24",
-    "excerpt": "Hướng dẫn chi tiết toàn tập về bản đồ tiên hiệp Ren Realm, bí quyết làm chủ kỹ năng ngự kiếm và lộ trình thu thập tài nguyên nâng cấp Qingxiao, Jingran.",
-    "img": "/assets/img/news-wuthering-waves-guide-ren-realm.jpg",
-    "tags": [
-      "Wuthering Waves",
-      "Guides",
-      "Ren Realm",
-      "Sword Flight"
     ]
   },
   {
@@ -2616,21 +2587,6 @@ window.IDX = [
       "Studio Gaga",
       "Young Animal",
       "Shonen"
-    ]
-  },
-  {
-    "title": "Chainsaw Man Assassins Arc: MAPPA Ra Mắt Anime Kinh Điển",
-    "url": "/chainsaw-man-season3",
-    "cat": "Anime",
-    "date": "2026-06-14",
-    "excerpt": "Denji đối mặt với những sát nhân nguy hiểm nhất đến từ khắp thế giới, MAPPA hứa hẹn màn hành động đẫm máu và cảm xúc vượt xa mùa 1.",
-    "img": "/assets/img/2656ba8ffc-maxresdefault.jpg",
-    "tags": [
-      "Chainsaw Man",
-      "MAPPA",
-      "Anime 2026",
-      "Fujimoto",
-      "Crunchyroll"
     ]
   },
   {
