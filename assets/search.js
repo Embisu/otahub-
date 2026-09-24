@@ -1,5 +1,18 @@
 window.IDX = [
   {
+    "title": "Esports Tại Asian Games 2026: 11 Nội Dung, Thi Đấu Từ 23/9 Đến 2/10 Ở Aichi",
+    "url": "/asian-games-2026-esports-aichi-nagoya",
+    "cat": "Gaming",
+    "date": "2026-09-24",
+    "excerpt": "Esports tại Asian Games 2026 (Aichi-Nagoya) thi đấu từ 23/9 đến 2/10/2026 với 11 nội dung, gồm LoL, Mobile Legends, PUBG Mobile, Honor of Kings và game đối kháng; Iran giành vàng eFootball.",
+    "img": "/assets/img/cover-asian-games-2026-esports-aichi-nagoya.jpg",
+    "tags": [
+      "Esports",
+      "Asian Games 2026",
+      "Mobile Legends"
+    ]
+  },
+  {
     "title": "Tokyo Game Show 2026: Tổng Hợp Công Bố Lớn Nhất, 257.642 Lượt Tham Dự",
     "url": "/tokyo-game-show-2026-roundup",
     "cat": "Gaming",
@@ -2326,11 +2339,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Re:Zero Season 4: Recapture Arc Lên Sóng Hôm Nay",
+    "title": "Re:Zero Season 4 Recapture Arc: Tập 12 Lên Sóng 12/8/2026, Tập 18 Ngày 23/9, Tập Cuối 30/9",
     "url": "/re-zero-season4-recapture-arc",
     "cat": "Anime",
     "date": "2026-08-12",
-    "excerpt": "Tập 12 của Re:Zero Season 4 lên sóng hôm nay 12/8, mở màn Recapture Arc dài 8 tập. Mùa 4 sẽ khép lại với tổng cộng 19 tập chia làm 2 cour, kết thúc vào 30/9.",
+    "excerpt": "Re:Zero Season 4 có 19 tập chia hai cour; Recapture Arc bắt đầu từ tập 12 ngày 12/8/2026, tập 18 phát sóng 23/9 và tập cuối ngày 30/9 trên Crunchyroll.",
     "img": "/assets/img/087af8ed98-rezero-s4-hero.jpg",
     "tags": [
       "Re:Zero",
