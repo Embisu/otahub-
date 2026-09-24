@@ -2056,7 +2056,7 @@ window.IDX = [
     "url": "/suikoden-star-leap-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Konami đưa 108 Ngôi Sao Định Mệnh lên mobile với một game nhập vai theo lượt trung thành với tinh thần bản gốc, một khởi đầu ấn tượng cho bản soft-launch Nhật Bản.",
+    "excerpt": "Konami đưa 108 Ngôi Sao Định Mệnh lên mobile với một game nhập vai theo lượt trung thành với tinh thần bản gốc, một khởi đầu ấn tượng cho đợt ra mắt tại Nhật Bản.",
     "img": "/assets/img/3a6da459ec-suikoden-star-leap-hero.jpg",
     "tags": [
       "Suikoden",
