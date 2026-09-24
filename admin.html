@@ -10903,6 +10903,22 @@ async function saveArticle() {
     if (isNewFile) {
       html = patchNewArticleUrls(currentRawHtml, currentFile);
       sha = undefined;
+      // File cùng tên có thể đã tồn tại (vd. lần lưu trước bị lỗi giữa chừng): GitHub bắt buộc có "sha"
+      // khi ghi đè, nếu không sẽ báo "sha wasn't supplied". Tra sha hiện có và hỏi lại nếu file đã có nội dung thật.
+      try {
+        const existing = await ghGet(currentFile);
+        if (existing && existing.sha) {
+          let old = '';
+          try { old = decodeURIComponent(escape(atob(String(existing.content || '').replace(/\s/g, '')))); } catch (e) {}
+          const oldBodyLen = ((old.match(/<article class="art-body">([\s\S]*?)<\/article>/) || [])[1] || '').replace(/<[^>]+>/g, '').trim().length;
+          if (oldBodyLen > 800 && !confirm('Đã có một bài viết khác cùng đường dẫn "' + currentFile + '" với nội dung thật. Ghi đè lên bài đó?')) {
+            throw new Error('Đã hủy: hãy đổi "Đường dẫn URL" sang tên khác.');
+          }
+          sha = existing.sha;
+        }
+      } catch (e) {
+        if (/Đã hủy/.test(e.message)) throw e;
+      }
     } else {
       const data = await ghGet(currentFile);
       sha = data.sha;
