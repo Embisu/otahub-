@@ -1,3 +1,35 @@
 # Cloudflare Pages Pretty URLs handles clean URL routing automatically.
 # No manual redirects needed — adding /path -> /path.html rules here
 # causes redirect loops when Pretty URLs is enabled.
+
+# Merged stale/duplicate news articles (2026-09-24)
+/zenless-zone-zero-20-hoshimi-miyabi /zenless-zone-zero-2-0-outer-ring-miyabi-update 301
+/en/zenless-zone-zero-20-hoshimi-miyabi /zenless-zone-zero-2-0-outer-ring-miyabi-update 301
+/zenless-zone-zero-20-new-eridu-outer-ring /zenless-zone-zero-2-0-outer-ring-miyabi-update 301
+/en/zenless-zone-zero-20-new-eridu-outer-ring /zenless-zone-zero-2-0-outer-ring-miyabi-update 301
+/zenless-zone-zero-2-2-section-6-yanagi-hollow-zero /zenless-zone-zero-2-0-outer-ring-miyabi-update 301
+/en/zenless-zone-zero-2-2-section-6-yanagi-hollow-zero /zenless-zone-zero-2-0-outer-ring-miyabi-update 301
+/honkai-star-rail-30 /honkai-star-rail-3-0-amphoreus-banner-cyrene-trailer 301
+/en/honkai-star-rail-30 /en/honkai-star-rail-3-0-amphoreus-banner-cyrene-trailer 301
+/honkai-star-rail-ban-cap-nhat-amphoreus-banner-cyrene /honkai-star-rail-3-0-amphoreus-banner-cyrene-trailer 301
+/en/honkai-star-rail-ban-cap-nhat-amphoreus-banner-cyrene /en/honkai-star-rail-3-0-amphoreus-banner-cyrene-trailer 301
+/solo-leveling-season-2-jeju-island-shadow-army-record /solo-leveling-season-2-arise-from-the-shadow-premiere 301
+/en/solo-leveling-season-2-jeju-island-shadow-army-record /en/solo-leveling-season-2-arise-from-the-shadow-premiere 301
+/solo-leveling-season2 /solo-leveling-season-2-arise-from-the-shadow-premiere 301
+/en/solo-leveling-season2 /en/solo-leveling-season-2-arise-from-the-shadow-premiere 301
+/dandadan-season-2-evil-eye-arc-announcement /dandadan-season-2-trailer-evil-eye-lich-chieu-netflix 301
+/en/dandadan-season-2-evil-eye-arc-announcement /en/dandadan-season-2-trailer-evil-eye-lich-chieu-netflix 301
+/one-piece-anime-remake-wit-studio-trailer /one-piece-remake-wit-studio-netflix-trailer-chinh-thuc 301
+/en/one-piece-anime-remake-wit-studio-trailer /one-piece-remake-wit-studio-netflix-trailer-chinh-thuc 301
+/bleach-thousand-year-blood-war-cour-4-trailer-lich-chieu /bleach-thousand-year-blood-war-part-4-the-farewell-release-date 301
+/en/bleach-thousand-year-blood-war-cour-4-trailer-lich-chieu /en/bleach-thousand-year-blood-war-part-4-the-farewell-release-date 301
+/kimetsu-no-yaiba-vo-han-thanh-movie-1-doanh-thu-ky-luc-ufotable /kimetsu-no-yaiba-vo-han-thanh-movie-1-trailer-release 301
+/en/kimetsu-no-yaiba-vo-han-thanh-movie-1-doanh-thu-ky-luc-ufotable /en/kimetsu-no-yaiba-vo-han-thanh-movie-1-trailer-release 301
+/demon-slayer-infinity-castle-trailer-chinh-thuc /kimetsu-no-yaiba-vo-han-thanh-movie-1-trailer-release 301
+/en/demon-slayer-infinity-castle-trailer-chinh-thuc /en/kimetsu-no-yaiba-vo-han-thanh-movie-1-trailer-release 301
+/frieren-season2 /frieren-phap-su-tien-tang-mua-2-trailer-aureole 301
+/en/frieren-season2 /en/frieren-phap-su-tien-tang-mua-2-trailer-aureole 301
+/jujutsu-kaisen-mua-3-culling-game-teaser /jujutsu-kaisen-season-3-culling-game-release 301
+/en/jujutsu-kaisen-mua-3-culling-game-teaser /en/jujutsu-kaisen-season-3-culling-game-release 301
+/jujutsu-kaisen-season-3-culling-game-teaser-trailer-lich-chieu /jujutsu-kaisen-season-3-culling-game-release 301
+/en/jujutsu-kaisen-season-3-culling-game-teaser-trailer-lich-chieu /en/jujutsu-kaisen-season-3-culling-game-release 301

@@ -6,7 +6,11 @@ window.IDX = [
     "date": "2026-09-23",
     "excerpt": "TGS 2026 diễn ra 17-20/9 tại Makuhari Messe thu hút 257.642 lượt tham dự, với Ace Combat 8, Crazy Taxi: World Tour, Gachiakuta: Breakout và STRANGER THAN HEAVEN.",
     "img": "/assets/img/placeholder.svg",
-    "tags": ["gaming", "tokyo game show", "ace combat"]
+    "tags": [
+      "gaming",
+      "tokyo game show",
+      "ace combat"
+    ]
   },
   {
     "title": "Jujutsu Kaisen Culling Game Phần 2: Teaser Visual Sukuna Gây Sốt Tại Juju Fes 2026",
@@ -15,7 +19,11 @@ window.IDX = [
     "date": "2026-09-23",
     "excerpt": "Tại Juju Fes 2026 kỷ niệm 5 năm anime, MAPPA tung teaser visual mới cho Culling Game Arc Phần 2, tập trung vào Sukuna.",
     "img": "/assets/img/news-jujutsu-kaisen-season3-culling-game.jpg",
-    "tags": ["anime", "jujutsu kaisen", "sukuna"]
+    "tags": [
+      "anime",
+      "jujutsu kaisen",
+      "sukuna"
+    ]
   },
   {
     "title": "Rò Rỉ Achievement Steam Chấn Động: Persona 6, Kingdom Hearts IV, Fable Lộ Diện",
@@ -24,7 +32,12 @@ window.IDX = [
     "date": "2026-09-23",
     "excerpt": "Sự cố backend Steam làm lộ achievement của khoảng 50 game chưa phát hành, bao gồm Persona 6, Kingdom Hearts IV, Fable và Metro 2039.",
     "img": "/assets/img/placeholder.svg",
-    "tags": ["gaming", "steam", "persona 6", "kingdom hearts"]
+    "tags": [
+      "gaming",
+      "steam",
+      "persona 6",
+      "kingdom hearts"
+    ]
   },
   {
     "title": "The Summer Hikaru Died Sẽ Kết Thúc Sau 2 Chương, Chốt Ngày 20/10",
@@ -101,11 +114,11 @@ window.IDX = [
     "tags": []
   },
   {
-    "title": "The One Piece: WIT Studio & Netflix Tung Trailer Chính Thức Đầu Tiên Về Arc East Blue",
+    "title": "The One Piece (Netflix x WIT): Teaser Ra Mắt 7/4/2026, Phát Hành Tháng 2/2027",
     "url": "/one-piece-remake-wit-studio-netflix-trailer-chinh-thuc",
     "cat": "Anime",
     "date": "2026-09-19",
-    "excerpt": "WIT Studio và Netflix chính thức phát hành đoạn trailer đầu tiên của The One Piece Remake, tái hiện arc East Blue bằng phong cách hoạt họa màu nước điện ảnh đỉnh cao.",
+    "excerpt": "Bản remake The One Piece do WIT Studio thực hiện cho Netflix tung teaser đầu tiên ngày 7/4/2026, dự kiến phát hành tháng 2/2027 với 7 tập, chuyển thể 50 chương đầu (East Blue).",
     "img": "/assets/img/news-one-piece-remake-wit-studio-netflix-trailer.jpg",
     "tags": [
       "anime",
@@ -188,31 +201,17 @@ window.IDX = [
     ]
   },
   {
-    "title": "Zenless Zone Zero 2.0: HoYoverse Khởi Động Kỷ Nguyên Outer Ring, Hoshimi Miyabi Xuất Trận",
+    "title": "Zenless Zone Zero 2.0 Ra Mắt 6/6/2025, Bản 2.1 Đưa Miyabi Và Yanagi Trở Lại",
     "url": "/zenless-zone-zero-2-0-outer-ring-miyabi-update",
     "cat": "Gaming",
     "date": "2026-09-19",
-    "excerpt": "Bản cập nhật lớn Zenless Zone Zero 2.0 mang tên Khúc Ca Sa Mạc chính thức ra mắt với vùng đất Outer Ring, cơ chế mô tô tốc độ cao và đặc vụ S-Rank Hoshimi Miyabi.",
+    "excerpt": "ZZZ 2.0 ra mắt ngày 6/6/2025; bản 2.1 (16/7/2025) có Yuzuha cùng bản rerun Miyabi ở phase 1 và Alice cùng rerun Yanagi ở phase 2. Đến 2026 game đã lên các bản muộn hơn.",
     "img": "/assets/img/news-zzz-20-outer-ring.jpg",
     "tags": [
       "gaming",
       "hot",
       "zzz",
       "hoyoverse"
-    ]
-  },
-  {
-    "title": "Jujutsu Kaisen Season 3: MAPPA Tung Teaser Tử Diệt Hồi Du (Culling Game), Định Ngày Lên Sóng",
-    "url": "/jujutsu-kaisen-season-3-culling-game-teaser-trailer-lich-chieu",
-    "cat": "Anime",
-    "date": "2026-09-19",
-    "excerpt": "Studio MAPPA chính thức hé lộ đoạn teaser đầu tiên cho Jujutsu Kaisen Mùa 3: Culling Game, hé lộ tạo hình tái xuất của Yuta Okkotsu, Kinji Hakari và cuộc thanh trừng sinh tử.",
-    "img": "/assets/img/news-jujutsu-kaisen-season3-culling-game.jpg",
-    "tags": [
-      "anime",
-      "hot",
-      "jjk",
-      "mappa"
     ]
   },
   {
@@ -227,34 +226,6 @@ window.IDX = [
       "hot",
       "nintendo",
       "switch2"
-    ]
-  },
-  
-  
-  {
-    "title": "Solo Leveling Season 2 \"Arise from the Shadow\": Shatters Global Streaming Records with Jeju Island Arc & Beru Climax",
-    "url": "/en/solo-leveling-season-2-jeju-island-shadow-army-record",
-    "cat": "Anime",
-    "date": "2026-09-16",
-    "excerpt": "Solo Leveling Season 2 breaks worldwide Crunchyroll viewership records as Sung Jin-woo unleashes the shadow army in the thrilling Jeju Island climax.",
-    "img": "/assets/img/news-solo-leveling-s2-jeju-beru.jpg",
-    "tags": [
-      "anime",
-      "hot",
-      "breaking"
-    ]
-  },
-  {
-    "title": "Solo Leveling Mùa 2 \"Arise from the Shadow\": Đột Phá Kỷ Lục Lượt Xem Toàn Cầu, Sung Jin-woo Triệu Hồi Quân Đoàn Bóng Tối Đảo Jeju",
-    "url": "/solo-leveling-season-2-jeju-island-shadow-army-record",
-    "cat": "Anime",
-    "date": "2026-09-16",
-    "excerpt": "Solo Leveling Mùa 2 xác lập kỷ lục phát trực tuyến toàn cầu mới trên Crunchyroll khi phân cảnh Sung Jin-woo giải phóng Quân đoàn bóng tối trên đảo Jeju đạt đỉnh cao thị giác.",
-    "img": "/assets/img/news-solo-leveling-s2-jeju-beru.jpg",
-    "tags": [
-      "anime",
-      "hot",
-      "breaking"
     ]
   },
   {
@@ -284,15 +255,6 @@ window.IDX = [
     ]
   },
   {
-    "title": "Bleach: Huyết Chiến Ngàn Năm Phần 4 – Pierrot Tung Trailer Đại Chiến Aizen, Ichigo & Yhwach",
-    "url": "/bleach-thousand-year-blood-war-cour-4-trailer-lich-chieu",
-    "cat": "Anime",
-    "date": "2026-09-07",
-    "excerpt": "Studio Pierrot chính thức tung trailer bùng nổ cho Bleach: Huyết Chiến Ngàn Năm Phần 4, mở màn trận đại chiến tối hậu giữa Ichigo, Aizen và Yhwach tại Linh Vương Cung.",
-    "img": "/assets/img/news-bleach-tybw-cour-4-trailer.jpg",
-    "tags": []
-  },
-  {
     "title": "Chainsaw Man Movie: Reze Arc – MAPPA Tung Trailer Mới, Hé Lộ Ca Khúc Chủ Đề & Lịch Chiếu Toàn Cầu",
     "url": "/chainsaw-man-movie-reze-arc-trailer-chinh-thuc-lich-chieu",
     "cat": "Anime",
@@ -308,11 +270,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Dandadan Mùa 2: Science SARU Tung Trailer Chính Thức Arc Evil Eye & Lịch Chiếu Netflix",
+    "title": "Dandadan Mùa 2: Ra Mắt 3/7/2025 Với Arc Cursed House Và Evil Eye",
     "url": "/dandadan-season-2-trailer-evil-eye-lich-chieu-netflix",
     "cat": "Anime",
     "date": "2026-09-07",
-    "excerpt": "Science SARU chính thức tung trailer bùng nổ cho Dandadan Mùa 2, mở màn arc Cung Điện Quỷ (Evil Eye Arc) với phong cách hình ảnh ảo giác và lịch chiếu Netflix toàn cầu.",
+    "excerpt": "Dandadan Mùa 2 lên sóng ngày 3/7/2025 trên Crunchyroll, Netflix, Hulu, chuyển thể arc Cursed House và Evil Eye; phim Dandadan: Evil Eye chiếu ngày 6/6/2025 tại Mỹ.",
     "img": "/assets/img/news-dandadan-season-2-evil-eye.jpg",
     "tags": []
   },
@@ -354,15 +316,6 @@ window.IDX = [
       "Anime 2026",
       "PS5 Pro"
     ]
-  },
-  {
-    "title": "Kimetsu no Yaiba: Vô Hạn Thành Phim 1 – Phá Kỷ Lục Doanh Thu Phòng Vé & Kỹ Xảo 3D Ufotable",
-    "url": "/kimetsu-no-yaiba-vo-han-thanh-movie-1-doanh-thu-ky-luc-ufotable",
-    "cat": "Anime",
-    "date": "2026-09-07",
-    "excerpt": "Phim điện ảnh Kimetsu no Yaiba: Vô Hạn Thành Phần 1 tạo nên cột mốc lịch sử với hơn 150 triệu USD doanh thu mở màn toàn cầu, khẳng định đẳng cấp hoạt họa 3D vô cực từ Ufotable.",
-    "img": "/assets/img/news-kimetsu-no-yaiba-infinity-castle-movie-1.jpg",
-    "tags": []
   },
   {
     "title": "LCK Mùa Hè 2026: Gen.G Vô Địch Playoffs, Hanwha Life Esports Về Nhì",
@@ -422,20 +375,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Zenless Zone Zero 2.2: Ra Mắt Yanagi Section 6, Mở Rộng Hollow Zero Vô Tận & Giftcode Mới",
-    "url": "/zenless-zone-zero-2-2-section-6-yanagi-hollow-zero",
-    "cat": "Gaming",
-    "date": "2026-09-07",
-    "excerpt": "HoYoverse công bố chi tiết bản cập nhật Zenless Zone Zero 2.2: Nhân vật cấp S Yanagi thuộc Section 6, mở rộng chế độ Hollow Zero vô tận và tặng 1600 Polychrome miễn phí.",
-    "img": "/assets/img/news-zzz-2-2-section6-yanagi.jpg",
-    "tags": []
-  },
-  {
-    "title": "Frieren: Pháp Sư Tiễn Táng Mùa 2 - Madhouse Tung Trailer Mới, Tiếp Nối Hành Trình Đến Vùng Đất Linh Hồn Aureole",
+    "title": "Frieren: Pháp Sư Tiễn Táng Mùa 2 Đã Phát Sóng Từ Tháng 1/2026 (10 Tập)",
     "url": "/frieren-phap-su-tien-tang-mua-2-trailer-aureole",
     "cat": "Anime",
     "date": "2026-09-05",
-    "excerpt": "Studio Madhouse và TOHO Animation chính thức tung trailer mới cho Frieren: Pháp Sư Tiễn Táng Mùa 2, ấn định hành trình vượt Cao Nguyên Phía Bắc tiến vào Aureole.",
+    "excerpt": "Frieren: Beyond Journey's End Mùa 2 do Madhouse sản xuất đã phát sóng vào mùa đông 2026 (tháng 1–3) với 10 tập.",
     "img": "/assets/img/news-frieren-season-2-official-visual.jpg",
     "tags": [
       "Frieren",
@@ -446,11 +390,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Honkai: Star Rail 3.0: HoYoverse Công Bố Thế Giới Mới Amphoreus &amp; Hệ Thống Ký Ức",
+    "title": "Honkai: Star Rail 3.0 Ra Mắt 15/1/2025, Mở Ra Thế Giới Amphoreus",
     "url": "/honkai-star-rail-3-0-amphoreus-banner-cyrene-trailer",
     "cat": "Gaming",
     "date": "2026-09-05",
-    "excerpt": "HoYoverse chính thức công bố bản cập nhật Honkai: Star Rail 3.0 với thế giới thần thoại Amphoreus, cơ chế Vận Mệnh Ký Ức hoàn toàn mới và dàn nhân vật 5 sao đỉnh cao.",
+    "excerpt": "Honkai: Star Rail 3.0 ra mắt ngày 15/1/2025 với thế giới Amphoreus, Path of Remembrance và ba nhân vật mới; nhiệm vụ Amphoreus trải dài từ bản 3.0 đến 3.7.",
     "img": "/assets/img/news-honkai-star-rail-30-amphoreus.jpg",
     "tags": [
       "Honkai: Star Rail",
@@ -461,11 +405,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Bleach TYBW Part 4 &quot;The Farewell&quot;: Studio Pierrot Hé Lộ Trailer Khốc Liệt, Quyết Đấu Yhwach Tháng 10",
+    "title": "Bleach: TYBW – The Calamity Lên Sóng 25/7/2026, 10 Tập, Kết Thúc 26/9",
     "url": "/bleach-thousand-year-blood-war-part-4-the-farewell-release-date",
     "cat": "Anime",
     "date": "2026-09-04",
-    "excerpt": "Hồi kết vĩ đại của Huyết Chiến Ngàn Năm chuẩn bị bùng nổ: Bankai chưa từng thấy của Tite Kubo, trận quyết đấu tối hậu tại Cung Điện Linh Vương và hoạt họa đỉnh cao từ Pierrot Films.",
+    "excerpt": "Phần cuối Bleach: Thousand-Year Blood War – The Calamity lên sóng ngày 25/7/2026 (Hulu ở Mỹ, Disney+ quốc tế), mỗi thứ Bảy, tập 10 và cũng là tập cuối phát sóng ngày 26/9/2026.",
     "img": "/assets/img/news-bleach-tybw-part4-farewell.jpg",
     "tags": [
       "Bleach",
@@ -478,11 +422,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Kimetsu no Yaiba: Vô Hạn Thành - Ufotable Công Bố Trailer &amp; Lịch Chiếu Toàn Cầu",
+    "title": "Kimetsu no Yaiba: Vô Hạn Thành Phần 1 Ra Rạp Nhật 18/7/2025, Doanh Thu Vượt 1 Tỷ USD",
     "url": "/kimetsu-no-yaiba-vo-han-thanh-movie-1-trailer-release",
     "cat": "Anime",
     "date": "2026-09-04",
-    "excerpt": "Ufotable chính thức công bố trailer đầu tiên cho Movie 1 thuộc bộ ba phim điện ảnh Vô Hạn Thành, tái hiện trận đại chiến sinh tử giữa Sát Quỷ Đoàn và Chúa Quỷ Muzan Kibutsuji với định dạng IMAX và 4DX.",
+    "excerpt": "Demon Slayer: Infinity Castle – Phần 1: Akaza Returns ra rạp Nhật ngày 18/7/2025, lập kỷ lục doanh thu ngày đầu, chiếu ở Mỹ/Anh 12/9/2025 và vượt 1 tỷ USD toàn cầu.",
     "img": "/assets/img/news-demon-slayer-infinity-castle-official.jpg",
     "tags": [
       "Kimetsu no Yaiba",
@@ -509,24 +453,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Zenless Zone Zero 2.0: Mở Rộng Đại Đô Thị Outer Ring, Phe Phái Sons of Calydon &amp; Chế Độ Co-op 4 Người",
-    "url": "/zenless-zone-zero-20-new-eridu-outer-ring",
-    "cat": "Gaming",
-    "date": "2026-09-04",
-    "excerpt": "HoYoverse chính thức công bố bản cập nhật thế kỷ 2.0 cho ZZZ: Đại sa mạc Outer Ring, dàn nhân vật Caesar &amp; Burnice cùng chế độ săn Boss tổ đội 4 người thời gian thực.",
-    "img": "/assets/img/news-zzz-20-outer-ring.jpg",
-    "tags": [
-      "Gaming",
-      "OtaHub News",
-      "Tiêu Điểm"
-    ]
-  },
-  {
-    "title": "Chainsaw Man Chapter 180: Sự Xuất Hiện Của Quỷ Cái Chết (Death Devil) &amp; Bước Ngoặt Cực Đoan Của Denji",
+    "title": "Chainsaw Man: Part 2 Kết Thúc Ở Chương 232 (24/3/2026), Chưa Có Part 3",
     "url": "/chainsaw-man-chapter-180-death-devil",
     "cat": "Manga",
     "date": "2026-09-03",
-    "excerpt": "Tác giả Tatsuki Fujimoto khiến độc giả toàn cầu bàng hoàng khi triệu hồi Tứ Kỵ Sĩ Khải Huyền mạnh nhất, mở ra hồi kết nghẹt thở của Chainsaw Man Part 2.",
+    "excerpt": "Manga Chainsaw Man Part 2 của Tatsuki Fujimoto kết thúc ở chương 232 ngày 24/3/2026 sau 135 chương; tập cuối phát hành 4/6/2026 và chưa có kế hoạch Part 3.",
     "img": "/assets/img/news-chainsaw-man-death-devil.jpg",
     "tags": [
       "Chainsaw Man",
@@ -538,11 +469,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Solo Leveling Season 2 &quot;Arise from the Shadow&quot;: A-1 Pictures Tung Trailer Đảo Jeju &amp; Khẩu Lệnh &quot;Arise&quot;",
+    "title": "Solo Leveling Mùa 2 \"Arise from the Shadow\": 13 Tập, Phát Sóng 5/1–30/3/2025",
     "url": "/solo-leveling-season-2-arise-from-the-shadow-premiere",
     "cat": "Anime",
     "date": "2026-09-03",
-    "excerpt": "Sung Jinwoo thức tỉnh toàn bộ quyền năng Hoàng Đế Bóng Tối, dẫn dắt đội quân bóng ma tiến vào chiến dịch Đảo Jeju khốc liệt nhất lịch sử Thợ Săn.",
+    "excerpt": "Solo Leveling Mùa 2 do A-1 Pictures sản xuất (đạo diễn Shunsuke Nakashige) phát sóng độc quyền trên Crunchyroll từ 5/1 đến 30/3/2025, gồm 13 tập, mở đầu từ chương 46 với Red Gate.",
     "img": "/assets/img/news-solo-leveling-season-2-arise.jpg",
     "tags": [
       "Solo Leveling",
@@ -555,11 +486,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Wuthering Waves 2.0: Bờ Biển Đen Mở Rộng, Ra Mắt Shorekeeper &amp; Hỗ Trợ 120 FPS PC",
+    "title": "Wuthering Waves 2.0 Ra Mắt 2/1/2025 Với Rinascita; Bản 3.6 Ra Mắt 20/8/2026",
     "url": "/wuthering-waves-2-0-the-black-shores-camellya-update",
     "cat": "Gaming",
     "date": "2026-09-03",
-    "excerpt": "Kuro Games chính thức công bố phiên bản 2.0 The Black Shores (Bờ Biển Đen) cho Wuthering Waves với nhân vật 5 sao Shorekeeper, bản đồ quần đảo ngầm và mở khóa 120 FPS trên PC.",
+    "excerpt": "Wuthering Waves 2.0 (Rinascita) ra mắt 2/1/2025. Bản 3.6 ra mắt 20/8/2026 với Ren Realm, Sword Flight, Guqin Performance và hai Resonator 5 sao Qingxiao, Jingran.",
     "img": "/assets/img/news-wuthering-waves-black-shores-shorekeeper.jpg",
     "tags": [
       "Wuthering Waves",
@@ -604,11 +535,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Jujutsu Kaisen Đi Tới Hồi Kết: Gege Akutami Xác Nhận Đại Kết Cục &amp; Epilogue 5 Chương Đặc Biệt",
+    "title": "Jujutsu Kaisen: Manga Kết Thúc Ở Chương 271 (30/9/2024)",
     "url": "/jujutsu-kaisen-chapter-271-final-climax-epilogue",
     "cat": "Manga",
     "date": "2026-09-01",
-    "excerpt": "Sau 6 năm khuấy đảo toàn cầu, tác phẩm shonen đình đám Chú Thuật Hồi Chiến chính thức ấn định ngày phát hành chương cuối cùng trên tạp chí Weekly Shonen Jump.",
+    "excerpt": "Manga Jujutsu Kaisen của Gege Akutami kết thúc ở chương 271 \"From Now On\", đăng ngày 30/9/2024 sau 6 năm; hai tập cuối 29 và 30 phát hành cùng lúc ngày 25/12/2024 tại Nhật.",
     "img": "/assets/img/news-jjk-chapter-271-climax-epilogue.jpg",
     "tags": [
       "Jujutsu Kaisen",
@@ -621,28 +552,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "THE ONE PIECE: WIT Studio Tung Teaser Đầu Tiên Về East Blue Remake Với Hoạt Họa 4K Chuẩn Điện Ảnh",
-    "url": "/one-piece-anime-remake-wit-studio-trailer",
-    "cat": "Anime",
-    "date": "2026-08-31",
-    "excerpt": "Dự án làm lại toàn bộ hành trình Vua Hải Tặc từ East Blue do WIT Studio và Netflix hợp tác sản xuất chính thức vén màn tạo hình Luffy, Zoro, Nami cực kỳ trau chuốt.",
-    "img": "/assets/img/news-one-piece-wit-remake-teaser.jpg",
-    "tags": [
-      "The One Piece",
-      "WIT Studio",
-      "Netflix",
-      "Eiichiro Oda",
-      "East Blue",
-      "Luffy",
-      "Anime 2026"
-    ]
-  },
-  {
-    "title": "Elden Ring: Nightreign: FromSoftware Bất Ngờ Công Bố Dự Án Spin-Off Sinh Tồn Co-op Độc Lập",
+    "title": "Elden Ring Nightreign: Công Bố Tại The Game Awards 2024, Ra Mắt 30/5/2025",
     "url": "/elden-ring-nightreign-coop-multiplayer-reveal",
     "cat": "Gaming",
     "date": "2026-08-30",
-    "excerpt": "Hidetaka Miyazaki tiếp tục mở rộng vũ trụ Vùng Đất Giữa (Lands Between) với tựa game hành động co-op độc lập tập trung vào đêm vĩnh cửu và quái vật bóng tối.",
+    "excerpt": "Elden Ring Nightreign là game co-op độc lập (tối đa 3 người) của FromSoftware, công bố tại The Game Awards 2024 và ra mắt ngày 30/5/2025 trên PS4, PS5, Xbox và Steam.",
     "img": "/assets/img/news-elden-ring-nightreign-coop.jpg",
     "tags": [
       "Elden Ring",
@@ -654,7 +568,6 @@ window.IDX = [
       "Gaming 2026"
     ]
   },
-  
   {
     "title": "Call of Duty: Modern Warfare 4 Cho Chơi Thử Multiplayer Tại Gamescom 2026, Xác Nhận Ra Mắt Trên Nintendo Switch 2",
     "url": "/call-of-duty-modern-warfare-4-gamescom-playable",
@@ -877,11 +790,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Jujutsu Kaisen Mùa 3 Culling Game: Lịch Chiếu Chính Thức, Nhân Vật Mới &amp; Dự Đoán Trận Chiến",
+    "title": "Jujutsu Kaisen Mùa 3 – Culling Game Phần 1: Đã Phát Sóng Tháng 1–3/2026 (12 Tập)",
     "url": "/jujutsu-kaisen-season-3-culling-game-release",
     "cat": "Anime",
     "date": "2026-08-25",
-    "excerpt": "Arc Trò Chơi Tử Thần (Culling Game) chính thức lên sóng từ tháng 1/2026, đánh dấu sự tái xuất của Okkotsu Yuta và Hakari Kinji trong giai đoạn đen tối nhất của Jujutsu Kaisen.",
+    "excerpt": "Jujutsu Kaisen Mùa 3 (Culling Game Phần 1) do MAPPA sản xuất đã phát sóng vào mùa đông 2026 với 12 tập; Phần 2 đang được sản xuất, chưa công bố ngày phát sóng.",
     "img": "/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg",
     "tags": [
       "Jujutsu Kaisen",
@@ -983,21 +896,6 @@ window.IDX = [
     ]
   },
   {
-    "title": "Honkai: Star Rail Công Bố Phiên Bản 3.1: Mở Rộng Thế Giới Amphoreus Và Banner Nhân Vật 5 Sao Cyrene",
-    "url": "/honkai-star-rail-ban-cap-nhat-amphoreus-banner-cyrene",
-    "cat": "Gaming",
-    "date": "2026-08-24",
-    "excerpt": "HoYoverse mang đến phân khu thần thoại Hy Lạp cổ đại Amphoreus mới, cơ chế Vòng Xoáy Ký Ức và banner đặc biệt nhân vật 5 sao Cyrene trong bản cập nhật 3.1.",
-    "img": "/assets/img/news-honkai-star-rail-31-amphoreus.jpg",
-    "tags": [
-      "Honkai Star Rail",
-      "Mobile Games",
-      "Cyrene",
-      "HoYoverse",
-      "Gacha"
-    ]
-  },
-  {
     "title": "Honor of Kings Global Khởi Động Mùa Giải Mới: Ra Mắt Tướng Sát Thủ Lanling Wang Và Đại Tu Bản Đồ Rừng",
     "url": "/honor-of-kings-global-mua-giai-moi-tuong-lan-ling-wang",
     "cat": "Gaming",
@@ -1010,21 +908,6 @@ window.IDX = [
       "MOBA",
       "Lanling Wang",
       "Esports"
-    ]
-  },
-  {
-    "title": "Jujutsu Kaisen Mùa 3 (Culling Game Arc) Tung Teaser Trailer Đầu Tiên: MAPPA Ấn Định Lên Sóng Đầu Năm 2027",
-    "url": "/jujutsu-kaisen-mua-3-culling-game-teaser",
-    "cat": "Anime",
-    "date": "2026-08-24",
-    "excerpt": "MAPPA làm nức lòng người hâm mộ anime toàn cầu khi hé lộ teaser trailer đầu tiên của Jujutsu Kaisen Mùa 3, đưa khán giả bước vào đấu trường sinh tử Culling Game.",
-    "img": "/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg",
-    "tags": [
-      "Jujutsu Kaisen",
-      "Season 3",
-      "Culling Game",
-      "MAPPA",
-      "Yuta Okkotsu"
     ]
   },
   {
@@ -1115,21 +998,6 @@ window.IDX = [
     ]
   },
   {
-    "title": "Zenless Zone Zero Bản 2.0 'Kỳ Nghỉ Trên Mặt Trăng': HoYoverse Giới Thiệu Phe Mới Hoshimi Miyabi và Vùng Đất Hollow Zero Mở Rộng",
-    "url": "/zenless-zone-zero-20-hoshimi-miyabi",
-    "cat": "Gaming",
-    "date": "2026-08-24",
-    "excerpt": "HoYoverse làm bùng nổ làng game gacha khi công bố phiên bản 2.0 Zenless Zone Zero, bổ sung phân khu không gian siêu thực và banner đặc vụ S-Rank Hoshimi Miyabi.",
-    "img": "/assets/img/news-zenless-zone-zero-20-miyabi.jpg",
-    "tags": [
-      "Zenless Zone Zero",
-      "HoYoverse",
-      "Hoshimi Miyabi",
-      "Gacha Game",
-      "Mobile Game"
-    ]
-  },
-  {
     "title": "One Piece Chính Thức Công Bố 2 Phim Điện Ảnh Mới: God Valley (2027) Và BAAD (2029), Lần Đầu Chuyển Thể Canon Sau 26 Năm",
     "url": "/one-piece-god-valley-baad-films-announced",
     "cat": "Anime",
@@ -1144,22 +1012,6 @@ window.IDX = [
       "Rocks D. Xebec",
       "Gol D. Roger",
       "Anime Movie"
-    ]
-  },
-  
-  {
-    "title": "Demon Slayer: Infinity Castle Part 1 Tung Trailer 3 Phút Mãn Nhãn, Ấn Định Chiếu Rạp Toàn Cầu",
-    "url": "/demon-slayer-infinity-castle-trailer-chinh-thuc",
-    "cat": "Anime",
-    "date": "2026-08-22",
-    "excerpt": "ufotable chính thức tung trailer điện ảnh 3 phút cho Demon Slayer: Infinity Castle Part 1, ấn định chiếu rạp toàn cầu định dạng IMAX và Dolby Cinema.",
-    "img": "/assets/img/news-demon-slayer-infinity-castle-trailer.jpg",
-    "tags": [
-      "Demon Slayer",
-      "Kimetsu no Yaiba",
-      "Infinity Castle",
-      "ufotable",
-      "Tanjiro"
     ]
   },
   {
@@ -2748,22 +2600,6 @@ window.IDX = [
     ]
   },
   {
-    "title": "Solo Leveling Mùa 2: Jeju Island Và Hành Trình Vươn Đến Đỉnh Cao",
-    "url": "/solo-leveling-season2",
-    "cat": "Anime",
-    "date": "2026-06-19",
-    "excerpt": "Jeju Island, nơi Sung Jinwoo chứng tỏ sức mạnh Shadow Monarch của mình trước toàn thế giới và bắt đầu hành trình đối đầu với những thế lực vũ trụ.",
-    "img": "/assets/img/d98cf42206-maxresdefault.jpg",
-    "tags": [
-      "Solo Leveling",
-      "A-1 Pictures",
-      "Anime 2026",
-      "Manhwa",
-      "Sung Jinwoo",
-      "Crunchyroll"
-    ]
-  },
-  {
     "title": "Anime Mùa Hè 2026: Lịch Phát Sóng Và Những Tựa Đáng Xem Nhất",
     "url": "/anime-mua-he-2026",
     "cat": "Anime",
@@ -2777,22 +2613,6 @@ window.IDX = [
       "Frieren",
       "Kaiju No 8",
       "Summer Anime"
-    ]
-  },
-  {
-    "title": "Frieren: Beyond Journey's End Mùa 2 Trở Lại",
-    "url": "/frieren-season2",
-    "cat": "Anime",
-    "date": "2026-06-18",
-    "excerpt": "Frieren Season 2 không chỉ là anime đẹp, nó là một bài suy ngẫm về thời gian, ký ức và ý nghĩa của những mối quan hệ khi một bên sống mãi mãi.",
-    "img": "/assets/img/3f4f599cac-frieren-s2-hero.jpg",
-    "tags": [
-      "Frieren",
-      "Fantasy Anime",
-      "Madhouse",
-      "Slow Life",
-      "Fern",
-      "Stark"
     ]
   },
   {
@@ -2871,23 +2691,6 @@ window.IDX = [
       "FromSoftware",
       "Tarnished Pack",
       "Soulslike"
-    ]
-  },
-  {
-    "title": "Honkai: Star Rail 3.0, Amphoreus Và Kỷ Nguyên Mới",
-    "url": "/honkai-star-rail-30",
-    "cat": "Gaming",
-    "date": "2026-06-11",
-    "excerpt": "Amphoreus, hành tinh của những vị thần và anh hùng cổ đại, mở ra chương mới hùng tráng nhất trong lịch sử Honkai: Star Rail.",
-    "img": "/assets/img/b67b849f0b-library_hero.jpg",
-    "tags": [
-      "Honkai Star Rail",
-      "HoYoverse",
-      "Gacha",
-      "Amphoreus",
-      "RPG",
-      "F2P",
-      "HSR"
     ]
   },
   {
