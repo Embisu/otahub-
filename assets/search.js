@@ -5,7 +5,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-23",
     "excerpt": "TGS 2026 diễn ra 17-20/9 tại Makuhari Messe thu hút 257.642 lượt tham dự, với Ace Combat 8, Crazy Taxi: World Tour, Gachiakuta: Breakout và STRANGER THAN HEAVEN.",
-    "img": "/assets/img/placeholder.svg",
+    "img": "/assets/img/cover-tokyo-game-show-2026-roundup.jpg",
     "tags": [
       "gaming",
       "tokyo game show",
@@ -31,7 +31,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-23",
     "excerpt": "Sự cố backend Steam làm lộ achievement của khoảng 50 game chưa phát hành, bao gồm Persona 6, Kingdom Hearts IV, Fable và Metro 2039.",
-    "img": "/assets/img/placeholder.svg",
+    "img": "/assets/img/cover-steam-achievement-leak-persona-6-kingdom-hearts-4.jpg",
     "tags": [
       "gaming",
       "steam",
@@ -45,7 +45,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-09-23",
     "excerpt": "Manga kinh dị The Summer Hikaru Died của Mokumokuren sẽ khép lại sau 2 chương cuối: chapter 50 ngày 13/10 và chapter 51 (chương cuối) ngày 20/10/2026.",
-    "img": "/assets/img/placeholder.svg",
+    "img": "/assets/img/cover-steam-achievement-leak-persona-6-kingdom-hearts-4.jpg",
     "tags": [
       "The Summer Hikaru Died",
       "Mokumokuren",
@@ -58,7 +58,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-09-23",
     "excerpt": "Hunter x Hunter chapter 419 phát hành ngày 30/8/2026, tiếp nối chuỗi trở lại từ tháng 6/2026 của Togashi. Bộ truyện sẽ rời Weekly Shonen Jump sau chapter 420.",
-    "img": "/assets/img/placeholder.svg",
+    "img": "/assets/img/cover-hunter-x-hunter-chapter-419-tro-lai.jpg",
     "tags": [
       "Hunter x Hunter",
       "Togashi",
@@ -443,7 +443,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-03",
     "excerpt": "Wuthering Waves 2.0 (Rinascita) ra mắt 2/1/2025. Bản 3.6 ra mắt 20/8/2026 với Ren Realm, Sword Flight, Guqin Performance và hai Resonator 5 sao Qingxiao, Jingran.",
-    "img": "/assets/img/news-wuthering-waves-black-shores-shorekeeper.jpg",
+    "img": "/assets/img/cover-wuthering-waves-2-0-the-black-shores-camellya-update.jpg",
     "tags": [
       "Wuthering Waves",
       "Kuro Games",
@@ -2466,11 +2466,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Anime Mùa Hè 2026: Lịch Phát Sóng Và Những Tựa Đáng Xem Nhất",
+    "title": "Anime Mùa Hè 2026: Những Bộ Đáng Xem Và Lịch Phát Sóng (7–9/2026)",
     "url": "/anime-mua-he-2026",
     "cat": "Anime",
     "date": "2026-06-18",
-    "excerpt": "Mùa hè 2026 đánh dấu sự trở lại của những franchise lớn cùng lúc, hiếm khi nào mùa hè lại được mong đợi nhiều đến vậy.",
+    "excerpt": "Tổng hợp anime mùa hè 2026: Mushoku Tensei S3, The Ghost in the Shell (Science SARU), Youjo Senki II, Bleach: The Calamity, Re:Zero S4 Recapture Part cùng lịch phát sóng đã xác minh.",
     "img": "/assets/img/10728427f3-chainsaw-man-hero.jpg",
     "tags": [
       "Anime 2026",

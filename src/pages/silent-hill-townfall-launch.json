@@ -22,7 +22,7 @@
   "relatedArticles": [
     { "url": "/silent-hill-townfall-gameplay", "img": "/assets/img/news-silent-hill-townfall-gameplay.jpg", "alt": "Silent Hill Townfall Gameplay", "width": 1920, "height": 850, "cat": "Gaming", "title": "Silent Hill: Townfall Hé Lộ Bối Cảnh Scotland 1996" },
     { "url": "/marvel-wolverine-review-roundup", "img": "/assets/img/news-marvel-wolverine-story-trailer.jpg", "alt": "Marvel's Wolverine Review", "width": 1920, "height": 850, "cat": "Gaming", "title": "Marvel's Wolverine Ra Mắt: Chiến Đấu Tàn Bạo Nhưng Cốt Truyện Tuyến Tính" },
-    { "url": "/resident-evil-9-announcement", "img": "/assets/img/placeholder.svg", "alt": "Resident Evil 9", "width": 1920, "height": 850, "cat": "Gaming", "title": "Resident Evil Requiem: Tất Cả Những Gì Cần Biết" }
+    { "url": "/resident-evil-9-announcement", "img": "/assets/img/news-silent-hill-townfall-gameplay.jpg", "alt": "Resident Evil 9", "width": 1920, "height": 850, "cat": "Gaming", "title": "Resident Evil Requiem: Tất Cả Những Gì Cần Biết" }
   ],
   "tags": [
     { "url": "/gaming", "label": "Silent Hill" },
