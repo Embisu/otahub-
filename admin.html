@@ -10869,6 +10869,41 @@ function syncArticleBodyToTextarea() {
   }
 }
 
+// Ảnh dán thẳng vào editor thường là base64 (mỗi ảnh vài MB, làm trang nặng hàng chục MB).
+// Trước khi lưu: đổi mỗi ảnh base64 thành file JPEG (tối đa 1200px) trong assets/img/uploads và thay bằng URL.
+async function externalizeInlineImages(html) {
+  const re = /data:image\/(?:png|jpe?g|webp|gif);base64,[A-Za-z0-9+\/=]+/g;
+  const found = [...new Set(html.match(re) || [])];
+  if (!found.length) return html;
+  toast('info', '🖼️ Đang tối ưu ' + found.length + ' ảnh dán trực tiếp...');
+  let i = 0;
+  for (const dataUrl of found) {
+    i++;
+    try {
+      const blob = await (await fetch(dataUrl)).blob();
+      const bmp = await createImageBitmap(blob);
+      const scale = Math.min(1, 1200 / bmp.width);
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(bmp.width * scale);
+      canvas.height = Math.round(bmp.height * scale);
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(bmp, 0, 0, canvas.width, canvas.height);
+      const jpg = await new Promise(res => canvas.toBlob(res, 'image/jpeg', 0.82));
+      const b64 = await new Promise(res => { const r = new FileReader(); r.onload = () => res(String(r.result).split(',')[1]); r.readAsDataURL(jpg); });
+      const name = 'inline-' + Date.now().toString(36) + '-' + i + '.jpg';
+      const path = 'assets/img/uploads/' + name;
+      const r = await fetch('/api/admin/gh/' + path, { method: 'PUT', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ content: b64, message: 'anh dan truc tiep trong bai viet' }) });
+      if (!r.ok) throw new Error('upload ' + r.status);
+      html = html.split(dataUrl).join('/' + path);
+    } catch (e) {
+      console.warn('Không tối ưu được ảnh base64:', e);
+    }
+  }
+  return html;
+}
+
 async function saveArticle() {
   syncArticleFieldsFromIframe();
   syncArticleBodyToTextarea();
@@ -10928,6 +10963,7 @@ async function saveArticle() {
       if (!html || html.length < 200 || !/<html/i.test(html)) html = currentRawHtml;
     }
     html = applyArticleEditsToHtml(html);
+    html = await externalizeInlineImages(html);
     if (!html || html.length < 500 || !/<html/i.test(html)) throw new Error('Nội dung bài viết trống bất thường — đã chặn lưu để tránh mất bài. Hãy tải lại trang admin rồi thử lại.');
 
     const putResult = await ghPut(currentFile, html, sha, `[admin] cap nhat: ${title.slice(0,50)}`);
@@ -10957,7 +10993,11 @@ async function saveArticle() {
 
     toast('success', '✅ Đã lưu và deploy! Chờ ~1-2 phút để live.');
 
-    if (isNewFile && confirm('Bài viết mới đã được lưu.\n\nBạn có muốn tự động thêm bài này vào Trang chủ, trang chuyên mục, Tìm kiếm, RSS và Sitemap không?')) {
+    let needSync = isNewFile;
+    if (!needSync) {
+      try { const sj = await (await fetch('/assets/search.js?nocache=' + Date.now(), { cache: 'no-store' })).text(); needSync = !sj.includes('"/' + currentFile.replace(/\.html$/, '') + '"'); } catch (e) {}
+    }
+    if (needSync && confirm('Bài viết đã được lưu.\n\nBạn có muốn tự động thêm bài này vào Trang chủ, trang chuyên mục, Tìm kiếm, RSS và Sitemap không?')) {
       await syncNewArticle({ file: currentFile, title, desc, cat, hero });
     }
   } catch(e) {
@@ -13486,6 +13526,36 @@ async function syncNewArticle(art) {
       await ghPut('sitemap.xml', sitemapXml, sitemapData.sha, `[admin] them /${slug} vao sitemap`);
     }
 
+    // 2b. RSS (feed.xml), JSON Feed (feed.json) và Google News sitemap
+    try {
+      const nowIso = new Date().toISOString();
+      const imgAbs = hero ? (hero.startsWith('http') ? hero : 'https://otahub.asia' + (hero.startsWith('/') ? '' : '/') + hero) : '';
+      const xmlEsc = (t) => String(t || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const urlAbs = 'https://otahub.asia/' + slug;
+      const feedX = await ghGet('feed.xml');
+      let fx = decodeURIComponent(escape(atob(feedX.content.replace(/\s/g, ''))));
+      if (!fx.includes('<link>' + urlAbs + '</link>') && fx.includes('<item>')) {
+        const item = '  <item>\n    <title>' + xmlEsc(title) + '</title>\n    <link>' + urlAbs + '</link>\n    <guid isPermaLink="true">' + urlAbs + '</guid>\n    <pubDate>' + new Date().toUTCString() + '</pubDate>\n    <description>' + xmlEsc(desc) + '</description>\n' + (imgAbs ? '    <media:content url="' + xmlEsc(imgAbs) + '" medium="image"/>\n' : '') + '  </item>\n';
+        const p = fx.indexOf('  <item>');
+        fx = fx.slice(0, p) + item + fx.slice(p);
+        await ghPut('feed.xml', fx, feedX.sha, '[admin] them /' + slug + ' vao feed.xml');
+      }
+      const feedJ = await ghGet('feed.json');
+      const fj = JSON.parse(decodeURIComponent(escape(atob(feedJ.content.replace(/\s/g, '')))));
+      if (Array.isArray(fj.items) && !fj.items.some(i => i.url === urlAbs)) {
+        fj.items.unshift({ id: urlAbs, url: urlAbs, title, content_text: desc || title, image: imgAbs, date_published: nowIso });
+        await ghPut('feed.json', JSON.stringify(fj, null, 2), feedJ.sha, '[admin] them /' + slug + ' vao feed.json');
+      }
+      const smN = await ghGet('sitemap-news.xml');
+      let sn = decodeURIComponent(escape(atob(smN.content.replace(/\s/g, ''))));
+      if (!sn.includes('<loc>' + urlAbs + '</loc>') && sn.includes('<url>')) {
+        const entry = '<url><loc>' + urlAbs + '</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>' + nowIso + '</news:publication_date><news:title>' + xmlEsc(title) + '</news:title></news:news></url>\n';
+        const p = sn.indexOf('<url>');
+        sn = sn.slice(0, p) + entry + sn.slice(p);
+        await ghPut('sitemap-news.xml', sn, smN.sha, '[admin] them /' + slug + ' vao sitemap-news.xml');
+      }
+    } catch(e) { console.warn('Feed sync error:', e); }
+
     // 3. Update Category Hub (gaming.html / anime.html / manga.html)
     let targetHub = 'gaming.html';
     const c = (cat || '').toLowerCase();
@@ -13548,10 +13618,11 @@ async function syncNewArticle(art) {
         }
       }
       
-      const latestMatch = homeHtml.match(/(<div class="latest-wrap">[\s\S]*?<div class="latest-col">)([\s\S]*?)(<\/div>\s*<aside class="latest-side">)/);
-      if (latestMatch && !latestMatch[2].includes(`href="/${slug}"`)) {
-        const wCard = `\n        <article class="w-card">\n          <a href="/${slug}">\n            <img src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy">\n          </a>\n          <div class="wc-body">\n            <span class="wc-c">${esc(cat || 'Gaming')}</span>\n            <h3 class="wc-t"><a href="/${slug}">${esc(title)}</a></h3>\n            <div class="wc-m"><span>OtaHub</span> · <span>Vừa xong</span></div>\n          </div>\n        </article>\n`;
-        homeHtml = homeHtml.replace(latestMatch[0], `${latestMatch[1]}${wCard}${latestMatch[2]}${latestMatch[3]}`);
+      const latestMatch = homeHtml.match(/(<div class="latest-wrap">\s*<div>\s*)/);
+      if (latestMatch && !homeHtml.includes('<article class="w-card"><a href="/' + slug + '"')) {
+        const dd = new Date().toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        const wCard = '<article class="w-card"><a href="/' + slug + '" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">' + esc(cat || 'Gaming') + '</div><div class="wc-t">' + esc(title) + '</div><div class="wc-m">OtaHub Editorial · ' + dd + '</div></div><div class="wc-thumb"><img src="' + (hero || '/assets/img/placeholder.svg') + '" alt="' + esc(title) + '" loading="lazy" width="1200" height="675"></div></a></article>\n      ';
+        homeHtml = homeHtml.replace(latestMatch[0], () => latestMatch[1] + wCard);
       }
       await ghPut('index.html', homeHtml, homeData.sha, `[admin] don tin /${slug} len index.html`);
     } catch(e) { console.warn('Home sync error:', e); }
