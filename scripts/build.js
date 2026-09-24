@@ -124,13 +124,16 @@ function jsonLdBreadcrumb(page) {
 function renderArticlePage(page) {
   const titleFull = `${page.title} · OtaHub`;
   const fullUrl = `https://otahub.asia${page.canonical}`;
+  // Chỉ khai báo hreflang="en" khi thật sự có bản EN (page.enSlug cho phép EN dùng slug khác với VI)
+  const enSlug = page.enSlug || page.canonical.replace(/^\//, '');
+  const hreflangEn = fs.existsSync(path.join(ROOT, 'en', enSlug + '.html')) ? `<link rel="alternate" hreflang="en" href="https://otahub.asia/en/${enSlug}">` : '';
 
   const head = `<title>${esc(titleFull)}</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="${esc(page.description)}">
 <meta name="author" content="OtaHub Editorial">
-<link rel="alternate" hreflang="vi" href="${fullUrl}"><link rel="alternate" hreflang="en" href="https://otahub.asia/en${page.canonical}"><link rel="alternate" hreflang="x-default" href="${fullUrl}"><link rel="canonical" href="${fullUrl}">
+<link rel="alternate" hreflang="vi" href="${fullUrl}">${hreflangEn}<link rel="alternate" hreflang="x-default" href="${fullUrl}"><link rel="canonical" href="${fullUrl}">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta property="og:type" content="article">
 <meta property="og:title" content="${esc(titleFull)}">
