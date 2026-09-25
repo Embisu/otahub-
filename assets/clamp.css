@@ -1,0 +1,14 @@
+/* Giới hạn độ dài tiêu đề/mô tả hiển thị để không tràn khung (đặc biệt trên mobile) */
+.sa-t,.wc-t,.fc-title,.sc-title,.ac-title,.sb-t,.mi-title,.rk-title,.tag-card-title,.csc-title,.cs-pick-title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.h-title{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.h-sub{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.art-hero-title{overflow-wrap:anywhere}
+@media(max-width:768px){
+  .h-title{-webkit-line-clamp:3;font-size:clamp(19px,5.4vw,26px)!important}
+  .h-sub{-webkit-line-clamp:2}
+  .hero-main{min-height:0!important}
+  .art-hero-title{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;font-size:clamp(20px,6vw,26px)!important;line-height:1.22!important}
+  .art-hero-excerpt{display:none!important}
+  .highlight-box .hb-text{font-size:15px!important;line-height:1.65!important}
+  .sa-t,.wc-t,.ac-title{-webkit-line-clamp:2}
+}
