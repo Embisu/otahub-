@@ -1,5 +1,57 @@
 window.IDX = [
   {
+    "title": "Anime Chiikawa Tạm Ngừng Tập Mới, Phát Lại 25 Tập Đến 25/12",
+    "url": "/chiikawa-anime-tam-ngung-tap-moi-phat-lai-25-tap",
+    "cat": "Anime",
+    "date": "2026-09-25",
+    "excerpt": "Anime Chiikawa tạm dừng phát tập mới và phát lại 25 tập tiêu biểu đến ngày 25/12/2026; chưa có ngày trở lại.",
+    "img": "/assets/img/real-chiikawa.jpg",
+    "tags": [
+      "Chiikawa",
+      "Anime"
+    ]
+  },
+  {
+    "title": "Manga Phantom Busters Của Neoshoco Được Chuyển Thể TV Anime Năm 2027",
+    "url": "/phantom-busters-manga-len-tv-anime-nam-2027",
+    "cat": "Anime",
+    "date": "2026-09-25",
+    "excerpt": "Phantom Busters của Neoshoco, manga trên Jump SQ. với hơn 1,4 triệu bản in, sẽ có TV anime phát sóng năm 2027; chưa công bố studio và dàn diễn viên.",
+    "img": "/assets/img/real-phantom-busters.jpg",
+    "tags": [
+      "Phantom Busters",
+      "Anime",
+      "Jump SQ."
+    ]
+  },
+  {
+    "title": "Grand Blue Dreaming Được Công Bố Mùa 4 Ngay Sau Tập Cuối Mùa 3",
+    "url": "/grand-blue-mua-4-cong-bo-sau-mua-3-ket-thuc",
+    "cat": "Anime",
+    "date": "2026-09-25",
+    "excerpt": "Anime Grand Blue Dreaming xác nhận mùa 4 ngay sau khi tập cuối mùa 3 phát sóng ngày 21/9/2026, kèm visual teaser; chưa có thời điểm phát sóng.",
+    "img": "/assets/img/real-grand-blue-s4.jpg",
+    "tags": [
+      "Grand Blue",
+      "Anime",
+      "Mùa 4"
+    ]
+  },
+  {
+    "title": "Control Resonant Ra Mắt 24/9/2026: Metacritic 84, Nhỉnh Hơn Phần Đầu",
+    "url": "/control-resonant-ra-mat-metacritic-84",
+    "cat": "Gaming",
+    "date": "2026-09-25",
+    "excerpt": "Control Resonant của Remedy ra mắt ngày 24/9/2026 trên PS5, PC và Xbox Series, đạt Metacritic 84 và OpenCritic 84, cao hơn Control (82).",
+    "img": "/assets/img/real-control-resonant.jpg",
+    "tags": [
+      "Control Resonant",
+      "Remedy",
+      "PS5",
+      "Metacritic"
+    ]
+  },
+  {
     "title": "Drama PUBG Asia Stars 2026: Himass Và TanVuu Bị KRAFTON Cấm Vĩnh Viễn",
     "url": "/pubg-asia-stars-2026-himass-tanvuu-bi-cam-vinh-vien",
     "cat": "Gaming",
