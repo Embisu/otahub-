@@ -310,7 +310,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-07",
     "excerpt": "Phân tích siêu kinh điển T1 vs Gen.G tại chung kết LCK Mùa Hè 2026: Cuộc so tài đỉnh cao giữa Faker và Chovy giành ngôi vương Hàn Quốc và tấm vé hạt giống số 1 CKTG.",
-    "img": "/assets/img/news-lck-summer-2026-t1-geng-finals.jpg",
+    "img": "/assets/img/real-lck.jpg",
     "tags": []
   },
   {
@@ -469,7 +469,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-03",
     "excerpt": "Wuthering Waves 2.0 (Rinascita) ra mắt 2/1/2025. Bản 3.6 ra mắt 20/8/2026 với Ren Realm, Sword Flight, Guqin Performance và hai Resonator 5 sao Qingxiao, Jingran.",
-    "img": "/assets/img/cover-wuthering-waves-2-0-the-black-shores-camellya-update.jpg",
+    "img": "/assets/img/news-wuthering-waves-black-shores-shorekeeper.jpg",
     "tags": [
       "Wuthering Waves",
       "Kuro Games",
@@ -820,7 +820,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-25",
     "excerpt": "Paper Rex là đội đầu tiên giành vé dự VALORANT Champions Shanghai 2026; Sentinels bị loại khỏi Americas Stage 2 ngày 22/8. Giải có 16 đội, mỗi khu vực 4 đội.",
-    "img": "/assets/img/news-vct-champions-2026-prx-sentinels.jpg",
+    "img": "/assets/img/real-vct-prx.jpg",
     "tags": [
       "VCT Champions",
       "Valorant",
@@ -2666,7 +2666,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-06-04",
     "excerpt": "Natlan không chỉ là một region mới, đây là nơi Genshin Impact bắt đầu trả lời những câu hỏi mà người chơi đã đặt ra từ ngày đầu tiên.",
-    "img": "/assets/img/65d27cd1a0-library_hero.jpg",
+    "img": "/assets/img/real-genshin-natlan.jpg",
     "tags": [
       "Genshin Impact",
       "HoYoverse",
