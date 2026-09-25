@@ -868,25 +868,20 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 /* FOOTER */
 
 
-footer{position:relative;z-index:1;border-top:1px solid rgba(0,229,255,.1);
+footer{position:relative;z-index:1;border-top:1px solid rgba(0,229,255,.1);background:rgba(6,2,14,.98)}
+.ft-in{max-width:1440px;margin:0 auto;padding:40px 24px 24px;display:grid;grid-template-columns:190px 1fr 1fr 1fr;gap:40px;align-items:start}
+.ft-logo-wrap{display:flex;align-items:center;gap:9px;margin-bottom:12px;text-decoration:none}
+.ft-desc{font-size:12px;color:rgba(240,238,255,.28);line-height:1.7;max-width:170px}
+.ft-h{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted,rgba(240,238,255,.4));margin-bottom:14px;font-weight:500}
+.ft-links{display:flex;flex-direction:column;gap:8px;list-style:none;margin:0;padding:0}
+.ft-links a{font-size:13px;color:rgba(240,238,255,.42);text-decoration:none;transition:color .2s}
+.ft-links a:hover{color:var(--cyan)}
+.ft-bot{max-width:1440px;margin:0 auto;padding:14px 24px;border-top:1px solid rgba(0,229,255,.1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.ft-copy{font-size:11px;color:rgba(240,238,255,.2);letter-spacing:.04em;line-height:1.7}
+.logo{text-decoration:none}
+@media(max-width:900px){.ft-in{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.ft-in{grid-template-columns:1fr;gap:24px;padding-left:16px;padding-right:16px}.ft-bot{flex-direction:column;padding-left:16px;padding-right:16px}}
 
-
-  background:linear-gradient(to bottom,rgba(10,3,22,.98),#080215)}
-
-
-.ft-in{max-width:1440px;margin:0 auto;padding:36px 24px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
-
-
-.ft-copy{font-size:11px;color:rgba(240,238,255,.2);letter-spacing:.04em}
-
-
-.ft-links-row{display:flex;gap:20px}
-
-
-.ft-links-row a{font-size:12px;color:rgba(240,238,255,.35);text-decoration:none;transition:color .2s}
-
-
-.ft-links-row a:hover{color:var(--cyan)}
 
 
 
@@ -971,6 +966,8 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(0,229,255,.1);
 
 
 .hot-card:hover{background:var(--surf2)}
+.hot-thumb{width:44px;height:44px;object-fit:cover;border-radius:6px;flex-shrink:0;border:1px solid rgba(0,229,255,.15)}
+
 
 
 .hot-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .25s;background:linear-gradient(90deg,var(--cyan),transparent)}
@@ -1764,16 +1761,16 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
       </div>
 
 
-      <div class="rec-item"><div class="rec-num">01</div><div class="rec-thumb"><img src="/assets/img/640e2bc994-img.jpg" alt="Jujutsu Kaisen" width="100" height="140" fetchpriority="high" decoding="async"></div><div class="rec-body"><div class="rec-name">Jujutsu Kaisen</div><div class="rec-meta" style="color:var(--lavender)">Manga · Gege Akutami</div><div class="rec-why">The final arc is at its climax. Each chapter is an unpredictable twist.</div></div><div class="rec-score" style="color:var(--amber)">9.6</div></div>
+      <div class="rec-item"><div class="rec-num">01</div><div class="rec-thumb"><img src="/assets/img/26ef7fc2d2-jujutsu-kaisen-anime-hero.jpg" alt="Jujutsu Kaisen" width="100" height="140" fetchpriority="high" decoding="async"></div><div class="rec-body"><div class="rec-name">Jujutsu Kaisen</div><div class="rec-meta" style="color:var(--lavender)">Manga · Gege Akutami</div><div class="rec-why">The final arc is at its climax. Each chapter is an unpredictable twist.</div></div><div class="rec-score" style="color:var(--amber)">9.6</div></div>
 
 
-      <div class="rec-item"><div class="rec-num">02</div><div class="rec-thumb"><img src="/assets/img/66b5ed845c-img.jpg" alt="Solo Leveling: Ragnarok" loading="lazy" width="100" height="140"></div><div class="rec-body"><div class="rec-name">Solo Leveling: Ragnarok</div><div class="rec-meta" style="color:var(--cyan)">Manhwa · Dubu</div><div class="rec-why">Sung Jin-Woo's son continued the journey. Top notch artwork, satisfying power scaling.</div></div><div class="rec-score" style="color:var(--cyan)">9.5</div></div>
+      <div class="rec-item"><div class="rec-num">02</div><div class="rec-thumb"><img src="/assets/img/news-solo-leveling-ragnarok-manhwa.jpg" alt="Solo Leveling: Ragnarok" loading="lazy" width="100" height="140"></div><div class="rec-body"><div class="rec-name">Solo Leveling: Ragnarok</div><div class="rec-meta" style="color:var(--cyan)">Manhwa · Dubu</div><div class="rec-why">Sung Jin-Woo's son continued the journey. Top notch artwork, satisfying power scaling.</div></div><div class="rec-score" style="color:var(--cyan)">9.5</div></div>
 
 
-      <div class="rec-item"><div class="rec-num">03</div><div class="rec-thumb"><img src="/assets/img/529bbc93e2-img.jpg" alt="Chainsaw Man, Part 3" loading="lazy" width="100" height="140"></div><div class="rec-body"><div class="rec-name">Chainsaw Man, Part 3</div><div class="rec-meta" style="color:var(--sakura)">Manga · Fujimoto</div><div class="rec-why">Fujimoto did something unexpected. Darker, weirder, and somehow better than before.</div></div><div class="rec-score" style="color:var(--green)">9.4</div></div>
+      <div class="rec-item"><div class="rec-num">03</div><div class="rec-thumb"><img src="/assets/img/10728427f3-chainsaw-man-hero.jpg" alt="Chainsaw Man, Part 3" loading="lazy" width="100" height="140"></div><div class="rec-body"><div class="rec-name">Chainsaw Man, Part 3</div><div class="rec-meta" style="color:var(--sakura)">Manga · Fujimoto</div><div class="rec-why">Fujimoto did something unexpected. Darker, weirder, and somehow better than before.</div></div><div class="rec-score" style="color:var(--green)">9.4</div></div>
 
 
-      <div class="rec-item"><div class="rec-num">04</div><div class="rec-thumb"><img src="/assets/img/15713aadb3-img.jpg" alt="One Piece, Final Saga" loading="lazy" width="100" height="140"></div><div class="rec-body"><div class="rec-name">One Piece, Final Saga</div><div class="rec-meta" style="color:var(--amber)">Manga · Eiichiro Oda</div><div class="rec-why">After 1000+ chapters, Oda still keeps dropping bombs. Egghead Arc = peak One Piece.</div></div><div class="rec-score" style="color:var(--amber)">9.4</div></div>
+      <div class="rec-item"><div class="rec-num">04</div><div class="rec-thumb"><img src="/assets/img/d653b4c00a-one-piece-hero.jpg" alt="One Piece, Final Saga" loading="lazy" width="100" height="140"></div><div class="rec-body"><div class="rec-name">One Piece, Final Saga</div><div class="rec-meta" style="color:var(--amber)">Manga · Eiichiro Oda</div><div class="rec-why">After 1000+ chapters, Oda still keeps dropping bombs. Egghead Arc = peak One Piece.</div></div><div class="rec-score" style="color:var(--amber)">9.4</div></div>
 
 
     </div>
@@ -1800,16 +1797,16 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
       </div>
 
 
-      <div class="rec-item"><div class="rec-num">01</div><div class="rec-thumb"><img src="/assets/img/a7da2d9670-img.jpg" alt="Demon Slayer: Infinity Castle" loading="lazy" width="100" height="140"></div><div class="rec-body"><div class="rec-name">Demon Slayer: Infinity Castle</div><div class="rec-meta" style="color:var(--sakura)">Film · Ufotable</div><div class="rec-why">The most beautiful animation in anime history. The Infinity Castle arc is the absolute pinnacle of the series.</div></div><div class="rec-score" style="color:var(--amber)">9.9</div></div>
+      <div class="rec-item"><div class="rec-num">01</div><div class="rec-thumb"><img src="/assets/img/e497ae1e1b-demon-slayer-cover.jpg" alt="Demon Slayer: Infinity Castle" loading="lazy" width="100" height="140"></div><div class="rec-body"><div class="rec-name">Demon Slayer: Infinity Castle</div><div class="rec-meta" style="color:var(--sakura)">Film · Ufotable</div><div class="rec-why">The most beautiful animation in anime history. The Infinity Castle arc is the absolute pinnacle of the series.</div></div><div class="rec-score" style="color:var(--amber)">9.9</div></div>
 
 
-      <div class="rec-item"><div class="rec-num">02</div><div class="rec-thumb"><img src="/assets/img/d51434fccf-img.jpg" alt="Chainsaw Man Part 3" loading="lazy" width="100" height="140"></div><div class="rec-body"><div class="rec-name">Chainsaw Man Part 3</div><div class="rec-meta" style="color:var(--sakura)">Anime · MAPPA · Now showing</div><div class="rec-why">Fujimoto makes his own anime series. Completely unique style, unlike anyone else.</div></div><div class="rec-score" style="color:var(--cyan)">9.4</div></div>
+      <div class="rec-item"><div class="rec-num">02</div><div class="rec-thumb"><img src="/assets/img/6b2483c562-chainsaw-man-anime-hero.jpg" alt="Chainsaw Man Part 3" loading="lazy" width="100" height="140"></div><div class="rec-body"><div class="rec-name">Chainsaw Man Part 3</div><div class="rec-meta" style="color:var(--sakura)">Anime · MAPPA · Now showing</div><div class="rec-why">Fujimoto makes his own anime series. Completely unique style, unlike anyone else.</div></div><div class="rec-score" style="color:var(--cyan)">9.4</div></div>
 
 
-      <div class="rec-item"><div class="rec-num">03</div><div class="rec-thumb"><img src="/assets/img/3117589db3-img.jpg" alt="Frieren: Beyond Journey's End S2" loading="lazy" width="100" height="140"></div><div class="rec-body"><div class="rec-name">Frieren: Beyond Journey's End S2</div><div class="rec-meta" style="color:var(--lavender)">Anime · Madhouse · Now showing</div><div class="rec-why">Still isekai's masterpiece that escapes cliché. Slowly, deeply, beautifully each frame.</div></div><div class="rec-score" style="color:var(--green)">9.2</div></div>
+      <div class="rec-item"><div class="rec-num">03</div><div class="rec-thumb"><img src="/assets/img/3f4f599cac-frieren-s2-hero.jpg" alt="Frieren: Beyond Journey's End S2" loading="lazy" width="100" height="140"></div><div class="rec-body"><div class="rec-name">Frieren: Beyond Journey's End S2</div><div class="rec-meta" style="color:var(--lavender)">Anime · Madhouse · Now showing</div><div class="rec-why">Still isekai's masterpiece that escapes cliché. Slowly, deeply, beautifully each frame.</div></div><div class="rec-score" style="color:var(--green)">9.2</div></div>
 
 
-      <div class="rec-item"><div class="rec-num">04</div><div class="rec-thumb"><img src="/assets/img/5c419ddacc-img.jpg" alt="Vinland Saga Season 3" loading="lazy" width="100" height="140"></div><div class="rec-body"><div class="rec-name">Vinland Saga Season 3</div><div class="rec-meta" style="color:var(--amber)">Anime · MAPPA · Coming soon</div><div class="rec-why">Thorfinn's final war arc. For those who haven't watched S1 + S2, this is the time to start.</div></div><div class="rec-score" style="color:var(--lavender)"></div></div>
+      <div class="rec-item"><div class="rec-num">04</div><div class="rec-thumb"><img src="/assets/img/701f6a9728-vinland.jpg" alt="Vinland Saga Season 3" loading="lazy" width="100" height="140"></div><div class="rec-body"><div class="rec-name">Vinland Saga Season 3</div><div class="rec-meta" style="color:var(--amber)">Anime · MAPPA · Coming soon</div><div class="rec-why">Thorfinn's final war arc. For those who haven't watched S1 + S2, this is the time to start.</div></div><div class="rec-score" style="color:var(--lavender)"></div></div>
 
 
     </div>
@@ -2065,6 +2062,7 @@ const GAMES = [
 
 const GAME_IMAGES={hades:'/assets/img/recommend-hades.jpg',stardew:'/assets/img/recommend-stardew.jpg',cyberpunk:'/assets/img/recommend-cyberpunk.jpg',disco:'/assets/img/recommend-disco.jpg',hollow:'/assets/img/recommend-hollow.jpg',celeste:'/assets/img/recommend-celeste.jpg',hsr:'/assets/img/681306c50c-143582l.jpg',genshin:'/assets/img/f89df6064f-142648l.jpg',limbus:'/assets/img/recommend-limbus.jpg',arknights:'/assets/img/recommend-arknights.svg',journey:'/assets/img/recommend-journey.jpg',abzu:'/assets/img/recommend-abzu.jpg',spiritfarer:'/assets/img/recommend-spiritfarer.jpg',overcooked2:'/assets/img/recommend-overcooked2.jpg','among-us':'/assets/img/recommend-amongus.jpg','it-takes-two':'/assets/img/recommend-ittakestwo.jpg'};
 GAMES.forEach(g=>{if(!g.img&&GAME_IMAGES[g.id])g.img=GAME_IMAGES[g.id]});
+document.querySelectorAll('.hot-card').forEach(c=>{const m=(c.getAttribute('onclick')||'').match(/pickGame\('([^']+)'\)/);if(!m)return;const g=GAMES.find(x=>x.id===m[1]);if(!g||!g.img||c.querySelector('.hot-thumb'))return;const im=document.createElement('img');im.className='hot-thumb';im.src=g.img;im.alt=g.name;im.loading='lazy';im.width=44;im.height=44;const info=c.querySelector('.hot-info');c.insertBefore(im,info);});
 
 let currentMood = 'all';
 
