@@ -1724,7 +1724,7 @@ window.IDX = [
     "url": "/attack-on-titan-final-season-review",
     "cat": "Reviews",
     "date": "2026-08-16",
-    "excerpt": "Hành trình 34 tập manga chuyển thành một trong những cái kết anime gây tranh cãi nhưng cũng đáng nhớ nhất lịch sử thể loại.",
+    "excerpt": "Review Attack on Titan The Final Season của MAPPA (từ 7/12/2020) gồm 4 phần đến 11/2023; manga của Hajime Isayama hơn 140 triệu bản in và cái kết gây tranh cãi.",
     "img": "/assets/img/48ca2f8976-attack-on-titan-final-season-hero.jpg",
     "tags": [
       "Attack on Titan",
@@ -1752,7 +1752,7 @@ window.IDX = [
     "url": "/chainsaw-man-manga-part2-review",
     "cat": "Reviews",
     "date": "2026-08-16",
-    "excerpt": "Từ cậu thanh niên nghèo hợp nhất với quỷ cưa máy đến vòng cung Học Viện Quỷ và Ác Quỷ Chiến Tranh, Chainsaw Man khép lại một hành trình không giống bất kỳ manga nào khác.",
+    "excerpt": "Review manga Chainsaw Man của Tatsuki Fujimoto: Part 1 (2018–2020), Part 2 kết thúc tháng 3/2026, 24 tập, hơn 36 triệu bản in, giải thưởng và điểm mạnh yếu.",
     "img": "/assets/img/10728427f3-chainsaw-man-hero.jpg",
     "tags": [
       "Chainsaw Man",
@@ -1822,7 +1822,7 @@ window.IDX = [
     "url": "/oshi-no-ko-anime-review",
     "cat": "Reviews",
     "date": "2026-08-16",
-    "excerpt": "Từ vụ ám sát Ai Hoshino đến hành trình trả thù của Aqua và Ruby, Oshi no Ko là một trong những anime dám phơi bày mặt tối ngành idol thẳng thắn nhất.",
+    "excerpt": "Review anime Oshi no Ko: Doga Kobo sản xuất, mùa 1 (4/2023), mùa 2 (7/2024), mùa 3 (1/2026), mùa 4 là mùa cuối; nội dung, đội ngũ và tranh cãi về cái kết manga.",
     "img": "/assets/img/9506aefbae-oshi-no-ko-hero.jpg",
     "tags": [
       "Oshi no Ko",
@@ -1850,7 +1850,7 @@ window.IDX = [
     "url": "/vinland-saga-manga-review",
     "cat": "Reviews",
     "date": "2026-08-16",
-    "excerpt": "Sau 20 năm, hành trình của Thorfinn từ báo thù đến hòa bình đã khép lại, và đó là một trong những cái kết xứng đáng nhất lịch sử manga hiện đại.",
+    "excerpt": "Review manga Vinland Saga của Makoto Yukimura: đăng từ 2005 đến 25/7/2025, 29 tập, hành trình Thorfinn qua bốn arc; anime Wit Studio (2019) và MAPPA (2023).",
     "img": "/assets/img/7807ea1948-vinland-saga-manga-hero.jpg",
     "tags": [
       "Vinland Saga",
@@ -2003,7 +2003,7 @@ window.IDX = [
     "url": "/jujutsu-kaisen-anime-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Từ Itadori nuốt ngón tay Sukuna đến trận chiến cuối cùng, Jujutsu Kaisen khẳng định vị thế một trong những anime hành động hay nhất thế hệ.",
+    "excerpt": "Review anime Jujutsu Kaisen của MAPPA: mùa 1 (2020), phim 0 (2021), mùa 2 Shibuya (2023), mùa 3 Culling Game (1–3/2026); manga hơn 150 triệu bản in.",
     "img": "/assets/img/26ef7fc2d2-jujutsu-kaisen-anime-hero.jpg",
     "tags": [
       "Jujutsu Kaisen",
@@ -2802,7 +2802,7 @@ window.IDX = [
     "url": "/nintendo-switch-2-review",
     "cat": "Reviews",
     "date": "2026-05-28",
-    "excerpt": "Switch 2 không tái phát minh bánh xe, nó làm cho bánh xe đó tốt hơn đáng kể, và đó là đủ để trở thành console đáng mua nhất năm 2025.",
+    "excerpt": "Review Nintendo Switch 2: ra mắt 5/6/2025 giá 449,99 USD, màn hình LCD 7,9 inch 1080p 120Hz, RAM 12GB, Joy-Con 2 từ tính; điểm mạnh, hạn chế và 23,68 triệu máy đã bán.",
     "img": "/assets/img/d7d77f5de9-maxresdefault.jpg",
     "tags": [
       "Nintendo",
