@@ -1,5 +1,22 @@
 window.IDX = [
   {
+    "title": "10 Anime Đáng Xem Khi Chờ Jujutsu Kaisen Mùa 4",
+    "url": "/10-anime-dang-xem-khi-cho-jujutsu-kaisen-mua-4",
+    "cat": "Anime",
+    "date": "2026-09-26",
+    "excerpt": "Chưa có ngày phát sóng cho Jujutsu Kaisen mùa 4, đây là 10 anime hành động tông tối đáng xem trong lúc chờ: Gachiakuta, Hell's Paradise, Attack on Titan, Berserk, Chainsaw Man và hơn thế.",
+    "img": "/assets/img/real-jjk-wait-gachiakuta.jpg",
+    "tags": [
+      "Jujutsu Kaisen mùa 4",
+      "Gachiakuta",
+      "Hell's Paradise",
+      "Chainsaw Man",
+      "Anime hành động",
+      "Dark fantasy",
+      "Kaiju No. 8"
+    ]
+  },
+  {
     "title": "Anime Đáng Xem Cho Người Yêu Lịch Sử Nhật Bản",
     "url": "/anime-dang-xem-cho-fan-van-hoa-lich-su-nhat-ban",
     "cat": "Anime",
