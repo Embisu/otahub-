@@ -2703,7 +2703,7 @@ window.IDX = [
     ]
   },
   {
-    "title": "Space Marine 2: Bản Cập Nhật Confrontation Review",
+    "title": "Space Marine 2 Review: Cận Chiến Và Co-op Đỉnh",
     "url": "/space-marine-2-chaos-rising-review",
     "cat": "Reviews",
     "date": "2026-08-15",
