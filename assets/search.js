@@ -1818,20 +1818,6 @@ window.IDX = [
     ]
   },
   {
-    "title": "Mushoku Tensei Mùa 3: Chaos Breaker Arc Bắt Đầu Tập 8",
-    "url": "/mushoku-tensei-chaos-breaker-arc",
-    "cat": "Anime",
-    "date": "2026-08-16",
-    "excerpt": "Vòng cung Chaos Breaker của Mushoku Tensei Mùa 3 chính thức khởi động, đưa Rudeus và đồng đội đến pháo đài bay bí ẩn của Perugius Dola, nơi một bi kịch bất ngờ sắp ập đến.",
-    "img": "/assets/img/ef42374676-mushoku-tensei-chaos-breaker-hero.jpg",
-    "tags": [
-      "Mushoku Tensei",
-      "Studio Bind",
-      "Chaos Breaker",
-      "Isekai"
-    ]
-  },
-  {
     "title": "Oshi no Ko Anime Review: Góc Khuất Ngành Giải Trí",
     "url": "/oshi-no-ko-anime-review",
     "cat": "Reviews",
