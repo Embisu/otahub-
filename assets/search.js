@@ -9,7 +9,11 @@ window.IDX = [
     "tags": [
       "Oishinbo",
       "Shin Oishinbo",
-      "Shin-Ei Animation"
+      "Shin-Ei Animation",
+      "Oishinbo Có Anime Mới Sau 35 Năm",
+      "Anime News Network",
+      "Manga",
+      "2026"
     ]
   },
   {
@@ -22,7 +26,12 @@ window.IDX = [
     "tags": [
       "Tensura",
       "Slime mùa 4",
-      "Clayman's Revenge"
+      "Clayman's Revenge",
+      "Anime News Network",
+      "Crunchyroll",
+      "8-Bit",
+      "Anime",
+      "2026"
     ]
   },
   {
@@ -35,7 +44,12 @@ window.IDX = [
     "tags": [
       "Code Geass",
       "Star Chaser Aspal",
-      "Bandai Namco Filmworks"
+      "Bandai Namco Filmworks",
+      "Anime News Network",
+      "Bandai Namco",
+      "Trailer",
+      "Anime",
+      "2026"
     ]
   },
   {
@@ -48,7 +62,12 @@ window.IDX = [
     "tags": [
       "Gears of War: E-Day",
       "Xbox",
-      "The Coalition"
+      "The Coalition",
+      "Gears of War",
+      "Unreal Engine 5",
+      "PC",
+      "Game Pass",
+      "Steam"
     ]
   },
   {
@@ -63,7 +82,10 @@ window.IDX = [
       "Aixleft",
       "PERO",
       "Delta Force",
-      "PUBG"
+      "PUBG",
+      "Esports",
+      "KRAFTON",
+      "PC"
     ]
   },
   {
@@ -76,7 +98,12 @@ window.IDX = [
     "tags": [
       "Cyberpunk: Edgerunners 2",
       "Netflix",
-      "Trigger"
+      "Trigger",
+      "Cyberpunk",
+      "Anime Corner",
+      "Trailer",
+      "CD Projekt Red",
+      "Anime"
     ]
   },
   {
@@ -89,7 +116,12 @@ window.IDX = [
     "tags": [
       "JoJo",
       "Steel Ball Run",
-      "Netflix"
+      "Netflix",
+      "JoJo Steel Ball Run Stage 2",
+      "Anime Corner",
+      "Trailer",
+      "Anime Expo",
+      "Anime"
     ]
   },
   {
@@ -102,7 +134,11 @@ window.IDX = [
     "tags": [
       "Anime mùa Thu 2026",
       "Cyberpunk Edgerunners 2",
-      "Apothecary Diaries"
+      "Apothecary Diaries",
+      "Anime Corner",
+      "Cyberpunk",
+      "Anime",
+      "2026"
     ]
   },
   {
@@ -115,7 +151,11 @@ window.IDX = [
     "tags": [
       "Fire Emblem",
       "Nintendo Switch 2",
-      "Metacritic"
+      "Metacritic",
+      "Nintendo",
+      "Switch 2",
+      "Gaming",
+      "2026"
     ]
   },
   {
@@ -128,7 +168,12 @@ window.IDX = [
     "tags": [
       "One Piece",
       "Chapter 1195",
-      "Dự đoán"
+      "Dự đoán",
+      "One Piece Chapter 1195",
+      "Spoiler",
+      "Zoro",
+      "Shueisha",
+      "Shonen Jump"
     ]
   },
   {
@@ -140,7 +185,11 @@ window.IDX = [
     "img": "/assets/img/real-chiikawa.jpg",
     "tags": [
       "Chiikawa",
-      "Anime"
+      "Anime",
+      "Anime News Network",
+      "2026",
+      "Tin tức",
+      "OtaHub"
     ]
   },
   {
@@ -153,7 +202,10 @@ window.IDX = [
     "tags": [
       "Phantom Busters",
       "Anime",
-      "Jump SQ."
+      "Jump SQ.",
+      "Shueisha",
+      "Anime News Network",
+      "2026"
     ]
   },
   {
@@ -166,7 +218,11 @@ window.IDX = [
     "tags": [
       "Grand Blue",
       "Anime",
-      "Mùa 4"
+      "Mùa 4",
+      "Kodansha",
+      "Anime Corner",
+      "Anime News Network",
+      "2026"
     ]
   },
   {
@@ -180,7 +236,11 @@ window.IDX = [
       "Control Resonant",
       "Remedy",
       "PS5",
-      "Metacritic"
+      "Metacritic",
+      "Control Resonant Ra Mắt",
+      "PC",
+      "Xbox",
+      "Sony"
     ]
   },
   {
@@ -193,9 +253,12 @@ window.IDX = [
     "tags": [
       "PUBG",
       "Esports",
-      "KRAFTON",
       "Himass",
-      "TanVuu"
+      "TanVuu",
+      "KRAFTON",
+      "Drama PUBG",
+      "PC",
+      "Steam"
     ]
   },
   {
@@ -206,9 +269,14 @@ window.IDX = [
     "excerpt": "Án phạt vĩnh viễn dành cho Himass và TanVuu đang khiến cộng đồng PUBG Việt Nam dậy sóng. Nhiều game thủ, streamer công khai xóa game để phản ứng trước quyết định từ KRAFTON, đồng thời đặt ra nhiều câu hỏi về tương lai của PUBG Esports tại Việt Nam.",
     "img": "/assets/img/uploads/39nlv6pg-delete-pubgmobile-account-1200x900.jpg",
     "tags": [
+      "Gaming",
+      "Anime",
+      "Manga",
+      "Reviews",
+      "Rankings",
       "PUBG",
-      "Himass",
-      "TanVuu"
+      "KRAFTON",
+      "Esports"
     ]
   },
   {
@@ -221,7 +289,12 @@ window.IDX = [
     "tags": [
       "Esports",
       "Asian Games 2026",
-      "Mobile Legends"
+      "Mobile Legends",
+      "League of Legends",
+      "Esports Asian Games 2026",
+      "PC",
+      "PUBG",
+      "Gaming"
     ]
   },
   {
@@ -232,9 +305,14 @@ window.IDX = [
     "excerpt": "TGS 2026 diễn ra 17-20/9 tại Makuhari Messe thu hút 257.642 lượt tham dự, với Ace Combat 8, Crazy Taxi: World Tour, Gachiakuta: Breakout và STRANGER THAN HEAVEN.",
     "img": "/assets/img/photo-tokyo-game-show-2026-roundup.jpg",
     "tags": [
-      "gaming",
-      "tokyo game show",
-      "ace combat"
+      "Tokyo Game Show",
+      "Ace Combat 8",
+      "SEGA",
+      "Bandai Namco",
+      "Tokyo Game Show 2026",
+      "PS5",
+      "PC",
+      "Xbox"
     ]
   },
   {
@@ -245,9 +323,14 @@ window.IDX = [
     "excerpt": "Tại Juju Fes 2026 kỷ niệm 5 năm anime, MAPPA tung teaser visual mới cho Culling Game Arc Phần 2, tập trung vào Sukuna.",
     "img": "/assets/img/news-jujutsu-kaisen-season3-culling-game.jpg",
     "tags": [
-      "anime",
-      "jujutsu kaisen",
-      "sukuna"
+      "Jujutsu Kaisen",
+      "Sukuna",
+      "Culling Game Arc",
+      "MAPPA",
+      "Shueisha",
+      "Anime Corner",
+      "Anime",
+      "2026"
     ]
   },
   {
@@ -258,10 +341,14 @@ window.IDX = [
     "excerpt": "Sự cố backend Steam làm lộ achievement của khoảng 50 game chưa phát hành, bao gồm Persona 6, Kingdom Hearts IV, Fable và Metro 2039.",
     "img": "/assets/img/photo-steam-achievement-leak-persona-6-kingdom-hearts-4.jpg",
     "tags": [
-      "gaming",
-      "steam",
-      "persona 6",
-      "kingdom hearts"
+      "Persona 6",
+      "Kingdom Hearts IV",
+      "Steam",
+      "Rò rỉ game",
+      "Rò Rỉ Steam",
+      "PC",
+      "Xbox",
+      "Gaming"
     ]
   },
   {
@@ -274,7 +361,11 @@ window.IDX = [
     "tags": [
       "The Summer Hikaru Died",
       "Mokumokuren",
-      "Manga"
+      "Kinh dị",
+      "CygamesPictures",
+      "Kadokawa",
+      "Manga",
+      "2026"
     ]
   },
   {
@@ -287,7 +378,12 @@ window.IDX = [
     "tags": [
       "Hunter x Hunter",
       "Togashi",
-      "Weekly Shonen Jump"
+      "Weekly Shonen Jump",
+      "Hiatus",
+      "Shonen Jump",
+      "Shonen",
+      "Manga",
+      "2026"
     ]
   },
   {
@@ -300,7 +396,11 @@ window.IDX = [
     "tags": [
       "Honkai Star Rail",
       "HoYoverse",
-      "Zenless Zone Zero"
+      "Gacha",
+      "Zenless Zone Zero",
+      "Honkai",
+      "Gaming",
+      "2026"
     ]
   },
   {
@@ -313,7 +413,12 @@ window.IDX = [
     "tags": [
       "Silent Hill",
       "Konami",
-      "Kinh dị sinh tồn"
+      "Kinh dị sinh tồn",
+      "PS5",
+      "PC",
+      "Steam",
+      "Sony",
+      "Gaming"
     ]
   },
   {
@@ -324,9 +429,14 @@ window.IDX = [
     "excerpt": "Marvel's Wolverine của Insomniac Games chính thức ra mắt PS5 ngày 15/9/2026, đạt 77 điểm Metacritic — thấp hơn Spider-Man 2 nhưng vẫn bán chạy hàng đầu năm.",
     "img": "/assets/img/news-marvel-wolverine-story-trailer.jpg",
     "tags": [
-      "Marvel Wolverine",
+      "Marvel's Wolverine",
       "Insomniac Games",
-      "PS5"
+      "PS5",
+      "Review Roundup",
+      "Sony",
+      "Metacritic",
+      "Open World",
+      "Gaming"
     ]
   },
   {
@@ -336,7 +446,15 @@ window.IDX = [
     "date": "2026-09-20",
     "excerpt": "Liệu trận chiến cuối cùng chỉ đơn thuần quyết định số phận nhân loại, hay Odin đã chuẩn bị một bước đi khác cho kế hoạch hồi sinh các Primordial Gods? Hãy cùng theo dõi những diễn biến mới nhất của Record of Ragnarok để tìm ra câu trả lời.",
     "img": "/assets/img/uploads/onqih37d-record-of-ragnarok-shuumatsu-no-valkyrie-has-some-really-v0-.jpg",
-    "tags": []
+    "tags": [
+      "Gaming",
+      "Anime",
+      "Manga",
+      "Reviews",
+      "Rankings",
+      "Record of Ragnarok",
+      "2026"
+    ]
   },
   {
     "title": "The One Piece (Netflix x WIT) Ra Mắt Tháng 2/2027",
@@ -346,11 +464,13 @@ window.IDX = [
     "excerpt": "Bản remake The One Piece do WIT Studio thực hiện cho Netflix tung teaser đầu tiên ngày 24/6/2026, dự kiến phát hành tháng 2/2027 với 7 tập, chuyển thể 50 chương đầu của truyện.",
     "img": "/assets/img/news-one-piece-remake-wit-studio-netflix-trailer.jpg",
     "tags": [
-      "anime",
-      "hot",
-      "one-piece",
-      "netflix",
-      "wit-studio"
+      "Anime",
+      "Netflix",
+      "Wit Studio",
+      "Toei Animation",
+      "Trailer",
+      "Luffy",
+      "2026"
     ]
   },
   {
@@ -361,10 +481,14 @@ window.IDX = [
     "excerpt": "Đánh giá chuyên sâu Girls' Frontline 2: Exilium tổng hợp từ nguồn công khai: Phân tích cơ chế Stability Break, tỷ lệ gacha vũ khí 70 lượt vs nhân vật 80 lượt, đồ họa cel-shading cùng những nhược điểm cần lưu ý.",
     "img": "/assets/img/f661df27f7-gfl2-exilium-hero.jpg",
     "tags": [
-      "reviews",
-      "hot",
-      "gfl2",
-      "gaming"
+      "Girls' Frontline 2",
+      "Đánh giá game",
+      "Chiến thuật theo lượt",
+      "Gacha 2026",
+      "XCOM",
+      "Gacha",
+      "PC",
+      "Mobile"
     ]
   },
   {
@@ -375,10 +499,14 @@ window.IDX = [
     "excerpt": "Rockstar Games chính thức ra mắt đoạn trailer gameplay chi tiết của GTA 6, hé lộ bản đồ bang Leonida khổng lồ, công nghệ NPC thế hệ mới và cơ chế cướp bóc cặp đôi Lucia - Jason.",
     "img": "/assets/img/news-gta6-gameplay-trailer-leonida.jpg",
     "tags": [
-      "gaming",
-      "hot",
-      "breaking",
-      "gta6"
+      "GTA 6",
+      "Rockstar Games",
+      "Thế giới mở",
+      "Tin game hot",
+      "GTA 6 Tung Trailer Gameplay Mới",
+      "Trailer",
+      "Open World",
+      "PS5"
     ]
   },
   {
@@ -389,10 +517,12 @@ window.IDX = [
     "excerpt": "Chainsaw Man – The Movie: Reze Arc do MAPPA sản xuất ra rạp Nhật ngày 19/9/2025, khởi chiếu tại Việt Nam ngày 26/9/2025, thu khoảng 191,4 triệu USD toàn cầu và đạt 100% Rotten Tomatoes từ giới phê bình.",
     "img": "/assets/img/news-chainsaw-man-movie-reze-arc.jpg",
     "tags": [
-      "anime",
-      "hot",
-      "chainsaw-man",
-      "reze"
+      "Anime",
+      "Chainsaw Man",
+      "MAPPA",
+      "Anime Corner",
+      "Anime News Network",
+      "2026"
     ]
   },
   {
@@ -403,10 +533,14 @@ window.IDX = [
     "excerpt": "ZZZ 2.0 ra mắt ngày 6/6/2025; bản 2.1 (16/7/2025) có Yuzuha cùng bản rerun Miyabi ở phase 1 và Alice cùng rerun Yanagi ở phase 2. Đến 2026 game đã lên các bản muộn hơn.",
     "img": "/assets/img/news-zzz-20-outer-ring.jpg",
     "tags": [
-      "gaming",
-      "hot",
-      "zzz",
-      "hoyoverse"
+      "Gaming",
+      "Mobile",
+      "PS5",
+      "PC",
+      "HoYoverse",
+      "Xbox",
+      "Steam",
+      "2026"
     ]
   },
   {
@@ -417,10 +551,12 @@ window.IDX = [
     "excerpt": "Từ 1/9/2026 Nintendo tăng giá Switch 2 thêm 50 USD lên 499,99 USD; gói Mario Kart World (kèm bản digital và 90 ngày Nintendo Switch Online) giá 549 USD.",
     "img": "/assets/img/news-nintendo-direct-sept-2026-switch2-mario-kart.jpg",
     "tags": [
-      "gaming",
-      "hot",
-      "nintendo",
-      "switch2"
+      "Gaming",
+      "Nintendo",
+      "Switch 2",
+      "2026",
+      "Tin tức",
+      "OtaHub"
     ]
   },
   {
@@ -431,9 +567,14 @@ window.IDX = [
     "excerpt": "Capcom officially announces Monster Hunter Wilds Autumn 2026 update featuring a brand-new biome, variant weapon trees, and ancient apex monster hunts.",
     "img": "/assets/img/monster-hunter-wilds-autumn-update-hero.jpg",
     "tags": [
-      "gaming",
-      "hot",
-      "breaking"
+      "Monster Hunter Wilds",
+      "Capcom",
+      "Ascendance",
+      "PS5",
+      "PC",
+      "Xbox",
+      "Steam",
+      "Tokyo Game Show"
     ]
   },
   {
@@ -444,9 +585,14 @@ window.IDX = [
     "excerpt": "Monster Hunter Wilds Title Update 4 (tháng 12/2025) đưa Elder Dragon Gogmazios trở lại; bản mở rộng Ascendance được giới thiệu thêm tại TGS 2026 với Teostra và ra mắt năm 2027.",
     "img": "/assets/img/monster-hunter-wilds-autumn-update-hero.jpg",
     "tags": [
-      "gaming",
-      "hot",
-      "breaking"
+      "Gaming",
+      "Monster Hunter Wilds",
+      "PS5",
+      "PC",
+      "Xbox",
+      "Steam",
+      "Capcom",
+      "Tokyo Game Show"
     ]
   },
   {
@@ -456,7 +602,14 @@ window.IDX = [
     "date": "2026-09-07",
     "excerpt": "Dandadan Mùa 2 lên sóng ngày 3/7/2025 trên Crunchyroll, Netflix, Hulu, chuyển thể arc Cursed House và Evil Eye; phim Dandadan: Evil Eye chiếu ngày 6/6/2025 tại Mỹ.",
     "img": "/assets/img/news-dandadan-season-2-evil-eye.jpg",
-    "tags": []
+    "tags": [
+      "Anime",
+      "Dandadan Mùa 2",
+      "Netflix",
+      "Crunchyroll",
+      "Trailer",
+      "2026"
+    ]
   },
   {
     "title": "Ghost of Yōtei: Ra Mắt PS5 2/10/2025, Atsu Dùng Song Kiếm",
@@ -466,11 +619,13 @@ window.IDX = [
     "excerpt": "Ghost of Yōtei ra mắt độc quyền PS5 ngày 2/10/2025, lấy bối cảnh Ezo năm 1603 với nhân vật Atsu; Complete Edition (1/10/2026, 69,99 USD) gồm Legends co-op và bản mở rộng Echoes of Sekigahara.",
     "img": "/assets/img/news-ghost-of-yotei-weapons-gameplay.jpg",
     "tags": [
-      "Girls Frontline 2",
-      "Chainsaw Man",
-      "Ghost of Yotei",
-      "Anime 2026",
-      "PS5 Pro"
+      "Gaming",
+      "Ghost of Yōtei",
+      "PS5",
+      "Sony",
+      "Metacritic",
+      "Co-op",
+      "2026"
     ]
   },
   {
@@ -495,7 +650,14 @@ window.IDX = [
     "date": "2026-09-07",
     "excerpt": "Phân tích siêu kinh điển T1 vs Gen.G tại chung kết LCK Mùa Hè 2026: Cuộc so tài đỉnh cao giữa Faker và Chovy giành ngôi vương Hàn Quốc và tấm vé hạt giống số 1 CKTG.",
     "img": "/assets/img/real-lck.jpg",
-    "tags": []
+    "tags": [
+      "Gaming",
+      "LCK Mùa Hè 2026",
+      "Esports",
+      "2026",
+      "Tin tức",
+      "OtaHub"
+    ]
   },
   {
     "title": "Nintendo Direct 9/2026: Zelda 40 Năm, Ocarina Remake",
@@ -505,11 +667,13 @@ window.IDX = [
     "excerpt": "Nintendo chính thức ấn định buổi phát sóng Nintendo Direct đặc biệt dài 45 phút, trọng tâm xoay quanh hệ máy Nintendo Switch 2 và bom tấn Mario Kart 9.",
     "img": "/assets/img/news-nintendo-direct-sept-2026-switch2-mario-kart.jpg",
     "tags": [
-      "Girls Frontline 2",
-      "Chainsaw Man",
-      "Ghost of Yotei",
-      "Anime 2026",
-      "PS5 Pro"
+      "Gaming",
+      "Nintendo Direct 9/2026",
+      "Nintendo",
+      "Switch 2",
+      "2026",
+      "Tin tức",
+      "OtaHub"
     ]
   },
   {
@@ -519,7 +683,16 @@ window.IDX = [
     "date": "2026-09-07",
     "excerpt": "Spoiler One Piece chapter 1194 “Things Never Stay the Same”: Zoro truyền Haki Bá Vương vào kiếm đấu Sommers; chương ra Chủ nhật 27/9/2026, tuần sau nghỉ.",
     "img": "/assets/img/real-op1194-dexerto.jpg",
-    "tags": []
+    "tags": [
+      "Manga",
+      "One Piece Chapter 1194 Spoilers",
+      "Zoro",
+      "Spoiler",
+      "Shonen Jump",
+      "Shonen",
+      "Elbaf",
+      "Eiichiro Oda"
+    ]
   },
   {
     "title": "Solo Leveling: Ragnarok Ra Bản Tiếng Anh Tập 1",
@@ -529,11 +702,12 @@ window.IDX = [
     "excerpt": "Webtoon Solo Leveling: Ragnarok (Dang Do viết, JIN của REDICE Studio vẽ) khởi đăng ngày 1/8/2024 về Sung Suho; tập 1 bản tiếng Anh do Yen Press phát hành 21/7/2026. Chưa có thông báo anime Ragnarok.",
     "img": "/assets/img/news-solo-leveling-ragnarok-official-announcement.jpg",
     "tags": [
-      "Girls Frontline 2",
-      "Chainsaw Man",
-      "Ghost of Yotei",
-      "Anime 2026",
-      "PS5 Pro"
+      "Manga",
+      "Solo Leveling",
+      "Trailer",
+      "2026",
+      "Tin tức",
+      "OtaHub"
     ]
   },
   {
@@ -544,11 +718,13 @@ window.IDX = [
     "excerpt": "Frieren: Beyond Journey's End Mùa 2 do Madhouse sản xuất đã phát sóng vào mùa đông 2026 (tháng 1–3) với 10 tập.",
     "img": "/assets/img/news-frieren-season-2-official-visual.jpg",
     "tags": [
-      "Frieren",
+      "Anime",
       "Madhouse",
-      "Beyond Journey's End",
-      "Evan Call",
-      "Anime 2026"
+      "Kodansha",
+      "Trailer",
+      "2026",
+      "Tin tức",
+      "OtaHub"
     ]
   },
   {
@@ -559,11 +735,14 @@ window.IDX = [
     "excerpt": "Honkai: Star Rail 3.0 ra mắt ngày 15/1/2025 với thế giới Amphoreus, Path of Remembrance và ba nhân vật mới; nhiệm vụ Amphoreus trải dài từ bản 3.0 đến 3.7.",
     "img": "/assets/img/news-honkai-star-rail-30-amphoreus.jpg",
     "tags": [
-      "Honkai: Star Rail",
+      "Gaming",
+      "Honkai",
+      "PS5",
+      "Mobile",
       "HoYoverse",
-      "Amphoreus",
-      "Gacha Games",
-      "Gaming 2026"
+      "Gacha",
+      "PC",
+      "2026"
     ]
   },
   {
@@ -574,13 +753,13 @@ window.IDX = [
     "excerpt": "Phần cuối Bleach: Thousand-Year Blood War – The Calamity lên sóng ngày 25/7/2026 (Hulu ở Mỹ, Disney+ quốc tế), mỗi thứ Bảy, tập 10 và cũng là tập cuối phát sóng ngày 26/9/2026.",
     "img": "/assets/img/news-bleach-tybw-part4-farewell.jpg",
     "tags": [
+      "Anime",
       "Bleach",
-      "TYBW",
+      "Disney+",
       "Studio Pierrot",
-      "Tite Kubo",
-      "Ichigo Kurosaki",
-      "Yhwach",
-      "Anime 2026"
+      "2026",
+      "Tin tức",
+      "OtaHub"
     ]
   },
   {
@@ -591,11 +770,13 @@ window.IDX = [
     "excerpt": "Demon Slayer: Infinity Castle của Ufotable ra rạp Nhật 18/7/2025, thu 40,24 tỷ yên tại Nhật và khoảng 793 triệu USD toàn cầu; đây là phần đầu của bộ ba phim.",
     "img": "/assets/img/news-demon-slayer-infinity-castle-official.jpg",
     "tags": [
+      "Anime",
       "Kimetsu no Yaiba",
-      "Demon Slayer",
-      "Vô Hạn Thành",
+      "Crunchyroll",
       "Ufotable",
-      "IMAX"
+      "2026",
+      "Tin tức",
+      "OtaHub"
     ]
   },
   {
@@ -606,12 +787,13 @@ window.IDX = [
     "excerpt": "Nintendo Switch 2 ra mắt 5/6/2025 với màn hình LCD 7,9 inch 1080p tới 120Hz, 12GB RAM, chip NVIDIA tùy biến hỗ trợ DLSS và xuất hình tối đa 4K khi gắn dock.",
     "img": "/assets/img/news-switch2-specs-oled.jpg",
     "tags": [
+      "Gaming",
       "Nintendo Switch 2",
       "Nintendo",
-      "Nvidia DLSS",
-      "Console",
-      "Mario Kart",
-      "Gaming 2026"
+      "Switch 2",
+      "2026",
+      "Tin tức",
+      "OtaHub"
     ]
   },
   {
@@ -622,12 +804,13 @@ window.IDX = [
     "excerpt": "Manga Chainsaw Man Part 2 của Tatsuki Fujimoto kết thúc ở chương 232 ngày 24/3/2026 sau 135 chương; tập cuối phát hành 4/6/2026 và chưa có kế hoạch Part 3.",
     "img": "/assets/img/news-chainsaw-man-death-devil.jpg",
     "tags": [
-      "Chainsaw Man",
-      "Tatsuki Fujimoto",
-      "Death Devil",
-      "Denji",
-      "Yoru",
-      "Manga Shonen Jump"
+      "Manga",
+      "Shonen Jump",
+      "Shonen",
+      "Crunchyroll",
+      "MAPPA",
+      "Anime Corner",
+      "2026"
     ]
   },
   {
@@ -638,13 +821,14 @@ window.IDX = [
     "excerpt": "Solo Leveling Mùa 2 do A-1 Pictures sản xuất (đạo diễn Shunsuke Nakashige) phát sóng độc quyền trên Crunchyroll từ 5/1 đến 30/3/2025, gồm 13 tập, mở đầu từ chương 46 với Red Gate.",
     "img": "/assets/img/news-solo-leveling-season-2-arise.jpg",
     "tags": [
-      "Solo Leveling",
+      "Anime",
+      "Solo Leveling Mùa 2",
+      "Crunchyroll",
       "A-1 Pictures",
-      "Sung Jinwoo",
-      "Beru",
-      "Jeju Island Arc",
-      "Hiroyuki Sawano",
-      "Anime 2026"
+      "Netflix",
+      "Anime News Network",
+      "Trailer",
+      "Anime Expo"
     ]
   },
   {
@@ -655,11 +839,14 @@ window.IDX = [
     "excerpt": "Wuthering Waves 2.0 (Rinascita) ra mắt 2/1/2025. Bản 3.6 ra mắt 20/8/2026 với Ren Realm, Sword Flight, Guqin Performance và hai Resonator 5 sao Qingxiao, Jingran.",
     "img": "/assets/img/news-wuthering-waves-black-shores-shorekeeper.jpg",
     "tags": [
+      "Gaming",
       "Wuthering Waves",
+      "Mobile",
+      "PS5",
       "Kuro Games",
-      "Shorekeeper",
-      "The Black Shores",
-      "120 FPS"
+      "PC",
+      "Xbox",
+      "2026"
     ]
   },
   {
@@ -676,7 +863,8 @@ window.IDX = [
       "Teyvat",
       "HoYoverse",
       "Băng Thần",
-      "Gaming 2026"
+      "Gaming 2026",
+      "Genshin Impact 7.0 Snezhnaya"
     ]
   },
   {
@@ -687,13 +875,13 @@ window.IDX = [
     "excerpt": "Đợt open beta của Monster Hunter Wilds diễn ra vào cuối năm 2024; game chính thức ra mắt ngày 28/2/2025. Bài này thay thế bản tin cũ về đăng ký open beta.",
     "img": "/assets/img/news-mh-wilds-open-beta-pc.jpg",
     "tags": [
-      "Monster Hunter Wilds",
+      "Gaming",
+      "PC",
       "Capcom",
-      "PC Gaming",
-      "Benchmark",
-      "Cross-Play",
-      "Action RPG",
-      "Gaming 2026"
+      "PS5",
+      "Xbox",
+      "Steam",
+      "2026"
     ]
   },
   {
@@ -704,13 +892,13 @@ window.IDX = [
     "excerpt": "Manga Jujutsu Kaisen của Gege Akutami kết thúc ở chương 271 \"From Now On\", đăng ngày 30/9/2024 sau 6 năm; hai tập cuối 29 và 30 phát hành cùng lúc ngày 25/12/2024 tại Nhật.",
     "img": "/assets/img/news-jjk-chapter-271-climax-epilogue.jpg",
     "tags": [
+      "Manga",
       "Jujutsu Kaisen",
-      "Gege Akutami",
-      "Chapter 271",
-      "Sukuna",
-      "Itadori Yuji",
-      "Gojo Satoru",
-      "Manga Shonen Jump"
+      "MAPPA",
+      "Shonen Jump",
+      "Anime Corner",
+      "Shonen",
+      "2026"
     ]
   },
   {
@@ -721,13 +909,14 @@ window.IDX = [
     "excerpt": "Elden Ring Nightreign là game co-op độc lập (tối đa 3 người) của FromSoftware, công bố tại The Game Awards 2024 và ra mắt ngày 30/5/2025 trên PS4, PS5, Xbox và Steam.",
     "img": "/assets/img/news-elden-ring-nightreign-coop.jpg",
     "tags": [
-      "Elden Ring",
-      "Nightreign",
-      "FromSoftware",
-      "Hidetaka Miyazaki",
+      "Gaming",
+      "Xbox",
+      "Bandai Namco",
       "Co-op",
-      "Soulslike",
-      "Gaming 2026"
+      "DLC",
+      "PS5",
+      "PC",
+      "2026"
     ]
   },
   {
@@ -744,7 +933,8 @@ window.IDX = [
       "Gamescom",
       "FPS",
       "Task Force 141",
-      "Gaming 2026"
+      "Gaming 2026",
+      "Xbox"
     ]
   },
   {
@@ -760,7 +950,9 @@ window.IDX = [
       "MAPPA",
       "Seiyuu",
       "Gojo Satoru",
-      "Anime 2026"
+      "Anime 2026",
+      "Trailer",
+      "Gaming"
     ]
   },
   {
@@ -777,7 +969,8 @@ window.IDX = [
       "Sony",
       "Marvel's Wolverine",
       "Ghost of Yotei",
-      "Gaming 2026"
+      "Gaming 2026",
+      "Gamescom 2026"
     ]
   },
   {
@@ -794,7 +987,8 @@ window.IDX = [
       "Hero Shooter",
       "Thanos",
       "Avengers",
-      "Gaming 2026"
+      "Gaming 2026",
+      "Gaming"
     ]
   },
   {
@@ -810,7 +1004,9 @@ window.IDX = [
       "Hidetaka Miyazaki",
       "Kadokawa",
       "Anime Hành Động",
-      "Soulslike"
+      "Soulslike",
+      "Crunchyroll",
+      "Anime"
     ]
   },
   {
@@ -826,7 +1022,9 @@ window.IDX = [
       "Anime NYC",
       "Graphic Novel",
       "Bản Quyền Manga",
-      "Manga 2026"
+      "Manga 2026",
+      "Manhwa",
+      "2026"
     ]
   },
   {
@@ -839,7 +1037,11 @@ window.IDX = [
     "tags": [
       "Gaming",
       "OtaHub News",
-      "Tiêu Điểm"
+      "Tiêu Điểm",
+      "Girls' Frontline 2",
+      "Mobile",
+      "PC",
+      "2026"
     ]
   },
   {
@@ -855,7 +1057,9 @@ window.IDX = [
       "Grand Theft Auto",
       "Vice City",
       "Open World",
-      "Gaming 2026"
+      "Gaming 2026",
+      "Netflix",
+      "PS5"
     ]
   },
   {
@@ -871,7 +1075,9 @@ window.IDX = [
       "Saitama",
       "Garou",
       "Manga",
-      "JC Staff"
+      "JC Staff",
+      "Trailer",
+      "2026"
     ]
   },
   {
@@ -882,13 +1088,12 @@ window.IDX = [
     "excerpt": "MAPPA công bố tại Jump Festa 2026 rằng Chainsaw Man Mùa 2 (chuyển thể International Assassins Arc) đã bước vào sản xuất; chưa có ngày phát sóng, dự kiến sớm nhất là 2027.",
     "img": "/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg",
     "tags": [
-      "Chainsaw Man",
+      "Anime",
       "MAPPA",
-      "Reze Arc",
-      "Denji",
-      "Tatsuki Fujimoto",
-      "Anime Movie",
-      "Anime 2026"
+      "Trailer",
+      "2026",
+      "Tin tức",
+      "OtaHub"
     ]
   },
   {
@@ -901,7 +1106,12 @@ window.IDX = [
     "tags": [
       "Reviews",
       "OtaHub News",
-      "Tiêu Điểm"
+      "Tiêu Điểm",
+      "Elden Ring",
+      "DLC",
+      "Xbox",
+      "PS5",
+      "FromSoftware"
     ]
   },
   {
@@ -912,13 +1122,14 @@ window.IDX = [
     "excerpt": "Sandrone, Quan Chấp Hành thứ 7 của Fatui, là nhân vật Cryo chơi được từ bản 6.7 (dự kiến 1/7/2026). Bản 7.0 (12/8/2026) có Odette và Alyosha.",
     "img": "/assets/img/news-genshin-impact-70-abyss-teams.jpg",
     "tags": [
+      "Gaming",
       "Genshin Impact",
+      "Mobile",
       "HoYoverse",
-      "Sandrone",
-      "Fatui",
-      "Snezhnaya",
-      "Gacha Game",
-      "Gaming 2026"
+      "PS5",
+      "Xbox",
+      "Crunchyroll",
+      "2026"
     ]
   },
   {
@@ -931,7 +1142,12 @@ window.IDX = [
     "tags": [
       "Reviews",
       "OtaHub News",
-      "Tiêu Điểm"
+      "Tiêu Điểm",
+      "Honkai",
+      "PS5",
+      "Mobile",
+      "HoYoverse",
+      "Gacha"
     ]
   },
   {
@@ -942,13 +1158,12 @@ window.IDX = [
     "excerpt": "Jujutsu Kaisen Mùa 3 (Culling Game Phần 1) do MAPPA sản xuất đã phát sóng vào mùa đông 2026 với 12 tập; Phần 2 đang được sản xuất, chưa công bố ngày phát sóng.",
     "img": "/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg",
     "tags": [
-      "Jujutsu Kaisen",
+      "Anime",
+      "Jujutsu Kaisen Mùa 3",
+      "Crunchyroll",
       "MAPPA",
-      "Culling Game",
-      "Itadori Yuji",
-      "Hakari Kinji",
-      "Gojo Satoru",
-      "Anime 2026"
+      "Anime Corner",
+      "2026"
     ]
   },
   {
@@ -961,7 +1176,12 @@ window.IDX = [
     "tags": [
       "Reviews",
       "OtaHub News",
-      "Tiêu Điểm"
+      "Tiêu Điểm",
+      "Monster Hunter Wilds",
+      "PC",
+      "Capcom",
+      "Open World",
+      "Review"
     ]
   },
   {
@@ -972,13 +1192,14 @@ window.IDX = [
     "excerpt": "One Piece chapter 1193 phát hành 13/9/2026: Luffy kiệt sức sau Gear 5, Loki biến hình lai, Zoro dùng Haki Bá Vương đâm xuyên Sommers và nói mình vẫn đang luyện tập.",
     "img": "/assets/img/news-one-piece-chapter-1192-elbaf-uranus.jpg",
     "tags": [
-      "One Piece",
-      "Eiichiro Oda",
-      "Elbaf Arc",
-      "Loki",
-      "Luffy",
-      "Nika",
-      "Manga 2026"
+      "Manga",
+      "OtaHub News",
+      "Tiêu Điểm",
+      "One Piece Chapter 1193",
+      "Zoro",
+      "Shonen Jump",
+      "Shonen",
+      "Spoiler"
     ]
   },
   {
@@ -989,13 +1210,12 @@ window.IDX = [
     "excerpt": "Paper Rex là đội đầu tiên giành vé dự VALORANT Champions Shanghai 2026; Sentinels bị loại khỏi Americas Stage 2 ngày 22/8. Giải có 16 đội, mỗi khu vực 4 đội.",
     "img": "/assets/img/real-vct-prx.jpg",
     "tags": [
-      "VCT Champions",
-      "Valorant",
+      "Gaming",
+      "VCT Champions 2026",
       "Esports",
-      "Paper Rex",
-      "Sentinels",
-      "Riot Games",
-      "Gaming 2026"
+      "2026",
+      "Tin tức",
+      "OtaHub"
     ]
   },
   {
@@ -1008,7 +1228,12 @@ window.IDX = [
     "tags": [
       "Reviews",
       "OtaHub News",
-      "Tiêu Điểm"
+      "Tiêu Điểm",
+      "Wuthering Waves",
+      "Gacha",
+      "Kuro Games",
+      "Open World",
+      "Unreal Engine 5"
     ]
   },
   {
@@ -1019,11 +1244,12 @@ window.IDX = [
     "excerpt": "Lanling Wang (Prince of Lanling) là tướng sát thủ có sẵn trong Honor of Kings và được nhắc tới như lựa chọn đi rừng trong meta 2026; bài cũ nói đây là tướng mới ra mắt là không chính xác.",
     "img": "/assets/img/news-honor-of-kings-lanling-wang.jpg",
     "tags": [
+      "Gaming",
       "Honor of Kings",
-      "Mobile Games",
-      "MOBA",
-      "Lanling Wang",
-      "Esports"
+      "Tencent",
+      "2026",
+      "Tin tức",
+      "OtaHub"
     ]
   },
   {
@@ -1034,11 +1260,14 @@ window.IDX = [
     "excerpt": "Kagurabachi của Takeru Hokazono vượt 4 triệu bản lưu hành (gồm cả digital) khi tập 11 ra mắt 1/5/2026; anime do Cypic sản xuất sẽ phát sóng tháng 4/2027.",
     "img": "/assets/img/news-kagurabachi-anime-confirmation.jpg",
     "tags": [
-      "Kagurabachi",
-      "Takeru Hokazono",
+      "Manga",
+      "Crunchyroll",
+      "Kodansha",
       "Shonen Jump",
-      "Chihiro Rokuhira",
-      "Anime 2027"
+      "Cypic",
+      "Anime Corner",
+      "Shonen",
+      "2026"
     ]
   },
   {
@@ -1049,11 +1278,11 @@ window.IDX = [
     "excerpt": "Solo Leveling: Arise của Netmarble vượt 50 triệu lượt tải sau khoảng 5 tháng kể từ khi ra mắt toàn cầu tháng 5/2024, kèm sự kiện điểm danh tặng tối đa 10.000 Essence Stones đến 31/10.",
     "img": "/assets/img/news-solo-leveling-arise-monarch-update.jpg",
     "tags": [
-      "Solo Leveling Arise",
-      "Mobile Games",
-      "Netmarble",
-      "Sung Jinwoo",
-      "Action RPG"
+      "Gaming",
+      "Solo Leveling",
+      "2026",
+      "Tin tức",
+      "OtaHub"
     ]
   },
   {
@@ -1070,7 +1299,8 @@ window.IDX = [
       "Toei Animation",
       "Rocks D. Xebec",
       "Gol D. Roger",
-      "Anime Movie"
+      "Anime Movie",
+      "Anime"
     ]
   },
   {
@@ -1086,7 +1316,9 @@ window.IDX = [
       "Elbaf",
       "Eiichiro Oda",
       "Imu",
-      "Uranus"
+      "Uranus",
+      "One Piece Chapter 1192",
+      "Luffy"
     ]
   },
   {
@@ -1102,7 +1334,9 @@ window.IDX = [
       "Light Novel",
       "Anime NYC",
       "Bản Quyền Manga",
-      "Otaku Culture"
+      "Otaku Culture",
+      "Manhwa",
+      "2026"
     ]
   },
   {
@@ -1115,7 +1349,10 @@ window.IDX = [
     "tags": [
       "Anime",
       "OtaHub News",
-      "Tiêu Điểm"
+      "Tiêu Điểm",
+      "Haikyu!! The Movie",
+      "Anime Corner",
+      "2026"
     ]
   },
   {
@@ -1128,7 +1365,12 @@ window.IDX = [
     "tags": [
       "Gaming",
       "OtaHub News",
-      "Tiêu Điểm"
+      "Tiêu Điểm",
+      "Lies of P",
+      "Switch 2",
+      "Nintendo",
+      "Soulslike",
+      "2026"
     ]
   },
   {
@@ -1141,7 +1383,12 @@ window.IDX = [
     "tags": [
       "Manga",
       "OtaHub News",
-      "Tiêu Điểm"
+      "Tiêu Điểm",
+      "One Piece Chapter 1191",
+      "Shonen Jump",
+      "Shonen",
+      "Spoiler",
+      "Luffy"
     ]
   },
   {
@@ -1155,7 +1402,9 @@ window.IDX = [
       "Avengers: Doomsday",
       "Marvel",
       "Disney+",
-      "MCU"
+      "MCU",
+      "Gaming",
+      "2026"
     ]
   },
   {
@@ -1169,7 +1418,11 @@ window.IDX = [
       "Thám Tử Lừng Danh Conan",
       "Gosho Aoyama",
       "Weekly Shonen Sunday",
-      "Shogakukan"
+      "Shogakukan",
+      "Anime News Network",
+      "Shonen",
+      "Eiichiro Oda",
+      "Anime"
     ]
   },
   {
@@ -1183,7 +1436,10 @@ window.IDX = [
       "Toilet-Bound Hanako-kun",
       "AidaIro",
       "Monthly GFantasy",
-      "Square Enix"
+      "Square Enix",
+      "Anime News Network",
+      "Manga",
+      "2026"
     ]
   },
   {
@@ -1197,7 +1453,11 @@ window.IDX = [
       "The Sinking City 2",
       "Frogwares",
       "Kinh dị sinh tồn",
-      "PS5"
+      "PS5",
+      "Xbox",
+      "PC",
+      "Sony",
+      "Metacritic"
     ]
   },
   {
@@ -1211,7 +1471,11 @@ window.IDX = [
       "Akira Toriyama",
       "Eisner Award",
       "Dragon Ball",
-      "Manga"
+      "Manga",
+      "Shonen",
+      "Crunchyroll",
+      "Shonen Jump",
+      "2026"
     ]
   },
   {
@@ -1225,7 +1489,9 @@ window.IDX = [
       "Crunchyroll",
       "Romelia War Chronicle",
       "BLACK TORCH",
-      "Anime mùa hè 2026"
+      "Anime mùa hè 2026",
+      "Anime",
+      "2026"
     ]
   },
   {
@@ -1239,7 +1505,10 @@ window.IDX = [
       "Anime NYC 2026",
       "Crunchyroll",
       "Re:ZERO",
-      "Bungo Stray Dogs"
+      "Bungo Stray Dogs",
+      "Trailer",
+      "Review",
+      "2026"
     ]
   },
   {
@@ -1253,7 +1522,11 @@ window.IDX = [
       "Ball x Pit",
       "The Naturalist",
       "PlayStation",
-      "Roguelike"
+      "Roguelike",
+      "PS5",
+      "PC",
+      "Switch 2",
+      "Nintendo"
     ]
   },
   {
@@ -1267,7 +1540,11 @@ window.IDX = [
       "Bleach",
       "Thousand-Year Blood War",
       "The Calamity",
-      "Anime 2026"
+      "Anime 2026",
+      "Bleach TYBW",
+      "Disney+",
+      "Studio Pierrot",
+      "Anime News Network"
     ]
   },
   {
@@ -1281,7 +1558,11 @@ window.IDX = [
       "Crunchyroll Manga",
       "Black Torch",
       "Hana-Kimi",
-      "Manga trực tuyến"
+      "Manga trực tuyến",
+      "Crunchyroll",
+      "Shueisha",
+      "Shonen Jump",
+      "Shonen"
     ]
   },
   {
@@ -1295,7 +1576,11 @@ window.IDX = [
       "Doraemon",
       "Phim điện ảnh",
       "2027",
-      "Anime gia đình"
+      "Anime gia đình",
+      "Doraemon Công Bố Phim Thứ 46",
+      "PC",
+      "Steam",
+      "Anime News Network"
     ]
   },
   {
@@ -1309,7 +1594,11 @@ window.IDX = [
       "Dragon Ball Sparking Zero",
       "Super Limit-Breaking Neo",
       "DLC",
-      "Bandai Namco"
+      "Bandai Namco",
+      "PC",
+      "PS5",
+      "Xbox",
+      "Switch 2"
     ]
   },
   {
@@ -1323,7 +1612,11 @@ window.IDX = [
       "Flamecraft",
       "PS5",
       "Demo",
-      "Board game"
+      "Board game",
+      "Xbox",
+      "PC",
+      "Nintendo",
+      "Gaming"
     ]
   },
   {
@@ -1338,7 +1631,10 @@ window.IDX = [
       "Garena",
       "KADOKAWA",
       "CANDYBOX",
-      "Anime 2027"
+      "Anime 2027",
+      "Anime News Network",
+      "Anime",
+      "2026"
     ]
   },
   {
@@ -1352,7 +1648,11 @@ window.IDX = [
       "Galaxy Express 999",
       "Leiji Matsumoto",
       "Phim anime chiếu rạp",
-      "Anime khoa học viễn tưởng"
+      "Anime khoa học viễn tưởng",
+      "Toei Animation",
+      "Anime News Network",
+      "Anime",
+      "2026"
     ]
   },
   {
@@ -1366,7 +1666,11 @@ window.IDX = [
       "Halo",
       "Halo Campaign Evolved",
       "FPS",
-      "Remaster"
+      "Remaster",
+      "PS5",
+      "PC",
+      "Xbox",
+      "Game Pass"
     ]
   },
   {
@@ -1380,7 +1684,10 @@ window.IDX = [
       "KONOSUBA",
       "KONOSUBA mùa 4",
       "Isekai",
-      "Anime 2027"
+      "Anime 2027",
+      "Anime News Network",
+      "Anime",
+      "2026"
     ]
   },
   {
@@ -1394,7 +1701,9 @@ window.IDX = [
       "LEGO",
       "Donkey Kong",
       "Nintendo",
-      "Mô hình lắp ráp"
+      "Mô hình lắp ráp",
+      "Gaming",
+      "2026"
     ]
   },
   {
@@ -1408,7 +1717,11 @@ window.IDX = [
       "Lou's Lagoon",
       "PS5",
       "Life sim",
-      "Deluxe Edition"
+      "Deluxe Edition",
+      "Nintendo",
+      "PC",
+      "Xbox",
+      "Switch 2"
     ]
   },
   {
@@ -1422,7 +1735,11 @@ window.IDX = [
       "Crunchyroll",
       "Magical Buffs",
       "Fate Rewinder",
-      "Anime Expo 2026"
+      "Anime Expo 2026",
+      "Anime Expo",
+      "Anime News Network",
+      "Anime",
+      "2026"
     ]
   },
   {
@@ -1436,7 +1753,11 @@ window.IDX = [
       "MARVEL Tōkon",
       "Fighting Souls",
       "Arc System Works",
-      "Game đối kháng"
+      "Game đối kháng",
+      "DLC",
+      "Sony",
+      "Gaming",
+      "2026"
     ]
   },
   {
@@ -1450,7 +1771,11 @@ window.IDX = [
       "Marvel’s Wolverine",
       "Insomniac Games",
       "PlayStation 5",
-      "Trailer cốt truyện"
+      "Trailer cốt truyện",
+      "Trailer",
+      "PS5",
+      "Gaming",
+      "2026"
     ]
   },
   {
@@ -1463,7 +1788,11 @@ window.IDX = [
     "tags": [
       "Mii-chan and Miss Yamada",
       "Anime chuyển thể",
-      "Crunchyroll"
+      "Crunchyroll",
+      "Kodansha",
+      "Anime News Network",
+      "Anime",
+      "2026"
     ]
   },
   {
@@ -1477,7 +1806,11 @@ window.IDX = [
       "Oblivion Remastered",
       "Nintendo Switch 2",
       "The Elder Scrolls IV",
-      "Bethesda"
+      "Bethesda",
+      "Switch 2",
+      "Nintendo",
+      "PS5",
+      "PC"
     ]
   },
   {
@@ -1491,7 +1824,11 @@ window.IDX = [
       "Order of the Sinking Star",
       "PlayStation 5",
       "Gameplay",
-      "Hands-on"
+      "Hands-on",
+      "PS5",
+      "Sony",
+      "PC",
+      "Switch 2"
     ]
   },
   {
@@ -1505,7 +1842,11 @@ window.IDX = [
       "PlayStation Plus",
       "Dying Light 2",
       "Big Walk",
-      "Signalis"
+      "Signalis",
+      "PlayStation Plus Tháng 8/2026",
+      "Sony",
+      "PS5",
+      "Gaming"
     ]
   },
   {
@@ -1519,7 +1860,11 @@ window.IDX = [
       "Ranma 1/2",
       "Anime mùa 3",
       "Key visual",
-      "Lồng tiếng"
+      "Lồng tiếng",
+      "Netflix",
+      "MAPPA",
+      "Anime News Network",
+      "Anime"
     ]
   },
   {
@@ -1532,7 +1877,11 @@ window.IDX = [
     "tags": [
       "Re:ZERO",
       "Kỷ niệm 10 năm",
-      "Anime NYC"
+      "Anime NYC",
+      "Re",
+      "Anime Expo",
+      "Anime",
+      "2026"
     ]
   },
   {
@@ -1546,7 +1895,10 @@ window.IDX = [
       "Rhythm Heaven Groove",
       "Nintendo",
       "Rhythm game",
-      "Bản demo"
+      "Bản demo",
+      "Switch 2",
+      "Gaming",
+      "2026"
     ]
   },
   {
@@ -1560,7 +1912,10 @@ window.IDX = [
       "Senren Banka",
       "Anime 2027",
       "Visual Novel",
-      "Crunchyroll"
+      "Crunchyroll",
+      "Anime News Network",
+      "Anime",
+      "2026"
     ]
   },
   {
@@ -1574,7 +1929,11 @@ window.IDX = [
       "Silent Hill",
       "Townfall",
       "Kinh Dị Sinh Tồn",
-      "PlayStation"
+      "PlayStation",
+      "Sony",
+      "PC",
+      "PS5",
+      "Steam"
     ]
   },
   {
@@ -1588,7 +1947,10 @@ window.IDX = [
       "Splatoon",
       "Nintendo Switch 2",
       "Deep Cut",
-      "Nintendo"
+      "Nintendo",
+      "Switch 2",
+      "Gaming",
+      "2026"
     ]
   },
   {
@@ -1601,7 +1963,11 @@ window.IDX = [
     "tags": [
       "Studio Cabana",
       "Anime 2027",
-      "Chuyển Thể Manga"
+      "Chuyển Thể Manga",
+      "Kadokawa",
+      "Anime News Network",
+      "Anime",
+      "2026"
     ]
   },
   {
@@ -1615,7 +1981,11 @@ window.IDX = [
       "The Bugle Call",
       "Anime 2027",
       "CA Soa",
-      "Chuyển Thể Manga"
+      "Chuyển Thể Manga",
+      "Shueisha",
+      "Anime News Network",
+      "Trailer",
+      "Anime"
     ]
   },
   {
@@ -1630,7 +2000,10 @@ window.IDX = [
       "Vagabond",
       "Undead Unluck",
       "Kingdom",
-      "Lịch Phát Hành"
+      "Lịch Phát Hành",
+      "Manga VIZ Ngày 18/8",
+      "Manga",
+      "2026"
     ]
   },
   {
@@ -1644,7 +2017,11 @@ window.IDX = [
       "Xbox Game Pass",
       "Halo",
       "Beast of Reincarnation",
-      "Xbox"
+      "Xbox",
+      "Xbox Game Pass Wave 2 Tháng 7",
+      "Game Pass",
+      "PC",
+      "Gaming"
     ]
   },
   {
@@ -1657,7 +2034,11 @@ window.IDX = [
     "tags": [
       "Yen Press",
       "Champignon Witch",
-      "Giấy Phép Manga"
+      "Giấy Phép Manga",
+      "Crunchyroll",
+      "Anime News Network",
+      "Manga",
+      "2026"
     ]
   },
   {
@@ -1671,7 +2052,11 @@ window.IDX = [
       "The Apothecary Diaries",
       "Studio OLM",
       "Maomao",
-      "Anime Mùa Thu 2026"
+      "Anime Mùa Thu 2026",
+      "Trailer",
+      "Square Enix",
+      "Review",
+      "2026"
     ]
   },
   {
@@ -1685,7 +2070,11 @@ window.IDX = [
       "Final Fantasy VII",
       "Square Enix",
       "Gamescom 2026",
-      "Naoki Hamaguchi"
+      "Naoki Hamaguchi",
+      "PC",
+      "PS5",
+      "Xbox",
+      "Switch 2"
     ]
   },
   {
@@ -1699,7 +2088,11 @@ window.IDX = [
       "GTA 6",
       "Rockstar Games",
       "Netflix",
-      "Grand Theft Auto"
+      "Grand Theft Auto",
+      "Trailer",
+      "PS5",
+      "Xbox",
+      "PC"
     ]
   },
   {
@@ -1713,7 +2106,11 @@ window.IDX = [
       "Jump GIGA",
       "Food Wars",
       "We Never Learn",
-      "Shonen Jump"
+      "Shonen Jump",
+      "Shueisha",
+      "Shonen",
+      "Review",
+      "2026"
     ]
   },
   {
@@ -1727,7 +2124,11 @@ window.IDX = [
       "Mortal Shell",
       "Cold Symmetry",
       "Soulslike",
-      "Action RPG"
+      "Action RPG",
+      "PC",
+      "PS5",
+      "Xbox",
+      "Steam"
     ]
   },
   {
@@ -1741,7 +2142,11 @@ window.IDX = [
       "Phantom Blade Zero",
       "S-Game",
       "State of Play",
-      "PS5"
+      "PS5",
+      "Sony",
+      "Trailer",
+      "Review",
+      "2026"
     ]
   },
   {
@@ -1755,7 +2160,10 @@ window.IDX = [
       "Reincarnated as a Sword",
       "Studio C2C",
       "Isekai",
-      "Anime Mùa Thu 2026"
+      "Anime Mùa Thu 2026",
+      "Trailer",
+      "Review",
+      "2026"
     ]
   },
   {
@@ -1769,7 +2177,11 @@ window.IDX = [
       "A Plague Tale",
       "Asobo Studio",
       "Action Adventure",
-      "Prequel"
+      "Prequel",
+      "Resonance",
+      "Xbox",
+      "PC",
+      "PS5"
     ]
   },
   {
@@ -1783,7 +2195,11 @@ window.IDX = [
       "Skip and Loafer",
       "P.A.Works",
       "Slice of Life",
-      "Anime Mùa Xuân 2027"
+      "Anime Mùa Xuân 2027",
+      "Kodansha",
+      "Trailer",
+      "Review",
+      "2026"
     ]
   },
   {
@@ -1797,7 +2213,11 @@ window.IDX = [
       "Attack on Titan",
       "MAPPA",
       "Hajime Isayama",
-      "Eren Yeager"
+      "Eren Yeager",
+      "Attack on Titan Final Season",
+      "Wit Studio",
+      "Kodansha",
+      "Shonen"
     ]
   },
   {
@@ -1811,7 +2231,11 @@ window.IDX = [
       "Chainsaw Man",
       "MAPPA",
       "Denji",
-      "Tatsuki Fujimoto"
+      "Tatsuki Fujimoto",
+      "Chainsaw Man Anime",
+      "Review",
+      "Đánh giá",
+      "2026"
     ]
   },
   {
@@ -1825,7 +2249,11 @@ window.IDX = [
       "Chainsaw Man",
       "Tatsuki Fujimoto",
       "Manga",
-      "Asa Mitaka"
+      "Asa Mitaka",
+      "Chainsaw Man Manga",
+      "Shonen",
+      "Shonen Jump",
+      "MAPPA"
     ]
   },
   {
@@ -1839,7 +2267,11 @@ window.IDX = [
       "Dandadan",
       "Yukinobu Tatsu",
       "Shonen Jump+",
-      "Manga"
+      "Manga",
+      "Shueisha",
+      "Shonen Jump",
+      "Shonen",
+      "Review"
     ]
   },
   {
@@ -1853,7 +2285,11 @@ window.IDX = [
       "Genshin Impact",
       "HoYoverse",
       "Snezhnaya",
-      "Teyvat"
+      "Teyvat",
+      "Genshin 7.0 Snezhnaya",
+      "Review",
+      "Đánh giá",
+      "2026"
     ]
   },
   {
@@ -1867,7 +2303,10 @@ window.IDX = [
       "Honkai Star Rail",
       "Zenless Zone Zero",
       "HoYoverse",
-      "Crossover"
+      "Crossover",
+      "Honkai",
+      "Review",
+      "2026"
     ]
   },
   {
@@ -1881,7 +2320,11 @@ window.IDX = [
       "Kaiju No.8",
       "Co-op",
       "Action",
-      "Hyde"
+      "Hyde",
+      "Kaiju No.8 THE GAME",
+      "Review",
+      "Đánh giá",
+      "2026"
     ]
   },
   {
@@ -1895,7 +2338,11 @@ window.IDX = [
       "Oshi no Ko",
       "Doga Kobo",
       "Aka Akasaka",
-      "Ai Hoshino"
+      "Ai Hoshino",
+      "Oshi no Ko Anime",
+      "Prime Video",
+      "Shueisha",
+      "Review"
     ]
   },
   {
@@ -1909,7 +2356,10 @@ window.IDX = [
       "Oshi no Ko",
       "Doga Kobo",
       "Aka Akasaka",
-      "Mùa 4"
+      "Mùa 4",
+      "Trailer",
+      "Review",
+      "2026"
     ]
   },
   {
@@ -1923,7 +2373,11 @@ window.IDX = [
       "Vinland Saga",
       "Makoto Yukimura",
       "Manga",
-      "Thorfinn"
+      "Thorfinn",
+      "Vinland Saga Manga",
+      "Kodansha",
+      "MAPPA",
+      "Wit Studio"
     ]
   },
   {
@@ -1936,7 +2390,12 @@ window.IDX = [
     "tags": [
       "Attack on Titan",
       "WIT Studio",
-      "Hajime Isayama"
+      "Hajime Isayama",
+      "MAPPA",
+      "Kodansha",
+      "Shonen",
+      "Anime",
+      "2026"
     ]
   },
   {
@@ -1950,7 +2409,11 @@ window.IDX = [
       "Big Walk",
       "House House",
       "Co-op",
-      "Indie"
+      "Indie",
+      "PC",
+      "PS5",
+      "Switch 2",
+      "Steam"
     ]
   },
   {
@@ -1964,7 +2427,11 @@ window.IDX = [
       "Black Clover",
       "Yuki Tabata",
       "Shonen Jump",
-      "Manga"
+      "Manga",
+      "Black Clover Kết Thúc",
+      "Shonen",
+      "Shueisha",
+      "Review"
     ]
   },
   {
@@ -1978,7 +2445,11 @@ window.IDX = [
       "Black Myth Wukong",
       "Game Science",
       "Souls-like",
-      "Tây Du Ký"
+      "Tây Du Ký",
+      "Black Myth",
+      "Soulslike",
+      "PC",
+      "Metacritic"
     ]
   },
   {
@@ -1992,7 +2463,11 @@ window.IDX = [
       "Chainsaw Man",
       "Reze Arc",
       "MAPPA",
-      "Review"
+      "Review",
+      "Sony",
+      "Crunchyroll",
+      "Đánh giá",
+      "2026"
     ]
   },
   {
@@ -2006,7 +2481,11 @@ window.IDX = [
       "Dan Da Dan",
       "Science SARU",
       "Anime",
-      "Review"
+      "Review",
+      "Dan Da Dan Season 2",
+      "Crunchyroll",
+      "Netflix",
+      "Shueisha"
     ]
   },
   {
@@ -2020,7 +2499,11 @@ window.IDX = [
       "Death Stranding 2",
       "Kojima Productions",
       "PS5",
-      "Review"
+      "Review",
+      "PC",
+      "Sony",
+      "Metacritic",
+      "Open World"
     ]
   },
   {
@@ -2034,7 +2517,9 @@ window.IDX = [
       "Demon Slayer",
       "Infinity Castle",
       "Ufotable",
-      "Review"
+      "Review",
+      "Đánh giá",
+      "2026"
     ]
   },
   {
@@ -2048,7 +2533,11 @@ window.IDX = [
       "Elden Ring",
       "Nintendo Switch 2",
       "FromSoftware",
-      "Bandai Namco"
+      "Bandai Namco",
+      "Switch 2",
+      "PC",
+      "Xbox",
+      "PS5"
     ]
   },
   {
@@ -2062,7 +2551,11 @@ window.IDX = [
       "Ghost of Yotei",
       "Sucker Punch",
       "PS5",
-      "Review"
+      "Review",
+      "Ghost of Yōtei",
+      "Sony",
+      "Metacritic",
+      "Open World"
     ]
   },
   {
@@ -2076,7 +2569,11 @@ window.IDX = [
       "Jujutsu Kaisen",
       "MAPPA",
       "Gege Akutami",
-      "Gojo"
+      "Gojo",
+      "Jujutsu Kaisen Anime",
+      "Shonen",
+      "Shonen Jump",
+      "Review"
     ]
   },
   {
@@ -2090,7 +2587,11 @@ window.IDX = [
       "Kagurabachi",
       "Takeru Hokazono",
       "Shonen Jump",
-      "Review"
+      "Review",
+      "Shonen",
+      "Shueisha",
+      "Đánh giá",
+      "2026"
     ]
   },
   {
@@ -2104,7 +2605,11 @@ window.IDX = [
       "Kaiju No.8",
       "Naoya Matsumoto",
       "Shonen Jump+",
-      "Manga"
+      "Manga",
+      "Shonen",
+      "Shueisha",
+      "Shonen Jump",
+      "Seinen"
     ]
   },
   {
@@ -2118,7 +2623,11 @@ window.IDX = [
       "Mafia",
       "Hangar 13",
       "Sicily",
-      "2K"
+      "2K",
+      "Open World",
+      "PC",
+      "DLC",
+      "PS5"
     ]
   },
   {
@@ -2132,7 +2641,11 @@ window.IDX = [
       "Metal Gear Solid",
       "Konami",
       "Remake",
-      "Review"
+      "Review",
+      "Metal Gear Solid Delta",
+      "PS5",
+      "Xbox",
+      "PC"
     ]
   },
   {
@@ -2146,7 +2659,11 @@ window.IDX = [
       "One Piece",
       "Vegapunk",
       "Toei Animation",
-      "Manga"
+      "Manga",
+      "Shueisha",
+      "Eiichiro Oda",
+      "Luffy",
+      "Review"
     ]
   },
   {
@@ -2160,7 +2677,11 @@ window.IDX = [
       "One Piece",
       "Eiichiro Oda",
       "Laugh Tale",
-      "Manga"
+      "Manga",
+      "Shonen",
+      "Shueisha",
+      "Shonen Jump",
+      "Review"
     ]
   },
   {
@@ -2173,7 +2694,12 @@ window.IDX = [
     "tags": [
       "Kohei Horikoshi",
       "My Hero Academia",
-      "Weekly Shonen Jump"
+      "Weekly Shonen Jump",
+      "Shonen",
+      "Shonen Jump",
+      "Shueisha",
+      "Manga",
+      "2026"
     ]
   },
   {
@@ -2187,7 +2713,11 @@ window.IDX = [
       "Space Marine 2",
       "Warhammer 40000",
       "Confrontation",
-      "Saber Interactive"
+      "Saber Interactive",
+      "PS5",
+      "PC",
+      "Xbox",
+      "Review"
     ]
   },
   {
@@ -2201,7 +2731,11 @@ window.IDX = [
       "Split Fiction",
       "Hazelight",
       "Co-op",
-      "Review"
+      "Review",
+      "PS5",
+      "Xbox",
+      "Switch 2",
+      "Metacritic"
     ]
   },
   {
@@ -2215,7 +2749,11 @@ window.IDX = [
       "Suikoden",
       "Konami",
       "Mobile RPG",
-      "JP Launch"
+      "JP Launch",
+      "Suikoden STAR LEAP",
+      "Gacha",
+      "Mobile",
+      "PC"
     ]
   },
   {
@@ -2231,7 +2769,9 @@ window.IDX = [
       "Qingxiao",
       "Jingran",
       "Gacha",
-      "Ren Realm"
+      "Ren Realm",
+      "Wuthering Waves 3.6",
+      "Open World"
     ]
   },
   {
@@ -2246,7 +2786,10 @@ window.IDX = [
       "Game Freak",
       "Souls-like",
       "Xbox Game Pass",
-      "PS5"
+      "PS5",
+      "Xbox",
+      "PC",
+      "Game Pass"
     ]
   },
   {
@@ -2261,7 +2804,10 @@ window.IDX = [
       "Yuki Tabata",
       "Perfect Grimoire",
       "Weekly Shonen Jump",
-      "Shueisha"
+      "Shueisha",
+      "Shonen",
+      "Shonen Jump",
+      "Netflix"
     ]
   },
   {
@@ -2276,7 +2822,10 @@ window.IDX = [
       "Crunchyroll",
       "Sony Pictures",
       "Suzume",
-      "CoMix Wave Films"
+      "CoMix Wave Films",
+      "Sony",
+      "Anime",
+      "2026"
     ]
   },
   {
@@ -2292,7 +2841,9 @@ window.IDX = [
       "Odette",
       "Sandrone",
       "HoYoverse",
-      "Tier List"
+      "Tier List",
+      "Genshin Impact 7.0",
+      "Gaming"
     ]
   },
   {
@@ -2307,7 +2858,10 @@ window.IDX = [
       "Sucker Punch",
       "Complete Edition",
       "PS5",
-      "Roguelike"
+      "Roguelike",
+      "DLC",
+      "Sony",
+      "Open World"
     ]
   },
   {
@@ -2322,7 +2876,10 @@ window.IDX = [
       "Donghua",
       "LAN Studio",
       "Bilibili",
-      "Du hành thời gian"
+      "Du hành thời gian",
+      "Crunchyroll",
+      "Anime",
+      "2026"
     ]
   },
   {
@@ -2337,7 +2894,10 @@ window.IDX = [
       "Awakening Mystery",
       "Kinema Citrus",
       "Kevin Penkin",
-      "Mori Calliope"
+      "Mori Calliope",
+      "Trailer",
+      "Isekai",
+      "Anime"
     ]
   },
   {
@@ -2352,7 +2912,10 @@ window.IDX = [
       "The Old Country",
       "Man of Honor",
       "Hangar 13",
-      "2K Games"
+      "2K Games",
+      "PC",
+      "DLC",
+      "PS5"
     ]
   },
   {
@@ -2367,7 +2930,10 @@ window.IDX = [
       "MANGA MILLION",
       "MANGA Plus",
       "One Piece",
-      "Near-simulcast"
+      "Near-simulcast",
+      "Shonen",
+      "Seinen",
+      "Manga"
     ]
   },
   {
@@ -2382,7 +2948,10 @@ window.IDX = [
       "STAR LEAP",
       "Konami",
       "MYTHRIL",
-      "Mobile"
+      "Mobile",
+      "PC",
+      "Steam",
+      "Trailer"
     ]
   },
   {
@@ -2397,7 +2966,10 @@ window.IDX = [
       "Princess Knight",
       "Osamu Tezuka",
       "Netflix",
-      "OUTLINE"
+      "OUTLINE",
+      "Cyberpunk",
+      "Anime",
+      "2026"
     ]
   },
   {
@@ -2412,7 +2984,10 @@ window.IDX = [
       "Snezhnaya",
       "Odette",
       "HoYoverse",
-      "Gacha"
+      "Gacha",
+      "Genshin Impact 7.0",
+      "PS5",
+      "PC"
     ]
   },
   {
@@ -2427,7 +3002,10 @@ window.IDX = [
       "Silksong",
       "Team Cherry",
       "Metroidvania",
-      "Indie"
+      "Indie",
+      "DLC",
+      "Xbox",
+      "Game Pass"
     ]
   },
   {
@@ -2442,7 +3020,10 @@ window.IDX = [
       "Asta",
       "WANIMA",
       "Crunchyroll",
-      "Shonen"
+      "Shonen",
+      "Trailer",
+      "Anime Expo",
+      "Anime"
     ]
   },
   {
@@ -2456,7 +3037,11 @@ window.IDX = [
       "Chained Soldier",
       "Mato Seihei no Slave",
       "Season 3",
-      "Isekai"
+      "Isekai",
+      "Chained Soldier Season 3",
+      "Shueisha",
+      "Shonen Jump",
+      "Shonen"
     ]
   },
   {
@@ -2471,7 +3056,10 @@ window.IDX = [
       "Golden Spirit",
       "Game mobile",
       "Tactical RPG",
-      "Gacha"
+      "Gacha",
+      "Mobile",
+      "Gaming",
+      "2026"
     ]
   },
   {
@@ -2486,7 +3074,10 @@ window.IDX = [
       "Reno Ichikawa",
       "Kikoru Shinomiya",
       "Live-service",
-      "PC"
+      "PC",
+      "Kaiju No.8 THE GAME",
+      "Steam",
+      "Gaming"
     ]
   },
   {
@@ -2501,7 +3092,10 @@ window.IDX = [
       "Konami",
       "MGS4",
       "Peace Walker",
-      "Remaster"
+      "Remaster",
+      "MGS",
+      "PS5",
+      "PC"
     ]
   },
   {
@@ -2516,7 +3110,10 @@ window.IDX = [
       "Chaos Breaker Arc",
       "Studio Bind",
       "Rudeus",
-      "Isekai"
+      "Isekai",
+      "Mushoku Tensei S3",
+      "Trailer",
+      "Anime"
     ]
   },
   {
@@ -2531,7 +3128,10 @@ window.IDX = [
       "Recapture Arc",
       "White Fox",
       "Crunchyroll",
-      "Isekai"
+      "Isekai",
+      "Re",
+      "Anime Expo",
+      "Anime Corner"
     ]
   },
   {
@@ -2546,7 +3146,10 @@ window.IDX = [
       "Manga Million",
       "One Piece",
       "Miễn phí",
-      "100 năm Shueisha"
+      "100 năm Shueisha",
+      "Shueisha Ra Mắt MANGA MILLION",
+      "Shonen Jump",
+      "Shonen"
     ]
   },
   {
@@ -2561,7 +3164,10 @@ window.IDX = [
       "Zero Company",
       "EA",
       "Chiến thuật",
-      "PC"
+      "PC",
+      "Star Wars Zero Company",
+      "PS5",
+      "Xbox"
     ]
   },
   {
@@ -2576,7 +3182,10 @@ window.IDX = [
       "Eiichiro Oda",
       "Manga",
       "Final Saga",
-      "Laugh Tale"
+      "Laugh Tale",
+      "One Piece Final Saga",
+      "Zoro",
+      "Toei Animation"
     ]
   },
   {
@@ -2587,11 +3196,12 @@ window.IDX = [
     "excerpt": "Global Esports vô địch VCT Pacific Stage 2 2026, Nongshim RedForce á quân, T1 hạng 3, VARREL hạng 4; Paper Rex về hạng 5–6 sau khi thua VARREL ở vòng bảng, nhưng đã có vé Champions Shanghai từ trước.",
     "img": "/assets/img/4c17ff1a96-Valorant_Champions_Los_Angeles_2023.jpg",
     "tags": [
-      "VCT Pacific",
-      "Valorant",
+      "Gaming",
+      "VCT Pacific 2026 Stage 2",
       "Esports",
-      "Paper Rex",
-      "Champions 2026"
+      "2026",
+      "Tin tức",
+      "OtaHub"
     ]
   },
   {
@@ -2608,7 +3218,8 @@ window.IDX = [
       "Chaos Siege Mode",
       "Season Pass 3",
       "PC",
-      "PS5"
+      "PS5",
+      "Space Marine 2 Năm 3"
     ]
   },
   {
@@ -2619,12 +3230,14 @@ window.IDX = [
     "excerpt": "Forza Horizon 6 và Mina the Hollower cùng dẫn đầu game 2026 với 90 điểm Metacritic; Onimusha: Way of the Sword được khen về chiến đấu. GTA 6 ra mắt 19/11/2026 trên PS5 và Xbox, chưa có bản PC.",
     "img": "/assets/img/6eef9e5628-library_hero.jpg",
     "tags": [
-      "Top Game 2026",
-      "PC Gaming",
-      "Rankings",
-      "Elden Ring",
-      "GTA6",
-      "Indie Games"
+      "Gaming",
+      "PC",
+      "DLC",
+      "PS5",
+      "Xbox",
+      "Rockstar Games",
+      "Metacritic",
+      "Đánh giá"
     ]
   },
   {
@@ -2635,12 +3248,14 @@ window.IDX = [
     "excerpt": "Tổng hợp anime mùa hè 2026: Mushoku Tensei S3, The Ghost in the Shell (Science SARU), Youjo Senki II, Bleach: The Calamity, Re:Zero S4 Recapture Part cùng lịch phát sóng đã xác minh.",
     "img": "/assets/img/10728427f3-chainsaw-man-hero.jpg",
     "tags": [
-      "Anime 2026",
-      "Chainsaw Man",
-      "Dungeon Meshi",
-      "Frieren",
-      "Kaiju No 8",
-      "Summer Anime"
+      "Anime",
+      "Anime Mùa Hè 2026",
+      "Crunchyroll",
+      "Netflix",
+      "Prime Video",
+      "Disney+",
+      "MAPPA",
+      "CloverWorks"
     ]
   },
   {
@@ -2656,7 +3271,9 @@ window.IDX = [
       "Anime Game",
       "Bandai Namco",
       "F2P",
-      "Review"
+      "Review",
+      "PC",
+      "Steam"
     ]
   },
   {
@@ -2672,7 +3289,9 @@ window.IDX = [
       "Kentaro Miura",
       "Studio Gaga",
       "Young Animal",
-      "Shonen"
+      "Shonen",
+      "Berserk Arc Cuối",
+      "2026"
     ]
   },
   {
@@ -2686,7 +3305,11 @@ window.IDX = [
       "Elden Ring",
       "FromSoftware",
       "Tarnished Pack",
-      "Soulslike"
+      "Soulslike",
+      "Elden Ring Tarnished Pack",
+      "Xbox",
+      "PS5",
+      "PC"
     ]
   },
   {
@@ -2697,12 +3320,14 @@ window.IDX = [
     "excerpt": "DLC crossover miễn phí Stellar Blade x Goddess of Victory: NIKKE ra mắt 12/6/2025 trên PS5 và PC, có boss Scarlet, trang phục cho EVE và minigame bắn súng.",
     "img": "/assets/img/ec5a6e3960-maxresdefault.jpg",
     "tags": [
-      "Stellar Blade",
-      "Goddess of Victory NIKKE",
-      "Shift Up",
+      "Gaming",
+      "Stellar Blade x NIKKE",
+      "DLC",
+      "PC",
       "PS5",
-      "Crossover",
-      "Eve"
+      "Steam",
+      "Switch 2",
+      "Sony"
     ]
   },
   {
@@ -2713,12 +3338,14 @@ window.IDX = [
     "excerpt": "Grand Theft Auto VI ra mắt ngày 19/11/2026 trên PS5/PS5 Pro và Xbox Series X|S; đặt trước từ 25/6, tải trước 12/11; bản Standard 79,99 USD, Ultimate 99,99 USD; Rockstar chưa công bố bản PC.",
     "img": "/assets/img/c8cd09fede-maxresdefault.jpg",
     "tags": [
-      "GTA6",
-      "Rockstar",
-      "Vice City",
-      "Open World",
+      "Gaming",
+      "PC",
+      "Rockstar Games",
       "PS5",
-      "Xbox"
+      "Trailer",
+      "Xbox",
+      "Netflix",
+      "2026"
     ]
   },
   {
@@ -2734,7 +3361,9 @@ window.IDX = [
       "RPG",
       "Medieval",
       "Warhorse Studios",
-      "Bohemia"
+      "Bohemia",
+      "Kingdom Come Deliverance 2",
+      "Open World"
     ]
   },
   {
@@ -2748,7 +3377,11 @@ window.IDX = [
       "Resident Evil Requiem",
       "Capcom",
       "Survival Horror",
-      "RE Engine"
+      "RE Engine",
+      "Switch 2",
+      "PS5",
+      "PC",
+      "Xbox"
     ]
   },
   {
@@ -2759,11 +3392,13 @@ window.IDX = [
     "excerpt": "Season 2 của Tekken 8 có 4 nhân vật DLC: Anna Williams (3/4/2025), Fahkumram, Armor King (đầy đủ từ 16/10/2025) và Miary Zo (truy cập sớm 2/12/2025).",
     "img": "/assets/img/31f849a512-library_hero.jpg",
     "tags": [
-      "Tekken 8",
-      "Season 2",
-      "Fighting Game",
-      "EVO",
-      "Bandai Namco"
+      "Gaming",
+      "Tekken 8 Season 2",
+      "DLC",
+      "PC",
+      "Steam",
+      "Bandai Namco",
+      "2026"
     ]
   },
   {
@@ -2779,7 +3414,9 @@ window.IDX = [
       "Blood Rain",
       "Evie",
       "Action RPG",
-      "PS5"
+      "PS5",
+      "Trailer",
+      "Gaming"
     ]
   },
   {
@@ -2793,7 +3430,11 @@ window.IDX = [
       "Xbox",
       "Xbox Games Showcase",
       "Gears of War",
-      "Fable"
+      "Fable",
+      "Xbox Games Showcase 2026",
+      "Game Pass",
+      "PC",
+      "Trailer"
     ]
   },
   {
@@ -2810,7 +3451,8 @@ window.IDX = [
       "Egghead",
       "Vegapunk",
       "Final Saga",
-      "Shonen Jump"
+      "Shonen Jump",
+      "One Piece Egghead Arc"
     ]
   },
   {
@@ -2844,7 +3486,9 @@ window.IDX = [
       "Toei",
       "Anime",
       "Daima",
-      "Review"
+      "Review",
+      "Dragon Ball DAIMA",
+      "Toei Animation"
     ]
   },
   {
@@ -2861,7 +3505,8 @@ window.IDX = [
       "Shonen Jump",
       "MAPPA",
       "Itadori",
-      "Sukuna"
+      "Sukuna",
+      "Jujutsu Kaisen Kết Thúc"
     ]
   },
   {
@@ -2878,7 +3523,8 @@ window.IDX = [
       "Review",
       "Joy-Con",
       "Mario Kart",
-      "Gaming 2026"
+      "Gaming 2026",
+      "Nintendo Switch 2"
     ]
   }
 ];
