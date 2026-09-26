@@ -1101,7 +1101,7 @@ window.IDX = [
     "url": "/elden-ring-shadow-of-the-erdtree-review",
     "cat": "Reviews",
     "date": "2026-08-25",
-    "excerpt": "Review Elden Ring: Shadow of the Erdtree (21/6/2024): Metacritic 92–95, 5 triệu bản trong 3 ngày; Scadutree Fragments, boss, vũ khí mới và lý do OtaHub chấm 9.7.",
+    "excerpt": "Review Elden Ring: Shadow of the Erdtree: bản mở rộng dài như một game riêng, Land of Shadow đầy hầm ngục, vũ khí mới và hệ Scadutree; Metacritic 94, độ khó cao là rào cản.",
     "img": "/assets/img/elden-ring-shadow-erdtree-review-hero.jpg",
     "tags": [
       "Reviews",
@@ -1137,7 +1137,7 @@ window.IDX = [
     "url": "/honkai-star-rail-review",
     "cat": "Reviews",
     "date": "2026-08-25",
-    "excerpt": "Review Honkai: Star Rail: RPG theo lượt của HoYoverse ra mắt 26/4/2023, Metacritic PC 80 và PS5 82; lối chơi, cốt truyện Penacony và Amphoreus, điểm yếu.",
+    "excerpt": "Review Honkai: Star Rail: JRPG theo lượt miễn phí của HoYoverse, ra 26/4/2023, chiến đấu Weakness Break sâu, cốt truyện Astral Express; IGN 9/10, có gacha.",
     "img": "/assets/img/news-honkai-star-rail-31-amphoreus.jpg",
     "tags": [
       "Reviews",
@@ -1171,7 +1171,7 @@ window.IDX = [
     "url": "/monster-hunter-wilds-review",
     "cat": "Reviews",
     "date": "2026-08-25",
-    "excerpt": "Phân tích toàn diện hệ thống Focus Mode, thú cưỡi Seikret, thời tiết biến đổi và lý do MH Wilds đạt vị trí Á Quân 9.4/10.",
+    "excerpt": "Review Monster Hunter Wilds: Capcom thêm Focus Mode, thú cưỡi Seikret và hệ sinh thái động, Metacritic 88, bán 8 triệu bản trong 3 ngày; hiệu năng PC và độ khó thấp là điểm trừ.",
     "img": "/assets/img/monster-hunter-wilds-review-hero.jpg",
     "tags": [
       "Reviews",
@@ -1223,7 +1223,7 @@ window.IDX = [
     "url": "/wuthering-waves-review",
     "cat": "Reviews",
     "date": "2026-08-25",
-    "excerpt": "Đánh giá chi tiết phiên bản 2.4 - 3.6: Cơ chế Ngự Kiếm Phi Hành, Echo Transformation và vị trí dẫn đầu Mobile Games 9.5/10.",
+    "excerpt": "Review Wuthering Waves: game hành động thế giới mở gacha của Kuro Games, ra 23/5/2024, chiến đấu Echo và parry, di chuyển parkour; Metacritic 71–76, gacha dễ chịu nhưng khởi đầu lỗi.",
     "img": "/assets/img/pool-ww-1.jpg",
     "tags": [
       "Reviews",
@@ -2439,7 +2439,7 @@ window.IDX = [
     "url": "/black-myth-wukong-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Game Science biến Tây Du Ký thành một hành trình hành động nhập vai hoành tráng, đẹp mắt và đầy thử thách, cột mốc lịch sử cho ngành game Trung Quốc, dù chưa hoàn hảo về mặt kỹ thuật.",
+    "excerpt": "Review Black Myth: Wukong: action RPG soulslike của Game Science trên Tây Du Ký, Unreal Engine 5, bán 20 triệu bản tháng đầu; Metacritic 81, đẹp và ấn tượng nhưng nhịp giữa game không đều.",
     "img": "/assets/img/pool-black-myth-1.jpg",
     "tags": [
       "Black Myth Wukong",
@@ -2493,7 +2493,7 @@ window.IDX = [
     "url": "/death-stranding-2-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Review Death Stranding 2: On the Beach: Metacritic 89, ra PS5 26/6/2025 và PC 19/3/2026; cốt truyện, lối chơi mới, dàn diễn viên và điểm yếu.",
+    "excerpt": "Review Death Stranding 2: On the Beach: Kojima kéo Sam đến Mexico và Úc, thêm chiến đấu, xe cộ, monorail; Metacritic 89, cái giá là vài ý tưởng lặp lại từ phần đầu.",
     "img": "/assets/img/9c68ea445d-death-stranding-2-on-the-beach-review-hero.jpg",
     "tags": [
       "Death Stranding 2",
@@ -2545,7 +2545,7 @@ window.IDX = [
     "url": "/ghost-of-yotei-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Review Ghost of Yōtei: PS5 ngày 2/10/2025, Metacritic 86; Atsu trả thù ở Ezo năm 1603, hệ thống vũ khí, sói đồng hành, điểm mạnh và yếu.",
+    "excerpt": "Review Ghost of Yōtei: Atsu báo thù Yōtei Six ở Ezo năm 1603 với kusarigama, ōdachi, song kiếm và sói đồng hành; Metacritic 86, khen kiếm chiến, chê nhiệm vụ phụ và thế giới mở lỗi thời.",
     "img": "/assets/img/3c84e61b4e-ghost-of-yotei-review-hero.jpg",
     "tags": [
       "Ghost of Yotei",
@@ -2617,7 +2617,7 @@ window.IDX = [
     "url": "/mafia-old-country-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Hangar 13 quay về cội nguồn Sicily đầu thế kỷ 20 với một câu chuyện mafia điện ảnh, giàu cảm xúc, dù đánh đổi bằng cấu trúc gameplay tuyến tính hơn các phần tiền nhiệm.",
+    "excerpt": "Review Mafia: The Old Country: Hangar 13 quay lại lối kể tuyến tính ở Sicily 1900, giá 50 USD, Metacritic 73; cốt truyện và bối cảnh đẹp, cơ chế chiến đấu nông và lặp.",
     "img": "/assets/img/pool-mafia-1.jpg",
     "tags": [
       "Mafia",
@@ -2635,7 +2635,7 @@ window.IDX = [
     "url": "/metal-gear-solid-delta-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Review Metal Gear Solid Delta: Snake Eater (28/8/2025): Metacritic PS5 85, Unreal Engine 5, hai kiểu điều khiển, điểm mạnh, yếu và lượng bán.",
+    "excerpt": "Review Metal Gear Solid Delta: Snake Eater: bản làm lại trung thành của Konami trên Unreal Engine 5, hai kiểu điều khiển, Metacritic 85; đẹp và đúng bản gốc nhưng ít đổi mới.",
     "img": "/assets/img/ce3825d43e-mgs-delta-snake-eater-review-hero.jpg",
     "tags": [
       "Metal Gear Solid",
@@ -2707,7 +2707,7 @@ window.IDX = [
     "url": "/space-marine-2-chaos-rising-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Saber Interactive khép lại Năm 2 hỗ trợ hậu phát hành cho Space Marine 2 bằng bản cập nhật Confrontation: 2 map PvP mới, kẻ địch Thousand Sons mới và cosmetic Season Pass 2, trước khi Năm 3 khởi động vào tháng 9.",
+    "excerpt": "Review Warhammer 40,000: Space Marine 2: Saber dựng game hành động bắn súng góc nhìn thứ ba với Titus, Tyranid và Chaos; Metacritic 80–83, bán 12 triệu bản, cận chiến và co-op là điểm mạnh.",
     "img": "/assets/img/pool-space-marine-1.jpg",
     "tags": [
       "Space Marine 2",
@@ -2725,7 +2725,7 @@ window.IDX = [
     "url": "/split-fiction-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Review Split Fiction (6/3/2025): game co-op bắt buộc của Hazelight, Metacritic 89–93, Friend's Pass, 7 triệu bản bán ra đến tháng 4/2026.",
+    "excerpt": "Review Split Fiction: game co-op của Hazelight với Mio và Zoe, mỗi màn một cơ chế mới, Friend's Pass; Metacritic 91, OpenCritic 98%, bán 7 triệu bản.",
     "img": "/assets/img/4c8ef98e63-split-fiction-review-hero.jpg",
     "tags": [
       "Split Fiction",
@@ -3353,7 +3353,7 @@ window.IDX = [
     "url": "/kingdom-come-deliverance-2",
     "cat": "Gaming",
     "date": "2026-06-10",
-    "excerpt": "Henry trở lại với hành trình kép giữa hai vùng đất, và Warhorse Studios đã tạo ra một trong những RPG open world sâu sắc nhất từ trước đến nay.",
+    "excerpt": "Review Kingdom Come: Deliverance II: RPG thế giới mở góc nhìn thứ nhất của Warhorse trong Bohemia 1403, Metacritic 89, PC Gamer Game of the Year, bán trên 6 triệu bản.",
     "img": "/assets/img/50c4f9b171-library_hero.jpg",
     "tags": [
       "KCD2",
