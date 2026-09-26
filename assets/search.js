@@ -2207,7 +2207,7 @@ window.IDX = [
     "url": "/attack-on-titan-final-season-review",
     "cat": "Reviews",
     "date": "2026-08-16",
-    "excerpt": "Review Attack on Titan The Final Season của MAPPA (từ 7/12/2020) gồm 4 phần đến 11/2023; manga của Hajime Isayama hơn 140 triệu bản in và cái kết gây tranh cãi.",
+    "excerpt": "Review Attack on Titan The Final Season của MAPPA (từ 7/12/2020): nhạc Hiroyuki Sawano, bốn phần đến 11/2023; manga Isayama hơn 140 triệu bản, giải Kodansha và Harvey, kèm tranh luận về chủ đề quân phiệt.",
     "img": "/assets/img/48ca2f8976-attack-on-titan-final-season-hero.jpg",
     "tags": [
       "Attack on Titan",
@@ -2225,7 +2225,7 @@ window.IDX = [
     "url": "/chainsaw-man-anime-review",
     "cat": "Reviews",
     "date": "2026-08-16",
-    "excerpt": "MAPPA biến thế giới tàn bạo, kỳ quái của Tatsuki Fujimoto thành một trong những trải nghiệm hình ảnh và âm nhạc ấn tượng nhất anime hiện đại.",
+    "excerpt": "Review anime Chainsaw Man của MAPPA: 12 tập phát sóng 10–12/2022, đạo diễn Ryū Nakayama, nhạc Kensuke Ushio, \"Kick Back\" của Kenshi Yonezu; Rotten Tomatoes 97%, phong cách điện ảnh.",
     "img": "/assets/img/6b2483c562-chainsaw-man-anime-hero.jpg",
     "tags": [
       "Chainsaw Man",
@@ -2243,7 +2243,7 @@ window.IDX = [
     "url": "/chainsaw-man-manga-part2-review",
     "cat": "Reviews",
     "date": "2026-08-16",
-    "excerpt": "Review manga Chainsaw Man của Tatsuki Fujimoto: Part 1 (2018–2020), Part 2 kết thúc tháng 3/2026, 24 tập, hơn 36 triệu bản in, giải thưởng và điểm mạnh yếu.",
+    "excerpt": "Review manga Chainsaw Man của Tatsuki Fujimoto: Part 1 (2018–2020), Part 2 kết thúc 25/3/2026, 24 tập, hơn 36 triệu bản in; giải Shogakukan và Harvey, bạo lực đặt trong ngữ cảnh.",
     "img": "/assets/img/10728427f3-chainsaw-man-hero.jpg",
     "tags": [
       "Chainsaw Man",
@@ -2261,7 +2261,7 @@ window.IDX = [
     "url": "/dandadan-manga-review",
     "cat": "Reviews",
     "date": "2026-08-16",
-    "excerpt": "Yukinobu Tatsu trộn lẫn ma quỷ, người ngoài hành tinh, hài hước tục tĩu và rung động tuổi teen thành một công thức không giống bất kỳ manga nào khác, và nó hoạt động xuất sắc.",
+    "excerpt": "Review manga Dandadan của Yukinobu Tatsu: Shonen Jump+ từ 2021, 25 tập, hơn 10 triệu bản, giải Shogakukan 2026; pha hài, kinh dị, hành động và lãng mạn quanh Momo và Okarun.",
     "img": "/assets/img/2c0d7f7a34-dandadan-manga-hero.jpg",
     "tags": [
       "Dandadan",
@@ -2332,7 +2332,7 @@ window.IDX = [
     "url": "/oshi-no-ko-anime-review",
     "cat": "Reviews",
     "date": "2026-08-16",
-    "excerpt": "Review anime Oshi no Ko: Doga Kobo sản xuất, mùa 1 (4/2023), mùa 2 (7/2024), mùa 3 (1/2026), mùa 4 là mùa cuối; nội dung, đội ngũ và tranh cãi về cái kết manga.",
+    "excerpt": "Review anime Oshi no Ko của Doga Kobo: mùa 1 (4/2023) mở đầu 90 phút, ca khúc \"Idol\" của YOASOBI, mùa 3 (1/2026), mùa 4 là mùa cuối; manga hơn 25 triệu bản và cái kết gây tranh cãi.",
     "img": "/assets/img/9506aefbae-oshi-no-ko-hero.jpg",
     "tags": [
       "Oshi no Ko",
@@ -2367,7 +2367,7 @@ window.IDX = [
     "url": "/vinland-saga-manga-review",
     "cat": "Reviews",
     "date": "2026-08-16",
-    "excerpt": "Review manga Vinland Saga của Makoto Yukimura: đăng từ 2005 đến 25/7/2025, 29 tập, hành trình Thorfinn qua bốn arc; anime Wit Studio (2019) và MAPPA (2023).",
+    "excerpt": "Review manga Vinland Saga của Makoto Yukimura: 2005–25/7/2025, 29 tập, hơn 7 triệu bản, Kodansha Manga Award, hành trình Thorfinn qua bốn arc; anime Wit Studio và MAPPA.",
     "img": "/assets/img/7807ea1948-vinland-saga-manga-hero.jpg",
     "tags": [
       "Vinland Saga",
@@ -2421,7 +2421,7 @@ window.IDX = [
     "url": "/black-clover-final-volume-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Yuki Tabata khép lại hành trình 11 năm của Asta và Black Bulls với một cái kết ấm áp, xứng đáng, được bổ trợ bởi guidebook Perfect Grimoire đồ sộ dành cho fan lâu năm.",
+    "excerpt": "Review manga Black Clover của Yūki Tabata: Weekly Shonen Jump từ 2/2015, kết thúc trên Jump Giga ngày 1/5/2026 với 38 tập, hơn 24,5 triệu bản; anime Pierrot 170 tập, mùa 2 tháng 10/2026.",
     "img": "/assets/img/75f4272c97-black-clover-final-volume-hero.jpg",
     "tags": [
       "Black Clover",
@@ -2457,7 +2457,7 @@ window.IDX = [
     "url": "/chainsaw-man-reze-arc-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "MAPPA chuyển thể arc Reze lên màn ảnh rộng với 96% Rotten Tomatoes và hơn 191 triệu USD doanh thu toàn cầu. OtaHub đánh giá toàn diện phim điện ảnh Chainsaw Man đầu tiên.",
+    "excerpt": "Review Chainsaw Man – The Movie: Reze Arc của MAPPA: phim 100 phút ra 19/9/2025, \"Iris Out\" của Kenshi Yonezu, doanh thu 191,4 triệu USD; Rotten Tomatoes 96%, câu chuyện tình cảm đắng ngọt.",
     "img": "/assets/img/yt-tAzAhDNdehs.jpg",
     "tags": [
       "Chainsaw Man",
@@ -2475,7 +2475,7 @@ window.IDX = [
     "url": "/dandadan-season-2-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Science SARU trở lại với cấu trúc điện ảnh và tập trung hơn mùa 1, Rotten Tomatoes 100%. OtaHub đánh giá toàn diện mùa 2 của Dan Da Dan.",
+    "excerpt": "Review Dandadan mùa 2 của Science SARU: 12 tập phát sóng 7–9/2025, đạo diễn Abel Góngora cùng Fūga Yamashiro, tiếp tục pha trộn hài, kinh dị, lãng mạn; mùa 3 dự kiến năm 2027.",
     "img": "/assets/img/322e6e6826-dandadan-season-2-review-hero.jpg",
     "tags": [
       "Dan Da Dan",
@@ -2511,7 +2511,7 @@ window.IDX = [
     "url": "/demon-slayer-infinity-castle-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Ufotable đã làm điều không tưởng. Animation đỉnh cao nhất lịch sử anime, âm nhạc rùng mình, story đẫm nước mắt, Infinity Castle là đỉnh cao tuyệt đối của toàn bộ series.",
+    "excerpt": "Review Demon Slayer: Infinity Castle của Ufotable: phần đầu bộ ba phim, ra 18/7/2025, doanh thu 820,4 triệu USD, kỷ lục phim Nhật; Rotten Tomatoes 98%, nhịp bị chê vì hồi tưởng lặp.",
     "img": "/assets/img/5418135572-demon-slayer-infinity-castle-review-hero.jpg",
     "tags": [
       "Demon Slayer",
@@ -2563,7 +2563,7 @@ window.IDX = [
     "url": "/jujutsu-kaisen-anime-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Review anime Jujutsu Kaisen của MAPPA: mùa 1 (2020), phim 0 (2021), mùa 2 Shibuya (2023), mùa 3 Culling Game (1–3/2026); manga hơn 150 triệu bản in.",
+    "excerpt": "Review anime Jujutsu Kaisen của MAPPA: mùa 1 (2020), phim 0 (2021), mùa 2 Shibuya (2023), mùa 3 Culling Game (1–3/2026); manga hơn 150 triệu bản, điểm mạnh về nhân vật và hành động.",
     "img": "/assets/img/yt-MPfZhgLiK6w.jpg",
     "tags": [
       "Jujutsu Kaisen",
@@ -2581,7 +2581,7 @@ window.IDX = [
     "url": "/kagurabachi-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Bộ manga báo thù kiếm thuật của Takeru Hokazono đã vượt 2,2 triệu bản lưu hành và giành giải Next Manga Award mà chưa cần chuyển thể anime. OtaHub đánh giá 8 volume đã phát hành.",
+    "excerpt": "Review manga Kagurabachi của Takeru Hokazono: Weekly Shonen Jump từ 9/2023, chương đầu có hơn 99 triệu lượt xem trên Manga Plus, hơn 4 triệu bản in, anime Cypic tháng 4/2027.",
     "img": "/assets/img/1acdb70bf9-kagurabachi-review-hero.jpg",
     "tags": [
       "Kagurabachi",
@@ -2599,7 +2599,7 @@ window.IDX = [
     "url": "/kaiju-no-8-manga-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Naoya Matsumoto biến một nhân viên dọn xác quái vật tuổi 32 thành ngôi sao shonen mới, kết hợp action tốc độ cao với câu chuyện đầy cảm xúc về ước mơ dang dở và cơ hội thứ hai.",
+    "excerpt": "Review manga Kaiju No. 8 của Naoya Matsumoto: Shonen Jump+ từ 3/7/2020 đến 18/7/2025, 16 tập, hơn 19 triệu bản, giải Next Manga Award 2021; ý tưởng hay, mở đầu công thức và nét vẽ không đều.",
     "img": "/assets/img/pool-kaiju-8-2.jpg",
     "tags": [
       "Kaiju No.8",
@@ -2653,7 +2653,7 @@ window.IDX = [
     "url": "/one-piece-egghead-arc-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Đảo Egghead mang đến arc dày đặc lore nhất One Piece từ trước đến nay, giải đáp bí ẩn về Joy Boy và lịch sử thế giới, dù phong cách hình ảnh mới của anime vẫn còn gây chia rẽ khán giả.",
+    "excerpt": "Review One Piece: Egghead Arc: chương 1058–1125, tập 105–111, anime Toei mùa 21 tập 1089–1155; Vegapunk, Joy Boy và Thế Kỷ Trống, phong cách hình ảnh mới của anime gây tranh luận.",
     "img": "/assets/img/yt-YJ34bLwtVUM.jpg",
     "tags": [
       "One Piece",
@@ -2671,7 +2671,7 @@ window.IDX = [
     "url": "/one-piece-final-saga-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "One Piece Final Saga review: arc Elbaph và Biến Cố God Valley đưa cuộc phiêu lưu của Luffy tiến gần chặng cuối, với nhịp độ dồn dập và giàu cảm xúc.",
+    "excerpt": "Review One Piece Final Saga: từ chương 1054 (6/2022), arc Elbaph từ chương 1126 và God Valley; hơn 600 triệu bản in, anime Elbaph từ tháng 4/2026, remake Wit Studio tháng 2/2027.",
     "img": "/assets/img/yt-YnczpEoeaDM.jpg",
     "tags": [
       "One Piece",
