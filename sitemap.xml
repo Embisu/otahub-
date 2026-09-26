@@ -1051,12 +1051,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://otahub.asia/en/mushoku-tensei-chaos-breaker-arc</loc>
-    <lastmod>2026-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://otahub.asia/en/mushoku-tensei-s3-chaos-breaker</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
@@ -1129,20 +1123,8 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://otahub.asia/en/one-piece-egghead-arc</loc>
-    <lastmod>2026-06-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://otahub.asia/en/one-piece-final-saga-review</loc>
     <lastmod>2026-08-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://otahub.asia/en/one-piece-final-saga</loc>
-    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1903,12 +1885,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://otahub.asia/mushoku-tensei-chaos-breaker-arc</loc>
-    <lastmod>2026-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://otahub.asia/mushoku-tensei-s3-chaos-breaker</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
@@ -1975,20 +1951,8 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://otahub.asia/one-piece-egghead-arc</loc>
-    <lastmod>2026-06-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://otahub.asia/one-piece-final-saga-review</loc>
     <lastmod>2026-08-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://otahub.asia/one-piece-final-saga</loc>
-    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
