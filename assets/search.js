@@ -2062,11 +2062,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "One Piece: Final Saga Review: 25 Năm Tiến Gần Đến Laugh Tale",
+    "title": "One Piece: Final Saga Review: Elbaph Và Chặng Cuối",
     "url": "/one-piece-final-saga-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Eiichiro Oda hé lộ bản đồ Laugh Tale sau 25 năm chờ đợi, đưa Final Saga vào giai đoạn dồn dập và giàu cảm xúc nhất trong lịch sử series.",
+    "excerpt": "One Piece Final Saga review: arc Elbaph và Biến Cố God Valley đưa cuộc phiêu lưu của Luffy tiến gần chặng cuối, với nhịp độ dồn dập và giàu cảm xúc.",
     "img": "/assets/img/d653b4c00a-one-piece-hero.jpg",
     "tags": [
       "One Piece",
