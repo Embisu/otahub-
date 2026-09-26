@@ -1,5 +1,18 @@
 window.IDX = [
   {
+    "title": "Cyberpunk: Edgerunners 2 Ra Mắt Ngày 20/10 Trên Netflix",
+    "url": "/cyberpunk-edgerunners-2-ra-mat-20-10-netflix",
+    "cat": "Anime",
+    "date": "2026-09-26",
+    "excerpt": "Cyberpunk: Edgerunners 2 do Trigger và CD Projekt Red thực hiện, gồm 10 tập, ra mắt trên Netflix ngày 20/10/2026 với dàn nhân vật và diễn viên mới.",
+    "img": "/assets/img/poster-real-cyberpunk-edgerunners-2.jpg",
+    "tags": [
+      "Cyberpunk: Edgerunners 2",
+      "Netflix",
+      "Trigger"
+    ]
+  },
+  {
     "title": "JoJo Steel Ball Run Stage 2–3 Lên Sóng Ngày 25/9",
     "url": "/jojo-steel-ball-run-stage-2-3-len-song-25-9",
     "cat": "Anime",
