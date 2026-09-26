@@ -829,7 +829,7 @@ window.IDX = [
     "url": "/elden-ring-shadow-of-the-erdtree-review",
     "cat": "Reviews",
     "date": "2026-08-25",
-    "excerpt": "Đánh giá chi tiết vì sao Shadow of the Erdtree đạt vị trí Top 1 trên Bảng xếp hạng OtaHub với điểm số gần như tuyệt đối 9.7/10.",
+    "excerpt": "Review Elden Ring: Shadow of the Erdtree (21/6/2024): Metacritic 92–95, 5 triệu bản trong 3 ngày; Scadutree Fragments, boss, vũ khí mới và lý do OtaHub chấm 9.7.",
     "img": "/assets/img/elden-ring-shadow-erdtree-review-hero.jpg",
     "tags": [
       "Reviews",
@@ -859,7 +859,7 @@ window.IDX = [
     "url": "/honkai-star-rail-review",
     "cat": "Reviews",
     "date": "2026-08-25",
-    "excerpt": "Đánh giá thế giới thần thoại Amphoreus, hệ thống chiến thuật theo lượt và âm nhạc đỉnh cao đưa HSR lên vị trí Á Quân Mobile 9.2/10.",
+    "excerpt": "Review Honkai: Star Rail: RPG theo lượt của HoYoverse ra mắt 26/4/2023, Metacritic PC 80 và PS5 82; lối chơi, cốt truyện Penacony và Amphoreus, điểm yếu.",
     "img": "/assets/img/news-honkai-star-rail-31-amphoreus.jpg",
     "tags": [
       "Reviews",
@@ -1947,7 +1947,7 @@ window.IDX = [
     "url": "/death-stranding-2-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Kojima Productions cải thiện mọi mặt so với phần đầu, combat sâu hơn, stealth tốt hơn, và một Sam Bridges trưởng thành hơn. OtaHub đánh giá toàn diện Death Stranding 2: On the Beach.",
+    "excerpt": "Review Death Stranding 2: On the Beach: Metacritic 89, ra PS5 26/6/2025 và PC 19/3/2026; cốt truyện, lối chơi mới, dàn diễn viên và điểm yếu.",
     "img": "/assets/img/9c68ea445d-death-stranding-2-on-the-beach-review-hero.jpg",
     "tags": [
       "Death Stranding 2",
@@ -1989,7 +1989,7 @@ window.IDX = [
     "url": "/ghost-of-yotei-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Sucker Punch mang đến một sử thi samurai lớn hơn, sâu hơn và cảm xúc hơn Ghost of Tsushima. OtaHub đánh giá toàn diện sau khi hoàn thành hành trình trả thù của Atsu qua vùng đất Ezo.",
+    "excerpt": "Review Ghost of Yōtei: PS5 ngày 2/10/2025, Metacritic 86; Atsu trả thù ở Ezo năm 1603, hệ thống vũ khí, sói đồng hành, điểm mạnh và yếu.",
     "img": "/assets/img/3c84e61b4e-ghost-of-yotei-review-hero.jpg",
     "tags": [
       "Ghost of Yotei",
@@ -2059,7 +2059,7 @@ window.IDX = [
     "url": "/metal-gear-solid-delta-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Konami remake tuyệt phẩm 2004 với Unreal Engine 5, Metacritic 85. OtaHub đánh giá toàn diện bản làm lại kinh điển Metal Gear Solid 3: Snake Eater.",
+    "excerpt": "Review Metal Gear Solid Delta: Snake Eater (28/8/2025): Metacritic PS5 85, Unreal Engine 5, hai kiểu điều khiển, điểm mạnh, yếu và lượng bán.",
     "img": "/assets/img/ce3825d43e-mgs-delta-snake-eater-review-hero.jpg",
     "tags": [
       "Metal Gear Solid",
@@ -2128,7 +2128,7 @@ window.IDX = [
     "url": "/split-fiction-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Hazelight Studios vượt qua chính It Takes Two với một game co-op đa dạng gameplay chưa từng có, đạt Metascore 91, game được đánh giá cao nhất năm 2025. OtaHub đánh giá toàn diện.",
+    "excerpt": "Review Split Fiction (6/3/2025): game co-op bắt buộc của Hazelight, Metacritic 89–93, Friend's Pass, 7 triệu bản bán ra đến tháng 4/2026.",
     "img": "/assets/img/4c8ef98e63-split-fiction-review-hero.jpg",
     "tags": [
       "Split Fiction",
