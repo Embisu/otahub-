@@ -1,5 +1,20 @@
 window.IDX = [
   {
+    "title": "Chủ Tịch Aixleft Muốn Mời Himass Về Delta Force",
+    "url": "/aixleft-chieu-mo-himass-ve-delta-force",
+    "cat": "Gaming",
+    "date": "2026-09-26",
+    "excerpt": "Theo tin lan truyền trong cộng đồng PUBG Việt Nam, Aixleft, chủ tịch kiêm tuyển thủ PERO, muốn mời Himass về đội Delta Force sau án cấm vĩnh viễn của KRAFTON.",
+    "img": "/assets/img/photo-pubg-asia-stars-2026-himass-tanvuu-bi-cam-vinh-vien.jpg",
+    "tags": [
+      "Himass",
+      "Aixleft",
+      "PERO",
+      "Delta Force",
+      "PUBG"
+    ]
+  },
+  {
     "title": "Cyberpunk: Edgerunners 2 Ra Mắt Ngày 20/10 Trên Netflix",
     "url": "/cyberpunk-edgerunners-2-ra-mat-20-10-netflix",
     "cat": "Anime",
