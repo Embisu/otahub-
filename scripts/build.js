@@ -157,7 +157,7 @@ ${PARTIAL_HEAD_BOILERPLATE}
 <style>
 ${PARTIAL_STYLE}
 </style>
-<link rel="stylesheet" href="/assets/clamp.css?v=20260925">
+<link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
 <script type="application/ld+json">${jsonLdBreadcrumb(page)}</script>`;
 
   const body = `${renderNav(page.activeSection)}

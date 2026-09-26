@@ -8,6 +8,7 @@ function fit(img){
   if(cs.objectFit!=='cover')return;
   var b=img.getBoundingClientRect();
   if(b.width<30||b.height<30)return;
+  if(b.width<=170&&b.height<=170)return; /* thumbnails: keep cover so they fill the frame */
   var r=(img.naturalWidth/img.naturalHeight)/(b.width/b.height);
   if(r>1.45||r<0.7){
     img.style.objectFit='contain';
