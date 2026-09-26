@@ -714,23 +714,6 @@ window.IDX = [
     ]
   },
   {
-    "title": "Girls' Frontline 2: Exilium Review: 8.6 Điểm",
-    "url": "/girls-frontline-2-exilium-review",
-    "cat": "Reviews",
-    "date": "2026-08-28",
-    "excerpt": "Đánh giá chi tiết phiên bản máy chủ Việt Nam của THS Game: Hệ thống ẩn nấp Cover System sâu sắc, mô hình búp bê 3D siêu thực và bước chuyển mình vĩ đại của dòng game GFL.",
-    "img": "/assets/img/news-gfl2-exilium-vietnam-launch.jpg",
-    "tags": [
-      "Girls Frontline 2",
-      "Exilium",
-      "MICA Team",
-      "Sunborn",
-      "Gacha Game",
-      "Tactical RPG",
-      "Reviews"
-    ]
-  },
-  {
     "title": "Marvel Rivals Tung Bản Cập Nhật Endgame Encore",
     "url": "/marvel-rivals-endgame-encore-update",
     "cat": "Gaming",

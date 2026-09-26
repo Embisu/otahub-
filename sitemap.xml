@@ -727,12 +727,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://otahub.asia/en/girls-frontline-2-exilium-review</loc>
-    <lastmod>2026-09-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://otahub.asia/en/girls-frontline-2-exilium-beginners-guide</loc>
     <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>
@@ -1587,12 +1581,6 @@
   <url>
     <loc>https://otahub.asia/ghost-of-yotei-review</loc>
     <lastmod>2026-08-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://otahub.asia/girls-frontline-2-exilium-review</loc>
-    <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
