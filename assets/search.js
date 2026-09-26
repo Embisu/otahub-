@@ -1,5 +1,44 @@
 window.IDX = [
   {
+    "title": "JoJo Steel Ball Run Stage 2–3 Lên Sóng Ngày 25/9",
+    "url": "/jojo-steel-ball-run-stage-2-3-len-song-25-9",
+    "cat": "Anime",
+    "date": "2026-09-26",
+    "excerpt": "STEEL BALL RUN JoJo's Bizarre Adventure 2nd–3rd STAGE lên sóng độc quyền trên Netflix từ 25/9/2026, gồm 11 tập phát hàng tuần do David Production thực hiện.",
+    "img": "/assets/img/real-jojo-sbr-stage2.jpg",
+    "tags": [
+      "JoJo",
+      "Steel Ball Run",
+      "Netflix"
+    ]
+  },
+  {
+    "title": "Anime Mùa Thu 2026: Top 10 Được Mong Đợi Nhất",
+    "url": "/anime-mua-thu-2026-top-10-duoc-mong-doi",
+    "cat": "Anime",
+    "date": "2026-09-26",
+    "excerpt": "Bình chọn của Anime Corner với 7.601 người: Cyberpunk: Edgerunners 2 dẫn đầu (16,42%), The Apothecary Diaries S3 hạng hai; Firefly Wedding là anime mới cao nhất.",
+    "img": "/assets/img/real-fall-2026-anticipated.jpg",
+    "tags": [
+      "Anime mùa Thu 2026",
+      "Cyberpunk Edgerunners 2",
+      "Apothecary Diaries"
+    ]
+  },
+  {
+    "title": "Fire Emblem: Fortune's Weave Đạt Metacritic 89",
+    "url": "/fire-emblem-fortunes-weave-metacritic-89",
+    "cat": "Gaming",
+    "date": "2026-09-26",
+    "excerpt": "Fire Emblem: Fortune's Weave, game độc quyền Switch 2 của Intelligent Systems ra mắt 17/9/2026, đạt Metacritic 89 với 13 điểm 10 tuyệt đối.",
+    "img": "/assets/img/real-fire-emblem-fortunes-weave.jpg",
+    "tags": [
+      "Fire Emblem",
+      "Nintendo Switch 2",
+      "Metacritic"
+    ]
+  },
+  {
     "title": "One Piece Chapter 1195: Ngày Ra Mắt Và Dự Đoán",
     "url": "/one-piece-chapter-1195-ngay-ra-mat-du-doan",
     "cat": "Manga",
