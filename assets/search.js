@@ -22,7 +22,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-09-26",
     "excerpt": "Slime mùa 4 kết thúc hai cour đầu ngày 25/9/2026 và trở lại cour 3 vào tháng 7/2027; spinoff Clayman's Revenge lên sóng TV anime tháng 4/2027 do 8-Bit thực hiện.",
-    "img": "/assets/img/real-slime-s4-clayman-revenge.jpg",
+    "img": "/assets/img/pool-slime-1.jpg",
     "tags": [
       "Tensura",
       "Slime mùa 4",
@@ -76,7 +76,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-26",
     "excerpt": "Theo tin lan truyền trong cộng đồng PUBG Việt Nam, Aixleft, chủ tịch kiêm tuyển thủ PERO, muốn mời Himass về đội Delta Force sau án cấm vĩnh viễn của KRAFTON.",
-    "img": "/assets/img/photo-pubg-asia-stars-2026-himass-tanvuu-bi-cam-vinh-vien.jpg",
+    "img": "/assets/img/pool-delta-force-1.jpg",
     "tags": [
       "Himass",
       "Aixleft",
@@ -164,7 +164,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-09-26",
     "excerpt": "Dự đoán ngày ra mắt One Piece chapter 1195 (khoảng 11/10/2026 vì tuần sau chương 1194 nghỉ) và những diễn biến có thể xảy ra sau trận Zoro vs Sommers.",
-    "img": "/assets/img/real-op1194-dexerto.jpg",
+    "img": "/assets/img/pool-one-piece-manga-1.jpg",
     "tags": [
       "One Piece",
       "Chapter 1195",
@@ -321,7 +321,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-09-23",
     "excerpt": "Tại Juju Fes 2026 kỷ niệm 5 năm anime, MAPPA tung teaser visual mới cho Culling Game Arc Phần 2, tập trung vào Sukuna.",
-    "img": "/assets/img/news-jujutsu-kaisen-season3-culling-game.jpg",
+    "img": "/assets/img/pool-jujutsu-kaisen-1.jpg",
     "tags": [
       "Jujutsu Kaisen",
       "Sukuna",
@@ -392,7 +392,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-23",
     "excerpt": "Honkai: Star Rail phiên bản 4.6 ra mắt 28/9/2026 với nhân vật 5 sao Pearl, tiếp nối cốt truyện Astropolis và hé lộ crossover với Zenless Zone Zero ở bản 4.8.",
-    "img": "/assets/img/news-honkai-star-rail-30-amphoreus.jpg",
+    "img": "/assets/img/yt-ItNs39qvw_w.jpg",
     "tags": [
       "Honkai Star Rail",
       "HoYoverse",
@@ -409,7 +409,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-23",
     "excerpt": "Silent Hill: Townfall của Screen Burn Interactive và Konami chính thức ra mắt PS5, Steam và Epic Games ngày 24/9/2026, đưa người chơi tới thị trấn St. Amelia năm 1996.",
-    "img": "/assets/img/news-silent-hill-townfall-gameplay.jpg",
+    "img": "/assets/img/yt-WARs8turgnM.jpg",
     "tags": [
       "Silent Hill",
       "Konami",
@@ -427,7 +427,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-23",
     "excerpt": "Marvel's Wolverine của Insomniac Games chính thức ra mắt PS5 ngày 15/9/2026, đạt 77 điểm Metacritic — thấp hơn Spider-Man 2 nhưng vẫn bán chạy hàng đầu năm.",
-    "img": "/assets/img/news-marvel-wolverine-story-trailer.jpg",
+    "img": "/assets/img/yt-G62QQ42Ewwg.jpg",
     "tags": [
       "Marvel's Wolverine",
       "Insomniac Games",
@@ -462,7 +462,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-09-19",
     "excerpt": "Bản remake The One Piece do WIT Studio thực hiện cho Netflix tung teaser đầu tiên ngày 24/6/2026, dự kiến phát hành tháng 2/2027 với 7 tập, chuyển thể 50 chương đầu của truyện.",
-    "img": "/assets/img/news-one-piece-remake-wit-studio-netflix-trailer.jpg",
+    "img": "/assets/img/pool-one-piece-1.jpg",
     "tags": [
       "Anime",
       "Netflix",
@@ -479,7 +479,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-09-19",
     "excerpt": "Đánh giá chuyên sâu Girls' Frontline 2: Exilium tổng hợp từ nguồn công khai: Phân tích cơ chế Stability Break, tỷ lệ gacha vũ khí 70 lượt vs nhân vật 80 lượt, đồ họa cel-shading cùng những nhược điểm cần lưu ý.",
-    "img": "/assets/img/f661df27f7-gfl2-exilium-hero.jpg",
+    "img": "/assets/img/yt-5fV_Egk4Nvw.jpg",
     "tags": [
       "Girls' Frontline 2",
       "Đánh giá game",
@@ -497,7 +497,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-19",
     "excerpt": "Rockstar Games chính thức ra mắt đoạn trailer gameplay chi tiết của GTA 6, hé lộ bản đồ bang Leonida khổng lồ, công nghệ NPC thế hệ mới và cơ chế cướp bóc cặp đôi Lucia - Jason.",
-    "img": "/assets/img/news-gta6-gameplay-trailer-leonida.jpg",
+    "img": "/assets/img/yt-VQRLujxTm3c.jpg",
     "tags": [
       "GTA 6",
       "Rockstar Games",
@@ -515,7 +515,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-09-19",
     "excerpt": "Chainsaw Man – The Movie: Reze Arc do MAPPA sản xuất ra rạp Nhật ngày 19/9/2025, khởi chiếu tại Việt Nam ngày 26/9/2025, thu khoảng 191,4 triệu USD toàn cầu và đạt 100% Rotten Tomatoes từ giới phê bình.",
-    "img": "/assets/img/news-chainsaw-man-movie-reze-arc.jpg",
+    "img": "/assets/img/pool-chainsaw-man-1.jpg",
     "tags": [
       "Anime",
       "Chainsaw Man",
@@ -549,7 +549,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-19",
     "excerpt": "Từ 1/9/2026 Nintendo tăng giá Switch 2 thêm 50 USD lên 499,99 USD; gói Mario Kart World (kèm bản digital và 90 ngày Nintendo Switch Online) giá 549 USD.",
-    "img": "/assets/img/news-nintendo-direct-sept-2026-switch2-mario-kart.jpg",
+    "img": "/assets/img/pool-switch2-1.jpg",
     "tags": [
       "Gaming",
       "Nintendo",
@@ -617,7 +617,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-07",
     "excerpt": "Ghost of Yōtei ra mắt độc quyền PS5 ngày 2/10/2025, lấy bối cảnh Ezo năm 1603 với nhân vật Atsu; Complete Edition (1/10/2026, 69,99 USD) gồm Legends co-op và bản mở rộng Echoes of Sekigahara.",
-    "img": "/assets/img/news-ghost-of-yotei-weapons-gameplay.jpg",
+    "img": "/assets/img/yt-cgM6poO2JmY.jpg",
     "tags": [
       "Gaming",
       "Ghost of Yōtei",
@@ -634,7 +634,7 @@ window.IDX = [
     "cat": "Guides",
     "date": "2026-09-07",
     "excerpt": "Hướng dẫn tân thủ Girls' Frontline 2: Lưu Đày: cơ chế Cover và Stability, banner tân thủ 50 lượt. THS Game phát hành tại Việt Nam từ 27/8/2026.",
-    "img": "/assets/img/news-gfl2-guide-team-build.jpg",
+    "img": "/assets/img/yt-X55bhHkc2VU.jpg",
     "tags": [
       "Girls Frontline 2",
       "Chainsaw Man",
@@ -665,7 +665,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-07",
     "excerpt": "Nintendo chính thức ấn định buổi phát sóng Nintendo Direct đặc biệt dài 45 phút, trọng tâm xoay quanh hệ máy Nintendo Switch 2 và bom tấn Mario Kart 9.",
-    "img": "/assets/img/news-nintendo-direct-sept-2026-switch2-mario-kart.jpg",
+    "img": "/assets/img/yt-B_QJ4BYIGME.jpg",
     "tags": [
       "Gaming",
       "Nintendo Direct 9/2026",
@@ -700,7 +700,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-09-07",
     "excerpt": "Webtoon Solo Leveling: Ragnarok (Dang Do viết, JIN của REDICE Studio vẽ) khởi đăng ngày 1/8/2024 về Sung Suho; tập 1 bản tiếng Anh do Yen Press phát hành 21/7/2026. Chưa có thông báo anime Ragnarok.",
-    "img": "/assets/img/news-solo-leveling-ragnarok-official-announcement.jpg",
+    "img": "/assets/img/pool-solo-leveling-1.jpg",
     "tags": [
       "Manga",
       "Solo Leveling",
@@ -733,7 +733,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-05",
     "excerpt": "Honkai: Star Rail 3.0 ra mắt ngày 15/1/2025 với thế giới Amphoreus, Path of Remembrance và ba nhân vật mới; nhiệm vụ Amphoreus trải dài từ bản 3.0 đến 3.7.",
-    "img": "/assets/img/news-honkai-star-rail-30-amphoreus.jpg",
+    "img": "/assets/img/yt-TqKwoSk6708.jpg",
     "tags": [
       "Gaming",
       "Honkai",
@@ -751,7 +751,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-09-04",
     "excerpt": "Phần cuối Bleach: Thousand-Year Blood War – The Calamity lên sóng ngày 25/7/2026 (Hulu ở Mỹ, Disney+ quốc tế), mỗi thứ Bảy, tập 10 và cũng là tập cuối phát sóng ngày 26/9/2026.",
-    "img": "/assets/img/news-bleach-tybw-part4-farewell.jpg",
+    "img": "/assets/img/pool-bleach-1.jpg",
     "tags": [
       "Anime",
       "Bleach",
@@ -802,7 +802,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-09-03",
     "excerpt": "Manga Chainsaw Man Part 2 của Tatsuki Fujimoto kết thúc ở chương 232 ngày 24/3/2026 sau 135 chương; tập cuối phát hành 4/6/2026 và chưa có kế hoạch Part 3.",
-    "img": "/assets/img/news-chainsaw-man-death-devil.jpg",
+    "img": "/assets/img/pool-chainsaw-man-manga-1.jpg",
     "tags": [
       "Manga",
       "Shonen Jump",
@@ -819,7 +819,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-09-03",
     "excerpt": "Solo Leveling Mùa 2 do A-1 Pictures sản xuất (đạo diễn Shunsuke Nakashige) phát sóng độc quyền trên Crunchyroll từ 5/1 đến 30/3/2025, gồm 13 tập, mở đầu từ chương 46 với Red Gate.",
-    "img": "/assets/img/news-solo-leveling-season-2-arise.jpg",
+    "img": "/assets/img/pool-solo-leveling-5.jpg",
     "tags": [
       "Anime",
       "Solo Leveling Mùa 2",
@@ -855,7 +855,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-02",
     "excerpt": "HoYoverse hé lộ chi tiết đại bản đồ quốc gia thứ 7 Snezhnaya: Thành phố cơ khí Zapolyarny, xe trượt tuyết chạy động cơ Delusion và cơ chế nhiệt độ cực hạn.",
-    "img": "/assets/img/news-genshin-70-snezhnaya-map.jpg",
+    "img": "/assets/img/yt-sRV37ZxQmf4.jpg",
     "tags": [
       "Genshin Impact",
       "Snezhnaya",
@@ -873,7 +873,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-02",
     "excerpt": "Đợt open beta của Monster Hunter Wilds diễn ra vào cuối năm 2024; game chính thức ra mắt ngày 28/2/2025. Bài này thay thế bản tin cũ về đăng ký open beta.",
-    "img": "/assets/img/news-mh-wilds-open-beta-pc.jpg",
+    "img": "/assets/img/pool-mh-wilds-1.jpg",
     "tags": [
       "Gaming",
       "PC",
@@ -890,7 +890,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-09-01",
     "excerpt": "Manga Jujutsu Kaisen của Gege Akutami kết thúc ở chương 271 \"From Now On\", đăng ngày 30/9/2024 sau 6 năm; hai tập cuối 29 và 30 phát hành cùng lúc ngày 25/12/2024 tại Nhật.",
-    "img": "/assets/img/news-jjk-chapter-271-climax-epilogue.jpg",
+    "img": "/assets/img/pool-jujutsu-kaisen-manga-1.jpg",
     "tags": [
       "Manga",
       "Jujutsu Kaisen",
@@ -907,7 +907,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-30",
     "excerpt": "Elden Ring Nightreign là game co-op độc lập (tối đa 3 người) của FromSoftware, công bố tại The Game Awards 2024 và ra mắt ngày 30/5/2025 trên PS4, PS5, Xbox và Steam.",
-    "img": "/assets/img/news-elden-ring-nightreign-coop.jpg",
+    "img": "/assets/img/pool-nightreign-1.jpg",
     "tags": [
       "Gaming",
       "Xbox",
@@ -943,7 +943,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-29",
     "excerpt": "Đúng hôm nay 29/8, sự kiện lớn nhất lịch sử Jujutsu Kaisen chính thức khai màn: Juju Fes 2026 -5th Anniversary- diễn ra hai ngày tại K-Arena Yokohama, quy tụ toàn bộ dàn seiyuu, với kỳ vọng lớn nhất từ cộng đồng fan là một cập nhật chính thức cho Mùa 4.",
-    "img": "/assets/img/news-jujutsu-kaisen-juju-fes-2026-anniversary.jpg",
+    "img": "/assets/img/pool-jujutsu-kaisen-3.jpg",
     "tags": [
       "Jujutsu Kaisen",
       "Juju Fes",
@@ -1033,7 +1033,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-27",
     "excerpt": "THS Game mở máy chủ Việt Nam của Girls' Frontline 2: Exilium lúc 10:00 ngày 27/8/2026 trên Android, iOS và PC, hỗ trợ tiếng Việt.",
-    "img": "/assets/img/news-gfl2-exilium-vietnam-launch.jpg",
+    "img": "/assets/img/yt-L8WHmgGHGBo.jpg",
     "tags": [
       "Gaming",
       "OtaHub News",
@@ -1050,7 +1050,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-27",
     "excerpt": "Sau một tuần rò rỉ gameplay không kiểm soát gây tranh cãi &quot;downgrade&quot; đồ họa, Rockstar Games chính thức đáp trả bằng video Extended Look dài 26 phút, độc quyền trên Netflix trước khi phát rộng rãi trên YouTube.",
-    "img": "/assets/img/news-gta6-gameplay-reveal-vice-city.jpg",
+    "img": "/assets/img/yt-tJbzMqJGH4k.jpg",
     "tags": [
       "GTA 6",
       "Rockstar Games",
@@ -1086,7 +1086,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-25",
     "excerpt": "MAPPA công bố tại Jump Festa 2026 rằng Chainsaw Man Mùa 2 (chuyển thể International Assassins Arc) đã bước vào sản xuất; chưa có ngày phát sóng, dự kiến sớm nhất là 2027.",
-    "img": "/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg",
+    "img": "/assets/img/yt-s8cP1Vt5US8.jpg",
     "tags": [
       "Anime",
       "MAPPA",
@@ -1120,7 +1120,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-25",
     "excerpt": "Sandrone, Quan Chấp Hành thứ 7 của Fatui, là nhân vật Cryo chơi được từ bản 6.7 (dự kiến 1/7/2026). Bản 7.0 (12/8/2026) có Odette và Alyosha.",
-    "img": "/assets/img/news-genshin-impact-70-abyss-teams.jpg",
+    "img": "/assets/img/yt-x4YPOr0fGYo.jpg",
     "tags": [
       "Gaming",
       "Genshin Impact",
@@ -1156,7 +1156,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-25",
     "excerpt": "Jujutsu Kaisen Mùa 3 (Culling Game Phần 1) do MAPPA sản xuất đã phát sóng vào mùa đông 2026 với 12 tập; Phần 2 đang được sản xuất, chưa công bố ngày phát sóng.",
-    "img": "/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg",
+    "img": "/assets/img/yt--gvtWDUHmiU.jpg",
     "tags": [
       "Anime",
       "Jujutsu Kaisen Mùa 3",
@@ -1190,7 +1190,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-08-25",
     "excerpt": "One Piece chapter 1193 phát hành 13/9/2026: Luffy kiệt sức sau Gear 5, Loki biến hình lai, Zoro dùng Haki Bá Vương đâm xuyên Sommers và nói mình vẫn đang luyện tập.",
-    "img": "/assets/img/news-one-piece-chapter-1192-elbaf-uranus.jpg",
+    "img": "/assets/img/pool-one-piece-manga-5.jpg",
     "tags": [
       "Manga",
       "OtaHub News",
@@ -1224,7 +1224,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-25",
     "excerpt": "Đánh giá chi tiết phiên bản 2.4 - 3.6: Cơ chế Ngự Kiếm Phi Hành, Echo Transformation và vị trí dẫn đầu Mobile Games 9.5/10.",
-    "img": "/assets/img/news-wuthering-waves-guide-ren-realm.jpg",
+    "img": "/assets/img/pool-ww-1.jpg",
     "tags": [
       "Reviews",
       "OtaHub News",
@@ -1258,7 +1258,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-08-24",
     "excerpt": "Kagurabachi của Takeru Hokazono vượt 4 triệu bản lưu hành (gồm cả digital) khi tập 11 ra mắt 1/5/2026; anime do Cypic sản xuất sẽ phát sóng tháng 4/2027.",
-    "img": "/assets/img/news-kagurabachi-anime-confirmation.jpg",
+    "img": "/assets/img/pool-kagurabachi-1.jpg",
     "tags": [
       "Manga",
       "Crunchyroll",
@@ -1309,7 +1309,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-08-22",
     "excerpt": "One Piece chapter 1192 phát hành 6/9/2026: Usopp lên tiếng, Luffy dùng búa và sấm của Loki tạo đòn Gomu Gomu no Dawn Thor Bullet xuyên lá chắn vô hình của Imu.",
-    "img": "/assets/img/news-one-piece-chapter-1192-elbaf-uranus.jpg",
+    "img": "/assets/img/yt-ZcsbhQxhFqU.jpg",
     "tags": [
       "One Piece",
       "Chapter 1192",
@@ -1500,7 +1500,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-18",
     "excerpt": "Crunchyroll mang hai suất chiếu premiere tổng hợp, kỷ niệm 10 năm Re:ZERO và Bungo Stray Dogs, cùng chương trình hậu trường Welcome to Demon School! Iruma-kun đến Javits Center từ 20–23/8.",
-    "img": "/assets/img/anime-nyc-2026-hero-v2.png",
+    "img": "/assets/img/yt-zjTA2uE_y_8.jpg",
     "tags": [
       "Anime NYC 2026",
       "Crunchyroll",
@@ -1766,7 +1766,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-18",
     "excerpt": "Insomniac Games công bố trailer cốt truyện mới cho Marvel's Wolverine tại San Diego Comic-Con, hé lộ nhà soạn nhạc David Fleming và ấn định ngày ra mắt 15/9/2026 trên PS5.",
-    "img": "/assets/img/news-marvel-wolverine-story-trailer.jpg",
+    "img": "/assets/img/yt-3Z42tBfBLJY.jpg",
     "tags": [
       "Marvel’s Wolverine",
       "Insomniac Games",
@@ -1924,7 +1924,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-18",
     "excerpt": "Đội ngũ Screen Burn chia sẻ chi tiết mới về Silent Hill: Townfall, tựa game góc nhìn thứ nhất lấy bối cảnh thị trấn St. Amelia ở Scotland năm 1996, phát hành ngày 24/9 độc quyền PS5.",
-    "img": "/assets/img/news-silent-hill-townfall-gameplay.jpg",
+    "img": "/assets/img/yt-bpqRBsXP6M0.jpg",
     "tags": [
       "Silent Hill",
       "Townfall",
@@ -2083,7 +2083,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-17",
     "excerpt": "Rockstar Games xác nhận trailer thứ 3 của GTA 6 sẽ ra mắt độc quyền trên Netflix vào ngày 27/8, đánh dấu lần đầu tiên hãng hợp tác với một nền tảng streaming để công bố nội dung game.",
-    "img": "/assets/img/ccd6b922bc-gta6-trailer3-netflix-hero.jpg",
+    "img": "/assets/img/yt-qq76pQsI1iw.jpg",
     "tags": [
       "GTA 6",
       "Rockstar Games",
@@ -2280,7 +2280,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-16",
     "excerpt": "HoYoverse khép lại hành trình 7 năm xây dựng Teyvat bằng Snezhnaya, quốc gia tham vọng nhất, giải đáp những bí ẩn cốt truyện dài hạn nhất của Genshin Impact.",
-    "img": "/assets/img/fd097eb675-genshin-70-snezhnaya-hero.jpg",
+    "img": "/assets/img/yt-QgLZe9BtRJE.jpg",
     "tags": [
       "Genshin Impact",
       "HoYoverse",
@@ -2298,7 +2298,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-16",
     "excerpt": "Hai thương hiệu lớn của HoYoverse chính thức bắt tay: Zenless Zone Zero sẽ có màn crossover với Honkai: Star Rail vào mùa Đông 2026, trong khi bản cập nhật 4.5 mang chủ đề mùa hè cũng đã lộ diện.",
-    "img": "/assets/img/d2b409c61d-hsr-zzz-pompom-scene.jpg",
+    "img": "/assets/img/yt-GpykEcVpzGs.jpg",
     "tags": [
       "Honkai Star Rail",
       "Zenless Zone Zero",
@@ -2315,7 +2315,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-16",
     "excerpt": "Sau 1 năm vận hành, Kaiju No.8 THE GAME chứng minh một chuyển thể game từ manga hiện tượng có thể vừa trung thành nguyên tác vừa duy trì được vòng lặp co-op hấp dẫn dài hạn.",
-    "img": "/assets/img/7917847814-kaiju8-hero.jpg",
+    "img": "/assets/img/pool-kaiju-game-1.jpg",
     "tags": [
       "Kaiju No.8",
       "Co-op",
@@ -2440,7 +2440,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-15",
     "excerpt": "Game Science biến Tây Du Ký thành một hành trình hành động nhập vai hoành tráng, đẹp mắt và đầy thử thách, cột mốc lịch sử cho ngành game Trung Quốc, dù chưa hoàn hảo về mặt kỹ thuật.",
-    "img": "/assets/img/6eef9e5628-library_hero.jpg",
+    "img": "/assets/img/pool-black-myth-1.jpg",
     "tags": [
       "Black Myth Wukong",
       "Game Science",
@@ -2458,7 +2458,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-15",
     "excerpt": "MAPPA chuyển thể arc Reze lên màn ảnh rộng với 96% Rotten Tomatoes và hơn 191 triệu USD doanh thu toàn cầu. OtaHub đánh giá toàn diện phim điện ảnh Chainsaw Man đầu tiên.",
-    "img": "/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg",
+    "img": "/assets/img/yt-tAzAhDNdehs.jpg",
     "tags": [
       "Chainsaw Man",
       "Reze Arc",
@@ -2564,7 +2564,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-15",
     "excerpt": "Review anime Jujutsu Kaisen của MAPPA: mùa 1 (2020), phim 0 (2021), mùa 2 Shibuya (2023), mùa 3 Culling Game (1–3/2026); manga hơn 150 triệu bản in.",
-    "img": "/assets/img/26ef7fc2d2-jujutsu-kaisen-anime-hero.jpg",
+    "img": "/assets/img/yt-MPfZhgLiK6w.jpg",
     "tags": [
       "Jujutsu Kaisen",
       "MAPPA",
@@ -2600,7 +2600,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-15",
     "excerpt": "Naoya Matsumoto biến một nhân viên dọn xác quái vật tuổi 32 thành ngôi sao shonen mới, kết hợp action tốc độ cao với câu chuyện đầy cảm xúc về ước mơ dang dở và cơ hội thứ hai.",
-    "img": "/assets/img/7917847814-kaiju8-hero.jpg",
+    "img": "/assets/img/pool-kaiju-8-2.jpg",
     "tags": [
       "Kaiju No.8",
       "Naoya Matsumoto",
@@ -2618,7 +2618,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-15",
     "excerpt": "Hangar 13 quay về cội nguồn Sicily đầu thế kỷ 20 với một câu chuyện mafia điện ảnh, giàu cảm xúc, dù đánh đổi bằng cấu trúc gameplay tuyến tính hơn các phần tiền nhiệm.",
-    "img": "/assets/img/6e5a3f1ae0-mafia-old-country-manofhonor-hero.jpg",
+    "img": "/assets/img/pool-mafia-1.jpg",
     "tags": [
       "Mafia",
       "Hangar 13",
@@ -2654,7 +2654,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-15",
     "excerpt": "Đảo Egghead mang đến arc dày đặc lore nhất One Piece từ trước đến nay, giải đáp bí ẩn về Joy Boy và lịch sử thế giới, dù phong cách hình ảnh mới của anime vẫn còn gây chia rẽ khán giả.",
-    "img": "/assets/img/d187ae6a67-one-piece-egghead-arc-hero.jpg",
+    "img": "/assets/img/yt-YJ34bLwtVUM.jpg",
     "tags": [
       "One Piece",
       "Vegapunk",
@@ -2672,7 +2672,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-15",
     "excerpt": "One Piece Final Saga review: arc Elbaph và Biến Cố God Valley đưa cuộc phiêu lưu của Luffy tiến gần chặng cuối, với nhịp độ dồn dập và giàu cảm xúc.",
-    "img": "/assets/img/d653b4c00a-one-piece-hero.jpg",
+    "img": "/assets/img/yt-YnczpEoeaDM.jpg",
     "tags": [
       "One Piece",
       "Eiichiro Oda",
@@ -2708,7 +2708,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-15",
     "excerpt": "Saber Interactive khép lại Năm 2 hỗ trợ hậu phát hành cho Space Marine 2 bằng bản cập nhật Confrontation: 2 map PvP mới, kẻ địch Thousand Sons mới và cosmetic Season Pass 2, trước khi Năm 3 khởi động vào tháng 9.",
-    "img": "/assets/img/4dfd7a0e34-library_hero.jpg",
+    "img": "/assets/img/pool-space-marine-1.jpg",
     "tags": [
       "Space Marine 2",
       "Warhammer 40000",
@@ -2852,7 +2852,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-14",
     "excerpt": "Sucker Punch công bố Ghost of Yōtei Complete Edition, ra mắt 1/10/2026 đúng dịp kỷ niệm 1 năm game, với phần mở rộng cốt truyện Echoes of Sekigahara, chế độ sinh tồn roguelike Most Wanted và hàng loạt nội dung mới.",
-    "img": "/assets/img/0a878e4709-ghost-of-yotei-complete-edition-hero.jpg",
+    "img": "/assets/img/yt-sLcksHR30UA.jpg",
     "tags": [
       "Ghost of Yotei",
       "Sucker Punch",
@@ -2942,7 +2942,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-14",
     "excerpt": "Konami chính thức phát hành Suikoden STAR LEAP trên iOS/Android tại Nhật Bản từ 7/8/2026. Game mobile đầu tiên trong series lấy bối cảnh Solar Year 453, giữa Suikoden V và Suikoden I, với 108 Ngôi Sao Định Mệnh hoàn toàn mới.",
-    "img": "/assets/img/3a6da459ec-suikoden-star-leap-hero.jpg",
+    "img": "/assets/img/yt-WKOZqkjPcWk.jpg",
     "tags": [
       "Suikoden",
       "STAR LEAP",
@@ -2978,7 +2978,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-13",
     "excerpt": "Genshin Impact phiên bản 7.0 &quot;Everwinter Without Mercy&quot; đã ra mắt 12/8/2026, đưa người chơi đến Snezhnaya, quốc gia thứ 7 của Teyvat, cùng nhân vật mới Odette và chế độ bắn súng góc nhìn thứ ba lần đầu xuất hiện trong game.",
-    "img": "/assets/img/fd097eb675-genshin-70-snezhnaya-hero.jpg",
+    "img": "/assets/img/yt-y2Zcmcbrm9s.jpg",
     "tags": [
       "Genshin Impact",
       "Snezhnaya",
@@ -3068,7 +3068,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-12",
     "excerpt": "Kaiju No.8 THE GAME công bố lộ trình cập nhật kỷ niệm 1 năm: Reno Ichikawa gia nhập roster từ 10/8, Kikoru Shinomiya từ 20/8, và một buổi livestream đặc biệt khép lại chuỗi sự kiện vào 30/8.",
-    "img": "/assets/img/7917847814-kaiju8-hero.jpg",
+    "img": "/assets/img/pool-kaiju-game-2.jpg",
     "tags": [
       "Kaiju No.8",
       "Reno Ichikawa",
@@ -3122,7 +3122,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-12",
     "excerpt": "Re:Zero Season 4 có 19 tập chia hai cour; Recapture Arc bắt đầu từ tập 12 ngày 12/8/2026, tập 18 phát sóng 23/9 và tập cuối ngày 30/9 trên Crunchyroll.",
-    "img": "/assets/img/087af8ed98-rezero-s4-hero.jpg",
+    "img": "/assets/img/pool-rezero-1.jpg",
     "tags": [
       "Re:Zero",
       "Recapture Arc",
@@ -3210,7 +3210,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-07-30",
     "excerpt": "Saber Interactive và Focus Entertainment công bố lộ trình Năm 3 cho Warhammer 40,000: Space Marine 2, bắt đầu từ tháng 9/2026 với 5 bản cập nhật lớn, chế độ Chaos Siege Mode và một class chơi mới hoàn toàn vào đầu 2027.",
-    "img": "/assets/img/4dfd7a0e34-library_hero.jpg",
+    "img": "/assets/img/pool-space-marine-2.jpg",
     "tags": [
       "Space Marine 2",
       "Warhammer 40K",
