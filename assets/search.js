@@ -1,5 +1,57 @@
 window.IDX = [
   {
+    "title": "Oishinbo Có Anime Mới Sau 35 Năm: Shin Oishinbo",
+    "url": "/shin-oishinbo-anime-moi-sau-35-nam",
+    "cat": "Manga",
+    "date": "2026-09-26",
+    "excerpt": "Manga ẩm thực Oishinbo của Tetsu Kariya và Akira Hanasaki được công bố TV anime mới Shin Oishinbo tại ABEMA Anime Matsuri 2026, 35 năm sau bản anime trước.",
+    "img": "/assets/img/real-shin-oishinbo.jpg",
+    "tags": [
+      "Oishinbo",
+      "Shin Oishinbo",
+      "Shin-Ei Animation"
+    ]
+  },
+  {
+    "title": "Slime Mùa 4 Trở Lại 7/2027, Clayman's Revenge Có Anime",
+    "url": "/slime-mua-4-tap-3-thang-7-2027-clayman-revenge",
+    "cat": "Anime",
+    "date": "2026-09-26",
+    "excerpt": "Slime mùa 4 kết thúc hai cour đầu ngày 25/9/2026 và trở lại cour 3 vào tháng 7/2027; spinoff Clayman's Revenge lên sóng TV anime tháng 4/2027 do 8-Bit thực hiện.",
+    "img": "/assets/img/real-slime-s4-clayman-revenge.jpg",
+    "tags": [
+      "Tensura",
+      "Slime mùa 4",
+      "Clayman's Revenge"
+    ]
+  },
+  {
+    "title": "Code Geass: Star Chaser Aspal Ra Teaser, Lên Sóng 2027",
+    "url": "/code-geass-star-chaser-aspal-anime-2027",
+    "cat": "Anime",
+    "date": "2026-09-26",
+    "excerpt": "Anime mới Code Geass: Star Chaser Aspal mừng 20 năm thương hiệu, do Kazuya Nomura đạo diễn, Bandai Namco Filmworks sản xuất, ra mắt teaser và lên sóng năm 2027.",
+    "img": "/assets/img/real-code-geass-star-chaser-aspal.jpg",
+    "tags": [
+      "Code Geass",
+      "Star Chaser Aspal",
+      "Bandai Namco Filmworks"
+    ]
+  },
+  {
+    "title": "Gears of War: E-Day Chốt Gold, Tải Trước Từ 29/9",
+    "url": "/gears-of-war-e-day-gold-pre-install-29-9",
+    "cat": "Gaming",
+    "date": "2026-09-26",
+    "excerpt": "Gears of War: E-Day đã hoàn thiện bản phát hành, mở tải trước ngày 29/9, truy cập sớm 1/10 và ra mắt chính thức 6/10/2026 trên Windows, Xbox Series X|S.",
+    "img": "/assets/img/real-gears-of-war-e-day.jpg",
+    "tags": [
+      "Gears of War: E-Day",
+      "Xbox",
+      "The Coalition"
+    ]
+  },
+  {
     "title": "Chủ Tịch Aixleft Muốn Mời Himass Về Delta Force",
     "url": "/aixleft-chieu-mo-himass-ve-delta-force",
     "cat": "Gaming",
