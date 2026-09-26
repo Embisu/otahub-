@@ -381,11 +381,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "One Piece Chapter 1194: Ra Mắt 27/9 Sau Silver Week",
+    "title": "One Piece Chapter 1194 Spoilers: Zoro Đối Đầu Sommers",
     "url": "/one-piece-chapter-1194-spoilers-loki-uranus-elbaf",
     "cat": "Manga",
     "date": "2026-09-07",
-    "excerpt": "One Piece chapter 1194 phát hành Chủ nhật 27/9/2026 lúc 7h sáng giờ PT (Nhật Bản 28/9) do kỳ nghỉ lễ; các bản xem trước nhắc tới Luffy cạn sức sau Gear 5 và dấu hiệu biến hình mới của Loki.",
+    "excerpt": "Spoiler One Piece chapter 1194 “Things Never Stay the Same”: Zoro truyền Haki Bá Vương vào kiếm đấu Sommers; chương ra Chủ nhật 27/9/2026, tuần sau nghỉ.",
     "img": "/assets/img/news-one-piece-1194-loki-elbaf.jpg",
     "tags": []
   },
@@ -2345,11 +2345,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "Chained Soldier Chính Thức Được Xác Nhận Season 3",
+    "title": "Chained Soldier Season 3: Ngày Phát Sóng Và Thông Tin Đã Biết",
     "url": "/chained-soldier-season-3",
     "cat": "Anime",
     "date": "2026-08-12",
-    "excerpt": "Tại sự kiện đặc biệt ở Tokyo, Chained Soldier (Mato Seihei no Slave) bất ngờ công bố Season 3 cùng key visual mới, dù ngày phát sóng cụ thể vẫn còn là ẩn số.",
+    "excerpt": "Chained Soldier (Mato Seihei no Slave) được xác nhận có Season 3 ngày 2/8/2026; chưa có ngày phát sóng, studio và dàn cast. Season 2 phát sóng từ 8/1/2026 với 12 tập.",
     "img": "/assets/img/cc1f44dabd-chained-soldier-s3.jpg",
     "tags": [
       "Chained Soldier",
