@@ -1,5 +1,18 @@
 window.IDX = [
   {
+    "title": "One Piece Chapter 1195: Ngày Ra Mắt Và Dự Đoán",
+    "url": "/one-piece-chapter-1195-ngay-ra-mat-du-doan",
+    "cat": "Manga",
+    "date": "2026-09-26",
+    "excerpt": "Dự đoán ngày ra mắt One Piece chapter 1195 (khoảng 11/10/2026 vì tuần sau chương 1194 nghỉ) và những diễn biến có thể xảy ra sau trận Zoro vs Sommers.",
+    "img": "/assets/img/news-one-piece-chapter-1193-elbaf-loki.jpg",
+    "tags": [
+      "One Piece",
+      "Chapter 1195",
+      "Dự đoán"
+    ]
+  },
+  {
     "title": "Anime Chiikawa Tạm Ngừng Tập Mới, Phát Lại 25 Tập Đến 25/12",
     "url": "/chiikawa-anime-tam-ngung-tap-moi-phat-lai-25-tap",
     "cat": "Anime",
