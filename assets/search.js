@@ -719,7 +719,7 @@ window.IDX = [
     "url": "/girls-frontline-2-luu-day-vietnam-launch",
     "cat": "Gaming",
     "date": "2026-08-27",
-    "excerpt": "THS Game chính thức mở máy chủ Việt Nam lúc 10:00 ngày 27/08 với hỗ trợ 100% tiếng Việt, đồ họa 3D Cel-shaded chân thực, cơ chế ẩn nấp Cover theo lượt và kho quà tặng tân thủ cực khủng.",
+    "excerpt": "THS Game mở máy chủ Việt Nam của Girls' Frontline 2: Exilium lúc 10:00 ngày 27/8/2026 trên Android, iOS và PC, hỗ trợ tiếng Việt.",
     "img": "/assets/img/news-gfl2-exilium-vietnam-launch.jpg",
     "tags": [
       "Gaming",
