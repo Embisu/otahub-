@@ -44,7 +44,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-09-26",
     "excerpt": "Dự đoán ngày ra mắt One Piece chapter 1195 (khoảng 11/10/2026 vì tuần sau chương 1194 nghỉ) và những diễn biến có thể xảy ra sau trận Zoro vs Sommers.",
-    "img": "/assets/img/news-one-piece-chapter-1193-elbaf-loki.jpg",
+    "img": "/assets/img/real-op1194-dexerto.jpg",
     "tags": [
       "One Piece",
       "Chapter 1195",
@@ -438,7 +438,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-09-07",
     "excerpt": "Spoiler One Piece chapter 1194 “Things Never Stay the Same”: Zoro truyền Haki Bá Vương vào kiếm đấu Sommers; chương ra Chủ nhật 27/9/2026, tuần sau nghỉ.",
-    "img": "/assets/img/news-one-piece-1194-loki-elbaf.jpg",
+    "img": "/assets/img/real-op1194-dexerto.jpg",
     "tags": []
   },
   {
