@@ -478,7 +478,7 @@ window.IDX = [
     "url": "/girls-frontline-2-exilium-danh-gia-chuyen-sau",
     "cat": "Reviews",
     "date": "2026-09-19",
-    "excerpt": "Đánh giá chuyên sâu Girls' Frontline 2: Exilium tổng hợp từ nguồn công khai: Phân tích cơ chế Stability Break, tỷ lệ gacha vũ khí 70 lượt vs nhân vật 80 lượt, đồ họa cel-shading cùng những nhược điểm cần lưu ý.",
+    "excerpt": "Review Girls' Frontline 2: Exilium: game chiến thuật theo lượt kiểu XCOM của MICA Team, Boundary Push, Artifact Recovery, gacha; ra toàn cầu 12/2024, hơn 2 triệu người chơi ngày đầu.",
     "img": "/assets/img/yt-5fV_Egk4Nvw.jpg",
     "tags": [
       "Girls' Frontline 2",
@@ -2279,7 +2279,7 @@ window.IDX = [
     "url": "/genshin-70-snezhnaya-review",
     "cat": "Reviews",
     "date": "2026-08-16",
-    "excerpt": "HoYoverse khép lại hành trình 7 năm xây dựng Teyvat bằng Snezhnaya, quốc gia tham vọng nhất, giải đáp những bí ẩn cốt truyện dài hạn nhất của Genshin Impact.",
+    "excerpt": "Review Genshin Impact 7.0 Snezhnaya (12/8/2026): quốc gia thứ bảy của Teyvat, chuyến tàu khám phá, chế độ TPS Eye of Graeae và Odette Cryo; điểm mạnh là quy mô, gacha vẫn là điểm trừ.",
     "img": "/assets/img/yt-QgLZe9BtRJE.jpg",
     "tags": [
       "Genshin Impact",
@@ -2314,7 +2314,7 @@ window.IDX = [
     "url": "/kaiju-no-8-the-game-review",
     "cat": "Reviews",
     "date": "2026-08-16",
-    "excerpt": "Sau 1 năm vận hành, Kaiju No.8 THE GAME chứng minh một chuyển thể game từ manga hiện tượng có thể vừa trung thành nguyên tác vừa duy trì được vòng lặp co-op hấp dẫn dài hạn.",
+    "excerpt": "Review Kaiju No. 8 The Game: game di động chiến đấu theo lượt của Akatsuki Games, Toho và Production I.G, ra 31/8/2025, đội hình Lực lượng Phòng vệ và kaiju, free-to-play.",
     "img": "/assets/img/pool-kaiju-game-1.jpg",
     "tags": [
       "Kaiju No.8",
@@ -2743,7 +2743,7 @@ window.IDX = [
     "url": "/suikoden-star-leap-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Konami đưa 108 Ngôi Sao Định Mệnh lên mobile với một game nhập vai theo lượt trung thành với tinh thần bản gốc, một khởi đầu ấn tượng cho đợt ra mắt tại Nhật Bản.",
+    "excerpt": "Review Suikoden STAR LEAP: game di động gacha của Konami ra Nhật 7/8/2026, sprite pixel trong môi trường 3D, chiến đấu theo lượt và 108 nhân vật; hoài niệm được khen nhưng gacha gây tranh cãi.",
     "img": "/assets/img/3a6da459ec-suikoden-star-leap-hero.jpg",
     "tags": [
       "Suikoden",
@@ -3263,7 +3263,7 @@ window.IDX = [
     "url": "/blue-protocol-review",
     "cat": "Reviews",
     "date": "2026-06-17",
-    "excerpt": "Blue Protocol: Star Resonance ra mắt toàn cầu 9/10/2025 trên iOS, Android và PC (Steam, Epic) với cross-play; đánh giá n thác đầy đủ.",
+    "excerpt": "Review Blue Protocol: Star Resonance: MMORPG hành động miễn phí ra 9/10/2025 với đỉnh khoảng 95.000 người chơi trên Steam nhưng đánh giá Mixed vì server và monetization; đẹp nhưng tốn thời gian.",
     "img": "/assets/img/3578d308d7-library_hero.jpg",
     "tags": [
       "Blue Protocol",
@@ -3460,7 +3460,7 @@ window.IDX = [
     "url": "/genshin-natlan-review",
     "cat": "Reviews",
     "date": "2026-06-04",
-    "excerpt": "Natlan không chỉ là một region mới, đây là nơi Genshin Impact bắt đầu trả lời những câu hỏi mà người chơi đã đặt ra từ ngày đầu tiên.",
+    "excerpt": "Review Genshin Impact Natlan (bản 5.0, 28/8/2024): vùng đất của lửa và Archon Mavuika, cơ chế Nightsoul Blessing và thú cưỡi Saurian thay đổi cách khám phá; gacha vẫn là điểm trừ.",
     "img": "/assets/img/real-genshin-natlan.jpg",
     "tags": [
       "Genshin Impact",
@@ -3514,7 +3514,7 @@ window.IDX = [
     "url": "/nintendo-switch-2-review",
     "cat": "Reviews",
     "date": "2026-05-28",
-    "excerpt": "Review Nintendo Switch 2: ra mắt 5/6/2025 giá 449,99 USD, màn hình LCD 7,9 inch 1080p 120Hz, RAM 12GB, Joy-Con 2 từ tính; điểm mạnh, hạn chế và 23,68 triệu máy đã bán.",
+    "excerpt": "Review Nintendo Switch 2: màn 7,9 inch 120Hz HDR10, Joy-Con 2 từ tính, giá ra mắt 449,99 USD, bán 23,68 triệu máy; pin ngắn, chưa xử lý trôi analog và giá cao là điểm trừ.",
     "img": "/assets/img/d7d77f5de9-maxresdefault.jpg",
     "tags": [
       "Nintendo",
