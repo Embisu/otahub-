@@ -2477,11 +2477,11 @@ window.IDX = [
     ]
   },
   {
-    "title": "One Piece Final Saga: Oda Tiết Lộ Bản Đồ Laugh Tale",
+    "title": "One Piece Final Saga: Elbaph Đến Chương 1194",
     "url": "/one-piece-final-saga",
     "cat": "Manga",
     "date": "2026-08-11",
-    "excerpt": "Chương mới nhất One Piece hé lộ bản đồ Laugh Tale, bí ẩn lớn nhất xuyên suốt 25 năm bộ truyện, đưa Final Saga tiến gần hơn tới hồi kết.",
+    "excerpt": "Tóm tắt Final Saga của One Piece tại Elbaph đến chương 1194: Imu, Loki, Dawn Thor Bullet và trận Zoro vs Sommers, cùng phim God Valley ra mắt hè 2027.",
     "img": "/assets/img/d653b4c00a-one-piece-hero.jpg",
     "tags": [
       "One Piece",
