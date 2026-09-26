@@ -1,0 +1,28 @@
+/* OtaHub mobile polish (v1) */
+.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+@media(max-width:768px){
+  /* nút "bài đã lưu" nhỏ, mờ, không che nội dung */
+  .ot-saved-fab{width:34px!important;height:34px!important;font-size:14px!important;opacity:.72;left:10px!important;bottom:14px!important}
+  .ot-btt{width:34px!important;height:34px!important;opacity:.72}
+  /* footer 2 cột gọn */
+  footer .ft-in{grid-template-columns:1fr 1fr!important;gap:18px 16px!important;padding:28px 16px 12px!important}
+  footer .ft-in>div:first-child{grid-column:1/-1}
+  footer .ft-desc{max-width:none!important}
+  footer .ft-links{gap:6px!important}
+  footer .ft-links a{font-size:13px!important}
+  footer .ft-bot{padding:12px 16px!important}
+  footer .ft-copy{font-size:10.5px!important}
+  /* Rankings podium: nhãn hạng không đè lên tag/tiêu đề */
+  .pod-item{display:flex!important;flex-direction:column;min-height:0!important}
+  .pod-rank{position:static!important;align-self:flex-start;margin:12px 0 0 14px;font-size:10px!important;padding:4px 10px!important}
+  .pod-body{padding:14px 16px 16px!important;margin-top:0!important}
+  .pod-item .pod-img{position:absolute;inset:0}
+  /* Trang game/anime detail */
+  .info-row{display:flex;flex-direction:column;gap:2px}
+  .score-breakdown-card{padding:18px 16px!important}
+  .sbc-row{flex-wrap:wrap;gap:4px 10px!important}
+  .sbc-name{flex:1 1 100%!important}
+  .sbc-bg{flex:1 1 0!important;min-width:60px}
+}
+.ah-poster{object-fit:cover!important}
+@media(max-width:768px){.ah-poster{width:100%!important;height:180px!important;max-width:none}}

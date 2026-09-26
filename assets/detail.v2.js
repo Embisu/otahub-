@@ -77,6 +77,18 @@ var TITLE_IMAGE={
   'Elden Ring: Shadow of Erdtree II':'/assets/img/b80150127d-library_hero.jpg','Elden Ring: Shadow of the Erdtree':'/assets/img/b80150127d-library_hero.jpg',
   'Ghost of Yōtei: Complete Edition':'/assets/img/0a878e4709-ghost-of-yotei-complete-edition-hero.jpg'
 };
+var RECO={'hades':'recommend-hades.jpg','stardew valley':'recommend-stardew.jpg','cyberpunk 2077':'recommend-cyberpunk.jpg','disco elysium':'recommend-disco.jpg','hollow knight':'recommend-hollow.jpg','celeste':'recommend-celeste.jpg','limbus company':'recommend-limbus.jpg','journey':'recommend-journey.jpg','abzû':'recommend-abzu.jpg','spiritfarer':'recommend-spiritfarer.jpg','overcooked! 2':'recommend-overcooked2.jpg','among us':'recommend-amongus.jpg','it takes two':'recommend-ittakestwo.jpg'};
+function pickImg(title){
+  if(TITLE_IMAGE[title])return TITLE_IMAGE[title];
+  var k=(title||'').toLowerCase();
+  if(RECO[k])return '/assets/img/'+RECO[k];
+  try{var L=window.IDX||[];var t=k.replace(/[^a-z0-9 ]/g,'');
+    for(var i=0;i<L.length;i++){var lt=(L[i].title||'').toLowerCase().replace(/[^a-z0-9 ]/g,'');if(t.length>5&&lt.indexOf(t)===0&&L[i].img)return L[i].img;}
+    for(var j=0;j<L.length;j++){var l2=(L[j].title||'').toLowerCase().replace(/[^a-z0-9 ]/g,'');if(t.length>5&&l2.indexOf(t)>-1&&L[j].img)return L[j].img;}
+  }catch(e){}
+  return '';
+}
+
 
 var ARTICLE_LINKS={
   'Elden Ring: Shadow of Erdtree II':'/elden-ring-shadow-of-the-erdtree-review',
@@ -141,7 +153,7 @@ function generatedEntry(title){
     'Verdict: An exceptional release that fully justifies its strong standing on the OtaHub Rankings.'
   ];
   var story=EN?enStory:viStory;
-  return {type:TYPE,img:TITLE_IMAGE[title]||'/assets/img/news-monster-hunter-wilds-autumn-update.jpg',score:'9.2',genre:kind,status:EN?'Verified':'Đã xác nhận',desc:story[0],hook:story[0],story:story,generated:true};
+  return {type:TYPE,img:pickImg(title),score:'9.2',genre:kind,status:EN?'Verified':'Đã xác nhận',desc:story[0],hook:story[0],story:story,generated:true};
 }
 
 function hrefFor(title, entry){
@@ -168,7 +180,7 @@ function renderEntry(title, entry, catalog){
   var ogImg=document.querySelector('meta[property="og:image"]');
   if(ogImg && entry.img && entry.img.indexOf('placeholder')<0)ogImg.setAttribute('content','https://otahub.asia'+entry.img);
 
-  var img=entry.img||TITLE_IMAGE[title]||'/assets/img/news-monster-hunter-wilds-autumn-update.jpg';
+  var img=entry.img||pickImg(title);
   var scoreNum=parseFloat(entry.score);
   var scoreHtml=(!isNaN(scoreNum))?entry.score:'9.2';
   var numVal=parseFloat(scoreHtml)||9.0;
@@ -264,7 +276,7 @@ function renderEntry(title, entry, catalog){
     '<div class="ah-bg" style="background-image:url(\''+img+'\')"></div>'+
     '<div class="ah-grad"></div>'+
     '<div class="ah-content">'+
-      '<img class="ah-poster" src="'+img+'" alt="'+esc(title)+'" loading="lazy"/>'+
+      (img?'<img class="ah-poster" src="'+img+'" alt="'+esc(title)+'" loading="lazy"/>':'')+
       '<div class="ah-info">'+
         '<div class="ah-badges"><span class="ah-badge type">'+LABEL[entry.type]+'</span>'+(entry.genre?'<span class="ah-badge">'+esc(entry.genre)+'</span>':'')+(entry.status?'<span class="ah-badge">'+esc(entry.status)+'</span>':'')+'</div>'+
         '<h1 class="ah-title">'+esc(title)+'</h1>'+
@@ -298,7 +310,7 @@ function renderEntry(title, entry, catalog){
       '<div class="gs-block"><div class="gs-title">'+TXT.related+'</div><div class="sim-list">'+
         related.map(function(k){
           var e=catalog[k];
-          return '<a href="'+hrefFor(k,e)+'" class="sim-item"><img class="si-thumb" src="'+(e.img||'/assets/img/news-monster-hunter-wilds-autumn-update.jpg')+'" alt="" loading="lazy"/><div><div class="si-name">'+esc(k)+'</div><div class="si-genre">'+esc(e.genre||LABEL[e.type])+(e.score&&e.score!=='—'?' · '+e.score:'')+'</div></div></a>';
+          return '<a href="'+hrefFor(k,e)+'" class="sim-item"><img class="si-thumb" src="'+(e.img||pickImg(k)||'/assets/img/placeholder.svg')+'" alt="" loading="lazy"/><div><div class="si-name">'+esc(k)+'</div><div class="si-genre">'+esc(e.genre||LABEL[e.type])+(e.score&&e.score!=='—'?' · '+e.score:'')+'</div></div></a>';
         }).join('')+
       '</div></div>'+
       '<div class="gs-block"><div class="gs-title">'+TXT.discover+'</div><a href="'+CATPAGE[entry.type]+'" class="ww-btn"><span class="ww-icon">→</span><span>'+TXT.viewAll+LABEL[entry.type]+'</span></a></div>'+
