@@ -1818,6 +1818,20 @@ window.IDX = [
     ]
   },
   {
+    "title": "Mushoku Tensei Mùa 3: Chaos Breaker Arc Bắt Đầu Tập 8",
+    "url": "/mushoku-tensei-chaos-breaker-arc",
+    "cat": "Anime",
+    "date": "2026-08-16",
+    "excerpt": "Vòng cung Chaos Breaker của Mushoku Tensei Mùa 3 chính thức khởi động, đưa Rudeus và đồng đội đến pháo đài bay bí ẩn của Perugius Dola, nơi một bi kịch bất ngờ sắp ập đến.",
+    "img": "/assets/img/ef42374676-mushoku-tensei-chaos-breaker-hero.jpg",
+    "tags": [
+      "Mushoku Tensei",
+      "Studio Bind",
+      "Chaos Breaker",
+      "Isekai"
+    ]
+  },
+  {
     "title": "Oshi no Ko Anime Review: Góc Khuất Ngành Giải Trí",
     "url": "/oshi-no-ko-anime-review",
     "cat": "Reviews",
@@ -2498,6 +2512,21 @@ window.IDX = [
     ]
   },
   {
+    "title": "One Piece Final Saga: Elbaph Đến Chương 1194",
+    "url": "/one-piece-final-saga",
+    "cat": "Manga",
+    "date": "2026-08-11",
+    "excerpt": "Tóm tắt Final Saga của One Piece tại Elbaph đến chương 1194: Imu, Loki, Dawn Thor Bullet và trận Zoro vs Sommers, cùng phim God Valley ra mắt hè 2027.",
+    "img": "/assets/img/d653b4c00a-one-piece-hero.jpg",
+    "tags": [
+      "One Piece",
+      "Eiichiro Oda",
+      "Manga",
+      "Final Saga",
+      "Laugh Tale"
+    ]
+  },
+  {
     "title": "VCT Pacific 2026 Stage 2: Global Esports Vô Địch",
     "url": "/vct-pacific-2026",
     "cat": "Gaming",
@@ -2712,6 +2741,23 @@ window.IDX = [
       "Xbox Games Showcase",
       "Gears of War",
       "Fable"
+    ]
+  },
+  {
+    "title": "One Piece Egghead Arc: Vegapunk Và Bí Mật Thế Giới",
+    "url": "/one-piece-egghead-arc",
+    "cat": "Manga",
+    "date": "2026-06-07",
+    "excerpt": "Vegapunk, nhà khoa học vĩ đại nhất thế giới, tiết lộ bí mật chấn động về lịch sử thật sự của thế giới One Piece, và thay đổi mọi thứ người đọc từng nghĩ họ biết.",
+    "img": "/assets/img/8d631824e5-maxresdefault.jpg",
+    "tags": [
+      "One Piece",
+      "Oda",
+      "Manga",
+      "Egghead",
+      "Vegapunk",
+      "Final Saga",
+      "Shonen Jump"
     ]
   },
   {
