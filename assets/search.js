@@ -1,10 +1,42 @@
 window.IDX = [
   {
+    "title": "Anime Đáng Xem Cho Người Yêu Lịch Sử Nhật Bản",
+    "url": "/anime-dang-xem-cho-fan-van-hoa-lich-su-nhat-ban",
+    "cat": "Anime",
+    "date": "2026-09-26",
+    "excerpt": "Bốn anime giúp lịch sử và văn hóa Nhật Bản bớt khô khan: The Elusive Samurai, The Heike Story, Golden Kamuy và Samurai Champloo, từ thời Kamakura, Heian đến văn hóa Ainu và Edo.",
+    "img": "/assets/img/real-history-anime-kamuy.jpg",
+    "tags": [
+      "Anime lịch sử",
+      "Golden Kamuy",
+      "The Elusive Samurai",
+      "The Heike Story",
+      "Samurai Champloo",
+      "Văn hóa Nhật Bản"
+    ]
+  },
+  {
+    "title": "Bride of the Barrier Master Lên Netflix Tháng 1/2027",
+    "url": "/bride-of-the-barrier-master-netflix-thang-1-2027",
+    "cat": "Anime",
+    "date": "2026-09-26",
+    "excerpt": "Anime lãng mạn giả tưởng Bride of the Barrier Master do TROYCA thực hiện sẽ phát hành toàn cầu trên Netflix từ tháng 1/2027, kèm trailer mới và danh sách diễn viên lồng tiếng mở rộng.",
+    "img": "/assets/img/real-bride-of-the-barrier-master.jpg",
+    "tags": [
+      "Bride of the Barrier Master",
+      "Netflix",
+      "TROYCA",
+      "Kadokawa",
+      "Anime 2027",
+      "Light novel"
+    ]
+  },
+  {
     "title": "Oishinbo Có Anime Mới Sau 35 Năm: Shin Oishinbo",
     "url": "/shin-oishinbo-anime-moi-sau-35-nam",
     "cat": "Manga",
     "date": "2026-09-26",
-    "excerpt": "Manga ẩm thực Oishinbo của Tetsu Kariya và Akira Hanasaki được công bố TV anime mới Shin Oishinbo tại ABEMA Anime Matsuri 2026, 35 năm sau bản anime trước.",
+    "excerpt": "Manga ẩm thực Oishinbo của Tetsu Kariya và Akira Hanasaki sẽ có TV anime mới Shin Oishinbo, công bố tại ABEMA Anime Matsuri 2026 trong lễ kỷ niệm 50 năm của Shin-Ei Animation.",
     "img": "/assets/img/real-shin-oishinbo.jpg",
     "tags": [
       "Oishinbo",
