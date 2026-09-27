@@ -2487,7 +2487,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-15",
     "excerpt": "Review manga Black Clover của Yūki Tabata: Weekly Shonen Jump từ 2/2015, kết thúc trên Jump Giga ngày 1/5/2026 với 38 tập, hơn 24,5 triệu bản; anime Pierrot 170 tập, mùa 2 tháng 10/2026.",
-    "img": "/assets/img/75f4272c97-black-clover-final-volume-hero.jpg",
+    "img": "/assets/img/bd3666212d-black-clover-cover.jpg",
     "tags": [
       "Black Clover",
       "Yuki Tabata",
@@ -3311,7 +3311,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-06-18",
     "excerpt": "Tổng hợp anime mùa hè 2026: Mushoku Tensei S3, The Ghost in the Shell (Science SARU), Youjo Senki II, Bleach: The Calamity, Re:Zero S4 Recapture Part cùng lịch phát sóng đã xác minh.",
-    "img": "/assets/img/10728427f3-chainsaw-man-hero.jpg",
+    "img": "/assets/img/pool-mushoku-1.jpg",
     "tags": [
       "Anime",
       "Anime Mùa Hè 2026",
