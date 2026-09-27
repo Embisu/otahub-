@@ -900,7 +900,7 @@ const DATA = {
   ],
   summer: [
     {type:'tv',title:'Mushoku Tensei Season 3: Chaos Breaker Arc',titleJp:'無職転生 3期',studio:'Studio Bind',day:'Chủ Nhật',genres:['Isekai','Fantasy','Drama'],air:'từ 5/7/2026 (arc Chaos Breaker từ 16/8)',status:'airing',synopsis:'Rudeus cùng đồng đội tiến vào pháo đài bay của Perugius Dola, đối mặt thảm họa Chaos Breaker.'},
-    {type:'tv',title:'Bleach: TYBW Final Part — The Calamity',titleJp:'BLEACH 千年血戦篇 相剋譚',studio:'Pierrot',day:'Thứ Bảy',genres:['Shounen','Action','Supernatural'],air:'25/7 – 26/9/2026',status:'airing',synopsis:'Chương cuối cùng của Thousand-Year Blood War, Ichigo đối đầu Yhwach trong trận chiến quyết định.'},
+    {type:'tv',title:'Bleach: TYBW Final Part — The Calamity',titleJp:'BLEACH 千年血戦篇 相剋譚',studio:'Pierrot',day:'Đã kết thúc',genres:['Shounen','Action','Supernatural'],air:'25/7 – 26/9/2026',status:'ended',synopsis:'Chương cuối cùng của Thousand-Year Blood War, Ichigo đối đầu Yhwach trong trận chiến quyết định.'},
     {type:'tv',title:'Re:Zero Season 4: Recapture Part',titleJp:'Re:ゼロから始める異世界生活 4期',studio:'White Fox',day:'Thứ Tư',genres:['Isekai','Drama','Fantasy'],air:'12/8 – 30/9/2026 (tập 19 là tập cuối)',status:'airing',synopsis:'Subaru bước vào phần Recapture của mùa 4, phần thứ hai gồm 8 tập nối tiếp Loss Part chiếu hồi mùa xuân.'},
     {type:'tv',title:'Youjo Senki II',titleJp:'幼女戦記 II',studio:'NUT',day:'Thứ Tư',genres:['Military','Isekai','Action'],air:'8/7 – 23/9/2026',status:'ended',synopsis:'Tanya Degurechaff tiếp tục cuộc chiến khốc liệt trên chiến trường ma thuật.'},
     {type:'tv',title:'Grand Blue Season 3',titleJp:'ぐらんぶる 3期',studio:'Saber Works',day:'Đã hoàn thành',genres:['Comedy','Seinen','Slice of Life'],air:'7–9/2026',status:'ended',synopsis:'Iori và hội lặn biển Grand Blue tiếp tục những trò náo loạn ở thị trấn biển Izu.'},
@@ -916,10 +916,13 @@ const DATA = {
 };
 
 const REAL_LINK = {
+  'Cyberpunk: Edgerunners 2':'/cyberpunk-edgerunners-2-ra-mat-20-10-netflix',
+  'JoJo no Kimyou na Bouken: Steel Ball Run':'/jojo-steel-ball-run-stage-2-3-len-song-25-9',
+  'Grand Blue Season 3':'/grand-blue-mua-4-cong-bo-sau-mua-3-ket-thuc',
   'Black Clover Season 2':'/black-clover-season-2',
   'The Apothecary Diaries Season 3':'/apothecary-diaries-season3-trailer',
   'Ranma 1/2 Season 3':'/ranma-half-season-3-visual',
-  "Frieren: Beyond Journey's End Season 2":'/frieren-season2',
+  "Frieren: Beyond Journey's End Season 2":'/frieren-mua-2-phat-song-thang-1-2026',
   'Jujutsu Kaisen Season 3: Culling Game Part 1':'/jujutsu-kaisen-season-3-culling-game-release',
   'Mushoku Tensei Season 3: Chaos Breaker Arc':'/mushoku-tensei-s3-chaos-breaker',
   'Bleach: TYBW Final Part — The Calamity':'/bleach-tybw-the-calamity-25-7-2026',
@@ -1096,14 +1099,14 @@ function toggleMobileNav(){const b=document.getElementById('hamBtn'),n=document.
 // bo — KHONG dung gio/phut gia dinh vi khong the biet chinh xac; chi ghi ngay
 // phat hanh chapter that va tinh trang (dang ra/tam ngung/da ket thuc).
 const MANGA_DATA = [
-  {type:'manga',title:'One Piece',chapter:'Chapter 1194',status:'ongoing',time:'27/9/2026',genres:['Adventure','Shonen'],img:'/assets/img/8d631824e5-maxresdefault.jpg',link:'/manga-detail?t=One%20Piece'},
+  {type:'manga',title:'One Piece',chapter:'Chapter 1194',status:'ongoing',time:'27/9/2026',genres:['Adventure','Shonen'],img:'/assets/img/8d631824e5-maxresdefault.jpg',link:'/one-piece-chapter-1194-spoilers-loki-uranus-elbaf'},
   {type:'manga',title:'Spy x Family',chapter:'Chapter 140',status:'ongoing',time:'30/8/2026',genres:['Comedy','Action'],img:'/assets/img/a7f0eee58e-122795l.jpg',link:'/manga-detail?t=Spy%20x%20Family'},
-  {type:'manhwa',title:'The Beginning After The End',chapter:'Chapter 253',status:'ongoing',time:'17/9/2026',genres:['Fantasy','Isekai'],img:'/assets/img/d98cf42206-maxresdefault.jpg',link:'/manga-detail?t=The%20Beginning%20After%20The%20End'},
+  {type:'manhwa',title:'The Beginning After The End',chapter:'Chapter 253',status:'ongoing',time:'17/9/2026',genres:['Fantasy','Isekai'],img:'/assets/img/real-tbate-cover.jpg',link:'/manga-detail?t=The%20Beginning%20After%20The%20End'},
   {type:'manhua',title:'Battle Through the Heavens',chapter:'Chapter 525',status:'ongoing',time:'4/8/2026',genres:['Xianxia','Action'],img:'/assets/img/1f0540d7a3-maxresdefault.jpg',link:'/manga-detail?t=Battle%20Through%20the%20Heavens'},
-  {type:'manga',title:'Chainsaw Man',chapter:'Chapter 232 (Chương cuối Phần 2)',status:'ended',time:'25/3/2026',genres:['Action','Horror'],img:'/assets/img/39c7dd4496-maxresdefault.jpg',link:'/manga-detail?t=Chainsaw%20Man'},
-  {type:'manga',title:'Jujutsu Kaisen',chapter:'Chapter 271 (Đã hoàn kết)',status:'ended',time:'9/2024',genres:['Action','Supernatural'],img:'/assets/img/d662bae70f-maxresdefault.jpg',link:'/manga-detail?t=Jujutsu%20Kaisen'},
+  {type:'manga',title:'Chainsaw Man',chapter:'Chapter 232 (Chương cuối Phần 2)',status:'ended',time:'25/3/2026',genres:['Action','Horror'],img:'/assets/img/39c7dd4496-maxresdefault.jpg',link:'/chainsaw-man-manga-part2-review'},
+  {type:'manga',title:'Jujutsu Kaisen',chapter:'Chapter 271 (Đã hoàn kết)',status:'ended',time:'9/2024',genres:['Action','Supernatural'],img:'/assets/img/d662bae70f-maxresdefault.jpg',link:'/jujutsu-kaisen-chapter-271-final-climax-epilogue'},
   {type:'manhwa',title:'Solo Leveling: Ragnarok',chapter:'Chapter 69',status:'hiatus',time:'tạm ngưng từ 1/2026',genres:['Action','Fantasy'],img:'/assets/img/a4f75364fc-maxresdefault.jpg',link:'/manga-detail?t=Solo%20Leveling%3A%20Ragnarok'},
-  {type:'manhwa',title:"Omniscient Reader's Viewpoint",chapter:'Chapter 311 (hết Season 1)',status:'hiatus',time:'tạm ngưng từ 19/5/2026',genres:['Fantasy','Adventure'],img:'/assets/img/d98cf42206-maxresdefault.jpg',link:'/manga-detail?t=Omniscient%20Reader'},
+  {type:'manhwa',title:"Omniscient Reader's Viewpoint",chapter:'Chapter 311 (hết Season 1)',status:'hiatus',time:'tạm ngưng từ 19/5/2026',genres:['Fantasy','Adventure'],img:'/assets/img/real-orv-cover.jpg',link:'/manga-detail?t=Omniscient%20Reader'},
 ];
 let currentMangaFilter = 'all';
 
