@@ -1,5 +1,91 @@
 window.IDX = [
   {
+    "title": "Solo Leveling: Ragnarok Review: Hậu Truyện Đầy Tham Vọng",
+    "url": "/solo-leveling-ragnarok-manhwa-review",
+    "cat": "Reviews",
+    "date": "2026-09-27",
+    "excerpt": "Review Solo Leveling: Ragnarok: hậu truyện chính thức của Solo Leveling, viết bởi Daul và REDICE Studio, minh họa JIN; tạm ngưng từ đầu 2026 khi họa sĩ nhập ngũ, trở lại với chương 69.",
+    "img": "/assets/img/news-solo-leveling-ragnarok-manhwa.jpg",
+    "tags": [
+      "Solo Leveling: Ragnarok",
+      "REDICE Studio",
+      "Manhwa",
+      "Webtoon",
+      "Review"
+    ]
+  },
+  {
+    "title": "Battle Through the Heavens Review: Donghua Tu Luyện Kinh Điển",
+    "url": "/battle-through-the-heavens-review",
+    "cat": "Reviews",
+    "date": "2026-09-27",
+    "excerpt": "Review Battle Through the Heavens (Doupo Cangqiong): tiểu thuyết của Thiên Tàm Thổ Đậu, donghua 5 mùa từ 2017, Xiao Yan tu luyện đấu khí lục địa để trả thù và lấy lại sức mạnh.",
+    "img": "/assets/img/real-btth-trailer.jpg",
+    "tags": [
+      "Battle Through the Heavens",
+      "Doupo Cangqiong",
+      "Donghua",
+      "Xianxia",
+      "Review"
+    ]
+  },
+  {
+    "title": "The Beginning After The End Review: Cốt Truyện Hay, Hoạt Hình Gây Tranh Cãi",
+    "url": "/the-beginning-after-the-end-anime-review",
+    "cat": "Reviews",
+    "date": "2026-09-27",
+    "excerpt": "Review The Beginning After the End: vua Grey tái sinh thành Arthur Leywin ở thế giới phép thuật Dicathen; webtoon nổi tiếng, nhưng bản anime bị fan đòi làm lại vì chất lượng hoạt hình.",
+    "img": "/assets/img/real-tbate-anime-banner.jpg",
+    "tags": [
+      "The Beginning After The End",
+      "TurtleMe",
+      "Studio A-Cat",
+      "Isekai",
+      "Review"
+    ]
+  },
+  {
+    "title": "Spy x Family Review: Gia Đình Giả Đầy Bí Mật",
+    "url": "/spy-x-family-anime-review",
+    "cat": "Reviews",
+    "date": "2026-09-27",
+    "excerpt": "Review Spy x Family: gia đình giả của điệp viên Twilight, sát thủ Yor và thần giao cách cảm Anya; anime Wit Studio/CloverWorks 3 mùa, manga hơn 42 triệu bản, phim Code: White.",
+    "img": "/assets/img/real-spy-family-banner.jpg",
+    "tags": [
+      "Spy x Family",
+      "Tatsuya Endo",
+      "Wit Studio",
+      "CloverWorks",
+      "Review"
+    ]
+  },
+  {
+    "title": "THE GHOST IN THE SHELL (2026): Tổng Kết Mùa Phát Sóng Đã Kết Thúc",
+    "url": "/ghost-in-the-shell-2026-tong-ket-mua-phat-song",
+    "cat": "Anime",
+    "date": "2026-09-27",
+    "excerpt": "THE GHOST IN THE SHELL, bản chuyển thể anime mới của Science SARU dựa trên manga gốc của Masamune Shirow, đã kết thúc phát sóng sau khi lên sóng từ tháng 7 đến 9/2026.",
+    "img": "/assets/img/poster-real-ghost-in-the-shell-2026.jpg",
+    "tags": [
+      "Ghost in the Shell",
+      "Science SARU",
+      "Cyberpunk"
+    ]
+  },
+  {
+    "title": "Dragon Ball Super: Beerus Lên Sóng Ngày 11/10 Trên Fuji TV",
+    "url": "/dragon-ball-super-beerus-len-song-11-10",
+    "cat": "Anime",
+    "date": "2026-09-27",
+    "excerpt": "Dragon Ball Super: Beerus, phần anime mới của Toei Animation lấy cảm hứng từ mạch phim Broly/Super Hero, chính thức phát sóng ngày 11/10/2026 trên khối Fuji TV.",
+    "img": "/assets/img/poster-real-dragon-ball-super-beerus.jpg",
+    "tags": [
+      "Dragon Ball Super",
+      "Beerus",
+      "Toei Animation"
+    ]
+  },
+  {
     "title": "Hell Mode Anime Công Bố Mùa 3: Arc Hầm Ngục Hạng S",
     "url": "/hell-mode-anime-cong-bo-mua-3-arc-ham-nguc-hang-s",
     "cat": "Anime",
