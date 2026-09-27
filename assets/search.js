@@ -1,5 +1,21 @@
 window.IDX = [
   {
+    "title": "Overgeared Lên Sóng Sớm Trên Prime Video Ngày 27/9",
+    "url": "/overgeared-anime-len-song-som-tren-prime-video-27-9",
+    "cat": "Anime",
+    "date": "2026-09-26",
+    "excerpt": "Anime Overgeared, chuyển thể từ tiểu thuyết mạng Hàn Quốc của Saenal, phát sớm trên Prime Video tại Nhật ngày 27/9/2026, lên sóng truyền hình chính thức 2/10 và toàn cầu qua Crunchyroll.",
+    "img": "/assets/img/real-overgeared-banner.jpg",
+    "tags": [
+      "Overgeared",
+      "J.C.Staff",
+      "Prime Video",
+      "Crunchyroll",
+      "Webtoon",
+      "Isekai"
+    ]
+  },
+  {
     "title": "Vì Sao Phantom Of Baker Street Là Phim Conan Xuất Sắc",
     "url": "/vi-sao-bong-ma-pho-baker-la-mot-trong-nhung-phim-conan-hay-nhat",
     "cat": "Anime",
