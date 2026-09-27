@@ -1,5 +1,21 @@
 window.IDX = [
   {
+    "title": "Vì Sao Phantom Of Baker Street Là Phim Conan Xuất Sắc",
+    "url": "/vi-sao-bong-ma-pho-baker-la-mot-trong-nhung-phim-conan-hay-nhat",
+    "cat": "Anime",
+    "date": "2026-09-26",
+    "excerpt": "Phantom of Baker Street (2002), phim điện ảnh Conan thứ sáu, đưa Conan vào một trò chơi VR mô phỏng London thời Sherlock Holmes; đây là lý do phim vẫn được fan xếp vào nhóm hay nhất sau hơn hai thập kỷ.",
+    "img": "/assets/img/real-conan-baker-street-banner.jpg",
+    "tags": [
+      "Detective Conan",
+      "Phantom of Baker Street",
+      "TMS Entertainment",
+      "Sherlock Holmes",
+      "Phim điện ảnh Conan",
+      "2002"
+    ]
+  },
+  {
     "title": "10 Anime Đáng Xem Khi Chờ Jujutsu Kaisen Mùa 4",
     "url": "/10-anime-dang-xem-khi-cho-jujutsu-kaisen-mua-4",
     "cat": "Anime",
