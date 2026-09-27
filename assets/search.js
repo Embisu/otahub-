@@ -1,5 +1,37 @@
 window.IDX = [
   {
+    "title": "Hell Mode Anime Công Bố Mùa 3: Arc Hầm Ngục Hạng S",
+    "url": "/hell-mode-anime-cong-bo-mua-3-arc-ham-nguc-hang-s",
+    "cat": "Anime",
+    "date": "2026-09-26",
+    "excerpt": "Ngay sau khi mùa 2 kết thúc trên TOKYO MX ngày 25/9/2026, Hell Mode: The Hardcore Gamer Dominates in Another World with Garbage Balancing được xác nhận mùa 3, chuyển thể arc Hầm Ngục Hạng S.",
+    "img": "/assets/img/real-hell-mode-banner.jpg",
+    "tags": [
+      "Hell Mode",
+      "Yokohama Animation Lab",
+      "Isekai",
+      "HIDIVE",
+      "Sentai Filmworks",
+      "Anime 2026"
+    ]
+  },
+  {
+    "title": "Draw This, Then Die! Công Bố Mùa 2 Sau Tập Cuối",
+    "url": "/draw-this-then-die-cong-bo-mua-2-sau-tap-cuoi",
+    "cat": "Anime",
+    "date": "2026-09-26",
+    "excerpt": "Ngay sau khi tập 12, tập cuối mùa 1 phát sóng ngày 25/9/2026, trang chủ anime Draw This, Then Die! công bố mùa 2, dù chưa có ngày phát sóng cụ thể.",
+    "img": "/assets/img/real-draw-this-then-die-banner.jpg",
+    "tags": [
+      "Draw This Then Die",
+      "Kore Kaite Shine",
+      "Minoru Toyoda",
+      "Shin-Ei Animation",
+      "Manga Taishō",
+      "Anime 2026"
+    ]
+  },
+  {
     "title": "Overgeared Lên Sóng Sớm Trên Prime Video Ngày 27/9",
     "url": "/overgeared-anime-len-song-som-tren-prime-video-27-9",
     "cat": "Anime",
