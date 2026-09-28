@@ -1,5 +1,48 @@
 window.IDX = [
   {
+    "title": "Hololive Công Bố Anime Truyền Hình Đầu Tiên: Odekake Hololive",
+    "url": "/hololive-cong-bo-anime-truyen-hinh-dau-tien-odekake",
+    "cat": "Anime",
+    "date": "2026-09-28",
+    "excerpt": "Cover Corporation công bố Odekake Hololive (Odeholo), anime truyền hình đầu tiên của thương hiệu VTuber hololive, do Studio Kai sản xuất, quy tụ 29 talent, nhân dịp kỷ niệm 10 năm.",
+    "img": "/assets/img/real-odekake-hololive-visual.jpg",
+    "tags": [
+      "hololive",
+      "Odekake Hololive",
+      "Cover Corporation",
+      "Studio Kai",
+      "VTuber"
+    ]
+  },
+  {
+    "title": "Re:Zero Mùa 4 Tập Cuối Kéo Dài 45 Phút, Lên Sóng 30/9",
+    "url": "/rezero-mua-4-tap-cuoi-keo-dai-45-phut-30-9",
+    "cat": "Anime",
+    "date": "2026-09-28",
+    "excerpt": "Re:Zero mùa 4 khép lại arc Recapture với tập 19 kéo dài 45 phút, gấp đôi thời lượng thường lệ, lên sóng ngày 30/9/2026 và phát trên Crunchyroll cùng lúc với Nhật Bản.",
+    "img": "/assets/img/real-rezero-s4-finale-banner.jpg",
+    "tags": [
+      "Re:Zero",
+      "Recapture Arc",
+      "White Fox",
+      "Crunchyroll"
+    ]
+  },
+  {
+    "title": "One Piece Tạm Ngưng Sau Chương 1194, Trở Lại 11/10",
+    "url": "/one-piece-chapter-1194-tam-ngung-tro-lai-11-10",
+    "cat": "Manga",
+    "date": "2026-09-28",
+    "excerpt": "One Piece chương 1194 phát hành ngày 27/9/2026 trên Weekly Shonen Jump, sau đó tạm ngưng đăng, chương 1195 dự kiến trở lại ngày 11/10/2026.",
+    "img": "/assets/img/real-op-chapter1194-hiatus-banner.jpg",
+    "tags": [
+      "One Piece",
+      "Eiichiro Oda",
+      "Weekly Shonen Jump",
+      "Elbaf"
+    ]
+  },
+  {
     "title": "Youjo Senki II Đã Kết Thúc Phát Sóng Sau 12 Tập",
     "url": "/youjo-senki-ii-ket-thuc-phat-song",
     "cat": "Anime",

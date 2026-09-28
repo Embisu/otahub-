@@ -6,6 +6,30 @@
   "description": "Asian Gaming, Anime and Manga News Hub",
   "items": [
     {
+      "id": "https://otahub.asia/hololive-cong-bo-anime-truyen-hinh-dau-tien-odekake",
+      "url": "https://otahub.asia/hololive-cong-bo-anime-truyen-hinh-dau-tien-odekake",
+      "title": "Hololive Công Bố Anime Truyền Hình Đầu Tiên: Odekake Hololive",
+      "content_text": "Cover Corporation công bố Odekake Hololive (Odeholo), anime truyền hình đầu tiên của thương hiệu VTuber hololive, do Studio Kai sản xuất, quy tụ 29 talent, nhân dịp kỷ niệm 10 năm.",
+      "image": "https://otahub.asia/assets/img/real-odekake-hololive-visual.jpg",
+      "date_published": "2026-09-28T10:00:00.000Z"
+    },
+    {
+      "id": "https://otahub.asia/rezero-mua-4-tap-cuoi-keo-dai-45-phut-30-9",
+      "url": "https://otahub.asia/rezero-mua-4-tap-cuoi-keo-dai-45-phut-30-9",
+      "title": "Re:Zero Mùa 4 Tập Cuối Kéo Dài 45 Phút, Lên Sóng 30/9",
+      "content_text": "Re:Zero mùa 4 khép lại arc Recapture với tập 19 kéo dài 45 phút, gấp đôi thời lượng thường lệ, lên sóng ngày 30/9/2026 và phát trên Crunchyroll cùng lúc với Nhật Bản.",
+      "image": "https://otahub.asia/assets/img/real-rezero-s4-finale-banner.jpg",
+      "date_published": "2026-09-28T10:00:00.000Z"
+    },
+    {
+      "id": "https://otahub.asia/one-piece-chapter-1194-tam-ngung-tro-lai-11-10",
+      "url": "https://otahub.asia/one-piece-chapter-1194-tam-ngung-tro-lai-11-10",
+      "title": "One Piece Tạm Ngưng Sau Chương 1194, Trở Lại 11/10",
+      "content_text": "One Piece chương 1194 phát hành ngày 27/9/2026 trên Weekly Shonen Jump, sau đó tạm ngưng đăng, chương 1195 dự kiến trở lại ngày 25/09/2026.",
+      "image": "https://otahub.asia/assets/img/real-op-chapter1194-hiatus-banner.jpg",
+      "date_published": "2026-09-28T10:00:00.000Z"
+    },
+    {
       "id": "https://otahub.asia/youjo-senki-ii-ket-thuc-phat-song",
       "url": "https://otahub.asia/youjo-senki-ii-ket-thuc-phat-song",
       "title": "Youjo Senki II Đã Kết Thúc Phát Sóng Sau 12 Tập",
