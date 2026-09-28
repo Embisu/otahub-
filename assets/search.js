@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Roman Sands RE:Build: Mắc kẹt trong giấc mơ vaporwave đang dần sụp đổ",
+    "url": "/roman-sands-re-build-mac-ket-trong-giac-mo-vaporwave-dang-da",
+    "cat": "Gaming",
+    "date": "2026-09-28",
+    "excerpt": "Đây là phiên bản được làm lại dựa trên Roman Sands, visual novel ra mắt năm 2019 của đội ngũ đứng sau Paratopic. Trò chơi kết hợp mô phỏng công việc, giải đố, kinh dị khoa học viễn tưởng và yếu tố vòng lặp thời gian trong một trải nghiệm khá khác biệt so với những game indie kinh dị thông thường.",
+    "img": "/assets/img/uploads/m4495rif-capsule-616x353.jpg",
+    "tags": []
+  },
+  {
     "title": "Khi GTA trở thành sân khấu cho Shakespeare trong Grand Theft Hamlet",
     "url": "/khi-gta-tro-thanh-san-khau-cho-shakespeare-trong-grand-theft",
     "cat": "Gaming",
