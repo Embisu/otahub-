@@ -79,20 +79,6 @@ window.IDX = [
     ]
   },
   {
-    "title": "Youjo Senki II Đã Kết Thúc Phát Sóng Sau 12 Tập",
-    "url": "/youjo-senki-ii-ket-thuc-phat-song",
-    "cat": "Anime",
-    "date": "2026-09-28",
-    "excerpt": "Youjo Senki II (Saga of Tanya the Evil mùa 2) đã kết thúc phát sóng ngày 23/9/2026 sau khi lên sóng từ 8/7, khép lại chặng đường của Tanya Degurechaff trên mặt trận phía Đông.",
-    "img": "/assets/img/poster-real-youjo-senki-ii.jpg",
-    "tags": [
-      "Youjo Senki",
-      "Saga of Tanya the Evil",
-      "NUT",
-      "Aoi Yuki"
-    ]
-  },
-  {
     "title": "Diamond no Ace act II: Cour 2 Lên Sóng 11/10, Đến Koshien",
     "url": "/diamond-no-ace-act-ii-cour-2-len-song-11-10",
     "cat": "Anime",
@@ -262,19 +248,6 @@ window.IDX = [
       "Ghost in the Shell",
       "Science SARU",
       "Cyberpunk"
-    ]
-  },
-  {
-    "title": "Dragon Ball Super: Beerus Lên Sóng Ngày 11/10 Trên Fuji TV",
-    "url": "/dragon-ball-super-beerus-len-song-11-10",
-    "cat": "Anime",
-    "date": "2026-09-27",
-    "excerpt": "Dragon Ball Super: Beerus, phần anime mới của Toei Animation lấy cảm hứng từ mạch phim Broly/Super Hero, chính thức phát sóng ngày 11/10/2026 trên khối Fuji TV.",
-    "img": "/assets/img/poster-real-dragon-ball-super-beerus.jpg",
-    "tags": [
-      "Dragon Ball Super",
-      "Beerus",
-      "Toei Animation"
     ]
   },
   {
@@ -480,42 +453,6 @@ window.IDX = [
     ]
   },
   {
-    "title": "Cyberpunk: Edgerunners 2 Ra Mắt Ngày 20/10 Trên Netflix",
-    "url": "/cyberpunk-edgerunners-2-ra-mat-20-10-netflix",
-    "cat": "Anime",
-    "date": "2026-09-26",
-    "excerpt": "Cyberpunk: Edgerunners 2 do Trigger và CD Projekt Red thực hiện, gồm 10 tập, ra mắt trên Netflix ngày 20/10/2026 với dàn nhân vật và diễn viên mới.",
-    "img": "/assets/img/poster-real-cyberpunk-edgerunners-2.jpg",
-    "tags": [
-      "Cyberpunk: Edgerunners 2",
-      "Netflix",
-      "Trigger",
-      "Cyberpunk",
-      "Anime Corner",
-      "Trailer",
-      "CD Projekt Red",
-      "Anime"
-    ]
-  },
-  {
-    "title": "JoJo Steel Ball Run Stage 2–3 Lên Sóng Ngày 25/9",
-    "url": "/jojo-steel-ball-run-stage-2-3-len-song-25-9",
-    "cat": "Anime",
-    "date": "2026-09-26",
-    "excerpt": "STEEL BALL RUN JoJo's Bizarre Adventure 2nd–3rd STAGE lên sóng độc quyền trên Netflix từ 25/9/2026, gồm 11 tập phát hàng tuần do David Production thực hiện.",
-    "img": "/assets/img/real-jojo-sbr-stage2.jpg",
-    "tags": [
-      "JoJo",
-      "Steel Ball Run",
-      "Netflix",
-      "JoJo Steel Ball Run Stage 2",
-      "Anime Corner",
-      "Trailer",
-      "Anime Expo",
-      "Anime"
-    ]
-  },
-  {
     "title": "Anime Mùa Thu 2026: Top 10 Được Mong Đợi Nhất",
     "url": "/anime-mua-thu-2026-top-10-duoc-mong-doi",
     "cat": "Anime",
@@ -529,23 +466,6 @@ window.IDX = [
       "Anime Corner",
       "Cyberpunk",
       "Anime",
-      "2026"
-    ]
-  },
-  {
-    "title": "Fire Emblem: Fortune's Weave Đạt Metacritic 89",
-    "url": "/fire-emblem-fortunes-weave-metacritic-89",
-    "cat": "Gaming",
-    "date": "2026-09-26",
-    "excerpt": "Fire Emblem: Fortune's Weave, game độc quyền Switch 2 của Intelligent Systems ra mắt 17/9/2026, đạt Metacritic 89 với 13 điểm 10 tuyệt đối.",
-    "img": "/assets/img/real-fire-emblem-fortunes-weave.jpg",
-    "tags": [
-      "Fire Emblem",
-      "Nintendo Switch 2",
-      "Metacritic",
-      "Nintendo",
-      "Switch 2",
-      "Gaming",
       "2026"
     ]
   },
@@ -597,41 +517,6 @@ window.IDX = [
       "Shueisha",
       "Anime News Network",
       "2026"
-    ]
-  },
-  {
-    "title": "Grand Blue Dreaming Công Bố Mùa 4 Sau Tập Cuối Mùa 3",
-    "url": "/grand-blue-mua-4-cong-bo-sau-mua-3-ket-thuc",
-    "cat": "Anime",
-    "date": "2026-09-25",
-    "excerpt": "Anime Grand Blue Dreaming xác nhận mùa 4 ngay sau khi tập cuối mùa 3 phát sóng ngày 21/9/2026, kèm visual teaser; chưa có thời điểm phát sóng.",
-    "img": "/assets/img/real-grand-blue-s4.jpg",
-    "tags": [
-      "Grand Blue",
-      "Anime",
-      "Mùa 4",
-      "Kodansha",
-      "Anime Corner",
-      "Anime News Network",
-      "2026"
-    ]
-  },
-  {
-    "title": "Control Resonant Ra Mắt: Metacritic 84, Hơn Phần Đầu",
-    "url": "/control-resonant-ra-mat-metacritic-84",
-    "cat": "Gaming",
-    "date": "2026-09-25",
-    "excerpt": "Control Resonant của Remedy ra mắt ngày 24/9/2026 trên PS5, PC và Xbox Series, đạt Metacritic 84 và OpenCritic 84, cao hơn Control (82).",
-    "img": "/assets/img/real-control-resonant.jpg",
-    "tags": [
-      "Control Resonant",
-      "Remedy",
-      "PS5",
-      "Metacritic",
-      "Control Resonant Ra Mắt",
-      "PC",
-      "Xbox",
-      "Sony"
     ]
   },
   {
@@ -1065,24 +950,6 @@ window.IDX = [
       "2026",
       "Tin tức",
       "OtaHub"
-    ]
-  },
-  {
-    "title": "One Piece Chapter 1194 Spoilers: Zoro Đối Đầu Sommers",
-    "url": "/one-piece-chapter-1194-spoilers-loki-uranus-elbaf",
-    "cat": "Manga",
-    "date": "2026-09-07",
-    "excerpt": "Spoiler One Piece chapter 1194 “Things Never Stay the Same”: Zoro truyền Haki Bá Vương vào kiếm đấu Sommers; chương ra Chủ nhật 27/9/2026, tuần sau nghỉ.",
-    "img": "/assets/img/real-op1194-dexerto.jpg",
-    "tags": [
-      "Manga",
-      "One Piece Chapter 1194 Spoilers",
-      "Zoro",
-      "Spoiler",
-      "Shonen Jump",
-      "Shonen",
-      "Elbaf",
-      "Eiichiro Oda"
     ]
   },
   {
@@ -1576,24 +1443,6 @@ window.IDX = [
     ]
   },
   {
-    "title": "One Piece Chapter 1193: Zoro Đối Đầu Sommers",
-    "url": "/one-piece-chapter-1193-zoro-sommers-still-practicing",
-    "cat": "Manga",
-    "date": "2026-08-25",
-    "excerpt": "One Piece chapter 1193 phát hành 13/9/2026: Luffy kiệt sức sau Gear 5, Loki biến hình lai, Zoro dùng Haki Bá Vương đâm xuyên Sommers và nói mình vẫn đang luyện tập.",
-    "img": "/assets/img/pool-one-piece-manga-5.jpg",
-    "tags": [
-      "Manga",
-      "OtaHub News",
-      "Tiêu Điểm",
-      "One Piece Chapter 1193",
-      "Zoro",
-      "Shonen Jump",
-      "Shonen",
-      "Spoiler"
-    ]
-  },
-  {
     "title": "VCT Champions 2026: Paper Rex Giành Vé Đầu Tiên",
     "url": "/vct-champions-2026-prx-sentinels",
     "cat": "Gaming",
@@ -1695,24 +1544,6 @@ window.IDX = [
     ]
   },
   {
-    "title": "One Piece Chapter 1192: Dawn Thor Bullet Xuyên Lá Chắn Imu",
-    "url": "/one-piece-chapter-1192-dawn-thor-bullet-imu",
-    "cat": "Manga",
-    "date": "2026-08-22",
-    "excerpt": "One Piece chapter 1192 phát hành 6/9/2026: Usopp lên tiếng, Luffy dùng búa và sấm của Loki tạo đòn Gomu Gomu no Dawn Thor Bullet xuyên lá chắn vô hình của Imu.",
-    "img": "/assets/img/yt-ZcsbhQxhFqU.jpg",
-    "tags": [
-      "One Piece",
-      "Chapter 1192",
-      "Elbaf",
-      "Eiichiro Oda",
-      "Imu",
-      "Uranus",
-      "One Piece Chapter 1192",
-      "Luffy"
-    ]
-  },
-  {
     "title": "Seven Seas Công Bố 18 Bản Quyền Mới Tại Anime NYC 2026",
     "url": "/seven-seas-18-licenses-anime-nyc-2026",
     "cat": "Manga",
@@ -1762,24 +1593,6 @@ window.IDX = [
       "Nintendo",
       "Soulslike",
       "2026"
-    ]
-  },
-  {
-    "title": "One Piece Chapter 1191: Loki Xuất Hiện, Cùng Đánh Imu",
-    "url": "/one-piece-chapter-1191-theres-still-loki",
-    "cat": "Manga",
-    "date": "2026-08-20",
-    "excerpt": "One Piece chapter 1191, tựa “There’s Still Loki”, phát hành 23/8/2026 sau kỳ nghỉ Obon: Imu lộ hình thái mới, Loki xuất hiện và cả ba cùng tung đòn phối hợp.",
-    "img": "/assets/img/news-one-piece-chapter-1191-elbaf-return.jpg",
-    "tags": [
-      "Manga",
-      "OtaHub News",
-      "Tiêu Điểm",
-      "One Piece Chapter 1191",
-      "Shonen Jump",
-      "Shonen",
-      "Spoiler",
-      "Luffy"
     ]
   },
   {
@@ -2276,23 +2089,6 @@ window.IDX = [
     ]
   },
   {
-    "title": "Rhythm Heaven Groove Ra Mắt Sau 11 Năm Chờ Đợi",
-    "url": "/rhythm-heaven-groove-nintendo",
-    "cat": "Gaming",
-    "date": "2026-08-18",
-    "excerpt": "Rhythm Heaven Groove, phần mới đầu tiên của dòng game nhịp điệu Nintendo kể từ Megamix năm 2015, đã phát hành ngày 2/7 cho Nintendo Switch, còn bản demo miễn phí Starter Demo vẫn khả dụng trên eShop.",
-    "img": "/assets/img/news-rhythm-heaven-groove-nintendo.jpg",
-    "tags": [
-      "Rhythm Heaven Groove",
-      "Nintendo",
-      "Rhythm game",
-      "Bản demo",
-      "Switch 2",
-      "Gaming",
-      "2026"
-    ]
-  },
-  {
     "title": "Senren Banka Được Chuyển Thể Anime, Ra Mắt 2027",
     "url": "/senren-banka-anime-2027",
     "cat": "Anime",
@@ -2325,23 +2121,6 @@ window.IDX = [
       "PC",
       "PS5",
       "Steam"
-    ]
-  },
-  {
-    "title": "Splatoon Raiders Ra Mắt Trên Switch 2 Ngày 23/7",
-    "url": "/splatoon-raiders-launch",
-    "cat": "Gaming",
-    "date": "2026-08-18",
-    "excerpt": "Splatoon Raiders, spin-off chơi đơn đầu tiên trong lịch sử dòng Splatoon, đã phát hành ngày 23/7/2026 độc quyền Nintendo Switch 2, đưa người chơi cùng bộ ba Deep Cut khám phá quần đảo Spirhalite Islands.",
-    "img": "/assets/img/news-splatoon-raiders-launch.jpg",
-    "tags": [
-      "Splatoon",
-      "Nintendo Switch 2",
-      "Deep Cut",
-      "Nintendo",
-      "Switch 2",
-      "Gaming",
-      "2026"
     ]
   },
   {
