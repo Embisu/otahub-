@@ -1,5 +1,118 @@
 window.IDX = [
   {
+    "title": "Youjo Senki II Đã Kết Thúc Phát Sóng Sau 12 Tập",
+    "url": "/youjo-senki-ii-ket-thuc-phat-song",
+    "cat": "Anime",
+    "date": "2026-09-28",
+    "excerpt": "Youjo Senki II (Saga of Tanya the Evil mùa 2) đã kết thúc phát sóng ngày 23/9/2026 sau khi lên sóng từ 8/7, khép lại chặng đường của Tanya Degurechaff trên mặt trận phía Đông.",
+    "img": "/assets/img/poster-real-youjo-senki-ii.jpg",
+    "tags": [
+      "Youjo Senki",
+      "Saga of Tanya the Evil",
+      "NUT",
+      "Aoi Yuki"
+    ]
+  },
+  {
+    "title": "Diamond no Ace act II: Cour 2 Lên Sóng 11/10, Đến Koshien",
+    "url": "/diamond-no-ace-act-ii-cour-2-len-song-11-10",
+    "cat": "Anime",
+    "date": "2026-09-28",
+    "excerpt": "Diamond no Ace act II mùa 2 cour 2 lên sóng ngày 11/10/2026, đội Seido được mời tham dự giải mời mùa xuân tại sân Koshien huyền thoại.",
+    "img": "/assets/img/poster-real-diamond-no-ace-act2.jpg",
+    "tags": [
+      "Diamond no Ace",
+      "Ace of Diamond",
+      "OLM",
+      "Koshien"
+    ]
+  },
+  {
+    "title": "Tougen Anki Mùa 2: Arc Nikko Kegon Falls Lên Sóng 2/10",
+    "url": "/tougen-anki-mua-2-nikko-kegon-falls-len-song-2-10",
+    "cat": "Anime",
+    "date": "2026-09-28",
+    "excerpt": "Tougen Anki mùa 2, chuyển thể arc Nikko Kegon Falls, lên sóng ngày 2/10/2026 tại Studio HIBARI, phát 2 cour với tổng 24 tập.",
+    "img": "/assets/img/poster-real-tougen-anki-s2.jpg",
+    "tags": [
+      "Tougen Anki",
+      "Studio HIBARI",
+      "Shounen",
+      "Dark Fantasy"
+    ]
+  },
+  {
+    "title": "Magic Knight Rayearth Bản Làm Lại 2026 Lên Sóng 7/10",
+    "url": "/magic-knight-rayearth-2026-remake-len-song-7-10",
+    "cat": "Anime",
+    "date": "2026-09-28",
+    "excerpt": "Magic Knight Rayearth, bản anime làm lại kỷ niệm 30 năm tác phẩm kinh điển của CLAMP, lên sóng ngày 7/10/2026 với dàn diễn viên hoàn toàn mới, độc quyền trên Crunchyroll.",
+    "img": "/assets/img/poster-real-magic-knight-rayearth-2026.jpg",
+    "tags": [
+      "Magic Knight Rayearth",
+      "CLAMP",
+      "E&H Production",
+      "Crunchyroll"
+    ]
+  },
+  {
+    "title": "Aoashi Mùa 2 Lên Sóng 4/10, Đổi Sang Studio TMS Entertainment",
+    "url": "/aoashi-mua-2-doi-studio-len-song-4-10",
+    "cat": "Anime",
+    "date": "2026-09-28",
+    "excerpt": "Aoashi mùa 2 chính thức lên sóng ngày 4/10/2026, chuyển giao sản xuất từ Production I.G sang TMS Entertainment, cour đầu gồm 12 tập trong tổng 24 tập đã lên kế hoạch.",
+    "img": "/assets/img/poster-real-aoashi-s2.jpg",
+    "tags": [
+      "Aoashi",
+      "TMS Entertainment",
+      "Production I.G",
+      "Manga bóng đá"
+    ]
+  },
+  {
+    "title": "Tokyo Revengers: Santen Sensou-hen Lên Sóng 2/10, Mùa Cuối Manga",
+    "url": "/tokyo-revengers-santen-sensou-hen-len-song-2-10",
+    "cat": "Anime",
+    "date": "2026-09-28",
+    "excerpt": "Tokyo Revengers: Santen Sensou-hen (arc Chiến Tranh Ba Thế Lực), mùa 4 và cũng là mùa chuyển thể arc cuối cùng của manga, lên sóng ngày 2/10/2026 do LIDENFILMS thực hiện, phát trên Disney+.",
+    "img": "/assets/img/poster-real-tokyo-revengers-santen.jpg",
+    "tags": [
+      "Tokyo Revengers",
+      "Santen Sensou-hen",
+      "LIDENFILMS",
+      "Disney+"
+    ]
+  },
+  {
+    "title": "Ao no Hako Mùa 2 Lên Sóng Ngày 4/10, Đổi Đạo Diễn Và Studio",
+    "url": "/ao-no-hako-mua-2-len-song-4-10",
+    "cat": "Anime",
+    "date": "2026-09-28",
+    "excerpt": "Ao no Hako (Blue Box) mùa 2 chính thức lên sóng ngày 4/10/2026, do Electric Circus tiếp quản phần hoạt hình từ Studio C2C, đạo diễn mới Daisuke Sakō.",
+    "img": "/assets/img/poster-real-ao-no-hako-s2.jpg",
+    "tags": [
+      "Ao no Hako",
+      "Blue Box",
+      "Electric Circus",
+      "Manga Shonen Jump+"
+    ]
+  },
+  {
+    "title": "Oda Từng Đích Thân Quảng Bá 6 Manga Này Trên Bìa Sách",
+    "url": "/oda-tung-gioi-thieu-6-manga-tren-bia-sach",
+    "cat": "Manga",
+    "date": "2026-09-28",
+    "excerpt": "Từ 2015 đến 2024, Eiichiro Oda đã đích thân viết lời giới thiệu lên obi (dải bìa) của 6 bộ manga, trong đó ba bộ do chính cựu trợ lý của ông vẽ. OtaHub điểm qua sáu cái tên đó.",
+    "img": "/assets/img/real-oda-picks-kiyoshi-banner.jpg",
+    "tags": [
+      "Eiichiro Oda",
+      "One Piece",
+      "Shonen Jump",
+      "Akane-banashi",
+      "Ultimate Exorcist Kiyoshi"
+    ]
+  },
+  {
     "title": "Solo Leveling: Ragnarok Review: Hậu Truyện Đầy Tham Vọng",
     "url": "/solo-leveling-ragnarok-manhwa-review",
     "cat": "Reviews",
