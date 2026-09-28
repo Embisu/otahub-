@@ -2823,7 +2823,7 @@ window.IDX = [
     "url": "/one-piece-egghead-arc-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Review One Piece: Egghead Arc: chương 1058–1125, tập 105–111, anime Toei mùa 21 tập 1089–1155; Vegapunk, Joy Boy và Thế Kỷ Trống, phong cách hình ảnh mới của anime gây tranh luận.",
+    "excerpt": "Đánh giá chi tiết One Piece Egghead Arc: Hồi truyện bùng nổ mở màn Final Saga với thông điệp thế kỷ của Dr. Vegapunk, bí mật Joy Boy, đại chiến Ngũ Lão Tinh và phong cách anime đột phá.",
     "img": "/assets/img/yt-YJ34bLwtVUM.jpg",
     "tags": [
       "One Piece",
