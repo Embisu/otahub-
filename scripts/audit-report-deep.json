@@ -1180,26 +1180,6 @@
     ]
   },
   {
-    "relPath": "one-piece-chapter-1194-spoilers-loki-uranus-elbaf.html",
-    "title": "One Piece Chapter 1194 Spoilers: Zoro Đối Đầu Sommers",
-    "words": 316,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (316 từ)"
-      }
-    ]
-  },
-  {
     "relPath": "one-piece-chapter-1194-tam-ngung-tro-lai-11-10.html",
     "title": "One Piece Tạm Ngưng Sau Chương 1194, Trở Lại 11/10",
     "words": 276,
@@ -1216,26 +1196,6 @@
       {
         "type": "THIN_CONTENT",
         "detail": "Nội dung tương đối ngắn (276 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "one-piece-chapter-1195-ngay-ra-mat-du-doan.html",
-    "title": "One Piece Chapter 1195: Ngày Ra Mắt Và Dự Đoán",
-    "words": 282,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (282 từ)"
       }
     ]
   },
@@ -3296,26 +3256,6 @@
       {
         "type": "SHORT_CONTENT",
         "detail": "Nội dung quá ngắn (144 từ, < 200 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "en/one-piece-chapter-1195-release-date-predictions.html",
-    "title": "One Piece Chapter 1195 Release Date And Predictions",
-    "words": 230,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (230 từ)"
       }
     ]
   },

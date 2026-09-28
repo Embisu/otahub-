@@ -182,7 +182,7 @@ window.IDX = [
     "url": "/solo-leveling-ragnarok-manhwa-review",
     "cat": "Reviews",
     "date": "2026-09-27",
-    "excerpt": "Review Solo Leveling: Ragnarok: hậu truyện chính thức của Solo Leveling, viết bởi Daul và REDICE Studio, minh họa JIN; tạm ngưng từ đầu 2026 khi họa sĩ nhập ngũ, trở lại với chương 69.",
+    "excerpt": "Đánh giá manhwa Solo Leveling: Ragnarok: Cuộc phiêu lưu kế thừa ngai vàng bóng tối của Sung Suho và hành trình bảo vệ Trái Đất trước các thế lực vũ trụ.",
     "img": "/assets/img/news-solo-leveling-ragnarok-manhwa.jpg",
     "tags": [
       "Solo Leveling: Ragnarok",
@@ -227,7 +227,7 @@ window.IDX = [
     "url": "/spy-x-family-anime-review",
     "cat": "Reviews",
     "date": "2026-09-27",
-    "excerpt": "Review Spy x Family: gia đình giả của điệp viên Twilight, sát thủ Yor và thần giao cách cảm Anya; anime Wit Studio/CloverWorks 3 mùa, manga hơn 42 triệu bản, phim Code: White.",
+    "excerpt": "Đánh giá anime Spy x Family: Tuyệt tác hoạt hình gia đình chữa lành và hài hước, sự kết hợp duyên dáng giữa thế giới điệp viên và tình cảm gia đình giả tưởng.",
     "img": "/assets/img/real-spy-family-banner.jpg",
     "tags": [
       "Spy x Family",
@@ -385,7 +385,7 @@ window.IDX = [
     "url": "/slime-mua-4-tap-3-thang-7-2027-clayman-revenge",
     "cat": "Anime",
     "date": "2026-09-26",
-    "excerpt": "Slime mùa 4 kết thúc hai cour đầu ngày 25/9/2026 và trở lại cour 3 vào tháng 7/2027; spinoff Clayman's Revenge lên sóng TV anime tháng 4/2027 do 8-Bit thực hiện.",
+    "excerpt": "Slime Mùa 4 ấn định lịch trở lại cour 3 vào tháng 7/2027 cùng dự án anime spinoff Clayman's Revenge từ studio 8-Bit.",
     "img": "/assets/img/pool-slime-1.jpg",
     "tags": [
       "Tensura",
@@ -469,30 +469,12 @@ window.IDX = [
       "2026"
     ]
   },
-  {
-    "title": "One Piece Chapter 1195: Ngày Ra Mắt Và Dự Đoán",
-    "url": "/one-piece-chapter-1195-ngay-ra-mat-du-doan",
-    "cat": "Manga",
-    "date": "2026-09-26",
-    "excerpt": "Dự đoán ngày ra mắt One Piece chapter 1195 (khoảng 11/10/2026 vì tuần sau chương 1194 nghỉ) và những diễn biến có thể xảy ra sau trận Zoro vs Sommers.",
-    "img": "/assets/img/pool-one-piece-manga-1.jpg",
-    "tags": [
-      "One Piece",
-      "Chapter 1195",
-      "Dự đoán",
-      "One Piece Chapter 1195",
-      "Spoiler",
-      "Zoro",
-      "Shueisha",
-      "Shonen Jump"
-    ]
-  },
-  {
+    {
     "title": "Anime Chiikawa Tạm Ngừng Tập Mới, Phát Lại 25 Tập Đến 25/12",
     "url": "/chiikawa-anime-tam-ngung-tap-moi-phat-lai-25-tap",
     "cat": "Anime",
     "date": "2026-09-25",
-    "excerpt": "Anime Chiikawa tạm dừng phát tập mới và phát lại 25 tập tiêu biểu đến ngày 25/12/2026; chưa có ngày trở lại.",
+    "excerpt": "Anime Chiikawa tạm dừng tập mới để nâng cao chất lượng sản xuất, phát lại 25 tập tuyển chọn phục vụ người hâm mộ.",
     "img": "/assets/img/real-chiikawa.jpg",
     "tags": [
       "Chiikawa",
@@ -667,7 +649,7 @@ window.IDX = [
     "url": "/honkai-star-rail-4-6-pearl-zzz-crossover",
     "cat": "Gaming",
     "date": "2026-09-23",
-    "excerpt": "Honkai: Star Rail phiên bản 4.6 ra mắt 28/9/2026 với nhân vật 5 sao Pearl, tiếp nối cốt truyện Astropolis và hé lộ crossover với Zenless Zone Zero ở bản 4.8.",
+    "excerpt": "Honkai: Star Rail 4.6 chào đón nhân vật 5 sao Pearl và xác nhận sự kiện crossover bùng nổ cùng Zenless Zone Zero.",
     "img": "/assets/img/yt-ItNs39qvw_w.jpg",
     "tags": [
       "Honkai Star Rail",
@@ -957,7 +939,7 @@ window.IDX = [
     "url": "/solo-leveling-ragnarok-anime-chuyen-the-va-trailer-dau-tien",
     "cat": "Anime",
     "date": "2026-09-07",
-    "excerpt": "Webtoon Solo Leveling: Ragnarok (Dang Do viết, JIN của REDICE Studio vẽ) khởi đăng ngày 1/8/2024 về Sung Suho; tập 1 bản tiếng Anh do Yen Press phát hành 21/7/2026. Chưa có thông báo anime Ragnarok.",
+    "excerpt": "Solo Leveling: Ragnarok ra mắt bản tiếng Anh tập 1 và mở ra triển vọng chuyển thể anime sau thành công vang dội của nguyên tác.",
     "img": "/assets/img/pool-solo-leveling-1.jpg",
     "tags": [
       "Manga",
@@ -1059,7 +1041,7 @@ window.IDX = [
     "url": "/chainsaw-man-chapter-180-death-devil",
     "cat": "Manga",
     "date": "2026-09-03",
-    "excerpt": "Manga Chainsaw Man Part 2 của Tatsuki Fujimoto kết thúc ở chương 232 ngày 24/3/2026 sau 135 chương; tập cuối phát hành 4/6/2026 và chưa có kế hoạch Part 3.",
+    "excerpt": "Chainsaw Man Part 2 khép lại hành trình Academy Saga đầy ấn tượng: Tổng kết 135 chương truyện của Tatsuki Fujimoto và kế hoạch phát hành tập cuối.",
     "img": "/assets/img/pool-chainsaw-man-manga-1.jpg",
     "tags": [
       "Manga",
@@ -1147,7 +1129,7 @@ window.IDX = [
     "url": "/jujutsu-kaisen-chapter-271-final-climax-epilogue",
     "cat": "Manga",
     "date": "2026-09-01",
-    "excerpt": "Manga Jujutsu Kaisen của Gege Akutami kết thúc ở chương 271 \"From Now On\", đăng ngày 30/9/2024 sau 6 năm; hai tập cuối 29 và 30 phát hành cùng lúc ngày 25/12/2024 tại Nhật.",
+    "excerpt": "Jujutsu Kaisen kết thúc ở chương 271: Nhìn lại hồi kết sau 6 năm của hiện tượng manga chú thuật và thông tin phát hành tập cuối."From Now On\", đăng ngày 30/9/2024 sau 6 năm; hai tập cuối 29 và 30 phát hành cùng lúc ngày 25/12/2024 tại Nhật.",
     "img": "/assets/img/pool-jujutsu-kaisen-manga-1.jpg",
     "tags": [
       "Manga",
@@ -1413,7 +1395,7 @@ window.IDX = [
     "url": "/jujutsu-kaisen-season-3-culling-game-release",
     "cat": "Anime",
     "date": "2026-08-25",
-    "excerpt": "Jujutsu Kaisen Mùa 3 (Culling Game Phần 1) do MAPPA sản xuất đã phát sóng vào mùa đông 2026 với 12 tập; Phần 2 đang được sản xuất, chưa công bố ngày phát sóng.",
+    "excerpt": "Jujutsu Kaisen Mùa 3 Culling Game Phần 1 khép lại với 12 tập phim kịch tính, mở đường cho Phần 2 đang được MAPPA thực hiện.",
     "img": "/assets/img/yt--gvtWDUHmiU.jpg",
     "tags": [
       "Anime",
@@ -1497,7 +1479,7 @@ window.IDX = [
     "url": "/kagurabachi-4-trieu-ban-anime-cypic-thang-4-2027",
     "cat": "Manga",
     "date": "2026-08-24",
-    "excerpt": "Kagurabachi của Takeru Hokazono vượt 4 triệu bản lưu hành (gồm cả digital) khi tập 11 ra mắt 1/5/2026; anime do Cypic sản xuất sẽ phát sóng tháng 4/2027.",
+    "excerpt": "Kagurabachi vượt mốc 4 triệu bản in lưu hành và chính thức xác nhận anime truyền hình khởi chiếu vào tháng 4/2027.",
     "img": "/assets/img/pool-kagurabachi-1.jpg",
     "tags": [
       "Manga",
@@ -1846,7 +1828,7 @@ window.IDX = [
     "url": "/galaxy-express-999-new-film",
     "cat": "Anime",
     "date": "2026-08-18",
-    "excerpt": "Toei Animation chính thức xác nhận đang sản xuất phim Galaxy Express 999 mới, gần 50 năm sau bản điện ảnh đầu tiên, với Rintaro trở lại viết cốt truyện gốc.",
+    "excerpt": "Toei Animation hồi sinh huyền thoại Galaxy Express 999 với phim điện ảnh mới do đạo diễn kỳ cựu Rintaro viết cốt truyện.",
     "img": "/assets/img/news-galaxy-express-999-new-film.jpg",
     "tags": [
       "Galaxy Express 999",
@@ -2288,7 +2270,7 @@ window.IDX = [
     "url": "/mortal-shell-2-release",
     "cat": "Gaming",
     "date": "2026-08-17",
-    "excerpt": "Cold Symmetry công bố Mortal Shell II sẽ ra mắt toàn cầu ngày 20/8/2026 trên PC, PS5 và Xbox Series X|S, mang tới hệ thống chiến đấu &quot;posture&quot; hoàn toàn mới cùng 8 Shell có thể hóa thân.",
+    "excerpt": "Mortal Shell II ấn định ngày phát hành toàn cầu: Trải nghiệm Soulslike tăm tối với hệ thống chiến đấu và Shell hoàn toàn mới.",
     "img": "/assets/img/697812e0ec-mortal-shell-2-key-art.jpg",
     "tags": [
       "Mortal Shell",
@@ -2395,7 +2377,7 @@ window.IDX = [
     "url": "/chainsaw-man-anime-review",
     "cat": "Reviews",
     "date": "2026-08-16",
-    "excerpt": "Review anime Chainsaw Man của MAPPA: 12 tập phát sóng 10–12/2022, đạo diễn Ryū Nakayama, nhạc Kensuke Ushio, \"Kick Back\" của Kenshi Yonezu; Rotten Tomatoes 97%, phong cách điện ảnh.",
+    "excerpt": "Đánh giá anime Chainsaw Man của MAPPA: Bước đột phá mang đậm ngôn ngữ điện ảnh, bạo lực nghệ thuật và âm nhạc đỉnh cao gây sốt toàn cầu."Kick Back\" của Kenshi Yonezu; Rotten Tomatoes 97%, phong cách điện ảnh.",
     "img": "/assets/img/6b2483c562-chainsaw-man-anime-hero.jpg",
     "tags": [
       "Chainsaw Man",
@@ -2413,7 +2395,7 @@ window.IDX = [
     "url": "/chainsaw-man-manga-part2-review",
     "cat": "Reviews",
     "date": "2026-08-16",
-    "excerpt": "Review manga Chainsaw Man của Tatsuki Fujimoto: Part 1 (2018–2020), Part 2 kết thúc 25/3/2026, 24 tập, hơn 36 triệu bản in; giải Shogakukan và Harvey, bạo lực đặt trong ngữ cảnh.",
+    "excerpt": "Đánh giá chuyên sâu Chainsaw Man Part 2: Cuộc phiêu lưu tâm lý độc dị của Asa Mitaka và Quỷ Chiến Tranh Yoru trong kỷ nguyên mới của Tatsuki Fujimoto.",
     "img": "/assets/img/10728427f3-chainsaw-man-hero.jpg",
     "tags": [
       "Chainsaw Man",
@@ -2431,7 +2413,7 @@ window.IDX = [
     "url": "/dandadan-manga-review",
     "cat": "Reviews",
     "date": "2026-08-16",
-    "excerpt": "Review manga Dandadan của Yukinobu Tatsu: Shonen Jump+ từ 2021, 25 tập, hơn 10 triệu bản, giải Shogakukan 2026; pha hài, kinh dị, hành động và lãng mạn quanh Momo và Okarun.",
+    "excerpt": "Đánh giá manga Dandadan: Tuyệt phẩm hành động kỳ ảo hòa quyện giữa ma cà rồng, người ngoài hành tinh và chuyện tình gà bông tuổi teen cực kỳ lôi cuốn.",
     "img": "/assets/img/2c0d7f7a34-dandadan-manga-hero.jpg",
     "tags": [
       "Dandadan",
@@ -2502,7 +2484,7 @@ window.IDX = [
     "url": "/oshi-no-ko-anime-review",
     "cat": "Reviews",
     "date": "2026-08-16",
-    "excerpt": "Review anime Oshi no Ko của Doga Kobo: mùa 1 (4/2023) mở đầu 90 phút, ca khúc \"Idol\" của YOASOBI, mùa 3 (1/2026), mùa 4 là mùa cuối; manga hơn 25 triệu bản và cái kết gây tranh cãi.",
+    "excerpt": "Đánh giá anime Oshi no Ko: Bản cáo trạng sắc sảo và đầy ám ảnh về mặt tối giới showbiz, ánh hào quang thần tượng và bi kịch gia đình Hoshino."Idol\" của YOASOBI, mùa 3 (1/2026), mùa 4 là mùa cuối; manga hơn 25 triệu bản và cái kết gây tranh cãi.",
     "img": "/assets/img/9506aefbae-oshi-no-ko-hero.jpg",
     "tags": [
       "Oshi no Ko",
@@ -2537,7 +2519,7 @@ window.IDX = [
     "url": "/vinland-saga-manga-review",
     "cat": "Reviews",
     "date": "2026-08-16",
-    "excerpt": "Review manga Vinland Saga của Makoto Yukimura: 2005–25/7/2025, 29 tập, hơn 7 triệu bản, Kodansha Manga Award, hành trình Thorfinn qua bốn arc; anime Wit Studio và MAPPA.",
+    "excerpt": "Đánh giá toàn diện manga Vinland Saga: Hành trình chuộc tội 20 năm của Thorfinn Karlsefni và đại kết cục vĩ đại về ước vọng hòa bình trong thời đại bạo lực.",
     "img": "/assets/img/7807ea1948-vinland-saga-manga-hero.jpg",
     "tags": [
       "Vinland Saga",
@@ -2555,7 +2537,7 @@ window.IDX = [
     "url": "/attack-on-titan-wit-teaser",
     "cat": "Anime",
     "date": "2026-08-15",
-    "excerpt": "WIT Studio tung hình ảnh teaser với 6 nhân vật Attack on Titan, hẹn công bố chính thức vào ngày 20/8/2026. Mikasa đeo miếng che mắt lạ lùng, Eren cầm đũa nghịch mì trong một &quot;bữa tối đặc biệt&quot;.",
+    "excerpt": "WIT Studio tung teaser bí ẩn về Attack on Titan, mở ra nhiều dự đoán về dự án anime mới nhân dịp kỷ niệm thương hiệu.",
     "img": "/assets/img/a7548f6c8e-attack-on-titan-wit-teaser-hero.jpg",
     "tags": [
       "Attack on Titan",
@@ -2573,7 +2555,7 @@ window.IDX = [
     "url": "/big-walk-house-house",
     "cat": "Gaming",
     "date": "2026-08-15",
-    "excerpt": "House House, studio đứng sau Untitled Goose Game, ra mắt Big Walk, tựa game co-op giải đố khám phá được ví như &quot;Myst nhiều người chơi&quot;, đạt điểm Metacritic 92 và hỗ trợ tới 12 người chơi cùng lúc.",
+    "excerpt": "House House công bố Big Walk: Tựa game phiêu lưu co-op thế giới mở đầy màu sắc từ đội ngũ phát triển Untitled Goose Game.",
     "img": "/assets/img/d4b52b428d-big-walk-house-house-hero.jpg",
     "tags": [
       "Big Walk",
@@ -2591,7 +2573,7 @@ window.IDX = [
     "url": "/black-clover-final-volume-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Review manga Black Clover của Yūki Tabata: Weekly Shonen Jump từ 2/2015, kết thúc trên Jump Giga ngày 1/5/2026 với 38 tập, hơn 24,5 triệu bản; anime Pierrot 170 tập, mùa 2 tháng 10/2026.",
+    "excerpt": "Đánh giá chi tiết tập cuối Black Clover: Hồi kết trọn vẹn sau 11 năm đồng hành cùng Asta và Yuno, những điểm sáng rực rỡ và tiếc nuối lớn nhất trong đại kết cục.",
     "img": "/assets/img/bd3666212d-black-clover-cover.jpg",
     "tags": [
       "Black Clover",
@@ -2645,7 +2627,7 @@ window.IDX = [
     "url": "/dandadan-season-2-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Review Dandadan mùa 2 của Science SARU: 12 tập phát sóng 7–9/2025, đạo diễn Abel Góngora cùng Fūga Yamashiro, tiếp tục pha trộn hài, kinh dị, lãng mạn; mùa 3 dự kiến năm 2027.",
+    "excerpt": "Đánh giá anime Dan Da Dan Season 2: Bữa tiệc thị giác psychedelic bùng nổ từ Science SARU, tiếp nối thành công rực rỡ của hiện tượng anime thế hệ mới.",
     "img": "/assets/img/322e6e6826-dandadan-season-2-review-hero.jpg",
     "tags": [
       "Dan Da Dan",
@@ -2733,7 +2715,7 @@ window.IDX = [
     "url": "/jujutsu-kaisen-anime-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Review anime Jujutsu Kaisen của MAPPA: mùa 1 (2020), phim 0 (2021), mùa 2 Shibuya (2023), mùa 3 Culling Game (1–3/2026); manga hơn 150 triệu bản, điểm mạnh về nhân vật và hành động.",
+    "excerpt": "Đánh giá toàn diện anime Jujutsu Kaisen của MAPPA: Từ khởi đầu ấn tượng đến đỉnh cao Biến cố Shibuya và bước ngoặt Culling Game làm rung chuyển toàn cầu.",
     "img": "/assets/img/yt-MPfZhgLiK6w.jpg",
     "tags": [
       "Jujutsu Kaisen",
@@ -2769,7 +2751,7 @@ window.IDX = [
     "url": "/kaiju-no-8-manga-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Review manga Kaiju No. 8 của Naoya Matsumoto: Shonen Jump+ từ 3/7/2020 đến 18/7/2025, 16 tập, hơn 19 triệu bản, giải Next Manga Award 2021; ý tưởng hay, mở đầu công thức và nét vẽ không đều.",
+    "excerpt": "Đánh giá manga Kaiju No. 8: Cơn sốt quái vật khổng lồ của Shonen Jump+, hành trình vượt lên nghịch cảnh của Kafka Hibino và bài toán duy trì sức hút.",
     "img": "/assets/img/pool-kaiju-8-2.jpg",
     "tags": [
       "Kaiju No.8",
@@ -2841,7 +2823,7 @@ window.IDX = [
     "url": "/one-piece-final-saga-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Review One Piece Final Saga: từ chương 1054 (6/2022), arc Elbaph từ chương 1126 và God Valley; hơn 600 triệu bản in, anime Elbaph từ tháng 4/2026, remake Wit Studio tháng 2/2027.",
+    "excerpt": "Đánh giá One Piece Final Saga: Chặng đua cuối vĩ đại của Eiichiro Oda khi các bí mật God Valley, Thế Kỷ Trống và vương quốc Elbaf đồng loạt phát nổ.",
     "img": "/assets/img/yt-YnczpEoeaDM.jpg",
     "tags": [
       "One Piece",
@@ -2859,7 +2841,7 @@ window.IDX = [
     "url": "/quit-laughing-shijima-horikoshi",
     "cat": "Manga",
     "date": "2026-08-15",
-    "excerpt": "Kohei Horikoshi chính thức trở lại Weekly Shonen Jump sau 2 năm với one-shot kinh dị 61 trang &quot;Quit Laughing, Shijima&quot;, câu chuyện &quot;boy-meets-girl horror&quot; về một thị trấn kỳ lạ giấu bí mật đen tối.",
+    "excerpt": "Cha đẻ My Hero Academia ra mắt one-shot kinh dị 61 trang Quit Laughing, Shijima đánh dấu sự trở lại ngoạn mục trên Weekly Shonen Jump.",
     "img": "/assets/img/b95ebcacec-quit-laughing-shijima-horikoshi-hero.jpg",
     "tags": [
       "Kohei Horikoshi",
@@ -3057,7 +3039,7 @@ window.IDX = [
     "url": "/made-in-abyss-awakening-mystery",
     "cat": "Anime",
     "date": "2026-08-14",
-    "excerpt": "Made in Abyss: Awakening Mystery, phần 1 loạt phim điện ảnh mới của thương hiệu, tung trailer chính thức, giới thiệu dàn cast mới Tepasté và Cravali cùng nhạc phim &quot;Chain of the Abyss&quot; do Kevin Penkin và Mori Calliope trình bày, ra rạp Nhật 23/10/2026.",
+    "excerpt": "Made in Abyss: Awakening Mystery ra mắt trailer chính thức, hé lộ dàn nhân vật mới và ca khúc chủ đề đầy ấn tượng.",
     "img": "/assets/img/b05891325a-made-in-abyss-awakening-mystery-hero.jpg",
     "tags": [
       "Made in Abyss",
@@ -3147,7 +3129,7 @@ window.IDX = [
     "url": "/genshin-impact-70-snezhnaya",
     "cat": "Gaming",
     "date": "2026-08-13",
-    "excerpt": "Genshin Impact phiên bản 7.0 &quot;Everwinter Without Mercy&quot; đã ra mắt 12/8/2026, đưa người chơi đến Snezhnaya, quốc gia thứ 7 của Teyvat, cùng nhân vật mới Odette và chế độ bắn súng góc nhìn thứ ba lần đầu xuất hiện trong game.",
+    "excerpt": "Genshin Impact 7.0 đưa Nhà Lữ Hành đến Snezhnaya: Khám phá vương quốc Băng giá, nhân vật Odette và chế độ chiến đấu mới.",
     "img": "/assets/img/yt-y2Zcmcbrm9s.jpg",
     "tags": [
       "Genshin Impact",
@@ -3201,7 +3183,7 @@ window.IDX = [
     "url": "/chained-soldier-season-3",
     "cat": "Anime",
     "date": "2026-08-12",
-    "excerpt": "Chained Soldier (Mato Seihei no Slave) được xác nhận có Season 3 ngày 2/8/2026; chưa có ngày phát sóng, studio và dàn cast. Season 2 phát sóng từ 8/1/2026 với 12 tập.",
+    "excerpt": "Chained Soldier xác nhận sản xuất Mùa 3: Cuộc chiến Ma Đô tiếp diễn với những thử thách mới và quy mô mở rộng.",
     "img": "/assets/img/cc1f44dabd-chained-soldier-s3.jpg",
     "tags": [
       "Chained Soldier",
@@ -3291,7 +3273,7 @@ window.IDX = [
     "url": "/re-zero-season4-recapture-arc",
     "cat": "Anime",
     "date": "2026-08-12",
-    "excerpt": "Re:Zero Season 4 có 19 tập chia hai cour; Recapture Arc bắt đầu từ tập 12 ngày 12/8/2026, tập 18 phát sóng 23/9 và tập cuối ngày 30/9 trên Crunchyroll.",
+    "excerpt": "Re:Zero Season 4 bước vào hồi kết nghẹt thở của Recapture Arc: Lịch phát sóng các tập cuối trên nền tảng Crunchyroll.",
     "img": "/assets/img/pool-rezero-1.jpg",
     "tags": [
       "Re:Zero",
@@ -3505,7 +3487,7 @@ window.IDX = [
     "url": "/gta6-preview",
     "cat": "Gaming",
     "date": "2026-06-10",
-    "excerpt": "Grand Theft Auto VI ra mắt ngày 19/11/2026 trên PS5/PS5 Pro và Xbox Series X|S; đặt trước từ 25/6, tải trước 12/11; bản Standard 79,99 USD, Ultimate 99,99 USD; Rockstar chưa công bố bản PC.",
+    "excerpt": "Tổng hợp chi tiết GTA 6: Ngày phát hành 19/11/2026, các phiên bản mở bán và thế giới Vice City thế hệ mới từ Rockstar Games.",
     "img": "/assets/img/c8cd09fede-maxresdefault.jpg",
     "tags": [
       "Gaming",
