@@ -1,5 +1,20 @@
 window.IDX = [
   {
+    "title": "One Piece Chương 1192: Luffy Xuyên Thủng Lá Chắn, Khiến Imu Đổ Máu",
+    "url": "/one-piece-chuong-1192-luffy-xuyen-thung-khien-imu-do-mau",
+    "cat": "Manga",
+    "date": "2026-09-28",
+    "excerpt": "Chương 1192 của One Piece, mang tên \"We Will Never Forgive!\", đánh dấu lần đầu tiên trong bộ truyện một đòn tấn công thực sự gây thương tích cho Imu, sau khi Luffy kết hợp sức mạnh của Loki với năng lực Nika thức tỉnh.",
+    "img": "/assets/img/real-op1192-dawn-thor-bullet-banner.jpg",
+    "tags": [
+      "One Piece",
+      "Eiichiro Oda",
+      "Imu",
+      "Elbaf",
+      "Weekly Shonen Jump"
+    ]
+  },
+  {
     "title": "Roman Sands RE:Build: Mắc kẹt trong giấc mơ vaporwave đang dần sụp đổ",
     "url": "/roman-sands-re-build-mac-ket-trong-giac-mo-vaporwave-dang-da",
     "cat": "Gaming",
@@ -1129,7 +1144,7 @@ window.IDX = [
     "url": "/jujutsu-kaisen-chapter-271-final-climax-epilogue",
     "cat": "Manga",
     "date": "2026-09-01",
-    "excerpt": "Jujutsu Kaisen kết thúc ở chương 271: Nhìn lại hồi kết sau 6 năm của hiện tượng manga chú thuật và thông tin phát hành tập cuối."From Now On\", đăng ngày 30/9/2024 sau 6 năm; hai tập cuối 29 và 30 phát hành cùng lúc ngày 25/12/2024 tại Nhật.",
+    "excerpt": "Jujutsu Kaisen kết thúc ở chương 271: Nhìn lại hồi kết sau 6 năm của hiện tượng manga chú thuật và thông tin phát hành tập cuối. Tập cuối mang tên \"From Now On\", đăng ngày 30/9/2024 sau 6 năm; hai tập cuối 29 và 30 phát hành cùng lúc ngày 25/12/2024 tại Nhật.",
     "img": "/assets/img/pool-jujutsu-kaisen-manga-1.jpg",
     "tags": [
       "Manga",
@@ -2377,7 +2392,7 @@ window.IDX = [
     "url": "/chainsaw-man-anime-review",
     "cat": "Reviews",
     "date": "2026-08-16",
-    "excerpt": "Đánh giá anime Chainsaw Man của MAPPA: Bước đột phá mang đậm ngôn ngữ điện ảnh, bạo lực nghệ thuật và âm nhạc đỉnh cao gây sốt toàn cầu."Kick Back\" của Kenshi Yonezu; Rotten Tomatoes 97%, phong cách điện ảnh.",
+    "excerpt": "Đánh giá anime Chainsaw Man của MAPPA: Bước đột phá mang đậm ngôn ngữ điện ảnh, bạo lực nghệ thuật và âm nhạc đỉnh cao gây sốt toàn cầu. Ca khúc mở đầu \"Kick Back\" của Kenshi Yonezu; Rotten Tomatoes 97%, phong cách điện ảnh.",
     "img": "/assets/img/6b2483c562-chainsaw-man-anime-hero.jpg",
     "tags": [
       "Chainsaw Man",
@@ -2484,7 +2499,7 @@ window.IDX = [
     "url": "/oshi-no-ko-anime-review",
     "cat": "Reviews",
     "date": "2026-08-16",
-    "excerpt": "Đánh giá anime Oshi no Ko: Bản cáo trạng sắc sảo và đầy ám ảnh về mặt tối giới showbiz, ánh hào quang thần tượng và bi kịch gia đình Hoshino."Idol\" của YOASOBI, mùa 3 (1/2026), mùa 4 là mùa cuối; manga hơn 25 triệu bản và cái kết gây tranh cãi.",
+    "excerpt": "Đánh giá anime Oshi no Ko: Bản cáo trạng sắc sảo và đầy ám ảnh về mặt tối giới showbiz, ánh hào quang thần tượng và bi kịch gia đình Hoshino. Ca khúc chủ đề \"Idol\" của YOASOBI, mùa 3 (1/2026), mùa 4 là mùa cuối; manga hơn 25 triệu bản và cái kết gây tranh cãi.",
     "img": "/assets/img/9506aefbae-oshi-no-ko-hero.jpg",
     "tags": [
       "Oshi no Ko",
