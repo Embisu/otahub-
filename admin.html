@@ -3134,7 +3134,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
       <a href="https://otahub.asia" target="_blank" class="wtb-item">🏠 Xem trang web (Live)</a>
       <div class="wtb-item"><span class="wtb-badge-live">Cloudflare Pages Edge: Live</span></div>
       <button onclick="newArticle()" class="wtb-item">➕ Thêm bài mới</button>
-      <div class="wtb-item"><span class="wtb-badge-seo" id="wtb-top-seo-badge">🎯 Rank Math SEO: --/100</span></div>
+      <div class="wtb-item"><span class="wtb-badge-seo" id="wtb-top-seo-badge">🎯 SEO: chưa chấm điểm</span></div>
     </div>
     <div class="wtb-right">
       <button onclick="openCmdk()" class="wtb-item" title="Tìm nhanh (Ctrl+K)">🔍 Tìm nhanh <kbd style="background:rgba(255,255,255,.1);padding:1px 4px;border-radius:2px;font-size:10px;margin-left:4px">Ctrl+K</kbd></button>
@@ -3311,7 +3311,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
     <div class="media-modal-body" style="max-height:70vh;overflow-y:auto">
       <div style="display:flex;gap:16px;align-items:flex-start">
         <div style="width:160px;height:120px;border-radius:6px;overflow:hidden;border:1px solid var(--wp-border);background:var(--wp-bg);flex-shrink:0;display:flex;align-items:center;justify-content:center">
-          <img id="ied-preview" src="" alt="" style="max-width:100%;max-height:100%;object-fit:contain" onerror="this.onerror=null;this.src='/favicon-192.png'">
+          <img height="675" width="1200" id="ied-preview" src="" alt="" style="max-width:100%;max-height:100%;object-fit:contain" onerror="this.onerror=null;this.src='/favicon-192.png'">
         </div>
         <div style="flex:1;min-width:0">
           <label class="form-label" style="margin-top:0;font-weight:600">Thay thế ảnh:</label>
@@ -4430,7 +4430,7 @@ function setupVisualImageHandlers() {
           const url = await uploadImageFile(file);
           if (url) {
             const cleanName = (file.name || 'Hinh anh').replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ');
-            const figHtml = `<figure class="aligncenter"><img src="${esc(url)}" alt="${esc(cleanName)}" loading="lazy"/><figcaption>${esc(cleanName)}</figcaption></figure><p><br></p>`;
+            const figHtml = `<figure class="aligncenter"><img height="675" width="1200" src="${esc(url)}" alt="${esc(cleanName)}" loading="lazy"/><figcaption>${esc(cleanName)}</figcaption></figure><p><br></p>`;
             insertHtmlAtCursor(figHtml);
             toast('success', '✅ Đã chèn ảnh vào bài viết');
           }
@@ -4452,7 +4452,7 @@ function setupVisualImageHandlers() {
           const url = await uploadImageFile(file);
           if (url) {
             const kw = document.getElementById('ed-keyword')?.value || ART_TITLE || 'Hình ảnh';
-            const figHtml = `<figure class="aligncenter"><img src="${esc(url)}" alt="${esc(kw)}" loading="lazy"/><figcaption></figcaption></figure><p><br></p>`;
+            const figHtml = `<figure class="aligncenter"><img height="675" width="1200" src="${esc(url)}" alt="${esc(kw)}" loading="lazy"/><figcaption></figcaption></figure><p><br></p>`;
             insertHtmlAtCursor(figHtml);
             toast('success', '✅ Đã dán ảnh thành công');
           }
@@ -4716,7 +4716,7 @@ async function renderMediaModalLibrary() {
   grid.innerHTML = list.map(f => {
     const isSel = MEDIA_MODAL_SELECTED_IMG && (MEDIA_MODAL_SELECTED_IMG.url === f.url || MEDIA_MODAL_SELECTED_IMG.url === f.path);
     return `<div class="media-modal-thumb-item ${isSel ? 'selected' : ''}" onclick="mediaModalSelectImage('${esc(f.url)}', '${esc(f.name)}')" ondblclick="mediaModalSelectImage('${esc(f.url)}', '${esc(f.name)}'); mediaConfirmInsert();" title="${esc(f.name)}">
-      <img src="${esc(f.url)}" loading="lazy" alt="${esc(f.name)}" onerror="this.style.opacity=.2"/>
+      <img height="675" width="1200" src="${esc(f.url)}" loading="lazy" alt="${esc(f.name)}" onerror="this.style.opacity=.2"/>
       <div class="media-modal-thumb-name">${esc(f.name)}</div>
     </div>`;
   }).join('');
@@ -4776,7 +4776,7 @@ function mediaUpdatePreview() {
   const prev = document.getElementById('media-img-preview');
   if (!prev) return;
   if (!url) { prev.innerHTML = `<div class="media-preview-empty">Chưa có ảnh</div>`; return; }
-  prev.innerHTML = `<img src="${esc(url)}">`;
+  prev.innerHTML = `<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="${esc(url)}">`;
   const img = prev.querySelector('img');
   if (img) img.onerror = () => { prev.innerHTML = `<div class="media-preview-empty">⚠️ Không tải được ảnh, kiểm tra lại URL</div>`; };
 }
@@ -4848,7 +4848,7 @@ function mediaConfirmInsert() {
 
   const alt = (document.getElementById('media-img-alt')?.value || '').trim();
   const caption = (document.getElementById('media-img-caption')?.value || '').trim();
-  const html = `<figure class="aligncenter"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy"/>${caption ? `<figcaption>${esc(caption)}</figcaption>` : ''}</figure><p><br></p>`;
+  const html = `<figure class="aligncenter"><img height="675" width="1200" src="${esc(src)}" alt="${esc(alt)}" loading="lazy"/>${caption ? `<figcaption>${esc(caption)}</figcaption>` : ''}</figure><p><br></p>`;
   const cb = MEDIA_MODAL_CB; closeMediaModal();
   cb({ kind: 'image', src, alt, caption, html });
 }
@@ -5260,9 +5260,9 @@ function extractHero(html) {
   if (m && m[1]) return m[1].replace('https://otahub.asia', '');
   m = html.match(/<meta name="twitter:image" content="([^"]+)"/);
   if (m && m[1]) return m[1].replace('https://otahub.asia', '');
-  m = html.match(/<figure><img src="([^"]+)"/);
+  m = html.match(/<figure><img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]+)"/);
   if (m && m[1]) return m[1];
-  m = html.match(/<header class="hero">[\s\S]*?<img src="([^"]+)"/);
+  m = html.match(/<header class="hero">[\s\S]*?<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]+)"/);
   if (m && m[1]) return m[1];
   return '';
 }
@@ -5438,7 +5438,7 @@ function renderDashboard() {
             <div class="wp-glance-item"><span>💬</span> <span><strong>48+</strong> Leads & Độc giả</span></div>
           </div>
           <div class="wp-glance-status">
-            <div class="wp-glance-green"><span>🟢</span> <span>Rank Math SEO: Tối ưu 100% tất cả ${total} bài viết</span></div>
+            <div class="wp-glance-green"><span>🎯</span> <span>SEO: đang theo dõi ${total} bài viết tiếng Việt — mở bảng điểm để xem kết quả thực tế</span></div>
             <div class="wp-glance-green"><span>🟢</span> <span>Google Entity Map: /g/otahub-asia đã kết nối</span></div>
             <div class="wp-glance-green"><span>🟢</span> <span>CDN: Cloudflare Pages Edge Serverless Runtime</span></div>
           </div>
@@ -5881,7 +5881,7 @@ function mediaCardHtml(f) {
   const canDelete = window.__mediaCanDelete;
   return `<div class="media-card" id="media-card-${esc(f.sha)}">
     <div class="media-thumb-wrap" onclick="window.open('${esc(f.url)}','_blank')" title="Bấm để xem ảnh gốc">
-      <img src="${esc(f.url)}" loading="lazy" alt="${esc(f.name)}" onerror="this.style.opacity=.25"/>
+      <img height="675" width="1200" src="${esc(f.url)}" loading="lazy" alt="${esc(f.name)}" onerror="this.style.opacity=.25"/>
     </div>
     <div class="media-info">
       <div class="media-name" title="${esc(f.name)}">${esc(f.name)}</div>
@@ -6177,7 +6177,7 @@ async function saveQuickEdit(file) {
     
     // Patch title, cat, desc in HTML
     html = html.replace(/<title>[^<]*<\/title>/i, `<title>${esc(title)} · OtaHub</title>`);
-    html = html.replace(/(<meta\s+property="og:title"\s+content=")[^"]*(")/i, `$1${esc(title)} · OtaHub$2`);
+    html = html.replace(/(<meta\s+property="og:title"\s+content=")[^ — tin tức và phân tích từ OtaHub — tin tức và phân tích từ OtaHub."]*(")/i, `$1${esc(title)} · OtaHub$2`);
     html = html.replace(/(<meta\s+name="twitter:title"\s+content=")[^"]*(")/i, `$1${esc(title)} · OtaHub$2`);
     html = html.replace(/("headline":\s*")[^"]*(")/i, `$1${title.replace(/\\/g,'\\\\').replace(/"/g,'\\"')}$2`);
     
@@ -6262,7 +6262,7 @@ function renderArticleList(filter='', cat='', tab='all') {
         </th>
         <td class="column-thumb" onclick="event.stopPropagation()">
           <div class="wp-post-thumb-box" onclick="editArticle('${esc(a.file)}')">
-            <img class="art-thumb" data-file="${esc(a.file)}" src="${esc(a.hero || '')}" alt="" loading="lazy" style="position:absolute;top:0;left:0;width:52px;height:52px;max-width:52px;max-height:52px;object-fit:cover;display:none" onload="this.style.display='block';this.nextElementSibling.style.display='none'" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <img height="675" width="1200" class="art-thumb" data-file="${esc(a.file)}" src="${esc(a.hero || '')}" alt="" loading="lazy" style="position:absolute;top:0;left:0;width:52px;height:52px;max-width:52px;max-height:52px;object-fit:cover;display:none" onload="this.style.display='block';this.nextElementSibling.style.display='none'" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
             <div class="wp-thumb-placeholder" style="display:flex;align-items:center;justify-content:center;width:52px;height:52px;color:#8c8f94">
               <svg width="22" height="22" viewBox="0 0 20 20" fill="currentColor"><path d="M2.5 4h15a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-15a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5zm14.5 1H3v10h14V5zm-9 2a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm6.5 7H4.5l3.5-4.5 2.5 3 2-2.5 3 4z"/></svg>
             </div>
@@ -7416,7 +7416,7 @@ function renderEditor(file, html) {
                 <!-- Google SERP Card Preview -->
                 <div class="seo-serp-box" id="seo-serp-box-preview" onclick="toggleSnippetEditor(true)" style="cursor:pointer" title="Bấm vào đây để chỉnh sửa Tiêu đề & Mô tả SEO">
                   <div class="seo-serp-url-row">
-                    <img src="/favicon-32.png" class="seo-serp-favicon" alt="Favicon" onerror="this.onerror=null;this.src='https://otahub.asia/favicon-32.png'"/>
+                    <img height="675" width="1200" src="/favicon-32.png" class="seo-serp-favicon" alt="Favicon" onerror="this.onerror=null;this.src='https://otahub.asia/favicon-32.png'"/>
                     <span id="serp-preview-url">https://otahub.asia › ${cat.toLowerCase()} › ${(file||'').replace(/\.html$/,'')}</span>
                   </div>
                   <a href="javascript:void(0)" class="seo-serp-title" id="serp-preview-title">${esc(title)} · OtaHub</a>
@@ -7513,7 +7513,7 @@ function renderEditor(file, html) {
                 </div>
                 <!-- Social Card Preview -->
                 <div class="seo-social-card" id="seo-social-card-box">
-                  <img id="social-preview-thumb" class="seo-social-thumb" src="${heroUrl || '/og-image.png'}" alt="Social preview" onerror="this.onerror=null;this.src='/og-image.png'"/>
+                  <img height="675" width="1200" id="social-preview-thumb" class="seo-social-thumb" src="${heroUrl || '/og-image.png'}" alt="Social preview" onerror="this.onerror=null;this.src='/og-image.png'"/>
                   <div class="seo-social-body">
                     <div class="seo-social-domain">OTAHUB.ASIA</div>
                     <div class="seo-social-title" id="social-preview-title">${esc(title)} · OtaHub</div>
@@ -7620,7 +7620,7 @@ function renderEditor(file, html) {
           </div>
           <div class="inside">
             <div class="featured-image-holder" onclick="pickHeroImage('library')">
-              <img id="hero-preview" src="${heroUrl}" alt="Featured preview" style="display:${heroUrl?'block':'none'};object-position:center ${heroPos}%" onerror="this.style.display='none';document.getElementById('hero-placeholder').style.display='flex'"/>
+              <img height="675" width="1200" id="hero-preview" src="${heroUrl}" alt="Featured preview" style="display:${heroUrl?'block':'none'};object-position:center ${heroPos}%" onerror="this.style.display='none';document.getElementById('hero-placeholder').style.display='flex'"/>
               <div id="hero-placeholder" class="featured-image-placeholder" style="display:${heroUrl?'none':'flex'}">
                 <span style="font-size:24px">🖼️</span>
                 <span>Đặt ảnh đại diện bài viết</span>
@@ -8015,7 +8015,7 @@ async function createEnglishArticleFromAi(targetFile, enTitle, enDesc) {
 <body>
 <header class="site-header">
   <div class="header-inner wrap">
-    <a href="en-index.html" class="brand"><img src="logo.png" alt="OtaHub" class="logo-img"></a>
+    <a href="en-index.html" class="brand"><img height="675" width="1200" src="logo.png" alt="OtaHub" class="logo-img"></a>
     <nav class="main-nav">
       <a href="en-index.html" class="nav-item">Home</a>
       <a href="en-anime.html" class="nav-item">Anime</a>
@@ -8031,7 +8031,7 @@ async function createEnglishArticleFromAi(targetFile, enTitle, enDesc) {
       <h1 class="art-title">${esc(enTitle)}</h1>
       <p class="art-lead">${esc(enDesc)}</p>
     </header>
-    ${heroImg ? `<figure class="art-hero"><img src="${esc(heroImg)}" alt="${esc(enTitle)}" style="object-position:center ${esc(heroPos)}%"></figure>` : ''}
+    ${heroImg ? `<figure class="art-hero"><img height="675" width="1200" src="${esc(heroImg)}" alt="${esc(enTitle)}" style="object-position:center ${esc(heroPos)}%"></figure>` : ''}
     <div class="art-body">
       ${blocksClone ? blocksToHtml(blocksClone) : bodyHtml}
     </div>
@@ -8383,7 +8383,7 @@ function computeSeoScoreCore(title, desc, keyword, slug, bodyHtml) {
     headingMatches.length === 0 ? 'Bài chưa có thẻ H2/H3 nào. Hãy chia nhỏ bài viết thành các mục.' :
     headingsWithKw > 0 ? `Đã có ${headingMatches.length} thẻ H2/H3 và có chứa từ khóa.` : `Đã có ${headingMatches.length} thẻ H2/H3 (nên thêm từ khóa vào ít nhất 1 thẻ).`);
 
-  const imgTags = bodyHtml.match(/<img[^>]*>/gi) || [];
+  const imgTags = bodyHtml.match(/<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio"[^>]*>/gi) || [];
   const imgsWithAlt = imgTags.filter(t => /alt="[^"]+"/i.test(t)).length;
   addAddl(`Thuộc tính Alt hình ảnh (${imgsWithAlt}/${imgTags.length})`, imgTags.length === 0 ? 'ok' : (imgsWithAlt === imgTags.length ? 'good' : 'bad'),
     imgTags.length === 0 ? 'Chưa có ảnh trong thân bài.' :
@@ -9519,7 +9519,7 @@ function newBlockData(type) {
 }
 function blockToHtml(b) {
   if (b.type === 'heading') { const lvl = b.level === 3 ? 3 : 2; return `<h${lvl}>${esc(b.text || '')}</h${lvl}>`; }
-  if (b.type === 'image') return b.src ? `<figure><img src="${esc(b.src)}" alt="${esc(b.alt || '')}" loading="lazy">${b.caption ? `<figcaption>${esc(b.caption)}</figcaption>` : ''}</figure>` : '';
+  if (b.type === 'image') return b.src ? `<figure><img height="675" width="1200" src="${esc(b.src)}" alt="${esc(b.alt || '')}" loading="lazy">${b.caption ? `<figcaption>${esc(b.caption)}</figcaption>` : ''}</figure>` : '';
   if (b.type === 'video') return b.embedUrl ? videoEmbedHtml(b.embedUrl, b.caption || '', false) : '';
   if (b.type === 'quote') return `<blockquote><p>${b.text || ''}</p>${b.cite ? `<cite>${esc(b.cite)}</cite>` : ''}</blockquote>`;
   if (b.type === 'list') { const items = (b.items || []).map(s => s.trim()).filter(Boolean); return items.length ? `<ul>${items.map(i => `<li>${esc(i)}</li>`).join('')}</ul>` : ''; }
@@ -9580,7 +9580,7 @@ function blockToHtmlTagged(b, i) {
   }
   if (b.type === 'image') {
     if (!b.src) return `<figure data-oh-jump="block-${i}" class="oh-img-empty"><div class="oh-img-empty-hint">📷 Chưa có ảnh — bấm để thêm bên dưới</div></figure>`;
-    return `<figure data-oh-jump="block-${i}"><img src="${esc(b.src)}" alt="${esc(b.alt||'')}"><figcaption data-ohb="${i}" data-ohf="caption" contenteditable="true">${esc(b.caption||'')}</figcaption></figure>`;
+    return `<figure data-oh-jump="block-${i}"><img height="675" width="1200" src="${esc(b.src)}" alt="${esc(b.alt||'')}"><figcaption data-ohb="${i}" data-ohf="caption" contenteditable="true">${esc(b.caption||'')}</figcaption></figure>`;
   }
   if (b.type === 'video') {
     if (!b.embedUrl) return `<figure data-oh-jump="block-${i}" class="oh-img-empty"><div class="oh-img-empty-hint">🎬 Chưa có video — bấm để thêm bên dưới</div></figure>`;
@@ -9698,7 +9698,7 @@ async function renderBlockEditor() {
     <div class="block-gallery-strip">
       <div class="block-gallery-label">🖼️ ${imgBlocks.length} ảnh trong bài — bấm để nhảy tới:</div>
       <div class="block-gallery-thumbs">
-        ${imgBlocks.map(({ b, i }) => `<img class="block-gallery-thumb" src="${esc(b.src)}" alt="" title="${esc(b.alt || 'Ảnh #' + (i+1))}" onclick="blockScrollTo(${i})" onerror="this.style.opacity=.25">`).join('')}
+        ${imgBlocks.map(({ b, i }) => `<img height="675" width="1200" class="block-gallery-thumb" src="${esc(b.src)}" alt="" title="${esc(b.alt || 'Ảnh #' + (i+1))}" onclick="blockScrollTo(${i})" onerror="this.style.opacity=.25">`).join('')}
       </div>
       <div class="block-gallery-actions">
         <button class="btn btn-secondary btn-sm" onclick="blockCollapseAllImages(true)">Thu gọn tất cả</button>
@@ -9756,7 +9756,7 @@ async function renderBlockEditor() {
     } else if (b.type === 'image') {
       if (isCollapsedImg) {
         body = `<div class="block-img-collapsed-row" onclick="blockToggleCollapse(${i})" title="Bấm để mở rộng">
-          ${b.src ? `<img class="block-img-collapsed-thumb" src="${esc(b.src)}" alt="" onerror="this.style.opacity=.25">` : `<div class="block-img-collapsed-thumb block-img-collapsed-empty">📷</div>`}
+          ${b.src ? `<img height="675" width="1200" class="block-img-collapsed-thumb" src="${esc(b.src)}" alt="" onerror="this.style.opacity=.25">` : `<div class="block-img-collapsed-thumb block-img-collapsed-empty">📷</div>`}
           <div class="block-img-collapsed-info">
             <div class="block-img-collapsed-alt">${esc(b.alt || '(chưa có alt text)')}</div>
             <div class="block-img-collapsed-caption">${esc(b.caption || '')}</div>
@@ -9764,7 +9764,7 @@ async function renderBlockEditor() {
         </div>`;
       } else {
         body = (b.src
-          ? `<figure><img src="${esc(b.src)}" alt="${esc(b.alt||'')}" onerror="this.style.display='none'"></figure>`
+          ? `<figure><img height="675" width="1200" src="${esc(b.src)}" alt="${esc(b.alt||'')}" onerror="this.style.display='none'"></figure>`
           : `<div class="block-img-empty">Chưa có ảnh</div>`) +
           `<div class="block-field-row">
             <button class="btn btn-secondary btn-sm" onclick="blockPickImage(${i})">🖼️ Chọn / tải ảnh</button>
@@ -9994,8 +9994,8 @@ function buildArticlePreviewHtml() {
   } else if (/class="art-hero-img"\s+style="[^"]*"/.test(html)) {
     html = html.replace(/(class="art-hero-img"\s+style=")[^"]*(")/,
       `$1background-image:url('${hero}');background-position:center ${heroPos}%;background-color:#0b0418;$2 data-oh-jump="heroimg"`);
-  } else if (/<header class="hero">[\s\S]*?<img\s+src="[^"]*"/.test(html)) {
-    html = html.replace(/(<header class="hero">[\s\S]*?<img\s+src=")[^"]*(")/, `$1${hero}$2 data-oh-jump="heroimg"`);
+  } else if (/<header class="hero">[\s\S]*?<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio"\s+src="[^"]*"/.test(html)) {
+    html = html.replace(/(<header class="hero">[\s\S]*?<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio"\s+src=")[^"]*(")/, `$1${hero}$2 data-oh-jump="heroimg"`);
   } else if (/<figure\b[^>]*\bclass="[^"]*art-hero[^"]*"[^>]*>/i.test(html)) {
     html = html.replace(/(<figure\b[^>]*\bclass="[^"]*art-hero[^"]*")/i, `$1 data-oh-jump="heroimg"`);
   }
@@ -10073,7 +10073,7 @@ function buildArticlePreviewHtml() {
 // data-oh-jump để bấm vào mở bảng đổi ảnh — không bị coi là chữ để gõ đè lên.
 function tagLegacyBodyForInlineEdit(html) {
   let i = 0;
-  const tagged = html.replace(/<img\b([^>]*)>/gi, (m, attrs) => `<img${attrs} data-oh-jump="body-img-${i++}">`);
+  const tagged = html.replace(/<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio"\b([^>]*)>/gi, (m, attrs) => `<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio"${attrs} data-oh-jump="body-img-${i++}">`);
   return `<div data-ohfield="body" contenteditable="true">${tagged}</div>`;
 }
 
@@ -10227,7 +10227,7 @@ const ART_BRIDGE_SCRIPT = `<script>(function(){
           parent.uploadImageFile(file).then(function(url){
             if (url) {
               var alt = file.name.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ');
-              var figHtml = '<figure><img src="' + url + '" alt="' + alt + '" loading="lazy"></figure><p><br></p>';
+              var figHtml = '<figure><img height="675" width="1200" src="' + url + '" alt="' + alt + '" loading="lazy"></figure><p><br></p>';
               document.execCommand('insertHTML', false, figHtml);
               editable.dispatchEvent(new Event('input', { bubbles: true }));
               parent.toast('success', '✅ Đã tải và chèn ảnh dán từ clipboard!');
@@ -10304,7 +10304,7 @@ const ART_BRIDGE_SCRIPT = `<script>(function(){
           parent.uploadImageFile(file).then(function(url){
             if (url) {
               var alt = file.name.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ');
-              var figHtml = '<figure><img src="' + url + '" alt="' + alt + '" loading="lazy"></figure><p><br></p>';
+              var figHtml = '<figure><img height="675" width="1200" src="' + url + '" alt="' + alt + '" loading="lazy"></figure><p><br></p>';
               if (editable) {
                 editable.focus();
                 document.execCommand('insertHTML', false, figHtml);
@@ -10582,7 +10582,7 @@ function legacyBodyInsertImage() {
   const ta = document.getElementById('body-textarea');
   openMediaModal(res => {
     if (!res || !res.src) return;
-    const figHtml = res.html || `<figure><img src="${esc(res.src)}" alt="${esc(res.alt || '')}"><figcaption>${esc(res.caption || '')}</figcaption></figure>`;
+    const figHtml = res.html || `<figure><img height="675" width="1200" src="${esc(res.src)}" alt="${esc(res.alt || '')}"><figcaption>${esc(res.caption || '')}</figcaption></figure>`;
     if (vis) vis.innerHTML += '\n' + figHtml + '<p><br></p>';
     if (ta) ta.value += '\n' + figHtml + '\n<p></p>\n';
     markChanged();
@@ -10814,8 +10814,8 @@ function applyArticleEditsToHtml(baseHtml) {
       html = html.replace(/(class="art-hero-img"\s+style=")[^"]*(")/,
         `$1background-image:url('${hero}');background-position:center ${heroPos}%;background-color:#0b0418;$2`);
     }
-    if (/<header class="hero">[\s\S]*?<img\s+src="[^"]*"/.test(html)) {
-      html = html.replace(/(<header class="hero">[\s\S]*?<img\s+src=")[^"]*(")/, `$1${hero}$2`);
+    if (/<header class="hero">[\s\S]*?<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio"\s+src="[^"]*"/.test(html)) {
+      html = html.replace(/(<header class="hero">[\s\S]*?<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio"\s+src=")[^"]*(")/, `$1${hero}$2`);
     }
     const fullHeroUrl = hero.startsWith('http') || hero.startsWith('data:') ? hero : `https://otahub.asia${hero.startsWith('/') ? '' : '/'}${hero}`;
     html = html.replace(/(<meta\s+property="og:image"\s+content=")[^"]*(")/i, `$1${fullHeroUrl}$2`);
@@ -10922,12 +10922,12 @@ function syncArticleBodyToTextarea() {
 async function propagateTitleChange(slug, newTitle) {
   const escT = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const rules = [
-    ['<article class="w-card"><a href="/' + slug + '"', '<div class="wc-t">', '</div>', '</article>'],
-    ['<a href="/' + slug + '" class="ac"', '<div class="ac-title">', '</div>', '</a>'],
-    ['<a class="sc" href="/' + slug + '">', '<div class="sc-title">', '</div>', '</a>'],
-    ['<a class="fc" href="/' + slug + '">', '<h2 class="fc-title">', '</h2>', '</a>'],
+    ['<article class="w-card"><a href="/news"', '<div class="wc-t">', '</div>', '</article>'],
+    ['<a href="/news" class="ac"', '<div class="ac-title">', '</div>', '</a>'],
+    ['<a class="sc" href="/news">', '<div class="sc-title">', '</div>', '</a>'],
+    ['<a class="fc" href="/news">', '<h2 class="fc-title">', '</h2>', '</a>'],
     ['<article class="s-art" onclick="location.href=\'/' + slug + '\'"', '<div class="sa-t">', '</div>', '</article>'],
-    ['<a href="/' + slug + '" style="display:block', '<h3', '</h3>', '</a>'],
+    ['<a href="/news" style="display:block', '<h3', '</h3>', '</a>'],
     ['<div class="hero-main" onclick="location.href=\'/' + slug + '\'"', 'id="h-title">', '</h1>', '<aside'],
   ];
   const swapTitle = (html) => {
@@ -10950,7 +10950,7 @@ async function propagateTitleChange(slug, newTitle) {
       }
     }
     // thanh chạy tin
-    html = html.replace(new RegExp('(<span class="tick-item">[^<]*<strong>[^<]*</strong> <a href="/' + slug + '"[^>]*>)([^<]*)(</a>)', 'g'), (m, p, t, q) => { n++; return p + escT(newTitle) + q; });
+    html = html.replace(new RegExp('(<span class="tick-item">[^<]*<strong>[^<]*</strong> <a href="/news"[^>]*>)([^<]*)(</a>)', 'g'), (m, p, t, q) => { n++; return p + escT(newTitle) + q; });
     return [html, n];
   };
   const files = ['index.html', 'news.html', 'gaming.html', 'anime.html', 'manga.html'];
@@ -11321,7 +11321,7 @@ function newArticle(prefillTitle) {
 <head>
 <title>${title} · OtaHub</title>
 <link rel="alternate" hreflang="vi" href="${url}">
-<link rel="alternate" hreflang="en" href="https://otahub.asia/en/${cleanSlug}">
+
 <link rel="alternate" hreflang="x-default" href="${url}">
 <link rel="canonical" href="${url}">
 <meta charset="UTF-8">
@@ -11481,7 +11481,7 @@ ${initialBody}
 <div class="sb-title">Bài viết liên quan</div>
 <a class="sb-art" href="/monster-hunter-wilds-review"><img class="sb-thumb" src="/assets/img/monster-hunter-wilds-review-hero.jpg" alt="Monster Hunter Wilds" loading="lazy" width="76" height="60"><div><div class="sb-cat">Reviews</div><div class="sb-t">Monster Hunter Wilds Review: Kỷ Nguyên Mới Săn Quái 9.4 Điểm</div></div></a>
 <a class="sb-art" href="/demon-slayer-infinity-castle-review"><img class="sb-thumb" src="/assets/img/5418135572-demon-slayer-infinity-castle-review-hero.jpg" alt="Demon Slayer" loading="lazy" width="76" height="60"><div><div class="sb-cat">Anime</div><div class="sb-t">Kimetsu no Yaiba: Vô Hạn Thành - Ufotable Đỉnh Cao 9.9 Điểm</div></div></a>
-<a class="sb-art" href="/gta6-gameplay-reveal-preorder"><img class="sb-thumb" src="/assets/img/news-gta6-gameplay-trailer-leonida.jpg" alt="GTA 6" loading="lazy" width="76" height="60"><div><div class="sb-cat">Gaming</div><div class="sb-t">GTA 6: Gameplay Thế Giới Mở Vice City Đỉnh Cao &amp; Đặt Trước</div></div></a>
+<a class="sb-art" href="/gta-6-gameplay-trailer-rockstar-vice-city-leonida"><img class="sb-thumb" src="/assets/img/news-gta6-gameplay-trailer-leonida.jpg" alt="GTA 6" loading="lazy" width="76" height="60"><div><div class="sb-cat">Gaming</div><div class="sb-t">GTA 6: Gameplay Thế Giới Mở Vice City Đỉnh Cao &amp; Đặt Trước</div></div></a>
 </div>
 <div class="sidebar-block">
 <div class="sb-title">Chủ đề</div>
@@ -11617,7 +11617,7 @@ function renderRankEntry(catKey, listKey, idx, e, isTop) {
     <div class="rank-entry${isTop?' top3':''}">
       <div style="text-align:center">
         <div class="rank-num ${numClass}">${numLabel}</div>
-        <img class="rank-img-prev" id="prev_${imgId}" src="${esc(e.img||'')}"
+        <img height="675" width="1200" class="rank-img-prev" id="prev_${imgId}" src="${esc(e.img||'')}"
           onerror="this.style.opacity=.3" alt="${esc(e.title||'')}"/>
       </div>
       <div class="rank-fields">
@@ -11758,7 +11758,7 @@ async function ghSpliceInsert(path, anchorPattern, insertHtml, after, commitMsg)
 function acFields(raw) {
   return {
     href: fieldGet(raw, /<a href="([^"]*)"/),
-    img: fieldGet(raw, /<img src="([^"]*)"/),
+    img: fieldGet(raw, /<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]*)"/),
     alt: fieldGet(raw, /<img[^>]+alt="([^"]*)"/),
     title: fieldGet(raw, /class="ac-title">([^<]*)</),
     tag: fieldGet(raw, /class="tag[^"]*"[^>]*>([^<]*)</),
@@ -11767,7 +11767,7 @@ function acFields(raw) {
 function acApply(raw, f) {
   let out = raw;
   out = replaceField(out, /(<a href=")[^"]*(")/, f.href);
-  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="ac-title">)[^<]*(<)/, f.title);
   out = replaceField(out, /(class="tag[^"]*"[^>]*>)[^<]*(<)/, f.tag);
@@ -11857,7 +11857,7 @@ function renderHubEditor() {
     const f = acFields(c.raw);
     return `<div class="sc-card" id="hub-card-${i}" draggable="true" ondragstart="hubDragStart(event,${i})" ondragover="event.preventDefault()" ondragend="this.classList.remove('dragging')" ondrop="hubDrop(event,${i})">
       <div class="sc-drag-handle" title="Kéo để sắp xếp">⠿</div>
-      <img class="sc-thumb" src="${esc(f.img)}" onerror="this.style.opacity=.3" alt=""/>
+      <img height="675" width="1200" class="sc-thumb" src="${esc(f.img)}" onerror="this.style.opacity=.3" alt=""/>
       <div class="sc-body">
         <div class="sc-title-live" contenteditable="true" oninput="hubUpdate(${i},'title',this.textContent)">${esc(f.title)}</div>
         <div class="sc-fields-row">
@@ -12023,7 +12023,7 @@ let HOME_ITEM_EXPANDED = new Set();
 function scFields(raw) {
   return {
     href: fieldGet(raw, /<a class="sc" href="([^"]*)"/),
-    img: fieldGet(raw, /<img src="([^"]*)"/),
+    img: fieldGet(raw, /<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]*)"/),
     alt: fieldGet(raw, /<img[^>]+alt="([^"]*)"/),
     tag: fieldGet(raw, /class="tag[^"]*"[^>]*>([^<]*)</),
     title: fieldGet(raw, /class="sc-title">([^<]*)</),
@@ -12032,7 +12032,7 @@ function scFields(raw) {
 function scApply(raw, f) {
   let out = raw;
   out = replaceField(out, /(<a class="sc" href=")[^"]*(")/, f.href);
-  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="tag[^"]*"[^>]*>)[^<]*(<)/, f.tag);
   out = replaceField(out, /(class="sc-title">)[^<]*(<)/, f.title);
@@ -12104,7 +12104,7 @@ function hReplaceSection(html, startAnchor, endAnchor, rebuildFn) {
 function sArtFields(item) {
   return {
     href: fieldGet(item, /onclick="location\.href='([^']*)'"/),
-    img: fieldGet(item, /<img src="([^"]*)"/),
+    img: fieldGet(item, /<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]*)"/),
     alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
     cat: fieldGet(item, /class="sa-c"[^>]*>([^<]*)</),
     title: fieldGet(item, /class="sa-t">([^<]*)</),
@@ -12114,7 +12114,7 @@ function sArtFields(item) {
 function sArtApply(item, f) {
   let out = item;
   if (f.href !== undefined) out = out.replace(/(onclick="location\.href=')[^']*(')/, (m,p1,p2)=>p1+f.href.replace(/'/g,"\\'")+p2);
-  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="sa-c"[^>]*>)[^<]*(<)/, f.cat);
   out = replaceField(out, /(class="sa-t">)[^<]*(<)/, f.title);
@@ -12142,7 +12142,7 @@ function mqItemApply(item, f) {
 function rkItemFields(item) {
   return {
     href: fieldGet(item, /<a class="rk-item[^"]*" href="([^"]*)"/),
-    img: fieldGet(item, /<img src="([^"]*)"/),
+    img: fieldGet(item, /<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]*)"/),
     alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
     name: fieldGet(item, /class="rk-name">([^<]*)</),
     sub: fieldGet(item, /class="rk-sub">([^<]*)</),
@@ -12152,7 +12152,7 @@ function rkItemFields(item) {
 function rkItemApply(item, f) {
   let out = item;
   out = replaceField(out, /(<a class="rk-item[^"]*" href=")[^"]*(")/, f.href);
-  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="rk-name">)[^<]*(<)/, f.name);
   out = replaceField(out, /(class="rk-sub">)[^<]*(<)/, f.sub);
@@ -12168,7 +12168,7 @@ function rkItemApply(item, f) {
 function mangaItemFields(item) {
   return {
     href: fieldGet(item, /<a class="manga-item[^"]*" href="([^"]*)"/),
-    img: fieldGet(item, /<img src="([^"]*)"/),
+    img: fieldGet(item, /<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]*)"/),
     alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
     title: fieldGet(item, /class="mi-title">([^<]*)</),
     meta: fieldGet(item, /class="mi-meta">([^<]*)</),
@@ -12178,7 +12178,7 @@ function mangaItemFields(item) {
 function mangaItemApply(item, f) {
   let out = item;
   out = replaceField(out, /(<a class="manga-item[^"]*" href=")[^"]*(")/, f.href);
-  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="mi-title">)[^<]*(<)/, f.title);
   out = replaceField(out, /(class="mi-meta">)[^<]*(<)/, f.meta);
@@ -12190,7 +12190,7 @@ function mangaItemApply(item, f) {
 function wCardFields(item) {
   return {
     href: fieldGet(item, /<a href="([^"]*)"/),
-    img: fieldGet(item, /<img src="([^"]*)"/),
+    img: fieldGet(item, /<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]*)"/),
     alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
     cat: fieldGet(item, /class="wc-c"[^>]*>([^<]*)</),
     title: fieldGet(item, /class="wc-t">([^<]*)</),
@@ -12200,7 +12200,7 @@ function wCardFields(item) {
 function wCardApply(item, f) {
   let out = item;
   out = replaceField(out, /(<a href=")[^"]*(")/, f.href);
-  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="wc-c"[^>]*>)[^<]*(<)/, f.cat);
   out = replaceField(out, /(class="wc-t">)[^<]*(<)/, f.title);
@@ -12212,7 +12212,7 @@ function wCardApply(item, f) {
 function tItemFields(item) {
   return {
     href: fieldGet(item, /<a class="t-item" href="([^"]*)"/),
-    img: fieldGet(item, /<img src="([^"]*)"/),
+    img: fieldGet(item, /<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]*)"/),
     alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
     title: fieldGet(item, /class="ti-t">([^<]*)</),
     meta: fieldGet(item, /class="ti-m">([^<]*)</),
@@ -12221,7 +12221,7 @@ function tItemFields(item) {
 function tItemApply(item, f) {
   let out = item;
   out = replaceField(out, /(<a class="t-item" href=")[^"]*(")/, f.href);
-  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="ti-t">)[^<]*(<)/, f.title);
   out = replaceField(out, /(class="ti-m">)[^<]*(<)/, f.meta);
@@ -12635,7 +12635,7 @@ function homeItemListBody(typeKey, path) {
         <button title="Xoá" onclick="homeItemDelete('${path}',${i})">🗑</button>
       </div></div>`;
     if (!expanded) {
-      const thumb = imgKey && f[imgKey] ? `<img class="home-item-thumb" src="${esc(f[imgKey])}" alt="" onerror="this.style.opacity=.2">` : `<div class="home-item-thumb home-item-thumb-empty">·</div>`;
+      const thumb = imgKey && f[imgKey] ? `<img height="675" width="1200" class="home-item-thumb" src="${esc(f[imgKey])}" alt="" onerror="this.style.opacity=.2">` : `<div class="home-item-thumb home-item-thumb-empty">·</div>`;
       return `<div class="home-item-card home-item-collapsed">${head}<div class="home-item-summary" onclick="homeItemToggleExpand('${ek}')">${thumb}<span class="home-item-summary-text">${esc(f[primaryKey] || '(chưa có nội dung)')}</span></div></div>`;
     }
     const fieldsHtml = type.fields.map(([k,label]) => k === 'img'
@@ -12937,7 +12937,7 @@ function renderArrayEditor() {
   const cfg = ARR_CFG;
   const rows = ARR_DATA.map((entry, i) => {
     const thumb = cfg.imgField && entry[cfg.imgField]
-      ? `<img class="rank-img-prev" src="${esc(entry[cfg.imgField])}" onerror="this.style.opacity=.3" alt=""/>`
+      ? `<img height="675" width="1200" class="rank-img-prev" src="${esc(entry[cfg.imgField])}" onerror="this.style.opacity=.3" alt=""/>`
       : `<div class="rank-img-prev" style="display:flex;align-items:center;justify-content:center;font-size:16px">📄</div>`;
 
     const fieldInputs = cfg.fields.map(f => {
@@ -13309,7 +13309,7 @@ let TEAM_CARDS = [];
 
 function teamFields(raw) {
   return {
-    img: fieldGet(raw, /<img src="([^"]*)"/),
+    img: fieldGet(raw, /<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]*)"/),
     alt: fieldGet(raw, /<img[^>]+alt="([^"]*)"/),
     badge: fieldGet(raw, /class="tc-role-badge">([^<]*)</),
     name: fieldGet(raw, /class="tc-name">([^<]*)</),
@@ -13319,7 +13319,7 @@ function teamFields(raw) {
 }
 function teamApply(raw, f) {
   let out = raw;
-  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="tc-role-badge">)[^<]*(<)/, f.badge);
   out = replaceField(out, /(class="tc-name">)[^<]*(<)/, f.name);
@@ -13351,7 +13351,7 @@ function renderTeamEditor() {
     return `<div class="rank-entry">
       <div style="text-align:center">
         <div class="rank-num">#${i+1}</div>
-        <img src="${esc(f.img)}" style="width:52px;height:52px;object-fit:cover;border-radius:6px;margin-top:6px" onerror="this.style.display='none'"/>
+        <img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="${esc(f.img)}" style="width:52px;height:52px;object-fit:cover;border-radius:6px;margin-top:6px" onerror="this.style.display='none'"/>
       </div>
       <div class="rank-fields">
         <div class="rank-row">
@@ -13513,7 +13513,7 @@ const NEWS_CARD_START = /<a href="[^"]*" style="display:block;background:#150a2c
 function newsFields(raw) {
   return {
     href: fieldGet(raw, /<a href="([^"]*)"/),
-    img: fieldGet(raw, /<img src="([^"]*)"/),
+    img: fieldGet(raw, /<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]*)"/),
     alt: fieldGet(raw, /<img[^>]+alt="([^"]*)"/),
     cat: fieldGet(raw, /letter-spacing:\.15em">([^<]*)</),
     title: fieldGet(raw, /<h3[^>]*>([^<]*)<\/h3>/),
@@ -13523,7 +13523,7 @@ function newsFields(raw) {
 function newsApply(raw, f) {
   let out = raw;
   out = replaceField(out, /(<a href=")[^"]*(")/, f.href);
-  out = replaceField(out, /(<img src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(letter-spacing:\.15em">)[^<]*(<)/, f.cat);
   out = replaceField(out, /(<h3[^>]*>)[^<]*(<\/h3>)/, f.title);
@@ -13551,7 +13551,7 @@ function renderNewsEditor() {
   const rows = NEWS_CARDS.map((c, i) => {
     const f = newsFields(c.raw);
     return `<div class="rank-entry">
-      <div style="text-align:center"><img class="rank-img-prev" src="${esc(f.img)}" onerror="this.style.opacity=.3" alt=""/></div>
+      <div style="text-align:center"><img height="675" width="1200" class="rank-img-prev" src="${esc(f.img)}" onerror="this.style.opacity=.3" alt=""/></div>
       <div class="rank-fields">
         <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Tiêu đề</div><input class="rank-input-sm" style="width:100%" value="${esc(f.title)}" oninput="newsUpdate(${i},'title',this.value)"/></div>
         <div style="margin-top:6px"><div style="font-size:10px;color:var(--muted);margin-bottom:3px">URL ảnh</div><input class="rank-input-sm" style="width:100%" value="${esc(f.img)}" oninput="newsUpdate(${i},'img',this.value)"/></div>
@@ -13700,7 +13700,7 @@ async function syncNewArticle(art) {
       let hubHtml = decodeURIComponent(escape(atob(hubData.content)));
       const markerMatch = hubHtml.match(/(<!-- ADMIN:ARTICLES_START -->)([\s\S]*?)(<!-- ADMIN:ARTICLES_END -->)/);
       if (markerMatch && !markerMatch[2].includes(`href="/${slug}"`)) {
-        const cardHtml = `\n      <a href="/${slug}" class="ac">\n        <div class="ac-thumb"><img src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy"><span class="tag">${esc(cat || 'TIN MỚI')}</span></div>\n        <div class="ac-body">\n          <h3 class="ac-title">${esc(title)}</h3>\n          <div class="ac-meta"><span class="ac-author">OtaHub Editorial</span> · <span class="ac-date">Vừa xong</span></div>\n        </div>\n      </a>\n`;
+        const cardHtml = `\n      <a href="/${slug}" class="ac">\n        <div class="ac-thumb"><img height="675" width="1200" src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy"><span class="tag">${esc(cat || 'TIN MỚI')}</span></div>\n        <div class="ac-body">\n          <h3 class="ac-title">${esc(title)}</h3>\n          <div class="ac-meta"><span class="ac-author">OtaHub Editorial</span> · <span class="ac-date">Vừa xong</span></div>\n        </div>\n      </a>\n`;
         hubHtml = hubHtml.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/, markerMatch[1] + cardHtml + markerMatch[2] + markerMatch[3]);
         await ghPut(targetHub, hubHtml, hubData.sha, `[admin] don bai /${slug} vao ${targetHub}`);
       }
@@ -13714,7 +13714,7 @@ async function syncNewArticle(art) {
       const newsMatch = newsHtml.match(/(<!-- OTAHUB_NEW30_START -->[\s\S]*?<h2[^>]*>)(\d+)( tin mới đã kiểm chứng<\/h2><div[^>]*>)([\s\S]*?)(<\/div><\/section><!-- OTAHUB_NEW30_END -->)/);
       if (newsMatch && !newsMatch[4].includes(`href="/${slug}"`)) {
         const count = parseInt(newsMatch[2], 10) || 30;
-        const newCard = `\n    <a href="/${slug}" style="display:block;background:#150a2c;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;text-decoration:none;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,255,0.4)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,229,255,0.12)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none';this.style.boxShadow='none'">\n      <div style="position:relative;width:100%;height:180px;background:#0d051e;overflow:hidden;">\n        <img src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">\n        <span style="position:absolute;top:10px;left:10px;background:linear-gradient(135deg,#ff3080,#7c3aed);color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px;letter-spacing:.15em;text-transform:uppercase;">${esc(cat || 'HOT')}</span>\n      </div>\n      <div style="padding:16px;">\n        <h3 style="color:#ffffff;font-size:15px;font-weight:700;line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(title)}</h3>\n        <p style="color:rgba(240,238,255,0.65);font-size:12.5px;line-height:1.5;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(desc || '')}</p>\n        <div style="display:flex;align-items:center;justify-content:space-between;color:rgba(240,238,255,0.4);font-size:11px;">\n          <span>⚡ OtaHub News</span>\n          <span>Vừa xong</span>\n        </div>\n      </div>\n    </a>\n`;
+        const newCard = `\n    <a href="/${slug}" style="display:block;background:#150a2c;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;text-decoration:none;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,255,0.4)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,229,255,0.12)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none';this.style.boxShadow='none'">\n      <div style="position:relative;width:100%;height:180px;background:#0d051e;overflow:hidden;">\n        <img height="675" width="1200" src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">\n        <span style="position:absolute;top:10px;left:10px;background:linear-gradient(135deg,#ff3080,#7c3aed);color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px;letter-spacing:.15em;text-transform:uppercase;">${esc(cat || 'HOT')}</span>\n      </div>\n      <div style="padding:16px;">\n        <h3 style="color:#ffffff;font-size:15px;font-weight:700;line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(title)}</h3>\n        <p style="color:rgba(240,238,255,0.65);font-size:12.5px;line-height:1.5;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(desc || '')}</p>\n        <div style="display:flex;align-items:center;justify-content:space-between;color:rgba(240,238,255,0.4);font-size:11px;">\n          <span>⚡ OtaHub News</span>\n          <span>Vừa xong</span>\n        </div>\n      </div>\n    </a>\n`;
         newsHtml = newsHtml.replace(/(<!-- OTAHUB_NEW30_START -->[\s\S]*?<!-- OTAHUB_NEW30_END -->)/, `${newsMatch[1]}${count + 1}${newsMatch[3]}${newCard}${newsMatch[4]}${newsMatch[5]}`);
         await ghPut('news.html', newsHtml, newsData.sha, `[admin] them tin /${slug} vao news.html`);
       }
@@ -13751,9 +13751,9 @@ async function syncNewArticle(art) {
       }
       
       const latestMatch = homeHtml.match(/(<div class="latest-wrap">\s*<div>\s*)/);
-      if (latestMatch && !homeHtml.includes('<article class="w-card"><a href="/' + slug + '"')) {
+      if (latestMatch && !homeHtml.includes('<article class="w-card"><a href="/news"')) {
         const dd = new Date().toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
-        const wCard = '<article class="w-card"><a href="/' + slug + '" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">' + esc(cat || 'Gaming') + '</div><div class="wc-t">' + esc(title) + '</div><div class="wc-m">OtaHub Editorial · ' + dd + '</div></div><div class="wc-thumb"><img src="' + (hero || '/assets/img/placeholder.svg') + '" alt="' + esc(title) + '" loading="lazy" width="1200" height="675"></div></a></article>\n      ';
+        const wCard = '<article class="w-card"><a href="/news" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">' + esc(cat || 'Gaming') + '</div><div class="wc-t">' + esc(title) + '</div><div class="wc-m">OtaHub Editorial · ' + dd + '</div></div><div class="wc-thumb"><img src="' + (hero || '/assets/img/placeholder.svg') + '" alt="' + esc(title) + '" loading="lazy" width="1200" height="675"></div></a></article>\n      ';
         homeHtml = homeHtml.replace(latestMatch[0], () => latestMatch[1] + wCard);
       }
       await ghPut('index.html', homeHtml, homeData.sha, `[admin] don tin /${slug} len index.html`);

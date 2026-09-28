@@ -915,29 +915,7 @@ const DATA = {
   ],
 };
 
-const REAL_LINK = {
-  'Ao no Hako Season 2':'/en/ao-no-hako-season-2-premieres-october-4',
-  'Tokyo Revengers: Santen Sensou-hen':'/en/tokyo-revengers-santen-sensou-hen-premieres-october-2',
-  'Aoashi Season 2':'/en/aoashi-season-2-new-studio-premieres-october-4',
-  'Magic Knight Rayearth (2026)':'/en/magic-knight-rayearth-2026-reboot-premieres-october-7',
-  'Tougen Anki Season 2':'/en/tougen-anki-season-2-nikko-kegon-falls-premieres-october-2',
-  'Diamond no Ace act II (Cour 2)':'/en/diamond-no-ace-act-ii-cour-2-premieres-october-11',
-  'Youjo Senki II':'/en/youjo-senki-ii-season-wrap-up',
-  'Dragon Ball Super: Beerus':'/en/dragon-ball-super-beerus-premieres-october-11',
-  'Ghost in the Shell (2026)':'/en/ghost-in-the-shell-2026-season-wrap-up',
-  'Cyberpunk: Edgerunners 2':'/en/cyberpunk-edgerunners-2-netflix-october-20',
-  'JoJo no Kimyou na Bouken: Steel Ball Run':'/en/jojo-steel-ball-run-stages-2-3-premiere-september-25',
-  'Grand Blue Season 3':'/en/grand-blue-season-4-announced',
-  'Black Clover Season 2':'/black-clover-season-2',
-  'The Apothecary Diaries Season 3':'/apothecary-diaries-season3-trailer',
-  'Ranma 1/2 Season 3':'/ranma-half-season-3-visual',
-  "Frieren: Beyond Journey's End Season 2":'/en/frieren-season-2-aired-january-2026',
-  'Jujutsu Kaisen Season 3: Culling Game Part 1':'/jujutsu-kaisen-season-3-culling-game-release',
-  'Mushoku Tensei Season 3: Chaos Breaker Arc':'/mushoku-tensei-s3-chaos-breaker',
-  'Bleach: TYBW Final Part — The Calamity':'/bleach-tybw-the-calamity-25-7-2026',
-  'Re:Zero Season 4: Recapture Part':'/re-zero-season4-recapture-arc',
-  'Reincarnated as a Sword II':'/reincarnated-as-a-sword-season2-premiere',
-};
+const REAL_LINK = ;
 
 const REAL_IMG = {
   'Black Clover Season 2':'/assets/img/00ecd3dafc-banner.jpg',
@@ -1012,7 +990,7 @@ function renderGrid(){
 
     <a href="${resolveLink(a.title)}" class="ac">
       <div class="ac-cover-wrap">
-        <img class="ac-cover" src="${resolveImg(a.title, a.img)}" alt="${a.title}" loading="lazy" decoding="async" onerror="this.src='/assets/img/placeholder.svg'">
+        <img height="675" width="1200" class="ac-cover" src="${resolveImg(a.title, a.img)}" alt="${a.title}" loading="lazy" decoding="async" onerror="this.src='/assets/img/placeholder.svg'">
         <span class="ac-status-pill ${a.status}"><span class="ac-air-dot"></span>${STATUS_LABEL[a.status] || a.status}</span>
         <span class="ac-type-corner ${a.type}">${a.type.toUpperCase()}</span>
       </div>
@@ -1131,7 +1109,7 @@ function renderMangaGrid(){
   grid.innerHTML = items.map(m => `
     <a href="${m.link}" class="ac">
       <div class="ac-cover-wrap">
-        <img class="ac-cover" src="${m.img}" alt="${m.title}" loading="lazy" decoding="async" onerror="this.src='/assets/img/placeholder.svg'">
+        <img height="675" width="1200" class="ac-cover" src="${m.img}" alt="${m.title}" loading="lazy" decoding="async" onerror="this.src='/assets/img/placeholder.svg'">
         <span class="ac-status-pill ${m.status}"><span class="ac-air-dot"></span>${MANGA_STATUS_LABEL[m.status] || m.status}</span>
         <span class="ac-type-corner ${m.type}">${m.type.toUpperCase()}</span>
       </div>
