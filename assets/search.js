@@ -5,7 +5,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-09-28",
     "excerpt": "Chương 1192 của One Piece, mang tên \"We Will Never Forgive!\", đánh dấu lần đầu tiên trong bộ truyện một đòn tấn công thực sự gây thương tích cho Imu, sau khi Luffy kết hợp sức mạnh của Loki với năng lực Nika thức tỉnh.",
-    "img": "/assets/img/real-op1192-dawn-thor-bullet-banner.jpg",
+    "img": "/assets/img/real-op1192-dawn-thor-bullet-thumb.jpg",
     "tags": [
       "One Piece",
       "Eiichiro Oda",
