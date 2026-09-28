@@ -11072,7 +11072,7 @@ async function saveArticle() {
     if (!needSync) {
       try { const sj = await (await fetch('/assets/search.js?nocache=' + Date.now(), { cache: 'no-store' })).text(); needSync = !sj.includes('"/' + currentFile.replace(/\.html$/, '') + '"'); } catch (e) {}
     }
-    if (needSync && confirm('Bài viết đã được lưu.\n\nBạn có muốn tự động thêm bài này vào Trang chủ, trang chuyên mục, Tìm kiếm, RSS và Sitemap không?')) {
+    if (needSync) {
       await syncNewArticle({ file: currentFile, title, desc, cat, hero });
     }
   } catch(e) {
@@ -13568,35 +13568,43 @@ async function syncNewArticle(art) {
   try {
     // 1. Update assets/search.js
     toast('success', '🔍 Đang cập nhật chỉ mục tìm kiếm...');
-    const searchData = await ghGet('assets/search.js');
-    let searchJs = decodeURIComponent(escape(atob(searchData.content)));
-    const searchMatch = searchJs.match(/(?:var|window\.)?\s*IDX\s*=\s*(\[[\s\S]*?\]);/m);
-    if (searchMatch) {
-      let idxList = new Function('return ' + searchMatch[1])();
-      idxList = idxList.filter(item => (item.url || item.u) !== `/${slug}` && (item.url || item.u) !== `/${slug}.html`);
-      idxList.unshift({
-        title: title,
-        url: `/${slug}`,
-        cat: cat || 'Gaming',
-        date: new Date().toISOString().split('T')[0],
-        excerpt: desc || '',
-        img: hero || '',
-        tags: []
-      });
-      searchJs = searchJs.replace(/(?:var|window\.)?\s*IDX\s*=\s*\[[\s\S]*?\];/, `window.IDX = ${JSON.stringify(idxList, null, 2)};`);
-      await ghPut('assets/search.js', searchJs, searchData.sha, `[admin] cap nhat search index cho /${slug}`);
+    try {
+      const searchData = await ghGet('assets/search.js');
+      let searchJs = decodeURIComponent(escape(atob(searchData.content)));
+      const searchMatch = searchJs.match(/(?:var|window\.)?\s*IDX\s*=\s*(\[[\s\S]*?\]);/m);
+      if (searchMatch) {
+        let idxList = new Function('return ' + searchMatch[1])();
+        idxList = idxList.filter(item => (item.url || item.u) !== `/${slug}` && (item.url || item.u) !== `/${slug}.html`);
+        idxList.unshift({
+          title: title,
+          url: `/${slug}`,
+          cat: cat || 'Gaming',
+          date: new Date().toISOString().split('T')[0],
+          excerpt: desc || '',
+          img: hero || '',
+          tags: []
+        });
+        searchJs = searchJs.replace(/(?:var|window\.)?\s*IDX\s*=\s*\[[\s\S]*?\];/, () => `window.IDX = ${JSON.stringify(idxList, null, 2)};`);
+        await ghPut('assets/search.js', searchJs, searchData.sha, `[admin] cap nhat search index cho /${slug}`);
+      }
+    } catch (e) {
+      console.warn('Search index sync error:', e);
     }
 
     // 2. Update sitemap.xml
     toast('success', '🗺️ Đang cập nhật sitemap.xml...');
-    const sitemapData = await ghGet('sitemap.xml');
-    let sitemapXml = decodeURIComponent(escape(atob(sitemapData.content)));
-    const urlVI = `https://otahub.asia/${slug}`;
-    if (!sitemapXml.includes(`<loc>${urlVI}</loc>`)) {
-      const today = new Date().toISOString().split('T')[0];
-      const entryVI = `  <url>\n    <loc>${urlVI}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
-      sitemapXml = sitemapXml.replace('</urlset>', `${entryVI}</urlset>`);
-      await ghPut('sitemap.xml', sitemapXml, sitemapData.sha, `[admin] them /${slug} vao sitemap`);
+    try {
+      const sitemapData = await ghGet('sitemap.xml');
+      let sitemapXml = decodeURIComponent(escape(atob(sitemapData.content)));
+      const urlVI = `https://otahub.asia/${slug}`;
+      if (!sitemapXml.includes(`<loc>${urlVI}</loc>`)) {
+        const today = new Date().toISOString().split('T')[0];
+        const entryVI = `  <url>\n    <loc>${urlVI}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
+        sitemapXml = sitemapXml.replace('</urlset>', () => `${entryVI}</urlset>`);
+        await ghPut('sitemap.xml', sitemapXml, sitemapData.sha, `[admin] them /${slug} vao sitemap`);
+      }
+    } catch (e) {
+      console.warn('Sitemap sync error:', e);
     }
 
     // 2b. RSS (feed.xml), JSON Feed (feed.json) và Google News sitemap
@@ -13667,7 +13675,7 @@ async function syncNewArticle(art) {
       const homeData = await ghGet('index.html');
       let homeHtml = decodeURIComponent(escape(atob(homeData.content)));
       
-      const isBreaking = confirm('Đưa bài này lên BREAKING NEWS (hero trang chủ + đầu thanh chạy tin)? OK = Breaking News, Hủy = chỉ thêm vào danh sách tin mới.');
+      const isBreaking = false;
       if (homeHtml.includes('<div class="tick-track">') && !homeHtml.includes(esc(title))) {
         const tickIcon = isBreaking ? '🔴' : '🔥';
         const tickLabel = isBreaking ? 'BREAKING · ' + (cat || 'TIN MỚI') : (cat || 'TIN MỚI');

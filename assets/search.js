@@ -1,5 +1,23 @@
 window.IDX = [
   {
+    "title": "Detective Conan 30号殺人事件: Vụ án đặc biệt kỷ niệm 30 năm lên sóng",
+    "url": "/detective-conan-30-vu-an-dac-biet-ky-niem-30-nam-len-song",
+    "cat": "Anime",
+    "date": "2026-09-28",
+    "excerpt": "Detective Conan chính thức kỷ niệm 30 năm anime bằng một tập đặc biệt kéo dài 2 giờ mang tên 30号殺人事件, quy tụ lực lượng cảnh sát từ nhiều khu vực của Nhật Bản.",
+    "img": "/assets/img/uploads/dvt9allq-conan-30go-eyecatch.jpg",
+    "tags": []
+  },
+  {
+    "title": "One Piece 1194 Spoiler: Zoro giải phóng sức mạnh mới, Mihawk gây chú ý",
+    "url": "/one-piece-1194-spoiler-zoro-giai-phong-suc-manh-moi-mihawk-g",
+    "cat": "Manga",
+    "date": "2026-09-28",
+    "excerpt": "One Piece 1194 tiếp tục xoay quanh cuộc đối đầu giữa Zoro và Saint Sommers. Khi khả năng hồi phục của đối thủ khiến những đòn tấn công thông thường không đủ hiệu quả, Zoro buộc phải tiến thêm một bước trong việc kiểm soát Bá Vương Haki.",
+    "img": "/assets/img/real-op1194-dexerto.jpg",
+    "tags": []
+  },
+  {
     "title": "Hololive Công Bố Anime Truyền Hình Đầu Tiên: Odekake Hololive",
     "url": "/hololive-cong-bo-anime-truyen-hinh-dau-tien-odekake",
     "cat": "Anime",

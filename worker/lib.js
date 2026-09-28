@@ -60,13 +60,39 @@ const ARTICLE_FILE_RE = /^(en\/)?[a-z0-9][a-z0-9-]*\.html$/;
 export function isArticleFile(ghPath) {
   return ARTICLE_FILE_RE.test(ghPath) && !SYSTEM_FILE_EXACT.has(ghPath);
 }
+
+// Cac file can dong bo tu dong (cascade) khi xuat ban bai viet de bai xuat hien
+// tren trang chu, chuyen muc, luong tin, cong cu tim kiem va sitemap/feed.
+export const CASCADE_SYNC_FILES = new Set([
+  'assets/search.js',
+  'sitemap.xml',
+  'feed.xml',
+  'feed.json',
+  'sitemap-news.xml',
+  'index.html',
+  'gaming.html',
+  'anime.html',
+  'manga.html',
+  'news.html',
+  'en/sitemap.xml',
+  'en/feed.xml',
+  'en/feed.json',
+  'en/sitemap-news.xml',
+  'en/index.html',
+  'en/gaming.html',
+  'en/anime.html',
+  'en/manga.html',
+  'en/news.html',
+]);
+
 export function canWritePath(user, ghPath) {
   if (!user) return false;
   if (user.role === 'contributor') return false;
   if (user.role === 'admin' || user.role === 'editor') return true;
-  // author: CHI duoc ghi bai viet .html (allowlist) — khong con la "moi thu
-  // tru file he thong" nhu truoc.
-  return isArticleFile(ghPath);
+  // author: duoc ghi file bai viet .html va cac file cascade/chi muc he thong
+  // khi xuat ban (search.js, sitemap, category hubs, news, index) de bai viet
+  // tu dong xuat hien tren trang chu va toan bo website.
+  return isArticleFile(ghPath) || CASCADE_SYNC_FILES.has(ghPath);
 }
 // Luu ban nhap (KHONG dong nghia voi xuat ban that len GitHub) — contributor
 // duoc phep luu nhap de nguoi khac review, day chinh la ly do vai tro nay

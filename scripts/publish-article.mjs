@@ -1,4 +1,4 @@
-﻿import fs from 'fs';
+import fs from 'fs';
 import path from 'path';
 import { pingIndexNow } from './ping-indexnow.mjs';
 
@@ -27,33 +27,35 @@ export function escapeHtml(str = '') {
 /**
  * 1. Cascade Search Index (assets/search.js)
  */
-export function cascadeSearchIndex({ slug, title, desc, cat }) {
+export function cascadeSearchIndex({ slug, title, desc, cat, hero }) {
   const searchPath = path.join(ROOT, 'assets', 'search.js');
   if (!fs.existsSync(searchPath)) return false;
   let content = fs.readFileSync(searchPath, 'utf8');
 
-  const match = content.match(/var IDX\s*=\s*(\[[\s\S]*?\]);/);
+  const match = content.match(/(?:window\.|var\s*)IDX\s*=\s*(\[[\s\S]*?\]);/);
   if (!match) return false;
 
   let idxList;
   try {
     idxList = JSON.parse(match[1]);
   } catch (e) {
-    // If eval or relaxed JSON
     idxList = new Function('return ' + match[1])();
   }
 
-  // Check if slug already in IDX
-  const existingIdx = idxList.findIndex(item => item.u === `/${slug}` || item.u === `/${slug}.html`);
-  const newItem = { u: `/${slug}`, c: cat || 'Gaming', t: title, s: desc };
+  // Remove existing entry for this slug if any
+  idxList = idxList.filter(item => (item.url || item.u) !== `/${slug}` && (item.url || item.u) !== `/${slug}.html`);
+  const newItem = {
+    title: title,
+    url: `/${slug}`,
+    cat: cat || 'Gaming',
+    date: formatDateISO(),
+    excerpt: desc || '',
+    img: hero || '',
+    tags: []
+  };
+  idxList.unshift(newItem);
 
-  if (existingIdx >= 0) {
-    idxList[existingIdx] = newItem;
-  } else {
-    idxList.unshift(newItem);
-  }
-
-  const updatedJs = content.replace(/var IDX\s*=\s*\[[\s\S]*?\];/, `var IDX = ${JSON.stringify(idxList, null, 2)};`);
+  const updatedJs = content.replace(/(?:window\.|var\s*)IDX\s*=\s*\[[\s\S]*?\];/, () => `window.IDX = ${JSON.stringify(idxList, null, 2)};`);
   fs.writeFileSync(searchPath, updatedJs, 'utf8');
   console.log(`✅ [Search Index] Updated assets/search.js (Total items: ${idxList.length})`);
   return true;
@@ -84,6 +86,54 @@ export function cascadeSitemap({ slug, isEn = false }) {
   fs.writeFileSync(sitemapPath, xml, 'utf8');
   console.log(`✅ [Sitemap] Synchronized URL(s) to sitemap.xml`);
   return true;
+}
+
+/**
+ * 2b. Cascade Feeds (feed.xml & feed.json)
+ */
+export function cascadeFeeds({ slug, title, desc, hero }) {
+  const urlAbs = `https://otahub.asia/${slug}`;
+  const imgAbs = hero ? (hero.startsWith('http') ? hero : `https://otahub.asia${hero.startsWith('/') ? '' : '/'}${hero}`) : '';
+  const nowIso = new Date().toISOString();
+
+  // feed.json
+  const jsonPath = path.join(ROOT, 'feed.json');
+  if (fs.existsSync(jsonPath)) {
+    try {
+      const fj = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+      if (Array.isArray(fj.items) && !fj.items.some(i => i.url === urlAbs)) {
+        fj.items.unshift({
+          id: urlAbs,
+          url: urlAbs,
+          title,
+          content_text: desc || title,
+          image: imgAbs,
+          date_published: nowIso
+        });
+        fs.writeFileSync(jsonPath, JSON.stringify(fj, null, 2), 'utf8');
+        console.log(`✅ [Feeds] Updated feed.json`);
+      }
+    } catch (e) {
+      console.warn('feed.json sync error:', e);
+    }
+  }
+
+  // feed.xml
+  const xmlPath = path.join(ROOT, 'feed.xml');
+  if (fs.existsSync(xmlPath)) {
+    try {
+      let fx = fs.readFileSync(xmlPath, 'utf8');
+      if (!fx.includes(`<link>${urlAbs}</link>`) && fx.includes('<item>')) {
+        const item = `  <item>\n    <title>${escapeHtml(title)}</title>\n    <link>${urlAbs}</link>\n    <guid isPermaLink="true">${urlAbs}</guid>\n    <pubDate>${new Date().toUTCString()}</pubDate>\n    <description>${escapeHtml(desc || title)}</description>\n` + (imgAbs ? `    <media:content url="${escapeHtml(imgAbs)}" medium="image"/>\n` : '') + `  </item>\n`;
+        const p = fx.indexOf('  <item>');
+        fx = fx.slice(0, p) + item + fx.slice(p);
+        fs.writeFileSync(xmlPath, fx, 'utf8');
+        console.log(`✅ [Feeds] Updated feed.xml`);
+      }
+    } catch (e) {
+      console.warn('feed.xml sync error:', e);
+    }
+  }
 }
 
 /**
@@ -169,28 +219,17 @@ export function cascadeHomepage({ slug, title, cat, hero, desc }) {
   let html = fs.readFileSync(homePath, 'utf8');
 
   // 5.1 Ticker Update
-  if (html.includes('<div class="tick-track">')) {
-    const tickerItem = `<span class="tick-item">🔥 <strong>${escapeHtml(cat || 'TIN MỚI')}:</strong> ${escapeHtml(title)}</span>`;
-    if (!html.includes(escapeHtml(title))) {
-      html = html.replace('<div class="tick-track">', `<div class="tick-track">\n    ${tickerItem}`);
-    }
+  if (html.includes('<div class="tick-track">') && !html.includes(`href="/${slug}"`)) {
+    const tickerItem = `<span class="tick-item">🔥 <strong>${escapeHtml(cat || 'TIN MỚI')}:</strong> <a href="/${slug}" style="color:inherit;text-decoration:none">${escapeHtml(title)}</a></span>`;
+    html = html.replace('<div class="tick-track">', () => `<div class="tick-track">\n      ${tickerItem}`);
   }
 
   // 5.2 Latest wrap update (w-card)
-  const latestMatch = html.match(/(<div class="latest-wrap">[\s\S]*?<div class="latest-col">)([\s\S]*?)(<\/div>\s*<aside class="latest-side">)/);
-  if (latestMatch && !latestMatch[2].includes(`href="/${slug}"`)) {
-    const wCard = `
-        <article class="w-card">
-          <a href="/${slug}">
-            <img src="${hero}" alt="${escapeHtml(title)}" loading="lazy">
-          </a>
-          <div class="wc-body">
-            <span class="wc-c">${escapeHtml(cat || 'Gaming')}</span>
-            <h3 class="wc-t"><a href="/${slug}">${escapeHtml(title)}</a></h3>
-            <div class="wc-m"><span>OtaHub</span> · <span>Vừa xong</span></div>
-          </div>
-        </article>\n`;
-    html = html.replace(latestMatch[0], `${latestMatch[1]}${wCard}${latestMatch[2]}${latestMatch[3]}`);
+  const latestMatch = html.match(/(<div class="latest-wrap">\s*<div>\s*)/);
+  if (latestMatch && !html.includes(`<article class="w-card"><a href="/${slug}"`)) {
+    const dd = formatDateVN();
+    const wCard = `<article class="w-card"><a href="/${slug}" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">${escapeHtml(cat || 'Gaming')}</div><div class="wc-t">${escapeHtml(title)}</div><div class="wc-m">OtaHub Editorial · ${dd} · 3 min</div></div><div class="wc-thumb"><img src="${hero || '/assets/img/placeholder.svg'}" alt="${escapeHtml(title)}" loading="lazy" width="1200" height="675"></div></a></article>\n      `;
+    html = html.replace(latestMatch[0], () => latestMatch[1] + wCard);
   }
 
   fs.writeFileSync(homePath, html, 'utf8');
@@ -204,8 +243,9 @@ export function cascadeHomepage({ slug, title, cat, hero, desc }) {
 export async function cascadeAll({ slug, title, desc, cat, hero, isEn = false }) {
   console.log(`\n🚀 [Cascade Engine] Cascading article "${title}" (/ ${slug})...`);
   
-  cascadeSearchIndex({ slug, title, desc, cat });
+  cascadeSearchIndex({ slug, title, desc, cat, hero });
   cascadeSitemap({ slug, isEn });
+  cascadeFeeds({ slug, title, desc, hero });
   cascadeCategoryHub({ slug, title, cat, hero, desc });
   cascadeNewsStream({ slug, title, cat, hero, desc });
   cascadeHomepage({ slug, title, cat, hero, desc });
