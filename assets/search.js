@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Khi GTA trở thành sân khấu cho Shakespeare trong Grand Theft Hamlet",
+    "url": "/khi-gta-tro-thanh-san-khau-cho-shakespeare-trong-grand-theft",
+    "cat": "Gaming",
+    "date": "2026-09-28",
+    "excerpt": "Một bộ phim tài liệu đặc biệt đã biến thế giới hỗn loạn của Grand Theft Auto Online thành sân khấu để dàn dựng một trong những tác phẩm nổi tiếng nhất của William Shakespeare – Hamlet. Có tên Grand Theft Hamlet, bộ phim theo chân hai diễn viên người Anh là Sam Crane và Mark Oosterveen trong quá trình biến một ý tưởng tưởng như không tưởng thành một vở kịch được thực hiện hoàn toàn bên trong thế giới ảo của GTA Online.",
+    "img": "/assets/img/uploads/7u1kbpqr-1790578085901-2205952226142822073-7120438264129171444-646dfc.jpg",
+    "tags": []
+  },
+  {
     "title": "Detective Conan 30号殺人事件: Vụ án đặc biệt kỷ niệm 30 năm lên sóng",
     "url": "/detective-conan-30-vu-an-dac-biet-ky-niem-30-nam-len-song",
     "cat": "Anime",
