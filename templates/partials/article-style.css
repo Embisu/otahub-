@@ -96,6 +96,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 
 /* ── Article Content Typography ── */
 .art-body,.art-content{font-size:19px;color:var(--dim);line-height:1.9}
+.art-body h1,.art-content h1{font-family:var(--fd);font-weight:700;font-size:clamp(20px,2.5vw,28px);color:var(--white);margin:48px 0 16px;letter-spacing:-.01em;padding-bottom:10px;border-bottom:1px solid var(--border)}
 .art-body h2,.art-content h2{font-family:var(--fd);font-weight:700;font-size:clamp(20px,2.5vw,28px);color:var(--white);margin:48px 0 16px;letter-spacing:-.01em;padding-bottom:10px;border-bottom:1px solid var(--border)}
 .art-body h3,.art-content h3{font-family:var(--fd);font-weight:700;font-size:clamp(17px,2vw,22px);color:var(--white);margin:32px 0 12px}
 .art-body p,.art-content p{margin-bottom:20px}
