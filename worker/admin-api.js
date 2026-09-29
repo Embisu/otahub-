@@ -212,15 +212,8 @@ async function handleGhGet(request, env, ghPath, url) {
   }
 
   const ref = url.searchParams.get('ref') || GH_BRANCH;
-  const ghUrl = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}?ref=${ref}`;
-  const r = await fetch(ghUrl, { headers: ghHeaders(env) });
-  if (!r.ok) {
-    const body = await r.text().catch(() => '');
-    const hdrs = {};
-    r.headers.forEach((v, k) => { hdrs[k] = v; });
-    console.error('ghGet failed', JSON.stringify({ ghUrl, status: r.status, body: body.slice(0, 500), tokenLen: (env.GITHUB_TOKEN || '').length, tokenPrefix: (env.GITHUB_TOKEN || '').slice(0, 5), hdrs }));
-    return json({ error: 'GitHub API error: ' + r.status }, r.status);
-  }
+  const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}?ref=${ref}`, { headers: ghHeaders(env) });
+  if (!r.ok) return json({ error: 'GitHub API error: ' + r.status }, r.status);
   return json(await r.json());
 }
 
