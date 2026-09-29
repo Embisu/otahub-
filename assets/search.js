@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Nintendo GameCube: Chiếc máy màu tím nhỏ bé nhưng để lại dấu ấn lớn",
+    "url": "/nintendo-gamecube-chiec-may-mau-tim-nho-be-nhung-de-lai-dau-",
+    "cat": "Gaming",
+    "date": "2026-09-29",
+    "excerpt": "Nhiều năm sau khi ra mắt, GameCube vẫn được cộng đồng game thủ nhớ đến nhờ thư viện trò chơi đặc sắc và vai trò của nó trong giai đoạn Nintendo bắt đầu thay đổi hướng phát triển phần cứng.",
+    "img": "/assets/img/uploads/xadyqbp9-new.avif",
+    "tags": []
+  },
+  {
     "title": "Top 8 Anime Hàn Quốc (Aeni) Đáng Xem Nhất Hiện Nay",
     "url": "/top-8-anime-han-quoc-aeni-dang-xem-nhat",
     "cat": "Anime",
