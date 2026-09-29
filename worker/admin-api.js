@@ -1,3 +1,4 @@
+import { Buffer } from 'node:buffer';
 import {
   hashPassword, verifyPassword, parseCookies, sessionCookie, clearSessionCookie,
   getSessionUser, createSession, deleteSession, json,
@@ -232,12 +233,22 @@ async function handleGhGet(request, env, ghPath, url) {
               size: meta.size || 0,
               type: 'file',
               download_url: '/' + meta.path,
+              uploadedAt: meta.uploadedAt || 0,
+              isUpload: true,
             });
             existingNames.add(meta.name);
+          } else {
+            const found = list.find(f => f.name === meta.name);
+            if (found) {
+              found.uploadedAt = meta.uploadedAt || 0;
+              found.isUpload = true;
+            }
           }
         }
       } catch(e) {}
     }
+    // Sắp xếp ảnh tải lên: mới nhất xuất hiện trên cùng
+    list.sort((a, b) => (b.uploadedAt || 0) - (a.uploadedAt || 0));
     return json(list);
   }
 
@@ -295,16 +306,18 @@ async function handleGhPut(request, env, ghPath) {
     const fileName = ghPath.replace(/^assets\/img\/uploads\//, '');
     let kvSaved = false;
 
-    // 1. Lưu nhị phân trực tiếp vào ADMIN_KV
+    const now = Date.now();
+    // 1. Lưu nhị phân trực tiếp vào ADMIN_KV (tốc độ cao, an toàn tuyệt đối)
     if (env.ADMIN_KV) {
       try {
-        const rawBytes = Uint8Array.from(atob(content), c => c.charCodeAt(0));
-        await env.ADMIN_KV.put(`upload_img:${fileName}`, rawBytes.buffer);
+        const cleanContent = content.replace(/\s+/g, '');
+        const rawBytes = Buffer.from(cleanContent, 'base64');
+        await env.ADMIN_KV.put(`upload_img:${fileName}`, rawBytes);
         await env.ADMIN_KV.put(`upload_meta:${fileName}`, JSON.stringify({
           name: fileName,
           path: ghPath,
           size: approxBytes,
-          uploadedAt: Date.now(),
+          uploadedAt: now,
           uploadedBy: user.username,
         }));
         kvSaved = true;
@@ -344,6 +357,10 @@ async function handleGhPut(request, env, ghPath) {
         ok: true,
         url: '/' + ghPath,
         path: ghPath,
+        name: fileName,
+        size: approxBytes,
+        uploadedAt: now,
+        sha: 'kv-' + fileName,
         content: { download_url: '/' + ghPath }
       }, 200);
     }

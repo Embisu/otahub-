@@ -3902,7 +3902,17 @@ function cleanPastedHtml(rawHtml, isPlainOnly = false) {
   
   // Gỡ các thẻ danh sách / thẻ p lồng nhau nếu dán vào đoạn văn đơn
   s = s.replace(/<\/?(?:ol|ul|li)>/gi, '');
-  s = s.replace(/<div>/gi, '<p>').replace(/<\/div>/gi, '</p>');
+  // Chỉ đổi các <div> trần sang <p> theo từng node DOM. Tuyệt đối không thay
+  // toàn bộ </div>: cách cũ giữ nguyên <div class="..."> nhưng đổi thẻ đóng
+  // thành </p>, khiến vùng contenteditable nuốt luôn giao diện admin kế bên.
+  const visualDoc = new DOMParser().parseFromString(s, 'text/html');
+  visualDoc.body.querySelectorAll('div').forEach(div => {
+    if (div.attributes.length > 0) return;
+    const p = visualDoc.createElement('p');
+    while (div.firstChild) p.appendChild(div.firstChild);
+    div.replaceWith(p);
+  });
+  s = visualDoc.body.innerHTML;
   s = s.replace(/<\/?p>/gi, '');
   s = s.replace(/<p>(\s|&nbsp;|<br\s*\/?>)*<\/p>/gi, '');
   s = s.replace(/&nbsp;/g, ' ');
@@ -4229,32 +4239,27 @@ async function uploadImageFile(file) {
   const destPath = `assets/img/uploads/${hash}-${cleanName}.${ext}`;
 
   // Đẩy trực tiếp lên Cloudflare Worker (tự động lưu vào KV Storage và đồng bộ Git)
-  try {
-    const r = await fetch(`/api/admin/gh/${destPath}`, {
-      method: 'PUT',
-      credentials: 'same-origin',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ content: b64, sha: null, message: `tai anh len qua admin: ${destPath}` }),
-    });
+  const r = await fetch(`/api/admin/gh/${destPath}`, {
+    method: 'PUT',
+    credentials: 'same-origin',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ content: b64, sha: null, message: `tai anh len qua admin: ${destPath}` }),
+  });
 
-    if (r.status === 401) {
-      location.reload();
-      throw new Error('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.');
-    }
-
-    if (r.ok) {
-      const data = await r.json().catch(() => ({}));
-      return data.url || `https://otahub.asia/${destPath}`;
-    }
-
-    const errData = await r.json().catch(() => ({}));
-    const errMsg = errData.error || errData.message || ('HTTP ' + r.status);
-    console.warn('Upload API error, falling back to data URL:', errMsg);
-    return `data:${mimeType};base64,${b64}`;
-  } catch(netErr) {
-    console.warn('Network error during image upload, using data URL fallback:', netErr);
-    return `data:${mimeType};base64,${b64}`;
+  if (r.status === 401) {
+    location.reload();
+    throw new Error('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.');
   }
+
+  if (r.ok) {
+    const data = await r.json().catch(() => ({}));
+    const returnUrl = data.url || `https://otahub.asia/${destPath}`;
+    return returnUrl.startsWith('http') ? returnUrl : (returnUrl.startsWith('/') ? returnUrl : '/' + returnUrl);
+  }
+
+  const errData = await r.json().catch(() => ({}));
+  const errMsg = errData.error || errData.message || ('Lỗi máy chủ: HTTP ' + r.status);
+  throw new Error(errMsg);
 }
 
 let UPLOAD_TARGET_CB = null;
@@ -4268,20 +4273,40 @@ async function handleGlobalUpload(inputEl) {
   if (!file) return;
   const cb = UPLOAD_TARGET_CB;
   UPLOAD_TARGET_CB = null;
-  const loadingToast = toast('info', 'Đang xử lý tải ảnh lên...');
+  const loadingToast = toast('info', '⏳ Đang xử lý tải ảnh lên...');
   try {
     const url = await uploadImageFile(file);
     if (url) {
       if (loadingToast && loadingToast.remove) loadingToast.remove();
-      const fileName = file.name || 'ảnh mới';
-      MEDIA_FILES = null;
-      loadMediaFiles().catch(() => {});
+      const fileName = url.split('/').pop() || file.name || 'ảnh mới';
+      
+      // Thêm ngay ảnh mới tải lên vào vị trí ĐẦU TIÊN của MEDIA_FILES
+      const newItem = {
+        name: fileName,
+        path: 'assets/img/uploads/' + fileName,
+        sha: 'kv-' + fileName,
+        size: file.size || 0,
+        url: url.startsWith('http') ? url : (url.startsWith('/') ? url : '/' + url),
+        uploadedAt: Date.now(),
+        isUpload: true,
+        isNew: true
+      };
+      if (Array.isArray(MEDIA_FILES)) {
+        MEDIA_FILES = [newItem, ...MEDIA_FILES.filter(f => f.name !== fileName)];
+      } else {
+        MEDIA_FILES = [newItem];
+      }
+
       if (cb) {
         cb(url);
       } else {
-        toast('success', 'Đã tải ảnh lên thư viện: ' + fileName);
-        mediaModalSelectImage(url, fileName);
-        mediaSwitchTab('library');
+        toast('success', '✅ Đã tải ảnh lên thư viện: ' + fileName);
+        if (typeof CURRENT_TAB !== 'undefined' && CURRENT_TAB === 'media') {
+          renderMediaPage();
+        } else {
+          mediaModalSelectImage(url, fileName);
+          mediaSwitchTab('library');
+        }
       }
     }
   } catch (e) {
@@ -4715,7 +4740,10 @@ async function renderMediaModalLibrary() {
   }
   grid.innerHTML = list.map(f => {
     const isSel = MEDIA_MODAL_SELECTED_IMG && (MEDIA_MODAL_SELECTED_IMG.url === f.url || MEDIA_MODAL_SELECTED_IMG.url === f.path);
-    return `<div class="media-modal-thumb-item ${isSel ? 'selected' : ''}" onclick="mediaModalSelectImage('${esc(f.url)}', '${esc(f.name)}')" ondblclick="mediaModalSelectImage('${esc(f.url)}', '${esc(f.name)}'); mediaConfirmInsert();" title="${esc(f.name)}">
+    const badge = f.isNew ? '<span style="position:absolute;top:4px;left:4px;background:#00b0ff;color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;z-index:2">MỚI</span>' :
+                  f.isUpload ? '<span style="position:absolute;top:4px;left:4px;background:#10b981;color:#fff;font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;z-index:2">Upload</span>' : '';
+    return `<div class="media-modal-thumb-item ${isSel ? 'selected' : ''}" style="position:relative" onclick="mediaModalSelectImage('${esc(f.url)}', '${esc(f.name)}')" ondblclick="mediaModalSelectImage('${esc(f.url)}', '${esc(f.name)}'); mediaConfirmInsert();" title="${esc(f.name)}">
+      ${badge}
       <img height="675" width="1200" src="${esc(f.url)}" loading="lazy" alt="${esc(f.name)}" onerror="this.style.opacity=.2"/>
       <div class="media-modal-thumb-name">${esc(f.name)}</div>
     </div>`;
@@ -4730,6 +4758,7 @@ function mediaModalSelectImage(url, name) {
   if (altInput && !altInput.value) {
     const cleanName = (name || url.split('/').pop() || '')
       .replace(/\.[^.]+$/, '')
+      .replace(/^[a-z0-9]{4,16}-/i, '')
       .replace(/[-_]+/g, ' ')
       .trim();
     altInput.value = cleanName;
@@ -4744,11 +4773,13 @@ function mediaModalSelectImage(url, name) {
 
 function mediaTriggerUpload() {
   triggerImageUpload(async url => {
-    MEDIA_FILES = null;
-    await loadMediaFiles();
     const fileName = url.split('/').pop();
-    mediaModalSelectImage(url, fileName);
     mediaSwitchTab('library');
+    mediaModalSelectImage(url, fileName);
+    setTimeout(() => {
+      const sel = document.querySelector('.media-modal-thumb-item.selected');
+      if (sel) sel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 80);
   });
 }
 
@@ -4756,17 +4787,37 @@ async function handleDropUpload(e) {
   e.preventDefault();
   const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
   if (!file) return;
-  toast('success', '⏳ Đang tải ảnh lên...');
+  const loadingToast = toast('info', '⏳ Đang tải ảnh lên...');
   try {
     const url = await uploadImageFile(file);
     if (url) {
-      toast('success', '✅ Đã tải ảnh lên: ' + url.split('/').pop());
-      MEDIA_FILES = null;
-      await loadMediaFiles();
-      mediaModalSelectImage(url, file.name);
+      if (loadingToast && loadingToast.remove) loadingToast.remove();
+      const fileName = url.split('/').pop() || file.name;
+      toast('success', '✅ Đã tải ảnh lên: ' + fileName);
+      const newItem = {
+        name: fileName,
+        path: 'assets/img/uploads/' + fileName,
+        sha: 'kv-' + fileName,
+        size: file.size || 0,
+        url: url.startsWith('http') ? url : (url.startsWith('/') ? url : '/' + url),
+        uploadedAt: Date.now(),
+        isUpload: true,
+        isNew: true
+      };
+      if (Array.isArray(MEDIA_FILES)) {
+        MEDIA_FILES = [newItem, ...MEDIA_FILES.filter(f => f.name !== fileName)];
+      } else {
+        MEDIA_FILES = [newItem];
+      }
       mediaSwitchTab('library');
+      mediaModalSelectImage(url, fileName);
+      setTimeout(() => {
+        const sel = document.querySelector('.media-modal-thumb-item.selected');
+        if (sel) sel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 80);
     }
   } catch (err) {
+    if (loadingToast && loadingToast.remove) loadingToast.remove();
     toast('error', 'Lỗi tải ảnh: ' + err.message);
   }
 }
@@ -5853,9 +5904,34 @@ async function loadMediaFiles() {
     uploads = Array.isArray(u) ? u : [];
   } catch(e) { /* thư mục uploads/ có thể rỗng/chưa tồn tại — bỏ qua */ }
 
-  const all = [...rootList, ...uploads].filter(f => f && f.type === 'file' && IMG_RE.test(f.name));
-  MEDIA_FILES = all.map(f => ({ name: f.name, path: f.path, sha: f.sha, size: f.size, url: '/' + f.path }))
+  // Nhóm 1: Ảnh do người dùng/admin tải lên trong uploads/ — LUÔN XẾP LÊN ĐẦU TIÊN (mới nhất trước)
+  const uploadItems = uploads
+    .filter(f => f && f.type === 'file' && IMG_RE.test(f.name))
+    .map(f => ({
+      name: f.name,
+      path: f.path,
+      sha: f.sha,
+      size: f.size,
+      url: '/' + f.path,
+      uploadedAt: f.uploadedAt || 0,
+      isUpload: true
+    }))
+    .sort((a, b) => (b.uploadedAt || 0) - (a.uploadedAt || 0));
+
+  // Nhóm 2: Ảnh gốc của hệ thống trong assets/img/
+  const rootItems = rootList
+    .filter(f => f && f.type === 'file' && IMG_RE.test(f.name))
+    .map(f => ({
+      name: f.name,
+      path: f.path,
+      sha: f.sha,
+      size: f.size,
+      url: '/' + f.path,
+      isUpload: false
+    }))
     .sort((a, b) => a.name.localeCompare(b.name));
+
+  MEDIA_FILES = [...uploadItems, ...rootItems];
 }
 function mediaFmtSize(bytes) {
   if (!bytes && bytes !== 0) return '';
@@ -5863,18 +5939,36 @@ function mediaFmtSize(bytes) {
   if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
   return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
 }
+let MEDIA_FILTER_TAB = 'all';
+function setMediaFilterTab(tab) {
+  MEDIA_FILTER_TAB = tab;
+  document.querySelectorAll('.media-filter-btn').forEach(btn => {
+    const isActive = btn.dataset.tab === tab;
+    btn.style.background = isActive ? 'var(--accent, #00b0ff)' : 'var(--bg-card, #23272e)';
+    btn.style.color = isActive ? '#fff' : 'var(--text-muted, #8b949e)';
+    btn.style.borderColor = isActive ? 'transparent' : 'var(--border, #30363d)';
+  });
+  mediaApplyFilter();
+}
 function renderMediaPage() {
   const canDelete = CURRENT_USER?.role === 'admin' || CURRENT_USER?.role === 'editor';
+  const uploadCount = (MEDIA_FILES || []).filter(f => f.isUpload).length;
+  const rootCount = (MEDIA_FILES || []).filter(f => !f.isUpload).length;
   setMain(`
     <div class="page-header">
-      <div class="page-title">Media <small>${MEDIA_FILES.length} ảnh trong assets/img/</small></div>
+      <div class="page-title">Media <small>${MEDIA_FILES.length} ảnh (${uploadCount} tải lên, ${rootCount} hệ thống)</small></div>
       <div class="header-actions">
-        <button class="btn btn-secondary btn-sm" onclick="triggerImageUpload(url => { toast('success', '✅ Đã tải ảnh lên: ' + url); MEDIA_FILES = null; renderMedia(); })">📤 Tải ảnh lên</button>
+        <button class="btn btn-primary btn-sm" onclick="triggerImageUpload(url => { toast('success', '✅ Đã tải ảnh lên thành công'); renderMediaPage(); })">📤 Tải ảnh lên</button>
       </div>
     </div>
     <div class="content-area">
-      <div class="search-row">
-        <input class="search-input" id="media-search" placeholder="Tìm theo tên file..." oninput="mediaApplyFilter()"/>
+      <div class="search-row" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px">
+        <input class="search-input" id="media-search" placeholder="🔍 Tìm theo tên ảnh..." oninput="mediaApplyFilter()" style="flex:1;min-width:220px"/>
+        <div class="media-tabs" style="display:flex;gap:6px">
+          <button class="btn btn-sm media-filter-btn" data-tab="all" onclick="setMediaFilterTab('all')" style="background:var(--accent,#00b0ff);color:#fff">Tất cả (${MEDIA_FILES.length})</button>
+          <button class="btn btn-sm media-filter-btn" data-tab="uploads" onclick="setMediaFilterTab('uploads')" style="background:var(--bg-card,#23272e);color:var(--text-muted,#8b949e);border:1px solid var(--border,#30363d)">📤 Ảnh tải lên (${uploadCount})</button>
+          <button class="btn btn-sm media-filter-btn" data-tab="system" onclick="setMediaFilterTab('system')" style="background:var(--bg-card,#23272e);color:var(--text-muted,#8b949e);border:1px solid var(--border,#30363d)">📁 Ảnh hệ thống (${rootCount})</button>
+        </div>
       </div>
       <div class="media-grid" id="media-grid"></div>
     </div>
@@ -5884,7 +5978,10 @@ function renderMediaPage() {
 }
 function mediaCardHtml(f) {
   const canDelete = window.__mediaCanDelete;
-  return `<div class="media-card" id="media-card-${esc(f.sha)}">
+  const badge = f.isNew ? '<span style="position:absolute;top:6px;left:6px;background:#00b0ff;color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;z-index:2;box-shadow:0 2px 4px rgba(0,0,0,0.3)">MỚI</span>' :
+                f.isUpload ? '<span style="position:absolute;top:6px;left:6px;background:#10b981;color:#fff;font-size:10px;font-weight:600;padding:2px 6px;border-radius:4px;z-index:2;box-shadow:0 2px 4px rgba(0,0,0,0.3)">Uploads</span>' : '';
+  return `<div class="media-card" id="media-card-${esc(f.sha)}" style="position:relative">
+    ${badge}
     <div class="media-thumb-wrap" onclick="window.open('${esc(f.url)}','_blank')" title="Bấm để xem ảnh gốc">
       <img height="675" width="1200" src="${esc(f.url)}" loading="lazy" alt="${esc(f.name)}" onerror="this.style.opacity=.25"/>
     </div>
@@ -5900,11 +5997,19 @@ function mediaCardHtml(f) {
 }
 function mediaApplyFilter() {
   const q = (document.getElementById('media-search')?.value || '').toLowerCase().trim();
-  const filtered = q ? MEDIA_FILES.filter(f => f.name.toLowerCase().includes(q)) : MEDIA_FILES;
+  let filtered = MEDIA_FILES || [];
+  if (MEDIA_FILTER_TAB === 'uploads') {
+    filtered = filtered.filter(f => f.isUpload);
+  } else if (MEDIA_FILTER_TAB === 'system') {
+    filtered = filtered.filter(f => !f.isUpload);
+  }
+  if (q) {
+    filtered = filtered.filter(f => f.name.toLowerCase().includes(q));
+  }
   const grid = document.getElementById('media-grid');
   if (!grid) return;
   grid.innerHTML = filtered.length ? filtered.map(mediaCardHtml).join('') :
-    '<p style="color:var(--muted);font-size:12px">Không tìm thấy ảnh nào khớp.</p>';
+    '<p style="color:var(--muted);font-size:12px;grid-column:1/-1;text-align:center;padding:30px">Không tìm thấy ảnh nào khớp.</p>';
 }
 function mediaCopyUrl(url) {
   const full = location.origin + url;
@@ -9288,6 +9393,30 @@ function cleanVisualHtml(html) {
   return s.trim();
 }
 
+function validateArticleBodyHtml(html) {
+  const source = String(html || '');
+  const errors = [];
+  const forbidden = [
+    [/id=["']wp-img-floating-toolbar["']/i, 'toolbar chỉnh sửa ảnh'],
+    [/id=["']body-textarea["']/i, 'ô HTML của trình soạn thảo'],
+    [/id=["']rank-math-metabox["']/i, 'bảng SEO của trang quản trị'],
+    [/id=["']body-(?:live|code|blocks)-wrap["']/i, 'khung trình soạn thảo'],
+    [/\bdata-ohfield\s*=/i, 'thuộc tính chỉnh sửa trực tiếp'],
+    [/\bcontenteditable\s*=\s*["']true["']/i, 'vùng contenteditable'],
+    [/<(?:textarea|form)\b/i, 'biểu mẫu quản trị']
+  ];
+  for (const [pattern, label] of forbidden) {
+    if (pattern.test(source)) errors.push(`Phát hiện ${label} trong nội dung bài`);
+  }
+  if (/<\/?article\b/i.test(source)) errors.push('Nội dung bài không được chứa thẻ <article> lồng nhau');
+  for (const tag of ['div', 'figure', 'blockquote', 'table']) {
+    const opened = (source.match(new RegExp(`<${tag}(?:\\s|>)`, 'gi')) || []).length;
+    const closed = (source.match(new RegExp(`</${tag}\\s*>`, 'gi')) || []).length;
+    if (opened !== closed) errors.push(`Lệch thẻ <${tag}>: mở ${opened}, đóng ${closed}`);
+  }
+  return errors;
+}
+
 function toggleMetaBox(head) {
   head.classList.toggle('open');
   head.nextElementSibling?.classList.toggle('open');
@@ -10771,6 +10900,11 @@ function applyArticleEditsToHtml(baseHtml) {
   const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
   const cat     = document.getElementById('ed-cat')?.value || 'Gaming';
   const bodyVi  = document.getElementById('body-textarea')?.value || '';
+
+  const bodySafetyErrors = validateArticleBodyHtml(bodyVi);
+  if (bodySafetyErrors.length) {
+    throw new Error('Đã chặn lưu để bảo vệ bài viết: ' + bodySafetyErrors.join('; '));
+  }
 
   let html = baseHtml;
   // Apply edits (esc() để tránh vỡ HTML nếu tiêu đề/mô tả chứa <, >, &, ")

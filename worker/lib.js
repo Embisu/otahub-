@@ -140,7 +140,8 @@ export function hasValidImageSignature(ghPath, base64Content) {
   if (!UPLOAD_IMAGE_RE.test(ghPath) || typeof base64Content !== 'string') return false;
   let bytes;
   try {
-    const raw = atob(base64Content.slice(0, 64));
+    const clean = base64Content.replace(/\s+/g, '').slice(0, 64);
+    const raw = atob(clean);
     bytes = Uint8Array.from(raw, (char) => char.charCodeAt(0));
   } catch { return false; }
   const ends = (values) => values.every((value, index) => bytes[index] === value);
