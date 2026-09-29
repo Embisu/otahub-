@@ -6,6 +6,54 @@
   "description": "Asian Gaming, Anime and Manga News Hub",
   "items": [
     {
+      "id": "https://otahub.asia/5-bai-hoc-tu-naruto-uzumaki-van-con-y-nghia",
+      "url": "https://otahub.asia/5-bai-hoc-tu-naruto-uzumaki-van-con-y-nghia",
+      "title": "5 Bài Học Từ Naruto Uzumaki Vẫn Còn Ý Nghĩa Đến Hôm Nay",
+      "content_text": "Từ cậu nhóc bị cả làng xa lánh đến vị Hokage thứ Bảy, hành trình của Naruto Uzumaki để lại 5 bài học về nghị lực, sự đồng cảm và giá trị của những mối quan hệ vẫn còn nguyên vẹn.",
+      "image": "https://otahub.asia/assets/img/naruto-5-lessons-thumb.jpg",
+      "date_published": "2026-09-29T08:38:37.944Z"
+    },
+    {
+      "id": "https://otahub.asia/star-wars-zero-company-biet-doi-di-biet-tao-nen-nhung-tran-c",
+      "url": "https://otahub.asia/star-wars-zero-company-biet-doi-di-biet-tao-nen-nhung-tran-c",
+      "title": "Star Wars: Zero Company: Biệt đội dị biệt tạo nên những trận chiến đầy bất ngờ",
+      "content_text": "Star Wars: Zero Company đưa vũ trụ Star Wars đến với thể loại chiến thuật theo lượt, kết hợp hệ thống chiến đấu mang màu sắc XCOM với một nhóm nhân vật gồm những chiến binh có xuất thân và tính cách hoàn toàn khác nhau.",
+      "image": "https://otahub.asia/assets/img/uploads/22ksi3pb-photo-2026-09-29-15-25-58.jpg",
+      "date_published": "2026-09-29T08:19:50.564Z"
+    },
+    {
+      "id": "https://otahub.asia/uk-games-expo-cam-noi-dung-ai-chi-chua-mot-so-truong-hop-ngo",
+      "url": "https://otahub.asia/uk-games-expo-cam-noi-dung-ai-chi-chua-mot-so-truong-hop-ngo",
+      "title": "UK Games Expo cấm nội dung AI, chỉ chừa một số trường hợp ngoại lệ",
+      "content_text": "UK Games Expo chính thức đưa AI vào danh sách những nội dung bị hạn chế tại khu vực dành cho các nhà phát hành và nhà bán hàng. Chính sách mới yêu cầu sản phẩm được mang đến sự kiện phải dựa trên quá trình sáng tạo của con người, nhưng vẫn cho phép sử dụng một số công cụ AI cho những tác vụ hỗ trợ nhỏ.",
+      "image": "https://otahub.asia/assets/img/uploads/vz6citou-photo-2026-09-29-14-59-50.jpg",
+      "date_published": "2026-09-29T07:52:10.130Z"
+    },
+    {
+      "id": "https://otahub.asia/duoc-su-tu-su-mua-3-maomao-buoc-vao-hanh-trinh-pha-an-moi-na",
+      "url": "https://otahub.asia/duoc-su-tu-su-mua-3-maomao-buoc-vao-hanh-trinh-pha-an-moi-na",
+      "title": "Dược Sư Tự Sự mùa 3: Maomao bước vào hành trình phá án mới năm 2027",
+      "content_text": "Dược Sư Tự Sự mùa 3 trở lại từ 2/10/2026, đưa Maomao và Jinshi bước vào những vụ án mới bên ngoài hậu cung.",
+      "image": "https://otahub.asia/assets/img/uploads/ikwqphfh-maomao-and-jinshi-in-the-apothecary-diaries-season-2-with-a-.webp",
+      "date_published": "2026-09-29T07:29:16.865Z"
+    },
+    {
+      "id": "https://otahub.asia/vi-sao-nen-xem-laputa-lau-dai-tren-khong-tren-man-anh-lon",
+      "url": "https://otahub.asia/vi-sao-nen-xem-laputa-lau-dai-tren-khong-tren-man-anh-lon",
+      "title": "Vì sao nên xem Laputa: Lâu đài trên không trên màn ảnh lớn?",
+      "content_text": "Laputa: Lâu đài trên không trở lại rạp Việt Nam ngày 25/9/2026. Khám phá lý do nên xem lại anime kinh điển này trên màn ảnh lớn.",
+      "image": "https://otahub.asia/assets/img/uploads/bmnjzftx-1788505364131-c2-1788504847736952838044-0-0-1005-1920-crop-1.webp",
+      "date_published": "2026-09-29T07:15:36.140Z"
+    },
+    {
+      "id": "https://otahub.asia/we-are-aliens-phim-hoat-hinh-phap-nhat-ra-rap-ngay-25-9",
+      "url": "https://otahub.asia/we-are-aliens-phim-hoat-hinh-phap-nhat-ra-rap-ngay-25-9",
+      "title": "We Are Aliens: Phim hoạt hình Pháp – Nhật ra rạp ngày 25/9",
+      "content_text": "We Are Aliens là phim hoạt hình hợp tác Pháp – Nhật, kể về tình bạn, ký ức tuổi thơ và những điều khó quên, ra rạp Nhật ngày 25/9/2026.",
+      "image": "https://otahub.asia/assets/img/uploads/7vs6cl91-we-are-aliens-main-trailer.jpg",
+      "date_published": "2026-09-29T06:49:02.380Z"
+    },
+    {
       "id": "https://otahub.asia/nintendo-gamecube-chiec-may-mau-tim-nho-be-nhung-de-lai-dau-",
       "url": "https://otahub.asia/nintendo-gamecube-chiec-may-mau-tim-nho-be-nhung-de-lai-dau-",
       "title": "Nintendo GameCube: Chiếc máy màu tím nhỏ bé nhưng để lại dấu ấn lớn",

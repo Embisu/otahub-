@@ -1,5 +1,68 @@
 window.IDX = [
   {
+    "title": "5 Life Lessons From Naruto Uzumaki That Still Hold Up",
+    "url": "/en/5-life-lessons-from-naruto-uzumaki-still-hold-up",
+    "cat": "Anime",
+    "date": "2026-09-29",
+    "excerpt": "From village outcast to Seventh Hokage, Naruto Uzumaki's journey still holds up: 5 lessons on persistence, empathy and why the bonds you fight for matter.",
+    "img": "/assets/img/naruto-5-lessons-thumb.jpg",
+    "tags": []
+  },
+  {
+    "title": "5 Bài Học Từ Naruto Uzumaki Vẫn Còn Ý Nghĩa Đến Hôm Nay",
+    "url": "/5-bai-hoc-tu-naruto-uzumaki-van-con-y-nghia",
+    "cat": "Anime",
+    "date": "2026-09-29",
+    "excerpt": "Từ cậu nhóc bị cả làng xa lánh đến vị Hokage thứ Bảy, hành trình của Naruto Uzumaki để lại 5 bài học về nghị lực, sự đồng cảm và giá trị của những mối quan hệ vẫn còn nguyên vẹn.",
+    "img": "/assets/img/naruto-5-lessons-thumb.jpg",
+    "tags": []
+  },
+  {
+    "title": "Star Wars: Zero Company: Biệt đội dị biệt tạo nên những trận chiến đầy bất ngờ",
+    "url": "/star-wars-zero-company-biet-doi-di-biet-tao-nen-nhung-tran-c",
+    "cat": "Gaming",
+    "date": "2026-09-29",
+    "excerpt": "Star Wars: Zero Company đưa vũ trụ Star Wars đến với thể loại chiến thuật theo lượt, kết hợp hệ thống chiến đấu mang màu sắc XCOM với một nhóm nhân vật gồm những chiến binh có xuất thân và tính cách hoàn toàn khác nhau.",
+    "img": "/assets/img/uploads/22ksi3pb-photo-2026-09-29-15-25-58.jpg",
+    "tags": []
+  },
+  {
+    "title": "UK Games Expo cấm nội dung AI, chỉ chừa một số trường hợp ngoại lệ",
+    "url": "/uk-games-expo-cam-noi-dung-ai-chi-chua-mot-so-truong-hop-ngo",
+    "cat": "Gaming",
+    "date": "2026-09-29",
+    "excerpt": "UK Games Expo chính thức đưa AI vào danh sách những nội dung bị hạn chế tại khu vực dành cho các nhà phát hành và nhà bán hàng. Chính sách mới yêu cầu sản phẩm được mang đến sự kiện phải dựa trên quá trình sáng tạo của con người, nhưng vẫn cho phép sử dụng một số công cụ AI cho những tác vụ hỗ trợ nhỏ.",
+    "img": "/assets/img/uploads/vz6citou-photo-2026-09-29-14-59-50.jpg",
+    "tags": []
+  },
+  {
+    "title": "Dược Sư Tự Sự mùa 3: Maomao bước vào hành trình phá án mới năm 2027",
+    "url": "/duoc-su-tu-su-mua-3-maomao-buoc-vao-hanh-trinh-pha-an-moi-na",
+    "cat": "Anime",
+    "date": "2026-09-29",
+    "excerpt": "Dược Sư Tự Sự mùa 3 trở lại từ 2/10/2026, đưa Maomao và Jinshi bước vào những vụ án mới bên ngoài hậu cung.",
+    "img": "/assets/img/uploads/ikwqphfh-maomao-and-jinshi-in-the-apothecary-diaries-season-2-with-a-.webp",
+    "tags": []
+  },
+  {
+    "title": "Vì sao nên xem Laputa: Lâu đài trên không trên màn ảnh lớn?",
+    "url": "/vi-sao-nen-xem-laputa-lau-dai-tren-khong-tren-man-anh-lon",
+    "cat": "Anime",
+    "date": "2026-09-29",
+    "excerpt": "Laputa: Lâu đài trên không trở lại rạp Việt Nam ngày 25/9/2026. Khám phá lý do nên xem lại anime kinh điển này trên màn ảnh lớn.",
+    "img": "/assets/img/uploads/bmnjzftx-1788505364131-c2-1788504847736952838044-0-0-1005-1920-crop-1.webp",
+    "tags": []
+  },
+  {
+    "title": "We Are Aliens: Phim hoạt hình Pháp – Nhật ra rạp ngày 25/9",
+    "url": "/we-are-aliens-phim-hoat-hinh-phap-nhat-ra-rap-ngay-25-9",
+    "cat": "Anime",
+    "date": "2026-09-29",
+    "excerpt": "We Are Aliens là phim hoạt hình hợp tác Pháp – Nhật, kể về tình bạn, ký ức tuổi thơ và những điều khó quên, ra rạp Nhật ngày 25/9/2026.",
+    "img": "/assets/img/uploads/7vs6cl91-we-are-aliens-main-trailer.jpg",
+    "tags": []
+  },
+  {
     "title": "Nintendo GameCube: Chiếc máy màu tím nhỏ bé nhưng để lại dấu ấn lớn",
     "url": "/nintendo-gamecube-chiec-may-mau-tim-nho-be-nhung-de-lai-dau-",
     "cat": "Gaming",
