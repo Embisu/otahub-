@@ -686,7 +686,7 @@
   {
     "relPath": "girls-frontline-2-huong-dan-tan-thu-doi-hinh-reroll.html",
     "title": "Girls' Frontline 2: Lưu Đày – Hướng Dẫn Tân Thủ, Reroll",
-    "words": 313,
+    "words": 325,
     "isEn": false,
     "flags": {
       "isTruncated": false,
@@ -699,7 +699,7 @@
     "issues": [
       {
         "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (313 từ)"
+        "detail": "Nội dung tương đối ngắn (325 từ)"
       }
     ]
   },
@@ -900,6 +900,30 @@
       {
         "type": "THIN_CONTENT",
         "detail": "Nội dung tương đối ngắn (282 từ)"
+      }
+    ]
+  },
+  {
+    "relPath": "jojo-steel-ball-run-stage-2-3-len-song-25-9.html",
+    "title": "JoJo Steel Ball Run Stage 2–3 Lên Sóng Ngày 25/9",
+    "words": 170,
+    "isEn": false,
+    "flags": {
+      "isTruncated": false,
+      "isHallucinated": true,
+      "isShort": true,
+      "hasBrokenImages": false,
+      "hasPlaceholders": false,
+      "hasHtmlErrors": false
+    },
+    "issues": [
+      {
+        "type": "SHORT_CONTENT",
+        "detail": "Nội dung quá ngắn (170 từ, < 200 từ)"
+      },
+      {
+        "type": "HALLUCINATION",
+        "detail": "JoJo Steel Ball Run anime 25/9 (chưa từng công bố anime SBR)"
       }
     ]
   },
@@ -1824,26 +1848,6 @@
     ]
   },
   {
-    "relPath": "en/aniimo-open-world-creature-rpg-launch.html",
-    "title": "Aniimo: Open-World Creature RPG Launches September 16",
-    "words": 124,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (124 từ, < 200 từ)"
-      }
-    ]
-  },
-  {
     "relPath": "en/anime-nyc-2026-crunchyroll.html",
     "title": "Anime NYC 2026: Crunchyroll Premieres to Watch",
     "words": 261,
@@ -1980,26 +1984,6 @@
       {
         "type": "SHORT_CONTENT",
         "detail": "Nội dung quá ngắn (183 từ, < 200 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "en/chainsaw-man-chapter-180-death-devil.html",
-    "title": "Chainsaw Man Part 2 Ends at Chapter 232",
-    "words": 127,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (127 từ, < 200 từ)"
       }
     ]
   },
@@ -2344,26 +2328,6 @@
     ]
   },
   {
-    "relPath": "en/free-fire-daybreak-anime-2027.html",
-    "title": "Free Fire Daybreak Reveals Key Visual, Spring 2027",
-    "words": 128,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (128 từ, < 200 từ)"
-      }
-    ]
-  },
-  {
     "relPath": "en/frieren-season-2-aired-january-2026.html",
     "title": "Frieren Season 2 Aired From January 2026 (10 Episodes)",
     "words": 160,
@@ -2526,7 +2490,7 @@
   {
     "relPath": "en/girls-frontline-2-exilium-beginners-guide.html",
     "title": "Girls' Frontline 2: Exilium Beginner's Guide",
-    "words": 149,
+    "words": 161,
     "isEn": true,
     "flags": {
       "isTruncated": false,
@@ -2539,7 +2503,7 @@
     "issues": [
       {
         "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (149 từ, < 200 từ)"
+        "detail": "Nội dung quá ngắn (161 từ, < 200 từ)"
       }
     ]
   },
@@ -3528,26 +3492,6 @@
     ]
   },
   {
-    "relPath": "en/re-zero-season4-recapture-arc.html",
-    "title": "Re:Zero Season 4 Recapture Arc: Finale Sept 30",
-    "words": 97,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (97 từ, < 200 từ)"
-      }
-    ]
-  },
-  {
     "relPath": "en/record-of-ragnarok-what-is-odin-planning.html",
     "title": "Record of Ragnarok: What Is Odin Really Planning?",
     "words": 311,
@@ -3784,26 +3728,6 @@
       {
         "type": "SHORT_CONTENT",
         "detail": "Nội dung quá ngắn (168 từ, < 200 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "en/solo-leveling-arise-50-million-downloads-2024.html",
-    "title": "Solo Leveling: Arise Hits 50 Million Downloads",
-    "words": 104,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (104 từ, < 200 từ)"
       }
     ]
   },
@@ -4084,26 +4008,6 @@
       {
         "type": "SHORT_CONTENT",
         "detail": "Nội dung quá ngắn (175 từ, < 200 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "en/vct-champions-2026-prx-sentinels.html",
-    "title": "VCT Champions 2026: Paper Rex First to Qualify",
-    "words": 109,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (109 từ, < 200 từ)"
       }
     ]
   },

@@ -1,0 +1,44 @@
+{
+  "brokenInternalLinks": [],
+  "brokenImages": [],
+  "brokenScriptsOrStyles": [],
+  "missingMetaTitleOrDesc": [],
+  "invalidJsonLd": [],
+  "suspiciousText": [],
+  "truncatedOrShortContent": [
+    {
+      "file": "404.html",
+      "words": 154
+    },
+    {
+      "file": "anime-detail.html",
+      "words": 82
+    },
+    {
+      "file": "en/404.html",
+      "words": 147
+    },
+    {
+      "file": "en/anime-detail.html",
+      "words": 66
+    },
+    {
+      "file": "en/game-detail.html",
+      "words": 66
+    },
+    {
+      "file": "en/manga-detail.html",
+      "words": 69
+    },
+    {
+      "file": "game-detail.html",
+      "words": 82
+    },
+    {
+      "file": "manga-detail.html",
+      "words": 83
+    }
+  ],
+  "searchIndexGaps": [],
+  "sitemapGaps": []
+}

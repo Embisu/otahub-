@@ -31,12 +31,6 @@
       <priority>0.8</priority>
     </url>
   <url>
-      <loc>https://otahub.asia/404</loc>
-      <lastmod>2026-09-07</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
-    </url>
-  <url>
       <loc>https://otahub.asia/about</loc>
       <lastmod>2026-09-07</lastmod>
       <changefreq>monthly</changefreq>
@@ -327,12 +321,6 @@
   <url>
       <loc>https://otahub.asia/elden-ring-tarnished-edition</loc>
       <lastmod>2026-08-15</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
-    </url>
-  <url>
-      <loc>https://otahub.asia/en/404</loc>
-      <lastmod>2026-09-07</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
     </url>
@@ -2861,6 +2849,118 @@
     <loc>https://otahub.asia/jojo-steel-ball-run-stage-2-3-len-song-25-9</loc>
     <lastmod>2026-09-26</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/cong-dong-game-thu-viet-nam-quay-lung-voi-pubg</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://otahub.asia/cong-dong-game-thu-viet-nam-quay-lung-voi-pubg"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://otahub.asia/en/vietnamese-gamers-turn-away-from-pubg"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/one-piece-remake-wit-studio-netflix-trailer-chinh-thuc</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://otahub.asia/one-piece-remake-wit-studio-netflix-trailer-chinh-thuc"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://otahub.asia/en/one-piece-remake-wit-studio-netflix-official-trailer"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/ao-no-hako-season-2-premieres-october-4</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://otahub.asia/ao-no-hako-mua-2-len-song-4-10"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://otahub.asia/en/ao-no-hako-season-2-premieres-october-4"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/aoashi-season-2-new-studio-premieres-october-4</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://otahub.asia/aoashi-mua-2-doi-studio-len-song-4-10"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://otahub.asia/en/aoashi-season-2-new-studio-premieres-october-4"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/diamond-no-ace-act-ii-cour-2-premieres-october-11</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://otahub.asia/diamond-no-ace-act-ii-cour-2-len-song-11-10"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://otahub.asia/en/diamond-no-ace-act-ii-cour-2-premieres-october-11"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/ghost-in-the-shell-2026-season-wrap-up</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://otahub.asia/ghost-in-the-shell-2026-tong-ket-mua-phat-song"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://otahub.asia/en/ghost-in-the-shell-2026-season-wrap-up"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/gintama-creator-hideaki-sorachi-thought-anime-would-flop</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://otahub.asia/gintama-sorachi-tung-nghi-anime-se-that-bai"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://otahub.asia/en/gintama-creator-hideaki-sorachi-thought-anime-would-flop"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/hololive-announces-first-tv-anime-odekake</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://otahub.asia/hololive-cong-bo-anime-truyen-hinh-dau-tien-odekake"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://otahub.asia/en/hololive-announces-first-tv-anime-odekake"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/magic-knight-rayearth-2026-reboot-premieres-october-7</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://otahub.asia/magic-knight-rayearth-2026-remake-len-song-7-10"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://otahub.asia/en/magic-knight-rayearth-2026-reboot-premieres-october-7"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/oda-personally-endorsed-these-6-manga</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://otahub.asia/oda-tung-gioi-thieu-6-manga-tren-bia-sach"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://otahub.asia/en/oda-personally-endorsed-these-6-manga"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/one-piece-chapter-1192-luffy-pierces-imus-shield</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://otahub.asia/one-piece-chuong-1192-luffy-xuyen-thung-khien-imu-do-mau"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://otahub.asia/en/one-piece-chapter-1192-luffy-pierces-imus-shield"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/one-piece-chapter-1194-hiatus-returns-october-11</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://otahub.asia/one-piece-chapter-1194-tam-ngung-tro-lai-11-10"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://otahub.asia/en/one-piece-chapter-1194-hiatus-returns-october-11"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/rezero-season-4-finale-extended-45-minutes-september-30</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://otahub.asia/rezero-mua-4-tap-cuoi-keo-dai-45-phut-30-9"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://otahub.asia/en/rezero-season-4-finale-extended-45-minutes-september-30"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/tokyo-revengers-santen-sensou-hen-premieres-october-2</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://otahub.asia/tokyo-revengers-santen-sensou-hen-len-song-2-10"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://otahub.asia/en/tokyo-revengers-santen-sensou-hen-premieres-october-2"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/tougen-anki-season-2-nikko-kegon-falls-premieres-october-2</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://otahub.asia/tougen-anki-mua-2-nikko-kegon-falls-len-song-2-10"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://otahub.asia/en/tougen-anki-season-2-nikko-kegon-falls-premieres-october-2"/>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/jojo-steel-ball-run-stages-2-3-premiere-september-25</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://otahub.asia/jojo-steel-ball-run-stage-2-3-len-song-25-9"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://otahub.asia/en/jojo-steel-ball-run-stages-2-3-premiere-september-25"/>
+    <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 </urlset>

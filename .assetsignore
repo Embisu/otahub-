@@ -7,6 +7,8 @@
 .wrangler/**
 .agents
 .agents/**
+.claude
+.claude/**
 .github
 scripts
 wrangler.jsonc
