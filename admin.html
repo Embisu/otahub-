@@ -5839,16 +5839,21 @@ async function renderMedia() {
 }
 async function loadMediaFiles() {
   const IMG_RE = /\.(jpe?g|png|webp|gif|svg)$/i;
-  const root = await ghGet('assets/img');
-  const rootList = Array.isArray(root) ? root : [];
-  let uploads = [];
-  if (rootList.some(f => f.type === 'dir' && f.name === 'uploads')) {
-    try {
-      const u = await ghGet('assets/img/uploads');
-      uploads = Array.isArray(u) ? u : [];
-    } catch(e) { /* thư mục uploads/ có thể rỗng/chưa tồn tại trên GitHub — bỏ qua */ }
+  let rootList = [];
+  try {
+    const root = await ghGet('assets/img');
+    rootList = Array.isArray(root) ? root : [];
+  } catch(e) {
+    console.warn('Lỗi tải danh sách ảnh assets/img:', e);
   }
-  const all = [...rootList, ...uploads].filter(f => f.type === 'file' && IMG_RE.test(f.name));
+
+  let uploads = [];
+  try {
+    const u = await ghGet('assets/img/uploads');
+    uploads = Array.isArray(u) ? u : [];
+  } catch(e) { /* thư mục uploads/ có thể rỗng/chưa tồn tại — bỏ qua */ }
+
+  const all = [...rootList, ...uploads].filter(f => f && f.type === 'file' && IMG_RE.test(f.name));
   MEDIA_FILES = all.map(f => ({ name: f.name, path: f.path, sha: f.sha, size: f.size, url: '/' + f.path }))
     .sort((a, b) => a.name.localeCompare(b.name));
 }

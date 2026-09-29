@@ -664,26 +664,6 @@
     ]
   },
   {
-    "relPath": "gintama-sorachi-tung-nghi-anime-se-that-bai.html",
-    "title": "Cha Đẻ Gintama Thú Nhận: Từng Nghĩ Bản Anime Sẽ Thất Bại",
-    "words": 662,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": false,
-      "hasBrokenImages": true,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "BROKEN_IMAGE",
-        "detail": "Ảnh không tồn tại: /assets/img/dvt9allq-conan-30go-eyecatch.jpg"
-      }
-    ]
-  },
-  {
     "relPath": "girls-frontline-2-huong-dan-tan-thu-doi-hinh-reroll.html",
     "title": "Girls' Frontline 2: Lưu Đày – Hướng Dẫn Tân Thủ, Reroll",
     "words": 325,
@@ -906,7 +886,7 @@
   {
     "relPath": "jojo-steel-ball-run-stage-2-3-len-song-25-9.html",
     "title": "JoJo Steel Ball Run Stage 2–3 Lên Sóng Ngày 25/9",
-    "words": 170,
+    "words": 186,
     "isEn": false,
     "flags": {
       "isTruncated": false,
@@ -919,7 +899,7 @@
     "issues": [
       {
         "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (170 từ, < 200 từ)"
+        "detail": "Nội dung quá ngắn (186 từ, < 200 từ)"
       },
       {
         "type": "HALLUCINATION",
@@ -2028,26 +2008,6 @@
     ]
   },
   {
-    "relPath": "en/code-geass-star-chaser-aspal-anime-2027-teaser.html",
-    "title": "Code Geass: Star Chaser Aspal Teaser, Airs In 2027",
-    "words": 132,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (132 từ, < 200 từ)"
-      }
-    ]
-  },
-  {
     "relPath": "en/crunchyroll-manga-black-torch-hana-kimi.html",
     "title": "Crunchyroll Manga Adds Black Torch, Hana-Kimi in July",
     "words": 142,
@@ -2468,26 +2428,6 @@
     ]
   },
   {
-    "relPath": "en/gintama-creator-hideaki-sorachi-thought-anime-would-flop.html",
-    "title": "Gintama Creator Admits He Thought the Anime Would Flop",
-    "words": 540,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": false,
-      "hasBrokenImages": true,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "BROKEN_IMAGE",
-        "detail": "Ảnh không tồn tại: /assets/img/dvt9allq-conan-30go-eyecatch.jpg"
-      }
-    ]
-  },
-  {
     "relPath": "en/girls-frontline-2-exilium-beginners-guide.html",
     "title": "Girls' Frontline 2: Exilium Beginner's Guide",
     "words": 161,
@@ -2808,6 +2748,26 @@
     ]
   },
   {
+    "relPath": "en/jojo-steel-ball-run-stages-2-3-premiere-september-25.html",
+    "title": "JoJo Steel Ball Run Stages 2–3 Premiere September 25",
+    "words": 182,
+    "isEn": true,
+    "flags": {
+      "isTruncated": false,
+      "isHallucinated": false,
+      "isShort": true,
+      "hasBrokenImages": false,
+      "hasPlaceholders": false,
+      "hasHtmlErrors": false
+    },
+    "issues": [
+      {
+        "type": "SHORT_CONTENT",
+        "detail": "Nội dung quá ngắn (182 từ, < 200 từ)"
+      }
+    ]
+  },
+  {
     "relPath": "en/jujutsu-kaisen-chapter-271-final-climax-epilogue.html",
     "title": "Jujutsu Kaisen Manga Ends at Chapter 271 (September 30, 2024)",
     "words": 152,
@@ -3108,26 +3068,6 @@
     ]
   },
   {
-    "relPath": "en/monster-hunter-wilds-title-update-4-gogmazios-ascendance-2027.html",
-    "title": "Monster Hunter Wilds: Title Update 4 Adds Gogmazios",
-    "words": 129,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (129 từ, < 200 từ)"
-      }
-    ]
-  },
-  {
     "relPath": "en/mortal-shell-2-release.html",
     "title": "Mortal Shell II Set Release Date August 20, 2026",
     "words": 303,
@@ -3164,26 +3104,6 @@
       {
         "type": "SHORT_CONTENT",
         "detail": "Nội dung quá ngắn (134 từ, < 200 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "en/nintendo-switch-2-price-increase-499-mario-kart-world-bundle.html",
-    "title": "Nintendo Switch 2 Price Rises to $499.99",
-    "words": 133,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (133 từ, < 200 từ)"
       }
     ]
   },
@@ -3532,26 +3452,6 @@
     ]
   },
   {
-    "relPath": "en/rematch-x-blue-lock-crossover-event.html",
-    "title": "Sloclap x Blue Lock: Rematch Crossover Event, Sept 24",
-    "words": 129,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (129 từ, < 200 từ)"
-      }
-    ]
-  },
-  {
     "relPath": "en/rezero-10th-anniversary-visual.html",
     "title": "Re:ZERO Reveals 10th Anniversary Visual, Tokyo Exhibit",
     "words": 248,
@@ -3568,26 +3468,6 @@
       {
         "type": "THIN_CONTENT",
         "detail": "Nội dung tương đối ngắn (248 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "en/rezero-season-4-finale-extended-45-minutes-september-30.html",
-    "title": "Re:Zero Season 4 Finale Runs 45 Minutes, Airs September 30",
-    "words": 131,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (131 từ, < 200 từ)"
       }
     ]
   },
@@ -3848,26 +3728,6 @@
       {
         "type": "THIN_CONTENT",
         "detail": "Nội dung tương đối ngắn (334 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "en/the-eminence-in-shadow-roguelite-game-announcement.html",
-    "title": "The Eminence in Shadow: New Roguelite Game Announced",
-    "words": 130,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (130 từ, < 200 từ)"
       }
     ]
   },

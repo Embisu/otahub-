@@ -10,7 +10,7 @@ const escapeCell = (value) => String(value ?? '').replaceAll('|', '\\|').replace
 const rows = report.map((item, index) =>
   `| ${index + 1} | ${item.isEn ? 'EN' : 'VI'} | ${item.words} | \`${escapeCell(item.relPath)}\` | ${escapeCell(item.title)} |`);
 const markdown = `# Danh sách bài viết dưới 350 từ\n\n` +
-  `Cập nhật: 28/09/2026. Tổng cộng **${report.length} bài**: ` +
+  `Cập nhật: 29/09/2026. Tổng cộng **${report.length} bài**: ` +
   `**${report.filter((item) => !item.isEn).length} VI**, **${report.filter((item) => item.isEn).length} EN**; ` +
   `**${report.filter((item) => item.words < 200).length} bài dưới 200 từ**.\n\n` +
   `| # | Ngôn ngữ | Số từ | Tệp | Tiêu đề |\n|---:|:---:|---:|---|---|\n${rows.join('\n')}\n`;

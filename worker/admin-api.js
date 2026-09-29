@@ -173,17 +173,47 @@ async function handleGhGet(request, env, ghPath, url) {
   if (!user) return json({ error: 'Chua dang nhap.' }, 401);
   if (!ghPath) return json({ error: 'Thieu duong dan file.' }, 400);
 
+  // Nếu là liệt kê thư mục gốc assets/img: kết hợp GitHub, static manifest và KV
+  if (ghPath === 'assets/img') {
+    let list = [];
+    const ref = url.searchParams.get('ref') || GH_BRANCH;
+    if (env.GITHUB_TOKEN) {
+      try {
+        const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}?ref=${ref}`, { headers: ghHeaders(env) });
+        if (r.ok) {
+          const ghData = await r.json();
+          if (Array.isArray(ghData)) list = ghData;
+        }
+      } catch(e) {}
+    }
+
+    // Nếu GitHub API không trả về dữ liệu (403, rate limit, thiếu token...), đọc từ static manifest
+    if (list.length === 0 && env.ASSETS) {
+      try {
+        const manifestRes = await env.ASSETS.fetch(new Request(new URL('/assets/img-manifest.json', request.url)));
+        if (manifestRes.ok) {
+          const mData = await manifestRes.json();
+          if (Array.isArray(mData)) list = mData;
+        }
+      } catch(e) {}
+    }
+
+    return json(list);
+  }
+
   // Nếu là liệt kê thư mục uploads, kết hợp cả ảnh từ GitHub và KV Storage
   if (ghPath === 'assets/img/uploads') {
     let list = [];
     const ref = url.searchParams.get('ref') || GH_BRANCH;
-    try {
-      const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}?ref=${ref}`, { headers: ghHeaders(env) });
-      if (r.ok) {
-        const ghData = await r.json();
-        if (Array.isArray(ghData)) list = ghData;
-      }
-    } catch(e) {}
+    if (env.GITHUB_TOKEN) {
+      try {
+        const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}?ref=${ref}`, { headers: ghHeaders(env) });
+        if (r.ok) {
+          const ghData = await r.json();
+          if (Array.isArray(ghData)) list = ghData;
+        }
+      } catch(e) {}
+    }
 
     // Bổ sung các ảnh đã lưu trong KV
     if (env.ADMIN_KV) {
@@ -213,7 +243,28 @@ async function handleGhGet(request, env, ghPath, url) {
 
   const ref = url.searchParams.get('ref') || GH_BRANCH;
   const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}?ref=${ref}`, { headers: ghHeaders(env) });
-  if (!r.ok) return json({ error: 'GitHub API error: ' + r.status }, r.status);
+  if (!r.ok) {
+    // Nếu đọc file thất bại qua GitHub, thử đọc file tĩnh qua env.ASSETS (fallback an toàn cho editor)
+    if (env.ASSETS && request.method === 'GET') {
+      try {
+        const assetRes = await env.ASSETS.fetch(new Request(new URL('/' + ghPath, request.url)));
+        if (assetRes.ok) {
+          const text = await assetRes.text();
+          return json({
+            name: ghPath.split('/').pop(),
+            path: ghPath,
+            sha: 'local-asset',
+            size: text.length,
+            content: btoa(unescape(encodeURIComponent(text))),
+            encoding: 'base64'
+          });
+        }
+      } catch(e) {}
+    }
+    const errBody = await r.json().catch(() => ({}));
+    const detail = errBody.message ? ` (${errBody.message})` : '';
+    return json({ error: 'GitHub API error: ' + r.status + detail }, r.status);
+  }
   return json(await r.json());
 }
 

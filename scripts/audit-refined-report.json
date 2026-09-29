@@ -4,7 +4,13 @@
   "brokenScriptsOrStyles": [],
   "missingMetaTitleOrDesc": [],
   "invalidJsonLd": [],
-  "suspiciousText": [],
+  "suspiciousText": [
+    {
+      "file": "the-eminence-in-shadow-roguelite-game-announcement.html",
+      "pattern": "/\\bnull\\b(?!\\.(js|css|webp|png|jpg))/i",
+      "match": "null"
+    }
+  ],
   "truncatedOrShortContent": [
     {
       "file": "404.html",
