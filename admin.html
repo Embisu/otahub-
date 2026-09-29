@@ -8156,18 +8156,20 @@ async function aiAutoTranslateToEnglish() {
 
 async function aiCloneViToEn() {
   const currentTitle = ART_TITLE || document.getElementById('ed-title')?.value || '';
-  const cleanSlug = currentFile ? currentFile.replace(/^en-|\.html$/g, '') : slugifyFilename(currentTitle);
-  const targetEnFile = `en-${cleanSlug}.html`;
-  
+  // Dùng đúng quy ước en/<slug>.html (thư mục con) mà toàn bộ site còn lại đang dùng —
+  // trước đây tạo "en-<slug>.html" (gạch ngang, thư mục gốc), lệch khỏi sitemap, hreflang
+  // và mọi cơ chế đồng bộ EN khác, khiến bài tạo ra bị lạc khỏi site.
+  const cleanSlug = currentFile ? currentFile.replace(/^en\//, '').replace(/\.html$/, '') : slugifyFilename(currentTitle);
+  const targetEnFile = `en/${cleanSlug}.html`;
+
   if (!confirm(`Tạo bản sao tiếng Anh "${targetEnFile}" từ bài viết hiện tại?`)) return;
   await createEnglishArticleFromAi(targetEnFile, `[EN] ${currentTitle}`, ART_EXCERPT || '');
 }
 
 async function createEnglishArticleFromAi(targetFile, enTitle, enDesc) {
   try {
-    const cleanSlug = targetFile.replace(/\.html$/i, '');
-    const url = `https://otahub.asia/${cleanSlug}`;
-    const viSlug = cleanSlug.replace(/^en-/, '');
+    const viSlug = targetFile.replace(/^en\//, '').replace(/\.html$/i, '');
+    const url = `https://otahub.asia/en/${viSlug}`;
     const viUrl = `https://otahub.asia/${viSlug}`;
 
     const cat = document.getElementById('ed-cat')?.value || 'Gaming';
