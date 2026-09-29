@@ -216,15 +216,19 @@ async function handleGhGet(request, env, ghPath, url) {
       } catch(e) {}
     }
 
-    // Bổ sung các ảnh đã lưu trong KV
+    // Bổ sung các ảnh đã lưu trong KV (tải song song tất cả các key với Promise.all, tốc độ cực nhanh)
     if (env.ADMIN_KV) {
       try {
         const kvList = await env.ADMIN_KV.list({ prefix: 'upload_meta:' });
         const existingNames = new Set(list.map(f => f.name));
-        for (const k of kvList.keys) {
-          const raw = await env.ADMIN_KV.get(k.name);
-          if (!raw) continue;
-          const meta = JSON.parse(raw);
+        const metaEntries = await Promise.all(
+          kvList.keys.map(async k => {
+            const raw = await env.ADMIN_KV.get(k.name);
+            return raw ? JSON.parse(raw) : null;
+          })
+        );
+        for (const meta of metaEntries) {
+          if (!meta) continue;
           if (!existingNames.has(meta.name)) {
             list.push({
               name: meta.name,
@@ -312,14 +316,37 @@ async function handleGhPut(request, env, ghPath) {
       try {
         const cleanContent = content.replace(/\s+/g, '');
         const rawBytes = Buffer.from(cleanContent, 'base64');
+
+        // Băm SHA-256 nội dung nhị phân để chống lưu ảnh trùng lặp tuyệt đối
+        const hashBuffer = await crypto.subtle.digest('SHA-256', rawBytes);
+        const hashHex = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+
+        const existingFileName = await env.ADMIN_KV.get(`upload_hash:${hashHex}`);
+        if (existingFileName) {
+          // Ảnh này đã có sẵn trên hệ thống, tái sử dụng file cũ ngay lập tức
+          return json({
+            ok: true,
+            url: `/assets/img/uploads/${existingFileName}`,
+            path: `assets/img/uploads/${existingFileName}`,
+            name: existingFileName,
+            size: approxBytes,
+            uploadedAt: now,
+            sha: 'kv-' + existingFileName,
+            isDuplicate: true,
+            content: { download_url: `/assets/img/uploads/${existingFileName}` }
+          }, 200);
+        }
+
         await env.ADMIN_KV.put(`upload_img:${fileName}`, rawBytes);
         await env.ADMIN_KV.put(`upload_meta:${fileName}`, JSON.stringify({
           name: fileName,
           path: ghPath,
           size: approxBytes,
+          hash: hashHex,
           uploadedAt: now,
           uploadedBy: user.username,
         }));
+        await env.ADMIN_KV.put(`upload_hash:${hashHex}`, fileName);
         kvSaved = true;
       } catch (kvErr) {
         console.error('Loi luu anh vao KV:', kvErr);
@@ -525,6 +552,60 @@ async function handleDraftsList(request, env) {
   return json({ drafts });
 }
 
+async function handleCleanDuplicateUploads(request, env) {
+  const user = await getSessionUser(request, env);
+  if (!user) return json({ error: 'Chua dang nhap.' }, 401);
+  if (user.role !== 'admin' && user.role !== 'editor') return json({ error: 'Khong co quyen.' }, 403);
+  if (!env.ADMIN_KV) return json({ error: 'KV khong ton tai.' }, 500);
+
+  const kvList = await env.ADMIN_KV.list({ prefix: 'upload_meta:' });
+  const metaEntries = await Promise.all(
+    kvList.keys.map(async k => {
+      const raw = await env.ADMIN_KV.get(k.name);
+      return raw ? { key: k.name, data: JSON.parse(raw) } : null;
+    })
+  );
+
+  const groups = new Map();
+  for (const entry of metaEntries) {
+    if (!entry) continue;
+    const meta = entry.data;
+    let hash = meta.hash;
+    if (!hash) {
+      const rawImg = await env.ADMIN_KV.get(`upload_img:${meta.name}`, { type: 'arrayBuffer' });
+      if (rawImg) {
+        const hashBuf = await crypto.subtle.digest('SHA-256', rawImg);
+        hash = Array.from(new Uint8Array(hashBuf)).map(b => b.toString(16).padStart(2, '0')).join('');
+        meta.hash = hash;
+        await env.ADMIN_KV.put(entry.key, JSON.stringify(meta));
+        await env.ADMIN_KV.put(`upload_hash:${hash}`, meta.name);
+      }
+    }
+    if (!hash) continue;
+    if (!groups.has(hash)) groups.set(hash, []);
+    groups.get(hash).push(meta);
+  }
+
+  let removedCount = 0;
+  for (const [hash, items] of groups.entries()) {
+    if (items.length > 1) {
+      // Giữ lại 1 bản (bản có thời gian tạo cũ nhất), xoá các bản thừa
+      items.sort((a, b) => (a.uploadedAt || 0) - (a.uploadedAt || 0));
+      const keep = items[0];
+      await env.ADMIN_KV.put(`upload_hash:${hash}`, keep.name);
+      for (let i = 1; i < items.length; i++) {
+        const dup = items[i];
+        await env.ADMIN_KV.delete(`upload_img:${dup.name}`);
+        await env.ADMIN_KV.delete(`upload_meta:${dup.name}`);
+        removedCount++;
+      }
+    }
+  }
+
+  await logAudit(env, { action: 'clean_duplicates', username: user.username, count: removedCount });
+  return json({ ok: true, removedCount });
+}
+
 export async function handleAdminApi(request, env, url) {
   const path = url.pathname;
   const method = request.method;
@@ -541,6 +622,7 @@ export async function handleAdminApi(request, env, url) {
   if (path === '/api/admin/users/role' && method === 'POST') return handleUsersRole(request, env);
   if (path === '/api/admin/auditlog' && method === 'GET') return handleAuditLog(request, env);
   if (path === '/api/admin/drafts' && method === 'GET') return handleDraftsList(request, env);
+  if (path === '/api/admin/clean-duplicate-uploads' && method === 'POST') return handleCleanDuplicateUploads(request, env);
 
   if (path.startsWith('/api/admin/draft/')) {
     const ghPath = path.slice('/api/admin/draft/'.length);
