@@ -11570,12 +11570,21 @@ async function promoteToHomeHero(slug, viTitle, viDesc, cat, heroImg, subLabel) 
   await applyTo('index.html', `/${slug}`, viTitle, viDesc, dateVi, 'OtaHub Editorial');
 
   try {
-    const enData = await ghGet(`en/${slug}.html`);
+    // KHÔNG giả định slug bản EN trùng slug VI — nhiều bài đặt slug EN hoàn toàn khác
+    // (vd. "top-8-anime-han-quoc..." vs "top-korean-anime-aeni-worth-watching"). Bài VI
+    // luôn có sẵn <link rel="alternate" hreflang="en" href="..."> trỏ đúng URL bản EN
+    // thật — đọc từ đó thay vì đoán en/${slug}.html, để không âm thầm bỏ lỡ đồng bộ EN.
+    const viData = await ghGet(`${slug}.html`);
+    const viHtmlRaw = decodeURIComponent(escape(atob(String(viData.content || '').replace(/\s/g, ''))));
+    const enHref = fieldGet(viHtmlRaw, /<link rel="alternate" hreflang="en" href="https:\/\/otahub\.asia\/en\/([^"]*)"/);
+    const enSlug = enHref || slug;
+
+    const enData = await ghGet(`en/${enSlug}.html`);
     const enHtml = decodeURIComponent(escape(atob(String(enData.content || '').replace(/\s/g, ''))));
     const enTitle = hUnesc(fieldGet(enHtml, /<h1 class="art-hero-title">([^<]*)</)) || viTitle;
     const enDesc = hUnesc(fieldGet(enHtml, /<p class="art-hero-excerpt">([^<]*)</)) || viDesc;
     const dateEn = new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
-    await applyTo('en/index.html', `/en/${slug}`, enTitle, enDesc, dateEn, 'OtaHub Editorial');
+    await applyTo('en/index.html', `/en/${enSlug}`, enTitle, enDesc, dateEn, 'OtaHub Editorial');
   } catch (e) {
     console.warn('Khong co ban EN de dong bo hero:', e.message);
   }
