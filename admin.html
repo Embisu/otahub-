@@ -9451,15 +9451,25 @@ function cleanVisualHtml(html) {
   s = s.replace(/ size="[^"]*"/gi, '');
   s = s.replace(/<o:p>[\s\S]*?<\/o:p>/gi, '');
   s = s.replace(/<\/?(?:span|font|o:p)[^>]*>/gi, '');
-  // Nội dung bài viết trên site không bao giờ dùng <h1> (h1 chỉ dành cho tiêu đề
-  // lớn ngoài .art-body) — hạ mọi h1 dán vào thành h2 thay vì để lọt nguyên vẹn.
+  // Nội dung bài viết trên site không bao giờ dùng <h1> — hạ h1 thành h2
   s = s.replace(/<h1\b[^>]*>/gi, '<h2>').replace(/<\/h1>/gi, '</h2>');
-  // Bỏ thẻ <b>/<i>/<strong>/<em> rỗng chỉ chứa <br> — tàn dư ngắt dòng của Google Docs
+  // Bỏ thẻ <b>/<i>/<strong>/<em> rỗng chỉ chứa <br>
   s = s.replace(/<(b|i|strong|em)[^>]*>(\s|&nbsp;|<br\s*\/?>)*<\/\1>/gi, '');
-  s = s.replace(/<div>/gi, '<p>').replace(/<\/div>/gi, '</p>');
+  // Thay thế các cặp <div>...</div> thông thường thành <p>...</p> đồng bộ cả mở lẫn đóng, không làm lệch thẻ
+  s = s.replace(/<div(?:\s+class="(?!(?:art-|wc-|am-|aligncenter|art-table|art-video|art-callout|art-faq)\b)[^"]*")?\s*>([\s\S]*?)<\/div>/gi, '<p>$1</p>');
   s = s.replace(/<p>(\s|&nbsp;|<br\s*\/?>)*<\/p>/gi, '');
   s = s.replace(/\n{3,}/g, '\n\n');
-  return s.trim();
+  return repairArticleBodyHtml(s.trim());
+}
+
+function repairArticleBodyHtml(html) {
+  if (!html) return '';
+  try {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.innerHTML;
+  } catch (e) {
+    return html;
+  }
 }
 
 function validateArticleBodyHtml(html) {
@@ -9478,11 +9488,6 @@ function validateArticleBodyHtml(html) {
     if (pattern.test(source)) errors.push(`Phát hiện ${label} trong nội dung bài`);
   }
   if (/<\/?article\b/i.test(source)) errors.push('Nội dung bài không được chứa thẻ <article> lồng nhau');
-  for (const tag of ['div', 'figure', 'blockquote', 'table']) {
-    const opened = (source.match(new RegExp(`<${tag}(?:\\s|>)`, 'gi')) || []).length;
-    const closed = (source.match(new RegExp(`</${tag}\\s*>`, 'gi')) || []).length;
-    if (opened !== closed) errors.push(`Lệch thẻ <${tag}>: mở ${opened}, đóng ${closed}`);
-  }
   return errors;
 }
 
@@ -10968,7 +10973,10 @@ function applyArticleEditsToHtml(baseHtml) {
   const hero    = document.getElementById('ed-hero')?.value || '';
   const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
   const cat     = document.getElementById('ed-cat')?.value || 'Gaming';
-  const bodyVi  = document.getElementById('body-textarea')?.value || '';
+  let bodyVi = document.getElementById('body-textarea')?.value || '';
+  bodyVi = repairArticleBodyHtml(bodyVi);
+  const ta = document.getElementById('body-textarea');
+  if (ta) ta.value = bodyVi;
 
   const bodySafetyErrors = validateArticleBodyHtml(bodyVi);
   if (bodySafetyErrors.length) {
@@ -14257,7 +14265,8 @@ function toast(type, msg) {
 
   const el = document.createElement('div');
   el.className = `toast-item ${type}`;
-  el.innerHTML = `<span class="toast-icon">${icon}</span><span>${cleanMsg}</span>`;
+  el.innerHTML = `<span class="toast-icon">${icon}</span><span class="toast-msg"></span>`;
+  el.querySelector('.toast-msg').textContent = cleanMsg;
   container.appendChild(el);
 
   const timeoutMs = type === 'error' ? 5500 : 3500;
