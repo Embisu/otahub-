@@ -11160,12 +11160,12 @@ function syncArticleBodyToTextarea() {
 async function propagateTitleChange(slug, newTitle) {
   const escT = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const rules = [
-    ['<article class="w-card"><a href="/news"', '<div class="wc-t">', '</div>', '</article>'],
-    ['<a href="/news" class="ac"', '<div class="ac-title">', '</div>', '</a>'],
-    ['<a class="sc" href="/news">', '<div class="sc-title">', '</div>', '</a>'],
-    ['<a class="fc" href="/news">', '<h2 class="fc-title">', '</h2>', '</a>'],
+    ['<article class="w-card"><a href="/' + slug + '"', '<div class="wc-t">', '</div>', '</article>'],
+    ['<a href="/' + slug + '" class="ac"', '<div class="ac-title">', '</div>', '</a>'],
+    ['<a class="sc" href="/' + slug + '">', '<div class="sc-title">', '</div>', '</a>'],
+    ['<a class="fc" href="/' + slug + '">', '<h2 class="fc-title">', '</h2>', '</a>'],
     ['<article class="s-art" onclick="location.href=\'/' + slug + '\'"', '<div class="sa-t">', '</div>', '</article>'],
-    ['<a href="/news" style="display:block', '<h3', '</h3>', '</a>'],
+    ['<a href="/' + slug + '" style="display:block', '<h3', '</h3>', '</a>'],
     ['<div class="hero-main" onclick="location.href=\'/' + slug + '\'"', 'id="h-title">', '</h1>', '<aside'],
   ];
   const swapTitle = (html) => {
@@ -11188,7 +11188,8 @@ async function propagateTitleChange(slug, newTitle) {
       }
     }
     // thanh chạy tin
-    html = html.replace(new RegExp('(<span class="tick-item">[^<]*<strong>[^<]*</strong> <a href="/news"[^>]*>)([^<]*)(</a>)', 'g'), (m, p, t, q) => { n++; return p + escT(newTitle) + q; });
+    const tickHref = slug.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    html = html.replace(new RegExp('(<span class="tick-item">[^<]*<strong>[^<]*</strong> <a href="/' + tickHref + '"[^>]*>)([^<]*)(</a>)', 'g'), (m, p, t, q) => { n++; return p + escT(newTitle) + q; });
     return [html, n];
   };
   const files = ['index.html', 'news.html', 'gaming.html', 'anime.html', 'manga.html'];
@@ -11394,6 +11395,18 @@ async function saveArticle() {
         console.warn('promoteToHomeHero error:', e);
         toast('error', 'Lỗi đặt Tiêu điểm Trang chủ: ' + e.message);
       }
+    } else if (needSync) {
+      // Bài mới (hoặc bài chưa có trong chỉ mục tìm kiếm) không được tick "Tiêu điểm" vẫn phải
+      // xuất hiện ở Breaking News (Tin Mới Nhất) — nếu không sẽ chỉ nằm im trong category hub,
+      // không ai thấy trên trang chủ. Cùng điều kiện needSync như syncNewArticle() ở trên.
+      try {
+        const isEn = currentFile.startsWith('en/');
+        const slugNoExt = currentFile.replace(/^en\//, '').replace(/\.html$/, '');
+        await addToLatestNews(isEn, slugNoExt, title, desc, cat, hero);
+        toast('success', '📰 Đã thêm vào Tin Mới Nhất trên trang chủ!');
+      } catch (e) {
+        console.warn('addToLatestNews error:', e);
+      }
     }
   } catch(e) {
     if (dot) dot.className = 'status-dot error';
@@ -11597,6 +11610,53 @@ async function promoteToHomeHero(slug, viTitle, viDesc, cat, heroImg, subLabel) 
     await applyTo('en/index.html', `/en/${enSlug}`, enTitle, enDesc, dateEn, 'OtaHub Editorial');
   } catch (e) {
     console.warn('Khong co ban EN de dong bo hero:', e.message);
+  }
+}
+
+// Thêm bài MỚI đăng (không được tick "Tiêu điểm Trang chủ") thẳng vào đầu "Tin Mới Nhất"
+// (latest-wrap) trên trang chủ tương ứng (index.html hoặc en/index.html), để mọi bài mới đều
+// lên Breaking News ngay khi đăng chứ không chỉ những bài được tick Hero. Giới hạn 40 mục —
+// mục cũ nhất trôi ra khỏi danh sách khi vượt ngưỡng, giống cơ chế "trôi dần" của chuỗi Hero.
+// Dùng lại đúng kiểu retry-on-409 + regex hẹp như applyTo() ở trên (KHÔNG dùng
+// loadHomeData()/buildHomeHtml() — xem lý do ở comment đầu promoteToHomeHero()).
+async function addToLatestNews(isEn, slug, title, desc, cat, hero) {
+  const homeFile = isEn ? 'en/index.html' : 'index.html';
+  const href = isEn ? `/en/${slug}` : `/${slug}`;
+  const dateDisp = isEn
+    ? new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' })
+    : new Date().toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  const MAX_TRIES = 4;
+  const MAX_ITEMS = 40;
+  for (let attempt = 1; attempt <= MAX_TRIES; attempt++) {
+    const data = await ghGet(homeFile);
+    let html = decodeURIComponent(escape(atob(String(data.content || '').replace(/\s/g, ''))));
+    if (html.includes(`href="${href}"`)) return; // đã có sẵn (vd. lưu nhiều lần liên tiếp), tránh trùng
+
+    const card = `<article class="w-card"><a href="${href}" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">${esc(cat || 'Gaming')}</div><div class="wc-t">${esc(title)}</div><div class="wc-m">OtaHub Editorial · ${esc(dateDisp)}</div></div><div class="wc-thumb"><img src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy" width="1200" height="675"></div></a></article>\n      `;
+    const anchor = '<div class="latest-wrap">\n<div>\n';
+    const ai = html.indexOf(anchor);
+    if (ai === -1) return;
+    const insertAt = ai + anchor.length;
+    html = html.slice(0, insertAt) + card + html.slice(insertAt);
+
+    const asideIdx = html.indexOf('<aside class="latest-side">', insertAt);
+    if (asideIdx !== -1) {
+      const listBlock = html.slice(insertAt, asideIdx);
+      const items = splitBlocksTrimmed(listBlock, /<article class="w-card">/, '</article>');
+      if (items.length > MAX_ITEMS) {
+        const trimmedList = items.slice(0, MAX_ITEMS).join('\n      ') + '\n      ';
+        html = html.slice(0, insertAt) + trimmedList + html.slice(asideIdx);
+      }
+    }
+
+    try {
+      await ghPut(homeFile, html, data.sha, `[admin] them "${title.slice(0,50)}" vao Tin Moi Nhat`);
+      return;
+    } catch (e) {
+      const isConflict = /409|sha|conflict/i.test(e.message || '');
+      if (!isConflict || attempt === MAX_TRIES) throw e;
+      await new Promise(r => setTimeout(r, 400 * attempt));
+    }
   }
 }
 
@@ -14215,14 +14275,14 @@ async function syncNewArticle(art) {
         }
       }
       
-      const latestMatch = homeHtml.match(/(<div class="latest-wrap">\s*<div>\s*)/);
-      if (latestMatch && !homeHtml.includes('<article class="w-card"><a href="/news"')) {
-        const dd = new Date().toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
-        const wCard = '<article class="w-card"><a href="/news" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">' + esc(cat || 'Gaming') + '</div><div class="wc-t">' + esc(title) + '</div><div class="wc-m">OtaHub Editorial · ' + dd + '</div></div><div class="wc-thumb"><img src="' + (hero || '/assets/img/placeholder.svg') + '" alt="' + esc(title) + '" loading="lazy" width="1200" height="675"></div></a></article>\n      ';
-        homeHtml = homeHtml.replace(latestMatch[0], () => latestMatch[1] + wCard);
-      }
       await ghPut('index.html', homeHtml, homeData.sha, `[admin] don tin /${slug} len index.html`);
     } catch(e) { console.warn('Home sync error:', e); }
+
+    // "Tin Mới Nhất" (latest-wrap) được thêm riêng qua addToLatestNews() ở saveArticle() —
+    // bản cũ ở đây từng chèn href="/news" cố định thay vì href thật của bài, và điều kiện
+    // chống trùng kiểm tra sai (dò "/news" thay vì slug bài), khiến chỉ 1 lần lỗi là mọi bài
+    // sau đó không còn được chèn nữa. Xem addToLatestNews() để biết bản thay thế (có VI+EN,
+    // giới hạn 40 mục, và retry khi ghi đè xung đột).
 
     // 6. Ping IndexNow API
     toast('success', '📡 Báo cáo URL lên IndexNow & Search Engines...');
