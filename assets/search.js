@@ -1,14 +1,26 @@
 window.IDX = [
   {
+    "title": "Top 8 Anime Hàn Quốc (Aeni) Đáng Xem Nhất Hiện Nay",
+    "url": "/top-8-anime-han-quoc-aeni-dang-xem-nhat",
+    "cat": "Anime",
+    "date": "2026-09-29",
+    "excerpt": "Từ Lookism, Ghost Messenger đến There She Is!! — điểm qua 8 tựa anime Hàn Quốc (Aeni) đáng xem nhất, từ hài lãng mạn đến zombie kinh dị.",
+    "img": "/assets/img/top-korean-anime-lookism-thumb.jpg",
+    "tags": []
+  },
+  {
     "title": "The Eminence in Shadow Công Bố Tựa Game Roguelite Mới",
     "url": "/the-eminence-in-shadow-roguelite-game-announcement",
     "cat": "Gaming",
     "date": "2026-09-24",
     "excerpt": "Thương hiệu The Eminence in Shadow mở rộng sang thể loại hành động roguelite chặt chém tốc độ cao trên PC và PlayStation 5.",
     "img": "/assets/img/news-eminence-in-shadow-roguelite.jpg",
-    "tags": ["The Eminence in Shadow","Roguelite","Gaming 2026"]
+    "tags": [
+      "The Eminence in Shadow",
+      "Roguelite",
+      "Gaming 2026"
+    ]
   },
-
   {
     "title": "Sự Kiện Crossover Rematch x Blue Lock Chính Thức Khởi Tranh",
     "url": "/rematch-x-blue-lock-crossover-event",
@@ -16,9 +28,13 @@ window.IDX = [
     "date": "2026-09-24",
     "excerpt": "Tựa game bóng đá chiến thuật Rematch mở sự kiện hợp tác cùng Blue Lock, đem các tiền đạo Isagi Yoichi và Bachira Meguru vào sân cỏ ảo.",
     "img": "/assets/img/news-blue-lock-rematch-collab.jpg",
-    "tags": ["Blue Lock","Rematch","Crossover","Gaming"]
+    "tags": [
+      "Blue Lock",
+      "Rematch",
+      "Crossover",
+      "Gaming"
+    ]
   },
-
   {
     "title": "Honkai Star Rail Crossover Fate/stay night UBW: Chi Tiết Sự Kiện",
     "url": "/honkai-star-rail-fate-stay-night-unlimited-blade-works-crossover",
@@ -26,9 +42,12 @@ window.IDX = [
     "date": "2026-09-24",
     "excerpt": "Chi tiết sự kiện hợp tác lịch sử giữa Honkai: Star Rail và Fate/stay night: Unlimited Blade Works với sự xuất hiện của Archer và Saber.",
     "img": "/assets/img/news-hsr-fate-collab.jpg",
-    "tags": ["Honkai Star Rail","Fate stay night","HoYoverse"]
+    "tags": [
+      "Honkai Star Rail",
+      "Fate stay night",
+      "HoYoverse"
+    ]
   },
-
   {
     "title": "Dragon Ball Sparking! ZERO Công Bố Season Pass 2 Về Daima",
     "url": "/dragon-ball-sparking-zero-dlc-season-pass-daima",
@@ -36,9 +55,13 @@ window.IDX = [
     "date": "2026-09-24",
     "excerpt": "Bandai Namco công bố gói DLC Season Pass 2 cho Dragon Ball Sparking! ZERO, bổ sung loạt nhân vật độc quyền từ anime Dragon Ball Daima.",
     "img": "/assets/img/news-sparking-zero-dlc-daima.jpg",
-    "tags": ["Dragon Ball","Sparking Zero","Bandai Namco","DLC"]
+    "tags": [
+      "Dragon Ball",
+      "Sparking Zero",
+      "Bandai Namco",
+      "DLC"
+    ]
   },
-
   {
     "title": "Black Clover Mùa 2 & Witch Hat Atelier Tung Trailer Mới",
     "url": "/black-clover-season-2-witch-hat-atelier-trailers",
@@ -46,9 +69,12 @@ window.IDX = [
     "date": "2026-09-24",
     "excerpt": "Hai dự án anime kỳ ảo được mong đợi nhất năm 2026 là Black Clover Mùa 2 và Witch Hat Atelier đồng loạt công bố trailer và lịch phát sóng.",
     "img": "/assets/img/news-witch-hat-atelier-trailer.jpg",
-    "tags": ["Black Clover","Witch Hat Atelier","Anime 2026"]
+    "tags": [
+      "Black Clover",
+      "Witch Hat Atelier",
+      "Anime 2026"
+    ]
   },
-
   {
     "title": "Aniimo: RPG Sinh Tồn Bắt Thú Thế Giới Mở Ra Mắt",
     "url": "/aniimo-open-world-creature-rpg-launch",
@@ -56,9 +82,13 @@ window.IDX = [
     "date": "2026-09-24",
     "excerpt": "Aniimo chính thức phát hành trên PC và console, mang đến trải nghiệm sinh tồn thế giới mở kết hợp bắt và huấn luyện sinh vật độc đáo.",
     "img": "/assets/img/real-palworld-sacred-grove.jpg",
-    "tags": ["Aniimo","RPG","Open World","Gaming 2026"]
+    "tags": [
+      "Aniimo",
+      "RPG",
+      "Open World",
+      "Gaming 2026"
+    ]
   },
-
   {
     "title": "Cha Đẻ Gintama Thú Nhận: Từng Nghĩ Bản Anime Sẽ Thất Bại",
     "url": "/gintama-sorachi-tung-nghi-anime-se-that-bai",
@@ -3770,6 +3800,15 @@ window.IDX = [
     "date": "2026-09-26",
     "excerpt": "STEEL BALL RUN JoJo's Bizarre Adventure 2nd–3rd STAGE lên sóng độc quyền trên Netflix từ 25/9/2026, gồm 11 tập phát hàng tuần do David Production thực hiện.",
     "img": "/assets/img/real-jojo-sbr-stage2.jpg",
+    "tags": []
+  },
+  {
+    "title": "Top 8 Korean Anime (Aeni) Worth Watching Right Now",
+    "url": "/en/top-korean-anime-aeni-worth-watching",
+    "cat": "Anime",
+    "date": "2026-09-29",
+    "excerpt": "From Lookism to Ghost Messenger and There She Is!! — 8 Korean anime (Aeni) worth watching right now.",
+    "img": "/assets/img/top-korean-anime-lookism-thumb.jpg",
     "tags": []
   }
 ];
