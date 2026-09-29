@@ -135,6 +135,14 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .score-txt{flex:1}
 .score-verdict{font-family:var(--fd);font-weight:700;font-size:18px;color:var(--white);letter-spacing:.02em;margin-bottom:4px}
 .score-sub{font-size:14px;color:var(--muted)}
+.score-breakdown{background:var(--surf);border:1px solid var(--border);padding:20px 24px;margin:-4px 0 28px}
+.sb-head{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-weight:600}
+.sb-row{display:flex;align-items:center;gap:14px;margin-bottom:13px}
+.sb-row:last-child{margin-bottom:0}
+.sb-label{width:170px;flex-shrink:0;font-size:13px;color:var(--dim)}
+.sb-bar{flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
+.sb-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--amber));border-radius:3px}
+.sb-val{width:32px;flex-shrink:0;text-align:right;font-family:var(--fd);font-weight:700;font-size:14px;color:var(--white)}
 
 /* ── Share Row ── */
 .share-row,.art-share{display:flex;align-items:center;gap:10px;padding:24px 0;border-top:1px solid var(--border);margin-top:48px;flex-wrap:wrap}
