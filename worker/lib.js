@@ -107,7 +107,7 @@ export function canDraftPath(user, ghPath) {
 // tinh contributor, vi contributor chua duoc "xuat ban" bat ky thu gi truc
 // tiep) deu duoc tai anh, nhung CHI vao thu muc uploads/ va CHI dinh dang anh
 // an toan — khong the loi dung de ghi de file khac trong assets/.
-const UPLOAD_IMAGE_RE = /^assets\/img\/uploads\/[a-z0-9]{4,16}-[a-z0-9._-]{1,100}\.(jpe?g|png|webp|gif|avif)$/i;
+const UPLOAD_IMAGE_RE = /^assets\/img\/uploads\/[a-z0-9]{4,16}-[a-z0-9._-]{1,100}\.(jpe?g|jfif|png|webp|gif|avif|svg)$/i;
 export function canUploadImage(user, ghPath) {
   if (!user) return false;
   if (user.role === 'contributor') return false;
@@ -117,7 +117,7 @@ export function canUploadImage(user, ghPath) {
 // Xoa anh trong Media Library (assets/img/, ke ca assets/img/uploads/) — chi
 // admin/editor, vi xoa 1 anh dang duoc bai viet khac tham chieu se lam vo
 // hinh anh o noi khac tren site (author/contributor khong duoc xoa).
-const DELETE_IMAGE_RE = /^assets\/img\/[a-z0-9._/-]+\.(jpe?g|png|webp|gif|svg|avif)$/i;
+const DELETE_IMAGE_RE = /^assets\/img\/[a-z0-9._/-]+\.(jpe?g|jfif|png|webp|gif|svg|avif)$/i;
 export function canDeleteImage(user, ghPath) {
   if (!user) return false;
   if (user.role !== 'admin' && user.role !== 'editor') return false;
@@ -146,11 +146,12 @@ export function hasValidImageSignature(ghPath, base64Content) {
   } catch { return false; }
   const ends = (values) => values.every((value, index) => bytes[index] === value);
   const ext = ghPath.split('.').pop().toLowerCase();
-  if ((ext === 'jpg' || ext === 'jpeg') && ends([0xff, 0xd8, 0xff])) return true;
+  if ((ext === 'jpg' || ext === 'jpeg' || ext === 'jfif') && ends([0xff, 0xd8, 0xff])) return true;
   if (ext === 'png' && ends([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a])) return true;
   if (ext === 'gif' && (new TextDecoder().decode(bytes.slice(0, 6)) === 'GIF87a' || new TextDecoder().decode(bytes.slice(0, 6)) === 'GIF89a')) return true;
   if (ext === 'webp' && new TextDecoder().decode(bytes.slice(0, 4)) === 'RIFF' && new TextDecoder().decode(bytes.slice(8, 12)) === 'WEBP') return true;
   if (ext === 'avif' && new TextDecoder().decode(bytes.slice(4, 12)).startsWith('ftypavi')) return true;
+  if (ext === 'svg' && (new TextDecoder().decode(bytes.slice(0, 60)).toLowerCase().includes('<svg') || new TextDecoder().decode(bytes.slice(0, 60)).toLowerCase().includes('<?xml'))) return true;
   return false;
 }
 

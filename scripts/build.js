@@ -187,7 +187,7 @@ ${PARTIAL_STYLE}
 <span class="am-sep"></span>
 <span class="am-read">${esc(page.metaReadTime)}</span>
 <span class="am-sep"></span>
-<span class="am-badge">OtaHub Editorial</span>
+<a class="author-profile-link" href="/author/otahub"><span class="am-badge">OtaHub Editorial</span></a>
 </div>
 <div class="highlight-box">
 <div class="hb-label">${esc(page.summaryLabel || 'Tóm Tắt')}</div>
