@@ -11168,14 +11168,73 @@ async function saveArticle() {
   }
 }
 
+// ── Chuỗi 12 vị trí "bài mới nhất" trên trang chủ: Hero(1) → Hot This Week(2-7, 6 ô)
+// → Tin Nổi Bật(8-12: 1 ô fc lớn + 4 ô sc nhỏ). Khi có bài mới lên Hero, mỗi khối đẩy
+// đúng 1 mục xuống khối kế tiếp; mục rớt khỏi ô sc cuối (#12) coi như ra khỏi danh sách.
+function sArtParse(raw) {
+  return {
+    href: fieldGet(raw, /onclick="location\.href='([^']*)'"/),
+    img: fieldGet(raw, /<div class="sa-thumb"><img src="([^"]*)"/),
+    alt: fieldGet(raw, /<img src="[^"]*" alt="([^"]*)"/),
+    catStyle: fieldGet(raw, /<div class="sa-c" (style="[^"]*")/),
+    catHtml: fieldGet(raw, /<div class="sa-c"[^>]*>([^<]*)</),
+    title: fieldGet(raw, /<div class="sa-t">([^<]*)</),
+    date: fieldGet(raw, /<div class="sa-m">([^<]*) · OtaHub Editorial<\/div>/),
+  };
+}
+function sArtBuild(f) {
+  return `<article class="s-art" onclick="location.href='${f.href.replace(/'/g,"\\'")}'" style="cursor:pointer">\n      <div class="sa-thumb"><img src="${f.img}" alt="${esc(f.alt)}" width="1200" height="675" loading="lazy" decoding="async"></div>\n      <div><div class="sa-c" ${f.catStyle || 'style="color:var(--cyan);font-weight:700"'}>${esc(f.catHtml)}</div><div class="sa-t">${esc(f.title)}</div><div class="sa-m">${esc(f.date)} · OtaHub Editorial</div></div>\n    </article>`;
+}
+function fcParse(raw) {
+  return {
+    href: fieldGet(raw, /<a class="fc" href="([^"]*)"/),
+    img: fieldGet(raw, /<div class="fc-img" style="background-image:url\(([^)]*)\)">/),
+    tagClass: fieldGet(raw, /<span class="(tag [^"]*)">/),
+    tagLabel: fieldGet(raw, /<span class="tag [^"]*">([^<]*)</),
+    title: fieldGet(raw, /<h2 class="fc-title">([^<]*)</),
+    sub: fieldGet(raw, /<p class="fc-sub">([^<]*)</),
+    cat: fieldGet(raw, /<div class="fc-meta"><span>([^<]*)</),
+    date: fieldGet(raw, /· OtaHub Editorial · ([^<]*)<\/div>/),
+  };
+}
+function fcBuild(f) {
+  return `<a class="fc" href="${f.href}">\n      <div class="fc-img" style="background-image:url(${f.img})"></div><div class="fc-ov"></div>\n      <div class="fc-body">\n        <span class="${f.tagClass || 'tag tag-c'}">${esc(f.tagLabel)}</span>\n        <h2 class="fc-title">${esc(f.title)}</h2>\n        <p class="fc-sub">${esc(f.sub)}</p>\n        <div class="fc-meta"><span>${esc(f.cat)}</span> · OtaHub Editorial · ${esc(f.date)}</div>\n      </div>\n    </a>`;
+}
+function scParse(raw) {
+  return {
+    href: fieldGet(raw, /<a class="sc" href="([^"]*)"/),
+    img: fieldGet(raw, /<div class="sc-img"><img src="([^"]*)"/),
+    alt: fieldGet(raw, /<img src="[^"]*" alt="([^"]*)"/),
+    tagClass: fieldGet(raw, /<span class="(tag [^"]*)" style/),
+    tagLabel: fieldGet(raw, /<span class="tag [^"]*" style="[^"]*">([^<]*)</),
+    title: fieldGet(raw, /<div class="sc-title">([^<]*)</),
+    date: fieldGet(raw, /<div class="sc-meta">OtaHub Editorial · ([^<]*)</),
+  };
+}
+function scBuild(f) {
+  return `<a class="sc" href="${f.href}"><div class="sc-img"><img src="${f.img}" alt="${esc(f.alt)}" loading="lazy" width="1200" height="675"></div><div class="sc-body"><span class="${f.tagClass || 'tag tag-c'}" style="margin-bottom:6px;padding:3px 8px;font-size:9px">${esc(f.tagLabel)}</span><div class="sc-title">${esc(f.title)}</div><div class="sc-meta">OtaHub Editorial · ${esc(f.date)}</div></div></a>`;
+}
+// Lấy mô tả ngắn thật của 1 bài (dùng khi 1 mục từ Hot This Week được đôn lên ô fc lớn
+// trong Tin Nổi Bật — ô này cần đoạn mô tả 1-2 câu, khác s-art vốn không có mô tả).
+async function fetchArticleExcerpt(href, fallback) {
+  try {
+    const file = href.replace(/^\//, '') + '.html';
+    const data = await ghGet(file);
+    const html = decodeURIComponent(escape(atob(String(data.content || '').replace(/\s/g, ''))));
+    const desc = hUnesc(fieldGet(html, /<meta name="description" content="([^"]*)"/));
+    return desc || fallback;
+  } catch (e) { return fallback; }
+}
+
 // Đặt bài vừa lưu làm Tiêu điểm Trang chủ (Hero/Breaking News): Hero hiện tại được
 // đẩy xuống thành thẻ đầu tiên trong "Tin Mới Nhất" (latest-wrap), rồi Hero mới thay vào chỗ đó.
+// Đồng thời đẩy cả chuỗi 12 vị trí: Hero → Hot This Week (6 ô) → Tin Nổi Bật (fc + 4 sc).
 // Tự áp dụng cho cả index.html (VI) và en/index.html (nếu bài đã có bản dịch EN) trong 1 lần gọi.
 // CỐ Ý không dùng loadHomeData()/buildHomeHtml() (bộ máy của homeEditor visual): kiểm thử cho thấy
 // endAnchor của khối ticker ('</div></div>') không khớp với HTML thật (3 thẻ </div> nằm trên 3 dòng
 // riêng, có thụt lề) khiến buildHomeHtml lẫn nội dung ticker/hero-side vào nhau mỗi lần build lại —
 // một lỗi có sẵn, ảnh hưởng cả nút "Lưu & Deploy" của trang Trang chủ hiện tại. Hàm này chỉ đụng
-// đúng khối Hero + đầu danh sách Tin Mới Nhất bằng các regex hẹp, đã kiểm chứng khớp HTML thật,
+// đúng các khối liên quan bằng các regex/hàm tách khối hẹp, đã kiểm chứng khớp HTML thật,
 // để không kéo theo lỗi đó.
 async function promoteToHomeHero(slug, viTitle, viDesc, cat, heroImg, subLabel) {
   const catLabel = subLabel ? `${cat || 'Gaming'} · ${subLabel}` : (cat || 'Gaming');
@@ -11213,6 +11272,59 @@ async function promoteToHomeHero(slug, viTitle, viDesc, cat, heroImg, subLabel) 
       html = html.replace(/(class="h-meta-cat">)[^<]*(<)/, (m,p1,p2)=>p1+esc(catLabel)+p2);
       html = html.replace(/(id="h-time">)[^<]*(<)/, (m,p1,p2)=>p1+esc(dateDisp)+p2);
       html = html.replace(/(<a href=")[^"]*(" class="read-more" id="h-read")/, (m,p1,p2)=>p1+href+p2);
+
+      // ── Hot This Week (heroSide, 6 ô): Hero cũ đôn lên đầu, ô cuối bị đẩy ra ──
+      let evictedFromSide = null;
+      const hsSec = hSection(html, '<aside class="hero-side">', '</aside>');
+      if (hsSec.ok && oldHero.title && oldHero.href) {
+        let items = splitBlocksTrimmed(hsSec.raw, /<article class="s-art"/, '</article>');
+        const alreadyInSide = items.some(it => it.includes(`href='${oldHero.href}'`));
+        if (!alreadyInSide) {
+          const newItem = sArtBuild({
+            href: oldHero.href, img: oldHero.img, alt: oldHero.title,
+            catStyle: 'style="color:var(--pink);font-weight:700"',
+            catHtml: `🔴 Breaking · ${(oldHero.cat || '').split(' · ')[0] || cat || 'Gaming'}`,
+            title: oldHero.title, date: oldHero.date,
+          });
+          items.unshift(newItem);
+          if (items.length > 6) evictedFromSide = items.pop();
+          const prefix = hsSec.raw.slice(0, hsSec.raw.indexOf('<article class="s-art"'));
+          const newHsRaw = prefix + items.join('\n    ') + '\n  ';
+          html = hReplaceSection(html, '<aside class="hero-side">', '</aside>', () => newHsRaw);
+        }
+      }
+
+      // ── Tin Nổi Bật (featured, fc lớn + 4 sc nhỏ): ô đẩy ra từ Hot This Week
+      // đôn lên fc, fc cũ lùi thành sc đầu, sc cuối bị đẩy ra khỏi chuỗi 12 ──
+      if (evictedFromSide) {
+        const featMatch = html.match(/(<!-- ADMIN:FEATURED_START -->)([\s\S]*?)(<!-- ADMIN:FEATURED_END -->)/);
+        if (featMatch) {
+          const scStart = featMatch[2].indexOf('<a class="sc"');
+          const fcRaw = (scStart === -1 ? featMatch[2] : featMatch[2].slice(0, scStart)).trim();
+          const scItems = scStart === -1 ? [] : splitBlocksTrimmed(featMatch[2].slice(scStart), /<a class="sc"/, '</a>');
+          const alreadyInFeat = fcRaw.includes(`href="${evictedFromSide.match(/onclick="location\.href='([^']*)'/)?.[1] || '\u0000'}"`) || scItems.some(it => it.includes(`href="${sArtParse(evictedFromSide).href}"`));
+          if (!alreadyInFeat) {
+            const ef = sArtParse(evictedFromSide);
+            const excerpt = await fetchArticleExcerpt(ef.href, ef.title);
+            const newFc = fcBuild({
+              href: ef.href, img: ef.img, tagClass: 'tag tag-c',
+              tagLabel: (ef.catHtml || '').replace(/^🔴 Breaking · /, ''),
+              title: ef.title, sub: excerpt,
+              cat: (ef.catHtml || '').replace(/^🔴 Breaking · /, ''), date: ef.date,
+            });
+            const oldFc = fcParse(fcRaw);
+            const newSc = oldFc.title ? scBuild({
+              href: oldFc.href, img: oldFc.img, alt: oldFc.title,
+              tagClass: oldFc.tagClass, tagLabel: oldFc.tagLabel,
+              title: oldFc.title, date: oldFc.date,
+            }) : null;
+            let newScItems = newSc ? [newSc, ...scItems] : scItems;
+            if (newScItems.length > 4) newScItems = newScItems.slice(0, 4);
+            const newFeatured = '\n    ' + newFc + '\n    ' + newScItems.join('\n    ') + '\n    ';
+            html = html.replace(/(<!-- ADMIN:FEATURED_START -->)[\s\S]*?(<!-- ADMIN:FEATURED_END -->)/, (m,p1,p2) => p1 + newFeatured + p2);
+          }
+        }
+      }
 
       try {
         await ghPut(file, html, data.sha, `[admin] dat "${title.slice(0,50)}" lam Tieu diem Trang chu`);
