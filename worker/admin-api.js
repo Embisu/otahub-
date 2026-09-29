@@ -68,7 +68,66 @@ async function handleLogout(request, env) {
 async function handleMe(request, env) {
   const user = await getSessionUser(request, env);
   if (!user) return json({ error: 'Chua dang nhap.' }, 401);
-  return json({ user });
+  return json({
+    user: {
+      username: user.username,
+      role: normalizeRole(user.role),
+      displayName: user.displayName || '',
+      bio: user.bio || '',
+      avatar: user.avatar || '',
+      jobTitle: user.jobTitle || ''
+    }
+  });
+}
+
+// Lay thong tin ho so tac gia (profile)
+async function handleProfileGet(request, env, url) {
+  const me = await getSessionUser(request, env);
+  if (!me) return json({ error: 'Chua dang nhap.' }, 401);
+  const targetUser = url ? (url.searchParams.get('username') || '').toLowerCase() : '';
+  const username = (me.role === 'admin' && targetUser) ? targetUser : me.username.toLowerCase();
+  const raw = await env.ADMIN_KV.get(`user:${username}`);
+  if (!raw) return json({ error: 'Khong tim thay tai khoan.' }, 404);
+  const u = JSON.parse(raw);
+  return json({
+    username: u.username,
+    role: normalizeRole(u.role),
+    displayName: u.displayName || '',
+    bio: u.bio || '',
+    avatar: u.avatar || '',
+    jobTitle: u.jobTitle || ''
+  });
+}
+
+// Cap nhat thong tin ho so tac gia (displayName, bio, avatar, jobTitle)
+async function handleProfilePost(request, env) {
+  const me = await getSessionUser(request, env);
+  if (!me) return json({ error: 'Chua dang nhap.' }, 401);
+  let body;
+  try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
+  const { targetUsername, displayName, bio, avatar, jobTitle } = body || {};
+  const target = (me.role === 'admin' && targetUsername) ? String(targetUsername).toLowerCase() : me.username.toLowerCase();
+  const key = `user:${target}`;
+  const raw = await env.ADMIN_KV.get(key);
+  if (!raw) return json({ error: 'Khong tim thay tai khoan.' }, 404);
+  const u = JSON.parse(raw);
+  if (typeof displayName === 'string') u.displayName = displayName.trim().slice(0, 100);
+  if (typeof bio === 'string') u.bio = bio.trim().slice(0, 1000);
+  if (typeof avatar === 'string') u.avatar = avatar.trim().slice(0, 500);
+  if (typeof jobTitle === 'string') u.jobTitle = jobTitle.trim().slice(0, 100);
+  await env.ADMIN_KV.put(key, JSON.stringify(u));
+  await logAudit(env, { action: 'profile_updated', username: me.username, target });
+  return json({
+    ok: true,
+    user: {
+      username: u.username,
+      role: normalizeRole(u.role),
+      displayName: u.displayName || '',
+      bio: u.bio || '',
+      avatar: u.avatar || '',
+      jobTitle: u.jobTitle || ''
+    }
+  });
 }
 
 // Dung 1 lan duy nhat de tao tai khoan quan tri dau tien. Chi hoat dong khi
@@ -102,7 +161,15 @@ async function handleUsersGet(request, env) {
     const raw = await env.ADMIN_KV.get(k.name);
     if (!raw) continue;
     const u = JSON.parse(raw);
-    users.push({ username: u.username, role: normalizeRole(u.role), createdAt: u.createdAt });
+    users.push({
+      username: u.username,
+      role: normalizeRole(u.role),
+      displayName: u.displayName || '',
+      bio: u.bio || '',
+      avatar: u.avatar || '',
+      jobTitle: u.jobTitle || '',
+      createdAt: u.createdAt
+    });
   }
   users.sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
   return json({ users, canManageUsers: canManageUsers(me) });
@@ -650,6 +717,8 @@ export async function handleAdminApi(request, env, url) {
   if (path === '/api/admin/users' && method === 'POST') return handleUsersPost(request, env);
   if (path === '/api/admin/users' && method === 'DELETE') return handleUsersDelete(request, env, url);
   if (path === '/api/admin/users/role' && method === 'POST') return handleUsersRole(request, env);
+  if (path === '/api/admin/profile' && method === 'GET') return handleProfileGet(request, env, url);
+  if (path === '/api/admin/profile' && method === 'POST') return handleProfilePost(request, env);
   if (path === '/api/admin/auditlog' && method === 'GET') return handleAuditLog(request, env);
   if (path === '/api/admin/drafts' && method === 'GET') return handleDraftsList(request, env);
   if (path === '/api/admin/clean-duplicate-uploads' && method === 'POST') return handleCleanDuplicateUploads(request, env);

@@ -14,10 +14,18 @@
     document.getElementById('crumb-name').textContent=profile.name;
     document.getElementById('author-name').textContent=profile.name;
     document.getElementById('author-role').textContent=profile.role;
-    document.getElementById('author-avatar').textContent=initials;
+    if(profile.avatar){
+      document.getElementById('author-avatar').innerHTML='<img src="'+esc(profile.avatar)+'" alt="'+esc(profile.name)+'" style="width:100%;height:100%;object-fit:cover;border-radius:50%">';
+    }else{
+      document.getElementById('author-avatar').textContent=initials;
+    }
     document.getElementById('author-total').textContent=list.length;
     document.getElementById('articles-title').textContent=(isEn?'Articles by ':'Bài của ')+profile.name;
-    document.getElementById('author-bio').textContent=isEn?profile.name+' contributes reporting and editorial coverage across gaming, anime and manga on OtaHub.':profile.name+' là '+profile.role.toLowerCase()+' của OtaHub. Trang này tổng hợp các bài viết đã xuất bản của tác giả.';
+    if(profile.bio){
+      document.getElementById('author-bio').textContent=profile.bio;
+    }else{
+      document.getElementById('author-bio').textContent=isEn?profile.name+' contributes reporting and editorial coverage across gaming, anime and manga on OtaHub.':profile.name+' là '+profile.role.toLowerCase()+' của OtaHub. Trang này tổng hợp các bài viết đã xuất bản của tác giả.';
+    }
     var stats=Object.entries(counts).sort(function(a,b){return b[1]-a[1]});
     document.getElementById('author-stats').innerHTML='<div><strong>'+list.length+'</strong><span>Tổng bài</span></div>'+stats.slice(0,4).map(function(x){return '<div><strong>'+x[1]+'</strong><span>'+esc(x[0])+'</span></div>'}).join('');
     var select=document.getElementById('author-filter');

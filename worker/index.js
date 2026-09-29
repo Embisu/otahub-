@@ -18,8 +18,13 @@ async function publicAuthor(request, env, url) {
     if (!isAdmin && role !== 'author') continue;
     const candidate = isAdmin ? 'otahub' : authorSlug(user.username);
     if (candidate !== slug) continue;
-    const name = isAdmin ? 'OtaHub Editorial' : (String(user.username).toLowerCase() === 'anhthu' ? 'Anh Thu' : user.username);
-    return new Response(JSON.stringify({ slug: candidate, name, role: isAdmin ? 'Quản trị viên · Ban biên tập' : 'Tác giả' }), { headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'public, max-age=300' } });
+    const name = user.displayName || (isAdmin ? 'OtaHub Editorial' : (String(user.username).toLowerCase() === 'anhthu' ? 'Anh Thu' : user.username));
+    const authorRole = user.jobTitle || (isAdmin ? 'Quản trị viên · Ban biên tập' : 'Tác giả');
+    const bio = user.bio || (isAdmin
+      ? 'Ban biên tập OtaHub phụ trách tin tức, bài tổng hợp và nội dung chuyên sâu về game, anime và manga.'
+      : `${name} đóng góp các bài viết về anime, manga và những chủ đề đang được cộng đồng OtaHub quan tâm.`);
+    const avatar = user.avatar || '';
+    return new Response(JSON.stringify({ slug: candidate, username: user.username, name, role: authorRole, bio, avatar }), { headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'public, max-age=60' } });
   }
   return new Response(JSON.stringify({ error: 'Không tìm thấy tác giả.' }), { status: 404, headers: { 'Content-Type': 'application/json; charset=utf-8' } });
 }

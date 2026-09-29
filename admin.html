@@ -3138,9 +3138,10 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
     </div>
     <div class="wtb-right">
       <button onclick="openCmdk()" class="wtb-item" title="Tìm nhanh (Ctrl+K)">🔍 Tìm nhanh <kbd style="background:rgba(255,255,255,.1);padding:1px 4px;border-radius:2px;font-size:10px;margin-left:4px">Ctrl+K</kbd></button>
-      <div class="wtb-item">
+      <div class="wtb-item" onclick="openAuthorProfileModal()" style="cursor:pointer" title="Chỉnh sửa hồ sơ tác giả của bạn">
         <span class="wtb-avatar" id="wtb-avatar">AD</span>
         <span id="wtb-user-name">Chào, Admin</span>
+        <span style="font-size:10px;background:rgba(0,229,255,.15);color:#00e5ff;padding:2px 7px;border-radius:4px;margin-left:6px;font-weight:600">👤 Sửa hồ sơ</span>
       </div>
       <button onclick="disconnect()" class="wtb-item" style="color:#ff8099">Đăng xuất</button>
     </div>
@@ -3201,6 +3202,11 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
           </div>
         </li>
 
+        <li class="wp-nav-item" id="nav-author-profile">
+          <button class="wp-nav-btn" onclick="openAuthorProfileModal()">
+            <span class="wp-nav-label"><span class="wp-nav-icon">👤</span><span class="wp-nav-text">Hồ sơ tác giả</span></span>
+          </button>
+        </li>
 
         <li class="wp-nav-item" id="nav-users">
           <button class="wp-nav-btn" onclick="showView('users')">
@@ -3703,21 +3709,24 @@ const ROLE_LABEL = { admin: 'Admin', editor: 'Editor', author: 'Author', contrib
 
 // Tài khoản admin đại diện thương hiệu; các tài khoản khác giữ đúng tên người đăng.
 function publishingAuthorName() {
-  const username = cleanPlainText(CURRENT_USER?.username || '').trim();
-  return CURRENT_USER?.role === 'admin' ? 'OtaHub' : (username || 'OtaHub');
+  const name = cleanPlainText(CURRENT_USER?.displayName || CURRENT_USER?.username || '').trim();
+  return CURRENT_USER?.role === 'admin' ? 'OtaHub' : (name || 'OtaHub');
 }
 function startApp() {
   document.getElementById('setup-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
   const roleTxt = ROLE_LABEL[CURRENT_USER.role] || CURRENT_USER.role || '';
-  // Header WP-style dùng #wtb-user-name/#wtb-avatar (không phải #conn-info của
-  // giao diện sidebar cũ) — tham chiếu nhầm id cũ từng khiến startApp() văng
-  // lỗi âm thầm ngay từ dòng này, kẹt cả trang ở "Đang tải..." vĩnh viễn vì
-  // loadArticles() phía dưới không bao giờ được gọi tới.
+  const displayName = CURRENT_USER.displayName || CURRENT_USER.username || '';
   const userNameEl = document.getElementById('wtb-user-name');
-  if (userNameEl) userNameEl.textContent = 'Chào, ' + (CURRENT_USER.username || '') + (roleTxt ? ' · ' + roleTxt : '');
+  if (userNameEl) userNameEl.textContent = 'Chào, ' + displayName + (roleTxt ? ' · ' + roleTxt : '');
   const avatarEl = document.getElementById('wtb-avatar');
-  if (avatarEl) avatarEl.textContent = (CURRENT_USER.username || 'AD').slice(0, 2).toUpperCase();
+  if (avatarEl) {
+    if (CURRENT_USER.avatar) {
+      avatarEl.innerHTML = `<img src="${esc(CURRENT_USER.avatar)}" style="width:100%;height:100%;object-fit:cover;border-radius:50%" alt=""/>`;
+    } else {
+      avatarEl.textContent = (displayName || 'AD').slice(0, 2).toUpperCase();
+    }
+  }
   // Quản lý tài khoản chỉ danh cho admin — an tuong nhung sai vai tro se bi
   // chan lai o backend, nhung an di cho gon giao dien.
   const usersNav = document.getElementById('nav-users');
@@ -5765,10 +5774,18 @@ function renderUsersView(users, canManage) {
     : `<span class="cmdk-item-tag">${esc(ROLE_LABEL[u.role] || u.role)}</span>`;
 
   const rows = users.map(u => `
-    <div class="article-card" style="grid-template-columns:1fr auto auto">
+    <div class="article-card" style="grid-template-columns:1fr auto auto auto">
       <div class="art-info">
-        <div class="art-title">${esc(u.username)}${u.username === CURRENT_USER.username ? ' <span style="color:var(--muted);font-weight:400">(bạn)</span>' : ''}</div>
-        <div class="art-meta">${u.createdAt ? 'Tạo lúc ' + new Date(u.createdAt).toLocaleString('vi-VN') : ''}</div>
+        <div class="art-title" style="display:flex;align-items:center;gap:8px">
+          ${u.avatar ? `<img src="${esc(u.avatar)}" style="width:24px;height:24px;border-radius:50%;object-fit:cover" alt=""/>` : `<span style="width:24px;height:24px;border-radius:50%;background:#1d113a;border:1px solid #00e5ff;color:#00e5ff;font-size:10px;display:inline-flex;align-items:center;justify-content:center;font-weight:700">${esc((u.displayName || u.username).slice(0, 2).toUpperCase())}</span>`}
+          <span>${esc(u.displayName || u.username)}</span>
+          ${u.displayName ? `<small style="color:var(--muted);font-weight:400">(@${esc(u.username)})</small>` : ''}
+          ${u.username === CURRENT_USER.username ? '<span style="color:#00e5ff;font-weight:600;font-size:11px">(bạn)</span>' : ''}
+        </div>
+        <div class="art-meta">${u.jobTitle ? esc(u.jobTitle) + ' · ' : ''}${u.createdAt ? 'Tạo lúc ' + new Date(u.createdAt).toLocaleString('vi-VN') : ''}</div>
+      </div>
+      <div class="art-actions">
+        <button class="btn btn-secondary btn-sm" onclick="openAuthorProfileModal('${esc(u.username)}')">👤 Sửa hồ sơ</button>
       </div>
       <div class="art-actions">${roleSelectHtml(u)}</div>
       <div class="art-actions">
@@ -5864,6 +5881,197 @@ async function deleteUser(username) {
     loadUsers();
   } catch(e) {
     toast('error', e.message);
+  }
+}
+
+// ── Quản lý và điều chỉnh hồ sơ tác giả (Author Profile Modal) ──────────
+async function openAuthorProfileModal(targetUsername) {
+  const isEditingOther = !!targetUsername && targetUsername !== CURRENT_USER.username;
+  const username = targetUsername || CURRENT_USER.username;
+
+  let modal = document.getElementById('author-profile-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'author-profile-modal';
+    modal.className = 'modal-backdrop';
+    document.body.appendChild(modal);
+  }
+  modal.style.display = 'flex';
+  modal.innerHTML = `
+    <div class="modal-box" style="max-width:560px;width:95%">
+      <div class="modal-header">
+        <div class="modal-title">👤 Hồ sơ tác giả</div>
+        <button class="modal-close" onclick="closeAuthorProfileModal()">✕</button>
+      </div>
+      <div class="modal-body" style="padding:28px;text-align:center">
+        <div class="spinner" style="margin:20px auto"></div>
+        <p style="color:var(--muted)">Đang tải thông tin hồ sơ tác giả...</p>
+      </div>
+    </div>
+  `;
+
+  try {
+    const url = targetUsername ? `/api/admin/profile?username=${encodeURIComponent(targetUsername)}` : '/api/admin/profile';
+    const r = await fetch(url, { credentials: 'same-origin' });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.error || 'Không tải được hồ sơ.');
+
+    const u = data;
+    const authorSlug = u.role === 'admin' ? 'otahub' : u.username.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const publicUrl = `/author/${authorSlug}`;
+
+    modal.innerHTML = `
+      <div class="modal-box" style="max-width:560px;width:95%">
+        <div class="modal-header">
+          <div class="modal-title">👤 Điều chỉnh hồ sơ tác giả ${isEditingOther ? `(@${esc(u.username)})` : ''}</div>
+          <button class="modal-close" onclick="closeAuthorProfileModal()">✕</button>
+        </div>
+        <div class="modal-body" style="padding:22px;display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;align-items:center;gap:18px;padding:14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:10px">
+            <div id="apm-avatar-preview" style="width:72px;height:72px;border-radius:50%;background:#1d113a;border:2px solid #00e5ff;overflow:hidden;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px;color:#00e5ff;flex-shrink:0">
+              ${u.avatar ? `<img src="${esc(u.avatar)}" style="width:100%;height:100%;object-fit:cover" alt=""/>` : esc((u.displayName || u.username).slice(0, 2).toUpperCase())}
+            </div>
+            <div style="flex:1">
+              <div style="font-size:12px;font-weight:700;color:#00e5ff;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Ảnh đại diện tác giả</div>
+              <input type="text" id="apm-avatar" class="form-input" placeholder="/assets/img/... hoặc URL ảnh" value="${esc(u.avatar || '')}" style="font-size:12px;margin-bottom:8px" oninput="updateApmAvatarPreview()"/>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="apmPickAvatar()">📷 Chọn / Tải ảnh lên</button>
+            </div>
+          </div>
+
+          <div>
+            <label class="form-label" style="display:flex;justify-content:space-between">
+              <span>Tên hiển thị công khai (Display Name)</span>
+              <span style="font-size:11px;color:var(--muted)">Xuất hiện trên bài viết & trang tác giả</span>
+            </label>
+            <input type="text" id="apm-display-name" class="form-input" placeholder="Ví dụ: Anh Thư, Yu, OtaHub Editorial..." value="${esc(u.displayName || '')}" oninput="updateApmAvatarPreview()"/>
+          </div>
+
+          <div>
+            <label class="form-label" style="display:flex;justify-content:space-between">
+              <span>Chức danh / Vai trò hiển thị (Job Title)</span>
+              <span style="font-size:11px;color:var(--muted)">Ví dụ: Tác giả chuyên mục Anime, Senior Reviewer...</span>
+            </label>
+            <input type="text" id="apm-job-title" class="form-input" placeholder="Tác giả · Ban biên tập" value="${esc(u.jobTitle || '')}"/>
+          </div>
+
+          <div>
+            <label class="form-label" style="display:flex;justify-content:space-between">
+              <span>Tiểu sử tác giả (Bio)</span>
+              <span style="font-size:11px;color:var(--muted)">Xuất hiện ở phần đầu trang hồ sơ</span>
+            </label>
+            <textarea id="apm-bio" class="form-input" rows="3" placeholder="Giới thiệu đôi nét về bản thân, sở thích gaming/anime hoặc chuyên môn của tác giả..." style="resize:vertical">${esc(u.bio || '')}</textarea>
+          </div>
+
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(0,229,255,.05);border:1px dashed rgba(0,229,255,.25);border-radius:8px">
+            <span style="font-size:12.5px;color:#cfc9e8">Trang tác giả công khai:</span>
+            <a href="${publicUrl}" target="_blank" style="font-size:12.5px;color:#00e5ff;font-weight:600;text-decoration:none">Xem trang ngoài web ↗</a>
+          </div>
+
+          <div id="apm-error" class="setup-error" style="display:none"></div>
+        </div>
+        <div class="modal-footer" style="display:flex;justify-content:flex-end;gap:10px;padding:14px 22px">
+          <button type="button" class="btn btn-secondary" onclick="closeAuthorProfileModal()">Hủy</button>
+          <button type="button" class="btn btn-primary" id="apm-save-btn" onclick="saveAuthorProfile('${esc(u.username)}')">💾 Lưu hồ sơ</button>
+        </div>
+      </div>
+    `;
+  } catch(e) {
+    modal.innerHTML = `
+      <div class="modal-box" style="max-width:440px;width:95%">
+        <div class="modal-header">
+          <div class="modal-title">Lỗi</div>
+          <button class="modal-close" onclick="closeAuthorProfileModal()">✕</button>
+        </div>
+        <div class="modal-body" style="padding:20px;text-align:center">
+          <p style="color:#ff5577">${esc(e.message)}</p>
+          <button class="btn btn-secondary" style="margin-top:14px" onclick="closeAuthorProfileModal()">Đóng</button>
+        </div>
+      </div>
+    `;
+  }
+}
+
+function updateApmAvatarPreview() {
+  const val = (document.getElementById('apm-avatar')?.value || '').trim();
+  const prev = document.getElementById('apm-avatar-preview');
+  if (!prev) return;
+  if (val) {
+    prev.innerHTML = `<img src="${esc(val)}" style="width:100%;height:100%;object-fit:cover" onerror="this.parentNode.textContent='?'"/>`;
+  } else {
+    const dn = document.getElementById('apm-display-name')?.value || 'AT';
+    prev.textContent = dn.slice(0, 2).toUpperCase();
+  }
+}
+
+function apmPickAvatar() {
+  openMediaModal(res => {
+    if (res && res.src) {
+      const inp = document.getElementById('apm-avatar');
+      if (inp) {
+        inp.value = res.src;
+        updateApmAvatarPreview();
+      }
+    }
+  }, 'image');
+}
+
+function closeAuthorProfileModal() {
+  const m = document.getElementById('author-profile-modal');
+  if (m) m.style.display = 'none';
+}
+
+async function saveAuthorProfile(targetUsername) {
+  const btn = document.getElementById('apm-save-btn');
+  const errEl = document.getElementById('apm-error');
+  if (errEl) errEl.style.display = 'none';
+  if (btn) { btn.disabled = true; btn.textContent = 'Đang lưu...'; }
+
+  const displayName = (document.getElementById('apm-display-name')?.value || '').trim();
+  const jobTitle = (document.getElementById('apm-job-title')?.value || '').trim();
+  const bio = (document.getElementById('apm-bio')?.value || '').trim();
+  const avatar = (document.getElementById('apm-avatar')?.value || '').trim();
+
+  try {
+    const r = await fetch('/api/admin/profile', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ targetUsername, displayName, jobTitle, bio, avatar })
+    });
+    const res = await r.json();
+    if (!r.ok) throw new Error(res.error || 'Không lưu được hồ sơ.');
+
+    toast('success', '✅ Đã lưu thông tin hồ sơ tác giả thành công!');
+    closeAuthorProfileModal();
+
+    // Cập nhật ngay tên và avatar trên thanh header nếu đang sửa chính mình
+    if (!targetUsername || targetUsername === CURRENT_USER.username) {
+      CURRENT_USER.displayName = displayName;
+      CURRENT_USER.jobTitle = jobTitle;
+      CURRENT_USER.bio = bio;
+      CURRENT_USER.avatar = avatar;
+      const roleTxt = ROLE_LABEL[CURRENT_USER.role] || CURRENT_USER.role || '';
+      const userNameEl = document.getElementById('wtb-user-name');
+      if (userNameEl) userNameEl.textContent = 'Chào, ' + (displayName || CURRENT_USER.username) + (roleTxt ? ' · ' + roleTxt : '');
+      const avatarEl = document.getElementById('wtb-avatar');
+      if (avatarEl) {
+        if (avatar) {
+          avatarEl.innerHTML = `<img src="${esc(avatar)}" style="width:100%;height:100%;object-fit:cover;border-radius:50%" alt=""/>`;
+        } else {
+          avatarEl.textContent = (displayName || CURRENT_USER.username || 'AD').slice(0, 2).toUpperCase();
+        }
+      }
+    }
+    if (typeof CURRENT_VIEW !== 'undefined' && CURRENT_VIEW === 'users') loadUsers();
+  } catch(e) {
+    if (errEl) {
+      errEl.textContent = e.message;
+      errEl.style.display = 'block';
+    } else {
+      toast('error', e.message);
+    }
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = '💾 Lưu hồ sơ'; }
   }
 }
 
