@@ -228,3 +228,59 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
   }
 })();
 
+/* ── 🎬 Dynamic Video Auto-Embed (YouTube & Vimeo) ── */
+(function(){
+  function parseVideo(url) {
+    if (!url) return null;
+    url = url.trim();
+    var ym = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/i);
+    if (ym) return { provider: 'youtube', id: ym[1], embedUrl: 'https://www.youtube.com/embed/' + ym[1] };
+    var vm = url.match(/vimeo\.com\/(?:video\/)?(\d+)/i);
+    if (vm) return { provider: 'vimeo', id: vm[1], embedUrl: 'https://player.vimeo.com/video/' + vm[1] };
+    return null;
+  }
+
+  function autoEmbedVideos() {
+    var body = document.querySelector('.art-body, article.article');
+    if (!body) return;
+
+    var paras = body.querySelectorAll('p, div');
+    paras.forEach(function(p) {
+      if (p.closest('.art-video-embed, figure')) return;
+      var links = p.querySelectorAll('a');
+      var targetUrl = '';
+
+      if (links.length === 1) {
+        var pClone = p.cloneNode(true);
+        var linkInClone = pClone.querySelector('a');
+        var href = linkInClone.getAttribute('href') || linkInClone.textContent.trim();
+        linkInClone.remove();
+        var remainingText = pClone.textContent.replace(/[\s\u00a0]+/g, '').trim();
+        if (!remainingText) {
+          targetUrl = href;
+        }
+      } else if (links.length === 0) {
+        var raw = p.textContent.trim();
+        if (/^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/|vimeo\.com\/)[A-Za-z0-9_\-\/?=&;%]+$/i.test(raw)) {
+          targetUrl = raw;
+        }
+      }
+
+      if (targetUrl) {
+        var v = parseVideo(targetUrl);
+        if (v) {
+          var figure = document.createElement('figure');
+          figure.className = 'art-video-embed';
+          figure.innerHTML = '<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;"><iframe src="' + v.embedUrl + '" title="Video player" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>';
+          p.replaceWith(figure);
+        }
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', autoEmbedVideos);
+  } else {
+    autoEmbedVideos();
+  }
+})();
