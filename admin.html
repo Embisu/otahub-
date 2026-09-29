@@ -5243,13 +5243,14 @@ async function loadArticles(landOnDashboard) {
   try {
     let js = '';
     try {
-      const data = await ghGet('assets/search.js');
-      js = decodeURIComponent(escape(atob(data.content)));
-    } catch(err) {
+      const r = await fetch('/assets/search.js?nocache=' + Date.now(), { cache: 'no-store' });
+      if (r.ok) js = await r.text();
+    } catch(e) {}
+    if (!js) {
       try {
-        const r = await fetch('/assets/search.js');
-        if (r.ok) js = await r.text();
-      } catch(e) {}
+        const data = await ghGet('assets/search.js');
+        js = decodeURIComponent(escape(atob(data.content)));
+      } catch(err) {}
     }
     let idx = null;
     if (js) {
@@ -8808,8 +8809,15 @@ async function seoDashboardRunFullScan() {
     while (queue.length) {
       const a = queue.shift();
       try {
-        const data = await ghGet(a.file);
-        const html = decodeURIComponent(escape(atob(data.content)));
+        let html = '';
+        try {
+          const r = await fetch('/' + a.file + '?nocache=' + Date.now());
+          if (r.ok) html = await r.text();
+        } catch(e) {}
+        if (!html) {
+          const data = await ghGet(a.file);
+          html = decodeURIComponent(escape(atob(data.content)));
+        }
         const { title, desc, keyword, slug, bodyHtml } = extractSeoInputsFromHtml(html, a.file);
         SEO_SCORES[a.file] = computeSeoScoreCore(title, desc, keyword, slug, bodyHtml);
       } catch(e) {
@@ -11630,7 +11638,10 @@ async function addToLatestNews(isEn, slug, title, desc, cat, hero) {
   for (let attempt = 1; attempt <= MAX_TRIES; attempt++) {
     const data = await ghGet(homeFile);
     let html = decodeURIComponent(escape(atob(String(data.content || '').replace(/\s/g, ''))));
-    if (html.includes(`href="${href}"`)) return; // đã có sẵn (vd. lưu nhiều lần liên tiếp), tránh trùng
+    if (html.includes('<div class="tick-track">') && !html.includes(`href="${href}"`)) {
+      const tick = `\n      <span class="tick-item">🔥 <strong>${esc(cat || 'Gaming')}:</strong> <a href="${href}" style="color:inherit;text-decoration:none">${esc(title)}</a></span>`;
+      html = html.replace('<div class="tick-track">', '<div class="tick-track">' + tick);
+    }
 
     const card = `<article class="w-card"><a href="${href}" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">${esc(cat || 'Gaming')}</div><div class="wc-t">${esc(title)}</div><div class="wc-m">OtaHub Editorial · ${esc(dateDisp)}</div></div><div class="wc-thumb"><img src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy" width="1200" height="675"></div></a></article>\n      `;
     const anchor = '<div class="latest-wrap">\n<div>\n';
@@ -14245,38 +14256,7 @@ async function syncNewArticle(art) {
       }
     } catch(e) { console.warn('News sync error:', e); }
 
-    // 5. Update index.html
-    toast('success', '🏠 Đang dồn bài lên đầu Trang chủ...');
-    try {
-      const homeData = await ghGet('index.html');
-      let homeHtml = decodeURIComponent(escape(atob(homeData.content)));
-      
-      const isBreaking = false;
-      if (homeHtml.includes('<div class="tick-track">') && !homeHtml.includes(esc(title))) {
-        const tickIcon = isBreaking ? '🔴' : '🔥';
-        const tickLabel = isBreaking ? 'BREAKING · ' + (cat || 'TIN MỚI') : (cat || 'TIN MỚI');
-        homeHtml = homeHtml.replace('<div class="tick-track">', () => `<div class="tick-track">
-      <span class="tick-item">${tickIcon} <strong>${esc(tickLabel)}:</strong> <a href="/${slug}" style="color:inherit;text-decoration:none">${esc(title)}</a></span>`);
-      }
-      if (isBreaking) {
-        const hs = homeHtml.indexOf('<div class="hero-main"');
-        const he = homeHtml.indexOf('<aside class="hero-side">');
-        if (hs > 0 && he > hs) {
-          let h = homeHtml.slice(hs, he);
-          const sub = desc || title;
-          h = h.replace(/location\.href='[^']*'/, () => "location.href='/" + slug + "'")
-            .replace(/background-image:url\([^)]*\)/,() => 'background-image:url(' + (hero || '/assets/img/placeholder.svg') + ')')
-            .replace(/(id="h-tag"[^>]*>)[^<]*/, (m, p) => p + '🔴 BREAKING NEWS · ' + esc((cat || 'TIN MỚI').toUpperCase()))
-            .replace(/(id="h-title">)[^<]*/, (m, p) => p + esc(title))
-            .replace(/(id="h-sub">)[^<]*/, (m, p) => p + esc(sub))
-            .replace(/(id="h-time">)[^<]*/, (m, p) => p + new Date().toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' }))
-            .replace(/(<a href=")[^"]*(" class="read-more")/, (m, p, q) => p + '/' + slug + q);
-          homeHtml = homeHtml.slice(0, hs) + h + homeHtml.slice(he);
-        }
-      }
-      
-      await ghPut('index.html', homeHtml, homeData.sha, `[admin] don tin /${slug} len index.html`);
-    } catch(e) { console.warn('Home sync error:', e); }
+    // 5. Update index.html được thực hiện nguyên tử qua addToLatestNews() / promoteToHomeHero() ngay sau đó.
 
     // "Tin Mới Nhất" (latest-wrap) được thêm riêng qua addToLatestNews() ở saveArticle() —
     // bản cũ ở đây từng chèn href="/news" cố định thay vì href thật của bài, và điều kiện

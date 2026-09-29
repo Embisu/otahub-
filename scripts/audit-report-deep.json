@@ -1608,26 +1608,6 @@
     ]
   },
   {
-    "relPath": "the-eminence-in-shadow-roguelite-game-announcement.html",
-    "title": "The Eminence in Shadow Công Bố Tựa Game Roguelite Mới",
-    "words": 168,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (168 từ, < 200 từ)"
-      }
-    ]
-  },
-  {
     "relPath": "the-summer-hikaru-died-ket-thuc.html",
     "title": "The Summer Hikaru Died Sẽ Kết Thúc, Chốt Ngày 20/10",
     "words": 281,
@@ -1644,6 +1624,30 @@
       {
         "type": "THIN_CONTENT",
         "detail": "Nội dung tương đối ngắn (281 từ)"
+      }
+    ]
+  },
+  {
+    "relPath": "tieu-chuan-danh-gia.html",
+    "title": "Tiêu Chuẩn Đánh Giá",
+    "words": 0,
+    "isEn": false,
+    "flags": {
+      "isTruncated": false,
+      "isHallucinated": false,
+      "isShort": true,
+      "hasBrokenImages": false,
+      "hasPlaceholders": false,
+      "hasHtmlErrors": true
+    },
+    "issues": [
+      {
+        "type": "SHORT_CONTENT",
+        "detail": "Nội dung quá ngắn (0 từ, < 200 từ)"
+      },
+      {
+        "type": "MISSING_BODY",
+        "detail": "Không tìm thấy thẻ <article class=\"art-body\">"
       }
     ]
   },

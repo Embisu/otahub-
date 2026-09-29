@@ -10,7 +10,7 @@
     "news:db:local": "wrangler d1 migrations apply otahub-news --local",
     "news:db:remote": "wrangler d1 migrations apply otahub-news --remote",
     "news:dev": "wrangler dev --test-scheduled",
-    "deploy:check": "wrangler deploy --dry-run"
+    "deploy:check": "node scripts/audit-public-html-safety.mjs && wrangler deploy --dry-run"
   },
   "author": "OtaHub Team",
   "license": "ISC",

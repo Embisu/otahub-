@@ -259,6 +259,14 @@ async function handleGhGet(request, env, ghPath, url) {
   const ref = url.searchParams.get('ref') || GH_BRANCH;
   const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}?ref=${ref}`, { headers: ghHeaders(env) });
   if (!r.ok) {
+    const errBody = await r.json().catch(() => ({}));
+    await logAudit(env, {
+      action: 'gh_get_failed',
+      username: user.username,
+      file: ghPath,
+      status: r.status,
+      error: errBody.message || ('status ' + r.status)
+    });
     // Nếu đọc file thất bại qua GitHub, thử đọc file tĩnh qua env.ASSETS (fallback an toàn cho editor)
     if (env.ASSETS && request.method === 'GET') {
       try {
@@ -276,7 +284,6 @@ async function handleGhGet(request, env, ghPath, url) {
         }
       } catch(e) {}
     }
-    const errBody = await r.json().catch(() => ({}));
     const detail = errBody.message ? ` (${errBody.message})` : '';
     return json({ error: 'GitHub API error: ' + r.status + detail }, r.status);
   }
@@ -401,13 +408,36 @@ async function handleGhPut(request, env, ghPath) {
     content,
     branch: GH_BRANCH,
   };
-  if (sha) putPayload.sha = sha;
+  const is40HexSha = typeof sha === 'string' && /^[0-9a-f]{40}$/i.test(sha.trim());
+  if (is40HexSha) putPayload.sha = sha.trim();
 
-  const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}`, {
+  let r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}`, {
     method: 'PUT',
     headers: { ...ghHeaders(env), 'Content-Type': 'application/json' },
     body: JSON.stringify(putPayload),
   });
+
+  // Nếu gặp lỗi 409 Conflict (SHA không khớp, SHA stale hoặc file đã tồn tại trên GitHub):
+  // Tự động truy vấn SHA mới nhất từ GitHub và thử commit lại ngay lập tức
+  if (r.status === 409) {
+    try {
+      const getLatest = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}?ref=${GH_BRANCH}`, {
+        headers: ghHeaders(env),
+      });
+      if (getLatest.ok) {
+        const latestData = await getLatest.json();
+        if (latestData.sha && latestData.sha !== putPayload.sha) {
+          putPayload.sha = latestData.sha;
+          r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}`, {
+            method: 'PUT',
+            headers: { ...ghHeaders(env), 'Content-Type': 'application/json' },
+            body: JSON.stringify(putPayload),
+          });
+        }
+      }
+    } catch(e) {}
+  }
+
   if (!r.ok) {
     const e = await r.json().catch(() => ({}));
     await logAudit(env, { action: 'write_failed', username: user.username, file: ghPath, error: e.message || r.status });
