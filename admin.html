@@ -7641,6 +7641,24 @@ function renderEditor(file, html) {
           </div>
         </div>
 
+        <!-- Postbox 3b: Quảng bá lên Trang chủ -->
+        <div class="postbox" id="postpromotediv">
+          <div class="postbox-header" onclick="togglePostbox(this)">
+            <h2><span>🔥</span> Quảng bá lên Trang chủ</h2>
+            <button type="button" class="postbox-toggle-btn">▾</button>
+          </div>
+          <div class="inside">
+            <label style="display:flex;align-items:flex-start;gap:8px;font-size:12.5px;line-height:1.5;cursor:pointer">
+              <input type="checkbox" id="ed-promote-hero" style="margin-top:2px"/>
+              <span>Đặt làm <strong>Tiêu điểm Trang chủ (Hero)</strong> khi lưu — Hero hiện tại sẽ tự động đẩy xuống đầu danh sách "Tin Mới Nhất", đồng bộ cả bản EN nếu đã có bản dịch.</span>
+            </label>
+            <div style="margin-top:10px">
+              <label class="form-label">Nhãn phụ trên Hero (tuỳ chọn, vd: "GTA Online", "Elbaf")</label>
+              <input type="text" id="ed-promote-sublabel" class="form-input" placeholder="Để trống nếu không cần"/>
+            </div>
+          </div>
+        </div>
+
         <!-- Postbox 4: Highlight Box (Tóm tắt điểm nhấn) -->
         <div class="postbox" id="side-box-hb">
           <div class="postbox-header" onclick="togglePostbox(this)">
@@ -11127,6 +11145,17 @@ async function saveArticle() {
     if (needSync) {
       await syncNewArticle({ file: currentFile, title, desc, cat, hero });
     }
+
+    if (document.getElementById('ed-promote-hero')?.checked) {
+      const subLabel = cleanPlainText(document.getElementById('ed-promote-sublabel')?.value || '');
+      try {
+        await promoteToHomeHero(currentFile.replace(/\.html$/, ''), title, desc, cat, hero, subLabel);
+        toast('success', '🔥 Đã đặt làm Tiêu điểm Trang chủ (VI + EN nếu có bản dịch)!');
+      } catch (e) {
+        console.warn('promoteToHomeHero error:', e);
+        toast('error', 'Lỗi đặt Tiêu điểm Trang chủ: ' + e.message);
+      }
+    }
   } catch(e) {
     if (dot) dot.className = 'status-dot error';
     if (txt) txt.textContent = 'Lỗi: ' + e.message;
@@ -11136,6 +11165,65 @@ async function saveArticle() {
       b.textContent = b.dataset.origText || (isNewFile ? '🚀 Đăng bài' : '💾 Cập nhật');
       b.disabled = false;
     });
+  }
+}
+
+// Đặt bài vừa lưu làm Tiêu điểm Trang chủ (Hero/Breaking News): Hero hiện tại được
+// đẩy xuống thành thẻ đầu tiên trong "Tin Mới Nhất" (latest-wrap), rồi Hero mới thay vào chỗ đó.
+// Tự áp dụng cho cả index.html (VI) và en/index.html (nếu bài đã có bản dịch EN) trong 1 lần gọi.
+// CỐ Ý không dùng loadHomeData()/buildHomeHtml() (bộ máy của homeEditor visual): kiểm thử cho thấy
+// endAnchor của khối ticker ('</div></div>') không khớp với HTML thật (3 thẻ </div> nằm trên 3 dòng
+// riêng, có thụt lề) khiến buildHomeHtml lẫn nội dung ticker/hero-side vào nhau mỗi lần build lại —
+// một lỗi có sẵn, ảnh hưởng cả nút "Lưu & Deploy" của trang Trang chủ hiện tại. Hàm này chỉ đụng
+// đúng khối Hero + đầu danh sách Tin Mới Nhất bằng các regex hẹp, đã kiểm chứng khớp HTML thật,
+// để không kéo theo lỗi đó.
+async function promoteToHomeHero(slug, viTitle, viDesc, cat, heroImg, subLabel) {
+  const catLabel = subLabel ? `${cat || 'Gaming'} · ${subLabel}` : (cat || 'Gaming');
+  const tagLabel = `🔴 BREAKING NEWS · ${(cat || 'Gaming').toUpperCase()}`;
+
+  async function applyTo(file, href, title, desc, dateDisp, authorLabel) {
+    const data = await ghGet(file);
+    let html = decodeURIComponent(escape(atob(String(data.content || '').replace(/\s/g, ''))));
+
+    const oldHero = homeHeroFields(html);
+    if (oldHero.href === href) return; // Bài này đã là Hero rồi, không tự đẩy chính mình xuống danh sách
+
+    if (oldHero.title && oldHero.href) {
+      const oldCard = `<article class="w-card"><a href="${oldHero.href}" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">${esc((oldHero.cat || '').split(' · ')[0] || cat || 'Gaming')}</div><div class="wc-t">${esc(oldHero.title)}</div><div class="wc-m">${esc(authorLabel)} · ${esc(oldHero.date)}</div></div><div class="wc-thumb"><img src="${oldHero.img}" alt="${esc(oldHero.title)}" loading="lazy" width="1200" height="675"></div></a></article>\n      `;
+      const anchor = '<div class="latest-wrap">\n<div>\n';
+      const ai = html.indexOf(anchor);
+      if (ai !== -1) {
+        const insertAt = ai + anchor.length;
+        // Không thêm trùng nếu bài đó đã có sẵn ở đầu danh sách (vd. lưu nhiều lần liên tiếp)
+        const already = html.slice(insertAt, insertAt + 4000).includes(`href="${oldHero.href}"`);
+        if (!already) html = html.slice(0, insertAt) + oldCard + html.slice(insertAt);
+      }
+    }
+
+    html = html.replace(/(<div class="hero-main" onclick="location\.href=')[^']*(')/, (m,p1,p2)=>p1+href.replace(/'/g,"\\'")+p2);
+    html = html.replace(/(<div class="h-img" style="background-image:url\()[^)]*(\)">)/, (m,p1,p2)=>p1+heroImg+p2);
+    html = html.replace(/(<span class="tag tag-s tag-live" id="h-tag"[^>]*>)[^<]*(<\/span>)/, (m,p1,p2)=>p1+tagLabel+p2);
+    html = html.replace(/(id="h-title">)[^<]*(<)/, (m,p1,p2)=>p1+esc(title)+p2);
+    html = html.replace(/(id="h-sub">)[^<]*(<)/, (m,p1,p2)=>p1+esc(desc)+p2);
+    html = html.replace(/(class="h-meta-cat">)[^<]*(<)/, (m,p1,p2)=>p1+esc(catLabel)+p2);
+    html = html.replace(/(id="h-time">)[^<]*(<)/, (m,p1,p2)=>p1+esc(dateDisp)+p2);
+    html = html.replace(/(<a href=")[^"]*(" class="read-more" id="h-read")/, (m,p1,p2)=>p1+href+p2);
+
+    await ghPut(file, html, data.sha, `[admin] dat "${title.slice(0,50)}" lam Tieu diem Trang chu`);
+  }
+
+  const dateVi = new Date().toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  await applyTo('index.html', `/${slug}`, viTitle, viDesc, dateVi, 'OtaHub Editorial');
+
+  try {
+    const enData = await ghGet(`en/${slug}.html`);
+    const enHtml = decodeURIComponent(escape(atob(String(enData.content || '').replace(/\s/g, ''))));
+    const enTitle = hUnesc(fieldGet(enHtml, /<h1 class="art-hero-title">([^<]*)</)) || viTitle;
+    const enDesc = hUnesc(fieldGet(enHtml, /<p class="art-hero-excerpt">([^<]*)</)) || viDesc;
+    const dateEn = new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
+    await applyTo('en/index.html', `/en/${slug}`, enTitle, enDesc, dateEn, 'OtaHub Editorial');
+  } catch (e) {
+    console.warn('Khong co ban EN de dong bo hero:', e.message);
   }
 }
 
@@ -12068,7 +12156,7 @@ function homeHeroFields(html) {
     cat: fieldGet(html, /class="h-meta-cat">([^<]*)</),
     date: fieldGet(html, /id="h-time">([^<]*)</),
     href: fieldGet(html, /<a href="([^"]*)" class="read-more" id="h-read"/),
-    img: fieldGet(html, /\.h-img\{[^}]*background:url\('([^']*)'\)/),
+    img: fieldGet(html, /<div class="h-img" style="background-image:url\(([^)]*)\)">/),
   };
 }
 
@@ -12352,7 +12440,7 @@ function buildHomeHtml(rawHtml, D) {
   html = html.replace(/(id="h-time">)[^<]*(<)/, (m,p1,p2)=>p1+esc(h.date)+p2);
   html = html.replace(/(<a href=")[^"]*(" class="read-more" id="h-read")/, (m,p1,p2)=>p1+esc(h.href)+p2);
   html = html.replace(/(<div class="hero-main" onclick="location\.href=')[^']*(')/, (m,p1,p2)=>p1+h.href.replace(/\\/g,'\\\\').replace(/'/g,"\\'")+p2);
-  html = html.replace(/(\.h-img\{[^}]*background:url\(')[^']*('\))/, (m,p1,p2)=>p1+h.img.replace(/\\/g,'\\\\').replace(/'/g,"\\'")+p2);
+  html = html.replace(/(<div class="h-img" style="background-image:url\()[^)]*(\)">)/, (m,p1,p2)=>p1+h.img+p2);
 
   html = hReplaceSection(html, '<aside class="hero-side">', '</aside>', () =>
     D.heroSidePrefix + D.heroSide.map(x=>x.raw).join('\n\n\n    ') + '\n\n\n  ');
