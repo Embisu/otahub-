@@ -11179,11 +11179,13 @@ function applyArticleEditsToHtml(baseHtml) {
 function stampArticleAuthor(html, authorName) {
   const author = cleanPlainText(authorName) || 'OtaHub';
   const escaped = esc(author);
+  const profileSlug = CURRENT_USER?.role === 'admin' ? 'otahub' : author.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const profilePrefix = /<html\b[^>]*\blang="en"/i.test(html) ? '/en/author/' : '/author/';
   const jsonAuthor = author.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
   html = html.replace(/(<meta\s+name="author"\s+content=")[^"]*(")/i, `$1${escaped}$2`);
   html = html.replace(/(<meta\s+property="article:author"\s+content=")[^"]*(")/i, `$1${escaped}$2`);
   html = html.replace(/("author"\s*:\s*\{[\s\S]*?"name"\s*:\s*")[^"]*(")/i, `$1${jsonAuthor}$2`);
-  html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-badge[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${escaped}$2`);
+  html = html.replace(/(?:<a\b[^>]*class="author-profile-link"[^>]*>)?(<span\b[^>]*\bclass="[^"]*am-badge[^"]*"[^>]*>)[\s\S]*?(<\/span>)(?:<\/a>)?/i, `<a class="author-profile-link" href="${profilePrefix}${profileSlug}">$1${escaped}$2</a>`);
   return html;
 }
 
@@ -12072,7 +12074,7 @@ function newArticle(prefillTitle) {
 <span class="am-sep"></span>
 <span class="am-read">5 phút đọc</span>
 <span class="am-sep"></span>
-<span class="am-badge">${esc(authorName)}</span>
+<a class="author-profile-link" href="/author/${CURRENT_USER?.role === 'admin' ? 'otahub' : String(authorName).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}"><span class="am-badge">${esc(authorName)}</span></a>
 </div>
 
 <div class="highlight-box">

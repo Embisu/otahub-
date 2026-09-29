@@ -7,6 +7,7 @@
     "publish": "node scripts/publish-article.mjs",
     "ping": "node scripts/ping-indexnow.mjs",
     "audit": "node scripts/live-audit.mjs",
+    "authors:build": "node scripts/generate-author-profiles.mjs",
     "news:db:local": "wrangler d1 migrations apply otahub-news --local",
     "news:db:remote": "wrangler d1 migrations apply otahub-news --remote",
     "news:dev": "wrangler dev --test-scheduled",
