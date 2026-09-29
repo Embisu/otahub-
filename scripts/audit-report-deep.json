@@ -360,6 +360,30 @@
     ]
   },
   {
+    "relPath": "dieu-khoan-su-dung.html",
+    "title": "Điều Khoản Sử Dụng",
+    "words": 0,
+    "isEn": false,
+    "flags": {
+      "isTruncated": false,
+      "isHallucinated": false,
+      "isShort": true,
+      "hasBrokenImages": false,
+      "hasPlaceholders": false,
+      "hasHtmlErrors": true
+    },
+    "issues": [
+      {
+        "type": "SHORT_CONTENT",
+        "detail": "Nội dung quá ngắn (0 từ, < 200 từ)"
+      },
+      {
+        "type": "MISSING_BODY",
+        "detail": "Không tìm thấy thẻ <article class=\"art-body\">"
+      }
+    ]
+  },
+  {
     "relPath": "dragon-ball-sparking-zero-dlc-season-pass-daima.html",
     "title": "Sparking Zero: DLC Season Pass Thêm Nhân Vật Daima",
     "words": 212,
@@ -636,6 +660,26 @@
       {
         "type": "THIN_CONTENT",
         "detail": "Nội dung tương đối ngắn (293 từ)"
+      }
+    ]
+  },
+  {
+    "relPath": "gintama-sorachi-tung-nghi-anime-se-that-bai.html",
+    "title": "Cha Đẻ Gintama Thú Nhận: Từng Nghĩ Bản Anime Sẽ Thất Bại",
+    "words": 662,
+    "isEn": false,
+    "flags": {
+      "isTruncated": false,
+      "isHallucinated": false,
+      "isShort": false,
+      "hasBrokenImages": true,
+      "hasPlaceholders": false,
+      "hasHtmlErrors": false
+    },
+    "issues": [
+      {
+        "type": "BROKEN_IMAGE",
+        "detail": "Ảnh không tồn tại: /assets/img/dvt9allq-conan-30go-eyecatch.jpg"
       }
     ]
   },
@@ -1196,6 +1240,26 @@
       {
         "type": "THIN_CONTENT",
         "detail": "Nội dung tương đối ngắn (276 từ)"
+      }
+    ]
+  },
+  {
+    "relPath": "one-piece-chuong-1192-luffy-xuyen-thung-khien-imu-do-mau.html",
+    "title": "One Piece Chương 1192: Luffy Xuyên Thủng Lá Chắn, Khiến Imu Đổ Máu",
+    "words": 336,
+    "isEn": false,
+    "flags": {
+      "isTruncated": false,
+      "isHallucinated": false,
+      "isShort": true,
+      "hasBrokenImages": false,
+      "hasPlaceholders": false,
+      "hasHtmlErrors": false
+    },
+    "issues": [
+      {
+        "type": "THIN_CONTENT",
+        "detail": "Nội dung tương đối ngắn (336 từ)"
       }
     ]
   },
@@ -2060,6 +2124,26 @@
     ]
   },
   {
+    "relPath": "en/detective-conan-case-30-murder-30th-anniversary-special.html",
+    "title": "Detective Conan Case 30 Murder: 30th Anniversary 2-Hour TV Special",
+    "words": 279,
+    "isEn": true,
+    "flags": {
+      "isTruncated": false,
+      "isHallucinated": false,
+      "isShort": true,
+      "hasBrokenImages": false,
+      "hasPlaceholders": false,
+      "hasHtmlErrors": false
+    },
+    "issues": [
+      {
+        "type": "THIN_CONTENT",
+        "detail": "Nội dung tương đối ngắn (279 từ)"
+      }
+    ]
+  },
+  {
     "relPath": "en/detective-conan-final-chapter.html",
     "title": "Gosho Aoyama Drafts Detective Conan's Final Chapter",
     "words": 225,
@@ -2420,6 +2504,26 @@
     ]
   },
   {
+    "relPath": "en/gintama-creator-hideaki-sorachi-thought-anime-would-flop.html",
+    "title": "Gintama Creator Admits He Thought the Anime Would Flop",
+    "words": 540,
+    "isEn": true,
+    "flags": {
+      "isTruncated": false,
+      "isHallucinated": false,
+      "isShort": false,
+      "hasBrokenImages": true,
+      "hasPlaceholders": false,
+      "hasHtmlErrors": false
+    },
+    "issues": [
+      {
+        "type": "BROKEN_IMAGE",
+        "detail": "Ảnh không tồn tại: /assets/img/dvt9allq-conan-30go-eyecatch.jpg"
+      }
+    ]
+  },
+  {
     "relPath": "en/girls-frontline-2-exilium-beginners-guide.html",
     "title": "Girls' Frontline 2: Exilium Beginner's Guide",
     "words": 149,
@@ -2436,26 +2540,6 @@
       {
         "type": "SHORT_CONTENT",
         "detail": "Nội dung quá ngắn (149 từ, < 200 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "en/girls-frontline-2-luu-day-vietnam-launch.html",
-    "title": "Girls' Frontline 2: Exilium Launches in Vietnam",
-    "words": 64,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (64 từ, < 200 từ)"
       }
     ]
   },
@@ -2760,26 +2844,6 @@
     ]
   },
   {
-    "relPath": "en/jojo-steel-ball-run-stages-2-3-premiere-september-25.html",
-    "title": "JoJo Steel Ball Run Stages 2–3 Premiere September 25",
-    "words": 145,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (145 từ, < 200 từ)"
-      }
-    ]
-  },
-  {
     "relPath": "en/jujutsu-kaisen-chapter-271-final-climax-epilogue.html",
     "title": "Jujutsu Kaisen Manga Ends at Chapter 271 (September 30, 2024)",
     "words": 152,
@@ -3080,26 +3144,6 @@
     ]
   },
   {
-    "relPath": "en/monster-hunter-wilds-pc-demo-system-requirements.html",
-    "title": "Monster Hunter Wilds Launched February 28, 2025",
-    "words": 86,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (86 từ, < 200 từ)"
-      }
-    ]
-  },
-  {
     "relPath": "en/monster-hunter-wilds-title-update-4-gogmazios-ascendance-2027.html",
     "title": "Monster Hunter Wilds: Title Update 4 Adds Gogmazios",
     "words": 129,
@@ -3160,26 +3204,6 @@
     ]
   },
   {
-    "relPath": "en/nintendo-direct-september-2026-switch-2-mario-kart-9.html",
-    "title": "Nintendo Direct September 2026: Zelda 40th, Ocarina Remake",
-    "words": 77,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (77 từ, < 200 từ)"
-      }
-    ]
-  },
-  {
     "relPath": "en/nintendo-switch-2-price-increase-499-mario-kart-world-bundle.html",
     "title": "Nintendo Switch 2 Price Rises to $499.99",
     "words": 133,
@@ -3216,6 +3240,50 @@
       {
         "type": "THIN_CONTENT",
         "detail": "Nội dung tương đối ngắn (236 từ)"
+      }
+    ]
+  },
+  {
+    "relPath": "en/one-piece-1194-spoiler-zoro-unleashes-new-power-mihawk-flashback.html",
+    "title": "One Piece 1194 Spoilers: Zoro Unleashes New Power, Mihawk Flashback",
+    "words": 267,
+    "isEn": true,
+    "flags": {
+      "isTruncated": false,
+      "isHallucinated": false,
+      "isShort": true,
+      "hasBrokenImages": false,
+      "hasPlaceholders": false,
+      "hasHtmlErrors": false
+    },
+    "issues": [
+      {
+        "type": "THIN_CONTENT",
+        "detail": "Nội dung tương đối ngắn (267 từ)"
+      }
+    ]
+  },
+  {
+    "relPath": "en/one-piece-chapter-1192-luffy-pierces-imus-shield.html",
+    "title": "One Piece Chapter 1192: Luffy Pierces the Shield, Draws First Blood From Imu",
+    "words": 250,
+    "isEn": true,
+    "flags": {
+      "isTruncated": false,
+      "isHallucinated": true,
+      "isShort": true,
+      "hasBrokenImages": false,
+      "hasPlaceholders": false,
+      "hasHtmlErrors": false
+    },
+    "issues": [
+      {
+        "type": "THIN_CONTENT",
+        "detail": "Nội dung tương đối ngắn (250 từ)"
+      },
+      {
+        "type": "HALLUCINATION",
+        "detail": "Chapter One Piece bịa đặt (1191-1193)"
       }
     ]
   },
@@ -3580,6 +3648,26 @@
     ]
   },
   {
+    "relPath": "en/roman-sands-re-build-trapped-in-a-collapsing-vaporwave-nightmare.html",
+    "title": "Roman Sands RE:Build: Trapped in a Collapsing Vaporwave Nightmare",
+    "words": 328,
+    "isEn": true,
+    "flags": {
+      "isTruncated": false,
+      "isHallucinated": false,
+      "isShort": true,
+      "hasBrokenImages": false,
+      "hasPlaceholders": false,
+      "hasHtmlErrors": false
+    },
+    "issues": [
+      {
+        "type": "THIN_CONTENT",
+        "detail": "Nội dung tương đối ngắn (328 từ)"
+      }
+    ]
+  },
+  {
     "relPath": "en/sekiro-no-defeat-anime-release.html",
     "title": "Sekiro: No Defeat Anime Confirms Sept 4 Theatrical Release",
     "words": 345,
@@ -3720,26 +3808,6 @@
     ]
   },
   {
-    "relPath": "en/solo-leveling-ragnarok-webtoon-english-volume-1.html",
-    "title": "Solo Leveling: Ragnarok Gets English Volume 1",
-    "words": 66,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (66 từ, < 200 từ)"
-      }
-    ]
-  },
-  {
     "relPath": "en/solo-leveling-season-2-arise-from-the-shadow-premiere.html",
     "title": "Solo Leveling Season 2: 13 Episodes, Aired Jan–Mar 2025",
     "words": 215,
@@ -3836,26 +3904,6 @@
       {
         "type": "THIN_CONTENT",
         "detail": "Nội dung tương đối ngắn (258 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "en/tekken8-season2.html",
-    "title": "Tekken 8 Season 2: Four DLC Characters in 2025",
-    "words": 95,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (95 từ, < 200 từ)"
       }
     ]
   },
@@ -4060,26 +4108,6 @@
     ]
   },
   {
-    "relPath": "en/vct-pacific-2026.html",
-    "title": "VCT Pacific 2026 Stage 2: Global Esports Win",
-    "words": 91,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (91 từ, < 200 từ)"
-      }
-    ]
-  },
-  {
     "relPath": "en/viz-manga-releases-august-18-2026.html",
     "title": "VIZ Manga Releases for August 18, 2026: Vagabond &amp; More",
     "words": 144,
@@ -4176,26 +4204,6 @@
       {
         "type": "THIN_CONTENT",
         "detail": "Nội dung tương đối ngắn (263 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "en/youjo-senki-ii-season-wrap-up.html",
-    "title": "Youjo Senki II Has Finished Airing After 12 Episodes",
-    "words": 163,
-    "isEn": true,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (163 từ, < 200 từ)"
       }
     ]
   },
