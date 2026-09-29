@@ -3700,6 +3700,12 @@ async function doLogin() {
 }
 
 const ROLE_LABEL = { admin: 'Admin', editor: 'Editor', author: 'Author', contributor: 'Contributor' };
+
+// Tài khoản admin đại diện thương hiệu; các tài khoản khác giữ đúng tên người đăng.
+function publishingAuthorName() {
+  const username = cleanPlainText(CURRENT_USER?.username || '').trim();
+  return CURRENT_USER?.role === 'admin' ? 'OtaHub' : (username || 'OtaHub');
+}
 function startApp() {
   document.getElementById('setup-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
@@ -7133,7 +7139,7 @@ function updateSchemaPreview() {
       "dateModified": pubDate,
       "author": {
         "@type": "Organization",
-        "name": "OtaHub Editorial Team",
+        "name": publishingAuthorName(),
         "url": "https://otahub.asia"
       },
       "publisher": {
@@ -8192,6 +8198,7 @@ async function createEnglishArticleFromAi(targetFile, enTitle, enDesc) {
     const heroImg = document.getElementById('ed-hero')?.value || '';
     const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
     const bodyHtml = getCurrentBodyHtml();
+    const authorName = hUnesc(fieldGet(currentRawHtml || '', /<meta name="author" content="([^"]*)"/)) || publishingAuthorName();
 
     let blocksClone = null;
     if (BODY_BLOCKS) {
@@ -8209,7 +8216,7 @@ async function createEnglishArticleFromAi(targetFile, enTitle, enDesc) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="${esc(enDesc)}">
-<meta name="author" content="OtaHub Editorial">
+<meta name="author" content="${esc(authorName)}">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta property="og:type" content="article">
 <meta property="og:title" content="${esc(enTitle)} · OtaHub">
@@ -11169,6 +11176,17 @@ function applyArticleEditsToHtml(baseHtml) {
   return html;
 }
 
+function stampArticleAuthor(html, authorName) {
+  const author = cleanPlainText(authorName) || 'OtaHub';
+  const escaped = esc(author);
+  const jsonAuthor = author.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+  html = html.replace(/(<meta\s+name="author"\s+content=")[^"]*(")/i, `$1${escaped}$2`);
+  html = html.replace(/(<meta\s+property="article:author"\s+content=")[^"]*(")/i, `$1${escaped}$2`);
+  html = html.replace(/("author"\s*:\s*\{[\s\S]*?"name"\s*:\s*")[^"]*(")/i, `$1${jsonAuthor}$2`);
+  html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-badge[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${escaped}$2`);
+  return html;
+}
+
 // Tự động quét và làm sạch toàn bộ dữ liệu khối trước khi lưu/đồng bộ
 function sanitizeAllBlocksData() {
   if (!BODY_BLOCKS) return 0;
@@ -11410,6 +11428,8 @@ async function saveArticle() {
       if (!html || html.length < 200 || !/<html/i.test(html)) html = currentRawHtml;
     }
     html = applyArticleEditsToHtml(html);
+    const publishingAuthor = publishingAuthorName();
+    if (isNewFile) html = stampArticleAuthor(html, publishingAuthor);
     html = await externalizeInlineImages(html);
     if (!html || html.length < 500 || !/<html/i.test(html)) throw new Error('Nội dung bài viết trống bất thường — đã chặn lưu để tránh mất bài. Hãy tải lại trang admin rồi thử lại.');
 
@@ -11448,13 +11468,13 @@ async function saveArticle() {
       try { const sj = await (await fetch('/assets/search.js?nocache=' + Date.now(), { cache: 'no-store' })).text(); needSync = !sj.includes('"/' + currentFile.replace(/\.html$/, '') + '"'); } catch (e) {}
     }
     if (needSync) {
-      await syncNewArticle({ file: currentFile, title, desc, cat, hero });
+      await syncNewArticle({ file: currentFile, title, desc, cat, hero, author: publishingAuthor });
     }
 
     if (document.getElementById('ed-promote-hero')?.checked) {
       const subLabel = cleanPlainText(document.getElementById('ed-promote-sublabel')?.value || '');
       try {
-        await promoteToHomeHero(currentFile.replace(/\.html$/, ''), title, desc, cat, hero, subLabel);
+        await promoteToHomeHero(currentFile.replace(/\.html$/, ''), title, desc, cat, hero, subLabel, publishingAuthor);
         toast('success', '🔥 Đã đặt làm Tiêu điểm Trang chủ (VI + EN nếu có bản dịch)!');
       } catch (e) {
         console.warn('promoteToHomeHero error:', e);
@@ -11467,7 +11487,7 @@ async function saveArticle() {
       try {
         const isEn = currentFile.startsWith('en/');
         const slugNoExt = currentFile.replace(/^en\//, '').replace(/\.html$/, '');
-        await addToLatestNews(isEn, slugNoExt, title, desc, cat, hero);
+        await addToLatestNews(isEn, slugNoExt, title, desc, cat, hero, publishingAuthor);
         toast('success', '📰 Đã thêm vào Tin Mới Nhất trên trang chủ!');
       } catch (e) {
         console.warn('addToLatestNews error:', e);
@@ -11496,11 +11516,12 @@ function sArtParse(raw) {
     catStyle: fieldGet(raw, /<div class="sa-c" (style="[^"]*")/),
     catHtml: fieldGet(raw, /<div class="sa-c"[^>]*>([^<]*)</),
     title: fieldGet(raw, /<div class="sa-t">([^<]*)</),
-    date: fieldGet(raw, /<div class="sa-m">([^<]*) · OtaHub Editorial<\/div>/),
+    date: fieldGet(raw, /<div class="sa-m">([^<]*) · [^<]*<\/div>/),
+    author: fieldGet(raw, /<div class="sa-m">[^<]* · ([^<]*)<\/div>/),
   };
 }
 function sArtBuild(f) {
-  return `<article class="s-art" onclick="location.href='${f.href.replace(/'/g,"\\'")}'" style="cursor:pointer">\n      <div class="sa-thumb"><img src="${f.img}" alt="${esc(f.alt)}" width="1200" height="675" loading="lazy" decoding="async"></div>\n      <div><div class="sa-c" ${f.catStyle || 'style="color:var(--cyan);font-weight:700"'}>${esc(f.catHtml)}</div><div class="sa-t">${esc(f.title)}</div><div class="sa-m">${esc(f.date)} · OtaHub Editorial</div></div>\n    </article>`;
+  return `<article class="s-art" onclick="location.href='${f.href.replace(/'/g,"\\'")}'" style="cursor:pointer">\n      <div class="sa-thumb"><img src="${f.img}" alt="${esc(f.alt)}" width="1200" height="675" loading="lazy" decoding="async"></div>\n      <div><div class="sa-c" ${f.catStyle || 'style="color:var(--cyan);font-weight:700"'}>${esc(f.catHtml)}</div><div class="sa-t">${esc(f.title)}</div><div class="sa-m">${esc(f.date)} · ${esc(f.author || 'OtaHub')}</div></div>\n    </article>`;
 }
 function fcParse(raw) {
   return {
@@ -11511,11 +11532,12 @@ function fcParse(raw) {
     title: fieldGet(raw, /<h2 class="fc-title">([^<]*)</),
     sub: fieldGet(raw, /<p class="fc-sub">([^<]*)</),
     cat: fieldGet(raw, /<div class="fc-meta"><span>([^<]*)</),
-    date: fieldGet(raw, /· OtaHub Editorial · ([^<]*)<\/div>/),
+    author: fieldGet(raw, /<div class="fc-meta"><span>[^<]*<\/span> · ([^<]*) · /),
+    date: fieldGet(raw, /<div class="fc-meta"><span>[^<]*<\/span> · [^<]* · ([^<]*)<\/div>/),
   };
 }
 function fcBuild(f) {
-  return `<a class="fc" href="${f.href}">\n      <div class="fc-img" style="background-image:url(${f.img})"></div><div class="fc-ov"></div>\n      <div class="fc-body">\n        <span class="${f.tagClass || 'tag tag-c'}">${esc(f.tagLabel)}</span>\n        <h2 class="fc-title">${esc(f.title)}</h2>\n        <p class="fc-sub">${esc(f.sub)}</p>\n        <div class="fc-meta"><span>${esc(f.cat)}</span> · OtaHub Editorial · ${esc(f.date)}</div>\n      </div>\n    </a>`;
+  return `<a class="fc" href="${f.href}">\n      <div class="fc-img" style="background-image:url(${f.img})"></div><div class="fc-ov"></div>\n      <div class="fc-body">\n        <span class="${f.tagClass || 'tag tag-c'}">${esc(f.tagLabel)}</span>\n        <h2 class="fc-title">${esc(f.title)}</h2>\n        <p class="fc-sub">${esc(f.sub)}</p>\n        <div class="fc-meta"><span>${esc(f.cat)}</span> · ${esc(f.author || 'OtaHub')} · ${esc(f.date)}</div>\n      </div>\n    </a>`;
 }
 function scParse(raw) {
   return {
@@ -11525,11 +11547,12 @@ function scParse(raw) {
     tagClass: fieldGet(raw, /<span class="(tag [^"]*)" style/),
     tagLabel: fieldGet(raw, /<span class="tag [^"]*" style="[^"]*">([^<]*)</),
     title: fieldGet(raw, /<div class="sc-title">([^<]*)</),
-    date: fieldGet(raw, /<div class="sc-meta">OtaHub Editorial · ([^<]*)</),
+    author: fieldGet(raw, /<div class="sc-meta">([^<]*) · /),
+    date: fieldGet(raw, /<div class="sc-meta">[^<]* · ([^<]*)</),
   };
 }
 function scBuild(f) {
-  return `<a class="sc" href="${f.href}"><div class="sc-img"><img src="${f.img}" alt="${esc(f.alt)}" loading="lazy" width="1200" height="675"></div><div class="sc-body"><span class="${f.tagClass || 'tag tag-c'}" style="margin-bottom:6px;padding:3px 8px;font-size:9px">${esc(f.tagLabel)}</span><div class="sc-title">${esc(f.title)}</div><div class="sc-meta">OtaHub Editorial · ${esc(f.date)}</div></div></a>`;
+  return `<a class="sc" href="${f.href}"><div class="sc-img"><img src="${f.img}" alt="${esc(f.alt)}" loading="lazy" width="1200" height="675"></div><div class="sc-body"><span class="${f.tagClass || 'tag tag-c'}" style="margin-bottom:6px;padding:3px 8px;font-size:9px">${esc(f.tagLabel)}</span><div class="sc-title">${esc(f.title)}</div><div class="sc-meta">${esc(f.author || 'OtaHub')} · ${esc(f.date)}</div></div></a>`;
 }
 // Lấy mô tả ngắn thật của 1 bài (dùng khi 1 mục từ Hot This Week được đôn lên ô fc lớn
 // trong Tin Nổi Bật — ô này cần đoạn mô tả 1-2 câu, khác s-art vốn không có mô tả).
@@ -11553,7 +11576,7 @@ async function fetchArticleExcerpt(href, fallback) {
 // một lỗi có sẵn, ảnh hưởng cả nút "Lưu & Deploy" của trang Trang chủ hiện tại. Hàm này chỉ đụng
 // đúng các khối liên quan bằng các regex/hàm tách khối hẹp, đã kiểm chứng khớp HTML thật,
 // để không kéo theo lỗi đó.
-async function promoteToHomeHero(slug, viTitle, viDesc, cat, heroImg, subLabel) {
+async function promoteToHomeHero(slug, viTitle, viDesc, cat, heroImg, subLabel, authorName = publishingAuthorName()) {
   const catLabel = subLabel ? `${cat || 'Gaming'} · ${subLabel}` : (cat || 'Gaming');
   const tagLabel = `🔴 BREAKING NEWS · ${(cat || 'Gaming').toUpperCase()}`;
 
@@ -11570,7 +11593,7 @@ async function promoteToHomeHero(slug, viTitle, viDesc, cat, heroImg, subLabel) 
       if (oldHero.href === href) return; // Bài này đã là Hero rồi, không tự đẩy chính mình xuống danh sách
 
       if (oldHero.title && oldHero.href) {
-        const oldCard = `<article class="w-card"><a href="${oldHero.href}" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">${esc((oldHero.cat || '').split(' · ')[0] || cat || 'Gaming')}</div><div class="wc-t">${esc(oldHero.title)}</div><div class="wc-m">${esc(authorLabel)} · ${esc(oldHero.date)}</div></div><div class="wc-thumb"><img src="${oldHero.img}" alt="${esc(oldHero.title)}" loading="lazy" width="1200" height="675"></div></a></article>\n      `;
+        const oldCard = `<article class="w-card"><a href="${oldHero.href}" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">${esc((oldHero.cat || '').split(' · ')[0] || cat || 'Gaming')}</div><div class="wc-t">${esc(oldHero.title)}</div><div class="wc-m">${esc(oldHero.author || authorLabel)} · ${esc(oldHero.date)}</div></div><div class="wc-thumb"><img src="${oldHero.img}" alt="${esc(oldHero.title)}" loading="lazy" width="1200" height="675"></div></a></article>\n      `;
         const anchor = '<div class="latest-wrap">\n<div>\n';
         const ai = html.indexOf(anchor);
         if (ai !== -1) {
@@ -11587,6 +11610,7 @@ async function promoteToHomeHero(slug, viTitle, viDesc, cat, heroImg, subLabel) 
       html = html.replace(/(id="h-title">)[^<]*(<)/, (m,p1,p2)=>p1+esc(title)+p2);
       html = html.replace(/(id="h-sub">)[^<]*(<)/, (m,p1,p2)=>p1+esc(desc)+p2);
       html = html.replace(/(class="h-meta-cat">)[^<]*(<)/, (m,p1,p2)=>p1+esc(catLabel)+p2);
+      html = html.replace(/(<div class="h-meta"><span class="h-meta-cat">[^<]*<\/span><span class="h-meta-sep">·<\/span><span>)[^<]*(<\/span>)/, (m,p1,p2)=>p1+esc(authorLabel)+p2);
       html = html.replace(/(id="h-time">)[^<]*(<)/, (m,p1,p2)=>p1+esc(dateDisp)+p2);
       html = html.replace(/(<a href=")[^"]*(" class="read-more" id="h-read")/, (m,p1,p2)=>p1+href+p2);
 
@@ -11601,7 +11625,7 @@ async function promoteToHomeHero(slug, viTitle, viDesc, cat, heroImg, subLabel) 
             href: oldHero.href, img: oldHero.img, alt: oldHero.title,
             catStyle: 'style="color:var(--pink);font-weight:700"',
             catHtml: `🔴 Breaking · ${(oldHero.cat || '').split(' · ')[0] || cat || 'Gaming'}`,
-            title: oldHero.title, date: oldHero.date,
+            title: oldHero.title, date: oldHero.date, author: oldHero.author || authorLabel,
           });
           items.unshift(newItem);
           if (items.length > 6) evictedFromSide = items.pop();
@@ -11627,13 +11651,13 @@ async function promoteToHomeHero(slug, viTitle, viDesc, cat, heroImg, subLabel) 
               href: ef.href, img: ef.img, tagClass: 'tag tag-c',
               tagLabel: (ef.catHtml || '').replace(/^🔴 Breaking · /, ''),
               title: ef.title, sub: excerpt,
-              cat: (ef.catHtml || '').replace(/^🔴 Breaking · /, ''), date: ef.date,
+              cat: (ef.catHtml || '').replace(/^🔴 Breaking · /, ''), date: ef.date, author: ef.author,
             });
             const oldFc = fcParse(fcRaw);
             const newSc = oldFc.title ? scBuild({
               href: oldFc.href, img: oldFc.img, alt: oldFc.title,
               tagClass: oldFc.tagClass, tagLabel: oldFc.tagLabel,
-              title: oldFc.title, date: oldFc.date,
+              title: oldFc.title, date: oldFc.date, author: oldFc.author,
             }) : null;
             let newScItems = newSc ? [newSc, ...scItems] : scItems;
             if (newScItems.length > 4) newScItems = newScItems.slice(0, 4);
@@ -11655,7 +11679,7 @@ async function promoteToHomeHero(slug, viTitle, viDesc, cat, heroImg, subLabel) 
   }
 
   const dateVi = new Date().toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
-  await applyTo('index.html', `/${slug}`, viTitle, viDesc, dateVi, 'OtaHub Editorial');
+  await applyTo('index.html', `/${slug}`, viTitle, viDesc, dateVi, authorName);
 
   try {
     // KHÔNG giả định slug bản EN trùng slug VI — nhiều bài đặt slug EN hoàn toàn khác
@@ -11672,7 +11696,7 @@ async function promoteToHomeHero(slug, viTitle, viDesc, cat, heroImg, subLabel) 
     const enTitle = hUnesc(fieldGet(enHtml, /<h1 class="art-hero-title">([^<]*)</)) || viTitle;
     const enDesc = hUnesc(fieldGet(enHtml, /<p class="art-hero-excerpt">([^<]*)</)) || viDesc;
     const dateEn = new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
-    await applyTo('en/index.html', `/en/${enSlug}`, enTitle, enDesc, dateEn, 'OtaHub Editorial');
+    await applyTo('en/index.html', `/en/${enSlug}`, enTitle, enDesc, dateEn, authorName);
   } catch (e) {
     console.warn('Khong co ban EN de dong bo hero:', e.message);
   }
@@ -11684,7 +11708,7 @@ async function promoteToHomeHero(slug, viTitle, viDesc, cat, heroImg, subLabel) 
 // mục cũ nhất trôi ra khỏi danh sách khi vượt ngưỡng, giống cơ chế "trôi dần" của chuỗi Hero.
 // Dùng lại đúng kiểu retry-on-409 + regex hẹp như applyTo() ở trên (KHÔNG dùng
 // loadHomeData()/buildHomeHtml() — xem lý do ở comment đầu promoteToHomeHero()).
-async function addToLatestNews(isEn, slug, title, desc, cat, hero) {
+async function addToLatestNews(isEn, slug, title, desc, cat, hero, authorName = publishingAuthorName()) {
   const homeFile = isEn ? 'en/index.html' : 'index.html';
   const href = isEn ? `/en/${slug}` : `/${slug}`;
   const dateDisp = isEn
@@ -11700,7 +11724,7 @@ async function addToLatestNews(isEn, slug, title, desc, cat, hero) {
       html = html.replace('<div class="tick-track">', '<div class="tick-track">' + tick);
     }
 
-    const card = `<article class="w-card"><a href="${href}" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">${esc(cat || 'Gaming')}</div><div class="wc-t">${esc(title)}</div><div class="wc-m">OtaHub Editorial · ${esc(dateDisp)}</div></div><div class="wc-thumb"><img src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy" width="1200" height="675"></div></a></article>\n      `;
+    const card = `<article class="w-card"><a href="${href}" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">${esc(cat || 'Gaming')}</div><div class="wc-t">${esc(title)}</div><div class="wc-m">${esc(authorName)} · ${esc(dateDisp)}</div></div><div class="wc-thumb"><img src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy" width="1200" height="675"></div></a></article>\n      `;
     const anchor = '<div class="latest-wrap">\n<div>\n';
     const ai = html.indexOf(anchor);
     if (ai === -1) return;
@@ -11908,6 +11932,7 @@ function newArticle(prefillTitle) {
   const catSlugMap = { Anime: 'anime', Gaming: 'gaming', Manga: 'manga' };
   const catSlug = catSlugMap[cat] || 'gaming';
   const initialBody = prefill?.bodyHtml || '<p>Nội dung mở đầu bài viết...</p>\n<h2>1. Tiêu đề phần nội dung</h2>\n<p>Nội dung chi tiết phần 1...</p>';
+  const authorName = publishingAuthorName();
 
   const template = `<!DOCTYPE html>
 <html lang="vi">
@@ -11920,7 +11945,7 @@ function newArticle(prefillTitle) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="${desc}">
-<meta name="author" content="OtaHub Editorial">
+<meta name="author" content="${esc(authorName)}">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta property="og:type" content="article">
 <meta property="og:title" content="${title} · OtaHub">
@@ -11929,7 +11954,7 @@ function newArticle(prefillTitle) {
 <meta property="og:image" content="${heroImg || 'https://otahub.asia/og-image.png'}">
 <meta property="og:site_name" content="OtaHub">
 <meta property="og:locale" content="vi_VN">
-<meta property="article:author" content="OtaHub Editorial">
+<meta property="article:author" content="${esc(authorName)}">
 <meta property="article:published_time" content="${iso}">
 <meta property="article:modified_time" content="${iso}">
 <meta property="article:section" content="${cat}">
@@ -11950,7 +11975,7 @@ function newArticle(prefillTitle) {
   "mainEntityOfPage": { "@type": "WebPage", "@id": "${url}" },
   "author": {
     "@type": "Person",
-    "name": "OtaHub Editorial",
+    "name": ${JSON.stringify(authorName)},
     "url": "https://otahub.asia/about",
     "jobTitle": "Editorial Board",
     "worksFor": {
@@ -12047,7 +12072,7 @@ function newArticle(prefillTitle) {
 <span class="am-sep"></span>
 <span class="am-read">5 phút đọc</span>
 <span class="am-sep"></span>
-<span class="am-badge">OtaHub Editorial</span>
+<span class="am-badge">${esc(authorName)}</span>
 </div>
 
 <div class="highlight-box">
@@ -12655,6 +12680,7 @@ function homeHeroFields(html) {
     title: fieldGet(html, /id="h-title">([^<]*)</),
     sub: fieldGet(html, /id="h-sub">([^<]*)</),
     cat: fieldGet(html, /class="h-meta-cat">([^<]*)</),
+    author: fieldGet(html, /<div class="h-meta"><span class="h-meta-cat">[^<]*<\/span><span class="h-meta-sep">·<\/span><span>([^<]*)<\/span>/),
     date: fieldGet(html, /id="h-time">([^<]*)</),
     href: fieldGet(html, /<a href="([^"]*)" class="read-more" id="h-read"/),
     img: fieldGet(html, /<div class="h-img" style="background-image:url\(([^)]*)\)">/),
@@ -14204,7 +14230,7 @@ async function saveNews() {
 
 // ── 🚀 Tự động hóa Dồn bài & Đồng bộ toàn hệ thống (Auto-Cascade) ──────────
 async function syncNewArticle(art) {
-  const { file, title, desc, cat, hero } = art;
+  const { file, title, desc, cat, hero, author = publishingAuthorName() } = art;
   const slug = file.replace(/\.html$/, '');
   
   toast('success', '🚀 Bắt đầu tự động dồn bài & đồng bộ toàn site...');
@@ -14293,7 +14319,7 @@ async function syncNewArticle(art) {
       let hubHtml = decodeURIComponent(escape(atob(hubData.content)));
       const markerMatch = hubHtml.match(/(<!-- ADMIN:ARTICLES_START -->)([\s\S]*?)(<!-- ADMIN:ARTICLES_END -->)/);
       if (markerMatch && !markerMatch[2].includes(`href="/${slug}"`)) {
-        const cardHtml = `\n      <a href="/${slug}" class="ac">\n        <div class="ac-thumb"><img height="675" width="1200" src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy"><span class="tag">${esc(cat || 'TIN MỚI')}</span></div>\n        <div class="ac-body">\n          <h3 class="ac-title">${esc(title)}</h3>\n          <div class="ac-meta"><span class="ac-author">OtaHub Editorial</span> · <span class="ac-date">Vừa xong</span></div>\n        </div>\n      </a>\n`;
+        const cardHtml = `\n      <a href="/${slug}" class="ac">\n        <div class="ac-thumb"><img height="675" width="1200" src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy"><span class="tag">${esc(cat || 'TIN MỚI')}</span></div>\n        <div class="ac-body">\n          <h3 class="ac-title">${esc(title)}</h3>\n          <div class="ac-meta"><span class="ac-author">${esc(author)}</span> · <span class="ac-date">Vừa xong</span></div>\n        </div>\n      </a>\n`;
         hubHtml = hubHtml.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/, markerMatch[1] + cardHtml + markerMatch[2] + markerMatch[3]);
         await ghPut(targetHub, hubHtml, hubData.sha, `[admin] don bai /${slug} vao ${targetHub}`);
       }
