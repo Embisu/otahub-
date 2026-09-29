@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Delta Force sẽ có chế độ nhảy dù Battle Royale trong năm 2027",
+    "url": "/delta-force-se-co-che-do-nhay-du-battle-royale-trong-nam-202",
+    "cat": "Gaming",
+    "date": "2026-09-29",
+    "excerpt": "Delta Force chuẩn bị bước vào năm 2027 với nhiều thay đổi lớn. Bản đồ Siege, Operator Quarters và các nâng cấp trên Unreal Engine 5 sẽ lần lượt được triển khai, bên cạnh những cải tiến về ghép trận, chống gian lận và trải nghiệm trên nhiều nền tảng.",
+    "img": "/assets/img/uploads/u1g6mg06-anh-bia-2.jpg",
+    "tags": []
+  },
+  {
     "title": "“Dược Sư Tự Sự” mùa 3 chính thức lên sóng: Hành trình mới đầy kịch tính của Maomao và Jinshi",
     "url": "/duoc-su-tu-su-mua-3-chinh-thuc-len-song-hanh-trinh-moi-day-k",
     "cat": "Gaming",
