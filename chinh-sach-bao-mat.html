@@ -124,16 +124,34 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .logo-ota{color:var(--white)}.logo-hub{color:var(--cyan)}
 
 
-.nav-r{margin-left:auto;display:flex;gap:8px;align-items:center}
+.nav-links{display:flex;align-items:center;list-style:none;gap:0;flex:1;margin-left:32px}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;font-weight:400;letter-spacing:.07em;text-transform:uppercase;padding:0 13px;height:60px;display:flex;align-items:center;position:relative;transition:color .2s}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:2px;background:var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nsearch{background:none;border:1px solid var(--border);color:var(--muted);width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s;border-radius:4px}
+.nsearch:hover{border-color:var(--cyan);color:var(--cyan)}
+.search-overlay{display:none;position:fixed!important;inset:0!important;z-index:99999!important;background:rgba(11,2,32,.96);backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:20px;opacity:0;pointer-events:none;transition:opacity .25s var(--ease)}
+.search-overlay.open{display:flex!important;opacity:1!important;pointer-events:all!important}
+.search-box{width:min(640px,90vw);position:relative}
+.search-input{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--bcyan);outline:none;color:var(--white);font-family:var(--fb);font-size:22px;padding:18px 56px 18px 20px}
+.search-input::placeholder{color:rgba(240,238,255,.25)}
+.search-close{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;padding:4px}
+.search-close:hover{color:var(--cyan)}
+.search-hint{font-size:12px;color:var(--muted);letter-spacing:.07em}
+.search-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.stag{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:5px 14px;border:1px solid var(--border)}
+.stag:hover{border-color:var(--cyan);color:var(--cyan)}
+.nav-r{margin-left:auto;display:flex;gap:10px;align-items:center}
 
 
-.cta{background:var(--cyan);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;padding:8px 20px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:background .18s;text-decoration:none;display:inline-block;white-space:nowrap}
+.cta{background:linear-gradient(135deg,var(--cyan),#0099bb);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;padding:8px 20px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:filter .18s;text-decoration:none;display:inline-block;white-space:nowrap}
 
 
-.cta:hover{background:#33eeff}
+.cta:hover{filter:brightness(1.15)}
 
 
-.ham{display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px;align-items:center;justify-content:center}
+.ham{min-width:44px;min-height:44px;display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px;align-items:center;justify-content:center}
 
 
 .ham span{display:block;width:22px;height:2px;background:rgba(240,238,255,.45);border-radius:2px;transition:all .3s}
@@ -259,7 +277,8 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 .ft-copy{font-size:11px;color:rgba(240,238,255,.2)}
 
 
-@media(max-width:768px){.ham{display:flex}.mobile-nav{display:flex}.policy-wrap{padding:40px 16px 60px}}
+@media(max-width:900px){.ham{display:flex}.nav-links{display:none}.mobile-nav{display:flex}}
+@media(max-width:768px){.policy-wrap{padding:40px 16px 60px}}
 
 
 
@@ -607,7 +626,20 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 
 <body>
 
-
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <input class="search-input" id="searchInput" type="text" placeholder="Tìm kiếm game, anime, manga...">
+    <button class="search-close" onclick="closeSearch()">✕</button>
+  </div>
+  <div class="search-hint">Nhấn ESC để đóng · Ctrl+K để mở</div>
+  <div class="search-tags">
+    <a href="/gaming" class="stag">Gaming</a>
+    <a href="/anime" class="stag">Anime</a>
+    <a href="/manga" class="stag">Manga</a>
+    <a href="/reviews" class="stag">Reviews</a>
+    <a href="/rankings" class="stag">Rankings</a>
+  </div>
+</div>
 <div id="amb"><div class="orb o1"></div><div class="orb o2"></div></div>
 
 
@@ -620,7 +652,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   <div class="nav-in">
 
 
-    <a href="./" class="logo">
+    <a href="/" class="logo">
 
 
       <svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg>
@@ -632,16 +664,18 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
     </a>
 
 
+    <ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul>
+
+    <button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+
     <div class="nav-r">
 
+      <button class="nsearch" aria-label="Tìm kiếm" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button>
 
-      <a href="lien-he" class="cta">Liên hệ</a>
+      <a href="/#newsletter" class="cta">Subscribe</a>
 
 
     </div>
-
-
-    <button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
 
 
   </div>
@@ -653,13 +687,13 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 <div class="mobile-nav" id="mobileNav">
 
 
-  <a href="choi-gi">Chơi Gì?</a><a href="gaming">Gaming</a><a href="anime">Anime</a>
+  <a href="/choi-gi">Chơi Gì?</a><a href="/gaming">Gaming</a><a href="/anime">Anime</a>
 
 
-  <a href="manga">Manga</a><a href="reviews">Reviews</a>
+  <a href="/manga">Manga</a><a href="/reviews">Reviews</a><a href="/rankings">Rankings</a><a href="/chuyen-sau">Chuyên sâu</a>
 
 
-  <div class="m-sub"><a href="about">Giới thiệu</a><a href="lien-he">Liên hệ</a></div>
+  <div class="m-sub"><a href="/about">Giới thiệu</a><a href="/#newsletter">Newsletter</a><a href="/lien-he">Liên hệ</a></div>
 
 
 </div>
@@ -1122,7 +1156,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
         <li>📧 Email: <a href="mailto:dat.phan@anbu.asia">dat.phan@anbu.asia</a></li>
 
 
-        <li>📝 Form liên hệ: <a href="lien-he">otahub.asia/lien-he.html</a></li>
+        <li>📝 Form liên hệ: <a href="/lien-he">otahub.asia/lien-he</a></li>
 
 
         <li>⏱️ Thời gian phản hồi: 1–5 ngày làm việc</li>
@@ -1150,7 +1184,9 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 
 
 function toggleMobileNav(){const b=document.getElementById('hamBtn'),n=document.getElementById('mobileNav');b.classList.toggle('open');n.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':''}
-
+function openSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.add('open');setTimeout(function(){var i=document.getElementById('searchInput');if(i)i.focus();},50);document.body.style.overflow='hidden';}}
+function closeSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.remove('open');var i=document.getElementById('searchInput');if(i)i.value='';document.body.style.overflow='';}}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSearch();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch();}});
 
 </script>
 
