@@ -172,6 +172,53 @@ export function cascadeCategoryHub({ slug, title, cat, hero, desc }) {
 }
 
 /**
+ * 3b. Cascade Top List hub (top-list.html) — only for listicle-style "Top N" articles.
+ * Pass itemCount to mark an article as a Top List entry; omit it (or leave 0) for
+ * ordinary news/review articles and this step is skipped entirely.
+ */
+export function cascadeTopList({ slug, title, cat, hero, desc, itemCount }) {
+  if (!itemCount || itemCount <= 0) return false;
+
+  const hubPath = path.join(ROOT, 'top-list.html');
+  if (!fs.existsSync(hubPath)) return false;
+  let html = fs.readFileSync(hubPath, 'utf8');
+
+  const match = html.match(/var\s+TOPLIST\s*=\s*(\[[\s\S]*?\]);/);
+  if (!match) return false;
+
+  let list;
+  try { list = new Function('return ' + match[1])(); } catch (e) { return false; }
+
+  const url = `/${slug}`;
+  list = list.filter(item => item.url !== url);
+
+  const type = (cat || '').toLowerCase().includes('manga') ? 'manga'
+    : (cat || '').toLowerCase().includes('game') ? 'game' : 'anime';
+  const catC = type === 'manga' ? 'var(--lavender)' : type === 'game' ? 'var(--cyan)' : 'var(--sakura)';
+
+  list.unshift({
+    id: slug.slice(0, 12),
+    type,
+    url,
+    img: hero || '/assets/img/placeholder.svg',
+    cat: cat || 'Anime',
+    catC,
+    title,
+    sub: `Top ${itemCount}`,
+    desc: desc || title,
+    itemCount,
+    author: 'OtaHub Editorial',
+    date: formatDateVN(),
+    date_ts: 0,
+  });
+
+  html = html.replace(/var\s+TOPLIST\s*=\s*\[[\s\S]*?\];/, () => `var TOPLIST = ${JSON.stringify(list, null, 2)};`);
+  fs.writeFileSync(hubPath, html, 'utf8');
+  console.log(`✅ [Top List] Cascaded new entry to top-list.html (Total: ${list.length})`);
+  return true;
+}
+
+/**
  * 4. Cascade News Stream (news.html)
  */
 export function cascadeNewsStream({ slug, title, cat, hero, desc }) {
@@ -240,13 +287,14 @@ export function cascadeHomepage({ slug, title, cat, hero, desc }) {
 /**
  * Full Cascade Suite
  */
-export async function cascadeAll({ slug, title, desc, cat, hero, isEn = false }) {
+export async function cascadeAll({ slug, title, desc, cat, hero, isEn = false, itemCount = 0 }) {
   console.log(`\n🚀 [Cascade Engine] Cascading article "${title}" (/ ${slug})...`);
-  
+
   cascadeSearchIndex({ slug, title, desc, cat, hero });
   cascadeSitemap({ slug, isEn });
   cascadeFeeds({ slug, title, desc, hero });
   cascadeCategoryHub({ slug, title, cat, hero, desc });
+  cascadeTopList({ slug, title, cat, hero, desc, itemCount });
   cascadeNewsStream({ slug, title, cat, hero, desc });
   cascadeHomepage({ slug, title, cat, hero, desc });
 
@@ -262,9 +310,10 @@ export async function cascadeAll({ slug, title, desc, cat, hero, isEn = false })
 if (process.argv[1]?.endsWith('publish-article.mjs')) {
   const args = process.argv.slice(2);
   if (args.length >= 4) {
-    const [slug, title, cat, hero, desc] = args;
-    cascadeAll({ slug, title, cat, hero, desc: desc || title });
+    const [slug, title, cat, hero, desc, itemCount] = args;
+    cascadeAll({ slug, title, cat, hero, desc: desc || title, itemCount: parseInt(itemCount, 10) || 0 });
   } else {
-    console.log('Usage: node scripts/publish-article.mjs <slug> <title> <category> <heroImg> [description]');
+    console.log('Usage: node scripts/publish-article.mjs <slug> <title> <category> <heroImg> [description] [itemCount]');
+    console.log('  itemCount: pass the list size (e.g. 8) to also cascade into top-list.html; omit for ordinary articles.');
   }
 }
