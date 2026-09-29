@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "“Dược Sư Tự Sự” mùa 3 chính thức lên sóng: Hành trình mới đầy kịch tính của Maomao và Jinshi",
+    "url": "/duoc-su-tu-su-mua-3-chinh-thuc-len-song-hanh-trinh-moi-day-k",
+    "cat": "Gaming",
+    "date": "2026-09-29",
+    "excerpt": "Maomao trở lại với những vụ án mới sau khi rời hậu cung. Mùa 3 mở rộng câu chuyện ra bên ngoài cung cấm, đưa Maomao và Jinshi đối mặt với những bí ẩn, âm mưu chính trị và các nhân vật mới.",
+    "img": "/assets/img/uploads/ytysmngi-anh-bia-1.webp",
+    "tags": []
+  },
+  {
     "title": "5 Life Lessons From Naruto Uzumaki That Still Hold Up",
     "url": "/en/5-life-lessons-from-naruto-uzumaki-still-hold-up",
     "cat": "Anime",
