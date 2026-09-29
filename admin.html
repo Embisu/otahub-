@@ -11181,35 +11181,48 @@ async function promoteToHomeHero(slug, viTitle, viDesc, cat, heroImg, subLabel) 
   const catLabel = subLabel ? `${cat || 'Gaming'} · ${subLabel}` : (cat || 'Gaming');
   const tagLabel = `🔴 BREAKING NEWS · ${(cat || 'Gaming').toUpperCase()}`;
 
+  // index.html/en/index.html bị nhiều nguồn ghi liên tục (pipeline tự động, admin khác) — GitHub
+  // từ chối ghi (409) nếu "sha" đã lỗi thời ngay giữa lúc build html. Thử lại vài lần, mỗi lần
+  // đọc lại bản mới nhất, để không âm thầm mất tác dụng của tính năng khi có tranh chấp ghi.
   async function applyTo(file, href, title, desc, dateDisp, authorLabel) {
-    const data = await ghGet(file);
-    let html = decodeURIComponent(escape(atob(String(data.content || '').replace(/\s/g, ''))));
+    const MAX_TRIES = 4;
+    for (let attempt = 1; attempt <= MAX_TRIES; attempt++) {
+      const data = await ghGet(file);
+      let html = decodeURIComponent(escape(atob(String(data.content || '').replace(/\s/g, ''))));
 
-    const oldHero = homeHeroFields(html);
-    if (oldHero.href === href) return; // Bài này đã là Hero rồi, không tự đẩy chính mình xuống danh sách
+      const oldHero = homeHeroFields(html);
+      if (oldHero.href === href) return; // Bài này đã là Hero rồi, không tự đẩy chính mình xuống danh sách
 
-    if (oldHero.title && oldHero.href) {
-      const oldCard = `<article class="w-card"><a href="${oldHero.href}" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">${esc((oldHero.cat || '').split(' · ')[0] || cat || 'Gaming')}</div><div class="wc-t">${esc(oldHero.title)}</div><div class="wc-m">${esc(authorLabel)} · ${esc(oldHero.date)}</div></div><div class="wc-thumb"><img src="${oldHero.img}" alt="${esc(oldHero.title)}" loading="lazy" width="1200" height="675"></div></a></article>\n      `;
-      const anchor = '<div class="latest-wrap">\n<div>\n';
-      const ai = html.indexOf(anchor);
-      if (ai !== -1) {
-        const insertAt = ai + anchor.length;
-        // Không thêm trùng nếu bài đó đã có sẵn ở đầu danh sách (vd. lưu nhiều lần liên tiếp)
-        const already = html.slice(insertAt, insertAt + 4000).includes(`href="${oldHero.href}"`);
-        if (!already) html = html.slice(0, insertAt) + oldCard + html.slice(insertAt);
+      if (oldHero.title && oldHero.href) {
+        const oldCard = `<article class="w-card"><a href="${oldHero.href}" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">${esc((oldHero.cat || '').split(' · ')[0] || cat || 'Gaming')}</div><div class="wc-t">${esc(oldHero.title)}</div><div class="wc-m">${esc(authorLabel)} · ${esc(oldHero.date)}</div></div><div class="wc-thumb"><img src="${oldHero.img}" alt="${esc(oldHero.title)}" loading="lazy" width="1200" height="675"></div></a></article>\n      `;
+        const anchor = '<div class="latest-wrap">\n<div>\n';
+        const ai = html.indexOf(anchor);
+        if (ai !== -1) {
+          const insertAt = ai + anchor.length;
+          // Không thêm trùng nếu bài đó đã có sẵn ở đầu danh sách (vd. lưu nhiều lần liên tiếp)
+          const already = html.slice(insertAt, insertAt + 4000).includes(`href="${oldHero.href}"`);
+          if (!already) html = html.slice(0, insertAt) + oldCard + html.slice(insertAt);
+        }
+      }
+
+      html = html.replace(/(<div class="hero-main" onclick="location\.href=')[^']*(')/, (m,p1,p2)=>p1+href.replace(/'/g,"\\'")+p2);
+      html = html.replace(/(<div class="h-img" style="background-image:url\()[^)]*(\)">)/, (m,p1,p2)=>p1+heroImg+p2);
+      html = html.replace(/(<span class="tag tag-s tag-live" id="h-tag"[^>]*>)[^<]*(<\/span>)/, (m,p1,p2)=>p1+tagLabel+p2);
+      html = html.replace(/(id="h-title">)[^<]*(<)/, (m,p1,p2)=>p1+esc(title)+p2);
+      html = html.replace(/(id="h-sub">)[^<]*(<)/, (m,p1,p2)=>p1+esc(desc)+p2);
+      html = html.replace(/(class="h-meta-cat">)[^<]*(<)/, (m,p1,p2)=>p1+esc(catLabel)+p2);
+      html = html.replace(/(id="h-time">)[^<]*(<)/, (m,p1,p2)=>p1+esc(dateDisp)+p2);
+      html = html.replace(/(<a href=")[^"]*(" class="read-more" id="h-read")/, (m,p1,p2)=>p1+href+p2);
+
+      try {
+        await ghPut(file, html, data.sha, `[admin] dat "${title.slice(0,50)}" lam Tieu diem Trang chu`);
+        return;
+      } catch (e) {
+        const isConflict = /409|sha|conflict/i.test(e.message || '');
+        if (!isConflict || attempt === MAX_TRIES) throw e;
+        await new Promise(r => setTimeout(r, 400 * attempt));
       }
     }
-
-    html = html.replace(/(<div class="hero-main" onclick="location\.href=')[^']*(')/, (m,p1,p2)=>p1+href.replace(/'/g,"\\'")+p2);
-    html = html.replace(/(<div class="h-img" style="background-image:url\()[^)]*(\)">)/, (m,p1,p2)=>p1+heroImg+p2);
-    html = html.replace(/(<span class="tag tag-s tag-live" id="h-tag"[^>]*>)[^<]*(<\/span>)/, (m,p1,p2)=>p1+tagLabel+p2);
-    html = html.replace(/(id="h-title">)[^<]*(<)/, (m,p1,p2)=>p1+esc(title)+p2);
-    html = html.replace(/(id="h-sub">)[^<]*(<)/, (m,p1,p2)=>p1+esc(desc)+p2);
-    html = html.replace(/(class="h-meta-cat">)[^<]*(<)/, (m,p1,p2)=>p1+esc(catLabel)+p2);
-    html = html.replace(/(id="h-time">)[^<]*(<)/, (m,p1,p2)=>p1+esc(dateDisp)+p2);
-    html = html.replace(/(<a href=")[^"]*(" class="read-more" id="h-read")/, (m,p1,p2)=>p1+href+p2);
-
-    await ghPut(file, html, data.sha, `[admin] dat "${title.slice(0,50)}" lam Tieu diem Trang chu`);
   }
 
   const dateVi = new Date().toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
