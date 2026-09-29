@@ -3702,6 +3702,15 @@ window.IDX = [
       "Gaming 2026",
       "Nintendo Switch 2"
     ]
+  },
+  {
+    "title": "JoJo Steel Ball Run Stage 2–3 Lên Sóng Ngày 25/9",
+    "url": "/jojo-steel-ball-run-stage-2-3-len-song-25-9",
+    "cat": "Anime",
+    "date": "2026-09-26",
+    "excerpt": "STEEL BALL RUN JoJo's Bizarre Adventure 2nd–3rd STAGE lên sóng độc quyền trên Netflix từ 25/9/2026, gồm 11 tập phát hàng tuần do David Production thực hiện.",
+    "img": "/assets/img/real-jojo-sbr-stage2.jpg",
+    "tags": []
   }
 ];
-if (typeof window !== 'undefined') window.IDX = IDX;
+if (typeof module !== 'undefined') module.exports = window.IDX;
