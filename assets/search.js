@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Cha Đẻ Gintama Thú Nhận: Từng Nghĩ Bản Anime Sẽ Thất Bại",
+    "url": "/gintama-sorachi-tung-nghi-anime-se-that-bai",
+    "cat": "Anime",
+    "date": "2026-09-29",
+    "excerpt": "Tại sự kiện ra mắt phim Gintama The Movie – Yoshiwara In Flames tại Tokyo, tác giả Hideaki Sorachi lần đầu thừa nhận ông từng nghĩ bản anime sẽ thất bại, và ban đầu chỉ kỳ vọng vào tiền tác quyền từ manga.",
+    "img": "/assets/img/gintama-sorachi-flop-thumb.jpg",
+    "tags": []
+  },
+  {
     "title": "One Piece Chương 1192: Luffy Xuyên Thủng Lá Chắn, Khiến Imu Đổ Máu",
     "url": "/one-piece-chuong-1192-luffy-xuyen-thung-khien-imu-do-mau",
     "cat": "Manga",
@@ -484,7 +493,7 @@ window.IDX = [
       "2026"
     ]
   },
-    {
+  {
     "title": "Anime Chiikawa Tạm Ngừng Tập Mới, Phát Lại 25 Tập Đến 25/12",
     "url": "/chiikawa-anime-tam-ngung-tap-moi-phat-lai-25-tap",
     "cat": "Anime",
