@@ -3862,6 +3862,10 @@ function slugifyFilename(name) {
     .slice(0, 60);
 }
 
+function slugify(name) {
+  return slugifyFilename(name);
+}
+
 // Làm sạch triệt để thẻ HTML / Google Docs tags / XML / MS Word rác khỏi chuỗi thuần (xử lý cả entity &lt;...&gt;)
 function cleanPlainText(str) {
   if (!str) return '';
@@ -7072,15 +7076,47 @@ async function discardCurrentDraft() {
   toast('info', '🗑️ Đã hủy bản nháp.');
 }
 
-function draftBannerHtml() {
+async function resolveDraftOrPublished(file, publishedHtml) {
+  try {
+    if (typeof FORCE_PUBLISHED_NEXT !== 'undefined' && FORCE_PUBLISHED_NEXT) {
+      FORCE_PUBLISHED_NEXT = false;
+      LAST_DRAFT_INFO = null;
+      return publishedHtml;
+    }
+    const draft = await getDraft(file);
+    if (draft && typeof draft.html === 'string' && draft.html.trim().length > 50 && draft.html.trim() !== (publishedHtml || '').trim()) {
+      const when = draft.updatedAt ? timeAgoVi(new Date(draft.updatedAt).toISOString()) : '';
+      const who = draft.updatedBy ? ` bởi ${draft.updatedBy}` : '';
+      LAST_DRAFT_INFO = { when, who, draftHtml: draft.html, file };
+      return draft.html;
+    }
+  } catch(e) {}
+  LAST_DRAFT_INFO = null;
+  return publishedHtml;
+}
+
+async function discardDraftAndReopen(reopenFn) {
+  if (!confirm('Hủy bỏ bản nháp chưa xuất bản và mở lại bản đã xuất bản trên web? Thao tác này không thể hoàn tác.')) return;
+  FORCE_PUBLISHED_NEXT = true;
+  LAST_DRAFT_INFO = null;
+  const file = currentFile || (typeof HOME_FILE !== 'undefined' ? HOME_FILE : '') || (typeof HUB_FILE !== 'undefined' ? HUB_FILE : '');
+  if (file) {
+    try { await deleteDraft(file); } catch(e) {}
+  }
+  toast('info', '🗑️ Đã hủy bản nháp.');
+  if (typeof reopenFn === 'function') reopenFn();
+}
+
+function draftBannerHtml(customDiscardAction) {
   if (!LAST_DRAFT_INFO) return '';
+  const discardCall = customDiscardAction ? esc(customDiscardAction) : 'discardCurrentDraft()';
   return `<div id="wp-draft-notice-banner" class="notice notice-warning is-dismissible" style="background:#fff8e5;border-left:4px solid #dba617;padding:12px 16px;margin:0 0 16px 0;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.05);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
     <div style="font-size:13px;color:#614700;line-height:1.5">
       ⚠️ <strong>Có bản nháp chưa xuất bản:</strong> Lưu ${esc(LAST_DRAFT_INFO.when)}${esc(LAST_DRAFT_INFO.who)}.
     </div>
     <div style="display:flex;gap:8px">
       <button type="button" class="button button-small" style="background:#2271b1;color:#fff;border-color:#2271b1;cursor:pointer" onclick="restoreCurrentDraft()">↺ Khôi phục bản nháp</button>
-      <button type="button" class="button button-small" style="cursor:pointer" onclick="discardCurrentDraft()">🗑️ Xóa bản nháp</button>
+      <button type="button" class="button button-small" style="cursor:pointer" onclick="${discardCall}">🗑️ Xóa bản nháp</button>
     </div>
   </div>`;
 }
