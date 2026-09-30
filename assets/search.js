@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Gears of War: E-Day: Thời gian phát hành và cách chơi sớm",
+    "url": "/gears-of-war-e-day-thoi-gian-phat-hanh-va-cach-choi-som",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Gears of War: E-Day đang chuẩn bị bước vào ngày phát hành sau khi hoàn tất quá trình phát triển. Tựa game sẽ mở cửa Early Access từ ngày 1/10 trước khi chính thức ra mắt toàn cầu vào ngày 6/10/2026, với thời gian mở khóa được ấn định cụ thể cho từng phiên bản.",
+    "img": "/assets/img/uploads/wclu1bq8-images-16.jpg",
+    "tags": []
+  },
+  {
     "title": "Minecraft Live tháng 9/2026: Minecraft chuẩn bị đón chiều không gian mới",
     "url": "/minecraft-live-thang-9-2026-minecraft-chuan-bi-don-chieu-kho",
     "cat": "Gaming",
