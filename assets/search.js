@@ -1198,7 +1198,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-23",
     "excerpt": "Marvel",
-    "img": "/assets/img/yt-G62QQ42Ewwg.jpg",
+    "img": "/assets/img/marvel-wolverine-official-key-art.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -1208,7 +1208,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-23",
     "excerpt": "Marvel’s Wolverine by Insomniac Games launched on PS5 on September 15, 2026, scoring 77 on Metacritic, lower than Spider-Man 2 but still among the year’s…",
-    "img": "/assets/img/yt-G62QQ42Ewwg.jpg",
+    "img": "/assets/img/marvel-wolverine-official-key-art.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -1228,7 +1228,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-23",
     "excerpt": "Khám phá dự án kinh dị tâm lý Silent Hill: Townfall do No Code Studios và Annapurna Interactive hợp tác phát triển cùng Konami.",
-    "img": "/assets/img/yt-WARs8turgnM.jpg",
+    "img": "/assets/img/silent-hill-townfall-official-cover-art.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -1238,7 +1238,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-23",
     "excerpt": "Explore Silent Hill: Townfall, the psychological horror title co-developed by No Code Studios and Annapurna Interactive with Konami.",
-    "img": "/assets/img/yt-WARs8turgnM.jpg",
+    "img": "/assets/img/silent-hill-townfall-official-cover-art.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -2648,7 +2648,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-18",
     "excerpt": "Marvel",
-    "img": "/assets/img/yt-3Z42tBfBLJY.jpg",
+    "img": "/assets/img/marvel-wolverine-official-key-art.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -2688,7 +2688,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-18",
     "excerpt": "Insomniac Games revealed a Marvel’s Wolverine story trailer at San Diego Comic-Con, confirming composer David Fleming and a September 15, 2026 PS5 launch.",
-    "img": "/assets/img/yt-3Z42tBfBLJY.jpg",
+    "img": "/assets/img/marvel-wolverine-official-key-art.jpg",
     "tags": [],
     "lang": "en"
   },
