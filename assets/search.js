@@ -1,5 +1,20 @@
 window.IDX = [
   {
+    "title": "Boruto: Sarada Lộ Thêm Sức Mạnh Mangekyo Sharingan, Nhưng Phải Đánh Đổi Bằng Thị Lực",
+    "url": "/sarada-mangekyo-sharingan-suc-manh-ho-den-ohirume",
+    "cat": "Manga",
+    "date": "2026-09-30",
+    "excerpt": "Chương 37 của Boruto: Two Blue Vortex cho thấy Uchiha Sarada dùng năng lực hố đen Ohirume linh hoạt hơn hẳn, nhưng cái giá về thị lực vẫn treo lơ lửng trên hành trình chinh phục Mangekyo Sharingan của cô.",
+    "img": "/assets/img/boruto-naruto-next-generations-banner.jpg",
+    "tags": [
+      "Boruto: Two Blue Vortex",
+      "Uchiha Sarada",
+      "Mangekyo Sharingan",
+      "Naruto",
+      "Weekly Shonen Jump"
+    ]
+  },
+  {
     "title": "Delta Force sẽ có chế độ nhảy dù Battle Royale trong năm 2027",
     "url": "/delta-force-se-co-che-do-nhay-du-battle-royale-trong-nam-202",
     "cat": "Gaming",
