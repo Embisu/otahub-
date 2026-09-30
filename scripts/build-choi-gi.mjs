@@ -1,0 +1,1893 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+const root = path.resolve(import.meta.dirname, '..');
+
+// ═════════════════════════════════════════════════════════════════════
+// 1. DATA SOURCES: VIETNAMESE & ENGLISH
+// ═════════════════════════════════════════════════════════════════════
+
+const VI_ITEMS = [
+  // ── GAMES ──────────────────────────────────────────────────────────
+  {
+    id: 'elden-ring',
+    type: 'game',
+    name: 'Elden Ring: Shadow of the Erdtree',
+    creator: 'FromSoftware · 2024',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Action RPG · Soulslike',
+    moods: ['action', 'story', 'challenge', 'explore'],
+    time: '60 - 150h',
+    score: 9.8,
+    img: '/assets/img/a7f47ed998-header.jpg',
+    why: 'Thế giới Lands Between và Realm of Shadow đẹp đến nghẹt thở. Từng phế tích, từng con boss đều mang lại cảm giác thỏa mãn tột độ khi chinh phục.',
+    link: '/elden-ring-shadow-of-the-erdtree-review',
+    color: ['#1a0c08', '#3d1a00']
+  },
+  {
+    id: 'wuwa',
+    type: 'game',
+    name: 'Wuthering Waves',
+    creator: 'Kuro Games · 2024',
+    format: 'PC / Mobile',
+    subType: 'mobile',
+    genre: 'Action RPG · Open World',
+    moods: ['action', 'explore', 'story'],
+    time: 'Chơi lâu dài (Live-service)',
+    score: 9.5,
+    img: '/assets/img/c53329917b-wuthering-waves-hero.jpg',
+    why: 'Hệ thống chiến đấu parkour, né đòn và parry mượt nhất thị trường game gacha. Khám phá thế giới hậu tận thế với đồ họa Unreal Engine sắc sảo.',
+    link: '/wuthering-waves-review',
+    color: ['#050810', '#0a1228']
+  },
+  {
+    id: 'hades2',
+    type: 'game',
+    name: 'Hades II',
+    creator: 'Supergiant Games · 2024',
+    format: 'PC',
+    subType: 'pc',
+    genre: 'Roguelite · Action',
+    moods: ['quick', 'action', 'story'],
+    time: '20 - 60h',
+    score: 9.4,
+    img: '/assets/img/recommend-hades.jpg',
+    why: 'Melinoë bước vào trận chiến ma thuật với thần thời gian Chronos. Mỗi run 20-30 phút đều mới mẻ với thoại lồng tiếng đỉnh cao và nhạc nền rực lửa.',
+    link: '/hades-2-khong-phai-lua-chon-kinh-doanh-an-toan-cua-supergian',
+    color: ['#1a0508', '#3d0010']
+  },
+  {
+    id: 'mhwilds',
+    type: 'game',
+    name: 'Monster Hunter Wilds',
+    creator: 'Capcom · 2025',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Hunting Action · Co-op',
+    moods: ['action', 'coop', 'challenge'],
+    time: '80 - 300h',
+    score: 9.4,
+    img: '/assets/img/587e72813c-header.jpg',
+    why: 'Săn quái vật cùng 3 người bạn trên lưng thú cưỡi Seikret. Hệ thống thời tiết động khắc nghiệt và đàn quái khổng lồ nâng tầm thể loại săn bắn.',
+    link: '/monster-hunter-wilds-review',
+    color: ['#0a0e05', '#1a280a']
+  },
+  {
+    id: 'genshin',
+    type: 'game',
+    name: 'Genshin Impact: Natlan',
+    creator: 'HoYoverse · 2024',
+    format: 'Mobile / PC / Console',
+    subType: 'mobile',
+    genre: 'Open World RPG',
+    moods: ['relax', 'explore', 'story'],
+    time: 'Chơi lâu dài',
+    score: 9.1,
+    img: '/assets/img/real-genshin-natlan.jpg',
+    why: 'Vùng đất lửa Natlan với cơ chế hóa thân Saurian lướt dung nham và leo vách đá cực chill. Rất thích hợp làm 30-45 phút nhiệm vụ thư giãn mỗi tối.',
+    link: '/genshin-natlan-review',
+    color: ['#050a0a', '#0a1a14']
+  },
+  {
+    id: 'stellar-blade',
+    type: 'game',
+    name: 'Stellar Blade',
+    creator: 'Shift Up · 2024',
+    format: 'Console / PC',
+    subType: 'console',
+    genre: 'Action Adventure',
+    moods: ['action', 'challenge', 'explore'],
+    time: '25 - 40h',
+    score: 9.2,
+    img: '/assets/img/f845d7c936-library_hero.jpg',
+    why: 'Hành động tốc độ cao đậm chất hack-and-slash với âm nhạc ma mị và tạo hình nhân vật Eve ấn tượng. Combat đòi hỏi canh nhịp phản xạ chuẩn xác.',
+    link: '/stellar-blade-2',
+    color: ['#080a18', '#141838']
+  },
+  {
+    id: 'kcd2',
+    type: 'game',
+    name: 'Kingdom Come: Deliverance II',
+    creator: 'Warhorse Studios · 2025',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Medieval RPG',
+    moods: ['story', 'explore', 'challenge'],
+    time: '70 - 120h',
+    score: 9.3,
+    img: '/assets/img/50c4f9b171-library_hero.jpg',
+    why: 'Mô phỏng chân thực nhất thời Trung Cổ châu Âu thế kỷ 15. Bạn bắt đầu từ một gã thợ rèn tập sự cho đến khi hòa mình vào những trận công thành đẫm máu.',
+    link: '/kingdom-come-deliverance-2',
+    color: ['#140d05', '#2a1a08']
+  },
+  {
+    id: 'witcher3',
+    type: 'game',
+    name: 'The Witcher 3: Wild Hunt',
+    creator: 'CD PROJEKT RED',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Open World RPG',
+    moods: ['story', 'explore', 'relax'],
+    time: '80 - 150h',
+    score: 9.8,
+    img: '/assets/img/uploads/yboyto0l-images-17.jpg',
+    why: 'Tượng đài nhập vai phương Tây với cốt truyện xuất sắc từng nhánh phụ. Đồng hành cùng Geralt xứ Rivia qua vùng đầm lầy Velen và quần đảo Skellige.',
+    link: '/7-game-the-witcher-dang-choi-trong-nam-2026',
+    color: ['#0a0814', '#18122c']
+  },
+
+  // ── ANIME ──────────────────────────────────────────────────────────
+  {
+    id: 'frieren',
+    type: 'anime',
+    name: "Frieren: Pháp Sư Tiễn Táng (Mùa 1 & 2)",
+    creator: 'Madhouse',
+    format: 'TV Series (28 tập)',
+    subType: 'series',
+    genre: 'Fantasy · Slice of Life',
+    moods: ['relax', 'story', 'explore'],
+    time: '24 phút/tập (~11 giờ)',
+    score: 9.9,
+    img: '/assets/img/3f4f599cac-frieren-s2-hero.jpg',
+    why: 'Kiệt tác fantasy sâu lắng nhất thập kỷ. Chuyến phiêu lưu của nàng pháp sư elf sau khi đánh bại Ma Vương, thấu hiểu ý nghĩa của thời gian và tình người.',
+    link: '/frieren-mua-2-phat-song-thang-1-2026',
+    color: ['#06141c', '#0f2c3a']
+  },
+  {
+    id: 'demon-slayer-infinity-castle',
+    type: 'anime',
+    name: 'Kimetsu no Yaiba: Vô Hạn Thành (Trilogy 1)',
+    creator: 'Ufotable',
+    format: 'Movie Chiếu Rạp (120 phút)',
+    subType: 'movie',
+    genre: 'Dark Fantasy · Action Hype',
+    moods: ['action', 'quick', 'challenge'],
+    time: '2 giờ trọn vẹn',
+    score: 9.8,
+    img: '/assets/img/e497ae1e1b-demon-slayer-cover.jpg',
+    why: 'Đỉnh cao kỹ xảo đồ họa và hoạt họa chiến đấu 3D của xưởng Ufotable. Cuộc tổng tấn công sinh tử của Quân Đoàn Diệt Quỷ vào sào huyệt Muzan.',
+    link: '/demon-slayer-infinity-castle-review',
+    color: ['#1a060d', '#3d0c1c']
+  },
+  {
+    id: 'jjk-culling-game',
+    type: 'anime',
+    name: 'Jujutsu Kaisen: Culling Game (Mùa 3)',
+    creator: 'MAPPA',
+    format: 'TV Series',
+    subType: 'series',
+    genre: 'Shonen · Supernatural Action',
+    moods: ['action', 'challenge', 'story'],
+    time: '24 tập',
+    score: 9.6,
+    img: '/assets/img/pool-jujutsu-kaisen-1.jpg',
+    why: 'Cuộc thanh trừng sinh tử khốc liệt nhất giới Chú thuật. Sukuna bung xõa sức mạnh tối thượng và những trận so tài thuật thức mãn nhãn không thể rời mắt.',
+    link: '/jujutsu-kaisen-culling-game-part-2-sukuna-teaser',
+    color: ['#080414', '#150a2e']
+  },
+  {
+    id: 'chainsaw-man-reze',
+    type: 'anime',
+    name: 'Chainsaw Man: Reze Arc (Movie)',
+    creator: 'MAPPA',
+    format: 'Movie (90 phút)',
+    subType: 'movie',
+    genre: 'Action · Romance Dark',
+    moods: ['action', 'story', 'quick'],
+    time: '1h 30m',
+    score: 9.5,
+    img: '/assets/img/6b2483c562-chainsaw-man-anime-hero.jpg',
+    why: 'Một trong những arc được yêu thích nhất của Tatsuki Fujimoto. Mối tình bộc phát lãng mạn nhưng đẫm máu giữa Denji và cô gái mang trái tim bom Reze.',
+    link: '/chainsaw-man-reze-arc-review',
+    color: ['#140804', '#2d140a']
+  },
+  {
+    id: 'dandadan-s2',
+    type: 'anime',
+    name: 'Dandadan Mùa 2',
+    creator: 'Science SARU',
+    format: 'TV Series (12 tập)',
+    subType: 'series',
+    genre: 'Supernatural · Action Comedy',
+    moods: ['action', 'coop', 'relax'],
+    time: '12 tập (~5 giờ)',
+    score: 9.4,
+    img: '/assets/img/news-dandadan-season-2-evil-eye.jpg',
+    why: 'Sự kết hợp điên rồ giữa người ngoài hành tinh, ma quỷ dân gian và chuyện tình gà bông tuổi học trò. Tiết tấu dồn dập khiến bạn cười sặc sụa.',
+    link: '/dandadan-mua-2-cursed-house-evil-eye',
+    color: ['#140212', '#2d0829']
+  },
+  {
+    id: 'jojo-sbr',
+    type: 'anime',
+    name: "JoJo's Bizarre Adventure: Steel Ball Run",
+    creator: 'David Production',
+    format: 'TV Series',
+    subType: 'series',
+    genre: 'Adventure · Action Strategy',
+    moods: ['action', 'story', 'explore'],
+    time: '24 tập',
+    score: 9.7,
+    img: '/assets/img/real-jojo-sbr-stage2.jpg',
+    why: 'Phần truyện được cộng đồng đánh giá xuất sắc nhất trong vũ trụ JoJo. Cuộc đua ngựa nghìn dặm xuyên nước Mỹ đầy bí ẩn và mưu lược nghẹt thở.',
+    link: '/jojo-steel-ball-run-stage-2-3-len-song-25-9',
+    color: ['#120e03', '#2a2007']
+  },
+  {
+    id: 'aoashi-s2',
+    type: 'anime',
+    name: 'Aoashi Mùa 2',
+    creator: 'TMS Entertainment',
+    format: 'TV Series (24 tập)',
+    subType: 'series',
+    genre: 'Sports · Drama',
+    moods: ['challenge', 'story', 'quick'],
+    time: '24 tập',
+    score: 9.3,
+    img: '/assets/img/poster-real-aoashi-s2.jpg',
+    why: 'Anime bóng đá chân thực và thông minh nhất hiện nay. Không chiêu trò siêu nhiên, chỉ có chiến thuật đỉnh cao và hành trình vượt lên nghịch cảnh.',
+    link: '/aoashi-mua-2-doi-studio-len-song-4-10',
+    color: ['#021008', '#072414']
+  },
+  {
+    id: 'vinland-saga',
+    type: 'anime',
+    name: 'Vinland Saga',
+    creator: 'WIT Studio / MAPPA',
+    format: 'TV Series (48 tập)',
+    subType: 'series',
+    genre: 'Historical · Seinen Masterpiece',
+    moods: ['story', 'challenge', 'explore'],
+    time: '48 tập (~19 giờ)',
+    score: 9.7,
+    img: '/assets/img/701f6a9728-vinland.jpg',
+    why: 'Từ một cậu bé Viking nung nấu hận thù biến đổi thành người đàn ông chuộc lỗi tìm kiếm vùng đất bình yên. Triết lý sâu sắc hiếm có trong thế giới anime.',
+    link: '/vinland-saga-manga-review',
+    color: ['#100a06', '#22150c']
+  },
+
+  // ── MANGA & MANHWA ─────────────────────────────────────────────────
+  {
+    id: 'solo-leveling-ragnarok',
+    type: 'manga',
+    name: 'Solo Leveling: Ragnarok',
+    creator: 'REDICE Studio · Daul',
+    format: 'Manhwa Hàn Quốc (Webtoon)',
+    subType: 'manhwa',
+    genre: 'Action · Hunter Fantasy',
+    moods: ['action', 'challenge', 'quick'],
+    time: 'Đọc cuộn (Webtoon)',
+    score: 9.5,
+    img: '/assets/img/news-solo-leveling-ragnarok-manhwa.jpg',
+    why: 'Hậu truyện chính thức xoay quanh con trai của Sung Jin-woo: Sung Su-ho kế thừa huyết mạch Hoàng Đế Bóng Tối. Nét vẽ full-color siêu mãn nhãn.',
+    link: '/solo-leveling-ragnarok-manhwa-review',
+    color: ['#040a14', '#0a172e']
+  },
+  {
+    id: 'one-piece-final',
+    type: 'manga',
+    name: 'One Piece: Elbaf & Final Saga',
+    creator: 'Eiichiro Oda · Shonen Jump',
+    format: 'Manga Nhật Bản',
+    subType: 'manga',
+    genre: 'Adventure · Shonen',
+    moods: ['explore', 'story', 'action'],
+    time: '1100+ Chapter',
+    score: 9.9,
+    img: '/assets/img/d653b4c00a-one-piece-hero.jpg',
+    why: 'Thời khắc lịch sử của vương quốc người khổng lồ Elbaf và những bí mật lớn nhất về Thế Kỷ Trống được Oda hé lộ sau gần 30 năm đồng hành.',
+    link: '/one-piece-final-saga-review',
+    color: ['#120803', '#2a1207']
+  },
+  {
+    id: 'kagurabachi',
+    type: 'manga',
+    name: 'Kagurabachi',
+    creator: 'Takeru Hokazono · Shonen Jump',
+    format: 'Manga Nhật Bản',
+    subType: 'manga',
+    genre: 'Dark Action · Katana Sorcery',
+    moods: ['action', 'quick', 'challenge'],
+    time: 'Đang phát hành hàng tuần',
+    score: 9.4,
+    img: '/assets/img/1acdb70bf9-kagurabachi-review-hero.jpg',
+    why: 'Hiện tượng manga ăn khách nhất thế hệ mới của tạp chí Shonen Jump. Góc quay điện ảnh đột phá và những trận đấu kiếm yêu đao ma thuật cực kỳ đã mắt.',
+    link: '/kagurabachi-review',
+    color: ['#100204', '#260408']
+  },
+  {
+    id: 'berserk',
+    type: 'manga',
+    name: 'Berserk',
+    creator: 'Kentaro Miura · Studio Gaga',
+    format: 'Manga Trọn Bộ',
+    subType: 'manga',
+    genre: 'Dark Fantasy · Seinen',
+    moods: ['story', 'challenge', 'action'],
+    time: '370+ Chapter',
+    score: 9.9,
+    img: '/assets/img/7b5a968234-maxresdefault.jpg',
+    why: 'Bức tường thành của Dark Fantasy thế giới. Kiếm sĩ Đen Guts đối đầu số phận nghiệt ngã với từng nét vẽ chi tiết như tranh khắc gỗ thời Phục hưng.',
+    link: '/berserk-arc-cuoi',
+    color: ['#120303', '#280606']
+  },
+  {
+    id: 'boruto-tbv',
+    type: 'manga',
+    name: 'Boruto: Two Blue Vortex',
+    creator: 'Masashi Kishimoto · Mikio Ikemoto',
+    format: 'Manga Hàng Tháng',
+    subType: 'manga',
+    genre: 'Ninja · Action Sci-Fi',
+    moods: ['action', 'story', 'challenge'],
+    time: 'Hàng tháng',
+    score: 9.1,
+    img: '/assets/img/boruto-naruto-next-generations-banner.jpg',
+    why: 'Giai đoạn timeskip đảo ngược tình thế chấn động: Boruto bị cả làng săn đuổi trong khi sức mạnh Thần Thụ trỗi dậy đe dọa toàn bộ ngũ đại cường quốc.',
+    link: '/sarada-mangekyo-sharingan-suc-manh-ho-den-ohirume',
+    color: ['#040a12', '#0a1728']
+  },
+  {
+    id: 'black-clover',
+    type: 'manga',
+    name: 'Black Clover: Hồi Kết',
+    creator: 'Yūki Tabata',
+    format: 'Manga Hoàn Thành',
+    subType: 'manga',
+    genre: 'Magic · Action Shonen',
+    moods: ['action', 'coop', 'quick'],
+    time: '375 Chapter',
+    score: 9.2,
+    img: '/assets/img/75f4272c97-black-clover-final-volume-hero.jpg',
+    why: 'Cậu bé không phép thuật Asta vung thanh cự kiếm phản ma pháp vào trận chiến cuối cùng bảo vệ Vương quốc Clover. Hype tột độ từ đầu đến cuối.',
+    link: '/black-clover-final-volume-review',
+    color: ['#080410', '#130a24']
+  }
+];
+
+const EN_ITEMS = [
+  // ── GAMES ──────────────────────────────────────────────────────────
+  {
+    id: 'elden-ring',
+    type: 'game',
+    name: 'Elden Ring: Shadow of the Erdtree',
+    creator: 'FromSoftware · 2024',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Action RPG · Soulslike',
+    moods: ['action', 'story', 'challenge', 'explore'],
+    time: '60 - 150h',
+    score: 9.8,
+    img: '/assets/img/a7f47ed998-header.jpg',
+    why: 'Breathtaking Lands Between and Realm of Shadow. Every landmark, ruin, and brutal boss fight delivers unmatched triumph and satisfaction.',
+    link: '/en/elden-ring-shadow-of-the-erdtree-review',
+    color: ['#1a0c08', '#3d1a00']
+  },
+  {
+    id: 'wuwa',
+    type: 'game',
+    name: 'Wuthering Waves',
+    creator: 'Kuro Games · 2024',
+    format: 'PC / Mobile',
+    subType: 'mobile',
+    genre: 'Action RPG · Open World',
+    moods: ['action', 'explore', 'story'],
+    time: 'Live Service',
+    score: 9.5,
+    img: '/assets/img/c53329917b-wuthering-waves-hero.jpg',
+    why: 'The slickest parkour, dodging, and parrying combat in the gacha genre. Explore a stylish post-apocalyptic world rendered in Unreal Engine.',
+    link: '/en/wuthering-waves-review',
+    color: ['#050810', '#0a1228']
+  },
+  {
+    id: 'hades2',
+    type: 'game',
+    name: 'Hades II',
+    creator: 'Supergiant Games · 2024',
+    format: 'PC',
+    subType: 'pc',
+    genre: 'Roguelite · Action',
+    moods: ['quick', 'action', 'story'],
+    time: '20 - 60h',
+    score: 9.4,
+    img: '/assets/img/recommend-hades.jpg',
+    why: 'Melinoë marches against Chronos, the Titan of Time. Every 25-minute run brings god-tier voice acting, fresh boons, and exhilarating boss duels.',
+    link: null,
+    color: ['#1a0508', '#3d0010']
+  },
+  {
+    id: 'mhwilds',
+    type: 'game',
+    name: 'Monster Hunter Wilds',
+    creator: 'Capcom · 2025',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Hunting Action · Co-op',
+    moods: ['action', 'coop', 'challenge'],
+    time: '80 - 300h',
+    score: 9.4,
+    img: '/assets/img/587e72813c-header.jpg',
+    why: 'Hunt massive apex monsters with 3 companions atop the agile Seikret mount. Dynamic weather systems make the living wilderness truly formidable.',
+    link: '/en/monster-hunter-wilds-review',
+    color: ['#0a0e05', '#1a280a']
+  },
+  {
+    id: 'genshin',
+    type: 'game',
+    name: 'Genshin Impact: Natlan',
+    creator: 'HoYoverse · 2024',
+    format: 'Mobile / PC / Console',
+    subType: 'mobile',
+    genre: 'Open World RPG',
+    moods: ['relax', 'explore', 'story'],
+    time: 'Live Service',
+    score: 9.1,
+    img: '/assets/img/real-genshin-natlan.jpg',
+    why: 'The nation of Pyro, Natlan, introduces exhilarating Saurian transformations for surfing lava and scaling cliffs. Perfect 30-minute daily decompression.',
+    link: '/en/genshin-natlan-review',
+    color: ['#050a0a', '#0a1a14']
+  },
+  {
+    id: 'stellar-blade',
+    type: 'game',
+    name: 'Stellar Blade',
+    creator: 'Shift Up · 2024',
+    format: 'Console / PC',
+    subType: 'console',
+    genre: 'Action Adventure',
+    moods: ['action', 'challenge', 'explore'],
+    time: '25 - 40h',
+    score: 9.2,
+    img: '/assets/img/f845d7c936-library_hero.jpg',
+    why: 'High-octane hack-and-slash combat paired with a haunting synth-heavy soundtrack. Parry timing and precision dodges make every encounter punchy.',
+    link: '/en/stellar-blade-2',
+    color: ['#080a18', '#141838']
+  },
+  {
+    id: 'kcd2',
+    type: 'game',
+    name: 'Kingdom Come: Deliverance II',
+    creator: 'Warhorse Studios · 2025',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Medieval RPG',
+    moods: ['story', 'explore', 'challenge'],
+    time: '70 - 120h',
+    score: 9.3,
+    img: '/assets/img/50c4f9b171-library_hero.jpg',
+    why: 'The most authentic 15th-century European medieval simulation ever created. Rise from a humble blacksmith apprentice to heroic castle sieges.',
+    link: null,
+    color: ['#140d05', '#2a1a08']
+  },
+  {
+    id: 'witcher3',
+    type: 'game',
+    name: 'The Witcher 3: Wild Hunt',
+    creator: 'CD PROJEKT RED',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Open World RPG',
+    moods: ['story', 'explore', 'relax'],
+    time: '80 - 150h',
+    score: 9.8,
+    img: '/assets/img/uploads/yboyto0l-images-17.jpg',
+    why: 'The gold standard of Western narrative RPGs. Ride alongside Geralt of Rivia through the grim swamps of Velen and the breathtaking Skellige isles.',
+    link: null,
+    color: ['#0a0814', '#18122c']
+  },
+
+  // ── ANIME ──────────────────────────────────────────────────────────
+  {
+    id: 'frieren',
+    type: 'anime',
+    name: "Frieren: Beyond Journey's End (S1 & S2)",
+    creator: 'Madhouse',
+    format: 'TV Series (28 Episodes)',
+    subType: 'series',
+    genre: 'Fantasy · Slice of Life',
+    moods: ['relax', 'story', 'explore'],
+    time: '24 min/ep (~11 hours)',
+    score: 9.9,
+    img: '/assets/img/3f4f599cac-frieren-s2-hero.jpg',
+    why: 'The most profound fantasy anime masterpiece of our generation. An elf mage reflects on mortality and human bonds after defeating the Demon King.',
+    link: '/en/frieren-season-2-aired-january-2026',
+    color: ['#06141c', '#0f2c3a']
+  },
+  {
+    id: 'demon-slayer-infinity-castle',
+    type: 'anime',
+    name: 'Demon Slayer: Infinity Castle (Movie 1)',
+    creator: 'Ufotable',
+    format: 'Theatrical Movie (120 min)',
+    subType: 'movie',
+    genre: 'Dark Fantasy · Action Hype',
+    moods: ['action', 'quick', 'challenge'],
+    time: '2 Hours Feature',
+    score: 9.8,
+    img: '/assets/img/e497ae1e1b-demon-slayer-cover.jpg',
+    why: 'Ufotable sets an unprecedented benchmark in 3D combat choreography and cinematic lighting as the Demon Slayer Corps assaults Muzan’s lair.',
+    link: '/en/demon-slayer-infinity-castle-review',
+    color: ['#1a060d', '#3d0c1c']
+  },
+  {
+    id: 'jjk-culling-game',
+    type: 'anime',
+    name: 'Jujutsu Kaisen: Culling Game (Season 3)',
+    creator: 'MAPPA',
+    format: 'TV Series',
+    subType: 'series',
+    genre: 'Shonen · Supernatural Action',
+    moods: ['action', 'challenge', 'story'],
+    time: '24 Episodes',
+    score: 9.6,
+    img: '/assets/img/pool-jujutsu-kaisen-1.jpg',
+    why: 'The deadly battle royale of modern jujutsu sorcery reaches fever pitch. Sukuna unleashes unfathomable cursed energy in relentless visual spectacles.',
+    link: '/en/jujutsu-kaisen-culling-game-part-2-sukuna-teaser-juju-fes-2026',
+    color: ['#080414', '#150a2e']
+  },
+  {
+    id: 'chainsaw-man-reze',
+    type: 'anime',
+    name: 'Chainsaw Man: Reze Arc (Movie)',
+    creator: 'MAPPA',
+    format: 'Movie (90 min)',
+    subType: 'movie',
+    genre: 'Action · Dark Romance',
+    moods: ['action', 'story', 'quick'],
+    time: '1h 30m',
+    score: 9.5,
+    img: '/assets/img/6b2483c562-chainsaw-man-anime-hero.jpg',
+    why: 'Tatsuki Fujimoto’s most beloved romantic yet explosive arc. Denji falls for the enigmatic Reze before gunfire, fireworks, and bomb explosions erupt.',
+    link: '/en/chainsaw-man-reze-arc-review',
+    color: ['#140804', '#2d140a']
+  },
+  {
+    id: 'dandadan-s2',
+    type: 'anime',
+    name: 'Dandadan Season 2',
+    creator: 'Science SARU',
+    format: 'TV Series (12 Episodes)',
+    subType: 'series',
+    genre: 'Supernatural · Action Comedy',
+    moods: ['action', 'coop', 'relax'],
+    time: '12 Episodes (~5 hours)',
+    score: 9.4,
+    img: '/assets/img/news-dandadan-season-2-evil-eye.jpg',
+    why: 'An electrifying collision of cryptids, folklore ghosts, and high-speed teenage romance. Science SARU’s kinetic direction never slows down.',
+    link: '/en/dandadan-season-2-review',
+    color: ['#140212', '#2d0829']
+  },
+  {
+    id: 'jojo-sbr',
+    type: 'anime',
+    name: "JoJo's Bizarre Adventure: Steel Ball Run",
+    creator: 'David Production',
+    format: 'TV Series',
+    subType: 'series',
+    genre: 'Adventure · Action Strategy',
+    moods: ['action', 'story', 'explore'],
+    time: '24 Episodes',
+    score: 9.7,
+    img: '/assets/img/real-jojo-sbr-stage2.jpg',
+    why: 'Universally hailed as the pinnacle of Hirohiko Araki’s creative vision. A grueling transcontinental horseback race fueled by mind-bending Stands.',
+    link: '/en/jojo-steel-ball-run-stages-2-3-premiere-september-25',
+    color: ['#120e03', '#2a2007']
+  },
+  {
+    id: 'aoashi-s2',
+    type: 'anime',
+    name: 'Aoashi Season 2',
+    creator: 'TMS Entertainment',
+    format: 'TV Series (24 Episodes)',
+    subType: 'series',
+    genre: 'Sports · Drama',
+    moods: ['challenge', 'story', 'quick'],
+    time: '24 Episodes',
+    score: 9.3,
+    img: '/assets/img/poster-real-aoashi-s2.jpg',
+    why: 'The smartest and most tactical football anime of the decade. No supernatural superpowers—just real spatial awareness, vision, and grit.',
+    link: '/en/aoashi-season-2-new-studio-premieres-october-4',
+    color: ['#021008', '#072414']
+  },
+  {
+    id: 'vinland-saga',
+    type: 'anime',
+    name: 'Vinland Saga',
+    creator: 'WIT Studio / MAPPA',
+    format: 'TV Series (48 Episodes)',
+    subType: 'series',
+    genre: 'Historical · Seinen Masterpiece',
+    moods: ['story', 'challenge', 'explore'],
+    time: '48 Episodes (~19 hours)',
+    score: 9.7,
+    img: '/assets/img/701f6a9728-vinland.jpg',
+    why: 'From a vengeful young Viking raider into an enlightened man seeking redemption and peace. Unmatched maturity, philosophy, and historical grit.',
+    link: '/en/vinland-saga-manga-review',
+    color: ['#100a06', '#22150c']
+  },
+
+  // ── MANGA & MANHWA ─────────────────────────────────────────────────
+  {
+    id: 'solo-leveling-ragnarok',
+    type: 'manga',
+    name: 'Solo Leveling: Ragnarok',
+    creator: 'REDICE Studio · Daul',
+    format: 'Korean Manhwa (Webtoon)',
+    subType: 'manhwa',
+    genre: 'Action · Hunter Fantasy',
+    moods: ['action', 'challenge', 'quick'],
+    time: 'Vertical Scroll',
+    score: 9.5,
+    img: '/assets/img/news-solo-leveling-ragnarok-manhwa.jpg',
+    why: 'The official continuation following Sung Su-ho, son of the Shadow Monarch. Top-tier full-color digital artwork and relentless level-up hype.',
+    link: '/en/solo-leveling-ragnarok-manhwa-review',
+    color: ['#040a14', '#0a172e']
+  },
+  {
+    id: 'one-piece-final',
+    type: 'manga',
+    name: 'One Piece: Elbaf & Final Saga',
+    creator: 'Eiichiro Oda · Shonen Jump',
+    format: 'Japanese Manga',
+    subType: 'manga',
+    genre: 'Adventure · Shonen',
+    moods: ['explore', 'story', 'action'],
+    time: '1100+ Chapters',
+    score: 9.9,
+    img: '/assets/img/d653b4c00a-one-piece-hero.jpg',
+    why: 'The legendary kingdom of giants Elbaf finally takes center stage as Oda unpacks 30 years of deep lore regarding the Void Century and Joy Boy.',
+    link: '/en/one-piece-final-saga-review',
+    color: ['#120803', '#2a1207']
+  },
+  {
+    id: 'kagurabachi',
+    type: 'manga',
+    name: 'Kagurabachi',
+    creator: 'Takeru Hokazono · Shonen Jump',
+    format: 'Japanese Manga',
+    subType: 'manga',
+    genre: 'Dark Action · Katana Sorcery',
+    moods: ['action', 'quick', 'challenge'],
+    time: 'Weekly Chapters',
+    score: 9.4,
+    img: '/assets/img/1acdb70bf9-kagurabachi-review-hero.jpg',
+    why: 'The undisputed breakout manga hit of the new Shonen Jump era. Cinematic panel flow, stylish swordplay, and deep emotional stakes.',
+    link: '/en/kagurabachi-review',
+    color: ['#100204', '#260408']
+  },
+  {
+    id: 'berserk',
+    type: 'manga',
+    name: 'Berserk',
+    creator: 'Kentaro Miura · Studio Gaga',
+    format: 'Completed Epic Manga',
+    subType: 'manga',
+    genre: 'Dark Fantasy · Seinen',
+    moods: ['story', 'challenge', 'action'],
+    time: '370+ Chapters',
+    score: 9.9,
+    img: '/assets/img/7b5a968234-maxresdefault.jpg',
+    why: 'The monumental dark fantasy benchmark. The Black Swordsman Guts wages war against cruel destiny with Renaissance-tier pen-and-ink detail.',
+    link: '/en/berserk-arc-cuoi',
+    color: ['#120303', '#280606']
+  },
+  {
+    id: 'boruto-tbv',
+    type: 'manga',
+    name: 'Boruto: Two Blue Vortex',
+    creator: 'Masashi Kishimoto · Mikio Ikemoto',
+    format: 'Monthly Manga',
+    subType: 'manga',
+    genre: 'Ninja · Action Sci-Fi',
+    moods: ['action', 'story', 'challenge'],
+    time: 'Monthly Chapters',
+    score: 9.1,
+    img: '/assets/img/boruto-naruto-next-generations-banner.jpg',
+    why: 'A high-stakes post-timeskip world order where Boruto is exiled as an international rogue while sentient Divine Trees threaten civilization.',
+    link: null,
+    color: ['#040a12', '#0a1728']
+  },
+  {
+    id: 'black-clover',
+    type: 'manga',
+    name: 'Black Clover: Final Arc',
+    creator: 'Yūki Tabata',
+    format: 'Completed Manga',
+    subType: 'manga',
+    genre: 'Magic · Action Shonen',
+    moods: ['action', 'coop', 'quick'],
+    time: '375 Chapters',
+    score: 9.2,
+    img: '/assets/img/75f4272c97-black-clover-final-volume-hero.jpg',
+    why: 'The magicless boy Asta swings his immense anti-magic greatsword into the climactic war protecting the Clover Kingdom. Non-stop shonen hype.',
+    link: '/en/black-clover-final-volume-review',
+    color: ['#080410', '#130a24']
+  }
+];
+
+// ═════════════════════════════════════════════════════════════════════
+// 2. HTML GENERATOR
+// ═════════════════════════════════════════════════════════════════════
+
+function buildHtml(lang = 'vi') {
+  const isEn = lang === 'en';
+  const items = isEn ? EN_ITEMS : VI_ITEMS;
+
+  const pageTitle = isEn
+    ? 'What to Play, Watch & Read? · OtaHub Entertainment Picker'
+    : 'Chơi Gì · Xem Gì · Đọc Gì? | Gợi Ý Game, Anime & Manga Hôm Nay · OtaHub';
+
+  const pageDesc = isEn
+    ? "Can't decide what game to play, anime to watch, or manga to read today? OtaHub provides smart entertainment picks tailored to your mood and platforms."
+    : 'Không biết hôm nay chơi game gì, xem anime gì hay đọc manga nào? OtaHub gợi ý chuẩn xác theo tâm trạng và thời gian rảnh của bạn. Khám phá kho siêu phẩm ngay!';
+
+  const canonicalUrl = isEn ? 'https://otahub.asia/en/choi-gi' : 'https://otahub.asia/choi-gi';
+  const prefix = isEn ? '/en' : '';
+  const topPick = items[0];
+
+  // JSON-LD Schemas
+  const webAppSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    'name': isEn ? 'OtaHub Entertainment Discovery Engine' : 'Cỗ Máy Gợi Ý Giải Trí OtaHub',
+    'applicationCategory': 'EntertainmentApplication',
+    'operatingSystem': 'Any Web Browser',
+    'url': canonicalUrl,
+    'description': pageDesc,
+    'offers': {
+      '@type': 'Offer',
+      'price': '0',
+      'priceCurrency': 'USD'
+    }
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {
+        '@type': 'ListItem',
+        'position': 1,
+        'name': isEn ? 'Home' : 'Trang chủ',
+        'item': isEn ? 'https://otahub.asia/en' : 'https://otahub.asia'
+      },
+      {
+        '@type': 'ListItem',
+        'position': 2,
+        'name': isEn ? 'What to Play & Watch' : 'Chơi Gì · Xem Gì · Đọc Gì',
+        'item': canonicalUrl
+      }
+    ]
+  };
+
+  const itemListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    'name': isEn ? 'OtaHub Top Entertainment Recommendations' : 'Top Tác Phẩm Giải Trí Được Bình Chọn Nhiều Nhất OtaHub',
+    'itemListElement': items.slice(0, 10).map((it, idx) => ({
+      '@type': 'ListItem',
+      'position': idx + 1,
+      'name': it.name,
+      'url': it.link ? `https://otahub.asia${it.link}` : canonicalUrl
+    }))
+  };
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': isEn
+      ? [
+          {
+            '@type': 'Question',
+            'name': 'How does OtaHub match games, anime, and manga to my mood?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'OtaHub categorizes titles by emotional pace, runtime investment, and genre tags. By filtering for relaxation, high-octane action, deep narratives, or co-op sessions, our engine instantly surfaces the most relevant titles with high review scores.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'What criteria determine the OtaHub Score?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Scores combine editorial critical analysis, technical performance (optimization/animation quality), narrative depth, and community reception on a 10-point scale.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'What is the difference between Manga and Manhwa on OtaHub?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Manga refers to traditional Japanese black-and-white print comics read right-to-left. Manhwa refers to South Korean full-color digital webtoons formatted for seamless vertical scrolling on mobile phones.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'Do I need an account to use the Discovery Engine?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'No account required. All random rolls, filters, and curated review links are 100% free and instantly accessible in your browser.'
+            }
+          }
+        ]
+      : [
+          {
+            '@type': 'Question',
+            'name': 'Làm thế nào để OtaHub gợi ý đúng tựa game, anime hoặc manga tôi muốn?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Hệ thống phân loại dựa trên 3 tiêu chí cốt lõi: Định dạng (Game, Anime, Manga), Tâm trạng thưởng thức (Thư giãn, Hành động, Cốt truyện sâu, Co-op, Nhanh gọn, Thế giới mở, Thử thách) và Thời lượng rảnh rỗi của bạn để đưa ra kết quả tối ưu nhất.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'Điểm số OtaHub Score được chấm dựa trên tiêu chí nào?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'OtaHub Score được tổng hợp từ bài đánh giá chuyên sâu của ban biên tập, chất lượng đồ họa/hoạt họa, chiều sâu kịch bản và độ hoàn thiện kỹ thuật theo thang điểm 10.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'Manga và Manhwa khác nhau như thế nào?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Manga là truyện tranh xuất xứ Nhật Bản, chủ yếu là tranh đen trắng đọc từ phải sang trái. Manhwa là truyện tranh Hàn Quốc, định dạng webtoon đọc cuộn dọc full màu tối ưu hoàn hảo cho màn hình điện thoại.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'Tôi có cần đăng ký tài khoản để roll gợi ý không?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Hoàn toàn không. Mọi tính năng roll ngẫu nhiên, bộ lọc tâm trạng và xem bài viết đánh giá chi tiết trên OtaHub đều miễn phí 100% không cần đăng nhập.'
+            }
+          }
+        ]
+  };
+
+  // Curated items for top 3 columns
+  const topGames = items.filter(x => x.type === 'game').slice(0, 4);
+  const topAnime = items.filter(x => x.type === 'anime').slice(0, 4);
+  const topManga = items.filter(x => x.type === 'manga').slice(0, 4);
+
+  return `<!DOCTYPE html>
+<html lang="${lang}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${pageTitle}</title>
+  <meta name="description" content="${pageDesc}">
+  <meta name="keywords" content="${isEn ? 'what to play, what to watch, what to read, game recommendations, anime suggestions, manga picks, otahub' : 'chơi game gì, xem anime gì, đọc manga gì, gợi ý game, gợi ý anime hôm nay, manhwa hay, top game 2026, otahub choi gi'}">
+  <meta name="author" content="OtaHub">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="${canonicalUrl}">
+  <link rel="alternate" hreflang="vi" href="https://otahub.asia/choi-gi">
+  <link rel="alternate" hreflang="en" href="https://otahub.asia/en/choi-gi">
+  <link rel="alternate" hreflang="x-default" href="https://otahub.asia/choi-gi">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="${pageTitle}">
+  <meta property="og:description" content="${pageDesc}">
+  <meta property="og:url" content="${canonicalUrl}">
+  <meta property="og:image" content="https://otahub.asia/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="OtaHub">
+  <meta property="og:locale" content="${isEn ? 'en_US' : 'vi_VN'}">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${pageTitle}">
+  <meta name="twitter:description" content="${pageDesc}">
+  <meta name="twitter:image" content="https://otahub.asia/og-image.png">
+  <meta name="twitter:site" content="@OtaHubAsia">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <meta name="theme-color" content="#080318">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">${JSON.stringify(webAppSchema)}</script>
+  <script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>
+  <script type="application/ld+json">${JSON.stringify(itemListSchema)}</script>
+  <script type="application/ld+json">${JSON.stringify(faqSchema)}</script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-12852ZFD0K"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-12852ZFD0K');
+  </script>
+
+  <!-- Typography & Global CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
+  <link rel="stylesheet" href="/assets/mobile-fix.css?v=20260926">
+
+  <style>
+    :root {
+      --bg: #070314;
+      --surf: rgba(18, 9, 44, 0.72);
+      --surf2: rgba(30, 16, 72, 0.85);
+      --card: rgba(22, 11, 54, 0.65);
+      --cyan: #00e5ff;
+      --cyan-glow: rgba(0, 229, 255, 0.35);
+      --sakura: #ff3080;
+      --sakura-glow: rgba(255, 48, 128, 0.35);
+      --violet: #7c3aed;
+      --lavender: #a78bfa;
+      --amber: #fbbf24;
+      --green: #34d399;
+      --white: #ffffff;
+      --text-main: #f8fafc;
+      --text-sub: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border: rgba(255, 255, 255, 0.12);
+      --border-cyan: rgba(0, 229, 255, 0.3);
+      --fd: 'Plus Jakarta Sans', 'Space Grotesk', -apple-system, sans-serif;
+      --fb: 'Be Vietnam Pro', -apple-system, sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html, body { overflow-x: hidden; width: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: var(--fb);
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(ellipse 110% 50% at 50% 0%, rgba(124, 58, 237, 0.22) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 40% at 0% 50%, rgba(0, 229, 255, 0.08) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 40% at 100% 40%, rgba(255, 48, 128, 0.08) 0%, transparent 55%);
+    }
+
+    /* Ambient animated orbs */
+    #amb { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(90px); }
+    .o1 { width: 850px; height: 850px; background: radial-gradient(circle, var(--violet), transparent 70%); opacity: .18; top: -200px; left: -200px; animation: orbA 20s ease-in-out infinite; }
+    .o2 { width: 700px; height: 700px; background: radial-gradient(circle, var(--cyan), transparent 70%); opacity: .14; bottom: 5%; right: -150px; animation: orbB 24s ease-in-out infinite; }
+    .o3 { width: 550px; height: 550px; background: radial-gradient(circle, var(--sakura), transparent 70%); opacity: .12; top: 40%; left: 35%; animation: orbC 22s ease-in-out infinite; }
+    @keyframes orbA { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(40px, -30px); } }
+    @keyframes orbB { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-30px, 40px); } }
+    @keyframes orbC { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-25px, -35px); } }
+
+    /* Navigation Bar */
+    .nav { position: sticky; top: 0; z-index: 100; background: rgba(7, 3, 20, 0.88); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); }
+    .nav-in { max-width: 1440px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-t { font-family: var(--fd); font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
+    .logo-ota { color: #ffffff; }
+    .logo-hub { color: var(--cyan); text-shadow: 0 0 16px var(--cyan-glow); }
+    .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
+    .nav-links a { color: var(--text-sub); text-decoration: none; font-size: 13.5px; font-weight: 600; padding: 8px 14px; border-radius: 8px; transition: all 0.2s; font-family: var(--fd); letter-spacing: 0.02em; }
+    .nav-links a:hover, .nav-links a.active { color: #ffffff; background: rgba(255, 255, 255, 0.08); border-color: var(--cyan); }
+    .nav-links a.active { color: var(--cyan); box-shadow: inset 0 -2px 0 var(--cyan); }
+    .nav-r { display: flex; align-items: center; gap: 12px; }
+    .nsearch { background: rgba(255,255,255,.06); border: 1px solid var(--border); color: #cbd5e1; width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
+    .nsearch:hover { border-color: var(--cyan); color: var(--cyan); }
+    .cta-sub { background: linear-gradient(135deg, var(--cyan), #00b4d8); color: #050212; font-family: var(--fd); font-weight: 700; font-size: 13px; padding: 8px 18px; border-radius: 8px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+    .cta-sub:hover { transform: translateY(-1px); box-shadow: 0 4px 18px var(--cyan-glow); }
+    .ham { display: none; background: none; border: none; cursor: pointer; padding: 8px; flex-direction: column; gap: 5px; width: 44px; height: 44px; align-items: center; justify-content: center; }
+    .ham span { display: block; width: 22px; height: 2px; background: #ffffff; transition: 0.25s; border-radius: 2px; }
+    .ham.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .ham.open span:nth-child(2) { opacity: 0; }
+    .ham.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile Nav Drawer */
+    .mobile-nav { display: none; position: fixed; inset: 64px 0 0 0; background: rgba(7, 3, 20, 0.98); backdrop-filter: blur(24px); z-index: 99; padding: 24px; flex-direction: column; gap: 12px; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { color: #f8fafc; font-family: var(--fd); font-weight: 700; font-size: 19px; text-decoration: none; padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .mobile-nav a.active { color: var(--cyan); }
+
+    /* Search Overlay */
+    .search-overlay { position: fixed; inset: 0; z-index: 500; background: rgba(7, 3, 20, 0.96); backdrop-filter: blur(20px); display: none; flex-direction: column; align-items: center; padding-top: 120px; }
+    .search-overlay.open { display: flex; }
+    .search-box { width: min(640px, 92vw); position: relative; }
+    .search-input { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid var(--border-cyan); border-radius: 12px; color: #ffffff; font-family: var(--fb); font-size: 18px; padding: 16px 52px 16px 20px; outline: none; }
+    .search-input:focus { border-color: var(--cyan); box-shadow: 0 0 20px var(--cyan-glow); }
+    .search-close { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #94a3b8; font-size: 22px; cursor: pointer; }
+    .search-hint { margin-top: 16px; font-size: 12px; color: #94a3b8; letter-spacing: 0.05em; }
+
+    /* Page Hero */
+    .page-hero { position: relative; z-index: 1; text-align: center; padding: 56px 20px 32px; max-width: 900px; margin: 0 auto; }
+    .ph-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-family: var(--fd); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan); background: rgba(0, 229, 255, 0.08); border: 1px solid var(--border-cyan); padding: 6px 14px; border-radius: 20px; margin-bottom: 18px; }
+    .ph-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+    .ph-title { font-family: var(--fd); font-weight: 800; font-size: clamp(34px, 5.5vw, 68px); line-height: 1.05; letter-spacing: -0.025em; color: #ffffff; margin-bottom: 16px; }
+    .ph-title em { font-style: normal; color: transparent; background: linear-gradient(135deg, var(--cyan) 0%, #38bdf8 50%, var(--sakura) 100%); -webkit-background-clip: text; background-clip: text; }
+    .ph-sub { font-size: 15.5px; color: var(--text-sub); max-width: 600px; margin: 0 auto; line-height: 1.7; }
+
+    /* Category Switcher Tabs */
+    .cat-zone { position: relative; z-index: 1; max-width: 780px; margin: 24px auto 0; padding: 0 20px; }
+    .cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; background: rgba(14, 7, 34, 0.7); padding: 6px; border-radius: 16px; border: 1px solid var(--border); backdrop-filter: blur(12px); }
+    .cat-btn { background: none; border: none; color: var(--text-sub); font-family: var(--fd); font-weight: 700; font-size: 14px; padding: 12px 10px; border-radius: 12px; cursor: pointer; transition: all 0.22s var(--ease); display: flex; align-items: center; justify-content: center; gap: 7px; }
+    .cat-btn:hover { color: #ffffff; background: rgba(255,255,255,0.06); }
+    .cat-btn.active { color: #070314; background: linear-gradient(135deg, var(--cyan), #38bdf8); box-shadow: 0 6px 20px var(--cyan-glow); font-weight: 800; }
+    .cat-btn.active.cat-anime { background: linear-gradient(135deg, #ff3080, #f43f5e); color: #ffffff; box-shadow: 0 6px 20px var(--sakura-glow); }
+    .cat-btn.active.cat-manga { background: linear-gradient(135deg, #a78bfa, #8b5cf6); color: #ffffff; box-shadow: 0 6px 20px rgba(167, 139, 250, 0.4); }
+    .cat-btn.active.cat-all { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #070314; box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4); }
+
+    /* Sub-type Filters Row */
+    .subfilter-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+    .sf-btn { background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border); color: var(--text-muted); font-family: var(--fd); font-weight: 600; font-size: 12px; padding: 6px 14px; border-radius: 20px; cursor: pointer; transition: all 0.2s; }
+    .sf-btn:hover { color: #ffffff; border-color: rgba(255, 255, 255, 0.3); }
+    .sf-btn.active { color: var(--cyan); border-color: var(--cyan); background: rgba(0, 229, 255, 0.09); font-weight: 700; }
+
+    /* Mood Filters Swiper */
+    .mood-zone { position: relative; z-index: 1; max-width: 960px; margin: 28px auto 0; padding: 0 20px; }
+    .mood-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .mood-title { font-family: var(--fd); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+    .mood-hint { font-size: 12px; color: var(--text-muted); }
+    .mood-swiper { display: flex; gap: 10px; overflow-x: auto; padding: 4px 4px 14px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .mood-swiper::-webkit-scrollbar { display: none; }
+    .mood-pill { flex-shrink: 0; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border); color: var(--text-sub); font-family: var(--fb); font-size: 13px; font-weight: 500; padding: 9px 18px; border-radius: 24px; cursor: pointer; transition: all 0.2s var(--ease); display: flex; align-items: center; gap: 7px; white-space: nowrap; }
+    .mood-pill:hover { color: #ffffff; border-color: rgba(0, 229, 255, 0.4); background: rgba(0, 229, 255, 0.06); }
+    .mood-pill.active { color: var(--cyan); border-color: var(--cyan); background: rgba(0, 229, 255, 0.12); box-shadow: 0 0 18px rgba(0, 229, 255, 0.2); font-weight: 600; }
+
+    /* Spin / Roll Button Zone */
+    .roll-zone { position: relative; z-index: 1; text-align: center; margin: 28px auto 0; padding: 0 20px; }
+    .roll-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #00e5ff 0%, #7c3aed 50%, #ff3080 100%);
+      background-size: 200% 200%;
+      color: #ffffff;
+      font-family: var(--fd);
+      font-weight: 800;
+      font-size: 19px;
+      letter-spacing: 0.04em;
+      padding: 18px 46px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 36px rgba(0, 229, 255, 0.35), 0 0 20px rgba(124, 58, 237, 0.2);
+      transition: all 0.3s var(--ease);
+      animation: gradientShift 6s ease infinite;
+    }
+    @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    .roll-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 14px 44px rgba(0, 229, 255, 0.5), 0 0 30px rgba(255, 48, 128, 0.3); }
+    .roll-btn:active { transform: translateY(1px) scale(0.98); }
+    .roll-icon { font-size: 24px; transition: transform 0.6s var(--ease); }
+    .roll-btn.rolling .roll-icon { animation: rollSpin 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    @keyframes rollSpin { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(360deg) scale(1.3); } 100% { transform: rotate(720deg) scale(1); } }
+    .roll-meta { font-size: 12.5px; color: var(--text-muted); margin-top: 12px; }
+    .roll-counter { color: var(--cyan); font-weight: 700; }
+
+    /* Interactive Result Card */
+    .result-zone { position: relative; z-index: 1; max-width: 900px; margin: 36px auto 0; padding: 0 20px 60px; }
+    .empty-state { text-align: center; padding: 64px 24px; background: rgba(18, 9, 44, 0.5); border: 1px dashed var(--border); border-radius: 20px; }
+    .es-icon { font-size: 52px; margin-bottom: 14px; opacity: 0.8; }
+    .es-title { font-family: var(--fd); font-size: 22px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
+    .es-sub { font-size: 14px; color: var(--text-muted); }
+
+    .result-card {
+      position: relative;
+      background: rgba(18, 9, 44, 0.82);
+      border: 1px solid var(--border-cyan);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65), 0 0 30px rgba(0, 229, 255, 0.12);
+      opacity: 0;
+      transform: translateY(24px) scale(0.97);
+      transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
+      display: none;
+    }
+    .result-card.show { opacity: 1; transform: translateY(0) scale(1); display: block; }
+    .rc-glow { position: absolute; inset: 0; pointer-events: none; opacity: 0.6; mix-blend-mode: screen; }
+    .rc-inner { display: grid; grid-template-columns: 320px 1fr; min-height: 380px; position: relative; z-index: 2; }
+    .rc-media { position: relative; overflow: hidden; background: #0c051a; display: flex; align-items: center; justify-content: center; }
+    .rc-media img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.5s ease; }
+    .rc-media:hover img { transform: scale(1.05); }
+    .rc-type-tag { position: absolute; top: 16px; left: 16px; z-index: 3; font-family: var(--fd); font-weight: 800; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border-radius: 8px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); }
+    .tag-game { background: rgba(0, 229, 255, 0.25); color: #a5f3fc; border-color: rgba(0, 229, 255, 0.5); }
+    .tag-anime { background: rgba(255, 48, 128, 0.25); color: #fecdd3; border-color: rgba(255, 48, 128, 0.5); }
+    .tag-manga { background: rgba(167, 139, 250, 0.25); color: #ede9fe; border-color: rgba(167, 139, 250, 0.5); }
+
+    .rc-content { padding: 32px 30px; display: flex; flex-direction: column; justify-content: space-between; }
+    .rc-header { margin-bottom: 16px; }
+    .rc-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+    .rc-pill { font-size: 11px; font-family: var(--fd); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; border: 1px solid; }
+    .rc-title { font-family: var(--fd); font-size: clamp(22px, 3.2vw, 32px); font-weight: 800; line-height: 1.15; color: #ffffff; margin-bottom: 6px; letter-spacing: -0.015em; }
+    .rc-creator { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+    .rc-quote { background: rgba(255, 255, 255, 0.035); border-left: 3px solid var(--cyan); padding: 14px 16px; border-radius: 0 10px 10px 0; margin: 18px 0; font-size: 14px; color: var(--text-sub); line-height: 1.6; font-style: italic; }
+
+    .rc-stats { display: grid; grid-template-columns: auto 1fr 1fr; gap: 16px; align-items: center; padding: 14px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 22px; }
+    .rc-stat-score { display: flex; align-items: baseline; gap: 4px; }
+    .rc-score-val { font-family: var(--fd); font-size: 30px; font-weight: 800; color: var(--amber); text-shadow: 0 0 14px rgba(251, 191, 36, 0.4); line-height: 1; }
+    .rc-score-max { font-size: 13px; color: var(--text-muted); font-family: var(--fd); font-weight: 600; }
+    .rc-stat-item { display: flex; flex-direction: column; }
+    .rc-stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); font-weight: 600; margin-bottom: 3px; }
+    .rc-stat-text { font-size: 13px; font-weight: 600; color: #f8fafc; font-family: var(--fd); }
+
+    .rc-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .btn-review {
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.18), rgba(0, 229, 255, 0.05));
+      border: 1px solid var(--cyan);
+      color: #ffffff;
+      font-family: var(--fd);
+      font-weight: 700;
+      font-size: 13.5px;
+      padding: 12px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .btn-review:hover { background: var(--cyan); color: #070314; box-shadow: 0 4px 18px var(--cyan-glow); transform: translateY(-1px); }
+    .btn-reroll { background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border); color: #f8fafc; font-family: var(--fd); font-weight: 700; font-size: 13px; padding: 12px 18px; border-radius: 10px; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+    .btn-reroll:hover { background: rgba(255, 255, 255, 0.15); color: #ffffff; }
+    .btn-skip { background: none; border: 1px solid var(--border); color: var(--text-muted); font-family: var(--fd); font-weight: 600; font-size: 13px; padding: 12px 16px; border-radius: 10px; cursor: pointer; transition: all 0.2s; }
+    .btn-skip:hover { color: var(--sakura); border-color: rgba(255, 48, 128, 0.4); }
+    .btn-share { width: 44px; height: 44px; border-radius: 10px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); color: #cbd5e1; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; margin-left: auto; transition: all 0.2s; }
+    .btn-share:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    /* Curated Weekly Showcase */
+    .showcase-zone { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 20px 20px 64px; }
+    .sc-header { text-align: center; margin-bottom: 32px; }
+    .sc-eye { font-family: var(--fd); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan); margin-bottom: 8px; }
+    .sc-title { font-family: var(--fd); font-size: clamp(24px, 3.5vw, 36px); font-weight: 800; color: #ffffff; }
+    .sc-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .sc-col { background: var(--surf); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; backdrop-filter: blur(14px); display: flex; flex-direction: column; }
+    .sc-col-head { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .sc-col-title { font-family: var(--fd); font-weight: 800; font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+    .sc-col-link { font-size: 12px; font-weight: 600; font-family: var(--fd); color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .sc-col-link:hover { color: var(--cyan); }
+
+    .sc-list { display: flex; flex-direction: column; }
+    .sc-item { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); cursor: pointer; transition: background 0.2s; }
+    .sc-item:last-child { border-bottom: none; }
+    .sc-item:hover { background: rgba(255, 255, 255, 0.05); }
+    .sc-rank { font-family: var(--fd); font-size: 20px; font-weight: 800; color: rgba(255, 255, 255, 0.15); width: 24px; text-align: center; flex-shrink: 0; }
+    .sc-item:nth-child(1) .sc-rank { color: var(--amber); }
+    .sc-item:nth-child(2) .sc-rank { color: #e2e8f0; }
+    .sc-item:nth-child(3) .sc-rank { color: #fb923c; }
+    .sc-thumb { width: 56px; height: 56px; border-radius: 8px; overflow: hidden; flex-shrink: 0; background: var(--surf2); border: 1px solid var(--border); }
+    .sc-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .sc-info { flex: 1; min-width: 0; }
+    .sc-name { font-family: var(--fd); font-weight: 700; font-size: 14px; color: #ffffff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; }
+    .sc-item:hover .sc-name { color: var(--cyan); }
+    .sc-meta { font-size: 11.5px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sc-score { font-family: var(--fd); font-weight: 800; font-size: 15px; color: var(--amber); flex-shrink: 0; }
+
+    /* FAQ & Educational SEO Section */
+    .faq-zone { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 20px 80px; }
+    .faq-title { font-family: var(--fd); font-size: 24px; font-weight: 800; color: #ffffff; text-align: center; margin-bottom: 24px; }
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--surf); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: border-color 0.2s; }
+    .faq-item:hover { border-color: rgba(0, 229, 255, 0.3); }
+    .faq-q { padding: 18px 22px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: var(--fd); font-weight: 700; font-size: 15.5px; color: #f8fafc; }
+    .faq-q::after { content: '+'; font-size: 20px; color: var(--cyan); transition: transform 0.25s; }
+    .faq-item.open .faq-q::after { transform: rotate(45deg); }
+    .faq-a { padding: 0 22px 18px; font-size: 14px; color: var(--text-sub); line-height: 1.65; display: none; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* History Drawer */
+    .hist-zone { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 20px 48px; display: none; }
+    .hist-title { font-family: var(--fd); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 12px; }
+    .hist-list { display: flex; flex-direction: column; gap: 6px; }
+    .hist-card { display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; transition: background 0.2s; }
+    .hist-card:hover { background: rgba(255,255,255,0.06); }
+    .hist-name { font-family: var(--fd); font-weight: 700; font-size: 13.5px; color: #f8fafc; flex: 1; }
+    .hist-type { font-size: 10px; text-transform: uppercase; font-weight: 700; font-family: var(--fd); }
+
+    /* Floating Mobile Thumb Dock */
+    .mobile-thumb-dock { display: none; }
+    @media(max-width: 768px) {
+      .mobile-thumb-dock {
+        display: flex;
+        position: fixed;
+        bottom: 16px;
+        left: 16px;
+        right: 16px;
+        max-width: 420px;
+        margin: 0 auto;
+        background: rgba(12, 5, 28, 0.92);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--border-cyan);
+        border-radius: 30px;
+        padding: 6px 14px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 24px rgba(0, 229, 255, 0.2);
+        z-index: 999;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .mtd-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        color: #cbd5e1;
+        font-family: var(--fd);
+        font-weight: 700;
+        font-size: 10px;
+        gap: 3px;
+        padding: 6px 10px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .mtd-btn.active { color: var(--cyan); background: rgba(0, 229, 255, 0.12); }
+      .mtd-btn-roll {
+        background: linear-gradient(135deg, var(--cyan), var(--violet));
+        color: #070314;
+        font-weight: 800;
+        padding: 8px 16px;
+        border-radius: 20px;
+        box-shadow: 0 4px 14px var(--cyan-glow);
+      }
+      body { padding-bottom: 84px; }
+    }
+
+    /* Footer */
+    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); background: rgba(6, 2, 14, 0.98); }
+    .ft-in { max-width: 1440px; margin: 0 auto; padding: 48px 24px 28px; display: grid; grid-template-columns: 260px 1fr 1fr 1fr; gap: 40px; }
+    .ft-desc { font-size: 12.5px; color: var(--text-muted); line-height: 1.7; margin-top: 10px; }
+    .ft-h { font-family: var(--fd); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #cbd5e1; margin-bottom: 14px; font-weight: 700; }
+    .ft-links { display: flex; flex-direction: column; gap: 8px; list-style: none; }
+    .ft-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .ft-links a:hover { color: var(--cyan); }
+    .ft-bot { max-width: 1440px; margin: 0 auto; padding: 18px 24px; border-top: 1px solid rgba(255, 255, 255, 0.06); font-size: 11.5px; color: var(--text-muted); line-height: 1.7; }
+    .ft-bot a { color: inherit; }
+
+    /* Media Queries */
+    @media(max-width: 992px) {
+      .sc-cols { grid-template-columns: 1fr; }
+      .rc-inner { grid-template-columns: 1fr; }
+      .rc-media { min-height: 260px; max-height: 320px; }
+      .ft-in { grid-template-columns: 1fr 1fr; }
+    }
+    @media(max-width: 768px) {
+      .nav-links { display: none; }
+      .ham { display: flex; }
+      .cat-grid { grid-template-columns: repeat(2, 1fr); }
+      .rc-stats { grid-template-columns: 1fr 1fr; }
+      .ft-in { grid-template-columns: 1fr; gap: 28px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Ambient orbs -->
+  <div id="amb"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-box">
+      <input class="search-input" id="searchInput" type="text" placeholder="${isEn ? 'Search games, anime, manga...' : 'Tìm kiếm game, anime, manga...'}">
+      <button class="search-close" onclick="closeSearch()">✕</button>
+    </div>
+    <div class="search-hint">${isEn ? 'Press ESC to close' : 'Nhấn ESC để đóng'}</div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-in">
+      <a href="${prefix}/" class="logo">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+          <polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon>
+          <rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect>
+          <rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect>
+          <rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect>
+          <rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect>
+        </svg>
+        <span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="${prefix}/choi-gi" class="active">${isEn ? 'Discovery' : 'Chơi Gì?'}</a></li>
+        <li><a href="${prefix}/gaming">Gaming</a></li>
+        <li><a href="${prefix}/anime">Anime</a></li>
+        <li><a href="${prefix}/manga">Manga</a></li>
+        <li><a href="${prefix}/reviews">Reviews</a></li>
+        <li><a href="${prefix}/rankings">Rankings</a></li>
+        <li><a href="${isEn ? '/en/in-depth' : '/chuyen-sau'}">${isEn ? 'In-depth' : 'Chuyên sâu'}</a></li>
+      </ul>
+      <div class="nav-r">
+        <button class="nsearch" aria-label="${isEn ? 'Search' : 'Tìm kiếm'}" onclick="openSearch()">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg>
+        </button>
+        <a href="${prefix}/#newsletter" class="cta-sub">${isEn ? 'Subscribe' : 'Theo dõi'}</a>
+      </div>
+      <button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="${prefix}/choi-gi" class="active">${isEn ? 'Discovery Engine (3-in-1)' : 'Chơi Gì · Xem Gì · Đọc Gì'}</a>
+    <a href="${prefix}/gaming">Gaming</a>
+    <a href="${prefix}/anime">Anime</a>
+    <a href="${prefix}/manga">Manga & Manhwa</a>
+    <a href="${prefix}/reviews">Reviews</a>
+    <a href="${prefix}/rankings">Rankings</a>
+    <a href="${isEn ? '/en/in-depth' : '/chuyen-sau'}">${isEn ? 'In-depth' : 'Chuyên sâu'}</a>
+  </div>
+
+  <!-- Hero Section -->
+  <header class="page-hero">
+    <div class="ph-badge">${isEn ? 'OtaHub · 3-in-1 Entertainment Picker' : 'OtaHub · Cỗ Máy Gợi Ý Giải Trí Thông Minh'}</div>
+    <h1 class="ph-title">${isEn ? 'What to<br><em>play, watch & read today?</em>' : 'Hôm nay<br><em>chơi gì · xem gì · đọc gì?</em>'}</h1>
+    <p class="ph-sub">${isEn ? 'Stuck in decision paralysis? Select your mood and platform, roll the wheel, and let OtaHub pick your next obsession with in-depth reviews.' : 'Đứng trước hàng ngàn tựa game, anime và manga mà không biết chọn gì? Chọn tâm trạng, bấm nút và để OtaHub gợi ý siêu phẩm đỉnh nhất kèm bài review chi tiết.'}</p>
+  </header>
+
+  <!-- Category Tabs -->
+  <div class="cat-zone">
+    <div class="cat-grid" id="catTabs">
+      <button class="cat-btn active cat-all" data-type="all" onclick="setCategory('all', this)">
+        <span>✨</span> <span>${isEn ? 'All Picks' : 'Tất cả'}</span>
+      </button>
+      <button class="cat-btn" data-type="game" onclick="setCategory('game', this)">
+        <span>🎮</span> <span>${isEn ? 'Games' : 'Chơi gì?'}</span>
+      </button>
+      <button class="cat-btn cat-anime" data-type="anime" onclick="setCategory('anime', this)">
+        <span>🎬</span> <span>${isEn ? 'Anime' : 'Xem gì?'}</span>
+      </button>
+      <button class="cat-btn cat-manga" data-type="manga" onclick="setCategory('manga', this)">
+        <span>📖</span> <span>${isEn ? 'Manga' : 'Đọc gì?'}</span>
+      </button>
+    </div>
+
+    <!-- Dynamic Subfilters -->
+    <div class="subfilter-row" id="subfilterRow">
+      <button class="sf-btn active" data-sub="all" onclick="setSubfilter('all', this)">${isEn ? 'All Formats' : 'Tất cả định dạng'}</button>
+      <button class="sf-btn" data-sub="pc" onclick="setSubfilter('pc', this)">PC</button>
+      <button class="sf-btn" data-sub="mobile" onclick="setSubfilter('mobile', this)">Mobile</button>
+      <button class="sf-btn" data-sub="console" onclick="setSubfilter('console', this)">Console</button>
+    </div>
+  </div>
+
+  <!-- Mood Filter Swiper -->
+  <div class="mood-zone">
+    <div class="mood-head">
+      <span class="mood-title">${isEn ? 'Filter by Mood & Vibe' : 'Chọn theo tâm trạng hôm nay'}</span>
+      <span class="mood-hint">${isEn ? 'Swipe horizontal →' : 'Vuốt ngang →'}</span>
+    </div>
+    <div class="mood-swiper">
+      <button class="mood-pill active" data-mood="all" onclick="setMood('all', this)"><span>✨</span> ${isEn ? 'Any Vibe' : 'Bất kỳ tâm trạng nào'}</button>
+      <button class="mood-pill" data-mood="relax" onclick="setMood('relax', this)"><span>☕</span> ${isEn ? 'Relax & Chill' : 'Thư giãn, nhẹ nhàng'}</button>
+      <button class="mood-pill" data-mood="action" onclick="setMood('action', this)"><span>⚔️</span> ${isEn ? 'Action & Hype' : 'Hành động, xả stress'}</button>
+      <button class="mood-pill" data-mood="story" onclick="setMood('story', this)"><span>🧠</span> ${isEn ? 'Deep Narrative' : 'Cốt truyện sâu sắc'}</button>
+      <button class="mood-pill" data-mood="coop" onclick="setMood('coop', this)"><span>👥</span> ${isEn ? 'With Friends' : 'Chơi cùng bạn bè'}</button>
+      <button class="mood-pill" data-mood="quick" onclick="setMood('quick', this)"><span>⚡</span> ${isEn ? 'Quick Bite (<1h)' : 'Nhanh gọn, giải trí tức thì'}</button>
+      <button class="mood-pill" data-mood="explore" onclick="setMood('explore', this)"><span>🗺️</span> ${isEn ? 'Open World' : 'Khám phá thế giới mở'}</button>
+      <button class="mood-pill" data-mood="challenge" onclick="setMood('challenge', this)"><span>💀</span> ${isEn ? 'Hardcore Challenge' : 'Thử thách, kỹ năng cao'}</button>
+    </div>
+  </div>
+
+  <!-- Spin Roller Zone -->
+  <div class="roll-zone">
+    <button class="roll-btn" id="rollBtn" onclick="rollItem()">
+      <span class="roll-icon" id="rollIcon">🎲</span>
+      <span id="rollBtnText">${isEn ? 'Roll My Pick' : 'Gợi ý ngẫu nhiên'}</span>
+    </button>
+    <div class="roll-meta">${isEn ? 'Explored' : 'Đã khám phá'} <span class="roll-counter" id="rollCounter">0</span> ${isEn ? 'titles today' : 'tác phẩm hôm nay'}</div>
+  </div>
+
+  <!-- Result Zone -->
+  <div class="result-zone">
+    <div class="empty-state" id="emptyState" style="display:none">
+      <div class="es-icon">🎯</div>
+      <div class="es-title">${isEn ? 'No titles matched your filters' : 'Chưa có tựa nào khớp với bộ lọc này'}</div>
+      <div class="es-sub">${isEn ? "Try adjusting your mood or format filter to discover more titles." : 'Hãy thử nới lỏng bộ lọc tâm trạng hoặc định dạng để khám phá thêm nhiều siêu phẩm nhé.'}</div>
+    </div>
+
+    <!-- Result Card -->
+    <article class="result-card show" id="resultCard" style="display:block; opacity:1; transform:none;">
+      <div class="rc-glow" id="rcGlow" style="background:radial-gradient(ellipse at 80% 20%, ${topPick.color[0]}22 0%, transparent 60%), radial-gradient(ellipse at 10% 90%, ${topPick.color[1]}22 0%, transparent 60%)"></div>
+      <div class="rc-inner">
+        <div class="rc-media">
+          <span class="rc-type-tag tag-${topPick.type}" id="rcTypeTag">${topPick.type.toUpperCase()}</span>
+          <img id="rcImg" src="${topPick.img}" alt="${topPick.name}" width="320" height="380">
+        </div>
+        <div class="rc-content">
+          <div class="rc-header">
+            <div class="rc-badges" id="rcBadges">
+              <span class="rc-pill" style="border-color:${topPick.type === 'game' ? 'var(--cyan)' : topPick.type === 'anime' ? 'var(--sakura)' : 'var(--lavender)'};color:${topPick.type === 'game' ? 'var(--cyan)' : topPick.type === 'anime' ? 'var(--sakura)' : 'var(--lavender)'};background:rgba(0,229,255,0.1)">${topPick.format}</span>
+              <span class="rc-pill" style="border-color:rgba(255,255,255,0.2);color:#ffffff;background:rgba(255,255,255,0.06)">${topPick.genre}</span>
+            </div>
+            <h2 class="rc-title" id="rcTitle">${topPick.name}</h2>
+            <div class="rc-creator" id="rcCreator">${topPick.creator}</div>
+            <p class="rc-quote" id="rcWhy">"${topPick.why}"</p>
+          </div>
+
+          <div class="rc-stats">
+            <div class="rc-stat-score">
+              <span class="rc-score-val" id="rcScore">${topPick.score}</span>
+              <span class="rc-score-max">/10</span>
+            </div>
+            <div class="rc-stat-item">
+              <span class="rc-stat-label">${isEn ? 'Investment' : 'Thời lượng'}</span>
+              <span class="rc-stat-text" id="rcTime">${topPick.time}</span>
+            </div>
+            <div class="rc-stat-item">
+              <span class="rc-stat-label">${isEn ? 'Vibe' : 'Tâm trạng'}</span>
+              <span class="rc-stat-text" id="rcMoods">${topPick.moods.map(m => ({relax: isEn ? 'Relax' : 'Thư giãn', action: isEn ? 'Action' : 'Hành động', story: isEn ? 'Story' : 'Cốt truyện', coop: 'Co-op', quick: isEn ? 'Quick' : 'Nhanh', explore: isEn ? 'Explore' : 'Khám phá', challenge: isEn ? 'Challenge' : 'Thử thách'})[m] || m).join(' · ')}</span>
+            </div>
+          </div>
+
+          <div class="rc-actions">
+            <a href="${topPick.link || '#'}" class="btn-review" id="rcReviewLink"${topPick.link ? '' : ' style="display:none"'}>
+              <span>📖</span> <span>${isEn ? 'Read In-Depth Review' : 'Đọc Review Chi Tiết'}</span>
+            </a>
+            <button class="btn-reroll" onclick="rollItem()">
+              <span>🎲</span> <span>${isEn ? 'Roll Another' : 'Roll khác'}</span>
+            </button>
+            <button class="btn-skip" onclick="skipItem()">${isEn ? 'Skip' : 'Bỏ qua'}</button>
+            <button class="btn-share" onclick="shareItem()" title="${isEn ? 'Share this pick' : 'Chia sẻ gợi ý'}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"></path></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Discovered History -->
+  <div class="hist-zone" id="histZone">
+    <div class="hist-title">${isEn ? 'Recently Discovered Today' : 'Lịch sử đã gợi ý hôm nay'}</div>
+    <div class="hist-list" id="histList"></div>
+  </div>
+
+  <!-- Curated Weekly Showcase -->
+  <section class="showcase-zone">
+    <div class="sc-header">
+      <div class="sc-eye">${isEn ? 'Curated Weekly Highlights' : 'Bảng Xếp Hạng Đề Cử Tuần Này'}</div>
+      <h2 class="sc-title">${isEn ? 'Top Games, Anime & Manga Worth Your Time' : 'Top Tác Phẩm Đáng Trải Nghiệm Nhất'}</h2>
+    </div>
+
+    <div class="sc-cols">
+      <!-- Col 1: Games -->
+      <div class="sc-col">
+        <div class="sc-col-head">
+          <div class="sc-col-title" style="color:var(--cyan)"><span>🎮</span> <span>${isEn ? 'Hot Games' : 'Game Thịnh Hành'}</span></div>
+          <a href="${prefix}/gaming" class="sc-col-link">${isEn ? 'Explore Gaming →' : 'Kho Game →'}</a>
+        </div>
+        <div class="sc-list">
+          ${topGames.map((g, i) => `
+          <div class="sc-item" onclick="selectItemById('${g.id}')">
+            <div class="sc-rank">0${i + 1}</div>
+            <div class="sc-thumb"><img src="${g.img}" alt="${g.name}" loading="lazy" width="56" height="56"></div>
+            <div class="sc-info">
+              <div class="sc-name">${g.name}</div>
+              <div class="sc-meta">${g.format} · ${g.genre}</div>
+            </div>
+            <div class="sc-score">${g.score}</div>
+          </div>`).join('')}
+        </div>
+      </div>
+
+      <!-- Col 2: Anime -->
+      <div class="sc-col">
+        <div class="sc-col-head">
+          <div class="sc-col-title" style="color:var(--sakura)"><span>🎬</span> <span>${isEn ? 'Peak Anime' : 'Anime Đỉnh Nóc'}</span></div>
+          <a href="${prefix}/anime" class="sc-col-link">${isEn ? 'Air Schedule →' : 'Lịch Chiếu →'}</a>
+        </div>
+        <div class="sc-list">
+          ${topAnime.map((a, i) => `
+          <div class="sc-item" onclick="selectItemById('${a.id}')">
+            <div class="sc-rank">0${i + 1}</div>
+            <div class="sc-thumb"><img src="${a.img}" alt="${a.name}" loading="lazy" width="56" height="56"></div>
+            <div class="sc-info">
+              <div class="sc-name">${a.name}</div>
+              <div class="sc-meta">${a.format} · ${a.genre}</div>
+            </div>
+            <div class="sc-score">${a.score}</div>
+          </div>`).join('')}
+        </div>
+      </div>
+
+      <!-- Col 3: Manga -->
+      <div class="sc-col">
+        <div class="sc-col-head">
+          <div class="sc-col-title" style="color:var(--lavender)"><span>📖</span> <span>${isEn ? 'Top Manga / Manhwa' : 'Manga & Manhwa Đỉnh'}</span></div>
+          <a href="${prefix}/manga" class="sc-col-link">${isEn ? 'Read Hub →' : 'Đọc Manga →'}</a>
+        </div>
+        <div class="sc-list">
+          ${topManga.map((m, i) => `
+          <div class="sc-item" onclick="selectItemById('${m.id}')">
+            <div class="sc-rank">0${i + 1}</div>
+            <div class="sc-thumb"><img src="${m.img}" alt="${m.name}" loading="lazy" width="56" height="56"></div>
+            <div class="sc-info">
+              <div class="sc-name">${m.name}</div>
+              <div class="sc-meta">${m.format} · ${m.genre}</div>
+            </div>
+            <div class="sc-score">${m.score}</div>
+          </div>`).join('')}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Educational FAQ Section -->
+  <section class="faq-zone">
+    <h2 class="faq-title">${isEn ? 'Frequently Asked Questions & Tips' : 'Câu Hỏi Thường Gặp Về Gợi Ý Giải Trí'}</h2>
+    <div class="faq-list">
+      ${(faqSchema.mainEntity).map((faq, i) => `
+      <div class="faq-item${i === 0 ? ' open' : ''}" onclick="toggleFaq(this)">
+        <div class="faq-q">${faq.name}</div>
+        <div class="faq-a">${faq.acceptedAnswer.text}</div>
+      </div>`).join('')}
+    </div>
+  </section>
+
+  <!-- Floating Mobile Thumb Dock -->
+  <div class="mobile-thumb-dock">
+    <button class="mtd-btn" onclick="setCategory('game', null)">
+      <span>🎮</span> <span>Game</span>
+    </button>
+    <button class="mtd-btn" onclick="setCategory('anime', null)">
+      <span>🎬</span> <span>Anime</span>
+    </button>
+    <button class="mtd-btn mtd-btn-roll" onclick="rollItem()">
+      <span>🎲</span> <span>${isEn ? 'Roll' : 'Roll ngay'}</span>
+    </button>
+    <button class="mtd-btn" onclick="setCategory('manga', null)">
+      <span>📖</span> <span>Manga</span>
+    </button>
+    <button class="mtd-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <span>🔝</span> <span>Top</span>
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ft-in">
+      <div>
+        <a href="${prefix}/" class="logo" style="margin-bottom:12px">
+          <svg width="32" height="32" viewBox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg>
+          <span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span>
+        </a>
+        <p class="ft-desc">${isEn ? "Asia's premier Gaming, Anime, and Manga discovery and news platform. Sharp, deep, and independent." : 'Hub tin tức Gaming, Anime và Manga số 1 châu Á. Nhanh, chuyên sâu, trung lập và không thiên vị.'}</p>
+      </div>
+      <div>
+        <div class="ft-h">${isEn ? 'Categories' : 'Chuyên mục'}</div>
+        <ul class="ft-links">
+          <li><a href="${prefix}/choi-gi">${isEn ? 'Discovery Engine' : 'Chơi Gì · Xem Gì'}</a></li>
+          <li><a href="${prefix}/gaming">Gaming</a></li>
+          <li><a href="${prefix}/anime">Anime</a></li>
+          <li><a href="${prefix}/manga">Manga & Manhwa</a></li>
+          <li><a href="${prefix}/reviews">Reviews</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-h">${isEn ? 'About OtaHub' : 'Về OtaHub'}</div>
+        <ul class="ft-links">
+          <li><a href="${prefix}/about">${isEn ? 'About Us' : 'Giới thiệu'}</a></li>
+          <li><a href="${prefix}/about#team">${isEn ? 'Editorial Team' : 'Đội ngũ'}</a></li>
+          <li><a href="${prefix}/about#contact">${isEn ? 'Contact' : 'Liên hệ'}</a></li>
+          <li><a href="${prefix}/#newsletter">${isEn ? 'Newsletter' : 'Bản tin'}</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-h">${isEn ? 'Follow' : 'Theo dõi'}</div>
+        <ul class="ft-links">
+          <li><a href="/feed.xml">RSS Feed</a></li>
+          <li><a href="https://twitter.com/OtaHubAsia" target="_blank" rel="noopener">X / Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <span>© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub<br>
+      <span style="opacity:.75">${isEn ? 'Operated by ANBU Media & Marketing Co., Ltd · Tax ID: 3301761892 · 47 Dang Van Ngu, Hue City, Vietnam' : 'Vận hành bởi Công ty TNHH Marketing & Truyền thông ANBU · MST 3301761892 · 47 Đặng Văn Ngữ, TP. Huế · Hotline 039 699 5252 · <a href="mailto:dat.phan@anbu.asia">dat.phan@anbu.asia</a>'}</span></span>
+    </div>
+  </footer>
+
+  <!-- Embedded Client Script -->
+  <script>
+    const ITEMS = ${JSON.stringify(items)};
+    let currentCategory = 'all';
+    let currentSubfilter = 'all';
+    let currentMood = 'all';
+    let currentItem = ITEMS[0];
+    let rollCount = 0;
+    let history = [];
+    let skipped = [];
+
+    const SUB_OPTIONS = {
+      all: [
+        { id: 'all', label: '${isEn ? "All Formats" : "Tất cả định dạng"}' },
+        { id: 'game', label: '🎮 Game' },
+        { id: 'anime', label: '🎬 Anime' },
+        { id: 'manga', label: '📖 Manga/Manhwa' }
+      ],
+      game: [
+        { id: 'all', label: '${isEn ? "All Platforms" : "Tất cả hệ máy"}' },
+        { id: 'pc', label: 'PC' },
+        { id: 'mobile', label: 'Mobile' },
+        { id: 'console', label: 'Console' }
+      ],
+      anime: [
+        { id: 'all', label: '${isEn ? "All Formats" : "Tất cả định dạng"}' },
+        { id: 'series', label: '${isEn ? "TV Series" : "TV Series"}' },
+        { id: 'movie', label: '${isEn ? "Movie" : "Movie Chiếu Rạp"}' }
+      ],
+      manga: [
+        { id: 'all', label: '${isEn ? "All Comics" : "Tất cả truyện"}' },
+        { id: 'manga', label: '${isEn ? "Japanese Manga" : "Manga Nhật Bản"}' },
+        { id: 'manhwa', label: '${isEn ? "Korean Manhwa" : "Manhwa Webtoon"}' }
+      ]
+    };
+
+    function updateSubfilterRow() {
+      const container = document.getElementById('subfilterRow');
+      const list = SUB_OPTIONS[currentCategory] || SUB_OPTIONS.all;
+      container.innerHTML = list.map((opt, i) => \`
+        <button class="sf-btn\${opt.id === currentSubfilter ? ' active' : ''}" data-sub="\${opt.id}" onclick="setSubfilter('\${opt.id}', this)">\${opt.label}</button>
+      \`).join('');
+    }
+
+    function setCategory(type, btn) {
+      currentCategory = type;
+      currentSubfilter = 'all';
+      if (btn) {
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      } else {
+        document.querySelectorAll('.cat-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.type === type);
+        });
+      }
+      updateSubfilterRow();
+    }
+
+    function setSubfilter(sub, btn) {
+      currentSubfilter = sub;
+      document.querySelectorAll('.sf-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+    }
+
+    function setMood(mood, btn) {
+      currentMood = mood;
+      document.querySelectorAll('.mood-pill').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+    }
+
+    function getPool() {
+      return ITEMS.filter(it => {
+        if (currentCategory !== 'all' && it.type !== currentCategory) return false;
+        if (currentSubfilter !== 'all') {
+          if (currentCategory === 'all') {
+            if (it.type !== currentSubfilter) return false;
+          } else {
+            if (it.subType !== currentSubfilter) return false;
+          }
+        }
+        if (currentMood !== 'all' && !it.moods.includes(currentMood)) return false;
+        if (skipped.includes(it.id)) return false;
+        return true;
+      });
+    }
+
+    function rollItem() {
+      let pool = getPool();
+      if (!pool.length) {
+        skipped = [];
+        pool = getPool();
+        if (!pool.length) {
+          pool = ITEMS.filter(it => currentCategory === 'all' || it.type === currentCategory);
+        }
+      }
+
+      const poolWithoutCurrent = pool.filter(it => !currentItem || it.id !== currentItem.id);
+      const chosen = poolWithoutCurrent.length
+        ? poolWithoutCurrent[Math.floor(Math.random() * poolWithoutCurrent.length)]
+        : pool[0];
+
+      // Slot-machine rapid roll effect
+      const btn = document.getElementById('rollBtn');
+      btn.classList.add('rolling');
+      setTimeout(() => btn.classList.remove('rolling'), 600);
+
+      rollCount++;
+      document.getElementById('rollCounter').textContent = rollCount;
+
+      const card = document.getElementById('resultCard');
+      const empty = document.getElementById('emptyState');
+      empty.style.display = 'none';
+
+      // Card animation flip
+      card.classList.remove('show');
+      setTimeout(() => {
+        renderCard(chosen);
+        card.classList.add('show');
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 260);
+
+      // Add to history
+      if (!history.find(h => h.id === chosen.id)) history.unshift(chosen);
+      if (history.length > 5) history.pop();
+      renderHistory();
+    }
+
+    function selectItemById(id) {
+      const it = ITEMS.find(x => x.id === id);
+      if (!it) return;
+      document.getElementById('emptyState').style.display = 'none';
+      const card = document.getElementById('resultCard');
+      card.classList.remove('show');
+      setTimeout(() => {
+        renderCard(it);
+        card.classList.add('show');
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 150);
+    }
+
+    function renderCard(item) {
+      currentItem = item;
+      const tag = document.getElementById('rcTypeTag');
+      tag.className = 'rc-type-tag tag-' + item.type;
+      tag.textContent = item.type.toUpperCase();
+
+      const img = document.getElementById('rcImg');
+      img.src = item.img;
+      img.alt = item.name;
+
+      document.getElementById('rcTitle').textContent = item.name;
+      document.getElementById('rcCreator').textContent = item.creator;
+      document.getElementById('rcWhy').textContent = '"' + item.why + '"';
+      document.getElementById('rcScore').textContent = item.score;
+      document.getElementById('rcTime').textContent = item.time;
+      document.getElementById('rcMoods').textContent = item.moods.map(m => {
+        const map = {
+          relax: '${isEn ? "Relax" : "Thư giãn"}',
+          action: '${isEn ? "Action" : "Hành động"}',
+          story: '${isEn ? "Story" : "Cốt truyện"}',
+          coop: 'Co-op',
+          quick: '${isEn ? "Quick" : "Nhanh"}',
+          explore: '${isEn ? "Explore" : "Khám phá"}',
+          challenge: '${isEn ? "Challenge" : "Thử thách"}'
+        };
+        return map[m] || m;
+      }).join(' · ');
+
+      const badges = document.getElementById('rcBadges');
+      const typeColor = item.type === 'game' ? 'var(--cyan)' : item.type === 'anime' ? 'var(--sakura)' : 'var(--lavender)';
+      badges.innerHTML = \`
+        <span class="rc-pill" style="border-color:\${typeColor};color:\${typeColor};background:\${typeColor}15">\${item.format}</span>
+        <span class="rc-pill" style="border-color:rgba(255,255,255,0.2);color:#ffffff;background:rgba(255,255,255,0.06)">\${item.genre}</span>
+      \`;
+
+      const reviewBtn = document.getElementById('rcReviewLink');
+      if (item.link) {
+        reviewBtn.href = item.link;
+        reviewBtn.style.display = 'inline-flex';
+      } else {
+        reviewBtn.style.display = 'none';
+      }
+
+      const glow = document.getElementById('rcGlow');
+      const c = item.color || ['#00e5ff', '#7c3aed'];
+      glow.style.background = \`radial-gradient(ellipse at 80% 20%, \${c[0]}22 0%, transparent 60%), radial-gradient(ellipse at 10% 90%, \${c[1]}22 0%, transparent 60%)\`;
+    }
+
+    function skipItem() {
+      if (currentItem) skipped.push(currentItem.id);
+      rollItem();
+    }
+
+    function shareItem() {
+      if (!currentItem) return;
+      const text = \`\${currentItem.name} (\${currentItem.score}/10) · OtaHub Discovery\`;
+      if (navigator.share) {
+        navigator.share({ title: currentItem.name, text: text, url: window.location.href });
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(window.location.href);
+        alert('${isEn ? "Link copied to clipboard!" : "Đã copy link vào clipboard!"}');
+      }
+    }
+
+    function renderHistory() {
+      const zone = document.getElementById('histZone');
+      const list = document.getElementById('histList');
+      if (!history.length) {
+        zone.style.display = 'none';
+        return;
+      }
+      zone.style.display = 'block';
+      list.innerHTML = history.map((it, idx) => \`
+        <div class="hist-card" onclick="selectItemById('\${it.id}')">
+          <span style="font-size:16px">\${it.type === 'game' ? '🎮' : it.type === 'anime' ? '🎬' : '📖'}</span>
+          <span class="hist-name">\${it.name}</span>
+          <span class="hist-type" style="color:var(--text-muted)">\${it.genre}</span>
+          <span style="font-family:var(--fd);font-weight:800;color:var(--amber)">\${it.score}</span>
+        </div>
+      \`).join('');
+    }
+
+    function toggleFaq(el) {
+      el.classList.toggle('open');
+    }
+
+    function openSearch() {
+      const el = document.getElementById('searchOverlay');
+      if (el) {
+        el.classList.add('open');
+        setTimeout(() => document.getElementById('searchInput')?.focus(), 50);
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeSearch() {
+      const el = document.getElementById('searchOverlay');
+      if (el) {
+        el.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function toggleMobileNav() {
+      const nav = document.getElementById('mobileNav');
+      const ham = document.getElementById('hamBtn');
+      if (!nav || !ham) return;
+      const open = nav.classList.toggle('open');
+      ham.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeSearch();
+    });
+
+    // Initialize subfilters
+    updateSubfilterRow();
+  </script>
+  <script defer src="/assets/search-redirect.js"></script>
+  <script defer src="/assets/enhance.js?v=20260930a"></script>
+  <script defer src="/assets/img-fit.v2.js?v=20260926"></script>
+  <script src="/assets/lang-switch.js" defer></script>
+</body>
+</html>`;
+}
+
+// ═════════════════════════════════════════════════════════════════════
+// 3. EXECUTE BUILD
+// ═════════════════════════════════════════════════════════════════════
+
+const viHtml = buildHtml('vi');
+const viPath = path.join(root, 'choi-gi.html');
+fs.writeFileSync(viPath, viHtml, 'utf8');
+console.log('✅ Generated choi-gi.html (' + viHtml.length + ' bytes)');
+
+const enHtml = buildHtml('en');
+const enPath = path.join(root, 'en', 'choi-gi.html');
+fs.writeFileSync(enPath, enHtml, 'utf8');
+console.log('✅ Generated en/choi-gi.html (' + enHtml.length + ' bytes)');
