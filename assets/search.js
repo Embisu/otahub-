@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Manga Rom-Com \"Everyone’s Darling Has a Secret\" chính thức được chuyển thể thành anime",
+    "url": "/manga-rom-com-everyones-darling-has-a-secret-chinh-thuc-duoc",
+    "cat": "Anime",
+    "date": "2026-09-30",
+    "excerpt": "Everyone’s Darling Has a Secret sẽ đưa chuyện tình giữa nam sinh Hizashi Hiruno và nữ thần tượng Rei Kuromiya lên màn ảnh nhỏ vào tháng 4/2027. Anime do Studio Gekkō sản xuất, với dàn diễn viên và đội ngũ chính đã được công bố.",
+    "img": "/assets/img/uploads/y8conuxi-1790594348-678c4ac8a2f01edc1c0d3d91656946a0.jpg",
+    "tags": []
+  },
+  {
     "title": "Sakamoto Days mùa 2 công bố trailer mới, trở lại vào tháng 1/2027",
     "url": "/sakamoto-days-mua-2-cong-bo-trailer-moi-tro-lai-vao-thang-1",
     "cat": "Anime",
