@@ -3063,6 +3063,23 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
   .nav-flyout { position: static; display: block !important; box-shadow: none; border: none; padding: 0; background: none; min-width: 0; }
   .flyout-title { padding: 14px 12px 4px; }
 }
+
+/* ── Article Table of Contents (TOC) ── */
+.art-toc{background:rgba(255,255,255,0.03);border:1px solid rgba(0,229,255,0.25);border-radius:8px;padding:16px 20px;margin:24px 0;position:relative}
+.art-toc-head{display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.art-toc-title-wrap{display:flex;align-items:center;gap:8px}
+.art-toc-icon{font-size:16px}
+.art-toc-title{font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--wp-cyan, #00e5ff)}
+.art-toc-toggle{font-size:12px;color:var(--wp-muted, #a7aaad);background:none;border:none;cursor:pointer;padding:2px 8px;border-radius:4px;transition:all .2s}
+.art-toc-toggle:hover{color:#fff;background:rgba(255,255,255,0.08)}
+.art-toc-list{list-style:none !important;margin:10px 0 0 0 !important;padding:0 !important;display:flex;flex-direction:column;gap:6px}
+.art-toc-item{padding:0 !important;border-bottom:none !important;line-height:1.6}
+.art-toc-item.level-h2{font-weight:600}
+.art-toc-item.level-h3{padding-left:18px !important;font-size:13px;opacity:0.9}
+.art-toc-link{color:var(--wp-title, #f0f0f1);text-decoration:none !important;border-bottom:1px dashed rgba(255,255,255,0.2) !important;transition:color .15s, border-color .15s;display:inline-block}
+.art-toc-link:hover{color:var(--wp-cyan, #00e5ff) !important;border-bottom-color:var(--wp-cyan, #00e5ff) !important}
+.art-toc.collapsed .art-toc-list{display:none !important}
+.art-toc.collapsed .art-toc-head{border-bottom:none;padding-bottom:0}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://otahub.asia/"},{"@type":"ListItem","position":2,"name":"${cat}","item":"https://otahub.asia/anime"},{"@type":"ListItem","position":3,"name":"OtaHub Admin","item":"https://otahub.asia/admin"}]}</script>
 <script src="/assets/search.js"></script>
@@ -7529,6 +7546,11 @@ function renderEditor(file, html) {
   ART_HB_LABEL = hb ? cleanPlainText(hb.label) : '';
   ART_HB_TEXT = hb ? hb.text : '';
 
+  const rawPubDate = extract(html, /<meta\s+property="article:published_time"\s+content="([^"]+)"/i)
+    || extract(html, /"datePublished"\s*:\s*"([^"]+)"/i)
+    || '';
+  CUSTOM_PUBLISH_DATE = rawPubDate.trim();
+
   FOCUS_KEYWORDS = keyword ? keyword.split(',').map(k => k.trim()).filter(Boolean) : [];
 
   const blockMatch = html.match(/<script type="application\/json" id="admin-block-data">([\s\S]*?)<\/script>/);
@@ -7567,7 +7589,10 @@ function renderEditor(file, html) {
         <button type="button" class="btn btn-secondary btn-sm" onclick="openHeadingsOutline()" title="Mục lục các thẻ tiêu đề">📑 Mục lục</button>
         <button type="button" class="btn btn-secondary btn-sm" onclick="copyArticleJson()" title="Sao chép JSON">📋 Copy JSON</button>
         <button type="button" class="btn btn-secondary btn-sm" id="zen-mode-btn" onclick="toggleZenMode()" title="Toàn màn hình">⛶ Toàn màn hình</button>
-        <button type="button" class="btn btn-secondary btn-sm" onclick="openFullArticlePreview()">👁️ Xem trước</button>
+        <div style="display:inline-flex;gap:4px">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="openFullArticlePreview('vi')" title="Xem trước bài viết Tiếng Việt trong tab mới">👁️ Preview 🇻🇳</button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="openFullArticlePreview('en')" title="Xem trước bài viết Tiếng Anh trong tab mới">🇬🇧 EN</button>
+        </div>
         <button type="button" class="button-primary" id="save-btn-top" onclick="${isContributor ? 'saveArticleDraftNow()' : 'saveArticle()'}">${isContributor ? '📝 Lưu bản nháp' : (isNewFile ? '🚀 Đăng bài' : '💾 Cập nhật')}</button>
         <button type="button" class="btn btn-secondary btn-sm" onclick="showView('articles')">← Danh sách</button>
       </div>
@@ -7617,6 +7642,9 @@ function renderEditor(file, html) {
             <button type="button" class="button button-small" onclick="aiAutoDraftEnFromVi()" title="Dùng AI gợi ý tiêu đề & tóm tắt tiếng Anh chuẩn SEO">
               ✨ Gợi ý bản EN
             </button>
+            <button type="button" class="button button-small" onclick="openFullArticlePreview('en')" title="Xem trước bản Tiếng Anh độc lập trong tab mới">
+              👁️ Xem trước EN
+            </button>
           </div>
         </div>
 
@@ -7636,7 +7664,10 @@ function renderEditor(file, html) {
             <button type="button" class="button-small" onclick="promptEditSlug()" id="btn-edit-slug">Chỉnh sửa</button>
           </span>
           <a href="https://otahub.asia/${(file||'').replace(/\.html$/,'')}" target="_blank" class="button-small" id="view-post-btn" style="margin-left:auto">Xem bài viết</a>
-          <button type="button" class="button-small" onclick="openFullArticlePreview()">Xem trước</button>
+          <div style="display:inline-flex;gap:4px">
+            <button type="button" class="button-small" onclick="openFullArticlePreview('vi')" title="Xem trước bản Tiếng Việt">👁️ Xem trước 🇻🇳</button>
+            <button type="button" class="button-small" onclick="openFullArticlePreview('en')" title="Xem trước bản Tiếng Anh">🇬🇧 EN</button>
+          </div>
           <input type="hidden" id="ed-slug" value="${esc((file||'').replace(/\.html$/,''))}"/>
         </div>
 
@@ -7652,6 +7683,9 @@ function renderEditor(file, html) {
               </button>
               <button type="button" class="button add-table" onclick="visTable()" title="Chèn Bảng dữ liệu">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 2v3H4V5h16zm-9 5h4v5h-4v-5zm-2 0v5H4v-5h5zm-5 7h5v4H4v-4zm7 4v-4h4v4h-4zm6 0v-4h5v4h-5zm5-6h-5v-5h5v5z"/></svg> Bảng
+              </button>
+              <button type="button" class="button" onclick="generateAndInsertToc()" title="Tự động tạo và chèn Mục lục bài viết (TOC) từ các thẻ H2/H3">
+                📑 Chèn Mục lục (TOC)
               </button>
               <button type="button" class="button" id="vis-jump-img-btn" onclick="visJumpImage()" title="Nhảy nhanh đến ảnh tiếp theo trong bài viết" style="display:none">
                 🖼️ Ảnh (<span id="vis-img-count">0</span>) ▾
@@ -8096,9 +8130,12 @@ function renderEditor(file, html) {
           </div>
           <div class="inside">
             <div class="submitbox" id="submitpost">
-              <div id="minor-publishing-actions">
+              <div id="minor-publishing-actions" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px">
                 <button type="button" class="btn btn-secondary btn-sm" id="save-post" onclick="${isContributor ? 'saveArticleDraftNow()' : 'autosaveDraft()'}">Lưu bản nháp</button>
-                <button type="button" class="btn btn-secondary btn-sm" onclick="openFullArticlePreview()">👁️ Xem trước</button>
+                <div style="display:inline-flex;gap:4px">
+                  <button type="button" class="btn btn-secondary btn-sm" onclick="openFullArticlePreview('vi')" title="Xem trước bài viết Tiếng Việt (tab mới)">👁️ Xem trước 🇻🇳</button>
+                  <button type="button" class="btn btn-secondary btn-sm" onclick="openFullArticlePreview('en')" title="Xem trước bài viết Tiếng Anh (tab mới)">🇬🇧 EN</button>
+                </div>
               </div>
               <div id="misc-publishing-actions">
                 <div class="misc-pub-section misc-pub-post-status" style="display:flex;align-items:center;gap:6px">
@@ -8108,8 +8145,20 @@ function renderEditor(file, html) {
                 <div class="misc-pub-section misc-pub-visibility">
                   <span>👁️</span> Hiển thị: <strong>${isContributor ? 'Chưa công khai' : 'Công khai'}</strong>
                 </div>
-                <div class="misc-pub-section misc-pub-curtime">
-                  <span>📅</span> Xuất bản: <strong>Ngay lập tức</strong>
+                <div class="misc-pub-section misc-pub-curtime" id="misc-pub-curtime-section">
+                  <div style="display:flex;align-items:center;justify-content:space-between">
+                    <span><span>📅</span> Xuất bản: <strong id="curtime-display">${CUSTOM_PUBLISH_DATE ? formatPublishDateDisplay(CUSTOM_PUBLISH_DATE) : 'Ngay lập tức'}</strong></span>
+                    <a href="javascript:void(0)" class="edit-timestamp" onclick="togglePublishDatePicker()" style="font-size:11px;color:var(--wp-blue, #2271b1);text-decoration:underline;cursor:pointer">Chỉnh sửa</a>
+                  </div>
+                  <div id="publish-datepicker-box" style="display:none;margin-top:8px;padding:8px 10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:6px">
+                    <label style="font-size:11px;display:block;margin-bottom:4px;color:#a7aaad">Chọn ngày & giờ xuất bản:</label>
+                    <input type="datetime-local" id="ed-publish-date" class="form-input" style="font-size:12px;padding:4px 6px;width:100%;box-sizing:border-box" value="${toDatetimeLocalValue(CUSTOM_PUBLISH_DATE || new Date())}" />
+                    <div style="display:flex;gap:6px;margin-top:8px;justify-content:flex-end;align-items:center">
+                      <button type="button" class="button button-small" onclick="resetPublishDateToNow()" style="font-size:11px;padding:2px 8px">Hiện tại</button>
+                      <button type="button" class="button button-small" onclick="togglePublishDatePicker(false)" style="font-size:11px;padding:2px 8px">Hủy</button>
+                      <button type="button" class="button button-primary button-small" onclick="applyCustomPublishDate()" style="font-size:11px;padding:2px 8px">OK</button>
+                    </div>
+                  </div>
                 </div>
                 <div class="misc-pub-section misc-pub-seo">
                   <span>🎯</span> Điểm SEO: <strong id="misc-seo-score" style="color:var(--wp-green)">--/100</strong>
@@ -8267,6 +8316,7 @@ function renderEditor(file, html) {
   renderFocusKeywords();
   updateWordCount();
   updateSeoScore();
+  updatePublishDateDisplay();
   loadPairedLanguageData(isEnFile ? 'vi' : 'en', isEnFile ? viFile : enFile);
 }
 
@@ -8327,7 +8377,8 @@ function openHeadingsOutline() {
       <div class="quick-edit-body" style="max-height:420px;overflow-y:auto;padding:16px">
         ${listHtml}
       </div>
-      <div class="quick-edit-footer">
+      <div class="quick-edit-footer" style="display:flex;justify-content:space-between;align-items:center">
+        <button type="button" class="button button-primary button-small" onclick="generateAndInsertToc();document.getElementById('outline-modal-overlay')?.remove()">📑 Tạo & Chèn TOC vào bài</button>
         <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('outline-modal-overlay')?.remove()">Đóng</button>
       </div>
     </div>
@@ -8339,10 +8390,21 @@ function scrollToHeading(idx, type) {
   if (type === 'block') {
     blockScrollTo(idx);
   } else {
+    const vis = document.getElementById('body-visual');
+    if (vis) {
+      const els = Array.from(vis.querySelectorAll('h2, h3')).filter(el => !el.closest('.art-toc'));
+      if (els[idx]) {
+        els[idx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        els[idx].style.transition = 'background 0.3s';
+        els[idx].style.background = '#fff8e5';
+        setTimeout(() => { els[idx].style.background = ''; }, 1500);
+        return;
+      }
+    }
     const iframe = document.getElementById('art-visual-iframe');
     const doc = iframe?.contentDocument || iframe?.contentWindow?.document;
     if (doc) {
-      const els = doc.querySelectorAll('h2, h3');
+      const els = Array.from(doc.querySelectorAll('h2, h3')).filter(el => !el.closest('.art-toc'));
       if (els[idx]) {
         els[idx].scrollIntoView({ behavior: 'smooth', block: 'center' });
         els[idx].style.transition = 'background 0.3s';
@@ -8351,6 +8413,240 @@ function scrollToHeading(idx, type) {
       }
     }
   }
+}
+
+// ── Auto Table of Contents (TOC) ──────────────────────────────────────────
+function generateAndInsertToc() {
+  const lang = CURRENT_LANG || 'vi';
+  const tocTitle = lang === 'en' ? 'Table of Contents' : 'Mục lục bài viết';
+  const tocToggleText = lang === 'en' ? 'Thu gọn [−]' : 'Thu gọn [−]';
+
+  // 1. Chế độ Khối (Blocks Mode)
+  if (BODY_MODE === 'blocks' && BODY_BLOCKS && BODY_BLOCKS.length) {
+    let headings = [];
+    BODY_BLOCKS.forEach((b, idx) => {
+      if (b.type === 'heading') {
+        const text = cleanPlainText(b.text || '').trim();
+        if (text) headings.push({ level: b.level === 3 ? 3 : 2, text, blockIndex: idx });
+      }
+    });
+
+    if (!headings.length) {
+      toast('warning', '⚠️ Bài viết chưa có thẻ tiêu đề H2 hoặc H3 nào để tạo mục lục.');
+      return;
+    }
+
+    const slugCounts = {};
+    const itemsHtml = headings.map((h, i) => {
+      let slug = slugify(h.text) || `muc-${i + 1}`;
+      if (slugCounts[slug]) {
+        slugCounts[slug]++;
+        slug = `${slug}-${slugCounts[slug]}`;
+      } else {
+        slugCounts[slug] = 1;
+      }
+      return `<li class="art-toc-item level-h${h.level}"><a class="art-toc-link" href="#${slug}">${esc(h.text)}</a></li>`;
+    }).join('\n    ');
+
+    const tocHtml = `<div class="art-toc" id="article-toc">
+  <div class="art-toc-head" onclick="this.parentElement.classList.toggle('collapsed')">
+    <div class="art-toc-title-wrap">
+      <span class="art-toc-icon">📑</span>
+      <strong class="art-toc-title">${tocTitle}</strong>
+    </div>
+    <button type="button" class="art-toc-toggle" onclick="event.stopPropagation();this.closest('.art-toc').classList.toggle('collapsed')">${tocToggleText}</button>
+  </div>
+  <ul class="art-toc-list">
+    ${itemsHtml}
+  </ul>
+</div>`;
+
+    const existingIdx = BODY_BLOCKS.findIndex(b => b.type === 'html' && b.html && b.html.includes('art-toc'));
+    if (existingIdx !== -1) {
+      BODY_BLOCKS[existingIdx].html = tocHtml;
+    } else {
+      const firstHeadingIdx = BODY_BLOCKS.findIndex(b => b.type === 'heading');
+      const insertAt = firstHeadingIdx > 0 ? firstHeadingIdx : 0;
+      BODY_BLOCKS.splice(insertAt, 0, { type: 'html', html: tocHtml });
+    }
+
+    renderBlockEditor();
+    markChanged();
+    toast('success', `📑 Đã tạo và chèn Mục lục bài viết (${headings.length} mục)!`);
+    return;
+  }
+
+  // 2. Chế độ Trực quan (WYSIWYG) hoặc Văn bản (Code)
+  const isCodeMode = (BODY_MODE === 'code');
+  let container = null;
+  if (isCodeMode) {
+    const ta = document.getElementById('body-textarea');
+    if (!ta) return;
+    container = document.createElement('div');
+    container.innerHTML = ta.value;
+  } else {
+    container = document.getElementById('body-visual');
+  }
+
+  if (!container) return;
+
+  const headingEls = Array.from(container.querySelectorAll('h2, h3')).filter(el => !el.closest('.art-toc') && !el.closest('aside'));
+  if (!headingEls.length) {
+    toast('warning', '⚠️ Bài viết chưa có thẻ tiêu đề H2 hoặc H3 nào để tạo mục lục.');
+    return;
+  }
+
+  const slugCounts = {};
+  const itemsHtml = headingEls.map((h, i) => {
+    const level = h.tagName.toLowerCase() === 'h3' ? 3 : 2;
+    const text = (h.textContent || '').trim();
+    let currentId = (h.getAttribute('id') || '').trim();
+    if (!currentId) {
+      let slug = slugify(text) || `muc-${i + 1}`;
+      if (slugCounts[slug]) {
+        slugCounts[slug]++;
+        slug = `${slug}-${slugCounts[slug]}`;
+      } else {
+        slugCounts[slug] = 1;
+      }
+      currentId = slug;
+      h.setAttribute('id', currentId);
+    }
+    return `<li class="art-toc-item level-h${level}"><a class="art-toc-link" href="#${currentId}">${esc(text)}</a></li>`;
+  }).join('\n    ');
+
+  const tocHtml = `<div class="art-toc" id="article-toc">
+  <div class="art-toc-head" onclick="this.parentElement.classList.toggle('collapsed')">
+    <div class="art-toc-title-wrap">
+      <span class="art-toc-icon">📑</span>
+      <strong class="art-toc-title">${tocTitle}</strong>
+    </div>
+    <button type="button" class="art-toc-toggle" onclick="event.stopPropagation();this.closest('.art-toc').classList.toggle('collapsed')">${tocToggleText}</button>
+  </div>
+  <ul class="art-toc-list">
+    ${itemsHtml}
+  </ul>
+</div>`;
+
+  const existingToc = container.querySelector('.art-toc');
+  if (existingToc) {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = tocHtml;
+    existingToc.replaceWith(tempDiv.firstElementChild);
+  } else {
+    const firstH2 = container.querySelector('h2');
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = tocHtml;
+    const newTocEl = tempDiv.firstElementChild;
+    if (firstH2) {
+      firstH2.parentNode.insertBefore(newTocEl, firstH2);
+    } else {
+      container.insertBefore(newTocEl, container.firstChild);
+    }
+  }
+
+  if (isCodeMode) {
+    const ta = document.getElementById('body-textarea');
+    if (ta) ta.value = container.innerHTML;
+    const vis = document.getElementById('body-visual');
+    if (vis) vis.innerHTML = container.innerHTML;
+  } else {
+    syncArticleBodyToTextarea();
+  }
+
+  markChanged();
+  toast('success', `📑 Đã tự động tạo và chèn Mục lục bài viết (${headingEls.length} mục)!`);
+}
+
+// ── Publish Date & Time Picker ─────────────────────────────────────────────
+let CUSTOM_PUBLISH_DATE = '';
+
+function formatVietnamIso(date) {
+  const d = (date instanceof Date) ? date : new Date(date);
+  if (isNaN(d.getTime())) return new Date().toISOString();
+  const tzOffset = 7 * 60; // +07:00 in minutes
+  const localTime = new Date(d.getTime() + (tzOffset + d.getTimezoneOffset()) * 60000);
+  const yyyy = localTime.getFullYear();
+  const mm = String(localTime.getMonth() + 1).padStart(2, '0');
+  const dd = String(localTime.getDate()).padStart(2, '0');
+  const hh = String(localTime.getHours()).padStart(2, '0');
+  const min = String(localTime.getMinutes()).padStart(2, '0');
+  const sec = String(localTime.getSeconds()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd}T${hh}:${min}:${sec}+07:00`;
+}
+
+function formatPublishDateDisplay(isoString) {
+  if (!isoString) return 'Ngay lập tức';
+  const d = new Date(isoString);
+  if (isNaN(d.getTime())) return 'Ngay lập tức';
+  const dd = String(d.getDate()).padStart(2, '0');
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const yyyy = d.getFullYear();
+  const hh = String(d.getHours()).padStart(2, '0');
+  const min = String(d.getMinutes()).padStart(2, '0');
+  return `${dd}/${mm}/${yyyy} lúc ${hh}:${min}`;
+}
+
+function toDatetimeLocalValue(isoString) {
+  const d = isoString ? new Date(isoString) : new Date();
+  if (isNaN(d.getTime())) return '';
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const dd = String(d.getDate()).padStart(2, '0');
+  const hh = String(d.getHours()).padStart(2, '0');
+  const min = String(d.getMinutes()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd}T${hh}:${min}`;
+}
+
+function updatePublishDateDisplay() {
+  const disp = document.getElementById('curtime-display');
+  const inp = document.getElementById('ed-publish-date');
+  if (disp) {
+    disp.textContent = CUSTOM_PUBLISH_DATE ? formatPublishDateDisplay(CUSTOM_PUBLISH_DATE) : 'Ngay lập tức';
+  }
+  if (inp) {
+    inp.value = toDatetimeLocalValue(CUSTOM_PUBLISH_DATE || new Date());
+  }
+}
+
+function togglePublishDatePicker(force) {
+  const box = document.getElementById('publish-datepicker-box');
+  if (!box) return;
+  const isShown = force !== undefined ? force : (box.style.display !== 'none');
+  box.style.display = isShown ? 'none' : 'block';
+  if (!isShown) {
+    const inp = document.getElementById('ed-publish-date');
+    if (inp) {
+      if (!inp.value) inp.value = toDatetimeLocalValue(CUSTOM_PUBLISH_DATE || new Date());
+      inp.focus();
+    }
+  }
+}
+
+function applyCustomPublishDate() {
+  const inp = document.getElementById('ed-publish-date');
+  if (!inp || !inp.value) {
+    toast('warning', '⚠️ Vui lòng chọn ngày và giờ.');
+    return;
+  }
+  const d = new Date(inp.value);
+  if (isNaN(d.getTime())) {
+    toast('error', 'Ngày giờ không hợp lệ.');
+    return;
+  }
+  CUSTOM_PUBLISH_DATE = formatVietnamIso(d);
+  updatePublishDateDisplay();
+  togglePublishDatePicker(false);
+  markChanged();
+  toast('success', `📅 Đã đặt ngày giờ xuất bản: ${formatPublishDateDisplay(CUSTOM_PUBLISH_DATE)}`);
+}
+
+function resetPublishDateToNow() {
+  CUSTOM_PUBLISH_DATE = '';
+  updatePublishDateDisplay();
+  togglePublishDatePicker(false);
+  markChanged();
+  toast('info', '📅 Đã đặt lại thời gian xuất bản: Ngay lập tức (Hiện tại)');
 }
 
 function copyArticleJson() {
@@ -11626,8 +11922,22 @@ function scheduleBlockListRefresh() {
 }
 
 // Mở trang xem trước bản nháp ĐẦY ĐỦ trong tab mới mà không bị lỗi 404 (kể cả bài chưa lưu/chưa deploy)
-function openFullArticlePreview() {
+function openFullArticlePreview(targetLang) {
   syncBilingualBufferFromDom(CURRENT_LANG);
+  const langToPreview = targetLang || CURRENT_LANG || 'vi';
+
+  if (langToPreview === 'en') {
+    const enData = BILINGUAL_DATA?.en;
+    const enTitle = cleanPlainText(enData?.title || '');
+    const enBody = (enData?.bodyHtml || '').trim();
+    const enRaw = (enData?.rawHtml || '').trim();
+    const enBlocks = enData?.blocks;
+    if (!enTitle && !enBody && !enRaw && (!enBlocks || !enBlocks.length)) {
+      toast('warning', '⚠️ Bản Tiếng Anh hiện chưa có nội dung. Bạn hãy chuyển sang tab "Bản Tiếng Anh (EN)" để nhập nội dung hoặc bấm "✨ Gợi ý bản EN" trước khi xem trước.');
+      return;
+    }
+  }
+
   let html = '';
   const cleanSlug = (document.getElementById('ed-slug')?.value || '').trim() || (currentFile || '').replace(/^en\//, '').replace(/\.html$/, '');
   const cat = document.getElementById('ed-cat')?.value || 'Gaming';
@@ -11635,10 +11945,10 @@ function openFullArticlePreview() {
   const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
   const publishingAuthor = publishingAuthorName();
 
-  if (CURRENT_LANG === 'en') {
+  if (langToPreview === 'en') {
     html = BILINGUAL_DATA?.en?.rawHtml || buildStandardEnglishArticleTemplate(cleanSlug, cleanSlug, hero, heroPos, cat, publishingAuthor);
     html = applyArticleEditsToHtml(html, {
-      title: BILINGUAL_DATA?.en?.title || 'Article Title',
+      title: BILINGUAL_DATA?.en?.title || ART_TITLE || 'Article Title',
       desc: BILINGUAL_DATA?.en?.desc || '',
       keyword: BILINGUAL_DATA?.en?.keyword,
       hero, heroPos, cat,
@@ -11647,8 +11957,11 @@ function openFullArticlePreview() {
       hasHb: BILINGUAL_DATA?.en?.hasHb,
       hbLabel: BILINGUAL_DATA?.en?.hbLabel || 'Summary',
       hbText: BILINGUAL_DATA?.en?.hbText || '',
-      slug: cleanSlug
+      slug: cleanSlug,
+      pubDate: CUSTOM_PUBLISH_DATE
     });
+    html = stampArticleAuthor(html, publishingAuthor);
+    html = ensureHreflangLinks(html, cleanSlug, cleanSlug, 'en');
   } else {
     html = BILINGUAL_DATA?.vi?.rawHtml || currentRawHtml || '';
     if (!currentSha) html = patchNewArticleUrls(html, currentFile);
@@ -11662,11 +11975,14 @@ function openFullArticlePreview() {
       hasHb: BILINGUAL_DATA?.vi?.hasHb,
       hbLabel: BILINGUAL_DATA?.vi?.hbLabel,
       hbText: BILINGUAL_DATA?.vi?.hbText,
-      slug: cleanSlug
+      slug: cleanSlug,
+      pubDate: CUSTOM_PUBLISH_DATE
     });
+    html = stampArticleAuthor(html, publishingAuthor);
   }
 
   // Thêm <base href="..."> và inline CSS chống vỡ layout trên Blob URL
+  const langBadgeText = langToPreview === 'en' ? 'Bản Tiếng Anh 🇬🇧' : 'Bản Tiếng Việt 🇻🇳';
   const criticalStyles = `
 <base href="https://otahub.asia/">
 <style>
@@ -11675,7 +11991,7 @@ function openFullArticlePreview() {
   .logo svg { width: 34px !important; height: 34px !important; max-width: 34px !important; }
 </style>
 <div style="position:fixed;bottom:20px;right:20px;z-index:999999;background:linear-gradient(135deg,#ff3080,#7c3aed);color:#fff;font-family:sans-serif;font-size:12px;font-weight:700;padding:8px 16px;border-radius:24px;box-shadow:0 8px 24px rgba(0,0,0,0.5);display:flex;align-items:center;gap:8px;pointer-events:none">
-  <span>👁️ Chế độ Xem Trước (Bản nháp)</span>
+  <span>👁️ Chế độ Xem Trước (${langBadgeText})</span>
 </div>
 `;
   if (/<head>/i.test(html)) {
@@ -11691,7 +12007,7 @@ function openFullArticlePreview() {
     if (!win) {
       toast('warning', '⚠️ Trình duyệt chặn mở popup. Vui lòng cho phép mở tab mới trên trình duyệt.');
     } else {
-      toast('success', '👁️ Đang mở bản xem trước đầy đủ trong tab mới...');
+      toast('success', `👁️ Đang mở bản xem trước ${langBadgeText} trong tab mới...`);
     }
   } catch(e) {
     console.error('Preview error:', e);
@@ -11763,6 +12079,29 @@ function applyArticleEditsToHtml(baseHtml, customData) {
   html = html.replace(/(<meta\s+name="twitter:description"\s+content=")[^"]*(")/i,  `$1${esc(desc)}$2`);
   html = html.replace(/("headline":\s*")[^"]*(")/i,  `$1${title.replace(/\\/g,'\\\\').replace(/"/g,'\\"')}$2`);
   html = html.replace(/(<meta\s+property="article:section"\s+content=")[^"]*(")/i,  `$1${esc(cat)}$2`);
+
+  // Ngày xuất bản (Publish Date & Modified Time)
+  const pubDateIso = (isCustom && customData.pubDate) ? customData.pubDate : (CUSTOM_PUBLISH_DATE || '');
+  if (pubDateIso) {
+    if (/<meta\s+property="article:published_time"\s+content="[^"]*"/i.test(html)) {
+      html = html.replace(/(<meta\s+property="article:published_time"\s+content=")[^"]*(")/i, `$1${pubDateIso}$2`);
+    } else if (/<meta\s+property="og:locale"[^>]*>/i.test(html)) {
+      html = html.replace(/(<meta\s+property="og:locale"[^>]*>)/i, `$1\n<meta property="article:published_time" content="${pubDateIso}">`);
+    }
+    if (/<meta\s+property="article:modified_time"\s+content="[^"]*"/i.test(html)) {
+      html = html.replace(/(<meta\s+property="article:modified_time"\s+content=")[^"]*(")/i, `$1${pubDateIso}$2`);
+    }
+    if (/"datePublished"\s*:\s*"[^"]*"/i.test(html)) {
+      html = html.replace(/("datePublished"\s*:\s*")[^"]*(")/i, `$1${pubDateIso}$2`);
+    }
+    if (/"dateModified"\s*:\s*"[^"]*"/i.test(html)) {
+      html = html.replace(/("dateModified"\s*:\s*")[^"]*(")/i, `$1${pubDateIso}$2`);
+    }
+    const dOnly = pubDateIso.slice(0, 10);
+    if (/<span\b[^>]*\bclass="[^"]*am-date[^"]*"[^>]*>[\s\S]*?<\/span>/i.test(html)) {
+      html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-date[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${dOnly}$2`);
+    }
+  }
 
   // Category in UI (.art-hero-cat and .am-tag)
   html = html.replace(/(<span\b[^>]*\bclass="[^"]*art-hero-cat[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${esc(cat)}$2`);
@@ -12142,7 +12481,8 @@ async function saveArticle() {
       hasHb: BILINGUAL_DATA?.vi?.hasHb,
       hbLabel: BILINGUAL_DATA?.vi?.hbLabel,
       hbText: BILINGUAL_DATA?.vi?.hbText,
-      slug: viSlug
+      slug: viSlug,
+      pubDate: CUSTOM_PUBLISH_DATE || formatVietnamIso(new Date())
     });
     if (isNewVi) viHtml = stampArticleAuthor(viHtml, publishingAuthor);
     if (hasEn) {
@@ -12192,7 +12532,8 @@ async function saveArticle() {
         hasHb: BILINGUAL_DATA?.en?.hasHb,
         hbLabel: BILINGUAL_DATA?.en?.hbLabel || 'Summary',
         hbText: BILINGUAL_DATA?.en?.hbText || '',
-        slug: enSlug
+        slug: enSlug,
+        pubDate: CUSTOM_PUBLISH_DATE || formatVietnamIso(new Date())
       });
       enHtml = stampArticleAuthor(enHtml, publishingAuthor);
       enHtml = ensureHreflangLinks(enHtml, viSlug, enSlug, 'en');
@@ -12567,7 +12908,8 @@ async function autosaveArticleDraft() {
       hasHb: BILINGUAL_DATA?.vi?.hasHb,
       hbLabel: BILINGUAL_DATA?.vi?.hbLabel,
       hbText: BILINGUAL_DATA?.vi?.hbText,
-      slug: cleanSlug
+      slug: cleanSlug,
+      pubDate: CUSTOM_PUBLISH_DATE || undefined
     });
     await putDraft(viFile, viHtml);
 
@@ -12587,7 +12929,8 @@ async function autosaveArticleDraft() {
         hasHb: BILINGUAL_DATA?.en?.hasHb,
         hbLabel: BILINGUAL_DATA?.en?.hbLabel || 'Summary',
         hbText: BILINGUAL_DATA?.en?.hbText || '',
-        slug: cleanSlug
+        slug: cleanSlug,
+        pubDate: CUSTOM_PUBLISH_DATE || undefined
       });
       await putDraft(enFile, enHtml);
     }
@@ -12747,8 +13090,9 @@ function newArticle(prefillTitle) {
   const cleanSlug = (prefill?.slug ? slugifyFilename(prefill.slug) : (requestedTitle ? slugifyFilename(cleanTitle) : '')) || `bai-viet-moi-${Date.now().toString(36)}`;
   const filename = cleanSlug + '.html';
   const url = `https://otahub.asia/${cleanSlug}`;
+  CUSTOM_PUBLISH_DATE = '';
   const now = new Date();
-  const iso = now.toISOString();
+  const iso = formatVietnamIso(now);
   const dateDisp = iso.slice(0,10);
   const heroImg = prefill?.hero || '';
   const title = cleanTitle;
