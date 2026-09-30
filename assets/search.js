@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Diablo 4 vẫn tiếp tục có mùa mới sau khi Diablo 5 ra mắt",
+    "url": "/diablo-4-van-tiep-tuc-co-mua-moi-sau-khi-diablo-5-ra-mat",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Diablo 5 sẽ mở ra chương mới cho thương hiệu, nhưng Blizzard chưa có kế hoạch kết thúc Diablo 4 ngay khi phần game tiếp theo ra mắt. Các mùa của Diablo 4 vẫn có thể được duy trì trong tương lai, tương tự cách những phiên bản Diablo trước đây tiếp tục được hỗ trợ sau khi phần game mới xuất hiện.",
+    "img": "/assets/img/uploads/1k2n3ieq-images-10.jpg",
+    "tags": []
+  },
+  {
     "title": "Minecraft Live tháng 9/2026: Minecraft chuẩn bị đón chiều không gian mới",
     "url": "/tieu-de-bai-viet",
     "cat": "Gaming",
