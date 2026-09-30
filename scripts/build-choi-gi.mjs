@@ -2150,64 +2150,7 @@ function buildHtml(lang = 'vi') {
     .hist-name { font-family: var(--fd); font-weight: 700; font-size: 13.5px; color: #f8fafc; flex: 1; }
     .hist-type { font-size: 10px; text-transform: uppercase; font-weight: 700; font-family: var(--fd); }
 
-    /* Floating Mobile Thumb Dock */
-    .mobile-thumb-dock { display: none; }
-    @media(max-width: 768px) {
-      .mobile-thumb-dock {
-        display: flex;
-        position: fixed;
-        bottom: 16px;
-        left: 16px;
-        right: 16px;
-        max-width: 420px;
-        margin: 0 auto;
-        background: rgba(12, 5, 28, 0.92);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid var(--border-cyan);
-        border-radius: 30px;
-        padding: 6px 14px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 24px rgba(0, 229, 255, 0.2);
-        z-index: 999;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .mtd-btn {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background: none;
-        border: none;
-        color: #cbd5e1;
-        font-family: var(--fd);
-        font-weight: 700;
-        font-size: 10px;
-        gap: 3px;
-        padding: 6px 10px;
-        border-radius: 12px;
-        cursor: pointer;
-        transition: all 0.2s;
-      }
-      .mtd-btn.active { color: var(--cyan); background: rgba(0, 229, 255, 0.12); }
-      .mtd-btn-roll {
-        background: linear-gradient(135deg, var(--cyan), var(--violet));
-        color: #070314;
-        font-weight: 800;
-        padding: 8px 16px;
-        border-radius: 20px;
-      /* Standard Hub Footer */
-    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); background: rgba(7, 1, 18, 0.98); }
-    .ft-in { max-width: 1440px; margin: 0 auto; padding: 52px 24px 32px; display: grid; grid-template-columns: 200px 1fr 1fr 1fr; gap: 48px; }
-    .ft-desc { font-size: 12px; color: rgba(240, 238, 255, 0.3); line-height: 1.75; max-width: 175px; margin-top: 12px; }
-    .ft-h { font-family: var(--fd); font-size: 10px; letter-spacing: 0.19em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 18px; font-weight: 600; }
-    .ft-links { display: flex; flex-direction: column; gap: 9px; list-style: none; }
-    .ft-links a { font-size: 13px; color: rgba(240, 238, 255, 0.4); text-decoration: none; transition: color 0.2s; }
-    .ft-links a:hover { color: var(--cyan); }
-    .ft-bot { max-width: 1440px; margin: 0 auto; padding: 16px 24px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-    .ft-copy { font-size: 11px; color: rgba(240, 238, 255, 0.22); letter-spacing: 0.04em; }
-
-    /* Showcase Mobile Tabs */
+    /* Showcase Mobile Tabs (hidden on desktop, visible on mobile) */
     .sc-mobile-tabs {
       display: none;
       gap: 8px;
@@ -2295,6 +2238,17 @@ function buildHtml(lang = 'vi') {
       }
       body { padding-bottom: 84px; }
     }
+
+    /* Standard Hub Footer */
+    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); background: rgba(7, 1, 18, 0.98); }
+    .ft-in { max-width: 1440px; margin: 0 auto; padding: 52px 24px 32px; display: grid; grid-template-columns: 200px 1fr 1fr 1fr; gap: 48px; }
+    .ft-desc { font-size: 12px; color: rgba(240, 238, 255, 0.3); line-height: 1.75; max-width: 175px; margin-top: 12px; }
+    .ft-h { font-family: var(--fd); font-size: 10px; letter-spacing: 0.19em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 18px; font-weight: 600; }
+    .ft-links { display: flex; flex-direction: column; gap: 9px; list-style: none; }
+    .ft-links a { font-size: 13px; color: rgba(240, 238, 255, 0.4); text-decoration: none; transition: color 0.2s; }
+    .ft-links a:hover { color: var(--cyan); }
+    .ft-bot { max-width: 1440px; margin: 0 auto; padding: 16px 24px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .ft-copy { font-size: 11px; color: rgba(240, 238, 255, 0.22); letter-spacing: 0.04em; }
 
     /* Media Queries */
     @media(max-width: 1024px) {
