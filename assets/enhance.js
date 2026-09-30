@@ -53,7 +53,7 @@ if(body){
 }
 
 document.querySelectorAll('.share-row').forEach(function(row){
-  if(row.querySelector('.copy-link-btn'))return;
+  if(row.querySelector('.copy-link-btn,[onclick*="copyArticleLink"]'))return;
   var btn=document.createElement('button');
   btn.type='button';btn.className='share-btn copy-link-btn';
   btn.textContent='Sao chép link';

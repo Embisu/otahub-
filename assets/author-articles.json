@@ -14,7 +14,7 @@
     "key": "yu",
     "title": "“Dược Sư Tự Sự” mùa 3 chính thức lên sóng: Hành trình mới đầy kịch tính của Maomao và Jinshi · OtaHub",
     "date": "2026-09-29",
-    "cat": "Gaming",
+    "cat": "Anime",
     "excerpt": "Maomao trở lại với những vụ án mới sau khi rời hậu cung. Mùa 3 mở rộng câu chuyện ra bên ngoài cung cấm, đưa Maomao và Jinshi đối mặt với những bí ẩn, âm mưu chính trị và các nhân vật mới.",
     "image": "/assets/img/uploads/ytysmngi-anh-bia-1.webp",
     "read": "5 phút đọc",
@@ -137,7 +137,7 @@
     "date": "2026-09-29",
     "cat": "Gaming",
     "excerpt": "Nhiều năm sau khi ra mắt, GameCube vẫn được cộng đồng game thủ nhớ đến nhờ thư viện trò chơi đặc sắc và vai trò của nó trong giai đoạn Nintendo bắt đầu thay đổi hướng phát triển phần cứng.",
-    "image": "/assets/img/uploads/xadyqbp9-new.avif",
+    "image": "/assets/img/uploads/clr63deq-images-14.jfif",
     "read": "5 phút đọc",
     "url": "/nintendo-gamecube-chiec-may-mau-tim-nho-be-nhung-de-lai-dau-",
     "lang": "VI"
@@ -148,7 +148,7 @@
     "date": "2026-09-29",
     "cat": "Gaming",
     "excerpt": "Star Wars: Zero Company đưa vũ trụ Star Wars đến với thể loại chiến thuật theo lượt, kết hợp hệ thống chiến đấu mang màu sắc XCOM với một nhóm nhân vật gồm những chiến binh có xuất thân và tính cách hoàn toàn khác nhau.",
-    "image": "/assets/img/uploads/22ksi3pb-photo-2026-09-29-15-25-58.jpg",
+    "image": "/assets/img/uploads/gc2nno6n-images.webp",
     "read": "5 phút đọc",
     "url": "/star-wars-zero-company-biet-doi-di-biet-tao-nen-nhung-tran-c",
     "lang": "VI"
@@ -269,7 +269,7 @@
     "date": "2026-09-28",
     "cat": "Anime",
     "excerpt": "Detective Conan chính thức kỷ niệm 30 năm anime bằng một tập đặc biệt kéo dài 2 giờ mang tên “30号殺人事件”. Tác phẩm đưa Conan cùng hàng loạt nhân vật quen thuộc.",
-    "image": "/assets/img/uploads/dvt9allq-conan-30go-eyecatch.jpg",
+    "image": "/assets/img/uploads/35vurs6i-axod6nnldq0hjychecz2qijj1gcjgnhpl.jpg",
     "read": "5 phút đọc",
     "url": "/detective-conan-30-vu-an-dac-biet-ky-niem-30-nam-len-song",
     "lang": "VI"
@@ -478,7 +478,7 @@
     "date": "2026-09-28",
     "cat": "Gaming",
     "excerpt": "Đây là phiên bản được làm lại dựa trên Roman Sands, visual novel ra mắt năm 2019 của đội ngũ đứng sau Paratopic. Trò chơi kết hợp mô phỏng công việc, giải.",
-    "image": "/assets/img/uploads/m4495rif-capsule-616x353.jpg",
+    "image": "/assets/img/uploads/x6scgjsi-roman-sands-header.webp",
     "read": "5 phút đọc",
     "url": "/roman-sands-re-build-mac-ket-trong-giac-mo-vaporwave-dang-da",
     "lang": "VI"
@@ -1288,6 +1288,17 @@
   },
   {
     "key": "otahub",
+    "title": "Girls' Frontline 2: Exilium — Đánh Giá Chi Tiết · OtaHub",
+    "date": "2026-09-19",
+    "cat": "Reviews",
+    "excerpt": "Đánh giá Girls' Frontline 2: Exilium: phân tích chiến đấu theo lượt, Stability Index, đội hình, gacha, đồ họa, tiến trình và những điểm cần cân nhắc trước khi chơi.",
+    "image": "/assets/img/f661df27f7-gfl2-exilium-hero.jpg",
+    "read": "14 phút đọc",
+    "url": "/girls-frontline-2-exilium-danh-gia-chuyen-sau",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
     "title": "Girls' Frontline 2: Exilium In-Depth Review · OtaHub",
     "date": "2026-09-19",
     "cat": "Reviews",
@@ -1296,17 +1307,6 @@
     "read": "4 min read",
     "url": "/en/girls-frontline-2-exilium-in-depth-review",
     "lang": "EN"
-  },
-  {
-    "key": "otahub",
-    "title": "Girls' Frontline 2: Exilium: Đỉnh Cao Chiến Thuật XCOM · OtaHub",
-    "date": "2026-09-19",
-    "cat": "Reviews",
-    "excerpt": "Review Girls' Frontline 2: Exilium: game chiến thuật theo lượt kiểu XCOM của MICA Team, Boundary Push, Artifact Recovery, gacha; ra toàn cầu 12/2024, hơn 2.",
-    "image": "/assets/img/yt-5fV_Egk4Nvw.jpg",
-    "read": "4 phút đọc",
-    "url": "/girls-frontline-2-exilium-danh-gia-chuyen-sau",
-    "lang": "VI"
   },
   {
     "key": "lin-khanh-linh",
@@ -5072,6 +5072,28 @@
   },
   {
     "key": "otahub",
+    "title": "Contact · OtaHub",
+    "date": "2026-01-01",
+    "cat": "Tin tức",
+    "excerpt": "Get in touch with the OtaHub team for advertising partnerships, story pitches, bug reports, or general feedback. We reply fast via dat.phan@anbu.asia.",
+    "image": "/og-image.png",
+    "read": "",
+    "url": "/en/contact",
+    "lang": "EN"
+  },
+  {
+    "key": "otahub",
+    "title": "Điều Khoản Sử Dụng · OtaHub",
+    "date": "2026-01-01",
+    "cat": "Tin tức",
+    "excerpt": "Điều khoản sử dụng của OtaHub: quyền sở hữu nội dung, trách nhiệm người dùng, miễn trừ trách nhiệm và các quy định khi truy cập otahub.asia.",
+    "image": "/og-image.png",
+    "read": "",
+    "url": "/dieu-khoan-su-dung",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
     "title": "In-Depth · OtaHub",
     "date": "2026-01-01",
     "cat": "Tin tức",
@@ -5079,6 +5101,28 @@
     "image": "/og-image.png",
     "read": "",
     "url": "/en/in-depth",
+    "lang": "EN"
+  },
+  {
+    "key": "otahub",
+    "title": "Privacy Policy · OtaHub",
+    "date": "2026-01-01",
+    "cat": "Tin tức",
+    "excerpt": "OtaHub's Privacy Policy: what data we collect, how we use and store it, and how we protect your personal information when you visit otahub.asia.",
+    "image": "/og-image.png",
+    "read": "",
+    "url": "/en/privacy",
+    "lang": "EN"
+  },
+  {
+    "key": "otahub",
+    "title": "Terms of Service · OtaHub",
+    "date": "2026-01-01",
+    "cat": "Tin tức",
+    "excerpt": "OtaHub Terms of Service: content ownership, user responsibilities, disclaimers, and the rules that apply when you use otahub.asia.",
+    "image": "/og-image.png",
+    "read": "",
+    "url": "/en/terms",
     "lang": "EN"
   },
   {

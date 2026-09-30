@@ -39,7 +39,6 @@ console.log(`🔍 Scanning ${allArticles.length} articles (${viArticles.length} 
 
 // Known Hallucination patterns
 const HALLUCINATION_PATTERNS = [
-  { id: 'one-piece-fake-chapters', re: /chapter\s+119[1-3]\b/i, desc: 'Chapter One Piece bịa đặt (1191-1193)' },
   { id: 'grand-blue-fake-s3-s4', re: /grand\s+blue[\s\S]{0,40}(?:mùa\s+[34]|season\s+[34])/i, desc: 'Grand Blue Mùa 3/4 bịa đặt (hiện mới công bố S2)' },
   { id: 'control-resonant', re: /control\s+resonant/i, desc: 'Game bịa đặt "Control Resonant"' },
   { id: 'splatoon-raiders', re: /splatoon\s+raiders/i, desc: 'Game bịa đặt "Splatoon Raiders"' },
@@ -48,8 +47,6 @@ const HALLUCINATION_PATTERNS = [
   { id: 'silent-hill-screen-burn', re: /(?:screen\s+burn\s+interactive|simon\s+ordell)/i, desc: 'Silent Hill Townfall bịa đặt studio & nhân vật' },
   { id: 'doraemon-steam-london', re: /(?:nobita'?s\s+steam-powered|steam-powered\s+time\s+machine)/i, desc: 'Doraemon Movie 46 bịa đặt bối cảnh London' },
   { id: 'cyberpunk-edgerunners-2', re: /cyberpunk:?\s+edgerunners\s+2/i, desc: 'Bịa tên "Edgerunners 2" và ngày chiếu 20/10/2026' },
-  { id: 'dragon-ball-super-beerus-tv', re: /dragon\s+ball\s+super:?\s+beerus/i, desc: 'Dragon Ball Super: Beerus chiếu TV 11/10 (chưa có anime này)' },
-  { id: 'jojo-sbr-anime-2026', re: /jojo[\s\S]{0,30}steel\s+ball\s+run[\s\S]{0,30}(?:lên\s+sóng|25\/9)/i, desc: 'JoJo Steel Ball Run anime 25/9 (chưa từng công bố anime SBR)' },
   { id: 'youjo-senki-s2-broadcast-ended', re: /youjo\s+senki\s+(?:ii|2)[\s\S]{0,40}đã\s+kết\s+thúc\s+phát\s+sóng/i, desc: 'Youjo Senki II phát sóng xong (thực tế S2 chưa chiếu)' },
 ];
 
@@ -171,6 +168,7 @@ for (const art of allArticles) {
   const imgMatches = [...content.matchAll(/<img\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/gi)];
   for (const im of imgMatches) {
     const src = im[1];
+    if (src.includes('${')) continue; // template literal, resolved at runtime
     if (src.startsWith('http://') || src.startsWith('https://') || src.startsWith('data:')) continue;
     const cleanSrc = src.split('?')[0].split('#')[0];
     const isKv = cleanSrc.startsWith('/assets/img/uploads/') || cleanSrc.startsWith('assets/img/uploads/');

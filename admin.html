@@ -3478,6 +3478,13 @@ let ART_PREVIEW_TIMER = null;
 let ART_BLOCKLIST_TIMER = null;
 let ART_SLUG_TOUCHED = false; // true khi user tự tay sửa ô URL — ngừng tự sinh từ tiêu đề
 
+// ── Song ngữ (Bilingual Dual-Language Editing VI/EN) ──
+let CURRENT_LANG = 'vi'; // 'vi' | 'en'
+let BILINGUAL_DATA = {
+  vi: { file: '', sha: null, rawHtml: '', title: '', desc: '', excerpt: '', keyword: '', bodyHtml: '', blocks: null, hasHb: false, hbLabel: '', hbText: '' },
+  en: { file: '', sha: null, rawHtml: '', title: '', desc: '', excerpt: '', keyword: '', bodyHtml: '', blocks: null, hasHb: false, hbLabel: '', hbText: '' }
+};
+
 // Cảnh báo trước khi rời trang / đóng tab nếu còn thay đổi chưa lưu
 window.addEventListener('beforeunload', (e) => {
   if (!HAS_UNSAVED_CHANGES) return;
@@ -3957,6 +3964,10 @@ function onSlugInput(value) {
 function onTitleInput(value) {
   const clean = cleanPlainText(value);
   ART_TITLE = clean;
+  if (typeof BILINGUAL_DATA !== 'undefined' && BILINGUAL_DATA && BILINGUAL_DATA[CURRENT_LANG]) {
+    BILINGUAL_DATA[CURRENT_LANG].title = clean;
+    if (typeof updateBilingualBadges === 'function') updateBilingualBadges();
+  }
   if (!currentSha && !ART_SLUG_TOUCHED) {
     const slugEl = document.getElementById('ed-slug');
     const autoSlug = slugifyFilename(clean) || 'bai-viet-moi';
@@ -3984,6 +3995,10 @@ function onTitleInput(value) {
 function onExcerptInput(val) {
   const clean = cleanPlainText(val);
   ART_EXCERPT = clean;
+  if (typeof BILINGUAL_DATA !== 'undefined' && BILINGUAL_DATA && BILINGUAL_DATA[CURRENT_LANG]) {
+    BILINGUAL_DATA[CURRENT_LANG].desc = clean;
+    BILINGUAL_DATA[CURRENT_LANG].excerpt = clean;
+  }
   
   // Sync to Rank Math snippet textarea if exists
   const edDesc = document.getElementById('ed-desc');
@@ -5996,7 +6011,7 @@ function updateApmAvatarPreview() {
   const prev = document.getElementById('apm-avatar-preview');
   if (!prev) return;
   if (val) {
-    prev.innerHTML = `<img src="${esc(val)}" style="width:100%;height:100%;object-fit:cover" onerror="this.parentNode.textContent='?'"/>`;
+    prev.innerHTML = `<img src="${esc(val)}" style="width:100%;height:100%;object-fit:cover" onerror="this.parentNode.textContent='?'"/ alt="OtaHub Admin — hình minh họa">`;
   } else {
     const dn = document.getElementById('apm-display-name')?.value || 'AT';
     prev.textContent = dn.slice(0, 2).toUpperCase();
@@ -7215,6 +7230,10 @@ function saveEditSlug() {
   if (btnWrap) btnWrap.innerHTML = `<button type="button" class="edit-slug-btn" onclick="promptEditSlug()" id="btn-edit-slug">Chỉnh sửa</button>`;
   const hiddenSlug = document.getElementById('ed-slug');
   if (hiddenSlug) hiddenSlug.value = newSlug;
+  if (typeof BILINGUAL_DATA !== 'undefined' && BILINGUAL_DATA) {
+    BILINGUAL_DATA.vi.file = `${newSlug}.html`;
+    BILINGUAL_DATA.en.file = `en/${newSlug}.html`;
+  }
   const serpUrl = document.getElementById('serp-preview-url');
   const cat = document.getElementById('ed-cat')?.value || 'gaming';
   if (serpUrl) serpUrl.textContent = `https://otahub.asia › ${cat.toLowerCase()} › ${newSlug}`;
@@ -7447,6 +7466,27 @@ function renderEditor(file, html) {
   BODY_BLOCKS = blockMatch ? JSON.parse(blockMatch[1]) : null;
   BODY_MODE = 'visual';
 
+  // Khởi tạo trạng thái Song ngữ (Bilingual VI/EN)
+  const isEnFile = (file || '').startsWith('en/');
+  CURRENT_LANG = isEnFile ? 'en' : 'vi';
+
+  let viFile = '';
+  let enFile = '';
+  if (isEnFile) {
+    enFile = file;
+    const viHrefMatch = html.match(/<link\s+rel="alternate"\s+hreflang="vi"\s+href="https:\/\/otahub\.asia\/([^"]+)"/i);
+    viFile = viHrefMatch ? `${viHrefMatch[1].replace(/\.html$/, '')}.html` : file.replace(/^en\//, '');
+  } else {
+    viFile = file;
+    const enHrefMatch = html.match(/<link\s+rel="alternate"\s+hreflang="en"\s+href="https:\/\/otahub\.asia\/en\/([^"]+)"/i);
+    enFile = enHrefMatch ? `en/${enHrefMatch[1].replace(/\.html$/, '')}.html` : `en/${(file||'').replace(/\.html$/, '')}.html`;
+  }
+
+  BILINGUAL_DATA = {
+    vi: { file: viFile, sha: !isEnFile ? currentSha : null, rawHtml: !isEnFile ? html : '', title: !isEnFile ? title : '', desc: !isEnFile ? desc : '', excerpt: !isEnFile ? excerpt : '', keyword: !isEnFile ? keyword : '', bodyHtml: !isEnFile ? bodyVi : '', blocks: !isEnFile ? (BODY_BLOCKS ? JSON.parse(JSON.stringify(BODY_BLOCKS)) : null) : null, hasHb: !isEnFile ? ART_HAS_HB : false, hbLabel: !isEnFile ? ART_HB_LABEL : '', hbText: !isEnFile ? ART_HB_TEXT : '' },
+    en: { file: enFile, sha: isEnFile ? currentSha : null, rawHtml: isEnFile ? html : '', title: isEnFile ? title : '', desc: isEnFile ? desc : '', excerpt: isEnFile ? excerpt : '', keyword: isEnFile ? keyword : '', bodyHtml: isEnFile ? bodyVi : '', blocks: isEnFile ? (BODY_BLOCKS ? JSON.parse(JSON.stringify(BODY_BLOCKS)) : null) : null, hasHb: isEnFile ? ART_HAS_HB : false, hbLabel: isEnFile ? ART_HB_LABEL : '', hbText: isEnFile ? ART_HB_TEXT : '' }
+  };
+
   setMain(`
     <!-- WordPress Classic Header -->
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:10px">
@@ -7481,6 +7521,33 @@ function renderEditor(file, html) {
             <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiAutoTranslateToEnglish()">🌐 Dịch EN</button>
             <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiCloneViToEn()">📄 Nhân bản EN</button>
             <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="openDocsImportModal()">📥 Nhập Docs/Word</button>
+          </div>
+        </div>
+
+        <!-- Bilingual Language Switcher Bar -->
+        <div class="bilingual-switcher-bar" style="margin-bottom:14px;background:#f8fafc;border:1px solid #c3c4c7;border-left:4px solid #2271b1;border-radius:4px;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-weight:700;font-size:12px;color:#1d2327;display:flex;align-items:center;gap:5px">
+              🌐 Ngôn ngữ:
+            </span>
+            <div style="display:inline-flex;border-radius:4px;overflow:hidden;border:1px solid #8c8f94">
+              <button type="button" class="button ${CURRENT_LANG==='vi'?'button-primary':''}" id="btn-lang-tab-vi" onclick="switchBilingualTab('vi')" style="display:flex;align-items:center;gap:6px;padding:3px 10px;font-weight:600;border:none;border-radius:0">
+                <span>🇻🇳 Tiếng Việt (Chính)</span>
+                <span id="badge-lang-status-vi" style="font-size:10px;padding:1px 6px;border-radius:10px;background:${CURRENT_LANG==='vi'?'rgba(255,255,255,0.25)':'#e2e4e7'};color:${CURRENT_LANG==='vi'?'#fff':'#50575e'}">Đang soạn</span>
+              </button>
+              <button type="button" class="button ${CURRENT_LANG==='en'?'button-primary':''}" id="btn-lang-tab-en" onclick="switchBilingualTab('en')" style="display:flex;align-items:center;gap:6px;padding:3px 10px;font-weight:600;border:none;border-radius:0;border-left:1px solid #8c8f94">
+                <span>🇬🇧 English (Song ngữ)</span>
+                <span id="badge-lang-status-en" style="font-size:10px;padding:1px 6px;border-radius:10px;background:${CURRENT_LANG==='en'?'rgba(255,255,255,0.25)':'#e2e4e7'};color:${CURRENT_LANG==='en'?'#fff':'#50575e'}">...</span>
+              </button>
+            </div>
+          </div>
+          <div id="bilingual-tools-en" style="display:${CURRENT_LANG==='en'?'flex':'none'};gap:8px;align-items:center">
+            <button type="button" class="button button-small" onclick="copyViStructureToEn()" title="Sao chép toàn bộ dàn ý, hình ảnh và khối từ bài Tiếng Việt để bạn chỉ việc dịch đè chữ">
+              📋 Sao chép cấu trúc từ bài VI
+            </button>
+            <button type="button" class="button button-small" onclick="aiAutoDraftEnFromVi()" title="Dùng AI gợi ý tiêu đề & tóm tắt tiếng Anh chuẩn SEO">
+              ✨ Gợi ý bản EN
+            </button>
           </div>
         </div>
 
@@ -8127,6 +8194,7 @@ function renderEditor(file, html) {
   renderFocusKeywords();
   updateWordCount();
   updateSeoScore();
+  loadPairedLanguageData(isEnFile ? 'vi' : 'en', isEnFile ? viFile : enFile);
 }
 
 function toggleZenMode() {
@@ -8358,63 +8426,371 @@ function aiAddFaqSchemaBlock() {
   }
 }
 
-async function aiAutoTranslateToEnglish() {
-  if (!confirm('Tự động dịch nội dung bài viết này sang Tiếng Anh và tạo bản thảo en-*.html?')) return;
-  toast('info', '🌐 Đang dịch tự động và chuẩn hóa từ khóa SEO tiếng Anh...');
-  
-  const currentTitle = ART_TITLE || document.getElementById('ed-title')?.value || '';
-  const cleanSlug = currentFile ? currentFile.replace(/^en-|\.html$/g, '') : slugifyFilename(currentTitle);
-  const targetEnFile = `en-${cleanSlug}.html`;
+// ══════════════════════════════════════════════════════════════════════════════
+// ── Song ngữ (Bilingual Dual-Language Editing VI/EN) ─────────────────────────
+// ══════════════════════════════════════════════════════════════════════════════
 
-  const viTitle = currentTitle;
-  const enTitle = viTitle
+function syncBilingualBufferFromDom(lang) {
+  if (!BILINGUAL_DATA || !BILINGUAL_DATA[lang]) return;
+  syncArticleFieldsFromIframe();
+  syncArticleBodyToTextarea();
+
+  const title = cleanPlainText(ART_TITLE || document.getElementById('title')?.value || document.getElementById('ed-title')?.value || '');
+  const desc = cleanPlainText(document.getElementById('ed-desc')?.value || ART_EXCERPT || '');
+  const keyword = cleanPlainText(document.getElementById('ed-keyword')?.value || '');
+  const bodyHtml = getCurrentBodyHtml();
+
+  BILINGUAL_DATA[lang].title = title;
+  BILINGUAL_DATA[lang].desc = desc;
+  BILINGUAL_DATA[lang].excerpt = desc;
+  BILINGUAL_DATA[lang].keyword = keyword;
+  BILINGUAL_DATA[lang].bodyHtml = bodyHtml;
+  if (BODY_BLOCKS && Array.isArray(BODY_BLOCKS)) {
+    BILINGUAL_DATA[lang].blocks = JSON.parse(JSON.stringify(BODY_BLOCKS));
+  } else {
+    BILINGUAL_DATA[lang].blocks = null;
+  }
+  BILINGUAL_DATA[lang].hasHb = ART_HAS_HB;
+  BILINGUAL_DATA[lang].hbLabel = ART_HB_LABEL;
+  BILINGUAL_DATA[lang].hbText = ART_HB_TEXT;
+
+  updateBilingualBadges();
+}
+
+function updateBilingualBadges() {
+  const badgeVi = document.getElementById('badge-lang-status-vi');
+  const badgeEn = document.getElementById('badge-lang-status-en');
+  if (badgeVi) {
+    const hasVi = !!(BILINGUAL_DATA.vi && (BILINGUAL_DATA.vi.title || BILINGUAL_DATA.vi.bodyHtml || BILINGUAL_DATA.vi.blocks));
+    badgeVi.textContent = CURRENT_LANG === 'vi' ? 'Đang soạn' : (hasVi ? 'Có nội dung' : 'Trống');
+  }
+  if (badgeEn) {
+    const hasEn = !!(BILINGUAL_DATA.en && BILINGUAL_DATA.en.title && (BILINGUAL_DATA.en.bodyHtml || (BILINGUAL_DATA.en.blocks && BILINGUAL_DATA.en.blocks.length > 0)));
+    badgeEn.textContent = CURRENT_LANG === 'en' ? 'Đang soạn' : (hasEn ? '✅ Sẵn sàng' : '➕ Chưa có');
+  }
+}
+
+function switchBilingualTab(targetLang) {
+  if (targetLang === CURRENT_LANG) return;
+
+  // 1. Sync current active form values to buffer
+  syncBilingualBufferFromDom(CURRENT_LANG);
+
+  // 2. Set new language
+  CURRENT_LANG = targetLang;
+
+  // 3. Update tabs UI
+  const btnVi = document.getElementById('btn-lang-tab-vi');
+  const btnEn = document.getElementById('btn-lang-tab-en');
+  const toolsEn = document.getElementById('bilingual-tools-en');
+  if (btnVi && btnEn) {
+    btnVi.className = `button ${targetLang === 'vi' ? 'button-primary' : ''}`;
+    btnEn.className = `button ${targetLang === 'en' ? 'button-primary' : ''}`;
+  }
+  if (toolsEn) {
+    toolsEn.style.display = targetLang === 'en' ? 'flex' : 'none';
+  }
+
+  // 4. Update Permalink display
+  const samplePermalink = document.getElementById('sample-permalink');
+  const viewPostBtn = document.getElementById('view-post-btn');
+  const cleanSlug = (currentFile || '').replace(/^en\//, '').replace(/\.html$/, '');
+  if (samplePermalink) {
+    if (targetLang === 'en') {
+      samplePermalink.innerHTML = `https://otahub.asia/en/<span id="editable-post-name">${esc(cleanSlug)}</span>/`;
+      if (viewPostBtn) viewPostBtn.href = `https://otahub.asia/en/${cleanSlug}`;
+    } else {
+      samplePermalink.innerHTML = `https://otahub.asia/<span id="editable-post-name">${esc(cleanSlug)}</span>/`;
+      if (viewPostBtn) viewPostBtn.href = `https://otahub.asia/${cleanSlug}`;
+    }
+  }
+
+  // 5. Populate DOM from targetLang buffer
+  const data = BILINGUAL_DATA[targetLang] || {};
+
+  // Title
+  const titleInput = document.getElementById('title');
+  const edTitle = document.getElementById('ed-title');
+  const serpTitle = document.getElementById('serp-edit-title');
+  const currentTitle = data.title || '';
+  if (titleInput) titleInput.value = currentTitle;
+  if (edTitle) edTitle.value = currentTitle;
+  if (serpTitle) serpTitle.value = currentTitle;
+  ART_TITLE = currentTitle;
+
+  // Excerpt / Desc
+  const edDesc = document.getElementById('ed-desc');
+  const serpDesc = document.getElementById('serp-preview-desc');
+  const serpDescCount = document.getElementById('serp-desc-count');
+  const currentDesc = data.desc || data.excerpt || '';
+  if (edDesc) edDesc.value = currentDesc;
+  if (serpDesc) serpDesc.textContent = currentDesc || (targetLang === 'en' ? 'English meta description snippet...' : 'Mô tả ngắn của bài viết sẽ hiển thị ở đây trên kết quả tìm kiếm Google...');
+  ART_EXCERPT = currentDesc;
+  if (serpDescCount) serpDescCount.textContent = `${currentDesc.length} / 160 ký tự`;
+
+  // Focus Keyword
+  const edKw = document.getElementById('ed-keyword');
+  if (edKw) edKw.value = data.keyword || '';
+  FOCUS_KEYWORDS = data.keyword ? data.keyword.split(',').map(k => k.trim()).filter(Boolean) : [];
+  renderFocusKeywords();
+
+  // Highlight Box
+  ART_HAS_HB = !!data.hasHb;
+  ART_HB_LABEL = data.hbLabel || '';
+  ART_HB_TEXT = data.hbText || '';
+
+  // Body: Blocks or HTML
+  if (data.blocks && Array.isArray(data.blocks) && data.blocks.length > 0) {
+    BODY_BLOCKS = JSON.parse(JSON.stringify(data.blocks));
+    switchBodyMode('blocks');
+    renderBlockEditor();
+  } else {
+    BODY_BLOCKS = null;
+    const bodyHtml = data.bodyHtml || '';
+    const vis = document.getElementById('body-visual');
+    const ta = document.getElementById('body-textarea');
+    if (vis) vis.innerHTML = bodyHtml;
+    if (ta) ta.value = bodyHtml;
+    if (BODY_MODE === 'blocks') {
+      BODY_MODE = 'visual';
+      const blocksWrap = document.getElementById('body-blocks-wrap');
+      if (blocksWrap) blocksWrap.style.display = 'none';
+      const visWrap = document.getElementById('body-visual-wrap');
+      if (visWrap) visWrap.style.display = 'block';
+    }
+  }
+
+  // Update tabs (blocks tab if present)
+  let blocksTab = document.getElementById('content-blocks-tab');
+  if (BODY_BLOCKS) {
+    if (!blocksTab) {
+      const tabsWrap = document.querySelector('.wp-editor-tabs');
+      if (tabsWrap) {
+        tabsWrap.insertAdjacentHTML('afterbegin', `<button type="button" id="content-blocks-tab" class="wp-switch-editor ${BODY_MODE==='blocks'?'active':''}" onclick="switchBodyMode('blocks')">🧱 Khối</button>`);
+      }
+    }
+  } else {
+    blocksTab?.remove();
+  }
+
+  updateBilingualBadges();
+  updateWordCount();
+  updateSeoScore();
+
+  if (targetLang === 'en' && !data.title && !data.bodyHtml && (!data.blocks || !data.blocks.length)) {
+    toast('info', '💡 Bạn đang ở tab Tiếng Anh. Hãy nhập tiêu đề & nội dung tiếng Anh, hoặc bấm "📋 Sao chép cấu trúc từ bài VI" để giữ nguyên dàn ý và ảnh.');
+  }
+}
+
+function copyViStructureToEn() {
+  if (CURRENT_LANG === 'vi') {
+    syncBilingualBufferFromDom('vi');
+  }
+
+  const viData = BILINGUAL_DATA.vi;
+  if (!viData || (!viData.title && !viData.bodyHtml && (!viData.blocks || !viData.blocks.length))) {
+    toast('warning', '⚠️ Bài viết Tiếng Việt chưa có nội dung để sao chép.');
+    return;
+  }
+
+  if (BILINGUAL_DATA.en.bodyHtml || (BILINGUAL_DATA.en.blocks && BILINGUAL_DATA.en.blocks.length)) {
+    if (!confirm('Nội dung tiếng Anh hiện tại sẽ được thay thế bằng khung của bài tiếng Việt. Bạn có chắc muốn sao chép?')) return;
+  }
+
+  // Clone blocks or body
+  if (viData.blocks && Array.isArray(viData.blocks)) {
+    BILINGUAL_DATA.en.blocks = JSON.parse(JSON.stringify(viData.blocks));
+  } else {
+    BILINGUAL_DATA.en.blocks = null;
+  }
+  BILINGUAL_DATA.en.bodyHtml = viData.bodyHtml || '';
+
+  if (!BILINGUAL_DATA.en.title) {
+    BILINGUAL_DATA.en.title = `[EN] ${viData.title}`;
+  }
+  if (!BILINGUAL_DATA.en.desc) {
+    BILINGUAL_DATA.en.desc = viData.desc || viData.excerpt || '';
+  }
+  BILINGUAL_DATA.en.hasHb = viData.hasHb;
+  BILINGUAL_DATA.en.hbLabel = viData.hbLabel ? 'Summary' : '';
+  BILINGUAL_DATA.en.hbText = viData.hbText || '';
+
+  if (CURRENT_LANG === 'en') {
+    const titleInput = document.getElementById('title');
+    const edTitle = document.getElementById('ed-title');
+    const serpTitle = document.getElementById('serp-edit-title');
+    if (titleInput) titleInput.value = BILINGUAL_DATA.en.title;
+    if (edTitle) edTitle.value = BILINGUAL_DATA.en.title;
+    if (serpTitle) serpTitle.value = BILINGUAL_DATA.en.title;
+    ART_TITLE = BILINGUAL_DATA.en.title;
+
+    const edDesc = document.getElementById('ed-desc');
+    if (edDesc) edDesc.value = BILINGUAL_DATA.en.desc;
+    ART_EXCERPT = BILINGUAL_DATA.en.desc;
+
+    if (BILINGUAL_DATA.en.blocks) {
+      BODY_BLOCKS = JSON.parse(JSON.stringify(BILINGUAL_DATA.en.blocks));
+      switchBodyMode('blocks');
+      renderBlockEditor();
+    } else {
+      BODY_BLOCKS = null;
+      const vis = document.getElementById('body-visual');
+      const ta = document.getElementById('body-textarea');
+      if (vis) vis.innerHTML = BILINGUAL_DATA.en.bodyHtml;
+      if (ta) ta.value = BILINGUAL_DATA.en.bodyHtml;
+    }
+  }
+
+  updateBilingualBadges();
+  markChanged();
+  toast('success', '📋 Đã sao chép cấu trúc từ bài Tiếng Việt sang Tiếng Anh! Bây giờ bạn chỉ việc dịch lại tiêu đề và các đoạn văn bản.');
+}
+
+function aiAutoDraftEnFromVi() {
+  if (CURRENT_LANG === 'vi') {
+    syncBilingualBufferFromDom('vi');
+  }
+  const viTitle = BILINGUAL_DATA.vi.title || '';
+  const viDesc = BILINGUAL_DATA.vi.desc || '';
+  if (!viTitle) {
+    toast('warning', '⚠️ Vui lòng nhập tiêu đề tiếng Việt trước.');
+    return;
+  }
+
+  let enTitle = viTitle
     .replace(/Đánh giá chi tiết/gi, 'In-depth Review')
+    .replace(/Đánh giá/gi, 'Review')
     .replace(/Hướng dẫn/gi, 'Guide')
     .replace(/Cập nhật/gi, 'Update')
     .replace(/Tin tức/gi, 'News')
-    .replace(/Top /gi, 'Top ')
     .replace(/Mới nhất/gi, 'Latest')
     .replace(/Toàn diện/gi, 'Comprehensive')
-    .replace(/Chiến thuật/gi, 'Strategy');
+    .replace(/Chiến thuật/gi, 'Strategy')
+    .replace(/Tổng hợp/gi, 'Full Recap')
+    .replace(/Top 10/gi, 'Top 10')
+    .replace(/Top 5/gi, 'Top 5');
 
-  const enDesc = (ART_EXCERPT || document.getElementById('ed-desc')?.value || '')
+  if (enTitle === viTitle) enTitle = `[EN] ${viTitle}`;
+
+  let enDesc = viDesc
     .replace(/Tổng hợp thông tin/gi, 'Comprehensive overview')
     .replace(/phân tích chuyên sâu/gi, 'in-depth analysis')
+    .replace(/hướng dẫn chi tiết/gi, 'step-by-step guide')
     .replace(/trên OtaHub/gi, 'on OtaHub');
 
-  await createEnglishArticleFromAi(targetEnFile, enTitle, enDesc);
+  BILINGUAL_DATA.en.title = enTitle;
+  BILINGUAL_DATA.en.desc = enDesc;
+
+  if (CURRENT_LANG === 'en') {
+    const titleInput = document.getElementById('title');
+    const edTitle = document.getElementById('ed-title');
+    const serpTitle = document.getElementById('serp-edit-title');
+    if (titleInput) titleInput.value = enTitle;
+    if (edTitle) edTitle.value = enTitle;
+    if (serpTitle) serpTitle.value = enTitle;
+    ART_TITLE = enTitle;
+
+    const edDesc = document.getElementById('ed-desc');
+    if (edDesc) edDesc.value = enDesc;
+    ART_EXCERPT = enDesc;
+  }
+
+  updateBilingualBadges();
+  markChanged();
+  toast('success', '✨ Đã tạo bản nháp Tiêu đề & Tóm tắt tiếng Anh!');
+}
+
+async function aiAutoTranslateToEnglish() {
+  switchBilingualTab('en');
+  if (!BILINGUAL_DATA.en.bodyHtml && (!BILINGUAL_DATA.en.blocks || !BILINGUAL_DATA.en.blocks.length)) {
+    copyViStructureToEn();
+  }
+  aiAutoDraftEnFromVi();
+  toast('success', '🌐 Đã chuyển sang tab Tiếng Anh và tự động tạo bản dịch nháp!');
 }
 
 async function aiCloneViToEn() {
-  const currentTitle = ART_TITLE || document.getElementById('ed-title')?.value || '';
-  // Dùng đúng quy ước en/<slug>.html (thư mục con) mà toàn bộ site còn lại đang dùng —
-  // trước đây tạo "en-<slug>.html" (gạch ngang, thư mục gốc), lệch khỏi sitemap, hreflang
-  // và mọi cơ chế đồng bộ EN khác, khiến bài tạo ra bị lạc khỏi site.
-  const cleanSlug = currentFile ? currentFile.replace(/^en\//, '').replace(/\.html$/, '') : slugifyFilename(currentTitle);
-  const targetEnFile = `en/${cleanSlug}.html`;
-
-  if (!confirm(`Tạo bản sao tiếng Anh "${targetEnFile}" từ bài viết hiện tại?`)) return;
-  await createEnglishArticleFromAi(targetEnFile, `[EN] ${currentTitle}`, ART_EXCERPT || '');
+  switchBilingualTab('en');
+  copyViStructureToEn();
+  toast('success', '📄 Đã chuyển sang tab Tiếng Anh và sao chép cấu trúc từ bài Tiếng Việt!');
 }
 
-async function createEnglishArticleFromAi(targetFile, enTitle, enDesc) {
+async function loadPairedLanguageData(lang, pairedFile) {
+  if (!pairedFile) return;
   try {
-    const viSlug = targetFile.replace(/^en\//, '').replace(/\.html$/i, '');
-    const url = `https://otahub.asia/en/${viSlug}`;
-    const viUrl = `https://otahub.asia/${viSlug}`;
-
-    const cat = document.getElementById('ed-cat')?.value || 'Gaming';
-    const heroImg = document.getElementById('ed-hero')?.value || '';
-    const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
-    const bodyHtml = getCurrentBodyHtml();
-    const authorName = hUnesc(fieldGet(currentRawHtml || '', /<meta name="author" content="([^"]*)"/)) || publishingAuthorName();
-
-    let blocksClone = null;
-    if (BODY_BLOCKS) {
-      blocksClone = JSON.parse(JSON.stringify(BODY_BLOCKS));
+    let pairedHtml = '';
+    const draft = await getDraft(pairedFile).catch(() => null);
+    if (draft && draft.html) {
+      pairedHtml = draft.html;
+    } else {
+      const res = await fetch('/' + pairedFile, { cache: 'no-store' }).catch(() => null);
+      if (res && res.ok) {
+        pairedHtml = await res.text();
+      }
     }
 
-    const template = `<!DOCTYPE html>
+    if (pairedHtml && pairedHtml.length > 200 && pairedHtml.includes('<html')) {
+      const pRawTitle = (extract(pairedHtml, /<h1\b[^>]*>([\s\S]*?)<\/h1>/i) || extract(pairedHtml, /<title>([^<]+)<\/title>/) || '').replace(/\s*·\s*OtaHub$/i, '').trim();
+      const pTitle = cleanPlainText(pRawTitle);
+      const pDesc = cleanPlainText(extract(pairedHtml, /name="description" content="([^"]+)"/) || '');
+      const pBody = extractBody(pairedHtml);
+      const pExcerpt = cleanPlainText(extractExcerpt(pairedHtml) || pDesc);
+      const pKeyword = cleanPlainText(extract(pairedHtml, /name="focus-keyword" content="([^"]*)"/) || '');
+      const pHb = extractHighlightBox(pairedHtml);
+      const pBlockMatch = pairedHtml.match(/<script type="application\/json" id="admin-block-data">([\s\S]*?)<\/script>/);
+      const pBlocks = pBlockMatch ? JSON.parse(pBlockMatch[1]) : null;
+
+      BILINGUAL_DATA[lang].rawHtml = pairedHtml;
+      BILINGUAL_DATA[lang].title = pTitle;
+      BILINGUAL_DATA[lang].desc = pDesc;
+      BILINGUAL_DATA[lang].excerpt = pExcerpt;
+      BILINGUAL_DATA[lang].keyword = pKeyword;
+      BILINGUAL_DATA[lang].bodyHtml = pBody;
+      BILINGUAL_DATA[lang].blocks = pBlocks;
+      BILINGUAL_DATA[lang].hasHb = !!pHb;
+      BILINGUAL_DATA[lang].hbLabel = pHb ? cleanPlainText(pHb.label) : '';
+      BILINGUAL_DATA[lang].hbText = pHb ? pHb.text : '';
+    }
+  } catch (err) {
+    console.warn('loadPairedLanguageData error:', err);
+  } finally {
+    updateBilingualBadges();
+  }
+}
+
+function ensureHreflangLinks(html, viSlug, enSlug, pageLang) {
+  const viUrl = `https://otahub.asia/${viSlug}`;
+  const enUrl = `https://otahub.asia/en/${enSlug || viSlug}`;
+  const canonUrl = pageLang === 'en' ? enUrl : viUrl;
+
+  html = html.replace(/<link\s+rel="alternate"\s+hreflang="[^"]*"\s+href="[^"]*"\s*\/?>\n?/gi, '');
+  html = html.replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>\n?/gi, '');
+
+  const hreflangTags = [
+    `<link rel="alternate" hreflang="vi" href="${viUrl}">`,
+    `<link rel="alternate" hreflang="en" href="${enUrl}">`,
+    `<link rel="alternate" hreflang="x-default" href="${viUrl}">`,
+    `<link rel="canonical" href="${canonUrl}">`
+  ].join('\n');
+
+  if (/<head>/i.test(html)) {
+    html = html.replace(/<head>/i, `<head>\n${hreflangTags}`);
+  } else {
+    html = hreflangTags + '\n' + html;
+  }
+  return html;
+}
+
+function buildStandardEnglishArticleTemplate(viSlug, enSlug, heroImg, heroPos, cat, authorName) {
+  const url = `https://otahub.asia/en/${enSlug}`;
+  const viUrl = `https://otahub.asia/${viSlug}`;
+  const enTitle = BILINGUAL_DATA?.en?.title || 'Article Title';
+  const enDesc = BILINGUAL_DATA?.en?.desc || '';
+  const now = new Date().toISOString();
+  const dateDisp = now.slice(0, 10);
+  const heroPosition = heroPos || '50';
+
+  return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>${esc(enTitle)} · OtaHub</title>
@@ -8432,17 +8808,21 @@ async function createEnglishArticleFromAi(targetFile, enTitle, enDesc) {
 <meta property="og:description" content="${esc(enDesc)}">
 <meta property="og:url" content="${url}">
 <meta property="og:site_name" content="OtaHub">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="${esc(heroImg)}">
-<meta property="article:published_time" content="${new Date().toISOString()}">
+<meta property="article:published_time" content="${now}">
 <meta property="article:section" content="${esc(cat)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(enTitle)} · OtaHub">
 <meta name="twitter:description" content="${esc(enDesc)}">
 <meta name="twitter:image" content="${esc(heroImg)}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="stylesheet" href="/assets/article-style.css?v=20260924">
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
 <link rel="stylesheet" href="/assets/mobile-fix.css?v=20260926">
-<link rel="stylesheet" href="/assets/article-style.css?v=20260909">
 </head>
 <body>
 <header class="site-header">
@@ -8459,30 +8839,20 @@ async function createEnglishArticleFromAi(targetFile, enTitle, enDesc) {
 <main class="main-content wrap">
   <article class="art-single">
     <header class="art-header">
-      <div class="art-meta"><span class="art-cat">${esc(cat)}</span> · <time>${new Date().toISOString().slice(0,10)}</time></div>
+      <div class="art-meta"><span class="art-cat">${esc(cat)}</span> · <time>${dateDisp}</time></div>
       <h1 class="art-title">${esc(enTitle)}</h1>
       <p class="art-lead">${esc(enDesc)}</p>
     </header>
-    ${heroImg ? `<figure class="art-hero"><img height="675" width="1200" src="${esc(heroImg)}" alt="${esc(enTitle)}" style="object-position:center ${esc(heroPos)}%"></figure>` : ''}
-    <div class="art-body">
-      ${blocksClone ? blocksToHtml(blocksClone) : bodyHtml}
-    </div>
+    ${heroImg ? `<figure class="art-hero"><img height="675" width="1200" src="${esc(heroImg)}" alt="${esc(enTitle)}" style="object-position:center ${heroPosition}%"></figure>` : ''}
+    <article class="art-body">
+      <p>Article body content...</p>
+    </article>
   </article>
 </main>
-${blocksClone ? `<script type="application/json" id="admin-block-data">${JSON.stringify(blocksClone)}<\/script>` : ''}
 <script defer src="/assets/img-fit.v2.js?v=20260926"><\/script>
 <script src="/assets/lang-switch.js" defer><\/script>
 </body>
 </html>`;
-
-    currentFile = targetFile;
-    currentSha = null;
-    renderEditor(targetFile, template);
-    toast('success', `✅ Đã tạo bản thảo bài viết tiếng Anh: ${targetFile}`);
-  } catch (err) {
-    console.error(err);
-    toast('error', 'Lỗi khi tạo bản thảo tiếng Anh: ' + err.message);
-  }
 }
 
 function openDocsImportModal() {
@@ -11184,11 +11554,44 @@ function scheduleBlockListRefresh() {
 
 // Mở trang xem trước bản nháp ĐẦY ĐỦ trong tab mới mà không bị lỗi 404 (kể cả bài chưa lưu/chưa deploy)
 function openFullArticlePreview() {
-  syncArticleFieldsFromIframe();
-  syncArticleBodyToTextarea();
-  let html = currentRawHtml || '';
-  if (!currentSha) html = patchNewArticleUrls(html, currentFile);
-  html = applyArticleEditsToHtml(html);
+  syncBilingualBufferFromDom(CURRENT_LANG);
+  let html = '';
+  const cleanSlug = (document.getElementById('ed-slug')?.value || '').trim() || (currentFile || '').replace(/^en\//, '').replace(/\.html$/, '');
+  const cat = document.getElementById('ed-cat')?.value || 'Gaming';
+  const hero = document.getElementById('ed-hero')?.value || '';
+  const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
+  const publishingAuthor = publishingAuthorName();
+
+  if (CURRENT_LANG === 'en') {
+    html = BILINGUAL_DATA?.en?.rawHtml || buildStandardEnglishArticleTemplate(cleanSlug, cleanSlug, hero, heroPos, cat, publishingAuthor);
+    html = applyArticleEditsToHtml(html, {
+      title: BILINGUAL_DATA?.en?.title || 'Article Title',
+      desc: BILINGUAL_DATA?.en?.desc || '',
+      keyword: BILINGUAL_DATA?.en?.keyword,
+      hero, heroPos, cat,
+      bodyHtml: BILINGUAL_DATA?.en?.bodyHtml || '',
+      blocks: BILINGUAL_DATA?.en?.blocks,
+      hasHb: BILINGUAL_DATA?.en?.hasHb,
+      hbLabel: BILINGUAL_DATA?.en?.hbLabel || 'Summary',
+      hbText: BILINGUAL_DATA?.en?.hbText || '',
+      slug: cleanSlug
+    });
+  } else {
+    html = BILINGUAL_DATA?.vi?.rawHtml || currentRawHtml || '';
+    if (!currentSha) html = patchNewArticleUrls(html, currentFile);
+    html = applyArticleEditsToHtml(html, {
+      title: BILINGUAL_DATA?.vi?.title || ART_TITLE,
+      desc: BILINGUAL_DATA?.vi?.desc || ART_EXCERPT,
+      keyword: BILINGUAL_DATA?.vi?.keyword,
+      hero, heroPos, cat,
+      bodyHtml: BILINGUAL_DATA?.vi?.bodyHtml,
+      blocks: BILINGUAL_DATA?.vi?.blocks,
+      hasHb: BILINGUAL_DATA?.vi?.hasHb,
+      hbLabel: BILINGUAL_DATA?.vi?.hbLabel,
+      hbText: BILINGUAL_DATA?.vi?.hbText,
+      slug: cleanSlug
+    });
+  }
 
   // Thêm <base href="..."> và inline CSS chống vỡ layout trên Blob URL
   const criticalStyles = `
@@ -11244,20 +11647,23 @@ function patchNewArticleUrls(html, file) {
 // vào 1 chuỗi HTML nền — dùng chung cho cả "Lưu & Deploy" thật (saveArticle)
 // lẫn autosave bản nháp (autosaveArticleDraft), để 2 đường không bao giờ lệch
 // logic với nhau. KHÔNG đọc/ghi state ngoài field DOM hiện tại + tham số vào.
-function applyArticleEditsToHtml(baseHtml) {
-  const rawTitle = ART_TITLE || document.getElementById('ed-title')?.value || '';
+function applyArticleEditsToHtml(baseHtml, customData) {
+  const isCustom = !!customData;
+  const rawTitle = isCustom ? customData.title : (ART_TITLE || document.getElementById('ed-title')?.value || '');
   const title   = cleanPlainText(rawTitle) || 'Tiêu đề bài viết';
-  const rawExcerpt = ART_EXCERPT || document.getElementById('ed-desc')?.value || '';
+  const rawExcerpt = isCustom ? customData.desc : (ART_EXCERPT || document.getElementById('ed-desc')?.value || '');
   const excerpt = cleanPlainText(rawExcerpt);
-  const desc    = cleanPlainText(document.getElementById('ed-desc')?.value || excerpt);
-  const keyword = cleanPlainText(document.getElementById('ed-keyword')?.value || '');
-  const hero    = document.getElementById('ed-hero')?.value || '';
-  const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
-  const cat     = document.getElementById('ed-cat')?.value || 'Gaming';
-  let bodyVi = document.getElementById('body-textarea')?.value || '';
+  const desc    = cleanPlainText(isCustom ? customData.desc : (document.getElementById('ed-desc')?.value || excerpt));
+  const keyword = cleanPlainText(isCustom ? (customData.keyword || '') : (document.getElementById('ed-keyword')?.value || ''));
+  const hero    = (isCustom && customData.hero !== undefined) ? customData.hero : (document.getElementById('ed-hero')?.value || '');
+  const heroPos = (isCustom && customData.heroPos !== undefined) ? customData.heroPos : (document.getElementById('ed-hero-pos')?.value || '50');
+  const cat     = (isCustom && customData.cat !== undefined) ? customData.cat : (document.getElementById('ed-cat')?.value || 'Gaming');
+  let bodyVi = isCustom ? (customData.bodyHtml || '') : (document.getElementById('body-textarea')?.value || '');
   bodyVi = repairArticleBodyHtml(bodyVi);
-  const ta = document.getElementById('body-textarea');
-  if (ta) ta.value = bodyVi;
+  if (!isCustom) {
+    const ta = document.getElementById('body-textarea');
+    if (ta) ta.value = bodyVi;
+  }
 
   const bodySafetyErrors = validateArticleBodyHtml(bodyVi);
   if (bodySafetyErrors.length) {
@@ -11269,8 +11675,7 @@ function applyArticleEditsToHtml(baseHtml) {
   html = html.replace(/<title>[^<]*<\/title>/i, `<title>${esc(title)} · OtaHub</title>`);
   html = html.replace(/(<meta\s+name="description"\s+content=")[^"]*(")/i,   `$1${esc(desc)}$2`);
 
-  // Từ khóa trọng tâm (SEO Score) — lưu dạng meta ẩn, chỉ admin.html đọc lại,
-  // không ảnh hưởng SEO thật (không phải meta keywords cũ mà Google đã bỏ dùng).
+  // Từ khóa trọng tâm (SEO Score) — lưu dạng meta ẩn, chỉ admin.html đọc lại
   const kwRe = /<meta name="focus-keyword" content="[^"]*">\n?/;
   if (keyword) {
     const kwTag = `<meta name="focus-keyword" content="${esc(keyword)}">\n`;
@@ -11291,34 +11696,32 @@ function applyArticleEditsToHtml(baseHtml) {
   html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-tag[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${esc(cat)}$2`);
 
   // Breadcrumbs in HTML & BreadcrumbList Schema
+  const isEnDoc = /<html\b[^>]*\blang="en"/i.test(html);
   const catSlug = cat.toLowerCase();
   html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<a\s+href="\/)[^"]*(">[^<]*<\/a>)/i,
-    `$1${catSlug}">${esc(cat)}</a>`);
+    `$1${isEnDoc ? 'en/' + catSlug : catSlug}">${esc(cat)}</a>`);
   html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<span>)[\s\S]*?(<\/span>)/i,
     `$1${esc(title)}$2`);
   html = html.replace(/(\{\s*"@type":\s*"ListItem",\s*"position":\s*2,\s*"name":\s*")[^"]*(",\s*"item":\s*"https:\/\/otahub\.asia\/)[^"]*(")/i,
-    `$1${cat.replace(/"/g, '\\"')}$2${catSlug}$3`);
+    `$1${cat.replace(/"/g, '\\"')}$2${isEnDoc ? 'en/' + catSlug : catSlug}$3`);
   html = html.replace(/(\{\s*"@type":\s*"ListItem",\s*"position":\s*3,\s*"name":\s*")[^"]*(")/i,
     `$1${title.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}$2`);
 
-  // Tab đang chọn trên thanh nav (desktop + mobile) — mẫu bài mới bake cứng
-  // "Gaming" làm active, không tự đổi theo category thật khi tạo bài chuyên mục khác.
+  // Tab đang chọn trên thanh nav (desktop + mobile)
   const NAV_CATS = ['choi-gi', 'gaming', 'anime', 'manga', 'reviews', 'rankings', 'chuyen-sau'];
   if (NAV_CATS.includes(catSlug)) {
     html = html.replace(/<a href="\/(choi-gi|gaming|anime|manga|reviews|rankings|chuyen-sau)"( class="active")?>/g,
       (m, slug) => `<a href="/${slug}"${slug === catSlug ? ' class="active"' : ''}>`);
   }
 
-  // Thẻ chủ đề trong sidebar (.sb-tags) — mẫu bài mới gắn cứng href="/gaming"
-  // cho mọi pill bất kể category thật, nên bấm vào tag nào cũng ra trang Gaming.
+  // Thẻ chủ đề trong sidebar (.sb-tags)
   html = html.replace(/(<div class="sb-tags">)([\s\S]*?)(<\/div>)/i, (m, open, inner, close) =>
     open + inner.replace(/(<a class="sb-tag" href=")[^"]*(")/gi, `$1/${catSlug}$2`) + close);
 
-  // Nút chia sẻ Twitter/Facebook — mẫu bài mới bake cứng URL slug tạm thời lúc
-  // khởi tạo bài, không tự cập nhật khi đổi "Đường dẫn URL" hay khi bài được đăng
-  // thật, nên nút Share trỏ vĩnh viễn về 1 slug rác không tồn tại.
-  if (currentFile) {
-    const shareUrl = `https://otahub.asia/${currentFile.replace(/\.html$/, '')}`;
+  // Nút chia sẻ Twitter/Facebook
+  const currentSlugNoExt = (isCustom && customData.slug) ? customData.slug : (currentFile ? currentFile.replace(/^en\//, '').replace(/\.html$/, '') : '');
+  if (currentSlugNoExt) {
+    const shareUrl = `https://otahub.asia/${isEnDoc ? 'en/' : ''}${currentSlugNoExt}`;
     html = html.replace(/(twitter\.com\/intent\/tweet\?url=)[^"&]*(&amp;text=)[^"&]*/i, `$1${encodeURIComponent(shareUrl)}$2${encodeURIComponent(title)}`);
     html = html.replace(/(facebook\.com\/sharer\/sharer\.php\?u=)[^"]*/i, `$1${encodeURIComponent(shareUrl)}`);
   }
@@ -11340,45 +11743,56 @@ function applyArticleEditsToHtml(baseHtml) {
     html = html.replace(/(<meta\s+property="og:image"\s+content=")[^"]*(")/i, `$1${fullHeroUrl}$2`);
     html = html.replace(/(<meta\s+name="twitter:image"\s+content=")[^"]*(")/i, `$1${fullHeroUrl}$2`);
     html = html.replace(/("image":\s*")[^"]*(")/i, `$1${fullHeroUrl}$2`);
+    html = html.replace(/(<figure class="art-hero"><img[^>]*src=")[^"]*(")/i, `$1${hero}$2`);
   }
 
-  // H1 — hỗ trợ cả mẫu hiện tại (art-hero-title) lẫn bất kỳ class/thuộc tính nào
+  // H1
   if (/<h1\b[^>]*\bclass="[^"]*art-hero-title[^"]*"[^>]*>/i.test(html)) {
     html = html.replace(/(<h1\b[^>]*\bclass="[^"]*art-hero-title[^"]*"[^>]*>)[\s\S]*?(<\/h1>)/i, `$1${esc(title)}$2`);
+  } else if (/<h1\b[^>]*\bclass="[^"]*art-title[^"]*"[^>]*>/i.test(html)) {
+    html = html.replace(/(<h1\b[^>]*\bclass="[^"]*art-title[^"]*"[^>]*>)[\s\S]*?(<\/h1>)/i, `$1${esc(title)}$2`);
   } else if (/<h1\b[^>]*>/i.test(html)) {
     html = html.replace(/(<h1\b[^>]*>)[\s\S]*?(<\/h1>)/i, `$1${esc(title)}$2`);
   }
 
-  // Mô tả ngắn dưới tiêu đề, trên ảnh bìa
+  // Excerpt
   if (/<p\b[^>]*\bclass="[^"]*art-hero-excerpt[^"]*"[^>]*>/i.test(html)) {
     html = html.replace(/(<p\b[^>]*\bclass="[^"]*art-hero-excerpt[^"]*"[^>]*>)[\s\S]*?(<\/p>)/i, `$1${esc(excerpt)}$2`);
+  } else if (/<p\b[^>]*\bclass="[^"]*art-lead[^"]*"[^>]*>/i.test(html)) {
+    html = html.replace(/(<p\b[^>]*\bclass="[^"]*art-lead[^"]*"[^>]*>)[\s\S]*?(<\/p>)/i, `$1${esc(excerpt)}$2`);
   }
 
-  // Khối "Tóm tắt điểm nhấn" (.highlight-box)
-  if (ART_HAS_HB) {
+  // Highlight Box
+  const hasHb = isCustom ? !!customData.hasHb : ART_HAS_HB;
+  const hbLabel = isCustom ? (customData.hbLabel || 'Tóm Tắt') : (ART_HB_LABEL || 'Tóm Tắt');
+  const hbText = isCustom ? (customData.hbText || '') : (ART_HB_TEXT || '');
+  if (hasHb) {
     if (/<div class="highlight-box">[\s\S]*?<\/div>\s*<\/div>/i.test(html)) {
-      html = html.replace(/(<div class="hb-label">)[^<]*(<\/div>)/, `$1${esc(ART_HB_LABEL || 'Tóm Tắt')}$2`);
-      html = html.replace(/(<div class="hb-text">)[\s\S]*?(<\/div>)/, `$1${ART_HB_TEXT || ''}$2`);
+      html = html.replace(/(<div class="hb-label">)[^<]*(<\/div>)/, `$1${esc(hbLabel)}$2`);
+      html = html.replace(/(<div class="hb-text">)[\s\S]*?(<\/div>)/, `$1${hbText}$2`);
     } else {
-      const hbHtml = `<div class="highlight-box">\n<div class="hb-label">${esc(ART_HB_LABEL || 'Tóm Tắt')}</div>\n<div class="hb-text">${ART_HB_TEXT || ''}</div>\n</div>\n\n`;
-      html = html.replace(/(<article class="art-body)/, `${hbHtml}$1`);
+      const hbHtml = `<div class="highlight-box">\n<div class="hb-label">${esc(hbLabel)}</div>\n<div class="hb-text">${hbText}</div>\n</div>\n\n`;
+      html = html.replace(/(<article class="art-body|<div class="art-body)/, `${hbHtml}$1`);
     }
   } else {
     html = html.replace(/<div class="highlight-box">[\s\S]*?<\/div>\s*<\/div>\s*/gi, '');
   }
 
-  // Body — hỗ trợ cả mẫu hiện tại (art-body) lẫn mẫu cũ (art-body lang-vi active)
+  // Body
   if (/<article class="art-body">[\s\S]*?<\/article>/.test(html)) {
     html = html.replace(/<article class="art-body">[\s\S]*?<\/article>/, `<article class="art-body">\n${bodyVi}\n</article>`);
+  } else if (/<div class="art-body">[\s\S]*?<\/div>/.test(html)) {
+    html = html.replace(/<div class="art-body">[\s\S]*?<\/div>/, `<div class="art-body">\n${bodyVi}\n</div>`);
   } else {
     html = html.replace(/<article class="art-body lang-vi active">[\s\S]*?<\/article>/, `<article class="art-body lang-vi active">\n${bodyVi}\n</article>`);
   }
 
-  // Dữ liệu Khối ẩn (admin-block-data) — chỉ tồn tại cho bài dùng chế độ Khối.
+  // Blocks
+  const blocks = isCustom ? customData.blocks : BODY_BLOCKS;
   const blockMarkerRe = /<script type="application\/json" id="admin-block-data">[\s\S]*?<\/script>\n?/;
-  if (BODY_BLOCKS) {
-    const newMarker = `<script type="application/json" id="admin-block-data">${JSON.stringify(BODY_BLOCKS)}<\/script>\n`;
-    html = blockMarkerRe.test(html) ? html.replace(blockMarkerRe, newMarker) : html.replace(/<\/article>/, `</article>\n${newMarker}`);
+  if (blocks && Array.isArray(blocks) && blocks.length > 0) {
+    const newMarker = `<script type="application/json" id="admin-block-data">${JSON.stringify(blocks)}<\/script>\n`;
+    html = blockMarkerRe.test(html) ? html.replace(blockMarkerRe, newMarker) : html.replace(/<\/article>|<\/main>/, (m) => `${newMarker}${m}`);
   } else if (blockMarkerRe.test(html)) {
     html = html.replace(blockMarkerRe, '');
   }
@@ -11581,16 +11995,16 @@ async function externalizeInlineImages(html) {
 }
 
 async function saveArticle() {
-  syncArticleFieldsFromIframe();
-  syncArticleBodyToTextarea();
+  syncBilingualBufferFromDom(CURRENT_LANG);
   const cleaned = sanitizeAllBlocksData();
   if (cleaned > 0) {
     toast('info', `🧹 Đã tự động làm sạch ${cleaned} khối nội dung chứa thẻ Docs/Word trước khi lưu.`);
   }
-  const title = cleanPlainText(ART_TITLE || '');
-  const desc  = cleanPlainText(document.getElementById('ed-desc')?.value || '');
+
   const cat   = document.getElementById('ed-cat')?.value || 'Gaming';
   const hero  = document.getElementById('ed-hero')?.value || '';
+  const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
+  const publishingAuthor = publishingAuthorName();
 
   if (!currentFile) return;
 
@@ -11608,44 +12022,123 @@ async function saveArticle() {
 
   const isNewFile = !currentSha;
   try {
-    // Bài đã tồn tại: lấy lại nội dung mới nhất từ GitHub để không đè lên thay đổi khác.
-    // Bài mới: dùng template đang có sẵn trong editor, sha để trống để GitHub tự tạo file.
-    let html, sha;
-    if (isNewFile) {
-      html = patchNewArticleUrls(currentRawHtml, currentFile);
-      sha = undefined;
-      // File cùng tên có thể đã tồn tại (vd. lần lưu trước bị lỗi giữa chừng): GitHub bắt buộc có "sha"
-      // khi ghi đè, nếu không sẽ báo "sha wasn't supplied". Tra sha hiện có và hỏi lại nếu file đã có nội dung thật.
-      try {
-        const existing = await ghGet(currentFile);
-        if (existing && existing.sha) {
-          let old = '';
-          try { old = decodeURIComponent(escape(atob(String(existing.content || '').replace(/\s/g, '')))); } catch (e) {}
-          const oldBodyLen = ((old.match(/<article class="art-body">([\s\S]*?)<\/article>/) || [])[1] || '').replace(/<[^>]+>/g, '').trim().length;
-          if (oldBodyLen > 800 && !confirm('Đã có một bài viết khác cùng đường dẫn "' + currentFile + '" với nội dung thật. Ghi đè lên bài đó?')) {
-            throw new Error('Đã hủy: hãy đổi "Đường dẫn URL" sang tên khác.');
-          }
-          sha = existing.sha;
-        }
-      } catch (e) {
-        if (/Đã hủy/.test(e.message)) throw e;
-      }
-    } else {
-      const data = await ghGet(currentFile);
-      sha = data.sha;
-      try { html = decodeURIComponent(escape(atob(String(data.content || '').replace(/\s/g, '')))); } catch (e) { html = ''; }
-      // GitHub có thể trả nội dung rỗng (file lớn / cache). Không bao giờ được ghi đè bằng nội dung rỗng:
-      // dùng bản đang mở trong editor làm nền.
-      if (!html || html.length < 200 || !/<html/i.test(html)) html = currentRawHtml;
-    }
-    html = applyArticleEditsToHtml(html);
-    const publishingAuthor = publishingAuthorName();
-    if (isNewFile) html = stampArticleAuthor(html, publishingAuthor);
-    html = await externalizeInlineImages(html);
-    if (!html || html.length < 500 || !/<html/i.test(html)) throw new Error('Nội dung bài viết trống bất thường — đã chặn lưu để tránh mất bài. Hãy tải lại trang admin rồi thử lại.');
+    const rawSlug = (document.getElementById('ed-slug')?.value || '').trim() || (currentFile || '').replace(/^en\//, '').replace(/\.html$/, '');
+    const cleanSlug = slugify(rawSlug) || rawSlug || 'bai-viet';
+    const viFile = `${cleanSlug}.html`;
+    const enFile = `en/${cleanSlug}.html`;
+    const viSlug = cleanSlug;
+    const enSlug = cleanSlug;
 
-    const putResult = await ghPut(currentFile, html, sha, `[admin] cap nhat: ${title.slice(0,50)}`);
-    await deleteDraft(currentFile);
+    // Check content of both languages
+    const viTitle = cleanPlainText(BILINGUAL_DATA?.vi?.title || ART_TITLE || '');
+    const viDesc  = cleanPlainText(BILINGUAL_DATA?.vi?.desc || document.getElementById('ed-desc')?.value || '');
+    const enTitle = cleanPlainText(BILINGUAL_DATA?.en?.title || '');
+    const enDesc  = cleanPlainText(BILINGUAL_DATA?.en?.desc || '');
+    const enBody  = BILINGUAL_DATA?.en?.bodyHtml || '';
+    const hasEn   = !!(enTitle && (enBody.length > 20 || (BILINGUAL_DATA?.en?.blocks && BILINGUAL_DATA?.en?.blocks.length > 0)));
+
+    // 1. LƯU BÀI VIẾT TIẾNG VIỆT
+    let viHtml = '', viSha = BILINGUAL_DATA?.vi?.sha;
+    const isNewVi = !viSha && (!currentSha || (currentFile || '').startsWith('en/'));
+
+    if (isNewVi) {
+      viHtml = patchNewArticleUrls(BILINGUAL_DATA?.vi?.rawHtml || currentRawHtml, viFile);
+      viSha = undefined;
+      try {
+        const existing = await ghGet(viFile);
+        if (existing && existing.sha) viSha = existing.sha;
+      } catch (e) {}
+    } else {
+      try {
+        const data = await ghGet(viFile);
+        viSha = data.sha;
+        try { viHtml = decodeURIComponent(escape(atob(String(data.content || '').replace(/\s/g, '')))); } catch (e) { viHtml = ''; }
+      } catch (e) {}
+      if (!viHtml || viHtml.length < 200 || !/<html/i.test(viHtml)) viHtml = BILINGUAL_DATA?.vi?.rawHtml || currentRawHtml;
+    }
+
+    viHtml = applyArticleEditsToHtml(viHtml, {
+      title: viTitle || 'Tiêu đề bài viết',
+      desc: viDesc,
+      keyword: BILINGUAL_DATA?.vi?.keyword,
+      hero,
+      heroPos,
+      cat,
+      bodyHtml: BILINGUAL_DATA?.vi?.bodyHtml,
+      blocks: BILINGUAL_DATA?.vi?.blocks,
+      hasHb: BILINGUAL_DATA?.vi?.hasHb,
+      hbLabel: BILINGUAL_DATA?.vi?.hbLabel,
+      hbText: BILINGUAL_DATA?.vi?.hbText,
+      slug: viSlug
+    });
+    if (isNewVi) viHtml = stampArticleAuthor(viHtml, publishingAuthor);
+    if (hasEn) {
+      viHtml = ensureHreflangLinks(viHtml, viSlug, enSlug, 'vi');
+    }
+    viHtml = await externalizeInlineImages(viHtml);
+    if (!viHtml || viHtml.length < 500 || !/<html/i.test(viHtml)) {
+      throw new Error('Nội dung bài viết tiếng Việt trống bất thường — đã chặn lưu để tránh mất bài.');
+    }
+
+    const viPutResult = await ghPut(viFile, viHtml, viSha, `[admin] cap nhat: ${(viTitle || 'bai viet').slice(0, 50)}`);
+    await deleteDraft(viFile);
+    if (BILINGUAL_DATA?.vi) {
+      BILINGUAL_DATA.vi.sha = viPutResult?.content?.sha || viSha;
+      BILINGUAL_DATA.vi.rawHtml = viHtml;
+    }
+
+    // 2. LƯU BÀI VIẾT TIẾNG ANH (NẾU CÓ NỘI DUNG)
+    let enPutResult = null;
+    if (hasEn) {
+      let enHtml = '', enSha = BILINGUAL_DATA?.en?.sha;
+      try {
+        const existingEn = await ghGet(enFile);
+        if (existingEn && existingEn.sha) {
+          enSha = existingEn.sha;
+          try { enHtml = decodeURIComponent(escape(atob(String(existingEn.content || '').replace(/\s/g, '')))); } catch (e) {}
+        }
+      } catch (e) {}
+
+      if (!enHtml || enHtml.length < 200 || !/<html/i.test(enHtml)) {
+        if (BILINGUAL_DATA?.en?.rawHtml && BILINGUAL_DATA.en.rawHtml.includes('<html')) {
+          enHtml = BILINGUAL_DATA.en.rawHtml;
+        } else {
+          enHtml = buildStandardEnglishArticleTemplate(viSlug, enSlug, hero, heroPos, cat, publishingAuthor);
+        }
+      }
+
+      enHtml = applyArticleEditsToHtml(enHtml, {
+        title: enTitle,
+        desc: enDesc,
+        keyword: BILINGUAL_DATA?.en?.keyword,
+        hero,
+        heroPos,
+        cat,
+        bodyHtml: enBody,
+        blocks: BILINGUAL_DATA?.en?.blocks,
+        hasHb: BILINGUAL_DATA?.en?.hasHb,
+        hbLabel: BILINGUAL_DATA?.en?.hbLabel || 'Summary',
+        hbText: BILINGUAL_DATA?.en?.hbText || '',
+        slug: enSlug
+      });
+      enHtml = stampArticleAuthor(enHtml, publishingAuthor);
+      enHtml = ensureHreflangLinks(enHtml, viSlug, enSlug, 'en');
+      enHtml = await externalizeInlineImages(enHtml);
+
+      enPutResult = await ghPut(enFile, enHtml, enSha, `[admin] cap nhat ban tieng Anh: ${enTitle.slice(0, 50)}`);
+      await deleteDraft(enFile);
+      if (BILINGUAL_DATA?.en) {
+        BILINGUAL_DATA.en.sha = enPutResult?.content?.sha || enSha;
+        BILINGUAL_DATA.en.rawHtml = enHtml;
+      }
+
+      try {
+        await syncNewArticle({ file: enFile, title: enTitle, desc: enDesc, cat, hero, author: publishingAuthor });
+      } catch (syncErr) {
+        console.warn('Sync EN article error:', syncErr);
+      }
+    }
+
     if (CURRENT_NEWS_DRAFT_ID) {
       try {
         await newsApi('/drafts/' + CURRENT_NEWS_DRAFT_ID, { method: 'PATCH', body: JSON.stringify({ status: 'published' }) });
@@ -11655,13 +12148,20 @@ async function saveArticle() {
       }
     }
 
-    // Update local state — với bài mới, lấy sha thật từ kết quả commit để lần
-    // lưu tiếp theo được nhận diện là "sửa bài đã tồn tại" thay vì tạo lại.
-    currentSha = putResult?.content?.sha || sha;
-    currentRawHtml = html;
-    let art = ARTICLES.find(a => a.file === currentFile);
-    if (art) { art.title = title; art.desc = desc; art.hero = hero; art.cat = cat; }
-    else { art = { file: currentFile, sha: currentSha, title, desc, hero, cat, date: '' }; ARTICLES.unshift(art); }
+    // Update local state
+    if (CURRENT_LANG === 'en' && hasEn) {
+      currentSha = enPutResult?.content?.sha || BILINGUAL_DATA?.en?.sha;
+      currentRawHtml = BILINGUAL_DATA?.en?.rawHtml || '';
+      currentFile = enFile;
+    } else {
+      currentSha = viPutResult?.content?.sha || BILINGUAL_DATA?.vi?.sha;
+      currentRawHtml = viHtml;
+      currentFile = viFile;
+    }
+
+    let art = ARTICLES.find(a => a.file === viFile);
+    if (art) { art.title = viTitle || ART_TITLE; art.desc = viDesc; art.hero = hero; art.cat = cat; }
+    else { art = { file: viFile, sha: viPutResult?.content?.sha, title: viTitle || ART_TITLE, desc: viDesc, hero, cat, date: '' }; ARTICLES.unshift(art); }
 
     HAS_UNSAVED_CHANGES = false;
     if (dot) dot.className = 'status-dot';
@@ -11669,36 +12169,35 @@ async function saveArticle() {
     const log = document.getElementById('save-log-article') || document.getElementById('save-log');
     if (log) log.innerHTML = `✅ Commit lúc ${new Date().toLocaleTimeString('vi-VN')}<br>` + log.innerHTML;
 
-    toast('success', '✅ Đã lưu và deploy! Chờ ~1-2 phút để live.');
-
-    if (!isNewFile && title) {
-      try { await propagateTitleChange(currentFile.replace(/\.html$/, ''), title); } catch (e) { console.warn('propagateTitleChange', e); }
+    if (hasEn) {
+      toast('success', '🎉 Đã lưu và xuất bản cả 2 phiên bản Song ngữ (🇻🇳 Tiếng Việt & 🇬🇧 English)! Chờ ~1-2 phút để live.');
+    } else {
+      toast('success', '✅ Đã lưu và deploy bài viết Tiếng Việt! Chờ ~1-2 phút để live.');
     }
-    let needSync = isNewFile;
+
+    if (!isNewVi && viTitle) {
+      try { await propagateTitleChange(viFile.replace(/\.html$/, ''), viTitle); } catch (e) { console.warn('propagateTitleChange', e); }
+    }
+    let needSync = isNewVi;
     if (!needSync) {
-      try { const sj = await (await fetch('/assets/search.js?nocache=' + Date.now(), { cache: 'no-store' })).text(); needSync = !sj.includes('"/' + currentFile.replace(/\.html$/, '') + '"'); } catch (e) {}
+      try { const sj = await (await fetch('/assets/search.js?nocache=' + Date.now(), { cache: 'no-store' })).text(); needSync = !sj.includes('"/' + viFile.replace(/\.html$/, '') + '"'); } catch (e) {}
     }
     if (needSync) {
-      await syncNewArticle({ file: currentFile, title, desc, cat, hero, author: publishingAuthor });
+      await syncNewArticle({ file: viFile, title: viTitle, desc: viDesc, cat, hero, author: publishingAuthor });
     }
 
     if (document.getElementById('ed-promote-hero')?.checked) {
       const subLabel = cleanPlainText(document.getElementById('ed-promote-sublabel')?.value || '');
       try {
-        await promoteToHomeHero(currentFile.replace(/\.html$/, ''), title, desc, cat, hero, subLabel, publishingAuthor);
+        await promoteToHomeHero(viFile.replace(/\.html$/, ''), viTitle, viDesc, cat, hero, subLabel, publishingAuthor);
         toast('success', '🔥 Đã đặt làm Tiêu điểm Trang chủ (VI + EN nếu có bản dịch)!');
       } catch (e) {
         console.warn('promoteToHomeHero error:', e);
         toast('error', 'Lỗi đặt Tiêu điểm Trang chủ: ' + e.message);
       }
     } else if (needSync) {
-      // Bài mới (hoặc bài chưa có trong chỉ mục tìm kiếm) không được tick "Tiêu điểm" vẫn phải
-      // xuất hiện ở Breaking News (Tin Mới Nhất) — nếu không sẽ chỉ nằm im trong category hub,
-      // không ai thấy trên trang chủ. Cùng điều kiện needSync như syncNewArticle() ở trên.
       try {
-        const isEn = currentFile.startsWith('en/');
-        const slugNoExt = currentFile.replace(/^en\//, '').replace(/\.html$/, '');
-        await addToLatestNews(isEn, slugNoExt, title, desc, cat, hero, publishingAuthor);
+        await addToLatestNews(false, viSlug, viTitle, viDesc, cat, hero, publishingAuthor);
         toast('success', '📰 Đã thêm vào Tin Mới Nhất trên trang chủ!');
       } catch (e) {
         console.warn('addToLatestNews error:', e);
@@ -11969,14 +12468,57 @@ async function addToLatestNews(isEn, slug, title, desc, cat, hero, authorName = 
 // nhưng lấy HTML nền từ bộ nhớ (currentRawHtml) thay vì gọi lại GitHub — nhanh
 // hơn và phù hợp vì bản nháp vốn không phải bản chốt cuối cùng.
 async function autosaveArticleDraft() {
-  if (!currentFile || !currentRawHtml) return false;
-  syncArticleFieldsFromIframe();
-  syncArticleBodyToTextarea();
+  if (!currentFile) return false;
+  syncBilingualBufferFromDom(CURRENT_LANG);
   try {
-    let html = currentRawHtml;
-    if (!currentSha) html = patchNewArticleUrls(html, currentFile);
-    html = applyArticleEditsToHtml(html);
-    await putDraft(currentFile, html);
+    const rawSlug = (document.getElementById('ed-slug')?.value || '').trim() || (currentFile || '').replace(/^en\//, '').replace(/\.html$/, '');
+    const cleanSlug = slugify(rawSlug) || rawSlug || 'bai-viet';
+    const viFile = `${cleanSlug}.html`;
+    const enFile = `en/${cleanSlug}.html`;
+
+    const cat = document.getElementById('ed-cat')?.value || 'Gaming';
+    const hero = document.getElementById('ed-hero')?.value || '';
+    const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
+    const publishingAuthor = publishingAuthorName();
+
+    // 1. Lưu nháp Tiếng Việt
+    let viHtml = BILINGUAL_DATA?.vi?.rawHtml || currentRawHtml || '';
+    if (!BILINGUAL_DATA?.vi?.sha) viHtml = patchNewArticleUrls(viHtml, viFile);
+    viHtml = applyArticleEditsToHtml(viHtml, {
+      title: BILINGUAL_DATA?.vi?.title || ART_TITLE,
+      desc: BILINGUAL_DATA?.vi?.desc || ART_EXCERPT,
+      keyword: BILINGUAL_DATA?.vi?.keyword,
+      hero, heroPos, cat,
+      bodyHtml: BILINGUAL_DATA?.vi?.bodyHtml,
+      blocks: BILINGUAL_DATA?.vi?.blocks,
+      hasHb: BILINGUAL_DATA?.vi?.hasHb,
+      hbLabel: BILINGUAL_DATA?.vi?.hbLabel,
+      hbText: BILINGUAL_DATA?.vi?.hbText,
+      slug: cleanSlug
+    });
+    await putDraft(viFile, viHtml);
+
+    // 2. Lưu nháp Tiếng Anh nếu có nội dung
+    const enTitle = BILINGUAL_DATA?.en?.title || '';
+    const enBody = BILINGUAL_DATA?.en?.bodyHtml || '';
+    const hasEn = !!(enTitle && (enBody.length > 20 || (BILINGUAL_DATA?.en?.blocks && BILINGUAL_DATA?.en?.blocks.length > 0)));
+    if (hasEn) {
+      let enHtml = BILINGUAL_DATA?.en?.rawHtml || buildStandardEnglishArticleTemplate(cleanSlug, cleanSlug, hero, heroPos, cat, publishingAuthor);
+      enHtml = applyArticleEditsToHtml(enHtml, {
+        title: enTitle,
+        desc: BILINGUAL_DATA?.en?.desc,
+        keyword: BILINGUAL_DATA?.en?.keyword,
+        hero, heroPos, cat,
+        bodyHtml: enBody,
+        blocks: BILINGUAL_DATA?.en?.blocks,
+        hasHb: BILINGUAL_DATA?.en?.hasHb,
+        hbLabel: BILINGUAL_DATA?.en?.hbLabel || 'Summary',
+        hbText: BILINGUAL_DATA?.en?.hbText || '',
+        slug: cleanSlug
+      });
+      await putDraft(enFile, enHtml);
+    }
+
     setDraftIndicator('📝 Đã lưu nháp tự động lúc ' + new Date().toLocaleTimeString('vi-VN'));
     return true;
   } catch(e) {
