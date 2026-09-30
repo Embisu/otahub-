@@ -187,4 +187,55 @@ if (!updatedHtml.includes('2026-09-30')) {
 }
 console.log('PASS: applyArticleEditsToHtml persists custom publish date correctly!');
 
+// 8. Verify new Editors and Bilingual / IndexNow features
+console.log('8. Verifying new Editors, Bilingual & IndexNow functions...');
+const extendedFunctions = [
+  'reviewsEditor',
+  'renderReviewsEditor',
+  'saveReviews',
+  'reviewsAddNew',
+  'chuyenSauEditor',
+  'renderChuyenSauEditor',
+  'saveChuyenSau',
+  'chuyenSauAddCard',
+  'policyPagesModal',
+  'pingIndexNowNow',
+  'triggerManualIndexNowPing',
+  'handleMediaPageDrop',
+  'handleEditorImageFilesDrop',
+  'createEnglishDraftForArticle',
+  'renderAuthorSelectOptions'
+];
+for (const fn of extendedFunctions) {
+  const re = new RegExp(`(?:async\\s+function\\s+${fn}\\b|function\\s+${fn}\\b|window\\.${fn}\\s*=)`);
+  if (!re.test(mainScript)) {
+    console.error(`FAIL: Function ${fn} not defined in script`);
+    process.exit(1);
+  }
+}
+console.log(`PASS: All ${extendedFunctions.length} new editors and utility functions are defined!`);
+
+// 9. Verify Media dropzone & Author select in UI
+console.log('9. Verifying Media dropzone & Author select in UI...');
+const newUiElements = [
+  'media-page-dropzone',
+  'post-author-select'
+];
+for (const id of newUiElements) {
+  if (!html.includes(`id="${id}"`)) {
+    console.error(`FAIL: Element id="${id}" not found in admin.html`);
+    process.exit(1);
+  }
+}
+console.log('PASS: All new UI elements exist in admin.html!');
+
+// 10. Verify worker IndexNow endpoint
+console.log('10. Verifying Cloudflare Worker IndexNow implementation...');
+const workerCode = fs.readFileSync('worker/admin-api.js', 'utf8');
+if (!workerCode.includes('handlePingIndexNow') || !workerCode.includes('/api/admin/ping-indexnow')) {
+  console.error('FAIL: IndexNow endpoint missing from worker/admin-api.js');
+  process.exit(1);
+}
+console.log('PASS: Worker IndexNow endpoint properly implemented and registered!');
+
 console.log('\n--- ALL ADMIN FEATURE TESTS PASSED 100%! ---');

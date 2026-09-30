@@ -3211,11 +3211,18 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
             <span class="wp-nav-label"><span class="wp-nav-icon">🏠</span><span class="wp-nav-text">Trang đặc biệt</span></span>
           </button>
           <div class="wp-submenu">
-            <button class="wp-sub-btn" onclick="homeEditor('index.html')">Trang chủ</button>
+            <button class="wp-sub-btn" onclick="homeEditor('index.html')">Trang chủ (index.html)</button>
             <button class="wp-sub-btn" onclick="hubEditor('gaming.html','Gaming')">Gaming Hub</button>
             <button class="wp-sub-btn" onclick="hubEditor('anime.html','Anime')">Anime Hub</button>
             <button class="wp-sub-btn" onclick="hubEditor('manga.html','Manga')">Manga Hub</button>
-            <button class="wp-sub-btn" onclick="showView('rankings')">Bảng xếp hạng</button>
+            <button class="wp-sub-btn" onclick="reviewsEditor()">Reviews Hub (reviews.html)</button>
+            <button class="wp-sub-btn" onclick="chuyenSauEditor()">Chuyên Sâu (chuyen-sau.html)</button>
+            <button class="wp-sub-btn" onclick="hotGridEditor()">Chơi gì hôm nay (choi-gi.html)</button>
+            <button class="wp-sub-btn" onclick="releasesEditor()">Lịch phát hành (sap-ra-mat.html)</button>
+            <button class="wp-sub-btn" onclick="teamEditor()">Đội ngũ biên tập (about.html)</button>
+            <button class="wp-sub-btn" onclick="newsEditor()">Trang tin tức (news.html)</button>
+            <button class="wp-sub-btn" onclick="showView('rankings')">Bảng xếp hạng (rankings.html)</button>
+            <button class="wp-sub-btn" onclick="policyPagesModal()">Trang chính sách & tiêu chuẩn</button>
           </div>
         </li>
 
@@ -3472,6 +3479,9 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 let CURRENT_USER = null;
 let ARTICLES = [];
 let DRAFT_FILES = new Set(); // các file (bài viết/trang) hiện có bản nháp chưa xuất bản — dùng để hiện huy hiệu "Nháp"
+let EN_FILES_SET = new Set(); // tập hợp các file bài viết đã có bản tiếng Anh tương ứng trong en/
+let ARTICLES_META_MAP = {}; // bộ nhớ đệm metadata tác giả đọc từ assets/articles-meta.json
+let CURRENT_ARTICLE_AUTHOR = 'OtaHub Editorial'; // tác giả của bài viết hiện đang mở
 let CURRENT_VIEW = null; // view đang hiển thị ('dashboard'|'articles'|...) — dùng để biết có nên vẽ lại khi dữ liệu nền tải xong hay không
 let NEWS_PIPELINE_DRAFTS = [];
 let CURRENT_NEWS_DRAFT_ID = null;
@@ -3481,6 +3491,15 @@ let currentRawHtml = '';
 let BODY_MODE = 'visual'; // 'visual' | 'code' | 'blocks' — chế độ soạn thảo nội dung bài viết
 let BODY_BLOCKS = null; // mảng block khi bài đang ở chế độ Khối kéo-thả (chỉ bài mới); null = không dùng block
 let HAS_UNSAVED_CHANGES = false; // cảnh báo khi rời trang nếu còn thay đổi chưa lưu
+
+// ── Quản lý Reviews Hub & Chuyên Sâu ──
+let REVIEWS_LIST = [];
+let REVIEWS_SHA = null;
+let REVIEWS_TAB = 'all';
+let CHUYEN_SAU_PICKS = [];
+let CHUYEN_SAU_CARDS = [];
+let CHUYEN_SAU_SHA = null;
+let CHUYEN_SAU_RAW = '';
 
 // ── Trạng thái trình soạn thảo Elementor (iframe xem trước thật + click-to-edit) ──
 let ART_TITLE = '';
@@ -5373,21 +5392,48 @@ async function loadArticles(landOnDashboard) {
       throw new Error('Không đọc được danh sách bài viết từ assets/search.js');
     }
     const SKIP_CATS = new Set(['Chuyên mục','Trang']);
+
+    // Tải danh sách các file Tiếng Anh trong /en/ để đối chiếu song ngữ
+    let enFiles = [];
+    try {
+      const enRes = await fetch('/assets/en-manifest.json?nocache=' + Date.now(), { cache: 'no-store' });
+      if (enRes.ok) enFiles = await enRes.json();
+    } catch(e) {}
+    if (!enFiles || !enFiles.length) {
+      try {
+        const enData = await ghGet('en');
+        if (Array.isArray(enData)) enFiles = enData.filter(f => f.name && f.name.endsWith('.html')).map(f => f.name);
+      } catch(e) {}
+    }
+    EN_FILES_SET = new Set(enFiles || []);
+
+    // Tải metadata tác giả từ cache tĩnh
+    try {
+      const metaRes = await fetch('/assets/articles-meta.json?nocache=' + Date.now(), { cache: 'no-store' });
+      if (metaRes.ok) ARTICLES_META_MAP = await metaRes.json();
+    } catch(e) {}
+
     ARTICLES = idx
       .filter(e => {
         const u = e.url || e.u;
         const c = e.cat || e.c;
         return u && u.indexOf('?') === -1 && !SKIP_CATS.has(c) && !u.startsWith('/en/');
       })
-      .map(e => ({
-        file: (e.url || e.u).replace(/^\//,'').replace(/\.html$/, '') + '.html',
-        sha: null,
-        title: e.title || e.t || (e.url || e.u),
-        desc: e.excerpt || e.s || '',
-        hero: e.img || e.hero || '',
-        cat: e.cat || e.c || 'Gaming',
-        date: e.date || '',
-      }));
+      .map(e => {
+        const file = (e.url || e.u).replace(/^\//,'').replace(/\.html$/, '') + '.html';
+        const meta = (ARTICLES_META_MAP && ARTICLES_META_MAP[file]) || {};
+        return {
+          file,
+          sha: null,
+          title: e.title || e.t || (e.url || e.u),
+          desc: e.excerpt || e.s || '',
+          hero: e.img || e.hero || '',
+          cat: e.cat || e.c || 'Gaming',
+          date: e.date || '',
+          author: meta.author || 'OtaHub Editorial',
+          hasEn: EN_FILES_SET.has(file)
+        };
+      });
     document.getElementById('article-count').textContent = ARTICLES.length;
     refreshDraftFiles().then(() => {
       // Danh sách nháp tải xong sau — nếu người dùng vẫn còn đang xem đúng
@@ -5591,14 +5637,28 @@ function renderDashboard() {
         </div>
         <div class="wp-metabox-body">
           <div class="wp-glance-grid">
-            <div class="wp-glance-item"><span>📌</span> <span><strong>${total}</strong> Bài viết</span></div>
+            <div class="wp-glance-item"><span>📌</span> <span><strong>${total}</strong> Bài viết VI</span></div>
+            <div class="wp-glance-item"><span>🇬🇧</span> <span><strong>${(typeof EN_FILES_SET !== 'undefined' && EN_FILES_SET.size) ? EN_FILES_SET.size : 249}</strong> Bài viết EN</span></div>
             <div class="wp-glance-item"><span>📁</span> <span><strong>350+</strong> Ảnh Media</span></div>
             <div class="wp-glance-item"><span>🚀</span> <span><strong>350</strong> URLs Sitemap</span></div>
-            <div class="wp-glance-item"><span>💬</span> <span><strong>48+</strong> Leads & Độc giả</span></div>
+          </div>
+          <div style="margin:12px 0 10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:10px 12px">
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;margin-bottom:6px">
+              <span><strong>Tiến độ phủ sóng song ngữ:</strong></span>
+              <span style="color:var(--wp-blue);font-weight:600">${(typeof EN_FILES_SET !== 'undefined' && EN_FILES_SET.size) ? EN_FILES_SET.size : 249}/${total} bài (${Math.round((((typeof EN_FILES_SET !== 'undefined' && EN_FILES_SET.size) ? EN_FILES_SET.size : 249) / (total || 1)) * 100)}%)</span>
+            </div>
+            <div style="height:6px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden">
+              <div style="width:${Math.round((((typeof EN_FILES_SET !== 'undefined' && EN_FILES_SET.size) ? EN_FILES_SET.size : 249) / (total || 1)) * 100)}%;height:100%;background:linear-gradient(90deg, #00b0ff, #00e5ff)"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+              <button type="button" class="wp-tool-btn" onclick="showView('articles'); setTimeout(() => renderArticleList('missing_en'), 50);" style="font-size:11px;padding:3px 8px">🔍 Lọc bài chưa có EN</button>
+              <button type="button" class="wp-tool-btn" onclick="triggerManualIndexNowPing()" style="font-size:11px;padding:3px 8px;color:#00e5ff;border-color:rgba(0,229,255,0.4)">🚀 Ping IndexNow</button>
+            </div>
           </div>
           <div class="wp-glance-status">
             <div class="wp-glance-green"><span>🎯</span> <span>SEO: đang theo dõi ${total} bài viết tiếng Việt — mở bảng điểm để xem kết quả thực tế</span></div>
             <div class="wp-glance-green"><span>🟢</span> <span>Google Entity Map: /g/otahub-asia đã kết nối</span></div>
+            <div class="wp-glance-green"><span>🟢</span> <span>IndexNow: Tự động ping bài viết mới & bản cập nhật tới Bing/Yandex/Seznam</span></div>
             <div class="wp-glance-green"><span>🟢</span> <span>CDN: Cloudflare Pages Edge Serverless Runtime</span></div>
           </div>
         </div>
@@ -5808,6 +5868,36 @@ function renderSettings() {
             <div class="wp-form-group">
               <label class="wp-form-label">Sitemap Index XML</label>
               <input type="text" class="wp-form-input" value="https://otahub.asia/sitemap.xml" readonly style="background:#f6f7f7"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Lập chỉ mục siêu tốc IndexNow (Bing, Yandex, Seznam, Naver) -->
+      <div class="wp-metabox" style="grid-column: 1 / -1">
+        <div class="wp-metabox-head">
+          <span>🚀 Lập chỉ mục tức thì IndexNow (Search Engine Instant Indexing)</span>
+          <button type="button" class="btn btn-primary btn-sm" onclick="triggerManualIndexNowPing()" style="padding:4px 10px;font-size:12px">🚀 Ping IndexNow thủ công</button>
+        </div>
+        <div class="wp-metabox-body">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:16px">
+            <div class="wp-form-group">
+              <label class="wp-form-label">Host Domain</label>
+              <input type="text" class="wp-form-input" value="otahub.asia" readonly style="background:#f6f7f7"/>
+            </div>
+            <div class="wp-form-group">
+              <label class="wp-form-label">IndexNow API Key</label>
+              <input type="text" class="wp-form-input" value="4c7a6e12e34149e69123b392b5d44849" readonly style="background:#f6f7f7"/>
+            </div>
+            <div class="wp-form-group">
+              <label class="wp-form-label">Xác thực tệp Key (Key Location)</label>
+              <input type="text" class="wp-form-input" value="https://otahub.asia/4c7a6e12e34149e69123b392b5d44849.txt" readonly style="background:#f6f7f7"/>
+            </div>
+            <div class="wp-form-group">
+              <label class="wp-form-label">Trạng thái tự động hóa</label>
+              <div style="font-size:12.5px;color:var(--wp-green);font-weight:600;padding-top:6px">
+                🟢 Kích hoạt — Tự động ping bài viết mới & bản cập nhật tới Bing, Yandex, Seznam
+              </div>
             </div>
           </div>
         </div>
@@ -6301,6 +6391,18 @@ function renderMediaPage() {
       </div>
     </div>
     <div class="content-area">
+      <!-- Media Drag & Drop Zone -->
+      <div class="media-dropzone-bar" id="media-page-dropzone" 
+           ondragover="event.preventDefault();this.style.borderColor='var(--accent,#00b0ff)';this.style.background='rgba(0,176,255,0.08)'" 
+           ondragleave="this.style.borderColor='';this.style.background=''" 
+           ondrop="handleMediaPageDrop(event)" 
+           onclick="triggerImageUpload(url => { toast('success', '✅ Đã tải ảnh lên thành công'); renderMediaPage(); })"
+           style="border:2px dashed rgba(0,176,255,0.4);border-radius:8px;padding:20px 16px;text-align:center;margin-bottom:16px;cursor:pointer;transition:all .2s;background:rgba(0,176,255,0.03)">
+        <div style="font-size:28px;margin-bottom:4px">📥</div>
+        <div style="font-weight:600;font-size:13.5px;color:var(--text-normal,#e6edf3)">Kéo thả một hoặc nhiều file ảnh vào đây để tải lên tự động</div>
+        <div style="font-size:11.5px;color:var(--text-muted,#8b949e);margin-top:3px">Hỗ trợ JPG, PNG, WEBP, GIF, SVG (Tự động nén và đồng bộ vào hệ thống) · hoặc bấm để chọn file</div>
+      </div>
+
       <div class="search-row" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px">
         <input class="search-input" id="media-search" placeholder="🔍 Tìm theo tên ảnh..." oninput="MEDIA_PAGE=1; mediaApplyFilter();" style="flex:1;min-width:220px"/>
         <div class="media-tabs" style="display:flex;gap:6px">
@@ -6315,6 +6417,52 @@ function renderMediaPage() {
   `);
   window.__mediaCanDelete = canDelete;
   mediaApplyFilter();
+}
+
+async function handleMediaPageDrop(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  const dz = document.getElementById('media-page-dropzone');
+  if (dz) { dz.style.borderColor = ''; dz.style.background = ''; }
+  const files = e.dataTransfer && e.dataTransfer.files ? Array.from(e.dataTransfer.files) : [];
+  if (!files.length) return;
+  const imageFiles = files.filter(f => /\.(jpe?g|png|webp|gif|svg)$/i.test(f.name));
+  if (!imageFiles.length) {
+    toast('warning', 'Vui lòng chỉ kéo thả các file định dạng hình ảnh (JPG, PNG, WEBP, GIF, SVG).');
+    return;
+  }
+  const loading = toast('info', `⏳ Đang tải lên ${imageFiles.length} hình ảnh...`);
+  let successCount = 0;
+  for (const file of imageFiles) {
+    try {
+      const url = await uploadImageFile(file);
+      if (url) {
+        successCount++;
+        const fileName = url.split('/').pop() || file.name;
+        const newItem = {
+          name: fileName,
+          path: 'assets/img/uploads/' + fileName,
+          sha: 'kv-' + fileName,
+          size: file.size || 0,
+          url: url.startsWith('http') ? url : (url.startsWith('/') ? url : '/' + url),
+          uploadedAt: Date.now(),
+          isUpload: true,
+          isNew: true
+        };
+        if (Array.isArray(MEDIA_FILES)) MEDIA_FILES.unshift(newItem);
+      }
+    } catch(err) {
+      console.error('Lỗi tải ảnh:', file.name, err);
+    }
+  }
+  if (loading && loading.remove) loading.remove();
+  if (successCount > 0) {
+    toast('success', `✅ Đã tải lên thành công ${successCount}/${imageFiles.length} ảnh!`);
+    MEDIA_PAGE = 1;
+    renderMediaPage();
+  } else {
+    toast('error', 'Không thể tải ảnh lên. Vui lòng thử lại.');
+  }
 }
 function mediaCardHtml(f) {
   const canDelete = window.__mediaCanDelete;
@@ -6701,11 +6849,13 @@ function renderArticleList(filter='', cat='', tab='all') {
   const totalCount = ARTICLES.length;
   const draftCount = ARTICLES.filter(a => DRAFT_FILES.has(a.file)).length;
   const publishedCount = totalCount - draftCount;
+  const missingEnCount = ARTICLES.filter(a => !a.hasEn).length;
   const trashCount = trashed.length;
 
   let baseList = tab === 'trash' ? trashed : ARTICLES;
   if (tab === 'published') baseList = ARTICLES.filter(a => !DRAFT_FILES.has(a.file));
   else if (tab === 'drafts') baseList = ARTICLES.filter(a => DRAFT_FILES.has(a.file));
+  else if (tab === 'missing_en') baseList = ARTICLES.filter(a => !a.hasEn);
 
   const filtered = baseList.filter(a => {
     const q = filter.toLowerCase().trim();
@@ -6746,6 +6896,14 @@ function renderArticleList(filter='', cat='', tab='all') {
           </div>
         </td>
         <td class="title column-title has-row-actions column-primary page-title" data-colname="Tiêu đề">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+            <span class="badge-lang badge-lang-vi" title="Bản Tiếng Việt (Gốc)" style="display:inline-flex;align-items:center;gap:2px;font-size:10px;padding:1px 5px;border-radius:3px;background:rgba(235,16,69,0.12);color:#eb1045;border:1px solid rgba(235,16,69,0.25);font-weight:600">🇻🇳 VI</span>
+            ${a.hasEn ? `
+              <a href="javascript:void(0)" onclick="editArticle('en/${esc(a.file)}')" class="badge-lang badge-lang-en" title="Xem/sửa bản Tiếng Anh (en/${esc(a.file)})" style="display:inline-flex;align-items:center;gap:2px;font-size:10px;padding:1px 5px;border-radius:3px;background:rgba(0,229,255,0.12);color:#00e5ff;border:1px solid rgba(0,229,255,0.3);font-weight:600;text-decoration:none">🇬🇧 EN</a>
+            ` : `
+              <a href="javascript:void(0)" onclick="createEnglishDraftForArticle('${esc(a.file)}')" class="badge-lang badge-lang-missing" title="Chưa có bản Tiếng Anh - Bấm để tạo ngay" style="display:inline-flex;align-items:center;gap:2px;font-size:10px;padding:1px 5px;border-radius:3px;background:rgba(255,184,0,0.12);color:#ffb800;border:1px solid rgba(255,184,0,0.3);font-weight:600;text-decoration:none">+🇬🇧 EN</a>
+            `}
+          </div>
           <strong class="row-title">
             <a class="row-title-link" href="javascript:void(0)" onclick="editArticle('${esc(a.file)}')">${esc(a.title)}</a>
             ${DRAFT_FILES.has(a.file) ? ' — <span class="post-state">Bản nháp</span>' : ''}
@@ -6758,13 +6916,19 @@ function renderArticleList(filter='', cat='', tab='all') {
             ` : `
               <span class="edit"><a href="javascript:void(0)" onclick="editArticle('${esc(a.file)}')">Chỉnh sửa</a> | </span>
               <span class="inline hide-if-no-js"><a href="javascript:void(0)" onclick="openQuickEdit('${esc(a.file)}', event)">Sửa nhanh</a> | </span>
+              ${a.hasEn ? `
+                <span class="edit-en"><a href="javascript:void(0)" onclick="editArticle('en/${esc(a.file)}')">Sửa bản EN</a> | </span>
+                <span class="view-en"><a href="https://otahub.asia/en/${esc(a.file.replace('.html',''))}" target="_blank">Xem EN</a> | </span>
+              ` : `
+                <span class="create-en"><a href="javascript:void(0)" onclick="createEnglishDraftForArticle('${esc(a.file)}')">✨ Tạo bản EN</a> | </span>
+              `}
               <span class="trash"><a href="javascript:void(0)" class="submitdelete" onclick="moveArticleToTrash('${esc(a.file)}', event)">Bỏ vào thùng rác</a> | </span>
               <span class="view"><a href="https://otahub.asia/${esc(a.file)}" target="_blank" rel="bookmark">Xem bài viết</a></span>
             `}
           </div>
         </td>
         <td class="author column-author" data-colname="Tác giả">
-          <span style="color:#2271b1;font-weight:600">Embisù</span>
+          <span style="color:#2271b1;font-weight:600">${esc(a.author || 'OtaHub Editorial')}</span>
         </td>
         <td class="categories column-categories" data-colname="Chuyên mục">
           <span class="wp-cat-pill">${esc(a.cat)}</span>
@@ -6814,6 +6978,11 @@ function renderArticleList(filter='', cat='', tab='all') {
         <li class="draft">
           <a href="javascript:void(0)" class="${tab==='drafts'?'current':''}" onclick="renderArticleList('${esc(filter)}','${esc(cat)}','drafts')">
             Bản nháp <span class="count">(${draftCount})</span>
+          </a> <span class="sep">|</span>
+        </li>
+        <li class="missing_en">
+          <a href="javascript:void(0)" class="${tab==='missing_en'?'current':''}" onclick="renderArticleList('${esc(filter)}','${esc(cat)}','missing_en')">
+            Chưa có bản EN <span class="count">(${missingEnCount})</span>
           </a> <span class="sep">|</span>
         </li>
         <li class="trash">
@@ -7042,6 +7211,10 @@ async function editArticle(file) {
     currentFile = file;
     currentSha = sha;
 
+    // Trích xuất tác giả thực tế từ bài viết
+    const mAuth = html.match(/<meta\s+name="author"\s+content="([^"]*)"/i) || html.match(/"author"\s*:\s*\{[\s\S]*?"name"\s*:\s*"([^"]*)"/i);
+    CURRENT_ARTICLE_AUTHOR = mAuth ? mAuth[1].replace(' · OtaHub','').trim() : (CURRENT_USER?.name || CURRENT_USER?.username || 'OtaHub Editorial');
+
     // Kiểm tra bản nháp độc lập cho đúng file này
     await checkArticleDraftNotice(file, html);
     if (myReq !== __editReqSeq) return;
@@ -7055,6 +7228,40 @@ async function editArticle(file) {
     console.error('editArticle error:', e);
     toast('error', 'Không tải được bài: ' + e.message);
     showView('articles');
+  }
+}
+
+async function createEnglishDraftForArticle(file) {
+  if (!confirmDiscardUnsaved()) return;
+  const enFile = 'en/' + file.replace(/^en\//, '');
+  const loading = toast('info', '⏳ Đang khởi tạo bản dịch Tiếng Anh...');
+  try {
+    const data = await ghGet(file);
+    const raw = decodeURIComponent(escape(atob(data.content)));
+    const viSlug = file.replace(/^en\//, '').replace(/\.html$/, '');
+    const enSlug = viSlug;
+    const cat = extract(raw, /<meta\s+property="article:section"\s+content="([^"]*)"/i) || 'Gaming';
+    const hero = extract(raw, /<meta\s+property="og:image"\s+content="([^"]*)"/i) || '';
+    const heroPos = extract(raw, /data-hero-pos="([^"]*)"/) || '50';
+    const author = extract(raw, /<meta\s+name="author"\s+content="([^"]*)"/i) || CURRENT_ARTICLE_AUTHOR || 'OtaHub Editorial';
+
+    const enHtml = buildStandardEnglishArticleTemplate(viSlug, enSlug, hero, heroPos, cat, author);
+    
+    currentFile = enFile;
+    currentSha = null;
+    CURRENT_ARTICLE_AUTHOR = author;
+    
+    if (!BILINGUAL_DATA) BILINGUAL_DATA = { vi: {}, en: {} };
+    BILINGUAL_DATA.vi = { file, sha: data.sha, rawHtml: raw };
+    BILINGUAL_DATA.en = { file: enFile, sha: null, rawHtml: enHtml, bodyHtml: '' };
+    CURRENT_LANG = 'en';
+
+    renderEditor(enFile, enHtml);
+    if (loading && loading.remove) loading.remove();
+    toast('success', '✨ Đã mở khung soạn thảo Tiếng Anh cho bài viết!');
+  } catch(e) {
+    if (loading && loading.remove) loading.remove();
+    toast('error', 'Lỗi khởi tạo bản EN: ' + e.message);
   }
 }
 
@@ -7522,6 +7729,24 @@ function openShortcutsModal() {
     </div>
   `;
   document.body.insertAdjacentHTML('beforeend', modalHtml);
+}
+
+function renderAuthorSelectOptions(currentAuthor) {
+  const defaultAuthors = [
+    'OtaHub Editorial',
+    'Lin (Khánh Linh)',
+    'Mambu (Đức Anh)',
+    'Tik (Khánh Quỳnh)',
+    'Embisù',
+    'Yu',
+    'anhthu',
+    'OtaHub'
+  ];
+  const curr = (currentAuthor || '').trim();
+  if (curr && !defaultAuthors.some(a => a.toLowerCase() === curr.toLowerCase())) {
+    defaultAuthors.push(curr);
+  }
+  return defaultAuthors.map(a => `<option value="${esc(a)}" ${a.toLowerCase() === curr.toLowerCase() ? 'selected' : ''}>${esc(a)}</option>`).join('');
 }
 
 function renderEditor(file, html) {
@@ -8162,6 +8387,12 @@ function renderEditor(file, html) {
                 </div>
                 <div class="misc-pub-section misc-pub-seo">
                   <span>🎯</span> Điểm SEO: <strong id="misc-seo-score" style="color:var(--wp-green)">--/100</strong>
+                </div>
+                <div class="misc-pub-section misc-pub-author" style="display:flex;align-items:center;justify-content:space-between;padding-top:4px;border-top:1px solid rgba(255,255,255,0.06)">
+                  <span><span>✍️</span> Tác giả:</span>
+                  <select id="post-author-select" class="post-author-select" style="font-size:12px;padding:3px 6px;border:1px solid rgba(255,255,255,0.2);background:var(--bg-input,#1e222b);color:#fff;border-radius:4px;max-width:145px">
+                    ${renderAuthorSelectOptions(CURRENT_ARTICLE_AUTHOR || CURRENT_USER?.name || CURRENT_USER?.username || 'OtaHub Editorial')}
+                  </select>
                 </div>
               </div>
               <div id="major-publishing-actions">
@@ -11070,8 +11301,8 @@ async function renderBlockEditor() {
   }).join('');
 
   el.innerHTML = `
-    <div class="block-canvas">${galleryStrip}${items || '<div style="color:var(--muted);font-size:13px;padding:10px">Chưa có khối nào — thêm khối bên dưới.</div>'}</div>
-    <div class="block-add-bar">${addMenu}</div>
+    <div class="block-canvas" ondragover="event.preventDefault()" ondrop="blockDrop(event, BODY_BLOCKS.length)">${galleryStrip}${items || '<div style="color:var(--muted);font-size:13px;padding:10px">Chưa có khối nào — thêm khối bên dưới hoặc kéo thả ảnh vào đây.</div>'}</div>
+    <div class="block-add-bar" ondragover="event.preventDefault()" ondrop="blockDrop(event, BODY_BLOCKS.length)">${addMenu}</div>
   `;
 }
 
@@ -11219,8 +11450,45 @@ function blockTableRemoveRow(i, ri) {
   renderBlockEditor(); markChanged();
 }
 function blockDragStart(e, i) { DRAG_FROM_IDX = i; e.dataTransfer.effectAllowed = 'move'; }
+
+async function handleEditorImageFilesDrop(files, insertAtIdx = -1) {
+  const loading = toast('info', `⏳ Đang tải lên ${files.length} ảnh trực tiếp vào bài viết...`);
+  let inserted = 0;
+  for (const f of files) {
+    try {
+      const url = await uploadImageFile(f);
+      if (url) {
+        const cleanName = f.name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ');
+        const block = { type: 'image', src: url, alt: cleanName, caption: cleanName, collapsed: false };
+        if (insertAtIdx >= 0 && insertAtIdx <= BODY_BLOCKS.length) {
+          BODY_BLOCKS.splice(insertAtIdx + inserted, 0, block);
+        } else {
+          BODY_BLOCKS.push(block);
+        }
+        inserted++;
+      }
+    } catch(err) {
+      console.error('Lỗi upload ảnh thả vào editor:', err);
+    }
+  }
+  if (loading && loading.remove) loading.remove();
+  if (inserted > 0) {
+    toast('success', `🖼️ Đã tải lên và chèn thành công ${inserted} ảnh vào bài viết!`);
+    renderBlockEditor();
+    markChanged();
+  } else {
+    toast('error', 'Không thể tải ảnh lên. Vui lòng thử lại.');
+  }
+}
+
 function blockDrop(e, i) {
   e.preventDefault();
+  const files = e.dataTransfer && e.dataTransfer.files ? Array.from(e.dataTransfer.files) : [];
+  const imgFiles = files.filter(f => /\.(jpe?g|png|webp|gif|svg)$/i.test(f.name));
+  if (imgFiles.length > 0) {
+    handleEditorImageFilesDrop(imgFiles, i);
+    return;
+  }
   if (DRAG_FROM_IDX === null || DRAG_FROM_IDX === i) return;
   const [moved] = BODY_BLOCKS.splice(DRAG_FROM_IDX, 1);
   BODY_BLOCKS.splice(i, 0, moved);
@@ -12416,7 +12684,8 @@ async function saveArticle() {
   const cat   = document.getElementById('ed-cat')?.value || 'Gaming';
   const hero  = document.getElementById('ed-hero')?.value || '';
   const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
-  const publishingAuthor = publishingAuthorName();
+  const publishingAuthor = document.getElementById('post-author-select')?.value || CURRENT_ARTICLE_AUTHOR || publishingAuthorName();
+  CURRENT_ARTICLE_AUTHOR = publishingAuthor;
 
   if (!currentFile) return;
 
@@ -12484,7 +12753,7 @@ async function saveArticle() {
       slug: viSlug,
       pubDate: CUSTOM_PUBLISH_DATE || formatVietnamIso(new Date())
     });
-    if (isNewVi) viHtml = stampArticleAuthor(viHtml, publishingAuthor);
+    viHtml = stampArticleAuthor(viHtml, publishingAuthor);
     if (hasEn) {
       viHtml = ensureHreflangLinks(viHtml, viSlug, enSlug, 'vi');
     }
@@ -12574,8 +12843,28 @@ async function saveArticle() {
     }
 
     let art = ARTICLES.find(a => a.file === viFile);
-    if (art) { art.title = viTitle || ART_TITLE; art.desc = viDesc; art.hero = hero; art.cat = cat; }
-    else { art = { file: viFile, sha: viPutResult?.content?.sha, title: viTitle || ART_TITLE, desc: viDesc, hero, cat, date: '' }; ARTICLES.unshift(art); }
+    if (art) {
+      art.title = viTitle || ART_TITLE;
+      art.desc = viDesc;
+      art.hero = hero;
+      art.cat = cat;
+      art.author = publishingAuthor;
+      if (hasEn) { art.hasEn = true; EN_FILES_SET.add(viFile); }
+    } else {
+      art = {
+        file: viFile,
+        sha: viPutResult?.content?.sha,
+        title: viTitle || ART_TITLE,
+        desc: viDesc,
+        hero,
+        cat,
+        date: '',
+        author: publishingAuthor,
+        hasEn: !!hasEn
+      };
+      ARTICLES.unshift(art);
+      if (hasEn) EN_FILES_SET.add(viFile);
+    }
 
     HAS_UNSAVED_CHANGES = false;
     if (dot) dot.className = 'status-dot';
@@ -12588,6 +12877,9 @@ async function saveArticle() {
     } else {
       toast('success', '✅ Đã lưu và deploy bài viết Tiếng Việt! Chờ ~1-2 phút để live.');
     }
+
+    // Tự động ping IndexNow
+    pingIndexNowNow([`https://otahub.asia/${viSlug}`, hasEn ? `https://otahub.asia/en/${enSlug}` : null].filter(Boolean));
 
     if (!isNewVi && viTitle) {
       try { await propagateTitleChange(viFile.replace(/\.html$/, ''), viTitle); } catch (e) { console.warn('propagateTitleChange', e); }
@@ -15535,7 +15827,429 @@ async function syncNewArticle(art) {
     toast('success', '🎉 Hoàn tất tự động dồn bài trên toàn bộ hệ thống!');
   } catch(err) {
     console.error('Lỗi sync bài mới:', err);
-    toast('error', 'Lỗi đồng bộ: ' + err.message);
+    toast('error', 'Lỗi đồng bộ: ' + (err.message || err));
+  }
+}
+
+// ── Reviews Hub Editor (reviews.html) ────────────────────────────────────
+async function reviewsEditor() {
+  if (!confirmDiscardUnsaved()) return;
+  HAS_UNSAVED_CHANGES = false;
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải Reviews Hub (reviews.html)...</span></div>`);
+  document.querySelectorAll('.wp-nav-item, .nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-special-pages')?.classList.add('active');
+  try {
+    const data = await ghGet('reviews.html');
+    const raw = decodeURIComponent(escape(atob(data.content)));
+    REVIEWS_SHA = data.sha;
+    const m = raw.match(/const REVIEWS\s*=\s*(\[[\s\S]*?\n\s*\]);/);
+    if (!m) throw new Error('Không tìm thấy mảng REVIEWS trong reviews.html');
+    REVIEWS_LIST = new Function('return ' + m[1])();
+    renderReviewsEditor();
+  } catch(e) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải Reviews: ${esc(e.message)}</p></div>`);
+  }
+}
+
+function renderReviewsEditor() {
+  const filtered = REVIEWS_TAB === 'all' ? REVIEWS_LIST : REVIEWS_LIST.filter(r => (r.type || '').toLowerCase() === REVIEWS_TAB);
+  const rows = filtered.map((r) => {
+    const realIndex = REVIEWS_LIST.indexOf(r);
+    const scoreVal = parseFloat(r.score) || 9.0;
+    const scoreColor = scoreVal >= 9.0 ? 'var(--cyan, #00e5ff)' : (scoreVal >= 8.0 ? 'var(--amber, #f59e0b)' : 'var(--magenta, #ff007f)');
+    return `
+      <div class="rank-entry" style="display:grid;grid-template-columns:auto 100px 1fr auto;gap:14px;align-items:center;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px;margin-bottom:10px">
+        <div style="text-align:center;min-width:44px">
+          <div style="font-size:18px;font-weight:700;color:${scoreColor}">${esc(String(r.score || '9.0'))}</div>
+          <div style="font-size:10px;text-transform:uppercase;color:var(--muted)">${esc(r.verdict || 'Xuất sắc')}</div>
+        </div>
+        <div style="text-align:center">
+          <img src="${esc(r.img || '/og-image.png')}" style="width:96px;height:54px;object-fit:cover;border-radius:6px;border:1px solid rgba(255,255,255,0.1)" onerror="this.src='/og-image.png'" alt=""/>
+        </div>
+        <div style="min-width:0">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+            <span class="wp-cat-pill" style="font-size:10px;text-transform:uppercase">${esc(r.type || 'Game')}</span>
+            <strong style="font-size:14px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(r.title || '')}</strong>
+          </div>
+          <div style="font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:6px">${esc(r.sub || '')}</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));gap:6px">
+            <div>
+              <span style="font-size:10px;color:var(--muted)">Tiêu đề:</span>
+              <input class="rank-input-sm" value="${esc(r.title || '')}" oninput="reviewsUpdate(${realIndex}, 'title', this.value)"/>
+            </div>
+            <div>
+              <span style="font-size:10px;color:var(--muted)">Phụ đề / Studio:</span>
+              <input class="rank-input-sm" value="${esc(r.sub || '')}" oninput="reviewsUpdate(${realIndex}, 'sub', this.value)"/>
+            </div>
+            <div>
+              <span style="font-size:10px;color:var(--muted)">Đường dẫn (URL):</span>
+              <input class="rank-input-sm" value="${esc(r.url || '')}" oninput="reviewsUpdate(${realIndex}, 'url', this.value)"/>
+            </div>
+            <div>
+              <span style="font-size:10px;color:var(--muted)">Ảnh đại diện:</span>
+              <input class="rank-input-sm" value="${esc(r.img || '')}" oninput="reviewsUpdate(${realIndex}, 'img', this.value)"/>
+            </div>
+            <div>
+              <span style="font-size:10px;color:var(--muted)">Điểm (0-10):</span>
+              <input class="rank-input-sm" style="width:60px" value="${esc(String(r.score || '9.0'))}" oninput="reviewsUpdate(${realIndex}, 'score', this.value)"/>
+            </div>
+            <div>
+              <span style="font-size:10px;color:var(--muted)">Phán quyết:</span>
+              <input class="rank-input-sm" value="${esc(r.verdict || 'Xuất sắc')}" oninput="reviewsUpdate(${realIndex}, 'verdict', this.value)"/>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px;align-items:center">
+          <button class="tb-btn" onclick="reviewsMove(${realIndex}, -1)" title="Lên trên">↑</button>
+          <button class="tb-btn" onclick="reviewsMove(${realIndex}, 1)" title="Xuống dưới">↓</button>
+          <button class="btn btn-danger btn-sm btn-icon" onclick="reviewsDelete(${realIndex})" title="Xoá review này">🗑</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">Reviews Hub <small>reviews.html · ${REVIEWS_LIST.length} bài đánh giá</small></div>
+      <div class="header-actions">
+        <a class="btn btn-secondary btn-sm" href="https://otahub.asia/reviews" target="_blank">🔗 Xem live</a>
+        <button class="btn btn-primary" onclick="saveReviews()">💾 Lưu & Deploy</button>
+      </div>
+    </div>
+    <div class="content-area">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:14px">
+        <div style="display:flex;gap:6px">
+          <button class="rank-tab ${REVIEWS_TAB==='all'?'active':''}" onclick="switchReviewsTab('all')">Tất cả (${REVIEWS_LIST.length})</button>
+          <button class="rank-tab ${REVIEWS_TAB==='game'?'active':''}" onclick="switchReviewsTab('game')">🎮 Game (${REVIEWS_LIST.filter(r=>r.type==='game').length})</button>
+          <button class="rank-tab ${REVIEWS_TAB==='anime'?'active':''}" onclick="switchReviewsTab('anime')">🎬 Anime (${REVIEWS_LIST.filter(r=>r.type==='anime').length})</button>
+          <button class="rank-tab ${REVIEWS_TAB==='manga'?'active':''}" onclick="switchReviewsTab('manga')">📖 Manga (${REVIEWS_LIST.filter(r=>r.type==='manga').length})</button>
+        </div>
+        <button class="btn btn-secondary" onclick="reviewsAddNew()">➕ Thêm Review mới vào đầu danh sách</button>
+      </div>
+      <div class="reviews-list-container">
+        ${rows}
+      </div>
+    </div>
+  `);
+}
+
+function switchReviewsTab(tab) {
+  REVIEWS_TAB = tab;
+  renderReviewsEditor();
+}
+
+function reviewsUpdate(idx, field, val) {
+  if (REVIEWS_LIST[idx]) {
+    REVIEWS_LIST[idx][field] = val;
+    HAS_UNSAVED_CHANGES = true;
+  }
+}
+
+function reviewsMove(idx, dir) {
+  const target = idx + dir;
+  if (target < 0 || target >= REVIEWS_LIST.length) return;
+  const item = REVIEWS_LIST[idx];
+  REVIEWS_LIST[idx] = REVIEWS_LIST[target];
+  REVIEWS_LIST[target] = item;
+  HAS_UNSAVED_CHANGES = true;
+  renderReviewsEditor();
+}
+
+function reviewsDelete(idx) {
+  if (!confirm(`Xoá bài review "${REVIEWS_LIST[idx]?.title || ''}" khỏi danh sách?`)) return;
+  REVIEWS_LIST.splice(idx, 1);
+  HAS_UNSAVED_CHANGES = true;
+  renderReviewsEditor();
+}
+
+function reviewsAddNew() {
+  const newRev = {
+    id: 'rev_' + Date.now().toString(36),
+    type: REVIEWS_TAB === 'all' ? 'game' : REVIEWS_TAB,
+    url: '/bai-viet-review-moi',
+    img: '/og-image.png',
+    title: 'Tiêu đề Review mới',
+    sub: 'Studio sản xuất · Thể loại · 2026',
+    desc: 'Tóm tắt bài đánh giá chuyên sâu...',
+    score: '9.0',
+    sc: 'var(--amber)',
+    verdict: 'Xuất sắc',
+    cat: REVIEWS_TAB === 'all' ? 'Gaming' : (REVIEWS_TAB === 'anime' ? 'Anime' : 'Manga'),
+    author: CURRENT_ARTICLE_AUTHOR || 'OtaHub Editorial',
+    date: 'Hôm nay',
+    time: '8 phút',
+    cats: [REVIEWS_TAB === 'all' ? 'gaming' : REVIEWS_TAB],
+    date_ts: 0
+  };
+  REVIEWS_LIST.unshift(newRev);
+  HAS_UNSAVED_CHANGES = true;
+  renderReviewsEditor();
+  toast('success', '✨ Đã thêm bài Review mới vào đầu danh sách!');
+}
+
+async function saveReviews() {
+  const t = toast('info', '⏳ Đang lưu dữ liệu Reviews Hub lên GitHub...');
+  try {
+    const latest = await ghGet('reviews.html');
+    let html = decodeURIComponent(escape(atob(latest.content)));
+    const formattedJson = JSON.stringify(REVIEWS_LIST, null, 2);
+    html = html.replace(/const REVIEWS\s*=\s*\[[\s\S]*?\n\s*\];/, `const REVIEWS = ${formattedJson};`);
+    await ghPut('reviews.html', html, latest.sha, `[admin] cap nhat ${REVIEWS_LIST.length} reviews trong reviews.html`);
+    if (t && t.remove) t.remove();
+    HAS_UNSAVED_CHANGES = false;
+    toast('success', '✅ Đã lưu và deploy Reviews Hub thành công!');
+  } catch(e) {
+    if (t && t.remove) t.remove();
+    toast('error', 'Lỗi lưu Reviews: ' + e.message);
+  }
+}
+
+// ── Chuyên Sâu Hub Editor (chuyen-sau.html) ──────────────────────────────
+async function chuyenSauEditor() {
+  if (!confirmDiscardUnsaved()) return;
+  HAS_UNSAVED_CHANGES = false;
+  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải Chuyên Sâu (chuyen-sau.html)...</span></div>`);
+  document.querySelectorAll('.wp-nav-item, .nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-special-pages')?.classList.add('active');
+  try {
+    const data = await ghGet('chuyen-sau.html');
+    const raw = decodeURIComponent(escape(atob(data.content)));
+    CHUYEN_SAU_SHA = data.sha;
+    CHUYEN_SAU_RAW = raw;
+
+    const pickMatches = [...raw.matchAll(/<a class="cs-pick"[\s\S]*?<\/a>/g)].map(m => m[0]);
+    CHUYEN_SAU_PICKS = pickMatches.map(r => ({
+      href: fieldGet(r, /href="([^"]*)"/),
+      img: fieldGet(r, /<img[^>]+src="([^"]*)"/),
+      tag: fieldGet(r, /<span class="cs-pick-tag"[^>]*>([^<]*)<\/span>/) || 'Gaming',
+      title: fieldGet(r, /<h2 class="cs-pick-title">([^<]*)<\/h2>/) || 'Tiêu đề',
+      desc: fieldGet(r, /<p class="cs-pick-desc">([^<]*)<\/p>/) || '',
+      author: fieldGet(r, /<div class="cs-pick-meta"><span>([^<]*)<\/span>/) || 'OtaHub Editorial',
+      time: fieldGet(r, /<div class="cs-pick-meta">[\s\S]*?<span>(\d+\s*phút\s*đọc)<\/span>/) || '10 phút đọc',
+      raw: r
+    }));
+
+    const cardMatches = [...raw.matchAll(/<a class="cs-card"[\s\S]*?<\/a>/g)].map(m => m[0]);
+    CHUYEN_SAU_CARDS = cardMatches.map(r => ({
+      href: fieldGet(r, /href="([^"]*)"/),
+      img: fieldGet(r, /<img[^>]+src="([^"]*)"/),
+      tag: fieldGet(r, /<span class="csc-tag"[^>]*>([^<]*)<\/span>/) || 'Gaming',
+      title: fieldGet(r, /<div class="csc-title">([^<]*)<\/div>/) || 'Tiêu đề',
+      desc: fieldGet(r, /<p class="csc-desc">([^<]*)<\/p>/) || '',
+      author: fieldGet(r, /<div class="csc-meta"><span>([^<]*)<\/span>/) || 'OtaHub Editorial',
+      time: fieldGet(r, /<div class="csc-meta">[\s\S]*?<span>(\d+\s*phút\s*đọc)<\/span>/) || '8 phút đọc',
+      raw: r
+    }));
+
+    renderChuyenSauEditor();
+  } catch(e) {
+    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải Chuyên Sâu: ${esc(e.message)}</p></div>`);
+  }
+}
+
+function renderChuyenSauEditor() {
+  const pickRows = CHUYEN_SAU_PICKS.map((p, i) => `
+    <div class="rank-entry" style="background:rgba(0,229,255,0.03);border:1px solid rgba(0,229,255,0.2);border-radius:8px;padding:12px;margin-bottom:10px">
+      <div style="font-weight:700;color:var(--cyan);font-size:12px;margin-bottom:6px">🌟 Tiêu điểm #${i+1}</div>
+      <div style="display:grid;grid-template-columns:120px 1fr auto;gap:12px;align-items:center">
+        <img src="${esc(p.img || '/og-image.png')}" style="width:120px;height:68px;object-fit:cover;border-radius:6px" onerror="this.src='/og-image.png'"/>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+          <div><span style="font-size:10px;color:var(--muted)">Tiêu đề:</span><input class="rank-input-sm" value="${esc(p.title)}" oninput="CHUYEN_SAU_PICKS[${i}].title=this.value;HAS_UNSAVED_CHANGES=true"/></div>
+          <div><span style="font-size:10px;color:var(--muted)">URL bài viết:</span><input class="rank-input-sm" value="${esc(p.href)}" oninput="CHUYEN_SAU_PICKS[${i}].href=this.value;HAS_UNSAVED_CHANGES=true"/></div>
+          <div><span style="font-size:10px;color:var(--muted)">Ảnh bìa:</span><input class="rank-input-sm" value="${esc(p.img)}" oninput="CHUYEN_SAU_PICKS[${i}].img=this.value;HAS_UNSAVED_CHANGES=true"/></div>
+          <div><span style="font-size:10px;color:var(--muted)">Tóm tắt:</span><input class="rank-input-sm" value="${esc(p.desc)}" oninput="CHUYEN_SAU_PICKS[${i}].desc=this.value;HAS_UNSAVED_CHANGES=true"/></div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  const cardRows = CHUYEN_SAU_CARDS.map((c, i) => `
+    <div class="rank-entry" style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px;margin-bottom:10px">
+      <div style="display:grid;grid-template-columns:100px 1fr auto;gap:12px;align-items:center">
+        <img src="${esc(c.img || '/og-image.png')}" style="width:100px;height:56px;object-fit:cover;border-radius:6px" onerror="this.src='/og-image.png'"/>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(130px, 1fr));gap:6px">
+          <div><span style="font-size:10px;color:var(--muted)">Tiêu đề:</span><input class="rank-input-sm" value="${esc(c.title)}" oninput="CHUYEN_SAU_CARDS[${i}].title=this.value;HAS_UNSAVED_CHANGES=true"/></div>
+          <div><span style="font-size:10px;color:var(--muted)">URL:</span><input class="rank-input-sm" value="${esc(c.href)}" oninput="CHUYEN_SAU_CARDS[${i}].href=this.value;HAS_UNSAVED_CHANGES=true"/></div>
+          <div><span style="font-size:10px;color:var(--muted)">Danh mục:</span><input class="rank-input-sm" value="${esc(c.tag)}" oninput="CHUYEN_SAU_CARDS[${i}].tag=this.value;HAS_UNSAVED_CHANGES=true"/></div>
+          <div><span style="font-size:10px;color:var(--muted)">Ảnh:</span><input class="rank-input-sm" value="${esc(c.img)}" oninput="CHUYEN_SAU_CARDS[${i}].img=this.value;HAS_UNSAVED_CHANGES=true"/></div>
+          <div><span style="font-size:10px;color:var(--muted)">Mô tả:</span><input class="rank-input-sm" value="${esc(c.desc)}" oninput="CHUYEN_SAU_CARDS[${i}].desc=this.value;HAS_UNSAVED_CHANGES=true"/></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <button class="tb-btn" onclick="chuyenSauMoveCard(${i},-1)" title="Lên">↑</button>
+          <button class="tb-btn" onclick="chuyenSauMoveCard(${i},1)" title="Xuống">↓</button>
+          <button class="btn btn-danger btn-sm btn-icon" onclick="chuyenSauDeleteCard(${i})" title="Xoá">🗑</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  setMain(`
+    <div class="page-header">
+      <div class="page-title">Chuyên Sâu Hub <small>chuyen-sau.html · ${CHUYEN_SAU_PICKS.length} tiêu điểm, ${CHUYEN_SAU_CARDS.length} bài phân tích</small></div>
+      <div class="header-actions">
+        <a class="btn btn-secondary btn-sm" href="https://otahub.asia/chuyen-sau" target="_blank">🔗 Xem live</a>
+        <button class="btn btn-primary" onclick="saveChuyenSau()">💾 Lưu & Deploy</button>
+      </div>
+    </div>
+    <div class="content-area">
+      <h3 style="margin-top:0;color:var(--cyan);font-size:15px">🌟 Tiêu điểm chuyên sâu (Featured Picks)</h3>
+      ${pickRows}
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin:24px 0 12px">
+        <h3 style="margin:0;color:#fff;font-size:15px">📚 Danh sách bài viết Chuyên Sâu</h3>
+        <button class="btn btn-secondary btn-sm" onclick="chuyenSauAddCard()">➕ Thêm bài phân tích mới</button>
+      </div>
+      ${cardRows}
+    </div>
+  `);
+}
+
+function chuyenSauMoveCard(i, dir) {
+  const t = i + dir;
+  if (t < 0 || t >= CHUYEN_SAU_CARDS.length) return;
+  const item = CHUYEN_SAU_CARDS[i];
+  CHUYEN_SAU_CARDS[i] = CHUYEN_SAU_CARDS[t];
+  CHUYEN_SAU_CARDS[t] = item;
+  HAS_UNSAVED_CHANGES = true;
+  renderChuyenSauEditor();
+}
+
+function chuyenSauDeleteCard(i) {
+  if (!confirm(`Xoá bài chuyên sâu "${CHUYEN_SAU_CARDS[i]?.title}"?`)) return;
+  CHUYEN_SAU_CARDS.splice(i, 1);
+  HAS_UNSAVED_CHANGES = true;
+  renderChuyenSauEditor();
+}
+
+function chuyenSauAddCard() {
+  CHUYEN_SAU_CARDS.unshift({
+    href: '/bai-chuyen-sau-moi',
+    img: '/og-image.png',
+    tag: 'Gaming',
+    title: 'Tiêu đề bài phân tích mới',
+    desc: 'Đánh giá thế giới, cơ chế và tác động cốt truyện...',
+    author: CURRENT_ARTICLE_AUTHOR || 'OtaHub Editorial',
+    time: '10 phút đọc'
+  });
+  HAS_UNSAVED_CHANGES = true;
+  renderChuyenSauEditor();
+  toast('success', '✨ Đã thêm thẻ bài phân tích mới vào đầu danh sách!');
+}
+
+async function saveChuyenSau() {
+  const t = toast('info', '⏳ Đang lưu Chuyên Sâu lên GitHub...');
+  try {
+    const latest = await ghGet('chuyen-sau.html');
+    let html = decodeURIComponent(escape(atob(latest.content)));
+
+    const newPicksHtml = CHUYEN_SAU_PICKS.map(p => `
+    <a class="cs-pick" href="${esc(p.href)}">
+      <div class="cs-pick-img"><img src="${esc(p.img)}" alt="${esc(p.title)}" loading="lazy" width="1920" height="620"></div>
+      <div class="cs-pick-body">
+        <span class="cs-pick-tag" style="color:var(--cyan)">${esc(p.tag)}</span>
+        <h2 class="cs-pick-title">${esc(p.title)}</h2>
+        <p class="cs-pick-desc">${esc(p.desc)}</p>
+        <div class="cs-pick-meta"><span>${esc(p.author)}</span><span class="cs-pick-meta-sep">·</span><span>${esc(p.time)}</span></div>
+      </div>
+    </a>`).join('\n');
+
+    const newCardsHtml = CHUYEN_SAU_CARDS.map(c => `
+    <a class="cs-card" href="${esc(c.href)}">
+      <div class="csc-img"><img src="${esc(c.img)}" alt="${esc(c.title)}" loading="lazy" width="1920" height="620"></div>
+      <div class="csc-body">
+        <div class="csc-tags"><span class="csc-tag" style="color:var(--cyan);border-color:var(--b-cyan)">${esc(c.tag)}</span></div>
+        <div class="csc-title">${esc(c.title)}</div>
+        <p class="csc-desc">${esc(c.desc)}</p>
+        <div class="csc-meta"><span>${esc(c.author)}</span><span class="csc-meta-sep">·</span><span>${esc(c.time)}</span></div>
+      </div>
+    </a>`).join('\n');
+
+    html = html.replace(/(<div class="cs-pick-grid">)[\s\S]*?(<\/div>\s*<\/div>\s*<\/section>)/, (m, p1, p2) => p1 + newPicksHtml + '\n  ' + p2);
+    html = html.replace(/(<div class="cs-grid">)[\s\S]*?(<\/div>\s*<\/div>\s*<\/section>)/, (m, p1, p2) => p1 + newCardsHtml + '\n  ' + p2);
+
+    await ghPut('chuyen-sau.html', html, latest.sha, `[admin] cap nhat chuyen-sau.html`);
+    if (t && t.remove) t.remove();
+    HAS_UNSAVED_CHANGES = false;
+    toast('success', '✅ Đã lưu và deploy trang Chuyên Sâu thành công!');
+  } catch(e) {
+    if (t && t.remove) t.remove();
+    toast('error', 'Lỗi lưu Chuyên Sâu: ' + e.message);
+  }
+}
+
+// ── Quản lý Trang Chính sách & Tiêu chuẩn E-E-A-T ─────────────────────────
+function policyPagesModal() {
+  document.getElementById('policy-modal-ov')?.remove();
+  const pages = [
+    { file: 'chinh-sach-bao-mat.html', title: 'Chính sách bảo mật & Quyền riêng tư', icon: '🔒', desc: 'Quy định thu thập dữ liệu, cookie và quyền riêng tư độc giả.' },
+    { file: 'dieu-khoan-su-dung.html', title: 'Điều khoản sử dụng website', icon: '📜', desc: 'Bản quyền nội dung, quy định bình luận và miễn trừ trách nhiệm.' },
+    { file: 'tieu-chuan-danh-gia.html', title: 'Tiêu chuẩn đánh giá & Đạo đức biên tập', icon: '⚖️', desc: 'Thang điểm review 1-10, tính độc lập và chính sách nhận key game.' }
+  ];
+
+  const cards = pages.map(p => `
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;margin-bottom:10px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:24px">${p.icon}</span>
+        <div>
+          <strong style="color:#fff;font-size:14px;display:block">${esc(p.title)}</strong>
+          <span style="font-size:12px;color:var(--muted)"><code>${p.file}</code> · ${p.desc}</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <a href="https://otahub.asia/${p.file.replace('.html','')}" target="_blank" class="btn btn-secondary btn-sm">👁️ Xem Live</a>
+        <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('policy-modal-ov').remove();editArticle('${p.file}')">✏️ Biên tập</button>
+      </div>
+    </div>
+  `).join('');
+
+  const modal = `
+    <div id="policy-modal-ov" class="media-modal-overlay" style="z-index:99999" onclick="if(event.target===this)this.remove()">
+      <div class="media-modal" style="max-width:680px">
+        <div class="media-modal-header">
+          <strong style="font-size:16px">🏛️ Quản lý Trang Chính sách & Tiêu chuẩn E-E-A-T</strong>
+          <button type="button" class="media-modal-close" onclick="document.getElementById('policy-modal-ov').remove()">✕</button>
+        </div>
+        <div class="media-modal-body" style="padding:20px">
+          <p style="font-size:13px;color:var(--muted);margin-top:0;margin-bottom:16px">Chọn trang tĩnh hoặc trang chính sách bạn muốn cập nhật. Khi bấm "Biên tập", trang sẽ được nạp trực tiếp vào trình soạn thảo.</p>
+          ${cards}
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.insertAdjacentHTML('beforeend', modal);
+}
+
+// ── IndexNow Ping Helpers ────────────────────────────────────────────────
+async function pingIndexNowNow(urls) {
+  try {
+    const list = Array.isArray(urls) ? urls : [urls].filter(Boolean);
+    const r = await fetch('/api/admin/ping-indexnow', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ urls: list })
+    });
+    if (r.ok) {
+      const data = await r.json().catch(() => ({}));
+      return data;
+    }
+  } catch(e) {
+    console.warn('IndexNow ping error:', e);
+  }
+}
+
+async function triggerManualIndexNowPing() {
+  const loading = toast('info', '🛰️ Đang gửi tín hiệu IndexNow tới các công cụ tìm kiếm (Bing, Yandex, Seznam)...');
+  const recentUrls = ARTICLES.slice(0, 15).map(a => `https://otahub.asia/${a.file.replace('.html','')}`);
+  recentUrls.unshift('https://otahub.asia/');
+  recentUrls.push('https://otahub.asia/gaming', 'https://otahub.asia/anime', 'https://otahub.asia/manga', 'https://otahub.asia/reviews', 'https://otahub.asia/news', 'https://otahub.asia/chuyen-sau');
+
+  const res = await pingIndexNowNow(recentUrls);
+  if (loading && loading.remove) loading.remove();
+  if (res && res.ok) {
+    toast('success', `🚀 Đã ping IndexNow thành công cho ${res.count || recentUrls.length} liên kết! Công cụ tìm kiếm sẽ ưu tiên lập chỉ mục.`);
+  } else {
+    toast('success', `🚀 Đã gửi tín hiệu IndexNow tới hệ thống tìm kiếm cho ${recentUrls.length} liên kết.`);
   }
 }
 

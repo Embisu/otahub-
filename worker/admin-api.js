@@ -703,6 +703,45 @@ async function handleCleanDuplicateUploads(request, env) {
   return json({ ok: true, removedCount });
 }
 
+async function handlePingIndexNow(request, env) {
+  const user = await getSessionUser(request, env);
+  if (!user) return json({ error: 'Chua dang nhap.' }, 401);
+  if (user.role === 'contributor') return json({ error: 'Chi editor/admin moi duoc ping IndexNow.' }, 403);
+
+  let body = {};
+  try { body = await request.json(); } catch(e) {}
+  let urls = Array.isArray(body.urls) && body.urls.length ? body.urls : [
+    'https://otahub.asia/',
+    'https://otahub.asia/gaming',
+    'https://otahub.asia/anime',
+    'https://otahub.asia/manga',
+    'https://otahub.asia/news',
+    'https://otahub.asia/reviews',
+    'https://otahub.asia/chuyen-sau'
+  ];
+
+  urls = urls.map(u => u.startsWith('http') ? u : ('https://otahub.asia' + (u.startsWith('/') ? u : '/' + u)));
+
+  const payload = {
+    host: 'otahub.asia',
+    key: '4c7a6e12e34149e69123b392b5d44849',
+    keyLocation: 'https://otahub.asia/4c7a6e12e34149e69123b392b5d44849.txt',
+    urlList: urls
+  };
+
+  try {
+    const r = await fetch('https://api.indexnow.org/indexnow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+    await logAudit(env, { action: 'ping_indexnow', username: user.username, count: urls.length, status: r.status });
+    return json({ ok: r.status === 200 || r.status === 202, status: r.status, count: urls.length });
+  } catch(err) {
+    return json({ ok: false, error: err.message }, 500);
+  }
+}
+
 export async function handleAdminApi(request, env, url) {
   const path = url.pathname;
   const method = request.method;
@@ -722,6 +761,7 @@ export async function handleAdminApi(request, env, url) {
   if (path === '/api/admin/auditlog' && method === 'GET') return handleAuditLog(request, env);
   if (path === '/api/admin/drafts' && method === 'GET') return handleDraftsList(request, env);
   if (path === '/api/admin/clean-duplicate-uploads' && method === 'POST') return handleCleanDuplicateUploads(request, env);
+  if (path === '/api/admin/ping-indexnow' && method === 'POST') return handlePingIndexNow(request, env);
 
   if (path.startsWith('/api/admin/draft/')) {
     const ghPath = path.slice('/api/admin/draft/'.length);
