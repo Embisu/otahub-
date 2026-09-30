@@ -14428,6 +14428,61 @@ async function fetchArticleExcerpt(href, fallback) {
   } catch (e) { return fallback; }
 }
 
+// Đẩy 1 mục (href/img/title/date/author/cat) vào ĐẦU "Hot This Week" (hero-side, tối đa
+// 6 ô), đôn dần các mục cũ xuống; nếu vượt 6 ô, ô cuối bị đẩy tiếp xuống "Tin Nổi Bật"
+// (fc lớn + 4 sc nhỏ). Dùng chung bởi promoteToHomeHero() (đẩy Hero CŨ xuống khi có Hero
+// mới) và addToLatestNews() (đẩy thẳng bài MỚI — kể cả khi KHÔNG tick "Tiêu điểm Trang
+// chủ" — vào Hot This Week), để MỌI bài mới đều đi đúng chuỗi breaking news → tin nổi bật
+// ngay khi đăng, thay vì chỉ nằm ở lưới "Tin Mới Nhất" phía dưới trang chủ.
+async function cascadeIntoHeroSide(html, item) {
+  if (!item || !item.href || !item.title) return html;
+  const hsSec = hSection(html, '<aside class="hero-side">', '</aside>');
+  if (!hsSec.ok) return html;
+  let items = splitBlocksTrimmed(hsSec.raw, /<article class="s-art"/, '</article>');
+  if (items.some(it => it.includes(`href='${item.href}'`))) return html; // đã có sẵn, không thêm trùng
+
+  const newItem = sArtBuild({
+    href: item.href, img: item.img, alt: item.title,
+    catStyle: 'style="color:var(--pink);font-weight:700"',
+    catHtml: `🔴 Breaking · ${item.cat || 'Gaming'}`,
+    title: item.title, date: item.date, author: item.author,
+  });
+  items.unshift(newItem);
+  let evicted = null;
+  if (items.length > 6) evicted = items.pop();
+  const prefix = hsSec.raw.slice(0, hsSec.raw.indexOf('<article class="s-art"'));
+  const newHsRaw = prefix + items.join('\n    ') + '\n  ';
+  html = hReplaceSection(html, '<aside class="hero-side">', '</aside>', () => newHsRaw);
+  if (!evicted) return html;
+
+  const featMatch = html.match(/(<!-- ADMIN:FEATURED_START -->)([\s\S]*?)(<!-- ADMIN:FEATURED_END -->)/);
+  if (!featMatch) return html;
+  const scStart = featMatch[2].indexOf('<a class="sc"');
+  const fcRaw = (scStart === -1 ? featMatch[2] : featMatch[2].slice(0, scStart)).trim();
+  const scItems = scStart === -1 ? [] : splitBlocksTrimmed(featMatch[2].slice(scStart), /<a class="sc"/, '</a>');
+  const ef = sArtParse(evicted);
+  const alreadyInFeat = fcRaw.includes(`href="${ef.href}"`) || scItems.some(it => it.includes(`href="${ef.href}"`));
+  if (alreadyInFeat) return html;
+
+  const excerpt = await fetchArticleExcerpt(ef.href, ef.title);
+  const newFc = fcBuild({
+    href: ef.href, img: ef.img, tagClass: 'tag tag-c',
+    tagLabel: (ef.catHtml || '').replace(/^🔴 Breaking · /, ''),
+    title: ef.title, sub: excerpt,
+    cat: (ef.catHtml || '').replace(/^🔴 Breaking · /, ''), date: ef.date, author: ef.author,
+  });
+  const oldFc = fcParse(fcRaw);
+  const newSc = oldFc.title ? scBuild({
+    href: oldFc.href, img: oldFc.img, alt: oldFc.title,
+    tagClass: oldFc.tagClass, tagLabel: oldFc.tagLabel,
+    title: oldFc.title, date: oldFc.date, author: oldFc.author,
+  }) : null;
+  let newScItems = newSc ? [newSc, ...scItems] : scItems;
+  if (newScItems.length > 4) newScItems = newScItems.slice(0, 4);
+  const newFeatured = '\n    ' + newFc + '\n    ' + newScItems.join('\n    ') + '\n    ';
+  return html.replace(/(<!-- ADMIN:FEATURED_START -->)[\s\S]*?(<!-- ADMIN:FEATURED_END -->)/, (m,p1,p2) => p1 + newFeatured + p2);
+}
+
 // Đặt bài vừa lưu làm Tiêu điểm Trang chủ (Hero/Breaking News): Hero hiện tại được
 // đẩy xuống thành thẻ đầu tiên trong "Tin Mới Nhất" (latest-wrap), rồi Hero mới thay vào chỗ đó.
 // Đồng thời đẩy cả chuỗi 12 vị trí: Hero → Hot This Week (6 ô) → Tin Nổi Bật (fc + 4 sc).
@@ -14476,57 +14531,14 @@ async function promoteToHomeHero(slug, viTitle, viDesc, cat, heroImg, subLabel, 
       html = html.replace(/(id="h-time">)[^<]*(<)/, (m,p1,p2)=>p1+esc(dateDisp)+p2);
       html = html.replace(/(<a href=")[^"]*(" class="read-more" id="h-read")/, (m,p1,p2)=>p1+href+p2);
 
-      // ── Hot This Week (heroSide, 6 ô): Hero cũ đôn lên đầu, ô cuối bị đẩy ra ──
-      let evictedFromSide = null;
-      const hsSec = hSection(html, '<aside class="hero-side">', '</aside>');
-      if (hsSec.ok && oldHero.title && oldHero.href) {
-        let items = splitBlocksTrimmed(hsSec.raw, /<article class="s-art"/, '</article>');
-        const alreadyInSide = items.some(it => it.includes(`href='${oldHero.href}'`));
-        if (!alreadyInSide) {
-          const newItem = sArtBuild({
-            href: oldHero.href, img: oldHero.img, alt: oldHero.title,
-            catStyle: 'style="color:var(--pink);font-weight:700"',
-            catHtml: `🔴 Breaking · ${(oldHero.cat || '').split(' · ')[0] || cat || 'Gaming'}`,
-            title: oldHero.title, date: oldHero.date, author: oldHero.author || authorLabel,
-          });
-          items.unshift(newItem);
-          if (items.length > 6) evictedFromSide = items.pop();
-          const prefix = hsSec.raw.slice(0, hsSec.raw.indexOf('<article class="s-art"'));
-          const newHsRaw = prefix + items.join('\n    ') + '\n  ';
-          html = hReplaceSection(html, '<aside class="hero-side">', '</aside>', () => newHsRaw);
-        }
-      }
-
-      // ── Tin Nổi Bật (featured, fc lớn + 4 sc nhỏ): ô đẩy ra từ Hot This Week
-      // đôn lên fc, fc cũ lùi thành sc đầu, sc cuối bị đẩy ra khỏi chuỗi 12 ──
-      if (evictedFromSide) {
-        const featMatch = html.match(/(<!-- ADMIN:FEATURED_START -->)([\s\S]*?)(<!-- ADMIN:FEATURED_END -->)/);
-        if (featMatch) {
-          const scStart = featMatch[2].indexOf('<a class="sc"');
-          const fcRaw = (scStart === -1 ? featMatch[2] : featMatch[2].slice(0, scStart)).trim();
-          const scItems = scStart === -1 ? [] : splitBlocksTrimmed(featMatch[2].slice(scStart), /<a class="sc"/, '</a>');
-          const alreadyInFeat = fcRaw.includes(`href="${evictedFromSide.match(/onclick="location\.href='([^']*)'/)?.[1] || '\u0000'}"`) || scItems.some(it => it.includes(`href="${sArtParse(evictedFromSide).href}"`));
-          if (!alreadyInFeat) {
-            const ef = sArtParse(evictedFromSide);
-            const excerpt = await fetchArticleExcerpt(ef.href, ef.title);
-            const newFc = fcBuild({
-              href: ef.href, img: ef.img, tagClass: 'tag tag-c',
-              tagLabel: (ef.catHtml || '').replace(/^🔴 Breaking · /, ''),
-              title: ef.title, sub: excerpt,
-              cat: (ef.catHtml || '').replace(/^🔴 Breaking · /, ''), date: ef.date, author: ef.author,
-            });
-            const oldFc = fcParse(fcRaw);
-            const newSc = oldFc.title ? scBuild({
-              href: oldFc.href, img: oldFc.img, alt: oldFc.title,
-              tagClass: oldFc.tagClass, tagLabel: oldFc.tagLabel,
-              title: oldFc.title, date: oldFc.date, author: oldFc.author,
-            }) : null;
-            let newScItems = newSc ? [newSc, ...scItems] : scItems;
-            if (newScItems.length > 4) newScItems = newScItems.slice(0, 4);
-            const newFeatured = '\n    ' + newFc + '\n    ' + newScItems.join('\n    ') + '\n    ';
-            html = html.replace(/(<!-- ADMIN:FEATURED_START -->)[\s\S]*?(<!-- ADMIN:FEATURED_END -->)/, (m,p1,p2) => p1 + newFeatured + p2);
-          }
-        }
+      // ── Hot This Week (hero-side) → Tin Nổi Bật: Hero cũ đôn lên đầu hero-side, ô cuối
+      // (nếu vượt 6) bị đẩy tiếp xuống Tin Nổi Bật — xem cascadeIntoHeroSide() ở trên.
+      if (oldHero.title && oldHero.href) {
+        html = await cascadeIntoHeroSide(html, {
+          href: oldHero.href, img: oldHero.img, title: oldHero.title,
+          date: oldHero.date, author: oldHero.author || authorLabel,
+          cat: (oldHero.cat || '').split(' · ')[0] || cat,
+        });
       }
 
       try {
@@ -14564,10 +14576,12 @@ async function promoteToHomeHero(slug, viTitle, viDesc, cat, heroImg, subLabel, 
   }
 }
 
-// Thêm bài MỚI đăng (không được tick "Tiêu điểm Trang chủ") thẳng vào đầu "Tin Mới Nhất"
-// (latest-wrap) trên trang chủ tương ứng (index.html hoặc en/index.html), để mọi bài mới đều
-// lên Breaking News ngay khi đăng chứ không chỉ những bài được tick Hero. Giới hạn 40 mục —
-// mục cũ nhất trôi ra khỏi danh sách khi vượt ngưỡng, giống cơ chế "trôi dần" của chuỗi Hero.
+// Thêm bài MỚI đăng (không được tick "Tiêu điểm Trang chủ") vào đầu "Tin Mới Nhất"
+// (latest-wrap) VÀ vào đầu "Hot This Week" (hero-side) trên trang chủ tương ứng — để MỌI
+// bài mới đều đi đúng chuỗi breaking news → tin nổi bật ngay khi đăng (qua
+// cascadeIntoHeroSide()), chứ không chỉ nằm ở lưới "Tin Mới Nhất" phía dưới như trước, và
+// không chỉ những bài được tick Hero mới lên khu vực nổi bật. Giới hạn 40 mục ở Tin Mới
+// Nhất — mục cũ nhất trôi ra khi vượt ngưỡng, giống cơ chế "trôi dần" của chuỗi Hero.
 // Dùng lại đúng kiểu retry-on-409 + regex hẹp như applyTo() ở trên (KHÔNG dùng
 // loadHomeData()/buildHomeHtml() — xem lý do ở comment đầu promoteToHomeHero()).
 async function addToLatestNews(isEn, slug, title, desc, cat, hero, authorName = publishingAuthorName()) {
@@ -14607,6 +14621,13 @@ async function addToLatestNews(isEn, slug, title, desc, cat, hero, authorName = 
         const trimmedList = items.slice(0, MAX_ITEMS).join('\n      ') + '\n      ';
         html = html.slice(0, insertAt) + trimmedList + html.slice(asideIdx);
       }
+    }
+
+    // Bài này chưa phải Hero (addToLatestNews chỉ được gọi khi KHÔNG tick "Tiêu điểm
+    // Trang chủ") — đẩy thẳng vào Hot This Week để lên khu vực nổi bật ngay, không phải
+    // đợi ai đó tick Hero cho một bài khác trước.
+    if (homeHeroFields(html).href !== href) {
+      html = await cascadeIntoHeroSide(html, { href, img: hero || '/assets/img/placeholder.svg', title, date: dateDisp, author: authorName, cat });
     }
 
     try {
