@@ -1588,7 +1588,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-07",
     "excerpt": "Sucker Punch’s Ghost of Yōtei launched exclusively on PS5 on October 2, 2025, set in 1603 Ezo; a Complete Edition arrives October 1, 2026.",
-    "img": "/assets/img/yt-cgM6poO2JmY.jpg",
+    "img": "/assets/img/news-ghost-of-yotei-weapons-gameplay.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -1598,7 +1598,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-07",
     "excerpt": "Ghost of Yōtei ra mắt độc quyền PS5 ngày 2/10/2025, lấy bối cảnh Ezo năm 1603 với nhân vật Atsu; Complete Edition (1/10/2026, 69,99 USD) gồm Legends co-op và.",
-    "img": "/assets/img/yt-cgM6poO2JmY.jpg",
+    "img": "/assets/img/news-ghost-of-yotei-weapons-gameplay.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -1968,7 +1968,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-25",
     "excerpt": "MAPPA chính thức khởi động sản xuất Chainsaw Man Mùa 2 chuyển thể arc Sát Thủ Quốc Tế sau cú hích doanh thu 191,4 triệu USD từ phim điện ảnh Reze Arc.",
-    "img": "/assets/img/yt-s8cP1Vt5US8.jpg",
+    "img": "/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -1978,7 +1978,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-25",
     "excerpt": "MAPPA officially launches production on Chainsaw Man Season 2 adapting the International Assassins arc following Reze Arc",
-    "img": "/assets/img/yt-s8cP1Vt5US8.jpg",
+    "img": "/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -2028,7 +2028,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-25",
     "excerpt": "Jujutsu Kaisen mùa 3 Culling Game phần đầu gồm 12 tập; mùa 4 tiếp tục phần sau. Tóm tắt không spoiler, thứ tự xem và thông tin chính thức.",
-    "img": "/assets/img/yt--gvtWDUHmiU.jpg",
+    "img": "/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -2038,7 +2038,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-25",
     "excerpt": "Jujutsu Kaisen Season 3 (Culling Game Part 1) by MAPPA aired in winter 2026 with 12 episodes; Part 2 is in production with no air date announced.",
-    "img": "/assets/img/yt--gvtWDUHmiU.jpg",
+    "img": "/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -2268,7 +2268,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-18",
     "excerpt": "Anime NYC 2026 diễn ra 20–23/8: lịch premiere, panel Re:ZERO, Bungo Stray Dogs, Iruma-kun và những điểm đáng chú ý từ Crunchyroll.",
-    "img": "/assets/img/yt-zjTA2uE_y_8.jpg",
+    "img": "/assets/img/anime-nyc-2026-hero-v2.png",
     "tags": [],
     "lang": "vi"
   },
@@ -2278,7 +2278,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-18",
     "excerpt": "Anime NYC 2026 runs August 20–23. Here are the confirmed Crunchyroll premieres, Re:ZERO and Bungo Stray Dogs anniversary panels, and key schedule details.",
-    "img": "/assets/img/yt-zjTA2uE_y_8.jpg",
+    "img": "/assets/img/anime-nyc-2026-hero-v2.png",
     "tags": [],
     "lang": "en"
   },
@@ -3168,7 +3168,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-17",
     "excerpt": "Rockstar Games xác nhận trailer thứ 3 của GTA 6 sẽ debut độc quyền trên Netflix ngày 27/8 lúc 15:00 ET trước khi phát trên kênh chính thức",
-    "img": "/assets/img/yt-qq76pQsI1iw.jpg",
+    "img": "/assets/img/ccd6b922bc-gta6-trailer3-netflix-hero.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -3178,7 +3178,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-17",
     "excerpt": "Rockstar Games confirms that the third trailer of GTA 6 will debut exclusively on Netflix on August 27 at 3:00 pm ET before streaming on the official channel.",
-    "img": "/assets/img/yt-qq76pQsI1iw.jpg",
+    "img": "/assets/img/ccd6b922bc-gta6-trailer3-netflix-hero.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -3418,7 +3418,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-16",
     "excerpt": "Comprehensive review of MAPPA",
-    "img": "/assets/img/yt-MPfZhgLiK6w.jpg",
+    "img": "/assets/img/26ef7fc2d2-jujutsu-kaisen-anime-hero.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -3428,7 +3428,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-16",
     "excerpt": "Đánh giá toàn diện anime Jujutsu Kaisen của MAPPA: Từ khởi đầu ấn tượng đến đỉnh cao Biến cố Shibuya và bước ngoặt Culling Game làm rung chuyển toàn cầu.",
-    "img": "/assets/img/yt-MPfZhgLiK6w.jpg",
+    "img": "/assets/img/26ef7fc2d2-jujutsu-kaisen-anime-hero.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -3608,7 +3608,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-15",
     "excerpt": "Chainsaw Man – The Movie: Reze Arc review from MAPPA: a 100-minute film released September 19, 2025, with Kenshi Yonezu",
-    "img": "/assets/img/yt-tAzAhDNdehs.jpg",
+    "img": "/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -3618,7 +3618,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-15",
     "excerpt": "Review Chainsaw Man – The Movie: Reze Arc của MAPPA: phim 100 phút ra 19/9/2025, \"Iris Out\" của Kenshi Yonezu, doanh thu 191,4 triệu USD; Rotten.",
-    "img": "/assets/img/yt-tAzAhDNdehs.jpg",
+    "img": "/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -3998,7 +3998,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-14",
     "excerpt": "Sucker Punch công bố Ghost of Yōtei Complete Edition, ra mắt 1/10/2026 đúng dịp kỷ niệm 1 năm game, với phần mở rộng cốt truyện Echoes of Sekigahara",
-    "img": "/assets/img/yt-sLcksHR30UA.jpg",
+    "img": "/assets/img/0a878e4709-ghost-of-yotei-complete-edition-hero.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -4008,7 +4008,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-14",
     "excerpt": "Sucker Punch announced Ghost of Yōtei Complete Edition, released on October 1, 2026 on the game",
-    "img": "/assets/img/yt-sLcksHR30UA.jpg",
+    "img": "/assets/img/0a878e4709-ghost-of-yotei-complete-edition-hero.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -4098,7 +4098,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-14",
     "excerpt": "Konami officially releases Suikoden STAR LEAP on iOS/Android in Japan from August 7, 2026. The first mobile game in the series is set in Solar Year 453",
-    "img": "/assets/img/yt-WKOZqkjPcWk.jpg",
+    "img": "/assets/img/3a6da459ec-suikoden-star-leap-hero.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -4108,7 +4108,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-14",
     "excerpt": "Konami chính thức phát hành Suikoden STAR LEAP trên iOS/Android tại Nhật Bản từ 7/8/2026. Game mobile đầu tiên trong series lấy bối cảnh Solar Year 453",
-    "img": "/assets/img/yt-WKOZqkjPcWk.jpg",
+    "img": "/assets/img/3a6da459ec-suikoden-star-leap-hero.jpg",
     "tags": [],
     "lang": "vi"
   },
