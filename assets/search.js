@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Laputa: Lâu đài trên không trở lại rạp Việt 2026",
+    "url": "/laputa-lau-dai-tren-khong-tro-lai-rap-viet-2026",
+    "cat": "Anime",
+    "date": "2026-09-30",
+    "excerpt": "Laputa: Lâu đài trên không trở lại rạp Việt từ 25/9/2026. Cùng khám phá hành trình phiêu lưu của Pazu và Sheeta đến lâu đài bay huyền thoại.",
+    "img": "/assets/img/uploads/eofdaug8-maxresdefault-1.jpg",
+    "tags": []
+  },
+  {
     "title": "Naruto Xác Nhận Anime Truyền Hình Mới Sau 3 Năm Im Ắng, Chi Tiết Hé Lộ Tại NYCC 2026",
     "url": "/naruto-xac-nhan-anime-truyen-hinh-moi-nycc-2026",
     "cat": "Anime",
