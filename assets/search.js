@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Facing the Rain: Game RPG indie cốt truyện sâu lắng miễn phí vĩnh viễn trên Steam",
+    "url": "/facing-the-rain-game-rpg-indie-cot-truyen-sau-lang-mien-phi-",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Facing the Rain là game RPG indie miễn phí vĩnh viễn trên Steam, sở hữu cốt truyện sâu lắng, lối chơi không chiến đấu và thời lượng khoảng 2–3 giờ.",
+    "img": "/assets/img/uploads/2jxvf96l-bia-3.webp",
+    "tags": []
+  },
+  {
     "title": "Hades 2 không phải lựa chọn kinh doanh an toàn của Supergiant Games",
     "url": "/hades-2-khong-phai-lua-chon-kinh-doanh-an-toan-cua-supergian",
     "cat": "Gaming",
