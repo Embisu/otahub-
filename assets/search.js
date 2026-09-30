@@ -3808,7 +3808,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-08-15",
     "excerpt": "In-depth review of One Piece Final Saga: Eiichiro Oda",
-    "img": "/assets/img/yt-YnczpEoeaDM.jpg",
+    "img": "/assets/img/news-one-piece-chapter-1191-elbaf-return.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -3818,7 +3818,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-15",
     "excerpt": "Đánh giá chi tiết One Piece Egghead Arc: Hồi truyện bùng nổ mở màn Final Saga với thông điệp thế kỷ của Dr. Vegapunk, bí mật Joy Boy, đại chiến Ngũ Lão Tinh.",
-    "img": "/assets/img/yt-YJ34bLwtVUM.jpg",
+    "img": "/assets/img/pool-one-piece-1.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -3828,7 +3828,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-15",
     "excerpt": "Đánh giá One Piece Final Saga: Chặng đua cuối vĩ đại của Eiichiro Oda khi các bí mật God Valley, Thế Kỷ Trống và vương quốc Elbaf đồng loạt phát nổ.",
-    "img": "/assets/img/yt-YnczpEoeaDM.jpg",
+    "img": "/assets/img/news-one-piece-chapter-1191-elbaf-return.jpg",
     "tags": [],
     "lang": "vi"
   },
