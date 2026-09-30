@@ -1816,33 +1816,39 @@ function buildHtml(lang = 'vi') {
     @keyframes orbB { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-30px, 40px); } }
     @keyframes orbC { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-25px, -35px); } }
 
-    /* Navigation Bar */
-    .nav { position: sticky; top: 0; z-index: 100; background: rgba(7, 3, 20, 0.88); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); }
-    .nav-in { max-width: 1440px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .logo-t { font-family: var(--fd); font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
-    .logo-ota { color: #ffffff; }
-    .logo-hub { color: var(--cyan); text-shadow: 0 0 16px var(--cyan-glow); }
-    .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
-    .nav-links a { color: var(--text-sub); text-decoration: none; font-size: 13.5px; font-weight: 600; padding: 8px 14px; border-radius: 8px; transition: all 0.2s; font-family: var(--fd); letter-spacing: 0.02em; }
-    .nav-links a:hover, .nav-links a.active { color: #ffffff; background: rgba(255, 255, 255, 0.08); border-color: var(--cyan); }
-    .nav-links a.active { color: var(--cyan); box-shadow: inset 0 -2px 0 var(--cyan); }
-    .nav-r { display: flex; align-items: center; gap: 12px; }
-    .nsearch { background: rgba(255,255,255,.06); border: 1px solid var(--border); color: #cbd5e1; width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
+    /* Standard Hub Navigation Bar */
+    .nav { position: sticky; top: 0; z-index: 300; height: 60px; background: rgba(11, 2, 32, 0.88); border-bottom: 1px solid var(--border); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); display: flex; align-items: center; }
+    .nav-in { max-width: 1440px; margin: 0 auto; padding: 0 24px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 0; }
+    .logo { display: flex; align-items: center; gap: 9px; text-decoration: none; flex-shrink: 0; margin-right: 24px; }
+    .logo svg { width: 34px; height: 34px; flex-shrink: 0; }
+    .logo-t { font-family: var(--fd); font-weight: 700; font-size: 20px; letter-spacing: -0.01em; line-height: 1; }
+    .logo-ota { color: var(--white); }
+    .logo-hub { color: var(--cyan); }
+    .nav-links { display: flex; align-items: center; list-style: none; gap: 0; flex: 1; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 12px; font-weight: 400; letter-spacing: 0.07em; text-transform: uppercase; padding: 0 13px; height: 60px; display: flex; align-items: center; position: relative; transition: color 0.2s; font-family: var(--fd); }
+    .nav-links a::after { content: ''; position: absolute; bottom: -1px; left: 13px; right: 13px; height: 2px; background: linear-gradient(90deg, var(--cyan), var(--sakura)); transform: scaleX(0); transform-origin: left; transition: transform 0.28s var(--ease); }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-r { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+    .nsearch { background: none; border: 1px solid var(--border); color: var(--text-muted); width: 32px; height: 32px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, color 0.2s; border-radius: 2px; }
     .nsearch:hover { border-color: var(--cyan); color: var(--cyan); }
-    .cta-sub { background: linear-gradient(135deg, var(--cyan), #00b4d8); color: #050212; font-family: var(--fd); font-weight: 700; font-size: 13px; padding: 8px 18px; border-radius: 8px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
-    .cta-sub:hover { transform: translateY(-1px); box-shadow: 0 4px 18px var(--cyan-glow); }
-    .ham { display: none; background: none; border: none; cursor: pointer; padding: 8px; flex-direction: column; gap: 5px; width: 44px; height: 44px; align-items: center; justify-content: center; }
-    .ham span { display: block; width: 22px; height: 2px; background: #ffffff; transition: 0.25s; border-radius: 2px; }
-    .ham.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .ham.open span:nth-child(2) { opacity: 0; }
-    .ham.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .cta { background: linear-gradient(135deg, var(--cyan), #0099bb); color: var(--bg); font-family: var(--fd); font-weight: 700; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; padding: 8px 20px; clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%); transition: filter 0.18s, transform 0.12s; text-decoration: none; display: inline-block; white-space: nowrap; }
+    .cta:hover { filter: brightness(1.15); }
+    .cta:active { transform: translateY(1px) scale(0.98); }
+    .ham { min-width: 44px; min-height: 44px; display: none; background: none; border: none; cursor: pointer; padding: 8px; flex-direction: column; gap: 5px; align-items: center; justify-content: center; }
+    .ham span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.3s var(--ease); }
+    .ham.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--cyan); }
+    .ham.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .ham.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--cyan); }
 
-    /* Mobile Nav Drawer */
-    .mobile-nav { display: none; position: fixed; inset: 64px 0 0 0; background: rgba(7, 3, 20, 0.98); backdrop-filter: blur(24px); z-index: 99; padding: 24px; flex-direction: column; gap: 12px; }
-    .mobile-nav.open { display: flex; }
-    .mobile-nav a { color: #f8fafc; font-family: var(--fd); font-weight: 700; font-size: 19px; text-decoration: none; padding: 12px 0; border-bottom: 1px solid var(--border); }
-    .mobile-nav a.active { color: var(--cyan); }
+    /* Standard Mobile Nav Drawer */
+    .mobile-nav { display: none; position: fixed; inset: 0; top: 60px; z-index: 290; background: rgba(11, 2, 32, 0.98); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); padding: 24px 20px 40px; flex-direction: column; gap: 0; transform: translateY(-8px); opacity: 0; transition: transform 0.3s var(--ease), opacity 0.3s var(--ease); pointer-events: none; overflow-y: auto; }
+    .mobile-nav.open { display: flex; transform: translateY(0); opacity: 1; pointer-events: all; }
+    .mobile-nav a { display: block; color: var(--text-sub); text-decoration: none; font-family: var(--fd); font-size: 19px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 13px 0; border-bottom: 1px solid var(--border); transition: color 0.2s, padding-left 0.2s; }
+    .mobile-nav a:hover, .mobile-nav a.active { color: var(--cyan); padding-left: 6px; }
+    .m-sub { display: flex; gap: 16px; padding-top: 20px; flex-wrap: wrap; border-top: 1px solid var(--border); margin-top: 12px; }
+    .m-sub a { font-size: 13.5px; font-weight: 500; letter-spacing: 0.04em; color: var(--text-muted); border-bottom: none; padding: 4px 0; text-transform: none; }
+    .m-sub a:hover { color: var(--cyan); }
 
     /* Search Overlay */
     .search-overlay { position: fixed; inset: 0; z-index: 500; background: rgba(7, 3, 20, 0.96); backdrop-filter: blur(20px); display: none; flex-direction: column; align-items: center; padding-top: 120px; }
@@ -1879,14 +1885,91 @@ function buildHtml(lang = 'vi') {
 
     /* Mood Filters Swiper */
     .mood-zone { position: relative; z-index: 1; max-width: 960px; margin: 28px auto 0; padding: 0 20px; }
-    .mood-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .mood-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 12px; }
     .mood-title { font-family: var(--fd); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
-    .mood-hint { font-size: 12px; color: var(--text-muted); }
-    .mood-swiper { display: flex; gap: 10px; overflow-x: auto; padding: 4px 4px 14px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-    .mood-swiper::-webkit-scrollbar { display: none; }
-    .mood-pill { flex-shrink: 0; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border); color: var(--text-sub); font-family: var(--fb); font-size: 13px; font-weight: 500; padding: 9px 18px; border-radius: 24px; cursor: pointer; transition: all 0.2s var(--ease); display: flex; align-items: center; gap: 7px; white-space: nowrap; }
-    .mood-pill:hover { color: #ffffff; border-color: rgba(0, 229, 255, 0.4); background: rgba(0, 229, 255, 0.06); }
-    .mood-pill.active { color: var(--cyan); border-color: var(--cyan); background: rgba(0, 229, 255, 0.12); box-shadow: 0 0 18px rgba(0, 229, 255, 0.2); font-weight: 600; }
+    .mood-nav-wrap { display: flex; align-items: center; gap: 10px; }
+    .mood-hint { font-size: 12px; color: var(--text-muted); display: inline-flex; align-items: center; gap: 4px; }
+    .mood-arrows { display: inline-flex; align-items: center; gap: 6px; }
+    .mood-arrow-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: var(--text-sub);
+      font-size: 15px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      line-height: 1;
+      padding: 0;
+      user-select: none;
+    }
+    .mood-arrow-btn:hover {
+      background: rgba(0, 229, 255, 0.15);
+      border-color: var(--cyan);
+      color: var(--cyan);
+      transform: scale(1.08);
+    }
+    .mood-arrow-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .mood-swiper {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 4px 16px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: pan-x pan-y;
+    }
+    .mood-swiper.is-dragging {
+      cursor: grabbing;
+      scroll-behavior: auto;
+    }
+    .mood-swiper::-webkit-scrollbar {
+      display: none;
+    }
+    .mood-pill {
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--text-sub);
+      font-family: var(--fb);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 9px 18px;
+      border-radius: 24px;
+      cursor: pointer;
+      transition: all 0.2s var(--ease);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      white-space: nowrap;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .mood-pill:hover {
+      color: #ffffff;
+      border-color: rgba(0, 229, 255, 0.4);
+      background: rgba(0, 229, 255, 0.06);
+    }
+    .mood-pill.active {
+      color: var(--cyan);
+      border-color: var(--cyan);
+      background: rgba(0, 229, 255, 0.12);
+      box-shadow: 0 0 18px rgba(0, 229, 255, 0.2);
+      font-weight: 600;
+    }
 
     /* Spin / Roll Button Zone */
     .roll-zone { position: relative; z-index: 1; text-align: center; margin: 28px auto 0; padding: 0 20px; }
@@ -2113,35 +2196,132 @@ function buildHtml(lang = 'vi') {
         font-weight: 800;
         padding: 8px 16px;
         border-radius: 20px;
+      /* Standard Hub Footer */
+    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); background: rgba(7, 1, 18, 0.98); }
+    .ft-in { max-width: 1440px; margin: 0 auto; padding: 52px 24px 32px; display: grid; grid-template-columns: 200px 1fr 1fr 1fr; gap: 48px; }
+    .ft-desc { font-size: 12px; color: rgba(240, 238, 255, 0.3); line-height: 1.75; max-width: 175px; margin-top: 12px; }
+    .ft-h { font-family: var(--fd); font-size: 10px; letter-spacing: 0.19em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 18px; font-weight: 600; }
+    .ft-links { display: flex; flex-direction: column; gap: 9px; list-style: none; }
+    .ft-links a { font-size: 13px; color: rgba(240, 238, 255, 0.4); text-decoration: none; transition: color 0.2s; }
+    .ft-links a:hover { color: var(--cyan); }
+    .ft-bot { max-width: 1440px; margin: 0 auto; padding: 16px 24px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .ft-copy { font-size: 11px; color: rgba(240, 238, 255, 0.22); letter-spacing: 0.04em; }
+
+    /* Showcase Mobile Tabs */
+    .sc-mobile-tabs {
+      display: none;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 0 4px 14px;
+      margin-bottom: 18px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .sc-mobile-tabs::-webkit-scrollbar { display: none; }
+    .sc-tab-btn {
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text-sub);
+      font-family: var(--fd);
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 7px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .sc-tab-btn.active {
+      color: #070314;
+      background: var(--cyan);
+      border-color: var(--cyan);
+      font-weight: 800;
+      box-shadow: 0 2px 10px var(--cyan-glow);
+    }
+
+    /* Floating Mobile Thumb Dock */
+    .mobile-thumb-dock { display: none; }
+    @media(max-width: 768px) {
+      .mobile-thumb-dock {
+        display: flex;
+        position: fixed;
+        bottom: 16px;
+        left: 16px;
+        right: 16px;
+        max-width: 420px;
+        margin: 0 auto;
+        background: rgba(12, 5, 28, 0.94);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--border-cyan);
+        border-radius: 30px;
+        padding: 6px 14px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 24px rgba(0, 229, 255, 0.2);
+        z-index: 150;
+        align-items: center;
+        justify-content: space-between;
+        transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+      }
+      .mobile-nav.open ~ .mobile-thumb-dock,
+      body.menu-open .mobile-thumb-dock {
+        display: none !important;
+        pointer-events: none;
+      }
+      .mtd-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        color: #cbd5e1;
+        font-family: var(--fd);
+        font-weight: 700;
+        font-size: 10px;
+        gap: 3px;
+        padding: 6px 10px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .mtd-btn.active { color: var(--cyan); background: rgba(0, 229, 255, 0.12); }
+      .mtd-btn-roll {
+        background: linear-gradient(135deg, var(--cyan), var(--violet));
+        color: #070314;
+        font-weight: 800;
+        padding: 8px 16px;
+        border-radius: 20px;
         box-shadow: 0 4px 14px var(--cyan-glow);
       }
       body { padding-bottom: 84px; }
     }
 
-    /* Footer */
-    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); background: rgba(6, 2, 14, 0.98); }
-    .ft-in { max-width: 1440px; margin: 0 auto; padding: 48px 24px 28px; display: grid; grid-template-columns: 260px 1fr 1fr 1fr; gap: 40px; }
-    .ft-desc { font-size: 12.5px; color: var(--text-muted); line-height: 1.7; margin-top: 10px; }
-    .ft-h { font-family: var(--fd); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #cbd5e1; margin-bottom: 14px; font-weight: 700; }
-    .ft-links { display: flex; flex-direction: column; gap: 8px; list-style: none; }
-    .ft-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-    .ft-links a:hover { color: var(--cyan); }
-    .ft-bot { max-width: 1440px; margin: 0 auto; padding: 18px 24px; border-top: 1px solid rgba(255, 255, 255, 0.06); font-size: 11.5px; color: var(--text-muted); line-height: 1.7; }
-    .ft-bot a { color: inherit; }
-
     /* Media Queries */
+    @media(max-width: 1024px) {
+      .ft-in { grid-template-columns: 1fr 1fr; gap: 36px; }
+    }
     @media(max-width: 992px) {
+      .sc-mobile-tabs { display: flex; }
       .sc-cols { grid-template-columns: 1fr; }
       .rc-inner { grid-template-columns: 1fr; }
       .rc-media { min-height: 260px; max-height: 320px; }
-      .ft-in { grid-template-columns: 1fr 1fr; }
     }
     @media(max-width: 768px) {
-      .nav-links { display: none; }
+      .nav-in { height: 56px; padding: 0 16px; }
+      .nav-links { display: none !important; }
       .ham { display: flex; }
+      .mobile-nav { top: 56px; }
       .cat-grid { grid-template-columns: repeat(2, 1fr); }
+      .mood-zone { padding: 0 16px; }
+      .mood-swiper { margin: 0 -16px; padding: 6px 16px 16px; }
       .rc-stats { grid-template-columns: 1fr 1fr; }
       .ft-in { grid-template-columns: 1fr; gap: 28px; }
+      .ft-bot { flex-direction: column; gap: 10px; text-align: center; }
+    }
+    @media(max-width: 480px) {
+      .cta#cta-sub { padding: 6px 12px; font-size: 11px; }
+      .rc-actions .btn-review { flex: 1 1 100%; }
+      .rc-actions .btn-reroll { flex: 1; }
     }
   </style>
 </head>
@@ -2159,21 +2339,25 @@ function buildHtml(lang = 'vi') {
     <div class="search-hint">${isEn ? 'Press ESC to close' : 'Nhấn ESC để đóng'}</div>
   </div>
 
-  <!-- Navigation -->
+  <!-- Standard Hub Navigation -->
   <nav class="nav">
     <div class="nav-in">
       <a href="${prefix}/" class="logo">
-        <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0">
           <polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon>
           <rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect>
           <rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect>
           <rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect>
           <rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect>
+          <rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect>
+          <rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect>
+          <rect x="5" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect>
+          <rect x="27" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect>
         </svg>
         <span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span>
       </a>
       <ul class="nav-links">
-        <li><a href="${prefix}/choi-gi" class="active">${isEn ? 'Discovery' : 'Chơi Gì?'}</a></li>
+        <li><a href="${prefix}/choi-gi" class="active">${isEn ? 'What to play?' : 'Chơi Gì?'}</a></li>
         <li><a href="${prefix}/gaming">Gaming</a></li>
         <li><a href="${prefix}/anime">Anime</a></li>
         <li><a href="${prefix}/manga">Manga</a></li>
@@ -2181,25 +2365,30 @@ function buildHtml(lang = 'vi') {
         <li><a href="${prefix}/rankings">Rankings</a></li>
         <li><a href="${isEn ? '/en/in-depth' : '/chuyen-sau'}">${isEn ? 'In-depth' : 'Chuyên sâu'}</a></li>
       </ul>
+      <button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
       <div class="nav-r">
         <button class="nsearch" aria-label="${isEn ? 'Search' : 'Tìm kiếm'}" onclick="openSearch()">
-          <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg>
         </button>
-        <a href="${prefix}/#newsletter" class="cta-sub">${isEn ? 'Subscribe' : 'Theo dõi'}</a>
+        <a href="${isEn ? '/en/index#newsletter' : '/#newsletter'}" class="cta" id="cta-sub">Subscribe</a>
       </div>
-      <button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
-  <!-- Mobile Drawer -->
+  <!-- Standard Mobile Nav Drawer -->
   <div class="mobile-nav" id="mobileNav">
-    <a href="${prefix}/choi-gi" class="active">${isEn ? 'Discovery Engine (3-in-1)' : 'Chơi Gì · Xem Gì · Đọc Gì'}</a>
+    <a href="${prefix}/choi-gi" class="active">${isEn ? 'What to play?' : 'Chơi Gì?'}</a>
     <a href="${prefix}/gaming">Gaming</a>
     <a href="${prefix}/anime">Anime</a>
-    <a href="${prefix}/manga">Manga & Manhwa</a>
+    <a href="${prefix}/manga">Manga</a>
     <a href="${prefix}/reviews">Reviews</a>
     <a href="${prefix}/rankings">Rankings</a>
     <a href="${isEn ? '/en/in-depth' : '/chuyen-sau'}">${isEn ? 'In-depth' : 'Chuyên sâu'}</a>
+    <div class="m-sub">
+      <a href="${prefix}/about">${isEn ? 'Introduction' : 'Giới thiệu'}</a>
+      <a href="${isEn ? '/en/index#newsletter' : '/#newsletter'}">Newsletter</a>
+      <a href="${prefix}/about#contact">${isEn ? 'Contact' : 'Liên hệ'}</a>
+    </div>
   </div>
 
   <!-- Hero Section -->
@@ -2239,17 +2428,23 @@ function buildHtml(lang = 'vi') {
   <div class="mood-zone">
     <div class="mood-head">
       <span class="mood-title">${isEn ? 'Filter by Mood & Vibe' : 'Chọn theo tâm trạng hôm nay'}</span>
-      <span class="mood-hint">${isEn ? 'Swipe horizontal →' : 'Vuốt ngang →'}</span>
+      <div class="mood-nav-wrap">
+        <span class="mood-hint">${isEn ? 'Swipe horizontal →' : 'Vuốt ngang →'}</span>
+        <div class="mood-arrows">
+          <button type="button" class="mood-arrow-btn" id="moodPrev" onclick="scrollMood(-240)" aria-label="${isEn ? 'Previous' : 'Trước'}">‹</button>
+          <button type="button" class="mood-arrow-btn" id="moodNext" onclick="scrollMood(240)" aria-label="${isEn ? 'Next' : 'Tiếp'}">›</button>
+        </div>
+      </div>
     </div>
-    <div class="mood-swiper">
-      <button class="mood-pill active" data-mood="all" onclick="setMood('all', this)"><span>✨</span> ${isEn ? 'Any Vibe' : 'Bất kỳ tâm trạng nào'}</button>
-      <button class="mood-pill" data-mood="relax" onclick="setMood('relax', this)"><span>☕</span> ${isEn ? 'Relax & Chill' : 'Thư giãn, nhẹ nhàng'}</button>
-      <button class="mood-pill" data-mood="action" onclick="setMood('action', this)"><span>⚔️</span> ${isEn ? 'Action & Hype' : 'Hành động, xả stress'}</button>
-      <button class="mood-pill" data-mood="story" onclick="setMood('story', this)"><span>🧠</span> ${isEn ? 'Deep Narrative' : 'Cốt truyện sâu sắc'}</button>
-      <button class="mood-pill" data-mood="coop" onclick="setMood('coop', this)"><span>👥</span> ${isEn ? 'With Friends / Co-op' : 'Chơi cùng bạn bè / Nhóm'}</button>
-      <button class="mood-pill" data-mood="quick" onclick="setMood('quick', this)"><span>⚡</span> ${isEn ? 'Quick Bite (<1h)' : 'Nhanh gọn, giải trí tức thì'}</button>
-      <button class="mood-pill" data-mood="explore" onclick="setMood('explore', this)"><span>🗺️</span> ${isEn ? 'Open World' : 'Khám phá thế giới mở'}</button>
-      <button class="mood-pill" data-mood="challenge" onclick="setMood('challenge', this)"><span>💀</span> ${isEn ? 'Hardcore Challenge' : 'Thử thách, kỹ năng cao'}</button>
+    <div class="mood-swiper" id="moodSwiper">
+      <button type="button" class="mood-pill active" data-mood="all" onclick="handleMoodClick('all', this)"><span>✨</span> ${isEn ? 'Any Vibe' : 'Bất kỳ tâm trạng nào'}</button>
+      <button type="button" class="mood-pill" data-mood="relax" onclick="handleMoodClick('relax', this)"><span>☕</span> ${isEn ? 'Relax & Chill' : 'Thư giãn, nhẹ nhàng'}</button>
+      <button type="button" class="mood-pill" data-mood="action" onclick="handleMoodClick('action', this)"><span>⚔️</span> ${isEn ? 'Action & Hype' : 'Hành động, xả stress'}</button>
+      <button type="button" class="mood-pill" data-mood="story" onclick="handleMoodClick('story', this)"><span>🧠</span> ${isEn ? 'Deep Narrative' : 'Cốt truyện sâu sắc'}</button>
+      <button type="button" class="mood-pill" data-mood="coop" onclick="handleMoodClick('coop', this)"><span>👥</span> ${isEn ? 'With Friends / Co-op' : 'Chơi cùng bạn bè / Nhóm'}</button>
+      <button type="button" class="mood-pill" data-mood="quick" onclick="handleMoodClick('quick', this)"><span>⚡</span> ${isEn ? 'Quick Bite (<1h)' : 'Nhanh gọn, giải trí tức thì'}</button>
+      <button type="button" class="mood-pill" data-mood="explore" onclick="handleMoodClick('explore', this)"><span>🗺️</span> ${isEn ? 'Open World' : 'Khám phá thế giới mở'}</button>
+      <button type="button" class="mood-pill" data-mood="challenge" onclick="handleMoodClick('challenge', this)"><span>💀</span> ${isEn ? 'Hardcore Challenge' : 'Thử thách, kỹ năng cao'}</button>
     </div>
   </div>
 
@@ -2335,9 +2530,17 @@ function buildHtml(lang = 'vi') {
       <h2 class="sc-title">${isEn ? 'Top Games, Anime & Manga Worth Your Time' : 'Top Tác Phẩm Đáng Trải Nghiệm Nhất'}</h2>
     </div>
 
+    <!-- Mobile Switcher Tabs for Showcase -->
+    <div class="sc-mobile-tabs" id="scMobileTabs">
+      <button type="button" class="sc-tab-btn active" data-tab="all" onclick="filterShowcaseCols('all', this)">${isEn ? 'All (12)' : 'Tất cả (12)'}</button>
+      <button type="button" class="sc-tab-btn" data-tab="game" onclick="filterShowcaseCols('game', this)">🎮 Game (4)</button>
+      <button type="button" class="sc-tab-btn" data-tab="anime" onclick="filterShowcaseCols('anime', this)">🎬 Anime (4)</button>
+      <button type="button" class="sc-tab-btn" data-tab="manga" onclick="filterShowcaseCols('manga', this)">📖 Manga (4)</button>
+    </div>
+
     <div class="sc-cols">
       <!-- Col 1: Games -->
-      <div class="sc-col">
+      <div class="sc-col" data-col-type="game">
         <div class="sc-col-head">
           <div class="sc-col-title" style="color:var(--cyan)"><span>🎮</span> <span>${isEn ? 'Hot Games' : 'Game Thịnh Hành'}</span></div>
           <a href="${prefix}/gaming" class="sc-col-link">${isEn ? 'Explore Gaming →' : 'Kho Game →'}</a>
@@ -2357,7 +2560,7 @@ function buildHtml(lang = 'vi') {
       </div>
 
       <!-- Col 2: Anime -->
-      <div class="sc-col">
+      <div class="sc-col" data-col-type="anime">
         <div class="sc-col-head">
           <div class="sc-col-title" style="color:var(--sakura)"><span>🎬</span> <span>${isEn ? 'Peak Anime' : 'Anime Đỉnh Nóc'}</span></div>
           <a href="${prefix}/anime" class="sc-col-link">${isEn ? 'Air Schedule →' : 'Lịch Chiếu →'}</a>
@@ -2377,7 +2580,7 @@ function buildHtml(lang = 'vi') {
       </div>
 
       <!-- Col 3: Manga -->
-      <div class="sc-col">
+      <div class="sc-col" data-col-type="manga">
         <div class="sc-col-head">
           <div class="sc-col-title" style="color:var(--lavender)"><span>📖</span> <span>${isEn ? 'Top Manga / Manhwa' : 'Manga & Manhwa Đỉnh'}</span></div>
           <a href="${prefix}/manga" class="sc-col-link">${isEn ? 'Read Hub →' : 'Đọc Manga →'}</a>
@@ -2429,48 +2632,9 @@ function buildHtml(lang = 'vi') {
     </button>
   </div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="ft-in">
-      <div>
-        <a href="${prefix}/" class="logo" style="margin-bottom:12px">
-          <svg width="32" height="32" viewBox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg>
-          <span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span>
-        </a>
-        <p class="ft-desc">${isEn ? "Asia's premier Gaming, Anime, and Manga discovery and news platform. Sharp, deep, and independent." : 'Hub tin tức Gaming, Anime và Manga số 1 châu Á. Nhanh, chuyên sâu, trung lập và không thiên vị.'}</p>
-      </div>
-      <div>
-        <div class="ft-h">${isEn ? 'Categories' : 'Chuyên mục'}</div>
-        <ul class="ft-links">
-          <li><a href="${prefix}/choi-gi">${isEn ? 'Discovery Engine' : 'Chơi Gì · Xem Gì'}</a></li>
-          <li><a href="${prefix}/gaming">Gaming</a></li>
-          <li><a href="${prefix}/anime">Anime</a></li>
-          <li><a href="${prefix}/manga">Manga & Manhwa</a></li>
-          <li><a href="${prefix}/reviews">Reviews</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="ft-h">${isEn ? 'About OtaHub' : 'Về OtaHub'}</div>
-        <ul class="ft-links">
-          <li><a href="${prefix}/about">${isEn ? 'About Us' : 'Giới thiệu'}</a></li>
-          <li><a href="${prefix}/about#team">${isEn ? 'Editorial Team' : 'Đội ngũ'}</a></li>
-          <li><a href="${prefix}/about#contact">${isEn ? 'Contact' : 'Liên hệ'}</a></li>
-          <li><a href="${prefix}/#newsletter">${isEn ? 'Newsletter' : 'Bản tin'}</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="ft-h">${isEn ? 'Follow' : 'Theo dõi'}</div>
-        <ul class="ft-links">
-          <li><a href="/feed.xml">RSS Feed</a></li>
-          <li><a href="https://twitter.com/OtaHubAsia" target="_blank" rel="noopener">X / Twitter</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="ft-bot">
-      <span>© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub<br>
-      <span style="opacity:.75">${isEn ? 'Operated by ANBU Media & Marketing Co., Ltd · Tax ID: 3301761892 · 47 Dang Van Ngu, Hue City, Vietnam' : 'Vận hành bởi Công ty TNHH Marketing & Truyền thông ANBU · MST 3301761892 · 47 Đặng Văn Ngữ, TP. Huế · Hotline 039 699 5252 · <a href="mailto:dat.phan@anbu.asia">dat.phan@anbu.asia</a>'}</span></span>
-    </div>
-  </footer>
+  <!-- Standard Hub Footer matching templates/partials/hub-footer.html -->
+  <footer><div class="ft-in"><div><a href="${prefix}/" class="logo" style="display:inline-flex"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">${isEn ? "Asian Gaming, Anime and Manga news hub. Fast, specialized, no bias." : "Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias."}</p></div><div><div class="ft-h">${isEn ? "Category" : "Chuyên mục"}</div><ul class="ft-links"><li><a href="${prefix}/gaming">Gaming</a></li><li><a href="${prefix}/anime">Anime</a></li><li><a href="${prefix}/manga">Manga</a></li><li><a href="${prefix}/reviews">Reviews</a></li><li><a href="${prefix}/rankings">Rankings</a></li></ul></div><div><div class="ft-h">${isEn ? "About OtaHub" : "Về OtaHub"}</div><ul class="ft-links"><li><a href="${prefix}/about">${isEn ? "Introduction" : "Giới thiệu"}</a></li><li><a href="${prefix}/about#team">${isEn ? "Team" : "Đội ngũ"}</a></li><li><a href="${prefix}/about#contact">${isEn ? "Contact" : "Liên hệ"}</a></li><li><a href="${isEn ? "/en/index#newsletter" : "/#newsletter"}">Newsletter</a></li></ul></div><div><div class="ft-h">${isEn ? "Follow" : "Theo dõi"}</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
+  <script src="/assets/lang-switch.js" defer></script>
 
   <!-- Embedded Client Script -->
   <script>
@@ -2807,8 +2971,182 @@ function buildHtml(lang = 'vi') {
       if (!nav || !ham) return;
       const open = nav.classList.toggle('open');
       ham.classList.toggle('open', open);
+      document.body.classList.toggle('menu-open', open);
       document.body.style.overflow = open ? 'hidden' : '';
     }
+
+    // ── SHOWCASE MOBILE TABS ──
+    function filterShowcaseCols(tab, btn) {
+      document.querySelectorAll('.sc-tab-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      document.querySelectorAll('.sc-col').forEach(col => {
+        if (tab === 'all' || col.dataset.colType === tab) {
+          col.style.display = 'block';
+        } else {
+          col.style.display = 'none';
+        }
+      });
+    }
+
+    // ── MOOD SWIPER HORIZONTAL SCROLL & DRAG ENGINE ──
+    const moodSwiper = document.getElementById('moodSwiper');
+    let isSwiperDown = false;
+    let swiperStartX = 0;
+    let swiperScrollLeft = 0;
+    let swiperHasMoved = false;
+
+    if (moodSwiper) {
+      function updateMoodArrows() {
+        const prev = document.getElementById('moodPrev');
+        const next = document.getElementById('moodNext');
+        if (!prev || !next) return;
+        const maxScroll = moodSwiper.scrollWidth - moodSwiper.clientWidth;
+        prev.disabled = moodSwiper.scrollLeft <= 4;
+        next.disabled = moodSwiper.scrollLeft >= maxScroll - 4;
+      }
+
+      moodSwiper.addEventListener('scroll', updateMoodArrows, { passive: true });
+      window.addEventListener('resize', updateMoodArrows);
+      setTimeout(updateMoodArrows, 100);
+
+      moodSwiper.addEventListener('pointerdown', (e) => {
+        isSwiperDown = true;
+        swiperHasMoved = false;
+        moodSwiper.classList.add('is-dragging');
+        swiperStartX = e.pageX - moodSwiper.offsetLeft;
+        swiperScrollLeft = moodSwiper.scrollLeft;
+      });
+
+      window.addEventListener('pointermove', (e) => {
+        if (!isSwiperDown) return;
+        const x = e.pageX - moodSwiper.offsetLeft;
+        const walk = (x - swiperStartX) * 1.5;
+        if (Math.abs(walk) > 4) {
+          swiperHasMoved = true;
+        }
+        moodSwiper.scrollLeft = swiperScrollLeft - walk;
+      });
+
+      window.addEventListener('pointerup', () => {
+        if (!isSwiperDown) return;
+        isSwiperDown = false;
+        moodSwiper.classList.remove('is-dragging');
+      });
+
+      window.addEventListener('pointercancel', () => {
+        isSwiperDown = false;
+        moodSwiper.classList.remove('is-dragging');
+      });
+    }
+
+    function scrollMood(amount) {
+      const swiper = document.getElementById('moodSwiper');
+      if (swiper) {
+        swiper.scrollBy({ left: amount, behavior: 'smooth' });
+      }
+    }
+
+    function handleMoodClick(mood, btn) {
+      // Ignore click if user was dragging
+      if (swiperHasMoved) return;
+      setMood(mood, btn);
+      if (btn) {
+        btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    }
+
+    // ── RESULT CARD TOUCH & SWIPE GESTURES ──
+    const resultCardEl = document.getElementById('resultCard');
+    let cardTouchStartX = 0;
+    let cardTouchStartY = 0;
+    let cardDeltaX = 0;
+    let cardDeltaY = 0;
+    let isCardSwiping = false;
+
+    if (resultCardEl) {
+      resultCardEl.addEventListener('touchstart', (e) => {
+        if (isRollingAnimation) return;
+        if (e.target.closest('a, button')) return;
+        const touch = e.touches[0];
+        cardTouchStartX = touch.clientX;
+        cardTouchStartY = touch.clientY;
+        cardDeltaX = 0;
+        cardDeltaY = 0;
+        isCardSwiping = true;
+      }, { passive: true });
+
+      resultCardEl.addEventListener('touchmove', (e) => {
+        if (!isCardSwiping || isRollingAnimation) return;
+        const touch = e.touches[0];
+        cardDeltaX = touch.clientX - cardTouchStartX;
+        cardDeltaY = touch.clientY - cardTouchStartY;
+
+        if (Math.abs(cardDeltaX) > Math.abs(cardDeltaY) && Math.abs(cardDeltaX) > 10) {
+          const rotation = cardDeltaX * 0.04;
+          const opacity = Math.max(0.4, 1 - Math.abs(cardDeltaX) / 450);
+          resultCardEl.style.transform = \`translateX(\${cardDeltaX}px) rotate(\${rotation}deg)\`;
+          resultCardEl.style.opacity = opacity;
+        }
+      }, { passive: true });
+
+      resultCardEl.addEventListener('touchend', () => {
+        if (!isCardSwiping) return;
+        isCardSwiping = false;
+
+        const threshold = 65;
+        if (cardDeltaX > threshold) {
+          // Swipe Right -> Roll next
+          resultCardEl.style.transition = 'transform 0.25s ease-out, opacity 0.25s ease-out';
+          resultCardEl.style.transform = \`translateX(\${window.innerWidth}px) rotate(16deg)\`;
+          resultCardEl.style.opacity = '0';
+          setTimeout(() => {
+            resultCardEl.style.transition = '';
+            resultCardEl.style.transform = '';
+            resultCardEl.style.opacity = '';
+            rollItem();
+          }, 200);
+        } else if (cardDeltaX < -threshold) {
+          // Swipe Left -> Skip
+          resultCardEl.style.transition = 'transform 0.25s ease-out, opacity 0.25s ease-out';
+          resultCardEl.style.transform = \`translateX(-\${window.innerWidth}px) rotate(-16deg)\`;
+          resultCardEl.style.opacity = '0';
+          setTimeout(() => {
+            resultCardEl.style.transition = '';
+            resultCardEl.style.transform = '';
+            resultCardEl.style.opacity = '';
+            skipItem();
+          }, 200);
+        } else {
+          // Snap back
+          resultCardEl.style.transition = 'transform 0.2s ease, opacity 0.2s ease';
+          resultCardEl.style.transform = '';
+          resultCardEl.style.opacity = '';
+          setTimeout(() => {
+            resultCardEl.style.transition = '';
+          }, 200);
+        }
+      });
+
+      resultCardEl.addEventListener('touchcancel', () => {
+        isCardSwiping = false;
+        resultCardEl.style.transform = '';
+        resultCardEl.style.opacity = '';
+      });
+    }
+
+    // Close mobile nav on link click
+    document.querySelectorAll('.mobile-nav a').forEach(a => {
+      a.addEventListener('click', () => {
+        const nav = document.getElementById('mobileNav');
+        const ham = document.getElementById('hamBtn');
+        if (nav && nav.classList.contains('open')) {
+          nav.classList.remove('open');
+          ham.classList.remove('open');
+          document.body.classList.remove('menu-open');
+          document.body.style.overflow = '';
+        }
+      });
+    });
 
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') closeSearch();
