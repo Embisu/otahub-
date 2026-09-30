@@ -63,7 +63,7 @@ window.IDX = [
     "tags": []
   },
   {
-    "title": "Naruto Xác Nhận Anime Truyền Hình Mới Sau 3 Năm Im Ắng, Chi Tiết Hé Lộ Tại NYCC 2026",
+    "title": "Naruto Xác Nhận Anime Mới Sau 3 Năm Im Ắng",
     "url": "/naruto-xac-nhan-anime-truyen-hinh-moi-nycc-2026",
     "cat": "Anime",
     "date": "2026-09-30",
