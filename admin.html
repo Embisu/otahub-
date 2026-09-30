@@ -3151,6 +3151,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
       <a href="https://otahub.asia" target="_blank" class="wtb-item">🏠 Xem trang web (Live)</a>
       <div class="wtb-item"><span class="wtb-badge-live">Cloudflare Pages Edge: Live</span></div>
       <button onclick="newArticle()" class="wtb-item">➕ Thêm bài mới</button>
+      <button onclick="triggerManualIndexNowPing()" class="wtb-item" style="color:#00e5ff" title="Báo cáo lập chỉ mục tức thì cho Bing, Yandex, Seznam">🚀 Ping IndexNow</button>
       <div class="wtb-item"><span class="wtb-badge-seo" id="wtb-top-seo-badge">🎯 SEO: chưa chấm điểm</span></div>
     </div>
     <div class="wtb-right">
@@ -3551,6 +3552,8 @@ document.addEventListener('keydown', (e) => {
                     document.getElementById('save-btn-top') ||
                     document.getElementById('save-btn-hub') ||
                     document.getElementById('save-btn-home') ||
+                    document.getElementById('save-btn-reviews') ||
+                    document.getElementById('save-btn-chuyensau') ||
                     document.getElementById('save-btn');
     if (saveBtn) { saveBtn.click(); }
     else if (currentFile) { saveArticle(); }
@@ -3588,16 +3591,19 @@ function cmdkStaticActions() {
     { icon: '⛩️', title: 'Anime', hint: 'Trang chuyên mục anime.html', tag: 'Đi tới', run: () => hubEditor('anime.html', 'Anime') },
     { icon: '📖', title: 'Manga', hint: 'Trang chuyên mục manga.html', tag: 'Đi tới', run: () => hubEditor('manga.html', 'Manga') },
     { icon: '🏆', title: 'Bảng xếp hạng', hint: 'Rankings theo tuần', tag: 'Đi tới', run: () => showView('rankings') },
-    { icon: '⭐', title: 'Reviews', hint: 'Danh sách bài đánh giá', tag: 'Đi tới', run: () => arrayEditor('reviews') },
+    { icon: '⭐', title: 'Reviews Hub', hint: 'Quản lý đánh giá game, anime, manga (reviews.html)', tag: 'Đi tới', run: () => reviewsEditor() },
+    { icon: '📚', title: 'Chuyên Sâu', hint: 'Bài phân tích chuyên sâu (chuyen-sau.html)', tag: 'Đi tới', run: () => chuyenSauEditor() },
     { icon: '🎯', title: 'Chơi Gì?', hint: 'Database gợi ý game', tag: 'Đi tới', run: () => arrayEditor('choigi') },
     { icon: '💡', title: 'Recommend', hint: 'Danh sách gợi ý', tag: 'Đi tới', run: () => arrayEditor('recommend') },
     { icon: '📅', title: 'Lịch phát sóng', hint: 'Lịch anime theo mùa', tag: 'Đi tới', run: () => arrayEditor('lichphatsong') },
     { icon: '🔥', title: 'Đang Hot', hint: 'Section tĩnh cho choi-gi.html', tag: 'Đi tới', run: () => hotGridEditor() },
-    { icon: '🚀', title: 'Sắp ra mắt', hint: 'Lịch phát hành sắp tới', tag: 'Đi tới', run: () => releasesEditor() },
-    { icon: '📰', title: 'News', hint: 'Trang tin tức', tag: 'Đi tới', run: () => newsEditor() },
-    { icon: '👥', title: 'Đội ngũ / Giới thiệu', hint: 'Trang about', tag: 'Đi tới', run: () => teamEditor() },
+    { icon: '🚀', title: 'Sắp ra mắt', hint: 'Lịch phát hành sắp tới (sap-ra-mat.html)', tag: 'Đi tới', run: () => releasesEditor() },
+    { icon: '📰', title: 'News', hint: 'Trang tin tức (news.html)', tag: 'Đi tới', run: () => newsEditor() },
+    { icon: '👥', title: 'Đội ngũ / Giới thiệu', hint: 'Trang about.html', tag: 'Đi tới', run: () => teamEditor() },
+    { icon: '⚖️', title: 'Trang chính sách & E-E-A-T', hint: 'Bảo mật, điều khoản, tiêu chuẩn review', tag: 'Đi tới', run: () => policyPagesModal() },
+    { icon: '🛰️', title: 'IndexNow Ping', hint: 'Gửi tín hiệu lập chỉ mục Bing/Yandex', tag: 'Hành động', run: () => triggerManualIndexNowPing() },
+    { icon: '🇬🇧', title: 'Lọc bài chưa có EN', hint: 'Danh sách bài viết cần dịch song ngữ', tag: 'Đi tới', run: () => { showView('articles'); setTimeout(() => renderArticleList('missing_en'), 50); } },
     { icon: '✉️', title: 'Liên hệ', hint: 'Trang lien-he.html', tag: 'Đi tới', run: () => sectionEditor('lien-he.html', 'nav-lienhe', 'Liên hệ', 'https://otahub.asia/lien-he') },
-    { icon: '🔒', title: 'Chính sách bảo mật', hint: 'Trang chinh-sach-bao-mat.html', tag: 'Đi tới', run: () => sectionEditor('chinh-sach-bao-mat.html', 'nav-chinhsach', 'Chính sách bảo mật', 'https://otahub.asia/chinh-sach-bao-mat') },
     { icon: '👤', title: 'Người dùng', hint: 'Quản lý tài khoản admin', tag: 'Đi tới', run: () => showView('users') },
     { icon: '📜', title: 'Nhật ký hoạt động', hint: 'Ai sửa gì, lúc nào', tag: 'Đi tới', minRole: 'editor', run: () => showView('auditlog') },
   ];
@@ -3605,7 +3611,7 @@ function cmdkStaticActions() {
   return items.filter((item) => {
     if (item.title === 'Người dùng') return CURRENT_USER?.role === 'admin';
     if (item.minRole === 'editor') return canEditSystem;
-    return canEditSystem || !['Trang chủ','Gaming','Anime','Manga','Bảng xếp hạng','Reviews','Chơi Gì?','Recommend','Lịch phát sóng','Đang Hot','Sắp ra mắt','News','Đội ngũ / Giới thiệu','Liên hệ','Chính sách bảo mật'].includes(item.title);
+    return canEditSystem || !['Trang chủ','Gaming','Anime','Manga','Bảng xếp hạng','Reviews Hub','Chuyên Sâu','Chơi Gì?','Recommend','Lịch phát sóng','Đang Hot','Sắp ra mắt','News','Đội ngũ / Giới thiệu','Trang chính sách & E-E-A-T','IndexNow Ping','Lọc bài chưa có EN','Liên hệ'].includes(item.title);
   });
 }
 function cmdkArticleActions() {
@@ -15913,7 +15919,7 @@ function renderReviewsEditor() {
       <div class="page-title">Reviews Hub <small>reviews.html · ${REVIEWS_LIST.length} bài đánh giá</small></div>
       <div class="header-actions">
         <a class="btn btn-secondary btn-sm" href="https://otahub.asia/reviews" target="_blank">🔗 Xem live</a>
-        <button class="btn btn-primary" onclick="saveReviews()">💾 Lưu & Deploy</button>
+        <button class="btn btn-primary" id="save-btn-reviews" onclick="saveReviews()">💾 Lưu & Deploy</button>
       </div>
     </div>
     <div class="content-area">
@@ -16088,7 +16094,7 @@ function renderChuyenSauEditor() {
       <div class="page-title">Chuyên Sâu Hub <small>chuyen-sau.html · ${CHUYEN_SAU_PICKS.length} tiêu điểm, ${CHUYEN_SAU_CARDS.length} bài phân tích</small></div>
       <div class="header-actions">
         <a class="btn btn-secondary btn-sm" href="https://otahub.asia/chuyen-sau" target="_blank">🔗 Xem live</a>
-        <button class="btn btn-primary" onclick="saveChuyenSau()">💾 Lưu & Deploy</button>
+        <button class="btn btn-primary" id="save-btn-chuyensau" onclick="saveChuyenSau()">💾 Lưu & Deploy</button>
       </div>
     </div>
     <div class="content-area">
