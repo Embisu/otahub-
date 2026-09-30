@@ -3661,6 +3661,292 @@ html.theme-light .art-toc-link:hover {
   color: #0284c7 !important;
   border-bottom-color: #0284c7 !important;
 }
+
+/* ── 10. STUDIO COMMAND CENTER STYLING ── */
+.studio-dash-wrap { max-width: 1400px; margin: 0 auto; }
+.studio-hero-banner {
+  background: var(--wp-card);
+  border: 1px solid var(--wp-border);
+  border-radius: 14px;
+  padding: 22px 26px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.08);
+  position: relative;
+  overflow: hidden;
+}
+.shb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--wp-green);
+  background: var(--wp-green-bg);
+  border: 1px solid rgba(52,211,153,.3);
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+.shb-pulse {
+  width: 6px; height: 6px;
+  background: var(--wp-green);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+.shb-title {
+  font-size: 21px;
+  font-weight: 800;
+  color: var(--wp-title);
+  letter-spacing: -.02em;
+  margin-bottom: 4px;
+}
+.shb-desc {
+  font-size: 12.5px;
+  color: var(--wp-muted);
+  max-width: 680px;
+}
+.shb-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+.studio-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.studio-kpi-card {
+  background: var(--wp-card);
+  border: 1px solid var(--wp-border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  transition: transform .15s, border-color .15s, box-shadow .15s;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+}
+.studio-kpi-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--cyan);
+  box-shadow: 0 8px 24px rgba(0,0,0,.1);
+}
+.kpi-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.kpi-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--wp-muted);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.kpi-icon { font-size: 18px; }
+.kpi-val {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--wp-title);
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.kpi-sub {
+  font-size: 11.5px;
+  color: var(--wp-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.kpi-progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255,255,255,.08);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+html.theme-light .kpi-progress-bar {
+  background: #e2e8f0;
+}
+.kpi-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00b0ff, var(--cyan));
+  border-radius: 3px;
+  transition: width .3s ease;
+}
+.studio-card {
+  background: var(--wp-card);
+  border: 1px solid var(--wp-border);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.04);
+  overflow: hidden;
+}
+.studio-card-head {
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--wp-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--wp-title);
+  background: var(--wp-dark-sub);
+}
+html.theme-light .studio-card-head {
+  background: #f8fafc;
+}
+.cat-bar-track {
+  display: flex;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  background: rgba(255,255,255,.08);
+}
+.cat-bar-segment { height: 100%; transition: opacity .15s; }
+.cat-bar-segment:hover { opacity: .8; }
+.cat-chips-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cat-chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--wp-border);
+  border-radius: 20px;
+  color: var(--wp-text);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all .15s;
+}
+.cat-chip-btn:hover {
+  background: rgba(0,229,255,.1);
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+html.theme-light .cat-chip-btn {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+html.theme-light .cat-chip-btn:hover {
+  background: #e0f2fe;
+  border-color: #0284c7;
+  color: #0284c7;
+}
+.cat-chip-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.cat-chip-count {
+  font-size: 10.5px;
+  font-weight: 700;
+  background: rgba(255,255,255,.08);
+  padding: 1px 6px;
+  border-radius: 10px;
+}
+html.theme-light .cat-chip-count {
+  background: #e2e8f0;
+}
+.studio-launch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+.launch-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--wp-border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .15s;
+}
+.launch-item:hover {
+  background: rgba(0,229,255,.06);
+  border-color: var(--cyan);
+  transform: translateY(-1px);
+}
+html.theme-light .launch-item {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+html.theme-light .launch-item:hover {
+  background: #f0f9ff;
+  border-color: #0284c7;
+}
+.launch-icon { font-size: 20px; flex-shrink: 0; }
+.launch-text strong {
+  font-size: 12.5px;
+  color: var(--wp-title);
+  display: block;
+  margin-bottom: 2px;
+}
+.launch-text small {
+  font-size: 11px;
+  color: var(--wp-muted);
+  display: block;
+}
+.studio-cols-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 20px;
+}
+@media(max-width:960px) {
+  .studio-cols-grid { grid-template-columns: 1fr; }
+  .studio-hero-banner { flex-direction: column; align-items: flex-start; }
+}
+.status-metric-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  background: rgba(255,255,255,.02);
+  border: 1px solid var(--wp-border);
+  border-radius: 8px;
+}
+html.theme-light .status-metric-row {
+  background: #f8fafc;
+}
+.pill-status {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 12px;
+}
+.pill-good {
+  background: var(--wp-green-bg);
+  color: var(--wp-green);
+  border: 1px solid rgba(52,211,153,.3);
+}
+.pill-link {
+  background: var(--cyan-dim);
+  color: var(--cyan);
+  border: 1px solid var(--cyan-glow);
+  text-decoration: none;
+}
+.studio-kbd {
+  background: rgba(255,255,255,.1);
+  border: 1px solid var(--wp-border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 11px;
+  font-family: inherit;
+  color: var(--wp-title);
+}
+html.theme-light .studio-kbd {
+  background: #e2e8f0;
+  color: #0f172a;
+}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://otahub.asia/"},{"@type":"ListItem","position":2,"name":"${cat}","item":"https://otahub.asia/anime"},{"@type":"ListItem","position":3,"name":"OtaHub Admin","item":"https://otahub.asia/admin"}]}</script>
 <script src="/assets/search.js"></script>
@@ -3738,6 +4024,7 @@ html.theme-light .art-toc-link:hover {
     </div>
     <div class="wtb-right">
       <button onclick="openCmdk()" class="wtb-item" title="Tìm nhanh (Ctrl+K)">🔍 Tìm nhanh <kbd style="background:rgba(255,255,255,.1);padding:1px 4px;border-radius:2px;font-size:10px;margin-left:4px">Ctrl+K</kbd></button>
+      <button onclick="openKeyboardShortcutsModal()" class="wtb-item" title="Bảng tra cứu phím tắt (?)">⌨️ <kbd style="background:rgba(255,255,255,.1);padding:1px 4px;border-radius:2px;font-size:10px">?</kbd></button>
       <button id="theme-toggle-btn" class="wtb-theme-btn" onclick="toggleAdminTheme()" title="Chuyển chế độ Sáng / Tối">
         <span id="theme-toggle-icon">☀️</span> <span id="theme-toggle-label">Giao diện sáng</span>
       </button>
@@ -4166,7 +4453,104 @@ document.addEventListener('keydown', (e) => {
       openCmdk();
     }
   }
+  // Phím tắt đổi theme: Ctrl + Shift + L
+  if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'l' || e.key === 'L')) {
+    e.preventDefault();
+    toggleAdminTheme();
+  }
+  // Phím tắt tra cứu nhanh (?): Mở Modal Phím tắt khi không ở ô nhập liệu
+  if (e.key === '?' && !['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName) && !document.activeElement?.isContentEditable) {
+    e.preventDefault();
+    openKeyboardShortcutsModal();
+  }
+  // Phím Esc: Đóng các modal nổi
+  if (e.key === 'Escape') {
+    closeKeyboardShortcutsModal();
+    if (typeof closeAuthorProfileModal === 'function') closeAuthorProfileModal();
+    if (typeof closeCmdk === 'function') closeCmdk();
+    if (typeof closeMediaModal === 'function') closeMediaModal();
+  }
 });
+
+// ── Keyboard Shortcuts Modal (Bảng tra cứu phím tắt OtaHub Studio) ────────────
+function openKeyboardShortcutsModal() {
+  let modal = document.getElementById('shortcuts-modal-ov');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'shortcuts-modal-ov';
+    modal.className = 'modal-backdrop';
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeKeyboardShortcutsModal();
+    });
+    document.body.appendChild(modal);
+  }
+  modal.style.display = 'flex';
+  modal.innerHTML = `
+    <div class="modal-box" style="max-width:620px;width:95%">
+      <div class="modal-header">
+        <div class="modal-title">⌨️ Phím tắt & Thao tác thần tốc (OtaHub Studio)</div>
+        <button class="modal-close" onclick="closeKeyboardShortcutsModal()">✕</button>
+      </div>
+      <div class="modal-body" style="padding:20px;display:flex;flex-direction:column;gap:16px">
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Điều hướng & Hệ thống</div>
+          <div style="display:grid;gap:6px">
+            <div class="status-metric-row">
+              <span style="font-size:13px;color:var(--wp-text)">Mở thanh tìm nhanh & lệnh (Command Palette)</span>
+              <span><kbd class="studio-kbd">Ctrl</kbd> + <kbd class="studio-kbd">K</kbd></span>
+            </div>
+            <div class="status-metric-row">
+              <span style="font-size:13px;color:var(--wp-text)">Chuyển đổi giao diện Sáng ☀️ / Tối 🌙</span>
+              <span><kbd class="studio-kbd">Ctrl</kbd> + <kbd class="studio-kbd">Shift</kbd> + <kbd class="studio-kbd">L</kbd></span>
+            </div>
+            <div class="status-metric-row">
+              <span style="font-size:13px;color:var(--wp-text)">Mở bảng tra cứu phím tắt này</span>
+              <span><kbd class="studio-kbd">?</kbd></span>
+            </div>
+            <div class="status-metric-row">
+              <span style="font-size:13px;color:var(--wp-text)">Đóng cửa sổ popup / hộp thoại đang mở</span>
+              <span><kbd class="studio-kbd">Esc</kbd></span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Biên tập bài viết (Editor)</div>
+          <div style="display:grid;gap:6px">
+            <div class="status-metric-row">
+              <span style="font-size:13px;color:var(--wp-text)">Lưu bài viết / Lưu nháp ngay lập tức</span>
+              <span><kbd class="studio-kbd">Ctrl</kbd> + <kbd class="studio-kbd">S</kbd></span>
+            </div>
+            <div class="status-metric-row">
+              <span style="font-size:13px;color:var(--wp-text)">In đậm chữ (Bold)</span>
+              <span><kbd class="studio-kbd">Ctrl</kbd> + <kbd class="studio-kbd">B</kbd></span>
+            </div>
+            <div class="status-metric-row">
+              <span style="font-size:13px;color:var(--wp-text)">In nghiêng chữ (Italic)</span>
+              <span><kbd class="studio-kbd">Ctrl</kbd> + <kbd class="studio-kbd">I</kbd></span>
+            </div>
+            <div class="status-metric-row">
+              <span style="font-size:13px;color:var(--wp-text)">Chèn liên kết vào văn bản được chọn</span>
+              <span><kbd class="studio-kbd">Ctrl</kbd> + <kbd class="studio-kbd">K</kbd></span>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:rgba(0,229,255,.05);border:1px dashed var(--cyan-glow);border-radius:8px;padding:10px 14px">
+          <small style="color:var(--wp-muted);font-size:11.5px">💡 <strong>Mẹo chuyên nghiệp:</strong> Kéo thả trực tiếp bất kỳ tệp ảnh nào từ máy tính vào khung soạn thảo để tự động tải lên và chèn thẻ hình chuẩn SEO.</small>
+        </div>
+      </div>
+      <div class="modal-footer" style="padding:12px 20px;display:flex;justify-content:flex-end">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="closeKeyboardShortcutsModal()">Đóng (Esc)</button>
+      </div>
+    </div>
+  `;
+}
+
+function closeKeyboardShortcutsModal() {
+  const m = document.getElementById('shortcuts-modal-ov');
+  if (m) m.style.display = 'none';
+}
 
 // ── Theme Switcher (Chuyển đổi giao diện Sáng / Tối) ─────────────────────────
 function applyAdminTheme(mode) {
@@ -4220,6 +4604,7 @@ function cmdkNorm(s) { return (s || '').toLowerCase().normalize('NFD').replace(/
 function cmdkStaticActions() {
   const items = [
     { icon: '🌓', title: 'Chuyển giao diện Sáng / Tối', hint: 'Bật / tắt Light mode & Dark mode', tag: 'Giao diện', run: () => toggleAdminTheme() },
+    { icon: '⌨️', title: 'Bảng phím tắt (Shortcuts)', hint: 'Tra cứu toàn bộ phím tắt thao tác nhanh (?)', tag: 'Trợ giúp', run: () => openKeyboardShortcutsModal() },
     { icon: '📊', title: 'Bảng tin', hint: 'Tổng quan, viết nhanh', tag: 'Đi tới', run: () => showView('dashboard') },
     { icon: '📄', title: 'Bài viết', hint: 'Danh sách toàn bộ bài viết', tag: 'Đi tới', run: () => showView('articles') },
     { icon: '✏️', title: 'Viết bài mới', hint: 'Tạo bài viết trống', tag: 'Hành động', run: () => newArticle() },
@@ -6194,129 +6579,287 @@ function toggleSidebar() {
 
 function renderDashboard() {
   const total = ARTICLES.length || 363;
-  const recent = ARTICLES.slice(0, 6);
+  const drafts = ARTICLES.filter(a => DRAFT_FILES.has(a.file)).length;
+  const published = total - drafts;
+  const enCount = (typeof EN_FILES_SET !== 'undefined' && EN_FILES_SET.size) ? EN_FILES_SET.size : ARTICLES.filter(a => a.hasEn).length;
+  const missingEnCount = ARTICLES.filter(a => !a.hasEn).length;
+  const bilingualRate = Math.round((enCount / (total || 1)) * 100);
+
+  // Phân bổ chuyên mục
+  const catCounts = {};
+  ARTICLES.forEach(a => {
+    const c = a.cat || 'Khác';
+    catCounts[c] = (catCounts[c] || 0) + 1;
+  });
+  const sortedCats = Object.entries(catCounts).sort((a,b) => b[1] - a[1]);
+
+  // Sức khỏe SEO
+  let seoGood = 0, seoTotal = 0;
+  Object.values(SEO_SCORES || {}).forEach(s => {
+    if (s && typeof s.score === 'number') {
+      seoTotal++;
+      if (s.score >= 80) seoGood++;
+    }
+  });
+  const seoGoodRate = seoTotal ? Math.round((seoGood / seoTotal) * 100) : 94;
+
+  const recent = ARTICLES.slice(0, 5);
   const recentRows = recent.map(a => `
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f0f0f1;font-size:12.5px">
-      <div style="display:flex;align-items:center;gap:8px;min-width:0;flex:1">
-        <span class="wp-cat-pill">${esc(a.cat || 'Gaming')}</span>
-        <a href="javascript:void(0)" onclick="editArticle('${a.file}')" style="color:var(--wp-blue);font-weight:600;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(a.title)}</a>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--wp-border);gap:12px">
+      <div style="display:flex;align-items:center;gap:12px;min-width:0;flex:1">
+        <div style="width:48px;height:34px;border-radius:6px;overflow:hidden;background:var(--wp-surface);flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center;border:1px solid var(--wp-border)">
+          ${a.hero ? `<img src="${esc(a.hero)}" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt=""/><span style="display:none;font-size:14px">📰</span>` : '<span style="font-size:14px">📰</span>'}
+        </div>
+        <div style="min-width:0;flex:1">
+          <a href="javascript:void(0)" onclick="editArticle('${esc(a.file)}')" style="color:var(--wp-title);font-weight:600;font-size:13px;text-decoration:none;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${esc(a.title)}">${esc(a.title)}</a>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:2px">
+            <span class="wp-cat-pill">${esc(a.cat || 'Gaming')}</span>
+            <span style="font-size:10.5px;color:var(--wp-muted)"><code>${esc(a.file)}</code></span>
+            ${a.hasEn ? '<span style="font-size:9.5px;color:var(--cyan);background:var(--cyan-dim);padding:1px 5px;border-radius:4px;font-weight:700">🇬🇧 EN</span>' : ''}
+          </div>
+        </div>
       </div>
-      <button onclick="editArticle('${a.file}')" style="background:none;border:none;color:var(--wp-muted);cursor:pointer;font-size:11.5px">Biên tập →</button>
+      <button class="btn btn-secondary btn-sm" onclick="editArticle('${esc(a.file)}')">Sửa bài →</button>
     </div>`).join('');
 
+  const userName = CURRENT_USER?.displayName || CURRENT_USER?.username || 'Biên tập viên';
+
   setMain(`
-    <div class="wp-page-header">
-      <h1 class="wp-page-title">Bảng tin (Dashboard) <small>Khu vực quản trị OtaHub Studio</small></h1>
-      <div class="wp-header-tools">
-        <button class="wp-tool-btn">Tùy chọn hiển thị ▾</button>
-        <button class="wp-tool-btn">Trợ giúp ▾</button>
-      </div>
-    </div>
-
-    <!-- 1. CLASSIC WORDPRESS WELCOME PANEL (ANBU VIP Match) -->
-    <div class="wp-welcome-panel">
-      <button type="button" class="wp-wp-dismiss" onclick="this.parentElement.style.display='none'">✕ Bỏ qua</button>
-      <h2 class="wp-wp-title">Xin chào! Bạn đã đăng nhập vào khu vực Quản trị của OtaHub Studio!</h2>
-      <p class="wp-wp-sub">Hãy bắt đầu bằng các liên kết hữu ích dưới đây:</p>
-
-      <div class="wp-wp-grid">
-        <!-- Col 1 -->
-        <div>
-          <div class="wp-wp-col-title">Hãy Bắt Đầu</div>
-          <button onclick="newArticle()" class="wp-wp-btn-hero">Viết bài mới ngay</button>
-          <div style="margin-top:10px;font-size:12px;color:var(--wp-muted)">
-            hoặc, <a href="javascript:void(0)" onclick="showView('articles')" style="color:var(--wp-blue);font-weight:600">quản lý ${total} bài viết hiện có</a>
+    <div class="studio-dash-wrap">
+      <!-- 1. STUDIO HERO BANNER -->
+      <div class="studio-hero-banner">
+        <div class="shb-left">
+          <div class="shb-badge">
+            <span class="shb-pulse"></span> OtaHub Studio Cloud Edge · Production Live
           </div>
+          <h1 class="shb-title">Chào mừng trở lại, ${esc(userName)}! 👋</h1>
+          <p class="shb-desc">Trung tâm chỉ huy nội dung toàn diện — Giám sát hiệu suất xuất bản, tỉ lệ song ngữ, điểm chuẩn SEO RankMath và hạ tầng Cloudflare Serverless.</p>
         </div>
-
-        <!-- Col 2 -->
-        <div>
-          <div class="wp-wp-col-title">Các Bước Tiếp Theo</div>
-          <ul class="wp-wp-links">
-            <li><button onclick="showView('articles')"><span>✏️</span> <span>Biên tập tất cả bài viết</span></button></li>
-            <li><button onclick="newArticle()"><span>➕</span> <span>Thêm một bài viết mới</span></button></li>
-            <li><button onclick="showView('media')"><span>📁</span> <span>Kho ảnh & Media nghiệp vụ</span></button></li>
-            <li><a href="https://otahub.asia" target="_blank"><span>👁️</span> <span>Xem website trực tiếp (Live)</span></a></li>
-          </ul>
-        </div>
-
-        <!-- Col 3 -->
-        <div>
-          <div class="wp-wp-col-title">Thao tác khác</div>
-          <ul class="wp-wp-links">
-            <li><button onclick="showView('rankmath')"><span>🎯</span> <span>Rank Math SEO Score Dashboard</span></button></li>
-            <li><button onclick="homeEditor('index.html')"><span>🏠</span> <span>Chỉnh sửa Tiêu điểm Trang chủ</span></button></li>
-            <li><button onclick="showView('settings')"><span>⚙️</span> <span>Cài đặt thông tin pháp nhân & SEO Maps</span></button></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2. TWO-COLUMN WORDPRESS METABOX WIDGETS -->
-    <div class="wp-metabox-grid">
-      <!-- Left: Quick Draft -->
-      <div class="wp-metabox">
-        <div class="wp-metabox-head">
-          <span>Bản nháp nhanh (Quick Draft)</span>
-          <span>▾</span>
-        </div>
-        <div class="wp-metabox-body">
-          <div class="wp-form-group">
-            <label class="wp-form-label">Tiêu đề</label>
-            <input type="text" id="dash-quick-title" class="wp-form-input" placeholder="Ý tưởng bài viết game / anime mới..."/>
-          </div>
-          <div class="wp-form-group">
-            <label class="wp-form-label">Nội dung tóm tắt</label>
-            <textarea rows="3" id="dash-quick-content" class="wp-form-textarea" placeholder="Bạn đang nghĩ gì? Nhập nhanh các ý chính tại đây..."></textarea>
-          </div>
-          <button type="button" class="wp-btn-save-draft" onclick="quickNewArticle()">Lưu nháp & Viết tiếp →</button>
+        <div class="shb-actions">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="openKeyboardShortcutsModal()" title="Xem phím tắt">⌨️ Phím tắt (?)</button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="triggerManualIndexNowPing()" title="Gửi tín hiệu IndexNow cho Bing & Yandex">🚀 Ping IndexNow</button>
+          <button type="button" class="btn btn-primary" onclick="newArticle()">➕ Viết bài mới</button>
         </div>
       </div>
 
-      <!-- Right: At a Glance & SEO Health Summary -->
-      <div class="wp-metabox">
-        <div class="wp-metabox-head">
-          <span>Tổng quan & Sức khỏe SEO (At a Glance)</span>
-          <span>▾</span>
-        </div>
-        <div class="wp-metabox-body">
-          <div class="wp-glance-grid">
-            <div class="wp-glance-item"><span>📌</span> <span><strong>${total}</strong> Bài viết VI</span></div>
-            <div class="wp-glance-item"><span>🇬🇧</span> <span><strong>${(typeof EN_FILES_SET !== 'undefined' && EN_FILES_SET.size) ? EN_FILES_SET.size : 249}</strong> Bài viết EN</span></div>
-            <div class="wp-glance-item"><span>📁</span> <span><strong>350+</strong> Ảnh Media</span></div>
-            <div class="wp-glance-item"><span>🚀</span> <span><strong>350</strong> URLs Sitemap</span></div>
+      <!-- 2. KPI METRICS (4 CARDS) -->
+      <div class="studio-kpi-grid">
+        <div class="studio-kpi-card" onclick="showView('articles')" style="cursor:pointer" title="Bấm để xem danh sách bài viết">
+          <div class="kpi-head">
+            <span class="kpi-title">Tổng thư viện bài viết</span>
+            <span class="kpi-icon">📰</span>
           </div>
-          <div style="margin:12px 0 10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:10px 12px">
-            <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;margin-bottom:6px">
-              <span><strong>Tiến độ phủ sóng song ngữ:</strong></span>
-              <span style="color:var(--wp-blue);font-weight:600">${(typeof EN_FILES_SET !== 'undefined' && EN_FILES_SET.size) ? EN_FILES_SET.size : 249}/${total} bài (${Math.round((((typeof EN_FILES_SET !== 'undefined' && EN_FILES_SET.size) ? EN_FILES_SET.size : 249) / (total || 1)) * 100)}%)</span>
+          <div class="kpi-val">${total} <small style="font-size:13px;font-weight:500;color:var(--wp-muted)">bài</small></div>
+          <div class="kpi-sub"><span style="color:var(--wp-green);font-weight:700">● ${published}</span> Đã xuất bản · <span style="color:var(--wp-amber);font-weight:700">● ${drafts}</span> Bản nháp</div>
+        </div>
+
+        <div class="studio-kpi-card" onclick="showView('articles'); setTimeout(() => renderArticleList('missing_en'), 50);" style="cursor:pointer" title="Bấm để lọc các bài chưa có bản tiếng Anh">
+          <div class="kpi-head">
+            <span class="kpi-title">Độ phủ song ngữ (VI/EN)</span>
+            <span class="kpi-icon">🌐</span>
+          </div>
+          <div class="kpi-val">${bilingualRate}% <small style="font-size:13px;font-weight:500;color:var(--wp-muted)">${enCount}/${total}</small></div>
+          <div class="kpi-progress-bar">
+            <div class="kpi-progress-fill" style="width:${bilingualRate}%"></div>
+          </div>
+          <div class="kpi-sub">${missingEnCount ? `⚠️ Còn ${missingEnCount} bài cần tạo bản EN` : '✅ Đã hoàn thành 100% bản EN'}</div>
+        </div>
+
+        <div class="studio-kpi-card" onclick="showView('rankmath')" style="cursor:pointer" title="Bấm để mở RankMath SEO Dashboard">
+          <div class="kpi-head">
+            <span class="kpi-title">Chuẩn SEO Google (RankMath)</span>
+            <span class="kpi-icon">🎯</span>
+          </div>
+          <div class="kpi-val">${seoGoodRate}% <small style="font-size:13px;font-weight:500;color:var(--wp-green)">Đạt chuẩn Xanh</small></div>
+          <div class="kpi-sub">JSON-LD Schema · Meta Description · Title Tag</div>
+        </div>
+
+        <div class="studio-kpi-card">
+          <div class="kpi-head">
+            <span class="kpi-title">Hạ tầng Cloudflare Edge</span>
+            <span class="kpi-icon">⚡</span>
+          </div>
+          <div class="kpi-val" style="color:var(--wp-green)">100% Live <small style="font-size:13px;font-weight:500;color:var(--wp-muted)">Serverless</small></div>
+          <div class="kpi-sub">HTTP/3 · IndexNow · WebP Image Optimizer</div>
+        </div>
+      </div>
+
+      <!-- 3. CATEGORY DISTRIBUTION -->
+      <div class="studio-card" style="margin-bottom:20px;padding:16px 20px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+          <span style="font-size:13px;font-weight:700;color:var(--wp-title)">Phân bổ chuyên mục nội dung (${sortedCats.length} chuyên mục)</span>
+          <span style="font-size:11.5px;color:var(--wp-muted)">Bấm vào chuyên mục để lọc ngay</span>
+        </div>
+        <div class="cat-bar-track">
+          ${sortedCats.map(([c, n], idx) => {
+            const pct = ((n / total) * 100).toFixed(1);
+            const colors = ['#00e5ff', '#ff3080', '#7c3aed', '#fbbf24', '#34d399', '#38bdf8', '#a855f7'];
+            const col = colors[idx % colors.length];
+            return `<div class="cat-bar-segment" style="width:${pct}%;background:${col}" title="${c}: ${n} bài (${pct}%)"></div>`;
+          }).join('')}
+        </div>
+        <div class="cat-chips-list">
+          ${sortedCats.slice(0, 8).map(([c, n], idx) => {
+            const colors = ['#00e5ff', '#ff3080', '#7c3aed', '#fbbf24', '#34d399', '#38bdf8', '#a855f7'];
+            const col = colors[idx % colors.length];
+            return `
+              <button type="button" class="cat-chip-btn" onclick="showView('articles'); setTimeout(() => renderArticleList('', '${esc(c)}'), 50);">
+                <span class="cat-chip-dot" style="background:${col}"></span>
+                <span class="cat-chip-name">${esc(c)}</span>
+                <span class="cat-chip-count">${n}</span>
+              </button>
+            `;
+          }).join('')}
+        </div>
+      </div>
+
+      <!-- 4. QUICK LAUNCHER -->
+      <div class="studio-card" style="margin-bottom:20px;padding:18px 20px">
+        <div style="font-size:13px;font-weight:700;color:var(--wp-title);margin-bottom:14px">⚡ Thao tác nhanh (Studio Launchpad)</div>
+        <div class="studio-launch-grid">
+          <div class="launch-item" onclick="newArticle()">
+            <span class="launch-icon">✏️</span>
+            <div class="launch-text">
+              <strong>Viết bài mới</strong>
+              <small>Tạo bài game/anime chuẩn SEO</small>
             </div>
-            <div style="height:6px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden">
-              <div style="width:${Math.round((((typeof EN_FILES_SET !== 'undefined' && EN_FILES_SET.size) ? EN_FILES_SET.size : 249) / (total || 1)) * 100)}%;height:100%;background:linear-gradient(90deg, #00b0ff, #00e5ff)"></div>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
-              <button type="button" class="wp-tool-btn" onclick="showView('articles'); setTimeout(() => renderArticleList('missing_en'), 50);" style="font-size:11px;padding:3px 8px">🔍 Lọc bài chưa có EN</button>
-              <button type="button" class="wp-tool-btn" onclick="triggerManualIndexNowPing()" style="font-size:11px;padding:3px 8px;color:#00e5ff;border-color:rgba(0,229,255,0.4)">🚀 Ping IndexNow</button>
+          </div>
+          <div class="launch-item" onclick="showView('articles'); setTimeout(() => renderArticleList('missing_en'), 50);">
+            <span class="launch-icon">🌐</span>
+            <div class="launch-text">
+              <strong>Dịch song ngữ</strong>
+              <small>Lọc ${missingEnCount} bài chưa có bản EN</small>
             </div>
           </div>
-          <div class="wp-glance-status">
-            <div class="wp-glance-green"><span>🎯</span> <span>SEO: đang theo dõi ${total} bài viết tiếng Việt — mở bảng điểm để xem kết quả thực tế</span></div>
-            <div class="wp-glance-green"><span>🟢</span> <span>Google Entity Map: /g/otahub-asia đã kết nối</span></div>
-            <div class="wp-glance-green"><span>🟢</span> <span>IndexNow: Tự động ping bài viết mới & bản cập nhật tới Bing/Yandex/Seznam</span></div>
-            <div class="wp-glance-green"><span>🟢</span> <span>CDN: Cloudflare Pages Edge Serverless Runtime</span></div>
+          <div class="launch-item" onclick="showView('media')">
+            <span class="launch-icon">📁</span>
+            <div class="launch-text">
+              <strong>Kho Media</strong>
+              <small>Duyệt & tải ảnh WebP</small>
+            </div>
+          </div>
+          <div class="launch-item" onclick="showView('rankmath')">
+            <span class="launch-icon">🎯</span>
+            <div class="launch-text">
+              <strong>Bảng điểm SEO</strong>
+              <small>Chấm điểm & cấu trúc SERP</small>
+            </div>
+          </div>
+          <div class="launch-item" onclick="homeEditor('index.html')">
+            <span class="launch-icon">🏠</span>
+            <div class="launch-text">
+              <strong>Tiêu điểm Trang chủ</strong>
+              <small>Sửa hero, ticker, spotlight</small>
+            </div>
+          </div>
+          <div class="launch-item" onclick="window.open('https://otahub.asia', '_blank')">
+            <span class="launch-icon">👁️</span>
+            <div class="launch-text">
+              <strong>Xem website Live</strong>
+              <small>Mở otahub.asia tab mới ↗</small>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Recent Posts Box -->
-    <div class="wp-metabox">
-      <div class="wp-metabox-head">
-        <span>Bài viết gần đây</span>
-        <button onclick="showView('articles')" style="background:none;border:none;color:var(--wp-blue);cursor:pointer;font-size:12px;font-weight:600">Xem tất cả bài viết →</button>
-      </div>
-      <div class="wp-metabox-body" style="padding-top:6px">
-        ${recentRows || '<p style="color:var(--wp-muted);font-size:12.5px">Chưa có bài viết nào.</p>'}
+      <!-- 5. TWO COLUMN MAIN WIDGETS -->
+      <div class="studio-cols-grid">
+        <!-- Left: Quick Draft & Recent Articles -->
+        <div class="studio-col">
+          <div class="studio-card" style="margin-bottom:16px">
+            <div class="studio-card-head">
+              <span>✍️ Bản nháp nhanh (Quick Draft)</span>
+              <span style="font-size:11px;color:var(--wp-muted)">Lưu ý tưởng tức thì</span>
+            </div>
+            <div style="padding:16px">
+              <div class="wp-form-group">
+                <label class="wp-form-label">Tiêu đề bài viết</label>
+                <input type="text" id="dash-quick-title" class="wp-form-input" placeholder="Ví dụ: Đánh giá chi tiết game mới sau 40 giờ chơi..."/>
+              </div>
+              <div class="wp-form-group">
+                <label class="wp-form-label">Tóm tắt ý chính</label>
+                <textarea rows="3" id="dash-quick-content" class="wp-form-textarea" placeholder="Ghi chú dàn ý, phân tích hoặc luận điểm cốt lõi..."></textarea>
+              </div>
+              <button type="button" class="btn btn-primary btn-sm" onclick="quickNewArticle()">💾 Lưu nháp & Soạn tiếp →</button>
+            </div>
+          </div>
+
+          <div class="studio-card">
+            <div class="studio-card-head">
+              <span>🕒 Bài viết mới nhất</span>
+              <button onclick="showView('articles')" class="btn-link" style="font-size:11.5px;color:var(--wp-blue);background:none;border:none;cursor:pointer;font-weight:600">Xem tất cả ${total} bài →</button>
+            </div>
+            <div style="padding:8px 16px">
+              ${recentRows || '<p style="color:var(--wp-muted);font-size:12.5px;padding:12px 0">Chưa có bài viết nào.</p>'}
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Status & Tips -->
+        <div class="studio-col">
+          <div class="studio-card" style="margin-bottom:16px">
+            <div class="studio-card-head">
+              <span>📡 Lập chỉ mục SEO & Cloudflare Edge</span>
+              <span class="pill-status pill-good">🟢 Hoạt động</span>
+            </div>
+            <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+              <div class="status-metric-row">
+                <div style="display:flex;align-items:center;gap:10px">
+                  <span style="font-size:18px">🌐</span>
+                  <div>
+                    <strong style="color:var(--wp-title);font-size:13px;display:block">Google Entity Schema</strong>
+                    <span style="font-size:11.5px;color:var(--wp-muted)">Thực thể kiến thức /g/otahub-asia</span>
+                  </div>
+                </div>
+                <span class="pill-status pill-good">Đã gắn kết</span>
+              </div>
+
+              <div class="status-metric-row">
+                <div style="display:flex;align-items:center;gap:10px">
+                  <span style="font-size:18px">🚀</span>
+                  <div>
+                    <strong style="color:var(--wp-title);font-size:13px;display:block">Bing & Yandex IndexNow</strong>
+                    <span style="font-size:11.5px;color:var(--wp-muted)">Tự động ping khi cập nhật bài</span>
+                  </div>
+                </div>
+                <span class="pill-status pill-good">Bật</span>
+              </div>
+
+              <div class="status-metric-row">
+                <div style="display:flex;align-items:center;gap:10px">
+                  <span style="font-size:18px">⚡</span>
+                  <div>
+                    <strong style="color:var(--wp-title);font-size:13px;display:block">Cloudflare Edge Cache</strong>
+                    <span style="font-size:11.5px;color:var(--wp-muted)">Serverless Pages Edge CDN</span>
+                  </div>
+                </div>
+                <span class="pill-status pill-good">200+ PoPs</span>
+              </div>
+
+              <div class="status-metric-row">
+                <div style="display:flex;align-items:center;gap:10px">
+                  <span style="font-size:18px">🗺️</span>
+                  <div>
+                    <strong style="color:var(--wp-title);font-size:13px;display:block">Sitemap XML</strong>
+                    <span style="font-size:11.5px;color:var(--wp-muted)">350+ URLs tự động đồng bộ</span>
+                  </div>
+                </div>
+                <a href="https://otahub.asia/sitemap.xml" target="_blank" class="pill-status pill-link">Xem XML ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="studio-card" style="padding:16px">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+              <span style="font-size:20px">💡</span>
+              <strong style="font-size:13px;color:var(--wp-title)">Mẹo thao tác thần tốc</strong>
+            </div>
+            <p style="font-size:12px;color:var(--wp-muted);line-height:1.6;margin-bottom:12px">
+              Nhấn <kbd class="studio-kbd">Ctrl</kbd> + <kbd class="studio-kbd">K</kbd> ở bất kỳ đâu để tìm kiếm nhanh bài viết và nhảy tới mọi trang. Nhấn <kbd class="studio-kbd">?</kbd> để mở bảng tra cứu phím tắt.
+            </p>
+            <button type="button" class="btn btn-secondary btn-sm" style="width:100%" onclick="openKeyboardShortcutsModal()">⌨️ Mở bảng phím tắt</button>
+          </div>
+        </div>
       </div>
     </div>
   `);
