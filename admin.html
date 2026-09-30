@@ -13785,7 +13785,9 @@ function applyArticleEditsToHtml(baseHtml, customData) {
   const heroPos = (isCustom && customData.heroPos !== undefined) ? customData.heroPos : (document.getElementById('ed-hero-pos')?.value || '50');
   const cat     = (isCustom && customData.cat !== undefined) ? customData.cat : (document.getElementById('ed-cat')?.value || 'Gaming');
   let bodyVi = isCustom ? (customData.bodyHtml || '') : (document.getElementById('body-textarea')?.value || '');
-  bodyVi = repairArticleBodyHtml(bodyVi);
+  // Chốt làm sạch ngay tại biên xuất bản để mọi chế độ soạn thảo đều loại bỏ
+  // style Google Docs/Word, span/font thừa và h1 lọt vào thân bài.
+  bodyVi = cleanVisualHtml(bodyVi);
   if (!isCustom) {
     const ta = document.getElementById('body-textarea');
     if (ta) ta.value = bodyVi;
@@ -13939,7 +13941,10 @@ function applyArticleEditsToHtml(baseHtml, customData) {
   // Blocks
   const blocks = isCustom ? customData.blocks : BODY_BLOCKS;
   const blockMarkerRe = /<script type="application\/json" id="admin-block-data">[\s\S]*?<\/script>\n?/;
-  if (blocks && Array.isArray(blocks) && blocks.length > 0) {
+  const hasStarterPlaceholder = blocks && Array.isArray(blocks) && blocks.some((b) =>
+    /Nội dung mở đầu bài viết|Nội dung chi tiết phần 1/i.test(String(b?.html || b?.text || ''))
+  );
+  if (blocks && Array.isArray(blocks) && blocks.length > 0 && !hasStarterPlaceholder) {
     const newMarker = `<script type="application/json" id="admin-block-data">${JSON.stringify(blocks)}<\/script>\n`;
     html = blockMarkerRe.test(html) ? html.replace(blockMarkerRe, newMarker) : html.replace(/<\/article>|<\/main>/, (m) => `${newMarker}${m}`);
   } else if (blockMarkerRe.test(html)) {
@@ -13967,10 +13972,9 @@ function sanitizeAllBlocksData() {
   let cleanedCount = 0;
   BODY_BLOCKS.forEach((b) => {
     if (b.type === 'paragraph' && b.html) {
-      if (b.html.includes('docs-internal-guid') || b.html.includes('class="Mso') || /<\/?(?:ol|ul|li)>/i.test(b.html) || /&lt;[a-z]/i.test(b.html)) {
-        b.html = cleanPastedHtml(b.html);
-        cleanedCount++;
-      }
+      const before = b.html;
+      b.html = cleanVisualHtml(cleanPastedHtml(b.html));
+      if (b.html !== before) cleanedCount++;
     } else if (b.type === 'heading' || b.type === 'quote') {
       if (b.text && (b.text.includes('docs-internal-guid') || /<[a-z][\s\S]*>/i.test(b.text) || /&lt;[a-z]/i.test(b.text))) {
         b.text = cleanPlainText(b.text);
