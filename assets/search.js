@@ -2,7 +2,7 @@ window.IDX = [
   {
     "title": "Liar Game chính thức có mùa 2 sau khi anime mùa đầu kết thúc",
     "url": "/liar-game-chinh-thuc-co-mua-2-sau-khi-anime-mua-dau-ket-thuc",
-    "cat": "Gaming",
+    "cat": "Anime",
     "date": "2026-09-30",
     "excerpt": "Mùa đầu tiên của Liar Game đã khép lại, nhưng hành trình của Nao và Akiyama vẫn chưa kết thúc. Mùa 2 đã chính thức được xác nhận sản xuất, trong khi thời điểm lên sóng vẫn chưa được công bố.",
     "img": "/assets/img/uploads/ke3sc0o0-images-23.jpg",
