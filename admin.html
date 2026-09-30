@@ -4981,6 +4981,39 @@ function openImageEditModal(data) {
   document.getElementById('image-edit-modal-ov')?.classList.add('open');
 }
 
+function closeImageEditModal() {
+  document.getElementById('image-edit-modal-ov')?.classList.remove('open');
+  CURRENT_IMAGE_EDIT = null;
+}
+
+function iedChangeFromLibrary() {
+  openMediaModal(res => {
+    if (res && res.src) {
+      const srcEl = document.getElementById('ied-src');
+      const prevEl = document.getElementById('ied-preview');
+      if (srcEl) srcEl.value = res.src;
+      if (prevEl) prevEl.src = res.src;
+      if (res.alt && !document.getElementById('ied-alt')?.value) {
+        document.getElementById('ied-alt').value = res.alt;
+      }
+      if (res.caption && !document.getElementById('ied-caption')?.value) {
+        document.getElementById('ied-caption').value = res.caption;
+      }
+    }
+  }, 'library');
+}
+
+function iedUploadNew() {
+  triggerImageUpload(async url => {
+    if (url) {
+      const srcEl = document.getElementById('ied-src');
+      const prevEl = document.getElementById('ied-preview');
+      if (srcEl) srcEl.value = url;
+      if (prevEl) prevEl.src = url;
+    }
+  });
+}
+
 function iedSetAlign(align) {
   const hidden = document.getElementById('ied-align');
   if (hidden) hidden.value = align;
@@ -7584,6 +7617,9 @@ function renderEditor(file, html) {
               <button type="button" class="button add-table" onclick="visTable()" title="Chèn Bảng dữ liệu">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 2v3H4V5h16zm-9 5h4v5h-4v-5zm-2 0v5H4v-5h5zm-5 7h5v4H4v-4zm7 4v-4h4v4h-4zm6 0v-4h5v4h-5zm5-6h-5v-5h5v5z"/></svg> Bảng
               </button>
+              <button type="button" class="button" id="vis-jump-img-btn" onclick="visJumpImage()" title="Nhảy nhanh đến ảnh tiếp theo trong bài viết" style="display:none">
+                🖼️ Ảnh (<span id="vis-img-count">0</span>) ▾
+              </button>
             </div>
             <div class="wp-editor-tabs">
               ${BODY_BLOCKS ? `<button type="button" id="content-blocks-tab" class="wp-switch-editor ${BODY_MODE==='blocks'?'active':''}" onclick="switchBodyMode('blocks')">🧱 Khối</button>` : ''}
@@ -8029,8 +8065,9 @@ function renderEditor(file, html) {
                 <button type="button" class="btn btn-secondary btn-sm" onclick="openFullArticlePreview()">👁️ Xem trước</button>
               </div>
               <div id="misc-publishing-actions">
-                <div class="misc-pub-section misc-pub-post-status">
-                  <span>📌</span> Trạng thái: <strong>${isNewFile ? 'Bản nháp' : 'Đã xuất bản'}</strong>
+                <div class="misc-pub-section misc-pub-post-status" style="display:flex;align-items:center;gap:6px">
+                  <span class="status-dot" id="status-dot-article"></span>
+                  <span>Trạng thái:</span> <strong id="status-text-article">${isNewFile ? 'Bản nháp' : 'Đã xuất bản'}</strong>
                 </div>
                 <div class="misc-pub-section misc-pub-visibility">
                   <span>👁️</span> Hiển thị: <strong>${isContributor ? 'Chưa công khai' : 'Công khai'}</strong>
@@ -8289,7 +8326,7 @@ function copyArticleJson() {
     category: document.getElementById('ed-cat')?.value || '',
     heroImage: document.getElementById('ed-hero')?.value || '',
     focusKeyword: document.getElementById('ed-keyword')?.value || '',
-    seoScore: document.getElementById('seo-score-num')?.textContent || '',
+    seoScore: document.getElementById('rm-circle-text')?.textContent || document.getElementById('misc-seo-score')?.textContent || '',
     blocks: BODY_BLOCKS || null,
     bodyHtml: getCurrentBodyHtml(),
     exportedAt: new Date().toISOString()
@@ -9067,8 +9104,8 @@ async function autosaveDraft() {
 
 function markChanged() {
   HAS_UNSAVED_CHANGES = true;
-  const dot = document.getElementById('status-dot');
-  const txt = document.getElementById('status-text');
+  const dot = document.getElementById('status-dot-article') || document.getElementById('status-dot-hub') || document.getElementById('status-dot-home') || document.getElementById('status-dot');
+  const txt = document.getElementById('status-text-article') || document.getElementById('status-text-hub') || document.getElementById('status-text-home') || document.getElementById('status-text');
   if (dot) dot.className = 'status-dot saving';
   if (txt) txt.textContent = 'Có thay đổi chưa lưu';
   updateWordCount();
@@ -9086,8 +9123,8 @@ function markChanged() {
 // cần dựng lại srcdoc (tránh mất con trỏ/focus giữa chừng).
 function markChangedNoRebuild() {
   HAS_UNSAVED_CHANGES = true;
-  const dot = document.getElementById('status-dot');
-  const txt = document.getElementById('status-text');
+  const dot = document.getElementById('status-dot-article') || document.getElementById('status-dot-hub') || document.getElementById('status-dot-home') || document.getElementById('status-dot');
+  const txt = document.getElementById('status-text-article') || document.getElementById('status-text-hub') || document.getElementById('status-text-home') || document.getElementById('status-text');
   if (dot) dot.className = 'status-dot saving';
   if (txt) txt.textContent = 'Có thay đổi chưa lưu';
   updateSeoScore();
@@ -9095,7 +9132,7 @@ function markChangedNoRebuild() {
 }
 
 function updateWordCount() {
-  const el = document.getElementById('word-count-bar');
+  const el = document.getElementById('wp-word-count') || document.getElementById('word-count-bar');
   if (!el) return;
   let text = '';
   if (BODY_MODE === 'code') text = (document.getElementById('body-textarea')?.value || '').replace(/<[^>]+>/g, ' ');
@@ -9103,7 +9140,7 @@ function updateWordCount() {
   else text = document.getElementById('body-visual')?.textContent || '';
   const words = (text.trim().match(/\S+/g) || []).length;
   const mins = Math.max(1, Math.round(words / 200));
-  el.textContent = `📝 ${words} từ · ~${mins} phút đọc`;
+  el.textContent = `Số từ: ${words} · ~${mins} phút đọc`;
   updateVisImageCount();
 }
 
@@ -11972,7 +12009,7 @@ async function externalizeInlineImages(html) {
       if (bodyTa && bodyTa.value.includes(dataUrl)) {
         bodyTa.value = bodyTa.value.split(dataUrl).join(finalUrl);
       }
-      const iframe = document.getElementById('art-preview-iframe');
+      const iframe = document.getElementById('art-visual-iframe') || document.getElementById('art-preview-iframe');
       const ifrDoc = iframe?.contentDocument || iframe?.contentWindow?.document;
       if (ifrDoc) {
         ifrDoc.querySelectorAll('img').forEach(img => {
@@ -13205,8 +13242,8 @@ async function hubEditor(file, label) {
   HAS_UNSAVED_CHANGES = false;
   HUB_LABEL = label || HUB_LABEL || 'Trang chuyên mục';
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải ${HUB_LABEL}...</span></div>`);
-  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  document.getElementById('nav-hub-' + (file.includes('gaming') ? 'gaming' : file.includes('anime') ? 'anime' : 'manga'))?.classList.add('active');
+  document.querySelectorAll('.wp-nav-item, .nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-special-pages')?.classList.add('active');
   try {
     const data = await ghGet(file);
     const raw = decodeURIComponent(escape(atob(data.content)));
@@ -13812,8 +13849,8 @@ async function homeEditor(file) {
   HAS_UNSAVED_CHANGES = false;
   file = file || 'index.html';
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải trang chủ...</span></div>`);
-  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  document.getElementById('nav-home')?.classList.add('active');
+  document.querySelectorAll('.wp-nav-item, .nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-special-pages')?.classList.add('active');
   try {
     const data = await ghGet(file);
     const raw = decodeURIComponent(escape(atob(data.content)));
@@ -14457,8 +14494,8 @@ function hotApply(raw, f) {
 
 async function hotGridEditor() {
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải Đang Hot...</span></div>`);
-  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  document.getElementById('nav-hotgrid')?.classList.add('active');
+  document.querySelectorAll('.wp-nav-item, .nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-special-pages')?.classList.add('active');
   try {
     const data = await ghGet('choi-gi.html');
     const raw = decodeURIComponent(escape(atob(data.content)));
@@ -14545,8 +14582,8 @@ let RELEASES_TAB = 'game';
 
 async function releasesEditor() {
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải Sắp ra mắt...</span></div>`);
-  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  document.getElementById('nav-releases')?.classList.add('active');
+  document.querySelectorAll('.wp-nav-item, .nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-special-pages')?.classList.add('active');
   try {
     const data = await ghGet('sap-ra-mat.html');
     const raw = decodeURIComponent(escape(atob(data.content)));
@@ -14702,8 +14739,8 @@ function teamApply(raw, f) {
 
 async function teamEditor() {
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải Đội ngũ...</span></div>`);
-  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  document.getElementById('nav-team')?.classList.add('active');
+  document.querySelectorAll('.wp-nav-item, .nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-special-pages')?.classList.add('active');
   try {
     const data = await ghGet('about.html');
     const raw = decodeURIComponent(escape(atob(data.content)));
@@ -14905,8 +14942,8 @@ function newsApply(raw, f) {
 
 async function newsEditor() {
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải News...</span></div>`);
-  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  document.getElementById('nav-news')?.classList.add('active');
+  document.querySelectorAll('.wp-nav-item, .nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-special-pages')?.classList.add('active');
   try {
     const data = await ghGet('news.html');
     const raw = decodeURIComponent(escape(atob(data.content)));
