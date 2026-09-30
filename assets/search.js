@@ -1,6 +1,6 @@
 window.IDX = [
   {
-    "title": "Tiêu đề bài viết",
+    "title": "Minecraft Live tháng 9/2026: Minecraft chuẩn bị đón chiều không gian mới",
     "url": "/tieu-de-bai-viet",
     "cat": "Gaming",
     "date": "2026-09-30",
