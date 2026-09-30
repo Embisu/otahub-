@@ -64,7 +64,13 @@ export default {
         return new Response(notFound.body, { status: 404, headers: notFound.headers });
       }
       const exact = await env.ASSETS.fetch(request);
-      if (exact.status !== 404) return exact;
+      // Chỉ dùng kết quả này khi ASSETS thực sự khớp file tĩnh (2xx). Với các
+      // slug chưa có trang tĩnh riêng (vd tác giả mới đăng ký), ASSETS có thể
+      // trả về redirect 3xx thay vì 404 (do author.html tồn tại cùng cấp),
+      // khiến slug bị mất khỏi URL và author-dynamic.js không biết tải hồ sơ
+      // nào. Coi mọi phản hồi không phải 2xx là "chưa có trang tĩnh" để rơi
+      // xuống fallback bên dưới.
+      if (exact.ok) return exact;
       const fallback = new URL('/author.html', url);
       return env.ASSETS.fetch(new Request(fallback, request));
     }
