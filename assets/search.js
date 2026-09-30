@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Hades 2 không phải lựa chọn kinh doanh an toàn của Supergiant Games",
+    "url": "/hades-2-khong-phai-lua-chon-kinh-doanh-an-toan-cua-supergian",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Sau thành công của Hades, Supergiant Games từng không chắc liệu có nên làm phần tiếp theo hay không. Cuối cùng, Hades 2 được lựa chọn vì đội ngũ vẫn nhìn thấy nhiều câu chuyện và ý tưởng chưa được khai thác trong thế giới thần thoại Hy Lạp.",
+    "img": "/assets/img/uploads/iieknlvg-images-22.jpg",
+    "tags": []
+  },
+  {
     "title": "7 game The Witcher đáng chơi trong năm 2026",
     "url": "/7-game-the-witcher-dang-choi-trong-nam-2026",
     "cat": "Gaming",
