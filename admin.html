@@ -17765,6 +17765,39 @@ function toast(type, msg) {
 
   return el;
 }
+
+// Cảnh báo ĐỒNG BỘ CHƯA ĐẦY ĐỦ — khác toast() ở chỗ KHÔNG tự ẩn sau vài giây, vì mục
+// đích chính là không cho người đăng bài lỡ bỏ qua một lỗi thật (bài đã lên nhưng vắng
+// mặt ở search/sitemap/hub/news). Người dùng phải bấm "Thử đồng bộ lại" hoặc "Bỏ qua".
+function showSyncFailureBanner(art, failures) {
+  const host = document.getElementById('sync-fail-banners');
+  if (!host || !failures || !failures.length) return null;
+  const slug = (art.file || '').replace(/\.html$/, '');
+
+  const el = document.createElement('div');
+  el.className = 'sync-fail-banner';
+  el.innerHTML = `
+    <h4>⚠️ Đồng bộ chưa đầy đủ: /${esc(slug)}</h4>
+    <div class="sfb-desc">Bài đã xuất bản thành công, nhưng ${failures.length} bước đồng bộ sau vẫn lỗi dù đã tự thử lại nhiều lần (thường do bị ghi đè xung đột bởi người khác đang sửa cùng file):</div>
+    <ul>${failures.map(f => `<li>${esc(f)}</li>`).join('')}</ul>
+    <div class="sfb-actions">
+      <button type="button" class="sfb-retry">🔁 Thử đồng bộ lại</button>
+      <button type="button" class="sfb-dismiss">Bỏ qua</button>
+    </div>`;
+
+  el.querySelector('.sfb-dismiss').onclick = () => el.remove();
+  el.querySelector('.sfb-retry').onclick = async () => {
+    const btn = el.querySelector('.sfb-retry');
+    btn.disabled = true;
+    btn.textContent = '⏳ Đang thử lại...';
+    el.querySelector('.sfb-dismiss').disabled = true;
+    await syncNewArticle(art);
+    el.remove();
+  };
+
+  host.appendChild(el);
+  return el;
+}
 </script>
 <script>
 // Bảo đảm các control tạo động trong Studio đều có accessible name.
