@@ -1695,7 +1695,6 @@ const ARTICLE_MAP = {
 const CAT_TYPE = {pc:'game', mobile:'game', anime:'anime', manga:'manga'};
 
 function resolveHref(title, catKey){
-  if(ARTICLE_MAP[title]) return ARTICLE_MAP[title];
   const t = CAT_TYPE[catKey] || 'game';
   return '/en/' + t + '-detail?t=' + encodeURIComponent(title);
 }

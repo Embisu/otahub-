@@ -163,7 +163,7 @@ for (const { fullPath, relPath } of allHtml) {
     const suspiciousPatterns = [
       /\bundefined\b(?!\.(js|css|webp|png|jpg))/i,
       /\bnull\b(?!\.(js|css|webp|png|jpg))/i,
-      /\bNaN\b/i,
+      /\bNaN\b(?![-\w])/i,
       /\[object Object\]/i,
       /lorem ipsum/i,
       /\${[a-zA-Z0-9_]+}/
@@ -197,7 +197,7 @@ for (const { fullPath, relPath } of allHtml) {
 // 2. Search Index Consistency
 if (fs.existsSync('assets/search.js')) {
   const searchContent = fs.readFileSync('assets/search.js', 'utf8');
-  const searchUrls = [...searchContent.matchAll(/url:\s*["']([^"']+)["']/g)].map(m => m[1]);
+  const searchUrls = [...searchContent.matchAll(/["']?url["']?\s*:\s*["']([^"']+)["']/g)].map(m => m[1]);
   for (const url of searchUrls) {
     let clean = url.replace(/^\//, '');
     if (!clean.endsWith('.html')) clean += '.html';

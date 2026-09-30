@@ -8,6 +8,8 @@
     "ping": "node scripts/ping-indexnow.mjs",
     "audit": "node scripts/live-audit.mjs",
     "authors:build": "node scripts/generate-author-profiles.mjs",
+    "indexes:build": "node scripts/normalize-publishing-data.mjs && node scripts/generate-author-profiles.mjs && node scripts/rebuild-discovery-indexes.mjs",
+    "content:clean-dashes": "node scripts/remove-em-dashes.mjs",
     "news:db:local": "wrangler d1 migrations apply otahub-news --local",
     "news:db:remote": "wrangler d1 migrations apply otahub-news --remote",
     "news:dev": "wrangler dev --test-scheduled",

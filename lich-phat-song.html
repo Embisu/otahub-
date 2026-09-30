@@ -883,7 +883,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 const DATA = {
   // Nguon: LiveChart.me, AnimeSchedule.net, Crunchyroll News, Anime News Network,
   // GamesRadar, CBR (kiem chung thang 9/2026). Chi liet ke tua thuc su co xac
-  // nhan chinh thuc — khong doan/suy dien ngay gio phat song.
+  // nhan chinh thuc, khong doan/suy dien ngay gio phat song.
   fall: [
     {type:'tv',title:'Black Clover Season 2',titleJp:'ブラッククローバー 2期',studio:'Pierrot',day:'Thứ Bảy, 3/10',genres:['Shounen','Action','Fantasy'],air:'3/10/2026',status:'upcoming',synopsis:'Asta và Yuno dẫn đầu những nhiệm vụ tuyệt vọng chống lại thế lực hắc ám đe dọa vương quốc Clover.'},
     {type:'tv',title:'The Apothecary Diaries Season 3',titleJp:'薬屋のひとりごと 3期',studio:'OLM',day:'Thứ Sáu, 2/10',genres:['Drama','Historical','Mystery'],air:'2/10/2026',status:'upcoming',synopsis:'Maomao cảm nhận điều bất thường trong hậu cung và bắt đầu điều tra sự thật phía sau.'},
@@ -900,7 +900,7 @@ const DATA = {
   ],
   summer: [
     {type:'tv',title:'Mushoku Tensei Season 3: Chaos Breaker Arc',titleJp:'無職転生 3期',studio:'Studio Bind',day:'Chủ Nhật',genres:['Isekai','Fantasy','Drama'],air:'từ 5/7/2026 (arc Chaos Breaker từ 16/8)',status:'airing',synopsis:'Rudeus cùng đồng đội tiến vào pháo đài bay của Perugius Dola, đối mặt thảm họa Chaos Breaker.'},
-    {type:'tv',title:'Bleach: TYBW Final Part — The Calamity',titleJp:'BLEACH 千年血戦篇 相剋譚',studio:'Pierrot',day:'Đã kết thúc',genres:['Shounen','Action','Supernatural'],air:'25/7 – 26/9/2026',status:'ended',synopsis:'Chương cuối cùng của Thousand-Year Blood War, Ichigo đối đầu Yhwach trong trận chiến quyết định.'},
+    {type:'tv',title:'Bleach: TYBW Final Part, The Calamity',titleJp:'BLEACH 千年血戦篇 相剋譚',studio:'Pierrot',day:'Đã kết thúc',genres:['Shounen','Action','Supernatural'],air:'25/7 – 26/9/2026',status:'ended',synopsis:'Chương cuối cùng của Thousand-Year Blood War, Ichigo đối đầu Yhwach trong trận chiến quyết định.'},
     {type:'tv',title:'Re:Zero Season 4: Recapture Part',titleJp:'Re:ゼロから始める異世界生活 4期',studio:'White Fox',day:'Thứ Tư',genres:['Isekai','Drama','Fantasy'],air:'12/8 – 30/9/2026 (tập 19 là tập cuối)',status:'airing',synopsis:'Subaru bước vào phần Recapture của mùa 4, phần thứ hai gồm 8 tập nối tiếp Loss Part chiếu hồi mùa xuân.'},
     {type:'tv',title:'Youjo Senki II',titleJp:'幼女戦記 II',studio:'NUT',day:'Thứ Tư',genres:['Military','Isekai','Action'],air:'8/7 – 23/9/2026',status:'ended',synopsis:'Tanya Degurechaff tiếp tục cuộc chiến khốc liệt trên chiến trường ma thuật.'},
     {type:'tv',title:'Grand Blue Season 3',titleJp:'ぐらんぶる 3期',studio:'Saber Works',day:'Đã hoàn thành',genres:['Comedy','Seinen','Slice of Life'],air:'7–9/2026',status:'ended',synopsis:'Iori và hội lặn biển Grand Blue tiếp tục những trò náo loạn ở thị trấn biển Izu.'},
@@ -934,7 +934,7 @@ const REAL_LINK = {
   "Frieren: Beyond Journey's End Season 2":'/frieren-mua-2-phat-song-thang-1-2026',
   'Jujutsu Kaisen Season 3: Culling Game Part 1':'/jujutsu-kaisen-season-3-culling-game-release',
   'Mushoku Tensei Season 3: Chaos Breaker Arc':'/mushoku-tensei-s3-chaos-breaker',
-  'Bleach: TYBW Final Part — The Calamity':'/bleach-tybw-the-calamity-25-7-2026',
+  'Bleach: TYBW Final Part, The Calamity':'/bleach-tybw-the-calamity-25-7-2026',
   'Re:Zero Season 4: Recapture Part':'/re-zero-season4-recapture-arc',
   'Reincarnated as a Sword II':'/reincarnated-as-a-sword-season2-premiere',
 };
@@ -946,7 +946,7 @@ const REAL_IMG = {
   "Frieren: Beyond Journey's End Season 2":'/assets/img/3f4f599cac-frieren-s2-hero.jpg',
   'Jujutsu Kaisen Season 3: Culling Game Part 1':'/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg',
   'Mushoku Tensei Season 3: Chaos Breaker Arc':'/assets/img/77948dbff7-mushoku-tensei-s3-chaosbreaker.jpg',
-  'Bleach: TYBW Final Part — The Calamity':'/assets/img/news-bleach-tybw-part4-farewell.jpg',
+  'Bleach: TYBW Final Part, The Calamity':'/assets/img/news-bleach-tybw-part4-farewell.jpg',
   'Re:Zero Season 4: Recapture Part':'/assets/img/087af8ed98-rezero-s4-hero.jpg',
   'Ao no Hako Season 2':'/assets/img/poster-real-ao-no-hako-s2.jpg',
   'Tokyo Revengers: Santen Sensou-hen':'/assets/img/poster-real-tokyo-revengers-santen.jpg',
@@ -1105,7 +1105,7 @@ function toggleMobileNav(){const b=document.getElementById('hamBtn'),n=document.
 
 /* ===== MANGA: bang cap nhat chapter moi nhat ===== */
 // Kiem chung thang 9/2026 qua VIZ, MANGA Plus, Popverse, Fandom wiki cua tung
-// bo — KHONG dung gio/phut gia dinh vi khong the biet chinh xac; chi ghi ngay
+// bo, KHONG dung gio/phut gia dinh vi khong the biet chinh xac; chi ghi ngay
 // phat hanh chapter that va tinh trang (dang ra/tam ngung/da ket thuc).
 const MANGA_DATA = [
   {type:'manga',title:'One Piece',chapter:'Chapter 1194',status:'ongoing',time:'27/9/2026',genres:['Adventure','Shonen'],img:'/assets/img/8d631824e5-maxresdefault.jpg',link:'/one-piece-chapter-1194-spoilers-loki-uranus-elbaf'},

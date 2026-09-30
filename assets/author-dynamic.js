@@ -9,7 +9,7 @@
     var list=all.filter(function(a){return a.key===slug&&a.lang===(isEn?'EN':'VI')});
     var counts={};list.forEach(function(a){counts[a.cat]=(counts[a.cat]||0)+1});
     var initials=profile.name==='OtaHub Editorial'?'OH':profile.name.split(/\s+/).slice(0,2).map(function(x){return x[0]}).join('').toUpperCase();
-    document.title=profile.name+(isEn?' — Author Profile · OtaHub':' — Hồ sơ tác giả · OtaHub');
+    document.title=profile.name+(isEn?', Author Profile · OtaHub':', Hồ sơ tác giả · OtaHub');
     document.getElementById('author-robots').content='index,follow';
     document.getElementById('crumb-name').textContent=profile.name;
     document.getElementById('author-name').textContent=profile.name;

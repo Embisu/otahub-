@@ -26,6 +26,15 @@ async function publicAuthor(request, env, url) {
     const avatar = user.avatar || '';
     return new Response(JSON.stringify({ slug: candidate, username: user.username, name, role: authorRole, bio, avatar }), { headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'public, max-age=60' } });
   }
+  // Anna là hồ sơ tác giả đã được chủ website xác nhận. Giữ fallback này để
+  // trang tĩnh vẫn hoạt động trong lúc tài khoản KV chưa đồng bộ giữa môi trường.
+  if (slug === 'anna') {
+    return new Response(JSON.stringify({
+      slug: 'anna', username: 'anna', name: 'Anna', role: 'Tác giả',
+      bio: 'Anna viết về game indie, trải nghiệm giàu cốt truyện và những tác phẩm đáng chú ý dành cho cộng đồng OtaHub.',
+      avatar: '',
+    }), { headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'public, max-age=60' } });
+  }
   return new Response(JSON.stringify({ error: 'Không tìm thấy tác giả.' }), { status: 404, headers: { 'Content-Type': 'application/json; charset=utf-8' } });
 }
 
@@ -68,7 +77,7 @@ export default {
       // slug chưa có trang tĩnh riêng (vd tác giả mới đăng ký), ASSETS trả về
       // 404 ở đây, nên rơi xuống fallback bên dưới.
       if (exact.ok) return exact;
-      // Gọi thẳng URL sạch "/author" (không có .html) — html_handling:
+      // Gọi thẳng URL sạch "/author" (không có .html), html_handling:
       // auto-trailing-slash khiến ASSETS tự redirect .html sang URL sạch, và
       // nếu request "/author.html" ở đây, ta sẽ nhận về chính cái redirect đó
       // thay vì nội dung trang, khiến slug bị mất khỏi URL người dùng thấy.
@@ -79,7 +88,9 @@ export default {
     // Phục vụ ảnh tải lên từ KV Storage (nhanh, tức thì, 100% tin cậy, không phụ thuộc chu kỳ deploy của repo)
     if (url.pathname.startsWith('/assets/img/uploads/')) {
       const fileName = decodeURIComponent(url.pathname.slice('/assets/img/uploads/'.length));
-      if (fileName && env.ADMIN_KV) {
+      // Không phục vụ SVG từ vùng upload: SVG là tài liệu chủ động và có thể
+      // mang script/event handler nếu bị mở trực tiếp cùng origin.
+      if (fileName && /\.(?:jpe?g|jfif|png|webp|gif|avif)$/i.test(fileName) && env.ADMIN_KV) {
         try {
           const raw = await env.ADMIN_KV.get(`upload_img:${fileName}`, { type: 'arrayBuffer' });
           if (raw) {
@@ -87,13 +98,14 @@ export default {
             const mime = ext === 'webp' ? 'image/webp' :
                          ext === 'png' ? 'image/png' :
                          ext === 'gif' ? 'image/gif' :
-                         ext === 'svg' ? 'image/svg+xml' : 'image/jpeg';
+                         ext === 'avif' ? 'image/avif' : 'image/jpeg';
             return new Response(raw, {
               status: 200,
               headers: {
                 'Content-Type': mime,
                 'Cache-Control': 'public, max-age=31536000, immutable',
                 'Access-Control-Allow-Origin': '*',
+                'X-Content-Type-Options': 'nosniff',
               },
             });
           }

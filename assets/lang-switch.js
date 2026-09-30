@@ -1,4 +1,4 @@
-/* OtaHub — nút chuyển ngôn ngữ VI ⇄ EN. Tự đọc bản dịch tương ứng từ thẻ <link rel="alternate" hreflang>. */
+/* OtaHub, nút chuyển ngôn ngữ VI ⇄ EN. Tự đọc bản dịch tương ứng từ thẻ <link rel="alternate" hreflang>. */
 (function () {
   try {
     var nav = document.querySelector('.nav-r');

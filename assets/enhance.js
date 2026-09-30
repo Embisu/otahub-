@@ -1,4 +1,4 @@
-/* OtaHub UI polish — ngày kiểu Việt, mục lục bài viết, nút copy link */
+/* OtaHub UI polish, ngày kiểu Việt, mục lục bài viết, nút copy link */
 (function(){
 var MONTHS=['Th1','Th2','Th3','Th4','Th5','Th6','Th7','Th8','Th9','Th10','Th11','Th12'];
 function fmtDate(iso){
@@ -79,7 +79,7 @@ var css='.toc-block{background:rgba(255,255,255,.03);border:1px solid rgba(255,2
 var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
 })();
 
-/* Reading progress bar — art/review pages only */
+/* Reading progress bar, art/review pages only */
 (function(){
 var body=document.querySelector('.art-body, article.article');
 if(!body)return;
@@ -107,7 +107,7 @@ var css='.ot-progress{position:fixed;top:0;left:0;right:0;height:3px;background:
 var st2=document.createElement('style');st2.textContent=css;document.head.appendChild(st2);
 })();
 
-/* Back-to-top button — site-wide */
+/* Back-to-top button, site-wide */
 (function(){
 var btt=document.createElement('button');
 btt.type='button';
@@ -129,14 +129,14 @@ var css='.ot-btt{position:fixed;right:18px;bottom:22px;width:44px;height:44px;bo
 var st3=document.createElement('style');st3.textContent=css;document.head.appendChild(st3);
 })();
 
-/* Card hover glow — site-wide, pure CSS */
+/* Card hover glow, site-wide, pure CSS */
 (function(){
 var css='.ac,.fc,.w-card,.anime-card,.rk-card{transition:box-shadow .25s ease,border-color .25s ease}'+
 '.ac:hover,.fc:hover,.w-card:hover,.anime-card:hover,.rk-card:hover{box-shadow:0 0 0 1px rgba(0,229,255,.25),0 10px 30px rgba(0,229,255,.13)}';
 var st4=document.createElement('style');st4.textContent=css;document.head.appendChild(st4);
 })();
 
-/* Save/bookmark article — localStorage, no backend */
+/* Save/bookmark article, localStorage, no backend */
 (function(){
 var KEY='otahub_saved';
 function getSaved(){try{return JSON.parse(localStorage.getItem(KEY)||'[]');}catch(e){return [];}}

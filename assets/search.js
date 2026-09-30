@@ -313,7 +313,7 @@ window.IDX = [
     "url": "/top-8-anime-han-quoc-aeni-dang-xem-nhat",
     "cat": "Anime",
     "date": "2026-09-29",
-    "excerpt": "Từ Lookism, Ghost Messenger đến There She Is!! — điểm qua 8 tựa anime Hàn Quốc (Aeni) đáng xem nhất, từ hài lãng mạn đến zombie kinh dị, đa số đều chuyển thể…",
+    "excerpt": "Từ Lookism, Ghost Messenger đến There She Is!!, điểm qua 8 tựa anime Hàn Quốc (Aeni) đáng xem nhất, từ hài lãng mạn đến zombie kinh dị, đa số đều chuyển thể…",
     "img": "/assets/img/top-korean-anime-lookism-banner.jpg",
     "tags": [],
     "lang": "vi"
@@ -323,7 +323,7 @@ window.IDX = [
     "url": "/en/top-korean-anime-aeni-worth-watching",
     "cat": "Anime",
     "date": "2026-09-29",
-    "excerpt": "From Lookism to Ghost Messenger and There She Is!! — 8 Korean anime (Aeni) worth watching, spanning romance, folklore fantasy, and zombie horror, most adapted…",
+    "excerpt": "From Lookism to Ghost Messenger and There She Is!!, 8 Korean anime (Aeni) worth watching, spanning romance, folklore fantasy, and zombie horror, most adapted…",
     "img": "/assets/img/top-korean-anime-lookism-banner.jpg",
     "tags": [],
     "lang": "en"
@@ -1153,7 +1153,7 @@ window.IDX = [
     "url": "/en/marvels-wolverine-review-roundup-metacritic-77",
     "cat": "Gaming",
     "date": "2026-09-23",
-    "excerpt": "Marvel’s Wolverine by Insomniac Games launched on PS5 on September 15, 2026, scoring 77 on Metacritic — lower than Spider-Man 2 but still among the year’s…",
+    "excerpt": "Marvel’s Wolverine by Insomniac Games launched on PS5 on September 15, 2026, scoring 77 on Metacritic, lower than Spider-Man 2 but still among the year’s…",
     "img": "/assets/img/yt-G62QQ42Ewwg.jpg",
     "tags": [],
     "lang": "en"
@@ -1903,7 +1903,7 @@ window.IDX = [
     "url": "/one-punch-man-murata-son-bodybuilder-cover",
     "cat": "Manga",
     "date": "2026-08-27",
-    "excerpt": "Họa sĩ One Punch Man Yusuke Murata tiết lộ đã dùng con trai Keisuke — vận động viên thể hình — làm mẫu tham khảo cho bìa chương 283, phát hành trên.",
+    "excerpt": "Họa sĩ One Punch Man Yusuke Murata tiết lộ đã dùng con trai Keisuke, vận động viên thể hình, làm mẫu tham khảo cho bìa chương 283, phát hành trên.",
     "img": "/assets/img/news-one-punch-man-murata-son-bodybuilder-cover.jpg",
     "tags": [],
     "lang": "vi"
@@ -4399,7 +4399,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Blue Protocol: Star Resonance — Global Overview (Unrated)",
+    "title": "Blue Protocol: Star Resonance, Global Overview (Unrated)",
     "url": "/en/blue-protocol-review",
     "cat": "Reviews",
     "date": "2026-06-17",
@@ -4409,7 +4409,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Blue Protocol: Star Resonance — Tổng Quan Bản Global",
+    "title": "Blue Protocol: Star Resonance, Tổng Quan Bản Global",
     "url": "/blue-protocol-review",
     "cat": "Reviews",
     "date": "2026-06-17",

@@ -142,10 +142,10 @@ async function handleSetup(request, env) {
   if (!username || !password || password.length < 8) return json({ error: 'Can ten dang nhap va mat khau toi thieu 8 ky tu.' }, 400);
 
   const existing = await env.ADMIN_KV.list({ prefix: 'user:' });
-  if (existing.keys.length > 0) return json({ error: 'Da co tai khoan trong he thong — dung muc Nguoi dung trong admin de them nguoi moi.' }, 409);
+  if (existing.keys.length > 0) return json({ error: 'Da co tai khoan trong he thong, dung muc Nguoi dung trong admin de them nguoi moi.' }, 409);
 
   const { salt, hash } = await hashPassword(password);
-  // Tai khoan dau tien luon la admin — nguoi tao he thong.
+  // Tai khoan dau tien luon la admin, nguoi tao he thong.
   await env.ADMIN_KV.put(`user:${username.toLowerCase()}`, JSON.stringify({ username, salt, hash, role: 'admin', createdAt: Date.now() }));
   await logAudit(env, { action: 'setup', username });
   return json({ ok: true });
@@ -206,7 +206,7 @@ async function handleUsersDelete(request, env, url) {
   return json({ ok: true });
 }
 
-// Doi vai tro cua 1 nguoi dung — chi admin duoc goi, va khong duoc tu ha quyen
+// Doi vai tro cua 1 nguoi dung, chi admin duoc goi, va khong duoc tu ha quyen
 // cua chinh minh xuong khi minh la admin duy nhat (tranh khoa het he thong).
 async function handleUsersRole(request, env) {
   const me = await getSessionUser(request, env);
@@ -365,7 +365,7 @@ async function handleGhPut(request, env, ghPath) {
   if (!canWritePath(user, ghPath) && !isImageUpload) {
     return json({
       error: user.role === 'contributor'
-        ? 'Tai khoan Contributor khong duoc xuat ban truc tiep — lien he editor/admin.'
+        ? 'Tai khoan Contributor khong duoc xuat ban truc tiep, lien he editor/admin.'
         : `Vai tro "${user.role}" khong duoc ghi vao file he thong (${ghPath}). Chi admin/editor moi duoc sua trang chu, trang chuyen muc, hoac file cau hinh.`,
     }, 403);
   }
@@ -373,7 +373,7 @@ async function handleGhPut(request, env, ghPath) {
   try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
   const { content, sha, message } = body || {};
   if (typeof content !== 'string') return json({ error: 'Thieu noi dung file.' }, 400);
-  if (/\.html$/i.test(ghPath) && !isImageUpload && content.length < 400) return json({ error: 'Noi dung file HTML rong hoac qua ngan — tu choi ghi de de tranh mat bai.' }, 400);
+  if (/\.html$/i.test(ghPath) && !isImageUpload && content.length < 400) return json({ error: 'Noi dung file HTML rong hoac qua ngan, tu choi ghi de de tranh mat bai.' }, 400);
 
   // Xử lý tải ảnh lên: Ưu tiên lưu ngay vào KV Storage (nhanh, tức thì, 100% không phụ thuộc token GitHub)
   if (isImageUpload) {
@@ -560,7 +560,7 @@ async function handleGhDelete(request, env, ghPath) {
   return json({ ok: true });
 }
 
-// Lich su commit cua 1 file cu the — dung GitHub Commits API co san, khong can
+// Lich su commit cua 1 file cu the, dung GitHub Commits API co san, khong can
 // tu xay kho luu phien ban rieng. Toi da 30 commit gan nhat cho gon.
 async function handleGhHistory(request, env, ghPath) {
   const user = await getSessionUser(request, env);
@@ -582,7 +582,7 @@ async function handleGhHistory(request, env, ghPath) {
   });
 }
 
-// Nhat ky hoat dong lo thong tin ai-sua-gi-luc-nao trong toan he thong — chi
+// Nhat ky hoat dong lo thong tin ai-sua-gi-luc-nao trong toan he thong, chi
 // admin/editor moi can (va nen) thay duoc, author/contributor khong can biet
 // nguoi khac dang lam gi.
 async function handleAuditLog(request, env) {
@@ -596,12 +596,12 @@ async function handleAuditLog(request, env) {
 }
 
 // ── Ban nhap (draft) ─────────────────────────────────────────────────────
-// KHONG dung GitHub — luu tam trong KV de autosave lien tuc ma khong tao
+// KHONG dung GitHub, luu tam trong KV de autosave lien tuc ma khong tao
 // hang loat commit "rac". Chi "Luu & Deploy" (handleGhPut) moi la xuat ban
 // that; sau khi xuat ban thanh cong, draft tuong ung se bi xoa (frontend goi
 // DELETE rieng ngay sau khi ghPut thanh cong).
 // Quyen so huu: chi chinh chu (updatedBy) hoac admin/editor moi duoc doc/ghi
-// de/xoa 1 draft cu the — tranh 1 tai khoan bat ky doc/ghi de/xoa duoc draft
+// de/xoa 1 draft cu the, tranh 1 tai khoan bat ky doc/ghi de/xoa duoc draft
 // cua nguoi khac chi vi da dang nhap.
 async function handleDraftGet(request, env, ghPath) {
   const user = await getSessionUser(request, env);
@@ -609,7 +609,7 @@ async function handleDraftGet(request, env, ghPath) {
   if (!ghPath) return json({ error: 'Thieu duong dan file.' }, 400);
   const draft = await getDraftRaw(env, ghPath);
   // Tra ve 404 giong het truong hop "khong co draft" cho ca truong hop "co
-  // draft nhung khong phai cua minh" — tranh lo thong tin la file nay dang
+  // draft nhung khong phai cua minh", tranh lo thong tin la file nay dang
   // duoc ai do khac soan.
   if (!draft || !canViewDraft(user, draft)) return json({ error: 'Khong co ban nhap.' }, 404);
   return json(draft);
@@ -623,7 +623,7 @@ async function handleDraftPut(request, env, ghPath) {
   }
   const existing = await getDraftRaw(env, ghPath);
   if (existing && !canViewDraft(user, existing)) {
-    return json({ error: `Ban nhap nay dang duoc "${existing.updatedBy}" soan — khong the ghi de.` }, 409);
+    return json({ error: `Ban nhap nay dang duoc "${existing.updatedBy}" soan, khong the ghi de.` }, 409);
   }
   let body;
   try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
@@ -637,7 +637,7 @@ async function handleDraftDelete(request, env, ghPath) {
   if (!ghPath) return json({ error: 'Thieu duong dan file.' }, 400);
   const existing = await getDraftRaw(env, ghPath);
   if (existing && !canViewDraft(user, existing)) {
-    return json({ error: `Ban nhap nay dang duoc "${existing.updatedBy}" soan — khong the xoa.` }, 403);
+    return json({ error: `Ban nhap nay dang duoc "${existing.updatedBy}" soan, khong the xoa.` }, 403);
   }
   await deleteDraft(env, ghPath);
   return json({ ok: true });

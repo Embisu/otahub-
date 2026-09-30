@@ -1,4 +1,4 @@
-/* OtaHub — trang chi tiết dùng chung cho game/anime/manga, đọc dữ liệu từ /assets/catalog.json */
+/* OtaHub, trang chi tiết dùng chung cho game/anime/manga, đọc dữ liệu từ /assets/catalog.json */
 (function(){
 var root=document.getElementById('detailRoot');
 if(!root)return;
@@ -32,10 +32,19 @@ detailStyle.textContent=`
 .hrb-sub{font-size:13px;color:var(--dim);margin-top:2px}
 .hrb-btn{background:linear-gradient(135deg,var(--cyan),#0099bb);color:#0b0220;font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:10px 20px;text-decoration:none;border-radius:2px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;transition:transform .2s}
 .hrb-btn:hover{transform:translateY(-2px)}
+.profile-kicker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);font-weight:700;margin-bottom:10px}
+.credit-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1px solid var(--border);margin:28px 0}
+.credit-item{padding:18px 20px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.credit-item:nth-child(2n){border-right:0}.credit-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}.credit-value{font-size:15px;color:var(--white);font-weight:600}
+.article-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0 34px}
+.article-card{display:grid;grid-template-columns:112px 1fr;min-height:100px;text-decoration:none;background:var(--surf);border:1px solid var(--border);transition:transform .2s,border-color .2s;overflow:hidden}.article-card:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--acc) 45%,transparent)}
+.article-card img{width:112px;height:100%;object-fit:cover}.article-copy{padding:13px}.article-type{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:700}.article-title{font-family:var(--fd);font-size:16px;line-height:1.25;color:var(--white);font-weight:700;margin-top:5px}
+.review-note{font-size:12px;color:var(--muted);margin-top:6px}
 @media(max-width:768px){
   .score-breakdown-card{grid-template-columns:1fr;gap:20px}
   .sbc-left{border-right:none;border-bottom:1px solid var(--border);padding-right:0;padding-bottom:18px}
   .pros-cons-box{grid-template-columns:1fr}
+  .credit-grid,.article-grid{grid-template-columns:1fr}.credit-item,.credit-item:nth-child(2n){border-right:0}.article-card{grid-template-columns:96px 1fr}.article-card img{width:96px}
 }
 `;
 document.head.appendChild(detailStyle);
@@ -117,6 +126,19 @@ var ARTICLE_LINKS={
   'Kagurabachi':'/kagurabachi-review'
 };
 
+var TITLE_CREDITS={
+  'Elden Ring: Shadow of the Erdtree':[['Nhà phát triển','FromSoftware'],['Nhà phát hành','Bandai Namco Entertainment'],['Đạo diễn','Hidetaka Miyazaki'],['Xây dựng thế giới gốc','Hidetaka Miyazaki, George R. R. Martin']],
+  'Monster Hunter Wilds':[['Nhà phát triển & phát hành','Capcom'],['Đạo diễn','Yuya Tokuda'],['Nhà sản xuất','Ryozo Tsujimoto'],['Dòng game','Monster Hunter']],
+  'Ghost of Yōtei: Complete Edition':[['Nhà phát triển','Sucker Punch Productions'],['Nhà phát hành','Sony Interactive Entertainment'],['Đồng giám đốc sáng tạo','Nate Fox, Jason Connell'],['Diễn viên vai Atsu','Erika Ishii']],
+  'Big Walk':[['Nhà phát triển','House House'],['Nhà phát hành','Panic'],['Hình thức chơi','Co-op trực tuyến'],['Tình trạng','Dự kiến phát hành năm 2026']],
+  'Black Myth: Wukong':[['Nhà phát triển & phát hành','Game Science'],['Đạo diễn','Feng Ji'],['Nguồn cảm hứng','Tây Du Ký của Ngô Thừa Ân'],['Công nghệ','Unreal Engine 5']],
+  'Wuthering Waves':[['Nhà phát triển & phát hành','Kuro Games'],['Tên thế giới','Solaris-3'],['Nhân vật người chơi','Rover'],['Mô hình','Free-to-play']],
+  'Honkai: Star Rail':[['Nhà phát triển','miHoYo'],['Phát hành toàn cầu','HoYoverse'],['Nhân vật người chơi','Trailblazer'],['Mô hình','Free-to-play']],
+  'Genshin Impact':[['Nhà phát triển','miHoYo'],['Phát hành toàn cầu','HoYoverse'],['Nhân vật người chơi','Traveler'],['Mô hình','Free-to-play']],
+  'Suikoden STAR LEAP':[['Nhà phát triển & phát hành','Konami Digital Entertainment'],['Vũ trụ','Suikoden'],['Hệ thống nhân vật','108 Stars of Destiny'],['Mô hình','Free-to-play']],
+  'Honor of Kings Global':[['Nhà phát triển','TiMi Studio Group'],['Phát hành quốc tế','Level Infinite'],['Thể thức','MOBA 5v5'],['Mô hình','Free-to-play']]
+};
+
 var params=new URLSearchParams(location.search);
 var qTitle=params.get('t')||'';
 var TITLE_ALIAS={
@@ -140,25 +162,31 @@ function findEntry(catalog, title){
 
 function generatedEntry(title){
   var kind=LABEL[TYPE];
-  var viStory=[
-    title+' được OtaHub phân tích và chấm điểm dựa trên quy trình thẩm định đa chiều gồm 5 tiêu chí: chất lượng cơ chế cốt lõi, mức độ trau chuốt về mặt thị giác, chiều sâu kịch bản, âm nhạc và giá trị trải nghiệm tổng thể.',
-    'Các điểm sáng nổi bật bao gồm phong cách dàn dựng có cá tính riêng, khả năng duy trì nhịp độ cuốn hút và sự nhất quán trong việc định hình thế giới quan.',
-    'Bên cạnh ưu điểm, tác phẩm vẫn có một số yếu tố cần lưu ý như đường cong tiếp cận ban đầu hoặc độ sâu của một số tuyến nhân vật phụ.',
-    'Nhìn chung, đây là tác phẩm xuất sắc đạt số điểm ấn tượng trên Bảng xếp hạng OtaHub, hoàn toàn xứng đáng để thưởng thức và trải nghiệm.'
-  ];
-  var enStory=[
-    title+' has been critically evaluated across five core editorial metrics: mechanical execution, visual direction, narrative depth, sound design, and overarching long-term value.',
-    'Key strengths include distinctive auteur identity, engaging rhythmic momentum, and consistent world-building execution.',
-    'Minor caveats include onboarding curve or pacing variations across secondary arcs.',
-    'Verdict: An exceptional release that fully justifies its strong standing on the OtaHub Rankings.'
-  ];
+  var viStory=[title+' đã có hồ sơ riêng để tập hợp các bài viết và review trên OtaHub.', 'Thông tin cốt truyện, đội ngũ sản xuất, tác giả hoặc dàn diễn viên đang được ban biên tập đối chiếu từ nguồn chính thức.', 'Trong lúc hồ sơ được hoàn thiện, bạn có thể xem các bài liên quan bên dưới. OtaHub không tự điền dữ kiện hoặc điểm số khi chưa kiểm chứng.'];
+  var enStory=[title+' now has a dedicated hub for OtaHub coverage and reviews.', 'Story, production credits, creator and cast information are being checked against official sources.', 'While the profile is being completed, browse the related coverage below. OtaHub does not auto-fill unverified facts or scores.'];
   var story=EN?enStory:viStory;
-  return {type:TYPE,img:pickImg(title),score:'9.2',genre:kind,status:EN?'Verified':'Đã xác nhận',desc:story[0],hook:story[0],story:story,generated:true};
+  return {type:TYPE,img:pickImg(title),score:' - ',genre:kind,status:EN?'Being verified':'Đang kiểm chứng',desc:story[0],hook:story[0],story:story,generated:true};
 }
 
 function hrefFor(title, entry){
   var t=entry.type||TYPE;
   return (EN?'/en/':'/')+t+'-detail?t='+encodeURIComponent(title);
+}
+
+function detailArticles(title, entry){
+  var normalized=(title||'').toLowerCase().replace(/[^a-z0-9à-ỹ]+/g,' ').trim();
+  var tokens=normalized.split(/\s+/).filter(function(x){return x.length>2&&!/^(the|and|season|part|final|arc|game|manga|anime)$/.test(x);});
+  var all=window.IDX||[];
+  var matches=all.map(function(a){
+    var hay=((a.title||'')+' '+(a.desc||'')+' '+((a.tags||[]).join(' '))).toLowerCase();
+    var score=tokens.reduce(function(n,t){return n+(hay.indexOf(t)>-1?1:0);},0);
+    return {a:a,score:score};
+  }).filter(function(x){return x.score>=Math.max(1,Math.min(2,tokens.length));}).sort(function(a,b){return b.score-a.score;}).slice(0,6).map(function(x){return x.a;});
+  var review=ARTICLE_LINKS[title]||entry.article;
+  if(review&&!matches.some(function(a){return a.url===review||a.href===review;})){
+    matches.unshift({url:review,title:(EN?'In-depth review: ':'Đánh giá chuyên sâu: ')+title,img:entry.img,cat:'Review'});
+  }
+  return matches.slice(0,6);
 }
 
 function renderEmpty(){
@@ -175,15 +203,23 @@ function renderEntry(title, entry, catalog){
   var canon=document.querySelector('link[rel="canonical"]');
   var pageUrl='https://otahub.asia/'+(EN?'en/':'')+TYPE+'-detail?t='+encodeURIComponent(title);
   if(canon)canon.setAttribute('href', pageUrl);
+  var robots=document.querySelector('meta[name="robots"]');
+  if(robots)robots.setAttribute('content',entry.generated?'noindex, follow':'index, follow, max-image-preview:large');
   var ogTitle=document.querySelector('meta[property="og:title"]');
   if(ogTitle)ogTitle.setAttribute('content', title+' · Đánh Giá & Thông Tin · OtaHub');
   var ogImg=document.querySelector('meta[property="og:image"]');
   if(ogImg && entry.img && entry.img.indexOf('placeholder')<0)ogImg.setAttribute('content','https://otahub.asia'+entry.img);
+  var ogUrl=document.querySelector('meta[property="og:url"]');if(ogUrl)ogUrl.setAttribute('content',pageUrl);
+  var schema=document.createElement('script');schema.type='application/ld+json';
+  var schemaData={'@context':'https://schema.org','@type':entry.type==='game'?'VideoGame':entry.type==='anime'?'TVSeries':'Book','name':title,'description':entry.desc,'url':pageUrl,'image':entry.img?'https://otahub.asia'+entry.img:undefined,'genre':entry.genre};
+  if(entry.release)schemaData.datePublished=entry.release;if(entry.platforms)schemaData.gamePlatform=entry.platforms;
+  if(!isNaN(parseFloat(entry.score)))schemaData.review={'@type':'Review','author':{'@type':'Organization','name':'OtaHub Editorial'},'reviewRating':{'@type':'Rating','ratingValue':entry.score,'bestRating':'10','worstRating':'0'}};
+  schema.textContent=JSON.stringify(schemaData);document.head.appendChild(schema);
 
   var img=entry.img||pickImg(title);
   var scoreNum=parseFloat(entry.score);
-  var scoreHtml=(!isNaN(scoreNum))?entry.score:'9.2';
-  var numVal=parseFloat(scoreHtml)||9.0;
+  var scoreHtml=(!isNaN(scoreNum))?entry.score:' - ';
+  var numVal=parseFloat(scoreHtml)||0;
 
   // Breakdown sub-scores
   var sub1 = Math.min(10, (numVal + 0.2).toFixed(1));
@@ -206,22 +242,12 @@ function renderEntry(title, entry, catalog){
     'Giá Trị Thưởng Thức Lâu Dài'
   ];
 
-  var scoreCardHtml = `
-    <div class="score-breakdown-card">
-      <div class="sbc-left">
-        <div class="sbc-num">${scoreHtml}</div>
-        <div class="sbc-lbl">${TXT.score}</div>
-        <div class="sbc-verdict">${numVal >= 9.5 ? (EN ? 'Masterpiece' : 'Kiệt Tác Hoàn Hảo') : numVal >= 9.0 ? (EN ? 'Must-Play / Watch' : 'Siêu Phẩm Đỉnh Cao') : (EN ? 'Highly Recommended' : 'Rất Đáng Trải Nghiệm')}</div>
-      </div>
-      <div class="sbc-bars">
-        <div class="sbc-row"><span class="sbc-name">${subNames[0]}</span><div class="sbc-bg"><div class="sbc-fill" style="width:${sub1*10}%"></div></div><span class="sbc-val">${sub1}</span></div>
-        <div class="sbc-row"><span class="sbc-name">${subNames[1]}</span><div class="sbc-bg"><div class="sbc-fill" style="width:${sub2*10}%"></div></div><span class="sbc-val">${sub2}</span></div>
-        <div class="sbc-row"><span class="sbc-name">${subNames[2]}</span><div class="sbc-bg"><div class="sbc-fill" style="width:${sub3*10}%"></div></div><span class="sbc-val">${sub3}</span></div>
-        <div class="sbc-row"><span class="sbc-name">${subNames[3]}</span><div class="sbc-bg"><div class="sbc-fill" style="width:${sub4*10}%"></div></div><span class="sbc-val">${sub4}</span></div>
-        <div class="sbc-row"><span class="sbc-name">${subNames[4]}</span><div class="sbc-bg"><div class="sbc-fill" style="width:${sub5*10}%"></div></div><span class="sbc-val">${sub5}</span></div>
-      </div>
-    </div>
-  `;
+  var scoreCardHtml = '<div class="score-breakdown-card"><div class="sbc-left"><div class="sbc-num">'+scoreHtml+'</div><div class="sbc-lbl">'+TXT.score+'</div></div><div><div class="profile-kicker">'+(EN?'Editorial score':'Điểm biên tập')+'</div><p style="color:var(--dim);line-height:1.75">'+(EN?'The score belongs to OtaHub’s editorial ranking. Component scores are shown only when a published review provides an explicit rubric.':'Đây là điểm xếp hạng do ban biên tập OtaHub công bố. Điểm thành phần chỉ xuất hiện khi bài review có thang chấm cụ thể; hệ thống không tự suy diễn từ điểm tổng.')+'</p></div></div>';
+
+  var credits=entry.credits||((TITLE_CREDITS[title]||[]).map(function(c){return {label:c[0],value:c[1]};}));
+  var creditsHtml=credits.length?'<h2 class="review-heading">'+(EN?'Cast & credits':'Đội ngũ & thông tin sản xuất')+'</h2><div class="credit-grid">'+credits.map(function(c){return '<div class="credit-item"><div class="credit-label">'+esc(EN&&c.labelEn?c.labelEn:c.label)+'</div><div class="credit-value">'+esc(c.value)+'</div></div>';}).join('')+'</div>':'';
+  var articles=detailArticles(title,entry);
+  var articlesHtml='<h2 class="review-heading">'+(EN?'Articles about this title':'Bài viết về tác phẩm')+'</h2>'+(articles.length?'<div class="article-grid">'+articles.map(function(a){var u=a.url||a.href||'#';if(EN&&u.charAt(0)==='/'&&u.indexOf('/en/')!==0)u='/en'+u;return '<a class="article-card" href="'+esc(u)+'"><img src="'+esc(a.img||entry.img||'/assets/img/placeholder.svg')+'" alt="" loading="lazy"><div class="article-copy"><div class="article-type">'+esc(a.cat||a.category||'OtaHub')+'</div><div class="article-title">'+esc(a.title||title)+'</div></div></a>';}).join('')+'</div>':'<p class="review-note">'+(EN?'No separate article has been published yet. This profile will be updated when coverage is available.':'Chưa có bài viết riêng. Hồ sơ sẽ tự cập nhật khi OtaHub xuất bản nội dung liên quan.')+'</p>');
 
   var prosConsHtml = `
     <div class="pros-cons-box">
@@ -298,9 +324,10 @@ function renderEntry(title, entry, catalog){
         '<div class="info-row"><span class="ir-label">'+TXT.score+'</span><span class="ir-val">'+scoreHtml+' / 10</span></div>'+
       '</div>'+
       scoreCardHtml+
-      prosConsHtml+
+      creditsHtml+
       highlightBoxHtml+
       '<div class="review-body">'+storyHtml+sourcesHtml+'</div>'+
+      articlesHtml+
       '<div class="share-bar"><span class="share-label">'+TXT.share+'</span>'+
         '<a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(pageUrl)+'" target="_blank" rel="noopener">Facebook</a>'+
         '<a class="share-btn" href="https://twitter.com/intent/tweet?url='+encodeURIComponent(pageUrl)+'&text='+encodeURIComponent(title)+'" target="_blank" rel="noopener">X / Twitter</a>'+
@@ -310,7 +337,7 @@ function renderEntry(title, entry, catalog){
       '<div class="gs-block"><div class="gs-title">'+TXT.related+'</div><div class="sim-list">'+
         related.map(function(k){
           var e=catalog[k];
-          return '<a href="'+hrefFor(k,e)+'" class="sim-item"><img class="si-thumb" src="'+(e.img||pickImg(k)||'/assets/img/placeholder.svg')+'" alt="" loading="lazy"/><div><div class="si-name">'+esc(k)+'</div><div class="si-genre">'+esc(e.genre||LABEL[e.type])+(e.score&&e.score!=='—'?' · '+e.score:'')+'</div></div></a>';
+          return '<a href="'+hrefFor(k,e)+'" class="sim-item"><img class="si-thumb" src="'+(e.img||pickImg(k)||'/assets/img/placeholder.svg')+'" alt="" loading="lazy"/><div><div class="si-name">'+esc(k)+'</div><div class="si-genre">'+esc(e.genre||LABEL[e.type])+(e.score&&e.score!==' - '?' · '+e.score:'')+'</div></div></a>';
         }).join('')+
       '</div></div>'+
       '<div class="gs-block"><div class="gs-title">'+TXT.discover+'</div><a href="'+CATPAGE[entry.type]+'" class="ww-btn"><span class="ww-icon">→</span><span>'+TXT.viewAll+LABEL[entry.type]+'</span></a></div>'+

@@ -10,7 +10,8 @@ const hubNames = [
   'lien-he.html', 'chinh-sach-bao-mat.html', 'dieu-khoan-su-dung.html', 
   'lich-phat-song.html', 'sap-ra-mat.html', '404.html', 'admin.html', 
   'news-pipeline.html', 'tag.html', 'article.html', 'anime-detail.html',
-  'game-detail.html', 'manga-detail.html'
+  'game-detail.html', 'manga-detail.html', 'author.html', 'bai-viet.html',
+  'huong-dan.html', 'top-list.html', 'recommend.html', 'tieu-chuan-danh-gia.html'
 ];
 
 function isHubOrUtility(relPath) {
@@ -41,7 +42,7 @@ const sitemapUrls = new Set([...sitemapContent.matchAll(/<loc>https:\/\/otahub\.
 let searchUrls = new Set();
 if (fs.existsSync('assets/search.js')) {
   const searchContent = fs.readFileSync('assets/search.js', 'utf8');
-  const matches = [...searchContent.matchAll(/url:\s*["']([^"']+)["']/g)].map(m => {
+  const matches = [...searchContent.matchAll(/["']?url["']?\s*:\s*["']([^"']+)["']/g)].map(m => {
     let s = m[1].replace(/^\//, '');
     if (!s.endsWith('.html')) s += '.html';
     return s;
