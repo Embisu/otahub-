@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Dược Sư Tự Sự ra mắt game console đầu tiên - The Apothecary Diaries: The False Imperial Brother",
+    "url": "/duoc-su-tu-su-ra-mat-game-console-dau-tien-the-apothecary-di",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Dược Sư Tự Sự chính thức có game console đầu tiên mang tên The Apothecary Diaries: The False Imperial Brother, dự kiến ra mắt đầu năm 2027. Game đưa Maomao trở lại với một vụ án hoàn toàn mới, kết hợp điều tra, suy luận và bào chế thuốc cùng những bí ẩn xoay quanh “Hoàng đệ”.",
+    "img": "/assets/img/uploads/ild2v8ju-library-hero.jpg",
+    "tags": []
+  },
+  {
     "title": "Top 10 anime đáng mong chờ sẽ ra mắt năm 2027",
     "url": "/top-10-anime-dang-mong-cho-se-ra-mat-nam-2027",
     "cat": "Anime",
