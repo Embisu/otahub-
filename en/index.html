@@ -850,7 +850,7 @@ a.mq-item{text-decoration:none;cursor:pointer}
 .latest-wrap>*{background:var(--surf)}
 
 
-.latest-side{padding:24px 20px}
+.latest-side{padding:24px 20px;align-self:start;position:sticky;top:76px}
 
 
 .w-card{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 20px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s}
@@ -1058,6 +1058,7 @@ input, select, textarea { font-family: inherit; }
   .manga-grid { grid-template-columns: 1fr; }
   .ft-in { grid-template-columns: 1fr 1fr; gap: 32px; }
   .nl-in { grid-template-columns: 1fr; gap: 28px; }
+  .latest-wrap { grid-template-columns: 1fr 320px; }
 }
 
 @media(max-width: 768px) {
@@ -1308,7 +1309,7 @@ input, select, textarea { font-family: inherit; }
     overflow: hidden;
   }
   .wc-thumb img { width: 100%; height: 100%; object-fit: cover; }
-  .latest-side { padding: 18px 14px; border-radius: 8px; }
+  .latest-side { padding: 18px 14px; border-radius: 8px; position: static; }
   .t-item {
     display: grid;
     grid-template-columns: 24px 68px 1fr;
@@ -2186,7 +2187,9 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
       <article class="w-card"><a href="/en/ghost-of-yotei-weapons-gameplay-ezo-map" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming · Sucker Punch</div><div class="wc-t">Ghost of Yōtei: PS5 Launch Oct 2, 2025, Atsu Wields Dual Katanas</div><div class="wc-m">Mambu (Bảo Nam) · Sep 07, 2026 · 6 min</div></div><div class="wc-thumb"><img src="/assets/img/news-ghost-of-yotei-weapons-gameplay.jpg" alt="Ghost of Yōtei: PS5 Launch Oct 2, 2025, Atsu Wields Dual Katanas" loading="lazy" width="1200" height="675"></div></a></article>
       <article class="w-card"><a href="/en/girls-frontline-2-exilium-beginners-guide" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming · Gacha Strategy</div><div class="wc-t">Girls' Frontline 2: Exilium Beginner's Guide</div><div class="wc-m">Quinn (Thanh Tâm) · Sep 07, 2026 · 7 min</div></div><div class="wc-thumb"><img src="/assets/img/news-gfl2-guide-team-build.jpg" alt="Girls' Frontline 2: Exilium Beginner's Guide" loading="lazy" width="1200" height="675"></div></a></article>
       <article class="w-card"><a href="/en/nintendo-direct-september-2026-switch-2-mario-kart-9" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming · Nintendo Direct</div><div class="wc-t">Nintendo Direct September 2026: Zelda 40th, Ocarina Remake</div><div class="wc-m">Embisu (Hoàng Long) · Sep 06, 2026 · 6 min</div></div><div class="wc-thumb"><img src="/assets/img/yt-B_QJ4BYIGME.jpg" alt="Nintendo Direct September 2026: Zelda 40th, Ocarina Remake" loading="lazy" width="1200" height="675"></div></a></article>
-      <aside class="latest-side">
+    </div>
+
+    <aside class="latest-side">
 
 
       <div class="trend-h">Hot now</div>
@@ -2214,9 +2217,6 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 
 
   </div>
-
-
-</div>
 
 
 <div class="wrap rv" style="padding-bottom:0">
