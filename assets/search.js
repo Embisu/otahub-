@@ -32,7 +32,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-09-30",
     "excerpt": "Chương 37 của Boruto: Two Blue Vortex cho thấy Uchiha Sarada dùng năng lực hố đen Ohirume linh hoạt hơn hẳn, nhưng cái giá về thị lực vẫn treo lơ lửng trên hành trình chinh phục Mangekyo Sharingan của cô.",
-    "img": "/assets/img/boruto-naruto-next-generations-banner.jpg",
+    "img": "/assets/img/naruto-hokage-mountain-crop.jpg",
     "tags": [
       "Boruto: Two Blue Vortex",
       "Uchiha Sarada",
