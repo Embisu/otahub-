@@ -59,7 +59,39 @@
   JSON-LD — những thứ đó vẫn là biến riêng từng trang, xử lý ở build.js).
 
   Chèn vào <head>, sau khối meta+OG+JSON-LD riêng của từng bài, trước 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Doupo Cangqiong có mấy mùa donghua?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "5 mùa từ 2017, cộng bản làm lại mùa 1 \"Origin\" năm 2022."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Có bản người đóng không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Có, phát năm 2018 trên Hunan TV, đạo diễn Yu Rongguang."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ai là tác giả nguyên tác?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Thiên Tàm Thổ Đậu (Tiancan Tudou)."
+      }
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 

@@ -62,7 +62,39 @@
   JSON-LD — những thứ đó vẫn là biến riêng từng trang, xử lý ở build.js).
 
   Chèn vào <head>, sau khối meta+OG+JSON-LD riêng của từng bài, trước 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Blue Protocol: Star Resonance có miễn phí không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Có, free-to-play nhưng có gacha cho mỹ phẩm, vật phẩm và khả năng chiến đấu."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Có liên quan đến Blue Protocol của Bandai Namco không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Không, đây là sản phẩm riêng của Bokura, kế nhiệm tinh thần của game cũ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Vì sao đánh giá Steam là Mixed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Người chơi nêu lỗi máy chủ, thiếu việc để làm và monetization nặng."
+      }
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 

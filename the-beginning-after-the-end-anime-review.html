@@ -59,7 +59,39 @@
   JSON-LD — những thứ đó vẫn là biến riêng từng trang, xử lý ở build.js).
 
   Chèn vào <head>, sau khối meta+OG+JSON-LD riêng của từng bài, trước 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "The Beginning After the End có mấy mùa anime?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "2 mùa, mùa 1 năm 2025 và mùa 2 năm 2026, mỗi mùa 12 tập."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Vì sao có kiến nghị đòi làm lại?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Fan cho rằng hoạt hình quá tĩnh, đặc biệt ở các cảnh chiến đấu."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Nguyên tác là gì?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tiểu thuyết mạng và webtoon của TurtleMe, minh họa Fuyuki23."
+      }
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 

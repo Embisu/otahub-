@@ -59,7 +59,39 @@
   JSON-LD — những thứ đó vẫn là biến riêng từng trang, xử lý ở build.js).
 
   Chèn vào <head>, sau khối meta+OG+JSON-LD riêng của từng bài, trước 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Vì sao Solo Leveling: Ragnarok tạm ngưng?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Họa sĩ JIN nhập ngũ nghĩa vụ quân sự từ khoảng đầu năm 2026."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Series đã trở lại chưa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Chương 69 phát hành ngày 12/8/2026 sau khoảng 7 tháng gián đoạn."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ai viết kịch bản?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Daul, tại REDICE Studio."
+      }
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
