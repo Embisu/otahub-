@@ -65,13 +65,14 @@ export default {
       }
       const exact = await env.ASSETS.fetch(request);
       // Chỉ dùng kết quả này khi ASSETS thực sự khớp file tĩnh (2xx). Với các
-      // slug chưa có trang tĩnh riêng (vd tác giả mới đăng ký), ASSETS có thể
-      // trả về redirect 3xx thay vì 404 (do author.html tồn tại cùng cấp),
-      // khiến slug bị mất khỏi URL và author-dynamic.js không biết tải hồ sơ
-      // nào. Coi mọi phản hồi không phải 2xx là "chưa có trang tĩnh" để rơi
-      // xuống fallback bên dưới.
+      // slug chưa có trang tĩnh riêng (vd tác giả mới đăng ký), ASSETS trả về
+      // 404 ở đây, nên rơi xuống fallback bên dưới.
       if (exact.ok) return exact;
-      const fallback = new URL('/author.html', url);
+      // Gọi thẳng URL sạch "/author" (không có .html) — html_handling:
+      // auto-trailing-slash khiến ASSETS tự redirect .html sang URL sạch, và
+      // nếu request "/author.html" ở đây, ta sẽ nhận về chính cái redirect đó
+      // thay vì nội dung trang, khiến slug bị mất khỏi URL người dùng thấy.
+      const fallback = new URL('/author', url);
       return env.ASSETS.fetch(new Request(fallback, request));
     }
 
