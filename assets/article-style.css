@@ -108,20 +108,27 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .art-body a:hover,.art-content a:hover{border-color:var(--cyan)}
 .art-body blockquote,.art-content blockquote{border-left:3px solid var(--cyan);padding:18px 22px;background:rgba(0,229,255,.04);margin:28px 0;font-style:italic;color:var(--dim);font-size:15px;line-height:1.8}
 .art-body blockquote cite,.art-content blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.art-body figure,.art-content figure{margin:32px 0;overflow:hidden;background:var(--surf);border:1px solid var(--border)}
-.art-body figure img,.art-content figure img{width:100%;display:block;height:auto;max-height:80vh;aspect-ratio:auto;object-fit:contain;background:#0b0418}
+.art-body .art-lead,.art-content .art-lead{font-size:20px;line-height:1.8;color:var(--white);font-style:italic;font-weight:400;margin:22px 0 28px;padding:12px 20px;border-left:3px solid var(--cyan);background:rgba(0,229,255,.04);border-radius:0 6px 6px 0}
+.art-body .art-lead em,.art-content .art-lead em{font-style:italic;color:inherit}
+.art-body figure,.art-content figure{margin:32px auto;overflow:hidden;background:var(--surf);border:1px solid var(--border);border-radius:6px;text-align:center;max-width:100%}
+.art-body figure.aligncenter,.art-content figure.aligncenter{margin-left:auto;margin-right:auto;text-align:center}
+.art-body figure.alignleft,.art-content figure.alignleft{float:left;margin:0 24px 20px 0;max-width:50%}
+.art-body figure.alignright,.art-content figure.alignright{float:right;margin:0 0 20px 24px;max-width:50%}
+.art-body figure img,.art-content figure img{max-width:100%;width:auto;margin:0 auto;display:block;height:auto;max-height:80vh;aspect-ratio:auto;object-fit:contain;background:#0b0418}
 .art-body p>img:only-child,.art-content p>img:only-child{display:block;max-width:100%;height:auto;margin:28px auto}
 .art-body .aligncenter,.art-content .aligncenter{display:block;margin-left:auto;margin-right:auto;text-align:center}
+.art-body p.aligncenter,.art-content p.aligncenter{text-align:center}
+.art-body p.aligncenter img,.art-content p.aligncenter img,.art-body img.aligncenter,.art-content img.aligncenter{display:block;margin:28px auto;max-width:100%}
 .art-body:after,.art-content:after{content:"";display:block;clear:both}
-.art-body figcaption,.art-content figcaption{font-size:12px;color:var(--muted);padding:10px 14px;letter-spacing:.03em;line-height:1.5;border-top:1px solid var(--border);font-style:italic}
+.art-body figcaption,.art-content figcaption{font-size:13px;color:var(--muted);padding:10px 16px;letter-spacing:.02em;line-height:1.5;border-top:1px solid var(--border);font-style:italic;text-align:center}
 
 /* ── Cyberpunk Responsive Table ── */
 .art-table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:28px 0;border:1px solid var(--border);border-radius:6px;background:var(--surf)}
-.art-table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.6;text-align:left}
-.art-table th{background:var(--surf2);color:var(--cyan);padding:12px 16px;font-family:var(--fd);font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid rgba(0,229,255,.2)}
-.art-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--dim)}
-.art-table tbody tr:hover{background:rgba(0,229,255,.03)}
-.art-table tbody tr:last-child td{border-bottom:none}
+.art-table,.art-body table,.art-content table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.6;text-align:left}
+.art-table th,.art-body table th,.art-content table th{background:var(--surf2);color:var(--cyan);padding:12px 16px;font-family:var(--fd);font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid rgba(0,229,255,.2);border:1px solid var(--border)}
+.art-table td,.art-body table td,.art-content table td{padding:12px 16px;border-bottom:1px solid var(--border);border:1px solid var(--border);color:var(--dim)}
+.art-table tbody tr:hover,.art-body table tbody tr:hover,.art-content table tbody tr:hover{background:rgba(0,229,255,.03)}
+.art-table tbody tr:last-child td,.art-body table tbody tr:last-child td,.art-content table tbody tr:last-child td{border-bottom:none}
 
 /* ── Highlight Box (Tóm tắt điểm nhấn) ── */
 .highlight-box,.art-summary{background:rgba(0,229,255,.05);border:1px solid rgba(0,229,255,.15);padding:22px 26px;margin:0 0 36px;position:relative}
