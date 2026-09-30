@@ -1983,7 +1983,7 @@ html.theme-light .media-tab.active { background: #e0f2fe; color: #0284c7; border
   position: fixed !important;
   inset: 0 !important;
   z-index: 999999 !important;
-  background: #0b0418 !important;
+  background: var(--wp-surface) !important;
   padding: 20px 28px !important;
   margin: 0 !important;
   height: 100vh !important;
@@ -2289,6 +2289,16 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .toast-item.error { border-color: rgba(255,48,128,.4); }
 .toast-icon { font-size: 16px; flex-shrink: 0; }
 @keyframes toastIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none} }
+/* ── Cảnh báo đồng bộ thất bại (không tự ẩn, khác toast) ── */
+#sync-fail-banners { position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 10001; display: flex; flex-direction: column; gap: 10px; width: min(520px, calc(100% - 32px)); }
+.sync-fail-banner { background: var(--wp-card); border: 1px solid rgba(255,48,128,.5); border-left: 4px solid #ff3080; border-radius: 10px; padding: 14px 16px; font-size: 13px; color: var(--wp-text); box-shadow: 0 8px 32px rgba(0,0,0,.55); animation: toastIn .2s ease; }
+.sync-fail-banner h4 { margin: 0 0 8px; font-size: 13px; color: #ff3080; display: flex; align-items: center; gap: 8px; }
+.sync-fail-banner .sfb-desc { color: var(--wp-muted); margin-bottom: 6px; line-height: 1.5; }
+.sync-fail-banner ul { margin: 4px 0 12px; padding-left: 18px; color: var(--wp-muted); line-height: 1.6; }
+.sync-fail-banner .sfb-actions { display: flex; gap: 8px; }
+.sync-fail-banner button { font-size: 12px; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--wp-border); background: transparent; color: var(--wp-text); cursor: pointer; }
+.sync-fail-banner button.sfb-retry { background: var(--wp-blue, #2271b1); border-color: var(--wp-blue, #2271b1); color: #fff; }
+.sync-fail-banner button:disabled { opacity: .6; cursor: default; }
 /* ── Empty state ── */
 .empty-state { text-align: center; padding: 60px 24px; color: var(--wp-muted); }
 .empty-icon { font-size: 48px; margin-bottom: 16px; opacity: .5; }
@@ -3365,11 +3375,12 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 }
 
 /* ── Responsive Device Toolbar & Frame Container ── */
-.preview-device-bar { display: flex; align-items: center; justify-content: space-between; padding: 8px 14px; background: #130930; border-radius: 8px 8px 0 0; border: 1px solid rgba(0,229,255,.2); border-bottom: none; }
+.preview-device-bar { display: flex; align-items: center; justify-content: space-between; padding: 8px 14px; background: var(--wp-card); border-radius: 8px 8px 0 0; border: 1px solid var(--wp-border); border-bottom: none; }
 .preview-device-btns { display: flex; gap: 5px; }
-.preview-device-btn { background: rgba(255,255,255,.08); border: 1px solid transparent; color: #a5a3c2; font-size: 11.5px; font-weight: 600; padding: 4px 10px; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; transition: all .15s; }
-.preview-device-btn:hover { background: rgba(255,255,255,.16); color: #fff; }
-.preview-device-btn.active { background: #00e5ff; color: #0b0418; font-weight: 700; border-color: #00e5ff; box-shadow: 0 2px 10px rgba(0,229,255,.3); }
+.preview-device-btn { background: var(--wp-surface); border: 1px solid var(--wp-border); color: var(--wp-muted); font-size: 11.5px; font-weight: 600; padding: 4px 10px; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; transition: all .15s; }
+.preview-device-btn:hover { background: var(--wp-card-alt); color: var(--wp-title); }
+.preview-device-btn.active { background: var(--cyan); color: #000; font-weight: 700; border-color: var(--cyan); box-shadow: 0 2px 10px rgba(0,229,255,.3); }
+html.theme-light .preview-device-btn.active { color: #fff; }
 .preview-iframe-wrap { transition: max-width .25s ease-in-out, margin .25s ease-in-out, box-shadow .25s ease-in-out; }
 
 .sc-card { display: flex; gap: 12px; padding: 10px; border: 1px solid var(--wp-border); border-radius: 10px; margin-bottom: 8px; background: var(--wp-card); transition: border .15s, box-shadow .15s, opacity .15s; }
@@ -4072,7 +4083,7 @@ html.theme-light .wp-draft-banner-text {
 
     <div class="field">
       <div class="field-label-row">
-        <label><span>👤</span> Tên đăng nhập</label>
+        <label for="setup-username"><span>👤</span> Tên đăng nhập</label>
       </div>
       <div class="input-wrap">
         <span class="input-icon">👤</span>
@@ -4082,7 +4093,7 @@ html.theme-light .wp-draft-banner-text {
 
     <div class="field">
       <div class="field-label-row">
-        <label><span>🔒</span> Mật khẩu</label>
+        <label for="setup-password"><span>🔒</span> Mật khẩu</label>
       </div>
       <div class="input-wrap">
         <span class="input-icon">🔒</span>
@@ -4241,7 +4252,8 @@ html.theme-light .wp-draft-banner-text {
 </div>
 
 <div id="toast"></div>
-<input type="file" id="global-upload-input" accept="image/*" style="display:none" onchange="handleGlobalUpload(this)"/>
+<div id="sync-fail-banners"></div>
+<input type="file" id="global-upload-input" accept="image/jpeg,image/png,image/webp,image/gif,image/avif" aria-label="Chọn ảnh để tải lên" style="display:none" onchange="handleGlobalUpload(this)"/>
 
 <!-- Media Inserter (kiểu "Add Media" WordPress) — Đầy đủ Thư viện / Tải lên / URL / Video -->
 <div class="media-modal-ov" id="media-modal-ov" onclick="if(event.target===this)closeMediaModal()">
@@ -4964,6 +4976,33 @@ async function ghDelete(path, sha, message) {
   return r.json();
 }
 
+// Bọc fetch → chỉnh sửa → ghi (ghPut) cho MỘT file, có retry khi GitHub báo xung đột
+// ghi (409 do sha lỗi thời) — vd. search.js, sitemap.xml, news.html... bị nhiều nguồn
+// (admin khác, pipeline tự động) ghi đè liên tục. Mỗi lần thử lại đọc BẢN MỚI NHẤT rồi
+// áp `mutate` lên đó (không tái dùng content/sha cũ), nếu không retry chỉ lặp lại đúng
+// xung đột ban đầu. `mutate(rawContent)` trả về nội dung mới để ghi, hoặc null/undefined
+// nếu không cần ghi (mục đã tồn tại sẵn) — khi đó bỏ qua, không gọi ghPut.
+// Cùng pattern với applyTo() trong promoteToHomeHero() / addToLatestNews(), áp dụng
+// chung cho mọi bước cascade sync để không còn bước nào âm thầm mất tác dụng khi có
+// tranh chấp ghi đồng thời (nguyên nhân bài đăng xong nhưng "mất tích" khỏi search/
+// sitemap/hub/news dù file bài viết chính vẫn lên thành công).
+async function ghSyncStep(path, mutate, message, maxTries = 4) {
+  for (let attempt = 1; attempt <= maxTries; attempt++) {
+    const data = await ghGet(path);
+    const raw = decodeURIComponent(escape(atob(String(data.content || '').replace(/\s/g, ''))));
+    const next = mutate(raw);
+    if (next == null) return;
+    try {
+      await ghPut(path, next, data.sha, message);
+      return;
+    } catch (e) {
+      const isConflict = /409|sha|conflict/i.test(e.message || '');
+      if (!isConflict || attempt === maxTries) throw e;
+      await new Promise(r => setTimeout(r, 400 * attempt));
+    }
+  }
+}
+
 // ── Bản nháp (draft) — KHÔNG commit lên GitHub, chỉ lưu tạm trong KV để
 // autosave liên tục mà không tạo hàng loạt commit "rác" trên production.
 // "Lưu & Deploy" mới thật sự xuất bản (ghPut) — sau khi xuất bản thành công,
@@ -5317,9 +5356,7 @@ function switchSeoTab(tab) {
 async function compressImageFile(file, maxWidth = 1600, quality = 0.82) {
   if (!file) return null;
   const isGif = file.type === 'image/gif' || (file.name && file.name.toLowerCase().endsWith('.gif'));
-  const isSvg = file.type === 'image/svg+xml' || (file.name && file.name.toLowerCase().endsWith('.svg'));
-  
-  if (isGif || isSvg) {
+  if (isGif) {
     const b64 = await new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = () => {
@@ -5332,8 +5369,8 @@ async function compressImageFile(file, maxWidth = 1600, quality = 0.82) {
     });
     return {
       b64,
-      ext: isGif ? 'gif' : 'svg',
-      mimeType: file.type || (isGif ? 'image/gif' : 'image/svg+xml'),
+      ext: 'gif',
+      mimeType: file.type || 'image/gif',
       compressed: false
     };
   }
@@ -6048,7 +6085,7 @@ function mediaUpdatePreview() {
   const prev = document.getElementById('media-img-preview');
   if (!prev) return;
   if (!url) { prev.innerHTML = `<div class="media-preview-empty">Chưa có ảnh</div>`; return; }
-  prev.innerHTML = `<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="${esc(url)}">`;
+  prev.innerHTML = `<img alt="Xem trước ảnh" src="${esc(url)}">`;
   const img = prev.querySelector('img');
   if (img) img.onerror = () => { prev.innerHTML = `<div class="media-preview-empty">⚠️ Không tải được ảnh, kiểm tra lại URL</div>`; };
 }
@@ -6593,9 +6630,9 @@ function extractHero(html) {
   if (m && m[1]) return m[1].replace('https://otahub.asia', '');
   m = html.match(/<meta name="twitter:image" content="([^"]+)"/);
   if (m && m[1]) return m[1].replace('https://otahub.asia', '');
-  m = html.match(/<figure><img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]+)"/);
+  m = html.match(/<figure[^>]*>\s*<img[^>]+src="([^"]+)"/i);
   if (m && m[1]) return m[1];
-  m = html.match(/<header class="hero">[\s\S]*?<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]+)"/);
+  m = html.match(/<header\b[^>]*class="[^"]*hero[^"]*"[^>]*>[\s\S]*?<img[^>]+src="([^"]+)"/i);
   if (m && m[1]) return m[1];
   return '';
 }
@@ -7575,7 +7612,7 @@ async function renderMedia() {
   }
 }
 async function loadMediaFiles() {
-  const IMG_RE = /\.(jpe?g|png|webp|gif|svg)$/i;
+  const IMG_RE = /\.(jpe?g|png|webp|gif|avif)$/i;
   let rootList = [];
   try {
     const root = await ghGet('assets/img');
@@ -11182,7 +11219,7 @@ function computeSeoScoreCore(title, desc, keyword, slug, bodyHtml) {
     headingMatches.length === 0 ? 'Bài chưa có thẻ H2/H3 nào. Hãy chia nhỏ bài viết thành các mục.' :
     headingsWithKw > 0 ? `Đã có ${headingMatches.length} thẻ H2/H3 và có chứa từ khóa.` : `Đã có ${headingMatches.length} thẻ H2/H3 (nên thêm từ khóa vào ít nhất 1 thẻ).`);
 
-  const imgTags = bodyHtml.match(/<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio"[^>]*>/gi) || [];
+  const imgTags = bodyHtml.match(/<img\b[^>]*>/gi) || [];
   const imgsWithAlt = imgTags.filter(t => /alt="[^"]+"/i.test(t)).length;
   addAddl(`Thuộc tính Alt hình ảnh (${imgsWithAlt}/${imgTags.length})`, imgTags.length === 0 ? 'ok' : (imgsWithAlt === imgTags.length ? 'good' : 'bad'),
     imgTags.length === 0 ? 'Chưa có ảnh trong thân bài.' :
@@ -12908,8 +12945,8 @@ function buildArticlePreviewHtml() {
   } else if (/class="art-hero-img"\s+style="[^"]*"/.test(html)) {
     html = html.replace(/(class="art-hero-img"\s+style=")[^"]*(")/,
       `$1background-image:url('${hero}');background-position:center ${heroPos}%;background-color:#0b0418;$2 data-oh-jump="heroimg"`);
-  } else if (/<header class="hero">[\s\S]*?<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio"\s+src="[^"]*"/.test(html)) {
-    html = html.replace(/(<header class="hero">[\s\S]*?<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio"\s+src=")[^"]*(")/, `$1${hero}$2 data-oh-jump="heroimg"`);
+  } else if (/<header\b[^>]*class="[^"]*hero[^"]*"[^>]*>[\s\S]*?<img[^>]+src="[^"]*"/i.test(html)) {
+    html = html.replace(/(<header\b[^>]*class="[^"]*hero[^"]*"[^>]*>[\s\S]*?<img[^>]+src=")[^"]*(")/i, `$1${hero}$2 data-oh-jump="heroimg"`);
   } else if (/<figure\b[^>]*\bclass="[^"]*art-hero[^"]*"[^>]*>/i.test(html)) {
     html = html.replace(/(<figure\b[^>]*\bclass="[^"]*art-hero[^"]*")/i, `$1 data-oh-jump="heroimg"`);
   }
@@ -12987,7 +13024,7 @@ function buildArticlePreviewHtml() {
 // data-oh-jump để bấm vào mở bảng đổi ảnh — không bị coi là chữ để gõ đè lên.
 function tagLegacyBodyForInlineEdit(html) {
   let i = 0;
-  const tagged = html.replace(/<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio"\b([^>]*)>/gi, (m, attrs) => `<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio"${attrs} data-oh-jump="body-img-${i++}">`);
+  const tagged = html.replace(/<img\b([^>]*)>/gi, (m, attrs) => `<img${attrs} data-oh-jump="body-img-${i++}">`);
   return `<div data-ohfield="body" contenteditable="true">${tagged}</div>`;
 }
 
@@ -13812,8 +13849,8 @@ function applyArticleEditsToHtml(baseHtml, customData) {
       html = html.replace(/(class="art-hero-img"\s+style=")[^"]*(")/,
         `$1background-image:url('${hero}');background-position:center ${heroPos}%;background-color:#0b0418;$2`);
     }
-    if (/<header class="hero">[\s\S]*?<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio"\s+src="[^"]*"/.test(html)) {
-      html = html.replace(/(<header class="hero">[\s\S]*?<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio"\s+src=")[^"]*(")/, `$1${hero}$2`);
+    if (/<header\b[^>]*class="[^"]*hero[^"]*"[^>]*>[\s\S]*?<img[^>]+src="[^"]*"/i.test(html)) {
+      html = html.replace(/(<header\b[^>]*class="[^"]*hero[^"]*"[^>]*>[\s\S]*?<img[^>]+src=")[^"]*(")/i, `$1${hero}$2`);
     }
     const fullHeroUrl = hero.startsWith('http') || hero.startsWith('data:') ? hero : `https://otahub.asia${hero.startsWith('/') ? '' : '/'}${hero}`;
     html = html.replace(/(<meta\s+property="og:image"\s+content=")[^"]*(")/i, `$1${fullHeroUrl}$2`);
@@ -15253,7 +15290,7 @@ async function ghSpliceInsert(path, anchorPattern, insertHtml, after, commitMsg)
 function acFields(raw) {
   return {
     href: fieldGet(raw, /<a href="([^"]*)"/),
-    img: fieldGet(raw, /<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]*)"/),
+    img: fieldGet(raw, /<img[^>]+src="([^"]*)"/),
     alt: fieldGet(raw, /<img[^>]+alt="([^"]*)"/),
     title: fieldGet(raw, /class="ac-title">([^<]*)</),
     tag: fieldGet(raw, /class="tag[^"]*"[^>]*>([^<]*)</),
@@ -15262,7 +15299,7 @@ function acFields(raw) {
 function acApply(raw, f) {
   let out = raw;
   out = replaceField(out, /(<a href=")[^"]*(")/, f.href);
-  out = replaceField(out, /(<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="ac-title">)[^<]*(<)/, f.title);
   out = replaceField(out, /(class="tag[^"]*"[^>]*>)[^<]*(<)/, f.tag);
@@ -15518,7 +15555,7 @@ let HOME_ITEM_EXPANDED = new Set();
 function scFields(raw) {
   return {
     href: fieldGet(raw, /<a class="sc" href="([^"]*)"/),
-    img: fieldGet(raw, /<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]*)"/),
+    img: fieldGet(raw, /<img[^>]+src="([^"]*)"/),
     alt: fieldGet(raw, /<img[^>]+alt="([^"]*)"/),
     tag: fieldGet(raw, /class="tag[^"]*"[^>]*>([^<]*)</),
     title: fieldGet(raw, /class="sc-title">([^<]*)</),
@@ -15527,7 +15564,7 @@ function scFields(raw) {
 function scApply(raw, f) {
   let out = raw;
   out = replaceField(out, /(<a class="sc" href=")[^"]*(")/, f.href);
-  out = replaceField(out, /(<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="tag[^"]*"[^>]*>)[^<]*(<)/, f.tag);
   out = replaceField(out, /(class="sc-title">)[^<]*(<)/, f.title);
@@ -15600,7 +15637,7 @@ function hReplaceSection(html, startAnchor, endAnchor, rebuildFn) {
 function sArtFields(item) {
   return {
     href: fieldGet(item, /onclick="location\.href='([^']*)'"/),
-    img: fieldGet(item, /<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]*)"/),
+    img: fieldGet(item, /<img[^>]+src="([^"]*)"/),
     alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
     cat: fieldGet(item, /class="sa-c"[^>]*>([^<]*)</),
     title: fieldGet(item, /class="sa-t">([^<]*)</),
@@ -15610,7 +15647,7 @@ function sArtFields(item) {
 function sArtApply(item, f) {
   let out = item;
   if (f.href !== undefined) out = out.replace(/(onclick="location\.href=')[^']*(')/, (m,p1,p2)=>p1+f.href.replace(/'/g,"\\'")+p2);
-  out = replaceField(out, /(<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="sa-c"[^>]*>)[^<]*(<)/, f.cat);
   out = replaceField(out, /(class="sa-t">)[^<]*(<)/, f.title);
@@ -15638,7 +15675,7 @@ function mqItemApply(item, f) {
 function rkItemFields(item) {
   return {
     href: fieldGet(item, /<a class="rk-item[^"]*" href="([^"]*)"/),
-    img: fieldGet(item, /<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]*)"/),
+    img: fieldGet(item, /<img[^>]+src="([^"]*)"/),
     alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
     name: fieldGet(item, /class="rk-name">([^<]*)</),
     sub: fieldGet(item, /class="rk-sub">([^<]*)</),
@@ -15648,7 +15685,7 @@ function rkItemFields(item) {
 function rkItemApply(item, f) {
   let out = item;
   out = replaceField(out, /(<a class="rk-item[^"]*" href=")[^"]*(")/, f.href);
-  out = replaceField(out, /(<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="rk-name">)[^<]*(<)/, f.name);
   out = replaceField(out, /(class="rk-sub">)[^<]*(<)/, f.sub);
@@ -15664,7 +15701,7 @@ function rkItemApply(item, f) {
 function mangaItemFields(item) {
   return {
     href: fieldGet(item, /<a class="manga-item[^"]*" href="([^"]*)"/),
-    img: fieldGet(item, /<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]*)"/),
+    img: fieldGet(item, /<img[^>]+src="([^"]*)"/),
     alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
     title: fieldGet(item, /class="mi-title">([^<]*)</),
     meta: fieldGet(item, /class="mi-meta">([^<]*)</),
@@ -15674,7 +15711,7 @@ function mangaItemFields(item) {
 function mangaItemApply(item, f) {
   let out = item;
   out = replaceField(out, /(<a class="manga-item[^"]*" href=")[^"]*(")/, f.href);
-  out = replaceField(out, /(<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="mi-title">)[^<]*(<)/, f.title);
   out = replaceField(out, /(class="mi-meta">)[^<]*(<)/, f.meta);
@@ -15686,7 +15723,7 @@ function mangaItemApply(item, f) {
 function wCardFields(item) {
   return {
     href: fieldGet(item, /<a href="([^"]*)"/),
-    img: fieldGet(item, /<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]*)"/),
+    img: fieldGet(item, /<img[^>]+src="([^"]*)"/),
     alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
     cat: fieldGet(item, /class="wc-c"[^>]*>([^<]*)</),
     title: fieldGet(item, /class="wc-t">([^<]*)</),
@@ -15696,7 +15733,7 @@ function wCardFields(item) {
 function wCardApply(item, f) {
   let out = item;
   out = replaceField(out, /(<a href=")[^"]*(")/, f.href);
-  out = replaceField(out, /(<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="wc-c"[^>]*>)[^<]*(<)/, f.cat);
   out = replaceField(out, /(class="wc-t">)[^<]*(<)/, f.title);
@@ -15708,7 +15745,7 @@ function wCardApply(item, f) {
 function tItemFields(item) {
   return {
     href: fieldGet(item, /<a class="t-item" href="([^"]*)"/),
-    img: fieldGet(item, /<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]*)"/),
+    img: fieldGet(item, /<img[^>]+src="([^"]*)"/),
     alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
     title: fieldGet(item, /class="ti-t">([^<]*)</),
     meta: fieldGet(item, /class="ti-m">([^<]*)</),
@@ -15717,7 +15754,7 @@ function tItemFields(item) {
 function tItemApply(item, f) {
   let out = item;
   out = replaceField(out, /(<a class="t-item" href=")[^"]*(")/, f.href);
-  out = replaceField(out, /(<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="ti-t">)[^<]*(<)/, f.title);
   out = replaceField(out, /(class="ti-m">)[^<]*(<)/, f.meta);
@@ -16805,7 +16842,7 @@ let TEAM_CARDS = [];
 
 function teamFields(raw) {
   return {
-    img: fieldGet(raw, /<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="([^"]*)"/),
+    img: fieldGet(raw, /<img[^>]+src="([^"]*)"/),
     alt: fieldGet(raw, /<img[^>]+alt="([^"]*)"/),
     badge: fieldGet(raw, /class="tc-role-badge">([^<]*)</),
     name: fieldGet(raw, /class="tc-name">([^<]*)</),
@@ -16815,7 +16852,7 @@ function teamFields(raw) {
 }
 function teamApply(raw, f) {
   let out = raw;
-  out = replaceField(out, /(<img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src=")[^"]*(")/, f.img);
+  out = replaceField(out, /(<img[^>]+src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="tc-role-badge">)[^<]*(<)/, f.badge);
   out = replaceField(out, /(class="tc-name">)[^<]*(<)/, f.name);
@@ -16847,7 +16884,7 @@ function renderTeamEditor() {
     return `<div class="rank-entry">
       <div style="text-align:center">
         <div class="rank-num">#${i+1}</div>
-        <img height="675" width="1200" alt="Bảng tin (Dashboard) Khu vực quản trị OtaHub Studio" src="${esc(f.img)}" style="width:52px;height:52px;object-fit:cover;border-radius:6px;margin-top:6px" onerror="this.style.display='none'"/>
+        <img alt="Ảnh thành viên" src="${esc(f.img)}" style="width:52px;height:52px;object-fit:cover;border-radius:6px;margin-top:6px" onerror="this.style.display='none'"/>
       </div>
       <div class="rank-fields">
         <div class="rank-row">
@@ -17109,140 +17146,163 @@ async function saveNews() {
 async function syncNewArticle(art) {
   const { file, title, desc, cat, hero, author = publishingAuthorName() } = art;
   const slug = file.replace(/\.html$/, '');
-  
+
   toast('success', '🚀 Bắt đầu tự động dồn bài & đồng bộ toàn site...');
-  
+
+  // Mỗi bước cascade dưới đây dùng ghSyncStep() (fetch → sửa → ghi, TỰ RETRY khi GitHub
+  // báo xung đột ghi 409) thay vì gọi ghGet/ghPut trực tiếp — trước đây một xung đột ghi
+  // đơn lẻ (rất hay xảy ra vì nhiều tài khoản/tiến trình cùng sửa các file này) sẽ bị
+  // try/catch nuốt âm thầm (chỉ console.warn), khiến bài xuất bản thành công nhưng "mất
+  // tích" khỏi search/sitemap/hub/news dù toast vẫn báo "hoàn tất". `failures` gom lại
+  // đúng những bước còn lỗi SAU KHI đã thử lại, để báo rõ cho người đăng bài thay vì im
+  // lặng — xem showSyncFailureBanner() ở cuối file.
+  const failures = [];
+
+  // 1. Update assets/search.js
+  toast('success', '🔍 Đang cập nhật chỉ mục tìm kiếm...');
   try {
-    // 1. Update assets/search.js
-    toast('success', '🔍 Đang cập nhật chỉ mục tìm kiếm...');
-    try {
-      const searchData = await ghGet('assets/search.js');
-      let searchJs = decodeURIComponent(escape(atob(searchData.content)));
+    await ghSyncStep('assets/search.js', (searchJs) => {
       const searchMatch = searchJs.match(/(?:var|window\.)?\s*IDX\s*=\s*(\[[\s\S]*?\]);/m);
-      if (searchMatch) {
-        let idxList = new Function('return ' + searchMatch[1])();
-        idxList = idxList.filter(item => (item.url || item.u) !== `/${slug}` && (item.url || item.u) !== `/${slug}.html`);
-        idxList.unshift({
-          title: title,
-          url: `/${slug}`,
-          cat: cat || 'Gaming',
-          date: new Date().toISOString().split('T')[0],
-          excerpt: desc || '',
-          img: hero || '',
-          tags: []
-        });
-        searchJs = searchJs.replace(/(?:var|window\.)?\s*IDX\s*=\s*\[[\s\S]*?\];/, () => `window.IDX = ${JSON.stringify(idxList, null, 2)};`);
-        await ghPut('assets/search.js', searchJs, searchData.sha, `[admin] cap nhat search index cho /${slug}`);
-      }
-    } catch (e) {
-      console.warn('Search index sync error:', e);
-    }
+      if (!searchMatch) return null;
+      let idxList = new Function('return ' + searchMatch[1])();
+      idxList = idxList.filter(item => (item.url || item.u) !== `/${slug}` && (item.url || item.u) !== `/${slug}.html`);
+      idxList.unshift({
+        title: title,
+        url: `/${slug}`,
+        cat: cat || 'Gaming',
+        date: new Date().toISOString().split('T')[0],
+        excerpt: desc || '',
+        img: hero || '',
+        tags: []
+      });
+      return searchJs.replace(/(?:var|window\.)?\s*IDX\s*=\s*\[[\s\S]*?\];/, () => `window.IDX = ${JSON.stringify(idxList, null, 2)};`);
+    }, `[admin] cap nhat search index cho /${slug}`);
+  } catch (e) {
+    console.warn('Search index sync error:', e);
+    failures.push('Chỉ mục tìm kiếm (search.js)');
+  }
 
-    // 2. Update sitemap.xml
-    toast('success', '🗺️ Đang cập nhật sitemap.xml...');
-    try {
-      const sitemapData = await ghGet('sitemap.xml');
-      let sitemapXml = decodeURIComponent(escape(atob(sitemapData.content)));
+  // 2. Update sitemap.xml
+  toast('success', '🗺️ Đang cập nhật sitemap.xml...');
+  try {
+    await ghSyncStep('sitemap.xml', (sitemapXml) => {
       const urlVI = `https://otahub.asia/${slug}`;
-      if (!sitemapXml.includes(`<loc>${urlVI}</loc>`)) {
-        const today = new Date().toISOString().split('T')[0];
-        const entryVI = `  <url>\n    <loc>${urlVI}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
-        sitemapXml = sitemapXml.replace('</urlset>', () => `${entryVI}</urlset>`);
-        await ghPut('sitemap.xml', sitemapXml, sitemapData.sha, `[admin] them /${slug} vao sitemap`);
-      }
-    } catch (e) {
-      console.warn('Sitemap sync error:', e);
-    }
+      if (sitemapXml.includes(`<loc>${urlVI}</loc>`)) return null;
+      const today = new Date().toISOString().split('T')[0];
+      const entryVI = `  <url>\n    <loc>${urlVI}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
+      return sitemapXml.replace('</urlset>', () => `${entryVI}</urlset>`);
+    }, `[admin] them /${slug} vao sitemap`);
+  } catch (e) {
+    console.warn('Sitemap sync error:', e);
+    failures.push('Sitemap (sitemap.xml)');
+  }
 
-    // 2b. RSS (feed.xml), JSON Feed (feed.json) và Google News sitemap
-    try {
-      const nowIso = new Date().toISOString();
-      const imgAbs = hero ? (hero.startsWith('http') ? hero : 'https://otahub.asia' + (hero.startsWith('/') ? '' : '/') + hero) : '';
-      const xmlEsc = (t) => String(t || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-      const urlAbs = 'https://otahub.asia/' + slug;
-      const feedX = await ghGet('feed.xml');
-      let fx = decodeURIComponent(escape(atob(feedX.content.replace(/\s/g, ''))));
-      if (!fx.includes('<link>' + urlAbs + '</link>') && fx.includes('<item>')) {
-        const item = '  <item>\n    <title>' + xmlEsc(title) + '</title>\n    <link>' + urlAbs + '</link>\n    <guid isPermaLink="true">' + urlAbs + '</guid>\n    <pubDate>' + new Date().toUTCString() + '</pubDate>\n    <description>' + xmlEsc(desc) + '</description>\n' + (imgAbs ? '    <media:content url="' + xmlEsc(imgAbs) + '" medium="image"/>\n' : '') + '  </item>\n';
-        const p = fx.indexOf('  <item>');
-        fx = fx.slice(0, p) + item + fx.slice(p);
-        await ghPut('feed.xml', fx, feedX.sha, '[admin] them /' + slug + ' vao feed.xml');
-      }
-      const feedJ = await ghGet('feed.json');
-      const fj = JSON.parse(decodeURIComponent(escape(atob(feedJ.content.replace(/\s/g, '')))));
-      if (Array.isArray(fj.items) && !fj.items.some(i => i.url === urlAbs)) {
-        fj.items.unshift({ id: urlAbs, url: urlAbs, title, content_text: desc || title, image: imgAbs, date_published: nowIso });
-        await ghPut('feed.json', JSON.stringify(fj, null, 2), feedJ.sha, '[admin] them /' + slug + ' vao feed.json');
-      }
-      const smN = await ghGet('sitemap-news.xml');
-      let sn = decodeURIComponent(escape(atob(smN.content.replace(/\s/g, ''))));
-      if (!sn.includes('<loc>' + urlAbs + '</loc>') && sn.includes('<url>')) {
-        const entry = '<url><loc>' + urlAbs + '</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>' + nowIso + '</news:publication_date><news:title>' + xmlEsc(title) + '</news:title></news:news></url>\n';
-        const p = sn.indexOf('<url>');
-        sn = sn.slice(0, p) + entry + sn.slice(p);
-        await ghPut('sitemap-news.xml', sn, smN.sha, '[admin] them /' + slug + ' vao sitemap-news.xml');
-      }
-    } catch(e) { console.warn('Feed sync error:', e); }
+  // 2b. RSS (feed.xml), JSON Feed (feed.json) và Google News sitemap — 3 bước độc lập,
+  // mỗi bước tự retry & báo lỗi riêng thay vì gộp chung 1 try/catch như trước (gộp chung
+  // nghĩa là 1 bước lỗi sẽ làm 2 bước còn lại trong nhóm không chạy luôn).
+  const nowIso = new Date().toISOString();
+  const imgAbs = hero ? (hero.startsWith('http') ? hero : 'https://otahub.asia' + (hero.startsWith('/') ? '' : '/') + hero) : '';
+  const xmlEsc = (t) => String(t || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const urlAbs = 'https://otahub.asia/' + slug;
 
-    // 3. Update Category Hub (gaming.html / anime.html / manga.html)
-    let targetHub = 'gaming.html';
-    const c = (cat || '').toLowerCase();
-    if (c.includes('anime')) targetHub = 'anime.html';
-    else if (c.includes('manga') || c.includes('manhwa')) targetHub = 'manga.html';
+  try {
+    await ghSyncStep('feed.xml', (fx) => {
+      if (fx.includes('<link>' + urlAbs + '</link>') || !fx.includes('<item>')) return null;
+      const item = '  <item>\n    <title>' + xmlEsc(title) + '</title>\n    <link>' + urlAbs + '</link>\n    <guid isPermaLink="true">' + urlAbs + '</guid>\n    <pubDate>' + new Date().toUTCString() + '</pubDate>\n    <description>' + xmlEsc(desc) + '</description>\n' + (imgAbs ? '    <media:content url="' + xmlEsc(imgAbs) + '" medium="image"/>\n' : '') + '  </item>\n';
+      const p = fx.indexOf('  <item>');
+      return fx.slice(0, p) + item + fx.slice(p);
+    }, '[admin] them /' + slug + ' vao feed.xml');
+  } catch (e) {
+    console.warn('feed.xml sync error:', e);
+    failures.push('RSS feed (feed.xml)');
+  }
 
-    toast('success', `📁 Đang dồn bài vào chuyên mục ${targetHub}...`);
-    try {
-      const hubData = await ghGet(targetHub);
-      let hubHtml = decodeURIComponent(escape(atob(hubData.content)));
+  try {
+    await ghSyncStep('feed.json', (raw) => {
+      const fj = JSON.parse(raw);
+      if (!Array.isArray(fj.items) || fj.items.some(i => i.url === urlAbs)) return null;
+      fj.items.unshift({ id: urlAbs, url: urlAbs, title, content_text: desc || title, image: imgAbs, date_published: nowIso });
+      return JSON.stringify(fj, null, 2);
+    }, '[admin] them /' + slug + ' vao feed.json');
+  } catch (e) {
+    console.warn('feed.json sync error:', e);
+    failures.push('JSON Feed (feed.json)');
+  }
+
+  try {
+    await ghSyncStep('sitemap-news.xml', (sn) => {
+      if (sn.includes('<loc>' + urlAbs + '</loc>') || !sn.includes('<url>')) return null;
+      const entry = '<url><loc>' + urlAbs + '</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>' + nowIso + '</news:publication_date><news:title>' + xmlEsc(title) + '</news:title></news:news></url>\n';
+      const p = sn.indexOf('<url>');
+      return sn.slice(0, p) + entry + sn.slice(p);
+    }, '[admin] them /' + slug + ' vao sitemap-news.xml');
+  } catch (e) {
+    console.warn('sitemap-news.xml sync error:', e);
+    failures.push('Google News sitemap (sitemap-news.xml)');
+  }
+
+  // 3. Update Category Hub (gaming.html / anime.html / manga.html)
+  let targetHub = 'gaming.html';
+  const c = (cat || '').toLowerCase();
+  if (c.includes('anime')) targetHub = 'anime.html';
+  else if (c.includes('manga') || c.includes('manhwa')) targetHub = 'manga.html';
+
+  toast('success', `📁 Đang dồn bài vào chuyên mục ${targetHub}...`);
+  try {
+    await ghSyncStep(targetHub, (hubHtml) => {
       const markerMatch = hubHtml.match(/(<!-- ADMIN:ARTICLES_START -->)([\s\S]*?)(<!-- ADMIN:ARTICLES_END -->)/);
-      if (markerMatch && !markerMatch[2].includes(`href="/${slug}"`)) {
-        const cardHtml = `\n      <a href="/${slug}" class="ac">\n        <div class="ac-thumb"><img height="675" width="1200" src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy"><span class="tag">${esc(cat || 'TIN MỚI')}</span></div>\n        <div class="ac-body">\n          <h3 class="ac-title">${esc(title)}</h3>\n          <div class="ac-meta"><span class="ac-author">${esc(author)}</span> · <span class="ac-date">Vừa xong</span></div>\n        </div>\n      </a>\n`;
-        hubHtml = hubHtml.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/, markerMatch[1] + cardHtml + markerMatch[2] + markerMatch[3]);
-        await ghPut(targetHub, hubHtml, hubData.sha, `[admin] don bai /${slug} vao ${targetHub}`);
-      }
-    } catch(e) { console.warn('Hub sync error:', e); }
+      if (!markerMatch || markerMatch[2].includes(`href="/${slug}"`)) return null;
+      const cardHtml = `\n      <a href="/${slug}" class="ac">\n        <div class="ac-thumb"><img height="675" width="1200" src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy"><span class="tag">${esc(cat || 'TIN MỚI')}</span></div>\n        <div class="ac-body">\n          <h3 class="ac-title">${esc(title)}</h3>\n          <div class="ac-meta"><span class="ac-author">${esc(author)}</span> · <span class="ac-date">Vừa xong</span></div>\n        </div>\n      </a>\n`;
+      return hubHtml.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/, markerMatch[1] + cardHtml + markerMatch[2] + markerMatch[3]);
+    }, `[admin] don bai /${slug} vao ${targetHub}`);
+  } catch(e) {
+    console.warn('Hub sync error:', e);
+    failures.push(`Chuyên mục (${targetHub})`);
+  }
 
-    // 4. Update news.html
-    toast('success', '📰 Đang cập nhật luồng tin tức news.html...');
-    try {
-      const newsData = await ghGet('news.html');
-      let newsHtml = decodeURIComponent(escape(atob(newsData.content)));
+  // 4. Update news.html
+  toast('success', '📰 Đang cập nhật luồng tin tức news.html...');
+  try {
+    await ghSyncStep('news.html', (newsHtml) => {
       const newsMatch = newsHtml.match(/(<!-- OTAHUB_NEW30_START -->[\s\S]*?<h2[^>]*>)(\d+)( tin mới đã kiểm chứng<\/h2><div[^>]*>)([\s\S]*?)(<\/div><\/section><!-- OTAHUB_NEW30_END -->)/);
-      if (newsMatch && !newsMatch[4].includes(`href="/${slug}"`)) {
-        const count = parseInt(newsMatch[2], 10) || 30;
-        const newCard = `\n    <a href="/${slug}" style="display:block;background:#150a2c;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;text-decoration:none;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,255,0.4)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,229,255,0.12)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none';this.style.boxShadow='none'">\n      <div style="position:relative;width:100%;height:180px;background:#0d051e;overflow:hidden;">\n        <img height="675" width="1200" src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">\n        <span style="position:absolute;top:10px;left:10px;background:linear-gradient(135deg,#ff3080,#7c3aed);color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px;letter-spacing:.15em;text-transform:uppercase;">${esc(cat || 'HOT')}</span>\n      </div>\n      <div style="padding:16px;">\n        <h3 style="color:#ffffff;font-size:15px;font-weight:700;line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(title)}</h3>\n        <p style="color:rgba(240,238,255,0.65);font-size:12.5px;line-height:1.5;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(desc || '')}</p>\n        <div style="display:flex;align-items:center;justify-content:space-between;color:rgba(240,238,255,0.4);font-size:11px;">\n          <span>⚡ OtaHub News</span>\n          <span>Vừa xong</span>\n        </div>\n      </div>\n    </a>\n`;
-        newsHtml = newsHtml.replace(/(<!-- OTAHUB_NEW30_START -->[\s\S]*?<!-- OTAHUB_NEW30_END -->)/, `${newsMatch[1]}${count + 1}${newsMatch[3]}${newCard}${newsMatch[4]}${newsMatch[5]}`);
-        await ghPut('news.html', newsHtml, newsData.sha, `[admin] them tin /${slug} vao news.html`);
-      }
-    } catch(e) { console.warn('News sync error:', e); }
+      if (!newsMatch || newsMatch[4].includes(`href="/${slug}"`)) return null;
+      const count = parseInt(newsMatch[2], 10) || 30;
+      const newCard = `\n    <a href="/${slug}" style="display:block;background:#150a2c;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;text-decoration:none;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,255,0.4)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,229,255,0.12)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none';this.style.boxShadow='none'">\n      <div style="position:relative;width:100%;height:180px;background:#0d051e;overflow:hidden;">\n        <img height="675" width="1200" src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">\n        <span style="position:absolute;top:10px;left:10px;background:linear-gradient(135deg,#ff3080,#7c3aed);color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px;letter-spacing:.15em;text-transform:uppercase;">${esc(cat || 'HOT')}</span>\n      </div>\n      <div style="padding:16px;">\n        <h3 style="color:#ffffff;font-size:15px;font-weight:700;line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(title)}</h3>\n        <p style="color:rgba(240,238,255,0.65);font-size:12.5px;line-height:1.5;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(desc || '')}</p>\n        <div style="display:flex;align-items:center;justify-content:space-between;color:rgba(240,238,255,0.4);font-size:11px;">\n          <span>⚡ OtaHub News</span>\n          <span>Vừa xong</span>\n        </div>\n      </div>\n    </a>\n`;
+      return newsHtml.replace(/(<!-- OTAHUB_NEW30_START -->[\s\S]*?<!-- OTAHUB_NEW30_END -->)/, `${newsMatch[1]}${count + 1}${newsMatch[3]}${newCard}${newsMatch[4]}${newsMatch[5]}`);
+    }, `[admin] them tin /${slug} vao news.html`);
+  } catch(e) {
+    console.warn('News sync error:', e);
+    failures.push('Trang tin tức (news.html)');
+  }
 
-    // 5. Update index.html được thực hiện nguyên tử qua addToLatestNews() / promoteToHomeHero() ngay sau đó.
+  // 5. Update index.html được thực hiện nguyên tử qua addToLatestNews() / promoteToHomeHero() ngay sau đó.
 
-    // "Tin Mới Nhất" (latest-wrap) được thêm riêng qua addToLatestNews() ở saveArticle() —
-    // bản cũ ở đây từng chèn href="/news" cố định thay vì href thật của bài, và điều kiện
-    // chống trùng kiểm tra sai (dò "/news" thay vì slug bài), khiến chỉ 1 lần lỗi là mọi bài
-    // sau đó không còn được chèn nữa. Xem addToLatestNews() để biết bản thay thế (có VI+EN,
-    // giới hạn 40 mục, và retry khi ghi đè xung đột).
+  // "Tin Mới Nhất" (latest-wrap) được thêm riêng qua addToLatestNews() ở saveArticle() —
+  // bản cũ ở đây từng chèn href="/news" cố định thay vì href thật của bài, và điều kiện
+  // chống trùng kiểm tra sai (dò "/news" thay vì slug bài), khiến chỉ 1 lần lỗi là mọi bài
+  // sau đó không còn được chèn nữa. Xem addToLatestNews() để biết bản thay thế (có VI+EN,
+  // giới hạn 40 mục, và retry khi ghi đè xung đột).
 
-    // 6. Ping IndexNow API
-    toast('success', '📡 Báo cáo URL lên IndexNow & Search Engines...');
-    try {
-      fetch('https://api.indexnow.org/indexnow', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          host: 'otahub.asia',
-          key: '4c7a6e12e34149e69123b392b5d44849',
-          keyLocation: 'https://otahub.asia/4c7a6e12e34149e69123b392b5d44849.txt',
-          urlList: [`https://otahub.asia/${slug}`]
-        })
-      }).catch(()=>{});
-    } catch(e) {}
+  // 6. Ping IndexNow API
+  toast('success', '📡 Báo cáo URL lên IndexNow & Search Engines...');
+  try {
+    fetch('https://api.indexnow.org/indexnow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        host: 'otahub.asia',
+        key: '4c7a6e12e34149e69123b392b5d44849',
+        keyLocation: 'https://otahub.asia/4c7a6e12e34149e69123b392b5d44849.txt',
+        urlList: [`https://otahub.asia/${slug}`]
+      })
+    }).catch(()=>{});
+  } catch(e) {}
 
+  if (failures.length > 0) {
+    toast('error', `⚠️ Đồng bộ /${slug}: ${failures.length} bước vẫn lỗi sau khi đã thử lại — xem cảnh báo phía trên.`);
+    showSyncFailureBanner(art, failures);
+  } else {
     toast('success', '🎉 Hoàn tất tự động dồn bài trên toàn bộ hệ thống!');
-  } catch(err) {
-    console.error('Lỗi sync bài mới:', err);
-    toast('error', 'Lỗi đồng bộ: ' + (err.message || err));
   }
 }
 
@@ -17705,6 +17765,17 @@ function toast(type, msg) {
 
   return el;
 }
+</script>
+<script>
+// Bảo đảm các control tạo động trong Studio đều có accessible name.
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('input, select, textarea').forEach(function (control) {
+    if (control.matches('[aria-label], [aria-labelledby]')) return;
+    if (control.id && document.querySelector('label[for="' + CSS.escape(control.id) + '"]')) return;
+    var hint = control.getAttribute('placeholder') || control.getAttribute('name') || control.id;
+    if (hint) control.setAttribute('aria-label', hint.replace(/^[-_]+|[-_]+$/g, '').replace(/[-_]+/g, ' '));
+  });
+});
 </script>
 </body>
 </html>
