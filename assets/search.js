@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Vì sao The Isle lại hot đến vậy trong năm 2026?",
+    "url": "/vi-sao-the-isle-lai-hot-den-vay-trong-nam-2026",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Vì sao The Isle hot trong năm 2026? Khám phá gameplay sinh tồn khủng long, các bản cập nhật EVRIMA và lượng người chơi tăng mạnh của tựa game.",
+    "img": "/assets/img/uploads/ralzy7zw-711-thumb.jpg",
+    "tags": []
+  },
+  {
     "title": "Laputa: Lâu đài trên không trở lại rạp Việt 2026",
     "url": "/laputa-lau-dai-tren-khong-tro-lai-rap-viet-2026",
     "cat": "Anime",
