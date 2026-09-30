@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "CONTROL Resonant buộc game thủ PC tải lại toàn bộ trò chơi",
+    "url": "/control-resonant-buoc-game-thu-pc-tai-lai-toan-bo-tro-choi",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Bản cập nhật CONTROL Resonant mới giúp chỉnh độ khó bằng Assist Mode, nhưng dính lỗi bắt người chơi PC phải tải lại toàn bộ 92 GB game.",
+    "img": "/assets/img/uploads/a5lb66t6-ctrl-r-story-01.webp",
+    "tags": []
+  },
+  {
     "title": "Dược Sư Tự Sự ra mắt game console đầu tiên - The Apothecary Diaries: The False Imperial Brother",
     "url": "/duoc-su-tu-su-ra-mat-game-console-dau-tien-the-apothecary-di",
     "cat": "Gaming",
