@@ -4,11 +4,11 @@ import path from 'node:path';
 const root = path.resolve(import.meta.dirname, '..');
 
 // ═════════════════════════════════════════════════════════════════════
-// 1. DATA SOURCES: VIETNAMESE & ENGLISH
+// 1. DATA SOURCES: 48 CURATED TITLES (VIETNAMESE & ENGLISH)
 // ═════════════════════════════════════════════════════════════════════
 
 const VI_ITEMS = [
-  // ── GAMES ──────────────────────────────────────────────────────────
+  // ── 16 GAMES ───────────────────────────────────────────────────────
   {
     id: 'elden-ring',
     type: 'game',
@@ -17,7 +17,7 @@ const VI_ITEMS = [
     format: 'PC / Console',
     subType: 'pc',
     genre: 'Action RPG · Soulslike',
-    moods: ['action', 'story', 'challenge', 'explore'],
+    moods: ['action', 'story', 'challenge', 'explore', 'coop'],
     time: '60 - 150h',
     score: 9.8,
     img: '/assets/img/a7f47ed998-header.jpg',
@@ -33,7 +33,7 @@ const VI_ITEMS = [
     format: 'PC / Mobile',
     subType: 'mobile',
     genre: 'Action RPG · Open World',
-    moods: ['action', 'explore', 'story'],
+    moods: ['action', 'explore', 'story', 'quick'],
     time: 'Chơi lâu dài (Live-service)',
     score: 9.5,
     img: '/assets/img/c53329917b-wuthering-waves-hero.jpg',
@@ -49,7 +49,7 @@ const VI_ITEMS = [
     format: 'PC',
     subType: 'pc',
     genre: 'Roguelite · Action',
-    moods: ['quick', 'action', 'story'],
+    moods: ['quick', 'action', 'story', 'challenge'],
     time: '20 - 60h',
     score: 9.4,
     img: '/assets/img/recommend-hades.jpg',
@@ -65,7 +65,7 @@ const VI_ITEMS = [
     format: 'PC / Console',
     subType: 'pc',
     genre: 'Hunting Action · Co-op',
-    moods: ['action', 'coop', 'challenge'],
+    moods: ['action', 'coop', 'challenge', 'explore'],
     time: '80 - 300h',
     score: 9.4,
     img: '/assets/img/587e72813c-header.jpg',
@@ -81,7 +81,7 @@ const VI_ITEMS = [
     format: 'Mobile / PC / Console',
     subType: 'mobile',
     genre: 'Open World RPG',
-    moods: ['relax', 'explore', 'story'],
+    moods: ['relax', 'explore', 'story', 'quick'],
     time: 'Chơi lâu dài',
     score: 9.1,
     img: '/assets/img/real-genshin-natlan.jpg',
@@ -129,7 +129,7 @@ const VI_ITEMS = [
     format: 'PC / Console',
     subType: 'pc',
     genre: 'Open World RPG',
-    moods: ['story', 'explore', 'relax'],
+    moods: ['story', 'explore', 'relax', 'action'],
     time: '80 - 150h',
     score: 9.8,
     img: '/assets/img/uploads/yboyto0l-images-17.jpg',
@@ -137,12 +137,140 @@ const VI_ITEMS = [
     link: '/7-game-the-witcher-dang-choi-trong-nam-2026',
     color: ['#0a0814', '#18122c']
   },
+  {
+    id: 'cyberpunk',
+    type: 'game',
+    name: 'Cyberpunk 2077: Phantom Liberty',
+    creator: 'CD PROJEKT RED',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Sci-Fi Action RPG',
+    moods: ['story', 'action', 'explore', 'challenge'],
+    time: '40 - 100h',
+    score: 9.4,
+    img: '/assets/img/recommend-cyberpunk.jpg',
+    why: 'Thành phố tương lai Night City rực sáng ánh đèn neon. Cốt truyện gián điệp nghẹt thở cùng Idris Elba và hệ thống chiến đấu nâng cấp hoàn hảo.',
+    link: null,
+    color: ['#0f0515', '#280a35']
+  },
+  {
+    id: 'bmw',
+    type: 'game',
+    name: 'Black Myth: Wukong',
+    creator: 'Game Science · 2024',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Action RPG · Mythology',
+    moods: ['action', 'challenge', 'story'],
+    time: '35 - 55h',
+    score: 9.3,
+    img: '/assets/img/7403bc0e49-header.jpg',
+    why: 'Hóa thân thành Thiên Mệnh Nhân tái hiện hành trình Tây Du Ký. Đồ họa Unreal Engine 5 đỉnh cao và dàn boss biến hóa khôn lường.',
+    link: null,
+    color: ['#140803', '#2a1205']
+  },
+  {
+    id: 'hsr',
+    type: 'game',
+    name: 'Honkai: Star Rail',
+    creator: 'HoYoverse',
+    format: 'Mobile / PC / Console',
+    subType: 'mobile',
+    genre: 'Space Fantasy RPG',
+    moods: ['story', 'relax', 'quick'],
+    time: 'Chơi lâu dài',
+    score: 9.3,
+    img: '/assets/img/681306c50c-143582l.jpg',
+    why: 'Chuyến tàu Ngân Hà khai phá các vì sao với cốt truyện đậm tính điện ảnh. Lối đánh theo lượt chiến thuật tinh tế, dễ tiếp cận trên mọi thiết bị.',
+    link: '/honkai-star-rail-review',
+    color: ['#080414', '#150a2e']
+  },
+  {
+    id: 'stardew',
+    type: 'game',
+    name: 'Stardew Valley',
+    creator: 'ConcernedApe',
+    format: 'PC / Mobile / Console',
+    subType: 'pc',
+    genre: 'Farming Sim · Co-op',
+    moods: ['relax', 'quick', 'coop'],
+    time: '40 - 200h',
+    score: 9.5,
+    img: '/assets/img/recommend-stardew.jpg',
+    why: 'Liều thuốc chữa lành tâm hồn hoàn hảo. Trồng trọt, câu cá, kết bạn trong làng và xây dựng trang trại trong mơ một mình hoặc cùng bạn bè.',
+    link: null,
+    color: ['#0a1a06', '#1a3d0a']
+  },
+  {
+    id: 'it-takes-two',
+    type: 'game',
+    name: 'It Takes Two',
+    creator: 'Hazelight Studios',
+    format: 'PC / Console',
+    subType: 'console',
+    genre: 'Co-op Adventure',
+    moods: ['coop', 'story', 'quick', 'relax'],
+    time: '12 - 15h',
+    score: 9.6,
+    img: '/assets/img/recommend-ittakestwo.jpg',
+    why: 'Game hai người chơi xuất sắc nhất mọi thời đại. Mỗi màn chơi là một cơ chế gameplay hoàn toàn mới, vừa hài hước vừa gắn kết tình cảm bạn bè.',
+    link: null,
+    color: ['#050f0a', '#0a1e14']
+  },
+  {
+    id: 'hollow-knight',
+    type: 'game',
+    name: 'Hollow Knight',
+    creator: 'Team Cherry',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Metroidvania · Action',
+    moods: ['challenge', 'explore', 'story'],
+    time: '30 - 60h',
+    score: 9.6,
+    img: '/assets/img/recommend-hollow.jpg',
+    why: 'Vương quốc côn trùng Hallownest bí ẩn dưới lòng đất. Nhạc nền u buồn da diết, cơ chế né đòn chuẩn xác và những trận chiến boss đầy thử thách.',
+    link: null,
+    color: ['#050a12', '#0a1728']
+  },
+  {
+    id: 'celeste',
+    type: 'game',
+    name: 'Celeste',
+    creator: 'Maddy Makes Games',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Platformer · Indie Masterpiece',
+    moods: ['challenge', 'quick', 'story'],
+    time: '10 - 20h',
+    score: 9.4,
+    img: '/assets/img/recommend-celeste.jpg',
+    why: 'Hành trình vượt qua ngọn núi hiểm trở và đối mặt với nỗi sợ bản thân của cô gái Madeline. Thiết kế màn chơi xuất sắc tới từng pixel.',
+    link: null,
+    color: ['#0a0815', '#1a1030']
+  },
+  {
+    id: 'disco-elysium',
+    type: 'game',
+    name: 'Disco Elysium: The Final Cut',
+    creator: 'ZA/UM',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Narrative RPG · Detective',
+    moods: ['story', 'relax', 'challenge'],
+    time: '30 - 50h',
+    score: 9.7,
+    img: '/assets/img/recommend-disco.jpg',
+    why: 'Đỉnh cao của nghệ thuật biên kịch trong thế giới game. Điều tra vụ án mạng kỳ lạ trong thành phố Revachol bằng tư duy, tâm lý và những ngã rẽ đạo đức.',
+    link: null,
+    color: ['#100805', '#241208']
+  },
 
-  // ── ANIME ──────────────────────────────────────────────────────────
+  // ── 16 ANIME ───────────────────────────────────────────────────────
   {
     id: 'frieren',
     type: 'anime',
-    name: "Frieren: Pháp Sư Tiễn Táng (Mùa 1 & 2)",
+    name: 'Frieren: Pháp Sư Tiễn Táng (Mùa 1 & 2)',
     creator: 'Madhouse',
     format: 'TV Series (28 tập)',
     subType: 'series',
@@ -163,7 +291,7 @@ const VI_ITEMS = [
     format: 'Movie Chiếu Rạp (120 phút)',
     subType: 'movie',
     genre: 'Dark Fantasy · Action Hype',
-    moods: ['action', 'quick', 'challenge'],
+    moods: ['action', 'quick', 'challenge', 'coop'],
     time: '2 giờ trọn vẹn',
     score: 9.8,
     img: '/assets/img/e497ae1e1b-demon-slayer-cover.jpg',
@@ -179,7 +307,7 @@ const VI_ITEMS = [
     format: 'TV Series',
     subType: 'series',
     genre: 'Shonen · Supernatural Action',
-    moods: ['action', 'challenge', 'story'],
+    moods: ['action', 'challenge', 'story', 'coop'],
     time: '24 tập',
     score: 9.6,
     img: '/assets/img/pool-jujutsu-kaisen-1.jpg',
@@ -211,7 +339,7 @@ const VI_ITEMS = [
     format: 'TV Series (12 tập)',
     subType: 'series',
     genre: 'Supernatural · Action Comedy',
-    moods: ['action', 'coop', 'relax'],
+    moods: ['action', 'coop', 'relax', 'quick'],
     time: '12 tập (~5 giờ)',
     score: 9.4,
     img: '/assets/img/news-dandadan-season-2-evil-eye.jpg',
@@ -227,7 +355,7 @@ const VI_ITEMS = [
     format: 'TV Series',
     subType: 'series',
     genre: 'Adventure · Action Strategy',
-    moods: ['action', 'story', 'explore'],
+    moods: ['action', 'story', 'explore', 'challenge'],
     time: '24 tập',
     score: 9.7,
     img: '/assets/img/real-jojo-sbr-stage2.jpg',
@@ -243,7 +371,7 @@ const VI_ITEMS = [
     format: 'TV Series (24 tập)',
     subType: 'series',
     genre: 'Sports · Drama',
-    moods: ['challenge', 'story', 'quick'],
+    moods: ['challenge', 'story', 'quick', 'coop'],
     time: '24 tập',
     score: 9.3,
     img: '/assets/img/poster-real-aoashi-s2.jpg',
@@ -267,8 +395,136 @@ const VI_ITEMS = [
     link: '/vinland-saga-manga-review',
     color: ['#100a06', '#22150c']
   },
+  {
+    id: 'spy-family',
+    type: 'anime',
+    name: 'Spy x Family',
+    creator: 'WIT Studio · CloverWorks',
+    format: 'TV Series',
+    subType: 'series',
+    genre: 'Comedy · Action · Slice of Life',
+    moods: ['relax', 'quick', 'coop', 'story'],
+    time: '25 tập',
+    score: 9.2,
+    img: '/assets/img/news-dandadan-season-2-evil-eye.jpg',
+    why: 'Gia đình Forger gồm điệp viên Loid, sát thủ Yor và cô bé đọc suy nghĩ Anya. Những tình huống dở khóc dở cười cực kỳ ấm áp và giải tỏa căng thẳng.',
+    link: '/spy-x-family-anime-review',
+    color: ['#061214', '#0d282a']
+  },
+  {
+    id: 'aot',
+    type: 'anime',
+    name: 'Attack on Titan: Hồi Kết',
+    creator: 'MAPPA',
+    format: 'TV Special Chiếu Rạp',
+    subType: 'movie',
+    genre: 'Dark Fantasy · Action Epic',
+    moods: ['story', 'challenge', 'action', 'explore'],
+    time: '2 tập đặc biệt (145 phút)',
+    score: 9.9,
+    img: '/assets/img/pool-jujutsu-kaisen-1.jpg',
+    why: 'Cơn địa chấn Rung Chấn quét qua nhân loại và hồi kết bi tráng của Eren Yeager. Tượng đài anime kinh điển không thể bỏ qua trong đời.',
+    link: '/attack-on-titan-wit-teaser',
+    color: ['#120804', '#2a140a']
+  },
+  {
+    id: 'rezero',
+    type: 'anime',
+    name: 'Re:Zero Mùa 4',
+    creator: 'White Fox',
+    format: 'TV Series',
+    subType: 'series',
+    genre: 'Isekai · Psychological Dark',
+    moods: ['story', 'challenge', 'quick'],
+    time: '24 tập',
+    score: 9.4,
+    img: '/assets/img/3f4f599cac-frieren-s2-hero.jpg',
+    why: 'Khả năng Trở Về Từ Cõi Chết của Subaru đối mặt với những âm mưu tăm tối của các Đại Tội Giám Mục. Kịch tính tới nghẹt thở từng phút giây.',
+    link: '/rezero-mua-4-tap-cuoi-keo-dai-45-phut-30-9',
+    color: ['#0a0515', '#1a0d30']
+  },
+  {
+    id: 'bleach-tybw',
+    type: 'anime',
+    name: 'Bleach: Huyết Chiến Ngàn Năm',
+    creator: 'Studio Pierrot',
+    format: 'TV Series',
+    subType: 'series',
+    genre: 'Action · Supernatural Shonen',
+    moods: ['action', 'challenge', 'coop'],
+    time: 'Mỗi part 13 tập',
+    score: 9.5,
+    img: '/assets/img/news-bleach-tybw-calamity-opening-ending.jpg',
+    why: 'Chất lượng hoạt họa chiếu rạp được đầu tư vào từng khung hình TV series. Ichigo và các Đội trưởng Hộ Đình 13 quyết chiến Đế chế Quincy.',
+    link: null,
+    color: ['#100204', '#260608']
+  },
+  {
+    id: 'laputa',
+    type: 'anime',
+    name: 'Laputa: Lâu Đài Trên Không',
+    creator: 'Studio Ghibli · Hayao Miyazaki',
+    format: 'Movie Chiếu Rạp (124 phút)',
+    subType: 'movie',
+    genre: 'Adventure · Classic Ghibli',
+    moods: ['explore', 'relax', 'story', 'quick'],
+    time: '2h 04m',
+    score: 9.6,
+    img: '/assets/img/uploads/eofdaug8-maxresdefault-1.jpg',
+    why: 'Kiệt tác hoạt hình vẽ tay kinh điển của đạo diễn huyền thoại Hayao Miyazaki. Hành trình tìm kiếm lâu đài bay Laputa hòa quyện âm nhạc tuyệt mỹ của Joe Hisaishi.',
+    link: '/laputa-lau-dai-tren-khong-tro-lai-rap-viet-2026',
+    color: ['#041018', '#0a2436']
+  },
+  {
+    id: 'haikyuu-movie',
+    type: 'anime',
+    name: 'Haikyu!!: Trận Chiến Bãi Phế Liệu',
+    creator: 'Production I.G',
+    format: 'Movie Chiếu Rạp (85 phút)',
+    subType: 'movie',
+    genre: 'Sports · Action Hype',
+    moods: ['coop', 'quick', 'challenge'],
+    time: '1h 25m',
+    score: 9.5,
+    img: '/assets/img/news-haikyu-movie-2-teaser.jpg',
+    why: 'Trận đại chiến định mệnh giữa Karasuno và Nekoma. Góc nhìn thứ nhất mô phỏng đường bóng chuyền nghẹt thở, nhiệt huyết bùng cháy trong từng pha đập bóng.',
+    link: '/haikyu-movie2-little-giant-teaser',
+    color: ['#120802', '#2a1405']
+  },
+  {
+    id: 'blue-lock-s2',
+    type: 'anime',
+    name: 'Blue Lock Mùa 2: U-20 Arc',
+    creator: 'Eight Bit',
+    format: 'TV Series',
+    subType: 'series',
+    genre: 'Sports · Action Survival',
+    moods: ['challenge', 'action', 'coop'],
+    time: '14 tập',
+    score: 9.2,
+    img: '/assets/img/blue-lock-banner.jpg',
+    why: 'Dự án ngục tối bóng đá khắc nghiệt nhất. Các tiền đạo thiên tài cạnh tranh sinh tử để giành vé đối đầu đội tuyển U-20 Quốc gia Nhật Bản.',
+    link: '/rematch-x-blue-lock-crossover-event',
+    color: ['#030a18', '#081636']
+  },
+  {
+    id: 'kaiju-no-8-anime',
+    type: 'anime',
+    name: 'Kaiju No. 8',
+    creator: 'Production I.G',
+    format: 'TV Series (12 tập)',
+    subType: 'series',
+    genre: 'Action Sci-Fi · Monster',
+    moods: ['action', 'coop', 'quick', 'challenge'],
+    time: '12 tập (~5 giờ)',
+    score: 9.3,
+    img: '/assets/img/7917847814-kaiju8-hero.jpg',
+    why: 'Gã dọn dẹp xác quái vật 32 tuổi Kafka Hibino bất ngờ biến thành Kaiju mang sức mạnh hủy diệt. Hài hước, đồng đội và những trận solo mãn nhãn.',
+    link: '/kaiju-no-8-manga-review',
+    color: ['#02140c', '#062d1a']
+  },
 
-  // ── MANGA & MANHWA ─────────────────────────────────────────────────
+  // ── 16 MANGA & MANHWA ──────────────────────────────────────────────
   {
     id: 'solo-leveling-ragnarok',
     type: 'manga',
@@ -277,7 +533,7 @@ const VI_ITEMS = [
     format: 'Manhwa Hàn Quốc (Webtoon)',
     subType: 'manhwa',
     genre: 'Action · Hunter Fantasy',
-    moods: ['action', 'challenge', 'quick'],
+    moods: ['action', 'challenge', 'quick', 'explore'],
     time: 'Đọc cuộn (Webtoon)',
     score: 9.5,
     img: '/assets/img/news-solo-leveling-ragnarok-manhwa.jpg',
@@ -293,11 +549,11 @@ const VI_ITEMS = [
     format: 'Manga Nhật Bản',
     subType: 'manga',
     genre: 'Adventure · Shonen',
-    moods: ['explore', 'story', 'action'],
+    moods: ['explore', 'story', 'action', 'coop'],
     time: '1100+ Chapter',
     score: 9.9,
     img: '/assets/img/d653b4c00a-one-piece-hero.jpg',
-    why: 'Thời khắc lịch sử của vương quốc người khổng lồ Elbaf và những bí mật lớn nhất về Thế Kỷ Trống được Oda hé lộ sau gần 30 năm đồng hành.',
+    why: 'Thời khắc lịch sử của vương quốc người khổng lồ Elbaf và những bí mật lớn nhất về Thế Kỷ Trống được Oda hé lộ sau gần 30 năm đồng hành cùng băng Mũ Rơm.',
     link: '/one-piece-final-saga-review',
     color: ['#120803', '#2a1207']
   },
@@ -357,18 +613,178 @@ const VI_ITEMS = [
     format: 'Manga Hoàn Thành',
     subType: 'manga',
     genre: 'Magic · Action Shonen',
-    moods: ['action', 'coop', 'quick'],
+    moods: ['action', 'coop', 'quick', 'challenge'],
     time: '375 Chapter',
     score: 9.2,
     img: '/assets/img/75f4272c97-black-clover-final-volume-hero.jpg',
-    why: 'Cậu bé không phép thuật Asta vung thanh cự kiếm phản ma pháp vào trận chiến cuối cùng bảo vệ Vương quốc Clover. Hype tột độ từ đầu đến cuối.',
+    why: 'Cậu bé không phép thuật Asta vung thanh cự kiếm phản ma pháp cùng biệt đội Hắc Bộc Ngưu bảo vệ Vương quốc Clover. Hype tột độ từ đầu đến cuối.',
     link: '/black-clover-final-volume-review',
     color: ['#080410', '#130a24']
+  },
+  {
+    id: 'blue-lock',
+    type: 'manga',
+    name: 'Blue Lock',
+    creator: 'Muneyuki Kaneshiro · Yusuke Nomura',
+    format: 'Manga Nhật Bản',
+    subType: 'manga',
+    genre: 'Sports · Battle Royale',
+    moods: ['action', 'coop', 'challenge', 'quick'],
+    time: '280+ Chapter',
+    score: 9.4,
+    img: '/assets/img/news-rematch-blue-lock.jpg',
+    why: 'Manga thể thao kịch tính như phim hành động sinh tử. Triết lý tôi luyện cái tôi vị kỷ để tạo ra tiền đạo số 1 thế giới khiến người đọc không thể dừng lại.',
+    link: '/rematch-x-blue-lock-crossover-event',
+    color: ['#020a18', '#081736']
+  },
+  {
+    id: 'haikyu',
+    type: 'manga',
+    name: 'Haikyu!!',
+    creator: 'Haruichi Furudate',
+    format: 'Manga Hoàn Thành (402 chap)',
+    subType: 'manga',
+    genre: 'Sports · Teamwork & Passion',
+    moods: ['coop', 'story', 'quick', 'relax'],
+    time: '402 Chapter',
+    score: 9.8,
+    img: '/assets/img/1aa6c988b4-haikyuu-cover.jpg',
+    why: 'Bài ca bất hủ về tinh thần đồng đội và đam mê tuổi trẻ. Chú quạ nhỏ Hinata Shoyo tung cánh trên sân bóng chuyền thắp sáng mọi trái tim độc giả.',
+    link: '/haikyu-movie2-little-giant-teaser',
+    color: ['#120802', '#2a1405']
+  },
+  {
+    id: 'kaiju-no-8',
+    type: 'manga',
+    name: 'Kaiju No. 8',
+    creator: 'Naoya Matsumoto · Shonen Jump+',
+    format: 'Manga Nhật Bản',
+    subType: 'manga',
+    genre: 'Action Sci-Fi · Monster',
+    moods: ['action', 'coop', 'quick', 'challenge'],
+    time: 'Đang phát hành',
+    score: 9.3,
+    img: '/assets/img/1cd80a8a56-kaiju-no8-cover.jpg',
+    why: 'Lực lượng Phòng vệ Nhật Bản đối đầu thảm họa quái vật khổng lồ. Tình đồng đội sát cánh kề vai và những pha đấm vỡ nát Kaiju tràn ngập năng lượng.',
+    link: '/kaiju-no-8-manga-review',
+    color: ['#02140c', '#062d1a']
+  },
+  {
+    id: 'chainsaw-man-p2',
+    type: 'manga',
+    name: 'Chainsaw Man: Phần 2 (Học Viện)',
+    creator: 'Tatsuki Fujimoto',
+    format: 'Manga Nhật Bản',
+    subType: 'manga',
+    genre: 'Dark Comedy · Action',
+    moods: ['action', 'story', 'quick', 'challenge'],
+    time: '180+ Chapter',
+    score: 9.5,
+    img: '/assets/img/10728427f3-chainsaw-man-hero.jpg',
+    why: 'Tatsuki Fujimoto tiếp tục phá vỡ mọi quy chuẩn shonen. Cuộc đụng độ giữa Denji, Quỷ Chiến Tranh Asa Mitaka và Quỷ Tử Thần với nhịp độ nghẹt thở.',
+    link: '/chainsaw-man-manga-part2-review',
+    color: ['#140803', '#2d1408']
+  },
+  {
+    id: 'jujutsu-kaisen-manga',
+    type: 'manga',
+    name: 'Jujutsu Kaisen: Đại Chiến Shinjuku',
+    creator: 'Gege Akutami',
+    format: 'Manga Hoàn Thành (271 chap)',
+    subType: 'manga',
+    genre: 'Supernatural Action · Sorcery',
+    moods: ['action', 'challenge', 'story', 'coop'],
+    time: '271 Chapter',
+    score: 9.6,
+    img: '/assets/img/news-jujutsu-kaisen-final-chapter-271.jpg',
+    why: 'Trận tử chiến lịch sử giữa Chú thuật sư hiện đại và Vua nguyền hồn Ryomen Sukuna. Mọi thuật thức, bành trướng lãnh địa được phô diễn đến cực hạn.',
+    link: '/jujutsu-kaisen-chapter-271-final-climax-epilogue',
+    color: ['#080414', '#150a2e']
+  },
+  {
+    id: 'hunter-x-hunter',
+    type: 'manga',
+    name: 'Hunter x Hunter: Lục Địa Tối',
+    creator: 'Yoshihiro Togashi',
+    format: 'Manga Shonen Jump',
+    subType: 'manga',
+    genre: 'Psychological Adventure',
+    moods: ['story', 'explore', 'challenge'],
+    time: '419+ Chapter',
+    score: 9.8,
+    img: '/assets/img/7b5a968234-maxresdefault.jpg',
+    why: 'Bộ não thiên tài của Togashi biến cuộc chiến tranh ngai vàng trên tàu cá voi Đen thành bàn cờ trí tuệ phức tạp, tinh vi và lôi cuốn bậc nhất thế giới.',
+    link: '/hunter-x-hunter-chapter-419-tro-lai',
+    color: ['#080e04', '#142008']
+  },
+  {
+    id: 'detective-conan',
+    type: 'manga',
+    name: 'Thám Tử Lừng Danh Conan',
+    creator: 'Gosho Aoyama',
+    format: 'Manga Trinh Thám',
+    subType: 'manga',
+    genre: 'Mystery · Detective',
+    moods: ['story', 'quick', 'relax', 'coop'],
+    time: '1100+ Chapter',
+    score: 9.3,
+    img: '/assets/img/news-detective-conan-final-chapter.jpg',
+    why: 'Tượng đài trinh thám gắn liền với tuổi thơ nhiều thế hệ. Cuộc đấu trí giữa Conan và Tổ Chức Áo Đen bước vào những tiết lộ then chốt mang tính lịch sử.',
+    link: '/detective-conan-final-chapter',
+    color: ['#040a18', '#0a1632']
+  },
+  {
+    id: 'hanako-kun',
+    type: 'manga',
+    name: 'Địa Phủ Hanako-kun',
+    creator: 'AidaIro',
+    format: 'Manga Nhật Bản',
+    subType: 'manga',
+    genre: 'Supernatural · Mystery',
+    moods: ['relax', 'story', 'quick'],
+    time: '110+ Chapter',
+    score: 9.2,
+    img: '/assets/img/news-hanako-kun-manga-resumes.jpg',
+    why: 'Nét vẽ hoa mỹ độc nhất vô nhị pha trộn thần thoại đô thị học đường Nhật Bản. Chuyện tình ngọt ngào nhưng ẩn chứa những bí mật u tối và cảm động.',
+    link: '/hanako-kun-manga-resumes',
+    color: ['#12040e', '#280a20']
+  },
+  {
+    id: 'tbate',
+    type: 'manga',
+    name: 'The Beginning After The End',
+    creator: 'TurtleMe · Fuyuki23',
+    format: 'Manhwa Webtoon',
+    subType: 'manhwa',
+    genre: 'Isekai · Magic Progression',
+    moods: ['action', 'story', 'explore', 'challenge'],
+    time: '190+ Chapter (Webtoon)',
+    score: 9.4,
+    img: '/assets/img/3eb1c4a80b-the-beginning-after-the-end.jpg',
+    why: 'Vua Grey chuyển sinh thành Arthur Leywin trong lục địa ma pháp Dicathen. Xây dựng thế giới công phu, hệ thống phép thuật chặt chẽ và chiến trường bi tráng.',
+    link: '/the-beginning-after-the-end-anime-review',
+    color: ['#040c14', '#0a1a2a']
+  },
+  {
+    id: 'overgeared',
+    type: 'manga',
+    name: 'Overgeared: Thợ Rèn Huyền Thoại',
+    creator: 'Park Saenal · Team Argo',
+    format: 'Manhwa Hàn Quốc (Webtoon)',
+    subType: 'manhwa',
+    genre: 'VRMMO · Action Comedy',
+    moods: ['action', 'explore', 'quick', 'coop'],
+    time: '230+ Chapter',
+    score: 9.3,
+    img: '/assets/img/overgeared-cover.jpg',
+    why: 'Từ một gã nợ nần lông bông hóa thân thành Hậu duệ của Pagma trong thế giới game thực tế ảo Satisfy. Chế tạo trang bị thần cấp và quật ngã mọi bảng xếp hạng.',
+    link: '/overgeared-anime-len-song-som-tren-prime-video-27-9',
+    color: ['#100a04', '#26180a']
   }
 ];
 
 const EN_ITEMS = [
-  // ── GAMES ──────────────────────────────────────────────────────────
+  // ── 16 GAMES ───────────────────────────────────────────────────────
   {
     id: 'elden-ring',
     type: 'game',
@@ -377,7 +793,7 @@ const EN_ITEMS = [
     format: 'PC / Console',
     subType: 'pc',
     genre: 'Action RPG · Soulslike',
-    moods: ['action', 'story', 'challenge', 'explore'],
+    moods: ['action', 'story', 'challenge', 'explore', 'coop'],
     time: '60 - 150h',
     score: 9.8,
     img: '/assets/img/a7f47ed998-header.jpg',
@@ -393,7 +809,7 @@ const EN_ITEMS = [
     format: 'PC / Mobile',
     subType: 'mobile',
     genre: 'Action RPG · Open World',
-    moods: ['action', 'explore', 'story'],
+    moods: ['action', 'explore', 'story', 'quick'],
     time: 'Live Service',
     score: 9.5,
     img: '/assets/img/c53329917b-wuthering-waves-hero.jpg',
@@ -409,7 +825,7 @@ const EN_ITEMS = [
     format: 'PC',
     subType: 'pc',
     genre: 'Roguelite · Action',
-    moods: ['quick', 'action', 'story'],
+    moods: ['quick', 'action', 'story', 'challenge'],
     time: '20 - 60h',
     score: 9.4,
     img: '/assets/img/recommend-hades.jpg',
@@ -425,7 +841,7 @@ const EN_ITEMS = [
     format: 'PC / Console',
     subType: 'pc',
     genre: 'Hunting Action · Co-op',
-    moods: ['action', 'coop', 'challenge'],
+    moods: ['action', 'coop', 'challenge', 'explore'],
     time: '80 - 300h',
     score: 9.4,
     img: '/assets/img/587e72813c-header.jpg',
@@ -441,7 +857,7 @@ const EN_ITEMS = [
     format: 'Mobile / PC / Console',
     subType: 'mobile',
     genre: 'Open World RPG',
-    moods: ['relax', 'explore', 'story'],
+    moods: ['relax', 'explore', 'story', 'quick'],
     time: 'Live Service',
     score: 9.1,
     img: '/assets/img/real-genshin-natlan.jpg',
@@ -489,7 +905,7 @@ const EN_ITEMS = [
     format: 'PC / Console',
     subType: 'pc',
     genre: 'Open World RPG',
-    moods: ['story', 'explore', 'relax'],
+    moods: ['story', 'explore', 'relax', 'action'],
     time: '80 - 150h',
     score: 9.8,
     img: '/assets/img/uploads/yboyto0l-images-17.jpg',
@@ -497,8 +913,136 @@ const EN_ITEMS = [
     link: null,
     color: ['#0a0814', '#18122c']
   },
+  {
+    id: 'cyberpunk',
+    type: 'game',
+    name: 'Cyberpunk 2077: Phantom Liberty',
+    creator: 'CD PROJEKT RED',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Sci-Fi Action RPG',
+    moods: ['story', 'action', 'explore', 'challenge'],
+    time: '40 - 100h',
+    score: 9.4,
+    img: '/assets/img/recommend-cyberpunk.jpg',
+    why: 'Night City pulses with neon glory. A high-stakes espionage thriller starring Idris Elba alongside completely overhauled cyberware combat.',
+    link: null,
+    color: ['#0f0515', '#280a35']
+  },
+  {
+    id: 'bmw',
+    type: 'game',
+    name: 'Black Myth: Wukong',
+    creator: 'Game Science · 2024',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Action RPG · Mythology',
+    moods: ['action', 'challenge', 'story'],
+    time: '35 - 55h',
+    score: 9.3,
+    img: '/assets/img/7403bc0e49-header.jpg',
+    why: 'Journey to the West reimagined as a soul-stirring action RPG. Master staff transformations and conquer legendary mythical bosses in Unreal Engine 5.',
+    link: null,
+    color: ['#140803', '#2a1205']
+  },
+  {
+    id: 'hsr',
+    type: 'game',
+    name: 'Honkai: Star Rail',
+    creator: 'HoYoverse',
+    format: 'Mobile / PC / Console',
+    subType: 'mobile',
+    genre: 'Space Fantasy RPG',
+    moods: ['story', 'relax', 'quick'],
+    time: 'Live Service',
+    score: 9.3,
+    img: '/assets/img/681306c50c-143582l.jpg',
+    why: 'Board the Astral Express across uncharted galactic realms. Tactical turn-based combat wrapped in high-budget cinematic narrative arcs.',
+    link: '/en/honkai-star-rail-review',
+    color: ['#080414', '#150a2e']
+  },
+  {
+    id: 'stardew',
+    type: 'game',
+    name: 'Stardew Valley',
+    creator: 'ConcernedApe',
+    format: 'PC / Mobile / Console',
+    subType: 'pc',
+    genre: 'Farming Sim · Co-op',
+    moods: ['relax', 'quick', 'coop'],
+    time: '40 - 200h',
+    score: 9.5,
+    img: '/assets/img/recommend-stardew.jpg',
+    why: 'The ultimate wholesome decompression remedy. Tend crops, raise livestock, mine gemstones, and build your idyllic homestead solo or with friends.',
+    link: null,
+    color: ['#0a1a06', '#1a3d0a']
+  },
+  {
+    id: 'it-takes-two',
+    type: 'game',
+    name: 'It Takes Two',
+    creator: 'Hazelight Studios',
+    format: 'PC / Console',
+    subType: 'console',
+    genre: 'Co-op Adventure',
+    moods: ['coop', 'story', 'quick', 'relax'],
+    time: '12 - 15h',
+    score: 9.6,
+    img: '/assets/img/recommend-ittakestwo.jpg',
+    why: 'The undisputed benchmark of cooperative game design. Every level introduces brand-new gameplay mechanics engineered for laughter and genuine teamwork.',
+    link: null,
+    color: ['#050f0a', '#0a1e14']
+  },
+  {
+    id: 'hollow-knight',
+    type: 'game',
+    name: 'Hollow Knight',
+    creator: 'Team Cherry',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Metroidvania · Action',
+    moods: ['challenge', 'explore', 'story'],
+    time: '30 - 60h',
+    score: 9.6,
+    img: '/assets/img/recommend-hollow.jpg',
+    why: 'Descend into the haunting ruined insect kingdom of Hallownest. Sublime atmospheric score, tight responsive nail combat, and secrets around every bend.',
+    link: null,
+    color: ['#050a12', '#0a1728']
+  },
+  {
+    id: 'celeste',
+    type: 'game',
+    name: 'Celeste',
+    creator: 'Maddy Makes Games',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Platformer · Indie Masterpiece',
+    moods: ['challenge', 'quick', 'story'],
+    time: '10 - 20h',
+    score: 9.4,
+    img: '/assets/img/recommend-celeste.jpg',
+    why: 'Climb the perilous heights of Mount Celeste while confronting inner anxiety. Pixel-perfect jump controls and an uplifting, emotional indie narrative.',
+    link: null,
+    color: ['#0a0815', '#1a1030']
+  },
+  {
+    id: 'disco-elysium',
+    type: 'game',
+    name: 'Disco Elysium: The Final Cut',
+    creator: 'ZA/UM',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Narrative RPG · Detective',
+    moods: ['story', 'relax', 'challenge'],
+    time: '30 - 50h',
+    score: 9.7,
+    img: '/assets/img/recommend-disco.jpg',
+    why: 'A landmark triumph of literary writing in interactive media. Solve a grim murder in Revachol solely through intellect, dialogue choices, and fractured psychology.',
+    link: null,
+    color: ['#100805', '#241208']
+  },
 
-  // ── ANIME ──────────────────────────────────────────────────────────
+  // ── 16 ANIME ───────────────────────────────────────────────────────
   {
     id: 'frieren',
     type: 'anime',
@@ -523,7 +1067,7 @@ const EN_ITEMS = [
     format: 'Theatrical Movie (120 min)',
     subType: 'movie',
     genre: 'Dark Fantasy · Action Hype',
-    moods: ['action', 'quick', 'challenge'],
+    moods: ['action', 'quick', 'challenge', 'coop'],
     time: '2 Hours Feature',
     score: 9.8,
     img: '/assets/img/e497ae1e1b-demon-slayer-cover.jpg',
@@ -539,7 +1083,7 @@ const EN_ITEMS = [
     format: 'TV Series',
     subType: 'series',
     genre: 'Shonen · Supernatural Action',
-    moods: ['action', 'challenge', 'story'],
+    moods: ['action', 'challenge', 'story', 'coop'],
     time: '24 Episodes',
     score: 9.6,
     img: '/assets/img/pool-jujutsu-kaisen-1.jpg',
@@ -571,7 +1115,7 @@ const EN_ITEMS = [
     format: 'TV Series (12 Episodes)',
     subType: 'series',
     genre: 'Supernatural · Action Comedy',
-    moods: ['action', 'coop', 'relax'],
+    moods: ['action', 'coop', 'relax', 'quick'],
     time: '12 Episodes (~5 hours)',
     score: 9.4,
     img: '/assets/img/news-dandadan-season-2-evil-eye.jpg',
@@ -587,7 +1131,7 @@ const EN_ITEMS = [
     format: 'TV Series',
     subType: 'series',
     genre: 'Adventure · Action Strategy',
-    moods: ['action', 'story', 'explore'],
+    moods: ['action', 'story', 'explore', 'challenge'],
     time: '24 Episodes',
     score: 9.7,
     img: '/assets/img/real-jojo-sbr-stage2.jpg',
@@ -603,7 +1147,7 @@ const EN_ITEMS = [
     format: 'TV Series (24 Episodes)',
     subType: 'series',
     genre: 'Sports · Drama',
-    moods: ['challenge', 'story', 'quick'],
+    moods: ['challenge', 'story', 'quick', 'coop'],
     time: '24 Episodes',
     score: 9.3,
     img: '/assets/img/poster-real-aoashi-s2.jpg',
@@ -627,8 +1171,136 @@ const EN_ITEMS = [
     link: '/en/vinland-saga-manga-review',
     color: ['#100a06', '#22150c']
   },
+  {
+    id: 'spy-family',
+    type: 'anime',
+    name: 'Spy x Family',
+    creator: 'WIT Studio · CloverWorks',
+    format: 'TV Series',
+    subType: 'series',
+    genre: 'Comedy · Action · Wholesome',
+    moods: ['relax', 'quick', 'coop', 'story'],
+    time: '25 Episodes',
+    score: 9.2,
+    img: '/assets/img/news-dandadan-season-2-evil-eye.jpg',
+    why: 'Agent Twilight constructs a fake family with telepath Anya and deadly assassin Yor. A charming blend of Cold War espionage and heartwarming domestic comedy.',
+    link: null,
+    color: ['#061214', '#0d282a']
+  },
+  {
+    id: 'aot',
+    type: 'anime',
+    name: 'Attack on Titan: The Final Chapters',
+    creator: 'MAPPA',
+    format: 'Theatrical Anime Feature',
+    subType: 'movie',
+    genre: 'Dark Fantasy · Action Epic',
+    moods: ['story', 'challenge', 'action', 'explore'],
+    time: '145 min Feature',
+    score: 9.9,
+    img: '/assets/img/pool-jujutsu-kaisen-1.jpg',
+    why: 'The catastrophic Rumbling shakes civilization to its foundations. An earth-shattering conclusion to one of the most celebrated anime sagas in history.',
+    link: '/en/attack-on-titan-wit-teaser',
+    color: ['#120804', '#2a140a']
+  },
+  {
+    id: 'rezero',
+    type: 'anime',
+    name: 'Re:Zero Season 4',
+    creator: 'White Fox',
+    format: 'TV Series',
+    subType: 'series',
+    genre: 'Isekai · Psychological Dark',
+    moods: ['story', 'challenge', 'quick'],
+    time: '24 Episodes',
+    score: 9.4,
+    img: '/assets/img/3f4f599cac-frieren-s2-hero.jpg',
+    why: 'Subaru’s Return by Death ability faces brutal psychological traps laid by the Sin Archbishops. Unflinching tension and heartbreaking character growth.',
+    link: null,
+    color: ['#0a0515', '#1a0d30']
+  },
+  {
+    id: 'bleach-tybw',
+    type: 'anime',
+    name: 'Bleach: Thousand-Year Blood War',
+    creator: 'Studio Pierrot',
+    format: 'TV Series',
+    subType: 'series',
+    genre: 'Action · Supernatural Shonen',
+    moods: ['action', 'challenge', 'coop'],
+    time: '13 Episodes per cour',
+    score: 9.5,
+    img: '/assets/img/news-bleach-tybw-calamity-opening-ending.jpg',
+    why: 'Pierrot delivers feature-film visual production in every frame. Ichigo and the Thirteen Court Guard Squads clash in an all-out war with the Quincy empire.',
+    link: null,
+    color: ['#100204', '#260608']
+  },
+  {
+    id: 'laputa',
+    type: 'anime',
+    name: 'Castle in the Sky (Laputa)',
+    creator: 'Studio Ghibli · Hayao Miyazaki',
+    format: 'Theatrical Film (124 min)',
+    subType: 'movie',
+    genre: 'Adventure · Classic Ghibli',
+    moods: ['explore', 'relax', 'story', 'quick'],
+    time: '2h 04m',
+    score: 9.6,
+    img: '/assets/img/uploads/eofdaug8-maxresdefault-1.jpg',
+    why: 'Hayao Miyazaki’s timeless hand-drawn steampunk masterwork. The search for the legendary floating castle Laputa accompanied by Joe Hisaishi’s iconic score.',
+    link: null,
+    color: ['#041018', '#0a2436']
+  },
+  {
+    id: 'haikyuu-movie',
+    type: 'anime',
+    name: 'Haikyu!!: The Dumpster Battle',
+    creator: 'Production I.G',
+    format: 'Theatrical Movie (85 min)',
+    subType: 'movie',
+    genre: 'Sports · Action Hype',
+    moods: ['coop', 'quick', 'challenge'],
+    time: '1h 25m',
+    score: 9.5,
+    img: '/assets/img/news-haikyu-movie-2-teaser.jpg',
+    why: 'The long-awaited showdown between Karasuno and Nekoma. First-person point-of-view animations capture the adrenaline rush of every intense volleyball rally.',
+    link: null,
+    color: ['#120802', '#2a1405']
+  },
+  {
+    id: 'blue-lock-s2',
+    type: 'anime',
+    name: 'Blue Lock Season 2: U-20 Arc',
+    creator: 'Eight Bit',
+    format: 'TV Series',
+    subType: 'series',
+    genre: 'Sports · Action Survival',
+    moods: ['challenge', 'action', 'coop'],
+    time: '14 Episodes',
+    score: 9.2,
+    img: '/assets/img/blue-lock-banner.jpg',
+    why: 'The fiercest football prison project culminates in a high-stakes match against the Japan U-20 squad. Ego, instinct, and hyper-kinetic goalstriking.',
+    link: null,
+    color: ['#030a18', '#081636']
+  },
+  {
+    id: 'kaiju-no-8-anime',
+    type: 'anime',
+    name: 'Kaiju No. 8',
+    creator: 'Production I.G',
+    format: 'TV Series (12 Episodes)',
+    subType: 'series',
+    genre: 'Action Sci-Fi · Monster',
+    moods: ['action', 'coop', 'quick', 'challenge'],
+    time: '12 Episodes (~5 hours)',
+    score: 9.3,
+    img: '/assets/img/7917847814-kaiju8-hero.jpg',
+    why: 'A 32-year-old monster carcass sweeper inherits catastrophic kaiju abilities. Great ensemble chemistry, comedic banter, and earth-splitting punches.',
+    link: null,
+    color: ['#02140c', '#062d1a']
+  },
 
-  // ── MANGA & MANHWA ─────────────────────────────────────────────────
+  // ── 16 MANGA & MANHWA ──────────────────────────────────────────────
   {
     id: 'solo-leveling-ragnarok',
     type: 'manga',
@@ -637,7 +1309,7 @@ const EN_ITEMS = [
     format: 'Korean Manhwa (Webtoon)',
     subType: 'manhwa',
     genre: 'Action · Hunter Fantasy',
-    moods: ['action', 'challenge', 'quick'],
+    moods: ['action', 'challenge', 'quick', 'explore'],
     time: 'Vertical Scroll',
     score: 9.5,
     img: '/assets/img/news-solo-leveling-ragnarok-manhwa.jpg',
@@ -653,7 +1325,7 @@ const EN_ITEMS = [
     format: 'Japanese Manga',
     subType: 'manga',
     genre: 'Adventure · Shonen',
-    moods: ['explore', 'story', 'action'],
+    moods: ['explore', 'story', 'action', 'coop'],
     time: '1100+ Chapters',
     score: 9.9,
     img: '/assets/img/d653b4c00a-one-piece-hero.jpg',
@@ -717,18 +1389,178 @@ const EN_ITEMS = [
     format: 'Completed Manga',
     subType: 'manga',
     genre: 'Magic · Action Shonen',
-    moods: ['action', 'coop', 'quick'],
+    moods: ['action', 'coop', 'quick', 'challenge'],
     time: '375 Chapters',
     score: 9.2,
     img: '/assets/img/75f4272c97-black-clover-final-volume-hero.jpg',
-    why: 'The magicless boy Asta swings his immense anti-magic greatsword into the climactic war protecting the Clover Kingdom. Non-stop shonen hype.',
+    why: 'The magicless boy Asta swings his immense anti-magic greatsword into the climactic war alongside the Black Bulls. Non-stop shonen hype.',
     link: '/en/black-clover-final-volume-review',
     color: ['#080410', '#130a24']
+  },
+  {
+    id: 'blue-lock',
+    type: 'manga',
+    name: 'Blue Lock',
+    creator: 'Muneyuki Kaneshiro · Yusuke Nomura',
+    format: 'Japanese Manga',
+    subType: 'manga',
+    genre: 'Sports · Battle Royale',
+    moods: ['action', 'coop', 'challenge', 'quick'],
+    time: '280+ Chapters',
+    score: 9.4,
+    img: '/assets/img/news-rematch-blue-lock.jpg',
+    why: 'A psychological soccer battle royale where strikers must awaken their unbridled ego to dominate on the world stage. Wildly addictive pacing.',
+    link: null,
+    color: ['#020a18', '#081736']
+  },
+  {
+    id: 'haikyu',
+    type: 'manga',
+    name: 'Haikyu!!',
+    creator: 'Haruichi Furudate',
+    format: 'Completed Manga (402 ch)',
+    subType: 'manga',
+    genre: 'Sports · Teamwork & Passion',
+    moods: ['coop', 'story', 'quick', 'relax'],
+    time: '402 Chapters',
+    score: 9.8,
+    img: '/assets/img/1aa6c988b4-haikyuu-cover.jpg',
+    why: 'The timeless hymn of athletic dedication and brotherhood. Hinata Shoyo takes flight at Karasuno High, delivering goosebumps across 400 chapters.',
+    link: null,
+    color: ['#120802', '#2a1405']
+  },
+  {
+    id: 'kaiju-no-8',
+    type: 'manga',
+    name: 'Kaiju No. 8',
+    creator: 'Naoya Matsumoto · Shonen Jump+',
+    format: 'Japanese Manga',
+    subType: 'manga',
+    genre: 'Action Sci-Fi · Monster',
+    moods: ['action', 'coop', 'quick', 'challenge'],
+    time: 'Ongoing Weekly',
+    score: 9.3,
+    img: '/assets/img/1cd80a8a56-kaiju-no8-cover.jpg',
+    why: 'The Defense Force mobilizes against apocalyptic monstrosities. High-tech powered suits, hearty comedic camaraderie, and brutal kaiju takedowns.',
+    link: null,
+    color: ['#02140c', '#062d1a']
+  },
+  {
+    id: 'chainsaw-man-p2',
+    type: 'manga',
+    name: 'Chainsaw Man: Part 2 (Academy)',
+    creator: 'Tatsuki Fujimoto',
+    format: 'Japanese Manga',
+    subType: 'manga',
+    genre: 'Dark Comedy · Action',
+    moods: ['action', 'story', 'quick', 'challenge'],
+    time: '180+ Chapters',
+    score: 9.5,
+    img: '/assets/img/10728427f3-chainsaw-man-hero.jpg',
+    why: 'Tatsuki Fujimoto redefines shonen conventions with Asa Mitaka, Denji, and the War Devil. Unpredictable narrative twists and dark cinematic humor.',
+    link: '/en/chainsaw-man-manga-part2-review',
+    color: ['#140803', '#2d1408']
+  },
+  {
+    id: 'jujutsu-kaisen-manga',
+    type: 'manga',
+    name: 'Jujutsu Kaisen: Shinjuku Showdown',
+    creator: 'Gege Akutami',
+    format: 'Completed Manga (271 ch)',
+    subType: 'manga',
+    genre: 'Supernatural Action · Sorcery',
+    moods: ['action', 'challenge', 'story', 'coop'],
+    time: '271 Chapters',
+    score: 9.6,
+    img: '/assets/img/news-jujutsu-kaisen-final-chapter-271.jpg',
+    why: 'The climactic battle against Ryomen Sukuna where every sorcerer throws their life and Domain Expansion on the line in modern Tokyo.',
+    link: '/en/jujutsu-kaisen-chapter-271-final-climax-epilogue',
+    color: ['#080414', '#150a2e']
+  },
+  {
+    id: 'hunter-x-hunter',
+    type: 'manga',
+    name: 'Hunter x Hunter: Dark Continent',
+    creator: 'Yoshihiro Togashi',
+    format: 'Manga Shonen Jump',
+    subType: 'manga',
+    genre: 'Psychological Adventure',
+    moods: ['story', 'explore', 'challenge'],
+    time: '419+ Chapters',
+    score: 9.8,
+    img: '/assets/img/7b5a968234-maxresdefault.jpg',
+    why: 'Togashi transforms the Black Whale voyage into a labyrinthine war of succession. Mind games, political factions, and Nen abilities at their absolute peak.',
+    link: null,
+    color: ['#080e04', '#142008']
+  },
+  {
+    id: 'detective-conan',
+    type: 'manga',
+    name: 'Detective Conan',
+    creator: 'Gosho Aoyama',
+    format: 'Manga Shonen Sunday',
+    subType: 'manga',
+    genre: 'Mystery · Detective',
+    moods: ['story', 'quick', 'relax', 'coop'],
+    time: '1100+ Chapters',
+    score: 9.3,
+    img: '/assets/img/news-detective-conan-final-chapter.jpg',
+    why: 'The beloved cornerstone of Japanese murder mysteries. Conan’s long-standing intellectual battle with the Black Organization reaches key disclosures.',
+    link: null,
+    color: ['#040a18', '#0a1632']
+  },
+  {
+    id: 'hanako-kun',
+    type: 'manga',
+    name: 'Toilet-bound Hanako-kun',
+    creator: 'AidaIro',
+    format: 'Japanese Manga',
+    subType: 'manga',
+    genre: 'Supernatural · Mystery',
+    moods: ['relax', 'story', 'quick'],
+    time: '110+ Chapters',
+    score: 9.2,
+    img: '/assets/img/news-hanako-kun-manga-resumes.jpg',
+    why: 'Exquisite signature fairytale illustration style blending Kamome Academy urban legends with bittersweet supernatural romance and touching character lore.',
+    link: null,
+    color: ['#12040e', '#280a20']
+  },
+  {
+    id: 'tbate',
+    type: 'manga',
+    name: 'The Beginning After The End',
+    creator: 'TurtleMe · Fuyuki23',
+    format: 'Manhwa Webtoon',
+    subType: 'manhwa',
+    genre: 'Isekai · Magic Progression',
+    moods: ['action', 'story', 'explore', 'challenge'],
+    time: '190+ Chapters',
+    score: 9.4,
+    img: '/assets/img/3eb1c4a80b-the-beginning-after-the-end.jpg',
+    why: 'King Grey reincarnates as Arthur Leywin into the magical continent of Dicathen. Rigorous elemental magic mechanics and epic wartime battles.',
+    link: null,
+    color: ['#040c14', '#0a1a2a']
+  },
+  {
+    id: 'overgeared',
+    type: 'manga',
+    name: 'Overgeared',
+    creator: 'Park Saenal · Team Argo',
+    format: 'Korean Manhwa (Webtoon)',
+    subType: 'manhwa',
+    genre: 'VRMMO · Action Comedy',
+    moods: ['action', 'explore', 'quick', 'coop'],
+    time: '230+ Chapters',
+    score: 9.3,
+    img: '/assets/img/overgeared-cover.jpg',
+    why: 'From deep debt into Pagma’s Successor in the VRMMO world of Satisfy. Forging god-tier equipment, founding kingdoms, and shattering raid records.',
+    link: null,
+    color: ['#100a04', '#26180a']
   }
 ];
 
 // ═════════════════════════════════════════════════════════════════════
-// 2. HTML GENERATOR
+// 2. HTML GENERATOR WITH ADVANCED SHUFFLE DECK & KINETIC ROULETTE
 // ═════════════════════════════════════════════════════════════════════
 
 function buildHtml(lang = 'vi') {
@@ -1083,13 +1915,31 @@ function buildHtml(lang = 'vi') {
     .roll-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 14px 44px rgba(0, 229, 255, 0.5), 0 0 30px rgba(255, 48, 128, 0.3); }
     .roll-btn:active { transform: translateY(1px) scale(0.98); }
     .roll-icon { font-size: 24px; transition: transform 0.6s var(--ease); }
-    .roll-btn.rolling .roll-icon { animation: rollSpin 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
-    @keyframes rollSpin { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(360deg) scale(1.3); } 100% { transform: rotate(720deg) scale(1); } }
+    .roll-btn.rolling .roll-icon { animation: rollSpin 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite; }
+    @keyframes rollSpin { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(1.2); } 100% { transform: rotate(360deg) scale(1); } }
     .roll-meta { font-size: 12.5px; color: var(--text-muted); margin-top: 12px; }
     .roll-counter { color: var(--cyan); font-weight: 700; }
 
-    /* Interactive Result Card */
-    .result-zone { position: relative; z-index: 1; max-width: 900px; margin: 36px auto 0; padding: 0 20px 60px; }
+    /* Smart notification toast */
+    .roll-toast {
+      display: none;
+      max-width: 520px;
+      margin: 12px auto 0;
+      padding: 8px 16px;
+      border-radius: 20px;
+      background: rgba(124, 58, 237, 0.25);
+      border: 1px solid rgba(167, 139, 250, 0.4);
+      color: #ede9fe;
+      font-size: 12.5px;
+      font-family: var(--fb);
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      animation: fadeInToast 0.3s var(--ease);
+    }
+    @keyframes fadeInToast { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Interactive Result Card & Slot Machine Roulette */
+    .result-zone { position: relative; z-index: 1; max-width: 900px; margin: 32px auto 0; padding: 0 20px 60px; }
     .empty-state { text-align: center; padding: 64px 24px; background: rgba(18, 9, 44, 0.5); border: 1px dashed var(--border); border-radius: 20px; }
     .es-icon { font-size: 52px; margin-bottom: 14px; opacity: 0.8; }
     .es-title { font-family: var(--fd); font-size: 22px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
@@ -1102,17 +1952,27 @@ function buildHtml(lang = 'vi') {
       border-radius: 24px;
       overflow: hidden;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65), 0 0 30px rgba(0, 229, 255, 0.12);
-      opacity: 0;
-      transform: translateY(24px) scale(0.97);
-      transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
-      display: none;
+      transition: all 0.25s var(--ease);
     }
-    .result-card.show { opacity: 1; transform: translateY(0) scale(1); display: block; }
-    .rc-glow { position: absolute; inset: 0; pointer-events: none; opacity: 0.6; mix-blend-mode: screen; }
+    .result-card.slot-cycling {
+      filter: blur(1px) brightness(1.15);
+      transform: scale(0.985);
+      border-color: var(--sakura);
+      box-shadow: 0 0 36px var(--sakura-glow);
+    }
+    .result-card.slot-snapped {
+      animation: slotSnap 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes slotSnap {
+      0% { transform: scale(0.97); filter: brightness(1.25); }
+      50% { transform: scale(1.02); filter: brightness(1.1); box-shadow: 0 0 40px var(--cyan-glow); }
+      100% { transform: scale(1); filter: brightness(1); }
+    }
+    .rc-glow { position: absolute; inset: 0; pointer-events: none; opacity: 0.6; mix-blend-mode: screen; transition: background 0.4s ease; }
     .rc-inner { display: grid; grid-template-columns: 320px 1fr; min-height: 380px; position: relative; z-index: 2; }
     .rc-media { position: relative; overflow: hidden; background: #0c051a; display: flex; align-items: center; justify-content: center; }
-    .rc-media img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.5s ease; }
-    .rc-media:hover img { transform: scale(1.05); }
+    .rc-media img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.4s ease; }
+    .rc-media:hover img { transform: scale(1.04); }
     .rc-type-tag { position: absolute; top: 16px; left: 16px; z-index: 3; font-family: var(--fd); font-weight: 800; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border-radius: 8px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); }
     .tag-game { background: rgba(0, 229, 255, 0.25); color: #a5f3fc; border-color: rgba(0, 229, 255, 0.5); }
     .tag-anime { background: rgba(255, 48, 128, 0.25); color: #fecdd3; border-color: rgba(255, 48, 128, 0.5); }
@@ -1386,7 +2246,7 @@ function buildHtml(lang = 'vi') {
       <button class="mood-pill" data-mood="relax" onclick="setMood('relax', this)"><span>☕</span> ${isEn ? 'Relax & Chill' : 'Thư giãn, nhẹ nhàng'}</button>
       <button class="mood-pill" data-mood="action" onclick="setMood('action', this)"><span>⚔️</span> ${isEn ? 'Action & Hype' : 'Hành động, xả stress'}</button>
       <button class="mood-pill" data-mood="story" onclick="setMood('story', this)"><span>🧠</span> ${isEn ? 'Deep Narrative' : 'Cốt truyện sâu sắc'}</button>
-      <button class="mood-pill" data-mood="coop" onclick="setMood('coop', this)"><span>👥</span> ${isEn ? 'With Friends' : 'Chơi cùng bạn bè'}</button>
+      <button class="mood-pill" data-mood="coop" onclick="setMood('coop', this)"><span>👥</span> ${isEn ? 'With Friends / Co-op' : 'Chơi cùng bạn bè / Nhóm'}</button>
       <button class="mood-pill" data-mood="quick" onclick="setMood('quick', this)"><span>⚡</span> ${isEn ? 'Quick Bite (<1h)' : 'Nhanh gọn, giải trí tức thì'}</button>
       <button class="mood-pill" data-mood="explore" onclick="setMood('explore', this)"><span>🗺️</span> ${isEn ? 'Open World' : 'Khám phá thế giới mở'}</button>
       <button class="mood-pill" data-mood="challenge" onclick="setMood('challenge', this)"><span>💀</span> ${isEn ? 'Hardcore Challenge' : 'Thử thách, kỹ năng cao'}</button>
@@ -1400,6 +2260,7 @@ function buildHtml(lang = 'vi') {
       <span id="rollBtnText">${isEn ? 'Roll My Pick' : 'Gợi ý ngẫu nhiên'}</span>
     </button>
     <div class="roll-meta">${isEn ? 'Explored' : 'Đã khám phá'} <span class="roll-counter" id="rollCounter">0</span> ${isEn ? 'titles today' : 'tác phẩm hôm nay'}</div>
+    <div class="roll-toast" id="rollToast"></div>
   </div>
 
   <!-- Result Zone -->
@@ -1621,6 +2482,10 @@ function buildHtml(lang = 'vi') {
     let rollCount = 0;
     let history = [];
     let skipped = [];
+    let isRollingAnimation = false;
+
+    // Shuffle-deck memory maps per filter session to guarantee ZERO repetitive back-to-back rolls
+    const deckMap = {};
 
     const SUB_OPTIONS = {
       all: [
@@ -1650,12 +2515,13 @@ function buildHtml(lang = 'vi') {
     function updateSubfilterRow() {
       const container = document.getElementById('subfilterRow');
       const list = SUB_OPTIONS[currentCategory] || SUB_OPTIONS.all;
-      container.innerHTML = list.map((opt, i) => \`
+      container.innerHTML = list.map((opt) => \`
         <button class="sf-btn\${opt.id === currentSubfilter ? ' active' : ''}" data-sub="\${opt.id}" onclick="setSubfilter('\${opt.id}', this)">\${opt.label}</button>
       \`).join('');
     }
 
     function setCategory(type, btn) {
+      if (isRollingAnimation) return;
       currentCategory = type;
       currentSubfilter = 'all';
       if (btn) {
@@ -1667,18 +2533,26 @@ function buildHtml(lang = 'vi') {
         });
       }
       updateSubfilterRow();
+      hideToast();
+      rollItem();
     }
 
     function setSubfilter(sub, btn) {
+      if (isRollingAnimation) return;
       currentSubfilter = sub;
       document.querySelectorAll('.sf-btn').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
+      hideToast();
+      rollItem();
     }
 
     function setMood(mood, btn) {
+      if (isRollingAnimation) return;
       currentMood = mood;
       document.querySelectorAll('.mood-pill').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
+      hideToast();
+      rollItem();
     }
 
     function getPool() {
@@ -1697,45 +2571,118 @@ function buildHtml(lang = 'vi') {
       });
     }
 
-    function rollItem() {
+    function showToast(msg) {
+      const toast = document.getElementById('rollToast');
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.style.display = 'block';
+    }
+
+    function hideToast() {
+      const toast = document.getElementById('rollToast');
+      if (toast) toast.style.display = 'none';
+    }
+
+    // Smart Non-Repeating Shuffle-Bag Selection
+    function pickNextItem() {
+      const filterKey = \`\${currentCategory}_\${currentSubfilter}_\${currentMood}\`;
+      if (!deckMap[filterKey]) deckMap[filterKey] = new Set();
+      const seen = deckMap[filterKey];
+
       let pool = getPool();
-      if (!pool.length) {
-        skipped = [];
-        pool = getPool();
-        if (!pool.length) {
-          pool = ITEMS.filter(it => currentCategory === 'all' || it.type === currentCategory);
+      let isRelaxed = false;
+
+      // 1. Filter out items already seen in this deck session AND current item
+      let available = pool.filter(it => !seen.has(it.id) && (!currentItem || it.id !== currentItem.id));
+
+      if (!available.length) {
+        if (pool.length > 1) {
+          // Deck exhausted! Reset seen history but preserve current item so no back-to-back duplicate
+          seen.clear();
+          if (currentItem) seen.add(currentItem.id);
+          available = pool.filter(it => !currentItem || it.id !== currentItem.id);
+        } else {
+          // Pool has <= 1 item: dynamically relax mood to discover sister highlights in same category!
+          seen.clear();
+          const relaxedPool = ITEMS.filter(it => {
+            const catOk = currentCategory === 'all' || it.type === currentCategory;
+            const notCurrent = !currentItem || it.id !== currentItem.id;
+            return catOk && notCurrent && !skipped.includes(it.id);
+          });
+          available = relaxedPool.length ? relaxedPool : ITEMS.filter(it => !currentItem || it.id !== currentItem.id);
+          isRelaxed = true;
         }
       }
 
-      const poolWithoutCurrent = pool.filter(it => !currentItem || it.id !== currentItem.id);
-      const chosen = poolWithoutCurrent.length
-        ? poolWithoutCurrent[Math.floor(Math.random() * poolWithoutCurrent.length)]
-        : pool[0];
+      if (!available.length) {
+        // Fallback safety net: pick any item different from current
+        available = ITEMS.filter(it => !currentItem || it.id !== currentItem.id);
+      }
 
-      // Slot-machine rapid roll effect
-      const btn = document.getElementById('rollBtn');
-      btn.classList.add('rolling');
-      setTimeout(() => btn.classList.remove('rolling'), 600);
+      const chosen = available[Math.floor(Math.random() * available.length)];
+      seen.add(chosen.id);
 
-      rollCount++;
-      document.getElementById('rollCounter').textContent = rollCount;
+      if (isRelaxed && currentMood !== 'all') {
+        showToast("${isEn ? '💡 You have seen all exact matches! Surfacing related highlights ✨' : '💡 Bạn đã khám phá hết mục này! OtaHub gợi ý thêm tác phẩm nổi bật liên quan ✨'}");
+      } else {
+        hideToast();
+      }
 
+      return chosen;
+    }
+
+    // High-speed visual slot-machine roulette roll
+    function rollItem() {
+      if (isRollingAnimation) return;
+      isRollingAnimation = true;
+
+      const rollBtn = document.getElementById('rollBtn');
       const card = document.getElementById('resultCard');
       const empty = document.getElementById('emptyState');
       empty.style.display = 'none';
 
-      // Card animation flip
-      card.classList.remove('show');
-      setTimeout(() => {
-        renderCard(chosen);
-        card.classList.add('show');
-        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 260);
+      rollBtn.classList.add('rolling');
+      card.classList.add('slot-cycling');
 
-      // Add to history
-      if (!history.find(h => h.id === chosen.id)) history.unshift(chosen);
-      if (history.length > 5) history.pop();
-      renderHistory();
+      const chosen = pickNextItem();
+      const pool = getPool();
+      const rouletteCandidates = pool.length > 2 ? pool : ITEMS;
+
+      // 350ms rapid candidate flickering (slot machine effect)
+      let flips = 0;
+      const maxFlips = 5;
+      const flipTimer = setInterval(() => {
+        flips++;
+        const temp = rouletteCandidates[Math.floor(Math.random() * rouletteCandidates.length)];
+        renderCardPreview(temp);
+
+        if (flips >= maxFlips) {
+          clearInterval(flipTimer);
+          // Snap into winner!
+          renderCard(chosen);
+          rollBtn.classList.remove('rolling');
+          card.classList.remove('slot-cycling');
+          card.classList.add('slot-snapped');
+          setTimeout(() => card.classList.remove('slot-snapped'), 400);
+
+          rollCount++;
+          document.getElementById('rollCounter').textContent = rollCount;
+
+          if (!history.find(h => h.id === chosen.id)) history.unshift(chosen);
+          if (history.length > 5) history.pop();
+          renderHistory();
+
+          isRollingAnimation = false;
+        }
+      }, 65);
+    }
+
+    function renderCardPreview(item) {
+      if (!item) return;
+      document.getElementById('rcImg').src = item.img;
+      document.getElementById('rcTitle').textContent = item.name;
+      document.getElementById('rcScore').textContent = item.score;
+      document.getElementById('rcCreator').textContent = item.creator;
     }
 
     function selectItemById(id) {
@@ -1823,7 +2770,7 @@ function buildHtml(lang = 'vi') {
         return;
       }
       zone.style.display = 'block';
-      list.innerHTML = history.map((it, idx) => \`
+      list.innerHTML = history.map((it) => \`
         <div class="hist-card" onclick="selectItemById('\${it.id}')">
           <span style="font-size:16px">\${it.type === 'game' ? '🎮' : it.type === 'anime' ? '🎬' : '📖'}</span>
           <span class="hist-name">\${it.name}</span>
