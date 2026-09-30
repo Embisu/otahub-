@@ -1,115 +1,419 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
-<url><loc>https://otahub.asia/hades-2-khong-phai-lua-chon-kinh-doanh-an-toan-cua-supergian</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-30T07:42:40.107Z</news:publication_date><news:title>Hades 2 không phải lựa chọn kinh doanh an toàn của Supergiant Games</news:title></news:news></url>
-<url><loc>https://otahub.asia/7-game-the-witcher-dang-choi-trong-nam-2026</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-30T07:14:38.352Z</news:publication_date><news:title>7 game The Witcher đáng chơi trong năm 2026</news:title></news:news></url>
-<url><loc>https://otahub.asia/gears-of-war-e-day-thoi-gian-phat-hanh-va-cach-choi-som</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-30T06:27:46.089Z</news:publication_date><news:title>Gears of War: E-Day: Thời gian phát hành và cách chơi sớm</news:title></news:news></url>
-<url><loc>https://otahub.asia/delta-force-se-co-che-do-nhay-du-battle-royale-trong-nam-202</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-29T09:22:01.079Z</news:publication_date><news:title>Delta Force sẽ có chế độ nhảy dù Battle Royale trong năm 2027</news:title></news:news></url>
-<url><loc>https://otahub.asia/duoc-su-tu-su-mua-3-chinh-thuc-len-song-hanh-trinh-moi-day-k</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-29T09:10:57.487Z</news:publication_date><news:title>“Dược Sư Tự Sự” mùa 3 chính thức lên sóng: Hành trình mới đầy kịch tính của Maomao và Jinshi</news:title></news:news></url>
-<url>
-    <loc>https://otahub.asia/we-are-aliens-phim-hoat-hinh-phap-nhat-ra-rap-ngay-25-9</loc>
+  <url>
+    <loc>https://otahub.asia/naruto-xac-nhan-anime-truyen-hinh-moi-nycc-2026</loc>
     <news:news>
-      <news:publication>
-        <news:name>OtaHub</news:name>
-        <news:language>vi</news:language>
-      </news:publication>
-      <news:publication_date>2026-09-29T06:49:02.380Z</news:publication_date>
-      <news:title>We Are Aliens: Phim hoạt hình Pháp – Nhật ra rạp ngày 25/9</news:title>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-30T16:30:00+07:00</news:publication_date>
+      <news:title>Naruto Xác Nhận Anime Truyền Hình Mới Sau 3 Năm Im Ắng, Chi Tiết Hé Lộ Tại NYCC 2026</news:title>
     </news:news>
   </url>
-<url>
-    <loc>https://otahub.asia/vi-sao-nen-xem-laputa-lau-dai-tren-khong-tren-man-anh-lon</loc>
+  <url>
+    <loc>https://otahub.asia/honkai-star-rail-3-0-amphoreus-remembrance</loc>
     <news:news>
-      <news:publication>
-        <news:name>OtaHub</news:name>
-        <news:language>vi</news:language>
-      </news:publication>
-      <news:publication_date>2026-09-29T07:15:36.140Z</news:publication_date>
-      <news:title>Vì sao nên xem Laputa: Lâu đài trên không trên màn ảnh lớn?</news:title>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-30T21:00:00+07:00</news:publication_date>
+      <news:title>Honkai: Star Rail 3.0 Ra Mắt 15/1/2025, Thế Giới Amphoreus</news:title>
     </news:news>
   </url>
-<url>
-    <loc>https://otahub.asia/duoc-su-tu-su-mua-3-maomao-buoc-vao-hanh-trinh-pha-an-moi-na</loc>
+  <url>
+    <loc>https://otahub.asia/jujutsu-kaisen-chapter-271-final-climax-epilogue</loc>
     <news:news>
-      <news:publication>
-        <news:name>OtaHub</news:name>
-        <news:language>vi</news:language>
-      </news:publication>
-      <news:publication_date>2026-09-29T07:29:16.865Z</news:publication_date>
-      <news:title>Dược Sư Tự Sự mùa 3: Maomao bước vào hành trình phá án mới năm 2027</news:title>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-30T21:00:00+07:00</news:publication_date>
+      <news:title>Jujutsu Kaisen: Manga Kết Thúc Ở Chương 271 (30/9/2024)</news:title>
     </news:news>
   </url>
-<url>
-    <loc>https://otahub.asia/uk-games-expo-cam-noi-dung-ai-chi-chua-mot-so-truong-hop-ngo</loc>
+  <url>
+    <loc>https://otahub.asia/tokyo-revengers-santen-sensou-hen-len-song-2-10</loc>
     <news:news>
-      <news:publication>
-        <news:name>OtaHub</news:name>
-        <news:language>vi</news:language>
-      </news:publication>
-      <news:publication_date>2026-09-29T07:52:10.130Z</news:publication_date>
-      <news:title>UK Games Expo cấm nội dung AI, chỉ chừa một số trường hợp ngoại lệ</news:title>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-30T21:00:00+07:00</news:publication_date>
+      <news:title>Tokyo Revengers: Santen Sensou-hen Lên Sóng 2/10, Mùa Cuối Manga</news:title>
     </news:news>
   </url>
-<url>
+  <url>
+    <loc>https://otahub.asia/aoashi-mua-2-doi-studio-len-song-4-10</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-30T20:00:00+07:00</news:publication_date>
+      <news:title>Aoashi Mùa 2 Lên Sóng 4/10, Đổi Sang Studio TMS Entertainment</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/frieren-mua-2-phat-song-thang-1-2026</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-30T20:00:00+07:00</news:publication_date>
+      <news:title>Frieren Mùa 2 Đã Phát Sóng Từ Tháng 1/2026 (10 Tập)</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/phantom-busters-manga-len-tv-anime-nam-2027</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-30T20:00:00+07:00</news:publication_date>
+      <news:title>Manga Phantom Busters Được Chuyển Thể TV Anime 2027</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/chiikawa-anime-tam-ngung-tap-moi-phat-lai-25-tap</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-30T19:00:00+07:00</news:publication_date>
+      <news:title>Anime Chiikawa Tạm Ngừng Tập Mới, Phát Lại 25 Tập Đến 25/12</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/diamond-no-ace-act-ii-cour-2-len-song-11-10</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-30T19:00:00+07:00</news:publication_date>
+      <news:title>Diamond no Ace act II: Cour 2 Lên Sóng 11/10, Đến Koshien</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/rematch-x-blue-lock-crossover-event</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-30T19:00:00+07:00</news:publication_date>
+      <news:title>Sloclap x Blue Lock: Sự Kiện Crossover Rematch 24/9</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/hades-2-khong-phai-lua-chon-kinh-doanh-an-toan-cua-supergian</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-30T14:30:37+07:00</news:publication_date>
+      <news:title>Hades 2 không phải lựa chọn kinh doanh an toàn của Supergiant Games</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/7-game-the-witcher-dang-choi-trong-nam-2026</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-30T13:37:13+07:00</news:publication_date>
+      <news:title>7 game The Witcher đáng chơi trong năm 2026</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/gears-of-war-e-day-thoi-gian-phat-hanh-va-cach-choi-som</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-30T11:47:44+07:00</news:publication_date>
+      <news:title>Gears of War: E-Day: Thời gian phát hành và cách chơi sớm</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/sarada-mangekyo-sharingan-suc-manh-ho-den-ohirume</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-30T10:00:00+07:00</news:publication_date>
+      <news:title>Boruto: Sarada Lộ Thêm Sức Mạnh Mangekyo Sharingan, Nhưng Phải Đánh Đổi Bằng Thị Lực</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/diablo-4-van-tiep-tuc-co-mua-moi-sau-khi-diablo-5-ra-mat</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-30T02:32:48.947Z</news:publication_date>
+      <news:title>Diablo 4 vẫn tiếp tục có mùa mới sau khi Diablo 5 ra mắt</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/facing-the-rain-game-rpg-indie-cot-truyen-sau-lang-mien-phi-</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-30T02:32:31.358Z</news:publication_date>
+      <news:title>Facing the Rain: Game RPG indie cốt truyện sâu lắng miễn phí vĩnh viễn trên Steam</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/minecraft-live-thang-9-2026-minecraft-chuan-bi-don-chieu-kho</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-30T01:35:44.710Z</news:publication_date>
+      <news:title>Minecraft Live tháng 9/2026: Minecraft chuẩn bị đón chiều không gian mới</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/5-bai-hoc-tu-naruto-uzumaki-van-con-y-nghia</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-29T20:00:00+07:00</news:publication_date>
+      <news:title>5 Bài Học Từ Naruto Uzumaki Vẫn Còn Ý Nghĩa Đến Hôm Nay</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/5-life-lessons-from-naruto-uzumaki-still-hold-up</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
+      <news:publication_date>2026-09-29T20:00:00+07:00</news:publication_date>
+      <news:title>5 Life Lessons From Naruto Uzumaki That Still Hold Up</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/minecraft-bo-sung-chieu-khong-gian-thu-4-the-sift-sau-hon-14</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-29T09:23:12.599Z</news:publication_date>
+      <news:title>Minecraft bổ sung chiều không gian thứ 4 The Sift sau hơn 14 năm</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/delta-force-se-co-che-do-nhay-du-battle-royale-trong-nam-202</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-29T09:12:54.165Z</news:publication_date>
+      <news:title>Delta Force sẽ có chế độ nhảy dù Battle Royale trong năm 2027</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/duoc-su-tu-su-mua-3-chinh-thuc-len-song-hanh-trinh-moi-day-k</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-29T09:02:32.529Z</news:publication_date>
+      <news:title>“Dược Sư Tự Sự” mùa 3 chính thức lên sóng: Hành trình mới đầy kịch tính của Maomao và Jinshi</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/dragon-ball-super-beerus-goku-doi-dau-than-huy-diet-beerus</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-29T08:57:00.475Z</news:publication_date>
+      <news:title>Dragon Ball Super: Beerus: Goku đối đầu Thần Hủy Diệt Beerus</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/dragon-ball-super-beerus-dragon-ball-super-tro-lai-voi-phien</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-29T08:53:45.726Z</news:publication_date>
+      <news:title>Dragon Ball Super: Beerus – Dragon Ball Super trở lại với phiên bản nâng cấp</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/the-witcher-3-remastered-review-nang-cap-hinh-anh-nhung-chua</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-29T08:29:21.537Z</news:publication_date>
+      <news:title>The Witcher 3 Remastered Review: Nâng cấp hình ảnh nhưng chưa hoàn toàn thuyết phục</news:title>
+    </news:news>
+  </url>
+  <url>
     <loc>https://otahub.asia/star-wars-zero-company-biet-doi-di-biet-tao-nen-nhung-tran-c</loc>
     <news:news>
-      <news:publication>
-        <news:name>OtaHub</news:name>
-        <news:language>vi</news:language>
-      </news:publication>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
       <news:publication_date>2026-09-29T08:19:50.564Z</news:publication_date>
       <news:title>Star Wars: Zero Company: Biệt đội dị biệt tạo nên những trận chiến đầy bất ngờ</news:title>
     </news:news>
   </url>
-<url><loc>https://otahub.asia/nintendo-gamecube-chiec-may-mau-tim-nho-be-nhung-de-lai-dau-</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-29T08:19:19.006Z</news:publication_date><news:title>Nintendo GameCube: Chiếc máy màu tím nhỏ bé nhưng để lại dấu ấn lớn</news:title></news:news></url>
-<url><loc>https://otahub.asia/gintama-sorachi-tung-nghi-anime-se-that-bai</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-29T00:00:00.000Z</news:publication_date><news:title>Cha Đẻ Gintama Thú Nhận: Từng Nghĩ Bản Anime Sẽ Thất Bại</news:title></news:news></url>
-      <url><loc>https://otahub.asia/asian-games-2026-esports-aichi-nagoya</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-24T08:00:00.000Z</news:publication_date><news:title>Esports Asian Games 2026: 11 Nội Dung, Thi Đấu Tại Aichi</news:title></news:news></url>
-<url><loc>https://otahub.asia/frieren-mua-2-phat-song-thang-1-2026</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-05T08:30:00.000Z</news:publication_date><news:title>Frieren Mùa 2 Đã Phát Sóng Từ Tháng 1/2026 (10 Tập)</news:title></news:news></url>
-  <url><loc>https://otahub.asia/en/frieren-season-2-aired-january-2026</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication><news:publication_date>2026-09-05T08:30:00.000Z</news:publication_date><news:title>Frieren Season 2: Beyond Journey's End – Madhouse Unveils New Trailer &amp; Aureole Journey</news:title></news:news></url>
-  <url><loc>https://otahub.asia/honkai-star-rail-3-0-amphoreus-remembrance</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-05T09:15:00.000Z</news:publication_date><news:title>Honkai: Star Rail 3.0 Ra Mắt 15/1/2025, Thế Giới Amphoreus</news:title></news:news></url>
-  <url><loc>https://otahub.asia/en/honkai-star-rail-3-0-amphoreus-remembrance</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication><news:publication_date>2026-09-05T09:15:00.000Z</news:publication_date><news:title>Honkai: Star Rail 3.0: HoYoverse Unveils New World Amphoreus &amp; Memory Resonance System</news:title></news:news></url>
-<url><loc>https://otahub.asia/kimetsu-no-yaiba-vo-han-thanh-doanh-thu-793-trieu-usd</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-04T09:00:00.000Z</news:publication_date><news:title>Kimetsu no Yaiba: Vô Hạn Thành Thu 793 Triệu USD</news:title></news:news></url>
-  <url><loc>https://otahub.asia/en/demon-slayer-infinity-castle-793-million-box-office</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication><news:publication_date>2026-09-04T09:00:00.000Z</news:publication_date><news:title>Kimetsu no Yaiba: Vô Hạn Thành Thu 793 Triệu USD</news:title></news:news></url>
-  <url><loc>https://otahub.asia/wuthering-waves-2-0-rinascita-ban-3-6</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-03T10:00:00.000Z</news:publication_date><news:title>Wuthering Waves 2.0 Rinascita, Bản 3.6 Ra Mắt 20/8/2026</news:title></news:news></url>
-  <url><loc>https://otahub.asia/en/wuthering-waves-2-0-rinascita-version-3-6</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication><news:publication_date>2026-09-03T10:00:00.000Z</news:publication_date><news:title>Wuthering Waves 2.0 Rinascita, Bản 3.6 Ra Mắt 20/8/2026</news:title></news:news></url>
-<url><loc>https://otahub.asia/solo-leveling-arise-ban-cap-nhat-monarch-transcendence</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication><news:publication_date>2026-08-24T08:15:00.000Z</news:publication_date><news:title>Solo Leveling: Arise Đạt 50 Triệu Lượt Tải</news:title></news:news></url>
-  <url><loc>https://otahub.asia/solo-leveling-arise-ban-cap-nhat-monarch-transcendence</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-08-24T08:15:00.000Z</news:publication_date><news:title>Solo Leveling: Arise Đạt 50 Triệu Lượt Tải</news:title></news:news></url>
-  <url><loc>https://otahub.asia/honor-of-kings-global-mua-giai-moi-tuong-lan-ling-wang</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication><news:publication_date>2026-08-24T07:45:00.000Z</news:publication_date><news:title>Honor of Kings: Lanling Wang Là Sát Thủ Đi Rừng Meta 2026</news:title></news:news></url>
-  <url><loc>https://otahub.asia/honor-of-kings-global-mua-giai-moi-tuong-lan-ling-wang</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-08-24T07:45:00.000Z</news:publication_date><news:title>Honor of Kings: Lanling Wang Là Sát Thủ Đi Rừng Meta 2026</news:title></news:news></url>
-  <url><loc>https://otahub.asia/kagurabachi-4-trieu-ban-anime-cypic-thang-4-2027</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication><news:publication_date>2026-08-24T02:00:00.000Z</news:publication_date><news:title>Kagurabachi Vượt 4 Triệu Bản, Anime Ra Tháng 4/2027</news:title></news:news></url>
-  <url><loc>https://otahub.asia/kagurabachi-4-trieu-ban-anime-cypic-thang-4-2027</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-08-24T02:00:00.000Z</news:publication_date><news:title>Kagurabachi Vượt 4 Triệu Bản, Anime Ra Tháng 4/2027</news:title></news:news></url>
-  <url><loc>https://otahub.asia/marvel-wolverine-review-roundup</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-23T02:00:00.000Z</news:publication_date><news:title>Marvel's Wolverine: Chiến Đấu Tàn Bạo, Cốt Truyện Tuyến Tính</news:title></news:news></url>
-<url><loc>https://otahub.asia/aixleft-chieu-mo-himass-ve-delta-force</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-26T02:00:00.000Z</news:publication_date><news:title>Chủ Tịch Aixleft Muốn Mời Himass Về Delta Force</news:title></news:news></url>
-<url><loc>https://otahub.asia/gears-of-war-e-day-gold-pre-install-29-9</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-26T02:00:00.000Z</news:publication_date><news:title>Gears of War: E-Day Chốt Gold, Tải Trước Từ 29/9</news:title></news:news></url>
-<url><loc>https://otahub.asia/silent-hill-townfall-launch</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-23T03:00:00.000Z</news:publication_date><news:title>Silent Hill: Townfall Chính Thức Ra Mắt Ngày 24/9/2026</news:title></news:news></url>
-<url><loc>https://otahub.asia/honkai-star-rail-4-6-pearl-zzz-crossover</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-23T04:00:00.000Z</news:publication_date><news:title>Honkai: Star Rail 4.6 Ra Mắt 28/9 Với Pearl</news:title></news:news></url>
-<url><loc>https://otahub.asia/shin-oishinbo-anime-moi-sau-35-nam</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-26T02:00:00.000Z</news:publication_date><news:title>Oishinbo Có Anime Mới Sau 35 Năm: Shin Oishinbo</news:title></news:news></url>
-<url><loc>https://otahub.asia/oda-tung-gioi-thieu-6-manga-tren-bia-sach</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-28T08:00:00.000Z</news:publication_date><news:title>Oda Từng Đích Thân Quảng Bá 6 Manga Này Trên Bìa Sách</news:title></news:news></url>
-<url><loc>https://otahub.asia/one-piece-chapter-1194-tam-ngung-tro-lai-11-10</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-28T10:00:00.000Z</news:publication_date><news:title>One Piece Tạm Ngưng Sau Chương 1194, Trở Lại 11/10</news:title></news:news></url>
-<url><loc>https://otahub.asia/one-piece-chuong-1192-luffy-xuyen-thung-khien-imu-do-mau</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-28T16:00:00.000Z</news:publication_date><news:title>One Piece Chương 1192: Luffy Xuyên Thủng Lá Chắn, Khiến Imu Đổ Máu</news:title></news:news></url>
-<url><loc>https://otahub.asia/hunter-x-hunter-chapter-419-tro-lai</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-23T06:00:00.000Z</news:publication_date><news:title>Hunter x Hunter Trở Lại Chapter 419, Sắp Tạm Ngưng</news:title></news:news></url>
-<url><loc>https://otahub.asia/the-summer-hikaru-died-ket-thuc</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-23T07:00:00.000Z</news:publication_date><news:title>The Summer Hikaru Died Sẽ Kết Thúc, Chốt Ngày 20/10</news:title></news:news></url>
-<url><loc>https://otahub.asia/steam-achievement-leak-persona-6-kingdom-hearts-4</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-23T04:00:00.000Z</news:publication_date><news:title>Rò Rỉ Steam: Persona 6, Kingdom Hearts IV Lộ Diện</news:title></news:news></url>
-<url><loc>https://otahub.asia/phantom-busters-manga-len-tv-anime-nam-2027</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-25T02:00:00.000Z</news:publication_date><news:title>Manga Phantom Busters Được Chuyển Thể TV Anime 2027</news:title></news:news></url>
-<url><loc>https://otahub.asia/chiikawa-anime-tam-ngung-tap-moi-phat-lai-25-tap</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-25T02:00:00.000Z</news:publication_date><news:title>Anime Chiikawa Tạm Ngừng Tập Mới, Phát Lại 25 Tập Đến 25/12</news:title></news:news></url>
-<url><loc>https://otahub.asia/anime-mua-thu-2026-top-10-duoc-mong-doi</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-26T02:00:00.000Z</news:publication_date><news:title>Anime Mùa Thu 2026: Top 10 Được Mong Đợi Nhất</news:title></news:news></url>
-<url><loc>https://otahub.asia/code-geass-star-chaser-aspal-anime-2027</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-26T02:00:00.000Z</news:publication_date><news:title>Code Geass: Star Chaser Aspal Ra Teaser, Lên Sóng 2027</news:title></news:news></url>
-<url><loc>https://otahub.asia/slime-mua-4-tap-3-thang-7-2027-clayman-revenge</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-26T02:00:00.000Z</news:publication_date><news:title>Slime Mùa 4 Trở Lại 7/2027, Clayman's Revenge Có Anime</news:title></news:news></url>
-<url><loc>https://otahub.asia/bride-of-the-barrier-master-netflix-thang-1-2027</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-26T02:00:00.000Z</news:publication_date><news:title>Bride of the Barrier Master Lên Netflix Tháng 1/2027</news:title></news:news></url>
-<url><loc>https://otahub.asia/anime-dang-xem-cho-fan-van-hoa-lich-su-nhat-ban</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-26T02:00:00.000Z</news:publication_date><news:title>Anime Đáng Xem Cho Người Yêu Lịch Sử Nhật Bản</news:title></news:news></url>
-<url><loc>https://otahub.asia/10-anime-dang-xem-khi-cho-jujutsu-kaisen-mua-4</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-26T02:00:00.000Z</news:publication_date><news:title>10 Anime Đáng Xem Khi Chờ Jujutsu Kaisen Mùa 4</news:title></news:news></url>
-<url><loc>https://otahub.asia/vi-sao-bong-ma-pho-baker-la-mot-trong-nhung-phim-conan-hay-nhat</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-26T02:00:00.000Z</news:publication_date><news:title>Vì Sao Phantom Of Baker Street Là Phim Conan Xuất Sắc</news:title></news:news></url>
-<url><loc>https://otahub.asia/overgeared-anime-len-song-som-tren-prime-video-27-9</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-26T02:00:00.000Z</news:publication_date><news:title>Overgeared Lên Sóng Sớm Trên Prime Video Ngày 27/9</news:title></news:news></url>
-<url><loc>https://otahub.asia/draw-this-then-die-cong-bo-mua-2-sau-tap-cuoi</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-26T02:00:00.000Z</news:publication_date><news:title>Draw This, Then Die! Công Bố Mùa 2 Sau Tập Cuối</news:title></news:news></url>
-<url><loc>https://otahub.asia/hell-mode-anime-cong-bo-mua-3-arc-ham-nguc-hang-s</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-26T02:00:00.000Z</news:publication_date><news:title>Hell Mode Anime Công Bố Mùa 3: Arc Hầm Ngục Hạng S</news:title></news:news></url>
-<url><loc>https://otahub.asia/ghost-in-the-shell-2026-tong-ket-mua-phat-song</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-27T09:00:00.000Z</news:publication_date><news:title>THE GHOST IN THE SHELL (2026): Tổng Kết Mùa Phát Sóng Đã Kết Thúc</news:title></news:news></url>
-<url><loc>https://otahub.asia/ao-no-hako-mua-2-len-song-4-10</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-28T09:00:00.000Z</news:publication_date><news:title>Ao no Hako Mùa 2 Lên Sóng Ngày 4/10, Đổi Đạo Diễn Và Studio</news:title></news:news></url>
-<url><loc>https://otahub.asia/tokyo-revengers-santen-sensou-hen-len-song-2-10</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-28T09:00:00.000Z</news:publication_date><news:title>Tokyo Revengers: Santen Sensou-hen Lên Sóng 2/10, Mùa Cuối Manga</news:title></news:news></url>
-<url><loc>https://otahub.asia/aoashi-mua-2-doi-studio-len-song-4-10</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-28T09:00:00.000Z</news:publication_date><news:title>Aoashi Mùa 2 Lên Sóng 4/10, Đổi Sang Studio TMS Entertainment</news:title></news:news></url>
-<url><loc>https://otahub.asia/magic-knight-rayearth-2026-remake-len-song-7-10</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-28T09:00:00.000Z</news:publication_date><news:title>Magic Knight Rayearth Bản Làm Lại 2026 Lên Sóng 7/10</news:title></news:news></url>
-<url><loc>https://otahub.asia/tougen-anki-mua-2-nikko-kegon-falls-len-song-2-10</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-28T09:00:00.000Z</news:publication_date><news:title>Tougen Anki Mùa 2: Arc Nikko Kegon Falls Lên Sóng 2/10</news:title></news:news></url>
-<url><loc>https://otahub.asia/diamond-no-ace-act-ii-cour-2-len-song-11-10</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-28T09:00:00.000Z</news:publication_date><news:title>Diamond no Ace act II: Cour 2 Lên Sóng 11/10, Đến Koshien</news:title></news:news></url>
-<url><loc>https://otahub.asia/rezero-mua-4-tap-cuoi-keo-dai-45-phut-30-9</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-28T10:00:00.000Z</news:publication_date><news:title>Re:Zero Mùa 4 Tập Cuối Kéo Dài 45 Phút, Lên Sóng 30/9</news:title></news:news></url>
-<url><loc>https://otahub.asia/hololive-cong-bo-anime-truyen-hinh-dau-tien-odekake</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-28T10:00:00.000Z</news:publication_date><news:title>Hololive Công Bố Anime Truyền Hình Đầu Tiên: Odekake Hololive</news:title></news:news></url>
-<url><loc>https://otahub.asia/jujutsu-kaisen-culling-game-part-2-sukuna-teaser</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-23T02:30:00.000Z</news:publication_date><news:title>Jujutsu Kaisen Culling Game Phần 2: Teaser Sukuna</news:title></news:news></url>
-<url><loc>https://otahub.asia/tokyo-game-show-2026-roundup</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-09-23T06:00:00.000Z</news:publication_date><news:title>Tokyo Game Show 2026: Công Bố Lớn Nhất, 257.642 Lượt Tham Dự</news:title></news:news></url>
+  <url>
+    <loc>https://otahub.asia/nintendo-gamecube-chiec-may-mau-tim-nho-be-nhung-de-lai-dau-</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-29T08:01:45.045Z</news:publication_date>
+      <news:title>Nintendo GameCube: Chiếc máy màu tím nhỏ bé nhưng để lại dấu ấn lớn</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/uk-games-expo-cam-noi-dung-ai-chi-chua-mot-so-truong-hop-ngo</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-29T07:52:10.130Z</news:publication_date>
+      <news:title>UK Games Expo cấm nội dung AI, chỉ chừa một số trường hợp ngoại lệ</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/duoc-su-tu-su-mua-3-maomao-buoc-vao-hanh-trinh-pha-an-moi-na</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-29T07:29:16.865Z</news:publication_date>
+      <news:title>Dược Sư Tự Sự mùa 3: Maomao bước vào hành trình phá án mới năm 2027</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/vi-sao-nen-xem-laputa-lau-dai-tren-khong-tren-man-anh-lon</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-29T07:15:36.140Z</news:publication_date>
+      <news:title>Vì sao nên xem Laputa: Lâu đài trên không trên màn ảnh lớn?</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/top-8-anime-han-quoc-aeni-dang-xem-nhat</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-29T14:00:00+07:00</news:publication_date>
+      <news:title>Top 8 Anime Hàn Quốc (Aeni) Đáng Xem Nhất Hiện Nay</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/top-korean-anime-aeni-worth-watching</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
+      <news:publication_date>2026-09-29T14:00:00+07:00</news:publication_date>
+      <news:title>Top 8 Korean Anime (Aeni) Worth Watching Right Now</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/we-are-aliens-phim-hoat-hinh-phap-nhat-ra-rap-ngay-25-9</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-29T06:49:02.380Z</news:publication_date>
+      <news:title>We Are Aliens: Phim hoạt hình Pháp – Nhật ra rạp ngày 25/9</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/gintama-sorachi-tung-nghi-anime-se-that-bai</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-29T10:00:00+07:00</news:publication_date>
+      <news:title>Cha Đẻ Gintama Thú Nhận: Từng Nghĩ Bản Anime Sẽ Thất Bại</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/gintama-creator-hideaki-sorachi-thought-anime-would-flop</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
+      <news:publication_date>2026-09-29T10:00:00+07:00</news:publication_date>
+      <news:title>Gintama Creator Admits He Thought the Anime Would Flop</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/one-piece-chuong-1192-luffy-xuyen-thung-khien-imu-do-mau</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-28T23:00:00+07:00</news:publication_date>
+      <news:title>One Piece Chương 1192: Luffy Xuyên Thủng Lá Chắn, Khiến Imu Đổ Máu</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/one-piece-chapter-1192-luffy-pierces-imus-shield</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
+      <news:publication_date>2026-09-28T23:00:00+07:00</news:publication_date>
+      <news:title>One Piece Chapter 1192: Luffy Pierces the Shield, Draws First Blood From Imu</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/hololive-cong-bo-anime-truyen-hinh-dau-tien-odekake</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-28T17:00:00+07:00</news:publication_date>
+      <news:title>Hololive Công Bố Anime Truyền Hình Đầu Tiên: Odekake Hololive</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/one-piece-chapter-1194-tam-ngung-tro-lai-11-10</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-28T17:00:00+07:00</news:publication_date>
+      <news:title>One Piece Tạm Ngưng Sau Chương 1194, Trở Lại 11/10</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/rezero-mua-4-tap-cuoi-keo-dai-45-phut-30-9</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-28T17:00:00+07:00</news:publication_date>
+      <news:title>Re:Zero Mùa 4 Tập Cuối Kéo Dài 45 Phút, Lên Sóng 30/9</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/hololive-announces-first-tv-anime-odekake</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
+      <news:publication_date>2026-09-28T17:00:00+07:00</news:publication_date>
+      <news:title>Hololive Announces Its First TV Anime: Odekake Hololive</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/one-piece-chapter-1194-hiatus-returns-october-11</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
+      <news:publication_date>2026-09-28T17:00:00+07:00</news:publication_date>
+      <news:title>One Piece Goes On Hiatus After Chapter 1194, Returns October 11</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/rezero-season-4-finale-extended-45-minutes-september-30</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
+      <news:publication_date>2026-09-28T17:00:00+07:00</news:publication_date>
+      <news:title>Re:Zero Season 4 Finale Runs 45 Minutes, Airs September 30</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/ao-no-hako-mua-2-len-song-4-10</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-28T16:00:00+07:00</news:publication_date>
+      <news:title>Ao no Hako Mùa 2 Lên Sóng Ngày 4/10, Đổi Đạo Diễn Và Studio</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/magic-knight-rayearth-2026-remake-len-song-7-10</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-28T16:00:00+07:00</news:publication_date>
+      <news:title>Magic Knight Rayearth Bản Làm Lại 2026 Lên Sóng 7/10</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/tougen-anki-mua-2-nikko-kegon-falls-len-song-2-10</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-09-28T16:00:00+07:00</news:publication_date>
+      <news:title>Tougen Anki Mùa 2: Arc Nikko Kegon Falls Lên Sóng 2/10</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/ao-no-hako-season-2-premieres-october-4</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
+      <news:publication_date>2026-09-28T16:00:00+07:00</news:publication_date>
+      <news:title>Ao no Hako Season 2 Premieres October 4 With New Studio</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/aoashi-season-2-new-studio-premieres-october-4</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
+      <news:publication_date>2026-09-28T16:00:00+07:00</news:publication_date>
+      <news:title>Aoashi Season 2 Premieres October 4 With New Studio TMS</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/diamond-no-ace-act-ii-cour-2-premieres-october-11</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
+      <news:publication_date>2026-09-28T16:00:00+07:00</news:publication_date>
+      <news:title>Diamond no Ace Act II: Cour 2 Premieres October 11, Heads To Koshien</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/magic-knight-rayearth-2026-reboot-premieres-october-7</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
+      <news:publication_date>2026-09-28T16:00:00+07:00</news:publication_date>
+      <news:title>Magic Knight Rayearth 2026 Reboot Premieres October 7</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/tokyo-revengers-santen-sensou-hen-premieres-october-2</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
+      <news:publication_date>2026-09-28T16:00:00+07:00</news:publication_date>
+      <news:title>Tokyo Revengers: Santen Sensou-hen Premieres October 2, Manga</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/tougen-anki-season-2-nikko-kegon-falls-premieres-october-2</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
+      <news:publication_date>2026-09-28T16:00:00+07:00</news:publication_date>
+      <news:title>Tougen Anki Season 2: Nikko Kegon Falls Arc Premieres October 2</news:title>
+    </news:news>
+  </url>
 </urlset>
