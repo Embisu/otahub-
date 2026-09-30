@@ -9,6 +9,8 @@
 .agents/**
 .claude
 .claude/**
+/.claude
+/.claude/**
 .github
 scripts
 wrangler.jsonc

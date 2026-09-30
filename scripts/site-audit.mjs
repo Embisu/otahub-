@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve(import.meta.dirname, '..');
-const skipDirs = new Set(['.git', 'node_modules', 'OTAHUB', 'OTAHUB 2', 'OTAHUB png']);
+const skipDirs = new Set(['.git', '.claude', '.wrangler', 'node_modules', 'OTAHUB', 'OTAHUB 2', 'OTAHUB png']);
 
 function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
