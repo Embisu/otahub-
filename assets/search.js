@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "7 game The Witcher đáng chơi trong năm 2026",
+    "url": "/7-game-the-witcher-dang-choi-trong-nam-2026",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "The Witcher 3 vẫn là cái tên nổi bật nhất khi nhắc đến dòng game chuyển thể từ thế giới của Andrzej Sapkowski. Tuy nhiên, những cái tên như The Witcher 2, Thronebreaker hay Gwent cũng mang đến những cách tiếp cận khác biệt, trong khi Reigns: The Witcher là lựa chọn mới dành cho người chơi muốn trải nghiệm thương hiệu theo cách nhẹ nhàng hơn.",
+    "img": "/assets/img/uploads/yboyto0l-images-17.jpg",
+    "tags": []
+  },
+  {
     "title": "Gears of War: E-Day: Thời gian phát hành và cách chơi sớm",
     "url": "/gears-of-war-e-day-thoi-gian-phat-hanh-va-cach-choi-som",
     "cat": "Gaming",
