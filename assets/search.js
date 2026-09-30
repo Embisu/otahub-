@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Sakamoto Days mùa 2 công bố trailer mới, trở lại vào tháng 1/2027",
+    "url": "/sakamoto-days-mua-2-cong-bo-trailer-moi-tro-lai-vao-thang-1",
+    "cat": "Anime",
+    "date": "2026-09-30",
+    "excerpt": "Sakamoto Days mùa 2 tung trailer nhân vật mới, giới thiệu Amane, Satoda và Yotsumura. Anime chính thức trở lại vào tháng 1/2027 trên Netflix.",
+    "img": "/assets/img/uploads/xwv04u5g-aaaaqfufjk-gc2lxpr5ck4nk1nrf47vpkxwl-guhkt3pdrxjqo-rhfhjgykp.jpg",
+    "tags": []
+  },
+  {
     "title": "Liar Game chính thức có mùa 2 sau khi anime mùa đầu kết thúc",
     "url": "/liar-game-chinh-thuc-co-mua-2-sau-khi-anime-mua-dau-ket-thuc",
     "cat": "Anime",
