@@ -1926,7 +1926,7 @@ body {
 /* Các khối "xem trước trực tiếp" mô phỏng đúng giao diện tối của site công khai — giữ tối để xem trước chính xác */
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { background: var(--wp-bg); color: var(--wp-title); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.6; min-height: 100vh; }
+body { background: var(--wp-bg); color: var(--wp-title); font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 14px; line-height: 1.6; min-height: 100vh; }
 /* ── Layout ── */
 .layout { display: grid; grid-template-columns: 72px 1fr; min-height: 100vh; }
 .sidebar { background: var(--wp-card); border-right: 1px solid var(--wp-border); display: flex; flex-direction: column; align-items: center; position: sticky; top: 0; height: 100vh; overflow: visible; padding: 4px 0 14px; gap: 2px; }
@@ -1934,11 +1934,11 @@ body { background: var(--wp-bg); color: var(--wp-title); font-family: 'Segoe UI'
 /* ── Sidebar ── */
 .logo { padding: 10px 0 14px; width: 100%; border-bottom: 1px solid var(--wp-border); display: flex; flex-direction: column; align-items: center; gap: 6px; margin-bottom: 6px; }
 .logo-clickable { cursor: pointer; }
-.logo-mark { width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, var(--wp-blue), var(--wp-blue)); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; letter-spacing: -.02em; color: #0a0a12; transition: transform .15s, box-shadow .15s; }
+.logo-mark { width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, var(--cyan), #7928ca); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; letter-spacing: -.02em; color: #0a0a12; transition: transform .15s, box-shadow .15s; }
 .logo-clickable:hover .logo-mark { transform: scale(1.06); box-shadow: 0 4px 16px rgba(0,229,255,.35); }
 .logo-text { font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
-.logo-text span { color: var(--wp-blue); }
-.logo-badge { font-size: 9px; background: var(--wp-blue); color: #fff; padding: 2px 7px; border-radius: 20px; font-weight: 600; letter-spacing: .05em; }
+.logo-text span { color: var(--cyan); }
+.logo-badge { font-size: 9px; background: linear-gradient(135deg, var(--cyan), #00b8d4); color: #000; padding: 2px 7px; border-radius: 20px; font-weight: 800; letter-spacing: .05em; }
 .sidebar-section { padding: 12px 12px 4px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--wp-muted); }
 /* Collapsed icon nav with hover flyout submenus (WordPress-style) */
 .nav-group { position: relative; width: 100%; display: flex; justify-content: center; }
@@ -2001,7 +2001,7 @@ body { background: var(--wp-bg); color: var(--wp-title); font-family: 'Segoe UI'
 .art-title { font-size: 13.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--wp-title); }
 .art-meta { font-size: 11px; color: var(--wp-muted); margin-top: 4px; display: flex; align-items: center; gap: 10px; }
 .art-meta .art-file { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 260px; }
-.art-cat { background: rgba(34,113,177,.12); color: var(--wp-blue); padding: 1px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; letter-spacing: .02em; flex-shrink: 0; }
+.art-cat { background: rgba(0,229,255,.1); color: var(--cyan); border: 1px solid rgba(0,229,255,.25); padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; letter-spacing: .02em; flex-shrink: 0; }
 .art-actions { display: flex; gap: 6px; flex-shrink: 0; }
 /* ── Editor (bố cục kiểu WordPress: tiêu đề to, ô soạn thảo là trung tâm,
       hộp "Xuất bản" cố định bên phải) ── */
