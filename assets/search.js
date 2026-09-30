@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Top 10 anime đáng mong chờ sẽ ra mắt năm 2027",
+    "url": "/top-10-anime-dang-mong-cho-se-ra-mat-nam-2027",
+    "cat": "Anime",
+    "date": "2026-09-30",
+    "excerpt": "Top 10 anime đáng mong chờ năm 2027 gồm The One Piece, Frieren mùa 3, Sakamoto Days mùa 2, Kagurabachi, Dược Sư Tự Sự và nhiều cái tên nổi bật khác.",
+    "img": "/assets/img/uploads/5y6fou86-voh-loat-anime-noi-tieng-se-ra-mat-phan-moi-trong-nam-2027-1.webp",
+    "tags": []
+  },
+  {
     "title": "Manga Rom-Com \"Everyone’s Darling Has a Secret\" chính thức được chuyển thể thành anime",
     "url": "/manga-rom-com-everyones-darling-has-a-secret-chinh-thuc-duoc",
     "cat": "Anime",
