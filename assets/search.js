@@ -18,15 +18,6 @@ window.IDX = [
     "tags": []
   },
   {
-    "title": "Minecraft Live tháng 9/2026: Minecraft chuẩn bị đón chiều không gian mới",
-    "url": "/tieu-de-bai-viet",
-    "cat": "Gaming",
-    "date": "2026-09-30",
-    "excerpt": "Minecraft Live tháng 9/2026 mang đến nhiều thông báo lớn, nhưng tâm điểm chắc chắn là The Sift, chiều không gian thứ tư của Minecraft sẽ xuất hiện trong Java và Bedrock vào năm 2027. Ngoài ra, người chơi còn chuẩn bị đón Ice Caves, Frozen Zombie, Minecraft Dungeons II và phiên bản Minecraft dành riêng cho Nintendo Switch 2.",
-    "img": "/assets/img/uploads/cxo68b2g-what-time-does-minecraft-live-start-september-2026-210691766.webp",
-    "tags": []
-  },
-  {
     "title": "Boruto: Sarada Lộ Thêm Sức Mạnh Mangekyo Sharingan, Nhưng Phải Đánh Đổi Bằng Thị Lực",
     "url": "/sarada-mangekyo-sharingan-suc-manh-ho-den-ohirume",
     "cat": "Manga",

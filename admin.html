@@ -6605,26 +6605,130 @@ function restoreArticleFromTrash(file, e) {
   renderArticleList('', '', 'trash');
 }
 
+// ── Gỡ bỏ bài viết triệt để trên toàn bộ hệ thống (Index, Hubs, News, Feeds, Search) ──
+async function purgeArticleFromEntireSite(slug, file) {
+  if (!slug) return;
+  const isEn = (file || '').startsWith('en/');
+  const href = isEn ? `/en/${slug}` : `/${slug}`;
+  const urlAbs = `https://otahub.asia${href}`;
+  const safeHref = href.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+  // 1. Gỡ khỏi Trang chủ (index.html / en/index.html)
+  try {
+    const homeFile = isEn ? 'en/index.html' : 'index.html';
+    const homeData = await ghGet(homeFile);
+    let homeHtml = decodeURIComponent(escape(atob(homeData.content.replace(/\s/g, ''))));
+    const cardRe = new RegExp(`\\s*<article class="w-card">\\s*<a href="${safeHref}"[\\s\\S]*?<\\/article>`, 'g');
+    const tickRe = new RegExp(`\\s*<span class="tick-item">[^<]*<strong>[^<]*<\\/strong>\\s*<a href="${safeHref}"[^>]*>[^<]*<\\/a><\\/span>`, 'g');
+    if (cardRe.test(homeHtml) || tickRe.test(homeHtml)) {
+      homeHtml = homeHtml.replace(cardRe, '').replace(tickRe, '');
+      await ghPut(homeFile, homeHtml, homeData.sha, `[admin] go bo /${slug} khoi ${homeFile}`);
+    }
+  } catch(e) { console.warn('Purge index error:', e); }
+
+  // 2. Gỡ khỏi Category Hubs (gaming.html / anime.html / manga.html)
+  for (const hub of ['gaming.html', 'anime.html', 'manga.html']) {
+    try {
+      const hubData = await ghGet(hub);
+      let hubHtml = decodeURIComponent(escape(atob(hubData.content)));
+      const acRe = new RegExp(`\\s*<a href="${safeHref}" class="ac"[\\s\\S]*?<\\/a>`, 'g');
+      if (acRe.test(hubHtml)) {
+        hubHtml = hubHtml.replace(acRe, '');
+        await ghPut(hub, hubHtml, hubData.sha, `[admin] go bo /${slug} khoi ${hub}`);
+      }
+    } catch(e) {}
+  }
+
+  // 3. Gỡ khỏi news.html
+  try {
+    const newsData = await ghGet('news.html');
+    let newsHtml = decodeURIComponent(escape(atob(newsData.content)));
+    const newsCardRe = new RegExp(`\\s*<a href="${safeHref}"[\\s\\S]*?<\\/a>`, 'g');
+    if (newsCardRe.test(newsHtml)) {
+      newsHtml = newsHtml.replace(newsCardRe, '');
+      await ghPut('news.html', newsHtml, newsData.sha, `[admin] go bo /${slug} khoi news.html`);
+    }
+  } catch(e) {}
+
+  // 4. Gỡ khỏi feed.xml & feed.json
+  try {
+    const feedX = await ghGet('feed.xml');
+    let fx = decodeURIComponent(escape(atob(feedX.content.replace(/\s/g, ''))));
+    const itemRe = new RegExp(`\\s*<item>[\\s\\S]*?<link>${urlAbs}<\\/link>[\\s\\S]*?<\\/item>`, 'g');
+    if (itemRe.test(fx)) {
+      fx = fx.replace(itemRe, '');
+      await ghPut('feed.xml', fx, feedX.sha, `[admin] go bo /${slug} khoi feed.xml`);
+    }
+  } catch(e) {}
+
+  try {
+    const feedJ = await ghGet('feed.json');
+    const fj = JSON.parse(decodeURIComponent(escape(atob(feedJ.content.replace(/\s/g, '')))));
+    if (Array.isArray(fj.items)) {
+      const initLen = fj.items.length;
+      fj.items = fj.items.filter(i => i.url !== urlAbs && i.id !== urlAbs && !i.url.endsWith(`/${slug}`));
+      if (fj.items.length !== initLen) {
+        await ghPut('feed.json', JSON.stringify(fj, null, 2), feedJ.sha, `[admin] go bo /${slug} khoi feed.json`);
+      }
+    }
+  } catch(e) {}
+
+  // 5. Gỡ khỏi assets/search.js
+  try {
+    const searchData = await ghGet('assets/search.js');
+    let js = decodeURIComponent(escape(atob(searchData.content)));
+    const m = js.match(/(?:var|window\.)?\s*IDX\s*=\s*(\[[\s\S]*?\]);/m);
+    if (m) {
+      let idx = new Function('return ' + m[1])();
+      const initLen = idx.length;
+      idx = idx.filter(item => (item.url || item.u) !== href && (item.url || item.u) !== `/${slug}` && (item.url || item.u) !== `/${slug}.html`);
+      if (idx.length !== initLen) {
+        const updated = js.replace(m[1], JSON.stringify(idx, null, 2));
+        await ghPut('assets/search.js', updated, searchData.sha, `[admin] go bo /${slug} khoi search.js`);
+      }
+    }
+  } catch(e) {}
+
+  // 6. Gỡ khỏi sitemap-news.xml & sitemap.xml
+  for (const sm of ['sitemap-news.xml', 'sitemap.xml']) {
+    try {
+      const smData = await ghGet(sm);
+      let xml = decodeURIComponent(escape(atob(smData.content.replace(/\s/g, ''))));
+      const urlRe = new RegExp(`\\s*<url>[\\s\\S]*?<loc>${urlAbs}<\\/loc>[\\s\\S]*?<\\/url>`, 'g');
+      if (urlRe.test(xml)) {
+        xml = xml.replace(urlRe, '');
+        await ghPut(sm, xml, smData.sha, `[admin] go bo /${slug} khoi ${sm}`);
+      }
+    } catch(e) {}
+  }
+}
+
 async function deleteArticlePermanently(file, e) {
   if (e) e.stopPropagation();
   const trashed = getTrashedArticles();
   const art = trashed.find(t => t.file === file) || ARTICLES.find(a => a.file === file);
   const title = art ? art.title : file;
-  if (!confirm(`⚠️ CẢNH BÁO: Xóa vĩnh viễn bài viết "${title}" (${file}) khỏi hệ thống?\n\nHành động này không thể hoàn tác!`)) return;
+  if (!confirm(`⚠️ CẢNH BÁO: Xóa vĩnh viễn bài viết "${title}" (${file}) khỏi toàn bộ hệ thống?\n\nBài viết sẽ được gỡ hoàn toàn khỏi Trang chủ, Hubs, Feeds và Danh sách bài viết.`)) return;
   
+  const loading = toast('info', `⏳ Đang gỡ bỏ bài viết "${title}" trên toàn bộ hệ thống...`);
   try {
     const sha = art?.sha || (await ghGet(file).then(r => r.sha).catch(() => null));
     if (sha) {
       await ghDelete(file, sha, `[admin] xoa vinh vien: ${file}`);
     }
+    const slug = (file || '').replace(/\.html$/, '').replace(/^en\//, '');
+    await purgeArticleFromEntireSite(slug, file);
+
     const remaining = trashed.filter(t => t.file !== file);
     setTrashedArticles(remaining);
     ARTICLES = ARTICLES.filter(a => a.file !== file);
     SELECTED_ARTICLE_FILES.delete(file);
     try { await deleteDraft(file); } catch(err) {}
-    toast('success', `💥 Đã xóa vĩnh viễn: ${file}`);
+    if (loading && loading.remove) loading.remove();
+    toast('success', `💥 Đã xóa vĩnh viễn: ${file} và gỡ hoàn toàn khỏi Trang chủ & Hubs!`);
     renderArticleList('', '', CURRENT_ART_TAB);
   } catch(err) {
+    if (loading && loading.remove) loading.remove();
     toast('error', 'Lỗi xóa vĩnh viễn: ' + err.message);
   }
 }
@@ -6673,24 +6777,27 @@ function bulkRestoreFromTrash() {
 
 async function bulkDeletePermanently() {
   if (SELECTED_ARTICLE_FILES.size === 0) return;
-  if (!confirm(`⚠️ CẢNH BÁO: Xóa vĩnh viễn ${SELECTED_ARTICLE_FILES.size} bài viết đã chọn khỏi hệ thống?\n\nHành động này không thể hoàn tác!`)) return;
+  if (!confirm(`⚠️ CẢNH BÁO: Xóa vĩnh viễn ${SELECTED_ARTICLE_FILES.size} bài viết đã chọn khỏi toàn bộ hệ thống?\n\nHành động này không thể hoàn tác!`)) return;
   
   const trashed = getTrashedArticles();
   const files = Array.from(SELECTED_ARTICLE_FILES);
   SELECTED_ARTICLE_FILES.clear();
   
-  toast('info', `⏳ Đang xóa ${files.length} bài viết...`);
+  const loading = toast('info', `⏳ Đang gỡ bỏ ${files.length} bài viết trên toàn bộ hệ thống...`);
   for (const file of files) {
     try {
       const art = trashed.find(t => t.file === file) || ARTICLES.find(a => a.file === file);
       const sha = art?.sha || (await ghGet(file).then(r => r.sha).catch(() => null));
       if (sha) await ghDelete(file, sha, `[admin] xoa hang loat: ${file}`);
+      const slug = (file || '').replace(/\.html$/, '').replace(/^en\//, '');
+      await purgeArticleFromEntireSite(slug, file);
     } catch(e) {}
   }
   const remaining = trashed.filter(t => !files.includes(t.file));
   setTrashedArticles(remaining);
   ARTICLES = ARTICLES.filter(a => !files.includes(a.file));
-  toast('success', `💥 Đã xóa vĩnh viễn ${files.length} bài viết.`);
+  if (loading && loading.remove) loading.remove();
+  toast('success', `💥 Đã xóa vĩnh viễn ${files.length} bài viết và gỡ khỏi Trang chủ & Hubs.`);
   renderArticleList('', '', CURRENT_ART_TAB);
 }
 
@@ -12716,6 +12823,17 @@ async function saveArticle() {
     const viSlug = cleanSlug;
     const enSlug = cleanSlug;
 
+    // Tự động dọn dẹp file và link cũ nếu người dùng đổi đường dẫn (slug)
+    const oldSlug = (currentFile || '').replace(/^en\//, '').replace(/\.html$/, '');
+    if (!isNewFile && oldSlug && oldSlug !== cleanSlug) {
+      toast('info', `🔄 Đang đổi slug từ "${oldSlug}" sang "${cleanSlug}" và dọn dẹp liên kết cũ...`);
+      try {
+        await purgeArticleFromEntireSite(oldSlug, currentFile);
+        const oldSha = currentSha || (await ghGet(currentFile).then(r => r.sha).catch(() => null));
+        if (oldSha) await ghDelete(currentFile, oldSha, `[admin] doi slug sang ${viFile}`);
+      } catch(e) { console.warn('Lỗi dọn slug cũ:', e); }
+    }
+
     // Check content of both languages
     const viTitle = cleanPlainText(BILINGUAL_DATA?.vi?.title || ART_TITLE || '');
     const viDesc  = cleanPlainText(BILINGUAL_DATA?.vi?.desc || document.getElementById('ed-desc')?.value || '');
@@ -12915,6 +13033,8 @@ async function saveArticle() {
         console.warn('addToLatestNews error:', e);
       }
     }
+    currentFile = (CURRENT_LANG === 'en' && hasEn) ? enFile : viFile;
+    if (viSha) currentSha = viSha;
   } catch(e) {
     if (dot) dot.className = 'status-dot error';
     if (txt) txt.textContent = 'Lỗi: ' + e.message;
@@ -13147,6 +13267,12 @@ async function addToLatestNews(isEn, slug, title, desc, cat, hero, authorName = 
     }
 
     const card = `<article class="w-card"><a href="${href}" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">${esc(cat || 'Gaming')}</div><div class="wc-t">${esc(title)}</div><div class="wc-m">${esc(authorName)} · ${esc(dateDisp)}</div></div><div class="wc-thumb"><img src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy" width="1200" height="675"></div></a></article>\n      `;
+    
+    // DEDUPLICATE: Xóa mọi thẻ trùng lặp trước đó của cùng URL
+    const safeHref = href.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const existingCardRe = new RegExp(`\\s*<article class="w-card">\\s*<a href="${safeHref}"[\\s\\S]*?<\\/article>`, 'g');
+    html = html.replace(existingCardRe, '');
+
     const anchor = '<div class="latest-wrap">\n<div>\n';
     const ai = html.indexOf(anchor);
     if (ai === -1) return;
