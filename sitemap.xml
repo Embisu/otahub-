@@ -3047,4 +3047,10 @@
   <url><loc>https://otahub.asia/en/author/otahub</loc><lastmod>2026-09-30</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://otahub.asia/en/author/yu</loc><lastmod>2026-09-30</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://otahub.asia/en/author/anhthu</loc><lastmod>2026-09-30</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url>
+    <loc>https://otahub.asia/tieu-de-bai-viet</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
