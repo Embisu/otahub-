@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Minecraft Live tháng 9/2026: Minecraft chuẩn bị đón chiều không gian mới",
+    "url": "/minecraft-live-thang-9-2026-minecraft-chuan-bi-don-chieu-kho",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Minecraft Live tháng 9/2026 mang đến nhiều thông báo lớn, nhưng tâm điểm chắc chắn là The Sift, chiều không gian thứ tư của Minecraft sẽ xuất hiện trong Java và Bedrock vào năm 2027. Ngoài ra, người chơi còn chuẩn bị đón Ice Caves, Frozen Zombie, Minecraft Dungeons II và phiên bản Minecraft dành riêng cho Nintendo Switch 2.",
+    "img": "/assets/img/uploads/cxo68b2g-what-time-does-minecraft-live-start-september-2026-210691766.webp",
+    "tags": []
+  },
+  {
     "title": "Diablo 4 vẫn tiếp tục có mùa mới sau khi Diablo 5 ra mắt",
     "url": "/diablo-4-van-tiep-tuc-co-mua-moi-sau-khi-diablo-5-ra-mat",
     "cat": "Gaming",
