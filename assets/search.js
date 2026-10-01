@@ -1,5 +1,23 @@
 window.IDX = [
   {
+    "title": "Kuri Hime Ayakashi Yobanashi sẽ kết thúc vào ngày 28/10",
+    "url": "/kuri-hime-ayakashi-yobanashi-se-ket-thuc-vao-ngay-28-10",
+    "cat": "Manga",
+    "date": "2026-10-01",
+    "excerpt": "Sau gần hai năm đồng hành cùng độc giả, Kuri Hime Ayakashi Yobanashi chuẩn bị bước vào chương cuối. Manga kể về Kinuko, một giảng viên đại học sống tại khuôn viên đền Tamamayu, nơi những bí ẩn và hiện tượng siêu nhiên dần xuất hiện.",
+    "img": "/assets/img/uploads/a6nnkrus-5c2e92eb-6be8-41f2-9b1c-a5051ff85e46.jpg",
+    "tags": []
+  },
+  {
+    "title": "Chainsaw Man và One Piece cùng góp mặt tại Harvey Awards 2026",
+    "url": "/chainsaw-man-va-one-piece-cung-gop-mat-tai-harvey-awards-202",
+    "cat": "Anime",
+    "date": "2026-10-01",
+    "excerpt": "Chainsaw Man – The Movie: Reze Arc và One Piece Season 2 cùng được đề cử Harvey Awards 2026 ở hạng mục Best Adaptation.",
+    "img": "/assets/img/uploads/suuel406-images-3.jpg",
+    "tags": []
+  },
+  {
     "title": "Frieren mùa 3: Golden Land Arc và câu chuyện về Macht",
     "url": "/en/frieren-mua-3-golden-land-arc-va-cau-chuyen-ve-macht",
     "cat": "Anime",
@@ -36,15 +54,6 @@ window.IDX = [
     "tags": []
   },
   {
-    "title": "Raincoat Pikachu được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử",
-    "url": "/raincoat-pikachu-duoc-ban-voi-gia-8-4-trieu-usd-tro-thanh-th",
-    "cat": "Gaming",
-    "date": "2026-10-01",
-    "excerpt": "Được tạo ra từ một cuộc thi minh họa liên quan đến Pokémon Art Academy trên Nintendo 3DS, Raincoat Pikachu vốn chỉ được trao cho họa sĩ chiến thắng dưới dạng phần thưởng. Phiên bản vừa được đấu giá đạt chuẩn PSA 10 Gem Mint và kết thúc với 64 lượt trả giá.",
-    "img": "/assets/img/uploads/o8e6u5kv-bzsawf93tlgnit5hqizumf-970-80-jpg.webp",
-    "tags": []
-  },
-  {
     "title": "5 game sinh tồn miễn phí đáng chơi trên Steam, fan thể loại survival không nên bỏ qua",
     "url": "/5-game-sinh-ton-mien-phi-dang-choi-tren-steam-fan-the-loai-s",
     "cat": "Gaming",
@@ -61,16 +70,6 @@ window.IDX = [
     "excerpt": "GTA 6 được kỳ vọng sở hữu hệ thống thời tiết năng động, tái hiện nhiều điều kiện khí hậu đặc trưng của Florida trong thế giới mở Leonida.",
     "img": "/assets/img/uploads/suzos5z2-gt-6-1-06bc11d907.jpg",
     "tags": []
-  },
-  {
-    "title": "Crimson Desert: Charting the Unknown bị trì hoãn 2 tuần",
-    "url": "/crimson-desert-charting-the-unknown-bi-tri-hoan-2-tuan",
-    "cat": "Gaming",
-    "date": "2026-10-01",
-    "excerpt": "Pearl Abyss thông báo lùi lịch phát hành DLC Charting the Unknown của Crimson Desert thêm 2 tuần để hoàn thiện và ổn định trải nghiệm cho người chơi.",
-    "img": "/assets/img/uploads/ju13865k-uytkvd992szztxpgq2jhuv-970-80-jpg.webp",
-    "tags": [],
-    "lang": "vi"
   },
   {
     "title": "7 game The Witcher đáng chơi trong năm 2026",

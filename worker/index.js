@@ -49,6 +49,15 @@ export default {
       return Response.redirect(url.toString(), 301);
     }
 
+    if (url.pathname === '/admin' || url.pathname === '/admin.html') {
+      const res = await env.ASSETS.fetch(request);
+      const headers = new Headers(res.headers);
+      headers.set('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0');
+      headers.set('Pragma', 'no-cache');
+      headers.set('Expires', '0');
+      return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
+    }
+
     if (url.pathname.startsWith('/api/admin/')) {
       try {
         return await handleAdminApi(request, env, url);
