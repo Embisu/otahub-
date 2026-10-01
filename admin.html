@@ -14812,6 +14812,7 @@ function applyArticleEditsToHtml(baseHtml, customData) {
 
 function stampArticleAuthor(html, authorName) {
   const author = cleanPlainText(authorName) || 'OtaHub';
+  const escaped = esc(author);
   let profileSlug = author.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   if (/otahub/i.test(profileSlug) || CURRENT_USER?.role === 'admin') profileSlug = 'otahub';
   const profilePrefix = /<html\b[^>]*\blang="en"/i.test(html) ? '/en/author/' : '/author/';
