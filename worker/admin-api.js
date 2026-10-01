@@ -797,15 +797,18 @@ async function handleDraftPut(request, env, ghPath) {
   let body;
   try { body = await request.json(); } catch { return json({ error: 'Dữ liệu không hợp lệ.' }, 400); }
   if (typeof body?.html !== 'string') return json({ error: 'Thiếu nội dung.' }, 400);
-  await putDraft(env, ghPath, body.html, user.username);
-  return json({ ok: true });
+  const written = await putDraft(env, ghPath, body.html, user.username, existing);
+  return json({ ok: true, unchanged: !written });
 }
 async function handleDraftDelete(request, env, ghPath) {
   const user = await getSessionUser(request, env);
   if (!user) return json({ error: 'Chưa đăng nhập.' }, 401);
   if (!ghPath) return json({ error: 'Thiếu đường dẫn file.' }, 400);
   const existing = await getDraftRaw(env, ghPath);
-  if (existing && !canViewDraft(user, existing)) {
+  // Mỗi lần xuất bản, admin gọi xoá nháp cho cả bản VI và EN dù thường không có
+  // nháp nào: chỉ xoá khi thật sự có, vì lệnh xoá KV cũng tốn 1 lượt ghi.
+  if (!existing) return json({ ok: true });
+  if (!canViewDraft(user, existing)) {
     return json({ error: `Bản nháp này đang được "${existing.updatedBy}" soạn, không thể xoá.` }, 403);
   }
   await deleteDraft(env, ghPath);

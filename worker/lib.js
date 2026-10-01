@@ -157,9 +157,13 @@ export function hasValidImageSignature(ghPath, base64Content) {
 // Luu tam trong KV, KHONG dung ghi vao GitHub, cho phep autosave lien tuc
 // ma khong tao hang loat commit "rac" tren production. Chi khi bam that
 // "Luu & Deploy" (ghPut) moi thanh 1 commit that, va draft se bi xoa sau do.
-export async function putDraft(env, ghPath, html, username) {
+// `existing` (ban nhap hien co, neu da doc san) giup bo qua lan ghi khi noi
+// dung khong doi: moi lan ghi KV deu ton han muc ghi theo ngay.
+export async function putDraft(env, ghPath, html, username, existing) {
+  if (existing && existing.html === html && existing.updatedBy === username) return false;
   const key = `draft:${ghPath}`;
   await env.ADMIN_KV.put(key, JSON.stringify({ file: ghPath, html, updatedAt: Date.now(), updatedBy: username }));
+  return true;
 }
 export async function getDraftRaw(env, ghPath) {
   const raw = await env.ADMIN_KV.get(`draft:${ghPath}`);
@@ -227,36 +231,74 @@ export async function checkLoginLock(env, ip, username) {
 }
 export async function recordLoginFailure(env, ip, username) {
   const safeIp = ip || 'unknown';
-  await Promise.all([
-    bumpFailCounter(env, `loginfail:ip:${safeIp}`),
-    bumpFailCounter(env, `loginfail:pair:${safeIp}:${username}`),
-  ]);
+  try {
+    await Promise.all([
+      bumpFailCounter(env, `loginfail:ip:${safeIp}`),
+      bumpFailCounter(env, `loginfail:pair:${safeIp}:${username}`),
+    ]);
+  } catch (e) { /* KV het luot ghi: van tra "sai mat khau" thay vi loi 500 */ }
 }
 export async function clearLoginFailures(env, ip, username) {
   const safeIp = ip || 'unknown';
   // Chi xoa bo dem theo CAP (IP, username) khi dang nhap dung, KHONG xoa bo
   // dem rieng theo IP, vi 1 lan dang nhap dung tu 1 IP dung chung (NAT/proxy)
   // khong nen "giai phong" spam cua ke khac tu cung IP do.
-  await env.ADMIN_KV.delete(`loginfail:pair:${safeIp}:${username}`);
+  // Lenh xoa KV cung tinh la 1 luot ghi: chi xoa khi thuc su co bo dem.
+  const key = `loginfail:pair:${safeIp}:${username}`;
+  if (await env.ADMIN_KV.get(key)) await env.ADMIN_KV.delete(key);
 }
 
 // ── Nhat ky hoat dong (audit log) ────────────────────────────────────────
-// Luu 500 dong gan nhat trong 1 key duy nhat (danh cho quy mo nho, du dung).
+// Luu trong D1 (NEWS_DB), KHONG luu trong KV: moi thao tac admin (moi file
+// ghi khi luu bai ~10 dong) ma ghi KV se nhanh chong vuot han muc ghi KV
+// theo ngay (goi mien phi: 1.000 luot/ngay), lam hong ca dang nhap/ban nhap.
+// D1 cho 100.000 dong ghi/ngay va INSERT khong bi tranh chap nhu doc-sua-ghi
+// 1 key KV. Key KV 'auditlog' cu chi con duoc DOC de hien lich su truoc day.
 const AUDIT_KEY = 'auditlog';
-const AUDIT_MAX = 500;
+const AUDIT_KEEP_ROWS = 5000;
+let auditTableReady = false;
+async function ensureAuditTable(env) {
+  if (auditTableReady) return;
+  await env.NEWS_DB.prepare(`CREATE TABLE IF NOT EXISTS admin_audit_log (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    at INTEGER NOT NULL,
+    action TEXT NOT NULL,
+    username TEXT,
+    data TEXT NOT NULL
+  )`).run();
+  auditTableReady = true;
+}
 export async function logAudit(env, entry) {
   try {
-    const raw = await env.ADMIN_KV.get(AUDIT_KEY);
-    const list = raw ? JSON.parse(raw) : [];
-    list.unshift({ ...entry, at: Date.now() });
-    if (list.length > AUDIT_MAX) list.length = AUDIT_MAX;
-    await env.ADMIN_KV.put(AUDIT_KEY, JSON.stringify(list));
-  } catch (e) { /* audit log khong bao gio duoc lam hong request chinh */ }
+    if (!env.NEWS_DB) { console.log(JSON.stringify({ event: 'admin_audit', ...entry })); return; }
+    await ensureAuditTable(env);
+    await env.NEWS_DB.prepare('INSERT INTO admin_audit_log (at, action, username, data) VALUES (?, ?, ?, ?)')
+      .bind(Date.now(), String(entry.action || ''), entry.username ? String(entry.username) : null, JSON.stringify(entry))
+      .run();
+    // Don dong cu thinh thoang (khoang 1/50 lan ghi) thay vi moi lan.
+    if (Math.random() < 0.02) {
+      await env.NEWS_DB.prepare('DELETE FROM admin_audit_log WHERE id <= (SELECT MAX(id) FROM admin_audit_log) - ?').bind(AUDIT_KEEP_ROWS).run();
+    }
+  } catch (e) {
+    // Nhat ky khong bao gio duoc lam hong request chinh; van con log cua Workers.
+    console.log(JSON.stringify({ event: 'admin_audit_failed', error: String(e), ...entry }));
+  }
 }
 export async function getAuditLog(env, limit = 100) {
-  const raw = await env.ADMIN_KV.get(AUDIT_KEY);
-  const list = raw ? JSON.parse(raw) : [];
-  return list.slice(0, limit);
+  let rows = [];
+  try {
+    if (env.NEWS_DB) {
+      await ensureAuditTable(env);
+      const { results } = await env.NEWS_DB.prepare('SELECT at, data FROM admin_audit_log ORDER BY id DESC LIMIT ?').bind(limit).all();
+      rows = (results || []).map((r) => { try { return { ...JSON.parse(r.data), at: r.at }; } catch { return null; } }).filter(Boolean);
+    }
+  } catch (e) {}
+  if (rows.length < limit) {
+    const raw = await env.ADMIN_KV.get(AUDIT_KEY);
+    const legacy = raw ? JSON.parse(raw) : [];
+    rows = rows.concat(legacy.slice(0, limit - rows.length));
+  }
+  return rows;
 }
 
 function toHex(buf) {
@@ -312,13 +354,35 @@ export function clearSessionCookie() {
 
 // Tra ve { username } tu session, KHONG chua role (role co the doi sau khi
 // dang nhap, nen luon lay lai tu ban ghi user moi nhat qua getSessionUser()).
+// Phien moi luu trong D1 (NEWS_DB) thay vi KV: neu KV het luot ghi trong ngay
+// thi van dang nhap duoc. Phien cu tao truoc day van nam trong KV nen van doc
+// ca hai noi (KV truoc) de khong ai bi dang xuat.
+let sessionTableReady = false;
+async function ensureSessionTable(env) {
+  if (sessionTableReady) return;
+  await env.NEWS_DB.prepare(`CREATE TABLE IF NOT EXISTS admin_sessions (
+    sid TEXT PRIMARY KEY,
+    username TEXT NOT NULL,
+    created_at INTEGER NOT NULL,
+    expires_at INTEGER NOT NULL
+  )`).run();
+  sessionTableReady = true;
+}
 async function getSession(request, env) {
   const cookies = parseCookies(request);
   const sid = cookies['ota_admin_session'];
-  if (!sid) return null;
+  if (!sid || !/^[0-9a-f]{64}$/.test(sid)) return null;
   const raw = await env.ADMIN_KV.get(`session:${sid}`);
-  if (!raw) return null;
-  try { return JSON.parse(raw); } catch { return null; }
+  if (raw) {
+    try { return JSON.parse(raw); } catch { return null; }
+  }
+  if (!env.NEWS_DB) return null;
+  try {
+    await ensureSessionTable(env);
+    const row = await env.NEWS_DB.prepare('SELECT username, created_at FROM admin_sessions WHERE sid = ? AND expires_at > ?')
+      .bind(sid, Date.now()).first();
+    return row ? { username: row.username, createdAt: row.created_at } : null;
+  } catch { return null; }
 }
 
 // Tra ve user day du { username, role, createdAt }, role luon la gia tri moi
@@ -336,7 +400,7 @@ export async function getSessionUser(request, env) {
     // sau nay phai tiep tuc dua vao fallback quyen admin.
     if (u.role === undefined || u.role === null) {
       u.role = role;
-      await env.ADMIN_KV.put(`user:${session.username.toLowerCase()}`, JSON.stringify(u));
+      try { await env.ADMIN_KV.put(`user:${session.username.toLowerCase()}`, JSON.stringify(u)); } catch {}
     }
     return { username: u.username, role };
   } catch { return null; }
@@ -344,12 +408,31 @@ export async function getSessionUser(request, env) {
 
 export async function createSession(env, username) {
   const sid = randomHex(32);
-  await env.ADMIN_KV.put(`session:${sid}`, JSON.stringify({ username, createdAt: Date.now() }), { expirationTtl: SESSION_TTL });
+  const now = Date.now();
+  if (env.NEWS_DB) {
+    await ensureSessionTable(env);
+    await env.NEWS_DB.prepare('INSERT INTO admin_sessions (sid, username, created_at, expires_at) VALUES (?, ?, ?, ?)')
+      .bind(sid, username, now, now + SESSION_TTL * 1000).run();
+    // Don phien het han (it khi, khong can moi lan dang nhap).
+    if (Math.random() < 0.1) {
+      await env.NEWS_DB.prepare('DELETE FROM admin_sessions WHERE expires_at <= ?').bind(now).run();
+    }
+    return sid;
+  }
+  await env.ADMIN_KV.put(`session:${sid}`, JSON.stringify({ username, createdAt: now }), { expirationTtl: SESSION_TTL });
   return sid;
 }
 
 export async function deleteSession(env, sid) {
-  if (sid) await env.ADMIN_KV.delete(`session:${sid}`);
+  if (!sid || !/^[0-9a-f]{64}$/.test(sid)) return;
+  if (env.NEWS_DB) {
+    try {
+      await ensureSessionTable(env);
+      await env.NEWS_DB.prepare('DELETE FROM admin_sessions WHERE sid = ?').bind(sid).run();
+    } catch {}
+  }
+  // Phien cu trong KV: chi xoa khi co that (lenh xoa KV cung ton 1 luot ghi).
+  try { if (await env.ADMIN_KV.get(`session:${sid}`)) await env.ADMIN_KV.delete(`session:${sid}`); } catch {}
 }
 
 export function json(data, status = 200, extraHeaders = {}) {
