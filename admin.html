@@ -5161,13 +5161,14 @@ async function ghGet(path) {
 }
 
 async function ghPut(path, content, sha, message) {
+  const is40Hex = typeof sha === 'string' && /^[0-9a-f]{40}$/i.test(sha.trim());
   const r = await fetch(`/api/admin/gh/${path}`, {
     method: 'PUT',
     credentials: 'same-origin',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       content: btoa(unescape(encodeURIComponent(content))),
-      sha,
+      sha: is40Hex ? sha.trim() : undefined,
       message
     })
   });
@@ -10595,6 +10596,53 @@ function renderEditor(file, html) {
 
   try { document.execCommand('defaultParagraphSeparator', false, 'p'); } catch(e) {}
 
+  const visEl = document.getElementById('body-visual');
+  if (visEl) {
+    visEl.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        if (e.shiftKey) {
+          e.preventDefault();
+          document.execCommand('insertLineBreak');
+          markChanged();
+          return;
+        }
+
+        const sel = window.getSelection();
+        if (!sel || !sel.rangeCount) return;
+        const node = sel.anchorNode;
+        const heading = node ? (node.nodeType === 1 ? node.closest('h1, h2, h3, h4') : node.parentElement?.closest('h1, h2, h3, h4')) : null;
+
+        if (heading) {
+          e.preventDefault();
+          const p = document.createElement('p');
+          p.innerHTML = '<br>';
+
+          const range = sel.getRangeAt(0);
+          const headingRange = document.createRange();
+          headingRange.selectNodeContents(heading);
+          headingRange.setStart(range.endContainer, range.endOffset);
+          const textAfter = headingRange.toString();
+
+          if (textAfter.trim() === '') {
+            heading.after(p);
+          } else {
+            const extracted = headingRange.extractContents();
+            p.innerHTML = '';
+            p.appendChild(extracted);
+            heading.after(p);
+          }
+
+          const newRange = document.createRange();
+          newRange.selectNodeContents(p);
+          newRange.collapse(true);
+          sel.removeAllRanges();
+          sel.addRange(newRange);
+          markChanged();
+        }
+      }
+    });
+  }
+
   if (BODY_BLOCKS) renderBlockEditor();
 
   const artIframe = document.getElementById('art-visual-iframe');
@@ -13329,6 +13377,123 @@ function cleanBlockContent(i) {
   toast('success', `🧹 Đã làm sạch nội dung khối #${i + 1}!`);
 }
 
+function focusBlockElement(idx, position = 'start') {
+  setTimeout(() => {
+    const container = document.getElementById('body-blocks-editor');
+    if (!container) return;
+    const items = container.querySelectorAll('.block-item');
+    const targetItem = items[idx];
+    if (!targetItem) return;
+    const editable = targetItem.querySelector('[contenteditable="true"], textarea, input');
+    if (!editable) return;
+    editable.focus();
+    if (editable.isContentEditable) {
+      const sel = window.getSelection();
+      const range = document.createRange();
+      if (position === 'end') {
+        range.selectNodeContents(editable);
+        range.collapse(false);
+      } else {
+        range.selectNodeContents(editable);
+        range.collapse(true);
+      }
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+  }, 15);
+}
+
+function handleBlockKeydown(e, i, type) {
+  if (e.key === 'Enter') {
+    if (e.shiftKey) {
+      // Shift+Enter: xuống dòng mềm (<br>) trong cùng một khối
+      if (type === 'paragraph' || type === 'quote') {
+        e.preventDefault();
+        document.execCommand('insertLineBreak');
+        blockTextInput(i, type === 'paragraph' ? 'html' : 'text', e.currentTarget);
+        return;
+      }
+    } else {
+      // Enter thông thường:
+      e.preventDefault();
+
+      if (type === 'heading') {
+        // Gõ xong tiêu đề H2/H3 và nhấn Enter: Tự động tạo khối đoạn văn mới ngay bên dưới!
+        BODY_BLOCKS.splice(i + 1, 0, { type: 'paragraph', html: '' });
+        renderBlockEditor().then(() => {
+          focusBlockElement(i + 1, 'start');
+        });
+        markChanged();
+        return;
+      }
+
+      if (type === 'paragraph') {
+        // Tách khối đoạn văn tại vị trí con trỏ (Split block)
+        const sel = window.getSelection();
+        let htmlBefore = '';
+        let htmlAfter = '';
+
+        if (sel && sel.rangeCount > 0) {
+          const range = sel.getRangeAt(0);
+          const el = e.currentTarget;
+
+          const rangeBefore = range.cloneRange();
+          rangeBefore.selectNodeContents(el);
+          rangeBefore.setEnd(range.startContainer, range.startOffset);
+
+          const rangeAfter = range.cloneRange();
+          rangeAfter.selectNodeContents(el);
+          rangeAfter.setStart(range.endContainer, range.endOffset);
+
+          const divBefore = document.createElement('div');
+          divBefore.appendChild(rangeBefore.cloneContents());
+          htmlBefore = divBefore.innerHTML;
+
+          const divAfter = document.createElement('div');
+          divAfter.appendChild(rangeAfter.cloneContents());
+          htmlAfter = divAfter.innerHTML;
+        } else {
+          htmlBefore = e.currentTarget.innerHTML || '';
+          htmlAfter = '';
+        }
+
+        if (htmlBefore === '<br>' || htmlBefore === '<br/>') htmlBefore = '';
+        if (htmlAfter === '<br>' || htmlAfter === '<br/>') htmlAfter = '';
+
+        BODY_BLOCKS[i].html = htmlBefore;
+        BODY_BLOCKS.splice(i + 1, 0, { type: 'paragraph', html: htmlAfter });
+        renderBlockEditor().then(() => {
+          focusBlockElement(i + 1, 'start');
+        });
+        markChanged();
+        return;
+      }
+
+      if (type === 'quote') {
+        BODY_BLOCKS.splice(i + 1, 0, { type: 'paragraph', html: '' });
+        renderBlockEditor().then(() => {
+          focusBlockElement(i + 1, 'start');
+        });
+        markChanged();
+        return;
+      }
+    }
+  } else if (e.key === 'Backspace') {
+    const el = e.currentTarget;
+    const txt = (el.textContent || '').trim();
+    if (txt === '' && (!el.innerHTML || el.innerHTML === '<br>' || el.innerHTML === '<br/>')) {
+      if (BODY_BLOCKS.length > 1 && i > 0) {
+        e.preventDefault();
+        BODY_BLOCKS.splice(i, 1);
+        renderBlockEditor().then(() => {
+          focusBlockElement(i - 1, 'end');
+        });
+        markChanged();
+      }
+    }
+  }
+}
+
 async function renderBlockEditor() {
   const el = document.getElementById('body-blocks-editor');
   if (!el) return;
@@ -13365,12 +13530,12 @@ async function renderBlockEditor() {
 
     let body = '';
     if (b.type === 'paragraph') {
-      body = `<p contenteditable="true" onpaste="handleBlockPaste(event,${i},'html')" oninput="blockTextInput(${i},'html',this)">${b.html || ''}</p>`;
+      body = `<p contenteditable="true" onpaste="handleBlockPaste(event,${i},'html')" oninput="blockTextInput(${i},'html',this)" onkeydown="handleBlockKeydown(event,${i},'paragraph')">${b.html || ''}</p>`;
     } else if (b.type === 'heading') {
       const lvl = b.level === 3 ? 3 : 2;
-      body = `<h${lvl} contenteditable="true" onpaste="handleBlockPaste(event,${i},'text',true)" oninput="blockTextInput(${i},'text',this)">${esc(b.text || '')}</h${lvl}>`;
+      body = `<h${lvl} contenteditable="true" onpaste="handleBlockPaste(event,${i},'text',true)" oninput="blockTextInput(${i},'text',this)" onkeydown="handleBlockKeydown(event,${i},'heading')">${esc(b.text || '')}</h${lvl}>`;
     } else if (b.type === 'quote') {
-      body = `<blockquote><p contenteditable="true" onpaste="handleBlockPaste(event,${i},'text',false)" oninput="blockTextInput(${i},'text',this)">${b.text || ''}</p></blockquote>
+      body = `<blockquote><p contenteditable="true" onpaste="handleBlockPaste(event,${i},'text',false)" oninput="blockTextInput(${i},'text',this)" onkeydown="handleBlockKeydown(event,${i},'quote')">${b.text || ''}</p></blockquote>
         <input class="rank-input-sm" style="width:100%;margin-top:6px" placeholder="Nguồn / tác giả (tuỳ chọn)" value="${esc(b.cite || '')}" onpaste="handleBlockTextareaPaste(event,${i},'cite')" oninput="blockField(${i},'cite',this.value)"/>`;
     } else if (b.type === 'list') {
       const val = (b.items || ['']).join('\n');
@@ -14647,8 +14812,8 @@ function applyArticleEditsToHtml(baseHtml, customData) {
 
 function stampArticleAuthor(html, authorName) {
   const author = cleanPlainText(authorName) || 'OtaHub';
-  const escaped = esc(author);
-  const profileSlug = CURRENT_USER?.role === 'admin' ? 'otahub' : author.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  let profileSlug = author.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  if (/otahub/i.test(profileSlug) || CURRENT_USER?.role === 'admin') profileSlug = 'otahub';
   const profilePrefix = /<html\b[^>]*\blang="en"/i.test(html) ? '/en/author/' : '/author/';
   const jsonAuthor = author.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
   html = html.replace(/(<meta\s+name="author"\s+content=")[^"]*(")/i, `$1${escaped}$2`);
@@ -14909,6 +15074,11 @@ async function saveArticle() {
       }
     } catch (e) {
       // File mới chưa có trên GitHub (404)
+    }
+
+    if (!viSha) {
+      const cached = ARTICLES.find(a => a.file === viFile);
+      if (isValidSha(cached?.sha)) viSha = cached.sha.trim();
     }
 
     if (!viHtml || viHtml.length < 200 || !/<html/i.test(viHtml)) {
