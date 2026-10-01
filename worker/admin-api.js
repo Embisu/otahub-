@@ -34,6 +34,33 @@ function ghErrorMessage(status, message) {
   return message || ('GitHub API error: ' + status);
 }
 
+// SHA hien tai cua 1 file tren nhanh chinh, dung khi ghi de. Thu API contents
+// truoc (khong cache); neu that bai thi tra qua Git Trees cua thu muc cha
+// (khong gioi han 1MB, khong phu thuoc cache cua contents). Tra { sha: null }
+// khi file chua ton tai.
+async function ghLatestSha(env, path) {
+  const base = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}`;
+  try {
+    const r = await fetch(`${base}/contents/${path}?ref=${GH_BRANCH}`, { headers: ghHeaders(env), cache: 'no-store' });
+    if (r.ok) {
+      const data = await r.json();
+      if (data && !Array.isArray(data) && data.sha) return { sha: data.sha };
+    }
+  } catch (e) {}
+  try {
+    const slash = path.lastIndexOf('/');
+    const dir = slash === -1 ? '' : path.slice(0, slash);
+    const name = decodeURIComponent(path.slice(slash + 1));
+    const r = await fetch(`${base}/git/trees/${GH_BRANCH}${dir ? ':' + dir : ''}`, { headers: ghHeaders(env), cache: 'no-store' });
+    if (r.ok) {
+      const data = await r.json();
+      const hit = (data.tree || []).find((t) => t.path === name && t.type === 'blob');
+      if (hit && hit.sha) return { sha: hit.sha };
+    }
+  } catch (e) {}
+  return { sha: null };
+}
+
 function ghHeaders(env) {
   return {
     'Authorization': 'Bearer ' + env.GITHUB_TOKEN,
@@ -538,49 +565,37 @@ async function handleGhPut(request, env, ghPath) {
   if (is40HexSha) {
     putPayload.sha = sha.trim();
   } else {
-    // Luôn chủ động lấy SHA mới nhất từ GitHub nếu client không gửi SHA hoặc gửi SHA không chuẩn (ví dụ: 'local-asset')
-    try {
-      const getLatest = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${cleanGhPath}?ref=${GH_BRANCH}`, {
-        headers: ghHeaders(env),
-      });
-      if (getLatest.ok) {
-        const latestData = await getLatest.json();
-        if (latestData && latestData.sha) putPayload.sha = latestData.sha;
-      }
-    } catch(e) {}
+    // Client không gửi SHA hợp lệ (vd 'local-asset' khi đọc file từ bản deploy): tự lấy SHA mới nhất.
+    const latest = await ghLatestSha(env, cleanGhPath);
+    if (latest.sha) putPayload.sha = latest.sha;
   }
 
-  let r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${cleanGhPath}`, {
+  const putOnce = () => fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${cleanGhPath}`, {
     method: 'PUT',
     headers: { ...ghHeaders(env), 'Content-Type': 'application/json' },
     body: JSON.stringify(putPayload),
   });
+  let r = await putOnce();
 
-  // Nếu gặp lỗi 409 Conflict (SHA không khớp, SHA stale) hoặc 422 (thiếu SHA khi file đã tồn tại trên GitHub):
-  // Tự động truy vấn SHA mới nhất từ GitHub và thử commit lại ngay lập tức
-  if (r.status === 409 || r.status === 422) {
-    try {
-      const getLatest = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${cleanGhPath}?ref=${GH_BRANCH}`, {
-        headers: ghHeaders(env),
-      });
-      if (getLatest.ok) {
-        const latestData = await getLatest.json();
-        if (latestData && latestData.sha) {
-          putPayload.sha = latestData.sha;
-          r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${cleanGhPath}`, {
-            method: 'PUT',
-            headers: { ...ghHeaders(env), 'Content-Type': 'application/json' },
-            body: JSON.stringify(putPayload),
-          });
-        }
-      }
-    } catch(e) {}
+  // 409 (SHA cũ) hoặc 422 (thiếu SHA dù file đã tồn tại): lấy lại SHA mới nhất rồi thử lại.
+  // Ngay sau một commit, API contents của GitHub có thể vài giây chưa thấy bản mới
+  // (trả 404 / SHA cũ) nên thử lại có giãn cách và tra thêm qua Git Trees.
+  for (let attempt = 1; attempt <= 3 && (r.status === 409 || r.status === 422); attempt++) {
+    await new Promise((resolve) => setTimeout(resolve, 500 * attempt));
+    const latest = await ghLatestSha(env, cleanGhPath);
+    if (!latest.sha || latest.sha === putPayload.sha) continue;
+    putPayload.sha = latest.sha;
+    r = await putOnce();
   }
 
   if (!r.ok) {
     const e = await r.json().catch(() => ({}));
     await logAudit(env, { action: 'write_failed', username: user.username, file: cleanGhPath, error: e.message || r.status });
-    return json({ error: ghErrorMessage(r.status, e.message) }, ghClientStatus(r.status));
+    const shaProblem = /sha/i.test(e.message || '') && (r.status === 409 || r.status === 422);
+    const msg = shaProblem
+      ? `GitHub chưa trả về phiên bản mới nhất của ${cleanGhPath} (thường do vừa có thay đổi khác được lưu cùng lúc). Bài chưa bị mất — chờ khoảng 10 giây rồi bấm Lưu lại.`
+      : ghErrorMessage(r.status, e.message);
+    return json({ error: msg }, ghClientStatus(r.status));
   }
   await logAudit(env, { action: 'write', username: user.username, file: ghPath, message: message || '' });
   return json(await r.json());
