@@ -590,3 +590,45 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
     mobileQuery.addListener(initMobileBars);
   }
 })();
+
+/* ── 🎨 Màu theo chuyên mục: Gaming cyan · Anime hồng · Manga tím · Esports vàng · Review xanh lá ──
+   Nhãn chuyên mục do nhiều nơi sinh ra (admin, hub, trang chủ) và trước đây cùng một màu. Đọc chữ
+   trong nhãn, gắn data-cat rồi tô màu bằng CSS, để cả bài đăng sau này cũng tự có màu đúng. */
+(function(){
+  var SEL = '.wc-c,.sa-c,.h-meta-cat,.fc-meta>span:first-child,.sc-body .tag,.fc-body .tag,.ac-top .tag,.ac-thumb .tag,.sb-cat';
+  var RULES = [
+    [/^(esports?|thể thao điện tử)/, 'esports'],
+    [/^(anime|phim)/, 'anime'],
+    [/^(manga|manhwa|manhua|truyện)/, 'manga'],
+    [/^(review|đánh giá|preview)/, 'review'],
+    [/^(gaming|game|pc|mobile|gacha|console|xbox|playstation|nintendo|steam)/, 'gaming']
+  ];
+  function catOf(text){
+    var t = (text || '').replace(/[🔴🔥:]/g, '').trim().toLocaleLowerCase('vi');
+    for (var i = 0; i < RULES.length; i++) if (RULES[i][0].test(t)) return RULES[i][1];
+    return '';
+  }
+  function paint(root){
+    (root || document).querySelectorAll(SEL).forEach(function(el){
+      if (el.hasAttribute('data-cat')) return;
+      var c = catOf(el.textContent);
+      if (c) el.setAttribute('data-cat', c);
+    });
+  }
+  var css = ':root{--cat-gaming:#00f2ff;--cat-anime:#ff4f9a;--cat-manga:#a78bfa;--cat-esports:#fbbf24;--cat-review:#34d399}' +
+    '[data-cat=gaming]{--cc:var(--cat-gaming)}[data-cat=anime]{--cc:var(--cat-anime)}[data-cat=manga]{--cc:var(--cat-manga)}' +
+    '[data-cat=esports]{--cc:var(--cat-esports)}[data-cat=review]{--cc:var(--cat-review)}' +
+    '.wc-c[data-cat],.sa-c[data-cat],.h-meta-cat[data-cat],.fc-meta>span[data-cat],.sb-cat[data-cat]{color:var(--cc)!important}' +
+    '.tag[data-cat]{color:var(--cc)!important;border-color:color-mix(in srgb,var(--cc) 45%,transparent)!important;background:color-mix(in srgb,var(--cc) 14%,rgba(11,4,24,.72))!important}';
+  var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ paint(); });
+  else paint();
+  // Thẻ bài do script khác chèn sau khi trang tải (lịch anime, danh sách động...)
+  if (window.MutationObserver) {
+    var pending = false;
+    new MutationObserver(function(){
+      if (pending) return; pending = true;
+      setTimeout(function(){ pending = false; paint(); }, 120);
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  }
+})();

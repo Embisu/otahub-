@@ -96,7 +96,7 @@ const gtaEnHtml = `<!DOCTYPE html>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <meta name="theme-color" content="#0b0418">
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
-<link rel="stylesheet" href="/assets/article-style.css?v=20260909">
+<link rel="stylesheet" href="/assets/article-style.css?v=20261001e">
 </head>
 <body>
 
@@ -223,7 +223,7 @@ function copyArticleLink(button){
 }
 </script>
 <script defer src="/assets/search-redirect.js"></script>
-<script defer src="/assets/enhance.js?v=20261001d"></script>
+<script defer src="/assets/enhance.js?v=20261001e"></script>
 <script defer src="/assets/lang-switch.js"></script>
 </body>
 </html>`;
@@ -338,7 +338,7 @@ const romanEnHtml = `<!DOCTYPE html>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <meta name="theme-color" content="#0b0418">
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
-<link rel="stylesheet" href="/assets/article-style.css?v=20260909">
+<link rel="stylesheet" href="/assets/article-style.css?v=20261001e">
 </head>
 <body>
 
@@ -464,7 +464,7 @@ function copyArticleLink(button){
 }
 </script>
 <script defer src="/assets/search-redirect.js"></script>
-<script defer src="/assets/enhance.js?v=20261001d"></script>
+<script defer src="/assets/enhance.js?v=20261001e"></script>
 <script defer src="/assets/lang-switch.js"></script>
 </body>
 </html>`;
@@ -579,7 +579,7 @@ const conanEnHtml = `<!DOCTYPE html>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <meta name="theme-color" content="#0b0418">
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
-<link rel="stylesheet" href="/assets/article-style.css?v=20260909">
+<link rel="stylesheet" href="/assets/article-style.css?v=20261001e">
 </head>
 <body>
 
@@ -705,7 +705,7 @@ function copyArticleLink(button){
 }
 </script>
 <script defer src="/assets/search-redirect.js"></script>
-<script defer src="/assets/enhance.js?v=20261001d"></script>
+<script defer src="/assets/enhance.js?v=20261001e"></script>
 <script defer src="/assets/lang-switch.js"></script>
 </body>
 </html>`;
@@ -820,7 +820,7 @@ const opEnHtml = `<!DOCTYPE html>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <meta name="theme-color" content="#0b0418">
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
-<link rel="stylesheet" href="/assets/article-style.css?v=20260909">
+<link rel="stylesheet" href="/assets/article-style.css?v=20261001e">
 </head>
 <body>
 
@@ -943,7 +943,7 @@ function copyArticleLink(button){
 }
 </script>
 <script defer src="/assets/search-redirect.js"></script>
-<script defer src="/assets/enhance.js?v=20261001d"></script>
+<script defer src="/assets/enhance.js?v=20261001e"></script>
 <script defer src="/assets/lang-switch.js"></script>
 </body>
 </html>`;

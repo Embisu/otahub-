@@ -12306,12 +12306,12 @@ function buildStandardEnglishArticleTemplate(viSlug, enSlug, heroImg, heroPos, c
 <\/script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <meta name="theme-color" content="#0b0418">
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
-<link rel="stylesheet" href="/assets/article-style.css?v=20261001c">
+<link rel="stylesheet" href="/assets/article-style.css?v=20261001e">
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
 <link rel="stylesheet" href="/assets/mobile-fix.css?v=20261001b">
 </head>
@@ -12415,7 +12415,7 @@ function copyArticleLink(button){
 }
 <\/script>
 <script defer src="/assets/search-redirect.js"><\/script>
-<script defer src="/assets/enhance.js?v=20261001d"><\/script>
+<script defer src="/assets/enhance.js?v=20261001e"><\/script>
 <script defer src="/assets/img-fit.v2.js?v=20260926"><\/script>
 <script src="/assets/lang-switch.js" defer><\/script>
 </body>
@@ -16302,6 +16302,7 @@ async function saveArticle() {
 
     if (document.getElementById('ed-promote-hero')?.checked) {
       const subLabel = cleanPlainText(document.getElementById('ed-promote-sublabel')?.value || '');
+      warnIfSmallHeroImage(hero);
       try {
         await promoteToHomeHero(viFile.replace(/\.html$/, ''), viTitle, viDesc, cat, hero, subLabel, publishingAuthor);
         toast('success', '🔥 Đã đặt làm Tiêu điểm Trang chủ (VI + EN nếu có bản dịch)!');
@@ -16445,6 +16446,20 @@ async function cascadeIntoHeroSide(html, item) {
   if (newScItems.length > 4) newScItems = newScItems.slice(0, 4);
   const newFeatured = '\n    ' + newFc + '\n    ' + newScItems.join('\n    ') + '\n    ';
   return html.replace(/(<!-- ADMIN:FEATURED_START -->)[\s\S]*?(<!-- ADMIN:FEATURED_END -->)/, (m,p1,p2) => p1 + newFeatured + p2);
+}
+
+// Ảnh Tiêu điểm nhỏ bị kéo phủ cả khung hero (~1400×700) nên vỡ hạt — vd. ảnh 1150×400 của bài
+// Naruto. Chỉ cảnh báo, không chặn lưu: người đăng tự quyết định thay ảnh hay không.
+async function warnIfSmallHeroImage(src) {
+  if (!src) return;
+  try {
+    const img = new Image();
+    img.src = src;
+    await img.decode();
+    if (img.naturalWidth < 1600 || img.naturalHeight < 800) {
+      toast('warning', `⚠️ Ảnh Tiêu điểm chỉ ${img.naturalWidth}×${img.naturalHeight}px, sẽ bị vỡ hạt trên trang chủ. Nên dùng ảnh tối thiểu 1600×900.`);
+    }
+  } catch (e) { /* không đọc được ảnh: bỏ qua, không làm gián đoạn việc lưu */ }
 }
 
 // Đặt bài vừa lưu làm Tiêu điểm Trang chủ (Hero/Breaking News): Hero hiện tại được
@@ -16947,7 +16962,7 @@ function newArticle(prefillTitle) {
 <\/script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="manifest" href="/manifest.json">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-12852ZFD0K"><\/script>
 <script>
@@ -16959,7 +16974,7 @@ function newArticle(prefillTitle) {
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <meta name="theme-color" content="#0b0418">
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
-<link rel="stylesheet" href="/assets/article-style.css?v=20261001c">
+<link rel="stylesheet" href="/assets/article-style.css?v=20261001e">
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
 <link rel="stylesheet" href="/assets/mobile-fix.css?v=20261001b">
 </head>
@@ -17071,7 +17086,7 @@ function copyArticleLink(button){
 }
 <\/script>
 <script defer src="/assets/search-redirect.js"><\/script>
-<script defer src="/assets/enhance.js?v=20261001d"><\/script>
+<script defer src="/assets/enhance.js?v=20261001e"><\/script>
 <script src="/assets/lang-switch.js" defer><\/script>
 </body>
 </html>`.replace(/<a href="\/(choi-gi|gaming|anime|manga|reviews|rankings|chuyen-sau)"( class="active")?>/g,

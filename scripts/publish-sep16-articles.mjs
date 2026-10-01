@@ -265,7 +265,7 @@ function generateArticleHtml(art, isEn) {
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <meta name="theme-color" content="#0b0418">
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
-<link rel="stylesheet" href="/assets/article-style.css?v=20260909">
+<link rel="stylesheet" href="/assets/article-style.css?v=20261001e">
 </head>
 <body>
 
@@ -375,7 +375,7 @@ function copyArticleLink(button){
 }
 </script>
 <script defer src="/assets/search.js"></script>
-<script defer src="/assets/enhance.js?v=20261001d"></script>
+<script defer src="/assets/enhance.js?v=20261001e"></script>
 <script defer src="/assets/engage.js?v=20260818b"></script>
 <script defer src="/assets/supabase-client.js"></script>
 <script defer src="/assets/otahub-community.js"></script>
