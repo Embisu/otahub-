@@ -34,12 +34,62 @@ function ghErrorMessage(status, message) {
   return message || ('GitHub API error: ' + status);
 }
 
-// SHA hien tai cua 1 file tren nhanh chinh, dung khi ghi de. Thu API contents
-// truoc (khong cache); neu that bai thi tra qua Git Trees cua thu muc cha
-// (khong gioi han 1MB, khong phu thuoc cache cua contents). Tra { sha: null }
-// khi file chua ton tai.
-async function ghLatestSha(env, path) {
+// ── Doc file KHONG ton han muc REST API ──────────────────────────────────
+// Han muc GitHub REST la 5.000 luot/gio cho CA tai khoan (dung chung moi
+// token/cong cu cua tai khoan do). Moi lan luu bai admin doc/ghi ~10 file, nen
+// voi nhieu bien tap vien, han muc het rat nhanh va moi lan doc deu bi 403 ->
+// khong lay duoc SHA -> GitHub tu choi ghi ("sha wasn't supplied").
+// Vi vay doc noi dung qua raw.githubusercontent.com (khong tinh vao han muc
+// REST) va tu tinh SHA theo dung cong thuc cua Git: sha1("blob <len>\0" + bytes).
+// Neu ban raw bi cham vai giay sau 1 commit, SHA se lech -> GitHub tra 409 va
+// handleGhPut tu tra lai SHA qua API roi ghi lai.
+async function gitBlobSha(bytes) {
+  const header = new TextEncoder().encode(`blob ${bytes.byteLength}\0`);
+  const buf = new Uint8Array(header.byteLength + bytes.byteLength);
+  buf.set(header, 0);
+  buf.set(bytes, header.byteLength);
+  const digest = await crypto.subtle.digest('SHA-1', buf);
+  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+// Chi ap dung cho file (co phan mo rong), thu muc van phai di qua API contents.
+const RAW_READABLE_RE = /\.[a-z0-9]{1,8}$/i;
+async function ghRawFile(env, path) {
+  if (!RAW_READABLE_RE.test(path)) return null;
+  try {
+    const r = await fetch(`https://raw.githubusercontent.com/${GH_OWNER}/${GH_REPO}/${GH_BRANCH}/${path}?t=${Date.now()}`, {
+      headers: env.GITHUB_TOKEN ? { 'Authorization': 'Bearer ' + env.GITHUB_TOKEN, 'User-Agent': 'otahub-admin' } : { 'User-Agent': 'otahub-admin' },
+      cache: 'no-store',
+    });
+    if (!r.ok) return null;
+    const bytes = new Uint8Array(await r.arrayBuffer());
+    return { bytes, sha: await gitBlobSha(bytes) };
+  } catch (e) {
+    return null;
+  }
+}
+
+// Thong bao khi GitHub chan vi vuot han muc: noi ro khi nao dung lai duoc.
+function ghRateLimitMessage(res) {
+  const reset = Number(res?.headers?.get('x-ratelimit-reset') || 0);
+  const when = reset
+    ? new Date(reset * 1000).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Ho_Chi_Minh' })
+    : '';
+  return `GitHub đang tạm giới hạn số lượt truy cập của tài khoản (vượt 5.000 lượt/giờ)${when ? `, sẽ mở lại lúc ${when}` : ''}. Bài chưa bị mất — vui lòng lưu lại sau thời điểm đó.`;
+}
+function isRateLimited(res, message = '') {
+  return (res?.status === 403 || res?.status === 429) && (/rate limit/i.test(message) || res?.headers?.get('x-ratelimit-remaining') === '0');
+}
+
+// SHA hien tai cua 1 file tren nhanh chinh, dung khi ghi de. Uu tien cach
+// khong ton han muc (raw + tu tinh SHA); `fresh` = bo qua raw, hoi thang API
+// (dung khi SHA tu raw vua bi GitHub bao lech). Tra { sha: null } khi file
+// chua ton tai hoac khong tra duoc.
+async function ghLatestSha(env, path, { fresh = false } = {}) {
   const base = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}`;
+  if (!fresh) {
+    const raw = await ghRawFile(env, path);
+    if (raw) return { sha: raw.sha };
+  }
   try {
     const r = await fetch(`${base}/contents/${path}?ref=${GH_BRANCH}`, { headers: ghHeaders(env), cache: 'no-store' });
     if (r.ok) {
@@ -367,16 +417,36 @@ async function handleGhGet(request, env, ghPath, url) {
   }
 
   const ref = url.searchParams.get('ref') || GH_BRANCH;
+  // File thường trên nhánh chính: đọc qua raw (không tốn hạn mức REST API).
+  if (ref === GH_BRANCH && request.method === 'GET') {
+    const raw = await ghRawFile(env, ghPath);
+    if (raw) {
+      return json({
+        name: decodeURIComponent(ghPath.split('/').pop()),
+        path: ghPath,
+        sha: raw.sha,
+        size: raw.bytes.byteLength,
+        type: 'file',
+        content: Buffer.from(raw.bytes).toString('base64'),
+        encoding: 'base64',
+      });
+    }
+  }
+
   const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}?ref=${ref}`, { headers: ghHeaders(env) });
   if (!r.ok) {
     const errBody = await r.json().catch(() => ({}));
-    await logAudit(env, {
-      action: 'gh_get_failed',
-      username: user.username,
-      file: ghPath,
-      status: r.status,
-      error: errBody.message || ('status ' + r.status)
-    });
+    // 404 là bình thường (bài mới chưa có trên GitHub), không ghi nhật ký để
+    // nhật ký không bị lấp bởi các dòng vô nghĩa.
+    if (r.status !== 404) {
+      await logAudit(env, {
+        action: 'gh_get_failed',
+        username: user.username,
+        file: ghPath,
+        status: r.status,
+        error: errBody.message || ('status ' + r.status)
+      });
+    }
     // Nếu đọc file thất bại qua GitHub, thử đọc file tĩnh qua env.ASSETS (fallback an toàn cho editor)
     if (env.ASSETS && request.method === 'GET') {
       try {
@@ -580,9 +650,11 @@ async function handleGhPut(request, env, ghPath) {
   // 409 (SHA cũ) hoặc 422 (thiếu SHA dù file đã tồn tại): lấy lại SHA mới nhất rồi thử lại.
   // Ngay sau một commit, API contents của GitHub có thể vài giây chưa thấy bản mới
   // (trả 404 / SHA cũ) nên thử lại có giãn cách và tra thêm qua Git Trees.
+  // Lần đầu thử lại: SHA tính từ raw có thể chậm vài giây so với commit vừa xong,
+  // nên hỏi thẳng API (fresh); các lần sau xen kẽ raw/API để đỡ tốn hạn mức.
   for (let attempt = 1; attempt <= 3 && (r.status === 409 || r.status === 422); attempt++) {
-    await new Promise((resolve) => setTimeout(resolve, 500 * attempt));
-    const latest = await ghLatestSha(env, cleanGhPath);
+    await new Promise((resolve) => setTimeout(resolve, 600 * attempt));
+    const latest = await ghLatestSha(env, cleanGhPath, { fresh: attempt !== 2 });
     if (!latest.sha || latest.sha === putPayload.sha) continue;
     putPayload.sha = latest.sha;
     r = await putOnce();
@@ -590,11 +662,12 @@ async function handleGhPut(request, env, ghPath) {
 
   if (!r.ok) {
     const e = await r.json().catch(() => ({}));
-    await logAudit(env, { action: 'write_failed', username: user.username, file: cleanGhPath, error: e.message || r.status });
-    const shaProblem = /sha/i.test(e.message || '') && (r.status === 409 || r.status === 422);
-    const msg = shaProblem
-      ? `GitHub chưa trả về phiên bản mới nhất của ${cleanGhPath} (thường do vừa có thay đổi khác được lưu cùng lúc). Bài chưa bị mất — chờ khoảng 10 giây rồi bấm Lưu lại.`
-      : ghErrorMessage(r.status, e.message);
+    await logAudit(env, { action: 'write_failed', username: user.username, file: cleanGhPath, status: r.status, error: e.message || r.status });
+    let msg;
+    if (isRateLimited(r, e.message)) msg = ghRateLimitMessage(r);
+    else if (/sha/i.test(e.message || '') && (r.status === 409 || r.status === 422)) {
+      msg = `Không xác định được phiên bản hiện tại của ${cleanGhPath} trên GitHub (GitHub có thể đang giới hạn lượt truy cập). Bài chưa bị mất — thử lưu lại sau ít phút.`;
+    } else msg = ghErrorMessage(r.status, e.message);
     return json({ error: msg }, ghClientStatus(r.status));
   }
   await logAudit(env, { action: 'write', username: user.username, file: ghPath, message: message || '' });
