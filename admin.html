@@ -4688,6 +4688,7 @@ let DRAFT_FILES = new Set(); // các file (bài viết/trang) hiện có bản n
 let EN_FILES_SET = new Set(); // tập hợp các file bài viết đã có bản tiếng Anh tương ứng trong en/
 let ARTICLES_META_MAP = {}; // bộ nhớ đệm metadata tác giả đọc từ assets/articles-meta.json
 let CURRENT_ARTICLE_AUTHOR = 'OtaHub Editorial'; // tác giả của bài viết hiện đang mở
+let PUBLISHABLE_AUTHORS = ['OtaHub Editorial', 'Yu', 'Anh Thu', 'Anna'];
 let CURRENT_VIEW = null; // view đang hiển thị ('dashboard'|'articles'|...) — dùng để biết có nên vẽ lại khi dữ liệu nền tải xong hay không
 let NEWS_PIPELINE_DRAFTS = [];
 let CURRENT_NEWS_DRAFT_ID = null;
@@ -5109,8 +5110,33 @@ const ROLE_LABEL = { admin: 'Admin', editor: 'Editor', author: 'Author', contrib
 
 // Tài khoản admin đại diện thương hiệu; các tài khoản khác giữ đúng tên người đăng.
 function publishingAuthorName() {
+  if (CURRENT_USER?.role === 'admin') return 'OtaHub Editorial';
   const name = cleanPlainText(CURRENT_USER?.displayName || CURRENT_USER?.username || '').trim();
   return name || 'OtaHub';
+}
+
+async function refreshPublishableAuthors() {
+  try {
+    const r = await fetch('/api/admin/users', { credentials: 'same-origin' });
+    if (!r.ok) return;
+    const data = await r.json();
+    const accountAuthors = (data.users || [])
+      .filter(u => u.role === 'admin' || u.role === 'author')
+      .map(u => {
+        if (u.role === 'admin') return 'OtaHub Editorial';
+        const raw = cleanPlainText(u.displayName || u.username || '').trim();
+        return raw.toLowerCase() === 'anhthu' ? 'Anh Thu' : raw;
+      })
+      .filter(Boolean);
+    const merged = [...PUBLISHABLE_AUTHORS, ...accountAuthors];
+    PUBLISHABLE_AUTHORS = merged.filter((name, index) =>
+      merged.findIndex(other => other.toLowerCase() === name.toLowerCase()) === index
+    );
+    const select = document.getElementById('post-author-select');
+    if (select) select.innerHTML = renderAuthorSelectOptions(select.value || CURRENT_ARTICLE_AUTHOR);
+  } catch (e) {
+    console.warn('Không tải được danh sách tác giả, dùng danh sách mặc định.', e);
+  }
 }
 function startApp() {
   document.getElementById('setup-screen').style.display = 'none';
@@ -5143,6 +5169,7 @@ function startApp() {
     const group = document.getElementById(id);
     if (group) group.style.display = canEditSystem ? '' : 'none';
   });
+  refreshPublishableAuthors();
   loadArticles(true);
 }
 
@@ -9760,16 +9787,7 @@ function openShortcutsModal() {
 }
 
 function renderAuthorSelectOptions(currentAuthor) {
-  const defaultAuthors = [
-    'OtaHub Editorial',
-    'Lin (Khánh Linh)',
-    'Mambu (Đức Anh)',
-    'Tik (Khánh Quỳnh)',
-    'Embisù',
-    'Yu',
-    'anhthu',
-    'OtaHub'
-  ];
+  const defaultAuthors = [...PUBLISHABLE_AUTHORS];
   const curr = (currentAuthor || '').trim();
   if (curr && !defaultAuthors.some(a => a.toLowerCase() === curr.toLowerCase())) {
     defaultAuthors.push(curr);

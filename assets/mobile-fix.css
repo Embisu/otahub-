@@ -1,28 +1,130 @@
-/* OtaHub mobile polish (v1) */
+/* OtaHub mobile polish (v2 - Mobile First Ergonomics) */
 .visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+
+/* ── 📱 Thanh chuyên mục vuốt ngang (Horizontal Category Pills) ── */
+.mob-cat-bar{display:none}
 @media(max-width:768px){
-  /* nút "bài đã lưu" nhỏ, mờ, không che nội dung */
-  .ot-saved-fab{width:34px!important;height:34px!important;font-size:14px!important;opacity:.72;left:10px!important;bottom:14px!important}
-  .ot-btt{width:34px!important;height:34px!important;opacity:.72}
-  /* footer 2 cột gọn */
-  footer .ft-in{grid-template-columns:1fr 1fr!important;gap:18px 16px!important;padding:28px 16px 12px!important}
+  .mob-cat-bar{
+    display:block;
+    position:sticky;
+    top:56px;
+    z-index:180;
+    background:rgba(11,2,32,.95);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+    padding:8px 12px;
+  }
+  .mob-cat-scroll{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding-bottom:1px;
+  }
+  .mob-cat-scroll::-webkit-scrollbar{display:none}
+  .mob-cat-item{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    white-space:nowrap;
+    font-size:12.5px;
+    font-weight:600;
+    padding:6px 14px;
+    border-radius:20px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.1);
+    color:rgba(240,238,255,.75);
+    text-decoration:none;
+    transition:all .2s;
+    flex-shrink:0;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .mob-cat-item:active{transform:scale(0.95)}
+  .mob-cat-item.active{
+    background:rgba(0,229,255,.18);
+    border-color:var(--cyan,#00e5ff);
+    color:var(--cyan,#00e5ff);
+    font-weight:700;
+    box-shadow:0 0 12px rgba(0,229,255,.25);
+  }
+}
+
+/* ── 📱 Thanh điều hướng cố định dưới đáy (Sticky Bottom Bar) ── */
+.mob-bottom-bar{display:none}
+@media(max-width:768px){
+  body{padding-bottom:64px!important}
+  .mob-bottom-bar{
+    display:flex;
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:999;
+    height:56px;
+    padding-bottom:env(safe-area-inset-bottom,0px);
+    background:rgba(11,4,24,.96);
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
+    border-top:1px solid rgba(0,229,255,.2);
+    justify-content:space-around;
+    align-items:center;
+    box-shadow:0 -6px 24px rgba(0,0,0,.65);
+  }
+  .mob-bar-btn{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:3px;
+    flex:1;
+    height:100%;
+    color:rgba(240,238,255,.62);
+    text-decoration:none;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:4px 0;
+    -webkit-tap-highlight-color:transparent;
+    transition:color .2s, transform .15s;
+  }
+  .mob-bar-btn svg{width:20px;height:20px;stroke-width:1.8;transition:transform .2s}
+  .mob-bar-btn span{font-size:10px;font-weight:600;letter-spacing:.02em}
+  .mob-bar-btn.active,.mob-bar-btn:hover{color:var(--cyan,#00e5ff)}
+  .mob-bar-btn:active{transform:scale(0.92);color:var(--cyan,#00e5ff)}
+  .mob-bar-btn.active svg{filter:drop-shadow(0 0 6px rgba(0,229,255,.6))}
+}
+
+@media(max-width:768px){
+  /* Nút back-to-top đặt ngay trên thanh điều hướng đáy */
+  .ot-btt{bottom:74px!important;right:14px!important;width:38px!important;height:38px!important;opacity:.85;box-shadow:0 4px 14px rgba(0,0,0,.6)}
+  .ot-saved-fab{display:none!important} /* Đã tích hợp vào thanh điều hướng đáy */
+
+  /* Footer 2 cột gọn gàng */
+  footer .ft-in{grid-template-columns:1fr 1fr!important;gap:18px 16px!important;padding:28px 16px 16px!important}
   footer .ft-in>div:first-child{grid-column:1/-1}
   footer .ft-desc{max-width:none!important}
   footer .ft-links{gap:6px!important}
   footer .ft-links a{font-size:13px!important}
-  footer .ft-bot{padding:12px 16px!important}
+  footer .ft-bot{padding:12px 16px 20px!important}
   footer .ft-copy{font-size:10.5px!important}
-  /* Rankings podium: nhãn hạng không đè lên tag/tiêu đề */
+
+  /* Rankings podium */
   .pod-item{display:flex!important;flex-direction:column;min-height:0!important}
   .pod-rank{position:static!important;align-self:flex-start;margin:12px 0 0 14px;font-size:10px!important;padding:4px 10px!important}
   .pod-body{padding:14px 16px 16px!important;margin-top:0!important}
   .pod-item .pod-img{position:absolute;inset:0}
-  /* Trang game/anime detail */
+
+  /* Trang chi tiết Game / Anime */
   .info-row{display:flex;flex-direction:column;gap:2px}
   .score-breakdown-card{padding:18px 16px!important}
   .sbc-row{flex-wrap:wrap;gap:4px 10px!important}
   .sbc-name{flex:1 1 100%!important}
   .sbc-bg{flex:1 1 0!important;min-width:60px}
+
+  /* Thẻ tin tức touch-active mượt mà */
+  .s-art:active,.sc:active,.fc:active,.ac:active,.author-card:active{transform:scale(0.985);transition:transform .12s ease}
 }
 .ah-poster{object-fit:cover!important}
 @media(max-width:768px){.ah-poster{width:100%!important;height:180px!important;max-width:none}}
