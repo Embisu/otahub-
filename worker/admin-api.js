@@ -18,6 +18,21 @@ function clientIp(request) {
 
 const USERNAME_RE = /^[a-z0-9][a-z0-9._-]{2,31}$/i;
 
+// Xoa cache Cloudflare cua ho so tac gia cong khai (worker/index.js cache 5 phut,
+// cung dinh dang khoa) de sua ho so/doi vai tro hien ngay. Admin hien la "otahub".
+async function purgeAuthorCache(request, username) {
+  const origin = new URL(request.url).origin;
+  const slug = String(username || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  try {
+    await Promise.all(['otahub', slug].filter(Boolean).map((s) =>
+      caches.default.delete(new Request(`${origin}/__edge-cache/author/${encodeURIComponent(s)}`))));
+  } catch (e) {}
+}
+// Xoa cache Cloudflare cua 1 anh upload (ke ca dau "khong ton tai" 5 phut).
+async function purgeUploadCache(request, fileName) {
+  try { await caches.default.delete(new Request(`${new URL(request.url).origin}/assets/img/uploads/${fileName}`)); } catch (e) {}
+}
+
 // Repo GitHub co dinh cho site nay (khong doi, khong can nguoi dung nhap lai).
 const GH_OWNER = 'Embisu';
 const GH_REPO = 'otahub-';
@@ -206,6 +221,7 @@ async function handleProfilePost(request, env) {
   if (typeof avatar === 'string') u.avatar = avatar.trim().slice(0, 500);
   if (typeof jobTitle === 'string') u.jobTitle = jobTitle.trim().slice(0, 100);
   await env.ADMIN_KV.put(key, JSON.stringify(u));
+  await purgeAuthorCache(request, u.username);
   await logAudit(env, { action: 'profile_updated', username: me.username, target });
   return json({
     ok: true,
@@ -295,6 +311,7 @@ async function handleUsersDelete(request, env, url) {
   const list = await env.ADMIN_KV.list({ prefix: 'user:' });
   if (list.keys.length <= 1) return json({ error: 'Hệ thống phải còn ít nhất 1 tài khoản.' }, 400);
   await env.ADMIN_KV.delete(`user:${username}`);
+  await purgeAuthorCache(request, username);
   await logAudit(env, { action: 'user_deleted', username: me.username, target: username });
   return json({ ok: true });
 }
@@ -325,6 +342,7 @@ async function handleUsersRole(request, env) {
   }
   u.role = finalRole;
   await env.ADMIN_KV.put(key, JSON.stringify(u));
+  await purgeAuthorCache(request, u.username);
   await logAudit(env, { action: 'user_role_changed', username: me.username, target: username, role: finalRole });
   return json({ ok: true });
 }
@@ -556,6 +574,7 @@ async function handleGhPut(request, env, ghPath) {
           uploadedBy: user.username,
         }));
         await env.ADMIN_KV.put(`upload_hash:${hashHex}`, fileName);
+        await purgeUploadCache(request, fileName);
         kvSaved = true;
       } catch (kvErr) {
         console.error('Loi luu anh vao KV:', kvErr);
@@ -700,6 +719,7 @@ async function handleGhDelete(request, env, ghPath) {
     await env.ADMIN_KV.delete(`upload_img:${fileName}`);
     await env.ADMIN_KV.delete(`upload_meta:${fileName}`);
     await env.ADMIN_KV.delete(`upload_alias:${fileName}`);
+    await purgeUploadCache(request, fileName);
   }
 
   if (sha && String(sha).startsWith('kv-')) {
