@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex, nofollow"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0118'/%3E%3Cpolygon points='32,6 56,18 56,46 32,58 8,46 8,18' fill='none' stroke='%2300e5ff' stroke-width='3'/%3E%3Ctext x='32' y='38' font-family='Inter,sans-serif' font-size='20' font-weight='800' text-anchor='middle' fill='%2300e5ff'%3EOH%3C/text%3E%3C/svg%3E"/>
 <script>
 (function(){try{var t=localStorage.getItem('otahub_admin_theme')||'dark';if(t==='light'){document.documentElement.classList.add('theme-light');}else{document.documentElement.classList.add('theme-dark');}}catch(e){}})();
@@ -51,8 +51,10 @@
 
   /* ── Legacy compat ── */
   --wp-wp-card: var(--wp-card);
-  --font-system: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --fd: 'Inter', sans-serif;
+  --font-system: 'Inter', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --fd: 'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --fb: 'Space Grotesk', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --wp-font-display: 'Space Grotesk', 'Be Vietnam Pro', 'Inter', sans-serif;
 }
 
 /* ── Light Mode (Theme Sáng - Tinh tế, sáng sủa, sạch sẽ, chuẩn SaaS Dashboard) ── */
@@ -1220,14 +1222,14 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   background: transparent;
   padding: 24px 28px;
   color: var(--wp-text);
-  font-family: var(--fb, 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif);
+  font-family: 'Be Vietnam Pro', 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 18px;
   line-height: 1.85;
   outline: none;
 }
 #body-visual { counter-reset: admin-h2; }
 #body-visual h1, #body-visual h2 {
-  font-family: 'Be Vietnam Pro', var(--fd, 'Rajdhani', sans-serif);
+  font-family: 'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 26px;
   font-weight: 700;
   margin: 36px 0 14px;
@@ -1245,7 +1247,7 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   background: linear-gradient(110deg,rgba(0,229,255,.11),rgba(39,18,75,.16) 62%,rgba(255,48,128,.08));
 }
 #body-visual h2::before {
-  content: '0' counter(admin-h2);
+  content: counter(admin-h2, decimal-leading-zero);
   position: absolute;
   left: 16px;
   top: 50%;
@@ -1257,17 +1259,36 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   color: #070311;
   background: linear-gradient(135deg,#00e5ff 0 76%,#ff3080 77% 100%);
   clip-path: polygon(0 0,84% 0,100% 16%,100% 100%,16% 100%,0 84%);
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
   font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+}
+#body-visual h2:empty::after {
+  content: 'Nhập tiêu đề mục...';
+  color: var(--wp-muted);
+  opacity: .55;
+  pointer-events: none;
+  font-weight: 400;
+  font-size: 18px;
 }
 #body-visual h3 {
-  font-family: var(--fd, 'Rajdhani', sans-serif);
+  font-family: 'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 20px;
   font-weight: 700;
   margin: 28px 0 10px;
   color: var(--wp-title);
 }
+#body-visual h3:empty::before {
+  content: 'Nhập tiêu đề phụ...';
+  color: var(--wp-muted);
+  opacity: .55;
+  pointer-events: none;
+  font-weight: 400;
+  font-size: 16px;
+}
 #body-visual h4 {
-  font-family: var(--fd, 'Rajdhani', sans-serif);
+  font-family: 'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 17px;
   font-weight: 700;
   margin: 20px 0 8px;
@@ -1302,7 +1323,7 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   text-transform: uppercase;
   color: #00e5ff;
   font-weight: 700;
-  font-family: var(--fd, 'Rajdhani', sans-serif);
+  font-family: 'Space Grotesk', 'Be Vietnam Pro', 'Inter', sans-serif;
   margin-bottom: 8px;
 }
 #body-visual .hb-text {
@@ -2377,11 +2398,13 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .block-drag:active { cursor: grabbing; }
 .block-type-tag { position: absolute; top: 8px; left: 34px; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--wp-blue); background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 6px; padding: 2px 7px; display: none; }
 .block-item:hover .block-type-tag, .block-item:focus-within .block-type-tag { display: block; }
-.block-canvas { counter-reset: block-h2; }
-.block-canvas h2 { counter-increment:block-h2;position:relative;font-family:'Be Vietnam Pro',sans-serif;font-size:20px;font-weight:800;color:var(--wp-title);outline:none;margin:12px 0;padding:14px 14px 14px 58px;border:1px solid rgba(0,229,255,.16);border-radius:9px;background:linear-gradient(110deg,rgba(0,229,255,.10),rgba(124,58,237,.08) 62%,rgba(255,48,128,.06)); }
-.block-canvas h2::before { content:'0' counter(block-h2);position:absolute;left:12px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:32px;height:32px;color:#070311;background:linear-gradient(135deg,#00e5ff 0 76%,#ff3080 77% 100%);clip-path:polygon(0 0,84% 0,100% 16%,100% 100%,16% 100%,0 84%);font-size:11px; }
-.block-canvas h3 { font-size: 17px; font-weight: 700; color: var(--wp-title); outline: none; margin-top: 6px; }
-.block-canvas p { font-size: 15px; line-height: 1.8; color: var(--wp-text); outline: none; min-height: 1.6em; }
+.block-canvas { counter-reset: block-h2; font-family: 'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+.block-canvas h2 { counter-increment:block-h2;position:relative;font-family:'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;font-size:20px;font-weight:700;color:var(--wp-title);outline:none;margin:12px 0;padding:14px 14px 14px 58px;border:1px solid rgba(0,229,255,.16);border-radius:9px;background:linear-gradient(110deg,rgba(0,229,255,.10),rgba(124,58,237,.08) 62%,rgba(255,48,128,.06)); }
+.block-canvas h2::before { content:counter(block-h2, decimal-leading-zero);position:absolute;left:12px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:32px;height:32px;color:#070311;background:linear-gradient(135deg,#00e5ff 0 76%,#ff3080 77% 100%);clip-path:polygon(0 0,84% 0,100% 16%,100% 100%,16% 100%,0 84%);font-family:'Space Grotesk', 'Inter', sans-serif;font-size:11px;font-weight:700;line-height:1; }
+.block-canvas h2:empty::after { content: 'Nhập tiêu đề mục...'; color: var(--wp-muted); opacity: .55; }
+.block-canvas h3 { font-family:'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;font-size: 17px; font-weight: 700; color: var(--wp-title); outline: none; margin-top: 6px; }
+.block-canvas h3:empty::before { content: 'Nhập tiêu đề phụ...'; color: var(--wp-muted); opacity: .55; }
+.block-canvas p { font-family:'Space Grotesk', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;font-size: 15px; line-height: 1.8; color: var(--wp-text); outline: none; min-height: 1.6em; }
 .block-canvas p:empty:before { content: 'Nhập đoạn văn...'; color: var(--wp-muted); }
 .block-canvas blockquote { border-left: 3px solid var(--wp-blue); padding: 4px 0 4px 16px; color: var(--wp-text); font-style: italic; }
 .block-canvas blockquote p { outline: none; }
@@ -3782,9 +3805,23 @@ html.theme-light #body-visual {
   color: #0f172a;
 }
 html.theme-light #body-visual h2,
+html.theme-light .block-canvas h2 {
+  background: linear-gradient(110deg, rgba(2,132,199,.08), rgba(99,102,241,.06) 62%, rgba(225,29,72,.04));
+  border: 1px solid rgba(2,132,199,.2);
+  color: #0f172a;
+}
 html.theme-light #body-visual h3,
+html.theme-light .block-canvas h3,
 html.theme-light #body-visual strong {
   color: #0f172a;
+}
+html.theme-light #body-visual .hb-label {
+  color: #0284c7;
+}
+html.theme-light #body-visual .art-lead {
+  color: #1e293b;
+  border-left-color: #0284c7;
+  background: rgba(2,132,199,.05);
 }
 html.theme-light #body-visual p,
 html.theme-light #body-visual li {
@@ -11445,9 +11482,9 @@ function buildStandardEnglishArticleTemplate(viSlug, enSlug, heroImg, heroPos, c
 <meta name="twitter:image" content="${esc(heroImg)}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="stylesheet" href="/assets/article-style.css?v=20260930h2">
+<link rel="stylesheet" href="/assets/article-style.css?v=20261001video">
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
 <link rel="stylesheet" href="/assets/mobile-fix.css?v=20260926">
 </head>
@@ -15649,7 +15686,7 @@ function newArticle(prefillTitle) {
 <\/script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="manifest" href="/manifest.json">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-12852ZFD0K"><\/script>
 <script>
@@ -15661,7 +15698,7 @@ function newArticle(prefillTitle) {
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <meta name="theme-color" content="#0b0418">
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
-<link rel="stylesheet" href="/assets/article-style.css?v=20260930h2">
+<link rel="stylesheet" href="/assets/article-style.css?v=20261001video">
 </head>
 <body>
 
