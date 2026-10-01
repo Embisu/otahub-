@@ -1225,8 +1225,9 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   line-height: 1.85;
   outline: none;
 }
+#body-visual { counter-reset: admin-h2; }
 #body-visual h1, #body-visual h2 {
-  font-family: var(--fd, 'Rajdhani', sans-serif);
+  font-family: 'Be Vietnam Pro', var(--fd, 'Rajdhani', sans-serif);
   font-size: 26px;
   font-weight: 700;
   margin: 36px 0 14px;
@@ -1234,6 +1235,29 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   border-bottom: 1px solid var(--wp-border);
   padding-bottom: 8px;
   letter-spacing: -0.01em;
+}
+#body-visual h2 {
+  counter-increment: admin-h2;
+  position: relative;
+  padding: 16px 18px 16px 68px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 10px;
+  background: linear-gradient(110deg,rgba(0,229,255,.11),rgba(39,18,75,.16) 62%,rgba(255,48,128,.08));
+}
+#body-visual h2::before {
+  content: '0' counter(admin-h2);
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  color: #070311;
+  background: linear-gradient(135deg,#00e5ff 0 76%,#ff3080 77% 100%);
+  clip-path: polygon(0 0,84% 0,100% 16%,100% 100%,16% 100%,0 84%);
+  font-size: 12px;
 }
 #body-visual h3 {
   font-family: var(--fd, 'Rajdhani', sans-serif);
@@ -2353,7 +2377,9 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .block-drag:active { cursor: grabbing; }
 .block-type-tag { position: absolute; top: 8px; left: 34px; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--wp-blue); background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 6px; padding: 2px 7px; display: none; }
 .block-item:hover .block-type-tag, .block-item:focus-within .block-type-tag { display: block; }
-.block-canvas h2 { font-size: 20px; font-weight: 800; color: var(--wp-title); outline: none; margin-top: 6px; }
+.block-canvas { counter-reset: block-h2; }
+.block-canvas h2 { counter-increment:block-h2;position:relative;font-family:'Be Vietnam Pro',sans-serif;font-size:20px;font-weight:800;color:var(--wp-title);outline:none;margin:12px 0;padding:14px 14px 14px 58px;border:1px solid rgba(0,229,255,.16);border-radius:9px;background:linear-gradient(110deg,rgba(0,229,255,.10),rgba(124,58,237,.08) 62%,rgba(255,48,128,.06)); }
+.block-canvas h2::before { content:'0' counter(block-h2);position:absolute;left:12px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:32px;height:32px;color:#070311;background:linear-gradient(135deg,#00e5ff 0 76%,#ff3080 77% 100%);clip-path:polygon(0 0,84% 0,100% 16%,100% 100%,16% 100%,0 84%);font-size:11px; }
 .block-canvas h3 { font-size: 17px; font-weight: 700; color: var(--wp-title); outline: none; margin-top: 6px; }
 .block-canvas p { font-size: 15px; line-height: 1.8; color: var(--wp-text); outline: none; min-height: 1.6em; }
 .block-canvas p:empty:before { content: 'Nhập đoạn văn...'; color: var(--wp-muted); }
@@ -11419,9 +11445,9 @@ function buildStandardEnglishArticleTemplate(viSlug, enSlug, heroImg, heroPos, c
 <meta name="twitter:image" content="${esc(heroImg)}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="stylesheet" href="/assets/article-style.css?v=20260924">
+<link rel="stylesheet" href="/assets/article-style.css?v=20260930h2">
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
 <link rel="stylesheet" href="/assets/mobile-fix.css?v=20260926">
 </head>
@@ -14832,23 +14858,25 @@ async function saveArticle() {
     const hasEn   = !!(enTitle && (enBody.length > 20 || (BILINGUAL_DATA?.en?.blocks && BILINGUAL_DATA?.en?.blocks.length > 0)));
 
     // 1. LƯU BÀI VIẾT TIẾNG VIỆT
-    let viHtml = '', viSha = BILINGUAL_DATA?.vi?.sha;
-    const isNewVi = !viSha && (!currentSha || (currentFile || '').startsWith('en/'));
+    const isValidSha = (s) => typeof s === 'string' && /^[0-9a-f]{40}$/i.test(s.trim());
+    let viHtml = '', viSha = isValidSha(BILINGUAL_DATA?.vi?.sha) ? BILINGUAL_DATA.vi.sha.trim() : (isValidSha(currentSha) ? currentSha.trim() : null);
 
-    if (isNewVi) {
-      viHtml = patchNewArticleUrls(BILINGUAL_DATA?.vi?.rawHtml || currentRawHtml, viFile);
-      viSha = undefined;
-      try {
-        const existing = await ghGet(viFile);
-        if (existing && existing.sha) viSha = existing.sha;
-      } catch (e) {}
-    } else {
-      try {
-        const data = await ghGet(viFile);
-        viSha = data.sha;
+    // Luôn xác thực SHA thực tế trên GitHub để tránh xung đột hoặc lỗi thiếu sha khi file đã tồn tại
+    try {
+      const data = await ghGet(viFile);
+      if (isValidSha(data?.sha)) {
+        viSha = data.sha.trim();
+      }
+      if (data?.content) {
         try { viHtml = decodeURIComponent(escape(atob(String(data.content || '').replace(/\s/g, '')))); } catch (e) { viHtml = ''; }
-      } catch (e) {}
-      if (!viHtml || viHtml.length < 200 || !/<html/i.test(viHtml)) viHtml = BILINGUAL_DATA?.vi?.rawHtml || currentRawHtml;
+      }
+    } catch (e) {
+      // File mới chưa có trên GitHub (404)
+    }
+
+    if (!viHtml || viHtml.length < 200 || !/<html/i.test(viHtml)) {
+      viHtml = BILINGUAL_DATA?.vi?.rawHtml || currentRawHtml;
+      if (!viSha) viHtml = patchNewArticleUrls(viHtml, viFile);
     }
 
     viHtml = applyArticleEditsToHtml(viHtml, {
@@ -14877,19 +14905,23 @@ async function saveArticle() {
 
     const viPutResult = await ghPut(viFile, viHtml, viSha, `[admin] cap nhat: ${(viTitle || 'bai viet').slice(0, 50)}`);
     await deleteDraft(viFile);
+    const newViSha = isValidSha(viPutResult?.content?.sha) ? viPutResult.content.sha.trim() : (isValidSha(viPutResult?.sha) ? viPutResult.sha.trim() : viSha);
     if (BILINGUAL_DATA?.vi) {
-      BILINGUAL_DATA.vi.sha = viPutResult?.content?.sha || viSha;
+      if (newViSha) BILINGUAL_DATA.vi.sha = newViSha;
       BILINGUAL_DATA.vi.rawHtml = viHtml;
     }
+    if (newViSha && CURRENT_LANG !== 'en') currentSha = newViSha;
 
     // 2. LƯU BÀI VIẾT TIẾNG ANH (NẾU CÓ NỘI DUNG)
-    let enPutResult = null;
+    let enPutResult = null, newEnSha = null;
     if (hasEn) {
-      let enHtml = '', enSha = BILINGUAL_DATA?.en?.sha;
+      let enHtml = '', enSha = isValidSha(BILINGUAL_DATA?.en?.sha) ? BILINGUAL_DATA.en.sha.trim() : null;
       try {
         const existingEn = await ghGet(enFile);
-        if (existingEn && existingEn.sha) {
-          enSha = existingEn.sha;
+        if (isValidSha(existingEn?.sha)) {
+          enSha = existingEn.sha.trim();
+        }
+        if (existingEn?.content) {
           try { enHtml = decodeURIComponent(escape(atob(String(existingEn.content || '').replace(/\s/g, '')))); } catch (e) {}
         }
       } catch (e) {}
@@ -14923,10 +14955,12 @@ async function saveArticle() {
 
       enPutResult = await ghPut(enFile, enHtml, enSha, `[admin] cap nhat ban tieng Anh: ${enTitle.slice(0, 50)}`);
       await deleteDraft(enFile);
+      newEnSha = isValidSha(enPutResult?.content?.sha) ? enPutResult.content.sha.trim() : (isValidSha(enPutResult?.sha) ? enPutResult.sha.trim() : enSha);
       if (BILINGUAL_DATA?.en) {
-        BILINGUAL_DATA.en.sha = enPutResult?.content?.sha || enSha;
+        if (newEnSha) BILINGUAL_DATA.en.sha = newEnSha;
         BILINGUAL_DATA.en.rawHtml = enHtml;
       }
+      if (newEnSha && CURRENT_LANG === 'en') currentSha = newEnSha;
 
       try {
         await syncNewArticle({ file: enFile, title: enTitle, desc: enDesc, cat, hero, author: publishingAuthor });
@@ -14944,19 +14978,20 @@ async function saveArticle() {
       }
     }
 
-    // Update local state
+    // Cập nhật trạng thái cục bộ
     if (CURRENT_LANG === 'en' && hasEn) {
-      currentSha = enPutResult?.content?.sha || BILINGUAL_DATA?.en?.sha;
+      currentSha = newEnSha || currentSha;
       currentRawHtml = BILINGUAL_DATA?.en?.rawHtml || '';
       currentFile = enFile;
     } else {
-      currentSha = viPutResult?.content?.sha || BILINGUAL_DATA?.vi?.sha;
+      currentSha = newViSha || currentSha;
       currentRawHtml = viHtml;
       currentFile = viFile;
     }
 
     let art = ARTICLES.find(a => a.file === viFile);
     if (art) {
+      if (newViSha) art.sha = newViSha;
       art.title = viTitle || ART_TITLE;
       art.desc = viDesc;
       art.hero = hero;
@@ -14966,7 +15001,7 @@ async function saveArticle() {
     } else {
       art = {
         file: viFile,
-        sha: viPutResult?.content?.sha,
+        sha: newViSha || null,
         title: viTitle || ART_TITLE,
         desc: viDesc,
         hero,
@@ -14994,6 +15029,7 @@ async function saveArticle() {
     // Tự động ping IndexNow
     pingIndexNowNow([`https://otahub.asia/${viSlug}`, hasEn ? `https://otahub.asia/en/${enSlug}` : null].filter(Boolean));
 
+    const isNewVi = !viSha;
     if (!isNewVi && viTitle) {
       try { await propagateTitleChange(viFile.replace(/\.html$/, ''), viTitle); } catch (e) { console.warn('propagateTitleChange', e); }
     }
@@ -15023,7 +15059,6 @@ async function saveArticle() {
       }
     }
     currentFile = (CURRENT_LANG === 'en' && hasEn) ? enFile : viFile;
-    if (viSha) currentSha = viSha;
   } catch(e) {
     if (dot) dot.className = 'status-dot error';
     if (txt) txt.textContent = 'Lỗi: ' + e.message;
@@ -15614,7 +15649,7 @@ function newArticle(prefillTitle) {
 <\/script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="manifest" href="/manifest.json">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-12852ZFD0K"><\/script>
 <script>
@@ -15626,7 +15661,7 @@ function newArticle(prefillTitle) {
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <meta name="theme-color" content="#0b0418">
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
-<link rel="stylesheet" href="/assets/article-style.css?v=20260909">
+<link rel="stylesheet" href="/assets/article-style.css?v=20260930h2">
 </head>
 <body>
 
