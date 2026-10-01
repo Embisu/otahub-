@@ -1117,6 +1117,8 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   display: flex;
   gap: 3px;
   margin-bottom: -1px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 .wp-switch-editor {
   background: transparent;
@@ -1131,6 +1133,8 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   font-family: inherit;
   transition: all .15s ease;
   height: 28px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .wp-switch-editor:hover { color: var(--wp-text); background: rgba(255,255,255,.04); }
 .wp-switch-editor.active {
@@ -1146,6 +1150,7 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
 .mce-tinymce {
   background: rgba(0,0,0,.15);
   border-bottom: 1px solid var(--wp-border);
+  overflow: visible;
 }
 .mce-toolbar-grp {
   padding: 4px 6px;
@@ -4782,6 +4787,42 @@ document.addEventListener('keydown', (e) => {
       openCmdk();
     }
   }
+  // Phím tắt Ctrl/Cmd+Z để hoàn tác, Ctrl+Y hoặc Ctrl+Shift+Z để làm lại
+  if ((e.ctrlKey || e.metaKey) && (e.key === 'z' || e.key === 'Z')) {
+    const activeEl = document.activeElement;
+    const isEditorActive = activeEl && (
+      activeEl.id === 'body-visual' ||
+      activeEl.id === 'body-textarea' ||
+      activeEl.closest?.('#body-blocks-editor') ||
+      activeEl.closest?.('#body-visual-wrap') ||
+      activeEl.closest?.('.wp-editor-wrap')
+    );
+    if (isEditorActive || currentFile) {
+      e.preventDefault();
+      if (e.shiftKey) {
+        EditorHistoryManager.redo();
+      } else {
+        EditorHistoryManager.undo();
+      }
+      return;
+    }
+  }
+  if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || e.key === 'Y')) {
+    const activeEl = document.activeElement;
+    const isEditorActive = activeEl && (
+      activeEl.id === 'body-visual' ||
+      activeEl.id === 'body-textarea' ||
+      activeEl.closest?.('#body-blocks-editor') ||
+      activeEl.closest?.('#body-visual-wrap') ||
+      activeEl.closest?.('.wp-editor-wrap')
+    );
+    if (isEditorActive || currentFile) {
+      e.preventDefault();
+      EditorHistoryManager.redo();
+      return;
+    }
+  }
+
   // Phím tắt đổi theme: Ctrl + Shift + L
   if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'l' || e.key === 'L')) {
     e.preventDefault();
@@ -5906,8 +5947,14 @@ function setupVisualImageHandlers() {
     }
   });
 
-  // Image & Table clicking -> Floating Toolbars
+  // Image, Table & Link clicking -> Floating Toolbars / Prevent navigation
   vis.addEventListener('click', function(e) {
+    const link = e.target.closest('a');
+    if (link && vis.contains(link)) {
+      e.preventDefault();
+      toast('info', `🔗 Liên kết: ${link.getAttribute('href') || ''} (Nhấn Ctrl+K để chỉnh sửa hoặc xóa link)`);
+    }
+
     const img = e.target.closest('img');
     const table = e.target.closest('table');
     if (img && vis.contains(img)) {
@@ -9393,15 +9440,116 @@ function convertWordTableToOtahub(html) {
   }
 }
 
+const EditorHistoryManager = {
+  stack: [],
+  index: -1,
+  maxSize: 50,
+  debounceTimer: null,
+  isApplying: false,
+
+  reset() {
+    this.stack = [];
+    this.index = -1;
+    this.snapshot(true);
+  },
+
+  getCurrentState() {
+    return {
+      bodyHtml: document.getElementById('body-visual')?.innerHTML || '',
+      codeText: document.getElementById('body-textarea')?.value || '',
+      blocks: (typeof BODY_BLOCKS !== 'undefined' && BODY_BLOCKS) ? JSON.parse(JSON.stringify(BODY_BLOCKS)) : null,
+      mode: typeof BODY_MODE !== 'undefined' ? BODY_MODE : 'visual'
+    };
+  },
+
+  snapshot(immediate = true) {
+    if (this.isApplying) return;
+    const save = () => {
+      const state = this.getCurrentState();
+      if (this.index >= 0) {
+        const prev = this.stack[this.index];
+        if (prev && prev.bodyHtml === state.bodyHtml && prev.codeText === state.codeText && JSON.stringify(prev.blocks) === JSON.stringify(state.blocks) && prev.mode === state.mode) {
+          return;
+        }
+      }
+      this.stack = this.stack.slice(0, this.index + 1);
+      this.stack.push(state);
+      if (this.stack.length > this.maxSize) this.stack.shift();
+      this.index = this.stack.length - 1;
+    };
+
+    if (immediate) {
+      if (this.debounceTimer) clearTimeout(this.debounceTimer);
+      save();
+    } else {
+      if (this.debounceTimer) clearTimeout(this.debounceTimer);
+      this.debounceTimer = setTimeout(save, 500);
+    }
+  },
+
+  undo() {
+    if (this.index > 0) {
+      this.index--;
+      this.applyState(this.stack[this.index]);
+      toast('info', '↩️ Đã hoàn tác (Undo)');
+      return true;
+    }
+    toast('info', 'ℹ️ Không còn thao tác nào để hoàn tác');
+    return false;
+  },
+
+  redo() {
+    if (this.index < this.stack.length - 1) {
+      this.index++;
+      this.applyState(this.stack[this.index]);
+      toast('info', '↪️ Đã làm lại (Redo)');
+      return true;
+    }
+    toast('info', 'ℹ️ Đã ở thao tác mới nhất');
+    return false;
+  },
+
+  applyState(state) {
+    if (!state) return;
+    this.isApplying = true;
+    try {
+      const vis = document.getElementById('body-visual');
+      const ta = document.getElementById('body-textarea');
+      if (vis && state.bodyHtml !== undefined) vis.innerHTML = state.bodyHtml;
+      if (ta && state.codeText !== undefined) ta.value = state.codeText;
+      if (state.blocks) {
+        BODY_BLOCKS = JSON.parse(JSON.stringify(state.blocks));
+        if (typeof renderBlockEditor === 'function') renderBlockEditor();
+      }
+      if (typeof updateWordCount === 'function') updateWordCount();
+      if (typeof updateSeoScore === 'function') updateSeoScore();
+      if (typeof markChangedNoRebuild === 'function') markChangedNoRebuild();
+    } finally {
+      this.isApplying = false;
+    }
+  }
+};
+
+function wpInsertMoreTag() {
+  EditorHistoryManager.snapshot(true);
+  wpExecCmd('insertHTML', '<!--more--><hr class="wp-more-tag"/><p><br></p>');
+  EditorHistoryManager.snapshot(true);
+}
+
 function wpExecCmd(cmd, val = null) {
+  if (cmd === 'undo') return EditorHistoryManager.undo();
+  if (cmd === 'redo') return EditorHistoryManager.redo();
+
+  EditorHistoryManager.snapshot(true);
+
   const vis = document.getElementById('body-visual');
   if (!vis) return;
   vis.focus();
 
   if (CURRENT_ACTIVE_VIS_IMG) {
-    if (cmd === 'justifyCenter') { wpImgAlign('center'); return; }
-    if (cmd === 'justifyLeft') { wpImgAlign('left'); return; }
-    if (cmd === 'justifyRight') { wpImgAlign('right'); return; }
+    if (cmd === 'justifyCenter') { wpImgAlign('center'); EditorHistoryManager.snapshot(true); return; }
+    if (cmd === 'justifyLeft') { wpImgAlign('left'); EditorHistoryManager.snapshot(true); return; }
+    if (cmd === 'justifyRight') { wpImgAlign('right'); EditorHistoryManager.snapshot(true); return; }
   }
   const sel = window.getSelection();
   if (sel && sel.rangeCount) {
@@ -9411,11 +9559,13 @@ function wpExecCmd(cmd, val = null) {
     if (img && (cmd === 'justifyCenter' || cmd === 'justifyLeft' || cmd === 'justifyRight')) {
       CURRENT_ACTIVE_VIS_IMG = img;
       wpImgAlign(cmd === 'justifyCenter' ? 'center' : (cmd === 'justifyRight' ? 'right' : 'left'));
+      EditorHistoryManager.snapshot(true);
       return;
     }
   }
 
   document.execCommand(cmd, false, val);
+  EditorHistoryManager.snapshot(true);
   markChanged();
   updateWordCount();
   updateSeoScore();
@@ -10078,7 +10228,7 @@ function renderEditor(file, html) {
                 <div class="mce-btn-group">
                   <button type="button" class="mce-btn" onmousedown="event.preventDefault()" title="Chèn/Sửa liên kết (Ctrl+K)" onclick="visLink()"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></button>
                   <button type="button" class="mce-btn" onmousedown="event.preventDefault()" title="Bỏ liên kết" onclick="wpExecCmd('unlink')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17 7h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.43-.98 2.63-2.31 2.98l1.46 1.46C20.88 15.61 22 13.95 22 12c0-2.76-2.24-5-5-5zm-1 4h-2.19l2 2H16v-2zM2 4.27l3.11 3.11C3.29 8.12 2 9.91 2 12c0 2.76 2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1 0-1.59 1.21-2.9 2.76-3.07L8.73 11H8v2h2.73L19.73 22 21 20.73 3.27 3 2 4.27z"/></svg></button>
-                  <button type="button" class="mce-btn" onmousedown="event.preventDefault()" title="Chèn thẻ Đọc tiếp" onclick="wpExecCmd('insertHTML', '<!--more--><hr class=\"wp-more-tag\"/><p><br></p>')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v-2H3v2zm4 0h2v-2H7v2zm4 0h2v-2h-2v2zm4 0h2v-2h-2v2zm4 0h2v-2h-2v2zM3 5v4h18V5H3zm0 14h18v-4H3v4z"/></svg></button>
+                  <button type="button" class="mce-btn" onmousedown="event.preventDefault()" title="Chèn thẻ Đọc tiếp" onclick="wpInsertMoreTag()"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v-2H3v2zm4 0h2v-2H7v2zm4 0h2v-2h-2v2zm4 0h2v-2h-2v2zm4 0h2v-2h-2v2zM3 5v4h18V5H3zm0 14h18v-4H3v4z"/></svg></button>
                 </div>
                 <div class="mce-btn-group">
                   <button type="button" class="mce-btn" onmousedown="event.preventDefault()" title="Thanh công cụ mở rộng (Kitchen Sink)" onclick="toggleKitchenSink()"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"/></svg></button>
@@ -11218,11 +11368,12 @@ function aiAddFaqSchemaBlock() {
 
 function syncBilingualBufferFromDom(lang) {
   if (!BILINGUAL_DATA || !BILINGUAL_DATA[lang]) return;
-  syncArticleFieldsFromIframe();
   syncArticleBodyToTextarea();
 
-  const title = cleanPlainText(ART_TITLE || document.getElementById('title')?.value || document.getElementById('ed-title')?.value || '');
-  const desc = cleanPlainText(document.getElementById('ed-desc')?.value || ART_EXCERPT || '');
+  const titleInput = document.getElementById('title') || document.getElementById('ed-title');
+  const title = cleanPlainText(titleInput?.value || ART_TITLE || '');
+  const exInput = document.getElementById('excerpt') || document.getElementById('ed-desc');
+  const desc = cleanPlainText(exInput?.value || ART_EXCERPT || '');
   const keyword = cleanPlainText(document.getElementById('ed-keyword')?.value || '');
   const bodyHtml = getCurrentBodyHtml();
 
@@ -11309,11 +11460,13 @@ function switchBilingualTab(targetLang) {
   if (serpTitle) serpTitle.value = currentTitle;
   ART_TITLE = currentTitle;
 
-  // Excerpt / Desc
+  // Excerpt / Desc (cập nhật đồng bộ cả excerpt và ed-desc)
+  const ex = document.getElementById('excerpt');
   const edDesc = document.getElementById('ed-desc');
   const serpDesc = document.getElementById('serp-preview-desc');
   const serpDescCount = document.getElementById('serp-desc-count');
   const currentDesc = data.desc || data.excerpt || '';
+  if (ex) ex.value = currentDesc;
   if (edDesc) edDesc.value = currentDesc;
   if (serpDesc) serpDesc.textContent = currentDesc || (targetLang === 'en' ? 'English meta description snippet...' : 'Mô tả ngắn của bài viết sẽ hiển thị ở đây trên kết quả tìm kiếm Google...');
   ART_EXCERPT = currentDesc;
@@ -11329,6 +11482,15 @@ function switchBilingualTab(targetLang) {
   ART_HAS_HB = !!data.hasHb;
   ART_HB_LABEL = data.hbLabel || '';
   ART_HB_TEXT = data.hbText || '';
+  const edHbLabel = document.getElementById('ed-hb-label');
+  const edHbText = document.getElementById('ed-hb-text');
+  if (edHbLabel) edHbLabel.value = ART_HB_LABEL;
+  if (edHbText) edHbText.value = ART_HB_TEXT;
+
+  // Cập nhật currentRawHtml sang đúng ngôn ngữ
+  if (data.rawHtml) {
+    currentRawHtml = data.rawHtml;
+  }
 
   // Body: Blocks or HTML
   if (data.blocks && Array.isArray(data.blocks) && data.blocks.length > 0) {
@@ -11364,9 +11526,15 @@ function switchBilingualTab(targetLang) {
     blocksTab?.remove();
   }
 
+  // Reset Editor History cho tab mới
+  if (typeof EditorHistoryManager !== 'undefined') {
+    EditorHistoryManager.reset();
+  }
+
   updateBilingualBadges();
   updateWordCount();
   updateSeoScore();
+  scheduleArticlePreviewRefresh();
 
   if (targetLang === 'en' && !data.title && !data.bodyHtml && (!data.blocks || !data.blocks.length)) {
     toast('info', '💡 Bạn đang ở tab Tiếng Anh. Hãy nhập tiêu đề & nội dung tiếng Anh, hoặc bấm "📋 Sao chép cấu trúc từ bài VI" để giữ nguyên dàn ý và ảnh.');
@@ -11899,6 +12067,12 @@ async function autosaveDraft() {
 
 function markChanged() {
   HAS_UNSAVED_CHANGES = true;
+  if (typeof BILINGUAL_DATA !== 'undefined' && BILINGUAL_DATA && BILINGUAL_DATA[CURRENT_LANG]) {
+    BILINGUAL_DATA[CURRENT_LANG].isDirty = true;
+  }
+  if (typeof EditorHistoryManager !== 'undefined') {
+    EditorHistoryManager.snapshot(false);
+  }
   const dot = document.getElementById('status-dot-article') || document.getElementById('status-dot-hub') || document.getElementById('status-dot-home') || document.getElementById('status-dot');
   const txt = document.getElementById('status-text-article') || document.getElementById('status-text-hub') || document.getElementById('status-text-home') || document.getElementById('status-text');
   if (dot) dot.className = 'status-dot saving';
@@ -11918,6 +12092,12 @@ function markChanged() {
 // cần dựng lại srcdoc (tránh mất con trỏ/focus giữa chừng).
 function markChangedNoRebuild() {
   HAS_UNSAVED_CHANGES = true;
+  if (typeof BILINGUAL_DATA !== 'undefined' && BILINGUAL_DATA && BILINGUAL_DATA[CURRENT_LANG]) {
+    BILINGUAL_DATA[CURRENT_LANG].isDirty = true;
+  }
+  if (typeof EditorHistoryManager !== 'undefined') {
+    EditorHistoryManager.snapshot(false);
+  }
   const dot = document.getElementById('status-dot-article') || document.getElementById('status-dot-hub') || document.getElementById('status-dot-home') || document.getElementById('status-dot');
   const txt = document.getElementById('status-text-article') || document.getElementById('status-text-hub') || document.getElementById('status-text-home') || document.getElementById('status-text');
   if (dot) dot.className = 'status-dot saving';
@@ -14385,6 +14565,11 @@ const ART_BRIDGE_SCRIPT = `<script>(function(){
   // hơn thì để trình duyệt tự xử lý gõ chữ bình thường (vd: chú thích ảnh nằm
   // trong khối kéo-thả). Đi từ target lên, ai gặp trước thắng.
   document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a') : null;
+    if (a) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     var node = e.target;
     while (node && node.nodeType === 1) {
       if (node.hasAttribute('data-oh-jump')) {
@@ -15205,17 +15390,21 @@ async function saveArticle() {
 
     // Check content of both languages
     const isEnTab = CURRENT_LANG === 'en';
+    const exVal = document.getElementById('excerpt')?.value || document.getElementById('ed-desc')?.value || '';
     const viTitle = cleanPlainText(BILINGUAL_DATA?.vi?.title || (!isEnTab ? ART_TITLE : ''));
-    const viDesc  = cleanPlainText(BILINGUAL_DATA?.vi?.desc || (!isEnTab ? document.getElementById('ed-desc')?.value : ''));
+    const viDesc  = cleanPlainText(BILINGUAL_DATA?.vi?.desc || (!isEnTab ? exVal : ''));
     const viBody  = BILINGUAL_DATA?.vi?.bodyHtml || '';
     const viBlocks= BILINGUAL_DATA?.vi?.blocks;
     const hasViContent = !!(viTitle && (viBody.length > 20 || (viBlocks && viBlocks.length > 0)));
 
     const enTitle = cleanPlainText(BILINGUAL_DATA?.en?.title || (isEnTab ? ART_TITLE : ''));
-    const enDesc  = cleanPlainText(BILINGUAL_DATA?.en?.desc || (isEnTab ? document.getElementById('ed-desc')?.value : ''));
+    const enDesc  = cleanPlainText(BILINGUAL_DATA?.en?.desc || (isEnTab ? exVal : ''));
     const enBody  = BILINGUAL_DATA?.en?.bodyHtml || '';
     const enBlocks= BILINGUAL_DATA?.en?.blocks;
     const hasEn   = !!(enTitle && (enBody.length > 20 || (enBlocks && enBlocks.length > 0)));
+
+    const shouldUpdateVi = (!isEnTab && hasViContent) || (isEnTab && BILINGUAL_DATA?.vi?.isDirty && hasViContent);
+    const shouldUpdateEn = (isEnTab && hasEn) || (!isEnTab && BILINGUAL_DATA?.en?.isDirty && hasEn);
 
     // 1. LƯU BÀI VIẾT TIẾNG VIỆT
     const isValidSha = (s) => typeof s === 'string' && /^[0-9a-f]{40}$/i.test(s.trim());
@@ -15245,7 +15434,7 @@ async function saveArticle() {
     }
 
     let newViSha = viSha;
-    if (hasViContent) {
+    if (shouldUpdateVi) {
       if (!viHtml || viHtml.length < 200 || !/<html/i.test(viHtml)) {
         viHtml = BILINGUAL_DATA?.vi?.rawHtml || currentRawHtml;
         if (!viSha) viHtml = patchNewArticleUrls(viHtml, viFile);
@@ -15281,6 +15470,7 @@ async function saveArticle() {
       if (BILINGUAL_DATA?.vi) {
         if (newViSha) BILINGUAL_DATA.vi.sha = newViSha;
         BILINGUAL_DATA.vi.rawHtml = viHtml;
+        BILINGUAL_DATA.vi.isDirty = false;
       }
       if (newViSha && !isEnTab) currentSha = newViSha;
     } else if (viFileExists && viHtml && hasEn) {
@@ -15303,9 +15493,9 @@ async function saveArticle() {
       throw new Error('Vui lòng nhập tiêu đề và nội dung bài viết tiếng Việt trước khi lưu.');
     }
 
-    // 2. LƯU BÀI VIẾT TIẾNG ANH (NẾU CÓ NỘI DUNG)
+    // 2. LƯU BÀI VIẾT TIẾNG ANH (NẾU CÓ NỘI DUNG VÀ CÓ CHỈNH SỬA)
     let enPutResult = null, newEnSha = null;
-    if (hasEn) {
+    if (shouldUpdateEn) {
       let enHtml = '', enSha = isValidSha(BILINGUAL_DATA?.en?.sha) ? BILINGUAL_DATA.en.sha.trim() : null;
       try {
         const existingEn = await ghGet(enFile);
@@ -15350,6 +15540,7 @@ async function saveArticle() {
       if (BILINGUAL_DATA?.en) {
         if (newEnSha) BILINGUAL_DATA.en.sha = newEnSha;
         BILINGUAL_DATA.en.rawHtml = enHtml;
+        BILINGUAL_DATA.en.isDirty = false;
       }
       if (newEnSha && CURRENT_LANG === 'en') currentSha = newEnSha;
 
@@ -15358,7 +15549,36 @@ async function saveArticle() {
       } catch (syncErr) {
         console.warn('Sync EN article error:', syncErr);
       }
+    } else if (hasEn) {
+      // Đang lưu ở tab tiếng Việt, bản tiếng Anh đã có và không sửa trong phiên này:
+      // Kiểm tra đồng bộ thẻ hreflang nếu cần mà không ghi đè nội dung
+      try {
+        let enHtml = '', enSha = isValidSha(BILINGUAL_DATA?.en?.sha) ? BILINGUAL_DATA.en.sha.trim() : null;
+        const existingEn = await ghGet(enFile);
+        if (isValidSha(existingEn?.sha)) {
+          enSha = existingEn.sha.trim();
+        }
+        if (existingEn?.content) {
+          try { enHtml = decodeURIComponent(escape(atob(String(existingEn.content || '').replace(/\s/g, '')))); } catch (e) {}
+        }
+        if (enSha && enHtml) {
+          const linkedEnHtml = ensureHreflangLinks(enHtml, viSlug, enSlug, 'en');
+          if (linkedEnHtml !== enHtml) {
+            const enPutRes = await ghPut(enFile, linkedEnHtml, enSha, `[admin] dong bo link ban tieng Viet cho en/${enSlug}`);
+            newEnSha = isValidSha(enPutRes?.content?.sha) ? enPutRes.content.sha.trim() : enSha;
+            if (BILINGUAL_DATA?.en) {
+              if (newEnSha) BILINGUAL_DATA.en.sha = newEnSha;
+              BILINGUAL_DATA.en.rawHtml = linkedEnHtml;
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('Lỗi kiểm tra hreflang cho bài tiếng Anh:', e);
+      }
     }
+
+    if (BILINGUAL_DATA?.vi) BILINGUAL_DATA.vi.isDirty = false;
+    if (BILINGUAL_DATA?.en) BILINGUAL_DATA.en.isDirty = false;
 
     if (CURRENT_NEWS_DRAFT_ID) {
       try {
@@ -15755,7 +15975,7 @@ async function autosaveArticleDraft() {
     const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
     const publishingAuthor = publishingAuthorName();
 
-    // 1. Lưu nháp Tiếng Việt (chỉ lưu khi có nội dung tiếng Việt hoặc đang ở tab tiếng Việt)
+    // 1. Lưu nháp Tiếng Việt (chỉ lưu khi đang ở tab tiếng Việt hoặc tab tiếng Việt có thay đổi)
     const isEnTab = CURRENT_LANG === 'en';
     const viTitle = cleanPlainText(BILINGUAL_DATA?.vi?.title || (!isEnTab ? ART_TITLE : ''));
     const viDesc  = cleanPlainText(BILINGUAL_DATA?.vi?.desc || (!isEnTab ? ART_EXCERPT : ''));
@@ -15763,7 +15983,9 @@ async function autosaveArticleDraft() {
     const viBlocks= BILINGUAL_DATA?.vi?.blocks;
     const hasViContent = !!(viTitle && (viBody.length > 20 || (viBlocks && viBlocks.length > 0)));
 
-    if (hasViContent || !isEnTab) {
+    const shouldAutosaveVi = (!isEnTab && (hasViContent || ART_TITLE)) || (isEnTab && BILINGUAL_DATA?.vi?.isDirty && hasViContent);
+
+    if (shouldAutosaveVi) {
       let viHtml = BILINGUAL_DATA?.vi?.rawHtml || currentRawHtml || '';
       if (!BILINGUAL_DATA?.vi?.sha) viHtml = patchNewArticleUrls(viHtml, viFile);
       viHtml = applyArticleEditsToHtml(viHtml, {
@@ -15782,19 +16004,24 @@ async function autosaveArticleDraft() {
       await putDraft(viFile, viHtml);
     }
 
-    // 2. Lưu nháp Tiếng Anh nếu có nội dung
-    const enTitle = BILINGUAL_DATA?.en?.title || '';
-    const enBody = BILINGUAL_DATA?.en?.bodyHtml || '';
-    const hasEn = !!(enTitle && (enBody.length > 20 || (BILINGUAL_DATA?.en?.blocks && BILINGUAL_DATA?.en?.blocks.length > 0)));
-    if (hasEn) {
+    // 2. Lưu nháp Tiếng Anh nếu có nội dung và có thay đổi
+    const enTitle = cleanPlainText(BILINGUAL_DATA?.en?.title || (isEnTab ? ART_TITLE : ''));
+    const enDesc  = cleanPlainText(BILINGUAL_DATA?.en?.desc || (isEnTab ? ART_EXCERPT : ''));
+    const enBody  = BILINGUAL_DATA?.en?.bodyHtml || '';
+    const enBlocks= BILINGUAL_DATA?.en?.blocks;
+    const hasEn   = !!(enTitle && (enBody.length > 20 || (enBlocks && enBlocks.length > 0)));
+
+    const shouldAutosaveEn = (isEnTab && hasEn) || (!isEnTab && BILINGUAL_DATA?.en?.isDirty && hasEn);
+
+    if (shouldAutosaveEn) {
       let enHtml = BILINGUAL_DATA?.en?.rawHtml || buildStandardEnglishArticleTemplate(cleanSlug, cleanSlug, hero, heroPos, cat, publishingAuthor);
       enHtml = applyArticleEditsToHtml(enHtml, {
         title: enTitle,
-        desc: BILINGUAL_DATA?.en?.desc,
+        desc: enDesc,
         keyword: BILINGUAL_DATA?.en?.keyword,
         hero, heroPos, cat,
         bodyHtml: enBody,
-        blocks: BILINGUAL_DATA?.en?.blocks,
+        blocks: enBlocks,
         hasHb: BILINGUAL_DATA?.en?.hasHb,
         hbLabel: BILINGUAL_DATA?.en?.hbLabel || 'Summary',
         hbText: BILINGUAL_DATA?.en?.hbText || '',
@@ -16171,7 +16398,7 @@ function copyArticleLink(button){
 }
 <\/script>
 <script defer src="/assets/search-redirect.js"><\/script>
-<script defer src="/assets/enhance.js"><\/script>
+<script defer src="/assets/enhance.js?v=20261001c"><\/script>
 </body>
 </html>`.replace(/<a href="\/(choi-gi|gaming|anime|manga|reviews|rankings|chuyen-sau)"( class="active")?>/g,
     (m, slug) => `<a href="/${slug}"${slug === catSlug ? ' class="active"' : ''}>`);
@@ -16348,7 +16575,66 @@ async function saveRankings() {
     html = html.replace(/const CATS\s*=\s*\{[\s\S]*?\n\}\s*;/, newCats);
 
     await ghPut('rankings.html', html, sha, '[admin] cap nhat bang xep hang');
-    toast('success', '✅ Đã lưu bảng xếp hạng! Deploy trong ~1-2 phút.');
+
+    // Đồng bộ cùng dữ liệu sang trang ranking tiếng Anh, nhưng giữ nhãn giao diện tiếng Anh.
+    const enLatest = await ghGet('en/rankings.html');
+    let enHtml = decodeURIComponent(escape(atob(enLatest.content)));
+    const enMatch = enHtml.match(/const CATS\s*=\s*(\{[\s\S]*?\n\})\s*;/);
+    if (enMatch) {
+      const enCats = new Function('return ' + enMatch[1])();
+      for (const key of Object.keys(CATS_DATA)) {
+        if (!enCats[key]) continue;
+        enCats[key].top = JSON.parse(JSON.stringify(CATS_DATA[key].top || []));
+        enCats[key].rest = JSON.parse(JSON.stringify(CATS_DATA[key].rest || []));
+      }
+      enHtml = enHtml.replace(/const CATS\s*=\s*\{[\s\S]*?\n\}\s*;/, 'const CATS = ' + serializeCats(enCats) + ';');
+      await ghPut('en/rankings.html', enHtml, enLatest.sha, '[admin] sync English rankings');
+    }
+
+    // Điểm hồ sơ phải dùng cùng nguồn với ranking để không còn tình trạng hai điểm khác nhau.
+    const catalogLatest = await ghGet('assets/catalog.json');
+    const catalog = JSON.parse(decodeURIComponent(escape(atob(catalogLatest.content))));
+    const catalogAliases = {
+      'Ghost of Yōtei': 'Ghost of Yōtei: Complete Edition',
+      'Jujutsu Kaisen': 'Jujutsu Kaisen (Anime)',
+      'Chainsaw Man': 'Chainsaw Man (Anime)'
+    };
+    for (const [catKey, cat] of Object.entries(CATS_DATA)) {
+      for (const entry of [...(cat.top || []), ...(cat.rest || [])]) {
+        const key = catalogAliases[entry.title] || entry.title;
+        if (!catalog[key]) {
+          const type = catKey === 'anime' ? 'anime' : catKey === 'manga' ? 'manga' : 'game';
+          const kindVi = type === 'anime' ? 'anime' : type === 'manga' ? 'manga' : 'game';
+          catalog[key] = {
+            type,
+            img: entry.img || '/assets/img/placeholder.svg',
+            score: entry.score,
+            genre: entry.genre || entry.sub || cat.label || '',
+            studio: entry.studio || '',
+            status: 'Đang kiểm chứng',
+            statusEn: 'Being verified',
+            generated: true,
+            hook: `${entry.title} đã có hồ sơ ${kindVi} riêng trên OtaHub.`,
+            hookEn: `${entry.title} now has a dedicated ${type} profile on OtaHub.`,
+            story: [
+              `${entry.title} đã có hồ sơ riêng để tập hợp điểm xếp hạng và các bài viết liên quan trên OtaHub.`,
+              'Thông tin cốt truyện, đội ngũ sản xuất và dữ liệu phát hành đang được ban biên tập đối chiếu từ nguồn chính thức.',
+              'Hồ sơ tạm thời không được lập chỉ mục cho đến khi hoàn tất nội dung và nguồn kiểm chứng.'
+            ],
+            storyEn: [
+              `${entry.title} now has a dedicated profile collecting its OtaHub ranking and related coverage.`,
+              'Story, production credits and release information are being checked against official sources.',
+              'This temporary profile remains excluded from indexing until its content and sources are complete.'
+            ],
+            sources: []
+          };
+        }
+        catalog[key].score = entry.score;
+        if (entry.img) catalog[key].img = entry.img;
+      }
+    }
+    await ghPut('assets/catalog.json', JSON.stringify(catalog, null, 2) + '\n', catalogLatest.sha, '[admin] sync ranking scores to catalog');
+    toast('success', '✅ Đã đồng bộ ranking Việt, Anh và điểm hồ sơ! Deploy trong ~1-2 phút.');
   } catch(e) {
     toast('error', 'Lỗi lưu: ' + e.message);
   } finally {
@@ -18397,7 +18683,7 @@ async function syncNewArticle(art) {
       const badgeText = isEn ? (cat || 'HOT') : (cat || 'HOT');
       const newsDate = isEn ? 'Just now' : 'Vừa xong';
       const newCard = `\n    <a href="/${slug}" style="display:block;background:#150a2c;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;text-decoration:none;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,242,255,0.4)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,242,255,0.12)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none';this.style.boxShadow='none'">\n      <div style="position:relative;width:100%;height:180px;background:#0d051e;overflow:hidden;">\n        <img height="675" width="1200" src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">\n        <span style="position:absolute;top:10px;left:10px;background:linear-gradient(135deg,#ff2177,#7c3aed);color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px;letter-spacing:.15em;text-transform:uppercase;">${esc(badgeText)}</span>\n      </div>\n      <div style="padding:16px;">\n        <h3 style="color:#ffffff;font-size:15px;font-weight:700;line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(title)}</h3>\n        <p style="color:rgba(240,238,255,0.65);font-size:12.5px;line-height:1.5;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(desc || '')}</p>\n        <div style="display:flex;align-items:center;justify-content:space-between;color:rgba(240,238,255,0.4);font-size:11px;">\n          <span>⚡ OtaHub News</span>\n          <span>${newsDate}</span>\n        </div>\n      </div>\n    </a>\n`;
-      return newsHtml.replace(/(<!-- OTAHUB_NEW30_START -->[\s\S]*?<!-- OTAHUB_NEW30_END -->)/, `${newsMatch[1]}${count + 1}${newsMatch[3]}${newCard}${newsMatch[4]}${newsMatch[5]}`);
+      return newsHtml.replace(/(<!-- OTAHUB_NEW30_START -->[\s\S]*?<!-- OTAHUB_NEW30_END -->)/, () => `${newsMatch[1]}${count + 1}${newsMatch[3]}${newCard}${newsMatch[4]}${newsMatch[5]}`);
     }, `[admin] them tin /${slug} vao ${newsTarget}`);
   } catch(e) {
     console.warn('News sync error:', e);

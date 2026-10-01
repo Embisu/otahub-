@@ -1,65 +1,5 @@
 [
   {
-    "relPath": "anime-moi-crunchyroll-2026-romelia-black-torch.html",
-    "title": "Anime Mới Trên Crunchyroll 2026: Romelia, BLACK TORCH",
-    "words": 294,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (294 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "anime-mua-he-2026.html",
-    "title": "Anime Mùa Hè 2026: Bộ Đáng Xem Và Lịch Phát Sóng",
-    "words": 329,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (329 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "aoashi-mua-2-doi-studio-len-song-4-10.html",
-    "title": "Aoashi Mùa 2 Lên Sóng 4/10, Đổi Sang Studio TMS Entertainment",
-    "words": 207,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (207 từ)"
-      }
-    ]
-  },
-  {
     "relPath": "author.html",
     "title": "Hồ sơ tác giả",
     "words": 0,
@@ -84,222 +24,22 @@
     ]
   },
   {
-    "relPath": "ball-x-pit-naturalist-update.html",
-    "title": "Ball x Pit Ra Mắt Bản Cập Nhật The Naturalist",
-    "words": 289,
+    "relPath": "control-resonant-buoc-game-thu-pc-tai-lai-toan-bo-tro-choi.html",
+    "title": "CONTROL Resonant buộc game thủ PC tải lại toàn bộ trò chơi",
+    "words": 474,
     "isEn": false,
     "flags": {
       "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
+      "isHallucinated": true,
+      "isShort": false,
       "hasBrokenImages": false,
       "hasPlaceholders": false,
       "hasHtmlErrors": false
     },
     "issues": [
       {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (289 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "black-clover-season-2-witch-hat-atelier-trailers.html",
-    "title": "Black Clover Mùa 2 Và Witch Hat Atelier Cùng Tung Trailer",
-    "words": 229,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (229 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "bleach-tybw-calamity-opening-ending.html",
-    "title": "Bleach TYBW: The Calamity Công Bố OP I-BULL Và ED Rasen",
-    "words": 293,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (293 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "bleach-tybw-the-calamity-25-7-2026.html",
-    "title": "Bleach: TYBW – The Calamity Lên Sóng 25/7, 10 Tập",
-    "words": 244,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (244 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "chainsaw-man-chapter-180-death-devil.html",
-    "title": "Chainsaw Man Part 2 Kết Thúc Ở Chương 232",
-    "words": 319,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (319 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "chainsaw-man-movie-reze-arc-chieu-rap-viet-nam-doanh-thu-ky-luc.html",
-    "title": "Chainsaw Man – Reze Arc Thu 191,4 Triệu USD",
-    "words": 331,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (331 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "chiikawa-anime-tam-ngung-tap-moi-phat-lai-25-tap.html",
-    "title": "Anime Chiikawa Tạm Ngừng Tập Mới, Phát Lại 25 Tập Đến 25/12",
-    "words": 197,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (197 từ, < 200 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "crunchyroll-manga-black-torch-hana-kimi.html",
-    "title": "Crunchyroll Manga Bổ Sung Black Torch, Hana-Kimi Tháng 7",
-    "words": 282,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (282 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "dandadan-mua-2-cursed-house-evil-eye.html",
-    "title": "Dandadan Mùa 2: Ra Mắt 3/7/2025 Với Cursed House",
-    "words": 260,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (260 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "detective-conan-final-chapter.html",
-    "title": "Gosho Aoyama Phác Thảo Storyboard Chương Cuối Conan",
-    "words": 279,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (279 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "diamond-no-ace-act-ii-cour-2-len-song-11-10.html",
-    "title": "Diamond no Ace act II: Cour 2 Lên Sóng 11/10, Đến Koshien",
-    "words": 200,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (200 từ)"
+        "type": "HALLUCINATION",
+        "detail": "Game bịa đặt \"Control Resonant\""
       }
     ]
   },
@@ -328,949 +68,9 @@
     ]
   },
   {
-    "relPath": "dragon-ball-sparking-zero-dlc-season-pass-daima.html",
-    "title": "Sparking Zero: DLC Season Pass Thêm Nhân Vật Daima",
-    "words": 236,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (236 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "dragon-ball-sparking-zero-neo-dlc.html",
-    "title": "Sparking Zero Tung DLC Neo Với 33 Nhân Vật Mới",
-    "words": 349,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (349 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "dragon-ball-super-beerus-dragon-ball-super-tro-lai-voi-phien.html",
-    "title": "Dragon Ball Super: Beerus – Dragon Ball Super trở lại với phiên bản nâng cấp",
-    "words": 267,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (267 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "draw-this-then-die-cong-bo-mua-2-sau-tap-cuoi.html",
-    "title": "Draw This, Then Die! Công Bố Mùa 2 Sau Tập Cuối",
-    "words": 259,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (259 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "elden-ring-dlc2.html",
-    "title": "Elden Ring Tarnished Pack: 2 Class Mới Heavy, Idus Knight",
-    "words": 338,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (338 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "elden-ring-nightreign-coop-multiplayer-reveal.html",
-    "title": "Elden Ring Nightreign Ra Mắt 30/5/2025",
-    "words": 295,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (295 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "flamecraft-ps5-demo.html",
-    "title": "Flamecraft Xác Nhận Ra Mắt PS5, Xbox Series, Switch",
-    "words": 255,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (255 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "free-fire-daybreak-anime-2027.html",
-    "title": "Free Fire Daybreak Tung Key Visual, Ấn Định Xuân 2027",
-    "words": 264,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (264 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "frieren-mua-2-phat-song-thang-1-2026.html",
-    "title": "Frieren Mùa 2 Đã Phát Sóng Từ Tháng 1/2026 (10 Tập)",
-    "words": 211,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (211 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "galaxy-express-999-new-film.html",
-    "title": "Toei Xác Nhận Phim Galaxy Express 999 Mới",
-    "words": 311,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (311 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "gears-of-war-e-day-gold-pre-install-29-9.html",
-    "title": "Gears of War: E-Day Chốt Gold, Tải Trước Từ 29/9",
-    "words": 286,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (286 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "genshin-impact-70-snezhnaya-map-gameplay.html",
-    "title": "Genshin Impact 7.0 Snezhnaya: Bản Đồ Băng Giá Khổng Lồ",
-    "words": 285,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (285 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "genshin-impact-sandrone-ban-6-7-khong-phai-7-0.html",
-    "title": "Genshin Impact: Sandrone Ra Mắt Ở Bản 6.7, Không Phải 7.0",
-    "words": 268,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (268 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "ghost-in-the-shell-2026-tong-ket-mua-phat-song.html",
-    "title": "THE GHOST IN THE SHELL (2026): Tổng Kết Mùa Phát Sóng Đã Kết Thúc",
-    "words": 231,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (231 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "ghost-of-yotei-chi-tiet-vu-khi-gameplay-map-ezo.html",
-    "title": "Ghost of Yōtei: Ra Mắt PS5 2/10/2025, Atsu Dùng Song Kiếm",
-    "words": 293,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (293 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "girls-frontline-2-huong-dan-tan-thu-doi-hinh-reroll.html",
-    "title": "Girls' Frontline 2: Lưu Đày – Hướng Dẫn Tân Thủ, Reroll",
-    "words": 348,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (348 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "girls-frontline-2-luu-day-vietnam-launch.html",
-    "title": "Girls' Frontline 2: Lưu Đày Cập Bến Việt Nam",
-    "words": 222,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (222 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "haikyu-movie2-little-giant-teaser.html",
-    "title": "Haikyu!! The Movie: VS The Little Giant Hé Lộ Visual Mới",
-    "words": 296,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (296 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "hell-mode-anime-cong-bo-mua-3-arc-ham-nguc-hang-s.html",
-    "title": "Hell Mode Anime Công Bố Mùa 3: Arc Hầm Ngục Hạng S",
-    "words": 278,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (278 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "hololive-cong-bo-anime-truyen-hinh-dau-tien-odekake.html",
-    "title": "Hololive Công Bố Anime Truyền Hình Đầu Tiên: Odekake Hololive",
-    "words": 226,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (226 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "honkai-star-rail-3-0-amphoreus-remembrance.html",
-    "title": "Honkai: Star Rail 3.0 Ra Mắt 15/1/2025, Thế Giới Amphoreus",
-    "words": 216,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (216 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "honkai-star-rail-4-6-pearl-zzz-crossover.html",
-    "title": "Honkai: Star Rail 4.6 Ra Mắt 28/9 Với Pearl",
-    "words": 308,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (308 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "honkai-star-rail-fate-stay-night-unlimited-blade-works-crossover.html",
-    "title": "Honkai: Star Rail x Fate/stay night [UBW] Crossover",
-    "words": 233,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (233 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "hunter-x-hunter-chapter-419-tro-lai.html",
-    "title": "Hunter x Hunter Trở Lại Chapter 419, Sắp Tạm Ngưng",
-    "words": 282,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (282 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "jujutsu-kaisen-chapter-271-final-climax-epilogue.html",
-    "title": "Jujutsu Kaisen: Manga Kết Thúc Ở Chương 271 (30/9/2024)",
-    "words": 217,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (217 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "jujutsu-kaisen-culling-game-part-2-sukuna-teaser.html",
-    "title": "Jujutsu Kaisen Culling Game Phần 2: Teaser Sukuna",
-    "words": 348,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (348 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "jujutsu-kaisen-season-3-culling-game-release.html",
-    "title": "Jujutsu Kaisen Mùa 3: Culling Game Phần 1 Đã Phát Sóng",
-    "words": 230,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (230 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "kagurabachi-4-trieu-ban-anime-cypic-thang-4-2027.html",
-    "title": "Kagurabachi Vượt 4 Triệu Bản, Anime Ra Tháng 4/2027",
-    "words": 231,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (231 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "konosuba-season-4-2027.html",
-    "title": "KONOSUBA Mùa 4 Ấn Định Ra Mắt 2027, Studio ENGI",
-    "words": 324,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (324 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "lego-donkey-kong-arcade.html",
-    "title": "LEGO Donkey Kong Arcade Mở Bán 1/8, Giá 199,99 USD",
-    "words": 271,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (271 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "lies-of-p-complete-edition-switch2.html",
-    "title": "Lies of P: Complete Edition Ra Mắt Trên Switch 2",
-    "words": 295,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (295 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "lous-lagoon-ps5-august-27.html",
-    "title": "Lou's Lagoon Ấn Định Ra Mắt PS5, Công Bố Deluxe Edition",
-    "words": 269,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (269 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "magic-knight-rayearth-2026-remake-len-song-7-10.html",
-    "title": "Magic Knight Rayearth Bản Làm Lại 2026 Lên Sóng 7/10",
-    "words": 227,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (227 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "magical-buffs-fate-rewinder-crunchyroll.html",
-    "title": "Crunchyroll Xác Nhận Magical Buffs Và Fate Rewinder",
-    "words": 308,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (308 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "marvel-tokon-phoenix-cyclops-dlc.html",
-    "title": "Marvel Tōkon: Fighting Souls Công Bố DLC Phoenix Cyclops",
-    "words": 266,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (266 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "marvel-wolverine-story-trailer.html",
-    "title": "Marvel's Wolverine Tung Trailer Tại Comic-Con, Ra Mắt 15/9",
-    "words": 253,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (253 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "mii-chan-miss-yamada-anime.html",
-    "title": "Mii-chan and Miss Yamada Được Chuyển Thể Anime 2027",
-    "words": 295,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (295 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "minecraft-bo-sung-chieu-khong-gian-thu-4-the-sift-sau-hon-14.html",
-    "title": "Minecraft bổ sung chiều không gian thứ 4 The Sift sau hơn 14 năm",
-    "words": 338,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (338 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "oblivion-remastered-switch-2.html",
-    "title": "Oblivion Remastered Lên Switch 2, 1080p Docked",
-    "words": 316,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (316 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "one-piece-chapter-1194-tam-ngung-tro-lai-11-10.html",
-    "title": "One Piece Tạm Ngưng Sau Chương 1194, Trở Lại 11/10",
-    "words": 276,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (276 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "one-piece-final-saga.html",
-    "title": "One Piece Final Saga: Elbaph Đến Chương 1194",
-    "words": 266,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (266 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "one-piece-remake-wit-studio-netflix-trailer-chinh-thuc.html",
-    "title": "The One Piece (Netflix x WIT) Ra Mắt Tháng 2/2027",
-    "words": 240,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (240 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "order-of-the-sinking-star-ps5.html",
-    "title": "Order of the Sinking Star Xác Nhận Bản PS5, Ra 8/10",
-    "words": 321,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (321 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "phantom-busters-manga-len-tv-anime-nam-2027.html",
-    "title": "Manga Phantom Busters Được Chuyển Thể TV Anime 2027",
-    "words": 206,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (206 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "playstation-plus-august-2026.html",
-    "title": "PlayStation Plus Tháng 8/2026: Dying Light 2, Big Walk",
-    "words": 292,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (292 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "ranma-half-season-3-visual.html",
-    "title": "Ranma 1/2 Mùa 3 Công Bố Key Visual, Lên Sóng 3/10",
-    "words": 308,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (308 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "re-zero-season4-recapture-arc.html",
-    "title": "Re:Zero Season 4: Lịch Phát Sóng Recapture Arc",
-    "words": 223,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (223 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "rematch-x-blue-lock-crossover-event.html",
-    "title": "Sloclap x Blue Lock: Sự Kiện Crossover Rematch 24/9",
-    "words": 199,
+    "relPath": "frieren-beyond-journey-s-end-mua-3-chinh-thuc-tro-lai-thang.html",
+    "title": "Frieren: Beyond Journey’s End mùa 3 chính thức trở lại tháng 10/2027",
+    "words": 153,
     "isEn": false,
     "flags": {
       "isTruncated": false,
@@ -1283,167 +83,7 @@
     "issues": [
       {
         "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (199 từ, < 200 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "rezero-10th-anniversary-visual.html",
-    "title": "Re:ZERO Tung Visual Kỷ Niệm 10 Năm, Triển Lãm Tokyo",
-    "words": 326,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (326 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "senren-banka-anime-2027.html",
-    "title": "Senren Banka Được Chuyển Thể Anime, Ra Mắt 2027",
-    "words": 274,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (274 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "shin-oishinbo-anime-moi-sau-35-nam.html",
-    "title": "Oishinbo Có Anime Mới Sau 35 Năm: Shin Oishinbo",
-    "words": 346,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (346 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "solo-leveling-arise-ban-cap-nhat-monarch-transcendence.html",
-    "title": "Solo Leveling: Arise Đạt 50 Triệu Lượt Tải",
-    "words": 307,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (307 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "solo-leveling-season-2-arise-from-the-shadow-premiere.html",
-    "title": "Solo Leveling Mùa 2: 13 Tập, Phát Sóng 5/1–30/3/2025",
-    "words": 281,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (281 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "stellar-blade-dlc.html",
-    "title": "Stellar Blade x NIKKE: DLC Miễn Phí Ra Mắt 12/6/2025",
-    "words": 262,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (262 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "studio-cabana-anime-2027.html",
-    "title": "Studio Cabana Được Chuyển Thể Anime, Ra Mắt 2027",
-    "words": 289,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (289 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "the-summer-hikaru-died-ket-thuc.html",
-    "title": "The Summer Hikaru Died Sẽ Kết Thúc, Chốt Ngày 20/10",
-    "words": 281,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (281 từ)"
+        "detail": "Nội dung quá ngắn (153 từ, < 200 từ)"
       }
     ]
   },
@@ -1472,46 +112,6 @@
     ]
   },
   {
-    "relPath": "tokyo-revengers-santen-sensou-hen-len-song-2-10.html",
-    "title": "Tokyo Revengers: Santen Sensou-hen Lên Sóng 2/10, Mùa Cuối Manga",
-    "words": 214,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (214 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "top-game-pc-2026.html",
-    "title": "Game PC Được Đánh Giá Cao Nhất 2026 (Tính Đến 9/2026)",
-    "words": 234,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (234 từ)"
-      }
-    ]
-  },
-  {
     "relPath": "top-list.html",
     "title": "Top List",
     "words": 0,
@@ -1532,126 +132,6 @@
       {
         "type": "MISSING_BODY",
         "detail": "Không tìm thấy thẻ <article class=\"art-body\">"
-      }
-    ]
-  },
-  {
-    "relPath": "tougen-anki-mua-2-nikko-kegon-falls-len-song-2-10.html",
-    "title": "Tougen Anki Mùa 2: Arc Nikko Kegon Falls Lên Sóng 2/10",
-    "words": 217,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (217 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "viz-manga-phat-hanh-18-8-2026.html",
-    "title": "Manga VIZ Phát Hành 18/8/2026: Vagabond, Undead Unluck",
-    "words": 343,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (343 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "wuthering-waves-2-0-rinascita-ban-3-6.html",
-    "title": "Wuthering Waves 2.0 Rinascita, Bản 3.6 Ra Mắt 20/8/2026",
-    "words": 243,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (243 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "xbox-game-pass-july-wave-2.html",
-    "title": "Xbox Game Pass Wave 2 Tháng 7: Halo Campaign Evolved",
-    "words": 343,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (343 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "yen-press-champignon-witch-licenses.html",
-    "title": "Yen Press Cấp Phép Champignon Witch Tại SDCC 2026",
-    "words": 307,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (307 từ)"
-      }
-    ]
-  },
-  {
-    "relPath": "zenless-zone-zero-2-0-ban-2-1-yuzuha-alice.html",
-    "title": "Zenless Zone Zero 2.0 Ra Mắt 6/6/2025, Bản 2.1 Có Miyabi",
-    "words": 257,
-    "isEn": false,
-    "flags": {
-      "isTruncated": false,
-      "isHallucinated": false,
-      "isShort": true,
-      "hasBrokenImages": false,
-      "hasPlaceholders": false,
-      "hasHtmlErrors": false
-    },
-    "issues": [
-      {
-        "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (257 từ)"
       }
     ]
   },
@@ -1898,7 +378,7 @@
   {
     "relPath": "en/demon-slayer-infinity-castle-793-million-box-office.html",
     "title": "Demon Slayer: Infinity Castle Earns About $793 Million",
-    "words": 281,
+    "words": 280,
     "isEn": true,
     "flags": {
       "isTruncated": false,
@@ -1911,14 +391,14 @@
     "issues": [
       {
         "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (281 từ)"
+        "detail": "Nội dung tương đối ngắn (280 từ)"
       }
     ]
   },
   {
     "relPath": "en/detective-conan-case-30-murder-30th-anniversary-special.html",
     "title": "Detective Conan Case 30 Murder: 30th Anniversary 2-Hour TV Special",
-    "words": 279,
+    "words": 283,
     "isEn": true,
     "flags": {
       "isTruncated": false,
@@ -1931,7 +411,7 @@
     "issues": [
       {
         "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (279 từ)"
+        "detail": "Nội dung tương đối ngắn (283 từ)"
       }
     ]
   },
@@ -2398,7 +878,7 @@
   {
     "relPath": "en/hanako-kun-manga-resumes.html",
     "title": "Toilet-Bound Hanako-kun Manga Returns After Hiatus",
-    "words": 204,
+    "words": 202,
     "isEn": true,
     "flags": {
       "isTruncated": false,
@@ -2411,7 +891,7 @@
     "issues": [
       {
         "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (204 từ)"
+        "detail": "Nội dung tương đối ngắn (202 từ)"
       }
     ]
   },
@@ -2498,7 +978,7 @@
   {
     "relPath": "en/honkai-star-rail-4-6-pearl-zzz-crossover.html",
     "title": "Honkai: Star Rail 4.6 Launches September 28 With Pearl",
-    "words": 197,
+    "words": 195,
     "isEn": true,
     "flags": {
       "isTruncated": false,
@@ -2511,7 +991,7 @@
     "issues": [
       {
         "type": "SHORT_CONTENT",
-        "detail": "Nội dung quá ngắn (197 từ, < 200 từ)"
+        "detail": "Nội dung quá ngắn (195 từ, < 200 từ)"
       }
     ]
   },
@@ -2578,7 +1058,7 @@
   {
     "relPath": "en/hunter-x-hunter-chapter-419-returns-hiatus-after-420.html",
     "title": "Hunter x Hunter Returns With Chapter 419, Hiatus Ahead",
-    "words": 204,
+    "words": 203,
     "isEn": true,
     "flags": {
       "isTruncated": false,
@@ -2591,7 +1071,7 @@
     "issues": [
       {
         "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (204 từ)"
+        "detail": "Nội dung tương đối ngắn (203 từ)"
       }
     ]
   },
@@ -2658,7 +1138,7 @@
   {
     "relPath": "en/jujutsu-kaisen-juju-fes-2026-anniversary.html",
     "title": "Jujutsu Kaisen Kicks Off Juju Fes 2026 Anniversary Event",
-    "words": 344,
+    "words": 339,
     "isEn": true,
     "flags": {
       "isTruncated": false,
@@ -2671,7 +1151,7 @@
     "issues": [
       {
         "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (344 từ)"
+        "detail": "Nội dung tương đối ngắn (339 từ)"
       }
     ]
   },
@@ -2878,7 +1358,7 @@
   {
     "relPath": "en/marvels-wolverine-review-roundup-metacritic-77.html",
     "title": "Marvel’s Wolverine Launches: Brutal Combat but a Linear Story",
-    "words": 226,
+    "words": 223,
     "isEn": true,
     "flags": {
       "isTruncated": false,
@@ -2891,7 +1371,7 @@
     "issues": [
       {
         "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (226 từ)"
+        "detail": "Nội dung tương đối ngắn (223 từ)"
       }
     ]
   },
@@ -2978,7 +1458,7 @@
   {
     "relPath": "en/one-piece-1194-spoiler-zoro-unleashes-new-power-mihawk-flashback.html",
     "title": "One Piece 1194 Spoilers: Zoro Unleashes New Power, Mihawk Flashback",
-    "words": 267,
+    "words": 271,
     "isEn": true,
     "flags": {
       "isTruncated": false,
@@ -2991,7 +1471,7 @@
     "issues": [
       {
         "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (267 từ)"
+        "detail": "Nội dung tương đối ngắn (271 từ)"
       }
     ]
   },
@@ -3078,7 +1558,7 @@
   {
     "relPath": "en/one-piece-god-valley-baad-films-announced.html",
     "title": "One Piece Announces 2 New Films: God Valley &amp; BAAD",
-    "words": 334,
+    "words": 331,
     "isEn": true,
     "flags": {
       "isTruncated": false,
@@ -3091,7 +1571,7 @@
     "issues": [
       {
         "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (334 từ)"
+        "detail": "Nội dung tương đối ngắn (331 từ)"
       }
     ]
   },
@@ -3258,7 +1738,7 @@
   {
     "relPath": "en/record-of-ragnarok-what-is-odin-planning.html",
     "title": "Record of Ragnarok: What Is Odin Really Planning?",
-    "words": 311,
+    "words": 310,
     "isEn": true,
     "flags": {
       "isTruncated": false,
@@ -3271,7 +1751,7 @@
     "issues": [
       {
         "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (311 từ)"
+        "detail": "Nội dung tương đối ngắn (310 từ)"
       }
     ]
   },
@@ -3318,7 +1798,7 @@
   {
     "relPath": "en/roman-sands-re-build-trapped-in-a-collapsing-vaporwave-nightmare.html",
     "title": "Roman Sands RE:Build: Trapped in a Collapsing Vaporwave Nightmare",
-    "words": 328,
+    "words": 330,
     "isEn": true,
     "flags": {
       "isTruncated": false,
@@ -3331,14 +1811,14 @@
     "issues": [
       {
         "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (328 từ)"
+        "detail": "Nội dung tương đối ngắn (330 từ)"
       }
     ]
   },
   {
     "relPath": "en/sekiro-no-defeat-anime-release.html",
     "title": "Sekiro: No Defeat Anime Confirms Sept 4 Theatrical Release",
-    "words": 345,
+    "words": 343,
     "isEn": true,
     "flags": {
       "isTruncated": false,
@@ -3351,7 +1831,7 @@
     "issues": [
       {
         "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (345 từ)"
+        "detail": "Nội dung tương đối ngắn (343 từ)"
       }
     ]
   },
@@ -3398,7 +1878,7 @@
   {
     "relPath": "en/sinking-city-2-launch.html",
     "title": "The Sinking City 2 Launches August 18 on Survival Horror",
-    "words": 254,
+    "words": 253,
     "isEn": true,
     "flags": {
       "isTruncated": false,
@@ -3411,7 +1891,7 @@
     "issues": [
       {
         "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (254 từ)"
+        "detail": "Nội dung tương đối ngắn (253 từ)"
       }
     ]
   },
@@ -3478,7 +1958,7 @@
   {
     "relPath": "en/steam-achievement-leak-persona-6-kingdom-hearts-iv-fable.html",
     "title": "Steam Leak Exposes Persona 6, Kingdom Hearts IV",
-    "words": 311,
+    "words": 309,
     "isEn": true,
     "flags": {
       "isTruncated": false,
@@ -3491,7 +1971,7 @@
     "issues": [
       {
         "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (311 từ)"
+        "detail": "Nội dung tương đối ngắn (309 từ)"
       }
     ]
   },
@@ -3598,7 +2078,7 @@
   {
     "relPath": "en/the-summer-hikaru-died-manga-ending-october-20.html",
     "title": "The Summer Hikaru Died Ends in 2 Chapters, October 20",
-    "words": 217,
+    "words": 215,
     "isEn": true,
     "flags": {
       "isTruncated": false,
@@ -3611,7 +2091,7 @@
     "issues": [
       {
         "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (217 từ)"
+        "detail": "Nội dung tương đối ngắn (215 từ)"
       }
     ]
   },
@@ -3638,7 +2118,7 @@
   {
     "relPath": "en/tokyopop-anime-nyc-2026-licenses.html",
     "title": "Tokyopop Announces 7 New Manga Licenses at Anime NYC 2026",
-    "words": 341,
+    "words": 336,
     "isEn": true,
     "flags": {
       "isTruncated": false,
@@ -3651,7 +2131,7 @@
     "issues": [
       {
         "type": "THIN_CONTENT",
-        "detail": "Nội dung tương đối ngắn (341 từ)"
+        "detail": "Nội dung tương đối ngắn (336 từ)"
       }
     ]
   },
