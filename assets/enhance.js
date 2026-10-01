@@ -250,8 +250,11 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
 (function(){
   function parseVideo(url) {
     if (!url) return null;
-    url = url.trim();
-    var ym = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/i);
+    url = String(url).trim();
+    var iframeSrc = url.match(/src=["']([^"']+)["']/i);
+    if (iframeSrc) url = iframeSrc[1];
+    var ym = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|shorts\/|live\/|watch\?(?:.*&)?v=))([A-Za-z0-9_-]{11})/i)
+          || url.match(/youtube-nocookie\.com\/embed\/([A-Za-z0-9_-]{11})/i);
     if (ym) return { provider: 'youtube', id: ym[1], embedUrl: 'https://www.youtube.com/embed/' + ym[1] };
     var vm = url.match(/vimeo\.com\/(?:video\/)?(\d+)/i);
     if (vm) return { provider: 'vimeo', id: vm[1], embedUrl: 'https://player.vimeo.com/video/' + vm[1] };
@@ -261,6 +264,28 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
   function autoEmbedVideos() {
     var body = document.querySelector('.art-body, article.article');
     if (!body) return;
+
+    // Self-healing: sửa các khối video embed cũ hoặc bị lỗi bọc <p>
+    var existingFigures = body.querySelectorAll('figure.art-video-embed, .art-video-embed');
+    existingFigures.forEach(function(fig) {
+      var ifr = fig.querySelector('iframe');
+      if (ifr) {
+        var existingInner = fig.querySelector('.art-video-inner');
+        if (!existingInner) {
+          var wrap = document.createElement('div');
+          wrap.className = 'art-video-inner';
+          wrap.style.cssText = 'position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;background:#000;';
+          ifr.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:0;';
+          var parentP = ifr.closest('p');
+          if (parentP && parentP.parentNode === fig) {
+            fig.replaceChild(wrap, parentP);
+          } else if (ifr.parentNode !== wrap) {
+            ifr.parentNode.insertBefore(wrap, ifr);
+          }
+          wrap.appendChild(ifr);
+        }
+      }
+    });
 
     var paras = body.querySelectorAll('p, div');
     paras.forEach(function(p) {
@@ -279,7 +304,7 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
         }
       } else if (links.length === 0) {
         var raw = p.textContent.trim();
-        if (/^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/|vimeo\.com\/)[A-Za-z0-9_\-\/?=&;%]+$/i.test(raw)) {
+        if (/^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:watch\?|shorts\/|live\/|embed\/)|youtu\.be\/|vimeo\.com\/)[A-Za-z0-9_\-\/?=&;%]+$/i.test(raw)) {
           targetUrl = raw;
         }
       }
@@ -289,7 +314,7 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
         if (v) {
           var figure = document.createElement('figure');
           figure.className = 'art-video-embed';
-          figure.innerHTML = '<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;"><iframe src="' + v.embedUrl + '" title="Video player" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>';
+          figure.innerHTML = '<div class="art-video-inner" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;"><iframe src="' + v.embedUrl + '" title="Video player" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>';
           p.replaceWith(figure);
         }
       }
@@ -418,5 +443,124 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
     document.addEventListener('DOMContentLoaded', initFranchiseLinking);
   } else {
     initFranchiseLinking();
+  }
+})();
+
+/* ── 📱 OtaHub Mobile Navigation & Ergonomics (Pills Bar, Bottom Bar, Smart TOC) ── */
+(function(){
+  function initMobileBars() {
+    var path = window.location.pathname.toLowerCase().replace(/\/$/, '') || '/';
+    var isEn = path.indexOf('/en') === 0;
+
+    // 1. Mount Thanh chuyên mục vuốt ngang (Horizontal Category Pills)
+    var nav = document.querySelector('nav.nav');
+    if (nav && !document.querySelector('.mob-cat-bar')) {
+      var catBar = document.createElement('nav');
+      catBar.className = 'mob-cat-bar';
+      catBar.setAttribute('aria-label', isEn ? 'Categories' : 'Chuyên mục nhanh');
+
+      var categories = isEn ? [
+        { name: '🔥 Latest', url: '/en/news', match: ['/en/news', '/en'] },
+        { name: '🎮 Gaming', url: '/en/gaming', match: ['/en/gaming'] },
+        { name: '🎬 Anime', url: '/en/anime', match: ['/en/anime'] },
+        { name: '📖 Manga', url: '/en/manga', match: ['/en/manga'] },
+        { name: '⭐ Reviews', url: '/en/reviews', match: ['/en/reviews'] },
+        { name: '🏆 Rankings', url: '/en/rankings', match: ['/en/rankings'] },
+        { name: '💡 Deep Dives', url: '/en/chuyen-sau', match: ['/en/chuyen-sau'] }
+      ] : [
+        { name: '🔥 Tin mới', url: '/news', match: ['/news', '/'] },
+        { name: '🎮 Gaming', url: '/gaming', match: ['/gaming'] },
+        { name: '🎬 Anime', url: '/anime', match: ['/anime'] },
+        { name: '📖 Manga', url: '/manga', match: ['/manga'] },
+        { name: '⭐ Reviews', url: '/reviews', match: ['/reviews'] },
+        { name: '🏆 Xếp hạng', url: '/rankings', match: ['/rankings'] },
+        { name: '🎲 Chơi Gì?', url: '/choi-gi', match: ['/choi-gi'] },
+        { name: '💡 Chuyên sâu', url: '/chuyen-sau', match: ['/chuyen-sau'] }
+      ];
+
+      var itemsHtml = categories.map(function(c) {
+        var isActive = false;
+        if (c.url === '/' || c.url === '/en') {
+          isActive = (path === '' || path === '/' || path === '/en');
+        } else {
+          isActive = c.match.some(function(m) { return path === m || path.indexOf(m + '/') === 0; });
+        }
+        return '<a href="' + c.url + '" class="mob-cat-item' + (isActive ? ' active' : '') + '">' + c.name + '</a>';
+      }).join('');
+
+      catBar.innerHTML = '<div class="mob-cat-scroll">' + itemsHtml + '</div>';
+      nav.parentNode.insertBefore(catBar, nav.nextSibling);
+
+      // Cuộn mục active vào giữa màn hình
+      var activeItem = catBar.querySelector('.mob-cat-item.active');
+      if (activeItem && typeof activeItem.scrollIntoView === 'function') {
+        setTimeout(function() {
+          activeItem.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+        }, 120);
+      }
+    }
+
+    // 2. Mount Thanh điều hướng cố định dưới đáy màn hình (Sticky Bottom Nav)
+    if (!document.querySelector('.mob-bottom-bar')) {
+      var botBar = document.createElement('nav');
+      botBar.className = 'mob-bottom-bar';
+      botBar.setAttribute('aria-label', isEn ? 'Bottom Navigation' : 'Thanh điều hướng dưới');
+
+      var isHome = path === '/' || path === '/en' || path === '';
+      var isNews = path === '/news' || path === '/en/news';
+
+      botBar.innerHTML = 
+        '<a href="' + (isEn ? '/en' : '/') + '" class="mob-bar-btn' + (isHome ? ' active' : '') + '" aria-label="' + (isEn ? 'Home' : 'Trang chủ') + '">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>' +
+          '<span>' + (isEn ? 'Home' : 'Trang chủ') + '</span>' +
+        '</a>' +
+        '<a href="' + (isEn ? '/en/news' : '/news') + '" class="mob-bar-btn' + (isNews ? ' active' : '') + '" aria-label="' + (isEn ? 'News' : 'Tin mới') + '">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>' +
+          '<span>' + (isEn ? 'News' : 'Tin mới') + '</span>' +
+        '</a>' +
+        '<button type="button" class="mob-bar-btn" id="mob-search-btn" aria-label="' + (isEn ? 'Search' : 'Tìm kiếm') + '">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>' +
+          '<span>' + (isEn ? 'Search' : 'Tìm kiếm') + '</span>' +
+        '</button>' +
+        '<button type="button" class="mob-bar-btn" id="mob-saved-btn" aria-label="' + (isEn ? 'Saved' : 'Đã lưu') + '">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>' +
+          '<span>' + (isEn ? 'Saved' : 'Đã lưu') + '</span>' +
+        '</button>' +
+        '<button type="button" class="mob-bar-btn" id="mob-menu-btn" aria-label="Menu">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>' +
+          '<span>Menu</span>' +
+        '</button>';
+
+      document.body.appendChild(botBar);
+
+      // Event Listeners cho các nút action
+      var sBtn = botBar.querySelector('#mob-search-btn');
+      if (sBtn) sBtn.addEventListener('click', function(){ if (typeof openSearch === 'function') openSearch(); });
+
+      var mBtn = botBar.querySelector('#mob-menu-btn');
+      if (mBtn) mBtn.addEventListener('click', function(){ if (typeof toggleMob === 'function') toggleMob(); });
+
+      var saveBtn = botBar.querySelector('#mob-saved-btn');
+      if (saveBtn) {
+        saveBtn.addEventListener('click', function(){
+          var p = document.querySelector('.ot-saved-panel');
+          if (p) p.classList.toggle('open');
+        });
+      }
+    }
+
+    // 3. Tự động thu gọn Mục Lục (TOC) trên màn hình điện thoại
+    if (window.innerWidth <= 768) {
+      var toc = document.querySelector('.art-toc');
+      if (toc && !toc.classList.contains('collapsed')) {
+        toc.classList.add('collapsed');
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileBars);
+  } else {
+    initMobileBars();
   }
 })();

@@ -25,7 +25,6 @@ function localFile(raw) {
 }
 
 const fallbackMap = new Map([
-  ['/one-piece-chapter-1194-spoilers-loki-uranus-elbaf', '/one-piece-final-saga'],
   ['/one-piece-chapter-1193-zoro-sommers-still-practicing', '/one-piece-final-saga'],
   ['/one-piece-chapter-1192-dawn-thor-bullet-imu', '/one-piece-final-saga'],
   ['/one-piece-chapter-1191-theres-still-loki', '/one-piece-final-saga'],

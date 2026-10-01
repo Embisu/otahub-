@@ -4,98 +4,26 @@ window.IDX = [
     "url": "/5-game-sinh-ton-mien-phi-dang-choi-tren-steam-fan-the-loai-s",
     "cat": "Gaming",
     "date": "2026-10-01",
-    "excerpt": "Steam đang sở hữu nhiều game sinh tồn miễn phí đáng thử, trong đó có những cái tên nổi bật như Once Human, Fallout Shelter, Unturned, Muck và No More Room In Hell.",
+    "excerpt": "Steam đang sở hữu nhiều game sinh tồn miễn phí đáng thử, trong đó có những cái tên nổi bật như Once Human, Fallout Shelter, Unturned, Muck và No More Room In…",
     "img": "/assets/img/uploads/hoda51pr-avatar1790737857586-17907378580942085526385.webp",
     "tags": []
   },
   {
-    "title": "Call of Duty: Modern Warfare 4 hé lộ cấu hình PC, Ray Tracing và chế độ Collateral mới",
-    "url": "/call-of-duty-modern-warfare-4-he-lo-cau-hinh-pc-ray-tracing",
+    "title": "GTA 6: Hệ thống thời tiết năng động tái hiện Florida chân thực",
+    "url": "/gta-6-he-thong-thoi-tiet-nang-dong-tai-hien-florida-chan-thu",
     "cat": "Gaming",
-    "date": "2026-09-30",
-    "excerpt": "Modern Warfare 4 nâng cấp đồ họa PC và bổ sung Collateral, chế độ multiplayer mới tập trung vào phối hợp, quản lý trang bị và chiến thuật trong từng hiệp.",
-    "img": "/assets/img/uploads/t5huoqlk-call-of-duty-modern-warfare-4-he-lo-cau-hinh-pc-cho-dot-beta.jpg",
+    "date": "2026-10-01",
+    "excerpt": "GTA 6 được kỳ vọng sở hữu hệ thống thời tiết năng động, tái hiện nhiều điều kiện khí hậu đặc trưng của Florida trong thế giới mở Leonida.",
+    "img": "/assets/img/uploads/suzos5z2-gt-6-1-06bc11d907.jpg",
     "tags": []
   },
   {
-    "title": "CONTROL Resonant buộc game thủ PC tải lại toàn bộ trò chơi",
-    "url": "/control-resonant-buoc-game-thu-pc-tai-lai-toan-bo-tro-choi",
+    "title": "Crimson Desert: Charting the Unknown bị trì hoãn 2 tuần",
+    "url": "/crimson-desert-charting-the-unknown-bi-tri-hoan-2-tuan",
     "cat": "Gaming",
-    "date": "2026-09-30",
-    "excerpt": "Bản cập nhật CONTROL Resonant mới giúp chỉnh độ khó bằng Assist Mode, nhưng dính lỗi bắt người chơi PC phải tải lại toàn bộ 92 GB game.",
-    "img": "/assets/img/uploads/a5lb66t6-ctrl-r-story-01.webp",
-    "tags": []
-  },
-  {
-    "title": "Dược Sư Tự Sự ra mắt game console đầu tiên - The Apothecary Diaries: The False Imperial Brother",
-    "url": "/duoc-su-tu-su-ra-mat-game-console-dau-tien-the-apothecary-di",
-    "cat": "Gaming",
-    "date": "2026-09-30",
-    "excerpt": "Dược Sư Tự Sự chính thức có game console đầu tiên mang tên The Apothecary Diaries: The False Imperial Brother, dự kiến ra mắt đầu năm 2027. Game đưa Maomao trở lại với một vụ án hoàn toàn mới, kết hợp điều tra, suy luận và bào chế thuốc cùng những bí ẩn xoay quanh “Hoàng đệ”.",
-    "img": "/assets/img/uploads/ild2v8ju-library-hero.jpg",
-    "tags": []
-  },
-  {
-    "title": "Top 10 anime đáng mong chờ sẽ ra mắt năm 2027",
-    "url": "/top-10-anime-dang-mong-cho-se-ra-mat-nam-2027",
-    "cat": "Anime",
-    "date": "2026-09-30",
-    "excerpt": "Top 10 anime đáng mong chờ năm 2027 gồm The One Piece, Frieren mùa 3, Sakamoto Days mùa 2, Kagurabachi, Dược Sư Tự Sự và nhiều cái tên nổi bật khác.",
-    "img": "/assets/img/uploads/5y6fou86-voh-loat-anime-noi-tieng-se-ra-mat-phan-moi-trong-nam-2027-1.webp",
-    "tags": []
-  },
-  {
-    "title": "Manga Rom-Com \"Everyone’s Darling Has a Secret\" chính thức được chuyển thể thành anime",
-    "url": "/manga-rom-com-everyones-darling-has-a-secret-chinh-thuc-duoc",
-    "cat": "Anime",
-    "date": "2026-09-30",
-    "excerpt": "Everyone’s Darling Has a Secret sẽ đưa chuyện tình giữa nam sinh Hizashi Hiruno và nữ thần tượng Rei Kuromiya lên màn ảnh nhỏ vào tháng 4/2027. Anime do Studio Gekkō sản xuất, với dàn diễn viên và đội ngũ chính đã được công bố.",
-    "img": "/assets/img/uploads/y8conuxi-1790594348-678c4ac8a2f01edc1c0d3d91656946a0.jpg",
-    "tags": []
-  },
-  {
-    "title": "Sakamoto Days mùa 2 công bố trailer mới, trở lại vào tháng 1/2027",
-    "url": "/sakamoto-days-mua-2-cong-bo-trailer-moi-tro-lai-vao-thang-1",
-    "cat": "Anime",
-    "date": "2026-09-30",
-    "excerpt": "Sakamoto Days mùa 2 tung trailer nhân vật mới, giới thiệu Amane, Satoda và Yotsumura. Anime chính thức trở lại vào tháng 1/2027 trên Netflix.",
-    "img": "/assets/img/uploads/xwv04u5g-aaaaqfufjk-gc2lxpr5ck4nk1nrf47vpkxwl-guhkt3pdrxjqo-rhfhjgykp.jpg",
-    "tags": []
-  },
-  {
-    "title": "Liar Game chính thức có mùa 2 sau khi anime mùa đầu kết thúc",
-    "url": "/liar-game-chinh-thuc-co-mua-2-sau-khi-anime-mua-dau-ket-thuc",
-    "cat": "Anime",
-    "date": "2026-09-30",
-    "excerpt": "Mùa đầu tiên của Liar Game đã khép lại, nhưng hành trình của Nao và Akiyama vẫn chưa kết thúc. Mùa 2 đã chính thức được xác nhận sản xuất, trong khi thời điểm lên sóng vẫn chưa được công bố.",
-    "img": "/assets/img/uploads/ke3sc0o0-images-23.jpg",
-    "tags": []
-  },
-  {
-    "title": "Vì sao The Isle lại hot đến vậy trong năm 2026?",
-    "url": "/vi-sao-the-isle-lai-hot-den-vay-trong-nam-2026",
-    "cat": "Gaming",
-    "date": "2026-09-30",
-    "excerpt": "Vì sao The Isle hot trong năm 2026? Khám phá gameplay sinh tồn khủng long, các bản cập nhật EVRIMA và lượng người chơi tăng mạnh của tựa game.",
-    "img": "/assets/img/uploads/ralzy7zw-711-thumb.jpg",
-    "tags": []
-  },
-  {
-    "title": "Laputa: Lâu đài trên không trở lại rạp Việt 2026",
-    "url": "/laputa-lau-dai-tren-khong-tro-lai-rap-viet-2026",
-    "cat": "Anime",
-    "date": "2026-09-30",
-    "excerpt": "Laputa: Lâu đài trên không trở lại rạp Việt từ 25/9/2026. Cùng khám phá hành trình phiêu lưu của Pazu và Sheeta đến lâu đài bay huyền thoại.",
-    "img": "/assets/img/uploads/eofdaug8-maxresdefault-1.jpg",
-    "tags": []
-  },
-  {
-    "title": "Naruto Xác Nhận Anime Mới Sau 3 Năm Im Ắng",
-    "url": "/naruto-xac-nhan-anime-truyen-hinh-moi-nycc-2026",
-    "cat": "Anime",
-    "date": "2026-09-30",
-    "excerpt": "Viz Media chính thức xác nhận Naruto sẽ có một anime truyền hình \"giới hạn\" hoàn toàn mới sau 3 năm im ắng, với toàn bộ chi tiết được hé lộ tại NYCC 2026 ngày 10/10.",
-    "img": "/assets/img/naruto-hokage-adult-crop.jpg",
+    "date": "2026-10-01",
+    "excerpt": "Pearl Abyss thông báo lùi lịch phát hành DLC Charting the Unknown của Crimson Desert thêm 2 tuần để hoàn thiện và ổn định trải nghiệm cho người chơi.",
+    "img": "/assets/img/uploads/ju13865k-uytkvd992szztxpgq2jhuv-970-80-jpg.webp",
     "tags": [],
     "lang": "vi"
   },
@@ -140,6 +68,26 @@ window.IDX = [
     "lang": "vi"
   },
   {
+    "title": "Call of Duty: Modern Warfare 4 hé lộ cấu hình PC, Ray Tracing và chế độ Collateral mới",
+    "url": "/call-of-duty-modern-warfare-4-he-lo-cau-hinh-pc-ray-tracing",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Modern Warfare 4 nâng cấp đồ họa PC và bổ sung Collateral, chế độ multiplayer mới tập trung vào phối hợp, quản lý trang bị và chiến thuật trong từng hiệp.",
+    "img": "/assets/img/uploads/t5huoqlk-call-of-duty-modern-warfare-4-he-lo-cau-hinh-pc-cho-dot-beta.jpg",
+    "tags": [],
+    "lang": "vi"
+  },
+  {
+    "title": "CONTROL Resonant buộc game thủ PC tải lại toàn bộ trò chơi",
+    "url": "/control-resonant-buoc-game-thu-pc-tai-lai-toan-bo-tro-choi",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Bản cập nhật CONTROL Resonant mới giúp chỉnh độ khó bằng Assist Mode, nhưng dính lỗi bắt người chơi PC phải tải lại toàn bộ 92 GB game.",
+    "img": "/assets/img/uploads/a5lb66t6-ctrl-r-story-01.webp",
+    "tags": [],
+    "lang": "vi"
+  },
+  {
     "title": "Diablo 4 vẫn tiếp tục có mùa mới sau khi Diablo 5 ra mắt",
     "url": "/diablo-4-van-tiep-tuc-co-mua-moi-sau-khi-diablo-5-ra-mat",
     "cat": "Gaming",
@@ -156,6 +104,16 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Diamond no Ace act II Second Season trở lại ngày 11/10/2026. Tổng hợp lịch chiếu, ê-kíp OLM và chặng đường của Sawamura cùng Seido đến Koshien.",
     "img": "/assets/img/poster-real-diamond-no-ace-act2.jpg",
+    "tags": [],
+    "lang": "vi"
+  },
+  {
+    "title": "Dược Sư Tự Sự ra mắt game console đầu tiên - The Apothecary Diaries: The False Imperial Brother",
+    "url": "/duoc-su-tu-su-ra-mat-game-console-dau-tien-the-apothecary-di",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Dược Sư Tự Sự chính thức có game console đầu tiên mang tên The Apothecary Diaries: The False Imperial Brother, dự kiến ra mắt đầu năm 2027. Game đưa Maomao…",
+    "img": "/assets/img/uploads/ild2v8ju-library-hero.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -220,12 +178,42 @@ window.IDX = [
     "lang": "vi"
   },
   {
+    "title": "Laputa: Lâu đài trên không trở lại rạp Việt 2026",
+    "url": "/laputa-lau-dai-tren-khong-tro-lai-rap-viet-2026",
+    "cat": "Anime",
+    "date": "2026-09-30",
+    "excerpt": "Laputa: Lâu đài trên không trở lại rạp Việt từ 25/9/2026. Cùng khám phá hành trình phiêu lưu của Pazu và Sheeta đến lâu đài bay huyền thoại.",
+    "img": "/assets/img/uploads/eofdaug8-maxresdefault-1.jpg",
+    "tags": [],
+    "lang": "vi"
+  },
+  {
+    "title": "Liar Game chính thức có mùa 2 sau khi anime mùa đầu kết thúc",
+    "url": "/liar-game-chinh-thuc-co-mua-2-sau-khi-anime-mua-dau-ket-thuc",
+    "cat": "Anime",
+    "date": "2026-09-30",
+    "excerpt": "Mùa đầu tiên của Liar Game đã khép lại, nhưng hành trình của Nao và Akiyama vẫn chưa kết thúc. Mùa 2 đã chính thức được xác nhận sản xuất, trong khi thời điểm…",
+    "img": "/assets/img/uploads/ke3sc0o0-images-23.jpg",
+    "tags": [],
+    "lang": "vi"
+  },
+  {
     "title": "Manga Phantom Busters Được Chuyển Thể TV Anime 2027",
     "url": "/phantom-busters-manga-len-tv-anime-nam-2027",
     "cat": "Anime",
     "date": "2026-09-30",
     "excerpt": "Phantom Busters của Neoshoco được chuyển thể thành TV anime năm 2027. Tìm hiểu cốt truyện, bốn thành viên chính và những thông tin sản xuất chưa công bố.",
     "img": "/assets/img/real-phantom-busters.jpg",
+    "tags": [],
+    "lang": "vi"
+  },
+  {
+    "title": "Manga Rom-Com \"Everyone’s Darling Has a Secret\" chính thức được chuyển thể thành anime",
+    "url": "/manga-rom-com-everyones-darling-has-a-secret-chinh-thuc-duoc",
+    "cat": "Anime",
+    "date": "2026-09-30",
+    "excerpt": "Everyone’s Darling Has a Secret sẽ đưa chuyện tình giữa nam sinh Hizashi Hiruno và nữ thần tượng Rei Kuromiya lên màn ảnh nhỏ vào tháng 4/2027. Anime do…",
+    "img": "/assets/img/uploads/y8conuxi-1790594348-678c4ac8a2f01edc1c0d3d91656946a0.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -240,12 +228,42 @@ window.IDX = [
     "lang": "vi"
   },
   {
+    "title": "Naruto Xác Nhận Anime Mới Sau 3 Năm Im Ắng",
+    "url": "/naruto-xac-nhan-anime-truyen-hinh-moi-nycc-2026",
+    "cat": "Anime",
+    "date": "2026-09-30",
+    "excerpt": "Viz Media chính thức xác nhận Naruto sẽ có một anime truyền hình",
+    "img": "/assets/img/naruto-shippuden-bonds-movie-banner.jpg",
+    "tags": [],
+    "lang": "vi"
+  },
+  {
+    "title": "Sakamoto Days mùa 2 công bố trailer mới, trở lại vào tháng 1/2027",
+    "url": "/sakamoto-days-mua-2-cong-bo-trailer-moi-tro-lai-vao-thang-1",
+    "cat": "Anime",
+    "date": "2026-09-30",
+    "excerpt": "Sakamoto Days mùa 2 tung trailer nhân vật mới, giới thiệu Amane, Satoda và Yotsumura. Anime chính thức trở lại vào tháng 1/2027 trên Netflix.",
+    "img": "/assets/img/uploads/xwv04u5g-aaaaqfufjk-gc2lxpr5ck4nk1nrf47vpkxwl-guhkt3pdrxjqo-rhfhjgykp.jpg",
+    "tags": [],
+    "lang": "vi"
+  },
+  {
     "title": "Sloclap x Blue Lock: Sự Kiện Crossover Rematch 24/9",
     "url": "/rematch-x-blue-lock-crossover-event",
     "cat": "Gaming",
     "date": "2026-09-30",
     "excerpt": "Rematch x Blue Lock diễn ra từ 24/9 đến 23/10/2026 với chế độ Aura Striker 3v3, Event Pass miễn phí và trang phục lấy cảm hứng từ bốn nhân vật.",
     "img": "/assets/img/blue-lock-banner.jpg",
+    "tags": [],
+    "lang": "vi"
+  },
+  {
+    "title": "Take-Two dừng bản port GTA 5 trên Switch ngay trước thềm ra mắt GTA 6",
+    "url": "/take-two-dung-ban-port-gta-5-tren-switch-ngay-truoc-them-ra",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Take-Two yêu cầu Paralympics Productions dừng dự án đưa GTA 5 lên Nintendo Switch và Android, khiến nhóm modder phải kết thúc quá trình phát triển.",
+    "img": "/assets/img/uploads/dwmbnfr7-01m3rh0fr64tp356kxxeyzxxjm-01m3rh0hwev4z7br9fg1d56edw.webp",
     "tags": [],
     "lang": "vi"
   },
@@ -260,11 +278,31 @@ window.IDX = [
     "lang": "vi"
   },
   {
+    "title": "Top 10 anime đáng mong chờ sẽ ra mắt năm 2027",
+    "url": "/top-10-anime-dang-mong-cho-se-ra-mat-nam-2027",
+    "cat": "Anime",
+    "date": "2026-09-30",
+    "excerpt": "Top 10 anime đáng mong chờ năm 2027 gồm The One Piece, Frieren mùa 3, Sakamoto Days mùa 2, Kagurabachi, Dược Sư Tự Sự và nhiều cái tên nổi bật khác.",
+    "img": "/assets/img/uploads/5y6fou86-voh-loat-anime-noi-tieng-se-ra-mat-phan-moi-trong-nam-2027-1.webp",
+    "tags": [],
+    "lang": "vi"
+  },
+  {
+    "title": "Vì sao The Isle lại hot đến vậy trong năm 2026?",
+    "url": "/vi-sao-the-isle-lai-hot-den-vay-trong-nam-2026",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Vì sao The Isle hot trong năm 2026? Khám phá gameplay sinh tồn khủng long, các bản cập nhật EVRIMA và lượng người chơi tăng mạnh của tựa game.",
+    "img": "/assets/img/uploads/ralzy7zw-711-thumb.jpg",
+    "tags": [],
+    "lang": "vi"
+  },
+  {
     "title": "“Dược Sư Tự Sự” mùa 3 chính thức lên sóng: Hành trình mới đầy kịch tính của Maomao và Jinshi",
     "url": "/duoc-su-tu-su-mua-3-chinh-thuc-len-song-hanh-trinh-moi-day-k",
-    "cat": "Anime",
+    "cat": "Gaming",
     "date": "2026-09-29",
-    "excerpt": "“Dược Sư Tự Sự” mùa 3 chính thức lên sóng: Hành trình mới đầy kịch tính của Maomao và Jinshi. Cập nhật thông tin, bối cảnh và phân tích biên tập từ.",
+    "excerpt": "Maomao trở lại với những vụ án mới sau khi rời hậu cung. Mùa 3 mở rộng câu chuyện ra bên ngoài cung cấm, đưa Maomao và Jinshi đối mặt với những bí ẩn, âm mưu…",
     "img": "/assets/img/uploads/ytysmngi-anh-bia-1.webp",
     "tags": [],
     "lang": "vi"
@@ -596,6 +634,16 @@ window.IDX = [
     "date": "2026-09-28",
     "excerpt": "One Piece Chapter 1192: Luffy Pierces the Shield, Draws First Blood From Imu. Latest details, context and editorial coverage from.",
     "img": "/assets/img/real-op1192-dawn-thor-bullet-banner.jpg",
+    "tags": [],
+    "lang": "en"
+  },
+  {
+    "title": "One Piece Chapter 1194: Zoro vs. Sommers Explained",
+    "url": "/en/one-piece-1194-zoro-vs-sommers-explained",
+    "cat": "Manga",
+    "date": "2026-09-28",
+    "excerpt": "One Piece chapter 1194 recap: Zoro vs. Saint Sommers, Mihawk’s lesson, and what the chapter confirms about Zoro’s Conqueror’s Haki.",
+    "img": "/assets/img/real-op1194-dexerto.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -1225,7 +1273,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-23",
     "excerpt": "Marvel",
-    "img": "/assets/img/marvel-wolverine-official-key-art.jpg",
+    "img": "/assets/img/yt-G62QQ42Ewwg.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -1235,7 +1283,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-23",
     "excerpt": "Marvel’s Wolverine by Insomniac Games launched on PS5 on September 15, 2026, scoring 77 on Metacritic, lower than Spider-Man 2 but still among the year’s…",
-    "img": "/assets/img/marvel-wolverine-official-key-art.jpg",
+    "img": "/assets/img/yt-G62QQ42Ewwg.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -1255,7 +1303,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-23",
     "excerpt": "Khám phá dự án kinh dị tâm lý Silent Hill: Townfall do No Code Studios và Annapurna Interactive hợp tác phát triển cùng Konami.",
-    "img": "/assets/img/silent-hill-townfall-official-cover-art.jpg",
+    "img": "/assets/img/yt-WARs8turgnM.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -1265,7 +1313,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-23",
     "excerpt": "Explore Silent Hill: Townfall, the psychological horror title co-developed by No Code Studios and Annapurna Interactive with Konami.",
-    "img": "/assets/img/silent-hill-townfall-official-cover-art.jpg",
+    "img": "/assets/img/yt-WARs8turgnM.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -1416,6 +1464,16 @@ window.IDX = [
     "date": "2026-09-19",
     "excerpt": "Từ 1/9/2026 Nintendo tăng giá Switch 2 thêm 50 USD lên 499,99 USD; gói Mario Kart World (kèm bản digital và 90 ngày Nintendo Switch Online) giá 549 USD, ra…",
     "img": "/assets/img/pool-switch2-1.jpg",
+    "tags": [],
+    "lang": "vi"
+  },
+  {
+    "title": "One Piece Chương 1194: Zoro Đối Đầu Sommers",
+    "url": "/one-piece-chapter-1194-spoilers-loki-uranus-elbaf",
+    "cat": "Manga",
+    "date": "2026-09-19",
+    "excerpt": "Tóm tắt One Piece chương 1194: trận Zoro đối đầu Saint Sommers, bài học của Mihawk và bước tiến mới trong cách Zoro sử dụng Bá Vương Haki.",
+    "img": "/assets/img/real-op1194-dexerto.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -1615,7 +1673,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-07",
     "excerpt": "Sucker Punch’s Ghost of Yōtei launched exclusively on PS5 on October 2, 2025, set in 1603 Ezo; a Complete Edition arrives October 1, 2026.",
-    "img": "/assets/img/news-ghost-of-yotei-weapons-gameplay.jpg",
+    "img": "/assets/img/yt-cgM6poO2JmY.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -1625,7 +1683,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-07",
     "excerpt": "Ghost of Yōtei ra mắt độc quyền PS5 ngày 2/10/2025, lấy bối cảnh Ezo năm 1603 với nhân vật Atsu; Complete Edition (1/10/2026, 69,99 USD) gồm Legends co-op và.",
-    "img": "/assets/img/news-ghost-of-yotei-weapons-gameplay.jpg",
+    "img": "/assets/img/yt-cgM6poO2JmY.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -1995,7 +2053,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-25",
     "excerpt": "MAPPA chính thức khởi động sản xuất Chainsaw Man Mùa 2 chuyển thể arc Sát Thủ Quốc Tế sau cú hích doanh thu 191,4 triệu USD từ phim điện ảnh Reze Arc.",
-    "img": "/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg",
+    "img": "/assets/img/yt-s8cP1Vt5US8.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -2005,7 +2063,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-25",
     "excerpt": "MAPPA officially launches production on Chainsaw Man Season 2 adapting the International Assassins arc following Reze Arc",
-    "img": "/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg",
+    "img": "/assets/img/yt-s8cP1Vt5US8.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -2055,7 +2113,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-25",
     "excerpt": "Jujutsu Kaisen mùa 3 Culling Game phần đầu gồm 12 tập; mùa 4 tiếp tục phần sau. Tóm tắt không spoiler, thứ tự xem và thông tin chính thức.",
-    "img": "/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg",
+    "img": "/assets/img/yt--gvtWDUHmiU.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -2065,7 +2123,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-25",
     "excerpt": "Jujutsu Kaisen Season 3 (Culling Game Part 1) by MAPPA aired in winter 2026 with 12 episodes; Part 2 is in production with no air date announced.",
-    "img": "/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg",
+    "img": "/assets/img/yt--gvtWDUHmiU.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -2295,7 +2353,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-18",
     "excerpt": "Anime NYC 2026 diễn ra 20–23/8: lịch premiere, panel Re:ZERO, Bungo Stray Dogs, Iruma-kun và những điểm đáng chú ý từ Crunchyroll.",
-    "img": "/assets/img/anime-nyc-2026-hero-v2.png",
+    "img": "/assets/img/yt-zjTA2uE_y_8.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -2305,7 +2363,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-18",
     "excerpt": "Anime NYC 2026 runs August 20–23. Here are the confirmed Crunchyroll premieres, Re:ZERO and Bungo Stray Dogs anniversary panels, and key schedule details.",
-    "img": "/assets/img/anime-nyc-2026-hero-v2.png",
+    "img": "/assets/img/yt-zjTA2uE_y_8.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -2675,7 +2733,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-18",
     "excerpt": "Marvel",
-    "img": "/assets/img/marvel-wolverine-official-key-art.jpg",
+    "img": "/assets/img/yt-3Z42tBfBLJY.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -2715,7 +2773,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-18",
     "excerpt": "Insomniac Games revealed a Marvel’s Wolverine story trailer at San Diego Comic-Con, confirming composer David Fleming and a September 15, 2026 PS5 launch.",
-    "img": "/assets/img/marvel-wolverine-official-key-art.jpg",
+    "img": "/assets/img/yt-3Z42tBfBLJY.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -3195,7 +3253,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-17",
     "excerpt": "Rockstar Games xác nhận trailer thứ 3 của GTA 6 sẽ debut độc quyền trên Netflix ngày 27/8 lúc 15:00 ET trước khi phát trên kênh chính thức",
-    "img": "/assets/img/ccd6b922bc-gta6-trailer3-netflix-hero.jpg",
+    "img": "/assets/img/yt-qq76pQsI1iw.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -3205,7 +3263,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-17",
     "excerpt": "Rockstar Games confirms that the third trailer of GTA 6 will debut exclusively on Netflix on August 27 at 3:00 pm ET before streaming on the official channel.",
-    "img": "/assets/img/ccd6b922bc-gta6-trailer3-netflix-hero.jpg",
+    "img": "/assets/img/yt-qq76pQsI1iw.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -3445,7 +3503,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-16",
     "excerpt": "Comprehensive review of MAPPA",
-    "img": "/assets/img/26ef7fc2d2-jujutsu-kaisen-anime-hero.jpg",
+    "img": "/assets/img/yt-MPfZhgLiK6w.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -3455,7 +3513,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-16",
     "excerpt": "Đánh giá toàn diện anime Jujutsu Kaisen của MAPPA: Từ khởi đầu ấn tượng đến đỉnh cao Biến cố Shibuya và bước ngoặt Culling Game làm rung chuyển toàn cầu.",
-    "img": "/assets/img/26ef7fc2d2-jujutsu-kaisen-anime-hero.jpg",
+    "img": "/assets/img/yt-MPfZhgLiK6w.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -3635,7 +3693,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-15",
     "excerpt": "Chainsaw Man – The Movie: Reze Arc review from MAPPA: a 100-minute film released September 19, 2025, with Kenshi Yonezu",
-    "img": "/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg",
+    "img": "/assets/img/yt-tAzAhDNdehs.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -3645,7 +3703,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-15",
     "excerpt": "Review Chainsaw Man – The Movie: Reze Arc của MAPPA: phim 100 phút ra 19/9/2025, \"Iris Out\" của Kenshi Yonezu, doanh thu 191,4 triệu USD; Rotten.",
-    "img": "/assets/img/af620ca724-chainsaw-man-reze-arc-review-hero.jpg",
+    "img": "/assets/img/yt-tAzAhDNdehs.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -3835,7 +3893,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-08-15",
     "excerpt": "In-depth review of One Piece Final Saga: Eiichiro Oda",
-    "img": "/assets/img/news-one-piece-chapter-1191-elbaf-return.jpg",
+    "img": "/assets/img/yt-YnczpEoeaDM.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -3845,7 +3903,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-15",
     "excerpt": "Đánh giá chi tiết One Piece Egghead Arc: Hồi truyện bùng nổ mở màn Final Saga với thông điệp thế kỷ của Dr. Vegapunk, bí mật Joy Boy, đại chiến Ngũ Lão Tinh.",
-    "img": "/assets/img/pool-one-piece-1.jpg",
+    "img": "/assets/img/yt-YJ34bLwtVUM.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -3855,7 +3913,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-15",
     "excerpt": "Đánh giá One Piece Final Saga: Chặng đua cuối vĩ đại của Eiichiro Oda khi các bí mật God Valley, Thế Kỷ Trống và vương quốc Elbaf đồng loạt phát nổ.",
-    "img": "/assets/img/news-one-piece-chapter-1191-elbaf-return.jpg",
+    "img": "/assets/img/yt-YnczpEoeaDM.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -4025,7 +4083,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-14",
     "excerpt": "Sucker Punch công bố Ghost of Yōtei Complete Edition, ra mắt 1/10/2026 đúng dịp kỷ niệm 1 năm game, với phần mở rộng cốt truyện Echoes of Sekigahara",
-    "img": "/assets/img/0a878e4709-ghost-of-yotei-complete-edition-hero.jpg",
+    "img": "/assets/img/yt-sLcksHR30UA.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -4035,7 +4093,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-14",
     "excerpt": "Sucker Punch announced Ghost of Yōtei Complete Edition, released on October 1, 2026 on the game",
-    "img": "/assets/img/0a878e4709-ghost-of-yotei-complete-edition-hero.jpg",
+    "img": "/assets/img/yt-sLcksHR30UA.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -4125,7 +4183,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-14",
     "excerpt": "Konami officially releases Suikoden STAR LEAP on iOS/Android in Japan from August 7, 2026. The first mobile game in the series is set in Solar Year 453",
-    "img": "/assets/img/3a6da459ec-suikoden-star-leap-hero.jpg",
+    "img": "/assets/img/yt-WKOZqkjPcWk.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -4135,7 +4193,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-14",
     "excerpt": "Konami chính thức phát hành Suikoden STAR LEAP trên iOS/Android tại Nhật Bản từ 7/8/2026. Game mobile đầu tiên trong series lấy bối cảnh Solar Year 453",
-    "img": "/assets/img/3a6da459ec-suikoden-star-leap-hero.jpg",
+    "img": "/assets/img/yt-WKOZqkjPcWk.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -4480,7 +4538,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Blue Protocol: Star Resonance, Global Overview (Unrated)",
+    "title": "Blue Protocol: Star Resonance: Global Overview (Unrated)",
     "url": "/en/blue-protocol-review",
     "cat": "Reviews",
     "date": "2026-06-17",
@@ -4490,7 +4548,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Blue Protocol: Star Resonance, Tổng Quan Bản Global",
+    "title": "Blue Protocol: Star Resonance: Tổng Quan Bản Global",
     "url": "/blue-protocol-review",
     "cat": "Reviews",
     "date": "2026-06-17",
