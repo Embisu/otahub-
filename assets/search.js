@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Chainsaw Man và One Piece cùng góp mặt tại Harvey Awards 2026",
+    "url": "/chainsaw-man-va-one-piece-cung-gop-mat-tai-harvey-awards-202",
+    "cat": "Anime",
+    "date": "2026-10-01",
+    "excerpt": "Chainsaw Man – The Movie: Reze Arc và One Piece Season 2 cùng được đề cử Harvey Awards 2026 ở hạng mục Best Adaptation.",
+    "img": "/assets/img/uploads/suuel406-images-3.jpg",
+    "tags": []
+  },
+  {
     "title": "Frieren mùa 3: Golden Land Arc và câu chuyện về Macht",
     "url": "/en/frieren-mua-3-golden-land-arc-va-cau-chuyen-ve-macht",
     "cat": "Anime",
