@@ -173,7 +173,8 @@ var TITLE_ALIAS={
   'Solo Leveling':'Solo Leveling Season 2',
   'Solo Leveling Season 3':'Solo Leveling Season 2',
   'Sousou no Frieren':'Frieren Season 2',
-  'Dungeon Meshi':'Dungeon Meshi Season 2'
+  'Kaiju No 8':'Kaiju No.8',
+  'Bleach: TYBW Part 5':'Bleach: TYBW Final Part'
 };
 var TYPE_ENTRY_ALIAS={
   'anime|Chainsaw Man':'Chainsaw Man (Anime)',
@@ -391,7 +392,7 @@ function renderEntry(title, entry, catalog){
 if(!qTitle){
   renderEmpty();
 }else{
-  fetch('/assets/catalog.json?v=20261001b').then(function(r){return r.json();}).then(function(catalog){
+  fetch('/assets/catalog.json?v=20261001c').then(function(r){return r.json();}).then(function(catalog){
     var found=findEntry(catalog, qTitle);
     if(!found){renderEntry(qTitle, generatedEntry(qTitle), catalog);return;}
     renderEntry(found[0], found[1], catalog);
