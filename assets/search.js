@@ -63,16 +63,6 @@ window.IDX = [
     "tags": []
   },
   {
-    "title": "Crimson Desert: Charting the Unknown bị trì hoãn 2 tuần",
-    "url": "/crimson-desert-charting-the-unknown-bi-tri-hoan-2-tuan",
-    "cat": "Gaming",
-    "date": "2026-10-01",
-    "excerpt": "Pearl Abyss thông báo lùi lịch phát hành DLC Charting the Unknown của Crimson Desert thêm 2 tuần để hoàn thiện và ổn định trải nghiệm cho người chơi.",
-    "img": "/assets/img/uploads/ju13865k-uytkvd992szztxpgq2jhuv-970-80-jpg.webp",
-    "tags": [],
-    "lang": "vi"
-  },
-  {
     "title": "7 game The Witcher đáng chơi trong năm 2026",
     "url": "/7-game-the-witcher-dang-choi-trong-nam-2026",
     "cat": "Gaming",
