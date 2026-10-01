@@ -11598,13 +11598,24 @@ function openDocsImportModal() {
     </div>
   `;
   document.body.appendChild(overlay);
+
+  window.__DOCS_IMPORT_PASTED_HTML = '';
+  const ta = overlay.querySelector('#docs-import-input');
+  ta?.addEventListener('paste', (e) => {
+    const html = e.clipboardData?.getData('text/html');
+    if (html && html.trim()) {
+      window.__DOCS_IMPORT_PASTED_HTML = html;
+    }
+  });
 }
 
 function handleDocsImportSubmit() {
   const inputEl = document.getElementById('docs-import-input');
   const replaceAll = document.getElementById('docs-import-replace')?.checked;
-  const raw = inputEl?.value || '';
-  if (!raw.trim()) {
+  const rawText = inputEl?.value || '';
+  const rawHtml = window.__DOCS_IMPORT_PASTED_HTML || '';
+  const raw = rawHtml || rawText;
+  if (!raw.trim() && !rawText.trim()) {
     toast('error', 'Vui lòng dán nội dung cần nhập!');
     return;
   }
@@ -11635,13 +11646,13 @@ function handleDocsImportSubmit() {
         const text = cleanPlainText(el.textContent);
         if (text) newBlocks.push({ type: 'quote', text: text, cite: '' });
       } else if (tag === 'ul' || tag === 'ol') {
-        const items = Array.from(el.querySelectorAll('li')).map(li => cleanPlainText(li.textContent)).filter(Boolean);
+        const items = Array.from(el.querySelectorAll('li')).map(li => cleanPastedHtml(li.innerHTML) || cleanPlainText(li.textContent)).filter(Boolean);
         if (items.length > 0) newBlocks.push({ type: 'list', items: items });
       } else if (tag === 'table') {
-        const headers = Array.from(el.querySelectorAll('th')).map(th => cleanPlainText(th.textContent));
+        const headers = Array.from(el.querySelectorAll('th')).map(th => cleanPastedHtml(th.innerHTML) || cleanPlainText(th.textContent));
         const rows = [];
         el.querySelectorAll('tr').forEach(tr => {
-          const cells = Array.from(tr.querySelectorAll('td')).map(td => cleanPlainText(td.textContent));
+          const cells = Array.from(tr.querySelectorAll('td')).map(td => cleanPastedHtml(td.innerHTML) || cleanPlainText(td.textContent));
           if (cells.length > 0) rows.push(cells);
         });
         if (headers.length > 0 || rows.length > 0) {
@@ -11661,13 +11672,16 @@ function handleDocsImportSubmit() {
         if (el.children.length > 0) {
           Array.from(el.children).forEach(processElement);
         } else {
-          const text = cleanPlainText(el.textContent);
-          if (text) newBlocks.push({ type: 'paragraph', html: esc(text) });
+          const clean = cleanPastedHtml(el.innerHTML);
+          if (clean && clean.trim()) newBlocks.push({ type: 'paragraph', html: clean });
         }
+      } else if (tag === 'p') {
+        const clean = cleanPastedHtml(el.innerHTML);
+        if (clean && clean.trim()) newBlocks.push({ type: 'paragraph', html: clean });
       } else {
-        const plainText = cleanPlainText(el.textContent);
-        if (plainText) {
-          newBlocks.push({ type: 'paragraph', html: esc(plainText) });
+        const clean = cleanPastedHtml(el.innerHTML) || cleanPlainText(el.textContent);
+        if (clean && clean.trim()) {
+          newBlocks.push({ type: 'paragraph', html: clean });
         }
       }
     };
@@ -11675,12 +11689,28 @@ function handleDocsImportSubmit() {
     if (bodyChildren.length > 0) {
       bodyChildren.forEach(processElement);
     } else {
-      const text = cleanPlainText(doc.body.textContent);
-      if (text) newBlocks.push({ type: 'paragraph', html: esc(text) });
+      const clean = cleanPastedHtml(doc.body.innerHTML) || cleanPlainText(doc.body.textContent);
+      if (clean && clean.trim()) newBlocks.push({ type: 'paragraph', html: clean });
     }
   } else {
-    const lines = raw.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
-    lines.forEach(line => {
+    const rawLines = raw.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+    let lineIdx = 0;
+    while (lineIdx < rawLines.length) {
+      const line = rawLines[lineIdx];
+      if (line.includes('\t')) {
+        // Hỗ trợ bảng copy từ Excel, Sheets hoặc Word dưới dạng tab-separated
+        const tableRows = [];
+        while (lineIdx < rawLines.length && rawLines[lineIdx].includes('\t')) {
+          tableRows.push(rawLines[lineIdx].split('\t').map(c => cleanPlainText(c).trim()));
+          lineIdx++;
+        }
+        if (tableRows.length > 0) {
+          const headers = tableRows[0];
+          const dataRows = tableRows.length > 1 ? tableRows.slice(1) : tableRows;
+          newBlocks.push({ type: 'table', headers: headers, rows: dataRows });
+        }
+        continue;
+      }
       if (line.startsWith('### ')) {
         newBlocks.push({ type: 'heading', level: 3, text: cleanPlainText(line.replace(/^###\s+/, '')) });
       } else if (line.startsWith('## ') || line.startsWith('# ')) {
@@ -11706,7 +11736,8 @@ function handleDocsImportSubmit() {
         const clean = cleanPlainText(line);
         if (clean) newBlocks.push({ type: 'paragraph', html: esc(clean) });
       }
-    });
+      lineIdx++;
+    }
   }
 
   if (BODY_BLOCKS) {
