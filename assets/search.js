@@ -4,7 +4,7 @@ window.IDX = [
     "url": "/en/kuri-hime-ayakashi-yobanashi-se-ket-thuc-vao-ngay-28-10",
     "cat": "Manga",
     "date": "2026-10-01",
-    "excerpt": "Sau gần hai năm đồng hành cùng độc giả, Kuri Hime Ayakashi Yobanashi chuẩn bị bước vào chương cuối. Manga kể về Kinuko, một giảng viên đại học sống tại khuôn viên đền Tamamayu, nơi những bí ẩn và hiện tượng siêu nhiên dần xuất hiện.",
+    "excerpt": "After nearly two years with readers, Kuri Hime Ayakashi Yobanashi is about to enter its final chapter. The manga follows Kinuko, a university lecturer who lives on the grounds of Tamamayu Shrine, where mysterious events and supernatural phenomena gradually begin to unfold.",
     "img": "/assets/img/uploads/e9vnbq6u-523782130-24075867725408200-187908298858578084-n.jpg",
     "tags": []
   },
