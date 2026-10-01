@@ -2,6 +2,10 @@
 # No manual redirects needed — adding /path -> /path.html rules here
 # causes redirect loops when Pretty URLs is enabled.
 
+# Bản EN từng mang slug tiếng Việt, đổi sang slug tiếng Anh (2026-10-01)
+/en/kuri-hime-ayakashi-yobanashi-se-ket-thuc-vao-ngay-28-10 /en/kuri-hime-ayakashi-yobanashi-end-october-28 301
+/en/frieren-mua-3-golden-land-arc-va-cau-chuyen-ve-macht /en/frieren-season-3-golden-land-arc-story-macht 301
+
 # Merged stale/duplicate news articles (2026-09-24)
 /zenless-zone-zero-20-hoshimi-miyabi /zenless-zone-zero-2-0-ban-2-1-yuzuha-alice 301
 /en/zenless-zone-zero-20-hoshimi-miyabi /zenless-zone-zero-2-0-ban-2-1-yuzuha-alice 301
@@ -83,7 +87,6 @@
 
 # Search Console cleanup (2026-09-24)
 /in-depth /chuyen-sau 301
-/en/in-depth /chuyen-sau 301
 /top-anime-2025.html /anime 301
 /en/top-anime-2025.html /en/anime 301
 /en/chainsaw-man-movie-reze-arc-chieu-rap-viet-nam-doanh-thu-ky-luc /chainsaw-man-movie-reze-arc-chieu-rap-viet-nam-doanh-thu-ky-luc 301

@@ -1,6 +1,9 @@
 /* OtaHub UI polish, ngày kiểu Việt, mục lục bài viết, nút copy link */
+/* Chữ do script này chèn vào phải theo ngôn ngữ trang: trang /en/ hiện tiếng Anh. */
+var OT_EN=/^\/en(\/|$)/.test(location.pathname);
+function OT_T(vi,en){return OT_EN?en:vi;}
 (function(){
-var MONTHS=['Th1','Th2','Th3','Th4','Th5','Th6','Th7','Th8','Th9','Th10','Th11','Th12'];
+var MONTHS=OT_EN?['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']:['Th1','Th2','Th3','Th4','Th5','Th6','Th7','Th8','Th9','Th10','Th11','Th12'];
 function fmtDate(iso){
   var m=/^(\d{4})-(\d{2})-(\d{2})/.exec(iso);
   if(!m)return iso;
@@ -24,7 +27,7 @@ document.querySelectorAll('.am-badge,.am-name').forEach(function(el){
   var link=document.createElement('a');
   link.href=(location.pathname.indexOf('/en/')===0?'/en/author/':'/author/')+slug;
   link.className='author-profile-link';
-  link.setAttribute('aria-label','Xem hồ sơ và các bài của '+el.textContent.trim());
+  link.setAttribute('aria-label',OT_T('Xem hồ sơ và các bài của ','View profile and articles by ')+el.textContent.trim());
   el.parentNode.insertBefore(link,el);
   link.appendChild(el);
 });
@@ -41,7 +44,7 @@ if(body){
     });
     var toc=document.createElement('div');
     toc.className='toc-block open';
-    toc.innerHTML='<button type="button" class="toc-toggle">Mục lục bài viết <span class="toc-arrow">▾</span></button><nav class="toc-list">'+items.join('')+'</nav>';
+    toc.innerHTML='<button type="button" class="toc-toggle">'+OT_T('Mục lục bài viết','Contents')+' <span class="toc-arrow">▾</span></button><nav class="toc-list">'+items.join('')+'</nav>';
     var hb=document.querySelector('.highlight-box');
     if(hb)hb.insertAdjacentElement('afterend',toc);
     else body.insertAdjacentElement('beforebegin',toc);
@@ -56,10 +59,10 @@ document.querySelectorAll('.share-row').forEach(function(row){
   if(row.querySelector('.copy-link-btn,[onclick*="copyArticleLink"]'))return;
   var btn=document.createElement('button');
   btn.type='button';btn.className='share-btn copy-link-btn';
-  btn.textContent='Sao chép link';
+  btn.textContent=OT_T('Sao chép link','Copy link');
   btn.addEventListener('click',function(){
     navigator.clipboard.writeText(location.href).then(function(){
-      var t=btn.textContent;btn.textContent='Đã copy!';
+      var t=btn.textContent;btn.textContent=OT_T('Đã copy!','Copied!');
       setTimeout(function(){btn.textContent=t;},1800);
     });
   });
@@ -112,7 +115,7 @@ var st2=document.createElement('style');st2.textContent=css;document.head.append
 var btt=document.createElement('button');
 btt.type='button';
 btt.className='ot-btt';
-btt.setAttribute('aria-label','Lên đầu trang');
+btt.setAttribute('aria-label',OT_T('Lên đầu trang','Back to top'));
 btt.innerHTML='↑';
 document.body.appendChild(btt);
 btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
@@ -149,19 +152,20 @@ if(row && !row.querySelector('.ot-save-btn')){
   var btn=document.createElement('button');
   btn.type='button';
   btn.className='share-btn ot-save-btn'+(already?' saved':'');
-  btn.textContent=already?'Đã lưu ✓':'🔖 Lưu bài';
+  var SAVE_ON=OT_T('Đã lưu ✓','Saved ✓'),SAVE_OFF=OT_T('🔖 Lưu bài','🔖 Save');
+  btn.textContent=already?SAVE_ON:SAVE_OFF;
   btn.addEventListener('click',function(){
     var list=getSaved();
     var idx=list.findIndex(function(s){return s.url===url;});
     if(idx>-1){
       list.splice(idx,1);
-      btn.textContent='🔖 Lưu bài';
+      btn.textContent=SAVE_OFF;
       btn.classList.remove('saved');
     }else{
       var titleEl=document.querySelector('h1');
       var imgEl=document.querySelector('.hero img,.art-body img,article.article img,header img');
       list.push({url:url,title:titleEl?titleEl.textContent.trim():document.title,img:imgEl?imgEl.getAttribute('src'):'',ts:Date.now()});
-      btn.textContent='Đã lưu ✓';
+      btn.textContent=SAVE_ON;
       btn.classList.add('saved');
     }
     setSaved(list);
@@ -173,18 +177,18 @@ if(row && !row.querySelector('.ot-save-btn')){
 var launcher=document.createElement('button');
 launcher.type='button';
 launcher.className='ot-saved-fab';
-launcher.setAttribute('aria-label','Bài đã lưu');
+launcher.setAttribute('aria-label',OT_T('Bài đã lưu','Saved articles'));
 launcher.innerHTML='🔖<span class="ot-saved-badge">0</span>';
 document.body.appendChild(launcher);
 
 var panel=document.createElement('div');
 panel.className='ot-saved-panel';
-panel.innerHTML='<div class="ot-saved-head">Bài đã lưu<button type="button" class="ot-saved-close" aria-label="Đóng">✕</button></div><div class="ot-saved-list"></div>';
+panel.innerHTML='<div class="ot-saved-head">'+OT_T('Bài đã lưu','Saved articles')+'<button type="button" class="ot-saved-close" aria-label="'+OT_T('Đóng','Close')+'">✕</button></div><div class="ot-saved-list"></div>';
 document.body.appendChild(panel);
 
 function renderPanel(list){
   var box=panel.querySelector('.ot-saved-list');
-  if(!list.length){box.innerHTML='<div class="ot-saved-empty">Chưa có bài viết nào được lưu.</div>';return;}
+  if(!list.length){box.innerHTML='<div class="ot-saved-empty">'+OT_T('Chưa có bài viết nào được lưu.','No saved articles yet.')+'</div>';return;}
   box.innerHTML=list.slice().reverse().map(function(s){
     return '<a class="ot-saved-item" href="'+s.url+'">'+(s.img?'<img src="'+s.img+'" alt="">':'')+'<span>'+(s.title||s.url)+'</span></a>';
   }).join('');
@@ -399,6 +403,8 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
     var shareRow = document.querySelector('.share-row');
     var body = document.querySelector('.art-body, article.article');
     if (!shareRow || !body) return;
+    // FRANCHISE_MAP chỉ chứa bài tiếng Việt: không chèn link VI vào trang tiếng Anh.
+    if (OT_EN) return;
     if (document.querySelector('.art-franchise-box')) return;
 
     var currentPath = window.location.pathname.replace(/\/$/, '');
@@ -479,13 +485,13 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
         { name: '📖 Manga', url: '/en/manga', match: ['/en/manga'] },
         { name: '⭐ Reviews', url: '/en/reviews', match: ['/en/reviews'] },
         { name: '🏆 Rankings', url: '/en/rankings', match: ['/en/rankings'] },
-        { name: '💡 Deep Dives', url: '/en/chuyen-sau', match: ['/en/chuyen-sau'] }
+        { name: '💡 Deep Dives', url: '/en/in-depth', match: ['/en/in-depth'] }
       ] : [
         { name: '🔥 Tin mới', url: '/news', match: ['/news', '/'] },
         { name: '🎮 Gaming', url: '/gaming', match: ['/gaming'] },
         { name: '🎬 Anime', url: '/anime', match: ['/anime'] },
         { name: '📖 Manga', url: '/manga', match: ['/manga'] },
-        { name: '⭐ Reviews', url: '/reviews', match: ['/reviews'] },
+        { name: '⭐ Đánh giá', url: '/reviews', match: ['/reviews'] },
         { name: '🏆 Xếp hạng', url: '/rankings', match: ['/rankings'] },
         { name: '🎲 Chơi Gì?', url: '/choi-gi', match: ['/choi-gi'] },
         { name: '💡 Chuyên sâu', url: '/chuyen-sau', match: ['/chuyen-sau'] }

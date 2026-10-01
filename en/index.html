@@ -187,7 +187,6 @@ body{
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 
-@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 
 #ambient{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
@@ -461,6 +460,7 @@ body{
 
 
 .s-art:last-child{border-bottom:none}
+.s-art>.sa-link{display:flex;gap:12px;align-items:flex-start;flex:1;min-width:0;color:inherit;text-decoration:none}
 
 
 .s-art:nth-child(1){animation-delay:.06s}.s-art:nth-child(2){animation-delay:.12s}
@@ -490,28 +490,20 @@ body{
 .sa-m{font-size:13px;color:var(--muted)}
 
 
-.marquee{position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(124,58,237,.05);height:36px;overflow:hidden;display:flex;align-items:center}
 
 
-.mq-track{display:flex;animation:mq 55s linear infinite;white-space:nowrap}
 
 
-.mq-track:hover{animation-play-state:paused}
 
 
-a.mq-item{text-decoration:none;cursor:pointer}
 
 
-.mq-item:hover{color:var(--cyan)}
 
 
-.mq-item{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:0 28px;display:flex;align-items:center;gap:9px}
 
 
-.mq-item::after{content:'';width:3px;height:3px;background:var(--violet);border-radius:50%}
 
 
-.mq-item strong{color:var(--cyan);font-weight:500}
 
 
 .wrap{max-width:1440px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
@@ -520,6 +512,7 @@ a.mq-item{text-decoration:none;cursor:pointer}
 .sec-h{display:flex;align-items:center;gap:14px;padding:52px 0 26px;border-bottom:1px solid var(--border)}
 
 
+h2.sec-t,h2.side-head,h2.trend-h{margin-top:0;line-height:inherit}h2.sec-t{margin:0}
 .sec-t{font-family:var(--fd);font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--white);white-space:nowrap}
 
 
@@ -1159,6 +1152,13 @@ input, select, textarea { font-family: inherit; }
     align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  .s-art > .sa-link {
+    display: grid;
+    grid-template-columns: 78px 1fr;
+    gap: 12px;
+    align-items: center;
+    grid-column: 1 / -1;
   }
   .sa-thumb {
     width: 78px;
@@ -1822,37 +1822,18 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   <div class="tick-label"><svg class="gate-badge" width="18" height="18" viewBox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00f2ff" stroke-width="2" fill="rgba(0,242,255,.12)"></polygon><rect x="8" y="14" width="18" height="2.5" fill="#ff2177"></rect><rect x="9" y="12" width="16" height="2" fill="#ff2177"></rect><rect x="13" y="16" width="2.5" height="9" fill="#ff2177"></rect><rect x="19" y="16" width="2.5" height="9" fill="#ff2177"></rect></svg>BREAKING NEWS</div>
   <div class="tick-wrap">
     <div class="tick-track">
-      <span class="tick-item">🔥 <strong>Manga:</strong> <a href="/en/kuri-hime-ayakashi-yobanashi-se-ket-thuc-vao-ngay-28-10" style="color:inherit;text-decoration:none">Kuri Hime Ayakashi Yobanashi to End on October 28</a></span>
+      <span class="tick-item">🔥 <strong>Manga:</strong> <a href="/en/kuri-hime-ayakashi-yobanashi-end-october-28" style="color:inherit;text-decoration:none">Kuri Hime Ayakashi Yobanashi to End on October 28</a></span>
       <span class="tick-item">🔥 <strong>Anime:</strong> <a href="/en/top-korean-anime-aeni-worth-watching" style="color:inherit;text-decoration:none">Top 8 Korean Anime (Aeni) Worth Watching Right Now</a></span>
       <span class="tick-item">🔥 <strong>Anime:</strong> <a href="/en/gintama-creator-hideaki-sorachi-thought-anime-would-flop" style="color:inherit;text-decoration:none">Gintama Creator Admits He Thought the Anime Would Flop</a></span>
       <span class="tick-item">🔥 <strong>Gaming:</strong> <a href="/en/roman-sands-re-build-trapped-in-a-collapsing-vaporwave-nightmare" style="color:inherit;text-decoration:none">Roman Sands RE:Build: Trapped in a Collapsing Vaporwave Nightmare</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · Gaming:</strong> <a href="/en/when-gta-becomes-a-stage-for-shakespeare-in-grand-theft-hamlet" style="color:inherit;text-decoration:none">When GTA Becomes a Stage for Shakespeare in Grand Theft Hamlet</a></span>
+      <span class="tick-item">🔥 <strong>Gaming:</strong> <a href="/en/when-gta-becomes-a-stage-for-shakespeare-in-grand-theft-hamlet" style="color:inherit;text-decoration:none">When GTA Becomes a Stage for Shakespeare in Grand Theft Hamlet</a></span>
       <span class="tick-item">🔥 <strong>Anime:</strong> <a href="/en/detective-conan-case-30-murder-30th-anniversary-special" style="color:inherit;text-decoration:none">Detective Conan 30: 30th Anniversary Special Airs With Gosho Aoyama's Return</a></span>
       <span class="tick-item">🔥 <strong>Manga:</strong> <a href="/en/one-piece-1194-spoiler-zoro-unleashes-new-power-mihawk-flashback" style="color:inherit;text-decoration:none">One Piece 1194 Spoiler: Zoro Unleashes New Power, Mihawk Flashback Explained</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/en/draw-this-then-die-season-2-announced-after-finale" style="color:inherit;text-decoration:none">Draw This, Then Die! Season 2 Announced After Finale</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/en/hell-mode-anime-season-3-s-rank-dungeon-conquest-arc" style="color:inherit;text-decoration:none">Hell Mode Anime Announces Season 3: S-Rank Dungeon Conquest Arc</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · ANIME:</strong> <a href="/en/overgeared-anime-early-access-prime-video-september-27" style="color:inherit;text-decoration:none">Overgeared Gets Early Access On Prime Video September 27</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/en/why-phantom-of-baker-street-is-one-of-the-best-conan-films" style="color:inherit;text-decoration:none">Why Phantom Of Baker Street Is One Of The Best Conan Films</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/en/10-anime-to-watch-while-waiting-for-jujutsu-kaisen-season-4" style="color:inherit;text-decoration:none">10 Anime To Watch While Waiting For Jujutsu Kaisen S4</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/en/anime-worth-watching-japanese-history-culture" style="color:inherit;text-decoration:none">Anime Worth Watching For Japanese History Fans</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/en/bride-of-the-barrier-master-netflix-january-2027-trailer" style="color:inherit;text-decoration:none">Bride of the Barrier Master Comes To Netflix In January 2027</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · ESPORTS:</strong> <a href="/en/aixleft-wants-himass-delta-force-team" style="color:inherit;text-decoration:none">Aixleft Wants To Recruit Himass For Delta Force</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · GAMING:</strong> <a href="/en/gears-of-war-e-day-goes-gold-pre-install-september-29" style="color:inherit;text-decoration:none">Gears of War: E-Day Goes Gold, Pre-Load From Sept 29</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · ANIME:</strong> <a href="/en/code-geass-star-chaser-aspal-anime-2027-teaser" style="color:inherit;text-decoration:none">Code Geass: Star Chaser Aspal Teaser, Airs In 2027</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · ANIME:</strong> <a href="/en/slime-season-4-cour-3-july-2027-claymans-revenge" style="color:inherit;text-decoration:none">Slime Season 4 Returns July 2027, Clayman's Revenge Anime</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · MANGA:</strong> <a href="/en/shin-oishinbo-new-anime-35-years" style="color:inherit;text-decoration:none">Oishinbo Gets A New Anime After 35 Years: Shin Oishinbo</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · GAMING:</strong> <a href="/en/pubg-asia-stars-2026-himass-tanvuu-permanent-ban-explained" style="color:inherit;text-decoration:none">PUBG Drama: Himass and TanVuu Permanently Banned</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · GAMING:</strong> <a href="/en/vietnamese-gamers-turn-away-from-pubg" style="color:inherit;text-decoration:none">Vietnamese Gamers Turn Away From PUBG</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · MANGA:</strong> <a href="/en/one-piece-final-saga-review" style="color:inherit;text-decoration:none">One Piece Chapter 1194 Spoilers: Zoro vs Sommers</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · MANGA:</strong> <a href="/en/one-piece-egghead-arc-review" style="color:inherit;text-decoration:none">One Piece: Egghead Arc Review: Vegapunk's Revelations</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · GAMING:</strong> <a href="/en/gaming" style="color:inherit;text-decoration:none">Fire Emblem: Fortune's Weave Earns Metacritic 89</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · ANIME:</strong> <a href="/en/anime" style="color:inherit;text-decoration:none">JoJo Steel Ball Run Stages 2–3 Premiere September 25</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · ANIME:</strong> <a href="/en/anime" style="color:inherit;text-decoration:none">Cyberpunk: Edgerunners 2 Premieres October 20 on Netflix</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · ANIME:</strong> <a href="/en/fall-2026-anime-top-10-most-anticipated" style="color:inherit;text-decoration:none">Fall 2026 Anime: Top 10 Most Anticipated</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · GAMING:</strong> <a href="/en/gaming" style="color:inherit;text-decoration:none">Control Resonant Launches: Metacritic 84, Above the Original</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · ANIME:</strong> <a href="/en/anime" style="color:inherit;text-decoration:none">Grand Blue Dreaming Season 4 Announced After Finale</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/en/chiikawa-anime-pauses-new-episodes" style="color:inherit;text-decoration:none">Chiikawa Anime Pauses New Episodes Until December 25</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/en/phantom-busters-manga-gets-tv-anime-2027" style="color:inherit;text-decoration:none">Neoshoco's Phantom Busters Gets a TV Anime in 2027</a></span>
+      <span class="tick-item">🔥 <strong>Anime:</strong> <a href="/en/draw-this-then-die-season-2-announced-after-finale" style="color:inherit;text-decoration:none">Draw This, Then Die! Season 2 Announced After Finale</a></span>
+      <span class="tick-item">🔥 <strong>Anime:</strong> <a href="/en/hell-mode-anime-season-3-s-rank-dungeon-conquest-arc" style="color:inherit;text-decoration:none">Hell Mode Anime Announces Season 3: S-Rank Dungeon Conquest Arc</a></span>
+      <span class="tick-item">🔥 <strong>Anime:</strong> <a href="/en/overgeared-anime-early-access-prime-video-september-27" style="color:inherit;text-decoration:none">Overgeared Gets Early Access On Prime Video September 27</a></span>
+      <span class="tick-item">🔥 <strong>Anime:</strong> <a href="/en/why-phantom-of-baker-street-is-one-of-the-best-conan-films" style="color:inherit;text-decoration:none">Why Phantom Of Baker Street Is One Of The Best Conan Films</a></span>
+      <span class="tick-item">🔥 <strong>Anime:</strong> <a href="/en/10-anime-to-watch-while-waiting-for-jujutsu-kaisen-season-4" style="color:inherit;text-decoration:none">10 Anime To Watch While Waiting For Jujutsu Kaisen S4</a></span>
     </div>
   </div>
 </div>
@@ -1863,7 +1844,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   <div class="hero-main" onclick="location.href='/en/5-life-lessons-from-naruto-uzumaki-still-hold-up'" style="cursor:pointer">
     <div class="h-img" style="background-image:url(/assets/img/naruto-5-lessons-banner.jpg)"></div><div class="h-ov"></div><div class="h-scan"></div><div class="h-glow"></div>
     <div class="h-content">
-      <span class="tag tag-s tag-live" id="h-tag" style="background:#ff2177;color:#fff">🔴 BREAKING NEWS · ANIME</span>
+      <span class="tag tag-s tag-live" id="h-tag" style="background:#ff2177;color:#fff">🔴 BREAKING · ANIME</span>
       <h1 class="h-title" id="h-title">5 Life Lessons From Naruto Uzumaki That Still Hold Up</h1>
       <p class="h-sub" id="h-sub">From village outcast to Seventh Hokage, Naruto Uzumaki's journey still holds up: 5 lessons on persistence, empathy and why the bonds you fight for matter.</p>
       <div class="h-meta"><span class="h-meta-cat">Anime</span><span class="h-meta-sep">·</span><span>OtaHub Editorial</span><span class="h-meta-sep">·</span><span id="h-time">09/29/2026</span></div>
@@ -1872,53 +1853,44 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   </div>
 
   <aside class="hero-side">
-    <div class="side-head" id="side-head">🔥 HOT THIS WEEK · TRENDING SPOTLIGHT</div>
-    <article class="s-art" onclick="location.href='/en/kuri-hime-ayakashi-yobanashi-se-ket-thuc-vao-ngay-28-10'" style="cursor:pointer">
+    <h2 class="side-head" id="side-head">🔥 Hot this week</h2>
+    <article class="s-art"><a href="/en/kuri-hime-ayakashi-yobanashi-end-october-28" class="sa-link">
       <div class="sa-thumb"><img src="/assets/img/uploads/a6nnkrus-5c2e92eb-6be8-41f2-9b1c-a5051ff85e46.jpg" alt="Kuri Hime Ayakashi Yobanashi to End on October 28" width="1200" height="675" loading="lazy" decoding="async"></div>
-      <div><div class="sa-c" style="color:var(--pink);font-weight:700">🔴 Breaking · Manga</div><div class="sa-t">Kuri Hime Ayakashi Yobanashi to End on October 28</div><div class="sa-m">Oct 1, 2026 · Anh Thu</div></div>
-    </article>
-    <article class="s-art" onclick="location.href='/en/top-korean-anime-aeni-worth-watching'" style="cursor:pointer">
+      <div><div class="sa-c" style="color:var(--pink);font-weight:700">Manga</div><div class="sa-t">Kuri Hime Ayakashi Yobanashi to End on October 28</div><div class="sa-m">Oct 1, 2026 · Anh Thu</div></div>
+    </a></article>
+    <article class="s-art"><a href="/en/top-korean-anime-aeni-worth-watching" class="sa-link">
       <div class="sa-thumb"><img src="/assets/img/top-korean-anime-lookism-thumb.jpg" alt="Top 8 Korean Anime (Aeni) Worth Watching Right Now" width="1200" height="675" loading="lazy" decoding="async"></div>
-      <div><div class="sa-c" style="color:var(--pink);font-weight:700">🔴 Breaking · Anime</div><div class="sa-t">Top 8 Korean Anime (Aeni) Worth Watching Right Now</div><div class="sa-m">09/29/2026 · OtaHub Editorial</div></div>
-    </article>
-    <article class="s-art" onclick="location.href='/en/the-eminence-in-shadow-roguelite-game-announcement'" style="cursor:pointer">
+      <div><div class="sa-c" style="color:var(--pink);font-weight:700">Anime</div><div class="sa-t">Top 8 Korean Anime (Aeni) Worth Watching Right Now</div><div class="sa-m">09/29/2026 · OtaHub Editorial</div></div>
+    </a></article>
+    <article class="s-art"><a href="/en/the-eminence-in-shadow-roguelite-game-announcement" class="sa-link">
       <div class="sa-thumb"><img src="/assets/img/real-eminence-phantom-echoes.jpg" alt="The Eminence in Shadow: New Roguelite Game Announced" width="1200" height="675" loading="lazy" decoding="async"></div>
-      <div><div class="sa-c" style="color:var(--pink);font-weight:700">🔴 Breaking · Gaming</div><div class="sa-t">The Eminence in Shadow: New Roguelite Game Announced</div><div class="sa-m">09/29/2026 · OtaHub Editorial</div></div>
-    </article>
-    <article class="s-art" onclick="location.href='/en/aixleft-wants-himass-delta-force-team'" style="cursor:pointer">
+      <div><div class="sa-c" style="color:var(--pink);font-weight:700">Gaming</div><div class="sa-t">The Eminence in Shadow: New Roguelite Game Announced</div><div class="sa-m">09/29/2026 · OtaHub Editorial</div></div>
+    </a></article>
+    <article class="s-art"><a href="/en/aixleft-wants-himass-delta-force-team" class="sa-link">
       <div class="sa-thumb"><img src="/assets/img/photo-pubg-asia-stars-2026-himass-tanvuu-bi-cam-vinh-vien.jpg" alt="Aixleft Wants To Recruit Himass For Delta Force" width="1200" height="675" loading="lazy" decoding="async"></div>
-      <div><div class="sa-c" style="color:var(--pink);font-weight:700">🔴 Breaking · Esports</div><div class="sa-t">Aixleft Wants To Recruit Himass For Delta Force</div><div class="sa-m">Sep 26, 2026 · OtaHub Editorial</div></div>
-    </article>
-    <article class="s-art" onclick="location.href='/en/death-stranding-2-review'" style="cursor:pointer">
+      <div><div class="sa-c" style="color:var(--pink);font-weight:700">Esports</div><div class="sa-t">Aixleft Wants To Recruit Himass For Delta Force</div><div class="sa-m">Sep 26, 2026 · OtaHub Editorial</div></div>
+    </a></article>
+    <article class="s-art"><a href="/en/death-stranding-2-review" class="sa-link">
       <div class="sa-thumb"><img src="/assets/img/9c68ea445d-death-stranding-2-on-the-beach-review-hero.jpg" alt="Death Stranding 2 Review: Kojima Surpasses Himself" width="1200" height="675" loading="lazy" decoding="async"></div>
       <div><div class="sa-c" style="color:var(--cyan);font-weight:700">⭐ Review · Gaming</div><div class="sa-t">Death Stranding 2 Review: Kojima Surpasses Himself</div><div class="sa-m">Aug 15, 2026 · OtaHub Editorial</div></div>
-    </article>
-    <article class="s-art" onclick="location.href='/en/elden-ring-shadow-of-the-erdtree-review'" style="cursor:pointer">
+    </a></article>
+    <article class="s-art"><a href="/en/elden-ring-shadow-of-the-erdtree-review" class="sa-link">
       <div class="sa-thumb"><img src="/assets/img/elden-ring-shadow-erdtree-review-hero.jpg" alt="Elden Ring: Shadow of the Erdtree Review (9.7/10)" width="1200" height="675" loading="lazy" decoding="async"></div>
       <div><div class="sa-c" style="color:var(--cyan);font-weight:700">⭐ Review · Gaming</div><div class="sa-t">Elden Ring: Shadow of the Erdtree Review (9.7/10)</div><div class="sa-m">Aug 18, 2026 · OtaHub Editorial</div></div>
-    </article>
-    <article class="s-art" onclick="location.href='/en/nintendo-switch-2-review'" style="cursor:pointer">
+    </a></article>
+    <article class="s-art"><a href="/en/nintendo-switch-2-review" class="sa-link">
       <div class="sa-thumb"><img src="/assets/img/d7d77f5de9-maxresdefault.jpg" alt="Nintendo Switch 2 Review: Perfect Console or Upgrade?" width="1200" height="675" loading="lazy" decoding="async"></div>
       <div><div class="sa-c" style="color:var(--cyan);font-weight:700">⭐ Review · Gaming</div><div class="sa-t">Nintendo Switch 2 Review: Perfect Console or Upgrade?</div><div class="sa-m">May 28, 2026 · OtaHub Editorial</div></div>
-    </article>
+    </a></article>
   </aside>
 
 </section>
 
 
-<div class="marquee">
-
-
-  <div class="mq-track"><a class="mq-item" href="/en/gamescom-2026-playstation-highlights"><strong>Gaming:</strong> Gamescom 2026 PlayStation</a><a class="mq-item" href="/en/one-piece-god-valley-baad-films-announced"><strong>Anime:</strong> One Piece God Valley Film</a><a class="mq-item" href="/en/seven-seas-18-licenses-anime-nyc-2026"><strong>Manga:</strong> Seven Seas 18 New Licenses</a><a class="mq-item" href="/en/marvel-rivals-endgame-encore-update"><strong>Gaming:</strong> Marvel Rivals Endgame Encore</a><a class="mq-item" href="/en/sekiro-no-defeat-anime-release"><strong>Anime:</strong> Sekiro: No Defeat Sept 4</a><a class="mq-item" href="/en/tokyopop-anime-nyc-2026-licenses"><strong>Manga:</strong> Tokyopop 7 New Licenses</a><a class="mq-item" href="/en/resonance-plague-tale-legacy-release"><strong>Gaming:</strong> Resonance: A Plague Tale Legacy August 27</a><a class="mq-item" href="/en/mortal-shell-2-release"><strong>Gaming:</strong> Mortal Shell II launches August 20</a><a class="mq-item" href="/en/skip-and-loafer-season2-teaser"><strong>Anime:</strong> Skip and Loafer S2 Teaser</a><a class="mq-item" href="/en/beast-of-reincarnation"><strong>Gaming:</strong> Beast of Reincarnation</a><a class="mq-item" href="/en/game-detail?t=Suikoden%20STAR%20LEAP"><strong>Gaming:</strong> Suikoden STAR LEAP</a><a class="mq-item" href="/en/the-ribbon-hero-netflix"><strong>Anime:</strong> The Ribbon Hero</a><a class="mq-item" href="/en/made-in-abyss-awakening-mystery"><strong>Anime:</strong> Made in Abyss Film</a><a class="mq-item" href="/en/black-clover-final-volume-guidebook"><strong>Manga:</strong> Black Clover Vol. 38</a><a class="mq-item" href="/en/game-detail?t=Ghost%20of%20Y%C5%8Dtei%3A%20Complete%20Edition"><strong>Gaming:</strong> Ghost of Yōtei Complete</a><a class="mq-item" href="/en/crunchyroll-makoto-shinkai-next-film"><strong>Anime:</strong> Crunchyroll x Shinkai</a><a class="mq-item" href="/en/manga-million-near-simulcast"><strong>Manga:</strong> MANGA MILLION Near-Simulcast</a><a class="mq-item" href="/en/mafia-old-country-man-of-honor"><strong>Gaming:</strong> Mafia Man of Honor</a><a class="mq-item" href="/en/link-click-season3-premiere"><strong>Anime:</strong> Link Click Season 3</a><a class="mq-item" href="/en/hollow-knight-silksong-sea-of-sorrow"><strong>Gaming:</strong> Silksong Sea of Sorrow</a><a class="mq-item" href="/en/genshin-impact-70-snezhnaya"><strong>Gacha:</strong> Genshin 7.0 Snezhnaya</a><a class="mq-item" href="/en/re-zero-season4-recapture-arc"><strong>Anime:</strong> Re:Zero S4 Recapture Arc</a><a class="mq-item" href="/en/jojo-golden-spirit-launch"><strong>Gaming:</strong> JoJo Golden Spirit</a><a class="mq-item" href="/en/kaiju-no-8-the-game-anniversary"><strong>Gaming:</strong> Kaiju No.8 1 year</a><a class="mq-item" href="/en/star-wars-zero-company"><strong>Gaming:</strong> Star Wars Zero Company</a><a class="mq-item" href="/en/mushoku-tensei-s3-chaos-breaker"><strong>Anime:</strong> Mushoku Tensei Chaos Breaker</a><a class="mq-item" href="/en/chained-soldier-season-3"><strong>Anime:</strong> Chained Soldier S3</a><a class="mq-item" href="/en/metal-gear-solid-master-collection-vol2"><strong>Gaming:</strong> MGS Master Collection Vol. 2</a><a class="mq-item" href="/en/black-clover-season-2"><strong>Anime:</strong> Black Clover Season 2</a><a class="mq-item" href="/en/shueisha-manga-million"><strong>Manga:</strong> Shueisha MANGA MILLION</a><a class="mq-item" href="/en/elden-ring-dlc2"><strong>Trending:</strong> Elden Ring DLC 2</a><a class="mq-item" href="/en/chainsaw-man-season-2-assassins-arc-in-production"><strong>Anime:</strong> Chainsaw Man S3</a><a class="mq-item" href="/en/top-game-pc-2026"><strong>PC Games:</strong> Monster Hunter Wilds</a><a class="mq-item" href="/en/wuthering-waves-24"><strong>Mobile:</strong> Wuthering Waves 3.6</a><a class="mq-item" href="/en/berserk-arc-cuoi"><strong>Manga:</strong> Berserk Final Arc</a><a class="mq-item" href="/en/vct-pacific-2026"><strong>Esports:</strong> VCT Pacific · Paper Rex</a><a class="mq-item" href="/en/genshin-70-tier-list-meta-snezhnaya"><strong>Gacha:</strong> Genshin 7.0 Tier List</a><a class="mq-item" href="/en/blue-protocol-review"><strong>Review:</strong> Blue Protocol 9.1/10</a><a class="mq-item" href="/en/one-piece-final-saga"><strong>Manga:</strong> One Piece · Laugh Tale</a><a class="mq-item" href="/en/stellar-blade-2"><strong>Preview:</strong> Stellar Blade 2</a><a class="mq-item" href="/en/made-in-abyss-awakening-mystery"><strong>Anime:</strong> Made in Abyss Film</a><a class="mq-item" href="/en/black-clover-final-volume-guidebook"><strong>Manga:</strong> Black Clover Vol. 38</a><a class="mq-item" href="/en/game-detail?t=Ghost%20of%20Y%C5%8Dtei%3A%20Complete%20Edition"><strong>Gaming:</strong> Ghost of Yōtei Complete</a><a class="mq-item" href="/en/crunchyroll-makoto-shinkai-next-film"><strong>Anime:</strong> Crunchyroll x Shinkai</a><a class="mq-item" href="/en/manga-million-near-simulcast"><strong>Manga:</strong> MANGA MILLION Near-Simulcast</a><a class="mq-item" href="/en/mafia-old-country-man-of-honor"><strong>Gaming:</strong> Mafia Man of Honor</a><a class="mq-item" href="/en/link-click-season3-premiere"><strong>Anime:</strong> Link Click Season 3</a><a class="mq-item" href="/en/hollow-knight-silksong-sea-of-sorrow"><strong>Gaming:</strong> Silksong Sea of Sorrow</a><a class="mq-item" href="/en/genshin-impact-70-snezhnaya"><strong>Gacha:</strong> Genshin 7.0 Snezhnaya</a><a class="mq-item" href="/en/re-zero-season4-recapture-arc"><strong>Anime:</strong> Re:Zero S4 Recapture Arc</a><a class="mq-item" href="/en/jojo-golden-spirit-launch"><strong>Gaming:</strong> JoJo Golden Spirit</a><a class="mq-item" href="/en/kaiju-no-8-the-game-anniversary"><strong>Gaming:</strong> Kaiju No.8 1 year</a><a class="mq-item" href="/en/star-wars-zero-company"><strong>Gaming:</strong> Star Wars Zero Company</a><a class="mq-item" href="/en/mushoku-tensei-s3-chaos-breaker"><strong>Anime:</strong> Mushoku Tensei Chaos Breaker</a><a class="mq-item" href="/en/chained-soldier-season-3"><strong>Anime:</strong> Chained Soldier S3</a><a class="mq-item" href="/en/metal-gear-solid-master-collection-vol2"><strong>Gaming:</strong> MGS Master Collection Vol. 2</a><a class="mq-item" href="/en/black-clover-season-2"><strong>Anime:</strong> Black Clover Season 2</a><a class="mq-item" href="/en/shueisha-manga-million"><strong>Manga:</strong> Shueisha MANGA MILLION</a><a class="mq-item" href="/en/elden-ring-dlc2"><strong>Trending:</strong> Elden Ring DLC 2</a><a class="mq-item" href="/en/chainsaw-man-season-2-assassins-arc-in-production"><strong>Anime:</strong> Chainsaw Man S3</a><a class="mq-item" href="/en/top-game-pc-2026"><strong>PC Games:</strong> Monster Hunter Wilds</a><a class="mq-item" href="/en/wuthering-waves-24"><strong>Mobile:</strong> Wuthering Waves 3.6</a><a class="mq-item" href="/en/berserk-arc-cuoi"><strong>Manga:</strong> Berserk Final Arc</a><a class="mq-item" href="/en/vct-pacific-2026"><strong>Esports:</strong> VCT Pacific · Paper Rex</a><a class="mq-item" href="/en/genshin-70-tier-list-meta-snezhnaya"><strong>Gacha:</strong> Genshin 7.0 Tier List</a><a class="mq-item" href="/en/blue-protocol-review"><strong>Review:</strong> Blue Protocol 9.1/10</a><a class="mq-item" href="/en/one-piece-final-saga"><strong>Manga:</strong> One Piece · Laugh Tale</a><a class="mq-item" href="/en/stellar-blade-2"><strong>Preview:</strong> Stellar Blade 2</a></div>
-
-
-</div>
-
-
 <div class="wrap rv">
 
 
-  <div class="sec-h"><span class="sec-t">Featured <em>news</em></span><div class="sec-l"></div><a href="/en/news" class="sec-more">See all</a></div>
+  <div class="sec-h"><h2 class="sec-t">Featured <em>news</em></h2><div class="sec-l"></div><a href="/en/news" class="sec-more">See all</a></div>
 
 
   <div class="f-grid">
@@ -1942,7 +1914,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 </div>
 
 <div class="wrap rv">
-  <div class="sec-h"><span class="sec-t">Top <em>games</em></span><div class="sec-l"></div><a href="/en/rankings" class="sec-more">See full</a></div>
+  <div class="sec-h"><h2 class="sec-t">Top <em>games</em></h2><div class="sec-l"></div><a href="/en/rankings" class="sec-more">See full</a></div>
 
 
   <div class="rank-grid">
@@ -2017,22 +1989,22 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 <div class="wrap rv">
 
 
-  <div class="sec-h"><span class="sec-t">Anime <em>seasonal</em></span><div class="sec-l"></div><a href="/en/anime" class="sec-more">Broadcast schedule</a></div>
+  <div class="sec-h"><h2 class="sec-t">Anime <em>seasonal</em></h2><div class="sec-l"></div><a href="/en/anime" class="sec-more">Broadcast schedule</a></div>
 
 
   <div class="season-tabs">
 
 
-    <button class="s-tab on" onclick="setTab(this,'summer')">Summer 2026</button>
+    <button class="s-tab on" onclick="setTab(this,'fall')">Fall 2026</button>
+
+
+    <button class="s-tab" onclick="setTab(this,'summer')">Summer 2026</button>
 
 
     <button class="s-tab" onclick="setTab(this,'spring')">Spring 2026</button>
 
 
     <button class="s-tab" onclick="setTab(this,'winter')">Winter 2026</button>
-
-
-    <button class="s-tab" onclick="setTab(this,'fall')">Fall 2026</button>
 
 
   </div>
@@ -2059,7 +2031,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 <div class="wrap rv">
 
 
-  <div class="sec-h"><span class="sec-t">Hot <em>right now</em> · Comics</span><div class="sec-l"></div><a href="/en/manga" class="sec-more">See more</a></div>
+  <div class="sec-h"><h2 class="sec-t">Hot <em>right now</em> · Comics</h2><div class="sec-l"></div><a href="/en/manga" class="sec-more">See more</a></div>
 
 
   <div class="manga-grid">
@@ -2146,12 +2118,12 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 <div class="wrap rv" style="padding-top:0">
 
 
-  <div class="sec-h"><span class="sec-t">Latest <em>news</em></span><div class="sec-l"></div><a href="/en/news" class="sec-more">See all</a></div>
+  <div class="sec-h"><h2 class="sec-t">Latest <em>news</em></h2><div class="sec-l"></div><a href="/en/news" class="sec-more">See all</a></div>
 
 
   <div class="latest-wrap">
 <div>
-<article class="w-card"><a href="/en/kuri-hime-ayakashi-yobanashi-se-ket-thuc-vao-ngay-28-10" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Manga</div><div class="wc-t">Kuri Hime Ayakashi Yobanashi to End on October 28</div><div class="wc-m">Anh Thu · Oct 1, 2026</div></div><div class="wc-thumb"><img src="/assets/img/uploads/a6nnkrus-5c2e92eb-6be8-41f2-9b1c-a5051ff85e46.jpg" alt="Kuri Hime Ayakashi Yobanashi to End on October 28" loading="lazy" width="1200" height="675"></div></a></article>
+<article class="w-card"><a href="/en/kuri-hime-ayakashi-yobanashi-end-october-28" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Manga</div><div class="wc-t">Kuri Hime Ayakashi Yobanashi to End on October 28</div><div class="wc-m">Anh Thu · Oct 1, 2026</div></div><div class="wc-thumb"><img src="/assets/img/uploads/a6nnkrus-5c2e92eb-6be8-41f2-9b1c-a5051ff85e46.jpg" alt="Kuri Hime Ayakashi Yobanashi to End on October 28" loading="lazy" width="1200" height="675"></div></a></article>
 <article class="w-card"><a href="/en/5-life-lessons-from-naruto-uzumaki-still-hold-up" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime</div><div class="wc-t">5 Life Lessons From Naruto Uzumaki That Still Hold Up</div><div class="wc-m">OtaHub Editorial · 09/29/2026</div></div><div class="wc-thumb"><img src="/assets/img/naruto-5-lessons-thumb.jpg" alt="5 Life Lessons From Naruto Uzumaki That Still Hold Up" loading="lazy" width="1200" height="675"></div></a></article>
       <article class="w-card"><a href="/en/the-eminence-in-shadow-roguelite-game-announcement" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming</div><div class="wc-t">The Eminence in Shadow: New Roguelite Game Announced</div><div class="wc-m">OtaHub Editorial · 09/29/2026</div></div><div class="wc-thumb"><img src="/assets/img/real-eminence-phantom-echoes.jpg" alt="The Eminence in Shadow: New Roguelite Game Announced" loading="lazy" width="1200" height="675"></div></a></article>
       <article class="w-card"><a href="/en/top-korean-anime-aeni-worth-watching" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime</div><div class="wc-t">Top 8 Korean Anime (Aeni) Worth Watching Right Now</div><div class="wc-m">OtaHub Editorial · 09/29/2026</div></div><div class="wc-thumb"><img src="/assets/img/top-korean-anime-lookism-thumb.jpg" alt="Top 8 Korean Anime (Aeni) Worth Watching Right Now" loading="lazy" width="1200" height="675"></div></a></article>
@@ -2161,9 +2133,9 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
       <article class="w-card"><a href="/en/hell-mode-anime-season-3-s-rank-dungeon-conquest-arc" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime · Isekai</div><div class="wc-t">Hell Mode Anime Announces Season 3: S-Rank Dungeon Conquest Arc</div><div class="wc-m">OtaHub Editorial · 09/25/2026 · 3 min</div></div><div class="wc-thumb"><img src="/assets/img/real-hell-mode-banner.jpg" alt="Hell Mode Anime Announces Season 3: S-Rank Dungeon Conquest Arc" loading="lazy" width="1200" height="675"></div></a></article>
       <article class="w-card"><a href="/en/draw-this-then-die-season-2-announced-after-finale" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime · Shonen Sunday</div><div class="wc-t">Draw This, Then Die! Season 2 Announced After Finale</div><div class="wc-m">OtaHub Editorial · 09/25/2026 · 3 min</div></div><div class="wc-thumb"><img src="/assets/img/real-draw-this-then-die-banner.jpg" alt="Draw This, Then Die! Season 2 Announced After Finale" loading="lazy" width="1200" height="675"></div></a></article>
       <article class="w-card"><a href="/en/overgeared-anime-early-access-prime-video-september-27" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime · Prime Video</div><div class="wc-t">Overgeared Gets Early Access On Prime Video September 27</div><div class="wc-m">OtaHub Editorial · 09/25/2026 · 3 min</div></div><div class="wc-thumb"><img src="/assets/img/real-overgeared-banner.jpg" alt="Overgeared Gets Early Access On Prime Video September 27" loading="lazy" width="1200" height="675"></div></a></article>
-      <article class="w-card"><a href="/en/why-phantom-of-baker-street-is-one-of-the-best-conan-films" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime · Phân tích</div><div class="wc-t">Why Phantom Of Baker Street Is One Of The Best Conan Films</div><div class="wc-m">OtaHub Editorial · 09/25/2026 · 5 min</div></div><div class="wc-thumb"><img src="/assets/img/real-conan-baker-street-banner.jpg" alt="Why Phantom Of Baker Street Is One Of The Best Conan Films" loading="lazy" width="1200" height="675"></div></a></article>
-      <article class="w-card"><a href="/en/10-anime-to-watch-while-waiting-for-jujutsu-kaisen-season-4" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime · Gợi ý</div><div class="wc-t">10 Anime To Watch While Waiting For Jujutsu Kaisen S4</div><div class="wc-m">OtaHub Editorial · 09/25/2026 · 6 min</div></div><div class="wc-thumb"><img src="/assets/img/real-jjk-wait-gachiakuta.jpg" alt="10 Anime To Watch While Waiting For Jujutsu Kaisen S4" loading="lazy" width="1200" height="675"></div></a></article>
-      <article class="w-card"><a href="/en/anime-worth-watching-japanese-history-culture" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime · Gợi ý</div><div class="wc-t">Anime Worth Watching For Japanese History Fans</div><div class="wc-m">OtaHub Editorial · 09/25/2026 · 5 min</div></div><div class="wc-thumb"><img src="/assets/img/real-history-anime-kamuy.jpg" alt="Anime Worth Watching For Japanese History Fans" loading="lazy" width="1200" height="675"></div></a></article>
+      <article class="w-card"><a href="/en/why-phantom-of-baker-street-is-one-of-the-best-conan-films" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime · Analysis</div><div class="wc-t">Why Phantom Of Baker Street Is One Of The Best Conan Films</div><div class="wc-m">OtaHub Editorial · 09/25/2026 · 5 min</div></div><div class="wc-thumb"><img src="/assets/img/real-conan-baker-street-banner.jpg" alt="Why Phantom Of Baker Street Is One Of The Best Conan Films" loading="lazy" width="1200" height="675"></div></a></article>
+      <article class="w-card"><a href="/en/10-anime-to-watch-while-waiting-for-jujutsu-kaisen-season-4" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime · Picks</div><div class="wc-t">10 Anime To Watch While Waiting For Jujutsu Kaisen S4</div><div class="wc-m">OtaHub Editorial · 09/25/2026 · 6 min</div></div><div class="wc-thumb"><img src="/assets/img/real-jjk-wait-gachiakuta.jpg" alt="10 Anime To Watch While Waiting For Jujutsu Kaisen S4" loading="lazy" width="1200" height="675"></div></a></article>
+      <article class="w-card"><a href="/en/anime-worth-watching-japanese-history-culture" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime · Picks</div><div class="wc-t">Anime Worth Watching For Japanese History Fans</div><div class="wc-m">OtaHub Editorial · 09/25/2026 · 5 min</div></div><div class="wc-thumb"><img src="/assets/img/real-history-anime-kamuy.jpg" alt="Anime Worth Watching For Japanese History Fans" loading="lazy" width="1200" height="675"></div></a></article>
       <article class="w-card"><a href="/en/bride-of-the-barrier-master-netflix-january-2027-trailer" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime · Netflix</div><div class="wc-t">Bride of the Barrier Master Comes To Netflix In January 2027</div><div class="wc-m">OtaHub Editorial · 09/25/2026 · 3 min</div></div><div class="wc-thumb"><img src="/assets/img/real-bride-of-the-barrier-master.jpg" alt="Bride of the Barrier Master Comes To Netflix In January 2027" loading="lazy" width="1200" height="675"></div></a></article>
       <article class="w-card"><a href="/en/shin-oishinbo-new-anime-35-years" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Manga · Anime</div><div class="wc-t">Oishinbo Gets A New Anime After 35 Years: Shin Oishinbo</div><div class="wc-m">OtaHub Editorial · 09/25/2026 · 3 min</div></div><div class="wc-thumb"><img src="/assets/img/real-shin-oishinbo.jpg" alt="Oishinbo Gets A New Anime After 35 Years: Shin Oishinbo" loading="lazy" width="1200" height="675"></div></a></article>
       <article class="w-card"><a href="/en/slime-season-4-cour-3-july-2027-claymans-revenge" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime · 8-Bit</div><div class="wc-t">Slime Season 4 Returns July 2027, Clayman's Revenge Anime</div><div class="wc-m">OtaHub Editorial · 09/25/2026 · 3 min</div></div><div class="wc-thumb"><img src="/assets/img/real-slime-s4-clayman-revenge.jpg" alt="Slime Season 4 Returns July 2027, Clayman's Revenge Anime" loading="lazy" width="1200" height="675"></div></a></article>
@@ -2198,7 +2170,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
     <aside class="latest-side">
 
 
-      <div class="trend-h">Hot now</div>
+      <h2 class="trend-h">Hot now</h2>
 
 
       <a class="t-item" href="/en/gta6-preview" style="text-decoration:none;color:inherit"><div class="t-num">01</div><div class="ti-thumb"><img src="/assets/img/c8cd09fede-maxresdefault.jpg" alt="GTA 6 · everything about Vice City and Lucia" loading="lazy" width="1280" height="720"></div><div><div class="ti-t">GTA 6 · everything about Vice City and Lucia</div><div class="ti-m">Gaming · 156k views</div></div></a>
@@ -2231,7 +2203,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 <div class="wrap rv" style="padding-bottom:0">
 
 
-  <div class="sec-h"><span class="sec-t">Explore <em>topics</em></span><div class="sec-l"></div></div>
+  <div class="sec-h"><h2 class="sec-t">Explore <em>topics</em></h2><div class="sec-l"></div></div>
 
 
   <div class="cat-grid">
@@ -2406,7 +2378,7 @@ function renderAnime(season){
 }
 
 
-renderAnime('summer');
+renderAnime('fall');
 
 
 function setTab(btn,season){document.querySelectorAll('.s-tab').forEach(t=>t.classList.remove('on'));btn.classList.add('on');renderAnime(season);}
@@ -2515,7 +2487,7 @@ document.querySelectorAll('.rk-card').forEach(c=>barObs.observe(c));
 <script defer src="/assets/search-redirect.js"></script>
 
 
-<script defer src="/assets/enhance.js?v=20261001b"></script>
+<script defer src="/assets/enhance.js?v=20261001d"></script>
 
 
 

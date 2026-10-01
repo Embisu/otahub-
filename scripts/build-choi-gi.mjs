@@ -2315,8 +2315,8 @@ function buildHtml(lang = 'vi') {
         <li><a href="${prefix}/gaming">Gaming</a></li>
         <li><a href="${prefix}/anime">Anime</a></li>
         <li><a href="${prefix}/manga">Manga</a></li>
-        <li><a href="${prefix}/reviews">Reviews</a></li>
-        <li><a href="${prefix}/rankings">Rankings</a></li>
+        <li><a href="${prefix}/reviews">${isEn ? 'Reviews' : 'Đánh giá'}</a></li>
+        <li><a href="${prefix}/rankings">${isEn ? 'Rankings' : 'Xếp hạng'}</a></li>
         <li><a href="${isEn ? '/en/in-depth' : '/chuyen-sau'}">${isEn ? 'In-depth' : 'Chuyên sâu'}</a></li>
       </ul>
       <button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
@@ -2324,7 +2324,7 @@ function buildHtml(lang = 'vi') {
         <button class="nsearch" aria-label="${isEn ? 'Search' : 'Tìm kiếm'}" onclick="openSearch()">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg>
         </button>
-        <a href="${isEn ? '/en/index#newsletter' : '/#newsletter'}" class="cta" id="cta-sub">Subscribe</a>
+        <a href="${isEn ? '/en/index#newsletter' : '/#newsletter'}" class="cta" id="cta-sub">${isEn ? 'Subscribe' : 'Đăng ký'}</a>
       </div>
     </div>
   </nav>
@@ -2335,8 +2335,8 @@ function buildHtml(lang = 'vi') {
     <a href="${prefix}/gaming">Gaming</a>
     <a href="${prefix}/anime">Anime</a>
     <a href="${prefix}/manga">Manga</a>
-    <a href="${prefix}/reviews">Reviews</a>
-    <a href="${prefix}/rankings">Rankings</a>
+    <a href="${prefix}/reviews">${isEn ? 'Reviews' : 'Đánh giá'}</a>
+    <a href="${prefix}/rankings">${isEn ? 'Rankings' : 'Xếp hạng'}</a>
     <a href="${isEn ? '/en/in-depth' : '/chuyen-sau'}">${isEn ? 'In-depth' : 'Chuyên sâu'}</a>
     <div class="m-sub">
       <a href="${prefix}/about">${isEn ? 'Introduction' : 'Giới thiệu'}</a>
@@ -2587,7 +2587,7 @@ function buildHtml(lang = 'vi') {
   </div>
 
   <!-- Standard Hub Footer matching templates/partials/hub-footer.html -->
-  <footer><div class="ft-in"><div><a href="${prefix}/" class="logo" style="display:inline-flex"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">${isEn ? "Asian Gaming, Anime and Manga news hub. Fast, specialized, no bias." : "Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias."}</p></div><div><div class="ft-h">${isEn ? "Category" : "Chuyên mục"}</div><ul class="ft-links"><li><a href="${prefix}/gaming">Gaming</a></li><li><a href="${prefix}/anime">Anime</a></li><li><a href="${prefix}/manga">Manga</a></li><li><a href="${prefix}/reviews">Reviews</a></li><li><a href="${prefix}/rankings">Rankings</a></li></ul></div><div><div class="ft-h">${isEn ? "About OtaHub" : "Về OtaHub"}</div><ul class="ft-links"><li><a href="${prefix}/about">${isEn ? "Introduction" : "Giới thiệu"}</a></li><li><a href="${prefix}/about#team">${isEn ? "Team" : "Đội ngũ"}</a></li><li><a href="${prefix}/about#contact">${isEn ? "Contact" : "Liên hệ"}</a></li><li><a href="${isEn ? "/en/index#newsletter" : "/#newsletter"}">Newsletter</a></li></ul></div><div><div class="ft-h">${isEn ? "Follow" : "Theo dõi"}</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
+  <footer><div class="ft-in"><div><a href="${prefix}/" class="logo" style="display:inline-flex"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">${isEn ? "Asian Gaming, Anime and Manga news hub. Fast, specialized, no bias." : "Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias."}</p></div><div><div class="ft-h">${isEn ? "Category" : "Chuyên mục"}</div><ul class="ft-links"><li><a href="${prefix}/gaming">Gaming</a></li><li><a href="${prefix}/anime">Anime</a></li><li><a href="${prefix}/manga">Manga</a></li><li><a href="${prefix}/reviews">${isEn ? 'Reviews' : 'Đánh giá'}</a></li><li><a href="${prefix}/rankings">${isEn ? 'Rankings' : 'Xếp hạng'}</a></li></ul></div><div><div class="ft-h">${isEn ? "About OtaHub" : "Về OtaHub"}</div><ul class="ft-links"><li><a href="${prefix}/about">${isEn ? "Introduction" : "Giới thiệu"}</a></li><li><a href="${prefix}/about#team">${isEn ? "Team" : "Đội ngũ"}</a></li><li><a href="${prefix}/about#contact">${isEn ? "Contact" : "Liên hệ"}</a></li><li><a href="${isEn ? "/en/index#newsletter" : "/#newsletter"}">${isEn ? 'Newsletter' : 'Bản tin'}</a></li></ul></div><div><div class="ft-h">${isEn ? "Follow" : "Theo dõi"}</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
   <script src="/assets/lang-switch.js" defer></script>
 
   <!-- Embedded Client Script -->
@@ -3110,7 +3110,7 @@ function buildHtml(lang = 'vi') {
     updateSubfilterRow();
   </script>
   <script defer src="/assets/search-redirect.js"></script>
-  <script defer src="/assets/enhance.js?v=20261001b"></script>
+  <script defer src="/assets/enhance.js?v=20261001d"></script>
   <script defer src="/assets/img-fit.v2.js?v=20260926"></script>
   <script src="/assets/lang-switch.js" defer></script>
 </body>

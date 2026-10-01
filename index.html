@@ -271,7 +271,6 @@ body{
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 
-@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 
 #ambient{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
@@ -545,6 +544,7 @@ body{
 
 
 .s-art:last-child{border-bottom:none}
+.s-art>.sa-link{display:flex;gap:12px;align-items:flex-start;flex:1;min-width:0;color:inherit;text-decoration:none}
 
 
 .s-art:nth-child(1){animation-delay:.06s}.s-art:nth-child(2){animation-delay:.12s}
@@ -574,28 +574,20 @@ body{
 .sa-m{font-size:13px;color:var(--muted)}
 
 
-.marquee{position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(124,58,237,.05);height:36px;overflow:hidden;display:flex;align-items:center}
 
 
-.mq-track{display:flex;animation:mq 55s linear infinite;white-space:nowrap}
 
 
-.mq-track:hover{animation-play-state:paused}
 
 
-a.mq-item{text-decoration:none;cursor:pointer}
 
 
-.mq-item:hover{color:var(--cyan)}
 
 
-.mq-item{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:0 28px;display:flex;align-items:center;gap:9px}
 
 
-.mq-item::after{content:'';width:3px;height:3px;background:var(--violet);border-radius:50%}
 
 
-.mq-item strong{color:var(--cyan);font-weight:500}
 
 
 .wrap{max-width:1440px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
@@ -604,6 +596,7 @@ a.mq-item{text-decoration:none;cursor:pointer}
 .sec-h{display:flex;align-items:center;gap:14px;padding:52px 0 26px;border-bottom:1px solid var(--border)}
 
 
+h2.sec-t,h2.side-head,h2.trend-h{margin-top:0;line-height:inherit}h2.sec-t{margin:0}
 .sec-t{font-family:var(--fd);font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--white);white-space:nowrap}
 
 
@@ -1244,6 +1237,13 @@ input, select, textarea { font-family: inherit; }
     padding: 10px 0;
     border-bottom: 1px solid rgba(255,255,255,.06);
   }
+  .s-art > .sa-link {
+    display: grid;
+    grid-template-columns: 78px 1fr;
+    gap: 12px;
+    align-items: center;
+    grid-column: 1 / -1;
+  }
   .sa-thumb {
     width: 78px;
     height: 78px;
@@ -1865,10 +1865,10 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
     <a href="/manga" class="stag">Manga</a>
 
 
-    <a href="/reviews" class="stag">Reviews</a>
+    <a href="/reviews" class="stag">Đánh giá</a>
 
 
-    <a href="/rankings" class="stag">Rankings</a>
+    <a href="/rankings" class="stag">Xếp hạng</a>
 
 
   </div>
@@ -1883,14 +1883,14 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 <div id="grid-tex"></div>
 
 
-<nav class="nav"><div class="nav-in"><a href="/" class="logo"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="Tìm kiếm" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="/#newsletter" class="cta" id="cta-sub">Subscribe</a></div></div></nav>
+<nav class="nav"><div class="nav-in"><a href="/" class="logo"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Đánh giá</a></li><li><a href="/rankings">Xếp hạng</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="Tìm kiếm" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="/#newsletter" class="cta" id="cta-sub">Đăng ký</a></div></div></nav>
 
 
-<div class="mobile-nav" id="mobileNav"><a href="/choi-gi">Chơi Gì?</a><a href="/gaming">Gaming</a><a href="/anime">Anime</a><a href="/manga">Manga</a><a href="/reviews">Reviews</a><a href="/rankings">Rankings</a><a href="/chuyen-sau">Chuyên sâu</a><div class="m-sub"><a href="/about">Giới thiệu</a><a href="/#newsletter">Newsletter</a><a href="/about#contact">Liên hệ</a></div></div>
+<div class="mobile-nav" id="mobileNav"><a href="/choi-gi">Chơi Gì?</a><a href="/gaming">Gaming</a><a href="/anime">Anime</a><a href="/manga">Manga</a><a href="/reviews">Đánh giá</a><a href="/rankings">Xếp hạng</a><a href="/chuyen-sau">Chuyên sâu</a><div class="m-sub"><a href="/about">Giới thiệu</a><a href="/#newsletter">Bản tin</a><a href="/about#contact">Liên hệ</a></div></div>
 
 
 <div class="ticker">
-  <div class="tick-label"><svg class="gate-badge" width="18" height="18" viewBox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00f2ff" stroke-width="2" fill="rgba(0,242,255,.12)"></polygon><rect x="8" y="14" width="18" height="2.5" fill="#ff2177"></rect><rect x="9" y="12" width="16" height="2" fill="#ff2177"></rect><rect x="13" y="16" width="2.5" height="9" fill="#ff2177"></rect><rect x="19" y="16" width="2.5" height="9" fill="#ff2177"></rect></svg>BREAKING NEWS</div>
+  <div class="tick-label"><svg class="gate-badge" width="18" height="18" viewBox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00f2ff" stroke-width="2" fill="rgba(0,242,255,.12)"></polygon><rect x="8" y="14" width="18" height="2.5" fill="#ff2177"></rect><rect x="9" y="12" width="16" height="2" fill="#ff2177"></rect><rect x="13" y="16" width="2.5" height="9" fill="#ff2177"></rect><rect x="19" y="16" width="2.5" height="9" fill="#ff2177"></rect></svg>TIN NÓNG</div>
   <div class="tick-wrap">
     <div class="tick-track">
       <span class="tick-item">🔥 <strong>Manga:</strong> <a href="/kuri-hime-ayakashi-yobanashi-se-ket-thuc-vao-ngay-28-10" style="color:inherit;text-decoration:none">Kuri Hime Ayakashi Yobanashi sẽ kết thúc vào ngày 28/10</a></span>
@@ -1905,69 +1905,6 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
       <span class="tick-item">🔥 <strong>Anime:</strong> <a href="/top-10-anime-dang-mong-cho-se-ra-mat-nam-2027" style="color:inherit;text-decoration:none">Top 10 anime đáng mong chờ sẽ ra mắt năm 2027</a></span>
       <span class="tick-item">🔥 <strong>Anime:</strong> <a href="/manga-rom-com-everyones-darling-has-a-secret-chinh-thuc-duoc" style="color:inherit;text-decoration:none">Manga Rom-Com &quot;Everyone’s Darling Has a Secret&quot; chính thức được chuyển thể thành anime</a></span>
       <span class="tick-item">🔥 <strong>Anime:</strong> <a href="/sakamoto-days-mua-2-cong-bo-trailer-moi-tro-lai-vao-thang-1" style="color:inherit;text-decoration:none">Sakamoto Days mùa 2 công bố trailer mới, trở lại vào tháng 1/2027</a></span>
-      <span class="tick-item">🔥 <strong>Gaming:</strong> <a href="/liar-game-chinh-thuc-co-mua-2-sau-khi-anime-mua-dau-ket-thuc" style="color:inherit;text-decoration:none">Liar Game chính thức có mùa 2 sau khi anime mùa đầu kết thúc</a></span>
-      <span class="tick-item">🔥 <strong>Gaming:</strong> <a href="/vi-sao-the-isle-lai-hot-den-vay-trong-nam-2026" style="color:inherit;text-decoration:none">Vì sao The Isle lại hot đến vậy trong năm 2026?</a></span>
-      <span class="tick-item">🔥 <strong>Anime:</strong> <a href="/laputa-lau-dai-tren-khong-tro-lai-rap-viet-2026" style="color:inherit;text-decoration:none">Laputa: Lâu đài trên không trở lại rạp Việt 2026</a></span>
-      <span class="tick-item">🔥 <strong>Anime:</strong> <a href="/naruto-xac-nhan-anime-truyen-hinh-moi-nycc-2026" style="color:inherit;text-decoration:none">Naruto Xác Nhận Anime Mới Sau 3 Năm Im Ắng</a></span>
-      <span class="tick-item">🔥 <strong>Gaming:</strong> <a href="/facing-the-rain-game-rpg-indie-cot-truyen-sau-lang-mien-phi-" style="color:inherit;text-decoration:none">Facing the Rain: Game RPG indie cốt truyện sâu lắng miễn phí vĩnh viễn trên Steam</a></span>
-      <span class="tick-item">🔥 <strong>Gaming:</strong> <a href="/hades-2-khong-phai-lua-chon-kinh-doanh-an-toan-cua-supergian" style="color:inherit;text-decoration:none">Hades 2 không phải lựa chọn kinh doanh an toàn của Supergiant Games</a></span>
-      <span class="tick-item">🔥 <strong>Gaming:</strong> <a href="/7-game-the-witcher-dang-choi-trong-nam-2026" style="color:inherit;text-decoration:none">7 game The Witcher đáng chơi trong năm 2026</a></span>
-      <span class="tick-item">🔥 <strong>Gaming:</strong> <a href="/gears-of-war-e-day-thoi-gian-phat-hanh-va-cach-choi-som" style="color:inherit;text-decoration:none">Gears of War: E-Day: Thời gian phát hành và cách chơi sớm</a></span>
-      <span class="tick-item">🔥 <strong>Manga:</strong> <a href="/sarada-mangekyo-sharingan-suc-manh-ho-den-ohirume" style="color:inherit;text-decoration:none">Boruto: Sarada Lộ Thêm Sức Mạnh Mangekyo Sharingan, Nhưng Phải Đánh Đổi Bằng Thị Lực</a></span>
-      <span class="tick-item">🔥 <strong>Gaming:</strong> <a href="/minecraft-live-thang-9-2026-minecraft-chuan-bi-don-chieu-kho" style="color:inherit;text-decoration:none">Minecraft Live tháng 9/2026: Minecraft chuẩn bị đón chiều không gian mới</a></span>
-      <span class="tick-item">🔥 <strong>Gaming:</strong> <a href="/diablo-4-van-tiep-tuc-co-mua-moi-sau-khi-diablo-5-ra-mat" style="color:inherit;text-decoration:none">Diablo 4 vẫn tiếp tục có mùa mới sau khi Diablo 5 ra mắt</a></span>
-      <span class="tick-item">🔥 <strong>Gaming:</strong> <a href="/delta-force-se-co-che-do-nhay-du-battle-royale-trong-nam-202" style="color:inherit;text-decoration:none">Delta Force sẽ có chế độ nhảy dù Battle Royale trong năm 2027</a></span>
-      <span class="tick-item">🔥 <strong>Gaming:</strong> <a href="/duoc-su-tu-su-mua-3-chinh-thuc-len-song-hanh-trinh-moi-day-k" style="color:inherit;text-decoration:none">“Dược Sư Tự Sự” mùa 3 chính thức lên sóng: Hành trình mới đầy kịch tính của Maomao và Jinshi</a></span>
-      <span class="tick-item">🔥 <strong>Anime:</strong> <a href="/5-bai-hoc-tu-naruto-uzumaki-van-con-y-nghia" style="color:inherit;text-decoration:none">5 Bài Học Từ Naruto Uzumaki Vẫn Còn Ý Nghĩa Đến Hôm Nay</a></span>
-      <span class="tick-item">🔥 <strong>Anime:</strong> <a href="/we-are-aliens-phim-hoat-hinh-phap-nhat-ra-rap-ngay-25-9" style="color:inherit;text-decoration:none">We Are Aliens: Phim hoạt hình Pháp – Nhật ra rạp ngày 25/9</a></span>
-      <span class="tick-item">🔥 <strong>Anime:</strong> <a href="/vi-sao-nen-xem-laputa-lau-dai-tren-khong-tren-man-anh-lon" style="color:inherit;text-decoration:none">Vì sao nên xem Laputa: Lâu đài trên không trên màn ảnh lớn?</a></span>
-      <span class="tick-item">🔥 <strong>Anime:</strong> <a href="/duoc-su-tu-su-mua-3-maomao-buoc-vao-hanh-trinh-pha-an-moi-na" style="color:inherit;text-decoration:none">Dược Sư Tự Sự mùa 3: Maomao bước vào hành trình phá án mới năm 2027</a></span>
-      <span class="tick-item">🔥 <strong>Gaming:</strong> <a href="/uk-games-expo-cam-noi-dung-ai-chi-chua-mot-so-truong-hop-ngo" style="color:inherit;text-decoration:none">UK Games Expo cấm nội dung AI, chỉ chừa một số trường hợp ngoại lệ</a></span>
-      <span class="tick-item">🔥 <strong>Gaming:</strong> <a href="/star-wars-zero-company-biet-doi-di-biet-tao-nen-nhung-tran-c" style="color:inherit;text-decoration:none">Star Wars: Zero Company: Biệt đội dị biệt tạo nên những trận chiến đầy bất ngờ</a></span>
-      <span class="tick-item">🔥 <strong>Gaming:</strong> <a href="/nintendo-gamecube-chiec-may-mau-tim-nho-be-nhung-de-lai-dau-" style="color:inherit;text-decoration:none">Nintendo GameCube: Chiếc máy màu tím nhỏ bé nhưng để lại dấu ấn lớn</a></span>
-      <span class="tick-item">🔥 <strong>Anime:</strong> <a href="/top-8-anime-han-quoc-aeni-dang-xem-nhat" style="color:inherit;text-decoration:none">Top 8 Anime Hàn Quốc (Aeni) Đáng Xem Nhất Hiện Nay</a></span>
-      <span class="tick-item">🔥 <strong>Anime:</strong> <a href="/gintama-sorachi-tung-nghi-anime-se-that-bai" style="color:inherit;text-decoration:none">Cha Đẻ Gintama Thú Nhận: Từng Nghĩ Bản Anime Sẽ Thất Bại</a></span>
-      <span class="tick-item">🔥 <strong>MANGA:</strong> <a href="/one-piece-chuong-1192-luffy-xuyen-thung-khien-imu-do-mau" style="color:inherit;text-decoration:none">One Piece Chương 1192: Luffy Xuyên Thủng Lá Chắn, Khiến Imu Đổ Máu</a></span>
-      <span class="tick-item">🔥 <strong>Gaming:</strong> <a href="/roman-sands-re-build-mac-ket-trong-giac-mo-vaporwave-dang-da" style="color:inherit;text-decoration:none">Roman Sands RE:Build: Mắc kẹt trong giấc mơ vaporwave đang dần sụp đổ</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · Gaming:</strong> <a href="/khi-gta-tro-thanh-san-khau-cho-shakespeare-trong-grand-theft" style="color:inherit;text-decoration:none">Khi GTA trở thành sân khấu cho Shakespeare trong Grand Theft Hamlet</a></span>
-      <span class="tick-item">🔥 <strong>Anime:</strong> <a href="/detective-conan-30-vu-an-dac-biet-ky-niem-30-nam-len-song" style="color:inherit;text-decoration:none">Detective Conan 30号殺人事件: Vụ án đặc biệt kỷ niệm 30 năm lên sóng</a></span>
-      <span class="tick-item">🔥 <strong>Manga:</strong> <a href="/one-piece-1194-spoiler-zoro-giai-phong-suc-manh-moi-mihawk-g" style="color:inherit;text-decoration:none">One Piece 1194 Spoiler: Zoro giải phóng sức mạnh mới, Mihawk gây chú ý</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/hololive-cong-bo-anime-truyen-hinh-dau-tien-odekake" style="color:inherit;text-decoration:none">Hololive Công Bố Anime Truyền Hình Đầu Tiên: Odekake Hololive</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/rezero-mua-4-tap-cuoi-keo-dai-45-phut-30-9" style="color:inherit;text-decoration:none">Re:Zero Mùa 4 Tập Cuối Kéo Dài 45 Phút, Lên Sóng 30/9</a></span>
-      <span class="tick-item">🔥 <strong>MANGA:</strong> <a href="/one-piece-chapter-1194-tam-ngung-tro-lai-11-10" style="color:inherit;text-decoration:none">One Piece Tạm Ngưng Sau Chương 1194, Trở Lại 11/10</a></span>
-
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/diamond-no-ace-act-ii-cour-2-len-song-11-10" style="color:inherit;text-decoration:none">Diamond no Ace act II: Cour 2 Lên Sóng 11/10, Đến Koshien</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/tougen-anki-mua-2-nikko-kegon-falls-len-song-2-10" style="color:inherit;text-decoration:none">Tougen Anki Mùa 2: Arc Nikko Kegon Falls Lên Sóng 2/10</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/magic-knight-rayearth-2026-remake-len-song-7-10" style="color:inherit;text-decoration:none">Magic Knight Rayearth Bản Làm Lại 2026 Lên Sóng 7/10</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/aoashi-mua-2-doi-studio-len-song-4-10" style="color:inherit;text-decoration:none">Aoashi Mùa 2 Lên Sóng 4/10, Đổi Sang Studio TMS Entertainment</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/tokyo-revengers-santen-sensou-hen-len-song-2-10" style="color:inherit;text-decoration:none">Tokyo Revengers: Santen Sensou-hen Lên Sóng 2/10, Mùa Cuối Manga</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/ao-no-hako-mua-2-len-song-4-10" style="color:inherit;text-decoration:none">Ao no Hako Mùa 2 Lên Sóng Ngày 4/10, Đổi Đạo Diễn Và Studio</a></span>
-      <span class="tick-item">🔥 <strong>MANGA:</strong> <a href="/oda-tung-gioi-thieu-6-manga-tren-bia-sach" style="color:inherit;text-decoration:none">Oda Từng Đích Thân Quảng Bá 6 Manga Này Trên Bìa Sách</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/ghost-in-the-shell-2026-tong-ket-mua-phat-song" style="color:inherit;text-decoration:none">THE GHOST IN THE SHELL (2026): Tổng Kết Mùa Phát Sóng Đã Kết Thúc</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/dragon-ball-super-beerus-dragon-ball-super-tro-lai-voi-phien" style="color:inherit;text-decoration:none">Dragon Ball Super: Beerus Lên Sóng Ngày 11/10 Trên Fuji TV</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/draw-this-then-die-cong-bo-mua-2-sau-tap-cuoi" style="color:inherit;text-decoration:none">Draw This, Then Die! Công Bố Mùa 2 Sau Tập Cuối</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/hell-mode-anime-cong-bo-mua-3-arc-ham-nguc-hang-s" style="color:inherit;text-decoration:none">Hell Mode Anime Công Bố Mùa 3: Arc Hầm Ngục Hạng S</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · ANIME:</strong> <a href="/overgeared-anime-len-song-som-tren-prime-video-27-9" style="color:inherit;text-decoration:none">Overgeared Lên Sóng Sớm Trên Prime Video Ngày 27/9</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/vi-sao-bong-ma-pho-baker-la-mot-trong-nhung-phim-conan-hay-nhat" style="color:inherit;text-decoration:none">Vì Sao Phantom Of Baker Street Là Phim Conan Xuất Sắc</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/10-anime-dang-xem-khi-cho-jujutsu-kaisen-mua-4" style="color:inherit;text-decoration:none">10 Anime Đáng Xem Khi Chờ Jujutsu Kaisen Mùa 4</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/anime-dang-xem-cho-fan-van-hoa-lich-su-nhat-ban" style="color:inherit;text-decoration:none">Anime Đáng Xem Cho Người Yêu Lịch Sử Nhật Bản</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/bride-of-the-barrier-master-netflix-thang-1-2027" style="color:inherit;text-decoration:none">Bride of the Barrier Master Lên Netflix Tháng 1/2027</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · ESPORTS:</strong> <a href="/aixleft-chieu-mo-himass-ve-delta-force" style="color:inherit;text-decoration:none">Chủ Tịch Aixleft Muốn Mời Himass Về Delta Force</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · GAMING:</strong> <a href="/gears-of-war-e-day-gold-pre-install-29-9" style="color:inherit;text-decoration:none">Gears of War: E-Day Chốt Gold, Tải Trước Từ 29/9</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · ANIME:</strong> <a href="/code-geass-star-chaser-aspal-anime-2027" style="color:inherit;text-decoration:none">Code Geass: Star Chaser Aspal Ra Teaser, Lên Sóng 2027</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · ANIME:</strong> <a href="/slime-mua-4-tap-3-thang-7-2027-clayman-revenge" style="color:inherit;text-decoration:none">Slime Mùa 4 Trở Lại 7/2027, Clayman's Revenge Có Anime</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · MANGA:</strong> <a href="/shin-oishinbo-anime-moi-sau-35-nam" style="color:inherit;text-decoration:none">Oishinbo Có Anime Mới Sau 35 Năm: Shin Oishinbo</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · GAMING:</strong> <a href="/pubg-asia-stars-2026-himass-tanvuu-bi-cam-vinh-vien" style="color:inherit;text-decoration:none">Drama PUBG: Himass Và TanVuu Bị KRAFTON Cấm Vĩnh Viễn</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · MANGA:</strong> <a href="/one-piece-final-saga" style="color:inherit;text-decoration:none">One Piece Chapter 1194 Spoilers: Zoro Đối Đầu Sommers</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · MANGA:</strong> <a href="/one-piece-egghead-arc-review" style="color:inherit;text-decoration:none">One Piece: Egghead Arc Review: Vegapunk Kể Lịch Sử</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · GAMING:</strong> <a href="/gaming" style="color:inherit;text-decoration:none">Fire Emblem: Fortune's Weave Đạt Metacritic 89</a></span>
-      <span class="tick-item">🔴 <strong>BREAKING · ANIME:</strong> <a href="/jojo-steel-ball-run-stage-2-3-len-song-25-9" style="color:inherit;text-decoration:none">JoJo Steel Ball Run Stage 2–3 Lên Sóng Ngày 25/9</a></span>
-
-      <span class="tick-item">🔴 <strong>BREAKING · ANIME:</strong> <a href="/anime-mua-thu-2026-top-10-duoc-mong-doi" style="color:inherit;text-decoration:none">Anime Mùa Thu 2026: Top 10 Được Mong Đợi Nhất</a></span>
-
-
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/chiikawa-anime-tam-ngung-tap-moi-phat-lai-25-tap" style="color:inherit;text-decoration:none">Anime Chiikawa Tạm Ngừng Tập Mới, Phát Lại 25 Tập Đến 25/12</a></span>
-      <span class="tick-item">🔥 <strong>ANIME:</strong> <a href="/phantom-busters-manga-len-tv-anime-nam-2027" style="color:inherit;text-decoration:none">Manga Phantom Busters Được Chuyển Thể TV Anime 2027</a></span>
     </div>
   </div>
 </div>
@@ -1978,7 +1915,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   <div class="hero-main" onclick="location.href='/naruto-xac-nhan-anime-truyen-hinh-moi-nycc-2026'" style="cursor:pointer">
     <div class="h-img" style="background-image:url(/assets/img/naruto-shippuden-bonds-movie-banner.jpg)"></div><div class="h-ov"></div><div class="h-scan"></div><div class="h-glow"></div>
     <div class="h-content">
-      <span class="tag tag-s tag-live" id="h-tag" style="background:#ff2177;color:#fff">🔴 BREAKING NEWS · ANIME</span>
+      <span class="tag tag-s tag-live" id="h-tag" style="background:#ff2177;color:#fff">🔴 TIN NÓNG · ANIME</span>
       <h1 class="h-title" id="h-title">Naruto Xác Nhận Anime Mới Sau 3 Năm Im Ắng</h1>
       <p class="h-sub" id="h-sub">Viz Media chính thức xác nhận Naruto sẽ có một anime truyền hình "giới hạn" hoàn toàn mới, kết thúc ba năm im ắng của thương hiệu. Toàn bộ chi tiết sẽ được hé lộ tại NYCC 2026 ngày 10/10.</p>
       <div class="h-meta"><span class="h-meta-cat">Anime</span><span class="h-meta-sep">·</span><span>OtaHub Editorial</span><span class="h-meta-sep">·</span><span id="h-time">30/09/2026</span></div>
@@ -1987,61 +1924,52 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   </div>
 
   <aside class="hero-side">
-    <div class="side-head" id="side-head">🔥 HOT THIS WEEK · TIÊU ĐIỂM NÓNG</div>
-    <article class="s-art" onclick="location.href='/kuri-hime-ayakashi-yobanashi-se-ket-thuc-vao-ngay-28-10'" style="cursor:pointer">
+    <h2 class="side-head" id="side-head">🔥 Tiêu điểm tuần</h2>
+    <article class="s-art"><a href="/kuri-hime-ayakashi-yobanashi-se-ket-thuc-vao-ngay-28-10" class="sa-link">
       <div class="sa-thumb"><img src="/assets/img/uploads/a6nnkrus-5c2e92eb-6be8-41f2-9b1c-a5051ff85e46.jpg" alt="Kuri Hime Ayakashi Yobanashi sẽ kết thúc vào ngày 28/10" width="1200" height="675" loading="lazy" decoding="async"></div>
-      <div><div class="sa-c" style="color:var(--pink);font-weight:700">🔴 Breaking · Manga</div><div class="sa-t">Kuri Hime Ayakashi Yobanashi sẽ kết thúc vào ngày 28/10</div><div class="sa-m">01/10/2026 · Anh Thu</div></div>
-    </article>
-    <article class="s-art" onclick="location.href='/chainsaw-man-va-one-piece-cung-gop-mat-tai-harvey-awards-202'" style="cursor:pointer">
+      <div><div class="sa-c" style="color:var(--pink);font-weight:700">Manga</div><div class="sa-t">Kuri Hime Ayakashi Yobanashi sẽ kết thúc vào ngày 28/10</div><div class="sa-m">01/10/2026 · Anh Thu</div></div>
+    </a></article>
+    <article class="s-art"><a href="/chainsaw-man-va-one-piece-cung-gop-mat-tai-harvey-awards-202" class="sa-link">
       <div class="sa-thumb"><img src="/assets/img/uploads/suuel406-images-3.jpg" alt="Chainsaw Man và One Piece cùng góp mặt tại Harvey Awards 2026" width="1200" height="675" loading="lazy" decoding="async"></div>
-      <div><div class="sa-c" style="color:var(--pink);font-weight:700">🔴 Breaking · Anime</div><div class="sa-t">Chainsaw Man và One Piece cùng góp mặt tại Harvey Awards 2026</div><div class="sa-m">01/10/2026 · Yu</div></div>
-    </article>
-    <article class="s-art" onclick="location.href='/frieren-mua-3-golden-land-arc-va-cau-chuyen-ve-macht'" style="cursor:pointer">
+      <div><div class="sa-c" style="color:var(--pink);font-weight:700">Anime</div><div class="sa-t">Chainsaw Man và One Piece cùng góp mặt tại Harvey Awards 2026</div><div class="sa-m">01/10/2026 · Yu</div></div>
+    </a></article>
+    <article class="s-art"><a href="/frieren-mua-3-golden-land-arc-va-cau-chuyen-ve-macht" class="sa-link">
       <div class="sa-thumb"><img src="/assets/img/uploads/0lu7u0fb-maxresdefault.jpg" alt="Frieren mùa 3: Golden Land Arc và câu chuyện về Macht" width="1200" height="675" loading="lazy" decoding="async"></div>
-      <div><div class="sa-c" style="color:var(--pink);font-weight:700">🔴 Breaking · Anime</div><div class="sa-t">Frieren mùa 3: Golden Land Arc và câu chuyện về Macht</div><div class="sa-m">01/10/2026 · Yu</div></div>
-    </article>
-    <article class="s-art" onclick="location.href='/katsuwo-ra-mat-manga-shogi-moi-oja-no-ban-kuruwase'" style="cursor:pointer">
+      <div><div class="sa-c" style="color:var(--pink);font-weight:700">Anime</div><div class="sa-t">Frieren mùa 3: Golden Land Arc và câu chuyện về Macht</div><div class="sa-m">01/10/2026 · Yu</div></div>
+    </a></article>
+    <article class="s-art"><a href="/katsuwo-ra-mat-manga-shogi-moi-oja-no-ban-kuruwase" class="sa-link">
       <div class="sa-thumb"><img src="/assets/img/uploads/d4b9z74a-oujanobankuruwase-vol1novelart.webp" alt="Katsuwo ra mắt manga shogi mới Ōja no Ban Kuruwase" width="1200" height="675" loading="lazy" decoding="async"></div>
-      <div><div class="sa-c" style="color:var(--pink);font-weight:700">🔴 Breaking · Manga</div><div class="sa-t">Katsuwo ra mắt manga shogi mới Ōja no Ban Kuruwase</div><div class="sa-m">01/10/2026 · Anh Thu</div></div>
-    </article>
-    <article class="s-art" onclick="location.href='/frieren-beyond-journey-s-end-mua-3-chinh-thuc-tro-lai-thang'" style="cursor:pointer">
+      <div><div class="sa-c" style="color:var(--pink);font-weight:700">Manga</div><div class="sa-t">Katsuwo ra mắt manga shogi mới Ōja no Ban Kuruwase</div><div class="sa-m">01/10/2026 · Anh Thu</div></div>
+    </a></article>
+    <article class="s-art"><a href="/frieren-beyond-journey-s-end-mua-3-chinh-thuc-tro-lai-thang" class="sa-link">
       <div class="sa-thumb"><img src="/assets/img/uploads/xp8vugwu-frieren-s2-e10-main-1.jpg" alt="Frieren: Beyond Journey’s End mùa 3 chính thức trở lại tháng 10/2027" width="1200" height="675" loading="lazy" decoding="async"></div>
-      <div><div class="sa-c" style="color:var(--pink);font-weight:700">🔴 Breaking · Anime</div><div class="sa-t">Frieren: Beyond Journey’s End mùa 3 chính thức trở lại tháng 10/2027</div><div class="sa-m">01/10/2026 · Yu</div></div>
-    </article>
-    <article class="s-art" onclick="location.href='/raincoat-pikachu-duoc-ban-voi-gia-8-4-trieu-usd-tro-thanh-th'" style="cursor:pointer">
+      <div><div class="sa-c" style="color:var(--pink);font-weight:700">Anime</div><div class="sa-t">Frieren: Beyond Journey’s End mùa 3 chính thức trở lại tháng 10/2027</div><div class="sa-m">01/10/2026 · Yu</div></div>
+    </a></article>
+    <article class="s-art"><a href="/raincoat-pikachu-duoc-ban-voi-gia-8-4-trieu-usd-tro-thanh-th" class="sa-link">
       <div class="sa-thumb"><img src="/assets/img/uploads/o8e6u5kv-bzsawf93tlgnit5hqizumf-970-80-jpg.webp" alt="Raincoat Pikachu được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử" width="1200" height="675" loading="lazy" decoding="async"></div>
-      <div><div class="sa-c" style="color:var(--pink);font-weight:700">🔴 Breaking · Gaming</div><div class="sa-t">Raincoat Pikachu được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử</div><div class="sa-m">01/10/2026 · Anh Thu</div></div>
-    </article>
-    <article class="s-art" onclick="location.href='/gta-6-he-thong-thoi-tiet-nang-dong-tai-hien-florida-chan-thu'" style="cursor:pointer">
+      <div><div class="sa-c" style="color:var(--pink);font-weight:700">Gaming</div><div class="sa-t">Raincoat Pikachu được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử</div><div class="sa-m">01/10/2026 · Anh Thu</div></div>
+    </a></article>
+    <article class="s-art"><a href="/gta-6-he-thong-thoi-tiet-nang-dong-tai-hien-florida-chan-thu" class="sa-link">
       <div class="sa-thumb"><img src="/assets/img/uploads/suzos5z2-gt-6-1-06bc11d907.jpg" alt="GTA 6: Hệ thống thời tiết năng động tái hiện Florida chân thực" width="1200" height="675" loading="lazy" decoding="async"></div>
-      <div><div class="sa-c" style="color:var(--pink);font-weight:700">🔴 Breaking · Gaming</div><div class="sa-t">GTA 6: Hệ thống thời tiết năng động tái hiện Florida chân thực</div><div class="sa-m">01/10/2026 · OtaHub Editorial</div></div>
-    </article>
-    <article class="s-art" onclick="location.href='/crimson-desert-charting-the-unknown-bi-tri-hoan-2-tuan'" style="cursor:pointer">
+      <div><div class="sa-c" style="color:var(--pink);font-weight:700">Gaming</div><div class="sa-t">GTA 6: Hệ thống thời tiết năng động tái hiện Florida chân thực</div><div class="sa-m">01/10/2026 · OtaHub Editorial</div></div>
+    </a></article>
+    <article class="s-art"><a href="/crimson-desert-charting-the-unknown-bi-tri-hoan-2-tuan" class="sa-link">
       <div class="sa-thumb"><img src="/assets/img/uploads/ju13865k-uytkvd992szztxpgq2jhuv-970-80-jpg.webp" alt="Crimson Desert: Charting the Unknown bị trì hoãn 2 tuần" width="1200" height="675" loading="lazy" decoding="async"></div>
-      <div><div class="sa-c" style="color:var(--pink);font-weight:700">🔴 Breaking · Gaming</div><div class="sa-t">Crimson Desert: Charting the Unknown bị trì hoãn 2 tuần</div><div class="sa-m">01/10/2026 · anhthu</div></div>
-    </article>
-    <article class="s-art" onclick="location.href='/5-game-sinh-ton-mien-phi-dang-choi-tren-steam-fan-the-loai-s'" style="cursor:pointer">
+      <div><div class="sa-c" style="color:var(--pink);font-weight:700">Gaming</div><div class="sa-t">Crimson Desert: Charting the Unknown bị trì hoãn 2 tuần</div><div class="sa-m">01/10/2026 · Anh Thu</div></div>
+    </a></article>
+    <article class="s-art"><a href="/5-game-sinh-ton-mien-phi-dang-choi-tren-steam-fan-the-loai-s" class="sa-link">
       <div class="sa-thumb"><img src="/assets/img/uploads/hoda51pr-avatar1790737857586-17907378580942085526385.webp" alt="5 game sinh tồn miễn phí đáng chơi trên Steam, fan thể loại survival không nên bỏ qua" width="1200" height="675" loading="lazy" decoding="async"></div>
-      <div><div class="sa-c" style="color:var(--pink);font-weight:700">🔴 Breaking · Gaming</div><div class="sa-t">5 game sinh tồn miễn phí đáng chơi trên Steam, fan thể loại survival không nên bỏ qua</div><div class="sa-m">01/10/2026 · OtaHub Editorial</div></div>
-    </article>
+      <div><div class="sa-c" style="color:var(--pink);font-weight:700">Gaming</div><div class="sa-t">5 game sinh tồn miễn phí đáng chơi trên Steam, fan thể loại survival không nên bỏ qua</div><div class="sa-m">01/10/2026 · OtaHub Editorial</div></div>
+    </a></article>
   </aside>
 
 </section>
 
 
-<div class="marquee">
-
-
-  <div class="mq-track"><a class="mq-item" href="/one-piece-remake-wit-studio-netflix-trailer-chinh-thuc"><strong>Anime:</strong> The One Piece WIT Studio Trailer</a><a class="mq-item" href="/game-detail?t=Genshin%20Impact"><strong>Gaming:</strong> Genshin 7.0 Băng Thần Tsaritsa</a><a class="mq-item" href="/stellar-blade-2"><strong>Gaming:</strong> Stellar Blade 2 UE5.5</a><a class="mq-item" href="/gamescom-2026-playstation-highlights"><strong>Gaming:</strong> Gamescom 2026 PlayStation</a><a class="mq-item" href="/one-piece-god-valley-baad-films-announced"><strong>Anime:</strong> One Piece God Valley Film</a><a class="mq-item" href="/seven-seas-18-licenses-anime-nyc-2026"><strong>Manga:</strong> Seven Seas 18 Giấy Phép Mới</a><a class="mq-item" href="/marvel-rivals-endgame-encore-update"><strong>Gaming:</strong> Marvel Rivals Endgame Encore</a><a class="mq-item" href="/sekiro-no-defeat-anime-release"><strong>Anime:</strong> Sekiro: No Defeat 4/9</a><a class="mq-item" href="/tokyopop-anime-nyc-2026-licenses"><strong>Manga:</strong> Tokyopop 7 Giấy Phép Mới</a><a class="mq-item" href="/resonance-plague-tale-legacy-release"><strong>Gaming:</strong> Resonance: A Plague Tale Legacy 27/8</a><a class="mq-item" href="/mortal-shell-2-release"><strong>Gaming:</strong> Mortal Shell II ra mắt 20/8</a><a class="mq-item" href="/skip-and-loafer-season2-teaser"><strong>Anime:</strong> Skip and Loafer S2 Teaser</a><a class="mq-item" href="/beast-of-reincarnation"><strong>Gaming:</strong> Beast of Reincarnation</a><a class="mq-item" href="/game-detail?t=Suikoden%20STAR%20LEAP"><strong>Gaming:</strong> Suikoden STAR LEAP</a><a class="mq-item" href="/the-ribbon-hero-netflix"><strong>Anime:</strong> The Ribbon Hero</a><a class="mq-item" href="/made-in-abyss-awakening-mystery"><strong>Anime:</strong> Made in Abyss Film</a><a class="mq-item" href="/black-clover-final-volume-guidebook"><strong>Manga:</strong> Black Clover Vol. 38</a><a class="mq-item" href="/game-detail?t=Ghost%20of%20Y%C5%8Dtei%3A%20Complete%20Edition"><strong>Gaming:</strong> Ghost of Yōtei Complete</a><a class="mq-item" href="/crunchyroll-makoto-shinkai-next-film"><strong>Anime:</strong> Crunchyroll x Shinkai</a><a class="mq-item" href="/manga-million-near-simulcast"><strong>Manga:</strong> MANGA MILLION Near-Simulcast</a><a class="mq-item" href="/mafia-old-country-man-of-honor"><strong>Gaming:</strong> Mafia Man of Honor</a><a class="mq-item" href="/link-click-season3-premiere"><strong>Anime:</strong> Link Click Season 3</a><a class="mq-item" href="/hollow-knight-silksong-sea-of-sorrow"><strong>Gaming:</strong> Silksong Sea of Sorrow</a><a class="mq-item" href="/genshin-impact-70-snezhnaya"><strong>Gacha:</strong> Genshin 7.0 Snezhnaya</a><a class="mq-item" href="/re-zero-season4-recapture-arc"><strong>Anime:</strong> Re:Zero S4 Recapture Arc</a><a class="mq-item" href="/jojo-golden-spirit-launch"><strong>Gaming:</strong> JoJo Golden Spirit</a><a class="mq-item" href="/kaiju-no-8-the-game-anniversary"><strong>Gaming:</strong> Kaiju No.8 1 năm</a><a class="mq-item" href="/star-wars-zero-company"><strong>Gaming:</strong> Star Wars Zero Company</a><a class="mq-item" href="/mushoku-tensei-s3-chaos-breaker"><strong>Anime:</strong> Mushoku Tensei Chaos Breaker</a><a class="mq-item" href="/chained-soldier-season-3"><strong>Anime:</strong> Chained Soldier S3</a><a class="mq-item" href="/metal-gear-solid-master-collection-vol2"><strong>Gaming:</strong> MGS Master Collection Vol. 2</a><a class="mq-item" href="/black-clover-season-2"><strong>Anime:</strong> Black Clover Season 2</a><a class="mq-item" href="/shueisha-manga-million"><strong>Manga:</strong> Shueisha MANGA MILLION</a><a class="mq-item" href="/elden-ring-dlc2"><strong>Trending:</strong> Elden Ring DLC 2</a><a class="mq-item" href="/chainsaw-man-mua-2-assassins-arc-dang-san-xuat"><strong>Anime:</strong> Chainsaw Man S3</a><a class="mq-item" href="/top-game-pc-2026"><strong>PC Game:</strong> Monster Hunter Wilds</a><a class="mq-item" href="/wuthering-waves-24"><strong>Mobile:</strong> Wuthering Waves 3.6</a><a class="mq-item" href="/berserk-arc-cuoi"><strong>Manga:</strong> Berserk Final Arc</a><a class="mq-item" href="/vct-pacific-2026"><strong>Esports:</strong> VCT Pacific · Paper Rex</a><a class="mq-item" href="/genshin-70-tier-list-meta-snezhnaya"><strong>Gacha:</strong> Genshin 7.0 Tier List</a><a class="mq-item" href="/blue-protocol-review"><strong>Review:</strong> Blue Protocol 9.1/10</a><a class="mq-item" href="/one-piece-final-saga"><strong>Manga:</strong> One Piece · Laugh Tale</a><a class="mq-item" href="/stellar-blade-2"><strong>Preview:</strong> Stellar Blade 2</a><a class="mq-item" href="/made-in-abyss-awakening-mystery"><strong>Anime:</strong> Made in Abyss Film</a><a class="mq-item" href="/black-clover-final-volume-guidebook"><strong>Manga:</strong> Black Clover Vol. 38</a><a class="mq-item" href="/game-detail?t=Ghost%20of%20Y%C5%8Dtei%3A%20Complete%20Edition"><strong>Gaming:</strong> Ghost of Yōtei Complete</a><a class="mq-item" href="/crunchyroll-makoto-shinkai-next-film"><strong>Anime:</strong> Crunchyroll x Shinkai</a><a class="mq-item" href="/manga-million-near-simulcast"><strong>Manga:</strong> MANGA MILLION Near-Simulcast</a><a class="mq-item" href="/mafia-old-country-man-of-honor"><strong>Gaming:</strong> Mafia Man of Honor</a><a class="mq-item" href="/link-click-season3-premiere"><strong>Anime:</strong> Link Click Season 3</a><a class="mq-item" href="/hollow-knight-silksong-sea-of-sorrow"><strong>Gaming:</strong> Silksong Sea of Sorrow</a><a class="mq-item" href="/genshin-impact-70-snezhnaya"><strong>Gacha:</strong> Genshin 7.0 Snezhnaya</a><a class="mq-item" href="/re-zero-season4-recapture-arc"><strong>Anime:</strong> Re:Zero S4 Recapture Arc</a><a class="mq-item" href="/jojo-golden-spirit-launch"><strong>Gaming:</strong> JoJo Golden Spirit</a><a class="mq-item" href="/kaiju-no-8-the-game-anniversary"><strong>Gaming:</strong> Kaiju No.8 1 năm</a><a class="mq-item" href="/star-wars-zero-company"><strong>Gaming:</strong> Star Wars Zero Company</a><a class="mq-item" href="/mushoku-tensei-s3-chaos-breaker"><strong>Anime:</strong> Mushoku Tensei Chaos Breaker</a><a class="mq-item" href="/chained-soldier-season-3"><strong>Anime:</strong> Chained Soldier S3</a><a class="mq-item" href="/metal-gear-solid-master-collection-vol2"><strong>Gaming:</strong> MGS Master Collection Vol. 2</a><a class="mq-item" href="/black-clover-season-2"><strong>Anime:</strong> Black Clover Season 2</a><a class="mq-item" href="/shueisha-manga-million"><strong>Manga:</strong> Shueisha MANGA MILLION</a><a class="mq-item" href="/elden-ring-dlc2"><strong>Trending:</strong> Elden Ring DLC 2</a><a class="mq-item" href="/chainsaw-man-mua-2-assassins-arc-dang-san-xuat"><strong>Anime:</strong> Chainsaw Man S3</a><a class="mq-item" href="/top-game-pc-2026"><strong>PC Game:</strong> Monster Hunter Wilds</a><a class="mq-item" href="/wuthering-waves-24"><strong>Mobile:</strong> Wuthering Waves 3.6</a><a class="mq-item" href="/berserk-arc-cuoi"><strong>Manga:</strong> Berserk Final Arc</a><a class="mq-item" href="/vct-pacific-2026"><strong>Esports:</strong> VCT Pacific · Paper Rex</a><a class="mq-item" href="/genshin-70-tier-list-meta-snezhnaya"><strong>Gacha:</strong> Genshin 7.0 Tier List</a><a class="mq-item" href="/blue-protocol-review"><strong>Review:</strong> Blue Protocol 9.1/10</a><a class="mq-item" href="/one-piece-final-saga"><strong>Manga:</strong> One Piece · Laugh Tale</a><a class="mq-item" href="/stellar-blade-2"><strong>Preview:</strong> Stellar Blade 2</a></div>
-
-
-</div>
-
-
 <div class="wrap rv">
 
 
-  <div class="sec-h"><span class="sec-t">Tin <em>nổi bật</em></span><div class="sec-l"></div><a href="/gaming" class="sec-more">Xem tất cả</a></div>
+  <div class="sec-h"><h2 class="sec-t">Tin <em>nổi bật</em></h2><div class="sec-l"></div><a href="/gaming" class="sec-more">Xem tất cả</a></div>
 
 
   <div class="f-grid">
@@ -2058,7 +1986,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
     <a class="sc" href="/control-resonant-buoc-game-thu-pc-tai-lai-toan-bo-tro-choi"><div class="sc-img"><img src="/assets/img/uploads/a5lb66t6-ctrl-r-story-01.webp" alt="CONTROL Resonant buộc game thủ PC tải lại toàn bộ trò chơi" loading="lazy" width="1200" height="675"></div><div class="sc-body"><span class="tag tag-c" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Gaming</span><div class="sc-title">CONTROL Resonant buộc game thủ PC tải lại toàn bộ trò chơi</div><div class="sc-meta">Anna · 30/09/2026</div></div></a>
     <a class="sc" href="/duoc-su-tu-su-ra-mat-game-console-dau-tien-the-apothecary-di"><div class="sc-img"><img src="/assets/img/uploads/ild2v8ju-library-hero.jpg" alt="Dược Sư Tự Sự ra mắt game console đầu tiên - The Apothecary Diaries: The False Imperial Brother" loading="lazy" width="1200" height="675"></div><div class="sc-body"><span class="tag tag-c" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Gaming</span><div class="sc-title">Dược Sư Tự Sự ra mắt game console đầu tiên - The Apothecary Diaries: The False Imperial Brother</div><div class="sc-meta">Yu · 30/09/2026</div></div></a>
     <a class="sc" href="/top-10-anime-dang-mong-cho-se-ra-mat-nam-2027"><div class="sc-img"><img src="/assets/img/uploads/5y6fou86-voh-loat-anime-noi-tieng-se-ra-mat-phan-moi-trong-nam-2027-1.webp" alt="Top 10 anime đáng mong chờ sẽ ra mắt năm 2027" loading="lazy" width="1200" height="675"></div><div class="sc-body"><span class="tag tag-c" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Anime</span><div class="sc-title">Top 10 anime đáng mong chờ sẽ ra mắt năm 2027</div><div class="sc-meta">Yu · 30/09/2026</div></div></a>
-    <a class="sc" href="/manga-rom-com-everyones-darling-has-a-secret-chinh-thuc-duoc"><div class="sc-img"><img src="/assets/img/uploads/y8conuxi-1790594348-678c4ac8a2f01edc1c0d3d91656946a0.jpg" alt="Manga Rom-Com &amp;amp;quot;Everyone’s Darling Has a Secret&amp;amp;quot; chính thức được chuyển thể thành anime" loading="lazy" width="1200" height="675"></div><div class="sc-body"><span class="tag tag-c" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Anime</span><div class="sc-title">Manga Rom-Com &amp;amp;quot;Everyone’s Darling Has a Secret&amp;amp;quot; chính thức được chuyển thể thành anime</div><div class="sc-meta">OtaHub Editorial · 30/09/2026</div></div></a>
+    <a class="sc" href="/manga-rom-com-everyones-darling-has-a-secret-chinh-thuc-duoc"><div class="sc-img"><img src="/assets/img/uploads/y8conuxi-1790594348-678c4ac8a2f01edc1c0d3d91656946a0.jpg" alt="Manga Rom-Com &quot;Everyone’s Darling Has a Secret&quot; chính thức được chuyển thể thành anime" loading="lazy" width="1200" height="675"></div><div class="sc-body"><span class="tag tag-c" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Anime</span><div class="sc-title">Manga Rom-Com &quot;Everyone’s Darling Has a Secret&quot; chính thức được chuyển thể thành anime</div><div class="sc-meta">OtaHub Editorial · 30/09/2026</div></div></a>
     <!-- ADMIN:FEATURED_END -->
   </div>
 
@@ -2067,7 +1995,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 <div class="wrap rv">
 
 
-  <div class="sec-h"><span class="sec-t">Bảng xếp hạng <em>Game hàng đầu</em></span><div class="sec-l"></div><a href="/rankings" class="sec-more">Xem đầy đủ</a></div>
+  <div class="sec-h"><h2 class="sec-t">Bảng xếp hạng <em>Game hàng đầu</em></h2><div class="sec-l"></div><a href="/rankings" class="sec-more">Xem đầy đủ</a></div>
 
 
   <div class="rank-grid">
@@ -2082,7 +2010,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
       <div class="rk-list">
 
 
-        <a class="rk-item top1" href="/game-detail?t=Elden%20Ring%3A%20Shadow%20of%20the%20Erdtree"><div class="rk-num">01</div><div class="rk-thumb"><img src="/assets/img/elden-ring-shadow-erdtree-review-hero.jpg" alt="Elden Ring: Shadow of the Erdtree" loading="lazy" width="76" height="76"></div><div class="rk-info"><div class="rk-name">Elden Ring: Shadow of the Erdtree</div><div class="rk-sub">FromSoftware · Action RPG</div><div class="rk-tags"><span class="rk-tag-pill" style="border-color:rgba(251,191,36,.25);color:var(--amber)">Top Rated</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--amber)">9.7</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="97%" style="background:var(--amber)"></div></div></div></a>
+        <a class="rk-item top1" href="/game-detail?t=Elden%20Ring%3A%20Shadow%20of%20the%20Erdtree"><div class="rk-num">01</div><div class="rk-thumb"><img src="/assets/img/elden-ring-shadow-erdtree-review-hero.jpg" alt="Elden Ring: Shadow of the Erdtree" loading="lazy" width="76" height="76"></div><div class="rk-info"><div class="rk-name">Elden Ring: Shadow of the Erdtree</div><div class="rk-sub">FromSoftware · Action RPG</div><div class="rk-tags"><span class="rk-tag-pill" style="border-color:rgba(251,191,36,.25);color:var(--amber)">Điểm cao</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--amber)">9.7</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="97%" style="background:var(--amber)"></div></div></div></a>
 
 
         <a class="rk-item top2" href="/game-detail?t=Split%20Fiction"><div class="rk-num">02</div><div class="rk-thumb"><img src="/assets/img/4c8ef98e63-split-fiction-review-hero.jpg" alt="Split Fiction" loading="lazy" width="76" height="76"></div><div class="rk-info"><div class="rk-name">Split Fiction</div><div class="rk-sub">Hazelight Studios · Co-op Adventure</div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--cyan)">9.6</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="96%" style="background:var(--cyan)"></div></div></div></a>
@@ -2112,7 +2040,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
       <div class="rk-list">
 
 
-        <a class="rk-item top1" href="/game-detail?t=Wuthering%20Waves"><div class="rk-num">01</div><div class="rk-thumb"><img src="/assets/img/pool-ww-1.jpg" alt="Wuthering Waves" loading="lazy" width="76" height="76"></div><div class="rk-info"><div class="rk-name">Wuthering Waves</div><div class="rk-sub">Kuro Games · Action RPG</div><div class="rk-tags"><span class="rk-tag-pill" style="border-color:rgba(251,191,36,.25);color:var(--amber)">Top Rated</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--amber)">9.5</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="95%" style="background:var(--amber)"></div></div></div></a>
+        <a class="rk-item top1" href="/game-detail?t=Wuthering%20Waves"><div class="rk-num">01</div><div class="rk-thumb"><img src="/assets/img/pool-ww-1.jpg" alt="Wuthering Waves" loading="lazy" width="76" height="76"></div><div class="rk-info"><div class="rk-name">Wuthering Waves</div><div class="rk-sub">Kuro Games · Action RPG</div><div class="rk-tags"><span class="rk-tag-pill" style="border-color:rgba(251,191,36,.25);color:var(--amber)">Điểm cao</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--amber)">9.5</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="95%" style="background:var(--amber)"></div></div></div></a>
 
 
         <a class="rk-item top2" href="/game-detail?t=Honkai%3A%20Star%20Rail"><div class="rk-num">02</div><div class="rk-thumb"><img src="/assets/img/news-honkai-star-rail-31-amphoreus.jpg" alt="Honkai: Star Rail" loading="lazy" width="76" height="76"></div><div class="rk-info"><div class="rk-name">Honkai: Star Rail</div><div class="rk-sub">HoYoverse · Turn-based RPG</div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--cyan)">9.2</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="92%" style="background:var(--cyan)"></div></div></div></a>
@@ -2142,22 +2070,22 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 <div class="wrap rv">
 
 
-  <div class="sec-h"><span class="sec-t">Anime <em>theo mùa</em></span><div class="sec-l"></div><a href="/anime" class="sec-more">Lịch phát sóng</a></div>
+  <div class="sec-h"><h2 class="sec-t">Anime <em>theo mùa</em></h2><div class="sec-l"></div><a href="/anime" class="sec-more">Lịch phát sóng</a></div>
 
 
   <div class="season-tabs">
 
 
-    <button class="s-tab on" onclick="setTab(this,'summer')">Mùa Hè 2026</button>
+    <button class="s-tab on" onclick="setTab(this,'fall')">Mùa Thu 2026</button>
+
+
+    <button class="s-tab" onclick="setTab(this,'summer')">Mùa Hè 2026</button>
 
 
     <button class="s-tab" onclick="setTab(this,'spring')">Mùa Xuân 2026</button>
 
 
     <button class="s-tab" onclick="setTab(this,'winter')">Mùa Đông 2026</button>
-
-
-    <button class="s-tab" onclick="setTab(this,'fall')">Mùa Thu 2026</button>
 
 
   </div>
@@ -2184,7 +2112,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 <div class="wrap rv">
 
 
-  <div class="sec-h"><span class="sec-t">Hot <em>hiện nay</em> · Truyện tranh</span><div class="sec-l"></div><a href="/manga" class="sec-more">Xem thêm</a></div>
+  <div class="sec-h"><h2 class="sec-t">Hot <em>hiện nay</em> · Truyện tranh</h2><div class="sec-l"></div><a href="/manga" class="sec-more">Xem thêm</a></div>
 
 
   <div class="manga-grid">
@@ -2271,7 +2199,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 <div class="wrap rv" style="padding-top:0">
 
 
-  <div class="sec-h"><span class="sec-t">Tin <em>mới nhất</em></span><div class="sec-l"></div><a href="/news" class="sec-more">Xem tất cả</a></div>
+  <div class="sec-h"><h2 class="sec-t">Tin <em>mới nhất</em></h2><div class="sec-l"></div><a href="/news" class="sec-more">Xem tất cả</a></div>
 
 
   <div class="latest-wrap">
@@ -2299,27 +2227,28 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
       <article class="w-card"><a href="/sarada-mangekyo-sharingan-suc-manh-ho-den-ohirume" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Manga</div><div class="wc-t">Boruto: Sarada Lộ Thêm Sức Mạnh Mangekyo Sharingan, Nhưng Phải Đánh Đổi Bằng Thị Lực</div><div class="wc-m">OtaHub Editorial · 30/09/2026</div></div><div class="wc-thumb"><img src="/assets/img/naruto-hokage-mountain-crop.jpg" alt="Boruto: Sarada Lộ Thêm Sức Mạnh Mangekyo Sharingan, Nhưng Phải Đánh Đổi Bằng Thị Lực" loading="lazy" width="1200" height="675"></div></a></article>
       <article class="w-card"><a href="/minecraft-live-thang-9-2026-minecraft-chuan-bi-don-chieu-kho" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming</div><div class="wc-t">Minecraft Live tháng 9/2026: Minecraft chuẩn bị đón chiều không gian mới</div><div class="wc-m">Yu · 30/09/2026</div></div><div class="wc-thumb"><img src="/assets/img/uploads/cxo68b2g-what-time-does-minecraft-live-start-september-2026-210691766.webp" alt="Minecraft Live tháng 9/2026: Minecraft chuẩn bị đón chiều không gian mới" loading="lazy" width="1200" height="675"></div></a></article>
       <article class="w-card"><a href="/diablo-4-van-tiep-tuc-co-mua-moi-sau-khi-diablo-5-ra-mat" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming</div><div class="wc-t">Diablo 4 vẫn tiếp tục có mùa mới sau khi Diablo 5 ra mắt</div><div class="wc-m">Anh Thu · 30/09/2026</div></div><div class="wc-thumb"><img src="/assets/img/uploads/1k2n3ieq-images-10.jpg" alt="Diablo 4 vẫn tiếp tục có mùa mới sau khi Diablo 5 ra mắt" loading="lazy" width="1200" height="675"></div></a></article>
-      <article class="w-card"><a href="/minecraft-bo-sung-chieu-khong-gian-thu-4-the-sift-sau-hon-14" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming</div><div class="wc-t">Minecraft bổ sung chiều không gian thứ 4 The Sift sau hơn 14 năm</div><div class="wc-m">Yu · 29/09/2026 · 4 min</div></div><div class="wc-thumb"><img src="/assets/img/uploads/pne31nyx-anh-bia-3.webp" alt="Minecraft bổ sung chiều không gian thứ 4 The Sift sau hơn 14 năm" loading="lazy" width="1200" height="675"></div></a></article>
+      <article class="w-card"><a href="/minecraft-bo-sung-chieu-khong-gian-thu-4-the-sift-sau-hon-14" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming</div><div class="wc-t">Minecraft bổ sung chiều không gian thứ 4 The Sift sau hơn 14 năm</div><div class="wc-m">Yu · 29/09/2026 · 4 phút</div></div><div class="wc-thumb"><img src="/assets/img/uploads/pne31nyx-anh-bia-3.webp" alt="Minecraft bổ sung chiều không gian thứ 4 The Sift sau hơn 14 năm" loading="lazy" width="1200" height="675"></div></a></article>
       <article class="w-card"><a href="/delta-force-se-co-che-do-nhay-du-battle-royale-trong-nam-202" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming</div><div class="wc-t">Delta Force sẽ có chế độ nhảy dù Battle Royale trong năm 2027</div><div class="wc-m">Yu · 29/09/2026</div></div><div class="wc-thumb"><img src="/assets/img/uploads/u1g6mg06-anh-bia-2.jpg" alt="Delta Force sẽ có chế độ nhảy dù Battle Royale trong năm 2027" loading="lazy" width="1200" height="675"></div></a></article>
       <article class="w-card"><a href="/duoc-su-tu-su-mua-3-chinh-thuc-len-song-hanh-trinh-moi-day-k" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming</div><div class="wc-t">“Dược Sư Tự Sự” mùa 3 chính thức lên sóng: Hành trình mới đầy kịch tính của Maomao và Jinshi</div><div class="wc-m">Yu · 29/09/2026</div></div><div class="wc-thumb"><img src="/assets/img/uploads/ytysmngi-anh-bia-1.webp" alt="“Dược Sư Tự Sự” mùa 3 chính thức lên sóng: Hành trình mới đầy kịch tính của Maomao và Jinshi" loading="lazy" width="1200" height="675"></div></a></article>
-      <article class="w-card"><a href="/star-wars-zero-company-biet-doi-di-biet-tao-nen-nhung-tran-c" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming</div><div class="wc-t">Star Wars: Zero Company: Biệt đội dị biệt tạo nên những trận chiến đầy bất ngờ</div><div class="wc-m">Yu · 29/09/2026 · 4 min</div></div><div class="wc-thumb"><img src="/assets/img/uploads/22ksi3pb-photo-2026-09-29-15-25-58.jpg" alt="Star Wars: Zero Company: Biệt đội dị biệt tạo nên những trận chiến đầy bất ngờ" loading="lazy" width="1200" height="675"></div></a></article>
-      <article class="w-card"><a href="/uk-games-expo-cam-noi-dung-ai-chi-chua-mot-so-truong-hop-ngo" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming</div><div class="wc-t">UK Games Expo cấm nội dung AI, chỉ chừa một số trường hợp ngoại lệ</div><div class="wc-m">Yu · 29/09/2026 · 4 min</div></div><div class="wc-thumb"><img src="/assets/img/uploads/vz6citou-photo-2026-09-29-14-59-50.jpg" alt="UK Games Expo cấm nội dung AI, chỉ chừa một số trường hợp ngoại lệ" loading="lazy" width="1200" height="675"></div></a></article>
-      <article class="w-card"><a href="/nintendo-gamecube-chiec-may-mau-tim-nho-be-nhung-de-lai-dau-" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming</div><div class="wc-t">Nintendo GameCube: Chiếc máy màu tím nhỏ bé nhưng để lại dấu ấn lớn</div><div class="wc-m">Yu · 29/09/2026 · 5 min</div></div><div class="wc-thumb"><img src="/assets/img/uploads/xadyqbp9-new.avif" alt="Nintendo GameCube: Chiếc máy màu tím nhỏ bé nhưng để lại dấu ấn lớn" loading="lazy" width="1200" height="675"></div></a></article>
-      <article class="w-card"><a href="/duoc-su-tu-su-mua-3-maomao-buoc-vao-hanh-trinh-pha-an-moi-na" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime</div><div class="wc-t">Dược Sư Tự Sự mùa 3: Maomao bước vào hành trình phá án mới năm 2027</div><div class="wc-m">Yu · 29/09/2026 · 3 min</div></div><div class="wc-thumb"><img src="/assets/img/uploads/ikwqphfh-maomao-and-jinshi-in-the-apothecary-diaries-season-2-with-a-.webp" alt="Dược Sư Tự Sự mùa 3: Maomao bước vào hành trình phá án mới năm 2027" loading="lazy" width="1200" height="675"></div></a></article>
-      <article class="w-card"><a href="/vi-sao-nen-xem-laputa-lau-dai-tren-khong-tren-man-anh-lon" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime</div><div class="wc-t">Vì sao nên xem Laputa: Lâu đài trên không trên màn ảnh lớn?</div><div class="wc-m">Yu · 29/09/2026 · 4 min</div></div><div class="wc-thumb"><img src="/assets/img/uploads/bmnjzftx-1788505364131-c2-1788504847736952838044-0-0-1005-1920-crop-1.webp" alt="Vì sao nên xem Laputa: Lâu đài trên không trên màn ảnh lớn?" loading="lazy" width="1200" height="675"></div></a></article>
-      <article class="w-card"><a href="/we-are-aliens-phim-hoat-hinh-phap-nhat-ra-rap-ngay-25-9" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime</div><div class="wc-t">We Are Aliens: Phim hoạt hình Pháp – Nhật ra rạp ngày 25/9</div><div class="wc-m">Yu · 29/09/2026 · 3 min</div></div><div class="wc-thumb"><img src="/assets/img/uploads/7vs6cl91-we-are-aliens-main-trailer.jpg" alt="We Are Aliens: Phim hoạt hình Pháp – Nhật ra rạp ngày 25/9" loading="lazy" width="1200" height="675"></div></a></article>
-      <article class="w-card"><a href="/5-bai-hoc-tu-naruto-uzumaki-van-con-y-nghia" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime</div><div class="wc-t">5 Bài Học Từ Naruto Uzumaki Vẫn Còn Ý Nghĩa Đến Hôm Nay</div><div class="wc-m">OtaHub Editorial · 29/09/2026 · 3 min</div></div><div class="wc-thumb"><img src="/assets/img/naruto-5-lessons-thumb.jpg" alt="5 Bài Học Từ Naruto Uzumaki Vẫn Còn Ý Nghĩa Đến Hôm Nay" loading="lazy" width="1200" height="675"></div></a></article>
+      <article class="w-card"><a href="/star-wars-zero-company-biet-doi-di-biet-tao-nen-nhung-tran-c" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming</div><div class="wc-t">Star Wars: Zero Company: Biệt đội dị biệt tạo nên những trận chiến đầy bất ngờ</div><div class="wc-m">Yu · 29/09/2026 · 4 phút</div></div><div class="wc-thumb"><img src="/assets/img/uploads/22ksi3pb-photo-2026-09-29-15-25-58.jpg" alt="Star Wars: Zero Company: Biệt đội dị biệt tạo nên những trận chiến đầy bất ngờ" loading="lazy" width="1200" height="675"></div></a></article>
+      <article class="w-card"><a href="/uk-games-expo-cam-noi-dung-ai-chi-chua-mot-so-truong-hop-ngo" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming</div><div class="wc-t">UK Games Expo cấm nội dung AI, chỉ chừa một số trường hợp ngoại lệ</div><div class="wc-m">Yu · 29/09/2026 · 4 phút</div></div><div class="wc-thumb"><img src="/assets/img/uploads/vz6citou-photo-2026-09-29-14-59-50.jpg" alt="UK Games Expo cấm nội dung AI, chỉ chừa một số trường hợp ngoại lệ" loading="lazy" width="1200" height="675"></div></a></article>
+      <article class="w-card"><a href="/nintendo-gamecube-chiec-may-mau-tim-nho-be-nhung-de-lai-dau-" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming</div><div class="wc-t">Nintendo GameCube: Chiếc máy màu tím nhỏ bé nhưng để lại dấu ấn lớn</div><div class="wc-m">Yu · 29/09/2026 · 5 phút</div></div><div class="wc-thumb"><img src="/assets/img/uploads/xadyqbp9-new.avif" alt="Nintendo GameCube: Chiếc máy màu tím nhỏ bé nhưng để lại dấu ấn lớn" loading="lazy" width="1200" height="675"></div></a></article>
+      <article class="w-card"><a href="/duoc-su-tu-su-mua-3-maomao-buoc-vao-hanh-trinh-pha-an-moi-na" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime</div><div class="wc-t">Dược Sư Tự Sự mùa 3: Maomao bước vào hành trình phá án mới năm 2027</div><div class="wc-m">Yu · 29/09/2026 · 3 phút</div></div><div class="wc-thumb"><img src="/assets/img/uploads/ikwqphfh-maomao-and-jinshi-in-the-apothecary-diaries-season-2-with-a-.webp" alt="Dược Sư Tự Sự mùa 3: Maomao bước vào hành trình phá án mới năm 2027" loading="lazy" width="1200" height="675"></div></a></article>
+      <article class="w-card"><a href="/vi-sao-nen-xem-laputa-lau-dai-tren-khong-tren-man-anh-lon" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime</div><div class="wc-t">Vì sao nên xem Laputa: Lâu đài trên không trên màn ảnh lớn?</div><div class="wc-m">Yu · 29/09/2026 · 4 phút</div></div><div class="wc-thumb"><img src="/assets/img/uploads/bmnjzftx-1788505364131-c2-1788504847736952838044-0-0-1005-1920-crop-1.webp" alt="Vì sao nên xem Laputa: Lâu đài trên không trên màn ảnh lớn?" loading="lazy" width="1200" height="675"></div></a></article>
+      <article class="w-card"><a href="/we-are-aliens-phim-hoat-hinh-phap-nhat-ra-rap-ngay-25-9" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime</div><div class="wc-t">We Are Aliens: Phim hoạt hình Pháp – Nhật ra rạp ngày 25/9</div><div class="wc-m">Yu · 29/09/2026 · 3 phút</div></div><div class="wc-thumb"><img src="/assets/img/uploads/7vs6cl91-we-are-aliens-main-trailer.jpg" alt="We Are Aliens: Phim hoạt hình Pháp – Nhật ra rạp ngày 25/9" loading="lazy" width="1200" height="675"></div></a></article>
       <article class="w-card"><a href="/the-eminence-in-shadow-roguelite-game-announcement" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming</div><div class="wc-t">The Eminence in Shadow Công Bố Tựa Game Roguelite Mới</div><div class="wc-m">Yu · 29/09/2026</div></div><div class="wc-thumb"><img src="/assets/img/real-eminence-phantom-echoes.jpg" alt="The Eminence in Shadow Công Bố Tựa Game Roguelite Mới" loading="lazy" width="1200" height="675"></div></a></article>
-      <article class="w-card"><a href="/top-8-anime-han-quoc-aeni-dang-xem-nhat" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime</div><div class="wc-t">Top 8 Anime Hàn Quốc (Aeni) Đáng Xem Nhất Hiện Nay</div><div class="wc-m">OtaHub Editorial · 29/09/2026 · 3 min</div></div><div class="wc-thumb"><img src="/assets/img/top-korean-anime-lookism-thumb.jpg" alt="Top 8 Anime Hàn Quốc (Aeni) Đáng Xem Nhất Hiện Nay" loading="lazy" width="1200" height="675"></div></a></article>
-      <article class="w-card"><a href="/gintama-sorachi-tung-nghi-anime-se-that-bai" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime</div><div class="wc-t">Cha Đẻ Gintama Thú Nhận: Từng Nghĩ Bản Anime Sẽ Thất Bại</div><div class="wc-m">OtaHub Editorial · 29/09/2026 · 3 min</div></div><div class="wc-thumb"><img src="/assets/img/gintama-sorachi-flop-thumb.jpg" alt="Cha Đẻ Gintama Thú Nhận: Từng Nghĩ Bản Anime Sẽ Thất Bại" loading="lazy" width="1200" height="675"></div></a></article>
+      <article class="w-card"><a href="/top-8-anime-han-quoc-aeni-dang-xem-nhat" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime</div><div class="wc-t">Top 8 Anime Hàn Quốc (Aeni) Đáng Xem Nhất Hiện Nay</div><div class="wc-m">OtaHub Editorial · 29/09/2026 · 3 phút</div></div><div class="wc-thumb"><img src="/assets/img/top-korean-anime-lookism-thumb.jpg" alt="Top 8 Anime Hàn Quốc (Aeni) Đáng Xem Nhất Hiện Nay" loading="lazy" width="1200" height="675"></div></a></article>
+      <article class="w-card"><a href="/gintama-sorachi-tung-nghi-anime-se-that-bai" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime</div><div class="wc-t">Cha Đẻ Gintama Thú Nhận: Từng Nghĩ Bản Anime Sẽ Thất Bại</div><div class="wc-m">OtaHub Editorial · 29/09/2026 · 3 phút</div></div><div class="wc-thumb"><img src="/assets/img/gintama-sorachi-flop-thumb.jpg" alt="Cha Đẻ Gintama Thú Nhận: Từng Nghĩ Bản Anime Sẽ Thất Bại" loading="lazy" width="1200" height="675"></div></a></article>
       <article class="w-card"><a href="/roman-sands-re-build-mac-ket-trong-giac-mo-vaporwave-dang-da" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming</div><div class="wc-t">Roman Sands RE:Build: Mắc kẹt trong giấc mơ vaporwave đang dần sụp đổ</div><div class="wc-m">Anh Thu · 28/09/2026</div></div><div class="wc-thumb"><img src="/assets/img/uploads/m4495rif-capsule-616x353.jpg" alt="Roman Sands RE:Build: Mắc kẹt trong giấc mơ vaporwave đang dần sụp đổ" loading="lazy" width="1200" height="675"></div></a></article>
       <article class="w-card"><a href="/khi-gta-tro-thanh-san-khau-cho-shakespeare-trong-grand-theft" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Gaming</div><div class="wc-t">Khi GTA trở thành sân khấu cho Shakespeare trong Grand Theft Hamlet</div><div class="wc-m">Anh Thu · 28/09/2026</div></div><div class="wc-thumb"><img src="/assets/img/uploads/7u1kbpqr-1790578085901-2205952226142822073-7120438264129171444-646dfc.jpg" alt="Khi GTA trở thành sân khấu cho Shakespeare trong Grand Theft Hamlet" loading="lazy" width="1200" height="675"></div></a></article>
-      <article class="w-card"><a href="/detective-conan-30-vu-an-dac-biet-ky-niem-30-nam-len-song" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime</div><div class="wc-t">Detective Conan 30号殺人事件: Vụ án đặc biệt kỷ niệm 30 năm lên sóng</div><div class="wc-m">Anh Thu · 28/09/2026 · 3 min</div></div><div class="wc-thumb"><img src="/assets/img/uploads/dvt9allq-conan-30go-eyecatch.jpg" alt="Detective Conan 30号殺人事件: Vụ án đặc biệt kỷ niệm 30 năm lên sóng" loading="lazy" width="1200" height="675"></div></a></article>
-      <article class="w-card"><a href="/one-piece-1194-spoiler-zoro-giai-phong-suc-manh-moi-mihawk-g" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Manga</div><div class="wc-t">One Piece 1194 Spoiler: Zoro giải phóng sức mạnh mới, Mihawk gây chú ý</div><div class="wc-m">Anh Thu · 28/09/2026 · 3 min</div></div><div class="wc-thumb"><img src="/assets/img/real-op1194-dexerto.jpg" alt="One Piece 1194 Spoiler: Zoro giải phóng sức mạnh mới, Mihawk gây chú ý" loading="lazy" width="1200" height="675"></div></a></article>
-      <aside class="latest-side">
+      <article class="w-card"><a href="/detective-conan-30-vu-an-dac-biet-ky-niem-30-nam-len-song" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Anime</div><div class="wc-t">Detective Conan 30号殺人事件: Vụ án đặc biệt kỷ niệm 30 năm lên sóng</div><div class="wc-m">Anh Thu · 28/09/2026 · 3 phút</div></div><div class="wc-thumb"><img src="/assets/img/uploads/dvt9allq-conan-30go-eyecatch.jpg" alt="Detective Conan 30号殺人事件: Vụ án đặc biệt kỷ niệm 30 năm lên sóng" loading="lazy" width="1200" height="675"></div></a></article>
+      <article class="w-card"><a href="/one-piece-1194-spoiler-zoro-giai-phong-suc-manh-moi-mihawk-g" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">Manga</div><div class="wc-t">One Piece 1194 Spoiler: Zoro giải phóng sức mạnh mới, Mihawk gây chú ý</div><div class="wc-m">Anh Thu · 28/09/2026 · 3 phút</div></div><div class="wc-thumb"><img src="/assets/img/real-op1194-dexerto.jpg" alt="One Piece 1194 Spoiler: Zoro giải phóng sức mạnh mới, Mihawk gây chú ý" loading="lazy" width="1200" height="675"></div></a></article>
+    </div>
+
+    <aside class="latest-side">
 
 
-      <div class="trend-h">Đang hot</div>
+      <h2 class="trend-h">Đang hot</h2>
 
 
       <a class="t-item" href="/gta6-preview" style="text-decoration:none;color:inherit"><div class="t-num">01</div><div class="ti-thumb"><img src="/assets/img/c8cd09fede-maxresdefault.jpg" alt="GTA 6 · mọi thứ về Vice City và Lucia" loading="lazy" width="1280" height="720"></div><div><div class="ti-t">GTA 6 · mọi thứ về Vice City và Lucia</div><div class="ti-m">Gaming · 156k lượt xem</div></div></a>
@@ -2352,7 +2281,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 <div class="wrap rv" style="padding-bottom:0">
 
 
-  <div class="sec-h"><span class="sec-t">Khám phá <em>chủ đề</em></span><div class="sec-l"></div></div>
+  <div class="sec-h"><h2 class="sec-t">Khám phá <em>chủ đề</em></h2><div class="sec-l"></div></div>
 
 
   <div class="cat-grid">
@@ -2427,7 +2356,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 </section>
 
 
-<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Chuyên trang tin tức gaming và tin tức anime, manga Việt Nam và Châu Á.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
+<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Chuyên trang tin tức gaming và tin tức anime, manga Việt Nam và Châu Á.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Đánh giá</a></li><li><a href="/rankings">Xếp hạng</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Bản tin</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
 
 
 <script>
@@ -2438,9 +2367,9 @@ const ANIME={
   summer:[
     {title:'Mushoku Tensei: Jobless Reincarnation Season 3',genre:'Isekai / Fantasy',score:'',day:'Chủ Nhật',ep:'Đang chiếu',status:'airing',img:'/assets/img/93dc86c38d-117776l.jpg'},
     {title:'Bleach: Thousand-Year Blood War – The Calamity',genre:'Action / Shonen',score:'',day:'Thứ Bảy',ep:'Tập cuối 26/9',status:'airing',img:'/assets/img/bleach-tybw-poster.jpg'},
-    {title:'Re:Zero Season 4 (Recapture Part)',genre:'Isekai / Drama',score:'',day:'Thứ Tư',ep:'Ep 18/19',status:'airing',img:'/assets/img/087af8ed98-rezero-s4-hero.jpg'},
-    {title:'The Ghost in the Shell (2026)',genre:'Sci-Fi / Seinen',score:'',day:'Hoàn tất',ep:'10/10 Ep',status:'done',img:'/assets/img/poster-real-ghost-in-the-shell-2026.jpg'},
-    {title:'Youjo Senki II',genre:'Military / Isekai',score:'',day:'Hoàn tất',ep:'12/12 Ep',status:'done',img:'/assets/img/poster-real-youjo-senki-ii.jpg'},
+    {title:'Re:Zero Season 4 (Recapture Part)',genre:'Isekai / Drama',score:'',day:'Thứ Tư',ep:'Tập 18/19',status:'airing',img:'/assets/img/087af8ed98-rezero-s4-hero.jpg'},
+    {title:'The Ghost in the Shell (2026)',genre:'Sci-Fi / Seinen',score:'',day:'Hoàn tất',ep:'10/10 tập',status:'done',img:'/assets/img/poster-real-ghost-in-the-shell-2026.jpg'},
+    {title:'Youjo Senki II',genre:'Military / Isekai',score:'',day:'Hoàn tất',ep:'12/12 tập',status:'done',img:'/assets/img/poster-real-youjo-senki-ii.jpg'},
   ],
 
   spring:[
@@ -2448,8 +2377,8 @@ const ANIME={
   ],
 
   winter:[
-    {title:'Sousou no Frieren Season 2',genre:'Fantasy',score:'',day:'Hoàn tất',ep:'10/10 Ep',status:'done',img:'/assets/img/4a7324f467-138006l.jpg'},
-    {title:'Jujutsu Kaisen Season 3 (Culling Game Part 1)',genre:'Action / Supernatural',score:'',day:'Hoàn tất',ep:'12/12 Ep',status:'done',img:'/assets/img/a4d82e012d-138022l.jpg'},
+    {title:'Sousou no Frieren Season 2',genre:'Fantasy',score:'',day:'Hoàn tất',ep:'10/10 tập',status:'done',img:'/assets/img/4a7324f467-138006l.jpg'},
+    {title:'Jujutsu Kaisen Season 3 (Culling Game Part 1)',genre:'Action / Supernatural',score:'',day:'Hoàn tất',ep:'12/12 tập',status:'done',img:'/assets/img/a4d82e012d-138022l.jpg'},
   ],
 
   fall:[
@@ -2526,7 +2455,7 @@ function renderAnime(season){
 }
 
 
-renderAnime('summer');
+renderAnime('fall');
 
 
 function setTab(btn,season){document.querySelectorAll('.s-tab').forEach(t=>t.classList.remove('on'));btn.classList.add('on');renderAnime(season);}
@@ -2635,7 +2564,7 @@ document.querySelectorAll('.rk-card').forEach(c=>barObs.observe(c));
 <script defer src="/assets/search-redirect.js"></script>
 
 
-<script defer src="/assets/enhance.js?v=20261001b"></script>
+<script defer src="/assets/enhance.js?v=20261001d"></script>
 
 
 

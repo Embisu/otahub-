@@ -4281,7 +4281,7 @@ html.theme-light .wp-draft-banner-text {
 }
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://otahub.asia/"},{"@type":"ListItem","position":2,"name":"${cat}","item":"https://otahub.asia/anime"},{"@type":"ListItem","position":3,"name":"OtaHub Admin","item":"https://otahub.asia/admin"}]}</script>
-<script src="/assets/search.js"></script>
+<script src="/assets/search.js?v=20261001"></script>
 </head>
 <body>
 
@@ -5361,6 +5361,41 @@ function slugifyFilename(name) {
 
 function slugify(name) {
   return slugifyFilename(name);
+}
+
+// Slug tiếng Anh từ tiêu đề EN: bỏ vài từ nối, cắt tối đa 60 ký tự ĐÚNG ranh giới từ
+// (slugifyFilename cắt cứng ở ký tự 60 nên từng sinh slug cụt kiểu "...-the-loai-s").
+function slugifyEnglishTitle(title) {
+  const STOP = new Set(['a', 'an', 'the', 'and', 'of', 'to', 'in', 'on', 'for', 'with', 'is', 'are', 'its', 'at', 'by']);
+  const words = cleanPlainText(title).toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, ' ').trim().split(/\s+/)
+    .filter((w, i) => w && (i === 0 || !STOP.has(w)));
+  let out = '';
+  for (const w of words) {
+    const next = out ? out + '-' + w : w;
+    if (next.length > 60) break;
+    out = next;
+  }
+  return out;
+}
+
+// Chọn slug cho bản EN khi lưu bài. Trước đây luôn dùng en/<slug tiếng Việt>: bài có bản EN mang
+// slug riêng thì admin không tìm thấy file và tạo thêm 1 bản EN trùng, còn bài mới thì URL tiếng Anh
+// lại mang chữ Việt (vd. /en/kuri-hime-...-se-ket-thuc-vao-ngay-28-10).
+async function resolveEnSlug(viSlug, enTitle, hasEn) {
+  const exists = async (slug) => { try { const d = await ghGet(`en/${slug}.html`); return !!(d && d.sha); } catch (e) { return false; } };
+  // 1. Bản EN đã có (đọc từ hreflang khi mở bài): giữ đúng file đó.
+  const known = (BILINGUAL_DATA?.en?.file || '').replace(/^en\//, '').replace(/\.html$/, '');
+  if (known && await exists(known)) return known;
+  // 2. Bản EN cũ đang dùng slug VI: giữ nguyên để không làm gãy link đã được index.
+  if (known !== viSlug && await exists(viSlug)) return viSlug;
+  // 3. Bài mới: slug tiếng Anh theo tiêu đề EN, tránh đè lên bài EN khác trùng slug.
+  const base = (hasEn && enTitle) ? slugifyEnglishTitle(enTitle) : '';
+  if (!base) return viSlug;
+  let slug = base;
+  for (let n = 2; await exists(slug); n++) slug = `${base}-${n}`;
+  return slug;
 }
 
 // Làm sạch triệt để thẻ HTML / Google Docs tags / XML / MS Word rác khỏi chuỗi thuần (xử lý cả entity &lt;...&gt;)
@@ -15780,6 +15815,7 @@ async function propagateTitleChange(slug, newTitle) {
     ['<a href="/' + slug + '" class="ac"', '<div class="ac-title">', '</div>', '</a>'],
     ['<a class="sc" href="/' + slug + '">', '<div class="sc-title">', '</div>', '</a>'],
     ['<a class="fc" href="/' + slug + '">', '<h2 class="fc-title">', '</h2>', '</a>'],
+    ['<article class="s-art"><a href="/' + slug + '"', '<div class="sa-t">', '</div>', '</article>'],
     ['<article class="s-art" onclick="location.href=\'/' + slug + '\'"', '<div class="sa-t">', '</div>', '</article>'],
     ['<a href="/' + slug + '" style="display:block', '<h3', '</h3>', '</a>'],
     ['<div class="hero-main" onclick="location.href=\'/' + slug + '\'"', 'id="h-title">', '</h1>', '<aside'],
@@ -15934,9 +15970,9 @@ async function saveArticle() {
     const rawSlug = (document.getElementById('ed-slug')?.value || '').trim() || (currentFile || '').replace(/^en\//, '').replace(/\.html$/, '');
     const cleanSlug = slugify(rawSlug) || rawSlug || 'bai-viet';
     const viFile = `${cleanSlug}.html`;
-    const enFile = `en/${cleanSlug}.html`;
+    let enFile = `en/${cleanSlug}.html`;   // được xác định lại bằng resolveEnSlug() khi đã có tiêu đề EN
     const viSlug = cleanSlug;
-    const enSlug = cleanSlug;
+    let enSlug = cleanSlug;
 
     // Tự động dọn dẹp file và link cũ nếu người dùng đổi đường dẫn (slug)
     const oldSlug = (currentFile || '').replace(/^en\//, '').replace(/\.html$/, '');
@@ -15963,6 +15999,9 @@ async function saveArticle() {
     const enBody  = BILINGUAL_DATA?.en?.bodyHtml || '';
     const enBlocks= BILINGUAL_DATA?.en?.blocks;
     const hasEn   = !!(enTitle && (enBody.length > 20 || (enBlocks && enBlocks.length > 0)));
+
+    enSlug = await resolveEnSlug(cleanSlug, enTitle, hasEn);
+    enFile = `en/${enSlug}.html`;
 
     let shouldUpdateVi = (!isEnTab && hasViContent) || (isEnTab && BILINGUAL_DATA?.vi?.isDirty && hasViContent);
     const shouldUpdateEn = (isEnTab && hasEn) || (!isEnTab && BILINGUAL_DATA?.en?.isDirty && hasEn);
@@ -16268,7 +16307,7 @@ async function saveArticle() {
 // đúng 1 mục xuống khối kế tiếp; mục rớt khỏi ô sc cuối (#12) coi như ra khỏi danh sách.
 function sArtParse(raw) {
   return {
-    href: fieldGet(raw, /onclick="location\.href='([^']*)'"/),
+    href: fieldGet(raw, /<a href="([^"]*)" class="sa-link"/) || fieldGet(raw, /onclick="location\.href='([^']*)'"/),
     img: fieldGet(raw, /<div class="sa-thumb"><img src="([^"]*)"/),
     alt: fieldGet(raw, /<img src="[^"]*" alt="([^"]*)"/),
     catStyle: fieldGet(raw, /<div class="sa-c" (style="[^"]*")/),
@@ -16279,7 +16318,7 @@ function sArtParse(raw) {
   };
 }
 function sArtBuild(f) {
-  return `<article class="s-art" onclick="location.href='${f.href.replace(/'/g,"\\'")}'" style="cursor:pointer">\n      <div class="sa-thumb"><img src="${f.img}" alt="${esc(f.alt)}" width="1200" height="675" loading="lazy" decoding="async"></div>\n      <div><div class="sa-c" ${f.catStyle || 'style="color:var(--cyan);font-weight:700"'}>${esc(f.catHtml)}</div><div class="sa-t">${esc(f.title)}</div><div class="sa-m">${esc(f.date)} · ${esc(f.author || 'OtaHub')}</div></div>\n    </article>`;
+  return `<article class="s-art"><a href="${esc(f.href)}" class="sa-link">\n      <div class="sa-thumb"><img src="${f.img}" alt="${esc(f.alt)}" width="1200" height="675" loading="lazy" decoding="async"></div>\n      <div><div class="sa-c" ${f.catStyle || 'style="color:var(--cyan);font-weight:700"'}>${esc(f.catHtml)}</div><div class="sa-t">${esc(f.title)}</div><div class="sa-m">${esc(f.date)} · ${esc(f.author || 'OtaHub')}</div></div>\n    </a></article>`;
 }
 function fcParse(raw) {
   return {
@@ -16335,7 +16374,7 @@ async function cascadeIntoHeroSide(html, item) {
   const hsSec = hSection(html, '<aside class="hero-side">', '</aside>');
   if (!hsSec.ok) return html;
   let items = splitBlocksTrimmed(hsSec.raw, /<article class="s-art"/, '</article>');
-  if (items.some(it => it.includes(`href='${item.href}'`))) return html; // đã có sẵn, không thêm trùng
+  if (items.some(it => it.includes(`href='${item.href}'`) || it.includes(`href="${item.href}"`))) return html; // đã có sẵn, không thêm trùng
 
   const newItem = sArtBuild({
     href: item.href, img: item.img, alt: item.title,
@@ -17652,7 +17691,7 @@ function hReplaceSection(html, startAnchor, endAnchor, rebuildFn) {
 // ── s-art (Nổi bật hôm nay / hero-side) ──
 function sArtFields(item) {
   return {
-    href: fieldGet(item, /onclick="location\.href='([^']*)'"/),
+    href: fieldGet(item, /<a href="([^"]*)" class="sa-link"/) || fieldGet(item, /onclick="location\.href='([^']*)'"/),
     img: fieldGet(item, /<img[^>]+src="([^"]*)"/),
     alt: fieldGet(item, /<img[^>]+alt="([^"]*)"/),
     cat: fieldGet(item, /class="sa-c"[^>]*>([^<]*)</),
@@ -17662,7 +17701,10 @@ function sArtFields(item) {
 }
 function sArtApply(item, f) {
   let out = item;
-  if (f.href !== undefined) out = out.replace(/(onclick="location\.href=')[^']*(')/, (m,p1,p2)=>p1+f.href.replace(/'/g,"\\'")+p2);
+  if (f.href !== undefined) {
+    out = out.replace(/(<a href=")[^"]*(" class="sa-link")/, (m,p1,p2)=>p1+esc(f.href)+p2);
+    out = out.replace(/(onclick="location\.href=')[^']*(')/, (m,p1,p2)=>p1+f.href.replace(/'/g,"\\'")+p2);
+  }
   out = replaceField(out, /(<img[^>]+src=")[^"]*(")/, f.img);
   out = replaceField(out, /(<img[^>]+alt=")[^"]*(")/, f.alt);
   out = replaceField(out, /(class="sa-c"[^>]*>)[^<]*(<)/, f.cat);
