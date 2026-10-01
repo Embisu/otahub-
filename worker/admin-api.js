@@ -433,15 +433,34 @@ async function handleGhPut(request, env, ghPath) {
       content,
       branch: GH_BRANCH,
     };
-    if (sha) putPayload.sha = sha;
+    const isImgSha = typeof sha === 'string' && /^[0-9a-f]{40}$/i.test(sha.trim());
+    if (isImgSha) putPayload.sha = sha.trim();
 
     let ghSuccess = false;
     try {
-      const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}`, {
+      let r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}`, {
         method: 'PUT',
         headers: { ...ghHeaders(env), 'Content-Type': 'application/json' },
         body: JSON.stringify(putPayload),
       });
+      if ((r.status === 409 || r.status === 422) && env.GITHUB_TOKEN) {
+        try {
+          const getLatest = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}?ref=${GH_BRANCH}`, {
+            headers: ghHeaders(env),
+          });
+          if (getLatest.ok) {
+            const lData = await getLatest.json();
+            if (lData?.sha) {
+              putPayload.sha = lData.sha;
+              r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}`, {
+                method: 'PUT',
+                headers: { ...ghHeaders(env), 'Content-Type': 'application/json' },
+                body: JSON.stringify(putPayload),
+              });
+            }
+          }
+        } catch(e) {}
+      }
       if (r.ok) {
         ghSuccess = true;
         await logAudit(env, { action: 'write', username: user.username, file: ghPath, message: message || '' });
@@ -476,7 +495,20 @@ async function handleGhPut(request, env, ghPath) {
     branch: GH_BRANCH,
   };
   const is40HexSha = typeof sha === 'string' && /^[0-9a-f]{40}$/i.test(sha.trim());
-  if (is40HexSha) putPayload.sha = sha.trim();
+  if (is40HexSha) {
+    putPayload.sha = sha.trim();
+  } else {
+    // Nếu client không gửi SHA hoặc gửi SHA không chuẩn (ví dụ: 'local-asset'), kiểm tra trước xem file đã tồn tại trên GitHub chưa
+    try {
+      const getLatest = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}?ref=${GH_BRANCH}`, {
+        headers: ghHeaders(env),
+      });
+      if (getLatest.ok) {
+        const latestData = await getLatest.json();
+        if (latestData && latestData.sha) putPayload.sha = latestData.sha;
+      }
+    } catch(e) {}
+  }
 
   let r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}`, {
     method: 'PUT',
@@ -484,16 +516,16 @@ async function handleGhPut(request, env, ghPath) {
     body: JSON.stringify(putPayload),
   });
 
-  // Nếu gặp lỗi 409 Conflict (SHA không khớp, SHA stale hoặc file đã tồn tại trên GitHub):
+  // Nếu gặp lỗi 409 Conflict (SHA không khớp, SHA stale) hoặc 422 (thiếu SHA khi file đã tồn tại trên GitHub):
   // Tự động truy vấn SHA mới nhất từ GitHub và thử commit lại ngay lập tức
-  if (r.status === 409) {
+  if (r.status === 409 || r.status === 422) {
     try {
       const getLatest = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}?ref=${GH_BRANCH}`, {
         headers: ghHeaders(env),
       });
       if (getLatest.ok) {
         const latestData = await getLatest.json();
-        if (latestData.sha && latestData.sha !== putPayload.sha) {
+        if (latestData && latestData.sha) {
           putPayload.sha = latestData.sha;
           r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}`, {
             method: 'PUT',
