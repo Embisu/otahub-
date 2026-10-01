@@ -7648,6 +7648,16 @@ async function deleteUser(username) {
   }
 }
 
+function resolveAuthorSlug(name, role) {
+  if (role === 'admin') return 'otahub';
+  let s = String(name || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  if (/otahub/i.test(s)) return 'otahub';
+  if (s === 'anh-thu' || s === 'anhthu') return 'anhthu';
+  if (s === 'anna') return 'anna';
+  if (s === 'yu') return 'yu';
+  return s;
+}
+
 // ── Quản lý và điều chỉnh hồ sơ tác giả (Author Profile Modal) ──────────
 async function openAuthorProfileModal(targetUsername) {
   const isEditingOther = !!targetUsername && targetUsername !== CURRENT_USER.username;
@@ -7684,7 +7694,7 @@ async function openAuthorProfileModal(targetUsername) {
     if (!r.ok) throw new Error(data.error || 'Không tải được hồ sơ.');
 
     const u = data;
-    const authorSlug = u.role === 'admin' ? 'otahub' : u.username.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const authorSlug = resolveAuthorSlug(u.username, u.role);
     const publicUrl = `/author/${authorSlug}`;
 
     modal.innerHTML = `
@@ -14957,8 +14967,7 @@ function applyArticleEditsToHtml(baseHtml, customData) {
 function stampArticleAuthor(html, authorName) {
   const author = cleanPlainText(authorName) || 'OtaHub';
   const escaped = esc(author);
-  let profileSlug = author.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-  if (/otahub/i.test(profileSlug) || CURRENT_USER?.role === 'admin') profileSlug = 'otahub';
+  let profileSlug = resolveAuthorSlug(author, CURRENT_USER?.role);
   const profilePrefix = /<html\b[^>]*\blang="en"/i.test(html) ? '/en/author/' : '/author/';
   const jsonAuthor = author.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
   html = html.replace(/(<meta\s+name="author"\s+content=")[^"]*(")/i, `$1${escaped}$2`);
@@ -16104,7 +16113,7 @@ function newArticle(prefillTitle) {
 <span class="am-sep"></span>
 <span class="am-read">5 phút đọc</span>
 <span class="am-sep"></span>
-<a class="author-profile-link" href="/author/${CURRENT_USER?.role === 'admin' ? 'otahub' : String(authorName).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}"><span class="am-badge">${esc(authorName)}</span></a>
+<a class="author-profile-link" href="/author/${resolveAuthorSlug(authorName, CURRENT_USER?.role)}"><span class="am-badge">${esc(authorName)}</span></a>
 </div>
 
 <div class="highlight-box">
