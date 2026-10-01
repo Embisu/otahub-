@@ -223,7 +223,7 @@ function copyArticleLink(button){
 }
 </script>
 <script defer src="/assets/search-redirect.js"></script>
-<script defer src="/assets/enhance.js"></script>
+<script defer src="/assets/enhance.js?v=20261001c"></script>
 <script defer src="/assets/lang-switch.js"></script>
 </body>
 </html>`;
@@ -464,7 +464,7 @@ function copyArticleLink(button){
 }
 </script>
 <script defer src="/assets/search-redirect.js"></script>
-<script defer src="/assets/enhance.js"></script>
+<script defer src="/assets/enhance.js?v=20261001c"></script>
 <script defer src="/assets/lang-switch.js"></script>
 </body>
 </html>`;
@@ -705,7 +705,7 @@ function copyArticleLink(button){
 }
 </script>
 <script defer src="/assets/search-redirect.js"></script>
-<script defer src="/assets/enhance.js"></script>
+<script defer src="/assets/enhance.js?v=20261001c"></script>
 <script defer src="/assets/lang-switch.js"></script>
 </body>
 </html>`;
@@ -943,7 +943,7 @@ function copyArticleLink(button){
 }
 </script>
 <script defer src="/assets/search-redirect.js"></script>
-<script defer src="/assets/enhance.js"></script>
+<script defer src="/assets/enhance.js?v=20261001c"></script>
 <script defer src="/assets/lang-switch.js"></script>
 </body>
 </html>`;
