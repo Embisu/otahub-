@@ -630,6 +630,16 @@ window.IDX = [
     "lang": "en"
   },
   {
+    "title": "One Piece Chapter 1194: Zoro vs. Sommers Explained",
+    "url": "/en/one-piece-1194-zoro-vs-sommers-explained",
+    "cat": "Manga",
+    "date": "2026-09-28",
+    "excerpt": "One Piece chapter 1194 recap: Zoro vs. Saint Sommers, Mihawk’s lesson, and what the chapter confirms about Zoro’s Conqueror’s Haki.",
+    "img": "/assets/img/real-op1194-dexerto.jpg",
+    "tags": [],
+    "lang": "en"
+  },
+  {
     "title": "One Piece Chương 1192: Luffy Xuyên Thủng Lá Chắn, Khiến Imu Đổ Máu",
     "url": "/one-piece-chuong-1192-luffy-xuyen-thung-khien-imu-do-mau",
     "cat": "Manga",
@@ -1450,11 +1460,11 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "One Piece Chapter 1194 Spoilers: Zoro Đối Đầu Sommers",
+    "title": "One Piece Chương 1194: Zoro Đối Đầu Sommers",
     "url": "/one-piece-chapter-1194-spoilers-loki-uranus-elbaf",
     "cat": "Manga",
     "date": "2026-09-19",
-    "excerpt": "One Piece 1194 phát hành ngày 27/9/2026: Luffy kiệt sức sau Gear 5, Loki có dấu hiệu biến hình mới và Zoro đối đầu Sommers tại Elbaf.",
+    "excerpt": "Tóm tắt One Piece chương 1194: trận Zoro đối đầu Saint Sommers, bài học của Mihawk và bước tiến mới trong cách Zoro sử dụng Bá Vương Haki.",
     "img": "/assets/img/real-op1194-dexerto.jpg",
     "tags": [],
     "lang": "vi"

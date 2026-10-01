@@ -6341,12 +6341,16 @@ function mediaUpdatePreview() {
   if (img) img.onerror = () => { prev.innerHTML = `<div class="media-preview-empty">⚠️ Không tải được ảnh, kiểm tra lại URL</div>`; };
 }
 
-// Nhận diện link YouTube/Vimeo phổ biến (watch, shorts, youtu.be, embed, vimeo) → video ID để dựng iframe nhúng.
+// Nhận diện link YouTube/Vimeo phổ biến (watch, shorts, youtu.be, live, embed, vimeo) → video ID để dựng iframe nhúng.
 function parseVideoUrl(url) {
-  url = (url || '').trim();
-  let m = url.match(/(?:youtube\.com\/watch\?v=|youtube\.com\/shorts\/|youtu\.be\/|youtube\.com\/embed\/)([A-Za-z0-9_-]{11})/);
+  if (!url) return null;
+  url = String(url).trim();
+  const iframeSrc = url.match(/src=["']([^"']+)["']/i);
+  if (iframeSrc) url = iframeSrc[1];
+  let m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|shorts\/|live\/|watch\?(?:.*&)?v=))([A-Za-z0-9_-]{11})/i)
+       || url.match(/youtube-nocookie\.com\/embed\/([A-Za-z0-9_-]{11})/i);
   if (m) return { provider: 'youtube', id: m[1], embedUrl: `https://www.youtube.com/embed/${m[1]}` };
-  m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/i);
   if (m) return { provider: 'vimeo', id: m[1], embedUrl: `https://player.vimeo.com/video/${m[1]}` };
   return null;
 }
@@ -6357,14 +6361,14 @@ function mediaUpdateVideoPreview() {
   if (!prev) return;
   const v = parseVideoUrl(url);
   prev.innerHTML = v
-    ? `<div class="media-video-embed-wrap"><iframe src="${esc(v.embedUrl)}" frameborder="0" allowfullscreen loading="lazy"></iframe></div>`
+    ? `<div class="media-video-embed-wrap"><iframe src="${esc(v.embedUrl)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>`
     : (url ? `<div class="media-preview-empty">⚠️ Không nhận diện được link YouTube/Vimeo</div>` : `<div class="media-preview-empty">Dán link để xem trước</div>`);
 }
 
 // Wrapper responsive tự chứa (padding-bottom trick, không phụ thuộc CSS trang thật)
 // để nhúng được an toàn vào MỌI bài viết, kể cả ~150 bài cũ chưa có class video sẵn.
 function videoEmbedHtml(embedUrl, caption, forPreviewOnly) {
-  return `<figure class="art-video-embed"><div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px${forPreviewOnly ? ';pointer-events:none' : ''}"><iframe src="${esc(embedUrl)}" title="Video" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>${caption ? `<figcaption${forPreviewOnly ? ' data-ohf="caption"' : ''}>${esc(caption)}</figcaption>` : ''}</figure>`;
+  return `<figure class="art-video-embed"><div class="art-video-inner" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px${forPreviewOnly ? ';pointer-events:none' : ''}"><iframe src="${esc(embedUrl)}" title="Video" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>${caption ? `<figcaption${forPreviewOnly ? ' data-ohf="caption"' : ''}>${esc(caption)}</figcaption>` : ''}</figure>`;
 }
 
 function mediaConfirmInsert() {
@@ -8225,7 +8229,8 @@ async function purgeArticleFromEntireSite(slug, file) {
   try {
     const feedX = await ghGet('feed.xml');
     let fx = decodeURIComponent(escape(atob(feedX.content.replace(/\s/g, ''))));
-    const itemRe = new RegExp(`\\s*<item>[\\s\\S]*?<link>${urlAbs}<\\/link>[\\s\\S]*?<\\/item>`, 'g');
+    const escapedUrlAbs = urlAbs.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const itemRe = new RegExp(`\\s*<item>(?:(?!<item>)[\\s\\S])*?<link>${escapedUrlAbs}<\\/link>[\\s\\S]*?<\\/item>`, 'g');
     if (itemRe.test(fx)) {
       fx = fx.replace(itemRe, '');
       await ghPut('feed.xml', fx, feedX.sha, `[admin] go bo /${slug} khoi feed.xml`);
@@ -8265,7 +8270,8 @@ async function purgeArticleFromEntireSite(slug, file) {
     try {
       const smData = await ghGet(sm);
       let xml = decodeURIComponent(escape(atob(smData.content.replace(/\s/g, ''))));
-      const urlRe = new RegExp(`\\s*<url>[\\s\\S]*?<loc>${urlAbs}<\\/loc>[\\s\\S]*?<\\/url>`, 'g');
+      const escapedUrlAbs = urlAbs.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const urlRe = new RegExp(`\\s*<url>(?:(?!<url>)[\\s\\S])*?<loc>${escapedUrlAbs}<\\/loc>[\\s\\S]*?<\\/url>`, 'g');
       if (urlRe.test(xml)) {
         xml = xml.replace(urlRe, '');
         await ghPut(sm, xml, smData.sha, `[admin] go bo /${slug} khoi ${sm}`);
@@ -12887,8 +12893,9 @@ function cleanVisualHtml(html) {
       }
     });
 
-    // Đảm bảo mọi figure hiển thị chuẩn căn giữa nếu không căn trái/phải
+    // 3. Đảm bảo mọi figure ảnh hiển thị chuẩn căn giữa nếu không căn trái/phải (bỏ qua video embed)
     doc.body.querySelectorAll('figure').forEach(fig => {
+      if (fig.classList.contains('art-video-embed')) return;
       if (!fig.classList.contains('alignleft') && !fig.classList.contains('alignright')) {
         fig.classList.add('aligncenter');
       }
@@ -12898,12 +12905,43 @@ function cleanVisualHtml(html) {
       }
     });
 
+    // 4. Chuẩn hóa và tự phục hồi cấu trúc video embed, bảo đảm luôn có .art-video-inner responsive 16:9
+    doc.body.querySelectorAll('figure.art-video-embed, .art-video-embed').forEach(fig => {
+      fig.classList.remove('aligncenter');
+      fig.classList.add('art-video-embed');
+      const ifr = fig.querySelector('iframe');
+      if (ifr) {
+        const cap = fig.querySelector('figcaption')?.innerHTML || '';
+        const wrap = doc.createElement('div');
+        wrap.className = 'art-video-inner';
+        wrap.setAttribute('style', 'position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;');
+        ifr.setAttribute('style', 'position:absolute;top:0;left:0;width:100%;height:100%;border:0;');
+        ifr.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+        ifr.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+        ifr.setAttribute('allowfullscreen', '');
+        ifr.setAttribute('loading', 'lazy');
+        wrap.appendChild(ifr);
+        fig.innerHTML = '';
+        fig.appendChild(wrap);
+        if (cap) {
+          const fc = doc.createElement('figcaption');
+          fc.innerHTML = cap;
+          fig.appendChild(fc);
+        }
+      }
+    });
+
+    // 5. Làm sạch style thừa từ Word / Google Docs (loại trừ .art-video-inner và iframe video)
+    doc.body.querySelectorAll('*').forEach(el => {
+      if (el.classList.contains('art-video-inner') || (el.tagName === 'IFRAME' && el.closest('.art-video-embed'))) return;
+      el.removeAttribute('style');
+    });
+
     s = doc.body.innerHTML;
   } catch(e) {
     console.warn('DOM cleanup fallback:', e);
   }
 
-  s = s.replace(/ style="[^"]*"/gi, '');
   // Thay thế các cặp <div>...</div> thông thường thành <p>...</p> đồng bộ cả mở lẫn đóng, bảo lưu các khối giao diện bài viết chuẩn
   s = s.replace(/<div(?:\s+class="(?!(?:art-|wc-|am-|aligncenter|alignleft|alignright|art-table|art-video|art-callout|art-faq|highlight-box|hb-|source-note|review-|score-|info-)\b)[^"]*")?\s*>([\s\S]*?)<\/div>/gi, '<p>$1</p>');
   s = s.replace(/<p>(\s|&nbsp;|<br\s*\/?>)*<\/p>/gi, '');
@@ -12931,7 +12969,7 @@ function autoEmbedVideoInHtml(html) {
         }
       } else if (links.length === 0) {
         const raw = p.textContent.trim();
-        if (/^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/|vimeo\.com\/)[A-Za-z0-9_\-\/?=&;%]+$/i.test(raw)) {
+        if (/^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:watch\?|shorts\/|live\/|embed\/)|youtu\.be\/|vimeo\.com\/)[A-Za-z0-9_\-\/?=&;%]+$/i.test(raw)) {
           targetUrl = raw;
         }
       }
@@ -12940,7 +12978,7 @@ function autoEmbedVideoInHtml(html) {
         if (v) {
           const figure = doc.createElement('figure');
           figure.className = 'art-video-embed';
-          figure.innerHTML = `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;"><iframe src="${esc(v.embedUrl)}" title="Video" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`;
+          figure.innerHTML = `<div class="art-video-inner" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;"><iframe src="${esc(v.embedUrl)}" title="Video" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>`;
           p.replaceWith(figure);
           changed = true;
         }
@@ -13305,7 +13343,7 @@ function blockToHtmlTagged(b, i) {
   }
   if (b.type === 'video') {
     if (!b.embedUrl) return `<figure data-oh-jump="block-${i}" class="oh-img-empty"><div class="oh-img-empty-hint">🎬 Chưa có video — bấm để thêm bên dưới</div></figure>`;
-    return `<figure data-oh-jump="block-${i}" class="art-video-embed"><div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;pointer-events:none"><iframe src="${esc(b.embedUrl)}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" loading="lazy"></iframe></div><figcaption data-ohb="${i}" data-ohf="caption" contenteditable="true">${esc(b.caption||'')}</figcaption></figure>`;
+    return `<figure data-oh-jump="block-${i}" class="art-video-embed"><div class="art-video-inner" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;pointer-events:none"><iframe src="${esc(b.embedUrl)}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" loading="lazy"></iframe></div><figcaption data-ohb="${i}" data-ohf="caption" contenteditable="true">${esc(b.caption||'')}</figcaption></figure>`;
   }
   if (b.type === 'quote') {
     return `<blockquote data-oh-jump="block-${i}"><p data-ohb="${i}" data-ohf="text" contenteditable="true">${b.text || ''}</p><cite data-ohb="${i}" data-ohf="cite" contenteditable="true">${esc(b.cite || '')}</cite></blockquote>`;
