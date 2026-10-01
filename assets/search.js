@@ -1,5 +1,23 @@
 window.IDX = [
   {
+    "title": "Katsuwo ra mắt manga shogi mới Ōja no Ban Kuruwase",
+    "url": "/katsuwo-ra-mat-manga-shogi-moi-oja-no-ban-kuruwase",
+    "cat": "Manga",
+    "date": "2026-10-01",
+    "excerpt": "Katsuwo , tác giả của Mitsuboshi Colors và Hitoribocchi no Marumaru Seikatsu , đã trở lại với manga mới mang tên Ōja no Ban Kuruwase: Net Shōgi no Teiō, Riaru Taikai de Chōjō o Mezasu",
+    "img": "/assets/img/uploads/d4b9z74a-oujanobankuruwase-vol1novelart.webp",
+    "tags": []
+  },
+  {
+    "title": "Frieren: Beyond Journey’s End mùa 3 chính thức trở lại tháng 10/2027",
+    "url": "/frieren-beyond-journey-s-end-mua-3-chinh-thuc-tro-lai-thang",
+    "cat": "Anime",
+    "date": "2026-10-01",
+    "excerpt": "Frieren mùa 3 trở lại tháng 10/2027 với Golden Land Arc. Cập nhật lịch phát sóng, teaser Macht và những thông tin mới nhất về phần anime tiếp theo.",
+    "img": "/assets/img/uploads/xp8vugwu-frieren-s2-e10-main-1.jpg",
+    "tags": []
+  },
+  {
     "title": "Raincoat Pikachu được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử",
     "url": "/raincoat-pikachu-duoc-ban-voi-gia-8-4-trieu-usd-tro-thanh-th",
     "cat": "Gaming",

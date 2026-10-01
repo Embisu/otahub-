@@ -449,6 +449,19 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
 /* ── 📱 OtaHub Mobile Navigation & Ergonomics (Pills Bar, Bottom Bar, Smart TOC) ── */
 (function(){
   function initMobileBars() {
+    var mobileViewport = window.matchMedia('(max-width: 768px)');
+
+    // Không tạo điều hướng mobile trên desktop. Trước đây các phần tử này luôn
+    // được chèn rồi mới trông chờ CSS ẩn đi, nên chúng có thể lóe thành link thô
+    // khi stylesheet tải chậm, bị cache sai hoặc tạm thời không tải được.
+    if (!mobileViewport.matches) {
+      var mountedBars = document.querySelectorAll('.mob-cat-bar, .mob-bottom-bar');
+      for (var mountedIndex = 0; mountedIndex < mountedBars.length; mountedIndex++) {
+        mountedBars[mountedIndex].remove();
+      }
+      return;
+    }
+
     var path = window.location.pathname.toLowerCase().replace(/\/$/, '') || '/';
     var isEn = path.indexOf('/en') === 0;
 
@@ -562,5 +575,12 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
     document.addEventListener('DOMContentLoaded', initMobileBars);
   } else {
     initMobileBars();
+  }
+
+  var mobileQuery = window.matchMedia('(max-width: 768px)');
+  if (typeof mobileQuery.addEventListener === 'function') {
+    mobileQuery.addEventListener('change', initMobileBars);
+  } else if (typeof mobileQuery.addListener === 'function') {
+    mobileQuery.addListener(initMobileBars);
   }
 })();
