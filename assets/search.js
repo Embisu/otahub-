@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Raincoat Pikachu được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử",
+    "url": "/raincoat-pikachu-duoc-ban-voi-gia-8-4-trieu-usd-tro-thanh-th",
+    "cat": "Gaming",
+    "date": "2026-10-01",
+    "excerpt": "Được tạo ra từ một cuộc thi minh họa liên quan đến Pokémon Art Academy trên Nintendo 3DS, Raincoat Pikachu vốn chỉ được trao cho họa sĩ chiến thắng dưới dạng phần thưởng. Phiên bản vừa được đấu giá đạt chuẩn PSA 10 Gem Mint và kết thúc với 64 lượt trả giá.",
+    "img": "/assets/img/uploads/o8e6u5kv-bzsawf93tlgnit5hqizumf-970-80-jpg.webp",
+    "tags": []
+  },
+  {
     "title": "5 game sinh tồn miễn phí đáng chơi trên Steam, fan thể loại survival không nên bỏ qua",
     "url": "/5-game-sinh-ton-mien-phi-dang-choi-tren-steam-fan-the-loai-s",
     "cat": "Gaming",
