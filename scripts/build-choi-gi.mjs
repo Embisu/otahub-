@@ -1763,7 +1763,7 @@ function buildHtml(lang = 'vi') {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-  <link rel="stylesheet" href="/assets/mobile-fix.css?v=20260926">
+  <link rel="stylesheet" href="/assets/mobile-fix.css?v=20261001b">
 
   <style>
     :root {
@@ -3110,7 +3110,7 @@ function buildHtml(lang = 'vi') {
     updateSubfilterRow();
   </script>
   <script defer src="/assets/search-redirect.js"></script>
-  <script defer src="/assets/enhance.js?v=20260930a"></script>
+  <script defer src="/assets/enhance.js?v=20261001b"></script>
   <script defer src="/assets/img-fit.v2.js?v=20260926"></script>
   <script src="/assets/lang-switch.js" defer></script>
 </body>

@@ -5421,7 +5421,7 @@ function onTitleInput(value) {
     BILINGUAL_DATA[CURRENT_LANG].title = clean;
     if (typeof updateBilingualBadges === 'function') updateBilingualBadges();
   }
-  if (!currentSha && !ART_SLUG_TOUCHED) {
+  if (!currentSha && !ART_SLUG_TOUCHED && CURRENT_LANG === 'vi') {
     const slugEl = document.getElementById('ed-slug');
     const autoSlug = slugifyFilename(clean) || 'bai-viet-moi';
     if (slugEl) slugEl.value = autoSlug;
@@ -8962,15 +8962,52 @@ async function createEnglishDraftForArticle(file) {
     const heroPos = extract(raw, /data-hero-pos="([^"]*)"/) || '50';
     const author = extract(raw, /<meta\s+name="author"\s+content="([^"]*)"/i) || CURRENT_ARTICLE_AUTHOR || 'OtaHub Editorial';
 
+    const pRawTitle = (extract(raw, /<h1\b[^>]*>([\s\S]*?)<\/h1>/i) || extract(raw, /<title>([^<]+)<\/title>/) || '').replace(/\s*·\s*OtaHub$/i, '').trim();
+    const pTitle = cleanPlainText(pRawTitle);
+    const pDesc = cleanPlainText(extract(raw, /name="description" content="([^"]+)"/) || '');
+    const pBody = extractBody(raw);
+    const pExcerpt = cleanPlainText(extractExcerpt(raw) || pDesc);
+    const pKeyword = cleanPlainText(extract(raw, /name="focus-keyword" content="([^"]*)"/) || '');
+    const pHb = extractHighlightBox(raw);
+    const pBlockMatch = raw.match(/<script type="application\/json" id="admin-block-data">([\s\S]*?)<\/script>/);
+    const pBlocks = pBlockMatch ? JSON.parse(pBlockMatch[1]) : null;
+
     const enHtml = buildStandardEnglishArticleTemplate(viSlug, enSlug, hero, heroPos, cat, author);
     
     currentFile = enFile;
     currentSha = null;
     CURRENT_ARTICLE_AUTHOR = author;
     
-    if (!BILINGUAL_DATA) BILINGUAL_DATA = { vi: {}, en: {} };
-    BILINGUAL_DATA.vi = { file, sha: data.sha, rawHtml: raw };
-    BILINGUAL_DATA.en = { file: enFile, sha: null, rawHtml: enHtml, bodyHtml: '' };
+    BILINGUAL_DATA = {
+      vi: {
+        file,
+        sha: data.sha,
+        rawHtml: raw,
+        title: pTitle,
+        desc: pDesc,
+        excerpt: pExcerpt,
+        keyword: pKeyword,
+        bodyHtml: pBody,
+        blocks: pBlocks,
+        hasHb: !!pHb,
+        hbLabel: pHb ? cleanPlainText(pHb.label) : '',
+        hbText: pHb ? pHb.text : ''
+      },
+      en: {
+        file: enFile,
+        sha: null,
+        rawHtml: enHtml,
+        title: '',
+        desc: '',
+        excerpt: '',
+        keyword: '',
+        bodyHtml: '',
+        blocks: null,
+        hasHb: false,
+        hbLabel: '',
+        hbText: ''
+      }
+    };
     CURRENT_LANG = 'en';
 
     renderEditor(enFile, enHtml);
@@ -9844,10 +9881,15 @@ function renderEditor(file, html) {
     enFile = enHrefMatch ? `en/${enHrefMatch[1].replace(/\.html$/, '')}.html` : `en/${(file||'').replace(/\.html$/, '')}.html`;
   }
 
-  BILINGUAL_DATA = {
-    vi: { file: viFile, sha: !isEnFile ? currentSha : null, rawHtml: !isEnFile ? html : '', title: !isEnFile ? title : '', desc: !isEnFile ? desc : '', excerpt: !isEnFile ? excerpt : '', keyword: !isEnFile ? keyword : '', bodyHtml: !isEnFile ? bodyVi : '', blocks: !isEnFile ? (BODY_BLOCKS ? JSON.parse(JSON.stringify(BODY_BLOCKS)) : null) : null, hasHb: !isEnFile ? ART_HAS_HB : false, hbLabel: !isEnFile ? ART_HB_LABEL : '', hbText: !isEnFile ? ART_HB_TEXT : '' },
-    en: { file: enFile, sha: isEnFile ? currentSha : null, rawHtml: isEnFile ? html : '', title: isEnFile ? title : '', desc: isEnFile ? desc : '', excerpt: isEnFile ? excerpt : '', keyword: isEnFile ? keyword : '', bodyHtml: isEnFile ? bodyVi : '', blocks: isEnFile ? (BODY_BLOCKS ? JSON.parse(JSON.stringify(BODY_BLOCKS)) : null) : null, hasHb: isEnFile ? ART_HAS_HB : false, hbLabel: isEnFile ? ART_HB_LABEL : '', hbText: isEnFile ? ART_HB_TEXT : '' }
-  };
+  const hasExistingVi = !!(BILINGUAL_DATA?.vi?.rawHtml && BILINGUAL_DATA.vi.file === viFile && BILINGUAL_DATA.vi.title);
+  if (!hasExistingVi) {
+    BILINGUAL_DATA = {
+      vi: { file: viFile, sha: !isEnFile ? currentSha : null, rawHtml: !isEnFile ? html : '', title: !isEnFile ? title : '', desc: !isEnFile ? desc : '', excerpt: !isEnFile ? excerpt : '', keyword: !isEnFile ? keyword : '', bodyHtml: !isEnFile ? bodyVi : '', blocks: !isEnFile ? (BODY_BLOCKS ? JSON.parse(JSON.stringify(BODY_BLOCKS)) : null) : null, hasHb: !isEnFile ? ART_HAS_HB : false, hbLabel: !isEnFile ? ART_HB_LABEL : '', hbText: !isEnFile ? ART_HB_TEXT : '' },
+      en: { file: enFile, sha: isEnFile ? currentSha : null, rawHtml: isEnFile ? html : '', title: isEnFile ? title : '', desc: isEnFile ? desc : '', excerpt: isEnFile ? excerpt : '', keyword: isEnFile ? keyword : '', bodyHtml: isEnFile ? bodyVi : '', blocks: isEnFile ? (BODY_BLOCKS ? JSON.parse(JSON.stringify(BODY_BLOCKS)) : null) : null, hasHb: isEnFile ? ART_HAS_HB : false, hbLabel: isEnFile ? ART_HB_LABEL : '', hbText: isEnFile ? ART_HB_TEXT : '' }
+    };
+  } else {
+    BILINGUAL_DATA.en = { file: enFile, sha: isEnFile ? currentSha : null, rawHtml: isEnFile ? html : '', title: isEnFile ? title : '', desc: isEnFile ? desc : '', excerpt: isEnFile ? excerpt : '', keyword: isEnFile ? keyword : '', bodyHtml: isEnFile ? bodyVi : '', blocks: isEnFile ? (BODY_BLOCKS ? JSON.parse(JSON.stringify(BODY_BLOCKS)) : null) : null, hasHb: isEnFile ? ART_HAS_HB : false, hbLabel: isEnFile ? ART_HB_LABEL : '', hbText: isEnFile ? ART_HB_TEXT : '' };
+  }
 
   setMain(`
     <!-- WordPress Classic Header -->
@@ -11214,6 +11256,11 @@ function switchBilingualTab(targetLang) {
 
   // 2. Set new language
   CURRENT_LANG = targetLang;
+  const currentCleanSlug = (currentFile || '').replace(/^en\//, '').replace(/\.html$/, '');
+  const targetViFile = `${currentCleanSlug}.html`;
+  const targetEnFile = `en/${currentCleanSlug}.html`;
+  currentFile = targetLang === 'en' ? (BILINGUAL_DATA?.en?.file || targetEnFile) : (BILINGUAL_DATA?.vi?.file || targetViFile);
+  currentSha = targetLang === 'en' ? (BILINGUAL_DATA?.en?.sha || null) : (BILINGUAL_DATA?.vi?.sha || null);
 
   // 3. Update tabs UI
   const btnVi = document.getElementById('btn-lang-tab-vi');
@@ -11459,9 +11506,19 @@ async function loadPairedLanguageData(lang, pairedFile) {
     if (draft && draft.html) {
       pairedHtml = draft.html;
     } else {
-      const res = await fetch('/' + pairedFile, { cache: 'no-store' }).catch(() => null);
-      if (res && res.ok) {
-        pairedHtml = await res.text();
+      try {
+        const ghData = await ghGet(pairedFile);
+        if (ghData && ghData.content) {
+          pairedHtml = b64ToUtf8(ghData.content);
+          if (BILINGUAL_DATA && BILINGUAL_DATA[lang]) BILINGUAL_DATA[lang].sha = ghData.sha;
+        }
+      } catch (e) {}
+
+      if (!pairedHtml) {
+        const res = await fetch('/' + pairedFile.replace(/\.html$/, ''), { cache: 'no-store' }).catch(() => null);
+        if (res && res.ok) {
+          pairedHtml = await res.text();
+        }
       }
     }
 
@@ -11558,7 +11615,7 @@ function buildStandardEnglishArticleTemplate(viSlug, enSlug, heroImg, heroPos, c
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="stylesheet" href="/assets/article-style.css?v=20261001video">
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-<link rel="stylesheet" href="/assets/mobile-fix.css?v=20260926">
+<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261001b">
 </head>
 <body>
 <header class="site-header">
@@ -14364,7 +14421,7 @@ function bindArticleBridgeMessages() {
         const titleInput = document.getElementById('ed-title');
         if (titleInput && titleInput.value !== clean) titleInput.value = clean;
         const slugEl = document.getElementById('ed-slug');
-        if (slugEl && !currentSha && !ART_SLUG_TOUCHED) {
+        if (slugEl && !currentSha && !ART_SLUG_TOUCHED && CURRENT_LANG === 'vi') {
           const autoSlug = slugifyFilename(clean) || currentFile.replace(/\.html$/, '');
           slugEl.value = autoSlug;
           applySlug(autoSlug);
@@ -15140,22 +15197,30 @@ async function saveArticle() {
     }
 
     // Check content of both languages
-    const viTitle = cleanPlainText(BILINGUAL_DATA?.vi?.title || ART_TITLE || '');
-    const viDesc  = cleanPlainText(BILINGUAL_DATA?.vi?.desc || document.getElementById('ed-desc')?.value || '');
-    const enTitle = cleanPlainText(BILINGUAL_DATA?.en?.title || '');
-    const enDesc  = cleanPlainText(BILINGUAL_DATA?.en?.desc || '');
+    const isEnTab = CURRENT_LANG === 'en';
+    const viTitle = cleanPlainText(BILINGUAL_DATA?.vi?.title || (!isEnTab ? ART_TITLE : ''));
+    const viDesc  = cleanPlainText(BILINGUAL_DATA?.vi?.desc || (!isEnTab ? document.getElementById('ed-desc')?.value : ''));
+    const viBody  = BILINGUAL_DATA?.vi?.bodyHtml || '';
+    const viBlocks= BILINGUAL_DATA?.vi?.blocks;
+    const hasViContent = !!(viTitle && (viBody.length > 20 || (viBlocks && viBlocks.length > 0)));
+
+    const enTitle = cleanPlainText(BILINGUAL_DATA?.en?.title || (isEnTab ? ART_TITLE : ''));
+    const enDesc  = cleanPlainText(BILINGUAL_DATA?.en?.desc || (isEnTab ? document.getElementById('ed-desc')?.value : ''));
     const enBody  = BILINGUAL_DATA?.en?.bodyHtml || '';
-    const hasEn   = !!(enTitle && (enBody.length > 20 || (BILINGUAL_DATA?.en?.blocks && BILINGUAL_DATA?.en?.blocks.length > 0)));
+    const enBlocks= BILINGUAL_DATA?.en?.blocks;
+    const hasEn   = !!(enTitle && (enBody.length > 20 || (enBlocks && enBlocks.length > 0)));
 
     // 1. LƯU BÀI VIẾT TIẾNG VIỆT
     const isValidSha = (s) => typeof s === 'string' && /^[0-9a-f]{40}$/i.test(s.trim());
-    let viHtml = '', viSha = isValidSha(BILINGUAL_DATA?.vi?.sha) ? BILINGUAL_DATA.vi.sha.trim() : (isValidSha(currentSha) ? currentSha.trim() : null);
+    let viHtml = '', viSha = isValidSha(BILINGUAL_DATA?.vi?.sha) ? BILINGUAL_DATA.vi.sha.trim() : (isValidSha(currentSha) && !isEnTab ? currentSha.trim() : null);
+    let viFileExists = false;
 
     // Luôn xác thực SHA thực tế trên GitHub để tránh xung đột hoặc lỗi thiếu sha khi file đã tồn tại
     try {
       const data = await ghGet(viFile);
       if (isValidSha(data?.sha)) {
         viSha = data.sha.trim();
+        viFileExists = true;
       }
       if (data?.content) {
         try { viHtml = decodeURIComponent(escape(atob(String(data.content || '').replace(/\s/g, '')))); } catch (e) { viHtml = ''; }
@@ -15166,46 +15231,70 @@ async function saveArticle() {
 
     if (!viSha) {
       const cached = ARTICLES.find(a => a.file === viFile);
-      if (isValidSha(cached?.sha)) viSha = cached.sha.trim();
+      if (isValidSha(cached?.sha)) {
+        viSha = cached.sha.trim();
+        viFileExists = true;
+      }
     }
 
-    if (!viHtml || viHtml.length < 200 || !/<html/i.test(viHtml)) {
-      viHtml = BILINGUAL_DATA?.vi?.rawHtml || currentRawHtml;
-      if (!viSha) viHtml = patchNewArticleUrls(viHtml, viFile);
-    }
+    let newViSha = viSha;
+    if (hasViContent) {
+      if (!viHtml || viHtml.length < 200 || !/<html/i.test(viHtml)) {
+        viHtml = BILINGUAL_DATA?.vi?.rawHtml || currentRawHtml;
+        if (!viSha) viHtml = patchNewArticleUrls(viHtml, viFile);
+      }
 
-    viHtml = applyArticleEditsToHtml(viHtml, {
-      title: viTitle || 'Tiêu đề bài viết',
-      desc: viDesc,
-      keyword: BILINGUAL_DATA?.vi?.keyword,
-      hero,
-      heroPos,
-      cat,
-      bodyHtml: BILINGUAL_DATA?.vi?.bodyHtml,
-      blocks: BILINGUAL_DATA?.vi?.blocks,
-      hasHb: BILINGUAL_DATA?.vi?.hasHb,
-      hbLabel: BILINGUAL_DATA?.vi?.hbLabel,
-      hbText: BILINGUAL_DATA?.vi?.hbText,
-      slug: viSlug,
-      pubDate: CUSTOM_PUBLISH_DATE || formatVietnamIso(new Date())
-    });
-    viHtml = stampArticleAuthor(viHtml, publishingAuthor);
-    if (hasEn) {
-      viHtml = ensureHreflangLinks(viHtml, viSlug, enSlug, 'vi');
-    }
-    viHtml = await externalizeInlineImages(viHtml);
-    if (!viHtml || viHtml.length < 500 || !/<html/i.test(viHtml)) {
-      throw new Error('Nội dung bài viết tiếng Việt trống bất thường — đã chặn lưu để tránh mất bài.');
-    }
+      viHtml = applyArticleEditsToHtml(viHtml, {
+        title: viTitle || 'Tiêu đề bài viết',
+        desc: viDesc,
+        keyword: BILINGUAL_DATA?.vi?.keyword,
+        hero,
+        heroPos,
+        cat,
+        bodyHtml: viBody,
+        blocks: viBlocks,
+        hasHb: BILINGUAL_DATA?.vi?.hasHb,
+        hbLabel: BILINGUAL_DATA?.vi?.hbLabel,
+        hbText: BILINGUAL_DATA?.vi?.hbText,
+        slug: viSlug,
+        pubDate: CUSTOM_PUBLISH_DATE || formatVietnamIso(new Date())
+      });
+      viHtml = stampArticleAuthor(viHtml, publishingAuthor);
+      if (hasEn) {
+        viHtml = ensureHreflangLinks(viHtml, viSlug, enSlug, 'vi');
+      }
+      viHtml = await externalizeInlineImages(viHtml);
+      if (!viHtml || viHtml.length < 500 || !/<html/i.test(viHtml)) {
+        throw new Error('Nội dung bài viết tiếng Việt trống bất thường — đã chặn lưu để tránh mất bài.');
+      }
 
-    const viPutResult = await ghPut(viFile, viHtml, viSha, `[admin] cap nhat: ${(viTitle || 'bai viet').slice(0, 50)}`);
-    await deleteDraft(viFile);
-    const newViSha = isValidSha(viPutResult?.content?.sha) ? viPutResult.content.sha.trim() : (isValidSha(viPutResult?.sha) ? viPutResult.sha.trim() : viSha);
-    if (BILINGUAL_DATA?.vi) {
-      if (newViSha) BILINGUAL_DATA.vi.sha = newViSha;
-      BILINGUAL_DATA.vi.rawHtml = viHtml;
+      const viPutResult = await ghPut(viFile, viHtml, viSha, `[admin] cap nhat: ${(viTitle || 'bai viet').slice(0, 50)}`);
+      await deleteDraft(viFile);
+      newViSha = isValidSha(viPutResult?.content?.sha) ? viPutResult.content.sha.trim() : (isValidSha(viPutResult?.sha) ? viPutResult.sha.trim() : viSha);
+      if (BILINGUAL_DATA?.vi) {
+        if (newViSha) BILINGUAL_DATA.vi.sha = newViSha;
+        BILINGUAL_DATA.vi.rawHtml = viHtml;
+      }
+      if (newViSha && !isEnTab) currentSha = newViSha;
+    } else if (viFileExists && viHtml && hasEn) {
+      // Đang lưu ở tab tiếng Anh, bài tiếng Việt đã tồn tại và KHÔNG bị sửa trong phiên này:
+      // TUYỆT ĐỐI KHÔNG GHI ĐÈ TIÊU ĐỀ/NỘI DUNG TIẾNG VIỆT! Chỉ cập nhật hreflang nếu chưa có
+      const linkedViHtml = ensureHreflangLinks(viHtml, viSlug, enSlug, 'vi');
+      if (linkedViHtml !== viHtml) {
+        try {
+          const viPutResult = await ghPut(viFile, linkedViHtml, viSha, `[admin] dong bo link ban tieng Anh cho /${viSlug}`);
+          newViSha = isValidSha(viPutResult?.content?.sha) ? viPutResult.content.sha.trim() : (isValidSha(viPutResult?.sha) ? viPutResult.sha.trim() : viSha);
+          if (BILINGUAL_DATA?.vi) {
+            if (newViSha) BILINGUAL_DATA.vi.sha = newViSha;
+            BILINGUAL_DATA.vi.rawHtml = linkedViHtml;
+          }
+        } catch (e) {
+          console.warn('Lỗi gắn hreflang cho bài tiếng Việt:', e);
+        }
+      }
+    } else if (!isEnTab) {
+      throw new Error('Vui lòng nhập tiêu đề và nội dung bài viết tiếng Việt trước khi lưu.');
     }
-    if (newViSha && CURRENT_LANG !== 'en') currentSha = newViSha;
 
     // 2. LƯU BÀI VIẾT TIẾNG ANH (NẾU CÓ NỘI DUNG)
     let enPutResult = null, newEnSha = null;
@@ -15325,14 +15414,14 @@ async function saveArticle() {
     pingIndexNowNow([`https://otahub.asia/${viSlug}`, hasEn ? `https://otahub.asia/en/${enSlug}` : null].filter(Boolean));
 
     const isNewVi = !viSha;
-    if (!isNewVi && viTitle) {
+    if (!isNewVi && viTitle && hasViContent) {
       try { await propagateTitleChange(viFile.replace(/\.html$/, ''), viTitle); } catch (e) { console.warn('propagateTitleChange', e); }
     }
-    let needSync = isNewVi;
-    if (!needSync) {
+    let needSync = isNewVi && hasViContent;
+    if (!needSync && hasViContent) {
       try { const sj = await (await fetch('/assets/search.js?nocache=' + Date.now(), { cache: 'no-store' })).text(); needSync = !sj.includes('"/' + viFile.replace(/\.html$/, '') + '"'); } catch (e) {}
     }
-    if (needSync) {
+    if (needSync && hasViContent) {
       await syncNewArticle({ file: viFile, title: viTitle, desc: viDesc, cat, hero, author: publishingAuthor });
     }
 
@@ -15659,23 +15748,32 @@ async function autosaveArticleDraft() {
     const heroPos = document.getElementById('ed-hero-pos')?.value || '50';
     const publishingAuthor = publishingAuthorName();
 
-    // 1. Lưu nháp Tiếng Việt
-    let viHtml = BILINGUAL_DATA?.vi?.rawHtml || currentRawHtml || '';
-    if (!BILINGUAL_DATA?.vi?.sha) viHtml = patchNewArticleUrls(viHtml, viFile);
-    viHtml = applyArticleEditsToHtml(viHtml, {
-      title: BILINGUAL_DATA?.vi?.title || ART_TITLE,
-      desc: BILINGUAL_DATA?.vi?.desc || ART_EXCERPT,
-      keyword: BILINGUAL_DATA?.vi?.keyword,
-      hero, heroPos, cat,
-      bodyHtml: BILINGUAL_DATA?.vi?.bodyHtml,
-      blocks: BILINGUAL_DATA?.vi?.blocks,
-      hasHb: BILINGUAL_DATA?.vi?.hasHb,
-      hbLabel: BILINGUAL_DATA?.vi?.hbLabel,
-      hbText: BILINGUAL_DATA?.vi?.hbText,
-      slug: cleanSlug,
-      pubDate: CUSTOM_PUBLISH_DATE || undefined
-    });
-    await putDraft(viFile, viHtml);
+    // 1. Lưu nháp Tiếng Việt (chỉ lưu khi có nội dung tiếng Việt hoặc đang ở tab tiếng Việt)
+    const isEnTab = CURRENT_LANG === 'en';
+    const viTitle = cleanPlainText(BILINGUAL_DATA?.vi?.title || (!isEnTab ? ART_TITLE : ''));
+    const viDesc  = cleanPlainText(BILINGUAL_DATA?.vi?.desc || (!isEnTab ? ART_EXCERPT : ''));
+    const viBody  = BILINGUAL_DATA?.vi?.bodyHtml || '';
+    const viBlocks= BILINGUAL_DATA?.vi?.blocks;
+    const hasViContent = !!(viTitle && (viBody.length > 20 || (viBlocks && viBlocks.length > 0)));
+
+    if (hasViContent || !isEnTab) {
+      let viHtml = BILINGUAL_DATA?.vi?.rawHtml || currentRawHtml || '';
+      if (!BILINGUAL_DATA?.vi?.sha) viHtml = patchNewArticleUrls(viHtml, viFile);
+      viHtml = applyArticleEditsToHtml(viHtml, {
+        title: viTitle || 'Tiêu đề bài viết',
+        desc: viDesc,
+        keyword: BILINGUAL_DATA?.vi?.keyword,
+        hero, heroPos, cat,
+        bodyHtml: viBody,
+        blocks: viBlocks,
+        hasHb: BILINGUAL_DATA?.vi?.hasHb,
+        hbLabel: BILINGUAL_DATA?.vi?.hbLabel,
+        hbText: BILINGUAL_DATA?.vi?.hbText,
+        slug: cleanSlug,
+        pubDate: CUSTOM_PUBLISH_DATE || undefined
+      });
+      await putDraft(viFile, viHtml);
+    }
 
     // 2. Lưu nháp Tiếng Anh nếu có nội dung
     const enTitle = BILINGUAL_DATA?.en?.title || '';
@@ -18165,17 +18263,14 @@ async function saveNews() {
 // ── 🚀 Tự động hóa Dồn bài & Đồng bộ toàn hệ thống (Auto-Cascade) ──────────
 async function syncNewArticle(art) {
   const { file, title, desc, cat, hero, author = publishingAuthorName() } = art;
-  const slug = file.replace(/\.html$/, '');
+  const isEn = file.startsWith('en/');
+  const cleanSlug = file.replace(/^en\//, '').replace(/\.html$/, '');
+  const slug = isEn ? `en/${cleanSlug}` : cleanSlug;
 
   toast('success', '🚀 Bắt đầu tự động dồn bài & đồng bộ toàn site...');
 
   // Mỗi bước cascade dưới đây dùng ghSyncStep() (fetch → sửa → ghi, TỰ RETRY khi GitHub
-  // báo xung đột ghi 409) thay vì gọi ghGet/ghPut trực tiếp — trước đây một xung đột ghi
-  // đơn lẻ (rất hay xảy ra vì nhiều tài khoản/tiến trình cùng sửa các file này) sẽ bị
-  // try/catch nuốt âm thầm (chỉ console.warn), khiến bài xuất bản thành công nhưng "mất
-  // tích" khỏi search/sitemap/hub/news dù toast vẫn báo "hoàn tất". `failures` gom lại
-  // đúng những bước còn lỗi SAU KHI đã thử lại, để báo rõ cho người đăng bài thay vì im
-  // lặng — xem showSyncFailureBanner() ở cuối file.
+  // báo xung đột ghi 409) thay vì gọi ghGet/ghPut trực tiếp.
   const failures = [];
 
   // 1. Update assets/search.js
@@ -18206,73 +18301,75 @@ async function syncNewArticle(art) {
   toast('success', '🗺️ Đang cập nhật sitemap.xml...');
   try {
     await ghSyncStep('sitemap.xml', (sitemapXml) => {
-      const urlVI = `https://otahub.asia/${slug}`;
-      if (sitemapXml.includes(`<loc>${urlVI}</loc>`)) return null;
+      const targetUrl = `https://otahub.asia/${slug}`;
+      if (sitemapXml.includes(`<loc>${targetUrl}</loc>`)) return null;
       const today = new Date().toISOString().split('T')[0];
-      const entryVI = `  <url>\n    <loc>${urlVI}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
-      return sitemapXml.replace('</urlset>', () => `${entryVI}</urlset>`);
+      const entry = `  <url>\n    <loc>${targetUrl}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
+      return sitemapXml.replace('</urlset>', () => `${entry}</urlset>`);
     }, `[admin] them /${slug} vao sitemap`);
   } catch (e) {
     console.warn('Sitemap sync error:', e);
     failures.push('Sitemap (sitemap.xml)');
   }
 
-  // 2b. RSS (feed.xml), JSON Feed (feed.json) và Google News sitemap — 3 bước độc lập,
-  // mỗi bước tự retry & báo lỗi riêng thay vì gộp chung 1 try/catch như trước (gộp chung
-  // nghĩa là 1 bước lỗi sẽ làm 2 bước còn lại trong nhóm không chạy luôn).
+  // 2b. RSS & Google News sitemap — CHỈ chạy cho bài tiếng Việt (tránh làm lệch ngôn ngữ trong sitemap-news.xml vi)
   const nowIso = new Date().toISOString();
   const imgAbs = hero ? (hero.startsWith('http') ? hero : 'https://otahub.asia' + (hero.startsWith('/') ? '' : '/') + hero) : '';
   const xmlEsc = (t) => String(t || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const urlAbs = 'https://otahub.asia/' + slug;
 
-  try {
-    await ghSyncStep('feed.xml', (fx) => {
-      if (fx.includes('<link>' + urlAbs + '</link>') || !fx.includes('<item>')) return null;
-      const item = '  <item>\n    <title>' + xmlEsc(title) + '</title>\n    <link>' + urlAbs + '</link>\n    <guid isPermaLink="true">' + urlAbs + '</guid>\n    <pubDate>' + new Date().toUTCString() + '</pubDate>\n    <description>' + xmlEsc(desc) + '</description>\n' + (imgAbs ? '    <media:content url="' + xmlEsc(imgAbs) + '" medium="image"/>\n' : '') + '  </item>\n';
-      const p = fx.indexOf('  <item>');
-      return fx.slice(0, p) + item + fx.slice(p);
-    }, '[admin] them /' + slug + ' vao feed.xml');
-  } catch (e) {
-    console.warn('feed.xml sync error:', e);
-    failures.push('RSS feed (feed.xml)');
+  if (!isEn) {
+    try {
+      await ghSyncStep('feed.xml', (fx) => {
+        if (fx.includes('<link>' + urlAbs + '</link>') || !fx.includes('<item>')) return null;
+        const item = '  <item>\n    <title>' + xmlEsc(title) + '</title>\n    <link>' + urlAbs + '</link>\n    <guid isPermaLink="true">' + urlAbs + '</guid>\n    <pubDate>' + new Date().toUTCString() + '</pubDate>\n    <description>' + xmlEsc(desc) + '</description>\n' + (imgAbs ? '    <media:content url="' + xmlEsc(imgAbs) + '" medium="image"/>\n' : '') + '  </item>\n';
+        const p = fx.indexOf('  <item>');
+        return fx.slice(0, p) + item + fx.slice(p);
+      }, '[admin] them /' + slug + ' vao feed.xml');
+    } catch (e) {
+      console.warn('feed.xml sync error:', e);
+      failures.push('RSS feed (feed.xml)');
+    }
+
+    try {
+      await ghSyncStep('feed.json', (raw) => {
+        const fj = JSON.parse(raw);
+        if (!Array.isArray(fj.items) || fj.items.some(i => i.url === urlAbs)) return null;
+        fj.items.unshift({ id: urlAbs, url: urlAbs, title, content_text: desc || title, image: imgAbs, date_published: nowIso });
+        return JSON.stringify(fj, null, 2);
+      }, '[admin] them /' + slug + ' vao feed.json');
+    } catch (e) {
+      console.warn('feed.json sync error:', e);
+      failures.push('JSON Feed (feed.json)');
+    }
+
+    try {
+      await ghSyncStep('sitemap-news.xml', (sn) => {
+        if (sn.includes('<loc>' + urlAbs + '</loc>') || !sn.includes('<url>')) return null;
+        const entry = '<url><loc>' + urlAbs + '</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>' + nowIso + '</news:publication_date><news:title>' + xmlEsc(title) + '</news:title></news:news></url>\n';
+        const p = sn.indexOf('<url>');
+        return sn.slice(0, p) + entry + sn.slice(p);
+      }, '[admin] them /' + slug + ' vao sitemap-news.xml');
+    } catch (e) {
+      console.warn('sitemap-news.xml sync error:', e);
+      failures.push('Google News sitemap (sitemap-news.xml)');
+    }
   }
 
-  try {
-    await ghSyncStep('feed.json', (raw) => {
-      const fj = JSON.parse(raw);
-      if (!Array.isArray(fj.items) || fj.items.some(i => i.url === urlAbs)) return null;
-      fj.items.unshift({ id: urlAbs, url: urlAbs, title, content_text: desc || title, image: imgAbs, date_published: nowIso });
-      return JSON.stringify(fj, null, 2);
-    }, '[admin] them /' + slug + ' vao feed.json');
-  } catch (e) {
-    console.warn('feed.json sync error:', e);
-    failures.push('JSON Feed (feed.json)');
-  }
-
-  try {
-    await ghSyncStep('sitemap-news.xml', (sn) => {
-      if (sn.includes('<loc>' + urlAbs + '</loc>') || !sn.includes('<url>')) return null;
-      const entry = '<url><loc>' + urlAbs + '</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>' + nowIso + '</news:publication_date><news:title>' + xmlEsc(title) + '</news:title></news:news></url>\n';
-      const p = sn.indexOf('<url>');
-      return sn.slice(0, p) + entry + sn.slice(p);
-    }, '[admin] them /' + slug + ' vao sitemap-news.xml');
-  } catch (e) {
-    console.warn('sitemap-news.xml sync error:', e);
-    failures.push('Google News sitemap (sitemap-news.xml)');
-  }
-
-  // 3. Update Category Hub (gaming.html / anime.html / manga.html)
-  let targetHub = 'gaming.html';
+  // 3. Update Category Hub (VI hoặc EN)
+  let targetHub = isEn ? 'en/gaming.html' : 'gaming.html';
   const c = (cat || '').toLowerCase();
-  if (c.includes('anime')) targetHub = 'anime.html';
-  else if (c.includes('manga') || c.includes('manhwa')) targetHub = 'manga.html';
+  if (c.includes('anime')) targetHub = isEn ? 'en/anime.html' : 'anime.html';
+  else if (c.includes('manga') || c.includes('manhwa')) targetHub = isEn ? 'en/manga.html' : 'manga.html';
 
   toast('success', `📁 Đang dồn bài vào chuyên mục ${targetHub}...`);
   try {
     await ghSyncStep(targetHub, (hubHtml) => {
       const markerMatch = hubHtml.match(/(<!-- ADMIN:ARTICLES_START -->)([\s\S]*?)(<!-- ADMIN:ARTICLES_END -->)/);
       if (!markerMatch || markerMatch[2].includes(`href="/${slug}"`)) return null;
-      const cardHtml = `\n      <a href="/${slug}" class="ac">\n        <div class="ac-thumb"><img height="675" width="1200" src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy"><span class="tag">${esc(cat || 'TIN MỚI')}</span></div>\n        <div class="ac-body">\n          <h3 class="ac-title">${esc(title)}</h3>\n          <div class="ac-meta"><span class="ac-author">${esc(author)}</span> · <span class="ac-date">Vừa xong</span></div>\n        </div>\n      </a>\n`;
+      const tagLabel = isEn ? (cat || 'LATEST') : (cat || 'TIN MỚI');
+      const dateLabel = isEn ? 'Just now' : 'Vừa xong';
+      const cardHtml = `\n      <a href="/${slug}" class="ac">\n        <div class="ac-thumb"><img height="675" width="1200" src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy"><span class="tag">${esc(tagLabel)}</span></div>\n        <div class="ac-body">\n          <h3 class="ac-title">${esc(title)}</h3>\n          <div class="ac-meta"><span class="ac-author">${esc(author)}</span> · <span class="ac-date">${dateLabel}</span></div>\n        </div>\n      </a>\n`;
       return hubHtml.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/, markerMatch[1] + cardHtml + markerMatch[2] + markerMatch[3]);
     }, `[admin] don bai /${slug} vao ${targetHub}`);
   } catch(e) {
@@ -18280,19 +18377,24 @@ async function syncNewArticle(art) {
     failures.push(`Chuyên mục (${targetHub})`);
   }
 
-  // 4. Update news.html
-  toast('success', '📰 Đang cập nhật luồng tin tức news.html...');
+  // 4. Update news.html (hoặc en/news.html)
+  const newsTarget = isEn ? 'en/news.html' : 'news.html';
+  toast('success', `📰 Đang cập nhật luồng tin tức ${newsTarget}...`);
   try {
-    await ghSyncStep('news.html', (newsHtml) => {
-      const newsMatch = newsHtml.match(/(<!-- OTAHUB_NEW30_START -->[\s\S]*?<h2[^>]*>)(\d+)( tin mới đã kiểm chứng<\/h2><div[^>]*>)([\s\S]*?)(<\/div><\/section><!-- OTAHUB_NEW30_END -->)/);
+    await ghSyncStep(newsTarget, (newsHtml) => {
+      const newsMatch = isEn
+        ? newsHtml.match(/(<!-- OTAHUB_NEW30_START -->[\s\S]*?<h2[^>]*>)(\d+)( verified updates<\/h2><div[^>]*>)([\s\S]*?)(<\/div><\/section><!-- OTAHUB_NEW30_END -->)/)
+        : newsHtml.match(/(<!-- OTAHUB_NEW30_START -->[\s\S]*?<h2[^>]*>)(\d+)( tin mới đã kiểm chứng<\/h2><div[^>]*>)([\s\S]*?)(<\/div><\/section><!-- OTAHUB_NEW30_END -->)/);
       if (!newsMatch || newsMatch[4].includes(`href="/${slug}"`)) return null;
       const count = parseInt(newsMatch[2], 10) || 30;
-      const newCard = `\n    <a href="/${slug}" style="display:block;background:#150a2c;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;text-decoration:none;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,255,0.4)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,229,255,0.12)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none';this.style.boxShadow='none'">\n      <div style="position:relative;width:100%;height:180px;background:#0d051e;overflow:hidden;">\n        <img height="675" width="1200" src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">\n        <span style="position:absolute;top:10px;left:10px;background:linear-gradient(135deg,#ff3080,#7c3aed);color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px;letter-spacing:.15em;text-transform:uppercase;">${esc(cat || 'HOT')}</span>\n      </div>\n      <div style="padding:16px;">\n        <h3 style="color:#ffffff;font-size:15px;font-weight:700;line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(title)}</h3>\n        <p style="color:rgba(240,238,255,0.65);font-size:12.5px;line-height:1.5;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(desc || '')}</p>\n        <div style="display:flex;align-items:center;justify-content:space-between;color:rgba(240,238,255,0.4);font-size:11px;">\n          <span>⚡ OtaHub News</span>\n          <span>Vừa xong</span>\n        </div>\n      </div>\n    </a>\n`;
+      const badgeText = isEn ? (cat || 'HOT') : (cat || 'HOT');
+      const newsDate = isEn ? 'Just now' : 'Vừa xong';
+      const newCard = `\n    <a href="/${slug}" style="display:block;background:#150a2c;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;text-decoration:none;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,255,0.4)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,229,255,0.12)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none';this.style.boxShadow='none'">\n      <div style="position:relative;width:100%;height:180px;background:#0d051e;overflow:hidden;">\n        <img height="675" width="1200" src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">\n        <span style="position:absolute;top:10px;left:10px;background:linear-gradient(135deg,#ff3080,#7c3aed);color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px;letter-spacing:.15em;text-transform:uppercase;">${esc(badgeText)}</span>\n      </div>\n      <div style="padding:16px;">\n        <h3 style="color:#ffffff;font-size:15px;font-weight:700;line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(title)}</h3>\n        <p style="color:rgba(240,238,255,0.65);font-size:12.5px;line-height:1.5;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(desc || '')}</p>\n        <div style="display:flex;align-items:center;justify-content:space-between;color:rgba(240,238,255,0.4);font-size:11px;">\n          <span>⚡ OtaHub News</span>\n          <span>${newsDate}</span>\n        </div>\n      </div>\n    </a>\n`;
       return newsHtml.replace(/(<!-- OTAHUB_NEW30_START -->[\s\S]*?<!-- OTAHUB_NEW30_END -->)/, `${newsMatch[1]}${count + 1}${newsMatch[3]}${newCard}${newsMatch[4]}${newsMatch[5]}`);
-    }, `[admin] them tin /${slug} vao news.html`);
+    }, `[admin] them tin /${slug} vao ${newsTarget}`);
   } catch(e) {
     console.warn('News sync error:', e);
-    failures.push('Trang tin tức (news.html)');
+    failures.push(`Trang tin tức (${newsTarget})`);
   }
 
   // 5. Update index.html được thực hiện nguyên tử qua addToLatestNews() / promoteToHomeHero() ngay sau đó.
