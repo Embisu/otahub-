@@ -16021,6 +16021,7 @@ async function saveArticle() {
     const viBody  = BILINGUAL_DATA?.vi?.bodyHtml || '';
     const viBlocks= BILINGUAL_DATA?.vi?.blocks;
     const hasViContent = !!(viTitle && (viBody.length > 20 || (viBlocks && viBlocks.length > 0)));
+    if (hasViContent) warnIfTitleCase(viTitle);
 
     const enTitle = cleanPlainText(BILINGUAL_DATA?.en?.title || (isEnTab ? ART_TITLE : ''));
     const enDesc  = cleanPlainText(BILINGUAL_DATA?.en?.desc || (isEnTab ? exVal : ''));
@@ -16446,6 +16447,23 @@ async function cascadeIntoHeroSide(html, item) {
   if (newScItems.length > 4) newScItems = newScItems.slice(0, 4);
   const newFeatured = '\n    ' + newFc + '\n    ' + newScItems.join('\n    ') + '\n    ';
   return html.replace(/(<!-- ADMIN:FEATURED_START -->)[\s\S]*?(<!-- ADMIN:FEATURED_END -->)/, (m,p1,p2) => p1 + newFeatured + p2);
+}
+
+// Tiêu đề tiếng Việt chuẩn báo chí viết hoa chữ đầu câu và tên riêng ("Naruto xác nhận anime mới..."),
+// không viết hoa mọi chữ ("Naruto Xác Nhận Anime Mới..."). Chỉ xét từ tiếng Việt CÓ DẤU (bỏ từ đầu
+// câu): tên riêng tiếng Anh (Shadow of the Erdtree, PlayStation Plus...) không có dấu nên không làm
+// đếm nhầm. Chỉ nhắc, không chặn lưu.
+function warnIfTitleCase(title) {
+  const VI = /[ăâđêôơưàáạảãằắặẳẵầấậẩẫèéẹẻẽềếệểễìíịỉĩòóọỏõồốộổỗờớợởỡùúụủũừứựửữỳýỵỷỹ]/i;
+  const PLAIN_VI = new Set(['ra', 'sau', 'tung', 'cho', 'chi', 'tin', 'con', 'thu', 'mang', 'xin', 'tim']);
+  const PROPER_VI = new Set(['nhật', 'bản', 'việt', 'nam', 'trung', 'quốc', 'hàn', 'thành', 'hạn', 'vô', 'thần', 'hủy', 'diệt', 'lưu', 'đày']);
+  const words = String(title || '').split(/[\s:–,()-]+/).slice(1)
+    .filter(w => (VI.test(w) || PLAIN_VI.has(w.toLocaleLowerCase('vi'))) && !PROPER_VI.has(w.toLocaleLowerCase('vi')));
+  if (words.length < 2) return;
+  const caps = words.filter(w => w[0] !== w[0].toLocaleLowerCase('vi')).length;
+  if (caps / words.length >= 0.85) {
+    toast('warning', '✏️ Tiêu đề đang viết hoa gần như mọi chữ. Nên viết hoa chữ đầu câu và tên riêng, vd. "Naruto xác nhận anime mới sau 3 năm".');
+  }
 }
 
 // Ảnh Tiêu điểm nhỏ bị kéo phủ cả khung hero (~1400×700) nên vỡ hạt — vd. ảnh 1150×400 của bài
