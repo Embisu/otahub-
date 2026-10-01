@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Kuri Hime Ayakashi Yobanashi sẽ kết thúc vào ngày 28/10",
+    "url": "/kuri-hime-ayakashi-yobanashi-se-ket-thuc-vao-ngay-28-10",
+    "cat": "Manga",
+    "date": "2026-10-01",
+    "excerpt": "Sau gần hai năm đồng hành cùng độc giả, Kuri Hime Ayakashi Yobanashi chuẩn bị bước vào chương cuối. Manga kể về Kinuko, một giảng viên đại học sống tại khuôn viên đền Tamamayu, nơi những bí ẩn và hiện tượng siêu nhiên dần xuất hiện.",
+    "img": "/assets/img/uploads/a6nnkrus-5c2e92eb-6be8-41f2-9b1c-a5051ff85e46.jpg",
+    "tags": []
+  },
+  {
     "title": "Chainsaw Man và One Piece cùng góp mặt tại Harvey Awards 2026",
     "url": "/chainsaw-man-va-one-piece-cung-gop-mat-tai-harvey-awards-202",
     "cat": "Anime",
