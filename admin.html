@@ -5047,7 +5047,7 @@ const ROLE_LABEL = { admin: 'Admin', editor: 'Editor', author: 'Author', contrib
 // Tài khoản admin đại diện thương hiệu; các tài khoản khác giữ đúng tên người đăng.
 function publishingAuthorName() {
   const name = cleanPlainText(CURRENT_USER?.displayName || CURRENT_USER?.username || '').trim();
-  return CURRENT_USER?.role === 'admin' ? 'OtaHub' : (name || 'OtaHub');
+  return name || 'OtaHub';
 }
 function startApp() {
   document.getElementById('setup-screen').style.display = 'none';
