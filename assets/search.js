@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Call of Duty: Modern Warfare 4 hé lộ cấu hình PC, Ray Tracing và chế độ Collateral mới",
+    "url": "/call-of-duty-modern-warfare-4-he-lo-cau-hinh-pc-ray-tracing",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Modern Warfare 4 nâng cấp đồ họa PC và bổ sung Collateral, chế độ multiplayer mới tập trung vào phối hợp, quản lý trang bị và chiến thuật trong từng hiệp.",
+    "img": "/assets/img/uploads/t5huoqlk-call-of-duty-modern-warfare-4-he-lo-cau-hinh-pc-cho-dot-beta.jpg",
+    "tags": []
+  },
+  {
     "title": "CONTROL Resonant buộc game thủ PC tải lại toàn bộ trò chơi",
     "url": "/control-resonant-buoc-game-thu-pc-tai-lai-toan-bo-tro-choi",
     "cat": "Gaming",
