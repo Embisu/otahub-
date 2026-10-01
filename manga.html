@@ -163,13 +163,13 @@
 <style>
 
 
-:root{
+@font-face{font-family:'BHN Fonarto Regular';src:url('/assets/fonts/BHNFonartoRegular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}:root{
 
 
   --bg:#0b0418; --surf:#130a28; --surf2:#1b1038; --card:#160c30;
 
 
-  --cyan:#00e5ff; --sakura:#ff3080; --violet:#7c3aed;
+  --cyan:#00f2ff; --sakura:#ff2177; --violet:#7c3aed;
 
 
   --lav:#a78bfa; --amber:#fbbf24; --green:#34d399;
@@ -247,13 +247,13 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .logo svg{width:30px;height:30px;animation:lp 3s ease-in-out infinite}
 
 
-@keyframes lp{0%,100%{filter:drop-shadow(0 0 4px #00e5ff) drop-shadow(0 0 12px rgba(0,229,255,.5))}50%{filter:drop-shadow(0 0 8px #00e5ff) drop-shadow(0 0 24px rgba(0,229,255,.9))}}
+@keyframes lp{0%,100%{filter:drop-shadow(0 0 4px #00f2ff) drop-shadow(0 0 12px rgba(0,242,255,.5))}50%{filter:drop-shadow(0 0 8px #00f2ff) drop-shadow(0 0 24px rgba(0,242,255,.9))}}
 
 
-.logo-t{font-family:var(--fd);font-weight:700;font-size:20px;letter-spacing:-.01em;line-height:1}
+.logo-t{font-family:'BHN Fonarto Regular',var(--fd);font-weight:400;font-size:20px;letter-spacing:-.01em;line-height:1}
 
 
-.logo-ota{color:var(--white)}.logo-hub{color:var(--cyan)}
+.logo-ota{color:var(--sakura)}.logo-hub{color:var(--cyan)}
 
 
 .nav-links{display:flex;align-items:center;list-style:none;gap:0;flex:1}
@@ -415,10 +415,10 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .ttab-manga .ttab-count{background:rgba(167,139,250,.1)}
 
 
-.ttab-manhwa .ttab-count{background:rgba(0,229,255,.1)}
+.ttab-manhwa .ttab-count{background:rgba(0,242,255,.1)}
 
 
-.ttab-manhua .ttab-count{background:rgba(255,48,128,.1)}
+.ttab-manhua .ttab-count{background:rgba(255,33,119,.1)}
 
 
 
@@ -484,10 +484,10 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .tag{display:inline-flex;align-items:center;gap:5px;font-family:var(--fb);font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px}
 
 
-.tc{background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.28);color:var(--cyan)}
+.tc{background:rgba(0,242,255,.1);border:1px solid rgba(0,242,255,.28);color:var(--cyan)}
 
 
-.ts{background:rgba(255,48,128,.1);border:1px solid rgba(255,48,128,.28);color:var(--sakura)}
+.ts{background:rgba(255,33,119,.1);border:1px solid rgba(255,33,119,.28);color:var(--sakura)}
 
 
 .tv{background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.3);color:var(--lav)}
@@ -761,10 +761,10 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .fc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,2,32,.98) 0%,rgba(11,2,32,.6) 38%,rgba(11,2,32,.12) 70%,transparent 100%),linear-gradient(to right,transparent 50%,rgba(11,2,32,.4) 100%)}
 
 
-.fc::after{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;pointer-events:none}
+.fc::after{content:'';position:absolute;inset:0;border:1px solid rgba(0,242,255,0);transition:border-color .3s;pointer-events:none}
 
 
-.fc:hover::after{border-color:rgba(0,229,255,.3)}
+.fc:hover::after{border-color:rgba(0,242,255,.3)}
 
 
 .fc-body{position:absolute;bottom:0;left:0;right:0;padding:32px}
@@ -797,10 +797,10 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .sc:hover .sc-img img{transform:scale(1.07);opacity:.95}
 
 
-.sc::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;z-index:3;pointer-events:none}
+.sc::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,242,255,0);transition:border-color .3s;z-index:3;pointer-events:none}
 
 
-.sc:hover::before{border-color:rgba(0,229,255,.22)}
+.sc:hover::before{border-color:rgba(0,242,255,.22)}
 
 
 .sc-body{padding:14px 16px}
@@ -1301,7 +1301,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 .rk-item:nth-child(n+4) .rk-num, .rki-item:nth-child(n+4) .rki-num, .t-item:nth-child(n+4) .t-num {
   color: #a5f3fc !important;
   font-size: 17px;
-  text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+  text-shadow: 0 0 8px rgba(0,242,255, 0.3);
 }
 
 .an-score-num, .rk-sc, .rki-score, .sc-big, .score-num {
@@ -1333,18 +1333,18 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   background: rgba(17, 8, 42, 0.85) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 229, 255, 0.25) !important;
+  border: 1px solid rgba(0,242,255, 0.25) !important;
   border-radius: 14px;
-  box-shadow: 0 12px 36px rgba(0,0,0,0.55), 0 0 24px rgba(0,229,255,0.08);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.55), 0 0 24px rgba(0,242,255,0.08);
   padding: 24px 22px;
 }
 .side-head {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: linear-gradient(90deg, rgba(255,48,128,0.25), rgba(0,229,255,0.2));
-  border: 1px solid rgba(0,229,255,0.45);
-  color: #00e5ff !important;
+  background: linear-gradient(90deg, rgba(255,33,119,0.25), rgba(0,242,255,0.2));
+  border: 1px solid rgba(0,242,255,0.45);
+  color: #00f2ff !important;
   font-family: var(--fd);
   font-size: 11px;
   font-weight: 800;
@@ -1353,7 +1353,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   padding: 6px 14px;
   border-radius: 6px;
   margin-bottom: 16px;
-  text-shadow: 0 0 10px rgba(0,229,255,0.5);
+  text-shadow: 0 0 10px rgba(0,242,255,0.5);
 }
 .sa-t {
   color: #ffffff !important;
@@ -1363,7 +1363,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   text-shadow: 0 1px 3px rgba(0,0,0,0.7);
   transition: color .2s ease;
 }
-.s-art:hover .sa-t { color: #00e5ff !important; }
+.s-art:hover .sa-t { color: #00f2ff !important; }
 .sa-m { color: #cbd5e1 !important; font-size: 12px; }
 .sa-thumb {
   border-radius: 8px;
@@ -1373,14 +1373,14 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 /* ── Item 4 Fix: High Contrast Global Text ── */
 .wc-t { color: #ffffff !important; font-weight: 700; font-size: 16.5px; }
 .wc-m { color: #cbd5e1 !important; font-size: 12px; }
-.w-card:hover .wc-t { color: #00e5ff !important; }
+.w-card:hover .wc-t { color: #00f2ff !important; }
 .fc-title { color: #ffffff !important; font-weight: 700; }
 .fc-sub { color: #f1f5f9 !important; font-size: 14px; }
 .h-sub { color: #f8fafc !important; font-size: 15px; text-shadow: 0 2px 10px rgba(0,0,0,0.85); }
 .sec-t { color: #ffffff !important; font-size: 17px; font-weight: 800; letter-spacing: .08em; }
 .ft-desc { color: #cbd5e1 !important; }
 .ft-links a { color: #cbd5e1 !important; transition: color .2s; }
-.ft-links a:hover { color: #00e5ff !important; }
+.ft-links a:hover { color: #00f2ff !important; }
 
 /* ── Item 7 Fix: Fast & Fully Clickable Breaking News Ticker ── */
 .ticker {
@@ -1458,10 +1458,10 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
     background: rgba(15, 6, 38, 0.88);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 229, 255, 0.35);
+    border: 1px solid rgba(0,242,255, 0.35);
     border-radius: 28px;
     padding: 6px 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(0,229,255,0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(0,242,255,0.2);
     z-index: 999;
     align-items: center;
     justify-content: space-around;
@@ -1487,8 +1487,8 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   }
   .mtd-item svg { width: 18px; height: 18px; fill: currentColor; }
   .mtd-item:hover, .mtd-item.active {
-    color: #00e5ff;
-    background: rgba(0, 229, 255, 0.12);
+    color: #00f2ff;
+    background: rgba(0,242,255, 0.12);
   }
   body { padding-bottom: 72px; }
 }
@@ -1531,10 +1531,10 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 .search-box{width:min(640px,90vw);position:relative}
 
 
-.search-input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(0,229,255,.2);outline:none;color:#f0eeff;font-family:'Space Grotesk',sans-serif;font-size:20px;padding:18px 56px 18px 20px;transition:border-color .2s,box-shadow .2s}
+.search-input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(0,242,255,.2);outline:none;color:#f0eeff;font-family:'Space Grotesk',sans-serif;font-size:20px;padding:18px 56px 18px 20px;transition:border-color .2s,box-shadow .2s}
 
 
-.search-input:focus{border-color:rgba(0,229,255,.6);box-shadow:0 0 0 3px rgba(0,229,255,.1)}
+.search-input:focus{border-color:rgba(0,242,255,.6);box-shadow:0 0 0 3px rgba(0,242,255,.1)}
 
 
 .search-input::placeholder{color:rgba(240,238,255,.25)}
@@ -1543,7 +1543,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 .search-close{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(240,238,255,.5);font-size:20px;cursor:pointer;transition:color .2s;padding:4px}
 
 
-.search-close:hover{color:#00e5ff}
+.search-close:hover{color:#00f2ff}
 
 
 .search-hint{font-size:12px;color:rgba(240,238,255,.35);letter-spacing:.07em}
@@ -1555,7 +1555,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 .stag{color:rgba(240,238,255,.45);text-decoration:none;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:5px 14px;border:1px solid rgba(255,255,255,.08);transition:border-color .2s,color .2s,background .2s}
 
 
-.stag:hover{border-color:rgba(0,229,255,.3);color:#00e5ff;background:rgba(0,229,255,.06)}
+.stag:hover{border-color:rgba(0,242,255,.3);color:#00f2ff;background:rgba(0,242,255,.06)}
 
 
 
@@ -1570,13 +1570,13 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 .ham span{display:block;width:22px;height:2px;background:rgba(240,238,255,.45);border-radius:2px;transition:all .3s}
 
 
-.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:#00e5ff}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:#00f2ff}
 
 
 .ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 
 
-.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:#00e5ff}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:#00f2ff}
 
 
 .mobile-nav{display:none;position:fixed;inset:0;top:62px;z-index:290;background:rgba(11,2,32,.97);backdrop-filter:blur(24px);padding:28px 24px;flex-direction:column;gap:0;transform:translateY(-8px);opacity:0;transition:transform .3s,opacity .3s;pointer-events:none}
@@ -1588,7 +1588,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 .mobile-nav a{display:block;color:rgba(240,238,255,.62);text-decoration:none;font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08);transition:color .2s,padding-left .2s}
 
 
-.mobile-nav a:hover{color:#00e5ff;padding-left:8px}
+.mobile-nav a:hover{color:#00f2ff;padding-left:8px}
 
 
 .m-sub{display:flex;gap:20px;padding-top:20px;flex-wrap:wrap}
@@ -1751,7 +1751,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 <!-- NAV -->
 
 
-<nav class="nav"><div class="nav-in"><a href="/" class="logo"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="5" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li class="nav-drop"><a href="/manga" class="active">Manga</a><div class="nav-drop-menu"><a href="#" onclick="setType(this,'manga');document.querySelector('.chapters-grid').scrollIntoView({behavior:'smooth'});return false">📖 Manga <span style="margin-left:auto;color:var(--muted);font-size:11px">542</span></a><a href="#" onclick="setType(this,'manhwa');document.querySelector('.chapters-grid').scrollIntoView({behavior:'smooth'});return false">📖 Manhwa <span style="margin-left:auto;color:var(--muted);font-size:11px">284</span></a><a href="#" onclick="setType(this,'manhua');document.querySelector('.chapters-grid').scrollIntoView({behavior:'smooth'});return false">📖 Manhua <span style="margin-left:auto;color:var(--muted);font-size:11px">163</span></a><div class="nav-drop-sep"></div><a href="/lich-phat-song#manga">📅 Lịch cập nhật chapter</a><a href="/reviews">⭐ Review Manga</a><a href="/rankings">🏆 Bảng xếp hạng</a><a href="/chuyen-sau">🔍 Phân tích chuyên sâu</a></div></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="Tìm kiếm" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="/#newsletter" class="cta" id="cta-sub">Subscribe</a></div></div></nav>
+<nav class="nav"><div class="nav-in"><a href="/" class="logo"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li class="nav-drop"><a href="/manga" class="active">Manga</a><div class="nav-drop-menu"><a href="#" onclick="setType(this,'manga');document.querySelector('.chapters-grid').scrollIntoView({behavior:'smooth'});return false">📖 Manga <span style="margin-left:auto;color:var(--muted);font-size:11px">542</span></a><a href="#" onclick="setType(this,'manhwa');document.querySelector('.chapters-grid').scrollIntoView({behavior:'smooth'});return false">📖 Manhwa <span style="margin-left:auto;color:var(--muted);font-size:11px">284</span></a><a href="#" onclick="setType(this,'manhua');document.querySelector('.chapters-grid').scrollIntoView({behavior:'smooth'});return false">📖 Manhua <span style="margin-left:auto;color:var(--muted);font-size:11px">163</span></a><div class="nav-drop-sep"></div><a href="/lich-phat-song#manga">📅 Lịch cập nhật chapter</a><a href="/reviews">⭐ Review Manga</a><a href="/rankings">🏆 Bảng xếp hạng</a><a href="/chuyen-sau">🔍 Phân tích chuyên sâu</a></div></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="Tìm kiếm" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="/#newsletter" class="cta" id="cta-sub">Subscribe</a></div></div></nav>
 
 
 <!-- SEO H1 -->
@@ -2365,6 +2365,6 @@ function setMangaFilter(btn, cat){
 </script>
 <script defer src="/assets/img-fit.v2.js?v=20260926"></script>
 <script src="/assets/lang-switch.js" defer></script>
-<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub<br><span style="opacity:.75;font-size:12px">Vận hành bởi Công ty TNHH Marketing &amp; Truyền thông ANBU · MST 3301761892 · 47 Đặng Văn Ngữ, Phường An Cựu, TP. Huế, Việt Nam · Hotline 039 699 5252 · <a href="mailto:dat.phan@anbu.asia" style="color:inherit">dat.phan@anbu.asia</a></span></span></div></footer>
+<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub<br><span style="opacity:.75;font-size:12px">Vận hành bởi Công ty TNHH Marketing &amp; Truyền thông ANBU · MST 3301761892 · 47 Đặng Văn Ngữ, Phường An Cựu, TP. Huế, Việt Nam · Hotline 039 699 5252 · <a href="mailto:dat.phan@anbu.asia" style="color:inherit">dat.phan@anbu.asia</a></span></span></div></footer>
 </body>
 </html>

@@ -64,10 +64,10 @@
       --surf: rgba(18, 9, 44, 0.72);
       --surf2: rgba(30, 16, 72, 0.85);
       --card: rgba(22, 11, 54, 0.65);
-      --cyan: #00e5ff;
-      --cyan-glow: rgba(0, 229, 255, 0.35);
-      --sakura: #ff3080;
-      --sakura-glow: rgba(255, 48, 128, 0.35);
+      --cyan: #00f2ff;
+      --cyan-glow: rgba(0,242,255, 0.35);
+      --sakura: #ff2177;
+      --sakura-glow: rgba(255,33,119, 0.35);
       --violet: #7c3aed;
       --lavender: #a78bfa;
       --amber: #fbbf24;
@@ -77,7 +77,7 @@
       --text-sub: #cbd5e1;
       --text-muted: #94a3b8;
       --border: rgba(255, 255, 255, 0.12);
-      --border-cyan: rgba(0, 229, 255, 0.3);
+      --border-cyan: rgba(0,242,255, 0.3);
       --fd: 'Plus Jakarta Sans', 'Space Grotesk', -apple-system, sans-serif;
       --fb: 'Be Vietnam Pro', -apple-system, sans-serif;
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -95,8 +95,8 @@
       -webkit-font-smoothing: antialiased;
       background-image:
         radial-gradient(ellipse 110% 50% at 50% 0%, rgba(124, 58, 237, 0.22) 0%, transparent 60%),
-        radial-gradient(ellipse 70% 40% at 0% 50%, rgba(0, 229, 255, 0.08) 0%, transparent 55%),
-        radial-gradient(ellipse 70% 40% at 100% 40%, rgba(255, 48, 128, 0.08) 0%, transparent 55%);
+        radial-gradient(ellipse 70% 40% at 0% 50%, rgba(0,242,255, 0.08) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 40% at 100% 40%, rgba(255,33,119, 0.08) 0%, transparent 55%);
     }
 
     /* Ambient animated orbs */
@@ -154,7 +154,7 @@
 
     /* Page Hero */
     .page-hero { position: relative; z-index: 1; text-align: center; padding: 56px 20px 32px; max-width: 900px; margin: 0 auto; }
-    .ph-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-family: var(--fd); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan); background: rgba(0, 229, 255, 0.08); border: 1px solid var(--border-cyan); padding: 6px 14px; border-radius: 20px; margin-bottom: 18px; }
+    .ph-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-family: var(--fd); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan); background: rgba(0,242,255, 0.08); border: 1px solid var(--border-cyan); padding: 6px 14px; border-radius: 20px; margin-bottom: 18px; }
     .ph-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
     .ph-title { font-family: var(--fd); font-weight: 800; font-size: clamp(34px, 5.5vw, 68px); line-height: 1.05; letter-spacing: -0.025em; color: #ffffff; margin-bottom: 16px; }
     .ph-title em { font-style: normal; color: transparent; background: linear-gradient(135deg, var(--cyan) 0%, #38bdf8 50%, var(--sakura) 100%); -webkit-background-clip: text; background-clip: text; }
@@ -166,7 +166,7 @@
     .cat-btn { background: none; border: none; color: var(--text-sub); font-family: var(--fd); font-weight: 700; font-size: 14px; padding: 12px 10px; border-radius: 12px; cursor: pointer; transition: all 0.22s var(--ease); display: flex; align-items: center; justify-content: center; gap: 7px; }
     .cat-btn:hover { color: #ffffff; background: rgba(255,255,255,0.06); }
     .cat-btn.active { color: #070314; background: linear-gradient(135deg, var(--cyan), #38bdf8); box-shadow: 0 6px 20px var(--cyan-glow); font-weight: 800; }
-    .cat-btn.active.cat-anime { background: linear-gradient(135deg, #ff3080, #f43f5e); color: #ffffff; box-shadow: 0 6px 20px var(--sakura-glow); }
+    .cat-btn.active.cat-anime { background: linear-gradient(135deg, #ff2177, #f43f5e); color: #ffffff; box-shadow: 0 6px 20px var(--sakura-glow); }
     .cat-btn.active.cat-manga { background: linear-gradient(135deg, #a78bfa, #8b5cf6); color: #ffffff; box-shadow: 0 6px 20px rgba(167, 139, 250, 0.4); }
     .cat-btn.active.cat-all { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #070314; box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4); }
 
@@ -174,7 +174,7 @@
     .subfilter-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
     .sf-btn { background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border); color: var(--text-muted); font-family: var(--fd); font-weight: 600; font-size: 12px; padding: 6px 14px; border-radius: 20px; cursor: pointer; transition: all 0.2s; }
     .sf-btn:hover { color: #ffffff; border-color: rgba(255, 255, 255, 0.3); }
-    .sf-btn.active { color: var(--cyan); border-color: var(--cyan); background: rgba(0, 229, 255, 0.09); font-weight: 700; }
+    .sf-btn.active { color: var(--cyan); border-color: var(--cyan); background: rgba(0,242,255, 0.09); font-weight: 700; }
 
     /* Mood Filters Swiper */
     .mood-zone { position: relative; z-index: 1; max-width: 960px; margin: 28px auto 0; padding: 0 20px; }
@@ -201,7 +201,7 @@
       user-select: none;
     }
     .mood-arrow-btn:hover {
-      background: rgba(0, 229, 255, 0.15);
+      background: rgba(0,242,255, 0.15);
       border-color: var(--cyan);
       color: var(--cyan);
       transform: scale(1.08);
@@ -253,14 +253,14 @@
     }
     .mood-pill:hover {
       color: #ffffff;
-      border-color: rgba(0, 229, 255, 0.4);
-      background: rgba(0, 229, 255, 0.06);
+      border-color: rgba(0,242,255, 0.4);
+      background: rgba(0,242,255, 0.06);
     }
     .mood-pill.active {
       color: var(--cyan);
       border-color: var(--cyan);
-      background: rgba(0, 229, 255, 0.12);
-      box-shadow: 0 0 18px rgba(0, 229, 255, 0.2);
+      background: rgba(0,242,255, 0.12);
+      box-shadow: 0 0 18px rgba(0,242,255, 0.2);
       font-weight: 600;
     }
 
@@ -272,7 +272,7 @@
       align-items: center;
       justify-content: center;
       gap: 12px;
-      background: linear-gradient(135deg, #00e5ff 0%, #7c3aed 50%, #ff3080 100%);
+      background: linear-gradient(135deg, #00f2ff 0%, #7c3aed 50%, #ff2177 100%);
       background-size: 200% 200%;
       color: #ffffff;
       font-family: var(--fd);
@@ -283,12 +283,12 @@
       border-radius: 50px;
       border: none;
       cursor: pointer;
-      box-shadow: 0 10px 36px rgba(0, 229, 255, 0.35), 0 0 20px rgba(124, 58, 237, 0.2);
+      box-shadow: 0 10px 36px rgba(0,242,255, 0.35), 0 0 20px rgba(124, 58, 237, 0.2);
       transition: all 0.3s var(--ease);
       animation: gradientShift 6s ease infinite;
     }
     @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-    .roll-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 14px 44px rgba(0, 229, 255, 0.5), 0 0 30px rgba(255, 48, 128, 0.3); }
+    .roll-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 14px 44px rgba(0,242,255, 0.5), 0 0 30px rgba(255,33,119, 0.3); }
     .roll-btn:active { transform: translateY(1px) scale(0.98); }
     .roll-icon { font-size: 24px; transition: transform 0.6s var(--ease); }
     .roll-btn.rolling .roll-icon { animation: rollSpin 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite; }
@@ -327,7 +327,7 @@
       border: 1px solid var(--border-cyan);
       border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65), 0 0 30px rgba(0, 229, 255, 0.12);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65), 0 0 30px rgba(0,242,255, 0.12);
       transition: all 0.25s var(--ease);
     }
     .result-card.slot-cycling {
@@ -350,8 +350,8 @@
     .rc-media img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.4s ease; }
     .rc-media:hover img { transform: scale(1.04); }
     .rc-type-tag { position: absolute; top: 16px; left: 16px; z-index: 3; font-family: var(--fd); font-weight: 800; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border-radius: 8px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); }
-    .tag-game { background: rgba(0, 229, 255, 0.25); color: #a5f3fc; border-color: rgba(0, 229, 255, 0.5); }
-    .tag-anime { background: rgba(255, 48, 128, 0.25); color: #fecdd3; border-color: rgba(255, 48, 128, 0.5); }
+    .tag-game { background: rgba(0,242,255, 0.25); color: #a5f3fc; border-color: rgba(0,242,255, 0.5); }
+    .tag-anime { background: rgba(255,33,119, 0.25); color: #fecdd3; border-color: rgba(255,33,119, 0.5); }
     .tag-manga { background: rgba(167, 139, 250, 0.25); color: #ede9fe; border-color: rgba(167, 139, 250, 0.5); }
 
     .rc-content { padding: 32px 30px; display: flex; flex-direction: column; justify-content: space-between; }
@@ -372,7 +372,7 @@
 
     .rc-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .btn-review {
-      background: linear-gradient(135deg, rgba(0, 229, 255, 0.18), rgba(0, 229, 255, 0.05));
+      background: linear-gradient(135deg, rgba(0,242,255, 0.18), rgba(0,242,255, 0.05));
       border: 1px solid var(--cyan);
       color: #ffffff;
       font-family: var(--fd);
@@ -390,7 +390,7 @@
     .btn-reroll { background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border); color: #f8fafc; font-family: var(--fd); font-weight: 700; font-size: 13px; padding: 12px 18px; border-radius: 10px; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
     .btn-reroll:hover { background: rgba(255, 255, 255, 0.15); color: #ffffff; }
     .btn-skip { background: none; border: 1px solid var(--border); color: var(--text-muted); font-family: var(--fd); font-weight: 600; font-size: 13px; padding: 12px 16px; border-radius: 10px; cursor: pointer; transition: all 0.2s; }
-    .btn-skip:hover { color: var(--sakura); border-color: rgba(255, 48, 128, 0.4); }
+    .btn-skip:hover { color: var(--sakura); border-color: rgba(255,33,119, 0.4); }
     .btn-share { width: 44px; height: 44px; border-radius: 10px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); color: #cbd5e1; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; margin-left: auto; transition: all 0.2s; }
     .btn-share:hover { border-color: var(--cyan); color: var(--cyan); }
 
@@ -427,7 +427,7 @@
     .faq-title { font-family: var(--fd); font-size: 24px; font-weight: 800; color: #ffffff; text-align: center; margin-bottom: 24px; }
     .faq-list { display: flex; flex-direction: column; gap: 12px; }
     .faq-item { background: var(--surf); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: border-color 0.2s; }
-    .faq-item:hover { border-color: rgba(0, 229, 255, 0.3); }
+    .faq-item:hover { border-color: rgba(0,242,255, 0.3); }
     .faq-q { padding: 18px 22px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: var(--fd); font-weight: 700; font-size: 15.5px; color: #f8fafc; }
     .faq-q::after { content: '+'; font-size: 20px; color: var(--cyan); transition: transform 0.25s; }
     .faq-item.open .faq-q::after { transform: rotate(45deg); }
@@ -492,7 +492,7 @@
         border: 1px solid var(--border-cyan);
         border-radius: 30px;
         padding: 6px 14px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 24px rgba(0, 229, 255, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 24px rgba(0,242,255, 0.2);
         z-index: 150;
         align-items: center;
         justify-content: space-between;
@@ -520,7 +520,7 @@
         cursor: pointer;
         transition: all 0.2s;
       }
-      .mtd-btn.active { color: var(--cyan); background: rgba(0, 229, 255, 0.12); }
+      .mtd-btn.active { color: var(--cyan); background: rgba(0,242,255, 0.12); }
       .mtd-btn-roll {
         background: linear-gradient(135deg, var(--cyan), var(--violet));
         color: #070314;
@@ -590,17 +590,7 @@
   <nav class="nav">
     <div class="nav-in">
       <a href="/en/" class="logo">
-        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0">
-          <polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon>
-          <rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect>
-          <rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect>
-          <rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect>
-          <rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect>
-          <rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect>
-          <rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect>
-          <rect x="5" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect>
-          <rect x="27" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect>
-        </svg>
+        <img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy">
         <span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span>
       </a>
       <ul class="nav-links">
@@ -724,7 +714,7 @@
         <div class="rc-content">
           <div class="rc-header">
             <div class="rc-badges" id="rcBadges">
-              <span class="rc-pill" style="border-color:var(--cyan);color:var(--cyan);background:rgba(0,229,255,0.1)">PC / Console</span>
+              <span class="rc-pill" style="border-color:var(--cyan);color:var(--cyan);background:rgba(0,242,255,0.1)">PC / Console</span>
               <span class="rc-pill" style="border-color:rgba(255,255,255,0.2);color:#ffffff;background:rgba(255,255,255,0.06)">Action RPG · Soulslike</span>
             </div>
             <h2 class="rc-title" id="rcTitle">Elden Ring: Shadow of the Erdtree</h2>
@@ -973,7 +963,7 @@
   </div>
 
   <!-- Standard Hub Footer matching templates/partials/hub-footer.html -->
-  <footer><div class="ft-in"><div><a href="/en/" class="logo" style="display:inline-flex"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Asian Gaming, Anime and Manga news hub. Fast, specialized, no bias.</p></div><div><div class="ft-h">Category</div><ul class="ft-links"><li><a href="/en/gaming">Gaming</a></li><li><a href="/en/anime">Anime</a></li><li><a href="/en/manga">Manga</a></li><li><a href="/en/reviews">Reviews</a></li><li><a href="/en/rankings">Rankings</a></li></ul></div><div><div class="ft-h">About OtaHub</div><ul class="ft-links"><li><a href="/en/about">Introduction</a></li><li><a href="/en/about#team">Team</a></li><li><a href="/en/about#contact">Contact</a></li><li><a href="/en/index#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Follow</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
+  <footer><div class="ft-in"><div><a href="/en/" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Asian Gaming, Anime and Manga news hub. Fast, specialized, no bias.</p></div><div><div class="ft-h">Category</div><ul class="ft-links"><li><a href="/en/gaming">Gaming</a></li><li><a href="/en/anime">Anime</a></li><li><a href="/en/manga">Manga</a></li><li><a href="/en/reviews">Reviews</a></li><li><a href="/en/rankings">Rankings</a></li></ul></div><div><div class="ft-h">About OtaHub</div><ul class="ft-links"><li><a href="/en/about">Introduction</a></li><li><a href="/en/about#team">Team</a></li><li><a href="/en/about#contact">Contact</a></li><li><a href="/en/index#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Follow</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
   <script src="/assets/lang-switch.js" defer></script>
 
   <!-- Embedded Client Script -->
@@ -1246,7 +1236,7 @@
       }
 
       const glow = document.getElementById('rcGlow');
-      const c = item.color || ['#00e5ff', '#7c3aed'];
+      const c = item.color || ['#00f2ff', '#7c3aed'];
       glow.style.background = `radial-gradient(ellipse at 80% 20%, ${c[0]}22 0%, transparent 60%), radial-gradient(ellipse at 10% 90%, ${c[1]}22 0%, transparent 60%)`;
     }
 

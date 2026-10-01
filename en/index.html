@@ -121,13 +121,13 @@
 <style>
 
 
-:root{
+@font-face{font-family:'BHN Fonarto Regular';src:url('/assets/fonts/BHNFonartoRegular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}:root{
 
 
   --bg:#0b0418;--surf:#130930;--surf2:#1a1040;--card:#160b38;
 
 
-  --cyan:#00e5ff;--sakura:#ff3080;--violet:#7c3aed;--lavender:#a78bfa;
+  --cyan:#00f2ff;--sakura:#ff2177;--violet:#7c3aed;--lavender:#a78bfa;
 
 
   --amber:#fbbf24;--green:#34d399;--white:#f0eeff;
@@ -136,7 +136,7 @@
   --dim:rgba(240,238,255,.62);--muted:rgba(240,238,255,.38);
 
 
-  --border:rgba(255,255,255,.08);--b-cyan:rgba(0,229,255,.2);--b-sakura:rgba(255,48,128,.2);
+  --border:rgba(255,255,255,.08);--b-cyan:rgba(0,242,255,.2);--b-sakura:rgba(255,33,119,.2);
 
 
   --ease:cubic-bezier(.16,1,.3,1);--fd:'Rajdhani',sans-serif;--fb:'Space Grotesk',sans-serif;
@@ -154,7 +154,7 @@ html{scroll-behavior:smooth}
 body{
 
 
-  background:radial-gradient(ellipse 120% 40% at 50% 0%,rgba(124,58,237,.28) 0%,transparent 55%),radial-gradient(ellipse 70% 35% at 0% 60%,rgba(0,229,255,.07) 0%,transparent 50%),radial-gradient(ellipse 70% 35% at 100% 35%,rgba(255,48,128,.06) 0%,transparent 50%),var(--bg);
+  background:radial-gradient(ellipse 120% 40% at 50% 0%,rgba(124,58,237,.28) 0%,transparent 55%),radial-gradient(ellipse 70% 35% at 0% 60%,rgba(0,242,255,.07) 0%,transparent 50%),radial-gradient(ellipse 70% 35% at 100% 35%,rgba(255,33,119,.06) 0%,transparent 50%),var(--bg);
 
 
   color:var(--white);font-family:var(--fb);font-weight:300;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;
@@ -175,7 +175,7 @@ body{
 @keyframes f3{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,-60px)}}
 
 
-@keyframes logoPulse{0%,100%{filter:drop-shadow(0 0 5px var(--cyan)) drop-shadow(0 0 14px rgba(0,229,255,.5))}50%{filter:drop-shadow(0 0 10px var(--cyan)) drop-shadow(0 0 28px rgba(0,229,255,.9))}}
+@keyframes logoPulse{0%,100%{filter:drop-shadow(0 0 5px var(--cyan)) drop-shadow(0 0 14px rgba(0,242,255,.5))}50%{filter:drop-shadow(0 0 10px var(--cyan)) drop-shadow(0 0 28px rgba(0,242,255,.9))}}
 
 
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.1}}
@@ -220,10 +220,10 @@ body{
 .logo svg{width:34px;height:34px;animation:logoPulse 3.5s ease-in-out infinite}
 
 
-.logo-t{font-family:var(--fd);font-weight:700;font-size:22px;letter-spacing:-.01em;line-height:1}
+.logo-t{font-family:'BHN Fonarto Regular',var(--fd);font-weight:400;font-size:22px;letter-spacing:-.01em;line-height:1}
 
 
-.logo-ota{color:var(--white)}.logo-hub{color:var(--cyan)}
+.logo-ota{color:var(--sakura)}.logo-hub{color:var(--cyan)}
 
 
 .nav-links{display:flex;align-items:center;list-style:none;gap:0}
@@ -259,7 +259,7 @@ body{
 .nav-search{background:none;border:1px solid var(--border);color:var(--muted);width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s,background .2s}
 
 
-.nav-search:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,229,255,.06)}
+.nav-search:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,242,255,.06)}
 
 
 .cta{background:linear-gradient(135deg,var(--cyan),#0099bb);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;padding:9px 22px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:filter .18s,transform .12s;text-decoration:none;display:inline-block;white-space:nowrap}
@@ -316,7 +316,7 @@ body{
 .search-input{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--b-cyan);outline:none;color:var(--white);font-family:var(--fb);font-size:22px;padding:18px 56px 18px 20px;transition:border-color .2s,box-shadow .2s}
 
 
-.search-input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,229,255,.12),0 0 32px rgba(0,229,255,.1)}
+.search-input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,242,255,.12),0 0 32px rgba(0,242,255,.1)}
 
 
 .search-input::placeholder{color:rgba(240,238,255,.25)}
@@ -337,7 +337,7 @@ body{
 .stag{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:5px 14px;border:1px solid var(--border);transition:border-color .2s,color .2s,background .2s}
 
 
-.stag:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,229,255,.06)}
+.stag:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,242,255,.06)}
 
 
 .ticker{background:linear-gradient(90deg,#a31250,var(--sakura),#a31250);height:33px;display:flex;align-items:center;overflow:hidden;position:relative;z-index:1}
@@ -379,7 +379,7 @@ body{
 .h-ov{position:absolute;inset:0;background:linear-gradient(90deg, rgba(11,4,24,0.96) 0%, rgba(11,4,24,0.88) 35%, rgba(11,4,24,0.4) 60%, rgba(11,4,24,0.05) 85%, transparent 100%), linear-gradient(0deg, var(--bg) 0%, rgba(11,4,24,0.65) 25%, rgba(11,4,24,0.15) 55%, transparent 75%)}
 
 
-.h-scan{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,229,255,.008) 3px,rgba(0,229,255,.008) 4px)}
+.h-scan{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,242,255,.008) 3px,rgba(0,242,255,.008) 4px)}
 
 
 .h-glow{position:absolute;bottom:-60px;left:-60px;width:320px;height:320px;background:var(--cyan);border-radius:50%;filter:blur(100px);opacity:.09;pointer-events:none}
@@ -391,10 +391,10 @@ body{
 .tag{display:inline-flex;align-items:center;gap:5px;font-family:var(--fb);font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;margin-bottom:14px}
 
 
-.tag-c{background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.3);color:var(--cyan)}
+.tag-c{background:rgba(0,242,255,.1);border:1px solid rgba(0,242,255,.3);color:var(--cyan)}
 
 
-.tag-s{background:rgba(255,48,128,.1);border:1px solid rgba(255,48,128,.3);color:var(--sakura)}
+.tag-s{background:rgba(255,33,119,.1);border:1px solid rgba(255,33,119,.3);color:var(--sakura)}
 
 
 .tag-v{background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.3);color:var(--lavender)}
@@ -412,7 +412,7 @@ body{
 .h-title{font-family:var(--fd);font-weight:700;font-size:clamp(26px,3.2vw,44px);line-height:1.12;letter-spacing:-.01em;color:#ffffff;margin-bottom:14px;text-shadow:0 2px 4px rgba(0,0,0,.95),0 4px 10px rgba(0,0,0,.9),0 8px 28px rgba(0,0,0,.8)}
 
 
-.h-title em{font-style:normal;color:var(--cyan);text-shadow:0 0 20px rgba(0,229,255,.5)}
+.h-title em{font-style:normal;color:var(--cyan);text-shadow:0 0 20px rgba(0,242,255,.5)}
 
 
 .h-sub{font-size:15px;color:rgba(240,238,255,.94);max-width:540px;line-height:1.65;margin-bottom:20px;text-shadow:0 1px 3px rgba(0,0,0,.95),0 3px 14px rgba(0,0,0,.8)}
@@ -550,10 +550,10 @@ a.mq-item{text-decoration:none;cursor:pointer}
 .fc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,2,32,.98) 0%,rgba(11,2,32,.6) 38%,rgba(11,2,32,.12) 70%,transparent 100%),linear-gradient(to right,transparent 50%,rgba(11,2,32,.4) 100%)}
 
 
-.fc::after{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;pointer-events:none}
+.fc::after{content:'';position:absolute;inset:0;border:1px solid rgba(0,242,255,0);transition:border-color .3s;pointer-events:none}
 
 
-.fc:hover::after{border-color:rgba(0,229,255,.3)}
+.fc:hover::after{border-color:rgba(0,242,255,.3)}
 
 
 .fc-body{position:absolute;bottom:0;left:0;right:0;padding:32px}
@@ -586,10 +586,10 @@ a.mq-item{text-decoration:none;cursor:pointer}
 .sc:hover .sc-img img{transform:scale(1.07);opacity:.95}
 
 
-.sc::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;z-index:3;pointer-events:none}
+.sc::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,242,255,0);transition:border-color .3s;z-index:3;pointer-events:none}
 
 
-.sc:hover::before{border-color:rgba(0,229,255,.22)}
+.sc:hover::before{border-color:rgba(0,242,255,.22)}
 
 
 .sc-body{padding:14px 16px}
@@ -622,7 +622,7 @@ a.mq-item{text-decoration:none;cursor:pointer}
 .rk-badge{font-size:10px;letter-spacing:.1em;font-family:var(--fb);font-weight:500;text-transform:uppercase;padding:3px 9px;border:1px solid}
 
 
-.rk-week{border-color:rgba(0,229,255,.25);color:var(--cyan);background:rgba(0,229,255,.07)}
+.rk-week{border-color:rgba(0,242,255,.25);color:var(--cyan);background:rgba(0,242,255,.07)}
 
 
 .rk-list{display:flex;flex-direction:column}
@@ -643,7 +643,7 @@ a.mq-item{text-decoration:none;cursor:pointer}
 .rk-num{font-family:var(--fd);font-weight:700;font-size:22px;text-align:right;line-height:1;color:rgba(240,238,255,.1);transition:color .2s}
 
 
-.rk-item:hover .rk-num{color:rgba(0,229,255,.25)}
+.rk-item:hover .rk-num{color:rgba(0,242,255,.25)}
 
 
 .rk-item.top1 .rk-num{color:var(--amber);opacity:.9;font-size:24px}
@@ -736,7 +736,7 @@ a.mq-item{text-decoration:none;cursor:pointer}
 .ag-nav{position:absolute;top:calc(50% - 20px);transform:translateY(-50%);z-index:5;width:38px;height:38px;border-radius:50%;background:rgba(11,4,24,.88);border:1px solid var(--border);color:var(--white);font-size:19px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s;backdrop-filter:blur(4px)}
 
 
-.ag-nav:hover{background:rgba(0,229,255,.16);border-color:rgba(0,229,255,.4);color:var(--cyan)}
+.ag-nav:hover{background:rgba(0,242,255,.16);border-color:rgba(0,242,255,.4);color:var(--cyan)}
 
 
 .ag-prev{left:-16px}
@@ -754,10 +754,10 @@ a.mq-item{text-decoration:none;cursor:pointer}
 .anime-card:hover .an-title{color:var(--cyan)}
 
 
-.anime-card::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;z-index:3;pointer-events:none}
+.anime-card::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,242,255,0);transition:border-color .3s;z-index:3;pointer-events:none}
 
 
-.anime-card:hover::before{border-color:rgba(0,229,255,.22)}
+.anime-card:hover::before{border-color:rgba(0,242,255,.22)}
 
 
 .an-poster{width:100%;aspect-ratio:2/3;overflow:hidden;position:relative;background:var(--surf2)}
@@ -928,10 +928,10 @@ a.mq-item{text-decoration:none;cursor:pointer}
 .cat-b:hover::before{opacity:1}
 
 
-.cb-gaming::before{background:linear-gradient(90deg,var(--cyan),rgba(0,229,255,.3))}
+.cb-gaming::before{background:linear-gradient(90deg,var(--cyan),rgba(0,242,255,.3))}
 
 
-.cb-anime::before{background:linear-gradient(90deg,var(--sakura),rgba(255,48,128,.3))}
+.cb-anime::before{background:linear-gradient(90deg,var(--sakura),rgba(255,33,119,.3))}
 
 
 .cb-manga::before{background:linear-gradient(90deg,var(--lavender),rgba(167,139,250,.3))}
@@ -955,7 +955,7 @@ a.mq-item{text-decoration:none;cursor:pointer}
 .cat-ct{font-size:12px;color:var(--dim);position:relative;z-index:1}
 
 
-.nl{position:relative;z-index:1;background:linear-gradient(135deg,rgba(0,229,255,.04) 0%,rgba(124,58,237,.08) 50%,rgba(255,48,128,.04) 100%);border-top:1px solid rgba(0,229,255,.14);border-bottom:1px solid rgba(124,58,237,.12);overflow:hidden}
+.nl{position:relative;z-index:1;background:linear-gradient(135deg,rgba(0,242,255,.04) 0%,rgba(124,58,237,.08) 50%,rgba(255,33,119,.04) 100%);border-top:1px solid rgba(0,242,255,.14);border-bottom:1px solid rgba(124,58,237,.12);overflow:hidden}
 
 
 .nl::before{content:'';position:absolute;top:-100px;right:-60px;width:400px;height:400px;background:var(--violet);border-radius:50%;filter:blur(120px);opacity:.06;pointer-events:none}
@@ -982,7 +982,7 @@ a.mq-item{text-decoration:none;cursor:pointer}
 .nl-row{display:grid;grid-template-columns:1fr auto;border:1px solid var(--border);background:rgba(255,255,255,.03);transition:border-color .2s,box-shadow .2s}
 
 
-.nl-row:focus-within{border-color:rgba(0,229,255,.45);box-shadow:0 0 0 3px rgba(0,229,255,.08)}
+.nl-row:focus-within{border-color:rgba(0,242,255,.45);box-shadow:0 0 0 3px rgba(0,242,255,.08)}
 
 
 .nl-input{background:transparent;border:none;outline:none;color:var(--white);font-family:var(--fb);font-size:13px;padding:13px 14px}
@@ -1033,7 +1033,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 .soc{width:32px;height:32px;border:1px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:border-color .2s,color .2s,background .2s}
 
 
-.soc:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,229,255,.06)}
+.soc:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,242,255,.06)}
 
 
 .rv{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
@@ -1421,7 +1421,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 .rk-item:nth-child(n+4) .rk-num, .rki-item:nth-child(n+4) .rki-num, .t-item:nth-child(n+4) .t-num {
   color: #a5f3fc !important;
   font-size: 17px;
-  text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+  text-shadow: 0 0 8px rgba(0,242,255, 0.3);
 }
 
 .an-score-num, .rk-sc, .rki-score, .sc-big, .score-num {
@@ -1453,18 +1453,18 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   background: rgba(17, 8, 42, 0.85) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 229, 255, 0.25) !important;
+  border: 1px solid rgba(0,242,255, 0.25) !important;
   border-radius: 14px;
-  box-shadow: 0 12px 36px rgba(0,0,0,0.55), 0 0 24px rgba(0,229,255,0.08);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.55), 0 0 24px rgba(0,242,255,0.08);
   padding: 24px 22px;
 }
 .side-head {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: linear-gradient(90deg, rgba(255,48,128,0.25), rgba(0,229,255,0.2));
-  border: 1px solid rgba(0,229,255,0.45);
-  color: #00e5ff !important;
+  background: linear-gradient(90deg, rgba(255,33,119,0.25), rgba(0,242,255,0.2));
+  border: 1px solid rgba(0,242,255,0.45);
+  color: #00f2ff !important;
   font-family: var(--fd);
   font-size: 11px;
   font-weight: 800;
@@ -1473,7 +1473,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   padding: 6px 14px;
   border-radius: 6px;
   margin-bottom: 16px;
-  text-shadow: 0 0 10px rgba(0,229,255,0.5);
+  text-shadow: 0 0 10px rgba(0,242,255,0.5);
 }
 .sa-t {
   color: #ffffff !important;
@@ -1483,7 +1483,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   text-shadow: 0 1px 3px rgba(0,0,0,0.7);
   transition: color .2s ease;
 }
-.s-art:hover .sa-t { color: #00e5ff !important; }
+.s-art:hover .sa-t { color: #00f2ff !important; }
 .sa-m { color: #cbd5e1 !important; font-size: 12px; }
 .sa-thumb {
   border-radius: 8px;
@@ -1493,14 +1493,14 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 /* ── Item 4 Fix: High Contrast Global Text ── */
 .wc-t { color: #ffffff !important; font-weight: 700; font-size: 16.5px; }
 .wc-m { color: #cbd5e1 !important; font-size: 12px; }
-.w-card:hover .wc-t { color: #00e5ff !important; }
+.w-card:hover .wc-t { color: #00f2ff !important; }
 .fc-title { color: #ffffff !important; font-weight: 700; }
 .fc-sub { color: #f1f5f9 !important; font-size: 14px; }
 .h-sub { color: #f8fafc !important; font-size: 15px; text-shadow: 0 2px 10px rgba(0,0,0,0.85); }
 .sec-t { color: #ffffff !important; font-size: 17px; font-weight: 800; letter-spacing: .08em; }
 .ft-desc { color: #cbd5e1 !important; }
 .ft-links a { color: #cbd5e1 !important; transition: color .2s; }
-.ft-links a:hover { color: #00e5ff !important; }
+.ft-links a:hover { color: #00f2ff !important; }
 
 /* ── Item 7 Fix: Fast & Fully Clickable Breaking News Ticker ── */
 .ticker {
@@ -1578,10 +1578,10 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
     background: rgba(15, 6, 38, 0.88);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 229, 255, 0.35);
+    border: 1px solid rgba(0,242,255, 0.35);
     border-radius: 28px;
     padding: 6px 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(0,229,255,0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(0,242,255,0.2);
     z-index: 999;
     align-items: center;
     justify-content: space-around;
@@ -1607,8 +1607,8 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   }
   .mtd-item svg { width: 18px; height: 18px; fill: currentColor; }
   .mtd-item:hover, .mtd-item.active {
-    color: #00e5ff;
-    background: rgba(0, 229, 255, 0.12);
+    color: #00f2ff;
+    background: rgba(0,242,255, 0.12);
   }
   body { padding-bottom: 72px; }
 }
@@ -1715,7 +1715,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
     <a href="/en" class="logo">
 
 
-      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="5" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect></svg>
+      <img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy">
 
 
       <span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span>
@@ -1862,7 +1862,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   <div class="hero-main" onclick="location.href='/en/5-life-lessons-from-naruto-uzumaki-still-hold-up'" style="cursor:pointer">
     <div class="h-img" style="background-image:url(/assets/img/naruto-5-lessons-banner.jpg)"></div><div class="h-ov"></div><div class="h-scan"></div><div class="h-glow"></div>
     <div class="h-content">
-      <span class="tag tag-s tag-live" id="h-tag" style="background:#ff3080;color:#fff">🔴 BREAKING NEWS · ANIME</span>
+      <span class="tag tag-s tag-live" id="h-tag" style="background:#ff2177;color:#fff">🔴 BREAKING NEWS · ANIME</span>
       <h1 class="h-title" id="h-title">5 Life Lessons From Naruto Uzumaki That Still Hold Up</h1>
       <p class="h-sub" id="h-sub">From village outcast to Seventh Hokage, Naruto Uzumaki's journey still holds up: 5 lessons on persistence, empathy and why the bonds you fight for matter.</p>
       <div class="h-meta"><span class="h-meta-cat">Anime</span><span class="h-meta-sep">·</span><span>OtaHub Editorial</span><span class="h-meta-sep">·</span><span id="h-time">09/29/2026</span></div>
@@ -1946,7 +1946,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
     <div class="rk-card">
 
 
-      <div class="rk-head"><div class="rk-head-title"><div class="rk-icon"><svg width="22" height="22" viewbox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" stroke="#00e5ff" stroke-width="1.5"></rect><path d="M8 12H16M12 8v8" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="square"></path><circle cx="18" cy="10" r="1" fill="#00e5ff"></circle><circle cx="18" cy="13" r="1" fill="#00e5ff"></circle></svg></div><span style="color:var(--cyan)">PC Games</span></div><span class="rk-badge rk-week">Week 35</span></div>
+      <div class="rk-head"><div class="rk-head-title"><div class="rk-icon"><svg width="22" height="22" viewbox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" stroke="#00f2ff" stroke-width="1.5"></rect><path d="M8 12H16M12 8v8" stroke="#00f2ff" stroke-width="1.5" stroke-linecap="square"></path><circle cx="18" cy="10" r="1" fill="#00f2ff"></circle><circle cx="18" cy="13" r="1" fill="#00f2ff"></circle></svg></div><span style="color:var(--cyan)">PC Games</span></div><span class="rk-badge rk-week">Week 35</span></div>
 
 
       <div class="rk-list">
@@ -1961,7 +1961,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
         <a class="rk-item top3" href="/en/game-detail?t=Ghost%20of%20Y%C5%8Dtei%3A%20Complete%20Edition"><div class="rk-num">03</div><div class="rk-thumb"><img src="/assets/img/yt-sLcksHR30UA.jpg" alt="Ghost of Yōtei: Complete Edition" loading="lazy" width="1920" height="1080"></div><div class="rk-info"><div class="rk-name">Ghost of Yōtei: Complete Edition</div><div class="rk-sub">Sucker Punch · Action-Adventure</div><div class="rk-tags"><span class="rk-trend eq">= 3 →</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--green)">9.3</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="93%" style="background:var(--green)"></div></div></div></a>
 
 
-        <a class="rk-item" href="/en/game-detail?t=Big%20Walk"><div class="rk-num">04</div><div class="rk-thumb"><img src="/assets/img/d4b52b428d-big-walk-house-house-hero.jpg" alt="Big Walk" loading="lazy" width="2000" height="1125"></div><div class="rk-info"><div class="rk-name">Big Walk</div><div class="rk-sub">House House · Co-op Puzzle</div><div class="rk-tags"><span class="rk-tag-pill" style="border-color:rgba(0,229,255,.3);color:var(--cyan)">Co-op</span><span class="rk-trend up">NEW ↑</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--green)">9.2</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="92%" style="background:var(--cyan)"></div></div></div></a>
+        <a class="rk-item" href="/en/game-detail?t=Big%20Walk"><div class="rk-num">04</div><div class="rk-thumb"><img src="/assets/img/d4b52b428d-big-walk-house-house-hero.jpg" alt="Big Walk" loading="lazy" width="2000" height="1125"></div><div class="rk-info"><div class="rk-name">Big Walk</div><div class="rk-sub">House House · Co-op Puzzle</div><div class="rk-tags"><span class="rk-tag-pill" style="border-color:rgba(0,242,255,.3);color:var(--cyan)">Co-op</span><span class="rk-trend up">NEW ↑</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--green)">9.2</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="92%" style="background:var(--cyan)"></div></div></div></a>
 
 
         <a class="rk-item" href="/en/game-detail?t=Black%20Myth%3A%20Wukong"><div class="rk-num">05</div><div class="rk-thumb"><img src="/assets/img/7403bc0e49-header.jpg" alt="Black Myth: Wukong" loading="lazy" width="460" height="215"></div><div class="rk-info"><div class="rk-name">Black Myth: Wukong</div><div class="rk-sub">Game Science · Action RPG</div><div class="rk-tags"><span class="rk-trend dn">-1 ↓</span></div></div><div class="rk-score-col"><div class="rk-score" style="color:var(--green)">8.9</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="89%" style="background:var(--green)"></div></div></div></a>
@@ -1976,7 +1976,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
     <div class="rk-card">
 
 
-      <div class="rk-head"><div class="rk-head-title"><div class="rk-icon"><svg width="20" height="22" viewbox="0 0 20 24" fill="none"><rect x="3" y="1" width="14" height="22" rx="2" stroke="#ff3080" stroke-width="1.5"></rect><circle cx="10" cy="19" r="1.5" fill="#ff3080"></circle><path d="M7 8H13M10 5v6" stroke="#ff3080" stroke-width="1.5" stroke-linecap="square"></path></svg></div><span style="color:var(--sakura)">Mobile Games</span></div><span class="rk-badge" style="border-color:var(--b-sakura);color:var(--sakura);background:rgba(255,48,128,.06)">Week 35</span></div>
+      <div class="rk-head"><div class="rk-head-title"><div class="rk-icon"><svg width="20" height="22" viewbox="0 0 20 24" fill="none"><rect x="3" y="1" width="14" height="22" rx="2" stroke="#ff2177" stroke-width="1.5"></rect><circle cx="10" cy="19" r="1.5" fill="#ff2177"></circle><path d="M7 8H13M10 5v6" stroke="#ff2177" stroke-width="1.5" stroke-linecap="square"></path></svg></div><span style="color:var(--sakura)">Mobile Games</span></div><span class="rk-badge" style="border-color:var(--b-sakura);color:var(--sakura);background:rgba(255,33,119,.06)">Week 35</span></div>
 
 
       <div class="rk-list">
@@ -2111,7 +2111,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
     <div class="manga-col">
 
 
-      <div class="manga-col-head"><span class="manga-col-title" style="color:var(--sakura)">Manhua</span><span class="rk-badge" style="border-color:var(--b-sakura);color:var(--sakura);background:rgba(255,48,128,.06)">Week 33</span></div>
+      <div class="manga-col-head"><span class="manga-col-title" style="color:var(--sakura)">Manhua</span><span class="rk-badge" style="border-color:var(--b-sakura);color:var(--sakura);background:rgba(255,33,119,.06)">Week 33</span></div>
 
 
       <a class="manga-item top1" href="/en/battle-through-the-heavens-review"><div class="mi-num">01</div><div class="mi-thumb"><img src="/assets/img/f9fa2f5cc7-226182l.jpg" alt="Battle Through the Heavens" loading="lazy" width="422" height="600"></div><div><div class="mi-title">Battle Through the Heavens</div><div class="mi-meta">Tiancan Tudou · Weekly</div></div><div class="mi-score" style="color:var(--amber)">9.1</div></a>
@@ -2231,10 +2231,10 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   <div class="cat-grid">
 
 
-    <a href="/en/gaming" class="cat-b cb-gaming" style="text-decoration:none"><svg class="cat-icon" viewbox="0 0 32 32" fill="none"><rect x="2" y="8" width="28" height="18" stroke="#00e5ff" stroke-width="1.5"></rect><path d="M10 17H18M14 13v8" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="square"></path><circle cx="22" cy="15" r="1.5" fill="#00e5ff"></circle><circle cx="22" cy="19" r="1.5" fill="#00e5ff"></circle></svg><div class="cat-name">Gaming</div><div class="cat-ct">1,247 posts</div></a>
+    <a href="/en/gaming" class="cat-b cb-gaming" style="text-decoration:none"><svg class="cat-icon" viewbox="0 0 32 32" fill="none"><rect x="2" y="8" width="28" height="18" stroke="#00f2ff" stroke-width="1.5"></rect><path d="M10 17H18M14 13v8" stroke="#00f2ff" stroke-width="1.5" stroke-linecap="square"></path><circle cx="22" cy="15" r="1.5" fill="#00f2ff"></circle><circle cx="22" cy="19" r="1.5" fill="#00f2ff"></circle></svg><div class="cat-name">Gaming</div><div class="cat-ct">1,247 posts</div></a>
 
 
-    <a href="/en/anime" class="cat-b cb-anime" style="text-decoration:none"><svg class="cat-icon" viewbox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="#ff3080" stroke-width="1.5"></circle><ellipse cx="11" cy="15" rx="2" ry="2.5" fill="#ff3080"></ellipse><ellipse cx="21" cy="15" rx="2" ry="2.5" fill="#ff3080"></ellipse><path d="M12 21s2 2 4 2 4-2 4-2" stroke="#ff3080" stroke-width="1.5" stroke-linecap="square"></path></svg><div class="cat-name">Anime</div><div class="cat-ct">863 articles</div></a>
+    <a href="/en/anime" class="cat-b cb-anime" style="text-decoration:none"><svg class="cat-icon" viewbox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="#ff2177" stroke-width="1.5"></circle><ellipse cx="11" cy="15" rx="2" ry="2.5" fill="#ff2177"></ellipse><ellipse cx="21" cy="15" rx="2" ry="2.5" fill="#ff2177"></ellipse><path d="M12 21s2 2 4 2 4-2 4-2" stroke="#ff2177" stroke-width="1.5" stroke-linecap="square"></path></svg><div class="cat-name">Anime</div><div class="cat-ct">863 articles</div></a>
 
 
     <a href="/en/manga" class="cat-b cb-manga" style="text-decoration:none"><svg class="cat-icon" viewbox="0 0 32 32" fill="none"><rect x="5" y="3" width="18" height="24" stroke="#a78bfa" stroke-width="1.5"></rect><path d="M10 10H20M10 15H20M10 20H16" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="square"></path></svg><div class="cat-name">Manga</div><div class="cat-ct">542 articles</div></a>
@@ -2300,7 +2300,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 </section>
 
 
-<footer><div class="ft-in"><div><a href="/en" class="logo" style="display:inline-flex"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Asian Gaming, Anime and Manga news hub. Fast, specialized, no bias.</p></div><div><div class="ft-h">Category</div><ul class="ft-links"><li><a href="/en/gaming">Gaming</a></li><li><a href="/en/anime">Anime</a></li><li><a href="/en/manga">Manga</a></li><li><a href="/en/reviews">Reviews</a></li><li><a href="/en/rankings">Rankings</a></li></ul></div><div><div class="ft-h">About OtaHub</div><ul class="ft-links"><li><a href="/en/about">Introduction</a></li><li><a href="/en/about#team">Team</a></li><li><a href="/en/about#contact">Contact</a></li><li><a href="/en/index#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Follow</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub<br><span style="opacity:.75;font-size:12px">Operated by ANBU Marketing &amp; Communications Co., Ltd · Tax ID 3301761892 · 47 Dang Van Ngu, An Cuu Ward, Hue City, Vietnam · Hotline 039 699 5252 · <a href="mailto:dat.phan@anbu.asia" style="color:inherit">dat.phan@anbu.asia</a></span></span></div></footer>
+<footer><div class="ft-in"><div><a href="/en" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Asian Gaming, Anime and Manga news hub. Fast, specialized, no bias.</p></div><div><div class="ft-h">Category</div><ul class="ft-links"><li><a href="/en/gaming">Gaming</a></li><li><a href="/en/anime">Anime</a></li><li><a href="/en/manga">Manga</a></li><li><a href="/en/reviews">Reviews</a></li><li><a href="/en/rankings">Rankings</a></li></ul></div><div><div class="ft-h">About OtaHub</div><ul class="ft-links"><li><a href="/en/about">Introduction</a></li><li><a href="/en/about#team">Team</a></li><li><a href="/en/about#contact">Contact</a></li><li><a href="/en/index#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Follow</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub<br><span style="opacity:.75;font-size:12px">Operated by ANBU Marketing &amp; Communications Co., Ltd · Tax ID 3301761892 · 47 Dang Van Ngu, An Cuu Ward, Hue City, Vietnam · Hotline 039 699 5252 · <a href="mailto:dat.phan@anbu.asia" style="color:inherit">dat.phan@anbu.asia</a></span></span></div></footer>
 
 
 <script>

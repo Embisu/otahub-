@@ -21,7 +21,7 @@
     a.setAttribute('aria-label', isEn ? 'Xem bằng tiếng Việt' : 'View in English');
     a.title = isEn ? 'Tiếng Việt' : 'English';
     a.textContent = isEn ? 'VI' : 'EN';
-    a.style.cssText = 'display:inline-flex;align-items:center;font-size:11px;font-weight:700;letter-spacing:.09em;color:var(--cyan,#00e5ff);border:1px solid var(--cyan,#00e5ff);padding:5px 9px;margin-right:10px;text-decoration:none;line-height:1;border-radius:2px';
+    a.style.cssText = 'display:inline-flex;align-items:center;font-size:11px;font-weight:700;letter-spacing:.09em;color:var(--cyan,#00f2ff);border:1px solid var(--cyan,#00f2ff);padding:5px 9px;margin-right:10px;text-decoration:none;line-height:1;border-radius:2px';
     nav.insertBefore(a, nav.firstChild);
   } catch (e) {}
 })();
