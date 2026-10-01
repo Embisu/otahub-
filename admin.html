@@ -4343,12 +4343,12 @@ html.theme-light .wp-draft-banner-text {
   <!-- Top Admin Bar -->
   <header class="wp-top-bar">
     <div class="wtb-left">
-      <div class="wtb-item wtb-logo">
+      <a href="https://otahub.asia" target="_blank" rel="noopener noreferrer" class="wtb-item wtb-logo" style="text-decoration:none;cursor:pointer" title="Về trang chủ OtaHub (https://otahub.asia)">
         <div class="wtb-logo-icon">OH</div>
         <div class="wtb-logo-text">Ota<span>Hub</span></div>
         <span class="wtb-logo-badge">Studio</span>
-      </div>
-      <a href="https://otahub.asia" target="_blank" class="wtb-item">🏠 Xem trang web (Live)</a>
+      </a>
+      <a href="https://otahub.asia" target="_blank" rel="noopener noreferrer" class="wtb-item" onclick="window.open('https://otahub.asia','_blank')">🏠 Xem trang web (Live)</a>
       <div class="wtb-item"><span class="wtb-badge-live">Cloudflare Pages Edge: Live</span></div>
       <button onclick="newArticle()" class="wtb-item">➕ Thêm bài mới</button>
       <button onclick="triggerManualIndexNowPing()" class="wtb-item" style="color:#00f2ff" title="Báo cáo lập chỉ mục tức thì cho Bing, Yandex, Seznam">🚀 Ping IndexNow</button>
@@ -5222,7 +5222,10 @@ async function disconnect() {
 // ── GitHub API (qua Cloudflare Worker — token GitHub thật không rời server) ──
 async function ghGet(path) {
   const r = await fetch(`/api/admin/gh/${path}`, { credentials: 'same-origin' });
-  if (r.status === 401) { location.reload(); throw new Error('Phiên đăng nhập đã hết hạn.'); }
+  if (r.status === 401) {
+    toast('warning', '⚠️ Phiên đăng nhập có thể đã hết hạn hoặc không có quyền truy cập file này.');
+    throw new Error('Phiên đăng nhập đã hết hạn hoặc không có quyền.');
+  }
   if (!r.ok) { const e = await r.json().catch(()=>({})); throw new Error(e.error || ('Lỗi API: ' + r.status)); }
   return r.json();
 }
@@ -5239,7 +5242,10 @@ async function ghPut(path, content, sha, message) {
       message
     })
   });
-  if (r.status === 401) { location.reload(); throw new Error('Phiên đăng nhập đã hết hạn.'); }
+  if (r.status === 401) {
+    toast('error', '⚠️ Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.');
+    throw new Error('Phiên đăng nhập đã hết hạn.');
+  }
   if (!r.ok) {
     const e = await r.json().catch(()=>({}));
     throw new Error(e.error || 'Lỗi khi lưu file');
@@ -5254,7 +5260,10 @@ async function ghDelete(path, sha, message) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ sha, message })
   });
-  if (r.status === 401) { location.reload(); throw new Error('Phiên đăng nhập đã hết hạn.'); }
+  if (r.status === 401) {
+    toast('error', '⚠️ Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.');
+    throw new Error('Phiên đăng nhập đã hết hạn.');
+  }
   if (!r.ok) {
     const e = await r.json().catch(()=>({}));
     throw new Error(e.error || 'Lỗi khi xoá file');
@@ -5769,7 +5778,7 @@ async function uploadImageFile(file) {
   });
 
   if (r.status === 401) {
-    location.reload();
+    toast('error', '⚠️ Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.');
     throw new Error('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.');
   }
 
@@ -7074,7 +7083,9 @@ function sanitizePastedHtml(html) {
 // cứng, để tự động bao phủ toàn bộ ~150+ bài trên site (chỉ bài tiếng Việt —
 // bài tiếng Anh dùng template khác, chưa hỗ trợ sửa qua trình soạn thảo này).
 async function loadArticles(landOnDashboard) {
-  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải danh sách bài viết...</span></div>`);
+  if (!CURRENT_VIEW || CURRENT_VIEW === 'loading' || CURRENT_VIEW === 'articles' || CURRENT_VIEW === 'dashboard') {
+    setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải danh sách bài viết...</span></div>`);
+  }
   try {
     let js = '';
     try {
@@ -7158,9 +7169,18 @@ async function loadArticles(landOnDashboard) {
       else if (CURRENT_VIEW === 'dashboard') renderDashboard();
     });
     const requestedView = new URLSearchParams(location.search).get('view');
-    if (requestedView === 'news-pipeline' && (CURRENT_USER.role === 'admin' || CURRENT_USER.role === 'editor')) showView('news-pipeline');
-    else if (landOnDashboard) showView('dashboard');
-    else showView('articles');
+    if (requestedView === 'news-pipeline' && (CURRENT_USER.role === 'admin' || CURRENT_USER.role === 'editor')) {
+      showView('news-pipeline');
+    } else if (CURRENT_VIEW === 'editor' || currentFile) {
+      // Người dùng đang ở trong trình soạn thảo bài viết, giữ nguyên không chuyển view
+      console.log('loadArticles: editor is active, keeping editor view.');
+    } else if (CURRENT_VIEW && CURRENT_VIEW !== 'loading' && CURRENT_VIEW !== 'articles' && CURRENT_VIEW !== 'dashboard') {
+      console.log('loadArticles: staying in current view:', CURRENT_VIEW);
+    } else if (landOnDashboard) {
+      showView('dashboard');
+    } else {
+      showView('articles');
+    }
   } catch(e) {
     setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải bài viết: ${e.message}</p></div>`);
   }
@@ -8755,7 +8775,7 @@ async function openQuickEdit(file, e) {
           <div>
             <label class="form-label" style="margin:0 0 4px">Danh mục</label>
             <select class="form-input" id="qe-cat">
-              ${['Gaming','Anime','Manga','Reviews','Rankings','Guide','News'].map(c => `<option value="${c}" ${c === art.cat ? 'selected' : ''}>${c}</option>`).join('')}
+              ${['Gaming','Anime','Manga','Reviews','Rankings','Chuyên sâu','Tin tức','Chơi Gì?','Hướng dẫn','Esports','Công nghệ'].map(c => `<option value="${c}" ${c === art.cat ? 'selected' : ''}>${c}</option>`).join('')}
             </select>
           </div>
           <div>
@@ -9132,6 +9152,8 @@ let __editReqSeq = 0;
 
 async function editArticle(file) {
   if (!confirmDiscardUnsaved()) return;
+  CURRENT_VIEW = 'editor';
+  currentFile = file;
   CURRENT_NEWS_DRAFT_ID = null;
   const myReq = ++__editReqSeq;
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải bài viết: <code style="color:var(--wp-blue)">${esc(file)}</code>...</span></div>`);
@@ -9222,7 +9244,15 @@ async function editArticle(file) {
     if (myReq !== __editReqSeq) return;
     console.error('editArticle error:', e);
     toast('error', 'Không tải được bài: ' + e.message);
-    showView('articles');
+    setMain(`
+      <div class="empty-state" style="padding:40px 20px;text-align:center">
+        <div class="empty-icon" style="font-size:36px;margin-bottom:12px">⚠️</div>
+        <h2 style="font-size:18px;margin-bottom:8px">Không thể tải nội dung bài viết</h2>
+        <p style="color:var(--wp-muted);margin-bottom:16px">${esc(e.message)}</p>
+        <button class="button button-primary" onclick="editArticle('${esc(file)}')">🔄 Thử tải lại</button>
+        <button class="btn btn-secondary" onclick="showView('articles')" style="margin-left:8px">← Quay lại danh sách bài viết</button>
+      </div>
+    `);
   }
 }
 
@@ -10336,8 +10366,7 @@ function renderEditor(file, html) {
             <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiGenerateViralTitles()">✨ Gợi ý Tiêu đề</button>
             <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiGenerateMetaSummary()">📝 Tóm tắt Meta</button>
             <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiAddFaqSchemaBlock()">❓ Thêm FAQ Schema</button>
-            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiAutoTranslateToEnglish()">🌐 Dịch EN</button>
-            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiCloneViToEn()">📄 Nhân bản EN</button>
+            <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="aiAutoTranslateToEnglish()">🌐 Dịch sang EN (AI)</button>
             <button type="button" class="btn btn-secondary btn-sm ai-btn" onclick="openDocsImportModal()">📥 Nhập Docs/Word</button>
           </div>
         </div>
@@ -10360,13 +10389,13 @@ function renderEditor(file, html) {
             </div>
           </div>
           <div id="bilingual-tools-en" style="display:${CURRENT_LANG==='en'?'flex':'none'};gap:8px;align-items:center">
-            <button type="button" class="button button-small" onclick="copyViStructureToEn()" title="Sao chép toàn bộ dàn ý, hình ảnh và khối từ bài Tiếng Việt để bạn chỉ việc dịch đè chữ">
+            <button type="button" class="button button-small" onclick="aiAutoTranslateToEnglish()" title="Dùng Cloudflare AI dịch toàn bộ tiêu đề, mô tả và nội dung sang Tiếng Anh">
+              ✨ Dịch tự động sang tiếng Anh (AI)
+            </button>
+            <button type="button" class="button button-small" onclick="copyViStructureToEn()" title="Sao chép toàn bộ cấu trúc, hình ảnh từ bài VI sang EN">
               📋 Sao chép cấu trúc từ bài VI
             </button>
-            <button type="button" class="button button-small" onclick="aiAutoDraftEnFromVi()" title="Dùng AI gợi ý tiêu đề & tóm tắt tiếng Anh chuẩn SEO">
-              ✨ Gợi ý bản EN
-            </button>
-            <button type="button" class="button button-small" onclick="openFullArticlePreview('en')" title="Xem trước bản Tiếng Anh độc lập trong tab mới">
+            <button type="button" class="button button-small" onclick="openFullArticlePreview('en')" title="Xem trước bản Tiếng Anh trong tab mới">
               👁️ Xem trước EN
             </button>
           </div>
@@ -10387,11 +10416,7 @@ function renderEditor(file, html) {
           <span id="edit-slug-buttons">
             <button type="button" class="button-small" onclick="promptEditSlug()" id="btn-edit-slug">Chỉnh sửa</button>
           </span>
-          <a href="https://otahub.asia/${(file||'').replace(/\.html$/,'')}" target="_blank" class="button-small" id="view-post-btn" style="margin-left:auto">Xem bài viết</a>
-          <div style="display:inline-flex;gap:4px">
-            <button type="button" class="button-small" onclick="openFullArticlePreview('vi')" title="Xem trước bản Tiếng Việt">👁️ Xem trước 🇻🇳</button>
-            <button type="button" class="button-small" onclick="openFullArticlePreview('en')" title="Xem trước bản Tiếng Anh">🇬🇧 EN</button>
-          </div>
+          <a href="https://otahub.asia/${(file||'').replace(/\.html$/,'')}" target="_blank" class="button-small" id="view-post-btn" style="margin-left:auto">Xem bài viết ↗</a>
           <input type="hidden" id="ed-slug" value="${esc((file||'').replace(/\.html$/,''))}"/>
         </div>
 
@@ -10970,13 +10995,17 @@ function renderEditor(file, html) {
             </ul>
             <div id="category-all" class="tabs-panel">
               <ul id="categorychecklist" class="categorychecklist">
-                ${['Gaming','Anime','Manga','Reviews','Rankings','Guide','News','Esports','Technology'].map(c => `
-                  <li>
-                    <label>
-                      <input value="${c}" type="checkbox" name="post_category" ${c===cat?'checked':''} onchange="onCategoryCheckboxChange(this)"/> ${c}
-                    </label>
-                  </li>
-                `).join('')}
+                ${(() => {
+                  const defaultCats = ['Gaming', 'Anime', 'Manga', 'Reviews', 'Rankings', 'Chuyên sâu', 'Tin tức', 'Chơi Gì?', 'Hướng dẫn', 'Esports', 'Công nghệ'];
+                  const allCats = Array.from(new Set([...defaultCats, cat].filter(Boolean)));
+                  return allCats.map(c => `
+                    <li>
+                      <label>
+                        <input value="${esc(c)}" type="checkbox" name="post_category" ${c===cat?'checked':''} onchange="onCategoryCheckboxChange(this)"/> ${esc(c)}
+                      </label>
+                    </li>
+                  `).join('');
+                })()}
               </ul>
             </div>
             <input type="hidden" id="ed-cat" value="${cat}"/>
@@ -11058,22 +11087,6 @@ function renderEditor(file, html) {
                 <button type="button" class="btn btn-secondary btn-sm" onclick="addHighlightBox()">+ Thêm khung Tóm tắt</button>
               </div>
             `}
-          </div>
-        </div>
-
-        <!-- Postbox 5: Quick Media Embeds -->
-        <div class="postbox" id="quickmediadiv">
-          <div class="postbox-header" onclick="togglePostbox(this)">
-            <h2><span>🔗</span> Thêm ảnh nhanh</h2>
-            <button type="button" class="postbox-toggle-btn">▾</button>
-          </div>
-          <div class="inside">
-            <label class="form-label" style="margin-top:0">YouTube Video ID</label>
-            <input class="form-input" id="yt-id" placeholder="dQw4w9WgXcQ" oninput="updateYtPreview()"/>
-            <div style="font-size:11px;color:var(--wp-muted);margin-top:4px" id="yt-urls"></div>
-            <label class="form-label" style="margin-top:10px">Steam App ID</label>
-            <input class="form-input" id="steam-id" placeholder="1091500" oninput="updateSteamUrls()"/>
-            <div style="font-size:11px;color:var(--wp-muted);margin-top:4px" id="steam-urls"></div>
           </div>
         </div>
 
@@ -11932,12 +11945,61 @@ function aiAutoDraftEnFromVi() {
 }
 
 async function aiAutoTranslateToEnglish() {
-  switchBilingualTab('en');
+  syncBilingualBufferFromDom(CURRENT_LANG);
+
+  const viTitle = (BILINGUAL_DATA?.vi?.title || document.getElementById('title')?.value || '').trim();
+  const viDesc = (BILINGUAL_DATA?.vi?.desc || document.getElementById('ed-desc')?.value || '').trim();
+  const viBody = (BILINGUAL_DATA?.vi?.bodyHtml || document.getElementById('body-visual')?.innerHTML || document.getElementById('body-textarea')?.value || '').trim();
+
+  if (!viTitle && !viBody) {
+    toast('warning', '⚠️ Vui lòng nhập tiêu đề hoặc nội dung tiếng Việt trước khi dịch sang tiếng Anh.');
+    return;
+  }
+
+  // Nếu bài EN chưa có khung cấu trúc/hình ảnh, sao chép cấu trúc trước
   if (!BILINGUAL_DATA.en.bodyHtml && (!BILINGUAL_DATA.en.blocks || !BILINGUAL_DATA.en.blocks.length)) {
     copyViStructureToEn();
   }
-  aiAutoDraftEnFromVi();
-  toast('success', '🌐 Đã chuyển sang tab Tiếng Anh và tự động tạo bản dịch nháp!');
+
+  toast('info', '🤖 Đang dịch toàn bộ bài viết sang Tiếng Anh bằng Cloudflare AI...');
+  try {
+    const res = await fetch('/api/admin/ai/translate', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title: viTitle,
+        desc: viDesc,
+        bodyHtml: viBody,
+        targetLang: 'en'
+      })
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || ('HTTP ' + res.status));
+    }
+
+    const data = await res.json();
+    if (!data.title && !data.bodyHtml) {
+      throw new Error('Dữ liệu dịch trả về rỗng.');
+    }
+
+    if (data.title) BILINGUAL_DATA.en.title = data.title;
+    if (data.desc) BILINGUAL_DATA.en.desc = data.desc;
+    if (data.bodyHtml) BILINGUAL_DATA.en.bodyHtml = data.bodyHtml;
+
+    switchBilingualTab('en');
+    markChanged();
+    updateWordCount();
+    updateSeoScore();
+    toast('success', '🌐 Đã dịch hoàn chỉnh bài viết sang Tiếng Anh thành công!');
+  } catch (e) {
+    console.warn('AI translation fallback to draft:', e);
+    switchBilingualTab('en');
+    aiAutoDraftEnFromVi();
+    toast('warning', `⚠️ AI dịch tự động (${e.message}). Đã chuyển sang bản nháp Tiếng Anh.`);
+  }
 }
 
 async function aiCloneViToEn() {
@@ -15109,10 +15171,10 @@ function syncArticleFieldsFromIframe() {
     }
   }
 
-  // Body
-  if (activeId !== 'body-textarea' && activeId !== 'body-visual') {
+  // Body - chỉ đồng bộ từ iframe khi đang ở chế độ xem trực tiếp 'live'
+  if (BODY_MODE === 'live' && activeId !== 'body-textarea' && activeId !== 'body-visual') {
     const bodyEl = doc.querySelector('[data-ohfield="body"]');
-    if (bodyEl) {
+    if (bodyEl && bodyEl.innerHTML && bodyEl.innerHTML.trim().length > 10) {
       const bv = document.getElementById('body-visual');
       if (bv) bv.innerHTML = bodyEl.innerHTML;
     }
@@ -16460,11 +16522,13 @@ function openNewsDraftInEditor(id) {
 // trông giống hệt bài thật ngay từ đầu, thay vì trang trơ trụi thiếu CSS/nav.
 function newArticle(prefillTitle) {
   if (!confirmDiscardUnsaved()) return;
+  CURRENT_VIEW = 'editor';
   const prefill = prefillTitle && typeof prefillTitle === 'object' ? prefillTitle : null;
   const requestedTitle = prefill ? prefill.title : prefillTitle;
   const cleanTitle = cleanPlainText(requestedTitle) || 'Tiêu đề bài viết';
   const cleanSlug = (prefill?.slug ? slugifyFilename(prefill.slug) : (requestedTitle ? slugifyFilename(cleanTitle) : '')) || `bai-viet-moi-${Date.now().toString(36)}`;
   const filename = cleanSlug + '.html';
+  currentFile = filename;
   const url = `https://otahub.asia/${cleanSlug}`;
   CUSTOM_PUBLISH_DATE = '';
   const now = new Date();

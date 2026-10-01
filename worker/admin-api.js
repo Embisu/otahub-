@@ -793,6 +793,73 @@ async function handlePingIndexNow(request, env) {
   }
 }
 
+async function handleAiTranslate(request, env) {
+  const user = await getSessionUser(request, env);
+  if (!user) return json({ error: 'Chưa đăng nhập.' }, 401);
+
+  let body;
+  try { body = await request.json(); } catch { return json({ error: 'Dữ liệu không hợp lệ.' }, 400); }
+  const { title = '', desc = '', bodyHtml = '', targetLang = 'en' } = body || {};
+
+  if (!title && !bodyHtml) {
+    return json({ error: 'Vui lòng cung cấp tiêu đề hoặc nội dung cần dịch.' }, 400);
+  }
+
+  if (!env.AI) {
+    return json({ error: 'Cloudflare AI chưa được cấu hình trên hệ thống.' }, 503);
+  }
+
+  const prompt = `You are a professional video games and anime/manga journalist translating content for OtaHub (otahub.asia).
+Translate the following Vietnamese article into natural, engaging, professional English.
+
+CRITICAL RULES:
+1. Translate "title" into a compelling English headline.
+2. Translate "desc" into an engaging meta description (120-160 characters).
+3. Translate "bodyHtml" into English while keeping ALL HTML formatting, structure, tags (<h2>, <h3>, <p>, <strong>, <em>, <img>, <a>, <blockquote>, <ul>, <li>, etc.) intact.
+4. Keep game titles, anime names, studio names, character names accurate.
+5. Return ONLY a single valid JSON object with keys "title", "desc", "bodyHtml". Do NOT wrap in markdown code blocks.
+
+INPUT:
+${JSON.stringify({ title, desc, bodyHtml })}
+
+OUTPUT (valid JSON only):`;
+
+  try {
+    const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+      messages: [
+        { role: 'system', content: 'You are a gaming and anime localization expert. You output only raw valid JSON without markdown formatting.' },
+        { role: 'user', content: prompt }
+      ],
+      max_tokens: 3500,
+      temperature: 0.25
+    });
+
+    const raw = aiRes.response || aiRes.result || aiRes;
+    let text = typeof raw === 'string' ? raw.trim() : JSON.stringify(raw);
+    text = text.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim();
+
+    let parsed;
+    try {
+      parsed = JSON.parse(text);
+    } catch {
+      const m = text.match(/\{[\s\S]*\}/);
+      if (m) parsed = JSON.parse(m[0]);
+      else throw new Error('AI không trả về JSON hợp lệ.');
+    }
+
+    await logAudit(env, { action: 'ai_translate', username: user.username, titleLength: title.length });
+    return json({
+      ok: true,
+      title: parsed.title || title,
+      desc: parsed.desc || desc,
+      bodyHtml: parsed.bodyHtml || bodyHtml
+    });
+  } catch (err) {
+    console.error('AI translate error:', err);
+    return json({ error: 'Lỗi dịch AI: ' + err.message }, 500);
+  }
+}
+
 export async function handleAdminApi(request, env, url) {
   const path = url.pathname;
   const method = request.method;
@@ -813,6 +880,7 @@ export async function handleAdminApi(request, env, url) {
   if (path === '/api/admin/drafts' && method === 'GET') return handleDraftsList(request, env);
   if (path === '/api/admin/clean-duplicate-uploads' && method === 'POST') return handleCleanDuplicateUploads(request, env);
   if (path === '/api/admin/ping-indexnow' && method === 'POST') return handlePingIndexNow(request, env);
+  if (path === '/api/admin/ai/translate' && method === 'POST') return handleAiTranslate(request, env);
 
   if (path.startsWith('/api/admin/draft/')) {
     const ghPath = path.slice('/api/admin/draft/'.length);
