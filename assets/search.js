@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "5 game sinh tồn miễn phí đáng chơi trên Steam, fan thể loại survival không nên bỏ qua",
+    "url": "/5-game-sinh-ton-mien-phi-dang-choi-tren-steam-fan-the-loai-s",
+    "cat": "Gaming",
+    "date": "2026-10-01",
+    "excerpt": "Steam đang sở hữu nhiều game sinh tồn miễn phí đáng thử, trong đó có những cái tên nổi bật như Once Human, Fallout Shelter, Unturned, Muck và No More Room In…",
+    "img": "/assets/img/uploads/hoda51pr-avatar1790737857586-17907378580942085526385.webp",
+    "tags": []
+  },
+  {
     "title": "GTA 6: Hệ thống thời tiết năng động tái hiện Florida chân thực",
     "url": "/gta-6-he-thong-thoi-tiet-nang-dong-tai-hien-florida-chan-thu",
     "cat": "Gaming",
