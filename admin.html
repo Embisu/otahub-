@@ -5363,21 +5363,24 @@ function slugify(name) {
   return slugifyFilename(name);
 }
 
-// Slug tiếng Anh từ tiêu đề EN: bỏ vài từ nối, cắt tối đa 60 ký tự ĐÚNG ranh giới từ
-// (slugifyFilename cắt cứng ở ký tự 60 nên từng sinh slug cụt kiểu "...-the-loai-s").
+// Slug tiếng Anh từ tiêu đề EN: cắt tối đa 60 ký tự ĐÚNG ranh giới từ (slugifyFilename cắt cứng ở
+// ký tự 60 nên từng sinh slug cụt kiểu "...-the-loai-s"). Giữ nguyên mọi từ: bỏ từ nối làm hỏng tên
+// riêng ("Call of Duty" -> "call-duty", "Gears of War" -> "gears-war").
 function slugifyEnglishTitle(title) {
-  const STOP = new Set(['a', 'an', 'the', 'and', 'of', 'to', 'in', 'on', 'for', 'with', 'is', 'are', 'its', 'at', 'by']);
   const words = cleanPlainText(title).toLowerCase()
+    .replace(/['’‘`]/g, '')   // "Journey's" -> "journeys", không tách thành "journey-s"
     .normalize('NFD').replace(/[̀-ͯ]/g, '')
     .replace(/[^a-z0-9]+/g, ' ').trim().split(/\s+/)
-    .filter((w, i) => w && (i === 0 || !STOP.has(w)));
-  let out = '';
+    .filter(Boolean);
+  const kept = [];
   for (const w of words) {
-    const next = out ? out + '-' + w : w;
-    if (next.length > 60) break;
-    out = next;
+    if ([...kept, w].join('-').length > 60) break;
+    kept.push(w);
   }
-  return out;
+  // Không để slug kết thúc lơ lửng bằng từ nối sau khi cắt ("...-returns-in-an", "...-the-god-of")
+  const TRAIL = new Set(['a', 'an', 'the', 'and', 'or', 'of', 'to', 'in', 'on', 'for', 'with', 'at', 'by', 'its', 'from']);
+  while (kept.length > 1 && TRAIL.has(kept[kept.length - 1])) kept.pop();
+  return kept.join('-');
 }
 
 // Chọn slug cho bản EN khi lưu bài. Trước đây luôn dùng en/<slug tiếng Việt>: bài có bản EN mang

@@ -1,5 +1,365 @@
 window.IDX = [
   {
+    "title": "Chainsaw Man and One Piece Both Nominated at the 2026 Harvey Awards",
+    "url": "/en/chainsaw-man-and-one-piece-both-nominated-at-the-2026-harvey",
+    "cat": "Anime",
+    "date": "2026-10-01",
+    "excerpt": "Chainsaw Man – The Movie: Reze Arc and One Piece Season 2 are both nominated for Best Adaptation at the 2026 Harvey Awards.",
+    "img": "/assets/img/uploads/suuel406-images-3.jpg",
+    "tags": []
+  },
+  {
+    "title": "Look Back Tops 1 Million Copies: From One-Shot Manga to Live-Action Film Competing at Venice",
+    "url": "/en/look-back-tops-1-million-copies-from-one-shot-manga-to-live",
+    "cat": "Manga",
+    "date": "2026-10-01",
+    "excerpt": "Tatsuki Fujimoto’s Look Back has passed 1 million copies in circulation and has been adapted into a live-action film by Hirokazu Kore-eda that competed at Venice 2026.",
+    "img": "/assets/img/uploads/knzgipw6-maxresdefault-1.jpg",
+    "tags": []
+  },
+  {
+    "title": "Chiikawa Surprises the Japanese Box Office, Beats Conan and Passes ¥13.9 Billion",
+    "url": "/en/chiikawa-surprises-the-japanese-box-office-beats-conan",
+    "cat": "Anime",
+    "date": "2026-10-01",
+    "excerpt": "Chiikawa the Movie: The Secret of Mermaid Island is a hit in Japan, passing ¥13.9 billion, beating Conan and entering the list of the highest-grossing films in the country’s history.",
+    "img": "/assets/img/uploads/01e5xuff-images-10-17857421575781874545344.webp",
+    "tags": []
+  },
+  {
+    "title": "Thunder 3 Anime Officially Confirms Season 2 for 2027",
+    "url": "/en/thunder-3-anime-officially-confirms-season-2-for-2027",
+    "cat": "Anime",
+    "date": "2026-10-01",
+    "excerpt": "Thunder 3 has officially confirmed Season 2, set to premiere in 2027 right after Episode 12 wrapped up. Here are the broadcast details and the new teaser trailer.",
+    "img": "/assets/img/uploads/2gqnaxu9-filters-quality-95-format-webp.webp",
+    "tags": []
+  },
+  {
+    "title": "Katsuwo Launches New Shogi Manga Ōja no Ban Kuruwase",
+    "url": "/en/katsuwo-launches-new-shogi-manga-oja-no-ban-kuruwase",
+    "cat": "Manga",
+    "date": "2026-10-01",
+    "excerpt": "Katsuwo, creator of Mitsuboshi Colors and Hitoribocchi, has launched a new shogi manga called Ōja no Ban Kuruwase in Comic Dengeki Daioh magazine.",
+    "img": "/assets/img/uploads/zgmok3lj-images-25.jpg",
+    "tags": []
+  },
+  {
+    "title": "Frieren: Beyond Journey’s End Season 3 Returns in October 2027",
+    "url": "/en/frieren-beyond-journeys-end-season-3-returns-in-october-2027",
+    "cat": "Anime",
+    "date": "2026-10-01",
+    "excerpt": "Frieren Season 3 returns in October 2027 with the Golden Land Arc. Here is the latest on the broadcast window, the Macht teaser and what we know about the next anime season.",
+    "img": "/assets/img/uploads/xp8vugwu-frieren-s2-e10-main-1.jpg",
+    "tags": []
+  },
+  {
+    "title": "Raincoat Pikachu Sells for $8.4 Million, Becoming the Second Most Expensive Pokémon Card Ever",
+    "url": "/en/raincoat-pikachu-sells-for-8-4-million-becoming-the-second",
+    "cat": "Gaming",
+    "date": "2026-10-01",
+    "excerpt": "A PSA 10 Raincoat Pikachu has sold for $8.4 million, becoming the second most expensive Pokémon card in history, behind only the Pikachu Illustrator.",
+    "img": "/assets/img/uploads/o8e6u5kv-bzsawf93tlgnit5hqizumf-970-80-jpg.webp",
+    "tags": []
+  },
+  {
+    "title": "GTA 6: A Dynamic Weather System Recreates Florida in Realistic Detail",
+    "url": "/en/gta-6-a-dynamic-weather-system-recreates-florida",
+    "cat": "Gaming",
+    "date": "2026-10-01",
+    "excerpt": "GTA 6 is expected to feature a dynamic weather system that recreates many of Florida’s distinctive climate conditions in the open world of Leonida.",
+    "img": "/assets/img/uploads/suzos5z2-gt-6-1-06bc11d907.jpg",
+    "tags": []
+  },
+  {
+    "title": "Crimson Desert: Charting the Unknown Delayed by 2 Weeks",
+    "url": "/en/crimson-desert-charting-the-unknown-delayed-by-2-weeks",
+    "cat": "Gaming",
+    "date": "2026-10-01",
+    "excerpt": "Pearl Abyss has announced that Charting the Unknown, the first DLC for Crimson Desert, is delayed by two weeks from its original release date.",
+    "img": "/assets/img/uploads/ju13865k-uytkvd992szztxpgq2jhuv-970-80-jpg.webp",
+    "tags": []
+  },
+  {
+    "title": "5 Free Survival Games on Steam That Survival Fans Shouldn’t Miss",
+    "url": "/en/5-free-survival-games-on-steam-that-survival-fans-shouldnt",
+    "cat": "Gaming",
+    "date": "2026-10-01",
+    "excerpt": "Steam has plenty of free survival games worth trying, including standouts like Once Human, Fallout Shelter, Unturned, Muck and No More Room In Hell.",
+    "img": "/assets/img/uploads/hoda51pr-avatar1790737857586-17907378580942085526385.webp",
+    "tags": []
+  },
+  {
+    "title": "Take-Two Shuts Down a GTA 5 Switch Port Just Ahead of GTA 6’s Launch",
+    "url": "/en/take-two-shuts-down-a-gta-5-switch-port-just-ahead-of-gta-6s",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Take-Two has asked Paralympics Productions to stop its project bringing GTA 5 to Nintendo Switch and Android, forcing the modding group to end development.",
+    "img": "/assets/img/uploads/dwmbnfr7-01m3rh0fr64tp356kxxeyzxxjm-01m3rh0hwev4z7br9fg1d56edw.webp",
+    "tags": []
+  },
+  {
+    "title": "Call of Duty: Modern Warfare 4 Reveals PC Specs, Ray Tracing and the New Collateral Mode",
+    "url": "/en/call-of-duty-modern-warfare-4-reveals-pc-specs-ray-tracing",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Modern Warfare 4 upgrades its PC graphics and adds Collateral, a new multiplayer mode focused on teamwork, loadout management and round-by-round tactics.",
+    "img": "/assets/img/uploads/t5huoqlk-call-of-duty-modern-warfare-4-he-lo-cau-hinh-pc-cho-dot-beta.jpg",
+    "tags": []
+  },
+  {
+    "title": "CONTROL Resonant Update Forces PC Players to Redownload the Entire Game",
+    "url": "/en/control-resonant-update-forces-pc-players-to-redownload",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "The new CONTROL Resonant update adds an Assist Mode for adjusting difficulty, but a bug forces PC players to redownload the full 92 GB game.",
+    "img": "/assets/img/uploads/a5lb66t6-ctrl-r-story-01.webp",
+    "tags": []
+  },
+  {
+    "title": "The Apothecary Diaries Gets Its First Console Game: The False Imperial Brother",
+    "url": "/en/the-apothecary-diaries-gets-its-first-console-game-the-false",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "The Apothecary Diaries is getting its first console game, The Apothecary Diaries: The False Imperial Brother, planned for early 2027. Maomao takes on a brand-new case.",
+    "img": "/assets/img/uploads/ild2v8ju-library-hero.jpg",
+    "tags": []
+  },
+  {
+    "title": "Top 10 Most Anticipated Anime Coming in 2027",
+    "url": "/en/top-10-most-anticipated-anime-coming-in-2027",
+    "cat": "Anime",
+    "date": "2026-09-30",
+    "excerpt": "The top 10 most anticipated anime of 2027 include The One Piece, Frieren Season 3, Sakamoto Days Season 2, Kagurabachi, The Apothecary Diaries and many other big names.",
+    "img": "/assets/img/uploads/5y6fou86-voh-loat-anime-noi-tieng-se-ra-mat-phan-moi-trong-nam-2027-1.webp",
+    "tags": []
+  },
+  {
+    "title": "Naruto Confirms a New Anime After Three Quiet Years",
+    "url": "/en/naruto-confirms-a-new-anime-after-three-quiet-years",
+    "cat": "Anime",
+    "date": "2026-09-30",
+    "excerpt": "Viz Media has officially confirmed a brand-new “limited” Naruto TV anime after three quiet years, with full details to be revealed at NYCC 2026 on October 10.",
+    "img": "/assets/img/naruto-shippuden-bonds-movie-banner.jpg",
+    "tags": []
+  },
+  {
+    "title": "Rom-Com Manga Everyone’s Darling Has a Secret Officially Gets an Anime",
+    "url": "/en/rom-com-manga-everyones-darling-has-a-secret-officially-gets",
+    "cat": "Anime",
+    "date": "2026-09-30",
+    "excerpt": "Everyone’s Darling Has a Secret will bring the romance between schoolboy Hizashi Hiruno and idol Rei Kuromiya to TV in April 2027, produced by Studio Gekkō.",
+    "img": "/assets/img/uploads/y8conuxi-1790594348-678c4ac8a2f01edc1c0d3d91656946a0.jpg",
+    "tags": []
+  },
+  {
+    "title": "Sakamoto Days Season 2 Reveals a New Trailer, Returns in January 2027",
+    "url": "/en/sakamoto-days-season-2-reveals-a-new-trailer-returns",
+    "cat": "Anime",
+    "date": "2026-09-30",
+    "excerpt": "Sakamoto Days Season 2 drops a new character trailer introducing Amane, Satoda and Yotsumura. The anime officially returns on Netflix in January 2027.",
+    "img": "/assets/img/uploads/xwv04u5g-aaaaqfufjk-gc2lxpr5ck4nk1nrf47vpkxwl-guhkt3pdrxjqo-rhfhjgykp.jpg",
+    "tags": []
+  },
+  {
+    "title": "Liar Game Officially Gets Season 2 After the Anime’s First Season Ends",
+    "url": "/en/liar-game-officially-gets-season-2-after-the-animes-first",
+    "cat": "Anime",
+    "date": "2026-09-30",
+    "excerpt": "Liar Game’s first season has wrapped up, but Nao and Akiyama’s journey isn’t over. Season 2 has officially been confirmed, though its release window has not yet been announced.",
+    "img": "/assets/img/uploads/ke3sc0o0-images-23.jpg",
+    "tags": []
+  },
+  {
+    "title": "Why Is The Isle So Popular in 2026?",
+    "url": "/en/why-is-the-isle-so-popular-in-2026",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Why is The Isle so hot in 2026? A look at its dinosaur survival gameplay, the ongoing EVRIMA updates and the game’s sharp rise in player numbers.",
+    "img": "/assets/img/uploads/ralzy7zw-711-thumb.jpg",
+    "tags": []
+  },
+  {
+    "title": "Laputa: Castle in the Sky Returns to Vietnamese Cinemas in 2026",
+    "url": "/en/laputa-castle-in-the-sky-returns-to-vietnamese-cinemas",
+    "cat": "Anime",
+    "date": "2026-09-30",
+    "excerpt": "Laputa: Castle in the Sky returns to cinemas in Vietnam from September 25, 2026. Join Pazu and Sheeta on their adventure to the legendary flying castle.",
+    "img": "/assets/img/uploads/eofdaug8-maxresdefault-1.jpg",
+    "tags": []
+  },
+  {
+    "title": "Hades 2 Wasn’t a Safe Business Choice for Supergiant Games",
+    "url": "/en/hades-2-wasnt-a-safe-business-choice-for-supergiant-games",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "After the success of Hades, Supergiant Games wasn’t sure whether to make a sequel. In the end, Hades 2 was chosen because the team still saw so much left to explore.",
+    "img": "/assets/img/uploads/iieknlvg-images-22.jpg",
+    "tags": []
+  },
+  {
+    "title": "7 The Witcher Games Worth Playing in 2026",
+    "url": "/en/7-the-witcher-games-worth-playing-in-2026",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "The Witcher 3 is still the standout among games set in Andrzej Sapkowski’s world, but titles like The Witcher 2, Thronebreaker and Gwent are also worth exploring.",
+    "img": "/assets/img/uploads/yboyto0l-images-17.jpg",
+    "tags": []
+  },
+  {
+    "title": "Gears of War: E-Day Release Time and How to Play Early",
+    "url": "/en/gears-of-war-e-day-release-time-and-how-to-play-early",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Gears of War: E-Day is ready for launch after finishing development. The game opens Early Access on October 1 before its official release on October 6, 2026.",
+    "img": "/assets/img/uploads/wclu1bq8-images-16.jpg",
+    "tags": []
+  },
+  {
+    "title": "Boruto: Sarada Reveals More of Her Mangekyo Sharingan Power, but It Costs Her Eyesight",
+    "url": "/en/boruto-sarada-reveals-more-of-her-mangekyo-sharingan-power",
+    "cat": "Manga",
+    "date": "2026-09-30",
+    "excerpt": "Boruto: Two Blue Vortex Chapter 37 shows Sarada using Ohirume more flexibly than ever, while raising questions about the limits of her Mangekyo Sharingan.",
+    "img": "/assets/img/boruto-naruto-next-generations-banner.jpg",
+    "tags": []
+  },
+  {
+    "title": "Diablo 4 Will Keep Getting New Seasons After Diablo 5 Launches",
+    "url": "/en/diablo-4-will-keep-getting-new-seasons-after-diablo-5",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Diablo 5 will open a new chapter for the franchise, but Blizzard has no plans to end Diablo 4 as soon as the next game arrives. Diablo 4’s seasons can continue as long as players stick around.",
+    "img": "/assets/img/uploads/1k2n3ieq-images-10.jpg",
+    "tags": []
+  },
+  {
+    "title": "Facing the Rain: A Heartfelt Indie RPG Now Free Forever on Steam",
+    "url": "/en/facing-the-rain-a-heartfelt-indie-rpg-now-free-forever",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Facing the Rain is an indie RPG that is now permanently free on Steam, with a heartfelt story, combat-free gameplay and a runtime of about 2–3 hours.",
+    "img": "/assets/img/uploads/2jxvf96l-bia-3.webp",
+    "tags": []
+  },
+  {
+    "title": "Minecraft Live September 2026: Minecraft Prepares for a New Dimension",
+    "url": "/en/minecraft-live-september-2026-minecraft-prepares-for-a-new",
+    "cat": "Gaming",
+    "date": "2026-09-30",
+    "excerpt": "Minecraft Live in September 2026 brought plenty of big announcements, but the highlight was The Sift, Minecraft’s fourth dimension, coming to Java and Bedrock in 2027.",
+    "img": "/assets/img/uploads/cxo68b2g-what-time-does-minecraft-live-start-september-2026-210691766.webp",
+    "tags": []
+  },
+  {
+    "title": "Minecraft Adds The Sift, Its Fourth Dimension, After More Than 14 Years",
+    "url": "/en/minecraft-adds-the-sift-its-fourth-dimension-after-more-than",
+    "cat": "Gaming",
+    "date": "2026-09-29",
+    "excerpt": "Mojang has revealed The Sift, Minecraft’s first new dimension in over 14 years. It debuts in Minecraft Dungeons II before arriving in Java and Bedrock Edition in 2027.",
+    "img": "/assets/img/uploads/pne31nyx-anh-bia-3.webp",
+    "tags": []
+  },
+  {
+    "title": "Delta Force Reveals Its 2027 Plans: Siege Map, Unreal Engine 5 and Detonation Mode",
+    "url": "/en/delta-force-reveals-its-2027-plans-siege-map-unreal-engine-5",
+    "cat": "Gaming",
+    "date": "2026-09-29",
+    "excerpt": "For its second anniversary, Delta Force outlined plans for late 2026 and 2027, including the Siege map on Unreal Engine 5, the Detonation mode, better matchmaking and anti-cheat.",
+    "img": "/assets/img/uploads/u1g6mg06-anh-bia-2.jpg",
+    "tags": []
+  },
+  {
+    "title": "The Apothecary Diaries Season 3 Premieres: A Thrilling New Journey for Maomao and Jinshi",
+    "url": "/en/the-apothecary-diaries-season-3-premieres-a-thrilling-new",
+    "cat": "Anime",
+    "date": "2026-09-29",
+    "excerpt": "Maomao returns with new cases after leaving the inner palace. Season 3 expands the story beyond the palace walls, pitting Maomao and Jinshi against new mysteries and conspiracies.",
+    "img": "/assets/img/uploads/ytysmngi-anh-bia-1.webp",
+    "tags": []
+  },
+  {
+    "title": "Dragon Ball Super: Beerus – Goku Faces Beerus, the God of Destruction",
+    "url": "/en/dragon-ball-super-beerus-goku-faces-beerus-the-god",
+    "cat": "Anime",
+    "date": "2026-09-29",
+    "excerpt": "Dragon Ball Super: Beerus pits Goku against Beerus, the God of Destruction, retelling the Super Saiyan God battle with upgraded visuals and content.",
+    "img": "/assets/img/uploads/mvh7st8i-dragon-ball-super-beerus-remake-anime.avif",
+    "tags": []
+  },
+  {
+    "title": "Dragon Ball Super: Beerus – Dragon Ball Super Returns in an Enhanced Edition",
+    "url": "/en/dragon-ball-super-beerus-dragon-ball-super-returns",
+    "cat": "Anime",
+    "date": "2026-09-29",
+    "excerpt": "Dragon Ball Super: Beerus airs from October 11, 2026: an ENHANCED edition that reworks the Battle of Gods arc with new visuals, audio, footage and structure.",
+    "img": "/assets/img/uploads/7b3q8nv7-maxresdefault-2.jpg",
+    "tags": []
+  },
+  {
+    "title": "The Witcher 3 Remastered Review: Visual Upgrades That Don’t Fully Convince",
+    "url": "/en/the-witcher-3-remastered-review-visual-upgrades-that-dont",
+    "cat": "Gaming",
+    "date": "2026-09-29",
+    "excerpt": "The Witcher 3 Remastered upgrades lighting, shadows and reflections with ray tracing, but some scenes look less natural than the original. Our review and score.",
+    "img": "/assets/img/uploads/escdykqo-photo-2026-09-29-15-38-16.jpg",
+    "tags": []
+  },
+  {
+    "title": "Star Wars: Zero Company: A Squad of Misfits Makes for Surprising Battles",
+    "url": "/en/star-wars-zero-company-a-squad-of-misfits-makes",
+    "cat": "Gaming",
+    "date": "2026-09-29",
+    "excerpt": "Star Wars: Zero Company brings XCOM-style turn-based tactics to Star Wars, with a squad of misfits whose relationships shape the battles. Here’s what works and what doesn’t.",
+    "img": "/assets/img/uploads/gc2nno6n-images.webp",
+    "tags": []
+  },
+  {
+    "title": "Nintendo GameCube: The Little Purple Console That Left a Big Mark",
+    "url": "/en/nintendo-gamecube-the-little-purple-console-that-left-a-big",
+    "cat": "Gaming",
+    "date": "2026-09-29",
+    "excerpt": "The GameCube wasn’t Nintendo’s best-selling console, but its compact purple design, unusual controller and memorable library secured it a unique place in gaming history.",
+    "img": "/assets/img/uploads/clr63deq-images-14.jfif",
+    "tags": []
+  },
+  {
+    "title": "UK Games Expo Bans AI-Generated Content, With Only a Few Exceptions",
+    "url": "/en/uk-games-expo-bans-ai-generated-content-with-only-a-few",
+    "cat": "Gaming",
+    "date": "2026-09-29",
+    "excerpt": "UK Games Expo has banned tabletop products created wholly or substantially with AI, while still allowing assistive tools like spell checks and accessibility features.",
+    "img": "/assets/img/uploads/vz6citou-photo-2026-09-29-14-59-50.jpg",
+    "tags": []
+  },
+  {
+    "title": "The Apothecary Diaries Season 3: Maomao Takes on New Cases Into 2027",
+    "url": "/en/the-apothecary-diaries-season-3-maomao-takes-on-new-cases",
+    "cat": "Anime",
+    "date": "2026-09-29",
+    "excerpt": "The Apothecary Diaries Season 3 returns on October 2, 2026, sending Maomao and Jinshi into new cases beyond the inner palace.",
+    "img": "/assets/img/uploads/ikwqphfh-maomao-and-jinshi-in-the-apothecary-diaries-season-2-with-a-.webp",
+    "tags": []
+  },
+  {
+    "title": "Why You Should See Laputa: Castle in the Sky on the Big Screen",
+    "url": "/en/why-you-should-see-laputa-castle-in-the-sky-on-the-big",
+    "cat": "Anime",
+    "date": "2026-09-29",
+    "excerpt": "Laputa: Castle in the Sky returns to cinemas in Vietnam on September 25, 2026. Here’s why this Studio Ghibli classic is worth rewatching on the big screen.",
+    "img": "/assets/img/uploads/bmnjzftx-1788505364131-c2-1788504847736952838044-0-0-1005-1920-crop-1.webp",
+    "tags": []
+  },
+  {
+    "title": "We Are Aliens: French–Japanese Animated Film Hits Theaters on September 25",
+    "url": "/en/we-are-aliens-french-japanese-animated-film-hits-theaters",
+    "cat": "Anime",
+    "date": "2026-09-29",
+    "excerpt": "We Are Aliens is a French–Japanese animated co-production about friendship, childhood memories and things that are hard to forget, opening in Japanese theaters on September 25, 2026.",
+    "img": "/assets/img/uploads/7vs6cl91-we-are-aliens-main-trailer.jpg",
+    "tags": []
+  },
+  {
     "title": "Kuri Hime Ayakashi Yobanashi to End on October 28",
     "url": "/en/kuri-hime-ayakashi-yobanashi-end-october-28",
     "cat": "Manga",
