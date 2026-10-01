@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "Tiêu đề bài viết",
+    "url": "/bai-viet-moi-muoz47o1",
+    "cat": "Gaming",
+    "date": "2026-10-01",
+    "excerpt": "Charting the Unknown là DLC lớn đầu tiên của Crimson Desert, mở rộng hành trình của người chơi ra ngoài Pywel với những hòn đảo mới, khám phá dưới nước, tàu thuyền và nhiều nội dung khác. Pearl Abyss cho biết khoảng thời gian bổ sung sẽ được dùng để tiếp tục hoàn thiện DLC trước khi phát hành.",
+    "img": "/assets/img/uploads/ju13865k-uytkvd992szztxpgq2jhuv-970-80-jpg.webp",
+    "tags": []
+  },
+  {
     "title": "5 game sinh tồn miễn phí đáng chơi trên Steam, fan thể loại survival không nên bỏ qua",
     "url": "/5-game-sinh-ton-mien-phi-dang-choi-tren-steam-fan-the-loai-s",
     "cat": "Gaming",
