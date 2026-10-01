@@ -5920,34 +5920,324 @@ function insertHtmlAtCursor(html) {
   renderHeadingsOutline();
 }
 
-// ── Floating WordPress Image Toolbar & Direct Interactions ────────────────
+// ── Floating WordPress Image & Text Toolbars & Direct Interactions ─────────
 let CURRENT_ACTIVE_VIS_IMG = null;
+
+function hideTextSelectionBubble() {
+  const bubble = document.getElementById('wp-text-floating-bubble');
+  if (bubble) {
+    bubble.classList.remove('active');
+    bubble.style.display = 'none';
+  }
+}
+
+function checkTextSelectionBubble() {
+  const bubble = document.getElementById('wp-text-floating-bubble');
+  const vis = document.getElementById('body-visual');
+  const visWrap = document.getElementById('body-visual-wrap');
+  if (!bubble || !vis || !visWrap || BODY_MODE !== 'visual') return;
+
+  const sel = window.getSelection();
+  if (!sel || sel.isCollapsed || !sel.rangeCount) {
+    hideTextSelectionBubble();
+    return;
+  }
+
+  // If image or table is actively selected, do not show text bubble
+  if (CURRENT_ACTIVE_VIS_IMG || document.getElementById('wp-table-floating-toolbar')?.classList.contains('active')) {
+    hideTextSelectionBubble();
+    return;
+  }
+
+  const text = sel.toString().trim();
+  if (!text) {
+    hideTextSelectionBubble();
+    return;
+  }
+
+  // Ensure selection is inside #body-visual
+  const range = sel.getRangeAt(0);
+  let common = range.commonAncestorContainer;
+  if (common.nodeType === 3) common = common.parentNode;
+  if (!vis.contains(common)) {
+    hideTextSelectionBubble();
+    return;
+  }
+
+  const rect = range.getBoundingClientRect();
+  const wrapRect = visWrap.getBoundingClientRect();
+  if (rect.width === 0 && rect.height === 0) {
+    hideTextSelectionBubble();
+    return;
+  }
+
+  const bubbleWidth = 320;
+  const top = rect.top - wrapRect.top - 44;
+  const left = Math.max(8, Math.min(wrapRect.width - bubbleWidth - 8, rect.left - wrapRect.left + (rect.width / 2) - (bubbleWidth / 2)));
+
+  bubble.style.top = Math.max(4, top) + 'px';
+  bubble.style.left = left + 'px';
+  bubble.style.display = 'flex';
+  bubble.classList.add('active');
+}
+
+function selectVisualImage(img) {
+  if (!img) return;
+  CURRENT_ACTIVE_VIS_IMG = img;
+  hideTextSelectionBubble();
+  document.querySelectorAll('#body-visual .wp-selected-img').forEach(el => el.classList.remove('wp-selected-img'));
+  const figure = img.closest('figure') || img;
+  figure.classList.add('wp-selected-img');
+  img.classList.add('wp-selected-img');
+
+  const tb = document.getElementById('wp-img-floating-toolbar');
+  const visWrap = document.getElementById('body-visual-wrap');
+  if (!tb || !visWrap) return;
+
+  const rect = figure.getBoundingClientRect();
+  const wrapRect = visWrap.getBoundingClientRect();
+
+  const top = rect.top - wrapRect.top - 42;
+  const left = Math.max(10, Math.min(wrapRect.width - 240, rect.left - wrapRect.left));
+
+  tb.style.top = Math.max(4, top) + 'px';
+  tb.style.left = left + 'px';
+  tb.style.display = 'flex';
+  tb.classList.add('active');
+
+  const isCenter = figure.classList.contains('aligncenter') || img.classList.contains('aligncenter') || figure.style.textAlign === 'center' || (img.style.margin && img.style.margin.indexOf('auto') !== -1);
+  const isLeft = figure.classList.contains('alignleft') || img.classList.contains('alignleft') || img.style.float === 'left' || figure.style.float === 'left';
+  const isRight = figure.classList.contains('alignright') || img.classList.contains('alignright') || img.style.float === 'right' || figure.style.float === 'right';
+
+  document.getElementById('wp-img-btn-align-center')?.classList.toggle('active', isCenter);
+  document.getElementById('wp-img-btn-align-left')?.classList.toggle('active', isLeft);
+  document.getElementById('wp-img-btn-align-right')?.classList.toggle('active', isRight);
+  document.getElementById('wp-img-btn-align-none')?.classList.toggle('active', !isCenter && !isLeft && !isRight);
+
+  document.getElementById('wp-btn-align-center')?.classList.toggle('active', isCenter);
+  document.getElementById('wp-btn-align-left')?.classList.toggle('active', isLeft);
+  document.getElementById('wp-btn-align-right')?.classList.toggle('active', isRight);
+  document.getElementById('wp-btn-align-justify')?.classList.toggle('active', false);
+}
+
+function hideVisualImageToolbar() {
+  CURRENT_ACTIVE_VIS_IMG = null;
+  document.querySelectorAll('#body-visual .wp-selected-img').forEach(el => el.classList.remove('wp-selected-img'));
+  const tb = document.getElementById('wp-img-floating-toolbar');
+  if (tb) {
+    tb.classList.remove('active');
+    tb.style.display = 'none';
+  }
+}
+
+function wpImgAlign(align) {
+  if (!CURRENT_ACTIVE_VIS_IMG) return;
+  const img = CURRENT_ACTIVE_VIS_IMG;
+  const figure = img.closest('figure') || img;
+  const parentP = img.closest('p');
+
+  figure.classList.remove('alignleft', 'alignright', 'aligncenter', 'alignnone');
+  img.classList.remove('alignleft', 'alignright', 'aligncenter', 'alignnone');
+  if (parentP) parentP.classList.remove('alignleft', 'alignright', 'aligncenter', 'alignnone');
+
+  if (align === 'center') {
+    figure.classList.add('aligncenter');
+    img.classList.add('aligncenter');
+    img.style.display = 'block';
+    img.style.margin = '18px auto';
+    img.style.float = 'none';
+    if (figure !== img) {
+      figure.style.display = 'block';
+      figure.style.margin = '18px auto';
+      figure.style.textAlign = 'center';
+      figure.style.float = 'none';
+    }
+    if (parentP && !parentP.textContent.trim()) {
+      parentP.style.textAlign = 'center';
+    }
+  } else if (align === 'left') {
+    figure.classList.add('alignleft');
+    img.classList.add('alignleft');
+    img.style.display = 'inline-block';
+    img.style.float = 'left';
+    img.style.margin = '0 20px 16px 0';
+    if (figure !== img) {
+      figure.style.float = 'left';
+      figure.style.margin = '0 20px 16px 0';
+      figure.style.display = '';
+      figure.style.textAlign = '';
+    }
+    if (parentP) parentP.style.textAlign = '';
+  } else if (align === 'right') {
+    figure.classList.add('alignright');
+    img.classList.add('alignright');
+    img.style.display = 'inline-block';
+    img.style.float = 'right';
+    img.style.margin = '0 0 16px 20px';
+    if (figure !== img) {
+      figure.style.float = 'right';
+      figure.style.margin = '0 0 16px 20px';
+      figure.style.display = '';
+      figure.style.textAlign = '';
+    }
+    if (parentP) parentP.style.textAlign = '';
+  } else {
+    figure.classList.add('alignnone');
+    img.classList.add('alignnone');
+    img.style.display = 'block';
+    img.style.float = 'none';
+    img.style.margin = '18px 0';
+    if (figure !== img) {
+      figure.style.float = 'none';
+      figure.style.margin = '18px 0';
+      figure.style.display = '';
+      figure.style.textAlign = '';
+    }
+    if (parentP) parentP.style.textAlign = '';
+  }
+
+  selectVisualImage(img);
+  updateVisualToolbarState();
+  if (typeof EditorHistoryManager !== 'undefined') EditorHistoryManager.snapshot(true);
+  markChanged();
+}
+
+function wpAlignBlock(align) {
+  if (CURRENT_ACTIVE_VIS_IMG) {
+    wpImgAlign(align === 'justify' ? 'center' : align);
+    return;
+  }
+
+  const vis = document.getElementById('body-visual');
+  if (!vis) return;
+
+  let sel = window.getSelection();
+  if ((!sel || !sel.rangeCount || (sel.anchorNode && !vis.contains(sel.anchorNode))) && SAVED_EDITOR_RANGE) {
+    try {
+      sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(SAVED_EDITOR_RANGE);
+    } catch(e) {}
+  }
+
+  if (!sel || !sel.rangeCount) {
+    vis.focus();
+    return;
+  }
+
+  const range = sel.getRangeAt(0);
+  const blocksToAlign = new Set();
+
+  if (range.collapsed) {
+    let node = range.startContainer;
+    if (node && node.nodeType === 3) node = node.parentNode;
+    const block = node ? node.closest('p, h1, h2, h3, h4, h5, h6, blockquote, li, div') : null;
+    if (block && vis.contains(block)) {
+      blocksToAlign.add(block);
+    }
+  } else {
+    const allBlocks = vis.querySelectorAll('p, h1, h2, h3, h4, h5, h6, blockquote, li, div');
+    allBlocks.forEach(b => {
+      try {
+        if (sel.containsNode && sel.containsNode(b, true)) {
+          if (b.tagName === 'DIV' && b.querySelector('p, h1, h2, h3, h4, h5, h6, blockquote, li')) {
+            return;
+          }
+          blocksToAlign.add(b);
+        }
+      } catch(e) {}
+    });
+
+    if (blocksToAlign.size === 0) {
+      let startNode = range.startContainer;
+      if (startNode && startNode.nodeType === 3) startNode = startNode.parentNode;
+      const b1 = startNode ? startNode.closest('p, h1, h2, h3, h4, h5, h6, blockquote, li, div') : null;
+      if (b1 && vis.contains(b1)) blocksToAlign.add(b1);
+
+      let endNode = range.endContainer;
+      if (endNode && endNode.nodeType === 3) endNode = endNode.parentNode;
+      const b2 = endNode ? endNode.closest('p, h1, h2, h3, h4, h5, h6, blockquote, li, div') : null;
+      if (b2 && vis.contains(b2)) blocksToAlign.add(b2);
+    }
+  }
+
+  if (blocksToAlign.size > 0) {
+    blocksToAlign.forEach(b => {
+      if (b.style.textAlign === align && align !== 'left') {
+        b.style.textAlign = '';
+      } else {
+        b.style.textAlign = align;
+      }
+    });
+  } else {
+    const cmdMap = { left: 'justifyLeft', center: 'justifyCenter', right: 'justifyRight', justify: 'justifyFull' };
+    try {
+      document.execCommand(cmdMap[align] || 'justifyLeft', false, null);
+    } catch(e) {}
+  }
+
+  saveEditorSelection();
+  if (typeof EditorHistoryManager !== 'undefined') EditorHistoryManager.snapshot(true);
+  markChanged();
+  updateVisualToolbarState();
+  checkTextSelectionBubble();
+}
 
 function setupVisualImageHandlers() {
   const vis = document.getElementById('body-visual');
   if (!vis) return;
 
-  // Track selection inside body-visual
-  ['keyup', 'mouseup', 'focus', 'click'].forEach(evt => {
+  if (!window._adminVisualDocListenersAttached) {
+    window._adminVisualDocListenersAttached = true;
+    document.addEventListener('selectionchange', () => {
+      const active = document.activeElement;
+      if (active && (active.id === 'body-visual' || active.closest?.('#body-visual'))) {
+        saveEditorSelection();
+        updateVisualToolbarState();
+        checkTextSelectionBubble();
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('#wp-img-floating-toolbar') && !e.target.closest('#body-visual img')) {
+        hideVisualImageToolbar();
+      }
+      if (!e.target.closest('#wp-table-floating-toolbar') && !e.target.closest('#body-visual table')) {
+        hideVisualTableToolbar();
+      }
+      if (!e.target.closest('#wp-text-floating-bubble')) {
+        const bubble = document.getElementById('wp-text-floating-bubble');
+        if (bubble && (!window.getSelection() || window.getSelection().isCollapsed)) {
+          hideTextSelectionBubble();
+        }
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (CURRENT_ACTIVE_VIS_IMG) selectVisualImage(CURRENT_ACTIVE_VIS_IMG);
+      checkTextSelectionBubble();
+    });
+  }
+
+  if (vis._hasVisualHandlers) return;
+  vis._hasVisualHandlers = true;
+
+  ['keyup', 'mouseup', 'focus', 'click', 'input'].forEach(evt => {
     vis.addEventListener(evt, () => {
       saveEditorSelection();
       updateWordCount();
       updateSeoScore();
       renderHeadingsOutline();
+      updateVisualToolbarState();
+      checkTextSelectionBubble();
     });
   });
 
-  // Track global selection change when inside editor
-  // Track global selection change when inside editor
-  document.addEventListener('selectionchange', () => {
-    const active = document.activeElement;
-    if (active && (active.id === 'body-visual' || active.closest?.('#body-visual'))) {
-      saveEditorSelection();
-      updateVisualToolbarState();
-    }
+  vis.addEventListener('scroll', () => {
+    if (CURRENT_ACTIVE_VIS_IMG) selectVisualImage(CURRENT_ACTIVE_VIS_IMG);
+    checkTextSelectionBubble();
   });
 
-  // Image, Table & Link clicking -> Floating Toolbars / Prevent navigation
   vis.addEventListener('click', function(e) {
     const link = e.target.closest('a');
     if (link && vis.contains(link)) {
@@ -5961,6 +6251,7 @@ function setupVisualImageHandlers() {
       e.stopPropagation();
       selectVisualImage(img);
       hideVisualTableToolbar();
+      hideTextSelectionBubble();
     } else {
       hideVisualImageToolbar();
     }
@@ -5969,16 +6260,14 @@ function setupVisualImageHandlers() {
       e.stopPropagation();
       showVisualTableToolbar(table);
       hideVisualImageToolbar();
+      hideTextSelectionBubble();
     } else {
       hideVisualTableToolbar();
     }
     updateVisualToolbarState();
+    checkTextSelectionBubble();
   });
 
-  vis.addEventListener('keyup', updateVisualToolbarState);
-  vis.addEventListener('mouseup', updateVisualToolbarState);
-
-  // Drag & drop image files directly into visual editor
   vis.addEventListener('dragover', function(e) {
     e.preventDefault();
     vis.classList.add('dragover-active');
@@ -6010,7 +6299,6 @@ function setupVisualImageHandlers() {
     }
   });
 
-  // Direct clipboard paste (Ctrl+V) of image files into visual editor
   vis.addEventListener('paste', async function(e) {
     if (e.clipboardData && e.clipboardData.files && e.clipboardData.files.length > 0) {
       const file = e.clipboardData.files[0];
@@ -6032,7 +6320,6 @@ function setupVisualImageHandlers() {
       return;
     }
 
-    // Tự động nhận diện và chuyển đổi bảng dán từ Word / Excel / Google Docs
     const pastedHtml = e.clipboardData?.getData('text/html') || '';
     if (pastedHtml && /<table\b/i.test(pastedHtml)) {
       e.preventDefault();
@@ -6045,7 +6332,6 @@ function setupVisualImageHandlers() {
       return;
     }
 
-    // Tự động nhận diện và nhúng video khi dán link YouTube / Vimeo đơn lẻ
     const pastedText = (e.clipboardData?.getData('text/plain') || '').trim();
     if (pastedText && !pastedText.includes('\n')) {
       const v = parseVideoUrl(pastedText);
@@ -6059,69 +6345,6 @@ function setupVisualImageHandlers() {
       }
     }
   });
-
-  // Hide toolbars on click outside
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('#wp-img-floating-toolbar') && !e.target.closest('#body-visual img')) {
-      hideVisualImageToolbar();
-    }
-    if (!e.target.closest('#wp-table-floating-toolbar') && !e.target.closest('#body-visual table')) {
-      hideVisualTableToolbar();
-    }
-  });
-}
-
-function selectVisualImage(img) {
-  CURRENT_ACTIVE_VIS_IMG = img;
-  document.querySelectorAll('#body-visual .wp-selected-img').forEach(el => el.classList.remove('wp-selected-img'));
-  const figure = img.closest('figure') || img;
-  figure.classList.add('wp-selected-img');
-
-  const tb = document.getElementById('wp-img-floating-toolbar');
-  const visWrap = document.getElementById('body-visual-wrap');
-  if (!tb || !visWrap) return;
-
-  const rect = figure.getBoundingClientRect();
-  const wrapRect = visWrap.getBoundingClientRect();
-
-  const top = rect.top - wrapRect.top - 42;
-  const left = Math.max(10, Math.min(wrapRect.width - 240, rect.left - wrapRect.left));
-
-  tb.style.top = Math.max(4, top) + 'px';
-  tb.style.left = left + 'px';
-  tb.classList.add('active');
-
-  const isCenter = figure.classList.contains('aligncenter') || img.classList.contains('aligncenter');
-  const isLeft = figure.classList.contains('alignleft') || img.classList.contains('alignleft');
-  const isRight = figure.classList.contains('alignright') || img.classList.contains('alignright');
-
-  document.getElementById('wp-img-btn-align-center')?.classList.toggle('active', isCenter);
-  document.getElementById('wp-img-btn-align-left')?.classList.toggle('active', isLeft);
-  document.getElementById('wp-img-btn-align-right')?.classList.toggle('active', isRight);
-  document.getElementById('wp-img-btn-align-none')?.classList.toggle('active', !isCenter && !isLeft && !isRight);
-}
-
-function hideVisualImageToolbar() {
-  CURRENT_ACTIVE_VIS_IMG = null;
-  document.querySelectorAll('#body-visual .wp-selected-img').forEach(el => el.classList.remove('wp-selected-img'));
-  document.getElementById('wp-img-floating-toolbar')?.classList.remove('active');
-}
-
-function wpImgAlign(align) {
-  if (!CURRENT_ACTIVE_VIS_IMG) return;
-  const figure = CURRENT_ACTIVE_VIS_IMG.closest('figure') || CURRENT_ACTIVE_VIS_IMG;
-  figure.classList.remove('alignleft', 'alignright', 'aligncenter', 'alignnone');
-  CURRENT_ACTIVE_VIS_IMG.classList.remove('alignleft', 'alignright', 'aligncenter', 'alignnone');
-  
-  if (align !== 'none') {
-    figure.classList.add('align' + align);
-    CURRENT_ACTIVE_VIS_IMG.classList.add('align' + align);
-  } else {
-    figure.classList.add('alignnone');
-  }
-  
-  selectVisualImage(CURRENT_ACTIVE_VIS_IMG);
-  markChanged();
 }
 
 function wpImgEditCurrent() {
@@ -9182,8 +9405,7 @@ function addFocusKeywordTag(rawKw) {
   if (!FOCUS_KEYWORDS.includes(kw)) {
     FOCUS_KEYWORDS.push(kw);
     renderFocusKeywords();
-  setupVisualImageHandlers();
-  renderHeadingsOutline();
+    renderHeadingsOutline();
     markChangedNoRebuild();
   }
 }
@@ -9540,35 +9762,29 @@ function wpExecCmd(cmd, val = null) {
   if (cmd === 'undo') return EditorHistoryManager.undo();
   if (cmd === 'redo') return EditorHistoryManager.redo();
 
-  EditorHistoryManager.snapshot(true);
+  if (cmd === 'justifyLeft') return wpAlignBlock('left');
+  if (cmd === 'justifyCenter') return wpAlignBlock('center');
+  if (cmd === 'justifyRight') return wpAlignBlock('right');
+  if (cmd === 'justifyFull') return wpAlignBlock('justify');
+
+  if (typeof EditorHistoryManager !== 'undefined') EditorHistoryManager.snapshot(true);
 
   const vis = document.getElementById('body-visual');
   if (!vis) return;
-  vis.focus();
-
-  if (CURRENT_ACTIVE_VIS_IMG) {
-    if (cmd === 'justifyCenter') { wpImgAlign('center'); EditorHistoryManager.snapshot(true); return; }
-    if (cmd === 'justifyLeft') { wpImgAlign('left'); EditorHistoryManager.snapshot(true); return; }
-    if (cmd === 'justifyRight') { wpImgAlign('right'); EditorHistoryManager.snapshot(true); return; }
-  }
-  const sel = window.getSelection();
-  if (sel && sel.rangeCount) {
-    let node = sel.anchorNode;
-    if (node && node.nodeType === 3) node = node.parentNode;
-    const img = node ? (node.tagName === 'IMG' ? node : node.querySelector?.('img') || node.closest?.('figure, p')?.querySelector?.('img')) : null;
-    if (img && (cmd === 'justifyCenter' || cmd === 'justifyLeft' || cmd === 'justifyRight')) {
-      CURRENT_ACTIVE_VIS_IMG = img;
-      wpImgAlign(cmd === 'justifyCenter' ? 'center' : (cmd === 'justifyRight' ? 'right' : 'left'));
-      EditorHistoryManager.snapshot(true);
-      return;
-    }
+  if (document.activeElement !== vis && !vis.contains(document.activeElement)) {
+    vis.focus();
   }
 
-  document.execCommand(cmd, false, val);
-  EditorHistoryManager.snapshot(true);
+  try {
+    document.execCommand(cmd, false, val);
+  } catch(e) {}
+
+  if (typeof EditorHistoryManager !== 'undefined') EditorHistoryManager.snapshot(true);
   markChanged();
   updateWordCount();
   updateSeoScore();
+  updateVisualToolbarState();
+  checkTextSelectionBubble();
 }
 
 function wpFormatBlock(tag) {
@@ -9778,6 +9994,19 @@ function updateVisualToolbarState() {
   const vis = document.getElementById('body-visual');
   if (!vis || BODY_MODE !== 'visual') return;
 
+  if (CURRENT_ACTIVE_VIS_IMG) {
+    const figure = CURRENT_ACTIVE_VIS_IMG.closest('figure') || CURRENT_ACTIVE_VIS_IMG;
+    const isCenter = figure.classList.contains('aligncenter') || CURRENT_ACTIVE_VIS_IMG.classList.contains('aligncenter') || (CURRENT_ACTIVE_VIS_IMG.style.margin && CURRENT_ACTIVE_VIS_IMG.style.margin.indexOf('auto') !== -1);
+    const isLeft = figure.classList.contains('alignleft') || CURRENT_ACTIVE_VIS_IMG.classList.contains('alignleft') || CURRENT_ACTIVE_VIS_IMG.style.float === 'left';
+    const isRight = figure.classList.contains('alignright') || CURRENT_ACTIVE_VIS_IMG.classList.contains('alignright') || CURRENT_ACTIVE_VIS_IMG.style.float === 'right';
+
+    document.getElementById('wp-btn-align-center')?.classList.toggle('active', isCenter);
+    document.getElementById('wp-btn-align-left')?.classList.toggle('active', isLeft);
+    document.getElementById('wp-btn-align-right')?.classList.toggle('active', isRight);
+    document.getElementById('wp-btn-align-justify')?.classList.toggle('active', false);
+    return;
+  }
+
   const sel = window.getSelection();
   if (!sel || !sel.rangeCount) return;
   let node = sel.anchorNode;
@@ -9806,6 +10035,18 @@ function updateVisualToolbarState() {
   document.querySelector("button[onclick=\"visFormatHeading('H3')\"]")?.classList.toggle('active', isH3);
   document.querySelector("button[onclick=\"visToggleSapo()\"]")?.classList.toggle('active', isSapo);
   document.querySelector("button[onclick=\"visQuote()\"]")?.classList.toggle('active', isQuote);
+
+  const block = node.closest('p, h1, h2, h3, h4, h5, h6, blockquote, li, div');
+  const textAlign = (block && block.style && block.style.textAlign ? block.style.textAlign : '').toLowerCase();
+  const isCenter = textAlign === 'center';
+  const isRight = textAlign === 'right';
+  const isJustify = textAlign === 'justify';
+  const isLeft = textAlign === 'left' || (!isCenter && !isRight && !isJustify);
+
+  document.getElementById('wp-btn-align-left')?.classList.toggle('active', isLeft);
+  document.getElementById('wp-btn-align-center')?.classList.toggle('active', isCenter);
+  document.getElementById('wp-btn-align-right')?.classList.toggle('active', isRight);
+  document.getElementById('wp-btn-align-justify')?.classList.toggle('active', isJustify);
 
   const select = document.querySelector('.mce-format-select');
   if (select && document.activeElement !== select) {
@@ -10221,9 +10462,9 @@ function renderEditor(file, html) {
                   <button type="button" class="mce-btn" onmousedown="event.preventDefault()" title="Trích dẫn" onclick="visQuote()"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/></svg></button>
                 </div>
                 <div class="mce-btn-group">
-                  <button type="button" class="mce-btn" onmousedown="event.preventDefault()" title="Căn trái" onclick="wpExecCmd('justifyLeft')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15 15H3v2h12v-2zm0-8H3v2h12V7zM3 13h18v-2H3v2zm0 8h18v-2H3v2zM3 3v2h18V3H3z"/></svg></button>
-                  <button type="button" class="mce-btn" onmousedown="event.preventDefault()" title="Căn giữa" onclick="wpExecCmd('justifyCenter')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 15v2h10v-2H7zm-4 6h18v-2H3v2zm0-8h18v-2H3v2zm4-6v2h10V7H7zM3 3v2h18V3H3z"/></svg></button>
-                  <button type="button" class="mce-btn" onmousedown="event.preventDefault()" title="Căn phải" onclick="wpExecCmd('justifyRight')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21h18v-2H3v2zm6-4h12v-2H9v2zm-6-4h18v-2H3v2zm6-4h12V7H9v2zM3 3v2h18V3H3z"/></svg></button>
+                  <button type="button" class="mce-btn" id="wp-btn-align-left" onmousedown="event.preventDefault()" title="Căn trái" onclick="wpAlignBlock('left')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15 15H3v2h12v-2zm0-8H3v2h12V7zM3 13h18v-2H3v2zm0 8h18v-2H3v2zM3 3v2h18V3H3z"/></svg></button>
+                  <button type="button" class="mce-btn" id="wp-btn-align-center" onmousedown="event.preventDefault()" title="Căn giữa" onclick="wpAlignBlock('center')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 15v2h10v-2H7zm-4 6h18v-2H3v2zm0-8h18v-2H3v2zm4-6v2h10V7H7zM3 3v2h18V3H3z"/></svg></button>
+                  <button type="button" class="mce-btn" id="wp-btn-align-right" onmousedown="event.preventDefault()" title="Căn phải" onclick="wpAlignBlock('right')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21h18v-2H3v2zm6-4h12v-2H9v2zm-6-4h18v-2H3v2zm6-4h12V7H9v2zM3 3v2h18V3H3z"/></svg></button>
                 </div>
                 <div class="mce-btn-group">
                   <button type="button" class="mce-btn" onmousedown="event.preventDefault()" title="Chèn/Sửa liên kết (Ctrl+K)" onclick="visLink()"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></button>
@@ -10238,8 +10479,8 @@ function renderEditor(file, html) {
               <!-- Row 2 (Kitchen Sink) -->
               <div class="mce-toolbar mce-toolbar-row2" id="mce-kitchen-sink" style="display:flex">
                 <div class="mce-btn-group">
-                  <button type="button" class="mce-btn" title="Gạch chân (Ctrl+U)" onclick="wpExecCmd('underline')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17c3.31 0 6-2.69 6-6V3h-2.5v8c0 1.93-1.57 3.5-3.5 3.5S8.5 12.93 8.5 11V3H6v8c0 3.31 2.69 6 6 6zm-7 2v2h14v-2H5z"/></svg></button>
-                  <button type="button" class="mce-btn" title="Căn đều hai bên" onclick="wpExecCmd('justifyFull')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18V7H3v2zm0-6v2h18V3H3z"/></svg></button>
+                  <button type="button" class="mce-btn" onmousedown="event.preventDefault()" title="Gạch chân (Ctrl+U)" onclick="wpExecCmd('underline')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17c3.31 0 6-2.69 6-6V3h-2.5v8c0 1.93-1.57 3.5-3.5 3.5S8.5 12.93 8.5 11V3H6v8c0 3.31 2.69 6 6 6zm-7 2v2h14v-2H5z"/></svg></button>
+                  <button type="button" class="mce-btn" id="wp-btn-align-justify" onmousedown="event.preventDefault()" title="Căn đều hai bên" onclick="wpAlignBlock('justify')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18V7H3v2zm0-6v2h18V3H3z"/></svg></button>
                   <div style="position:relative;display:inline-flex;align-items:center" title="Màu văn bản">
                     <input type="color" id="wp-text-color-picker" onchange="wpExecCmd('foreColor', this.value)" style="opacity:0;position:absolute;width:28px;height:28px;cursor:pointer;left:0;top:0"/>
                     <button type="button" class="mce-btn" style="pointer-events:none">
@@ -10248,15 +10489,15 @@ function renderEditor(file, html) {
                   </div>
                 </div>
                 <div class="mce-btn-group">
-                  <button type="button" class="mce-btn" title="Xóa định dạng" onclick="visClean()"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3.27 5L2 6.27l6.97 6.97L6.5 19h3l1.57-3.66L16.73 21 18 19.73 3.27 5zM6 5v.18L8.82 8h2.4l-.72 1.68 2.1 2.1L14.21 8H20V5H6z"/></svg></button>
-                  <button type="button" class="mce-btn" title="Ký tự đặc biệt (Ω)" onclick="openSpecialCharsModal()"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C7.58 3 4 6.58 4 11c0 2.61 1.25 4.93 3.19 6.38L6 20h3.5l1.04-2.61c.47.07.96.11 1.46.11s.99-.04 1.46-.11L14.5 20H18l-1.19-2.62C18.75 15.93 20 13.61 20 11c0-4.42-3.58-8-8-8zm0 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg></button>
-                  <button type="button" class="mce-btn" title="Giảm lùi dòng" onclick="wpExecCmd('outdent')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11 17h10v-2H11v2zm-8-5l4 4V8l-4 4zm0 9h18v-2H3v2zM3 3v2h18V3H3zm8 6h10V7H11v2zm0 4h10v-2H11v2z"/></svg></button>
-                  <button type="button" class="mce-btn" title="Tăng lùi dòng" onclick="wpExecCmd('indent')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21h18v-2H3v2zM3 8v8l4-4-4-4zm8 9h10v-2H11v2zM3 3v2h18V3H3zm8 6h10V7H11v2zm0 4h10v-2H11v2z"/></svg></button>
+                  <button type="button" class="mce-btn" onmousedown="event.preventDefault()" title="Xóa định dạng" onclick="visClean()"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3.27 5L2 6.27l6.97 6.97L6.5 19h3l1.57-3.66L16.73 21 18 19.73 3.27 5zM6 5v.18L8.82 8h2.4l-.72 1.68 2.1 2.1L14.21 8H20V5H6z"/></svg></button>
+                  <button type="button" class="mce-btn" onmousedown="event.preventDefault()" title="Ký tự đặc biệt (Ω)" onclick="openSpecialCharsModal()"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C7.58 3 4 6.58 4 11c0 2.61 1.25 4.93 3.19 6.38L6 20h3.5l1.04-2.61c.47.07.96.11 1.46.11s.99-.04 1.46-.11L14.5 20H18l-1.19-2.62C18.75 15.93 20 13.61 20 11c0-4.42-3.58-8-8-8zm0 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg></button>
+                  <button type="button" class="mce-btn" onmousedown="event.preventDefault()" title="Giảm lùi dòng" onclick="wpExecCmd('outdent')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11 17h10v-2H11v2zm-8-5l4 4V8l-4 4zm0 9h18v-2H3v2zM3 3v2h18V3H3zm8 6h10V7H11v2zm0 4h10v-2H11v2z"/></svg></button>
+                  <button type="button" class="mce-btn" onmousedown="event.preventDefault()" title="Tăng lùi dòng" onclick="wpExecCmd('indent')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21h18v-2H3v2zM3 8v8l4-4-4-4zm8 9h10v-2H11v2zM3 3v2h18V3H3zm8 6h10V7H11v2zm0 4h10v-2H11v2z"/></svg></button>
                 </div>
                 <div class="mce-btn-group">
-                  <button type="button" class="mce-btn" title="Hoàn tác (Ctrl+Z)" onclick="wpExecCmd('undo')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/></svg></button>
-                  <button type="button" class="mce-btn" title="Làm lại (Ctrl+Y)" onclick="wpExecCmd('redo')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.4 10.6C16.55 8.99 14.15 8 11.5 8c-4.65 0-8.58 3.03-9.96 7.22L3.9 16c1.05-3.19 4.05-5.5 7.6-5.5 1.95 0 3.73.72 5.12 1.88L13 16h9V7l-3.6 3.6z"/></svg></button>
-                  <button type="button" class="mce-btn" title="Phím tắt trợ giúp" onclick="openShortcutsModal()"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-2h2v2zm1.07-7.75l-.9.92C12.45 11.9 12 12.5 12 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg></button>
+                  <button type="button" class="mce-btn" onmousedown="event.preventDefault()" title="Hoàn tác (Ctrl+Z)" onclick="wpExecCmd('undo')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/></svg></button>
+                  <button type="button" class="mce-btn" onmousedown="event.preventDefault()" title="Làm lại (Ctrl+Y)" onclick="wpExecCmd('redo')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.4 10.6C16.55 8.99 14.15 8 11.5 8c-4.65 0-8.58 3.03-9.96 7.22L3.9 16c1.05-3.19 4.05-5.5 7.6-5.5 1.95 0 3.73.72 5.12 1.88L13 16h9V7l-3.6 3.6z"/></svg></button>
+                  <button type="button" class="mce-btn" onmousedown="event.preventDefault()" title="Phím tắt trợ giúp" onclick="openShortcutsModal()"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-2h2v2zm1.07-7.75l-.9.92C12.45 11.9 12 12.5 12 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg></button>
                 </div>
               </div>
             </div>
@@ -10293,36 +10534,63 @@ function renderEditor(file, html) {
             
             <!-- Floating WordPress Image Toolbar -->
             <div id="wp-img-floating-toolbar" class="wp-img-toolbar-wrap">
-              <button type="button" class="wp-img-tb-btn" id="wp-img-btn-align-left" title="Căn trái" onclick="wpImgAlign('left')">
+              <button type="button" class="wp-img-tb-btn" id="wp-img-btn-align-left" onmousedown="event.preventDefault()" title="Căn trái" onclick="wpImgAlign('left')">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15 15H3v2h12v-2zm0-8H3v2h12V7zM3 13h18v-2H3v2zm0 8h18v-2H3v2zM3 3v2h18V3H3z"/></svg>
               </button>
-              <button type="button" class="wp-img-tb-btn" id="wp-img-btn-align-center" title="Căn giữa" onclick="wpImgAlign('center')">
+              <button type="button" class="wp-img-tb-btn" id="wp-img-btn-align-center" onmousedown="event.preventDefault()" title="Căn giữa" onclick="wpImgAlign('center')">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 15v2h10v-2H7zm-4 6h18v-2H3v2zm0-8h18v-2H3v2zm4-6v2h10V7H7zM3 3v2h18V3H3z"/></svg>
               </button>
-              <button type="button" class="wp-img-tb-btn" id="wp-img-btn-align-right" title="Căn phải" onclick="wpImgAlign('right')">
+              <button type="button" class="wp-img-tb-btn" id="wp-img-btn-align-right" onmousedown="event.preventDefault()" title="Căn phải" onclick="wpImgAlign('right')">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21h18v-2H3v2zm6-4h12v-2H9v2zm-6-4h18v-2H3v2zm6-4h12V7H9v2zM3 3v2h18V3H3z"/></svg>
               </button>
-              <button type="button" class="wp-img-tb-btn" id="wp-img-btn-align-none" title="Không căn (Mặc định)" onclick="wpImgAlign('none')">
+              <button type="button" class="wp-img-tb-btn" id="wp-img-btn-align-none" onmousedown="event.preventDefault()" title="Không căn (Mặc định)" onclick="wpImgAlign('none')">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18V7H3v2zm0-6v2h18V3H3z"/></svg>
               </button>
               <div class="wp-img-tb-divider"></div>
-              <button type="button" class="wp-img-tb-btn wp-img-tb-text" title="Chỉnh sửa chi tiết" onclick="wpImgEditCurrent()">
+              <button type="button" class="wp-img-tb-btn wp-img-tb-text" onmousedown="event.preventDefault()" title="Chỉnh sửa chi tiết" onclick="wpImgEditCurrent()">
                 ✏️ Sửa
               </button>
-              <button type="button" class="wp-img-tb-btn wp-img-tb-del wp-img-tb-text" title="Xóa ảnh" onclick="wpImgDeleteCurrent()">
+              <button type="button" class="wp-img-tb-btn wp-img-tb-del wp-img-tb-text" onmousedown="event.preventDefault()" title="Xóa ảnh" onclick="wpImgDeleteCurrent()">
                 🗑️ Xóa
               </button>
             </div>
 
             <!-- Floating WordPress Table Toolbar -->
             <div id="wp-table-floating-toolbar" class="wp-img-toolbar-wrap">
-              <button type="button" class="wp-img-tb-btn wp-img-tb-text" title="Thêm dòng bên dưới ô hiện tại" onclick="tableAddRow()">➕ Dòng</button>
-              <button type="button" class="wp-img-tb-btn wp-img-tb-text" title="Thêm cột bên phải ô hiện tại" onclick="tableAddCol()">➕ Cột</button>
+              <button type="button" class="wp-img-tb-btn wp-img-tb-text" onmousedown="event.preventDefault()" title="Thêm dòng bên dưới ô hiện tại" onclick="tableAddRow()">➕ Dòng</button>
+              <button type="button" class="wp-img-tb-btn wp-img-tb-text" onmousedown="event.preventDefault()" title="Thêm cột bên phải ô hiện tại" onclick="tableAddCol()">➕ Cột</button>
               <div class="wp-img-tb-divider"></div>
-              <button type="button" class="wp-img-tb-btn wp-img-tb-text" title="Xóa dòng hiện tại" onclick="tableDeleteRow()">➖ Dòng</button>
-              <button type="button" class="wp-img-tb-btn wp-img-tb-text" title="Xóa cột hiện tại" onclick="tableDeleteCol()">➖ Cột</button>
+              <button type="button" class="wp-img-tb-btn wp-img-tb-text" onmousedown="event.preventDefault()" title="Xóa dòng hiện tại" onclick="tableDeleteRow()">➖ Dòng</button>
+              <button type="button" class="wp-img-tb-btn wp-img-tb-text" onmousedown="event.preventDefault()" title="Xóa cột hiện tại" onclick="tableDeleteCol()">➖ Cột</button>
               <div class="wp-img-tb-divider"></div>
-              <button type="button" class="wp-img-tb-btn wp-img-tb-del wp-img-tb-text" title="Xóa toàn bộ bảng" onclick="tableDelete()">🗑️ Xóa bảng</button>
+              <button type="button" class="wp-img-tb-btn wp-img-tb-del wp-img-tb-text" onmousedown="event.preventDefault()" title="Xóa toàn bộ bảng" onclick="tableDelete()">🗑️ Xóa bảng</button>
+            </div>
+
+            <!-- Floating WordPress Text Selection Bubble -->
+            <div id="wp-text-floating-bubble" class="wp-img-toolbar-wrap" style="display:none;position:absolute;z-index:1000">
+              <button type="button" class="wp-img-tb-btn wp-img-tb-text" onmousedown="event.preventDefault()" title="In đậm (Ctrl+B)" onclick="wpExecCmd('bold')"><b>B</b></button>
+              <button type="button" class="wp-img-tb-btn wp-img-tb-text" onmousedown="event.preventDefault()" title="In nghiêng (Ctrl+I)" onclick="wpExecCmd('italic')"><i style="font-family:serif">I</i></button>
+              <button type="button" class="wp-img-tb-btn wp-img-tb-text" onmousedown="event.preventDefault()" title="Gạch chân (Ctrl+U)" onclick="wpExecCmd('underline')"><u>U</u></button>
+              <button type="button" class="wp-img-tb-btn wp-img-tb-text" onmousedown="event.preventDefault()" title="Chèn liên kết (Ctrl+K)" onclick="visLink()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
+              </button>
+              <div class="wp-img-tb-divider"></div>
+              <button type="button" class="wp-img-tb-btn" onmousedown="event.preventDefault()" title="Căn trái" onclick="wpAlignBlock('left')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M15 15H3v2h12v-2zm0-8H3v2h12V7zM3 13h18v-2H3v2zm0 8h18v-2H3v2zM3 3v2h18V3H3z"/></svg>
+              </button>
+              <button type="button" class="wp-img-tb-btn" onmousedown="event.preventDefault()" title="Căn giữa" onclick="wpAlignBlock('center')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M7 15v2h10v-2H7zm-4 6h18v-2H3v2zm0-8h18v-2H3v2zm4-6v2h10V7H7zM3 3v2h18V3H3z"/></svg>
+              </button>
+              <button type="button" class="wp-img-tb-btn" onmousedown="event.preventDefault()" title="Căn phải" onclick="wpAlignBlock('right')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21h18v-2H3v2zm6-4h12v-2H9v2zm-6-4h18v-2H3v2zm6-4h12V7H9v2zM3 3v2h18V3H3z"/></svg>
+              </button>
+              <button type="button" class="wp-img-tb-btn" onmousedown="event.preventDefault()" title="Căn đều hai bên" onclick="wpAlignBlock('justify')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18V7H3v2zm0-6v2h18V3H3z"/></svg>
+              </button>
+              <div class="wp-img-tb-divider"></div>
+              <button type="button" class="wp-img-tb-btn wp-img-tb-text" onmousedown="event.preventDefault()" title="Tiêu đề H2" onclick="visFormatHeading('H2')">H2</button>
+              <button type="button" class="wp-img-tb-btn wp-img-tb-text" onmousedown="event.preventDefault()" title="Tiêu đề H3" onclick="visFormatHeading('H3')">H3</button>
+              <button type="button" class="wp-img-tb-btn wp-img-tb-text" onmousedown="event.preventDefault()" title="Đoạn văn thường" onclick="visFormatHeading('P')">P</button>
             </div>
           </div>
 
@@ -10874,6 +11142,7 @@ function renderEditor(file, html) {
   bindArticleBridgeMessages();
 
   renderFocusKeywords();
+  setupVisualImageHandlers();
   updateWordCount();
   updateSeoScore();
   updatePublishDateDisplay();
@@ -11531,6 +11800,9 @@ function switchBilingualTab(targetLang) {
     EditorHistoryManager.reset();
   }
 
+  hideVisualImageToolbar();
+  hideTextSelectionBubble();
+  setupVisualImageHandlers();
   updateBilingualBadges();
   updateWordCount();
   updateSeoScore();
@@ -13327,6 +13599,14 @@ function switchBodyMode(mode) {
   const codeWrap = document.getElementById('body-code-wrap');
   if (codeWrap) codeWrap.style.display = mode === 'code' ? 'block' : 'none';
   if (liveWrap) liveWrap.style.display = mode === 'live' ? 'block' : 'none';
+
+  if (mode === 'visual') {
+    setupVisualImageHandlers();
+    updateVisualToolbarState();
+  } else {
+    hideVisualImageToolbar();
+    hideTextSelectionBubble();
+  }
 }
 
 function visExec(cmd, val) {
