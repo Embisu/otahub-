@@ -1,5 +1,14 @@
 window.IDX = [
   {
+    "title": "GTA 6: Hệ thống thời tiết năng động tái hiện Florida chân thực",
+    "url": "/gta-6-he-thong-thoi-tiet-nang-dong-tai-hien-florida-chan-thu",
+    "cat": "Gaming",
+    "date": "2026-10-01",
+    "excerpt": "GTA 6 được kỳ vọng sở hữu hệ thống thời tiết năng động, tái hiện nhiều điều kiện khí hậu đặc trưng của Florida trong thế giới mở Leonida.",
+    "img": "/assets/img/uploads/suzos5z2-gt-6-1-06bc11d907.jpg",
+    "tags": []
+  },
+  {
     "title": "5 game sinh tồn miễn phí đáng chơi trên Steam, fan thể loại survival không nên bỏ qua",
     "url": "/5-game-sinh-ton-mien-phi-dang-choi-tren-steam-fan-the-loai-s",
     "cat": "Gaming",
