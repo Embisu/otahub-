@@ -1,6 +1,15 @@
 window.IDX = [
   {
     "title": "Frieren mùa 3: Golden Land Arc và câu chuyện về Macht",
+    "url": "/en/frieren-mua-3-golden-land-arc-va-cau-chuyen-ve-macht",
+    "cat": "Anime",
+    "date": "2026-10-01",
+    "excerpt": "Frieren mùa 3 chuyển thể Golden Land Arc, xoay quanh Macht, Denken và vùng đất hóa vàng, mở ra câu chuyện mới về ma tộc và quá khứ của Denken.",
+    "img": "/assets/img/uploads/0lu7u0fb-maxresdefault.jpg",
+    "tags": []
+  },
+  {
+    "title": "Frieren mùa 3: Golden Land Arc và câu chuyện về Macht",
     "url": "/frieren-mua-3-golden-land-arc-va-cau-chuyen-ve-macht",
     "cat": "Anime",
     "date": "2026-10-01",
