@@ -5384,17 +5384,39 @@ function slugifyEnglishTitle(title) {
 // slug riêng thì admin không tìm thấy file và tạo thêm 1 bản EN trùng, còn bài mới thì URL tiếng Anh
 // lại mang chữ Việt (vd. /en/kuri-hime-...-se-ket-thuc-vao-ngay-28-10).
 async function resolveEnSlug(viSlug, enTitle, hasEn) {
-  const exists = async (slug) => { try { const d = await ghGet(`en/${slug}.html`); return !!(d && d.sha); } catch (e) { return false; } };
+  const readHtml = async (file) => {
+    try {
+      const d = await ghGet(file);
+      if (!d || !d.sha) return null;
+      let html = '';
+      try { html = decodeURIComponent(escape(atob(String(d.content || '').replace(/\s/g, '')))); } catch (e) {}
+      return html;
+    } catch (e) { return null; }
+  };
+  const exists = async (slug) => (await readHtml(`en/${slug}.html`)) !== null;
+  // Bản EN thuộc về bài VI này nếu hreflang="vi" của nó trỏ về đúng slug VI.
+  const ownedByVi = async (slug) => {
+    const html = await readHtml(`en/${slug}.html`);
+    return html !== null && html.includes(`hreflang="vi" href="https://otahub.asia/${viSlug}"`);
+  };
+  // 0. Nguồn đáng tin nhất: hreflang="en" trong chính file VI đang có trên GitHub.
+  const viHtml = await readHtml(`${viSlug}.html`);
+  const linked = viHtml && (viHtml.match(/hreflang="en" href="https:\/\/otahub\.asia\/en\/([^"]+)"/) || [])[1];
+  if (linked && await exists(linked)) return linked;
   // 1. Bản EN đã có (đọc từ hreflang khi mở bài): giữ đúng file đó.
   const known = (BILINGUAL_DATA?.en?.file || '').replace(/^en\//, '').replace(/\.html$/, '');
   if (known && await exists(known)) return known;
   // 2. Bản EN cũ đang dùng slug VI: giữ nguyên để không làm gãy link đã được index.
   if (known !== viSlug && await exists(viSlug)) return viSlug;
-  // 3. Bài mới: slug tiếng Anh theo tiêu đề EN, tránh đè lên bài EN khác trùng slug.
+  // 3. Bài mới: slug tiếng Anh theo tiêu đề EN, tránh đè lên bài EN khác trùng slug
+  //    (nhưng nếu file trùng slug chính là bản EN của bài này thì dùng lại, không đẻ thêm "-2").
   const base = (hasEn && enTitle) ? slugifyEnglishTitle(enTitle) : '';
   if (!base) return viSlug;
   let slug = base;
-  for (let n = 2; await exists(slug); n++) slug = `${base}-${n}`;
+  for (let n = 2; await exists(slug); n++) {
+    if (await ownedByVi(slug)) return slug;
+    slug = `${base}-${n}`;
+  }
   return slug;
 }
 
@@ -12290,6 +12312,8 @@ function buildStandardEnglishArticleTemplate(viSlug, enSlug, heroImg, heroPos, c
 <meta name="theme-color" content="#0b0418">
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
 <link rel="stylesheet" href="/assets/article-style.css?v=20261001c">
+<link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
+<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261001b">
 </head>
 <body>
 
@@ -16936,6 +16960,8 @@ function newArticle(prefillTitle) {
 <meta name="theme-color" content="#0b0418">
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
 <link rel="stylesheet" href="/assets/article-style.css?v=20261001c">
+<link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
+<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261001b">
 </head>
 <body>
 
