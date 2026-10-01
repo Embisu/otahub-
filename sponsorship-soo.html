@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OtaHub x SOO Sponsorship Proposal</title>
+<meta name="description" content="Sponsorship proposal for SOO: OtaHub audience data and the proposed content package.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://otahub.asia/sponsorship-soo">
+<link rel="icon" type="image/png" href="/assets/img/brand/otahub-icon.png">
+<style>
+:root{
+  --bg:#0b0418; --surface:#150a2c; --border:rgba(255,255,255,.08);
+  --fg:#f0eeff; --muted:rgba(240,238,255,.6); --dim:rgba(240,238,255,.4);
+  --cyan:#00f2ff; --pink:#ff2177;
+  --fd:'BHN Fonarto Regular','Be Vietnam Pro',sans-serif;
+  --fb:'Be Vietnam Pro',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+@font-face{font-family:'BHN Fonarto Regular';src:url('/assets/fonts/BHNFonartoRegular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700&display=swap');
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg)}
+body{font-family:var(--fb);font-weight:300;line-height:1.65;padding:56px 20px 72px}
+.wrap{max-width:760px;margin:0 auto}
+h1,h2{font-family:var(--fd);font-weight:400;margin:0;text-wrap:balance}
+a{color:var(--cyan)}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:10px}
+
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:50px}
+.brand svg{flex-shrink:0;filter:drop-shadow(0 0 6px rgba(0,242,255,.4))}
+.brand-t{font-family:var(--fd);font-size:30px;position:relative;top:0.14em}
+.brand-ota{color:var(--pink)}
+.brand-hub{color:var(--cyan)}
+
+.hero{padding-bottom:36px;border-bottom:1px solid var(--border);margin-bottom:40px}
+.hero h1{font-size:clamp(28px,5vw,40px)}
+.hero h1 .accent{background:linear-gradient(100deg,var(--fg) 20%,var(--cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:17px;color:var(--muted);margin-top:14px;max-width:60ch}
+
+section{margin-bottom:52px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+.sec-head h2{font-size:22px;color:var(--fg)}
+.sec-note{font-size:12.5px;color:var(--dim)}
+
+.about p{font-size:15px;color:var(--muted);max-width:66ch}
+.pillars{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.pillar{font-size:12px;font-weight:600;letter-spacing:.04em;padding:6px 14px;border:1px solid var(--border);border-radius:999px;color:var(--fg);background:var(--surface)}
+
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.stat{background:var(--surface);padding:22px 20px;min-width:0}
+.stat-num{font-family:var(--fd);font-size:clamp(26px,4vw,34px);color:var(--cyan);font-variant-numeric:tabular-nums;line-height:1}
+.stat-lbl{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.stat-src{font-size:11px;color:var(--dim);margin-top:4px}
+
+.social-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+.social-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px}
+.social-card .handle{font-size:15px;font-weight:700;color:var(--fg);display:flex;align-items:center;gap:8px}
+.social-card .platform-badge{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#000;background:var(--cyan);padding:2px 8px;border-radius:999px;font-weight:800}
+.social-card .views{font-family:var(--fd);font-size:28px;color:var(--pink);margin-top:12px;font-variant-numeric:tabular-nums}
+.social-card .views-lbl{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.social-card .link{display:inline-block;margin-top:12px;font-size:13px;word-break:break-all}
+
+.package{position:relative;border:1.5px solid var(--cyan);border-radius:18px;padding:32px 28px;background:linear-gradient(165deg,rgba(0,242,255,.07),rgba(255,33,119,.05) 70%);overflow:hidden}
+.package::before{content:'';position:absolute;inset:0;background:
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/28px 28px,
+    linear-gradient(0deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/28px 28px;
+  pointer-events:none}
+.package-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;position:relative}
+.package-name{font-family:var(--fd);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--pink)}
+.package-price{font-family:var(--fd);font-size:40px;color:var(--fg);font-variant-numeric:tabular-nums}
+.package-price span{font-size:16px;color:var(--muted);font-family:var(--fb)}
+.package-list{list-style:none;padding:0;margin:26px 0 0;display:flex;flex-direction:column;gap:14px;position:relative}
+.package-list li{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:var(--fg)}
+.package-list .tick{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:rgba(0,242,255,.14);border:1px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--cyan);margin-top:1px}
+.package-list b{color:var(--cyan)}
+.package-list .sub{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.package-foot{margin-top:26px;padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;position:relative}
+.package-foot .total-lbl{font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+
+.contact{border-top:1px solid var(--border);padding-top:30px;font-size:14px;color:var(--muted)}
+.contact .name{color:var(--fg);font-weight:700}
+.home-link{display:inline-flex;align-items:center;gap:6px;margin-top:18px;font-size:13px;color:var(--muted);text-decoration:none}
+.home-link:hover{color:var(--cyan)}
+
+@media (max-width:520px){
+  body{padding:40px 16px 56px}
+  .package{padding:26px 18px}
+  .package-price{font-size:32px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand">
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00f2ff" stroke-width="1.8" fill="rgba(0,242,255,.1)"></polygon><rect x="8" y="14" width="18" height="2.3" fill="#ff2177"></rect><rect x="9" y="12" width="16" height="1.8" fill="#ff2177"></rect><rect x="13" y="16" width="2.3" height="9" fill="#ff2177"></rect><rect x="19" y="16" width="2.3" height="9" fill="#ff2177"></rect></svg>
+    <span class="brand-t"><span class="brand-ota">Ota</span><span class="brand-hub">Hub</span></span>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">Sponsorship Proposal · October 2026</div>
+    <h1>Content partnership for <span class="accent">SOO</span></h1>
+    <p>OtaHub is a gaming, anime, and manga news hub for readers in Vietnam and across Asia. We publish fast, in-depth, unbiased coverage, run by a team that has followed the industry since 2022. Below is our real audience data and a proposed package for SOO.</p>
+  </div>
+
+  <section class="about">
+    <div class="sec-head"><h2>About OtaHub</h2></div>
+    <p>OtaHub covers gaming, anime, and manga news for Vietnam and Asia. Our editorial team follows gamer and anime fan communities directly, prioritizing speed and depth over volume.</p>
+    <div class="pillars">
+      <span class="pillar">Gaming</span>
+      <span class="pillar">Anime</span>
+      <span class="pillar">Manga</span>
+      <span class="pillar">Reviews</span>
+      <span class="pillar">Rankings</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>Website traffic</h2>
+      <span class="sec-note">Source: Cloudflare Analytics · Sep 1 – Oct 1, 2026</span>
+    </div>
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-num">11.65k</div>
+        <div class="stat-lbl">Unique Visitors</div>
+        <div class="stat-src">Last 30 days</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">102.94k</div>
+        <div class="stat-lbl">Total Pageviews</div>
+        <div class="stat-src">Last 30 days</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>Linked TikTok channels</h2>
+      <span class="sec-note">Average views per video</span>
+    </div>
+    <div class="social-grid">
+      <div class="social-card">
+        <div class="handle"><span class="platform-badge">TikTok</span> @otani556</div>
+        <div class="views">~20K</div>
+        <div class="views-lbl">Average views</div>
+        <a class="link" href="https://www.tiktok.com/@otani556/video/7689317512193854740" target="_blank" rel="noopener">tiktok.com/@otani556</a>
+      </div>
+      <div class="social-card">
+        <div class="handle"><span class="platform-badge">TikTok</span> @otagg.hub</div>
+        <div class="views">~10K</div>
+        <div class="views-lbl">Average views</div>
+        <a class="link" href="https://www.tiktok.com/@otagg.hub" target="_blank" rel="noopener">tiktok.com/@otagg.hub</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Proposed package</h2></div>
+    <div class="package">
+      <div class="package-head">
+        <div class="package-name">SOO Package</div>
+        <div class="package-price">$500<span> USD</span></div>
+      </div>
+      <ul class="package-list">
+        <li><span class="tick">✓</span><span><b>3 articles</b> published on OtaHub<span class="sub">One of the three can be pinned as a featured post for 7 days, SOO's choice</span></span></li>
+        <li><span class="tick">✓</span><span><b>3 videos</b> on @otani556<span class="sub">Average view count guaranteed, verified 28 days after posting</span></span></li>
+        <li><span class="tick">✓</span><span><b>3 videos</b> on @otagg.hub<span class="sub">Average view count guaranteed, verified 28 days after posting</span></span></li>
+        <li><span class="tick">✓</span><span><b>Homepage banner</b> on OtaHub<span class="sub">Pinned placement for 15 days</span></span></li>
+      </ul>
+      <div class="package-foot">
+        <span class="total-lbl">Total</span>
+        <span class="package-price" style="font-size:22px">$500 <span>USD</span></span>
+      </div>
+    </div>
+  </section>
+
+  <div class="contact">
+    For any questions about content or scheduling, please reach out to the <span class="name">OtaHub</span> team.
+    <br><a class="home-link" href="/">&larr; otahub.asia</a>
+  </div>
+
+</div>
+</body>
+</html>
