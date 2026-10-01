@@ -4426,7 +4426,7 @@ html.theme-light .wp-draft-banner-text {
             <button class="wp-sub-btn" onclick="hubEditor('manga.html','Manga')">Manga Hub</button>
             <button class="wp-sub-btn" onclick="reviewsEditor()">Reviews Hub (reviews.html)</button>
             <button class="wp-sub-btn" onclick="chuyenSauEditor()">Chuyên Sâu (chuyen-sau.html)</button>
-            <button class="wp-sub-btn" onclick="hotGridEditor()">Chơi gì hôm nay (choi-gi.html)</button>
+            <button class="wp-sub-btn" onclick="arrayEditor('choigi')">Chơi gì hôm nay (choi-gi.html)</button>
             <button class="wp-sub-btn" onclick="releasesEditor()">Lịch phát hành (sap-ra-mat.html)</button>
             <button class="wp-sub-btn" onclick="teamEditor()">Đội ngũ biên tập (about.html)</button>
             <button class="wp-sub-btn" onclick="newsEditor()">Trang tin tức (news.html)</button>
@@ -4985,10 +4985,9 @@ function cmdkStaticActions() {
     { icon: '🏆', title: 'Bảng xếp hạng', hint: 'Rankings theo tuần', tag: 'Đi tới', run: () => showView('rankings') },
     { icon: '⭐', title: 'Reviews Hub', hint: 'Quản lý đánh giá game, anime, manga (reviews.html)', tag: 'Đi tới', run: () => reviewsEditor() },
     { icon: '📚', title: 'Chuyên Sâu', hint: 'Bài phân tích chuyên sâu (chuyen-sau.html)', tag: 'Đi tới', run: () => chuyenSauEditor() },
-    { icon: '🎯', title: 'Chơi Gì?', hint: 'Database gợi ý game', tag: 'Đi tới', run: () => arrayEditor('choigi') },
+    { icon: '🎯', title: 'Chơi gì hôm nay', hint: 'Dữ liệu gợi ý game, anime, manga (choi-gi.html)', tag: 'Đi tới', run: () => arrayEditor('choigi') },
     { icon: '💡', title: 'Recommend', hint: 'Danh sách gợi ý', tag: 'Đi tới', run: () => arrayEditor('recommend') },
     { icon: '📅', title: 'Lịch phát sóng', hint: 'Lịch anime theo mùa', tag: 'Đi tới', run: () => arrayEditor('lichphatsong') },
-    { icon: '🔥', title: 'Đang Hot', hint: 'Section tĩnh cho choi-gi.html', tag: 'Đi tới', run: () => hotGridEditor() },
     { icon: '🚀', title: 'Sắp ra mắt', hint: 'Lịch phát hành sắp tới (sap-ra-mat.html)', tag: 'Đi tới', run: () => releasesEditor() },
     { icon: '📰', title: 'News', hint: 'Trang tin tức (news.html)', tag: 'Đi tới', run: () => newsEditor() },
     { icon: '👥', title: 'Đội ngũ / Giới thiệu', hint: 'Trang about.html', tag: 'Đi tới', run: () => teamEditor() },
@@ -8837,8 +8836,8 @@ async function saveQuickEdit(file) {
     
     // Breadcrumbs
     const catSlug = cat.toLowerCase();
-    html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<a\s+href="\/)[^"]*(">[^<]*<\/a>)/i,
-      `$1${catSlug}">${esc(cat)}</a>`);
+    html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<a\s+href="\/)[^"]*("[^>]*>)[^<]*(<\/a>)/i,
+      `$1${catSlug}$2${esc(cat)}$3`);
     html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<span>)[\s\S]*?(<\/span>)/i,
       `$1${esc(title)}$2`);
       
@@ -11856,7 +11855,7 @@ function copyViStructureToEn() {
     BILINGUAL_DATA.en.desc = viData.desc || viData.excerpt || '';
   }
   BILINGUAL_DATA.en.hasHb = viData.hasHb;
-  BILINGUAL_DATA.en.hbLabel = viData.hbLabel ? 'Summary' : '';
+  BILINGUAL_DATA.en.hbLabel = viData.hbLabel ? 'Key Takeaway' : '';
   BILINGUAL_DATA.en.hbText = viData.hbText || '';
 
   if (CURRENT_LANG === 'en') {
@@ -12081,10 +12080,99 @@ function ensureHreflangLinks(html, viSlug, enSlug, pageLang) {
   } else {
     html = hreflangTags + '\n' + html;
   }
+  // Nút VI ⇄ EN chỉ hiện khi trang nạp lang-switch.js; bài tiếng Việt tạo từ admin trước đây thiếu dòng này.
+  if (!/\/assets\/lang-switch\.js/.test(html) && /<\/body>/i.test(html)) {
+    html = html.replace(/<\/body>/i, '<script src="/assets/lang-switch.js" defer><\/script>\n</body>');
+  }
   return html;
 }
 
+// Trang EN dựng từ template "trần" cũ (class art-single): thiếu nav, hero, tóm tắt, chia sẻ, footer...
+function isLegacyEnglishSkeleton(html) {
+  return /class="art-single"/.test(html || '');
+}
+
+// Đồng bộ các trường DÙNG CHUNG (ảnh bìa, chuyên mục, tác giả, ngày) sang bản dịch KHÔNG bị sửa
+// trong phiên này, để 2 bản VI/EN luôn giống nhau về giao diện. Không đụng tiêu đề/nội dung.
+function syncSharedFieldsIntoHtml(html, f) {
+  const isEnDoc = /<html\b[^>]*\blang="en"/i.test(html);
+  const cat = f.cat || '';
+  const catSlug = cat.toLowerCase();
+  if (cat) {
+    html = html.replace(/(<meta\s+property="article:section"\s+content=")[^"]*(")/i, `$1${esc(cat)}$2`);
+    html = html.replace(/(<span\b[^>]*\bclass="[^"]*art-hero-cat[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${esc(cat)}$2`);
+    html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-tag[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${esc(cat)}$2`);
+    html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<a\s+href="\/)[^"]*("[^>]*>)[^<]*(<\/a>)/i,
+      `$1${isEnDoc ? 'en/' + catSlug : catSlug}$2${esc(cat)}$3`);
+    html = html.replace(/(\{\s*"@type":\s*"ListItem",\s*"position":\s*2,\s*"name":\s*")[^"]*(",\s*"item":\s*"https:\/\/otahub\.asia\/)[^"]*(")/i,
+      `$1${cat.replace(/"/g, '\\"')}$2${isEnDoc ? 'en/' + catSlug : catSlug}$3`);
+    const navPrefix = isEnDoc ? '/en/' : '/';
+    const navSlugs = isEnDoc ? 'choi-gi|gaming|anime|manga|reviews|rankings|in-depth' : 'choi-gi|gaming|anime|manga|reviews|rankings|chuyen-sau';
+    if (['choi-gi', 'gaming', 'anime', 'manga', 'reviews', 'rankings', 'chuyen-sau'].includes(catSlug)) {
+      html = html.replace(new RegExp(`<a href="${navPrefix}(${navSlugs})"( class="active")?>`, 'g'),
+        (m, slug) => `<a href="${navPrefix}${slug}"${slug === catSlug ? ' class="active"' : ''}>`);
+    }
+  }
+  if (f.hero) {
+    const pos = f.heroPos || '50';
+    if (/class="art-hero-img"\s+style="[^"]*"/.test(html)) {
+      html = html.replace(/(class="art-hero-img"\s+style=")[^"]*(")/, `$1background-image:url('${f.hero}');background-position:center ${pos}%;background-color:#0b0418;$2`);
+    }
+    const full = /^(https?:|data:)/i.test(f.hero) ? f.hero : `https://otahub.asia${f.hero.startsWith('/') ? '' : '/'}${f.hero}`;
+    html = html.replace(/(<meta\s+property="og:image"\s+content=")[^"]*(")/i, `$1${full}$2`);
+    html = html.replace(/(<meta\s+name="twitter:image"\s+content=")[^"]*(")/i, `$1${full}$2`);
+    html = html.replace(/("image":\s*")[^"]*(")/i, `$1${full}$2`);
+  }
+  if (f.pubDate) {
+    html = html.replace(/(<meta\s+property="article:published_time"\s+content=")[^"]*(")/i, `$1${f.pubDate}$2`);
+    html = html.replace(/(<meta\s+property="article:modified_time"\s+content=")[^"]*(")/i, `$1${f.pubDate}$2`);
+    html = html.replace(/("datePublished"\s*:\s*")[^"]*(")/i, `$1${f.pubDate}$2`);
+    html = html.replace(/("dateModified"\s*:\s*")[^"]*(")/i, `$1${f.pubDate}$2`);
+    html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-date[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${f.pubDate.slice(0, 10)}$2`);
+  }
+  if (f.author) html = stampArticleAuthor(html, f.author);
+  return html;
+}
+
+// Sau khi lưu bài song ngữ: đọc lại cả 2 file từ GitHub, tự vá liên kết VI⇄EN (hreflang, canonical,
+// nút chuyển ngôn ngữ) và cảnh báo nếu giao diện 2 bản còn lệch nhau.
+async function verifyBilingualPair(viSlug, enSlug) {
+  const problems = [];
+  const read = async (file) => {
+    const data = await ghGet(file);
+    let html = '';
+    try { html = decodeURIComponent(escape(atob(String(data.content || '').replace(/\s/g, '')))); } catch (e) {}
+    return { sha: data.sha, html };
+  };
+  let vi, en;
+  try { [vi, en] = await Promise.all([read(`${viSlug}.html`), read(`en/${enSlug}.html`)]); }
+  catch (e) { return [`Không đọc lại được đủ 2 file để kiểm tra (${e.message || e})`]; }
+
+  const viUrl = `https://otahub.asia/${viSlug}`, enUrl = `https://otahub.asia/en/${enSlug}`;
+  const hasLink = (html, lang, url) => html.includes(`<link rel="alternate" hreflang="${lang}" href="${url}">`);
+  const broken = (doc) => !hasLink(doc.html, 'vi', viUrl) || !hasLink(doc.html, 'en', enUrl) || !/\/assets\/lang-switch\.js/.test(doc.html);
+  const repair = async (file, lang, doc) => {
+    const fixed = ensureHreflangLinks(doc.html, viSlug, enSlug, lang);
+    if (fixed !== doc.html) {
+      await ghPut(file, fixed, doc.sha, `[admin] dong bo lien ket VI-EN cho ${file}`);
+      problems.push(`Đã tự vá liên kết VI⇄EN trong ${file}`);
+      doc.html = fixed;
+    }
+  };
+  if (broken(vi)) await repair(`${viSlug}.html`, 'vi', vi);
+  if (broken(en)) await repair(`en/${enSlug}.html`, 'en', en);
+
+  if (isLegacyEnglishSkeleton(en.html)) problems.push('Bản EN đang dùng khung trần cũ (thiếu nav/hero/footer).');
+  if (!/class="nav-r"/.test(en.html) || !/class="nav-r"/.test(vi.html)) problems.push('Một trong 2 bản thiếu thanh nav chuẩn nên nút VI/EN sẽ không hiện.');
+  const pick = (html, re) => (html.match(re) || [])[1] || '';
+  if (pick(vi.html, /<meta property="og:image" content="([^"]*)"/) !== pick(en.html, /<meta property="og:image" content="([^"]*)"/)) problems.push('Ảnh bìa 2 bản khác nhau.');
+  if (pick(vi.html, /<meta property="article:section" content="([^"]*)"/) !== pick(en.html, /<meta property="article:section" content="([^"]*)"/)) problems.push('Chuyên mục 2 bản khác nhau.');
+  return problems;
+}
+
 function buildStandardEnglishArticleTemplate(viSlug, enSlug, heroImg, heroPos, cat, authorName) {
+  // Cùng bố cục với bản tiếng Việt (hero, tóm tắt, breadcrumb, chia sẻ, sidebar, footer),
+  // chỉ khác nhãn giao diện. Nội dung/ tiêu đề/ mô tả sẽ được applyArticleEditsToHtml ghi đè.
   const url = `https://otahub.asia/en/${enSlug}`;
   const viUrl = `https://otahub.asia/${viSlug}`;
   const enTitle = BILINGUAL_DATA?.en?.title || 'Article Title';
@@ -12092,6 +12180,9 @@ function buildStandardEnglishArticleTemplate(viSlug, enSlug, heroImg, heroPos, c
   const now = new Date().toISOString();
   const dateDisp = now.slice(0, 10);
   const heroPosition = heroPos || '50';
+  const heroAbs = heroImg ? (/^https?:/i.test(heroImg) ? heroImg : `https://otahub.asia${heroImg.startsWith('/') ? '' : '/'}${heroImg}`) : 'https://otahub.asia/og-image.png';
+  const catSlug = ({ gaming:'gaming', anime:'anime', manga:'manga', reviews:'reviews', rankings:'rankings' })[String(cat || '').toLowerCase()] || 'gaming';
+  const authorSlug = resolveAuthorSlug(authorName, CURRENT_USER?.role);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -12112,50 +12203,155 @@ function buildStandardEnglishArticleTemplate(viSlug, enSlug, heroImg, heroPos, c
 <meta property="og:url" content="${url}">
 <meta property="og:site_name" content="OtaHub">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="${esc(heroImg)}">
+<meta property="og:image" content="${esc(heroAbs)}">
+<meta property="article:author" content="${esc(authorName)}">
 <meta property="article:published_time" content="${now}">
 <meta property="article:section" content="${esc(cat)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(enTitle)} · OtaHub">
 <meta name="twitter:description" content="${esc(enDesc)}">
-<meta name="twitter:image" content="${esc(heroImg)}">
+<meta name="twitter:image" content="${esc(heroAbs)}">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": ${JSON.stringify(enTitle)},
+  "description": ${JSON.stringify(enDesc)},
+  "image": ${JSON.stringify(heroAbs)},
+  "datePublished": "${now}",
+  "dateModified": "${now}",
+  "inLanguage": "en",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "${url}" },
+  "author": { "@type": "Person", "name": ${JSON.stringify(authorName)}, "url": "https://otahub.asia/en/author/${authorSlug}" },
+  "publisher": { "@type": "Organization", "@id": "https://otahub.asia/#organization", "name": "OtaHub", "url": "https://otahub.asia", "logo": { "@type": "ImageObject", "url": "https://otahub.asia/favicon-192.png" } }
+}
+<\/script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://otahub.asia/en/" },
+    { "@type": "ListItem", "position": 2, "name": ${JSON.stringify(cat)}, "item": "https://otahub.asia/en/${catSlug}" },
+    { "@type": "ListItem", "position": 3, "name": ${JSON.stringify(enTitle)}, "item": "${url}" }
+  ]
+}
+<\/script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="/manifest.json">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<meta name="theme-color" content="#0b0418">
+<link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
 <link rel="stylesheet" href="/assets/article-style.css?v=20261001c">
-<link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261001b">
 </head>
 <body>
-<header class="site-header">
-  <div class="header-inner wrap">
-    <a href="/en/" class="brand"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a>
-    <nav class="main-nav">
-      <a href="/en/" class="nav-item">Home</a>
-      <a href="/en/anime" class="nav-item">Anime</a>
-      <a href="/en/manga" class="nav-item">Manga</a>
-      <a href="/en/gaming" class="nav-item">Gaming</a>
-    </nav>
+
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <input class="search-input" id="searchInput" type="text" placeholder="Search gaming, anime, manga...">
+    <button class="search-close" onclick="closeSearch()">✕</button>
   </div>
-</header>
-<main class="main-content wrap">
-  <article class="art-single">
-    <header class="art-header">
-      <div class="art-meta"><span class="art-cat">${esc(cat)}</span> · <time>${dateDisp}</time></div>
-      <h1 class="art-title">${esc(enTitle)}</h1>
-      <p class="art-lead">${esc(enDesc)}</p>
-    </header>
-    ${heroImg ? `<figure class="art-hero"><img height="675" width="1200" src="${esc(heroImg)}" alt="${esc(enTitle)}" style="object-position:center ${heroPosition}%"></figure>` : ''}
-    <article class="art-body">
-      <p>Article body content...</p>
-    </article>
-  </article>
+  <div class="search-hint">Press ESC to close · Ctrl+K to search</div>
+  <div class="search-tags">
+    <a href="/en/gaming" class="stag">Gaming</a>
+    <a href="/en/anime" class="stag">Anime</a>
+    <a href="/en/manga" class="stag">Manga</a>
+    <a href="/en/reviews" class="stag">Reviews</a>
+    <a href="/en/rankings" class="stag">Rankings</a>
+  </div>
+</div>
+<div id="amb"><div class="orb o1"></div><div class="orb o2"></div></div>
+<div id="gtex"></div>
+<nav class="nav"><div class="nav-in"><a class="logo" href="/en/"><span><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"></span><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/en/choi-gi">Play What?</a></li><li><a href="/en/gaming">Gaming</a></li><li><a href="/en/anime">Anime</a></li><li><a href="/en/manga">Manga</a></li><li><a href="/en/reviews">Reviews</a></li><li><a href="/en/rankings">Rankings</a></li><li><a href="/en/in-depth">Deep Dive</a></li></ul><button class="ham" id="ham" aria-label="Menu" onclick="toggleMob()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="Search" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="/en/#newsletter" class="cta" id="cta-sub">Subscribe</a></div></div></nav>
+<nav class="mobile-nav" id="mobnav"><a href="/en/choi-gi">Play What?</a><a href="/en/gaming">Gaming</a><a href="/en/anime">Anime</a><a href="/en/manga">Manga</a><a href="/en/reviews">Reviews</a><a href="/en/rankings">Rankings</a><a href="/en/in-depth">Deep Dive</a><div class="m-sub"><a href="/en/about">About</a><a href="/en/#newsletter">Newsletter</a><a href="/en/about#contact">Contact</a></div></nav>
+
+<section class="art-hero">
+<div class="art-hero-img" style="background-image:url('${heroImg || '/og-image.png'}');background-position:center ${heroPosition}%;background-color:#0b0418;"></div>
+<div class="art-hero-grad"></div>
+<div class="art-hero-content">
+<span class="art-hero-cat">${esc(cat)}</span>
+<h1 class="art-hero-title">${esc(enTitle)}</h1>
+<p class="art-hero-excerpt">${esc(enDesc)}</p>
+</div>
+</section>
+
+<div class="art-layout">
+<main class="art-main">
+<nav class="breadcrumb" aria-label="breadcrumb">
+<a href="/en/">Home</a>
+<span class="breadcrumb-sep">›</span>
+<a href="/en/${catSlug}" class="active">${esc(cat)}</a>
+<span class="breadcrumb-sep">›</span>
+<span>${esc(enTitle)}</span>
+</nav>
+
+<div class="art-meta">
+<span class="am-tag">${esc(cat)}</span>
+<span class="am-sep"></span>
+<span class="am-date">${dateDisp}</span>
+<span class="am-sep"></span>
+<span class="am-read">5 min read</span>
+<span class="am-sep"></span>
+<a class="author-profile-link" href="/en/author/${authorSlug}"><span class="am-badge">${esc(authorName)}</span></a>
+</div>
+
+<div class="highlight-box">
+<div class="hb-label">Key Takeaway</div>
+<div class="hb-text">${esc(enDesc)}</div>
+</div>
+
+<article class="art-body">
+<p>Article body content...</p>
+</article>
+
+<div class="share-row">
+<span class="share-lbl">Share:</span>
+<button class="share-btn" type="button" onclick="copyArticleLink(this)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>Copy link</button>
+<a class="share-btn" href="https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&amp;text=${encodeURIComponent(enTitle)}" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>X (Twitter)</a>
+<a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>Facebook</a>
+</div>
 </main>
+
+<aside class="art-sidebar">
+<div class="sidebar-block">
+<div class="sb-title">Browse</div>
+<div class="sb-tags"><a class="sb-tag" href="/en/gaming">Gaming</a><a class="sb-tag" href="/en/anime">Anime</a><a class="sb-tag" href="/en/manga">Manga</a><a class="sb-tag" href="/en/reviews">Reviews</a><a class="sb-tag" href="/en/rankings">Rankings</a></div>
+</div>
+</aside>
+</div>
+
+<footer><div class="ft-in"><div><a href="/en/" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Asia's Gaming, Anime &amp; Manga news hub. Fast, in-depth, unbiased.</p></div><div><div class="ft-h">Sections</div><ul class="ft-links"><li><a href="/en/gaming">Gaming</a></li><li><a href="/en/anime">Anime</a></li><li><a href="/en/manga">Manga</a></li><li><a href="/en/reviews">Reviews</a></li><li><a href="/en/rankings">Rankings</a></li></ul></div><div><div class="ft-h">About OtaHub</div><ul class="ft-links"><li><a href="/en/about">About Us</a></li><li><a href="/en/about#team">Team</a></li><li><a href="/en/about#contact">Contact</a></li><li><a href="/en/index#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Follow</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
+
+<script>
+function toggleMob(){
+  var h=document.getElementById('ham');
+  var m=document.getElementById('mobnav');
+  if(!m)return;
+  var open=m.classList.toggle('open');
+  if(h)h.classList.toggle('open',open);
+  document.body.style.overflow=open?'hidden':'';
+}
+function openSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.add('open');setTimeout(function(){var i=document.getElementById('searchInput');if(i)i.focus();},50);document.body.style.overflow='hidden';}}
+function closeSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.remove('open');var i=document.getElementById('searchInput');if(i)i.value='';document.body.style.overflow='';}}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSearch();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch();}});
+var _sO=document.getElementById('searchOverlay');if(_sO){_sO.addEventListener('click',function(e){if(e.target===this)closeSearch();});}
+function copyArticleLink(button){
+  navigator.clipboard.writeText(location.href).then(function(){
+    var original = button.textContent;
+    button.textContent = "Copied!";
+    setTimeout(function(){ button.textContent = original; }, 1800);
+  });
+}
+<\/script>
+<script defer src="/assets/search-redirect.js"><\/script>
+<script defer src="/assets/enhance.js?v=20261001c"><\/script>
 <script defer src="/assets/img-fit.v2.js?v=20260926"><\/script>
 <script src="/assets/lang-switch.js" defer><\/script>
 </body>
-</html>`;
+</html>`.replace(/<a href="\/en\/(choi-gi|gaming|anime|manga|reviews|rankings|in-depth)"( class="active")?>/g,
+    (m, slug) => `<a href="/en/${slug}"${slug === catSlug ? ' class="active"' : ''}>`);
 }
 
 function openDocsImportModal() {
@@ -14546,8 +14742,8 @@ function buildArticlePreviewHtml() {
 
   // Breadcrumbs in preview iframe
   const catSlug = cat.toLowerCase();
-  html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<a\s+href="\/)[^"]*(">[^<]*<\/a>)/i,
-    `$1${catSlug}">${esc(cat)}</a>`);
+  html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<a\s+href="\/)[^"]*("[^>]*>)[^<]*(<\/a>)/i,
+    `$1${catSlug}$2${esc(cat)}$3`);
   html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<span>)[\s\S]*?(<\/span>)/i,
     `$1${esc(title)}$2`);
 
@@ -15228,7 +15424,7 @@ function openFullArticlePreview(targetLang) {
       bodyHtml: BILINGUAL_DATA?.en?.bodyHtml || '',
       blocks: BILINGUAL_DATA?.en?.blocks,
       hasHb: BILINGUAL_DATA?.en?.hasHb,
-      hbLabel: BILINGUAL_DATA?.en?.hbLabel || 'Summary',
+      hbLabel: BILINGUAL_DATA?.en?.hbLabel || 'Key Takeaway',
       hbText: BILINGUAL_DATA?.en?.hbText || '',
       slug: cleanSlug,
       pubDate: CUSTOM_PUBLISH_DATE
@@ -15385,8 +15581,8 @@ function applyArticleEditsToHtml(baseHtml, customData) {
   // Breadcrumbs in HTML & BreadcrumbList Schema
   const isEnDoc = /<html\b[^>]*\blang="en"/i.test(html);
   const catSlug = cat.toLowerCase();
-  html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<a\s+href="\/)[^"]*(">[^<]*<\/a>)/i,
-    `$1${isEnDoc ? 'en/' + catSlug : catSlug}">${esc(cat)}</a>`);
+  html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<a\s+href="\/)[^"]*("[^>]*>)[^<]*(<\/a>)/i,
+    `$1${isEnDoc ? 'en/' + catSlug : catSlug}$2${esc(cat)}$3`);
   html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<span>)[\s\S]*?(<\/span>)/i,
     `$1${esc(title)}$2`);
   html = html.replace(/(\{\s*"@type":\s*"ListItem",\s*"position":\s*2,\s*"name":\s*")[^"]*(",\s*"item":\s*"https:\/\/otahub\.asia\/)[^"]*(")/i,
@@ -15397,13 +15593,15 @@ function applyArticleEditsToHtml(baseHtml, customData) {
   // Tab đang chọn trên thanh nav (desktop + mobile)
   const NAV_CATS = ['choi-gi', 'gaming', 'anime', 'manga', 'reviews', 'rankings', 'chuyen-sau'];
   if (NAV_CATS.includes(catSlug)) {
-    html = html.replace(/<a href="\/(choi-gi|gaming|anime|manga|reviews|rankings|chuyen-sau)"( class="active")?>/g,
-      (m, slug) => `<a href="/${slug}"${slug === catSlug ? ' class="active"' : ''}>`);
+    const navPrefix = isEnDoc ? '/en/' : '/';
+    const navSlugs = isEnDoc ? 'choi-gi|gaming|anime|manga|reviews|rankings|in-depth' : 'choi-gi|gaming|anime|manga|reviews|rankings|chuyen-sau';
+    html = html.replace(new RegExp(`<a href="${navPrefix}(${navSlugs})"( class="active")?>`, 'g'),
+      (m, slug) => `<a href="${navPrefix}${slug}"${slug === catSlug ? ' class="active"' : ''}>`);
   }
 
   // Thẻ chủ đề trong sidebar (.sb-tags)
   html = html.replace(/(<div class="sb-tags">)([\s\S]*?)(<\/div>)/i, (m, open, inner, close) =>
-    open + inner.replace(/(<a class="sb-tag" href=")[^"]*(")/gi, `$1/${catSlug}$2`) + close);
+    open + inner.replace(/(<a class="sb-tag" href=")\/(?:en\/)?(?:gaming|anime|manga|reviews|rankings|choi-gi|chuyen-sau|in-depth)(")/gi, `$1${isEnDoc ? '/en' : ''}/${catSlug}$2`) + close);
 
   // Nút chia sẻ Twitter/Facebook
   const currentSlugNoExt = (isCustom && customData.slug) ? customData.slug : (currentFile ? currentFile.replace(/^en\//, '').replace(/\.html$/, '') : '');
@@ -15745,7 +15943,7 @@ async function saveArticle() {
     const enBlocks= BILINGUAL_DATA?.en?.blocks;
     const hasEn   = !!(enTitle && (enBody.length > 20 || (enBlocks && enBlocks.length > 0)));
 
-    const shouldUpdateVi = (!isEnTab && hasViContent) || (isEnTab && BILINGUAL_DATA?.vi?.isDirty && hasViContent);
+    let shouldUpdateVi = (!isEnTab && hasViContent) || (isEnTab && BILINGUAL_DATA?.vi?.isDirty && hasViContent);
     const shouldUpdateEn = (isEnTab && hasEn) || (!isEnTab && BILINGUAL_DATA?.en?.isDirty && hasEn);
 
     // 1. LƯU BÀI VIẾT TIẾNG VIỆT
@@ -15773,6 +15971,12 @@ async function saveArticle() {
         viSha = cached.sha.trim();
         viFileExists = true;
       }
+    }
+
+    // Bài EN luôn phải đi kèm bản VI: nếu VI chưa có trên GitHub thì xuất bản luôn VI cùng lúc.
+    if (isEnTab && !viFileExists && hasViContent) shouldUpdateVi = true;
+    if (isEnTab && !viFileExists && !hasViContent) {
+      throw new Error('Chưa có bản tiếng Việt cho bài này. Hãy nhập/lưu bản tiếng Việt trước để 2 bản liên kết được với nhau.');
     }
 
     let newViSha = viSha;
@@ -15818,7 +16022,8 @@ async function saveArticle() {
     } else if (viFileExists && viHtml && hasEn) {
       // Đang lưu ở tab tiếng Anh, bài tiếng Việt đã tồn tại và KHÔNG bị sửa trong phiên này:
       // TUYỆT ĐỐI KHÔNG GHI ĐÈ TIÊU ĐỀ/NỘI DUNG TIẾNG VIỆT! Chỉ cập nhật hreflang nếu chưa có
-      const linkedViHtml = ensureHreflangLinks(viHtml, viSlug, enSlug, 'vi');
+      const linkedViHtml = syncSharedFieldsIntoHtml(ensureHreflangLinks(viHtml, viSlug, enSlug, 'vi'),
+        { hero, heroPos, cat, author: publishingAuthor, pubDate: CUSTOM_PUBLISH_DATE || '' });
       if (linkedViHtml !== viHtml) {
         try {
           const viPutResult = await ghPut(viFile, linkedViHtml, viSha, `[admin] dong bo link ban tieng Anh cho /${viSlug}`);
@@ -15856,6 +16061,9 @@ async function saveArticle() {
           enHtml = buildStandardEnglishArticleTemplate(viSlug, enSlug, hero, heroPos, cat, publishingAuthor);
         }
       }
+      if (isLegacyEnglishSkeleton(enHtml)) {
+        enHtml = buildStandardEnglishArticleTemplate(viSlug, enSlug, hero, heroPos, cat, publishingAuthor);
+      }
 
       enHtml = applyArticleEditsToHtml(enHtml, {
         title: enTitle,
@@ -15867,7 +16075,7 @@ async function saveArticle() {
         bodyHtml: enBody,
         blocks: BILINGUAL_DATA?.en?.blocks,
         hasHb: BILINGUAL_DATA?.en?.hasHb,
-        hbLabel: BILINGUAL_DATA?.en?.hbLabel || 'Summary',
+        hbLabel: BILINGUAL_DATA?.en?.hbLabel || 'Key Takeaway',
         hbText: BILINGUAL_DATA?.en?.hbText || '',
         slug: enSlug,
         pubDate: CUSTOM_PUBLISH_DATE || formatVietnamIso(new Date())
@@ -15904,7 +16112,8 @@ async function saveArticle() {
           try { enHtml = decodeURIComponent(escape(atob(String(existingEn.content || '').replace(/\s/g, '')))); } catch (e) {}
         }
         if (enSha && enHtml) {
-          const linkedEnHtml = ensureHreflangLinks(enHtml, viSlug, enSlug, 'en');
+          const linkedEnHtml = syncSharedFieldsIntoHtml(ensureHreflangLinks(enHtml, viSlug, enSlug, 'en'),
+            { hero, heroPos, cat, author: publishingAuthor, pubDate: CUSTOM_PUBLISH_DATE || '' });
           if (linkedEnHtml !== enHtml) {
             const enPutRes = await ghPut(enFile, linkedEnHtml, enSha, `[admin] dong bo link ban tieng Viet cho en/${enSlug}`);
             newEnSha = isValidSha(enPutRes?.content?.sha) ? enPutRes.content.sha.trim() : enSha;
@@ -15965,6 +16174,15 @@ async function saveArticle() {
       };
       ARTICLES.unshift(art);
       if (hasEn) EN_FILES_SET.add(viFile);
+    }
+
+    if (hasEn) {
+      try {
+        const pairProblems = await verifyBilingualPair(viSlug, enSlug);
+        if (pairProblems.length) toast('warning', '🔗 Kiểm tra liên kết VI⇄EN: ' + pairProblems.join(' | '));
+      } catch (verifyErr) {
+        console.warn('verifyBilingualPair error:', verifyErr);
+      }
     }
 
     HAS_UNSAVED_CHANGES = false;
@@ -16365,7 +16583,7 @@ async function autosaveArticleDraft() {
         bodyHtml: enBody,
         blocks: enBlocks,
         hasHb: BILINGUAL_DATA?.en?.hasHb,
-        hbLabel: BILINGUAL_DATA?.en?.hbLabel || 'Summary',
+        hbLabel: BILINGUAL_DATA?.en?.hbLabel || 'Key Takeaway',
         hbText: BILINGUAL_DATA?.en?.hbText || '',
         slug: cleanSlug,
         pubDate: CUSTOM_PUBLISH_DATE || undefined
@@ -16743,6 +16961,7 @@ function copyArticleLink(button){
 <\/script>
 <script defer src="/assets/search-redirect.js"><\/script>
 <script defer src="/assets/enhance.js?v=20261001c"><\/script>
+<script src="/assets/lang-switch.js" defer><\/script>
 </body>
 </html>`.replace(/<a href="\/(choi-gi|gaming|anime|manga|reviews|rankings|chuyen-sau)"( class="active")?>/g,
     (m, slug) => `<a href="/${slug}"${slug === catSlug ? ' class="active"' : ''}>`);
@@ -18150,22 +18369,42 @@ const ARRAY_PAGE_CONFIGS = {
     ],
     newEntry: () => ({ id: 'r' + Date.now().toString(36), type: 'game', url: '/', img: '/assets/img/placeholder.svg', title: 'Tiêu đề mới', sub: '', desc: '', score: '8.0', sc: 'var(--cyan)', verdict: 'Tốt', cat: 'Gaming', catC: 'var(--cyan)', author: 'OtaHub Editorial', date: 'Hôm nay', time: '5 phút', cats: [], date_ts: 0 }),
   },
+  // choi-gi.html do scripts/build-choi-gi.mjs dựng: dữ liệu là mảng ITEMS (JSON
+  // một dòng). Schema ItemList (top 10) và 3 cột "Thịnh hành" (top 4 mỗi loại)
+  // được render tĩnh từ chính mảng này, nên afterSave đồng bộ lại cả hai.
   choigi: {
-    file: 'choi-gi.html', varName: 'GAMES', label: 'Cơ sở dữ liệu game (Chơi Gì?)', urlBase: 'https://otahub.asia/choi-gi',
+    file: 'choi-gi.html', varName: 'ITEMS', label: 'Chơi gì hôm nay', urlBase: 'https://otahub.asia/choi-gi',
+    altKey: 'choigiEn', altLabel: '🇬🇧 Bản tiếng Anh',
     titleField: 'name', imgField: 'img',
+    note: '💡 Thứ tự trong danh sách = thứ hạng: 10 mục đầu vào schema Google, 4 mục đầu của mỗi loại hiện ở cột "Thịnh hành". Loại: <b>game</b> / <b>anime</b> / <b>manga</b>. Định dạng con: game → pc, mobile, console · anime → series, movie · manga → manga, manhwa. Mood: action, story, challenge, explore, coop, quick, relax. Bản tiếng Anh là file riêng — sửa xong nhớ cập nhật cả hai.',
     fields: [
-      { key: 'name', label: 'Tên game', type: 'text' },
-      { key: 'dev', label: 'Nhà phát triển / Năm', type: 'text' },
-      { key: 'platform', label: 'Nền tảng (pc/mobile/console...)', type: 'text' },
+      { key: 'name', label: 'Tên tác phẩm', type: 'text' },
+      { key: 'type', label: 'Loại (game/anime/manga)', type: 'text' },
+      { key: 'subType', label: 'Định dạng con', type: 'text' },
+      { key: 'creator', label: 'Studio / Nhà phát triển · Năm', type: 'text' },
+      { key: 'format', label: 'Nền tảng / Định dạng hiển thị', type: 'text' },
       { key: 'genre', label: 'Thể loại', type: 'text' },
       { key: 'moods', label: 'Mood (cách nhau dấu phẩy)', type: 'array' },
-      { key: 'time', label: 'Thời lượng chơi', type: 'text' },
-      { key: 'score', label: 'Điểm', type: 'number' },
+      { key: 'time', label: 'Thời lượng', type: 'text' },
+      { key: 'score', label: 'Điểm (0-10)', type: 'number' },
       { key: 'img', label: 'URL ảnh', type: 'text' },
-      { key: 'icon', label: 'Icon (emoji)', type: 'text' },
-      { key: 'why', label: 'Lý do nên chơi', type: 'textarea' },
+      { key: 'link', label: 'Link bài review (vd /ten-bai-viet)', type: 'text' },
+      { key: 'why', label: 'Lý do nên thử', type: 'textarea' },
     ],
-    newEntry: () => ({ id: 'g' + Date.now().toString(36), name: 'Tên game mới', dev: '', platform: 'pc', genre: '', moods: [], time: '', score: 8.0, img: '', icon: '🎮', color: ['#150a2c', '#1d1040'], why: '' }),
+    newEntry: () => ({ id: 'item-' + Date.now().toString(36), type: 'game', name: 'Tên mới', creator: '', format: 'PC', subType: 'pc', genre: '', moods: [], time: '', score: 8.0, img: '', why: '', link: '', color: ['#150a2c', '#1d1040'] }),
+    validate: validateChoiGiItems,
+    afterSave: syncChoiGiStaticBlocks,
+  },
+  choigiEn: {
+    file: 'en/choi-gi.html', varName: 'ITEMS', label: 'Chơi gì hôm nay (EN)', urlBase: 'https://otahub.asia/en/choi-gi',
+    altKey: 'choigi', altLabel: '🇻🇳 Bản tiếng Việt',
+    get titleField() { return ARRAY_PAGE_CONFIGS.choigi.titleField; },
+    get imgField() { return ARRAY_PAGE_CONFIGS.choigi.imgField; },
+    get note() { return ARRAY_PAGE_CONFIGS.choigi.note; },
+    get fields() { return ARRAY_PAGE_CONFIGS.choigi.fields; },
+    get newEntry() { return ARRAY_PAGE_CONFIGS.choigi.newEntry; },
+    validate: validateChoiGiItems,
+    afterSave: syncChoiGiStaticBlocks,
   },
   recommend: {
     file: 'recommend.html', varName: 'GAMES', label: 'Vòng quay gợi ý game (Recommend)', urlBase: 'https://otahub.asia/recommend',
@@ -18199,21 +18438,31 @@ let ARR_CFG = null;
 let ARR_DATA = [];
 let ARR_SHA = null;
 
+// Tìm `const TEN = [...]` trong trang: hỗ trợ cả mảng nhiều dòng (kết thúc bằng
+// "\n];") lẫn mảng JSON một dòng do script build sinh ra (kết thúc bằng "];").
+function locateArrayLiteral(raw, varName) {
+  const multi = raw.match(new RegExp('const\\s+' + varName + '\\s*=\\s*(\\[[\\s\\S]*?\\n\\]);'));
+  if (multi) return { start: multi.index, end: multi.index + multi[0].length, literal: multi[1], singleLine: false };
+  const single = raw.match(new RegExp('const\\s+' + varName + '\\s*=\\s*(\\[.*\\]);'));
+  if (single) return { start: single.index, end: single.index + single[0].length, literal: single[1], singleLine: true };
+  return null;
+}
+
 async function arrayEditor(cfgKey) {
   if (!confirmDiscardUnsaved()) return;
   const cfg = ARRAY_PAGE_CONFIGS[cfgKey];
   if (!cfg) return;
   setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải ${cfg.label}...</span></div>`);
-  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.wp-nav-item, .nav-item').forEach(b => b.classList.remove('active'));
   document.getElementById('nav-arr-' + cfgKey)?.classList.add('active');
+  if (cfgKey.startsWith('choigi')) document.getElementById('nav-special-pages')?.classList.add('active');
   try {
     const data = await ghGet(cfg.file);
     const raw = decodeURIComponent(escape(atob(data.content)));
-    const re = new RegExp('const\\s+' + cfg.varName + '\\s*=\\s*(\\[[\\s\\S]*?\\n\\]);');
-    const m = raw.match(re);
-    if (!m) throw new Error(`Không tìm thấy mảng dữ liệu "${cfg.varName}" trong ${cfg.file}`);
+    const loc = locateArrayLiteral(raw, cfg.varName);
+    if (!loc) throw new Error(`Không tìm thấy mảng dữ liệu "${cfg.varName}" trong ${cfg.file}`);
     ARR_CFG = { ...cfg, key: cfgKey };
-    ARR_DATA = new Function('return ' + m[1])();
+    ARR_DATA = new Function('return ' + loc.literal)();
     ARR_SHA = data.sha;
     renderArrayEditor();
   } catch(e) {
@@ -18257,8 +18506,9 @@ function renderArrayEditor() {
     <div class="page-header">
       <div class="page-title">${esc(cfg.label)} <small>${cfg.file} · ${ARR_DATA.length} mục</small></div>
       <div class="header-actions">
-        <a class="btn btn-secondary btn-sm" href="${cfg.urlBase}" target="_blank">🔗 Xem live</a>
-        <button class="btn btn-primary" onclick="saveArrayEditor()">💾 Lưu & Deploy</button>
+        ${cfg.altKey ? `<button class="btn btn-secondary btn-sm" onclick="arrayEditor('${cfg.altKey}')">${cfg.altLabel}</button>` : ''}
+        <a class="btn btn-secondary btn-sm" href="${cfg.urlBase}" target="_blank" rel="noopener">🔗 Xem live</a>
+        <button class="btn btn-primary" id="arr-save-btn" onclick="saveArrayEditor()">💾 Lưu & Deploy</button>
       </div>
     </div>
     <div class="content-area">
@@ -18305,24 +18555,97 @@ function arrAdd() {
 }
 async function saveArrayEditor() {
   const cfg = ARR_CFG;
+  if (!cfg) return;
+  const problems = cfg.validate ? cfg.validate(ARR_DATA) : [];
+  if (problems.length) {
+    toast('error', 'Chưa lưu: ' + problems.slice(0, 3).join(' · ') + (problems.length > 3 ? ` (+${problems.length - 3} lỗi khác)` : ''));
+    return;
+  }
+  const btn = document.getElementById('arr-save-btn');
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ Đang lưu...'; }
   try {
     const latest = await ghGet(cfg.file);
     let raw = decodeURIComponent(escape(atob(latest.content)));
-    const re = new RegExp('const\\s+' + cfg.varName + '\\s*=\\s*\\[[\\s\\S]*?\\n\\];');
-    const newBlock = 'const ' + cfg.varName + ' = ' + JSON.stringify(ARR_DATA, null, 2) + ';';
-    if (!re.test(raw)) throw new Error(`Không tìm thấy mảng "${cfg.varName}" để ghi lại.`);
-    raw = raw.replace(re, newBlock);
+    const loc = locateArrayLiteral(raw, cfg.varName);
+    if (!loc) throw new Error(`Không tìm thấy mảng "${cfg.varName}" để ghi lại.`);
+    // Giữ nguyên kiểu định dạng gốc; "<\/" để chuỗi dữ liệu không thể đóng sớm thẻ <script>.
+    const json = (loc.singleLine ? JSON.stringify(ARR_DATA) : JSON.stringify(ARR_DATA, null, 2)).replace(/<\//g, '<\\/');
+    raw = raw.slice(0, loc.start) + 'const ' + cfg.varName + ' = ' + json + ';' + raw.slice(loc.end);
+    if (cfg.afterSave) raw = cfg.afterSave(raw, ARR_DATA);
     await ghPut(cfg.file, raw, latest.sha, `[admin] cap nhat ${cfg.varName} trong ${cfg.file}`);
     toast('success', '✅ Đã lưu! Deploy trong ~1-2 phút.');
   } catch(e) {
     toast('error', 'Lỗi lưu: ' + e.message);
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = '💾 Lưu & Deploy'; }
   }
 }
 
-// ── Trình soạn thảo "Đang Hot" (choi-gi.html) ─────────────────────────────
-// Khối này là 8 thẻ <div class="hot-card"> lồng nhau nhiều cấp — không dùng
-// regex non-greedy đơn giản được vì có nhiều div con. Ta đếm độ sâu thẻ <div>
-// để tìm đúng vị trí đóng của khối "hot-grid".
+// ── "Chơi gì hôm nay" (choi-gi.html, en/choi-gi.html) ─────────────────────
+const CHOIGI_SUBTYPES = { game: ['pc', 'mobile', 'console'], anime: ['series', 'movie'], manga: ['manga', 'manhwa'] };
+const CHOIGI_MOODS = ['action', 'story', 'challenge', 'explore', 'coop', 'quick', 'relax'];
+
+function validateChoiGiItems(items) {
+  const problems = [];
+  const seen = new Set();
+  items.forEach((it, i) => {
+    const label = `#${i + 1}${it.name ? ' "' + it.name + '"' : ''}`;
+    if (!String(it.name || '').trim()) problems.push(`${label}: thiếu tên`);
+    if (!CHOIGI_SUBTYPES[it.type]) problems.push(`${label}: loại phải là game/anime/manga`);
+    else if (!CHOIGI_SUBTYPES[it.type].includes(it.subType)) problems.push(`${label}: định dạng con của ${it.type} phải là ${CHOIGI_SUBTYPES[it.type].join('/')}`);
+    const badMood = (it.moods || []).find(m => !CHOIGI_MOODS.includes(m));
+    if (badMood) problems.push(`${label}: mood "${badMood}" không hợp lệ`);
+    if (!String(it.img || '').trim()) problems.push(`${label}: thiếu ảnh`);
+    const score = Number(it.score);
+    if (!Number.isFinite(score) || score < 0 || score > 10) problems.push(`${label}: điểm phải từ 0 đến 10`);
+    // id dùng trong onclick="selectItemById('...')" nên chỉ giữ ký tự an toàn.
+    if (!it.id) it.id = slugify(it.name || '') || 'item-' + i;
+    it.id = String(it.id).toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/^-+|-+$/g, '');
+    if (seen.has(it.id)) problems.push(`${label}: trùng id "${it.id}"`);
+    seen.add(it.id);
+  });
+  return problems;
+}
+
+// Dựng lại các phần tĩnh lấy từ ITEMS (giống scripts/build-choi-gi.mjs).
+function syncChoiGiStaticBlocks(raw, items) {
+  const isEn = /<html[^>]+lang="en"/i.test(raw);
+  const pageUrl = isEn ? 'https://otahub.asia/en/choi-gi' : 'https://otahub.asia/choi-gi';
+  raw = raw.replace(/<script type="application\/ld\+json">(\{[^<]*?"@type":"ItemList"[^<]*)<\/script>/, (whole, body) => {
+    try {
+      const schema = JSON.parse(body);
+      schema.itemListElement = items.slice(0, 10).map((it, idx) => ({
+        '@type': 'ListItem', position: idx + 1, name: it.name,
+        url: it.link ? (/^https?:/i.test(it.link) ? it.link : 'https://otahub.asia' + it.link) : pageUrl,
+      }));
+      return `<script type="application/ld+json">${JSON.stringify(schema).replace(/<\//g, '<\\/')}</script>`;
+    } catch (e) { return whole; }
+  });
+  for (const type of Object.keys(CHOIGI_SUBTYPES)) {
+    const colIdx = raw.indexOf(`data-col-type="${type}"`);
+    const listIdx = colIdx === -1 ? -1 : raw.indexOf('<div class="sc-list">', colIdx);
+    if (listIdx === -1) continue;
+    const blk = extractBalancedBlock(raw.slice(listIdx), '<div class="sc-list">');
+    if (!blk) continue;
+    const top = items.filter(x => x.type === type).slice(0, 4);
+    const inner = top.map((it, i) => `
+          <div class="sc-item" onclick="selectItemById('${esc(it.id)}')">
+            <div class="sc-rank">${String(i + 1).padStart(2, '0')}</div>
+            <div class="sc-thumb"><img src="${esc(it.img)}" alt="${esc(it.name)}" loading="lazy" width="56" height="56"></div>
+            <div class="sc-info">
+              <div class="sc-name">${esc(it.name)}</div>
+              <div class="sc-meta">${esc(it.format)} · ${esc(it.genre)}</div>
+            </div>
+            <div class="sc-score">${esc(it.score)}</div>
+          </div>`).join('');
+    raw = raw.slice(0, listIdx) + `<div class="sc-list">\n          ${inner}\n        </div>` + raw.slice(listIdx + blk.end);
+    raw = raw.replace(new RegExp(`(class="sc-tab-btn" data-tab="${type}"[^>]*>[^<]*\\()\\d+(\\))`), `$1${top.length}$2`);
+  }
+  return raw;
+}
+
+// Tìm khối <div ...> cân bằng bắt đầu từ startTag bằng cách đếm độ sâu thẻ
+// <div> (regex non-greedy không xử lý được div lồng nhau nhiều cấp).
 function extractBalancedBlock(html, startTag) {
   const startIdx = html.indexOf(startTag);
   if (startIdx === -1) return null;
@@ -18336,117 +18659,6 @@ function extractBalancedBlock(html, startTag) {
     else { depth--; i = nextClose + 6; }
   }
   return { start: startIdx, end: i, block: html.slice(startIdx, i) };
-}
-
-const HOT_COLORS = {
-  amber: '251,191,36', cyan: '0,229,255', green: '52,211,153',
-  lavender: '167,139,250', sakura: '255,48,128', violet: '124,58,237',
-};
-let HOT_CARDS = [];
-
-function hotFields(raw) {
-  const colorM = raw.match(/background:var\(--([a-z]+)\);width:0/);
-  return {
-    name: fieldGet(raw, /class="hot-name">([^<]*)</),
-    meta: fieldGet(raw, /class="hot-meta">([^<]*)</),
-    width: fieldGet(raw, /data-w="([^"]*)"/),
-    badge: fieldGet(raw, /class="hot-badge">([^<]*)</),
-    pill: fieldGet(raw, /class="hot-pill"[^>]*>([^<]*)</),
-    color: colorM ? colorM[1] : 'cyan',
-    gameId: fieldGet(raw, /pickGame\('([^']*)'\)/),
-  };
-}
-function hotApply(raw, f) {
-  let out = raw;
-  out = replaceField(out, /(class="hot-name">)[^<]*(<)/, f.name);
-  out = replaceField(out, /(class="hot-meta">)[^<]*(<)/, f.meta);
-  out = replaceField(out, /(data-w=")[^"]*(")/, f.width);
-  out = replaceField(out, /(class="hot-badge">)[^<]*(<)/, f.badge);
-  out = replaceField(out, /(class="hot-pill"[^>]*>)[^<]*(<)/, f.pill);
-  out = replaceField(out, /(pickGame\(')[^']*('\))/, f.gameId);
-  if (f.color && HOT_COLORS[f.color]) {
-    out = out.replace(/background:var\(--[a-z]+\);width:0/, `background:var(--${f.color});width:0`);
-    out = out.replace(/border-color:rgba\([^)]*\);color:var\(--[a-z]+\)/, `border-color:rgba(${HOT_COLORS[f.color]},.3);color:var(--${f.color})`);
-  }
-  return out;
-}
-
-async function hotGridEditor() {
-  setMain(`<div class="loading"><div class="spinner"></div><span>Đang tải Đang Hot...</span></div>`);
-  document.querySelectorAll('.wp-nav-item, .nav-item').forEach(b => b.classList.remove('active'));
-  document.getElementById('nav-special-pages')?.classList.add('active');
-  try {
-    const data = await ghGet('choi-gi.html');
-    const raw = decodeURIComponent(escape(atob(data.content)));
-    const grid = extractBalancedBlock(raw, '<div class="hot-grid">');
-    if (!grid) throw new Error('Không tìm thấy khối "hot-grid" trong choi-gi.html');
-    const inner = grid.block.slice('<div class="hot-grid">'.length, -'</div>'.length);
-    HOT_CARDS = splitBlocks(inner, /<div class="hot-card"/).map(r => ({ raw: r }));
-    renderHotGridEditor();
-  } catch(e) {
-    setMain(`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Lỗi tải: ${e.message}</p></div>`);
-  }
-}
-
-function renderHotGridEditor() {
-  const colorOpts = Object.keys(HOT_COLORS).map(c => `<option value="${c}">${c}</option>`).join('');
-  const rows = HOT_CARDS.map((c, i) => {
-    const f = hotFields(c.raw);
-    return `<div class="rank-entry">
-      <div style="text-align:center"><div class="rank-num">#${i+1}</div><div style="font-size:20px;font-weight:700;color:var(--cyan)">${esc(f.badge)}</div></div>
-      <div class="rank-fields">
-        <div class="rank-row">
-          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Tên game</div><input class="rank-input-sm" value="${esc(f.name)}" oninput="hotUpdate(${i},'name',this.value)"/></div>
-          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Meta (nền tảng · thể loại · giờ)</div><input class="rank-input-sm" value="${esc(f.meta)}" oninput="hotUpdate(${i},'meta',this.value)"/></div>
-          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Điểm</div><input class="rank-input-sm" value="${esc(f.badge)}" oninput="hotUpdate(${i},'badge',this.value)"/></div>
-        </div>
-        <div class="rank-row" style="margin-top:6px">
-          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">% thanh điểm (vd 95%)</div><input class="rank-input-sm" value="${esc(f.width)}" oninput="hotUpdate(${i},'width',this.value)"/></div>
-          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Nhãn pill</div><input class="rank-input-sm" value="${esc(f.pill)}" oninput="hotUpdate(${i},'pill',this.value)"/></div>
-          <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px">Màu</div><select class="rank-input-sm" onchange="hotUpdate(${i},'color',this.value)">${colorOpts.replace(`value="${f.color}"`,`value="${f.color}" selected`)}</select></div>
-        </div>
-        <div style="margin-top:8px;display:flex;gap:6px">
-          <button class="tb-btn" onclick="hotMove(${i},-1)">↑ Lên</button>
-          <button class="tb-btn" onclick="hotMove(${i},1)">↓ Xuống</button>
-          <button class="btn btn-danger btn-sm" onclick="hotDelete(${i})">🗑 Xoá</button>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-
-  setMain(`
-    <div class="page-header">
-      <div class="page-title">Đang Hot <small>choi-gi.html · top ${HOT_CARDS.length}</small></div>
-      <div class="header-actions">
-        <a class="btn btn-secondary btn-sm" href="https://otahub.asia/choi-gi" target="_blank">🔗 Xem live</a>
-        <button class="btn btn-primary" onclick="saveHotGrid()">💾 Lưu & Deploy</button>
-      </div>
-    </div>
-    <div class="content-area">
-      <div style="font-size:11px;color:var(--muted);margin-bottom:14px">💡 Thứ hạng (#1-#${HOT_CARDS.length}) tự tính theo vị trí trong danh sách. Không thêm/xoá mục ở đây — chỉ sắp xếp lại và sửa nội dung.</div>
-      ${rows}
-    </div>
-  `);
-}
-
-function hotUpdate(i, field, value) { HOT_CARDS[i].raw = hotApply(HOT_CARDS[i].raw, { [field]: value }); }
-function hotMove(i, dir) { const j = i + dir; if (j < 0 || j >= HOT_CARDS.length) return; const t = HOT_CARDS[i]; HOT_CARDS[i] = HOT_CARDS[j]; HOT_CARDS[j] = t; renderHotGridEditor(); }
-function hotDelete(i) { if (!confirm('Xoá mục này?')) return; HOT_CARDS.splice(i, 1); renderHotGridEditor(); }
-async function saveHotGrid() {
-  try {
-    const latest = await ghGet('choi-gi.html');
-    let raw = decodeURIComponent(escape(atob(latest.content)));
-    const grid = extractBalancedBlock(raw, '<div class="hot-grid">');
-    if (!grid) throw new Error('Không tìm thấy khối "hot-grid" để lưu.');
-    const ranks = HOT_CARDS.map((c, i) => c.raw.replace(/class="hot-rank">[^<]*</, `class="hot-rank">${String(i+1).padStart(2,'0')}<`));
-    const newInner = ranks.map(r => r.trim()).join('');
-    const newBlock = '<div class="hot-grid">' + newInner + '</div>';
-    raw = raw.slice(0, grid.start) + newBlock + raw.slice(grid.end);
-    await ghPut('choi-gi.html', raw, latest.sha, '[admin] cap nhat Dang Hot choi-gi.html');
-    toast('success', '✅ Đã lưu! Deploy trong ~1-2 phút.');
-  } catch(e) {
-    toast('error', 'Lỗi lưu: ' + e.message);
-  }
 }
 
 // ── Trình soạn thảo Sắp ra mắt (sap-ra-mat.html) ──────────────────────────

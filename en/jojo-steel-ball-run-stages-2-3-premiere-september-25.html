@@ -27,7 +27,22 @@
 <link rel="stylesheet" href="/assets/article-style.css?v=20260909">
 </head>
 <body>
-<nav class="nav"><div class="nav-in"><a class="logo" href="/en/"><span><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"></span><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/en/gaming">Gaming</a></li><li><a href="/en/anime" class="active">Anime</a></li><li><a href="/en/manga">Manga</a></li><li><a href="/en/reviews">Reviews</a></li><li><a href="/en/rankings">Rankings</a></li></ul></div></nav>
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <input class="search-input" id="searchInput" type="text" placeholder="Search gaming, anime, manga...">
+    <button class="search-close" onclick="closeSearch()">✕</button>
+  </div>
+  <div class="search-hint">Press ESC to close · Ctrl+K to search</div>
+  <div class="search-tags">
+    <a href="/en/gaming" class="stag">Gaming</a>
+    <a href="/en/anime" class="stag">Anime</a>
+    <a href="/en/manga" class="stag">Manga</a>
+    <a href="/en/reviews" class="stag">Reviews</a>
+    <a href="/en/rankings" class="stag">Rankings</a>
+  </div>
+</div>
+<nav class="nav"><div class="nav-in"><a class="logo" href="/en/"><span><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"></span><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/en/choi-gi">Play What?</a></li><li><a href="/en/gaming">Gaming</a></li><li><a href="/en/anime" class="active">Anime</a></li><li><a href="/en/manga">Manga</a></li><li><a href="/en/reviews">Reviews</a></li><li><a href="/en/rankings">Rankings</a></li><li><a href="/en/in-depth">Deep Dive</a></li></ul><button class="ham" id="ham" aria-label="Menu" onclick="toggleMob()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="Search" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="/en/#newsletter" class="cta" id="cta-sub">Subscribe</a></div></div></nav>
+<nav class="mobile-nav" id="mobnav"><a href="/en/choi-gi">Play What?</a><a href="/en/gaming">Gaming</a><a href="/en/anime" class="active">Anime</a><a href="/en/manga">Manga</a><a href="/en/reviews">Reviews</a><a href="/en/rankings">Rankings</a><a href="/en/in-depth">Deep Dive</a><div class="m-sub"><a href="/en/about">About</a><a href="/en/#newsletter">Newsletter</a><a href="/en/about#contact">Contact</a></div></nav>
 
 <section class="art-hero">
 <div class="art-hero-img" style="background-image:url(/assets/img/real-jojo-sbr-stage2.jpg);background-color:#0b0418;"></div>
@@ -89,6 +104,29 @@
 </main>
 </div>
 
+<script>
+function toggleMob(){
+  var h=document.getElementById('ham')||document.getElementById('hamBtn');
+  var m=document.getElementById('mobnav')||document.getElementById('mobileNav');
+  if(!m)return;
+  var open=m.classList.toggle('open');
+  if(h)h.classList.toggle('open',open);
+  document.body.style.overflow=open?'hidden':'';
+}
+function toggleMobileNav(){toggleMob();}
+function openSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.add('open');setTimeout(function(){var i=document.getElementById('searchInput');if(i)i.focus();},50);document.body.style.overflow='hidden';}}
+function closeSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.remove('open');var i=document.getElementById('searchInput');if(i)i.value='';document.body.style.overflow='';}}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSearch();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch();}});
+var _sO=document.getElementById('searchOverlay');if(_sO){_sO.addEventListener('click',function(e){if(e.target===this)closeSearch();});}
+function copyArticleLink(button){
+  navigator.clipboard.writeText(location.href).then(function(){
+    var original = button.textContent;
+    button.textContent = "Copied!";
+    setTimeout(function(){ button.textContent = original; }, 1800);
+  });
+}
+</script>
+<script defer src="/assets/search-redirect.js"></script>
 <script defer src="/assets/img-fit.v2.js?v=20260926"></script>
 <script src="/assets/lang-switch.js" defer></script>
 <footer><div class="ft-in"><div><a href="/en" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Asian Gaming, Anime and Manga news hub. Fast, specialized, no bias.</p></div><div><div class="ft-h">Category</div><ul class="ft-links"><li><a href="/en/gaming">Gaming</a></li><li><a href="/en/anime">Anime</a></li><li><a href="/en/manga">Manga</a></li><li><a href="/en/reviews">Reviews</a></li><li><a href="/en/rankings">Rankings</a></li></ul></div><div><div class="ft-h">About OtaHub</div><ul class="ft-links"><li><a href="/en/about">Introduction</a></li><li><a href="/en/about#team">Team</a></li><li><a href="/en/about#contact">Contact</a></li><li><a href="/en/#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Follow</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
