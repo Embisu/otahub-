@@ -170,6 +170,8 @@ let BODY_BLOCKS = null;
 let currentFile = 'sample-article.html';
 function repairArticleBodyHtml(h){ return h; }
 function validateArticleBodyHtml(h){ return []; }
+function cleanVisualHtml(h){ return h; }
+${mainScript.match(/^function replSafe.*$/m)?.[0] || ''}
 ${mainScript.match(/function applyArticleEditsToHtml[\s\S]*?^}/m)?.[0]}
 `, sandbox);
 

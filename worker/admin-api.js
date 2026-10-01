@@ -16,10 +16,23 @@ function clientIp(request) {
   return request.headers.get('CF-Connecting-IP') || request.headers.get('X-Forwarded-For') || 'unknown';
 }
 
+const USERNAME_RE = /^[a-z0-9][a-z0-9._-]{2,31}$/i;
+
 // Repo GitHub co dinh cho site nay (khong doi, khong can nguoi dung nhap lai).
 const GH_OWNER = 'Embisu';
 const GH_REPO = 'otahub-';
 const GH_BRANCH = 'main';
+
+// GitHub tra 401 khi GITHUB_TOKEN tren server sai/het han. Khong duoc chuyen
+// nguyen 401 ve trinh duyet: admin.html hieu 401 la "phien dang nhap het han"
+// va bao nguoi dung dang nhap lai, trong khi loi that nam o cau hinh server.
+function ghClientStatus(status) {
+  return status === 401 ? 502 : status;
+}
+function ghErrorMessage(status, message) {
+  if (status === 401) return 'GitHub từ chối token của server (GITHUB_TOKEN sai hoặc hết hạn). Liên hệ quản trị viên để cấp lại token.';
+  return message || ('GitHub API error: ' + status);
+}
 
 function ghHeaders(env) {
   return {
@@ -32,25 +45,25 @@ function ghHeaders(env) {
 
 async function handleLogin(request, env) {
   let body;
-  try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
+  try { body = await request.json(); } catch { return json({ error: 'Dữ liệu không hợp lệ.' }, 400); }
   const { username, password } = body || {};
-  if (!username || !password) return json({ error: 'Vui long nhap ten dang nhap va mat khau.' }, 400);
-  const uname = username.toLowerCase();
+  if (typeof username !== 'string' || typeof password !== 'string' || !username || !password) return json({ error: 'Vui lòng nhập tên đăng nhập và mật khẩu.' }, 400);
+  const uname = username.trim().toLowerCase();
   const ip = clientIp(request);
 
   const lock = await checkLoginLock(env, ip, uname);
   if (lock.locked) {
-    return json({ error: 'Tai khoan tam bi khoa do dang nhap sai qua nhieu lan. Vui long thu lai sau 10 phut.' }, 429);
+    return json({ error: 'Tài khoản tạm bị khoá do đăng nhập sai quá nhiều lần. Vui lòng thử lại sau 10 phút.' }, 429);
   }
 
   const raw = await env.ADMIN_KV.get(`user:${uname}`);
-  if (!raw) { await recordLoginFailure(env, ip, uname); return json({ error: 'Sai ten dang nhap hoac mat khau.' }, 401); }
+  if (!raw) { await recordLoginFailure(env, ip, uname); return json({ error: 'Sai tên đăng nhập hoặc mật khẩu.' }, 401); }
   const user = JSON.parse(raw);
   const ok = await verifyPassword(password, user.salt, user.hash);
   if (!ok) {
     await recordLoginFailure(env, ip, uname);
     await logAudit(env, { action: 'login_failed', username: user.username });
-    return json({ error: 'Sai ten dang nhap hoac mat khau.' }, 401);
+    return json({ error: 'Sai tên đăng nhập hoặc mật khẩu.' }, 401);
   }
 
   await clearLoginFailures(env, ip, uname);
@@ -67,7 +80,7 @@ async function handleLogout(request, env) {
 
 async function handleMe(request, env) {
   const user = await getSessionUser(request, env);
-  if (!user) return json({ error: 'Chua dang nhap.' }, 401);
+  if (!user) return json({ error: 'Chưa đăng nhập.' }, 401);
   return json({
     user: {
       username: user.username,
@@ -83,11 +96,11 @@ async function handleMe(request, env) {
 // Lay thong tin ho so tac gia (profile)
 async function handleProfileGet(request, env, url) {
   const me = await getSessionUser(request, env);
-  if (!me) return json({ error: 'Chua dang nhap.' }, 401);
+  if (!me) return json({ error: 'Chưa đăng nhập.' }, 401);
   const targetUser = url ? (url.searchParams.get('username') || '').toLowerCase() : '';
   const username = (me.role === 'admin' && targetUser) ? targetUser : me.username.toLowerCase();
   const raw = await env.ADMIN_KV.get(`user:${username}`);
-  if (!raw) return json({ error: 'Khong tim thay tai khoan.' }, 404);
+  if (!raw) return json({ error: 'Không tìm thấy tài khoản.' }, 404);
   const u = JSON.parse(raw);
   return json({
     username: u.username,
@@ -102,14 +115,14 @@ async function handleProfileGet(request, env, url) {
 // Cap nhat thong tin ho so tac gia (displayName, bio, avatar, jobTitle)
 async function handleProfilePost(request, env) {
   const me = await getSessionUser(request, env);
-  if (!me) return json({ error: 'Chua dang nhap.' }, 401);
+  if (!me) return json({ error: 'Chưa đăng nhập.' }, 401);
   let body;
-  try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
+  try { body = await request.json(); } catch { return json({ error: 'Dữ liệu không hợp lệ.' }, 400); }
   const { targetUsername, displayName, bio, avatar, jobTitle } = body || {};
   const target = (me.role === 'admin' && targetUsername) ? String(targetUsername).toLowerCase() : me.username.toLowerCase();
   const key = `user:${target}`;
   const raw = await env.ADMIN_KV.get(key);
-  if (!raw) return json({ error: 'Khong tim thay tai khoan.' }, 404);
+  if (!raw) return json({ error: 'Không tìm thấy tài khoản.' }, 404);
   const u = JSON.parse(raw);
   if (typeof displayName === 'string') u.displayName = displayName.trim().slice(0, 100);
   if (typeof bio === 'string') u.bio = bio.trim().slice(0, 1000);
@@ -134,15 +147,15 @@ async function handleProfilePost(request, env) {
 // chua co tai khoan nao trong he thong VA nguoi goi biet dung ADMIN_SETUP_SECRET
 // (bien moi truong bi mat, tu dat trong Cloudflare dashboard).
 async function handleSetup(request, env) {
-  if (!env.ADMIN_SETUP_SECRET) return json({ error: 'Chua cau hinh ADMIN_SETUP_SECRET tren server.' }, 500);
+  if (!env.ADMIN_SETUP_SECRET) return json({ error: 'Chưa cấu hình ADMIN_SETUP_SECRET trên server.' }, 500);
   let body;
-  try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
+  try { body = await request.json(); } catch { return json({ error: 'Dữ liệu không hợp lệ.' }, 400); }
   const { username, password, secret } = body || {};
-  if (secret !== env.ADMIN_SETUP_SECRET) return json({ error: 'Sai ma thiet lap.' }, 403);
-  if (!username || !password || password.length < 8) return json({ error: 'Can ten dang nhap va mat khau toi thieu 8 ky tu.' }, 400);
+  if (secret !== env.ADMIN_SETUP_SECRET) return json({ error: 'Sai mã thiết lập.' }, 403);
+  if (!username || !password || password.length < 8) return json({ error: 'Cần tên đăng nhập và mật khẩu tối thiểu 8 ký tự.' }, 400);
 
   const existing = await env.ADMIN_KV.list({ prefix: 'user:' });
-  if (existing.keys.length > 0) return json({ error: 'Da co tai khoan trong he thong, dung muc Nguoi dung trong admin de them nguoi moi.' }, 409);
+  if (existing.keys.length > 0) return json({ error: 'Hệ thống đã có tài khoản, hãy dùng mục Thành viên trong admin để thêm người mới.' }, 409);
 
   const { salt, hash } = await hashPassword(password);
   // Tai khoan dau tien luon la admin, nguoi tao he thong.
@@ -153,8 +166,8 @@ async function handleSetup(request, env) {
 
 async function handleUsersGet(request, env) {
   const me = await getSessionUser(request, env);
-  if (!me) return json({ error: 'Chua dang nhap.' }, 401);
-  if (!canManageUsers(me)) return json({ error: 'Chi admin moi duoc xem danh sach tai khoan.' }, 403);
+  if (!me) return json({ error: 'Chưa đăng nhập.' }, 401);
+  if (!canManageUsers(me)) return json({ error: 'Chỉ quản trị viên (admin) mới được xem danh sách tài khoản.' }, 403);
   const list = await env.ADMIN_KV.list({ prefix: 'user:' });
   const users = [];
   for (const k of list.keys) {
@@ -177,14 +190,17 @@ async function handleUsersGet(request, env) {
 
 async function handleUsersPost(request, env) {
   const me = await getSessionUser(request, env);
-  if (!me) return json({ error: 'Chua dang nhap.' }, 401);
-  if (!canManageUsers(me)) return json({ error: 'Chi quan tri vien (admin) moi duoc quan ly tai khoan.' }, 403);
+  if (!me) return json({ error: 'Chưa đăng nhập.' }, 401);
+  if (!canManageUsers(me)) return json({ error: 'Chỉ quản trị viên (admin) mới được quản lý tài khoản.' }, 403);
   let body;
-  try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
+  try { body = await request.json(); } catch { return json({ error: 'Dữ liệu không hợp lệ.' }, 400); }
   const { username, password, role } = body || {};
-  if (!username || !password || password.length < 8) return json({ error: 'Can ten dang nhap va mat khau toi thieu 8 ky tu.' }, 400);
+  if (typeof username !== 'string' || typeof password !== 'string' || password.length < 8) return json({ error: 'Cần tên đăng nhập và mật khẩu tối thiểu 8 ký tự.' }, 400);
+  // Ten dang nhap duoc dung lam khoa KV, slug trang tac gia va tham so trong
+  // giao dien admin, nen chi cho phep ky tu an toan.
+  if (!USERNAME_RE.test(username)) return json({ error: 'Tên đăng nhập chỉ gồm chữ không dấu, số, dấu chấm, gạch dưới, gạch ngang (3–32 ký tự).' }, 400);
   const key = `user:${username.toLowerCase()}`;
-  if (await env.ADMIN_KV.get(key)) return json({ error: 'Ten dang nhap da ton tai.' }, 409);
+  if (await env.ADMIN_KV.get(key)) return json({ error: 'Tên đăng nhập đã tồn tại.' }, 409);
   const { salt, hash } = await hashPassword(password);
   const finalRole = normalizeRole(role);
   await env.ADMIN_KV.put(key, JSON.stringify({ username, salt, hash, role: finalRole, createdAt: Date.now() }));
@@ -194,13 +210,13 @@ async function handleUsersPost(request, env) {
 
 async function handleUsersDelete(request, env, url) {
   const me = await getSessionUser(request, env);
-  if (!me) return json({ error: 'Chua dang nhap.' }, 401);
-  if (!canManageUsers(me)) return json({ error: 'Chi quan tri vien (admin) moi duoc quan ly tai khoan.' }, 403);
+  if (!me) return json({ error: 'Chưa đăng nhập.' }, 401);
+  if (!canManageUsers(me)) return json({ error: 'Chỉ quản trị viên (admin) mới được quản lý tài khoản.' }, 403);
   const username = (url.searchParams.get('username') || '').toLowerCase();
-  if (!username) return json({ error: 'Thieu ten dang nhap.' }, 400);
-  if (username === me.username.toLowerCase()) return json({ error: 'Khong the tu xoa tai khoan dang dang nhap.' }, 400);
+  if (!username) return json({ error: 'Thiếu tên đăng nhập.' }, 400);
+  if (username === me.username.toLowerCase()) return json({ error: 'Không thể tự xoá tài khoản đang đăng nhập.' }, 400);
   const list = await env.ADMIN_KV.list({ prefix: 'user:' });
-  if (list.keys.length <= 1) return json({ error: 'Phai con it nhat 1 tai khoan.' }, 400);
+  if (list.keys.length <= 1) return json({ error: 'Hệ thống phải còn ít nhất 1 tài khoản.' }, 400);
   await env.ADMIN_KV.delete(`user:${username}`);
   await logAudit(env, { action: 'user_deleted', username: me.username, target: username });
   return json({ ok: true });
@@ -210,15 +226,15 @@ async function handleUsersDelete(request, env, url) {
 // cua chinh minh xuong khi minh la admin duy nhat (tranh khoa het he thong).
 async function handleUsersRole(request, env) {
   const me = await getSessionUser(request, env);
-  if (!me) return json({ error: 'Chua dang nhap.' }, 401);
-  if (!canManageUsers(me)) return json({ error: 'Chi quan tri vien (admin) moi duoc doi vai tro.' }, 403);
+  if (!me) return json({ error: 'Chưa đăng nhập.' }, 401);
+  if (!canManageUsers(me)) return json({ error: 'Chỉ quản trị viên (admin) mới được đổi vai trò.' }, 403);
   let body;
-  try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
+  try { body = await request.json(); } catch { return json({ error: 'Dữ liệu không hợp lệ.' }, 400); }
   const { username, role } = body || {};
-  if (!username) return json({ error: 'Thieu ten dang nhap.' }, 400);
+  if (!username) return json({ error: 'Thiếu tên đăng nhập.' }, 400);
   const key = `user:${username.toLowerCase()}`;
   const raw = await env.ADMIN_KV.get(key);
-  if (!raw) return json({ error: 'Khong tim thay tai khoan.' }, 404);
+  if (!raw) return json({ error: 'Không tìm thấy tài khoản.' }, 404);
   const u = JSON.parse(raw);
   const finalRole = normalizeRole(role);
   if (username.toLowerCase() === me.username.toLowerCase() && finalRole !== 'admin') {
@@ -228,7 +244,7 @@ async function handleUsersRole(request, env) {
       const r2 = await env.ADMIN_KV.get(k.name);
       if (r2 && normalizeRole(JSON.parse(r2).role) === 'admin') adminCount++;
     }
-    if (adminCount <= 1) return json({ error: 'Khong the tu ha quyen khi ban la admin duy nhat.' }, 400);
+    if (adminCount <= 1) return json({ error: 'Không thể tự hạ quyền khi bạn là admin duy nhất.' }, 400);
   }
   u.role = finalRole;
   await env.ADMIN_KV.put(key, JSON.stringify(u));
@@ -238,8 +254,8 @@ async function handleUsersRole(request, env) {
 
 async function handleGhGet(request, env, ghPath, url) {
   const user = await getSessionUser(request, env);
-  if (!user) return json({ error: 'Chua dang nhap.' }, 401);
-  if (!ghPath) return json({ error: 'Thieu duong dan file.' }, 400);
+  if (!user) return json({ error: 'Chưa đăng nhập.' }, 401);
+  if (!ghPath) return json({ error: 'Thiếu đường dẫn file.' }, 400);
 
   // Nếu là liệt kê thư mục gốc assets/img: kết hợp GitHub, static manifest và KV
   if (ghPath === 'assets/img') {
@@ -352,29 +368,29 @@ async function handleGhGet(request, env, ghPath, url) {
       } catch(e) {}
     }
     const detail = errBody.message ? ` (${errBody.message})` : '';
-    return json({ error: 'GitHub API error: ' + r.status + detail }, r.status);
+    return json({ error: ghErrorMessage(r.status, 'GitHub API error: ' + r.status + detail) }, ghClientStatus(r.status));
   }
   return json(await r.json());
 }
 
 async function handleGhPut(request, env, ghPath) {
   const user = await getSessionUser(request, env);
-  if (!user) return json({ error: 'Chua dang nhap.' }, 401);
-  if (!ghPath) return json({ error: 'Thieu duong dan file.' }, 400);
+  if (!user) return json({ error: 'Chưa đăng nhập.' }, 401);
+  if (!ghPath) return json({ error: 'Thiếu đường dẫn file.' }, 400);
   const isImageUpload = canUploadImage(user, ghPath);
   if (!canWritePath(user, ghPath) && !isImageUpload) {
     return json({
       error: user.role === 'contributor'
-        ? 'Tai khoan Contributor khong duoc xuat ban truc tiep, lien he editor/admin.'
-        : `Vai tro "${user.role}" khong duoc ghi vao file he thong (${ghPath}). Chi admin/editor moi duoc sua trang chu, trang chuyen muc, hoac file cau hinh.`,
+        ? 'Tài khoản Contributor không được xuất bản trực tiếp, hãy liên hệ editor/admin.'
+        : `Vai trò "${user.role}" không được ghi vào file hệ thống (${ghPath}). Chỉ admin/editor mới được sửa trang chủ, trang chuyên mục hoặc file cấu hình.`,
     }, 403);
   }
   let body;
-  try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
+  try { body = await request.json(); } catch { return json({ error: 'Dữ liệu không hợp lệ.' }, 400); }
   let { content } = body || {};
   const { sha, message } = body || {};
-  if (typeof content !== 'string') return json({ error: 'Thieu noi dung file.' }, 400);
-  if (/\.html$/i.test(ghPath) && !isImageUpload && content.length < 400) return json({ error: 'Noi dung file HTML rong hoac qua ngan, tu choi ghi de de tranh mat bai.' }, 400);
+  if (typeof content !== 'string') return json({ error: 'Thiếu nội dung file.' }, 400);
+  if (/\.html$/i.test(ghPath) && !isImageUpload && content.length < 400) return json({ error: 'Nội dung HTML trống hoặc quá ngắn — đã từ chối ghi đè để tránh mất bài.' }, 400);
 
   // Chuẩn hóa tài nguyên dùng chung ngay tại API xuất bản. Lớp bảo vệ này
   // không phụ thuộc phiên bản admin.html mà trình duyệt đang cache, nhờ đó bài
@@ -382,7 +398,7 @@ async function handleGhPut(request, env, ghPath) {
   if (/\.html$/i.test(ghPath) && !isImageUpload) {
     content = content.replace(
       /\/assets\/enhance\.js(?:\?v=[^"']*)?/gi,
-      '/assets/enhance.js?v=20261001c'
+      '/assets/enhance.js?v=20261001d'
     );
     if (!/\/assets\/mobile-fix\.css(?:\?v=[^"']*)?/i.test(content) && /<\/head>/i.test(content)) {
       content = content.replace(
@@ -395,8 +411,8 @@ async function handleGhPut(request, env, ghPath) {
   // Xử lý tải ảnh lên: Ưu tiên lưu ngay vào KV Storage (nhanh, tức thì, 100% không phụ thuộc token GitHub)
   if (isImageUpload) {
     const approxBytes = Math.floor((content.length * 3) / 4);
-    if (approxBytes > 8 * 1024 * 1024) return json({ error: 'Anh vuot qua 8MB.' }, 413);
-    if (!hasValidImageSignature(ghPath, content)) return json({ error: 'Noi dung file khong khop dinh dang anh.' }, 415);
+    if (approxBytes > 8 * 1024 * 1024) return json({ error: 'Ảnh vượt quá 8MB.' }, 413);
+    if (!hasValidImageSignature(ghPath, content)) return json({ error: 'Nội dung file không khớp định dạng ảnh.' }, 415);
 
     const fileName = ghPath.replace(/^assets\/img\/uploads\//, '');
     let kvSaved = false;
@@ -412,7 +428,12 @@ async function handleGhPut(request, env, ghPath) {
         const hashBuffer = await crypto.subtle.digest('SHA-256', rawBytes);
         const hashHex = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
 
-        const existingFileName = await env.ADMIN_KV.get(`upload_hash:${hashHex}`);
+        let existingFileName = await env.ADMIN_KV.get(`upload_hash:${hashHex}`);
+        // Chỉ mục có thể còn sót từ ảnh đã bị xóa trước đây: chỉ tái sử dụng khi
+        // file đích còn tồn tại thật, nếu không thì lưu như ảnh mới.
+        if (existingFileName && !(await env.ADMIN_KV.get(`upload_meta:${existingFileName}`))) {
+          existingFileName = null;
+        }
         if (existingFileName) {
           // Ảnh này đã có sẵn trên hệ thống, tái sử dụng file cũ ngay lập tức
           return json({
@@ -502,7 +523,7 @@ async function handleGhPut(request, env, ghPath) {
       }, 200);
     }
 
-    return json({ error: 'Khong the luu file anh len may chu.' }, 500);
+    return json({ error: 'Không thể lưu ảnh lên máy chủ.' }, 500);
   }
 
   const cleanGhPath = (ghPath || '').replace(/^\/+/, '');
@@ -559,7 +580,7 @@ async function handleGhPut(request, env, ghPath) {
   if (!r.ok) {
     const e = await r.json().catch(() => ({}));
     await logAudit(env, { action: 'write_failed', username: user.username, file: cleanGhPath, error: e.message || r.status });
-    return json({ error: e.message || ('GitHub API error: ' + r.status) }, r.status);
+    return json({ error: ghErrorMessage(r.status, e.message) }, ghClientStatus(r.status));
   }
   await logAudit(env, { action: 'write', username: user.username, file: ghPath, message: message || '' });
   return json(await r.json());
@@ -568,20 +589,29 @@ async function handleGhPut(request, env, ghPath) {
 // Xoa 1 file (anh trong Media Library hoac bai viet .html)
 async function handleGhDelete(request, env, ghPath) {
   const user = await getSessionUser(request, env);
-  if (!user) return json({ error: 'Chua dang nhap.' }, 401);
-  if (!ghPath) return json({ error: 'Thieu duong dan file.' }, 400);
+  if (!user) return json({ error: 'Chưa đăng nhập.' }, 401);
+  if (!ghPath) return json({ error: 'Thiếu đường dẫn file.' }, 400);
   if (!canDeletePath(user, ghPath)) {
-    return json({ error: `Vai tro "${user.role}" khong duoc xoa file nay.` }, 403);
+    return json({ error: `Vai trò "${user.role}" không được xoá file này.` }, 403);
   }
   let body;
-  try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
+  try { body = await request.json(); } catch { return json({ error: 'Dữ liệu không hợp lệ.' }, 400); }
   const { sha, message } = body || {};
 
-  // Xóa khỏi KV nếu là ảnh upload
+  // Xóa khỏi KV nếu là ảnh upload. Phải gỡ cả chỉ mục chống trùng
+  // (upload_hash) đang trỏ vào file này, nếu không lần tải lại đúng ảnh đó sẽ
+  // được "tái sử dụng" về một URL đã bị xóa (ảnh vỡ trong bài viết).
   if (ghPath.startsWith('assets/img/uploads/') && env.ADMIN_KV) {
     const fileName = ghPath.replace(/^assets\/img\/uploads\//, '');
+    const metaRaw = await env.ADMIN_KV.get(`upload_meta:${fileName}`);
+    let hash = null;
+    try { hash = metaRaw ? JSON.parse(metaRaw).hash : null; } catch {}
+    if (hash && (await env.ADMIN_KV.get(`upload_hash:${hash}`)) === fileName) {
+      await env.ADMIN_KV.delete(`upload_hash:${hash}`);
+    }
     await env.ADMIN_KV.delete(`upload_img:${fileName}`);
     await env.ADMIN_KV.delete(`upload_meta:${fileName}`);
+    await env.ADMIN_KV.delete(`upload_alias:${fileName}`);
   }
 
   if (sha && String(sha).startsWith('kv-')) {
@@ -589,7 +619,7 @@ async function handleGhDelete(request, env, ghPath) {
     return json({ ok: true });
   }
 
-  if (!sha) return json({ error: 'Thieu sha cua file can xoa.' }, 400);
+  if (!sha) return json({ error: 'Thiếu mã SHA của file cần xoá.' }, 400);
   const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}`, {
     method: 'DELETE',
     headers: { ...ghHeaders(env), 'Content-Type': 'application/json' },
@@ -605,7 +635,7 @@ async function handleGhDelete(request, env, ghPath) {
     if (ghPath.startsWith('assets/img/uploads/')) {
       return json({ ok: true });
     }
-    return json({ error: e.message || ('GitHub API error: ' + r.status) }, r.status);
+    return json({ error: ghErrorMessage(r.status, e.message) }, ghClientStatus(r.status));
   }
   await logAudit(env, { action: 'delete', username: user.username, file: ghPath });
   return json({ ok: true });
@@ -615,13 +645,13 @@ async function handleGhDelete(request, env, ghPath) {
 // tu xay kho luu phien ban rieng. Toi da 30 commit gan nhat cho gon.
 async function handleGhHistory(request, env, ghPath) {
   const user = await getSessionUser(request, env);
-  if (!user) return json({ error: 'Chua dang nhap.' }, 401);
-  if (!ghPath) return json({ error: 'Thieu duong dan file.' }, 400);
+  if (!user) return json({ error: 'Chưa đăng nhập.' }, 401);
+  if (!ghPath) return json({ error: 'Thiếu đường dẫn file.' }, 400);
   const r = await fetch(
     `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/commits?path=${encodeURIComponent(ghPath)}&sha=${GH_BRANCH}&per_page=30`,
     { headers: ghHeaders(env) }
   );
-  if (!r.ok) return json({ error: 'GitHub API error: ' + r.status }, r.status);
+  if (!r.ok) return json({ error: ghErrorMessage(r.status) }, ghClientStatus(r.status));
   const commits = await r.json();
   return json({
     commits: commits.map((c) => ({
@@ -638,9 +668,9 @@ async function handleGhHistory(request, env, ghPath) {
 // nguoi khac dang lam gi.
 async function handleAuditLog(request, env) {
   const me = await getSessionUser(request, env);
-  if (!me) return json({ error: 'Chua dang nhap.' }, 401);
+  if (!me) return json({ error: 'Chưa đăng nhập.' }, 401);
   if (me.role !== 'admin' && me.role !== 'editor') {
-    return json({ error: 'Chi admin/editor moi duoc xem nhat ky hoat dong.' }, 403);
+    return json({ error: 'Chỉ admin/editor mới được xem nhật ký hoạt động.' }, 403);
   }
   const log = await getAuditLog(env, 150);
   return json({ log });
@@ -656,55 +686,55 @@ async function handleAuditLog(request, env) {
 // cua nguoi khac chi vi da dang nhap.
 async function handleDraftGet(request, env, ghPath) {
   const user = await getSessionUser(request, env);
-  if (!user) return json({ error: 'Chua dang nhap.' }, 401);
-  if (!ghPath) return json({ error: 'Thieu duong dan file.' }, 400);
+  if (!user) return json({ error: 'Chưa đăng nhập.' }, 401);
+  if (!ghPath) return json({ error: 'Thiếu đường dẫn file.' }, 400);
   const draft = await getDraftRaw(env, ghPath);
   // Tra ve 404 giong het truong hop "khong co draft" cho ca truong hop "co
   // draft nhung khong phai cua minh", tranh lo thong tin la file nay dang
   // duoc ai do khac soan.
-  if (!draft || !canViewDraft(user, draft)) return json({ error: 'Khong co ban nhap.' }, 404);
+  if (!draft || !canViewDraft(user, draft)) return json({ error: 'Không có bản nháp.' }, 404);
   return json(draft);
 }
 async function handleDraftPut(request, env, ghPath) {
   const user = await getSessionUser(request, env);
-  if (!user) return json({ error: 'Chua dang nhap.' }, 401);
-  if (!ghPath) return json({ error: 'Thieu duong dan file.' }, 400);
+  if (!user) return json({ error: 'Chưa đăng nhập.' }, 401);
+  if (!ghPath) return json({ error: 'Thiếu đường dẫn file.' }, 400);
   if (!canDraftPath(user, ghPath)) {
-    return json({ error: `Vai tro "${user.role}" khong duoc nhap ban nhap cho file he thong (${ghPath}).` }, 403);
+    return json({ error: `Vai trò "${user.role}" không được lưu nháp cho file hệ thống (${ghPath}).` }, 403);
   }
   const existing = await getDraftRaw(env, ghPath);
   if (existing && !canViewDraft(user, existing)) {
-    return json({ error: `Ban nhap nay dang duoc "${existing.updatedBy}" soan, khong the ghi de.` }, 409);
+    return json({ error: `Bản nháp này đang được "${existing.updatedBy}" soạn, không thể ghi đè.` }, 409);
   }
   let body;
-  try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
-  if (typeof body?.html !== 'string') return json({ error: 'Thieu noi dung.' }, 400);
+  try { body = await request.json(); } catch { return json({ error: 'Dữ liệu không hợp lệ.' }, 400); }
+  if (typeof body?.html !== 'string') return json({ error: 'Thiếu nội dung.' }, 400);
   await putDraft(env, ghPath, body.html, user.username);
   return json({ ok: true });
 }
 async function handleDraftDelete(request, env, ghPath) {
   const user = await getSessionUser(request, env);
-  if (!user) return json({ error: 'Chua dang nhap.' }, 401);
-  if (!ghPath) return json({ error: 'Thieu duong dan file.' }, 400);
+  if (!user) return json({ error: 'Chưa đăng nhập.' }, 401);
+  if (!ghPath) return json({ error: 'Thiếu đường dẫn file.' }, 400);
   const existing = await getDraftRaw(env, ghPath);
   if (existing && !canViewDraft(user, existing)) {
-    return json({ error: `Ban nhap nay dang duoc "${existing.updatedBy}" soan, khong the xoa.` }, 403);
+    return json({ error: `Bản nháp này đang được "${existing.updatedBy}" soạn, không thể xoá.` }, 403);
   }
   await deleteDraft(env, ghPath);
   return json({ ok: true });
 }
 async function handleDraftsList(request, env) {
   const user = await getSessionUser(request, env);
-  if (!user) return json({ error: 'Chua dang nhap.' }, 401);
+  if (!user) return json({ error: 'Chưa đăng nhập.' }, 401);
   const drafts = await listDrafts(env, user);
   return json({ drafts });
 }
 
 async function handleCleanDuplicateUploads(request, env) {
   const user = await getSessionUser(request, env);
-  if (!user) return json({ error: 'Chua dang nhap.' }, 401);
-  if (user.role !== 'admin' && user.role !== 'editor') return json({ error: 'Khong co quyen.' }, 403);
-  if (!env.ADMIN_KV) return json({ error: 'KV khong ton tai.' }, 500);
+  if (!user) return json({ error: 'Chưa đăng nhập.' }, 401);
+  if (user.role !== 'admin' && user.role !== 'editor') return json({ error: 'Bạn không có quyền thực hiện thao tác này.' }, 403);
+  if (!env.ADMIN_KV) return json({ error: 'Chưa cấu hình KV trên server.' }, 500);
 
   const kvList = await env.ADMIN_KV.list({ prefix: 'upload_meta:' });
   const metaEntries = await Promise.all(
@@ -737,12 +767,15 @@ async function handleCleanDuplicateUploads(request, env) {
   let removedCount = 0;
   for (const [hash, items] of groups.entries()) {
     if (items.length > 1) {
-      // Giữ lại 1 bản (bản có thời gian tạo cũ nhất), xoá các bản thừa
-      items.sort((a, b) => (a.uploadedAt || 0) - (a.uploadedAt || 0));
+      // Giữ lại 1 bản (bản có thời gian tạo cũ nhất), xoá dữ liệu các bản thừa.
+      // Bài viết có thể đang trỏ tới bản thừa, nên để lại alias: URL cũ vẫn
+      // phục vụ ảnh của bản được giữ (xem worker/index.js), không bị vỡ ảnh.
+      items.sort((a, b) => (a.uploadedAt || 0) - (b.uploadedAt || 0));
       const keep = items[0];
       await env.ADMIN_KV.put(`upload_hash:${hash}`, keep.name);
       for (let i = 1; i < items.length; i++) {
         const dup = items[i];
+        await env.ADMIN_KV.put(`upload_alias:${dup.name}`, keep.name);
         await env.ADMIN_KV.delete(`upload_img:${dup.name}`);
         await env.ADMIN_KV.delete(`upload_meta:${dup.name}`);
         removedCount++;
@@ -756,8 +789,8 @@ async function handleCleanDuplicateUploads(request, env) {
 
 async function handlePingIndexNow(request, env) {
   const user = await getSessionUser(request, env);
-  if (!user) return json({ error: 'Chua dang nhap.' }, 401);
-  if (user.role === 'contributor') return json({ error: 'Chi editor/admin moi duoc ping IndexNow.' }, 403);
+  if (!user) return json({ error: 'Chưa đăng nhập.' }, 401);
+  if (user.role === 'contributor') return json({ error: 'Chỉ admin/editor mới được ping IndexNow.' }, 403);
 
   let body = {};
   try { body = await request.json(); } catch(e) {}
@@ -901,5 +934,5 @@ export async function handleAdminApi(request, env, url) {
     if (method === 'DELETE') return handleGhDelete(request, env, ghPath);
   }
 
-  return json({ error: 'Not found' }, 404);
+  return json({ error: 'Không tìm thấy API.' }, 404);
 }

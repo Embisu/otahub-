@@ -62,7 +62,7 @@ export default {
       try {
         return await handleAdminApi(request, env, url);
       } catch (err) {
-        return new Response(JSON.stringify({ error: 'Loi server: ' + err.message }), {
+        return new Response(JSON.stringify({ error: 'Lỗi máy chủ: ' + err.message }), {
           status: 500,
           headers: { 'Content-Type': 'application/json' },
         });
@@ -101,7 +101,12 @@ export default {
       // mang script/event handler nếu bị mở trực tiếp cùng origin.
       if (fileName && /\.(?:jpe?g|jfif|png|webp|gif|avif)$/i.test(fileName) && env.ADMIN_KV) {
         try {
-          const raw = await env.ADMIN_KV.get(`upload_img:${fileName}`, { type: 'arrayBuffer' });
+          let raw = await env.ADMIN_KV.get(`upload_img:${fileName}`, { type: 'arrayBuffer' });
+          if (!raw) {
+            // Bản trùng đã được gộp bởi "Dọn ảnh trùng lặp": phục vụ ảnh gốc.
+            const alias = await env.ADMIN_KV.get(`upload_alias:${fileName}`);
+            if (alias) raw = await env.ADMIN_KV.get(`upload_img:${alias}`, { type: 'arrayBuffer' });
+          }
           if (raw) {
             const ext = fileName.split('.').pop().toLowerCase();
             const mime = ext === 'webp' ? 'image/webp' :

@@ -295,7 +295,10 @@ export function parseCookies(request) {
   header.split(';').forEach((part) => {
     const idx = part.indexOf('=');
     if (idx === -1) return;
-    out[part.slice(0, idx).trim()] = decodeURIComponent(part.slice(idx + 1).trim());
+    const value = part.slice(idx + 1).trim();
+    // Cookie la du lieu tu client: 1 cookie ma hoa sai (vd "%E0") khong duoc
+    // lam sap ca request admin thanh loi 500.
+    try { out[part.slice(0, idx).trim()] = decodeURIComponent(value); } catch { out[part.slice(0, idx).trim()] = value; }
   });
   return out;
 }

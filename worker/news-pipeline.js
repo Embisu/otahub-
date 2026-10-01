@@ -42,6 +42,9 @@ function attr(block, tagName, attrName) {
 function normalizeUrl(raw, baseUrl) {
   try {
     const url = new URL(raw, baseUrl);
+    // Link/ảnh lấy từ feed bên thứ ba và được hiển thị trong admin: chỉ nhận
+    // http(s), chặn "javascript:", "data:"... (XSS vào phiên quản trị).
+    if (url.protocol !== 'https:' && url.protocol !== 'http:') return '';
     url.hash = '';
     for (const key of [...url.searchParams.keys()]) {
       if (/^(utm_|fbclid$|gclid$|mc_cid$|mc_eid$)/i.test(key)) url.searchParams.delete(key);
@@ -106,7 +109,7 @@ async function sha256(value) {
 
 async function readTextLimited(response, maxBytes = MAX_FEED_BYTES) {
   const declared = Number(response.headers.get('content-length') || 0);
-  if (declared > maxBytes) throw new Error(`Feed vuot gioi han ${maxBytes} bytes`);
+  if (declared > maxBytes) throw new Error(`Feed vượt giới hạn ${maxBytes} bytes`);
   if (!response.body) return '';
   const reader = response.body.getReader();
   const chunks = [];
@@ -117,7 +120,7 @@ async function readTextLimited(response, maxBytes = MAX_FEED_BYTES) {
     total += value.byteLength;
     if (total > maxBytes) {
       await reader.cancel();
-      throw new Error(`Feed vuot gioi han ${maxBytes} bytes`);
+      throw new Error(`Feed vượt giới hạn ${maxBytes} bytes`);
     }
     chunks.push(value);
   }
@@ -205,14 +208,18 @@ function sanitizeArticleHtml(value = '') {
 
 function normalizeAiResult(raw, article) {
   let parsed;
+  const candidate = String(raw || '').replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '').trim();
   try {
-    const candidate = String(raw || '').replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '');
     parsed = JSON.parse(candidate);
   } catch {
+    // Model hay kem 1 cau dan truoc/sau khoi JSON: thu tach rieng khoi {...}.
+    try { parsed = JSON.parse((candidate.match(/\{[\s\S]*\}/) || [''])[0]); } catch { parsed = null; }
+  }
+  if (!parsed || typeof parsed !== 'object') {
     parsed = { title: article.title, excerpt: article.summary, body_html: `<p>${escapeHtml(String(raw || article.content_text || article.summary))}</p>` };
   }
   const title = String(parsed.title || article.title).slice(0, 180);
-  const sourceLink = `<p><strong>Nguon tham khao:</strong> <a href="${escapeHtml(article.canonical_url)}" rel="nofollow noopener" target="_blank">${escapeHtml(article.title)}</a></p>`;
+  const sourceLink = `<p><strong>Nguồn tham khảo:</strong> <a href="${escapeHtml(article.canonical_url)}" rel="nofollow noopener" target="_blank">${escapeHtml(article.title)}</a></p>`;
   return {
     title,
     slug: slugify(parsed.slug || title),
@@ -224,14 +231,14 @@ function normalizeAiResult(raw, article) {
 
 async function requireEditor(request, env) {
   const user = await getSessionUser(request, env);
-  if (!user) return { response: json({ error: 'Chua dang nhap.' }, 401) };
-  if (user.role !== 'admin' && user.role !== 'editor') return { response: json({ error: 'Chi admin/editor moi duoc quan ly pipeline tin.' }, 403) };
+  if (!user) return { response: json({ error: 'Chưa đăng nhập.' }, 401) };
+  if (user.role !== 'admin' && user.role !== 'editor') return { response: json({ error: 'Chỉ admin/editor mới được quản lý Nguồn tin AI.' }, 403) };
   return { user };
 }
 
 async function generateDraft(env, articleId) {
   const article = await env.NEWS_DB.prepare(`SELECT a.*, s.name AS source_name FROM collected_articles a JOIN news_sources s ON s.id = a.source_id WHERE a.id = ?`).bind(articleId).first();
-  if (!article) throw new Error('Khong tim thay bai thu thap');
+  if (!article) throw new Error('Không tìm thấy bài đã thu thập.');
   const job = await env.NEWS_DB.prepare(`INSERT INTO generation_jobs (article_id, status, model, started_at) VALUES (?, 'running', ?, CURRENT_TIMESTAMP) RETURNING id`).bind(articleId, DEFAULT_AI_MODEL).first();
   try {
     const prompt = `Ban la bien tap vien OtaHub. Dua tren du lieu nguon ben duoi, viet mot ban nhap tin tuc bang tieng Viet co cau truc va trung thuc. Khong them su kien, con so hay trich dan khong co trong nguon. Khong sao chep nguyen van. Tra ve duy nhat JSON hop le gom title, slug, excerpt va body_html. body_html dung cac the p, h2, h3, ul, li; khong dung markdown.\n\nNguon: ${article.source_name}\nTieu de: ${article.title}\nURL: ${article.canonical_url}\nTom tat: ${article.summary || ''}\nNoi dung: ${(article.content_text || '').slice(0, 24000)}`;
@@ -264,7 +271,7 @@ async function generateDraft(env, articleId) {
 export async function handleNewsApi(request, env, url) {
   const auth = await requireEditor(request, env);
   if (auth.response) return auth.response;
-  if (!env.NEWS_DB) return json({ error: 'NEWS_DB binding chua duoc cau hinh.' }, 503);
+  if (!env.NEWS_DB) return json({ error: 'Chưa cấu hình cơ sở dữ liệu NEWS_DB trên server.' }, 503);
   const path = url.pathname;
   const method = request.method;
 
@@ -274,10 +281,10 @@ export async function handleNewsApi(request, env, url) {
   }
   if (path === '/api/admin/news/sources' && method === 'POST') {
     let body;
-    try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
+    try { body = await request.json(); } catch { return json({ error: 'Dữ liệu không hợp lệ.' }, 400); }
     const name = String(body?.name || '').trim();
     const feedUrl = normalizeUrl(String(body?.feedUrl || ''), String(body?.feedUrl || ''));
-    if (!name || !feedUrl || !isSafePublicFeedUrl(feedUrl)) return json({ error: 'Can ten va feed URL cong khai HTTP(S) hop le.' }, 400);
+    if (!name || !feedUrl || !isSafePublicFeedUrl(feedUrl)) return json({ error: 'Cần tên nguồn và một feed URL công khai (http/https) hợp lệ.' }, 400);
     try {
       const row = await env.NEWS_DB.prepare(`INSERT INTO news_sources (name, feed_url, site_url, category, language, fetch_interval_minutes) VALUES (?, ?, ?, ?, ?, ?) RETURNING *`).bind(
         name, feedUrl, body.siteUrl ? normalizeUrl(String(body.siteUrl), feedUrl) : null,
@@ -287,7 +294,7 @@ export async function handleNewsApi(request, env, url) {
       await logAudit(env, { action: 'news_source_created', username: auth.user.username, source: name });
       return json({ source: row }, 201);
     } catch (error) {
-      return json({ error: String(error).includes('UNIQUE') ? 'Feed URL da ton tai.' : 'Khong the them nguon.' }, 409);
+      return json({ error: String(error).includes('UNIQUE') ? 'Feed URL này đã tồn tại.' : 'Không thể thêm nguồn.' }, 409);
     }
   }
   if (path === '/api/admin/news/collect' && method === 'POST') {
@@ -309,8 +316,8 @@ export async function handleNewsApi(request, env, url) {
   const draftMatch = path.match(/^\/api\/admin\/news\/drafts\/(\d+)$/);
   if (draftMatch && method === 'PATCH') {
     let body;
-    try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
-    if (!['review', 'approved', 'rejected', 'published'].includes(body?.status)) return json({ error: 'Trang thai ban nhap khong hop le.' }, 400);
+    try { body = await request.json(); } catch { return json({ error: 'Dữ liệu không hợp lệ.' }, 400); }
+    if (!['review', 'approved', 'rejected', 'published'].includes(body?.status)) return json({ error: 'Trạng thái bản nháp không hợp lệ.' }, 400);
     await env.NEWS_DB.prepare(`UPDATE generated_drafts SET status = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`).bind(body.status, Number(draftMatch[1])).run();
     return json({ ok: true });
   }
@@ -318,7 +325,7 @@ export async function handleNewsApi(request, env, url) {
   const sourceMatch = path.match(/^\/api\/admin\/news\/sources\/(\d+)$/);
   if (sourceMatch && method === 'PATCH') {
     let body;
-    try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
+    try { body = await request.json(); } catch { return json({ error: 'Dữ liệu không hợp lệ.' }, 400); }
     const active = body?.active === false || body?.active === 0 ? 0 : 1;
     await env.NEWS_DB.prepare(`UPDATE news_sources SET active = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`).bind(active, Number(sourceMatch[1])).run();
     return json({ ok: true });
@@ -332,17 +339,17 @@ export async function handleNewsApi(request, env, url) {
   const articleMatch = path.match(/^\/api\/admin\/news\/articles\/(\d+)$/);
   if (articleMatch && method === 'PATCH') {
     let body;
-    try { body = await request.json(); } catch { return json({ error: 'Du lieu khong hop le.' }, 400); }
-    if (!ALLOWED_STATUSES.has(body?.status)) return json({ error: 'Trang thai khong hop le.' }, 400);
+    try { body = await request.json(); } catch { return json({ error: 'Dữ liệu không hợp lệ.' }, 400); }
+    if (!ALLOWED_STATUSES.has(body?.status)) return json({ error: 'Trạng thái không hợp lệ.' }, 400);
     await env.NEWS_DB.prepare(`UPDATE collected_articles SET status = ? WHERE id = ?`).bind(body.status, Number(articleMatch[1])).run();
     return json({ ok: true });
   }
   const generateMatch = path.match(/^\/api\/admin\/news\/articles\/(\d+)\/generate$/);
   if (generateMatch && method === 'POST') {
-    if (!env.AI) return json({ error: 'AI binding chua duoc cau hinh.' }, 503);
+    if (!env.AI) return json({ error: 'Cloudflare AI chưa được cấu hình trên hệ thống.' }, 503);
     const draft = await generateDraft(env, Number(generateMatch[1]));
     await logAudit(env, { action: 'news_draft_generated', username: auth.user.username, articleId: Number(generateMatch[1]), draftId: draft.id });
     return json({ draft }, 201);
   }
-  return json({ error: 'Not found' }, 404);
+  return json({ error: 'Không tìm thấy API.' }, 404);
 }

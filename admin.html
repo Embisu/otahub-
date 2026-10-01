@@ -4331,7 +4331,7 @@ html.theme-light .wp-draft-banner-text {
     <div id="setup-error" class="setup-error"></div>
 
     <div class="auth-footer">
-      <div class="auth-edge-pill">Cloudflare Pages Edge Runtime · 100% Live</div>
+      <div class="auth-edge-pill">Cloudflare Workers · Kết nối bảo mật HTTPS</div>
       <div>256-Bit SSL Encrypted Session · OtaHub Media Global</div>
     </div>
   </div>
@@ -4349,7 +4349,7 @@ html.theme-light .wp-draft-banner-text {
         <span class="wtb-logo-badge">Studio</span>
       </a>
       <a href="https://otahub.asia" target="_blank" rel="noopener noreferrer" class="wtb-item" onclick="window.open('https://otahub.asia','_blank')">🏠 Xem trang web (Live)</a>
-      <div class="wtb-item"><span class="wtb-badge-live">Cloudflare Pages Edge: Live</span></div>
+      <div class="wtb-item"><span class="wtb-badge-live">Cloudflare Workers: Live</span></div>
       <button onclick="newArticle()" class="wtb-item">➕ Thêm bài mới</button>
       <button onclick="triggerManualIndexNowPing()" class="wtb-item" style="color:#00f2ff" title="Báo cáo lập chỉ mục tức thì cho Bing, Yandex, Seznam">🚀 Ping IndexNow</button>
       <div class="wtb-item"><span class="wtb-badge-seo" id="wtb-top-seo-badge">🎯 SEO: chưa chấm điểm</span></div>
@@ -5831,8 +5831,8 @@ async function handleGlobalUpload(inputEl) {
         cb(url);
       } else {
         toast('success', '✅ Đã tải ảnh lên thư viện: ' + fileName);
-        if (typeof CURRENT_TAB !== 'undefined' && CURRENT_TAB === 'media') {
-          renderMediaPage();
+        if (!document.getElementById('media-modal-ov')?.classList.contains('open')) {
+          if (document.getElementById('nav-media')?.classList.contains('active')) renderMediaPage();
         } else {
           mediaModalSelectImage(url, fileName);
           mediaSwitchTab('library');
@@ -6703,12 +6703,6 @@ function mediaConfirmInsert() {
     src = (MEDIA_MODAL_SELECTED_IMG && MEDIA_MODAL_SELECTED_IMG.url) || (document.getElementById('media-img-url')?.value || '').trim();
   }
 
-  // Fallback: If no image is selected but Library has items, take the first one
-  if (!src && MEDIA_FILES && MEDIA_FILES.length > 0) {
-    mediaModalSelectImage(MEDIA_FILES[0].url, MEDIA_FILES[0].name);
-    src = MEDIA_FILES[0].url;
-  }
-
   if (!src) {
     toast('warning', 'Vui lòng chọn 1 ảnh từ Thư viện Media hoặc bấm "Chọn tập tin ảnh"');
     return;
@@ -7284,7 +7278,7 @@ function toggleSidebar() {
 }
 
 function renderDashboard() {
-  const total = ARTICLES.length || 363;
+  const total = ARTICLES.length;
   const drafts = ARTICLES.filter(a => DRAFT_FILES.has(a.file)).length;
   const published = total - drafts;
   const enCount = (typeof EN_FILES_SET !== 'undefined' && EN_FILES_SET.size) ? EN_FILES_SET.size : ARTICLES.filter(a => a.hasEn).length;
@@ -7307,7 +7301,7 @@ function renderDashboard() {
       if (s.score >= 80) seoGood++;
     }
   });
-  const seoGoodRate = seoTotal ? Math.round((seoGood / seoTotal) * 100) : 94;
+  const seoGoodRate = seoTotal ? Math.round((seoGood / seoTotal) * 100) : null;
 
   const recent = ARTICLES.slice(0, 5);
   const recentRows = recent.map(a => `
@@ -7336,7 +7330,7 @@ function renderDashboard() {
       <div class="studio-hero-banner">
         <div class="shb-left">
           <div class="shb-badge">
-            <span class="shb-pulse"></span> OtaHub Studio Cloud Edge · Production Live
+            <span class="shb-pulse"></span> OtaHub Studio · Production
           </div>
           <h1 class="shb-title">Chào mừng trở lại, ${esc(userName)}! 👋</h1>
           <p class="shb-desc">Trung tâm chỉ huy nội dung toàn diện — Giám sát hiệu suất xuất bản, tỉ lệ song ngữ, điểm chuẩn SEO RankMath và hạ tầng Cloudflare Serverless.</p>
@@ -7376,17 +7370,20 @@ function renderDashboard() {
             <span class="kpi-title">Chuẩn SEO Google (RankMath)</span>
             <span class="kpi-icon">🎯</span>
           </div>
-          <div class="kpi-val">${seoGoodRate}% <small style="font-size:13px;font-weight:500;color:var(--wp-green)">Đạt chuẩn Xanh</small></div>
-          <div class="kpi-sub">JSON-LD Schema · Meta Description · Title Tag</div>
+          ${seoGoodRate === null
+            ? `<div class="kpi-val">— <small style="font-size:13px;font-weight:500;color:var(--wp-muted)">Chưa chấm điểm</small></div>
+          <div class="kpi-sub"><a href="javascript:void(0)" onclick="showView('rankmath')" style="color:var(--cyan)">Chạy phân tích SEO →</a></div>`
+            : `<div class="kpi-val">${seoGoodRate}% <small style="font-size:13px;font-weight:500;color:var(--wp-green)">đạt ≥ 80 điểm</small></div>
+          <div class="kpi-sub">${seoGood}/${seoTotal} bài đã chấm · Title · Meta · Schema</div>`}
         </div>
 
         <div class="studio-kpi-card">
           <div class="kpi-head">
-            <span class="kpi-title">Hạ tầng Cloudflare Edge</span>
+            <span class="kpi-title">Hạ tầng Cloudflare Workers</span>
             <span class="kpi-icon">⚡</span>
           </div>
-          <div class="kpi-val" style="color:var(--wp-green)">100% Live <small style="font-size:13px;font-weight:500;color:var(--wp-muted)">Serverless</small></div>
-          <div class="kpi-sub">HTTP/3 · IndexNow · WebP Image Optimizer</div>
+          <div class="kpi-val" style="color:var(--wp-green)">Đang chạy <small style="font-size:13px;font-weight:500;color:var(--wp-muted)">Serverless</small></div>
+          <div class="kpi-sub">Workers · KV · D1 · IndexNow</div>
         </div>
       </div>
 
@@ -7536,7 +7533,7 @@ function renderDashboard() {
                   <span style="font-size:18px">⚡</span>
                   <div>
                     <strong style="color:var(--wp-title);font-size:13px;display:block">Cloudflare Edge Cache</strong>
-                    <span style="font-size:11.5px;color:var(--wp-muted)">Serverless Pages Edge CDN</span>
+                    <span style="font-size:11.5px;color:var(--wp-muted)">Cloudflare Workers + CDN toàn cầu</span>
                   </div>
                 </div>
                 <span class="pill-status pill-good">200+ PoPs</span>
@@ -7716,24 +7713,24 @@ function renderSettings() {
         <div class="wp-metabox-body">
           <div class="wp-form-group">
             <label class="wp-form-label">Cloudflare Edge Worker API</label>
-            <input type="text" class="wp-form-input" value="otahub-api.embisu.workers.dev (/api/admin/*)" readonly/>
+            <input type="text" class="wp-form-input" value="otahub.asia/api/admin/* (Worker: otahub)" readonly/>
           </div>
           <div class="wp-form-group">
             <label class="wp-form-label">Cloudflare KV Media Storage</label>
-            <input type="text" class="wp-form-input" value="OTAHUB_KV (Uploads lưu tại /assets/img/uploads/*)" readonly/>
+            <input type="text" class="wp-form-input" value="ADMIN_KV (ảnh tải lên phục vụ tại /assets/img/uploads/*)" readonly/>
           </div>
           <div class="wp-form-group">
-            <label class="wp-form-label">Supabase Backend (Auth / Analytics)</label>
-            <input type="text" class="wp-form-input" value="xmrctipywjevrknxzjau.supabase.co" readonly/>
+            <label class="wp-form-label">Cloudflare D1 Database</label>
+            <input type="text" class="wp-form-input" value="otahub-news (dữ liệu Nguồn tin AI)" readonly/>
           </div>
           <div class="wp-form-group">
             <label class="wp-form-label">GitHub Repository & Branch</label>
-            <input type="text" class="wp-form-input" value="Embisu/otahub-source (branch: main)" readonly/>
+            <input type="text" class="wp-form-input" value="Embisu/otahub- (branch: main)" readonly/>
           </div>
           <div class="wp-form-group">
             <label class="wp-form-label">Trạng thái SEO & Schema</label>
-            <div style="font-size:12.5px;color:var(--wp-green);font-weight:600;padding-top:4px">
-              ✅ 476/476 HTML files hợp lệ · 0 lỗi Audit (site-audit.mjs)
+            <div style="font-size:12.5px;color:var(--wp-muted);font-weight:600;padding-top:4px">
+              ${total} bài viết đang quản lý · <a href="javascript:void(0)" onclick="showView('rankmath')" style="color:var(--cyan)">xem điểm SEO từng bài →</a>
             </div>
           </div>
         </div>
@@ -8583,7 +8580,7 @@ async function purgeArticleFromEntireSite(slug, file) {
       const initLen = idx.length;
       idx = idx.filter(item => (item.url || item.u) !== href && (item.url || item.u) !== `/${slug}` && (item.url || item.u) !== `/${slug}.html`);
       if (idx.length !== initLen) {
-        const updated = js.replace(m[1], JSON.stringify(idx, null, 2));
+        const updated = js.replace(m[1], replSafe(JSON.stringify(idx, null, 2)));
         await ghPut('assets/search.js', updated, searchData.sha, `[admin] go bo /${slug} khoi search.js`);
       }
     }
@@ -8815,32 +8812,41 @@ async function saveQuickEdit(file) {
     let html = decodeURIComponent(escape(atob(data.content)));
     
     // Patch title, cat, desc in HTML
-    html = html.replace(/<title>[^<]*<\/title>/i, `<title>${esc(title)} · OtaHub</title>`);
-    html = html.replace(/(<meta\s+property="og:title"\s+content=")[^ — tin tức và phân tích từ OtaHub — tin tức và phân tích từ OtaHub."]*(")/i, `$1${esc(title)} · OtaHub$2`);
-    html = html.replace(/(<meta\s+name="twitter:title"\s+content=")[^"]*(")/i, `$1${esc(title)} · OtaHub$2`);
-    html = html.replace(/("headline":\s*")[^"]*(")/i, `$1${title.replace(/\\/g,'\\\\').replace(/"/g,'\\"')}$2`);
+    html = html.replace(/<title>[^<]*<\/title>/i, `<title>${replSafe(esc(title))} · OtaHub</title>`);
+    html = html.replace(/(<meta\s+property="og:title"\s+content=")[^"]*(")/i, `$1${replSafe(esc(title))} · OtaHub$2`);
+    html = html.replace(/(<meta\s+name="twitter:title"\s+content=")[^"]*(")/i, `$1${replSafe(esc(title))} · OtaHub$2`);
+    html = html.replace(/("headline":\s*")[^"]*(")/i, `$1${replSafe(title.replace(/\\/g,'\\\\').replace(/"/g,'\\"'))}$2`);
     
-    html = html.replace(/(<meta\s+name="description"\s+content=")[^"]*(")/i, `$1${esc(desc)}$2`);
-    html = html.replace(/(<meta\s+property="og:description"\s+content=")[^"]*(")/i, `$1${esc(desc)}$2`);
-    html = html.replace(/(<meta\s+name="twitter:description"\s+content=")[^"]*(")/i, `$1${esc(desc)}$2`);
+    html = html.replace(/(<meta\s+name="description"\s+content=")[^"]*(")/i, `$1${replSafe(esc(desc))}$2`);
+    html = html.replace(/(<meta\s+property="og:description"\s+content=")[^"]*(")/i, `$1${replSafe(esc(desc))}$2`);
+    html = html.replace(/(<meta\s+name="twitter:description"\s+content=")[^"]*(")/i, `$1${replSafe(esc(desc))}$2`);
     
-    html = html.replace(/(<meta\s+property="article:section"\s+content=")[^"]*(")/i, `$1${esc(cat)}$2`);
-    html = html.replace(/(<span\b[^>]*\bclass="[^"]*art-hero-cat[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${esc(cat)}$2`);
-    html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-tag[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${esc(cat)}$2`);
+    html = html.replace(/(<meta\s+property="article:section"\s+content=")[^"]*(")/i, `$1${replSafe(esc(cat))}$2`);
+    html = html.replace(/(<span\b[^>]*\bclass="[^"]*art-hero-cat[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${replSafe(esc(cat))}$2`);
+    html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-tag[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${replSafe(esc(cat))}$2`);
     
     if (/<h1\b[^>]*\bclass="[^"]*art-hero-title[^"]*"[^>]*>/i.test(html)) {
-      html = html.replace(/(<h1\b[^>]*\bclass="[^"]*art-hero-title[^"]*"[^>]*>)[\s\S]*?(<\/h1>)/i, `$1${esc(title)}$2`);
+      html = html.replace(/(<h1\b[^>]*\bclass="[^"]*art-hero-title[^"]*"[^>]*>)[\s\S]*?(<\/h1>)/i, `$1${replSafe(esc(title))}$2`);
     } else if (/<h1\b[^>]*>/i.test(html)) {
-      html = html.replace(/(<h1\b[^>]*>)[\s\S]*?(<\/h1>)/i, `$1${esc(title)}$2`);
+      html = html.replace(/(<h1\b[^>]*>)[\s\S]*?(<\/h1>)/i, `$1${replSafe(esc(title))}$2`);
     }
     
     // Breadcrumbs
-    const catSlug = cat.toLowerCase();
+    const qeIsEn = /^en\//.test(file);
+    const catSlug = (qeIsEn ? 'en/' : '') + categorySlug(cat, qeIsEn);
     html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<a\s+href="\/)[^"]*("[^>]*>)[^<]*(<\/a>)/i,
-      `$1${catSlug}$2${esc(cat)}$3`);
+      `$1${replSafe(catSlug)}$2${replSafe(esc(cat))}$3`);
     html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<span>)[\s\S]*?(<\/span>)/i,
-      `$1${esc(title)}$2`);
-      
+      `$1${replSafe(esc(title))}$2`);
+
+    // Ngày hiển thị: chỉ thay phần ngày, giữ nguyên giờ/múi giờ có sẵn trong meta & schema.
+    const prevDate = ((ARTICLES.find(a => a.file === file) || {}).date || '').slice(0, 10);
+    if (/^\d{4}-\d{2}-\d{2}$/.test(date) && date !== prevDate) {
+      html = html.replace(/(<meta\s+property="article:published_time"\s+content=")\d{4}-\d{2}-\d{2}/i, `$1${date}`);
+      html = html.replace(/("datePublished"\s*:\s*")\d{4}-\d{2}-\d{2}/i, `$1${date}`);
+      html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-date[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${date}$2`);
+    }
+
     await ghPut(file, html, data.sha, `[admin] sua nhanh: ${title.slice(0, 50)}`);
     
     // Update local state
@@ -12076,7 +12082,7 @@ function ensureHreflangLinks(html, viSlug, enSlug, pageLang) {
   ].join('\n');
 
   if (/<head>/i.test(html)) {
-    html = html.replace(/<head>/i, `<head>\n${hreflangTags}`);
+    html = html.replace(/<head>/i, `<head>\n${replSafe(hreflangTags)}`);
   } else {
     html = hreflangTags + '\n' + html;
   }
@@ -12097,18 +12103,18 @@ function isLegacyEnglishSkeleton(html) {
 function syncSharedFieldsIntoHtml(html, f) {
   const isEnDoc = /<html\b[^>]*\blang="en"/i.test(html);
   const cat = f.cat || '';
-  const catSlug = cat.toLowerCase();
+  const catSlug = categorySlug(cat, isEnDoc);
   if (cat) {
-    html = html.replace(/(<meta\s+property="article:section"\s+content=")[^"]*(")/i, `$1${esc(cat)}$2`);
-    html = html.replace(/(<span\b[^>]*\bclass="[^"]*art-hero-cat[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${esc(cat)}$2`);
-    html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-tag[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${esc(cat)}$2`);
+    html = html.replace(/(<meta\s+property="article:section"\s+content=")[^"]*(")/i, `$1${replSafe(esc(cat))}$2`);
+    html = html.replace(/(<span\b[^>]*\bclass="[^"]*art-hero-cat[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${replSafe(esc(cat))}$2`);
+    html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-tag[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${replSafe(esc(cat))}$2`);
     html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<a\s+href="\/)[^"]*("[^>]*>)[^<]*(<\/a>)/i,
-      `$1${isEnDoc ? 'en/' + catSlug : catSlug}$2${esc(cat)}$3`);
+      `$1${replSafe(isEnDoc ? 'en/' + catSlug : catSlug)}$2${replSafe(esc(cat))}$3`);
     html = html.replace(/(\{\s*"@type":\s*"ListItem",\s*"position":\s*2,\s*"name":\s*")[^"]*(",\s*"item":\s*"https:\/\/otahub\.asia\/)[^"]*(")/i,
-      `$1${cat.replace(/"/g, '\\"')}$2${isEnDoc ? 'en/' + catSlug : catSlug}$3`);
+      `$1${replSafe(cat.replace(/"/g, '\\"'))}$2${replSafe(isEnDoc ? 'en/' + catSlug : catSlug)}$3`);
     const navPrefix = isEnDoc ? '/en/' : '/';
     const navSlugs = isEnDoc ? 'choi-gi|gaming|anime|manga|reviews|rankings|in-depth' : 'choi-gi|gaming|anime|manga|reviews|rankings|chuyen-sau';
-    if (['choi-gi', 'gaming', 'anime', 'manga', 'reviews', 'rankings', 'chuyen-sau'].includes(catSlug)) {
+    if (['choi-gi', 'gaming', 'anime', 'manga', 'reviews', 'rankings', 'chuyen-sau', 'in-depth'].includes(catSlug)) {
       html = html.replace(new RegExp(`<a href="${navPrefix}(${navSlugs})"( class="active")?>`, 'g'),
         (m, slug) => `<a href="${navPrefix}${slug}"${slug === catSlug ? ' class="active"' : ''}>`);
     }
@@ -12116,19 +12122,19 @@ function syncSharedFieldsIntoHtml(html, f) {
   if (f.hero) {
     const pos = f.heroPos || '50';
     if (/class="art-hero-img"\s+style="[^"]*"/.test(html)) {
-      html = html.replace(/(class="art-hero-img"\s+style=")[^"]*(")/, `$1background-image:url('${f.hero}');background-position:center ${pos}%;background-color:#0b0418;$2`);
+      html = html.replace(/(class="art-hero-img"\s+style=")[^"]*(")/, `$1background-image:url('${replSafe(f.hero)}');background-position:center ${replSafe(pos)}%;background-color:#0b0418;$2`);
     }
     const full = /^(https?:|data:)/i.test(f.hero) ? f.hero : `https://otahub.asia${f.hero.startsWith('/') ? '' : '/'}${f.hero}`;
-    html = html.replace(/(<meta\s+property="og:image"\s+content=")[^"]*(")/i, `$1${full}$2`);
-    html = html.replace(/(<meta\s+name="twitter:image"\s+content=")[^"]*(")/i, `$1${full}$2`);
-    html = html.replace(/("image":\s*")[^"]*(")/i, `$1${full}$2`);
+    html = html.replace(/(<meta\s+property="og:image"\s+content=")[^"]*(")/i, `$1${replSafe(full)}$2`);
+    html = html.replace(/(<meta\s+name="twitter:image"\s+content=")[^"]*(")/i, `$1${replSafe(full)}$2`);
+    html = html.replace(/("image":\s*")[^"]*(")/i, `$1${replSafe(full)}$2`);
   }
   if (f.pubDate) {
-    html = html.replace(/(<meta\s+property="article:published_time"\s+content=")[^"]*(")/i, `$1${f.pubDate}$2`);
-    html = html.replace(/(<meta\s+property="article:modified_time"\s+content=")[^"]*(")/i, `$1${f.pubDate}$2`);
-    html = html.replace(/("datePublished"\s*:\s*")[^"]*(")/i, `$1${f.pubDate}$2`);
-    html = html.replace(/("dateModified"\s*:\s*")[^"]*(")/i, `$1${f.pubDate}$2`);
-    html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-date[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${f.pubDate.slice(0, 10)}$2`);
+    html = html.replace(/(<meta\s+property="article:published_time"\s+content=")[^"]*(")/i, `$1${replSafe(f.pubDate)}$2`);
+    html = html.replace(/(<meta\s+property="article:modified_time"\s+content=")[^"]*(")/i, `$1${replSafe(f.pubDate)}$2`);
+    html = html.replace(/("datePublished"\s*:\s*")[^"]*(")/i, `$1${replSafe(f.pubDate)}$2`);
+    html = html.replace(/("dateModified"\s*:\s*")[^"]*(")/i, `$1${replSafe(f.pubDate)}$2`);
+    html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-date[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${replSafe(f.pubDate.slice(0, 10))}$2`);
   }
   if (f.author) html = stampArticleAuthor(html, f.author);
   return html;
@@ -12346,7 +12352,7 @@ function copyArticleLink(button){
 }
 <\/script>
 <script defer src="/assets/search-redirect.js"><\/script>
-<script defer src="/assets/enhance.js?v=20261001c"><\/script>
+<script defer src="/assets/enhance.js?v=20261001d"><\/script>
 <script defer src="/assets/img-fit.v2.js?v=20260926"><\/script>
 <script src="/assets/lang-switch.js" defer><\/script>
 </body>
@@ -12566,6 +12572,21 @@ function extractBody(html) {
 }
 
 function esc(s) { return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+// Chèn dữ liệu (tiêu đề, nội dung bài...) vào chuỗi thay thế của String.replace: phải
+// nhân đôi "$", nếu không "$20", "$1", "$&"... trong dữ liệu bị hiểu là mẫu thay thế
+// và làm hỏng HTML (vd tiêu đề "giảm còn $20" bị lưu thành '"0').
+function replSafe(s) { return String(s).split('$').join('$$'); }
+// Slug trang chuyên mục cho breadcrumb/schema/nav. Không dùng cat.toLowerCase():
+// "Chuyên sâu", "Tin tức", "Chơi Gì?"... sẽ thành URL có dấu/khoảng trắng (404).
+function categorySlug(cat, isEn = false) {
+  const map = {
+    'gaming': 'gaming', 'esports': 'gaming', 'công nghệ': 'gaming', 'anime': 'anime', 'manga': 'manga',
+    'reviews': 'reviews', 'đánh giá': 'reviews', 'rankings': 'rankings', 'bảng xếp hạng': 'rankings',
+    'chuyên sâu': isEn ? 'in-depth' : 'chuyen-sau', 'in-depth': isEn ? 'in-depth' : 'chuyen-sau',
+    'tin tức': 'news', 'news': 'news', 'chơi gì?': 'choi-gi', 'hướng dẫn': 'huong-dan', 'sắp ra mắt': 'sap-ra-mat',
+  };
+  return map[String(cat || '').trim().toLowerCase()] || 'gaming';
+}
 function unesc(s) { return s.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"'); }
 
 // ── Autosave bản nháp (dùng chung cho Article/Home/Hub editor) ──────────────
@@ -14704,12 +14725,12 @@ function buildArticlePreviewHtml() {
 
   if (/class="art-hero-bg"\s+style="[^"]*"/.test(html)) {
     html = html.replace(/(class="art-hero-bg"\s+style=")[^"]*(")/,
-      `$1background-image:url('${hero}');background-position:center ${heroPos}%;$2 data-oh-jump="heroimg"`);
+      `$1background-image:url('${replSafe(hero)}');background-position:center ${replSafe(heroPos)}%;$2 data-oh-jump="heroimg"`);
   } else if (/class="art-hero-img"\s+style="[^"]*"/.test(html)) {
     html = html.replace(/(class="art-hero-img"\s+style=")[^"]*(")/,
-      `$1background-image:url('${hero}');background-position:center ${heroPos}%;background-color:#0b0418;$2 data-oh-jump="heroimg"`);
+      `$1background-image:url('${replSafe(hero)}');background-position:center ${replSafe(heroPos)}%;background-color:#0b0418;$2 data-oh-jump="heroimg"`);
   } else if (/<header\b[^>]*class="[^"]*hero[^"]*"[^>]*>[\s\S]*?<img[^>]+src="[^"]*"/i.test(html)) {
-    html = html.replace(/(<header\b[^>]*class="[^"]*hero[^"]*"[^>]*>[\s\S]*?<img[^>]+src=")[^"]*(")/i, `$1${hero}$2 data-oh-jump="heroimg"`);
+    html = html.replace(/(<header\b[^>]*class="[^"]*hero[^"]*"[^>]*>[\s\S]*?<img[^>]+src=")[^"]*(")/i, `$1${replSafe(hero)}$2 data-oh-jump="heroimg"`);
   } else if (/<figure\b[^>]*\bclass="[^"]*art-hero[^"]*"[^>]*>/i.test(html)) {
     html = html.replace(/(<figure\b[^>]*\bclass="[^"]*art-hero[^"]*")/i, `$1 data-oh-jump="heroimg"`);
   }
@@ -14725,27 +14746,27 @@ function buildArticlePreviewHtml() {
 
   if (/<h1\b[^>]*\bclass="[^"]*art-hero-title[^"]*"[^>]*>/i.test(html)) {
     html = html.replace(/(<h1\b[^>]*\bclass="[^"]*art-hero-title[^"]*")[^>]*>[\s\S]*?(<\/h1>)/i,
-      `$1 contenteditable="true" data-ohfield="title">${esc(title)}$2`);
+      `$1 contenteditable="true" data-ohfield="title">${replSafe(esc(title))}$2`);
   } else if (/<h1\b[^>]*>/i.test(html)) {
     html = html.replace(/(<h1\b[^>]*)>[\s\S]*?(<\/h1>)/i,
-      `<h1 class="art-hero-title" contenteditable="true" data-ohfield="title">${esc(title)}$2`);
+      `<h1 class="art-hero-title" contenteditable="true" data-ohfield="title">${replSafe(esc(title))}$2`);
   }
 
   if (/<p\b[^>]*\bclass="[^"]*art-hero-excerpt[^"]*"[^>]*>/i.test(html)) {
     html = html.replace(/(<p\b[^>]*\bclass="[^"]*art-hero-excerpt[^"]*")[^>]*>[\s\S]*?(<\/p>)/i,
-      `$1 contenteditable="true" data-ohfield="excerpt">${esc(excerpt)}$2`);
+      `$1 contenteditable="true" data-ohfield="excerpt">${replSafe(esc(excerpt))}$2`);
   }
   html = html.replace(/(<span\b[^>]*\bclass="[^"]*art-hero-cat[^"]*")[^>]*>[\s\S]*?(<\/span>)/i,
-    `$1 data-oh-jump="cat">${esc(cat)}$2`);
+    `$1 data-oh-jump="cat">${replSafe(esc(cat))}$2`);
   html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-tag[^"]*")[^>]*>[\s\S]*?(<\/span>)/i,
-    `$1>${esc(cat)}$2`);
+    `$1>${replSafe(esc(cat))}$2`);
 
   // Breadcrumbs in preview iframe
-  const catSlug = cat.toLowerCase();
+  const catSlug = categorySlug(cat);
   html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<a\s+href="\/)[^"]*("[^>]*>)[^<]*(<\/a>)/i,
-    `$1${catSlug}$2${esc(cat)}$3`);
+    `$1${replSafe(catSlug)}$2${replSafe(esc(cat))}$3`);
   html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<span>)[\s\S]*?(<\/span>)/i,
-    `$1${esc(title)}$2`);
+    `$1${replSafe(esc(title))}$2`);
 
   // Khối "Tóm tắt điểm nhấn" (.highlight-box) — nằm ngoài <article class="art-body">
   // nên phải tag contenteditable riêng ở đây (xem extractHighlightBox()).
@@ -14757,7 +14778,7 @@ function buildArticlePreviewHtml() {
         (m, p1, p2) => `${p1} contenteditable="true" data-ohfield="hbText">${ART_HB_TEXT || ''}${p2}`);
     } else {
       const hbHtml = `<div class="highlight-box" data-oh-jump="hb-box">\n  <div class="hb-label" contenteditable="true" data-ohfield="hbLabel">${esc(ART_HB_LABEL || 'Tóm Tắt')}</div>\n  <div class="hb-text" contenteditable="true" data-ohfield="hbText">${ART_HB_TEXT || ''}</div>\n</div>\n\n`;
-      html = html.replace(/(<article class="art-body)/, `${hbHtml}$1`);
+      html = html.replace(/(<article class="art-body)/, `${replSafe(hbHtml)}$1`);
     }
   } else {
     html = html.replace(/<div class="highlight-box">[\s\S]*?<\/div>\s*<\/div>\s*/gi, '');
@@ -14767,9 +14788,9 @@ function buildArticlePreviewHtml() {
     ? blocksToHtmlTagged(BODY_BLOCKS)
     : tagLegacyBodyForInlineEdit(document.getElementById('body-visual')?.innerHTML || '');
   if (/<article class="art-body">[\s\S]*?<\/article>/.test(html)) {
-    html = html.replace(/<article class="art-body">[\s\S]*?<\/article>/, `<article class="art-body">\n${bodyTagged}\n</article>`);
+    html = html.replace(/<article class="art-body">[\s\S]*?<\/article>/, `<article class="art-body">\n${replSafe(bodyTagged)}\n</article>`);
   } else {
-    html = html.replace(/<article class="art-body lang-vi active">[\s\S]*?<\/article>/, `<article class="art-body lang-vi active">\n${bodyTagged}\n</article>`);
+    html = html.replace(/<article class="art-body lang-vi active">[\s\S]*?<\/article>/, `<article class="art-body lang-vi active">\n${replSafe(bodyTagged)}\n</article>`);
   }
 
   // Loại bỏ các script tracking runtime (gtag, analytics) khỏi iframe xem trước để tránh gửi request rác
@@ -14777,7 +14798,7 @@ function buildArticlePreviewHtml() {
   html = html.replace(/<script\b[^>]*>[\s\S]*?gtag\s*\([\s\S]*?<\/script>/gi, '');
 
   html = html.replace('<head>', '<head><base href="https://otahub.asia/">');
-  html = html.replace('</body>', ART_BRIDGE_SCRIPT + '</body>');
+  html = html.replace('</body>', replSafe(ART_BRIDGE_SCRIPT + '</body>'));
   return html;
 }
 
@@ -15464,7 +15485,7 @@ function openFullArticlePreview(targetLang) {
 </div>
 `;
   if (/<head>/i.test(html)) {
-    html = html.replace(/<head>/i, `<head>\n${criticalStyles}`);
+    html = html.replace(/<head>/i, `<head>\n${replSafe(criticalStyles)}`);
   } else {
     html = criticalStyles + html;
   }
@@ -15492,12 +15513,12 @@ function openFullArticlePreview(targetLang) {
 function patchNewArticleUrls(html, file) {
   const finalSlug = file.replace(/\.html$/, '');
   const finalUrl = `https://otahub.asia/${finalSlug}`;
-  html = html.replace(/(<link rel="alternate" hreflang="vi" href=")[^"]*(")/, `$1${finalUrl}$2`);
-  html = html.replace(/(<link rel="alternate" hreflang="en" href=")[^"]*(")/, `$1https://otahub.asia/en/${finalSlug}$2`);
-  html = html.replace(/(<link rel="alternate" hreflang="x-default" href=")[^"]*(")/, `$1${finalUrl}$2`);
-  html = html.replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${finalUrl}$2`);
-  html = html.replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${finalUrl}$2`);
-  html = html.replace(/("mainEntityOfPage": \{ "@type": "WebPage", "@id": ")[^"]*(")/, `$1${finalUrl}$2`);
+  html = html.replace(/(<link rel="alternate" hreflang="vi" href=")[^"]*(")/, `$1${replSafe(finalUrl)}$2`);
+  html = html.replace(/(<link rel="alternate" hreflang="en" href=")[^"]*(")/, `$1https://otahub.asia/en/${replSafe(finalSlug)}$2`);
+  html = html.replace(/(<link rel="alternate" hreflang="x-default" href=")[^"]*(")/, `$1${replSafe(finalUrl)}$2`);
+  html = html.replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${replSafe(finalUrl)}$2`);
+  html = html.replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${replSafe(finalUrl)}$2`);
+  html = html.replace(/("mainEntityOfPage": \{ "@type": "WebPage", "@id": ")[^"]*(")/, `$1${replSafe(finalUrl)}$2`);
   return html;
 }
 
@@ -15532,66 +15553,66 @@ function applyArticleEditsToHtml(baseHtml, customData) {
 
   let html = baseHtml;
   // Apply edits (esc() để tránh vỡ HTML nếu tiêu đề/mô tả chứa <, >, &, ")
-  html = html.replace(/<title>[^<]*<\/title>/i, `<title>${esc(title)} · OtaHub</title>`);
-  html = html.replace(/(<meta\s+name="description"\s+content=")[^"]*(")/i,   `$1${esc(desc)}$2`);
+  html = html.replace(/<title>[^<]*<\/title>/i, `<title>${replSafe(esc(title))} · OtaHub</title>`);
+  html = html.replace(/(<meta\s+name="description"\s+content=")[^"]*(")/i,   `$1${replSafe(esc(desc))}$2`);
 
   // Từ khóa trọng tâm (SEO Score) — lưu dạng meta ẩn, chỉ admin.html đọc lại
   const kwRe = /<meta name="focus-keyword" content="[^"]*">\n?/;
   if (keyword) {
     const kwTag = `<meta name="focus-keyword" content="${esc(keyword)}">\n`;
-    html = kwRe.test(html) ? html.replace(kwRe, kwTag) : html.replace(/(<meta name="description" content="[^"]*">\n?)/, `$1${kwTag}`);
+    html = kwRe.test(html) ? html.replace(kwRe, replSafe(kwTag)) : html.replace(/(<meta name="description" content="[^"]*">\n?)/, `$1${replSafe(kwTag)}`);
   } else if (kwRe.test(html)) {
     html = html.replace(kwRe, '');
   }
 
-  html = html.replace(/(<meta\s+property="og:title"\s+content=")[^"]*(")/i,  `$1${esc(title)} · OtaHub$2`);
-  html = html.replace(/(<meta\s+property="og:description"\s+content=")[^"]*(")/i,  `$1${esc(desc)}$2`);
-  html = html.replace(/(<meta\s+name="twitter:title"\s+content=")[^"]*(")/i,  `$1${esc(title)} · OtaHub$2`);
-  html = html.replace(/(<meta\s+name="twitter:description"\s+content=")[^"]*(")/i,  `$1${esc(desc)}$2`);
-  html = html.replace(/("headline":\s*")[^"]*(")/i,  `$1${title.replace(/\\/g,'\\\\').replace(/"/g,'\\"')}$2`);
-  html = html.replace(/(<meta\s+property="article:section"\s+content=")[^"]*(")/i,  `$1${esc(cat)}$2`);
+  html = html.replace(/(<meta\s+property="og:title"\s+content=")[^"]*(")/i,  `$1${replSafe(esc(title))} · OtaHub$2`);
+  html = html.replace(/(<meta\s+property="og:description"\s+content=")[^"]*(")/i,  `$1${replSafe(esc(desc))}$2`);
+  html = html.replace(/(<meta\s+name="twitter:title"\s+content=")[^"]*(")/i,  `$1${replSafe(esc(title))} · OtaHub$2`);
+  html = html.replace(/(<meta\s+name="twitter:description"\s+content=")[^"]*(")/i,  `$1${replSafe(esc(desc))}$2`);
+  html = html.replace(/("headline":\s*")[^"]*(")/i,  `$1${replSafe(title.replace(/\\/g,'\\\\').replace(/"/g,'\\"'))}$2`);
+  html = html.replace(/(<meta\s+property="article:section"\s+content=")[^"]*(")/i,  `$1${replSafe(esc(cat))}$2`);
 
   // Ngày xuất bản (Publish Date & Modified Time)
   const pubDateIso = (isCustom && customData.pubDate) ? customData.pubDate : (CUSTOM_PUBLISH_DATE || '');
   if (pubDateIso) {
     if (/<meta\s+property="article:published_time"\s+content="[^"]*"/i.test(html)) {
-      html = html.replace(/(<meta\s+property="article:published_time"\s+content=")[^"]*(")/i, `$1${pubDateIso}$2`);
+      html = html.replace(/(<meta\s+property="article:published_time"\s+content=")[^"]*(")/i, `$1${replSafe(pubDateIso)}$2`);
     } else if (/<meta\s+property="og:locale"[^>]*>/i.test(html)) {
-      html = html.replace(/(<meta\s+property="og:locale"[^>]*>)/i, `$1\n<meta property="article:published_time" content="${pubDateIso}">`);
+      html = html.replace(/(<meta\s+property="og:locale"[^>]*>)/i, `$1\n<meta property="article:published_time" content="${replSafe(pubDateIso)}">`);
     }
     if (/<meta\s+property="article:modified_time"\s+content="[^"]*"/i.test(html)) {
-      html = html.replace(/(<meta\s+property="article:modified_time"\s+content=")[^"]*(")/i, `$1${pubDateIso}$2`);
+      html = html.replace(/(<meta\s+property="article:modified_time"\s+content=")[^"]*(")/i, `$1${replSafe(pubDateIso)}$2`);
     }
     if (/"datePublished"\s*:\s*"[^"]*"/i.test(html)) {
-      html = html.replace(/("datePublished"\s*:\s*")[^"]*(")/i, `$1${pubDateIso}$2`);
+      html = html.replace(/("datePublished"\s*:\s*")[^"]*(")/i, `$1${replSafe(pubDateIso)}$2`);
     }
     if (/"dateModified"\s*:\s*"[^"]*"/i.test(html)) {
-      html = html.replace(/("dateModified"\s*:\s*")[^"]*(")/i, `$1${pubDateIso}$2`);
+      html = html.replace(/("dateModified"\s*:\s*")[^"]*(")/i, `$1${replSafe(pubDateIso)}$2`);
     }
     const dOnly = pubDateIso.slice(0, 10);
     if (/<span\b[^>]*\bclass="[^"]*am-date[^"]*"[^>]*>[\s\S]*?<\/span>/i.test(html)) {
-      html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-date[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${dOnly}$2`);
+      html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-date[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${replSafe(dOnly)}$2`);
     }
   }
 
   // Category in UI (.art-hero-cat and .am-tag)
-  html = html.replace(/(<span\b[^>]*\bclass="[^"]*art-hero-cat[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${esc(cat)}$2`);
-  html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-tag[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${esc(cat)}$2`);
+  html = html.replace(/(<span\b[^>]*\bclass="[^"]*art-hero-cat[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${replSafe(esc(cat))}$2`);
+  html = html.replace(/(<span\b[^>]*\bclass="[^"]*am-tag[^"]*"[^>]*>)[\s\S]*?(<\/span>)/i, `$1${replSafe(esc(cat))}$2`);
 
   // Breadcrumbs in HTML & BreadcrumbList Schema
   const isEnDoc = /<html\b[^>]*\blang="en"/i.test(html);
-  const catSlug = cat.toLowerCase();
+  const catSlug = categorySlug(cat, isEnDoc);
   html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<a\s+href="\/)[^"]*("[^>]*>)[^<]*(<\/a>)/i,
-    `$1${isEnDoc ? 'en/' + catSlug : catSlug}$2${esc(cat)}$3`);
+    `$1${replSafe(isEnDoc ? 'en/' + catSlug : catSlug)}$2${replSafe(esc(cat))}$3`);
   html = html.replace(/(<nav\b[^>]*\bclass="[^"]*breadcrumb[^"]*"[^>]*>[\s\S]*?<span class="breadcrumb-sep">[^<]*<\/span>\s*<span>)[\s\S]*?(<\/span>)/i,
-    `$1${esc(title)}$2`);
+    `$1${replSafe(esc(title))}$2`);
   html = html.replace(/(\{\s*"@type":\s*"ListItem",\s*"position":\s*2,\s*"name":\s*")[^"]*(",\s*"item":\s*"https:\/\/otahub\.asia\/)[^"]*(")/i,
-    `$1${cat.replace(/"/g, '\\"')}$2${isEnDoc ? 'en/' + catSlug : catSlug}$3`);
+    `$1${replSafe(cat.replace(/"/g, '\\"'))}$2${replSafe(isEnDoc ? 'en/' + catSlug : catSlug)}$3`);
   html = html.replace(/(\{\s*"@type":\s*"ListItem",\s*"position":\s*3,\s*"name":\s*")[^"]*(")/i,
-    `$1${title.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}$2`);
+    `$1${replSafe(title.replace(/\\/g, '\\\\').replace(/"/g, '\\"'))}$2`);
 
   // Tab đang chọn trên thanh nav (desktop + mobile)
-  const NAV_CATS = ['choi-gi', 'gaming', 'anime', 'manga', 'reviews', 'rankings', 'chuyen-sau'];
+  const NAV_CATS = ['choi-gi', 'gaming', 'anime', 'manga', 'reviews', 'rankings', 'chuyen-sau', 'in-depth'];
   if (NAV_CATS.includes(catSlug)) {
     const navPrefix = isEnDoc ? '/en/' : '/';
     const navSlugs = isEnDoc ? 'choi-gi|gaming|anime|manga|reviews|rankings|in-depth' : 'choi-gi|gaming|anime|manga|reviews|rankings|chuyen-sau';
@@ -15601,50 +15622,50 @@ function applyArticleEditsToHtml(baseHtml, customData) {
 
   // Thẻ chủ đề trong sidebar (.sb-tags)
   html = html.replace(/(<div class="sb-tags">)([\s\S]*?)(<\/div>)/i, (m, open, inner, close) =>
-    open + inner.replace(/(<a class="sb-tag" href=")\/(?:en\/)?(?:gaming|anime|manga|reviews|rankings|choi-gi|chuyen-sau|in-depth)(")/gi, `$1${isEnDoc ? '/en' : ''}/${catSlug}$2`) + close);
+    open + inner.replace(/(<a class="sb-tag" href=")\/(?:en\/)?(?:gaming|anime|manga|reviews|rankings|choi-gi|chuyen-sau|in-depth)(")/gi, `$1${replSafe(isEnDoc ? '/en' : '')}/${replSafe(catSlug)}$2`) + close);
 
   // Nút chia sẻ Twitter/Facebook
   const currentSlugNoExt = (isCustom && customData.slug) ? customData.slug : (currentFile ? currentFile.replace(/^en\//, '').replace(/\.html$/, '') : '');
   if (currentSlugNoExt) {
     const shareUrl = `https://otahub.asia/${isEnDoc ? 'en/' : ''}${currentSlugNoExt}`;
-    html = html.replace(/(twitter\.com\/intent\/tweet\?url=)[^"&]*(&amp;text=)[^"&]*/i, `$1${encodeURIComponent(shareUrl)}$2${encodeURIComponent(title)}`);
-    html = html.replace(/(facebook\.com\/sharer\/sharer\.php\?u=)[^"]*/i, `$1${encodeURIComponent(shareUrl)}`);
+    html = html.replace(/(twitter\.com\/intent\/tweet\?url=)[^"&]*(&amp;text=)[^"&]*/i, `$1${replSafe(encodeURIComponent(shareUrl))}$2${replSafe(encodeURIComponent(title))}`);
+    html = html.replace(/(facebook\.com\/sharer\/sharer\.php\?u=)[^"]*/i, `$1${replSafe(encodeURIComponent(shareUrl))}`);
   }
 
   // Hero Image (đồng bộ toàn bộ cấu trúc bài viết, meta tag & schema)
   if (hero) {
     if (/class="art-hero-bg"\s+style="[^"]*"/.test(html)) {
       html = html.replace(/(class="art-hero-bg"\s+style=")[^"]*(")/,
-        `$1background-image:url('${hero}');background-position:center ${heroPos}%;$2`);
+        `$1background-image:url('${replSafe(hero)}');background-position:center ${replSafe(heroPos)}%;$2`);
     }
     if (/class="art-hero-img"\s+style="[^"]*"/.test(html)) {
       html = html.replace(/(class="art-hero-img"\s+style=")[^"]*(")/,
-        `$1background-image:url('${hero}');background-position:center ${heroPos}%;background-color:#0b0418;$2`);
+        `$1background-image:url('${replSafe(hero)}');background-position:center ${replSafe(heroPos)}%;background-color:#0b0418;$2`);
     }
     if (/<header\b[^>]*class="[^"]*hero[^"]*"[^>]*>[\s\S]*?<img[^>]+src="[^"]*"/i.test(html)) {
-      html = html.replace(/(<header\b[^>]*class="[^"]*hero[^"]*"[^>]*>[\s\S]*?<img[^>]+src=")[^"]*(")/i, `$1${hero}$2`);
+      html = html.replace(/(<header\b[^>]*class="[^"]*hero[^"]*"[^>]*>[\s\S]*?<img[^>]+src=")[^"]*(")/i, `$1${replSafe(hero)}$2`);
     }
     const fullHeroUrl = hero.startsWith('http') || hero.startsWith('data:') ? hero : `https://otahub.asia${hero.startsWith('/') ? '' : '/'}${hero}`;
-    html = html.replace(/(<meta\s+property="og:image"\s+content=")[^"]*(")/i, `$1${fullHeroUrl}$2`);
-    html = html.replace(/(<meta\s+name="twitter:image"\s+content=")[^"]*(")/i, `$1${fullHeroUrl}$2`);
-    html = html.replace(/("image":\s*")[^"]*(")/i, `$1${fullHeroUrl}$2`);
-    html = html.replace(/(<figure class="art-hero"><img[^>]*src=")[^"]*(")/i, `$1${hero}$2`);
+    html = html.replace(/(<meta\s+property="og:image"\s+content=")[^"]*(")/i, `$1${replSafe(fullHeroUrl)}$2`);
+    html = html.replace(/(<meta\s+name="twitter:image"\s+content=")[^"]*(")/i, `$1${replSafe(fullHeroUrl)}$2`);
+    html = html.replace(/("image":\s*")[^"]*(")/i, `$1${replSafe(fullHeroUrl)}$2`);
+    html = html.replace(/(<figure class="art-hero"><img[^>]*src=")[^"]*(")/i, `$1${replSafe(hero)}$2`);
   }
 
   // H1
   if (/<h1\b[^>]*\bclass="[^"]*art-hero-title[^"]*"[^>]*>/i.test(html)) {
-    html = html.replace(/(<h1\b[^>]*\bclass="[^"]*art-hero-title[^"]*"[^>]*>)[\s\S]*?(<\/h1>)/i, `$1${esc(title)}$2`);
+    html = html.replace(/(<h1\b[^>]*\bclass="[^"]*art-hero-title[^"]*"[^>]*>)[\s\S]*?(<\/h1>)/i, `$1${replSafe(esc(title))}$2`);
   } else if (/<h1\b[^>]*\bclass="[^"]*art-title[^"]*"[^>]*>/i.test(html)) {
-    html = html.replace(/(<h1\b[^>]*\bclass="[^"]*art-title[^"]*"[^>]*>)[\s\S]*?(<\/h1>)/i, `$1${esc(title)}$2`);
+    html = html.replace(/(<h1\b[^>]*\bclass="[^"]*art-title[^"]*"[^>]*>)[\s\S]*?(<\/h1>)/i, `$1${replSafe(esc(title))}$2`);
   } else if (/<h1\b[^>]*>/i.test(html)) {
-    html = html.replace(/(<h1\b[^>]*>)[\s\S]*?(<\/h1>)/i, `$1${esc(title)}$2`);
+    html = html.replace(/(<h1\b[^>]*>)[\s\S]*?(<\/h1>)/i, `$1${replSafe(esc(title))}$2`);
   }
 
   // Excerpt
   if (/<p\b[^>]*\bclass="[^"]*art-hero-excerpt[^"]*"[^>]*>/i.test(html)) {
-    html = html.replace(/(<p\b[^>]*\bclass="[^"]*art-hero-excerpt[^"]*"[^>]*>)[\s\S]*?(<\/p>)/i, `$1${esc(excerpt)}$2`);
+    html = html.replace(/(<p\b[^>]*\bclass="[^"]*art-hero-excerpt[^"]*"[^>]*>)[\s\S]*?(<\/p>)/i, `$1${replSafe(esc(excerpt))}$2`);
   } else if (/<p\b[^>]*\bclass="[^"]*art-lead[^"]*"[^>]*>/i.test(html)) {
-    html = html.replace(/(<p\b[^>]*\bclass="[^"]*art-lead[^"]*"[^>]*>)[\s\S]*?(<\/p>)/i, `$1${esc(excerpt)}$2`);
+    html = html.replace(/(<p\b[^>]*\bclass="[^"]*art-lead[^"]*"[^>]*>)[\s\S]*?(<\/p>)/i, `$1${replSafe(esc(excerpt))}$2`);
   }
 
   // Highlight Box
@@ -15653,11 +15674,11 @@ function applyArticleEditsToHtml(baseHtml, customData) {
   const hbText = isCustom ? (customData.hbText || '') : (ART_HB_TEXT || '');
   if (hasHb) {
     if (/<div class="highlight-box">[\s\S]*?<\/div>\s*<\/div>/i.test(html)) {
-      html = html.replace(/(<div class="hb-label">)[^<]*(<\/div>)/, `$1${esc(hbLabel)}$2`);
-      html = html.replace(/(<div class="hb-text">)[\s\S]*?(<\/div>)/, `$1${hbText}$2`);
+      html = html.replace(/(<div class="hb-label">)[^<]*(<\/div>)/, `$1${replSafe(esc(hbLabel))}$2`);
+      html = html.replace(/(<div class="hb-text">)[\s\S]*?(<\/div>)/, `$1${replSafe(hbText)}$2`);
     } else {
       const hbHtml = `<div class="highlight-box">\n<div class="hb-label">${esc(hbLabel)}</div>\n<div class="hb-text">${hbText}</div>\n</div>\n\n`;
-      html = html.replace(/(<article class="art-body|<div class="art-body)/, `${hbHtml}$1`);
+      html = html.replace(/(<article class="art-body|<div class="art-body)/, `${replSafe(hbHtml)}$1`);
     }
   } else {
     html = html.replace(/<div class="highlight-box">[\s\S]*?<\/div>\s*<\/div>\s*/gi, '');
@@ -15665,11 +15686,11 @@ function applyArticleEditsToHtml(baseHtml, customData) {
 
   // Body
   if (/<article class="art-body">[\s\S]*?<\/article>/.test(html)) {
-    html = html.replace(/<article class="art-body">[\s\S]*?<\/article>/, `<article class="art-body">\n${bodyVi}\n</article>`);
+    html = html.replace(/<article class="art-body">[\s\S]*?<\/article>/, `<article class="art-body">\n${replSafe(bodyVi)}\n</article>`);
   } else if (/<div class="art-body">[\s\S]*?<\/div>/.test(html)) {
-    html = html.replace(/<div class="art-body">[\s\S]*?<\/div>/, `<div class="art-body">\n${bodyVi}\n</div>`);
+    html = html.replace(/<div class="art-body">[\s\S]*?<\/div>/, `<div class="art-body">\n${replSafe(bodyVi)}\n</div>`);
   } else {
-    html = html.replace(/<article class="art-body lang-vi active">[\s\S]*?<\/article>/, `<article class="art-body lang-vi active">\n${bodyVi}\n</article>`);
+    html = html.replace(/<article class="art-body lang-vi active">[\s\S]*?<\/article>/, `<article class="art-body lang-vi active">\n${replSafe(bodyVi)}\n</article>`);
   }
 
   // Blocks
@@ -15680,7 +15701,7 @@ function applyArticleEditsToHtml(baseHtml, customData) {
   );
   if (blocks && Array.isArray(blocks) && blocks.length > 0 && !hasStarterPlaceholder) {
     const newMarker = `<script type="application/json" id="admin-block-data">${JSON.stringify(blocks)}<\/script>\n`;
-    html = blockMarkerRe.test(html) ? html.replace(blockMarkerRe, newMarker) : html.replace(/<\/article>|<\/main>/, (m) => `${newMarker}${m}`);
+    html = blockMarkerRe.test(html) ? html.replace(blockMarkerRe, replSafe(newMarker)) : html.replace(/<\/article>|<\/main>/, (m) => `${newMarker}${m}`);
   } else if (blockMarkerRe.test(html)) {
     html = html.replace(blockMarkerRe, '');
   }
@@ -15693,10 +15714,10 @@ function stampArticleAuthor(html, authorName) {
   let profileSlug = resolveAuthorSlug(author, CURRENT_USER?.role);
   const profilePrefix = /<html\b[^>]*\blang="en"/i.test(html) ? '/en/author/' : '/author/';
   const jsonAuthor = author.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
-  html = html.replace(/(<meta\s+name="author"\s+content=")[^"]*(")/i, `$1${escaped}$2`);
-  html = html.replace(/(<meta\s+property="article:author"\s+content=")[^"]*(")/i, `$1${escaped}$2`);
-  html = html.replace(/("author"\s*:\s*\{[\s\S]*?"name"\s*:\s*")[^"]*(")/i, `$1${jsonAuthor}$2`);
-  html = html.replace(/(?:<a\b[^>]*class="author-profile-link"[^>]*>)?(<span\b[^>]*\bclass="[^"]*am-badge[^"]*"[^>]*>)[\s\S]*?(<\/span>)(?:<\/a>)?/i, `<a class="author-profile-link" href="${profilePrefix}${profileSlug}">$1${escaped}$2</a>`);
+  html = html.replace(/(<meta\s+name="author"\s+content=")[^"]*(")/i, `$1${replSafe(escaped)}$2`);
+  html = html.replace(/(<meta\s+property="article:author"\s+content=")[^"]*(")/i, `$1${replSafe(escaped)}$2`);
+  html = html.replace(/("author"\s*:\s*\{[\s\S]*?"name"\s*:\s*")[^"]*(")/i, `$1${replSafe(jsonAuthor)}$2`);
+  html = html.replace(/(?:<a\b[^>]*class="author-profile-link"[^>]*>)?(<span\b[^>]*\bclass="[^"]*am-badge[^"]*"[^>]*>)[\s\S]*?(<\/span>)(?:<\/a>)?/i, `<a class="author-profile-link" href="${replSafe(profilePrefix)}${replSafe(profileSlug)}">$1${replSafe(escaped)}$2</a>`);
   return html;
 }
 
@@ -16319,7 +16340,8 @@ async function cascadeIntoHeroSide(html, item) {
   const newItem = sArtBuild({
     href: item.href, img: item.img, alt: item.title,
     catStyle: 'style="color:var(--pink);font-weight:700"',
-    catHtml: `🔴 Breaking · ${item.cat || 'Gaming'}`,
+    // Chỉ ghi chuyên mục: nhãn "Breaking" dành riêng cho Hero, gắn cho mọi bài thì mất ý nghĩa.
+    catHtml: item.cat || 'Gaming',
     title: item.title, date: item.date, author: item.author,
   });
   items.unshift(newItem);
@@ -16370,7 +16392,8 @@ async function cascadeIntoHeroSide(html, item) {
 // để không kéo theo lỗi đó.
 async function promoteToHomeHero(slug, viTitle, viDesc, cat, heroImg, subLabel, authorName = publishingAuthorName()) {
   const catLabel = subLabel ? `${cat || 'Gaming'} · ${subLabel}` : (cat || 'Gaming');
-  const tagLabel = `🔴 BREAKING NEWS · ${(cat || 'Gaming').toUpperCase()}`;
+  const catUpper = (cat || 'Gaming').toUpperCase();
+  const tagLabelFor = file => file.startsWith('en/') ? `🔴 BREAKING · ${catUpper}` : `🔴 TIN NÓNG · ${catUpper}`;
 
   // index.html/en/index.html bị nhiều nguồn ghi liên tục (pipeline tự động, admin khác) — GitHub
   // từ chối ghi (409) nếu "sha" đã lỗi thời ngay giữa lúc build html. Thử lại vài lần, mỗi lần
@@ -16398,7 +16421,7 @@ async function promoteToHomeHero(slug, viTitle, viDesc, cat, heroImg, subLabel, 
 
       html = html.replace(/(<div class="hero-main" onclick="location\.href=')[^']*(')/, (m,p1,p2)=>p1+href.replace(/'/g,"\\'")+p2);
       html = html.replace(/(<div class="h-img" style="background-image:url\()[^)]*(\)">)/, (m,p1,p2)=>p1+heroImg+p2);
-      html = html.replace(/(<span class="tag tag-s tag-live" id="h-tag"[^>]*>)[^<]*(<\/span>)/, (m,p1,p2)=>p1+tagLabel+p2);
+      html = html.replace(/(<span class="tag tag-s tag-live" id="h-tag"[^>]*>)[^<]*(<\/span>)/, (m,p1,p2)=>p1+tagLabelFor(file)+p2);
       html = html.replace(/(id="h-title">)[^<]*(<)/, (m,p1,p2)=>p1+esc(title)+p2);
       html = html.replace(/(id="h-sub">)[^<]*(<)/, (m,p1,p2)=>p1+esc(desc)+p2);
       html = html.replace(/(class="h-meta-cat">)[^<]*(<)/, (m,p1,p2)=>p1+esc(catLabel)+p2);
@@ -16472,7 +16495,15 @@ async function addToLatestNews(isEn, slug, title, desc, cat, hero, authorName = 
     let html = decodeURIComponent(escape(atob(String(data.content || '').replace(/\s/g, ''))));
     if (html.includes('<div class="tick-track">') && !html.includes(`href="${href}"`)) {
       const tick = `\n      <span class="tick-item">🔥 <strong>${esc(cat || 'Gaming')}:</strong> <a href="${href}" style="color:inherit;text-decoration:none">${esc(title)}</a></span>`;
-      html = html.replace('<div class="tick-track">', '<div class="tick-track">' + tick);
+      html = html.replace('<div class="tick-track">', replSafe('<div class="tick-track">' + tick));
+      // Giữ tối đa 12 tin mới nhất trên ticker — dài hơn thì không ai đọc hết.
+      const TICK_MAX = 12;
+      const tStart = html.indexOf('<div class="tick-track">') + '<div class="tick-track">'.length;
+      const tEnd = html.indexOf('</div>', tStart);
+      const tItems = html.slice(tStart, tEnd).match(/<span class="tick-item">[\s\S]*?<\/span>/g) || [];
+      if (tItems.length > TICK_MAX) {
+        html = html.slice(0, tStart) + '\n      ' + tItems.slice(0, TICK_MAX).join('\n      ') + '\n    ' + html.slice(tEnd);
+      }
     }
 
     const card = `<article class="w-card"><a href="${href}" style="text-decoration:none;display:contents"><div class="wc-info"><div class="wc-c" style="color:var(--cyan)">${esc(cat || 'Gaming')}</div><div class="wc-t">${esc(title)}</div><div class="wc-m">${esc(authorName)} · ${esc(dateDisp)}</div></div><div class="wc-thumb"><img src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy" width="1200" height="675"></div></a></article>\n      `;
@@ -16493,8 +16524,11 @@ async function addToLatestNews(isEn, slug, title, desc, cat, hero, authorName = 
       const listBlock = html.slice(insertAt, asideIdx);
       const items = splitBlocksTrimmed(listBlock, /<article class="w-card">/, '</article>');
       if (items.length > MAX_ITEMS) {
-        const trimmedList = items.slice(0, MAX_ITEMS).join('\n      ') + '\n      ';
-        html = html.slice(0, insertAt) + trimmedList + html.slice(asideIdx);
+        // Chỉ thay phần danh sách thẻ, giữ nguyên thẻ </div> đóng cột trái nằm sau thẻ cuối —
+        // cắt thẳng tới <aside> từng làm mất </div> đó, khiến cột "Đang hot" bị lồng vào cột tin.
+        const listEnd = html.lastIndexOf('</article>', asideIdx) + '</article>'.length;
+        const trimmedList = items.slice(0, MAX_ITEMS).join('\n      ');
+        html = html.slice(0, insertAt) + trimmedList + html.slice(listEnd);
       }
     }
 
@@ -16613,7 +16647,9 @@ async function saveArticleDraftNow() {
     HAS_UNSAVED_CHANGES = false;
     if (dot) dot.className = 'status-dot';
     if (txt) txt.textContent = 'Đã lưu bản nháp • ' + new Date().toLocaleTimeString('vi-VN');
-    toast('success', '✅ Đã lưu bản nháp để biên tập viên duyệt.');
+    toast('success', CURRENT_USER?.role === 'contributor'
+      ? '✅ Đã lưu bản nháp để biên tập viên duyệt.'
+      : '✅ Đã lưu bản nháp (chưa xuất bản lên website).');
   } else {
     if (dot) dot.className = 'status-dot error';
     if (txt) txt.textContent = 'Lưu bản nháp thất bại';
@@ -16626,6 +16662,12 @@ async function saveArticleDraftNow() {
 }
 
 // ── News Pipeline — tích hợp trực tiếp trong OtaHub Admin ─────────────────
+// URL lấy từ RSS bên thứ ba (lưu trong D1): chỉ cho phép http(s) để link
+// "javascript:"/"data:" không thể chạy trong phiên quản trị.
+function safeExternalUrl(url, fallback = '#') {
+  return /^https?:\/\//i.test(String(url || '').trim()) ? String(url).trim() : fallback;
+}
+
 async function newsApi(path, options = {}) {
   const response = await fetch('/api/admin/news' + path, {
     credentials: 'same-origin',
@@ -16666,7 +16708,7 @@ async function renderNewsPipeline(status = 'new') {
 
     const articleCards = (articles || []).map(article => `
       <div class="postbox" style="margin-bottom:10px">
-        <div class="postbox-header"><h2 style="font-size:14px"><a href="${esc(article.canonical_url)}" target="_blank" rel="noopener">${esc(article.title)}</a></h2></div>
+        <div class="postbox-header"><h2 style="font-size:14px"><a href="${esc(safeExternalUrl(article.canonical_url))}" target="_blank" rel="noopener noreferrer">${esc(article.title)}</a></h2></div>
         <div class="inside">
           <div style="font-size:11.5px;color:#646970;margin-bottom:7px">${esc(article.source_name)} · ${esc(article.published_at ? timeAgoVi(article.published_at) : timeAgoVi(article.collected_at))}</div>
           <p style="font-size:12.5px;line-height:1.55">${esc((article.summary || article.content_text || '').slice(0, 340))}</p>
@@ -16686,7 +16728,7 @@ async function renderNewsPipeline(status = 'new') {
           <p style="font-size:12.5px;line-height:1.55">${esc(draft.excerpt || '')}</p>
           <div style="display:flex;gap:6px;flex-wrap:wrap">
             <button class="button-primary" onclick="openNewsDraftInEditor(${draft.id})">✏️ Mở trong trình biên tập</button>
-            <a class="button" href="${esc(draft.canonical_url)}" target="_blank" rel="noopener">Xem nguồn</a>
+            <a class="button" href="${esc(safeExternalUrl(draft.canonical_url))}" target="_blank" rel="noopener noreferrer">Xem nguồn</a>
             ${draft.status === 'review' ? `<button class="button" style="color:#b32d2e" onclick="setNewsDraftStatus(${draft.id},'rejected')">Từ chối</button>` : ''}
           </div>
         </div>
@@ -16729,7 +16771,7 @@ function openNewsDraftInEditor(id) {
     slug: draft.slug,
     excerpt: draft.excerpt,
     bodyHtml: draft.body_html,
-    hero: draft.image_url || '',
+    hero: safeExternalUrl(draft.image_url, ''),
     category: draft.source_category || 'news',
   });
 }
@@ -16864,14 +16906,14 @@ function newArticle(prefillTitle) {
     <a href="/gaming" class="stag">Gaming</a>
     <a href="/anime" class="stag">Anime</a>
     <a href="/manga" class="stag">Manga</a>
-    <a href="/reviews" class="stag">Reviews</a>
-    <a href="/rankings" class="stag">Rankings</a>
+    <a href="/reviews" class="stag">Đánh giá</a>
+    <a href="/rankings" class="stag">Xếp hạng</a>
   </div>
 </div>
 <div id="amb"><div class="orb o1"></div><div class="orb o2"></div></div>
 <div id="gtex"></div>
-<nav class="nav"><div class="nav-in"><a class="logo" href="/"><span><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"></span><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming" class="active">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><button class="ham" id="ham" aria-label="Menu" onclick="toggleMob()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="Tìm kiếm" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="/#newsletter" class="cta" id="cta-sub">Subscribe</a></div></div></nav>
-<nav class="mobile-nav" id="mobnav"><a href="/choi-gi">Chơi Gì?</a><a href="/gaming" class="active">Gaming</a><a href="/anime">Anime</a><a href="/manga">Manga</a><a href="/reviews">Reviews</a><a href="/rankings">Rankings</a><a href="/chuyen-sau">Chuyên sâu</a><div class="m-sub"><a href="/about">Giới thiệu</a><a href="/#newsletter">Newsletter</a><a href="/about#contact">Liên hệ</a></div></nav>
+<nav class="nav"><div class="nav-in"><a class="logo" href="/"><span><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"></span><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming" class="active">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Đánh giá</a></li><li><a href="/rankings">Xếp hạng</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><button class="ham" id="ham" aria-label="Menu" onclick="toggleMob()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="Tìm kiếm" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="/#newsletter" class="cta" id="cta-sub">Đăng ký</a></div></div></nav>
+<nav class="mobile-nav" id="mobnav"><a href="/choi-gi">Chơi Gì?</a><a href="/gaming" class="active">Gaming</a><a href="/anime">Anime</a><a href="/manga">Manga</a><a href="/reviews">Đánh giá</a><a href="/rankings">Xếp hạng</a><a href="/chuyen-sau">Chuyên sâu</a><div class="m-sub"><a href="/about">Giới thiệu</a><a href="/#newsletter">Bản tin</a><a href="/about#contact">Liên hệ</a></div></nav>
 
 <section class="art-hero">
 <div class="art-hero-img" style="background-image:url(${heroImg || '/og-image.png'});background-color:#0b0418;"></div>
@@ -16936,7 +16978,7 @@ ${initialBody}
 </aside>
 </div>
 
-<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Chuyên trang tin tức gaming và tin tức anime, manga Việt Nam và Châu Á.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
+<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Chuyên trang tin tức gaming và tin tức anime, manga Việt Nam và Châu Á.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Đánh giá</a></li><li><a href="/rankings">Xếp hạng</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Bản tin</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
 
 <script>
 function toggleMob(){
@@ -16960,7 +17002,7 @@ function copyArticleLink(button){
 }
 <\/script>
 <script defer src="/assets/search-redirect.js"><\/script>
-<script defer src="/assets/enhance.js?v=20261001c"><\/script>
+<script defer src="/assets/enhance.js?v=20261001d"><\/script>
 <script src="/assets/lang-switch.js" defer><\/script>
 </body>
 </html>`.replace(/<a href="\/(choi-gi|gaming|anime|manga|reviews|rankings|chuyen-sau)"( class="active")?>/g,
@@ -17126,7 +17168,7 @@ async function saveRankings() {
           if (entry._origImg && entry._origImg !== entry.img) {
             html = html.replace(
               new RegExp(entry._origImg.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'g'),
-              entry.img
+              replSafe(entry.img)
             );
           }
         });
@@ -17135,7 +17177,7 @@ async function saveRankings() {
 
     // Better: replace full CATS block with serialized version
     const newCats = 'const CATS = ' + serializeCats(CATS_DATA) + ';';
-    html = html.replace(/const CATS\s*=\s*\{[\s\S]*?\n\}\s*;/, newCats);
+    html = html.replace(/const CATS\s*=\s*\{[\s\S]*?\n\}\s*;/, replSafe(newCats));
 
     await ghPut('rankings.html', html, sha, '[admin] cap nhat bang xep hang');
 
@@ -17150,7 +17192,7 @@ async function saveRankings() {
         enCats[key].top = JSON.parse(JSON.stringify(CATS_DATA[key].top || []));
         enCats[key].rest = JSON.parse(JSON.stringify(CATS_DATA[key].rest || []));
       }
-      enHtml = enHtml.replace(/const CATS\s*=\s*\{[\s\S]*?\n\}\s*;/, 'const CATS = ' + serializeCats(enCats) + ';');
+      enHtml = enHtml.replace(/const CATS\s*=\s*\{[\s\S]*?\n\}\s*;/, replSafe('const CATS = ' + serializeCats(enCats) + ';'));
       await ghPut('en/rankings.html', enHtml, enLatest.sha, '[admin] sync English rankings');
     }
 
@@ -17289,11 +17331,11 @@ let HUB_PREVIEW_TIMER = null;
 // data-oh-jump trên từng thẻ để bấm vào bản xem trước sẽ nhảy tới đúng thẻ
 // đang sửa bên danh sách — giống cách bài viết jump tới ảnh/danh mục.
 function buildHubPreviewHtml() {
-  const taggedCards = HUB_CARDS.map((c, i) => c.raw.replace(/^(<a\s+)/, `$1data-oh-jump="card-${i}" `));
+  const taggedCards = HUB_CARDS.map((c, i) => c.raw.replace(/^(<a\s+)/, `$1data-oh-jump="card-${replSafe(i)}" `));
   const newSection = '\n      ' + taggedCards.join('\n\n      ') + '\n      ';
   let html = HUB_RAW.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/, (m, p1, p2) => p1 + newSection + p2);
   html = html.replace('<head>', '<head><base href="https://otahub.asia/">');
-  html = html.replace('</body>', HUB_BRIDGE_SCRIPT + '</body>');
+  html = html.replace('</body>', replSafe(HUB_BRIDGE_SCRIPT + '</body>'));
   return html;
 }
 const HUB_BRIDGE_SCRIPT = `<script>(function(){
@@ -17779,7 +17821,7 @@ function loadHomeData(raw) {
     featured = { fc: fcRaw, sc: scBlocks.map(r => ({ raw: r })) };
   }
 
-  const rankSec = hSection(raw, '<div class="rank-grid">', '<div class="wrap rv">\n\n\n  <div class="sec-h"><span class="sec-t">Anime');
+  const rankSec = hSection(raw, '<div class="rank-grid">', '<div class="wrap rv">\n\n\n  <div class="sec-h"><h2 class="sec-t">Anime');
   let rankings = { pc: [], mobile: [], pcPrefix: '', mobilePrefix: '' };
   if (rankSec.ok) {
     const cardsRaw = rankSec.raw.split('<div class="rk-card">').slice(1);
@@ -17869,7 +17911,7 @@ function buildHomeHtml(rawHtml, D) {
   const newFeatured = '\n    ' + D.featured.fc.trim() + '\n\n\n    ' + D.featured.sc.map(c=>c.raw.trim()).join('\n\n\n    ') + '\n    ';
   html = html.replace(/(<!-- ADMIN:FEATURED_START -->)[\s\S]*?(<!-- ADMIN:FEATURED_END -->)/, (m,p1,p2)=>p1+newFeatured+p2);
 
-  html = hReplaceSection(html, '<div class="rank-grid">', '<div class="wrap rv">\n\n\n  <div class="sec-h"><span class="sec-t">Anime', () => {
+  html = hReplaceSection(html, '<div class="rank-grid">', '<div class="wrap rv">\n\n\n  <div class="sec-h"><h2 class="sec-t">Anime', () => {
     const cardClose = '\n\n\n      </div>\n\n\n    </div>';
     const pcCard = '<div class="rk-card">' + D.rankings.pcPrefix + D.rankings.pc.map(x=>x.raw).join('\n\n\n        ') + cardClose;
     const mobCard = '<div class="rk-card">' + D.rankings.mobilePrefix + D.rankings.mobile.map(x=>x.raw).join('\n\n\n        ') + cardClose;
@@ -17929,7 +17971,6 @@ const HOME_BLOCKS = [
   { key: 'hero', label: '🎬 Tin chính (Hero)' },
   { key: 'heroSide', label: '⭐ Nổi bật hôm nay' },
   { key: 'ticker', label: '📰 Ticker chạy tin' },
-  { key: 'marquee', label: '📢 Marquee' },
   { key: 'featured', label: '🗞️ Tin nổi bật (lưới)' },
   { key: 'rankings', label: '🏆 Bảng xếp hạng' },
   { key: 'anime', label: '📺 Anime theo mùa' },
@@ -17967,7 +18008,6 @@ const HOME_BRIDGE_SCRIPT = `<script>(function(){
     {key:'hero', sel:'.hero-main'},
     {key:'heroSide', sel:'.hero-side'},
     {key:'ticker', sel:'.ticker'},
-    {key:'marquee', sel:'.marquee'},
     {key:'featured', sel:'.f-grid'},
     {key:'rankings', sel:'.rank-grid'},
     {key:'manga', sel:'.manga-grid'},
@@ -18002,7 +18042,7 @@ const HOME_BRIDGE_SCRIPT = `<script>(function(){
 function homeBuildIframeSrcdoc() {
   const built = buildHomeHtml(HOME_RAW, HOME_DATA);
   let out = built.replace('<head>', '<head><base href="https://otahub.asia/">');
-  out = out.replace('</body>', HOME_BRIDGE_SCRIPT + '</body>');
+  out = out.replace('</body>', replSafe(HOME_BRIDGE_SCRIPT + '</body>'));
   return out;
 }
 
@@ -18618,7 +18658,7 @@ function syncChoiGiStaticBlocks(raw, items) {
         '@type': 'ListItem', position: idx + 1, name: it.name,
         url: it.link ? (/^https?:/i.test(it.link) ? it.link : 'https://otahub.asia' + it.link) : pageUrl,
       }));
-      return `<script type="application/ld+json">${JSON.stringify(schema).replace(/<\//g, '<\\/')}</script>`;
+      return `<script type="application/ld+json">${JSON.stringify(schema).replace(/<\//g, '<\\/')}<\/script>`;
     } catch (e) { return whole; }
   });
   for (const type of Object.keys(CHOIGI_SUBTYPES)) {
@@ -18639,7 +18679,7 @@ function syncChoiGiStaticBlocks(raw, items) {
             <div class="sc-score">${esc(it.score)}</div>
           </div>`).join('');
     raw = raw.slice(0, listIdx) + `<div class="sc-list">\n          ${inner}\n        </div>` + raw.slice(listIdx + blk.end);
-    raw = raw.replace(new RegExp(`(class="sc-tab-btn" data-tab="${type}"[^>]*>[^<]*\\()\\d+(\\))`), `$1${top.length}$2`);
+    raw = raw.replace(new RegExp(`(class="sc-tab-btn" data-tab="${type}"[^>]*>[^<]*\\()\\d+(\\))`), `$1${replSafe(top.length)}$2`);
   }
   return raw;
 }
@@ -18795,8 +18835,9 @@ async function saveReleases() {
     let raw = decodeURIComponent(escape(atob(latest.content)));
     const re = /const RELEASES\s*=\s*\{[\s\S]*?\n\s*\};/;
     if (!re.test(raw)) throw new Error('Không tìm thấy RELEASES để ghi lại.');
-    const newBlock = 'const RELEASES = ' + JSON.stringify(RELEASES_DATA, null, 2) + ';';
-    raw = raw.replace(re, newBlock);
+    const newBlock = 'const RELEASES = ' + JSON.stringify(RELEASES_DATA, null, 2).replace(/<\//g, '<\\/') + ';';
+    // Dùng hàm thay thế: chuỗi thay thế dạng text sẽ hiểu "$&", "$'"... trong dữ liệu là mẫu đặc biệt.
+    raw = raw.replace(re, () => newBlock);
     await ghPut('sap-ra-mat.html', raw, latest.sha, '[admin] cap nhat RELEASES trong sap-ra-mat.html');
     toast('success', '✅ Đã lưu! Deploy trong ~1-2 phút.');
   } catch(e) {
@@ -18998,7 +19039,7 @@ async function saveSection() {
     const latest = await ghGet(SECTION_CTX.file);
     let raw = decodeURIComponent(escape(atob(latest.content)));
     if (!SECTION_CONTENT_RE.test(raw)) throw new Error(`Không tìm thấy vùng nội dung (ADMIN:CONTENT) trong ${SECTION_CTX.file}`);
-    raw = raw.replace(SECTION_CONTENT_RE, `<!-- ADMIN:CONTENT_START -->${newInner}<!-- ADMIN:CONTENT_END -->`);
+    raw = raw.replace(SECTION_CONTENT_RE, `<!-- ADMIN:CONTENT_START -->${replSafe(newInner)}<!-- ADMIN:CONTENT_END -->`);
     await ghPut(SECTION_CTX.file, raw, latest.sha, `[admin] cap nhat noi dung ${SECTION_CTX.file}`);
     toast('success', '✅ Đã lưu! Deploy trong ~1-2 phút.');
   } catch(e) {
@@ -19217,9 +19258,12 @@ async function syncNewArticle(art) {
       const markerMatch = hubHtml.match(/(<!-- ADMIN:ARTICLES_START -->)([\s\S]*?)(<!-- ADMIN:ARTICLES_END -->)/);
       if (!markerMatch || markerMatch[2].includes(`href="/${slug}"`)) return null;
       const tagLabel = isEn ? (cat || 'LATEST') : (cat || 'TIN MỚI');
-      const dateLabel = isEn ? 'Just now' : 'Vừa xong';
+      // Ghi ngày đăng thật: chữ "Vừa xong" cố định trong HTML tĩnh vẫn hiện y nguyên nhiều ngày sau.
+      const dateLabel = isEn
+        ? new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })
+        : new Date().toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
       const cardHtml = `\n      <a href="/${slug}" class="ac">\n        <div class="ac-thumb"><img height="675" width="1200" src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy"><span class="tag">${esc(tagLabel)}</span></div>\n        <div class="ac-body">\n          <h3 class="ac-title">${esc(title)}</h3>\n          <div class="ac-meta"><span class="ac-author">${esc(author)}</span> · <span class="ac-date">${dateLabel}</span></div>\n        </div>\n      </a>\n`;
-      return hubHtml.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/, markerMatch[1] + cardHtml + markerMatch[2] + markerMatch[3]);
+      return hubHtml.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/, replSafe(markerMatch[1] + cardHtml + markerMatch[2] + markerMatch[3]));
     }, `[admin] don bai /${slug} vao ${targetHub}`);
   } catch(e) {
     console.warn('Hub sync error:', e);
@@ -19237,7 +19281,10 @@ async function syncNewArticle(art) {
       if (!newsMatch || newsMatch[4].includes(`href="/${slug}"`)) return null;
       const count = parseInt(newsMatch[2], 10) || 30;
       const badgeText = isEn ? (cat || 'HOT') : (cat || 'HOT');
-      const newsDate = isEn ? 'Just now' : 'Vừa xong';
+      // Ghi ngày đăng thật: chữ "Vừa xong" cố định trong HTML tĩnh vẫn hiện y nguyên nhiều ngày sau.
+      const newsDate = isEn
+        ? new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })
+        : new Date().toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
       const newCard = `\n    <a href="/${slug}" style="display:block;background:#150a2c;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;text-decoration:none;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,242,255,0.4)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,242,255,0.12)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none';this.style.boxShadow='none'">\n      <div style="position:relative;width:100%;height:180px;background:#0d051e;overflow:hidden;">\n        <img height="675" width="1200" src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">\n        <span style="position:absolute;top:10px;left:10px;background:linear-gradient(135deg,#ff2177,#7c3aed);color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px;letter-spacing:.15em;text-transform:uppercase;">${esc(badgeText)}</span>\n      </div>\n      <div style="padding:16px;">\n        <h3 style="color:#ffffff;font-size:15px;font-weight:700;line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(title)}</h3>\n        <p style="color:rgba(240,238,255,0.65);font-size:12.5px;line-height:1.5;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(desc || '')}</p>\n        <div style="display:flex;align-items:center;justify-content:space-between;color:rgba(240,238,255,0.4);font-size:11px;">\n          <span>⚡ OtaHub News</span>\n          <span>${newsDate}</span>\n        </div>\n      </div>\n    </a>\n`;
       return newsHtml.replace(/(<!-- OTAHUB_NEW30_START -->[\s\S]*?<!-- OTAHUB_NEW30_END -->)/, () => `${newsMatch[1]}${count + 1}${newsMatch[3]}${newCard}${newsMatch[4]}${newsMatch[5]}`);
     }, `[admin] them tin /${slug} vao ${newsTarget}`);
@@ -19422,7 +19469,7 @@ function reviewsAddNew() {
     verdict: 'Xuất sắc',
     cat: REVIEWS_TAB === 'all' ? 'Gaming' : (REVIEWS_TAB === 'anime' ? 'Anime' : 'Manga'),
     author: CURRENT_ARTICLE_AUTHOR || 'OtaHub Editorial',
-    date: 'Hôm nay',
+    date: new Date().toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' }),
     time: '8 phút',
     cats: [REVIEWS_TAB === 'all' ? 'gaming' : REVIEWS_TAB],
     date_ts: 0
@@ -19439,7 +19486,7 @@ async function saveReviews() {
     const latest = await ghGet('reviews.html');
     let html = decodeURIComponent(escape(atob(latest.content)));
     const formattedJson = JSON.stringify(REVIEWS_LIST, null, 2);
-    html = html.replace(/const REVIEWS\s*=\s*\[[\s\S]*?\n\s*\];/, `const REVIEWS = ${formattedJson};`);
+    html = html.replace(/const REVIEWS\s*=\s*\[[\s\S]*?\n\s*\];/, `const REVIEWS = ${replSafe(formattedJson)};`);
     await ghPut('reviews.html', html, latest.sha, `[admin] cap nhat ${REVIEWS_LIST.length} reviews trong reviews.html`);
     if (t && t.remove) t.remove();
     HAS_UNSAVED_CHANGES = false;
