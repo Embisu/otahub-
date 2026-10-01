@@ -1310,23 +1310,113 @@ input, select, textarea { font-family: inherit; }
   .rk-title { font-size: 13px; }
   .rk-item {
     display: grid;
-    grid-template-columns: 24px 54px 1fr auto;
+    grid-template-columns: 24px 52px 1fr auto;
     gap: 10px;
     align-items: center;
-    padding: 8px 0;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255,255,255,.05);
   }
-  .rk-num { font-size: 15px; font-weight: 700; width: 24px; text-align: center; }
-  .rk-thumb { width: 54px; height: 40px; border-radius: 4px; }
-  .rk-t {
-    font-size: 13px;
+  .rk-item:last-child { border-bottom: none; }
+  .rk-num {
+    font-family: var(--fd);
+    font-size: 16px;
+    font-weight: 800;
+    width: 24px;
+    text-align: center;
+    line-height: 1;
+    color: rgba(240,238,255,.4);
+  }
+  .rk-item.top1 .rk-num { color: var(--amber); text-shadow: 0 0 10px rgba(251,191,36,.3); font-size: 18px; }
+  .rk-item.top2 .rk-num { color: #d1d5db; font-size: 17px; }
+  .rk-item.top3 .rk-num { color: #f97316; font-size: 16.5px; }
+  .rk-thumb {
+    width: 52px;
+    height: 52px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: var(--surf2);
+    border: 1px solid rgba(255,255,255,.08);
+  }
+  .rk-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .rk-info {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    overflow: hidden;
+  }
+  .rk-name {
+    font-family: var(--fd);
+    font-size: 14.5px;
+    font-weight: 700;
     line-height: 1.25;
-    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .rk-m { font-size: 10.5px; }
-  .rk-sc { font-size: 13px; font-weight: 700; }
+  .rk-sub {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .rk-tags {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .rk-tag-pill {
+    font-size: 9px;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 3px;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+  .rk-trend {
+    font-size: 9.5px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .rk-score-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    min-width: 40px;
+    flex-shrink: 0;
+    gap: 2px;
+  }
+  .rk-score {
+    font-family: var(--fd);
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 0;
+  }
+  .rk-stars { display: none !important; }
+  .rk-bar-wrap {
+    width: 36px;
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255,255,255,.08);
+    overflow: hidden;
+    margin-top: 2px;
+  }
 
   /* Anime Seasonal Horizontal Touch Carousel */
   .ag-nav { display: none !important; }
@@ -1360,8 +1450,11 @@ input, select, textarea { font-family: inherit; }
     padding: 10px 14px;
     align-items: center;
   }
-  .mi-thumb { width: 48px; height: 68px; border-radius: 4px; }
-  .mi-title { font-size: 13.5px; line-height: 1.25; }
+  .manga-item > div:nth-child(3) { min-width: 0; overflow: hidden; }
+  .mi-thumb { width: 48px; height: 68px; border-radius: 4px; overflow: hidden; flex-shrink: 0; }
+  .mi-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .mi-title { font-size: 13.5px; line-height: 1.25; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; }
+  .mi-meta { font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
   /* Latest News Stream (Streamlined Mobile Cards) */
   .latest-wrap { display: flex; flex-direction: column; gap: 16px; }

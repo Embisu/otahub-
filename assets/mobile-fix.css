@@ -116,6 +116,20 @@
   .pod-body{padding:14px 16px 16px!important;margin-top:0!important}
   .pod-item .pod-img{position:absolute;inset:0}
 
+  /* Rankings list items (Mobile compact layout) */
+  .rk-item{display:grid!important;grid-template-columns:24px 52px 1fr auto!important;gap:10px!important;align-items:center!important;padding:9px 0!important}
+  .rk-num{font-family:var(--fd)!important;font-size:16px!important;font-weight:800!important;width:24px!important;text-align:center!important;line-height:1!important}
+  .rk-thumb{width:52px!important;height:52px!important;border-radius:8px!important;overflow:hidden!important;flex-shrink:0!important}
+  .rk-thumb img{width:100%!important;height:100%!important;object-fit:cover!important}
+  .rk-info{min-width:0!important;display:flex!important;flex-direction:column!important;justify-content:center!important;gap:2px!important;overflow:hidden!important}
+  .rk-name{font-size:14.5px!important;line-height:1.25!important;font-weight:700!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;margin-bottom:0!important}
+  .rk-sub{font-size:11px!important;line-height:1.2!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+  .rk-tags{display:flex!important;align-items:center!important;gap:6px!important;margin-top:2px!important;white-space:nowrap!important;overflow:hidden!important}
+  .rk-score-col{display:flex!important;flex-direction:column!important;align-items:flex-end!important;justify-content:center!important;min-width:40px!important;flex-shrink:0!important;gap:2px!important}
+  .rk-score{font-size:16px!important;font-weight:800!important;line-height:1!important;margin-bottom:0!important}
+  .rk-stars{display:none!important}
+  .rk-bar-wrap{width:36px!important;height:3px!important;border-radius:2px!important;margin-top:2px!important}
+
   /* Trang chi tiết Game / Anime */
   .info-row{display:flex;flex-direction:column;gap:2px}
   .score-breakdown-card{padding:18px 16px!important}
