@@ -174,6 +174,7 @@ var TITLE_ALIAS={
   'Solo Leveling Season 3':'Solo Leveling Season 2',
   'Sousou no Frieren':'Frieren Season 2',
   'Kaiju No 8':'Kaiju No.8',
+  'Ghost of Yōtei':'Ghost of Yōtei: Complete Edition',
   'Bleach: TYBW Part 5':'Bleach: TYBW Final Part'
 };
 var TYPE_ENTRY_ALIAS={
@@ -392,7 +393,7 @@ function renderEntry(title, entry, catalog){
 if(!qTitle){
   renderEmpty();
 }else{
-  fetch('/assets/catalog.json?v=20261001c').then(function(r){return r.json();}).then(function(catalog){
+  fetch('/assets/catalog.json?v=20261001d').then(function(r){return r.json();}).then(function(catalog){
     var found=findEntry(catalog, qTitle);
     if(!found){renderEntry(qTitle, generatedEntry(qTitle), catalog);return;}
     renderEntry(found[0], found[1], catalog);

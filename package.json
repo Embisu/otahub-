@@ -10,6 +10,7 @@
     "authors:build": "node scripts/generate-author-profiles.mjs",
     "indexes:build": "node scripts/normalize-publishing-data.mjs && node scripts/generate-author-profiles.mjs && node scripts/rebuild-discovery-indexes.mjs",
     "rankings:sync": "node scripts/sync-ranking-catalog.mjs",
+    "rankings:home": "node scripts/sync-home-rankings.mjs",
     "profiles:complete": "node scripts/complete-profile-catalog.mjs",
     "content:clean-dashes": "node scripts/remove-em-dashes.mjs",
     "news:db:local": "wrangler d1 migrations apply otahub-news --local",
