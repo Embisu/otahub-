@@ -32,7 +32,7 @@
 
 <style>
 
-:root{--bg:#0b0418;--surf:#150a2c;--surf2:#1d1040;--cyan:#00e5ff;--sakura:#ff3080;--violet:#7c3aed;--lav:#a78bfa;--amber:#fbbf24;--white:#f0eeff;--dim:rgba(240,238,255,.62);--muted:rgba(240,238,255,.35);--border:rgba(255,255,255,.07);--bcyan:rgba(0,229,255,.18);--ease:cubic-bezier(.16,1,.3,1);--fd:'Rajdhani',sans-serif;--fb:'Space Grotesk',sans-serif}
+@font-face{font-family:'BHN Fonarto Regular';src:url('/assets/fonts/BHNFonartoRegular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}:root{--bg:#0b0418;--surf:#150a2c;--surf2:#1d1040;--cyan:#00f2ff;--sakura:#ff2177;--violet:#7c3aed;--lav:#a78bfa;--amber:#fbbf24;--white:#f0eeff;--dim:rgba(240,238,255,.62);--muted:rgba(240,238,255,.35);--border:rgba(255,255,255,.07);--bcyan:rgba(0,242,255,.18);--ease:cubic-bezier(.16,1,.3,1);--fd:'Rajdhani',sans-serif;--fb:'Space Grotesk',sans-serif}
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
@@ -62,11 +62,11 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 
 .logo svg{width:30px;height:30px;animation:lp 3s ease-in-out infinite}
 
-@keyframes lp{0%,100%{filter:drop-shadow(0 0 4px #00e5ff)}50%{filter:drop-shadow(0 0 12px #00e5ff)}}
+@keyframes lp{0%,100%{filter:drop-shadow(0 0 4px #00f2ff)}50%{filter:drop-shadow(0 0 12px #00f2ff)}}
 
-.logo-t{font-family:var(--fd);font-weight:700;font-size:20px}
+.logo-t{font-family:'BHN Fonarto Regular',var(--fd);font-weight:400;font-size:20px}
 
-.logo-ota{color:var(--white)}.logo-hub{color:var(--cyan)}
+.logo-ota{color:var(--sakura)}.logo-hub{color:var(--cyan)}
 
 .cta{background:var(--cyan);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;padding:8px 20px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:background .18s;text-decoration:none;display:inline-block;margin-left:auto}
 
@@ -78,7 +78,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 
 .err-page{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 24px;position:relative;z-index:1}
 
-.err-code{font-family:var(--fd);font-size:clamp(120px,25vw,240px);font-weight:700;line-height:1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:2px rgba(0,229,255,.2);position:relative;margin-bottom:-20px;user-select:none}
+.err-code{font-family:var(--fd);font-size:clamp(120px,25vw,240px);font-weight:700;line-height:1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:2px rgba(0,242,255,.2);position:relative;margin-bottom:-20px;user-select:none}
 
 .err-code::after{content:'404';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:transparent;background:linear-gradient(135deg,var(--cyan) 0%,var(--violet) 50%,var(--sakura) 100%);-webkit-background-clip:text;background-clip:text;opacity:.12;filter:blur(1px)}
 
@@ -98,9 +98,9 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 
 .btn-main:hover{background:#33eeff}
 
-.btn-ghost{background:none;border:1px solid rgba(0,229,255,.2);color:var(--cyan);font-family:var(--fd);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:12px 32px;text-decoration:none;transition:all .18s;display:inline-block}
+.btn-ghost{background:none;border:1px solid rgba(0,242,255,.2);color:var(--cyan);font-family:var(--fd);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:12px 32px;text-decoration:none;transition:all .18s;display:inline-block}
 
-.btn-ghost:hover{border-color:var(--cyan);background:rgba(0,229,255,.06)}
+.btn-ghost:hover{border-color:var(--cyan);background:rgba(0,242,255,.06)}
 
 
 
@@ -112,7 +112,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 
 .qcard{background:rgba(21,10,44,.7);border:1px solid var(--border);padding:14px 20px;text-decoration:none;transition:all .22s;display:flex;align-items:center;gap:10px;min-width:130px;justify-content:center}
 
-.qcard:hover{border-color:rgba(0,229,255,.3);background:rgba(0,229,255,.05);transform:translateY(-2px)}
+.qcard:hover{border-color:rgba(0,242,255,.3);background:rgba(0,242,255,.05);transform:translateY(-2px)}
 
 .qcard-icon{font-size:18px}
 
@@ -210,7 +210,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 .rk-item:nth-child(n+4) .rk-num, .rki-item:nth-child(n+4) .rki-num, .t-item:nth-child(n+4) .t-num {
   color: #a5f3fc !important;
   font-size: 17px;
-  text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+  text-shadow: 0 0 8px rgba(0,242,255, 0.3);
 }
 
 .an-score-num, .rk-sc, .rki-score, .sc-big, .score-num {
@@ -242,18 +242,18 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   background: rgba(17, 8, 42, 0.85) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 229, 255, 0.25) !important;
+  border: 1px solid rgba(0,242,255, 0.25) !important;
   border-radius: 14px;
-  box-shadow: 0 12px 36px rgba(0,0,0,0.55), 0 0 24px rgba(0,229,255,0.08);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.55), 0 0 24px rgba(0,242,255,0.08);
   padding: 24px 22px;
 }
 .side-head {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: linear-gradient(90deg, rgba(255,48,128,0.25), rgba(0,229,255,0.2));
-  border: 1px solid rgba(0,229,255,0.45);
-  color: #00e5ff !important;
+  background: linear-gradient(90deg, rgba(255,33,119,0.25), rgba(0,242,255,0.2));
+  border: 1px solid rgba(0,242,255,0.45);
+  color: #00f2ff !important;
   font-family: var(--fd);
   font-size: 11px;
   font-weight: 800;
@@ -262,7 +262,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   padding: 6px 14px;
   border-radius: 6px;
   margin-bottom: 16px;
-  text-shadow: 0 0 10px rgba(0,229,255,0.5);
+  text-shadow: 0 0 10px rgba(0,242,255,0.5);
 }
 .sa-t {
   color: #ffffff !important;
@@ -272,7 +272,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   text-shadow: 0 1px 3px rgba(0,0,0,0.7);
   transition: color .2s ease;
 }
-.s-art:hover .sa-t { color: #00e5ff !important; }
+.s-art:hover .sa-t { color: #00f2ff !important; }
 .sa-m { color: #cbd5e1 !important; font-size: 12px; }
 .sa-thumb {
   border-radius: 8px;
@@ -282,14 +282,14 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 /* ── Item 4 Fix: High Contrast Global Text ── */
 .wc-t { color: #ffffff !important; font-weight: 700; font-size: 16.5px; }
 .wc-m { color: #cbd5e1 !important; font-size: 12px; }
-.w-card:hover .wc-t { color: #00e5ff !important; }
+.w-card:hover .wc-t { color: #00f2ff !important; }
 .fc-title { color: #ffffff !important; font-weight: 700; }
 .fc-sub { color: #f1f5f9 !important; font-size: 14px; }
 .h-sub { color: #f8fafc !important; font-size: 15px; text-shadow: 0 2px 10px rgba(0,0,0,0.85); }
 .sec-t { color: #ffffff !important; font-size: 17px; font-weight: 800; letter-spacing: .08em; }
 .ft-desc { color: #cbd5e1 !important; }
 .ft-links a { color: #cbd5e1 !important; transition: color .2s; }
-.ft-links a:hover { color: #00e5ff !important; }
+.ft-links a:hover { color: #00f2ff !important; }
 
 /* ── Item 7 Fix: Fast & Fully Clickable Breaking News Ticker ── */
 .ticker {
@@ -367,10 +367,10 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
     background: rgba(15, 6, 38, 0.88);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 229, 255, 0.35);
+    border: 1px solid rgba(0,242,255, 0.35);
     border-radius: 28px;
     padding: 6px 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(0,229,255,0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(0,242,255,0.2);
     z-index: 999;
     align-items: center;
     justify-content: space-around;
@@ -396,8 +396,8 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   }
   .mtd-item svg { width: 18px; height: 18px; fill: currentColor; }
   .mtd-item:hover, .mtd-item.active {
-    color: #00e5ff;
-    background: rgba(0, 229, 255, 0.12);
+    color: #00f2ff;
+    background: rgba(0,242,255, 0.12);
   }
   body { padding-bottom: 72px; }
 }
@@ -454,7 +454,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 
     <a href="/en" class="logo">
 
-      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg>
+      <img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy">
 
       <span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span>
 
@@ -510,7 +510,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 
 
 
-<footer><div class="ft-in"><div><a href="/en" class="logo" style="display:inline-flex"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Asian Gaming, Anime and Manga news hub. Fast, specialized, no bias.</p></div><div><div class="ft-h">Category</div><ul class="ft-links"><li><a href="/en/gaming">Gaming</a></li><li><a href="/en/anime">Anime</a></li><li><a href="/en/manga">Manga</a></li><li><a href="/en/reviews">Reviews</a></li><li><a href="/en/rankings">Rankings</a></li></ul></div><div><div class="ft-h">About OtaHub</div><ul class="ft-links"><li><a href="/en/about">Introduction</a></li><li><a href="/en/about#team">Team</a></li><li><a href="/en/about#contact">Contact</a></li><li><a href="/en/index#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Follow</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub<br><span style="opacity:.75;font-size:12px">Operated by ANBU Marketing &amp; Communications Co., Ltd · Tax ID 3301761892 · 47 Dang Van Ngu, An Cuu Ward, Hue City, Vietnam · Hotline 039 699 5252 · <a href="mailto:dat.phan@anbu.asia" style="color:inherit">dat.phan@anbu.asia</a></span></span></div></footer>
+<footer><div class="ft-in"><div><a href="/en" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Asian Gaming, Anime and Manga news hub. Fast, specialized, no bias.</p></div><div><div class="ft-h">Category</div><ul class="ft-links"><li><a href="/en/gaming">Gaming</a></li><li><a href="/en/anime">Anime</a></li><li><a href="/en/manga">Manga</a></li><li><a href="/en/reviews">Reviews</a></li><li><a href="/en/rankings">Rankings</a></li></ul></div><div><div class="ft-h">About OtaHub</div><ul class="ft-links"><li><a href="/en/about">Introduction</a></li><li><a href="/en/about#team">Team</a></li><li><a href="/en/about#contact">Contact</a></li><li><a href="/en/index#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Follow</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub<br><span style="opacity:.75;font-size:12px">Operated by ANBU Marketing &amp; Communications Co., Ltd · Tax ID 3301761892 · 47 Dang Van Ngu, An Cuu Ward, Hue City, Vietnam · Hotline 039 699 5252 · <a href="mailto:dat.phan@anbu.asia" style="color:inherit">dat.phan@anbu.asia</a></span></span></div></footer>
 
 <script>
 

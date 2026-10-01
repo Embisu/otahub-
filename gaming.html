@@ -166,13 +166,13 @@
 /* ─── TOKENS ─── */
 
 
-:root{
+@font-face{font-family:'BHN Fonarto Regular';src:url('/assets/fonts/BHNFonartoRegular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}:root{
 
 
   --bg:#0b0418; --surf:#150a2c; --surf2:#1d1040; --card:#190c36;
 
 
-  --cyan:#00e5ff; --sakura:#ff3080; --violet:#7c3aed;
+  --cyan:#00f2ff; --sakura:#ff2177; --violet:#7c3aed;
 
 
   --lav:#a78bfa; --amber:#fbbf24; --green:#34d399;
@@ -181,7 +181,7 @@
   --white:#f0eeff; --dim:rgba(240,238,255,.62); --muted:rgba(240,238,255,.35);
 
 
-  --border:rgba(255,255,255,.07); --bcyan:rgba(0,229,255,.18);
+  --border:rgba(255,255,255,.07); --bcyan:rgba(0,242,255,.18);
 
 
   --ease:cubic-bezier(.16,1,.3,1);
@@ -259,13 +259,13 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .logo svg{width:30px;height:30px;animation:lp 3s ease-in-out infinite}
 
 
-@keyframes lp{0%,100%{filter:drop-shadow(0 0 4px var(--cyan)) drop-shadow(0 0 12px rgba(0,229,255,.5))}50%{filter:drop-shadow(0 0 8px var(--cyan)) drop-shadow(0 0 24px rgba(0,229,255,.9))}}
+@keyframes lp{0%,100%{filter:drop-shadow(0 0 4px var(--cyan)) drop-shadow(0 0 12px rgba(0,242,255,.5))}50%{filter:drop-shadow(0 0 8px var(--cyan)) drop-shadow(0 0 24px rgba(0,242,255,.9))}}
 
 
-.logo-t{font-family:var(--fd);font-weight:700;font-size:20px;letter-spacing:-.01em;line-height:1}
+.logo-t{font-family:'BHN Fonarto Regular',var(--fd);font-weight:400;font-size:20px;letter-spacing:-.01em;line-height:1}
 
 
-.logo-ota{color:var(--white)}.logo-hub{color:var(--cyan)}
+.logo-ota{color:var(--sakura)}.logo-hub{color:var(--cyan)}
 
 
 .nav-links{display:flex;align-items:center;list-style:none;gap:0;flex:1}
@@ -367,7 +367,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
     linear-gradient(to bottom, transparent 0%, var(--bg) 100%),
 
 
-    linear-gradient(to right, rgba(0,229,255,.06) 0%, transparent 50%);
+    linear-gradient(to right, rgba(0,242,255,.06) 0%, transparent 50%);
 
 
 }
@@ -442,7 +442,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 }
 
 
-.ch-title em{font-style:normal;color:var(--cyan);text-shadow:0 0 40px rgba(0,229,255,.3)}
+.ch-title em{font-style:normal;color:var(--cyan);text-shadow:0 0 40px rgba(0,242,255,.3)}
 
 
 .ch-sub{font-size:16px;color:var(--dim);max-width:500px;margin-bottom:0}
@@ -574,10 +574,10 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .tag{display:inline-flex;align-items:center;gap:5px;font-family:var(--fb);font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px}
 
 
-.tc{background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.28);color:var(--cyan)}
+.tc{background:rgba(0,242,255,.1);border:1px solid rgba(0,242,255,.28);color:var(--cyan)}
 
 
-.ts{background:rgba(255,48,128,.1);border:1px solid rgba(255,48,128,.28);color:var(--sakura)}
+.ts{background:rgba(255,33,119,.1);border:1px solid rgba(255,33,119,.28);color:var(--sakura)}
 
 
 .tv{background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.3);color:var(--lav)}
@@ -679,7 +679,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
     linear-gradient(to top, rgba(11,4,24,.98) 0%, rgba(11,4,24,.45) 45%, transparent 75%),
 
 
-    linear-gradient(to right, rgba(0,229,255,.03) 0%, transparent 50%);
+    linear-gradient(to right, rgba(0,242,255,.03) 0%, transparent 50%);
 
 
 }
@@ -694,10 +694,10 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 /* Hover border */
 
 
-.fg-big::after{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;pointer-events:none;z-index:3}
+.fg-big::after{content:'';position:absolute;inset:0;border:1px solid rgba(0,242,255,0);transition:border-color .3s;pointer-events:none;z-index:3}
 
 
-.fg-big:hover::after{border-color:rgba(0,229,255,.22)}
+.fg-big:hover::after{border-color:rgba(0,242,255,.22)}
 
 
 .fgb-body{position:absolute;bottom:0;left:0;right:0;padding:32px;z-index:2}
@@ -805,10 +805,10 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .fg-sm:hover .fgs-title{color:var(--cyan)}
 
 
-.fg-sm::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);z-index:3;pointer-events:none;transition:border-color .3s}
+.fg-sm::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,242,255,0);z-index:3;pointer-events:none;transition:border-color .3s}
 
 
-.fg-sm:hover::before{border-color:rgba(0,229,255,.18)}
+.fg-sm:hover::before{border-color:rgba(0,242,255,.18)}
 
 
 .fgs-thumb{position:absolute;inset:0;overflow:hidden}
@@ -934,10 +934,10 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .fc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,2,32,.98) 0%,rgba(11,2,32,.6) 38%,rgba(11,2,32,.12) 70%,transparent 100%),linear-gradient(to right,transparent 50%,rgba(11,2,32,.4) 100%)}
 
 
-.fc::after{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;pointer-events:none}
+.fc::after{content:'';position:absolute;inset:0;border:1px solid rgba(0,242,255,0);transition:border-color .3s;pointer-events:none}
 
 
-.fc:hover::after{border-color:rgba(0,229,255,.3)}
+.fc:hover::after{border-color:rgba(0,242,255,.3)}
 
 
 .fc-body{position:absolute;bottom:0;left:0;right:0;padding:32px}
@@ -970,10 +970,10 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .sc:hover .sc-img img{transform:scale(1.07);opacity:.95}
 
 
-.sc::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);transition:border-color .3s;z-index:3;pointer-events:none}
+.sc::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,242,255,0);transition:border-color .3s;z-index:3;pointer-events:none}
 
 
-.sc:hover::before{border-color:rgba(0,229,255,.22)}
+.sc:hover::before{border-color:rgba(0,242,255,.22)}
 
 
 .sc-body{padding:14px 16px}
@@ -1048,10 +1048,10 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .acm-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,4,24,.97) 0%,rgba(11,4,24,.35) 55%,transparent 85%)}
 
 
-.ac-mag::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,229,255,0);z-index:3;pointer-events:none;transition:border-color .3s}
+.ac-mag::before{content:'';position:absolute;inset:0;border:1px solid rgba(0,242,255,0);z-index:3;pointer-events:none;transition:border-color .3s}
 
 
-.ac-mag:hover::before{border-color:rgba(0,229,255,.18)}
+.ac-mag:hover::before{border-color:rgba(0,242,255,.18)}
 
 
 .acm-body{position:relative;z-index:2;padding:18px 20px}
@@ -1225,7 +1225,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .side-head-label svg{opacity:.6}
 
 
-.side-badge{font-size:9px;padding:2px 7px;border:1px solid rgba(0,229,255,.25);color:var(--cyan);letter-spacing:.08em}
+.side-badge{font-size:9px;padding:2px 7px;border:1px solid rgba(0,242,255,.25);color:var(--cyan);letter-spacing:.08em}
 
 
 
@@ -1354,10 +1354,10 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
   margin:0;padding:24px 20px;
 
 
-  background:linear-gradient(135deg,rgba(0,229,255,.07) 0%,rgba(124,58,237,.07) 100%);
+  background:linear-gradient(135deg,rgba(0,242,255,.07) 0%,rgba(124,58,237,.07) 100%);
 
 
-  border-top:1px solid rgba(0,229,255,.12);
+  border-top:1px solid rgba(0,242,255,.12);
 
 
   text-align:center;
@@ -1375,7 +1375,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .pb-inp{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--white);font-family:var(--fb);font-size:13px;padding:9px 12px;outline:none;margin-bottom:8px;display:block}
 
 
-.pb-inp:focus{border-color:rgba(0,229,255,.4)}
+.pb-inp:focus{border-color:rgba(0,242,255,.4)}
 
 
 .pb-btn{width:100%;background:var(--cyan);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;padding:10px;cursor:pointer;transition:background .18s}
@@ -1714,7 +1714,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 .rk-item:nth-child(n+4) .rk-num, .rki-item:nth-child(n+4) .rki-num, .t-item:nth-child(n+4) .t-num {
   color: #a5f3fc !important;
   font-size: 17px;
-  text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+  text-shadow: 0 0 8px rgba(0,242,255, 0.3);
 }
 
 .an-score-num, .rk-sc, .rki-score, .sc-big, .score-num {
@@ -1746,18 +1746,18 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   background: rgba(17, 8, 42, 0.85) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 229, 255, 0.25) !important;
+  border: 1px solid rgba(0,242,255, 0.25) !important;
   border-radius: 14px;
-  box-shadow: 0 12px 36px rgba(0,0,0,0.55), 0 0 24px rgba(0,229,255,0.08);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.55), 0 0 24px rgba(0,242,255,0.08);
   padding: 24px 22px;
 }
 .side-head {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: linear-gradient(90deg, rgba(255,48,128,0.25), rgba(0,229,255,0.2));
-  border: 1px solid rgba(0,229,255,0.45);
-  color: #00e5ff !important;
+  background: linear-gradient(90deg, rgba(255,33,119,0.25), rgba(0,242,255,0.2));
+  border: 1px solid rgba(0,242,255,0.45);
+  color: #00f2ff !important;
   font-family: var(--fd);
   font-size: 11px;
   font-weight: 800;
@@ -1766,7 +1766,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   padding: 6px 14px;
   border-radius: 6px;
   margin-bottom: 16px;
-  text-shadow: 0 0 10px rgba(0,229,255,0.5);
+  text-shadow: 0 0 10px rgba(0,242,255,0.5);
 }
 .sa-t {
   color: #ffffff !important;
@@ -1776,7 +1776,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   text-shadow: 0 1px 3px rgba(0,0,0,0.7);
   transition: color .2s ease;
 }
-.s-art:hover .sa-t { color: #00e5ff !important; }
+.s-art:hover .sa-t { color: #00f2ff !important; }
 .sa-m { color: #cbd5e1 !important; font-size: 12px; }
 .sa-thumb {
   border-radius: 8px;
@@ -1786,14 +1786,14 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 /* ── Item 4 Fix: High Contrast Global Text ── */
 .wc-t { color: #ffffff !important; font-weight: 700; font-size: 16.5px; }
 .wc-m { color: #cbd5e1 !important; font-size: 12px; }
-.w-card:hover .wc-t { color: #00e5ff !important; }
+.w-card:hover .wc-t { color: #00f2ff !important; }
 .fc-title { color: #ffffff !important; font-weight: 700; }
 .fc-sub { color: #f1f5f9 !important; font-size: 14px; }
 .h-sub { color: #f8fafc !important; font-size: 15px; text-shadow: 0 2px 10px rgba(0,0,0,0.85); }
 .sec-t { color: #ffffff !important; font-size: 17px; font-weight: 800; letter-spacing: .08em; }
 .ft-desc { color: #cbd5e1 !important; }
 .ft-links a { color: #cbd5e1 !important; transition: color .2s; }
-.ft-links a:hover { color: #00e5ff !important; }
+.ft-links a:hover { color: #00f2ff !important; }
 
 /* ── Item 7 Fix: Fast & Fully Clickable Breaking News Ticker ── */
 .ticker {
@@ -1871,10 +1871,10 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
     background: rgba(15, 6, 38, 0.88);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 229, 255, 0.35);
+    border: 1px solid rgba(0,242,255, 0.35);
     border-radius: 28px;
     padding: 6px 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(0,229,255,0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(0,242,255,0.2);
     z-index: 999;
     align-items: center;
     justify-content: space-around;
@@ -1900,8 +1900,8 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   }
   .mtd-item svg { width: 18px; height: 18px; fill: currentColor; }
   .mtd-item:hover, .mtd-item.active {
-    color: #00e5ff;
-    background: rgba(0, 229, 255, 0.12);
+    color: #00f2ff;
+    background: rgba(0,242,255, 0.12);
   }
   body { padding-bottom: 72px; }
 }
@@ -1944,10 +1944,10 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 .search-box{width:min(640px,90vw);position:relative}
 
 
-.search-input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(0,229,255,.2);outline:none;color:#f0eeff;font-family:'Space Grotesk',sans-serif;font-size:20px;padding:18px 56px 18px 20px;transition:border-color .2s,box-shadow .2s}
+.search-input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(0,242,255,.2);outline:none;color:#f0eeff;font-family:'Space Grotesk',sans-serif;font-size:20px;padding:18px 56px 18px 20px;transition:border-color .2s,box-shadow .2s}
 
 
-.search-input:focus{border-color:rgba(0,229,255,.6);box-shadow:0 0 0 3px rgba(0,229,255,.1)}
+.search-input:focus{border-color:rgba(0,242,255,.6);box-shadow:0 0 0 3px rgba(0,242,255,.1)}
 
 
 .search-input::placeholder{color:rgba(240,238,255,.25)}
@@ -1956,7 +1956,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 .search-close{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(240,238,255,.5);font-size:20px;cursor:pointer;transition:color .2s;padding:4px}
 
 
-.search-close:hover{color:#00e5ff}
+.search-close:hover{color:#00f2ff}
 
 
 .search-hint{font-size:12px;color:rgba(240,238,255,.35);letter-spacing:.07em}
@@ -1968,7 +1968,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 .stag{color:rgba(240,238,255,.45);text-decoration:none;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:5px 14px;border:1px solid rgba(255,255,255,.08);transition:border-color .2s,color .2s,background .2s}
 
 
-.stag:hover{border-color:rgba(0,229,255,.3);color:#00e5ff;background:rgba(0,229,255,.06)}
+.stag:hover{border-color:rgba(0,242,255,.3);color:#00f2ff;background:rgba(0,242,255,.06)}
 
 
 
@@ -1983,13 +1983,13 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 .ham span{display:block;width:22px;height:2px;background:rgba(240,238,255,.45);border-radius:2px;transition:all .3s}
 
 
-.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:#00e5ff}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:#00f2ff}
 
 
 .ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 
 
-.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:#00e5ff}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:#00f2ff}
 
 
 .mobile-nav{display:none;position:fixed;inset:0;top:62px;z-index:290;background:rgba(11,2,32,.97);backdrop-filter:blur(24px);padding:28px 24px;flex-direction:column;gap:0;transform:translateY(-8px);opacity:0;transition:transform .3s,opacity .3s;pointer-events:none}
@@ -2001,7 +2001,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 .mobile-nav a{display:block;color:rgba(240,238,255,.62);text-decoration:none;font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08);transition:color .2s,padding-left .2s}
 
 
-.mobile-nav a:hover{color:#00e5ff;padding-left:8px}
+.mobile-nav a:hover{color:#00f2ff;padding-left:8px}
 
 
 .m-sub{display:flex;gap:20px;padding-top:20px;flex-wrap:wrap}
@@ -2164,7 +2164,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 <!-- ══ NAV ══ -->
 
 
-<nav class="nav"><div class="nav-in"><a href="/" class="logo"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="5" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming" class="active">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="Tìm kiếm" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="/#newsletter" class="cta" id="cta-sub">Subscribe</a></div></div></nav>
+<nav class="nav"><div class="nav-in"><a href="/" class="logo"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming" class="active">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="Tìm kiếm" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="/#newsletter" class="cta" id="cta-sub">Subscribe</a></div></div></nav>
 
 
 <!-- SEO H1 -->
@@ -2272,7 +2272,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         <div class="ac-thumb"><img height="675" width="1200" src="/assets/img/uploads/t5huoqlk-call-of-duty-modern-warfare-4-he-lo-cau-hinh-pc-cho-dot-beta.jpg" alt="Call of Duty: Modern Warfare 4 hé lộ cấu hình PC, Ray Tracing và chế độ Collateral mới" loading="lazy"><span class="tag">Gaming</span></div>
         <div class="ac-body">
           <h3 class="ac-title">Call of Duty: Modern Warfare 4 hé lộ cấu hình PC, Ray Tracing và chế độ Collateral mới</h3>
-          <div class="ac-meta"><span class="ac-author">OtaHub Editorial</span> · <span class="ac-date">Vừa xong</span></div>
+          <div class="ac-meta"><span class="ac-author">Anna</span> · <span class="ac-date">Vừa xong</span></div>
         </div>
       </a>
 
@@ -2280,7 +2280,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         <div class="ac-thumb"><img height="675" width="1200" src="/assets/img/uploads/a5lb66t6-ctrl-r-story-01.webp" alt="CONTROL Resonant buộc game thủ PC tải lại toàn bộ trò chơi" loading="lazy"><span class="tag">Gaming</span></div>
         <div class="ac-body">
           <h3 class="ac-title">CONTROL Resonant buộc game thủ PC tải lại toàn bộ trò chơi</h3>
-          <div class="ac-meta"><span class="ac-author">OtaHub Editorial</span> · <span class="ac-date">Vừa xong</span></div>
+          <div class="ac-meta"><span class="ac-author">Anna</span> · <span class="ac-date">Vừa xong</span></div>
         </div>
       </a>
 
@@ -2296,7 +2296,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         <div class="ac-thumb"><img height="675" width="1200" src="/assets/img/uploads/ke3sc0o0-images-23.jpg" alt="Liar Game chính thức có mùa 2 sau khi anime mùa đầu kết thúc" loading="lazy"><span class="tag">Gaming</span></div>
         <div class="ac-body">
           <h3 class="ac-title">Liar Game chính thức có mùa 2 sau khi anime mùa đầu kết thúc</h3>
-          <div class="ac-meta"><span class="ac-author">OtaHub Editorial</span> · <span class="ac-date">Vừa xong</span></div>
+          <div class="ac-meta"><span class="ac-author">Anna</span> · <span class="ac-date">Vừa xong</span></div>
         </div>
       </a>
 
@@ -2304,7 +2304,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         <div class="ac-thumb"><img height="675" width="1200" src="/assets/img/uploads/ralzy7zw-711-thumb.jpg" alt="Vì sao The Isle lại hot đến vậy trong năm 2026?" loading="lazy"><span class="tag">Gaming</span></div>
         <div class="ac-body">
           <h3 class="ac-title">Vì sao The Isle lại hot đến vậy trong năm 2026?</h3>
-          <div class="ac-meta"><span class="ac-author">OtaHub Editorial</span> · <span class="ac-date">Vừa xong</span></div>
+          <div class="ac-meta"><span class="ac-author">Yu</span> · <span class="ac-date">Vừa xong</span></div>
         </div>
       </a>
 
@@ -2336,7 +2336,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         <div class="ac-thumb"><img height="675" width="1200" src="/assets/img/uploads/wclu1bq8-images-16.jpg" alt="Gears of War: E-Day: Thời gian phát hành và cách chơi sớm" loading="lazy"><span class="tag">Gaming</span></div>
         <div class="ac-body">
           <h3 class="ac-title">Gears of War: E-Day: Thời gian phát hành và cách chơi sớm</h3>
-          <div class="ac-meta"><span class="ac-author">OtaHub Editorial</span> · <span class="ac-date">Vừa xong</span></div>
+          <div class="ac-meta"><span class="ac-author">Anh Thu</span> · <span class="ac-date">Vừa xong</span></div>
         </div>
       </a>
 
@@ -2344,7 +2344,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         <div class="ac-thumb"><img height="675" width="1200" src="/assets/img/uploads/cxo68b2g-what-time-does-minecraft-live-start-september-2026-210691766.webp" alt="Minecraft Live tháng 9/2026: Minecraft chuẩn bị đón chiều không gian mới" loading="lazy"><span class="tag">Gaming</span></div>
         <div class="ac-body">
           <h3 class="ac-title">Minecraft Live tháng 9/2026: Minecraft chuẩn bị đón chiều không gian mới</h3>
-          <div class="ac-meta"><span class="ac-author">Anh Thu</span> · <span class="ac-date">Vừa xong</span></div>
+          <div class="ac-meta"><span class="ac-author">Yu</span> · <span class="ac-date">Vừa xong</span></div>
         </div>
       </a>
 
@@ -2399,14 +2399,14 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         <div class="ac-thumb"><img height="675" width="1200" src="/assets/img/yt-sRV37ZxQmf4.jpg" alt="Genshin Impact 7.0 Snezhnaya: Bản Đồ và Lối Chơi" loading="lazy"><span class="tag">Gaming</span></div>
         <div class="ac-body">
           <h3 class="ac-title">Genshin Impact 7.0 Snezhnaya: Chi Tiết Bản Đồ và Hệ Thống Lối Chơi</h3>
-          <div class="ac-meta"><span class="ac-author">OtaHub Editorial</span> · <span class="ac-date">24/09/2026</span></div>
+          <div class="ac-meta"><span class="ac-author">Lin (Khánh Linh)</span> · <span class="ac-date">24/09/2026</span></div>
         </div>
       </a>
       <a href="/girls-frontline-2-luu-day-vietnam-launch" class="ac">
         <div class="ac-thumb"><img height="675" width="1200" src="/assets/img/yt-L8WHmgGHGBo.jpg" alt="Girls' Frontline 2 Ra Mắt Tại Việt Nam" loading="lazy"><span class="tag">Gaming</span></div>
         <div class="ac-body">
           <h3 class="ac-title">Girls' Frontline 2: Exilium Chính Thức Mở Tải Tại Việt Nam</h3>
-          <div class="ac-meta"><span class="ac-author">OtaHub Editorial</span> · <span class="ac-date">24/09/2026</span></div>
+          <div class="ac-meta"><span class="ac-author">Lin (Khánh Linh)</span> · <span class="ac-date">24/09/2026</span></div>
         </div>
       </a>
       <a href="/nintendo-switch-2-launch-lineup-specs" class="ac">
@@ -2442,7 +2442,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
       </a>
       <a href="/pubg-asia-stars-2026-himass-tanvuu-bi-cam-vinh-vien" class="ac" data-cat="pc">
         <div class="ac-thumb"><img src="/assets/img/photo-pubg-asia-stars-2026-himass-tanvuu-bi-cam-vinh-vien.jpg" alt="Drama PUBG: Himass Và TanVuu Bị KRAFTON Cấm Vĩnh Viễn, Toàn Bộ Diễn Biến" loading="lazy" width="1280" height="720"><span class="tag">Gaming</span></div>
-        <div class="ac-info"><div><div class="ac-top"><span class="tag">Gaming</span></div><div class="ac-title">Drama PUBG: Himass Và TanVuu Bị KRAFTON Cấm Vĩnh Viễn</div></div><div class="ac-meta"><span>OtaHub Editorial</span><span class="ac-meta-sep">·</span><span>Hôm nay</span><span class="ac-meta-sep">·</span><span>5 min</span></div></div>
+        <div class="ac-info"><div><div class="ac-top"><span class="tag">Gaming</span></div><div class="ac-title">Drama PUBG: Himass Và TanVuu Bị KRAFTON Cấm Vĩnh Viễn</div></div><div class="ac-meta"><span>OtaHub</span><span class="ac-meta-sep">·</span><span>Hôm nay</span><span class="ac-meta-sep">·</span><span>5 min</span></div></div>
       </a>
       <a href="/asian-games-2026-esports-aichi-nagoya" class="ac" data-cat="pc">
         <div class="ac-thumb"><img src="/assets/img/photo-asian-games-2026-esports-aichi-nagoya.jpg" alt="Esports Asian Games 2026: 11 Nội Dung, Thi Đấu Tại Aichi" loading="lazy" width="1280" height="720"><span class="tag">Gaming</span></div>
@@ -2601,7 +2601,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Anime NYC 2026: các premiere và panel đáng chú ý</div>
             </div>
-            <div class="ac-meta"><span>Anime 2026-08-18 7 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Anime 2026-08-18 7 phút đọc Tik (Khánh Quỳnh)</span></div>
           </div>
         </a>
 
@@ -2612,7 +2612,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">WIT Studio Hé Lộ Bí Ẩn Attack on Titan Ngày 20/8</div>
             </div>
-            <div class="ac-meta"><span>Anime 2026-08-15 5 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Anime 2026-08-15 5 phút đọc Tik (Khánh Quỳnh)</span></div>
           </div>
         </a>
 
@@ -2623,7 +2623,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Beast of Reincarnation: Tựa AAA Đầu Tiên Của Game Freak</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-14 8 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-14 8 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -2634,7 +2634,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Berserk Arc Cuối: Studio Gaga Hoàn Thành Di Sản Miura</div>
             </div>
-            <div class="ac-meta"><span>Manga 2026-06-16 7 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Manga 2026-06-16 7 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -2645,7 +2645,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Big Walk: Cha Đẻ Untitled Goose Game Ra Game Co-op Mới</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-15 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-15 6 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -2656,7 +2656,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Black Clover Kết Thúc Review: 11 Năm Và Một Cái Kết Trọn Vẹn</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-15 8 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 8 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -2667,7 +2667,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Black Clover Season 2 Tung Trailer, Trở Lại Tháng 10</div>
             </div>
-            <div class="ac-meta"><span>Anime 2026-08-12 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Anime 2026-08-12 6 phút đọc Tik (Khánh Quỳnh)</span></div>
           </div>
         </a>
 
@@ -2680,7 +2680,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Black Myth: Wukong Review: Souls-like Đầu Tiên Của Trung Quốc</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-15 9 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 9 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -2691,7 +2691,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Bleach TYBW: The Calamity Công Bố OP I-BULL Và ED Rasen</div>
             </div>
-            <div class="ac-meta"><span>Anime 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Anime 2026-08-18 6 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -2713,7 +2713,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Chained Soldier Season 3: Ngày Phát Sóng Và Thông Tin Đã Biết</div>
             </div>
-            <div class="ac-meta"><span>Anime 2026-08-12 5 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Anime 2026-08-12 5 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -2724,7 +2724,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Chainsaw Man Anime Review: MAPPA Làm Nên Kiệt Tác</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-16 8 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-16 8 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -2735,7 +2735,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Chainsaw Man Manga Review: Hành Trình Từ Denji Đến Asa</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-16 8 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-16 8 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -2746,7 +2746,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Chainsaw Man – Reze Arc Review: MAPPA Ngoạn Mục</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-15 7 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 7 phút đọc Tik (Khánh Quỳnh)</span></div>
           </div>
         </a>
 
@@ -2768,7 +2768,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Dandadan Review: Hài Hước, Kinh Dị Và Lãng Mạn</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-16 8 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-16 8 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -2779,7 +2779,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Dan Da Dan Season 2 Review: Science SARU Nâng Tầm</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-15 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 6 phút đọc Tik (Khánh Quỳnh)</span></div>
           </div>
         </a>
 
@@ -2790,7 +2790,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Death Stranding 2 Review: Kojima Vượt Qua Chính Mình</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-15 9 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 9 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -2812,7 +2812,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Dragon Ball DAIMA: Di Sản Toriyama, Tương Lai Anime</div>
             </div>
-            <div class="ac-meta"><span>Anime 2026-06-03 8 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Anime 2026-06-03 8 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -2823,7 +2823,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Elden Ring: Tarnished Edition Lên Switch 2 Ngày 28/8</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-15 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-15 6 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -2834,7 +2834,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Final Fantasy VII Revelation Lộ Diện Tại Gamescom</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-17 5 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-17 5 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -2845,7 +2845,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Flamecraft Xác Nhận Ra Mắt PS5, Xbox Series, Switch</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -2867,7 +2867,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Genshin Impact 7.0: Tier List Đội Hình Meta Snezhnaya</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-14 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-14 6 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -2878,7 +2878,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Genshin 7.0 Snezhnaya Review: Chương Cuối Tham Vọng</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-16 8 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-16 8 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -2889,7 +2889,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Genshin Impact 7.0: Snezhnaya Mở Cửa, Odette Xuất Hiện</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-13 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-13 6 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -2901,7 +2901,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Genshin Impact Natlan: Vùng Đất Lửa Và Bí Mật Celestia</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-06-04 10 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-06-04 10 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -2912,7 +2912,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Ghost of Yōtei Complete Edition Ra Mắt 1/10</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-14 8 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-14 8 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -2923,7 +2923,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Ghost of Yōtei Review: Vượt Qua Bóng Tsushima</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-15 9 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 9 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -2945,7 +2945,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">GTA 6 Trailer 3 Công Chiếu Trên Netflix Ngày 27/8</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-17 5 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-17 5 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -2956,7 +2956,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Haikyu!! The Movie: VS The Little Giant Hé Lộ Visual Mới</div>
             </div>
-            <div class="ac-meta"><span>Anime 2026-08-20 5 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Anime 2026-08-20 5 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -2967,7 +2967,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Halo: Campaign Evolved Ra Mắt 28/7 Với 13 Thay Đổi</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -2978,7 +2978,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Hollow Knight: Silksong Ra DLC Miễn Phí Sea of Sorrow</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-13 5 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-13 5 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3001,7 +3001,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Honkai: Star Rail Xác Nhận Crossover Với ZZZ</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-16 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-16 6 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3023,7 +3023,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">JoJo's Bizarre Adventure: Golden Spirit Ra Mắt 13/8</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-12 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-12 6 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3034,7 +3034,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Jujutsu Kaisen Anime Review: Series Lên Tầm Toàn Cầu</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-15 8 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 8 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3045,7 +3045,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Jujutsu Kaisen Kết Thúc: Phân Tích Ending Gây Tranh Cãi</div>
             </div>
-            <div class="ac-meta"><span>Manga 2026-06-01 9 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Manga 2026-06-01 9 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3067,7 +3067,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Tác Giả Food Wars Và We Never Learn Trở Lại Jump GIGA</div>
             </div>
-            <div class="ac-meta"><span>Manga 2026-08-17 5 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Manga 2026-08-17 5 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3078,7 +3078,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Kagurabachi Review: Manga Bùng Nổ Không Cần Anime</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-15 7 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 7 phút đọc Tik (Khánh Quỳnh)</span></div>
           </div>
         </a>
 
@@ -3089,7 +3089,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Kaiju No.8 Review: Shonen Quái Vật Của Jump+</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-15 7 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 7 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3100,7 +3100,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Kaiju No.8 THE GAME: Lộ Trình Cập Nhật 1 Năm</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-12 5 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-12 5 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3111,7 +3111,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Kaiju No.8 THE GAME Review Sau 1 Năm Vận Hành</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-16 7 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-16 7 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3122,7 +3122,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Kingdom Come Deliverance 2 Review: RPG Lịch Sử Đỉnh Cao</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-06-10 8 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-06-10 8 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3133,7 +3133,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">KONOSUBA Mùa 4 Ấn Định Ra Mắt 2027, Studio ENGI</div>
             </div>
-            <div class="ac-meta"><span>Anime 2026-08-18 5 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Anime 2026-08-18 5 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3144,7 +3144,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">LEGO Donkey Kong Arcade Mở Bán 1/8, Giá 199,99 USD</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3155,7 +3155,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Lies of P: Complete Edition Ra Mắt Trên Switch 2</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-20 5 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-20 5 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3166,7 +3166,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Link Click Season 3 Phần 1 Lên Sóng Hôm Nay</div>
             </div>
-            <div class="ac-meta"><span>Anime 2026-08-14 5 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Anime 2026-08-14 5 phút đọc Tik (Khánh Quỳnh)</span></div>
           </div>
         </a>
 
@@ -3177,7 +3177,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Lou's Lagoon Ấn Định Ra Mắt PS5, Công Bố Deluxe Edition</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3188,7 +3188,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Mafia: The Old Country Ra Mắt DLC Man of Honor</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-14 7 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-14 7 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3199,7 +3199,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Mafia: The Old Country Review: Về Cội Nguồn Sicily</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-15 8 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 8 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3210,7 +3210,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Marvel Tōkon: Fighting Souls Công Bố DLC Phoenix Cyclops</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3221,7 +3221,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Marvel's Wolverine Tung Trailer Tại Comic-Con, Ra Mắt 15/9</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3234,7 +3234,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Mortal Shell II Ấn Định Ngày Ra Mắt 20/8/2026</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-17 5 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-17 5 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3245,7 +3245,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Mushoku Tensei Mùa 3: Chaos Breaker Arc Bắt Đầu Tập 8</div>
             </div>
-            <div class="ac-meta"><span>Anime 2026-08-16 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Anime 2026-08-16 6 phút đọc Tik (Khánh Quỳnh)</span></div>
           </div>
         </a>
 
@@ -3267,7 +3267,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Oblivion Remastered Lên Switch 2, 1080p Docked</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3278,7 +3278,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">One Piece: Egghead Arc Review: Vegapunk Kể Lịch Sử</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-15 8 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 8 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3289,7 +3289,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">One Piece Egghead Arc: Vegapunk Và Bí Mật Thế Giới</div>
             </div>
-            <div class="ac-meta"><span>Manga 2026-06-07 10 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Manga 2026-06-07 10 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3300,7 +3300,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">One Piece: Final Saga Review: Elbaph Và Chặng Cuối</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-15 8 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 8 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3311,7 +3311,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">One Piece Final Saga: Elbaph Đến Chương 1194</div>
             </div>
-            <div class="ac-meta"><span>Manga 2026-08-11 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Manga 2026-08-11 6 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3322,7 +3322,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Order of the Sinking Star Xác Nhận Bản PS5, Ra 8/10</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3333,7 +3333,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Oshi no Ko Anime Review: Góc Khuất Ngành Giải Trí</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-16 8 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-16 8 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3344,7 +3344,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Oshi no Ko Mùa 4 Tung Teaser Visual Và Trailer</div>
             </div>
-            <div class="ac-meta"><span>Anime 2026-08-16 5 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Anime 2026-08-16 5 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3355,7 +3355,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Phantom Blade Zero: State of Play Ngày 17/8, Mở Pre-Order</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-17 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-17 6 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3366,7 +3366,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">PlayStation Plus Tháng 8/2026: Dying Light 2, Big Walk</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3377,7 +3377,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Cha Đẻ My Hero Academia Trở Lại Jump Với One-shot Mới</div>
             </div>
-            <div class="ac-meta"><span>Manga 2026-08-15 5 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Manga 2026-08-15 5 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3410,7 +3410,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Reincarnated As A Sword Mùa 2 Ấn Định Ngày Phát Sóng 7/10</div>
             </div>
-            <div class="ac-meta"><span>Anime 2026-08-17 4 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Anime 2026-08-17 4 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3421,7 +3421,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Resident Evil Requiem: Những Điều Cần Biết</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-06-10 7 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-06-10 7 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3432,7 +3432,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Resonance: A Plague Tale Legacy Ra Mắt 27/8/2026</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-17 5 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-17 5 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3454,7 +3454,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Senren Banka Được Chuyển Thể Anime, Ra Mắt 2027</div>
             </div>
-            <div class="ac-meta"><span>Anime 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Anime 2026-08-18 6 phút đọc Tik (Khánh Quỳnh)</span></div>
           </div>
         </a>
 
@@ -3465,7 +3465,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Shueisha Ra Mắt MANGA MILLION: Đọc Miễn Phí Gần 400 Bộ Manga</div>
             </div>
-            <div class="ac-meta"><span>Manga 2026-08-12 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Manga 2026-08-12 6 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3476,7 +3476,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Silent Hill: Townfall Hé Lộ Bối Cảnh Scotland 1996</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3487,7 +3487,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">The Sinking City 2 Ra Mắt 18/8, Đậm Chất Kinh Dị Sinh Tồn</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-19 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-19 6 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3498,7 +3498,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Skip and Loafer Mùa 2 Tung Teaser, Ra Mắt 4/2027</div>
             </div>
-            <div class="ac-meta"><span>Anime 2026-08-17 4 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Anime 2026-08-17 4 phút đọc Tik (Khánh Quỳnh)</span></div>
           </div>
         </a>
 
@@ -3531,7 +3531,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Split Fiction Review: Hazelight Tái Định Nghĩa Co-op</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-15 8 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 8 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3542,7 +3542,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Star Wars Zero Company: Chiến Thuật Mới Từ EA, 27/8</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-12 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-12 6 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3553,7 +3553,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Stellar Blade: Blood Rain Lộ Diện, Nữ Chính Mới Evie</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-06-08 5 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-06-08 5 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3575,7 +3575,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Suikoden STAR LEAP Review: Konami Hồi Sinh Huyền Thoại</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-15 7 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-15 7 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3586,7 +3586,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Suikoden STAR LEAP Ra Mắt Mobile Nhật Bản</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-14 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-14 6 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3631,7 +3631,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Vinland Saga Manga Review: Cái Kết Sau 20 Năm</div>
             </div>
-            <div class="ac-meta"><span>Reviews 2026-08-16 9 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Reviews 2026-08-16 9 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3642,7 +3642,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Manga VIZ Ngày 18/8: Vagabond, Undead Unluck, Kingdom</div>
             </div>
-            <div class="ac-meta"><span>Manga 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Manga 2026-08-18 6 phút đọc Tik (Khánh Quỳnh)</span></div>
           </div>
         </a>
 
@@ -3653,7 +3653,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Wuthering Waves 3.6: Ren Realm Và 2 Nhân Vật Mới</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-15 5 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-15 5 phút đọc Lin (Khánh Linh)</span></div>
           </div>
         </a>
 
@@ -3675,7 +3675,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Xbox Game Pass Wave 2 Tháng 7: Halo Campaign Evolved</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-08-18 6 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3686,7 +3686,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
               <div class="ac-tags"><span class="tag tc">GAMING</span></div>
               <div class="ac-title">Xbox Games Showcase 2026: Tất Cả Game Được Công Bố</div>
             </div>
-            <div class="ac-meta"><span>Gaming 2026-06-08 8 phút đọc OtaHub Editorial</span></div>
+            <div class="ac-meta"><span>Gaming 2026-06-08 8 phút đọc Mambu (Đức Anh)</span></div>
           </div>
         </a>
 
@@ -3990,8 +3990,8 @@ function setGamingFilter(btn, cat){
 
 <!-- AUTO_DISCOVERY_START -->
 <section class="discovery-archive" aria-labelledby="discovery-title" style="max-width:1320px;margin:32px auto;padding:0 22px">
-<details style="border:1px solid rgba(0,229,255,.18);background:rgba(12,5,31,.72);padding:18px 20px">
-<summary id="discovery-title" style="cursor:pointer;color:#00e5ff;font-weight:700;letter-spacing:.06em">KHÁM PHÁ THÊM BÀI VIẾT</summary>
+<details style="border:1px solid rgba(0,242,255,.18);background:rgba(12,5,31,.72);padding:18px 20px">
+<summary id="discovery-title" style="cursor:pointer;color:#00f2ff;font-weight:700;letter-spacing:.06em">KHÁM PHÁ THÊM BÀI VIẾT</summary>
 <ul style="columns:3;column-gap:32px;margin:18px 0 0;padding-left:20px">
 <li><a href="/aniimo-open-world-creature-rpg-launch">Aniimo: RPG Thế Giới Mở Thu Phục Sinh Vật Ra Mắt 16/9</a></li>
 <li><a href="/girls-frontline-2-huong-dan-tan-thu-doi-hinh-reroll">Girls' Frontline 2: Lưu Đày – Hướng Dẫn Tân Thủ, Reroll</a></li>
@@ -4001,6 +4001,6 @@ function setGamingFilter(btn, cat){
 </details>
 </section>
 <!-- AUTO_DISCOVERY_END -->
-<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub<br><span style="opacity:.75;font-size:12px">Vận hành bởi Công ty TNHH Marketing &amp; Truyền thông ANBU · MST 3301761892 · 47 Đặng Văn Ngữ, Phường An Cựu, TP. Huế, Việt Nam · Hotline 039 699 5252 · <a href="mailto:dat.phan@anbu.asia" style="color:inherit">dat.phan@anbu.asia</a></span></span></div></footer>
+<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub<br><span style="opacity:.75;font-size:12px">Vận hành bởi Công ty TNHH Marketing &amp; Truyền thông ANBU · MST 3301761892 · 47 Đặng Văn Ngữ, Phường An Cựu, TP. Huế, Việt Nam · Hotline 039 699 5252 · <a href="mailto:dat.phan@anbu.asia" style="color:inherit">dat.phan@anbu.asia</a></span></span></div></footer>
 </body>
 </html>

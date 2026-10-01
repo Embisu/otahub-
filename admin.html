@@ -8,17 +8,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0118'/%3E%3Cpolygon points='32,6 56,18 56,46 32,58 8,46 8,18' fill='none' stroke='%2300e5ff' stroke-width='3'/%3E%3Ctext x='32' y='38' font-family='Inter,sans-serif' font-size='20' font-weight='800' text-anchor='middle' fill='%2300e5ff'%3EOH%3C/text%3E%3C/svg%3E"/>
+<link rel="icon" type="image/png" href="/assets/img/brand/otahub-icon.png"/>
 <script>
 (function(){try{var t=localStorage.getItem('otahub_admin_theme')||'dark';if(t==='light'){document.documentElement.classList.add('theme-light');}else{document.documentElement.classList.add('theme-dark');}}catch(e){}})();
 </script>
 <style>
+@font-face{font-family:'BHN Fonarto Regular';src:url('/assets/fonts/BHNFonartoRegular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}
 :root {
   /* ── Brand palette ── */
-  --cyan: #00e5ff;
-  --cyan-dim: rgba(0,229,255,.14);
-  --cyan-glow: rgba(0,229,255,.35);
-  --sakura: #ff3080;
+  --cyan: #00f2ff;
+  --cyan-dim: rgba(0,242,255,.14);
+  --cyan-glow: rgba(0,242,255,.35);
+  --sakura: #ff2177;
   --violet: #7c3aed;
 
   /* ── Modern Slate Dark (Brighter, crisp, high contrast - không tối u ám) ── */
@@ -36,7 +37,7 @@
   --wp-muted:    #94a3b8;
 
   /* ── Accents ── */
-  --wp-blue:       #00e5ff;
+  --wp-blue:       #00f2ff;
   --wp-blue-hover: #38bdf8;
   --wp-blue-light: #7dd3fc;
   --wp-red:        #ff4d6a;
@@ -112,9 +113,9 @@ body {
   justify-content: center;
   min-height: 100vh;
   position: relative;
-  background: radial-gradient(ellipse 90% 55% at 50% -10%, rgba(0,229,255,.22), transparent),
+  background: radial-gradient(ellipse 90% 55% at 50% -10%, rgba(0,242,255,.22), transparent),
               radial-gradient(ellipse 65% 45% at 100% 90%, rgba(124,58,237,.28), transparent),
-              radial-gradient(ellipse 55% 45% at 0% 80%, rgba(255,48,128,.15), transparent),
+              radial-gradient(ellipse 55% 45% at 0% 80%, rgba(255,33,119,.15), transparent),
               #070210;
   overflow: hidden;
   padding: 24px;
@@ -138,9 +139,9 @@ body {
   pointer-events: none;
   animation: floatOrb 12s ease-in-out infinite alternate;
 }
-.lgo-1 { top: -100px; left: 15%; background: #00e5ff; }
+.lgo-1 { top: -100px; left: 15%; background: #00f2ff; }
 .lgo-2 { bottom: -120px; right: 10%; background: #7c3aed; animation-delay: -5s; }
-.lgo-3 { top: 40%; left: -100px; background: #ff3080; opacity: .16; animation-delay: -8s; }
+.lgo-3 { top: 40%; left: -100px; background: #ff2177; opacity: .16; animation-delay: -8s; }
 
 @keyframes floatOrb {
   0% { transform: translateY(0) scale(1); }
@@ -154,12 +155,12 @@ body {
   background: rgba(19, 9, 48, 0.78);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(0, 229, 255, 0.32);
+  border: 1px solid rgba(0,242,255, 0.32);
   border-radius: 20px;
   padding: 40px 36px;
   max-width: 440px;
   width: 100%;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.7), 0 0 35px rgba(0, 229, 255, 0.14);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.7), 0 0 35px rgba(0,242,255, 0.14);
   color: #f0eeff;
   animation: cardFadeIn .6s cubic-bezier(.16,1,.3,1) both;
 }
@@ -176,23 +177,23 @@ body {
   width: 64px;
   height: 64px;
   margin: 0 auto 16px;
-  background: linear-gradient(135deg, rgba(0,229,255,.15), rgba(124,58,237,.25));
-  border: 1px solid rgba(0,229,255,.45);
+  background: linear-gradient(135deg, rgba(0,242,255,.15), rgba(124,58,237,.25));
+  border: 1px solid rgba(0,242,255,.45);
   border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 25px rgba(0,229,255,.25);
+  box-shadow: 0 0 25px rgba(0,242,255,.25);
   transition: transform .3s ease, box-shadow .3s ease;
 }
 .auth-logo-box:hover {
   transform: scale(1.06) rotate(3deg);
-  box-shadow: 0 0 35px rgba(0,229,255,.5);
+  box-shadow: 0 0 35px rgba(0,242,255,.5);
 }
 .auth-brand {
-  font-family: var(--fd);
+  font-family: 'BHN Fonarto Regular', var(--fd);
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: .02em;
   color: #ffffff;
   display: flex;
@@ -201,7 +202,7 @@ body {
   gap: 6px;
   margin-bottom: 4px;
 }
-.auth-logo-ota { color: #ffffff; }
+.auth-logo-ota { color: var(--sakura); }
 .auth-logo-hub { color: var(--cyan); }
 .auth-badge {
   background: linear-gradient(135deg, var(--sakura), var(--violet));
@@ -265,7 +266,7 @@ body {
 .field input:focus {
   border-color: var(--cyan);
   background: rgba(26, 16, 64, 0.9);
-  box-shadow: 0 0 16px rgba(0, 229, 255, 0.35);
+  box-shadow: 0 0 16px rgba(0,242,255, 0.35);
 }
 .field input::placeholder {
   color: rgba(240,238,255,.3);
@@ -298,7 +299,7 @@ body {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(0, 229, 255, 0.35);
+  box-shadow: 0 4px 20px rgba(0,242,255, 0.35);
   transition: all .22s cubic-bezier(.16,1,.3,1);
   display: flex;
   align-items: center;
@@ -307,14 +308,14 @@ body {
 }
 .setup-submit:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 28px rgba(0, 229, 255, 0.6);
+  box-shadow: 0 6px 28px rgba(0,242,255, 0.6);
   filter: brightness(1.1);
 }
 .setup-submit:active { transform: translateY(0); }
 
 .setup-error {
-  background: rgba(255,48,128,.14);
-  border: 1px solid rgba(255,48,128,.4);
+  background: rgba(255,33,119,.14);
+  border: 1px solid rgba(255,33,119,.4);
   border-radius: 8px;
   padding: 11px 14px;
   color: #ff8099;
@@ -426,8 +427,8 @@ body {
   width: 26px;
   height: 26px;
   border-radius: 7px;
-  background: linear-gradient(135deg, rgba(0,229,255,.2), rgba(124,58,237,.3));
-  border: 1px solid rgba(0,229,255,.4);
+  background: linear-gradient(135deg, rgba(0,242,255,.2), rgba(124,58,237,.3));
+  border: 1px solid rgba(0,242,255,.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -435,7 +436,7 @@ body {
   font-weight: 800;
   color: var(--cyan);
   letter-spacing: -.02em;
-  box-shadow: 0 0 12px rgba(0,229,255,.2);
+  box-shadow: 0 0 12px rgba(0,242,255,.2);
 }
 .wtb-logo-text { color: #fff; }
 .wtb-logo-text span { color: var(--cyan); }
@@ -493,7 +494,7 @@ body {
   font-size: 10px;
   font-weight: 800;
   flex-shrink: 0;
-  box-shadow: 0 0 10px rgba(0,229,255,.3);
+  box-shadow: 0 0 10px rgba(0,242,255,.3);
 }
 
 /* ── 3. APP LAYOUT & SIDEBAR ── */
@@ -523,7 +524,7 @@ body {
   align-items: center;
   gap: 10px;
   padding: 14px 14px 10px;
-  border-bottom: 1px solid rgba(0,229,255,.06);
+  border-bottom: 1px solid rgba(0,242,255,.06);
   margin-bottom: 4px;
 }
 .ws-brand-icon {
@@ -531,16 +532,14 @@ body {
   height: 30px;
   flex-shrink: 0;
   border-radius: 8px;
-  background: linear-gradient(135deg, rgba(0,229,255,.15), rgba(124,58,237,.25));
-  border: 1px solid rgba(0,229,255,.35);
+  background: linear-gradient(135deg, rgba(0,242,255,.15), rgba(124,58,237,.25));
+  border: 1px solid rgba(0,242,255,.35);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
-  font-weight: 900;
-  color: var(--cyan);
-  box-shadow: 0 0 14px rgba(0,229,255,.2);
+  box-shadow: 0 0 14px rgba(0,242,255,.2);
 }
+.ws-brand-icon img { width: 20px; height: 20px; object-fit: contain; }
 .ws-brand-name {
   font-size: 13px;
   font-weight: 800;
@@ -576,9 +575,9 @@ body {
   transition: background .15s, color .15s;
   border-radius: 0;
 }
-.wp-nav-btn:hover { background: rgba(0,229,255,.06); color: var(--wp-text); }
+.wp-nav-btn:hover { background: rgba(0,242,255,.06); color: var(--wp-text); }
 .wp-nav-item.active .wp-nav-btn {
-  background: linear-gradient(90deg, rgba(0,229,255,.12) 0%, transparent 100%);
+  background: linear-gradient(90deg, rgba(0,242,255,.12) 0%, transparent 100%);
   color: var(--cyan);
   font-weight: 700;
   box-shadow: inset 3px 0 0 var(--cyan);
@@ -597,9 +596,9 @@ body {
   text-overflow: ellipsis;
 }
 .wp-nav-badge {
-  background: rgba(0,229,255,.15);
+  background: rgba(0,242,255,.15);
   color: var(--cyan);
-  border: 1px solid rgba(0,229,255,.25);
+  border: 1px solid rgba(0,242,255,.25);
   font-size: 10px;
   font-weight: 700;
   padding: 1px 6px;
@@ -625,7 +624,7 @@ body {
   background: rgba(0,0,0,.25);
   padding: 4px 0;
   display: none;
-  border-left: 2px solid rgba(0,229,255,.12);
+  border-left: 2px solid rgba(0,242,255,.12);
   margin-left: 16px;
 }
 .wp-nav-item.has-sub.active .wp-submenu,
@@ -651,7 +650,7 @@ body {
   top: 0;
   width: 180px;
   background: #0d0221;
-  border: 1px solid rgba(0,229,255,.12);
+  border: 1px solid rgba(0,242,255,.12);
   box-shadow: 4px 4px 20px rgba(0,0,0,.6);
   z-index: 500;
   border-radius: 0 8px 8px 0;
@@ -775,7 +774,7 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
 /* ── 5. WELCOME PANEL & METABOXES ── */
 .wp-welcome-panel {
   background: linear-gradient(135deg, #1c1734 0%, #1a1530 100%);
-  border: 1px solid rgba(0,229,255,.1);
+  border: 1px solid rgba(0,242,255,.1);
   border-radius: 12px;
   padding: 24px 28px;
   margin-bottom: 20px;
@@ -788,7 +787,7 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   position: absolute;
   top: -40px; right: -40px;
   width: 200px; height: 200px;
-  background: radial-gradient(circle, rgba(0,229,255,.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0,242,255,.08) 0%, transparent 70%);
   pointer-events: none;
 }
 .wp-wp-dismiss {
@@ -814,11 +813,11 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  box-shadow: 0 0 20px rgba(0,229,255,.3);
+  box-shadow: 0 0 20px rgba(0,242,255,.3);
   transition: box-shadow .15s, transform .1s;
   letter-spacing: -.01em;
 }
-.wp-wp-btn-hero:hover { box-shadow: 0 0 28px rgba(0,229,255,.5); transform: translateY(-1px); }
+.wp-wp-btn-hero:hover { box-shadow: 0 0 28px rgba(0,242,255,.5); transform: translateY(-1px); }
 .wp-wp-links { list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 12.5px; }
 .wp-wp-links a, .wp-wp-links button {
   color: var(--cyan);
@@ -881,7 +880,7 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   font-family: inherit;
   transition: border-color .15s, box-shadow .15s;
 }
-.wp-form-input:focus, .wp-form-textarea:focus { border-color: var(--cyan); box-shadow: 0 0 0 2px rgba(0,229,255,.15); }
+.wp-form-input:focus, .wp-form-textarea:focus { border-color: var(--cyan); box-shadow: 0 0 0 2px rgba(0,242,255,.15); }
 .wp-btn-save-draft {
   background: var(--wp-card);
   border: 1px solid var(--wp-border);
@@ -894,7 +893,7 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   font-family: inherit;
   transition: all .15s;
 }
-.wp-btn-save-draft:hover { border-color: var(--cyan); background: rgba(0,229,255,.08); }
+.wp-btn-save-draft:hover { border-color: var(--cyan); background: rgba(0,242,255,.08); }
 
 /* ── 6. POST TABLE ── */
 .wp-table-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; gap: 12px; flex-wrap: wrap; }
@@ -910,7 +909,7 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
 .wp-subsubsub a.current {
   font-weight: 700;
   color: var(--cyan);
-  background: rgba(0,229,255,.08);
+  background: rgba(0,242,255,.08);
 }
 .wp-table-filters { display: flex; gap: 8px; align-items: center; }
 .wp-table-wrap {
@@ -958,8 +957,8 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
 .wp-row-actions a:hover, .wp-row-actions button:hover { color: var(--cyan); text-decoration: none; }
 .wp-row-actions .trash-btn { color: var(--wp-red); }
 .wp-cat-pill {
-  background: rgba(0,229,255,.08);
-  border: 1px solid rgba(0,229,255,.2);
+  background: rgba(0,242,255,.08);
+  border: 1px solid rgba(0,242,255,.2);
   color: var(--cyan);
   font-size: 11px;
   font-weight: 600;
@@ -999,9 +998,9 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   position: relative;
   top: -3px;
   text-decoration: none;
-  border: 1px solid rgba(0,229,255,.3);
+  border: 1px solid rgba(0,242,255,.3);
   border-radius: 6px;
-  background: rgba(0,229,255,.07);
+  background: rgba(0,242,255,.07);
   font-weight: 700;
   font-size: 12px;
   color: var(--cyan);
@@ -1009,7 +1008,7 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   display: inline-block;
   transition: all .15s;
 }
-.page-title-action:hover { background: rgba(0,229,255,.15); border-color: var(--cyan); }
+.page-title-action:hover { background: rgba(0,242,255,.15); border-color: var(--cyan); }
 
 /* Post Title Input */
 #titlediv { margin-bottom: 12px; position: relative; }
@@ -1031,7 +1030,7 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
 }
 #titlediv #title:focus {
   border-color: var(--cyan);
-  box-shadow: 0 0 0 2px rgba(0,229,255,.15);
+  box-shadow: 0 0 0 2px rgba(0,242,255,.15);
 }
 
 /* Slug Box */
@@ -1051,7 +1050,7 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
 }
 #edit-slug-box strong { color: var(--wp-title); }
 #sample-permalink { color: var(--cyan); }
-#editable-post-name { font-weight: 700; color: var(--wp-title); background: rgba(0,229,255,.08); padding: 1px 6px; border-radius: 4px; border: 1px solid rgba(0,229,255,.2); }
+#editable-post-name { font-weight: 700; color: var(--wp-title); background: rgba(0,242,255,.08); padding: 1px 6px; border-radius: 4px; border: 1px solid rgba(0,242,255,.2); }
 .button-small {
   background: var(--wp-card);
   border: 1px solid var(--wp-border);
@@ -1068,7 +1067,7 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   font-family: inherit;
   transition: all .15s;
 }
-.button-small:hover { border-color: var(--cyan); background: rgba(0,229,255,.08); }
+.button-small:hover { border-color: var(--cyan); background: rgba(0,242,255,.08); }
 
 /* WP Editor Wrap */
 .wp-editor-wrap {
@@ -1110,8 +1109,8 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   height: 28px;
 }
 .wp-media-buttons .button:hover {
-  background: rgba(0,229,255,.1);
-  border-color: rgba(0,229,255,.3);
+  background: rgba(0,242,255,.1);
+  border-color: rgba(0,242,255,.3);
   color: var(--cyan);
 }
 .wp-editor-tabs {
@@ -1185,7 +1184,7 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   user-select: none;
 }
 .mce-btn:hover { background: rgba(255,255,255,.08); color: var(--wp-text); }
-.mce-btn:active, .mce-btn.active { background: rgba(0,229,255,.12); color: var(--cyan); }
+.mce-btn:active, .mce-btn.active { background: rgba(0,242,255,.12); color: var(--cyan); }
 .mce-select {
   background: rgba(0,0,0,.3);
   border: 1px solid var(--wp-border);
@@ -1244,7 +1243,7 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   padding: 16px 18px 16px 68px;
   border: 1px solid rgba(255,255,255,.09);
   border-radius: 10px;
-  background: linear-gradient(110deg,rgba(0,229,255,.11),rgba(39,18,75,.16) 62%,rgba(255,48,128,.08));
+  background: linear-gradient(110deg,rgba(0,242,255,.11),rgba(39,18,75,.16) 62%,rgba(255,33,119,.08));
 }
 #body-visual h2::before {
   content: counter(admin-h2, decimal-leading-zero);
@@ -1257,7 +1256,7 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   width: 36px;
   height: 36px;
   color: #070311;
-  background: linear-gradient(135deg,#00e5ff 0 76%,#ff3080 77% 100%);
+  background: linear-gradient(135deg,#00f2ff 0 76%,#ff2177 77% 100%);
   clip-path: polygon(0 0,84% 0,100% 16%,100% 100%,16% 100%,0 84%);
   font-family: 'Space Grotesk', 'Inter', sans-serif;
   font-size: 12px;
@@ -1304,15 +1303,15 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   font-weight: 400;
   margin: 22px 0 28px;
   padding: 12px 20px;
-  border-left: 3px solid #00e5ff;
-  background: rgba(0, 229, 255, .04);
+  border-left: 3px solid #00f2ff;
+  background: rgba(0,242,255, .04);
   border-radius: 0 6px 6px 0;
 }
 #body-visual .art-lead em { font-style: italic; color: inherit; }
 #body-visual .highlight-box {
-  background: rgba(0, 229, 255, .05);
-  border: 1px solid rgba(0, 229, 255, .18);
-  border-left: 3px solid #00e5ff;
+  background: rgba(0,242,255, .05);
+  border: 1px solid rgba(0,242,255, .18);
+  border-left: 3px solid #00f2ff;
   padding: 18px 24px;
   margin: 24px 0 32px;
   border-radius: 0 6px 6px 0;
@@ -1321,7 +1320,7 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   font-size: 11px;
   letter-spacing: .16em;
   text-transform: uppercase;
-  color: #00e5ff;
+  color: #00f2ff;
   font-weight: 700;
   font-family: 'Space Grotesk', 'Be Vietnam Pro', 'Inter', sans-serif;
   margin-bottom: 8px;
@@ -1335,26 +1334,26 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   font-size: 14px;
   line-height: 1.7;
   color: var(--wp-muted);
-  border-left: 3px solid #00e5ff;
+  border-left: 3px solid #00f2ff;
   padding: 12px 18px;
-  background: rgba(0, 229, 255, .035);
+  background: rgba(0,242,255, .035);
   margin: 24px 0;
   border-radius: 0 4px 4px 0;
 }
 #body-visual blockquote {
-  border-left: 3px solid #00e5ff;
+  border-left: 3px solid #00f2ff;
   padding: 14px 20px;
   margin: 24px 0;
   color: var(--wp-muted);
   font-style: italic;
-  background: rgba(0, 229, 255, .04);
+  background: rgba(0,242,255, .04);
   border-radius: 0 6px 6px 0;
 }
 #body-visual blockquote p { margin-bottom: 6px; }
 #body-visual blockquote cite { font-size: 12px; color: var(--wp-muted); font-style: normal; display: block; margin-top: 8px; }
 #body-visual ul { margin: 0 0 18px 0; list-style: none; padding-left: 0; }
 #body-visual ul li { padding: 6px 0 6px 20px; position: relative; line-height: 1.75; }
-#body-visual ul li::before { content: '▸'; position: absolute; left: 0; color: #00e5ff; font-size: 11px; top: 8px; }
+#body-visual ul li::before { content: '▸'; position: absolute; left: 0; color: #00f2ff; font-size: 11px; top: 8px; }
 #body-visual ol { margin: 0 0 18px 24px; padding-left: 0; }
 #body-visual ol li { margin-bottom: 6px; padding-left: 4px; }
 #body-visual figure {
@@ -1497,14 +1496,14 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   font-weight: 800;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 0 18px rgba(0,229,255,.35);
+  box-shadow: 0 0 18px rgba(0,242,255,.35);
   letter-spacing: .02em;
   transition: all .2s;
   font-family: var(--font-system);
 }
 .button-primary:hover {
   background: linear-gradient(135deg, #00f5ff 0%, var(--cyan) 100%);
-  box-shadow: 0 0 28px rgba(0,229,255,.55);
+  box-shadow: 0 0 28px rgba(0,242,255,.55);
   transform: translateY(-1px);
 }
 
@@ -1578,8 +1577,8 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   transition: border-color .2s, background .2s;
 }
 .featured-image-holder:hover {
-  border-color: rgba(0,229,255,.4);
-  background: rgba(0,229,255,.03);
+  border-color: rgba(0,242,255,.4);
+  background: rgba(0,242,255,.03);
 }
 .featured-image-holder img {
   width: 100%;
@@ -1676,7 +1675,7 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   transition: all .15s;
 }
 .media-tab:hover { color: var(--wp-text); }
-.media-tab.active { background: var(--cyan-dim); border-color: rgba(0,229,255,.3); color: var(--cyan); box-shadow: none; }
+.media-tab.active { background: var(--cyan-dim); border-color: rgba(0,242,255,.3); color: var(--cyan); box-shadow: none; }
 .media-modal-close, .modal-close {
   background: none;
   border: none;
@@ -1692,7 +1691,7 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
   transition: all .15s;
 }
 .media-modal-close:hover, .modal-close:hover {
-  background: rgba(255,48,128,.15);
+  background: rgba(255,33,119,.15);
   color: var(--wp-red);
 }
 .media-modal-body, .modal-body { padding: 18px 20px; overflow-y: auto; flex: 1; min-height: 160px; }
@@ -1820,7 +1819,7 @@ html.theme-light .media-tab.active { background: #e0f2fe; color: #0284c7; border
 }
 .media-dropzone:hover, .media-dropzone.dragover {
   border-color: var(--cyan);
-  background: rgba(0,229,255,.04);
+  background: rgba(0,242,255,.04);
 }
 
 /* Link Inserter Suggestions & Tables */
@@ -1842,13 +1841,13 @@ html.theme-light .media-tab.active { background: #e0f2fe; color: #0284c7; border
   transition: background .12s ease;
 }
 .link-sug-item:last-child { border-bottom: none; }
-.link-sug-item:hover, .link-sug-item.selected { background: rgba(0,229,255,.07); }
+.link-sug-item:hover, .link-sug-item.selected { background: rgba(0,242,255,.07); }
 .link-sug-cat {
   font-size: 10px;
   font-weight: 700;
   padding: 2px 6px;
   border-radius: 3px;
-  background: rgba(0,229,255,.18);
+  background: rgba(0,242,255,.18);
   color: var(--cyan);
   flex-shrink: 0;
 }
@@ -1879,7 +1878,7 @@ html.theme-light .media-tab.active { background: #e0f2fe; color: #0284c7; border
   color: var(--wp-text);
 }
 .art-table th {
-  background: rgba(0,229,255,.06);
+  background: rgba(0,242,255,.06);
   color: var(--cyan);
   font-weight: 700;
   padding: 10px 14px;
@@ -1907,7 +1906,7 @@ html.theme-light .media-tab.active { background: #e0f2fe; color: #0284c7; border
 .cmdk-input::placeholder { color: var(--wp-muted); }
 .cmdk-list { max-height: 320px; overflow-y: auto; padding: 6px; }
 .cmdk-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 7px; cursor: pointer; font-size: 13px; color: var(--wp-text); }
-.cmdk-item:hover, .cmdk-item.sel { background: rgba(0,229,255,.08); color: var(--cyan); }
+.cmdk-item:hover, .cmdk-item.sel { background: rgba(0,242,255,.08); color: var(--cyan); }
 .cmdk-empty { padding: 24px; text-align: center; color: var(--wp-muted); }
 
 /* General Buttons & Utilities — OtaHub Dark */
@@ -1928,8 +1927,8 @@ html.theme-light .media-tab.active { background: #e0f2fe; color: #0284c7; border
   font-family: var(--font-system);
 }
 .btn:hover { background: rgba(255,255,255,.09); border-color: var(--wp-border-strong); color: var(--wp-title); }
-.btn-primary { background: linear-gradient(135deg, var(--cyan), #00b8d4); color: #000; border-color: transparent; font-weight: 800; box-shadow: 0 0 16px rgba(0,229,255,.3); }
-.btn-primary:hover { background: linear-gradient(135deg, #00f5ff, var(--cyan)); box-shadow: 0 0 24px rgba(0,229,255,.5); color: #000; border-color: transparent; }
+.btn-primary { background: linear-gradient(135deg, var(--cyan), #00b8d4); color: #000; border-color: transparent; font-weight: 800; box-shadow: 0 0 16px rgba(0,242,255,.3); }
+.btn-primary:hover { background: linear-gradient(135deg, #00f5ff, var(--cyan)); box-shadow: 0 0 24px rgba(0,242,255,.5); color: #000; border-color: transparent; }
 .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
 .btn-danger { background: rgba(255,77,106,.1); color: var(--wp-red); border-color: rgba(255,77,106,.3); }
 .btn-sm { padding: 4px 10px; font-size: 11.5px; }
@@ -2008,7 +2007,7 @@ html.theme-light .media-tab.active { background: #e0f2fe; color: #0284c7; border
   font-family: inherit;
 }
 .art-tab-btn:hover {
-  background: rgba(0,229,255,.06);
+  background: rgba(0,242,255,.06);
   color: var(--cyan);
 }
 .art-tab-btn.active {
@@ -2168,8 +2167,8 @@ html.theme-light .media-tab.active { background: #e0f2fe; color: #0284c7; border
 
 /* AI Copilot Bar */
 .ai-copilot-bar {
-  background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(0,229,255,0.1));
-  border: 1px solid rgba(0,229,255,0.35);
+  background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(0,242,255,0.1));
+  border: 1px solid rgba(0,242,255,0.35);
   border-radius: 8px;
   padding: 10px 14px;
   margin-bottom: 16px;
@@ -2258,7 +2257,7 @@ html.theme-light .media-tab.active { background: #e0f2fe; color: #0284c7; border
   padding: 12px 16px;
   font-weight: 700;
   font-size: 14px;
-  color: #00e5ff;
+  color: #00f2ff;
   cursor: pointer;
   user-select: none;
 }
@@ -2283,7 +2282,7 @@ body { background: var(--wp-bg); color: var(--wp-title); font-family: 'Inter', -
 .logo { padding: 10px 0 14px; width: 100%; border-bottom: 1px solid var(--wp-border); display: flex; flex-direction: column; align-items: center; gap: 6px; margin-bottom: 6px; }
 .logo-clickable { cursor: pointer; }
 .logo-mark { width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, var(--cyan), #7928ca); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; letter-spacing: -.02em; color: #0a0a12; transition: transform .15s, box-shadow .15s; }
-.logo-clickable:hover .logo-mark { transform: scale(1.06); box-shadow: 0 4px 16px rgba(0,229,255,.35); }
+.logo-clickable:hover .logo-mark { transform: scale(1.06); box-shadow: 0 4px 16px rgba(0,242,255,.35); }
 .logo-text { font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
 .logo-text span { color: var(--cyan); }
 .logo-badge { font-size: 9px; background: linear-gradient(135deg, var(--cyan), #00b8d4); color: #000; padding: 2px 7px; border-radius: 20px; font-weight: 800; letter-spacing: .05em; }
@@ -2294,7 +2293,7 @@ body { background: var(--wp-bg); color: var(--wp-title); font-family: 'Inter', -
 .nav-group-head { width: 46px; height: 46px; border-radius: 11px; border: none; background: none; color: var(--wp-text); display: flex; align-items: center; justify-content: center; font-size: 19px; cursor: pointer; transition: all .15s; }
 .nav-group-head:hover { background: var(--wp-bg); color: var(--wp-title); }
 .cmdk-sidebar-btn { width: 46px; height: 46px; border-radius: 11px; border: 1px dashed var(--wp-border); background: none; color: var(--wp-muted); display: flex; align-items: center; justify-content: center; font-size: 17px; cursor: pointer; transition: all .15s; margin: 0 0 10px; flex-shrink: 0; }
-.cmdk-sidebar-btn:hover { background: var(--wp-bg); color: var(--wp-blue); border-color: rgba(0,229,255,.35); border-style: solid; }
+.cmdk-sidebar-btn:hover { background: var(--wp-bg); color: var(--wp-blue); border-color: rgba(0,242,255,.35); border-style: solid; }
 .nav-flyout { position: absolute; left: calc(100% + 10px); top: -6px; min-width: 240px; background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 12px; padding: 8px; box-shadow: 0 16px 40px rgba(0,0,0,.45); display: none; z-index: 60; }
 .nav-group:hover .nav-flyout, .nav-group:focus-within .nav-flyout { display: block; }
 .flyout-title { padding: 6px 10px 8px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--wp-muted); }
@@ -2309,8 +2308,8 @@ body { background: var(--wp-bg); color: var(--wp-title); font-family: 'Inter', -
 .sidebar-footer { margin-top: auto; padding: 16px; border-top: 1px solid var(--wp-border); }
 .connected-info { font-size: 11px; color: var(--wp-muted); line-height: 1.7; }
 .connected-info strong { color: var(--wp-text); }
-.disconnect-btn { margin-top: 8px; padding: 5px 10px; background: rgba(255,48,128,.12); border: 1px solid rgba(255,48,128,.3); color: var(--wp-red); border-radius: 6px; cursor: pointer; font-size: 11px; width: 100%; }
-.disconnect-btn:hover { background: rgba(255,48,128,.22); }
+.disconnect-btn { margin-top: 8px; padding: 5px 10px; background: rgba(255,33,119,.12); border: 1px solid rgba(255,33,119,.3); color: var(--wp-red); border-radius: 6px; cursor: pointer; font-size: 11px; width: 100%; }
+.disconnect-btn:hover { background: rgba(255,33,119,.22); }
 /* ── Header ── */
 .page-header { padding: 24px 32px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .page-title { font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
@@ -2330,7 +2329,7 @@ body { background: var(--wp-bg); color: var(--wp-title); font-family: 'Inter', -
 /* ── Media Library ── */
 .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
 .media-card { background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; transition: border .15s, box-shadow .15s; }
-.media-card:hover { border-color: rgba(0,229,255,.35); box-shadow: 0 6px 18px rgba(0,0,0,.15); }
+.media-card:hover { border-color: rgba(0,242,255,.35); box-shadow: 0 6px 18px rgba(0,0,0,.15); }
 .media-thumb-wrap { width: 100%; aspect-ratio: 4/3; background: var(--wp-bg); cursor: pointer; overflow: hidden; }
 .media-thumb-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .media-info { padding: 8px 10px 0; }
@@ -2339,8 +2338,8 @@ body { background: var(--wp-bg); color: var(--wp-title); font-family: 'Inter', -
 .media-actions { display: flex; gap: 6px; padding: 8px 10px 10px; }
 .media-actions .btn { flex: 1; padding: 5px 6px; font-size: 11px; }
 .article-card { background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 12px; padding: 12px 16px; display: grid; grid-template-columns: 68px 1fr auto; gap: 14px; align-items: center; transition: border .15s, transform .15s, box-shadow .15s; cursor: pointer; }
-.article-card:hover { border-color: rgba(0,229,255,.35); transform: translateX(2px); box-shadow: 0 6px 18px rgba(0,0,0,.2); }
-.article-card:hover { border-color: rgba(0,229,255,.35); }
+.article-card:hover { border-color: rgba(0,242,255,.35); transform: translateX(2px); box-shadow: 0 6px 18px rgba(0,0,0,.2); }
+.article-card:hover { border-color: rgba(0,242,255,.35); }
 .art-thumb-wrap { position: relative; width: 68px; height: 46px; border-radius: 8px; overflow: hidden; background: var(--wp-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .art-thumb-ph { font-size: 19px; opacity: .5; }
 .art-thumb-wrap .art-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .25s; }
@@ -2349,7 +2348,7 @@ body { background: var(--wp-bg); color: var(--wp-title); font-family: 'Inter', -
 .art-title { font-size: 13.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--wp-title); }
 .art-meta { font-size: 11px; color: var(--wp-muted); margin-top: 4px; display: flex; align-items: center; gap: 10px; }
 .art-meta .art-file { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 260px; }
-.art-cat { background: rgba(0,229,255,.1); color: var(--cyan); border: 1px solid rgba(0,229,255,.25); padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; letter-spacing: .02em; flex-shrink: 0; }
+.art-cat { background: rgba(0,242,255,.1); color: var(--cyan); border: 1px solid rgba(0,242,255,.25); padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; letter-spacing: .02em; flex-shrink: 0; }
 .art-actions { display: flex; gap: 6px; flex-shrink: 0; }
 /* ── Editor (bố cục kiểu WordPress: tiêu đề to, ô soạn thảo là trung tâm,
       hộp "Xuất bản" cố định bên phải) ── */
@@ -2379,15 +2378,15 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 #body-textarea { width: 100%; min-height: 400px; background: transparent; border: none; padding: 14px; color: var(--wp-text); font-size: 13px; line-height: 1.8; resize: vertical; outline: none; font-family: 'Consolas', 'Monaco', monospace; }
 /* Body mode tabs (Khối / Trực quan / HTML) */
 /* Visual (WYSIWYG) editor links and empty state */
-#body-visual a { color: var(--cyan, #00e5ff); text-decoration: none; border-bottom: 1px solid rgba(0,229,255,.3); }
-#body-visual a:hover { border-color: var(--cyan, #00e5ff); }
+#body-visual a { color: var(--cyan, #00f2ff); text-decoration: none; border-bottom: 1px solid rgba(0,242,255,.3); }
+#body-visual a:hover { border-color: var(--cyan, #00f2ff); }
 #body-visual figure.vis-img-flash img { box-shadow: 0 0 0 3px var(--wp-blue); }
 #body-visual:empty:before { content: 'Bắt đầu viết nội dung bài viết tại đây...'; color: var(--wp-muted); }
 /* Block editor (kéo-thả) — canvas kiểu Elementor/Gutenberg: mỗi khối hiển thị
    đúng như bài thật, sửa trực tiếp trên khối, kéo-thả để sắp xếp lại. */
 .block-canvas { background: var(--wp-bg); padding: 24px; }
 .block-item { position: relative; margin-bottom: 6px; border: 1px dashed transparent; border-radius: 10px; padding: 10px 16px 10px 34px; transition: border-color .12s, background .12s; }
-.block-item:hover, .block-item.dragging { border-color: rgba(0,229,255,.3); background: rgba(0,229,255,.035); }
+.block-item:hover, .block-item.dragging { border-color: rgba(0,242,255,.3); background: rgba(0,242,255,.035); }
 .block-toolbar-mini { display: none; position: absolute; top: 8px; right: 10px; gap: 2px; background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 7px; padding: 3px; z-index: 5; box-shadow: 0 4px 14px rgba(0,0,0,.3); }
 .block-item:hover .block-toolbar-mini, .block-item:focus-within .block-toolbar-mini { display: flex; }
 .block-mini-btn { width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; background: transparent; border: none; border-radius: 5px; color: var(--wp-text); cursor: pointer; font-size: 12px; }
@@ -2399,8 +2398,8 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .block-type-tag { position: absolute; top: 8px; left: 34px; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--wp-blue); background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 6px; padding: 2px 7px; display: none; }
 .block-item:hover .block-type-tag, .block-item:focus-within .block-type-tag { display: block; }
 .block-canvas { counter-reset: block-h2; font-family: 'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-.block-canvas h2 { counter-increment:block-h2;position:relative;font-family:'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;font-size:20px;font-weight:700;color:var(--wp-title);outline:none;margin:12px 0;padding:14px 14px 14px 58px;border:1px solid rgba(0,229,255,.16);border-radius:9px;background:linear-gradient(110deg,rgba(0,229,255,.10),rgba(124,58,237,.08) 62%,rgba(255,48,128,.06)); }
-.block-canvas h2::before { content:counter(block-h2, decimal-leading-zero);position:absolute;left:12px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:32px;height:32px;color:#070311;background:linear-gradient(135deg,#00e5ff 0 76%,#ff3080 77% 100%);clip-path:polygon(0 0,84% 0,100% 16%,100% 100%,16% 100%,0 84%);font-family:'Space Grotesk', 'Inter', sans-serif;font-size:11px;font-weight:700;line-height:1; }
+.block-canvas h2 { counter-increment:block-h2;position:relative;font-family:'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;font-size:20px;font-weight:700;color:var(--wp-title);outline:none;margin:12px 0;padding:14px 14px 14px 58px;border:1px solid rgba(0,242,255,.16);border-radius:9px;background:linear-gradient(110deg,rgba(0,242,255,.10),rgba(124,58,237,.08) 62%,rgba(255,33,119,.06)); }
+.block-canvas h2::before { content:counter(block-h2, decimal-leading-zero);position:absolute;left:12px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:32px;height:32px;color:#070311;background:linear-gradient(135deg,#00f2ff 0 76%,#ff2177 77% 100%);clip-path:polygon(0 0,84% 0,100% 16%,100% 100%,16% 100%,0 84%);font-family:'Space Grotesk', 'Inter', sans-serif;font-size:11px;font-weight:700;line-height:1; }
 .block-canvas h2:empty::after { content: 'Nhập tiêu đề mục...'; color: var(--wp-muted); opacity: .55; }
 .block-canvas h3 { font-family:'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;font-size: 17px; font-weight: 700; color: var(--wp-title); outline: none; margin-top: 6px; }
 .block-canvas h3:empty::before { content: 'Nhập tiêu đề phụ...'; color: var(--wp-muted); opacity: .55; }
@@ -2438,7 +2437,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .status-dot.error { background: var(--wp-red); animation: none; }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
 .save-log { font-size: 11px; color: var(--wp-muted); line-height: 1.7; max-height: 120px; overflow-y: auto; }
-.deploy-info { background: rgba(0,229,255,.05); border: 1px solid rgba(34,113,177,.12); border-radius: 8px; padding: 12px; font-size: 11px; color: var(--wp-text); line-height: 1.8; }
+.deploy-info { background: rgba(0,242,255,.05); border: 1px solid rgba(34,113,177,.12); border-radius: 8px; padding: 12px; font-size: 11px; color: var(--wp-text); line-height: 1.8; }
 .deploy-info strong { color: var(--wp-blue); }
 /* ── Loading ── */
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -2446,13 +2445,13 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 #toast { position: fixed; bottom: 24px; right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
 .toast-item { background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 10px; padding: 12px 16px; font-size: 13px; min-width: 260px; display: flex; align-items: center; gap: 10px; animation: toastIn .2s ease; box-shadow: 0 8px 32px rgba(0,0,0,.5); }
 .toast-item.success { border-color: rgba(52,211,153,.4); }
-.toast-item.error { border-color: rgba(255,48,128,.4); }
+.toast-item.error { border-color: rgba(255,33,119,.4); }
 .toast-icon { font-size: 16px; flex-shrink: 0; }
 @keyframes toastIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none} }
 /* ── Cảnh báo đồng bộ thất bại (không tự ẩn, khác toast) ── */
 #sync-fail-banners { position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 10001; display: flex; flex-direction: column; gap: 10px; width: min(520px, calc(100% - 32px)); }
-.sync-fail-banner { background: var(--wp-card); border: 1px solid rgba(255,48,128,.5); border-left: 4px solid #ff3080; border-radius: 10px; padding: 14px 16px; font-size: 13px; color: var(--wp-text); box-shadow: 0 8px 32px rgba(0,0,0,.55); animation: toastIn .2s ease; }
-.sync-fail-banner h4 { margin: 0 0 8px; font-size: 13px; color: #ff3080; display: flex; align-items: center; gap: 8px; }
+.sync-fail-banner { background: var(--wp-card); border: 1px solid rgba(255,33,119,.5); border-left: 4px solid #ff2177; border-radius: 10px; padding: 14px 16px; font-size: 13px; color: var(--wp-text); box-shadow: 0 8px 32px rgba(0,0,0,.55); animation: toastIn .2s ease; }
+.sync-fail-banner h4 { margin: 0 0 8px; font-size: 13px; color: #ff2177; display: flex; align-items: center; gap: 8px; }
 .sync-fail-banner .sfb-desc { color: var(--wp-muted); margin-bottom: 6px; line-height: 1.5; }
 .sync-fail-banner ul { margin: 4px 0 12px; padding-left: 18px; color: var(--wp-muted); line-height: 1.6; }
 .sync-fail-banner .sfb-actions { display: flex; gap: 8px; }
@@ -2467,8 +2466,8 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .rank-tab { padding: 9px 18px; border: none; background: none; color: var(--wp-muted); cursor: pointer; font-size: 13px; font-weight: 600; border-bottom: 2px solid transparent; transition: all .15s; }
 .rank-tab:hover { color: var(--wp-title); }
 .rank-entry { display: grid; grid-template-columns: 72px 1fr; gap: 12px; align-items: start; padding: 12px; border: 1px solid var(--wp-border); border-radius: 10px; margin-bottom: 8px; background: var(--wp-card); transition: border .15s, box-shadow .15s; }
-.rank-entry:hover { border-color: rgba(0,229,255,.3); box-shadow: 0 4px 14px rgba(0,0,0,.16); }
-.rank-entry.top3 { border-color: rgba(0,229,255,.3); background: rgba(0,229,255,.03); }
+.rank-entry:hover { border-color: rgba(0,242,255,.3); box-shadow: 0 4px 14px rgba(0,0,0,.16); }
+.rank-entry.top3 { border-color: rgba(0,242,255,.3); background: rgba(0,242,255,.03); }
 .rank-num { font-size: 20px; font-weight: 800; color: var(--wp-blue); text-align: center; padding-top: 6px; }
 .rank-num.gold { color: #fbbf24; }
 .rank-num.silver { color: #a0aec0; }
@@ -2486,7 +2485,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .live-card-body { position: relative; z-index: 1; padding: 20px; width: 100%; }
 .live-tag { display: inline-block; background: var(--wp-blue); color: #000; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
 .live-title { font-size: 22px; font-weight: 800; color: #fff; line-height: 1.3; outline: none; text-shadow: 0 2px 10px rgba(0,0,0,.5); border-radius: 4px; padding: 2px 4px; margin: -2px -4px; }
-.live-title:focus, .live-sub:focus, .sc-title-live:focus, .ticker-text:focus { background: rgba(0,229,255,.12); box-shadow: 0 0 0 1px var(--wp-blue); }
+.live-title:focus, .live-sub:focus, .sc-title-live:focus, .ticker-text:focus { background: rgba(0,242,255,.12); box-shadow: 0 0 0 1px var(--wp-blue); }
 .live-title:empty:before { content: attr(data-ph); color: rgba(255,255,255,.4); }
 .live-sub { font-size: 13px; color: rgba(255,255,255,.88); margin-top: 8px; outline: none; max-width: 640px; border-radius: 4px; padding: 2px 4px; margin-left: -4px; }
 .live-sub:empty:before { content: attr(data-ph); color: rgba(255,255,255,.35); }
@@ -2499,7 +2498,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .live-edit-hint strong { color: var(--wp-text); }
 /* ── Trình soạn thảo trang chủ kiểu Elementor (iframe + click-to-edit) ── */
 .home-visual-editor { grid-template-columns: 1fr 340px; }
-.visual-hint { font-size: 12px; color: var(--wp-text); background: rgba(34,113,177,.12); border: 1px solid rgba(0,229,255,.25); border-radius: 8px; padding: 9px 14px; margin-bottom: 14px; }
+.visual-hint { font-size: 12px; color: var(--wp-text); background: rgba(34,113,177,.12); border: 1px solid rgba(0,242,255,.25); border-radius: 8px; padding: 9px 14px; margin-bottom: 14px; }
 .visual-iframe-wrap { background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,.14); height: calc(100vh - 220px); min-height: 500px; }
 .home-visual-iframe { width: 100%; height: 100%; border: 0; display: block; background: #150a2c; }
 .block-nav-item { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 8px 8px; border-radius: 7px; font-size: 12.5px; color: var(--wp-text); background: none; border: none; cursor: pointer; transition: background .15s, color .15s; font-family: inherit; }
@@ -2530,7 +2529,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .home-tab-btn { flex: 1; background: none; border: none; border-radius: 6px; padding: 7px 4px; font-size: 11.5px; color: var(--wp-muted); cursor: pointer; font-family: inherit; transition: background .15s, color .15s; }
 /* ── Command palette (Ctrl/Cmd+K) — tìm nhanh kiểu Linear/Vercel/Notion ── */
 .cmdk-trigger { display: flex; align-items: center; gap: 8px; width: 100%; padding: 9px 12px; background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 8px; color: var(--wp-muted); font-size: 12.5px; cursor: pointer; transition: border-color .15s, background .15s; font-family: inherit; }
-.cmdk-trigger:hover { border-color: rgba(0,229,255,.35); background: var(--wp-bg); }
+.cmdk-trigger:hover { border-color: rgba(0,242,255,.35); background: var(--wp-bg); }
 .cmdk-trigger kbd { margin-left: auto; font-family: inherit; font-size: 10px; font-weight: 700; color: var(--wp-text); background: rgba(0,0,0,.05); border: 1px solid var(--wp-border); border-radius: 5px; padding: 2px 6px; }
 @keyframes cmdkIn { from { opacity: 0; transform: translateY(-8px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
 .cmdk-esc { font-size: 10px; font-weight: 700; color: var(--wp-muted); background: rgba(0,0,0,.05); border: 1px solid var(--wp-border); border-radius: 5px; padding: 2px 6px; flex-shrink: 0; }
@@ -2539,7 +2538,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .cmdk-item-body { flex: 1; min-width: 0; }
 .cmdk-item-title { font-size: 13.5px; color: var(--wp-title); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .cmdk-item-hint { font-size: 11px; color: var(--wp-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; }
-.cmdk-item-tag { font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--wp-blue); background: rgba(0,229,255,.1); border-radius: 5px; padding: 3px 7px; flex-shrink: 0; }
+.cmdk-item-tag { font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--wp-blue); background: rgba(0,242,255,.1); border-radius: 5px; padding: 3px 7px; flex-shrink: 0; }
 /* ── Media Inserter (kiểu "Add Media" của WordPress) ────────────────────── */
 .media-modal-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
 .media-modal-or { font-size: 12px; color: var(--wp-muted); }
@@ -2653,8 +2652,8 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
   font-weight: 400;
   margin: 18px 0 24px;
   padding: 10px 16px;
-  border-left: 3px solid #00e5ff;
-  background: rgba(0, 229, 255, .05);
+  border-left: 3px solid #00f2ff;
+  background: rgba(0,242,255, .05);
   border-radius: 0 4px 4px 0;
 }
 #body-visual .art-lead em {
@@ -3023,7 +3022,7 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
   background: var(--wp-card-alt);
 }
 .wp-list-table tbody tr.selected {
-  background: rgba(0,229,255,.08);
+  background: rgba(0,242,255,.08);
 }
 .wp-list-table tbody td, .wp-list-table tbody th {
   padding: 10px 10px;
@@ -3583,12 +3582,12 @@ textarea.form-input { resize: vertical; min-height: 80px; line-height: 1.6; }
 .preview-device-btns { display: flex; gap: 5px; }
 .preview-device-btn { background: var(--wp-surface); border: 1px solid var(--wp-border); color: var(--wp-muted); font-size: 11.5px; font-weight: 600; padding: 4px 10px; border-radius: 4px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; transition: all .15s; }
 .preview-device-btn:hover { background: var(--wp-card-alt); color: var(--wp-title); }
-.preview-device-btn.active { background: var(--cyan); color: #000; font-weight: 700; border-color: var(--cyan); box-shadow: 0 2px 10px rgba(0,229,255,.3); }
+.preview-device-btn.active { background: var(--cyan); color: #000; font-weight: 700; border-color: var(--cyan); box-shadow: 0 2px 10px rgba(0,242,255,.3); }
 html.theme-light .preview-device-btn.active { color: #fff; }
 .preview-iframe-wrap { transition: max-width .25s ease-in-out, margin .25s ease-in-out, box-shadow .25s ease-in-out; }
 
 .sc-card { display: flex; gap: 12px; padding: 10px; border: 1px solid var(--wp-border); border-radius: 10px; margin-bottom: 8px; background: var(--wp-card); transition: border .15s, box-shadow .15s, opacity .15s; }
-.sc-card:hover { border-color: rgba(0,229,255,.3); box-shadow: 0 4px 14px rgba(0,0,0,.16); }
+.sc-card:hover { border-color: rgba(0,242,255,.3); box-shadow: 0 4px 14px rgba(0,0,0,.16); }
 .sc-card.dragging { opacity: .35; }
 .sc-drag-handle { cursor: grab; color: var(--wp-muted); display: flex; align-items: center; padding: 0 2px; font-size: 15px; user-select: none; }
 .sc-drag-handle:active { cursor: grabbing; }
@@ -3599,7 +3598,7 @@ html.theme-light .preview-device-btn.active { color: #fff; }
 .sc-fields-row { display: flex; gap: 6px; margin-top: 8px; }
 .sc-actions-col { display: flex; flex-direction: column; gap: 4px; justify-content: center; }
 .ticker-chip { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border: 1px solid var(--wp-border); border-radius: 8px; background: var(--wp-card); margin-bottom: 6px; transition: border .15s, opacity .15s; }
-.ticker-chip:hover { border-color: rgba(0,229,255,.3); }
+.ticker-chip:hover { border-color: rgba(0,242,255,.3); }
 .ticker-chip.dragging { opacity: .35; }
 .ticker-chip .drag-handle { cursor: grab; color: var(--wp-muted); flex-shrink: 0; font-size: 14px; user-select: none; }
 .ticker-chip .drag-handle:active { cursor: grabbing; }
@@ -3621,7 +3620,7 @@ html.theme-light .preview-device-btn.active { color: #fff; }
 /* ── Pages grid ── */
 .pages-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); gap: 10px; }
 .page-card { background: var(--wp-card); border: 1px solid var(--wp-border); border-radius: 10px; padding: 14px; cursor: pointer; transition: border .15s; }
-.page-card:hover { border-color: rgba(0,229,255,.35); }
+.page-card:hover { border-color: rgba(0,242,255,.35); }
 .page-card .pc-icon { font-size: 24px; margin-bottom: 8px; }
 .page-card .pc-name { font-size: 13px; font-weight: 600; color: var(--wp-title); margin-bottom: 4px; }
 .page-card .pc-file { font-size: 10px; color: var(--wp-muted); }
@@ -3637,11 +3636,11 @@ html.theme-light .preview-device-btn.active { color: #fff; }
 }
 
 /* ── Article Table of Contents (TOC) ── */
-.art-toc{background:rgba(255,255,255,0.03);border:1px solid rgba(0,229,255,0.25);border-radius:8px;padding:16px 20px;margin:24px 0;position:relative}
+.art-toc{background:rgba(255,255,255,0.03);border:1px solid rgba(0,242,255,0.25);border-radius:8px;padding:16px 20px;margin:24px 0;position:relative}
 .art-toc-head{display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08)}
 .art-toc-title-wrap{display:flex;align-items:center;gap:8px}
 .art-toc-icon{font-size:16px}
-.art-toc-title{font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--wp-cyan, #00e5ff)}
+.art-toc-title{font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--wp-cyan, #00f2ff)}
 .art-toc-toggle{font-size:12px;color:var(--wp-muted, #a7aaad);background:none;border:none;cursor:pointer;padding:2px 8px;border-radius:4px;transition:all .2s}
 .art-toc-toggle:hover{color:#fff;background:rgba(255,255,255,0.08)}
 .art-toc-list{list-style:none !important;margin:10px 0 0 0 !important;padding:0 !important;display:flex;flex-direction:column;gap:6px}
@@ -3649,7 +3648,7 @@ html.theme-light .preview-device-btn.active { color: #fff; }
 .art-toc-item.level-h2{font-weight:600}
 .art-toc-item.level-h3{padding-left:18px !important;font-size:13px;opacity:0.9}
 .art-toc-link{color:var(--wp-title, #f0f0f1);text-decoration:none !important;border-bottom:1px dashed rgba(255,255,255,0.2) !important;transition:color .15s, border-color .15s;display:inline-block}
-.art-toc-link:hover{color:var(--wp-cyan, #00e5ff) !important;border-bottom-color:var(--wp-cyan, #00e5ff) !important}
+.art-toc-link:hover{color:var(--wp-cyan, #00f2ff) !important;border-bottom-color:var(--wp-cyan, #00f2ff) !important}
 .art-toc.collapsed .art-toc-list{display:none !important}
 .art-toc.collapsed .art-toc-head{border-bottom:none;padding-bottom:0}
 
@@ -4076,7 +4075,7 @@ html.theme-light .studio-card-head {
   transition: all .15s;
 }
 .cat-chip-btn:hover {
-  background: rgba(0,229,255,.1);
+  background: rgba(0,242,255,.1);
   border-color: var(--cyan);
   color: var(--cyan);
 }
@@ -4117,7 +4116,7 @@ html.theme-light .cat-chip-count {
   transition: all .15s;
 }
 .launch-item:hover {
-  background: rgba(0,229,255,.06);
+  background: rgba(0,242,255,.06);
   border-color: var(--cyan);
   transform: translateY(-1px);
 }
@@ -4290,7 +4289,7 @@ html.theme-light .wp-draft-banner-text {
   <div class="setup-card">
     <div class="auth-header">
       <div class="auth-logo-box">
-        <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="2" fill="rgba(0,229,255,.15)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg>
+        <img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy">
       </div>
       <div class="auth-brand">
         <span class="auth-logo-ota">Ota</span><span class="auth-logo-hub">Hub</span>
@@ -4347,7 +4346,7 @@ html.theme-light .wp-draft-banner-text {
       <a href="https://otahub.asia" target="_blank" class="wtb-item">🏠 Xem trang web (Live)</a>
       <div class="wtb-item"><span class="wtb-badge-live">Cloudflare Pages Edge: Live</span></div>
       <button onclick="newArticle()" class="wtb-item">➕ Thêm bài mới</button>
-      <button onclick="triggerManualIndexNowPing()" class="wtb-item" style="color:#00e5ff" title="Báo cáo lập chỉ mục tức thì cho Bing, Yandex, Seznam">🚀 Ping IndexNow</button>
+      <button onclick="triggerManualIndexNowPing()" class="wtb-item" style="color:#00f2ff" title="Báo cáo lập chỉ mục tức thì cho Bing, Yandex, Seznam">🚀 Ping IndexNow</button>
       <div class="wtb-item"><span class="wtb-badge-seo" id="wtb-top-seo-badge">🎯 SEO: chưa chấm điểm</span></div>
     </div>
     <div class="wtb-right">
@@ -4359,7 +4358,7 @@ html.theme-light .wp-draft-banner-text {
       <div class="wtb-item" onclick="openAuthorProfileModal()" style="cursor:pointer" title="Chỉnh sửa hồ sơ tác giả của bạn">
         <span class="wtb-avatar" id="wtb-avatar">AD</span>
         <span id="wtb-user-name">Chào, Admin</span>
-        <span style="font-size:10px;background:rgba(0,229,255,.15);color:#00e5ff;padding:2px 7px;border-radius:4px;margin-left:6px;font-weight:600">👤 Sửa hồ sơ</span>
+        <span style="font-size:10px;background:rgba(0,242,255,.15);color:#00f2ff;padding:2px 7px;border-radius:4px;margin-left:6px;font-weight:600">👤 Sửa hồ sơ</span>
       </div>
       <button onclick="disconnect()" class="wtb-item" style="color:#ff8099">Đăng xuất</button>
     </div>
@@ -4369,7 +4368,7 @@ html.theme-light .wp-draft-banner-text {
     <!-- Classic WordPress Sidebar -->
     <aside class="wp-sidebar" id="wp-sidebar">
       <div class="wp-sidebar-brand">
-        <div class="ws-brand-icon">OH</div>
+        <div class="ws-brand-icon"><img src="/assets/img/brand/otahub-icon.png" alt="OtaHub"></div>
         <div class="ws-brand-name">OtaHub<small>Studio Admin</small></div>
       </div>
       <ul class="wp-nav-list">
@@ -4866,7 +4865,7 @@ function openKeyboardShortcutsModal() {
           </div>
         </div>
 
-        <div style="background:rgba(0,229,255,.05);border:1px dashed var(--cyan-glow);border-radius:8px;padding:10px 14px">
+        <div style="background:rgba(0,242,255,.05);border:1px dashed var(--cyan-glow);border-radius:8px;padding:10px 14px">
           <small style="color:var(--wp-muted);font-size:11.5px">💡 <strong>Mẹo chuyên nghiệp:</strong> Kéo thả trực tiếp bất kỳ tệp ảnh nào từ máy tính vào khung soạn thảo để tự động tải lên và chèn thẻ hình chuẩn SEO.</small>
         </div>
       </div>
@@ -7111,14 +7110,14 @@ function renderDashboard() {
         <div class="cat-bar-track">
           ${sortedCats.map(([c, n], idx) => {
             const pct = ((n / total) * 100).toFixed(1);
-            const colors = ['#00e5ff', '#ff3080', '#7c3aed', '#fbbf24', '#34d399', '#38bdf8', '#a855f7'];
+            const colors = ['#00f2ff', '#ff2177', '#7c3aed', '#fbbf24', '#34d399', '#38bdf8', '#a855f7'];
             const col = colors[idx % colors.length];
             return `<div class="cat-bar-segment" style="width:${pct}%;background:${col}" title="${c}: ${n} bài (${pct}%)"></div>`;
           }).join('')}
         </div>
         <div class="cat-chips-list">
           ${sortedCats.slice(0, 8).map(([c, n], idx) => {
-            const colors = ['#00e5ff', '#ff3080', '#7c3aed', '#fbbf24', '#34d399', '#38bdf8', '#a855f7'];
+            const colors = ['#00f2ff', '#ff2177', '#7c3aed', '#fbbf24', '#34d399', '#38bdf8', '#a855f7'];
             const col = colors[idx % colors.length];
             return `
               <button type="button" class="cat-chip-btn" onclick="showView('articles'); setTimeout(() => renderArticleList('', '${esc(c)}'), 50);">
@@ -7541,10 +7540,10 @@ function renderUsersView(users, canManage) {
     <div class="article-card" style="grid-template-columns:1fr auto auto auto">
       <div class="art-info">
         <div class="art-title" style="display:flex;align-items:center;gap:8px">
-          ${u.avatar ? `<img src="${esc(u.avatar)}" style="width:24px;height:24px;border-radius:50%;object-fit:cover" alt=""/>` : `<span style="width:24px;height:24px;border-radius:50%;background:#1d113a;border:1px solid #00e5ff;color:#00e5ff;font-size:10px;display:inline-flex;align-items:center;justify-content:center;font-weight:700">${esc((u.displayName || u.username).slice(0, 2).toUpperCase())}</span>`}
+          ${u.avatar ? `<img src="${esc(u.avatar)}" style="width:24px;height:24px;border-radius:50%;object-fit:cover" alt=""/>` : `<span style="width:24px;height:24px;border-radius:50%;background:#1d113a;border:1px solid #00f2ff;color:#00f2ff;font-size:10px;display:inline-flex;align-items:center;justify-content:center;font-weight:700">${esc((u.displayName || u.username).slice(0, 2).toUpperCase())}</span>`}
           <span>${esc(u.displayName || u.username)}</span>
           ${u.displayName ? `<small style="color:var(--muted);font-weight:400">(@${esc(u.username)})</small>` : ''}
-          ${u.username === CURRENT_USER.username ? '<span style="color:#00e5ff;font-weight:600;font-size:11px">(bạn)</span>' : ''}
+          ${u.username === CURRENT_USER.username ? '<span style="color:#00f2ff;font-weight:600;font-size:11px">(bạn)</span>' : ''}
         </div>
         <div class="art-meta">${u.jobTitle ? esc(u.jobTitle) + ' · ' : ''}${u.createdAt ? 'Tạo lúc ' + new Date(u.createdAt).toLocaleString('vi-VN') : ''}</div>
       </div>
@@ -7649,9 +7648,8 @@ async function deleteUser(username) {
 }
 
 function resolveAuthorSlug(name, role) {
-  if (role === 'admin') return 'otahub';
   let s = String(name || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-  if (/otahub/i.test(s)) return 'otahub';
+  if (!s || /otahub/i.test(s)) return 'otahub';
   if (s === 'anh-thu' || s === 'anhthu') return 'anhthu';
   if (s === 'anna') return 'anna';
   if (s === 'yu') return 'yu';
@@ -7705,11 +7703,11 @@ async function openAuthorProfileModal(targetUsername) {
         </div>
         <div class="modal-body" style="padding:22px;display:flex;flex-direction:column;gap:16px">
           <div style="display:flex;align-items:center;gap:18px;padding:14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:10px">
-            <div id="apm-avatar-preview" style="width:72px;height:72px;border-radius:50%;background:#1d113a;border:2px solid #00e5ff;overflow:hidden;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px;color:#00e5ff;flex-shrink:0">
+            <div id="apm-avatar-preview" style="width:72px;height:72px;border-radius:50%;background:#1d113a;border:2px solid #00f2ff;overflow:hidden;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px;color:#00f2ff;flex-shrink:0">
               ${u.avatar ? `<img src="${esc(u.avatar)}" style="width:100%;height:100%;object-fit:cover" alt=""/>` : esc((u.displayName || u.username).slice(0, 2).toUpperCase())}
             </div>
             <div style="flex:1">
-              <div style="font-size:12px;font-weight:700;color:#00e5ff;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Ảnh đại diện tác giả</div>
+              <div style="font-size:12px;font-weight:700;color:#00f2ff;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Ảnh đại diện tác giả</div>
               <input type="text" id="apm-avatar" class="form-input" placeholder="/assets/img/... hoặc URL ảnh" value="${esc(u.avatar || '')}" style="font-size:12px;margin-bottom:8px" oninput="updateApmAvatarPreview()"/>
               <button type="button" class="btn btn-secondary btn-sm" onclick="apmPickAvatar()">📷 Chọn / Tải ảnh lên</button>
             </div>
@@ -7739,9 +7737,9 @@ async function openAuthorProfileModal(targetUsername) {
             <textarea id="apm-bio" class="form-input" rows="3" placeholder="Giới thiệu đôi nét về bản thân, sở thích gaming/anime hoặc chuyên môn của tác giả..." style="resize:vertical">${esc(u.bio || '')}</textarea>
           </div>
 
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(0,229,255,.05);border:1px dashed rgba(0,229,255,.25);border-radius:8px">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(0,242,255,.05);border:1px dashed rgba(0,242,255,.25);border-radius:8px">
             <span style="font-size:12.5px;color:#cfc9e8">Trang tác giả công khai:</span>
-            <a href="${publicUrl}" target="_blank" style="font-size:12.5px;color:#00e5ff;font-weight:600;text-decoration:none">Xem trang ngoài web ↗</a>
+            <a href="${publicUrl}" target="_blank" style="font-size:12.5px;color:#00f2ff;font-weight:600;text-decoration:none">Xem trang ngoài web ↗</a>
           </div>
 
           <div id="apm-error" class="setup-error" style="display:none"></div>
@@ -8626,7 +8624,7 @@ function renderArticleList(filter='', cat='', tab='all') {
           <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
             <span class="badge-lang badge-lang-vi" title="Bản Tiếng Việt (Gốc)" style="display:inline-flex;align-items:center;gap:2px;font-size:10px;padding:1px 5px;border-radius:3px;background:rgba(235,16,69,0.12);color:#eb1045;border:1px solid rgba(235,16,69,0.25);font-weight:600">🇻🇳 VI</span>
             ${a.hasEn ? `
-              <a href="javascript:void(0)" onclick="editArticle('en/${esc(a.file)}')" class="badge-lang badge-lang-en" title="Xem/sửa bản Tiếng Anh (en/${esc(a.file)})" style="display:inline-flex;align-items:center;gap:2px;font-size:10px;padding:1px 5px;border-radius:3px;background:rgba(0,229,255,0.12);color:#00e5ff;border:1px solid rgba(0,229,255,0.3);font-weight:600;text-decoration:none">🇬🇧 EN</a>
+              <a href="javascript:void(0)" onclick="editArticle('en/${esc(a.file)}')" class="badge-lang badge-lang-en" title="Xem/sửa bản Tiếng Anh (en/${esc(a.file)})" style="display:inline-flex;align-items:center;gap:2px;font-size:10px;padding:1px 5px;border-radius:3px;background:rgba(0,242,255,0.12);color:#00f2ff;border:1px solid rgba(0,242,255,0.3);font-weight:600;text-decoration:none">🇬🇧 EN</a>
             ` : `
               <a href="javascript:void(0)" onclick="createEnglishDraftForArticle('${esc(a.file)}')" class="badge-lang badge-lang-missing" title="Chưa có bản Tiếng Anh - Bấm để tạo ngay" style="display:inline-flex;align-items:center;gap:2px;font-size:10px;padding:1px 5px;border-radius:3px;background:rgba(255,184,0,0.12);color:#ffb800;border:1px solid rgba(255,184,0,0.3);font-weight:600;text-decoration:none">+🇬🇧 EN</a>
             `}
@@ -11623,14 +11621,14 @@ function buildStandardEnglishArticleTemplate(viSlug, enSlug, heroImg, heroPos, c
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="stylesheet" href="/assets/article-style.css?v=20261001video">
+<link rel="stylesheet" href="/assets/article-style.css?v=20261001c">
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
 <link rel="stylesheet" href="/assets/mobile-fix.css?v=20261001b">
 </head>
 <body>
 <header class="site-header">
   <div class="header-inner wrap">
-    <a href="/en/" class="brand"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a>
+    <a href="/en/" class="brand"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a>
     <nav class="main-nav">
       <a href="/en/" class="nav-item">Home</a>
       <a href="/en/anime" class="nav-item">Anime</a>
@@ -12608,7 +12606,7 @@ function updateSeoScore() {
   const topSeoBadge = document.getElementById('wtb-top-seo-badge');
   if (topSeoBadge) {
     topSeoBadge.innerHTML = `🎯 Rank Math SEO: <strong>${score}/100</strong>`;
-    topSeoBadge.style.color = score >= 80 ? '#00e5ff' : score >= 50 ? '#fbbf24' : '#ff4d4f';
+    topSeoBadge.style.color = score >= 80 ? '#00f2ff' : score >= 50 ? '#fbbf24' : '#ff4d4f';
   }
 
   // 1. Update circular SVG chart in Rank Math header
@@ -14080,18 +14078,18 @@ const ART_BRIDGE_SCRIPT = `<script>(function(){
   style.textContent =
     '.art-hero-grad,.art-hero-overlay{pointer-events:none !important}' +
     '[data-oh-jump]{cursor:pointer;outline-offset:2px;transition:outline .12s}' +
-    '[data-oh-jump]:hover{outline:2px dashed #00e5ff}' +
+    '[data-oh-jump]:hover{outline:2px dashed #00f2ff}' +
     '[contenteditable="true"]{outline-offset:3px;transition:outline .12s;cursor:text}' +
-    '[contenteditable="true"]:hover{outline:2px dashed rgba(0,229,255,.5)}' +
-    '[contenteditable="true"]:focus{outline:2px solid #00e5ff}' +
+    '[contenteditable="true"]:hover{outline:2px dashed rgba(0,242,255,.5)}' +
+    '[contenteditable="true"]:focus{outline:2px solid #00f2ff}' +
     '[data-ohfield="body"]:hover{outline:none}' +
     'figcaption:empty:before{content:"+ Thêm chú thích ảnh (bấm để nhập)";opacity:.45}' +
     'cite:empty:before{content:"+ Thêm nguồn / tác giả (tuỳ chọn)";opacity:.45}' +
     '.oh-img-empty{display:flex;align-items:center;justify-content:center;min-height:160px;border:2px dashed rgba(255,255,255,.25);background:rgba(255,255,255,.03)}' +
     '.oh-img-empty-hint{color:rgba(240,238,255,.5);font-size:14px}' +
-    '#oh-floating-bubble{position:fixed;display:none;z-index:999999;background:rgba(19,9,48,0.94);backdrop-filter:blur(16px);border:1px solid rgba(0,229,255,0.45);border-radius:8px;padding:4px;box-shadow:0 12px 36px rgba(0,0,0,0.65),0 0 15px rgba(0,229,255,0.22);align-items:center;gap:3px;user-select:none;transform:translateX(-50%)}' +
+    '#oh-floating-bubble{position:fixed;display:none;z-index:999999;background:rgba(19,9,48,0.94);backdrop-filter:blur(16px);border:1px solid rgba(0,242,255,0.45);border-radius:8px;padding:4px;box-shadow:0 12px 36px rgba(0,0,0,0.65),0 0 15px rgba(0,242,255,0.22);align-items:center;gap:3px;user-select:none;transform:translateX(-50%)}' +
     '#oh-floating-bubble button{background:transparent;border:1px solid transparent;border-radius:4px;color:#f0eeff;font-family:system-ui,-apple-system,sans-serif;font-size:12px;font-weight:600;padding:4px 8px;cursor:pointer;line-height:1.2;transition:all .12s;display:inline-flex;align-items:center;justify-content:center}' +
-    '#oh-floating-bubble button:hover{background:rgba(0,229,255,0.18);border-color:rgba(0,229,255,0.4);color:#00e5ff;transform:translateY(-1px)}' +
+    '#oh-floating-bubble button:hover{background:rgba(0,242,255,0.18);border-color:rgba(0,242,255,0.4);color:#00f2ff;transform:translateY(-1px)}' +
     '#oh-floating-bubble .fb-sep{width:1px;height:16px;background:rgba(255,255,255,0.15);margin:0 2px}';
   document.head.appendChild(style);
 
@@ -14738,7 +14736,7 @@ function openFullArticlePreview(targetLang) {
   html, body { background: #0b0418 !important; color: #f0eeff !important; margin: 0; padding: 0; }
   .logo svg { width: 34px !important; height: 34px !important; max-width: 34px !important; }
 </style>
-<div style="position:fixed;bottom:20px;right:20px;z-index:999999;background:linear-gradient(135deg,#ff3080,#7c3aed);color:#fff;font-family:sans-serif;font-size:12px;font-weight:700;padding:8px 16px;border-radius:24px;box-shadow:0 8px 24px rgba(0,0,0,0.5);display:flex;align-items:center;gap:8px;pointer-events:none">
+<div style="position:fixed;bottom:20px;right:20px;z-index:999999;background:linear-gradient(135deg,#ff2177,#7c3aed);color:#fff;font-family:sans-serif;font-size:12px;font-weight:700;padding:8px 16px;border-radius:24px;box-shadow:0 8px 24px rgba(0,0,0,0.5);display:flex;align-items:center;gap:8px;pointer-events:none">
   <span>👁️ Chế độ Xem Trước (${langBadgeText})</span>
 </div>
 `;
@@ -16063,7 +16061,7 @@ function newArticle(prefillTitle) {
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <meta name="theme-color" content="#0b0418">
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
-<link rel="stylesheet" href="/assets/article-style.css?v=20261001video">
+<link rel="stylesheet" href="/assets/article-style.css?v=20261001c">
 </head>
 <body>
 
@@ -16083,7 +16081,7 @@ function newArticle(prefillTitle) {
 </div>
 <div id="amb"><div class="orb o1"></div><div class="orb o2"></div></div>
 <div id="gtex"></div>
-<nav class="nav"><div class="nav-in"><a class="logo" href="/"><span><svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="5" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect></svg></span><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming" class="active">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><button class="ham" id="ham" aria-label="Menu" onclick="toggleMob()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="Tìm kiếm" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="/#newsletter" class="cta" id="cta-sub">Subscribe</a></div></div></nav>
+<nav class="nav"><div class="nav-in"><a class="logo" href="/"><span><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"></span><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming" class="active">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><button class="ham" id="ham" aria-label="Menu" onclick="toggleMob()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="Tìm kiếm" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="/#newsletter" class="cta" id="cta-sub">Subscribe</a></div></div></nav>
 <nav class="mobile-nav" id="mobnav"><a href="/choi-gi">Chơi Gì?</a><a href="/gaming" class="active">Gaming</a><a href="/anime">Anime</a><a href="/manga">Manga</a><a href="/reviews">Reviews</a><a href="/rankings">Rankings</a><a href="/chuyen-sau">Chuyên sâu</a><div class="m-sub"><a href="/about">Giới thiệu</a><a href="/#newsletter">Newsletter</a><a href="/about#contact">Liên hệ</a></div></nav>
 
 <section class="art-hero">
@@ -16149,7 +16147,7 @@ ${initialBody}
 </aside>
 </div>
 
-<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub<br><span style="opacity:.75;font-size:12px">Vận hành bởi Công ty TNHH Marketing &amp; Truyền thông ANBU · MST 3301761892 · 47 Đặng Văn Ngữ, Phường An Cựu, TP. Huế, Việt Nam · Hotline 039 699 5252 · <a href="mailto:dat.phan@anbu.asia" style="color:inherit">dat.phan@anbu.asia</a></span></span></div></footer>
+<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub<br><span style="opacity:.75;font-size:12px">Vận hành bởi Công ty TNHH Marketing &amp; Truyền thông ANBU · MST 3301761892 · 47 Đặng Văn Ngữ, Phường An Cựu, TP. Huế, Việt Nam · Hotline 039 699 5252 · <a href="mailto:dat.phan@anbu.asia" style="color:inherit">dat.phan@anbu.asia</a></span></span></div></footer>
 
 <script>
 function toggleMob(){
@@ -16451,7 +16449,7 @@ function buildHubPreviewHtml() {
 }
 const HUB_BRIDGE_SCRIPT = `<script>(function(){
   var style = document.createElement('style');
-  style.textContent = '[data-oh-jump]{cursor:pointer;outline-offset:-2px;transition:outline .12s}[data-oh-jump]:hover{outline:3px dashed #00e5ff !important}';
+  style.textContent = '[data-oh-jump]{cursor:pointer;outline-offset:-2px;transition:outline .12s}[data-oh-jump]:hover{outline:3px dashed #00f2ff !important}';
   document.head.appendChild(style);
   document.addEventListener('click', function(e){
     var el = e.target.closest ? e.target.closest('[data-oh-jump]') : null;
@@ -17142,7 +17140,7 @@ const HOME_BRIDGE_SCRIPT = `<script>(function(){
   }
   tag();
   var style = document.createElement('style');
-  style.textContent = '.oh-editable{outline-offset:-3px;cursor:pointer;transition:outline .12s}.oh-editable:hover{outline:3px dashed #00e5ff !important}';
+  style.textContent = '.oh-editable{outline-offset:-3px;cursor:pointer;transition:outline .12s}.oh-editable:hover{outline:3px dashed #00f2ff !important}';
   document.head.appendChild(style);
   document.addEventListener('click', function(e){
     e.preventDefault();
@@ -18398,7 +18396,7 @@ async function syncNewArticle(art) {
       const count = parseInt(newsMatch[2], 10) || 30;
       const badgeText = isEn ? (cat || 'HOT') : (cat || 'HOT');
       const newsDate = isEn ? 'Just now' : 'Vừa xong';
-      const newCard = `\n    <a href="/${slug}" style="display:block;background:#150a2c;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;text-decoration:none;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,229,255,0.4)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,229,255,0.12)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none';this.style.boxShadow='none'">\n      <div style="position:relative;width:100%;height:180px;background:#0d051e;overflow:hidden;">\n        <img height="675" width="1200" src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">\n        <span style="position:absolute;top:10px;left:10px;background:linear-gradient(135deg,#ff3080,#7c3aed);color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px;letter-spacing:.15em;text-transform:uppercase;">${esc(badgeText)}</span>\n      </div>\n      <div style="padding:16px;">\n        <h3 style="color:#ffffff;font-size:15px;font-weight:700;line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(title)}</h3>\n        <p style="color:rgba(240,238,255,0.65);font-size:12.5px;line-height:1.5;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(desc || '')}</p>\n        <div style="display:flex;align-items:center;justify-content:space-between;color:rgba(240,238,255,0.4);font-size:11px;">\n          <span>⚡ OtaHub News</span>\n          <span>${newsDate}</span>\n        </div>\n      </div>\n    </a>\n`;
+      const newCard = `\n    <a href="/${slug}" style="display:block;background:#150a2c;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;text-decoration:none;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(0,242,255,0.4)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,242,255,0.12)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.transform='none';this.style.boxShadow='none'">\n      <div style="position:relative;width:100%;height:180px;background:#0d051e;overflow:hidden;">\n        <img height="675" width="1200" src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">\n        <span style="position:absolute;top:10px;left:10px;background:linear-gradient(135deg,#ff2177,#7c3aed);color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px;letter-spacing:.15em;text-transform:uppercase;">${esc(badgeText)}</span>\n      </div>\n      <div style="padding:16px;">\n        <h3 style="color:#ffffff;font-size:15px;font-weight:700;line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(title)}</h3>\n        <p style="color:rgba(240,238,255,0.65);font-size:12.5px;line-height:1.5;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(desc || '')}</p>\n        <div style="display:flex;align-items:center;justify-content:space-between;color:rgba(240,238,255,0.4);font-size:11px;">\n          <span>⚡ OtaHub News</span>\n          <span>${newsDate}</span>\n        </div>\n      </div>\n    </a>\n`;
       return newsHtml.replace(/(<!-- OTAHUB_NEW30_START -->[\s\S]*?<!-- OTAHUB_NEW30_END -->)/, `${newsMatch[1]}${count + 1}${newsMatch[3]}${newCard}${newsMatch[4]}${newsMatch[5]}`);
     }, `[admin] them tin /${slug} vao ${newsTarget}`);
   } catch(e) {
@@ -18462,7 +18460,7 @@ function renderReviewsEditor() {
   const rows = filtered.map((r) => {
     const realIndex = REVIEWS_LIST.indexOf(r);
     const scoreVal = parseFloat(r.score) || 9.0;
-    const scoreColor = scoreVal >= 9.0 ? 'var(--cyan, #00e5ff)' : (scoreVal >= 8.0 ? 'var(--amber, #f59e0b)' : 'var(--magenta, #ff007f)');
+    const scoreColor = scoreVal >= 9.0 ? 'var(--cyan, #00f2ff)' : (scoreVal >= 8.0 ? 'var(--amber, #f59e0b)' : 'var(--magenta, #ff007f)');
     return `
       <div class="rank-entry" style="display:grid;grid-template-columns:auto 100px 1fr auto;gap:14px;align-items:center;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px;margin-bottom:10px">
         <div style="text-align:center;min-width:44px">
@@ -18655,7 +18653,7 @@ async function chuyenSauEditor() {
 
 function renderChuyenSauEditor() {
   const pickRows = CHUYEN_SAU_PICKS.map((p, i) => `
-    <div class="rank-entry" style="background:rgba(0,229,255,0.03);border:1px solid rgba(0,229,255,0.2);border-radius:8px;padding:12px;margin-bottom:10px">
+    <div class="rank-entry" style="background:rgba(0,242,255,0.03);border:1px solid rgba(0,242,255,0.2);border-radius:8px;padding:12px;margin-bottom:10px">
       <div style="font-weight:700;color:var(--cyan);font-size:12px;margin-bottom:6px">🌟 Tiêu điểm #${i+1}</div>
       <div style="display:grid;grid-template-columns:120px 1fr auto;gap:12px;align-items:center">
         <img src="${esc(p.img || '/og-image.png')}" style="width:120px;height:68px;object-fit:cover;border-radius:6px" onerror="this.src='/og-image.png'"/>

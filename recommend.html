@@ -55,13 +55,13 @@
 <style>
 
 
-:root{
+@font-face{font-family:'BHN Fonarto Regular';src:url('/assets/fonts/BHNFonartoRegular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}:root{
 
 
   --bg:#0b0418;--surf:#1a0d34;--surf2:#211040;--card:#1e0f3c;
 
 
-  --cyan:#00e5ff;--sakura:#ff3080;--violet:#7c3aed;
+  --cyan:#00f2ff;--sakura:#ff2177;--violet:#7c3aed;
 
 
   --lav:#a78bfa;--amber:#fbbf24;--green:#34d399;
@@ -70,7 +70,7 @@
   --white:#f0eeff;--dim:rgba(240,238,255,.62);--muted:rgba(240,238,255,.35);
 
 
-  --border:rgba(255,255,255,.07);--bcyan:rgba(0,229,255,.18);
+  --border:rgba(255,255,255,.07);--bcyan:rgba(0,242,255,.18);
 
 
   --ease:cubic-bezier(.16,1,.3,1);
@@ -136,13 +136,13 @@ body{background:radial-gradient(ellipse 100% 35% at 50% 0%,rgba(124,58,237,.1) 0
 .logo svg{width:30px;height:30px;animation:lp 3s ease-in-out infinite}
 
 
-@keyframes lp{0%,100%{filter:drop-shadow(0 0 4px #00e5ff) drop-shadow(0 0 12px rgba(0,229,255,.5))}50%{filter:drop-shadow(0 0 8px #00e5ff) drop-shadow(0 0 24px rgba(0,229,255,.9))}}
+@keyframes lp{0%,100%{filter:drop-shadow(0 0 4px #00f2ff) drop-shadow(0 0 12px rgba(0,242,255,.5))}50%{filter:drop-shadow(0 0 8px #00f2ff) drop-shadow(0 0 24px rgba(0,242,255,.9))}}
 
 
-.logo-t{font-family:var(--fd);font-weight:700;font-size:20px;letter-spacing:-.01em;line-height:1}
+.logo-t{font-family:'BHN Fonarto Regular',var(--fd);font-weight:400;font-size:20px;letter-spacing:-.01em;line-height:1}
 
 
-.logo-ota{color:var(--white)}.logo-hub{color:var(--cyan)}
+.logo-ota{color:var(--sakura)}.logo-hub{color:var(--cyan)}
 
 
 .nav-links{display:flex;align-items:center;list-style:none;gap:0;flex:1}
@@ -181,7 +181,7 @@ body{background:radial-gradient(ellipse 100% 35% at 50% 0%,rgba(124,58,237,.1) 0
 .nsearch:hover{border-color:var(--cyan);color:var(--cyan)}
 
 
-.cta{background:var(--cyan);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;padding:8px 20px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:background .18s;text-decoration:none;display:inline-block;white-space:nowrap;box-shadow:0 0 20px rgba(0,229,255,.35)}
+.cta{background:var(--cyan);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;padding:8px 20px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:background .18s;text-decoration:none;display:inline-block;white-space:nowrap;box-shadow:0 0 20px rgba(0,242,255,.35)}
 
 
 .cta:hover{background:#33eeff}
@@ -247,7 +247,7 @@ body{background:radial-gradient(ellipse 100% 35% at 50% 0%,rgba(124,58,237,.1) 0
 .hero-title{font-family:var(--fd);font-weight:700;font-size:clamp(48px,7vw,100px);line-height:.9;letter-spacing:-.03em;margin-bottom:16px}
 
 
-.hero-title em{font-style:normal;color:var(--cyan);text-shadow:0 0 40px rgba(0,229,255,.4)}
+.hero-title em{font-style:normal;color:var(--cyan);text-shadow:0 0 40px rgba(0,242,255,.4)}
 
 
 .hero-sub{font-size:15px;color:var(--dim);max-width:480px;margin:0 auto;line-height:1.8}
@@ -262,7 +262,7 @@ body{background:radial-gradient(ellipse 100% 35% at 50% 0%,rgba(124,58,237,.1) 0
 .dice-wrap{margin:32px auto;width:80px;height:80px;cursor:pointer;position:relative}
 
 
-.dice-wrap svg{width:80px;height:80px;filter:drop-shadow(0 0 16px rgba(0,229,255,.6));animation:diceSpin 6s ease-in-out infinite}
+.dice-wrap svg{width:80px;height:80px;filter:drop-shadow(0 0 16px rgba(0,242,255,.6));animation:diceSpin 6s ease-in-out infinite}
 
 
 @keyframes diceSpin{0%,100%{transform:rotate(0deg)}25%{transform:rotate(8deg)}75%{transform:rotate(-8deg)}}
@@ -292,13 +292,13 @@ body{background:radial-gradient(ellipse 100% 35% at 50% 0%,rgba(124,58,237,.1) 0
 .fpill{background:none;border:1px solid var(--border);color:var(--muted);font-family:var(--fb);font-size:12px;padding:7px 16px;cursor:pointer;transition:all .2s;white-space:nowrap;border-radius:0}
 
 
-.fpill:hover{border-color:rgba(0,229,255,.4);color:rgba(240,238,255,.8)}
+.fpill:hover{border-color:rgba(0,242,255,.4);color:rgba(240,238,255,.8)}
 
 
-.fpill.on{background:rgba(0,229,255,.12);border-color:var(--cyan);color:var(--cyan);font-weight:500}
+.fpill.on{background:rgba(0,242,255,.12);border-color:var(--cyan);color:var(--cyan);font-weight:500}
 
 
-.fpill.on-sakura{background:rgba(255,48,128,.12);border-color:var(--sakura);color:var(--sakura)}
+.fpill.on-sakura{background:rgba(255,33,119,.12);border-color:var(--sakura);color:var(--sakura)}
 
 
 .fpill.on-amber{background:rgba(251,191,36,.1);border-color:var(--amber);color:var(--amber)}
@@ -340,7 +340,7 @@ body{background:radial-gradient(ellipse 100% 35% at 50% 0%,rgba(124,58,237,.1) 0
   transition:all .25s var(--ease);
 
 
-  box-shadow:0 0 40px rgba(0,229,255,.35),0 0 80px rgba(124,58,237,.2);
+  box-shadow:0 0 40px rgba(0,242,255,.35),0 0 80px rgba(124,58,237,.2);
 
 
   position:relative;overflow:hidden;
@@ -364,7 +364,7 @@ body{background:radial-gradient(ellipse 100% 35% at 50% 0%,rgba(124,58,237,.1) 0
 }
 
 
-.spin-btn:hover{transform:scale(1.04);box-shadow:0 0 60px rgba(0,229,255,.5),0 0 120px rgba(124,58,237,.3)}
+.spin-btn:hover{transform:scale(1.04);box-shadow:0 0 60px rgba(0,242,255,.5),0 0 120px rgba(124,58,237,.3)}
 
 
 .spin-btn:hover::before{opacity:1}
@@ -376,7 +376,7 @@ body{background:radial-gradient(ellipse 100% 35% at 50% 0%,rgba(124,58,237,.1) 0
 .spin-btn.spinning{animation:btnPulse .3s ease-in-out infinite alternate}
 
 
-@keyframes btnPulse{from{box-shadow:0 0 40px rgba(0,229,255,.5)}to{box-shadow:0 0 80px rgba(0,229,255,.9),0 0 120px rgba(124,58,237,.5)}}
+@keyframes btnPulse{from{box-shadow:0 0 40px rgba(0,242,255,.5)}to{box-shadow:0 0 80px rgba(0,242,255,.9),0 0 120px rgba(124,58,237,.5)}}
 
 
 
@@ -517,16 +517,16 @@ body{background:radial-gradient(ellipse 100% 35% at 50% 0%,rgba(124,58,237,.1) 0
 .gc-actions{display:flex;gap:12px;flex-wrap:wrap}
 
 
-.gc-btn-primary{background:var(--cyan);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;padding:11px 28px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:all .2s;text-decoration:none;display:inline-block;box-shadow:0 0 16px rgba(0,229,255,.3)}
+.gc-btn-primary{background:var(--cyan);color:var(--bg);font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;padding:11px 28px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:all .2s;text-decoration:none;display:inline-block;box-shadow:0 0 16px rgba(0,242,255,.3)}
 
 
-.gc-btn-primary:hover{background:#33eeff;box-shadow:0 0 28px rgba(0,229,255,.5)}
+.gc-btn-primary:hover{background:#33eeff;box-shadow:0 0 28px rgba(0,242,255,.5)}
 
 
 .gc-btn-secondary{background:none;border:1px solid var(--border);color:var(--muted);font-family:var(--fd);font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;padding:11px 28px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:all .2s}
 
 
-.gc-btn-secondary:hover{border-color:rgba(0,229,255,.4);color:var(--white)}
+.gc-btn-secondary:hover{border-color:rgba(0,242,255,.4);color:var(--white)}
 
 
 
@@ -562,7 +562,7 @@ body{background:radial-gradient(ellipse 100% 35% at 50% 0%,rgba(124,58,237,.1) 0
 .hist-item{background:var(--surf);border:1px solid var(--border);padding:8px 14px;font-size:12px;color:var(--dim);cursor:pointer;transition:all .2s;font-family:var(--fb)}
 
 
-.hist-item:hover{border-color:rgba(0,229,255,.3);color:var(--white)}
+.hist-item:hover{border-color:rgba(0,242,255,.3);color:var(--white)}
 
 
 
@@ -622,7 +622,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 .search-box{width:min(680px,90vw);position:relative}
 
 
-.search-input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(0,229,255,.3);color:#f0eeff;font-family:var(--fb);font-size:20px;padding:18px 56px 18px 20px;outline:none}
+.search-input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(0,242,255,.3);color:#f0eeff;font-family:var(--fb);font-size:20px;padding:18px 56px 18px 20px;outline:none}
 
 
 .search-close{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(240,238,255,.4);cursor:pointer;font-size:22px}
@@ -637,7 +637,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 .stag{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:rgba(240,238,255,.5);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;cursor:pointer;transition:all .2s;text-decoration:none}
 
 
-.stag:hover{border-color:rgba(0,229,255,.3);color:#00e5ff}
+.stag:hover{border-color:rgba(0,242,255,.3);color:#00f2ff}
 
 
 
@@ -767,7 +767,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 .rk-item:nth-child(n+4) .rk-num, .rki-item:nth-child(n+4) .rki-num, .t-item:nth-child(n+4) .t-num {
   color: #a5f3fc !important;
   font-size: 17px;
-  text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+  text-shadow: 0 0 8px rgba(0,242,255, 0.3);
 }
 
 .an-score-num, .rk-sc, .rki-score, .sc-big, .score-num {
@@ -799,18 +799,18 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   background: rgba(17, 8, 42, 0.85) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 229, 255, 0.25) !important;
+  border: 1px solid rgba(0,242,255, 0.25) !important;
   border-radius: 14px;
-  box-shadow: 0 12px 36px rgba(0,0,0,0.55), 0 0 24px rgba(0,229,255,0.08);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.55), 0 0 24px rgba(0,242,255,0.08);
   padding: 24px 22px;
 }
 .side-head {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: linear-gradient(90deg, rgba(255,48,128,0.25), rgba(0,229,255,0.2));
-  border: 1px solid rgba(0,229,255,0.45);
-  color: #00e5ff !important;
+  background: linear-gradient(90deg, rgba(255,33,119,0.25), rgba(0,242,255,0.2));
+  border: 1px solid rgba(0,242,255,0.45);
+  color: #00f2ff !important;
   font-family: var(--fd);
   font-size: 11px;
   font-weight: 800;
@@ -819,7 +819,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   padding: 6px 14px;
   border-radius: 6px;
   margin-bottom: 16px;
-  text-shadow: 0 0 10px rgba(0,229,255,0.5);
+  text-shadow: 0 0 10px rgba(0,242,255,0.5);
 }
 .sa-t {
   color: #ffffff !important;
@@ -829,7 +829,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   text-shadow: 0 1px 3px rgba(0,0,0,0.7);
   transition: color .2s ease;
 }
-.s-art:hover .sa-t { color: #00e5ff !important; }
+.s-art:hover .sa-t { color: #00f2ff !important; }
 .sa-m { color: #cbd5e1 !important; font-size: 12px; }
 .sa-thumb {
   border-radius: 8px;
@@ -839,14 +839,14 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 /* ── Item 4 Fix: High Contrast Global Text ── */
 .wc-t { color: #ffffff !important; font-weight: 700; font-size: 16.5px; }
 .wc-m { color: #cbd5e1 !important; font-size: 12px; }
-.w-card:hover .wc-t { color: #00e5ff !important; }
+.w-card:hover .wc-t { color: #00f2ff !important; }
 .fc-title { color: #ffffff !important; font-weight: 700; }
 .fc-sub { color: #f1f5f9 !important; font-size: 14px; }
 .h-sub { color: #f8fafc !important; font-size: 15px; text-shadow: 0 2px 10px rgba(0,0,0,0.85); }
 .sec-t { color: #ffffff !important; font-size: 17px; font-weight: 800; letter-spacing: .08em; }
 .ft-desc { color: #cbd5e1 !important; }
 .ft-links a { color: #cbd5e1 !important; transition: color .2s; }
-.ft-links a:hover { color: #00e5ff !important; }
+.ft-links a:hover { color: #00f2ff !important; }
 
 /* ── Item 7 Fix: Fast & Fully Clickable Breaking News Ticker ── */
 .ticker {
@@ -924,10 +924,10 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
     background: rgba(15, 6, 38, 0.88);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 229, 255, 0.35);
+    border: 1px solid rgba(0,242,255, 0.35);
     border-radius: 28px;
     padding: 6px 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(0,229,255,0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(0,242,255,0.2);
     z-index: 999;
     align-items: center;
     justify-content: space-around;
@@ -953,8 +953,8 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   }
   .mtd-item svg { width: 18px; height: 18px; fill: currentColor; }
   .mtd-item:hover, .mtd-item.active {
-    color: #00e5ff;
-    background: rgba(0, 229, 255, 0.12);
+    color: #00f2ff;
+    background: rgba(0,242,255, 0.12);
   }
   body { padding-bottom: 72px; }
 }
@@ -982,10 +982,10 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 .search-box{width:min(640px,90vw);position:relative}
 
 
-.search-input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(0,229,255,.2);outline:none;color:#f0eeff;font-family:'Space Grotesk',sans-serif;font-size:20px;padding:18px 56px 18px 20px;transition:border-color .2s,box-shadow .2s}
+.search-input{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(0,242,255,.2);outline:none;color:#f0eeff;font-family:'Space Grotesk',sans-serif;font-size:20px;padding:18px 56px 18px 20px;transition:border-color .2s,box-shadow .2s}
 
 
-.search-input:focus{border-color:rgba(0,229,255,.6);box-shadow:0 0 0 3px rgba(0,229,255,.1)}
+.search-input:focus{border-color:rgba(0,242,255,.6);box-shadow:0 0 0 3px rgba(0,242,255,.1)}
 
 
 .search-input::placeholder{color:rgba(240,238,255,.25)}
@@ -994,7 +994,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 .search-close{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(240,238,255,.5);font-size:20px;cursor:pointer;transition:color .2s;padding:4px}
 
 
-.search-close:hover{color:#00e5ff}
+.search-close:hover{color:#00f2ff}
 
 
 .search-hint{font-size:12px;color:rgba(240,238,255,.35);letter-spacing:.07em}
@@ -1006,7 +1006,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 .stag{color:rgba(240,238,255,.45);text-decoration:none;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:5px 14px;border:1px solid rgba(255,255,255,.08);transition:border-color .2s,color .2s,background .2s}
 
 
-.stag:hover{border-color:rgba(0,229,255,.3);color:#00e5ff;background:rgba(0,229,255,.06)}
+.stag:hover{border-color:rgba(0,242,255,.3);color:#00f2ff;background:rgba(0,242,255,.06)}
 
 
 .ham{display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px;align-items:center;justify-content:center}
@@ -1015,13 +1015,13 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 .ham span{display:block;width:22px;height:2px;background:rgba(240,238,255,.45);border-radius:2px;transition:all .3s}
 
 
-.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:#00e5ff}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:#00f2ff}
 
 
 .ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 
 
-.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:#00e5ff}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:#00f2ff}
 
 
 .mobile-nav{display:none;position:fixed;inset:0;top:62px;z-index:290;background:rgba(11,2,32,.97);backdrop-filter:blur(24px);padding:28px 24px;flex-direction:column;gap:0;transform:translateY(-8px);opacity:0;transition:transform .3s,opacity .3s;pointer-events:none}
@@ -1033,7 +1033,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 .mobile-nav a{display:block;color:rgba(240,238,255,.62);text-decoration:none;font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08);transition:color .2s,padding-left .2s}
 
 
-.mobile-nav a:hover{color:#00e5ff;padding-left:8px}
+.mobile-nav a:hover{color:#00f2ff;padding-left:8px}
 
 
 .m-sub{display:flex;gap:20px;padding-top:20px;flex-wrap:wrap}
@@ -1181,7 +1181,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     <a href="/" class="logo">
 
 
-      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".5"></rect><rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".5"></rect></svg>
+      <img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy">
 
 
       <span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span>
@@ -1295,25 +1295,25 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     <svg viewbox="0 0 80 80" fill="none">
 
 
-      <rect x="6" y="6" width="68" height="68" rx="12" stroke="#00e5ff" stroke-width="2" fill="rgba(0,229,255,.06)"></rect>
+      <rect x="6" y="6" width="68" height="68" rx="12" stroke="#00f2ff" stroke-width="2" fill="rgba(0,242,255,.06)"></rect>
 
 
-      <circle cx="26" cy="26" r="5" fill="#00e5ff"></circle>
+      <circle cx="26" cy="26" r="5" fill="#00f2ff"></circle>
 
 
-      <circle cx="40" cy="40" r="5" fill="#ff3080"></circle>
+      <circle cx="40" cy="40" r="5" fill="#ff2177"></circle>
 
 
-      <circle cx="54" cy="26" r="5" fill="#00e5ff"></circle>
+      <circle cx="54" cy="26" r="5" fill="#00f2ff"></circle>
 
 
       <circle cx="26" cy="54" r="5" fill="#a78bfa"></circle>
 
 
-      <circle cx="54" cy="54" r="5" fill="#00e5ff"></circle>
+      <circle cx="54" cy="54" r="5" fill="#00f2ff"></circle>
 
 
-      <circle cx="40" cy="26" r="5" fill="rgba(0,229,255,.3)"></circle>
+      <circle cx="40" cy="26" r="5" fill="rgba(0,242,255,.3)"></circle>
 
 
     </svg>
@@ -1559,7 +1559,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 
-<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub<br><span style="opacity:.75;font-size:12px">Vận hành bởi Công ty TNHH Marketing &amp; Truyền thông ANBU · MST 3301761892 · 47 Đặng Văn Ngữ, Phường An Cựu, TP. Huế, Việt Nam · Hotline 039 699 5252 · <a href="mailto:dat.phan@anbu.asia" style="color:inherit">dat.phan@anbu.asia</a></span></span></div></footer>
+<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub<br><span style="opacity:.75;font-size:12px">Vận hành bởi Công ty TNHH Marketing &amp; Truyền thông ANBU · MST 3301761892 · 47 Đặng Văn Ngữ, Phường An Cựu, TP. Huế, Việt Nam · Hotline 039 699 5252 · <a href="mailto:dat.phan@anbu.asia" style="color:inherit">dat.phan@anbu.asia</a></span></span></div></footer>
 
 
 
@@ -1589,16 +1589,16 @@ const GAMES = [
     mood:['action','explore','story'],
 
 
-    tags:[{t:'PC / Console',c:'#00e5ff'},{t:'Must Play',c:'#34d399'},{t:'Khó',c:'#ff3080'}],
+    tags:[{t:'PC / Console',c:'#00f2ff'},{t:'Must Play',c:'#34d399'},{t:'Khó',c:'#ff2177'}],
 
 
     eyebrow:'PC Game · FromSoftware',
 
 
-    bg:'radial-gradient(ellipse at 30% 60%,rgba(251,191,36,.25) 0%,transparent 55%),radial-gradient(ellipse at 70% 30%,rgba(255,48,128,.18) 0%,transparent 50%),linear-gradient(135deg,#1a0808 0%,#2a1000 100%)',
+    bg:'radial-gradient(ellipse at 30% 60%,rgba(251,191,36,.25) 0%,transparent 55%),radial-gradient(ellipse at 70% 30%,rgba(255,33,119,.18) 0%,transparent 50%),linear-gradient(135deg,#1a0808 0%,#2a1000 100%)',
 
 
-    artBg:'radial-gradient(ellipse at 40% 50%,rgba(251,191,36,.3) 0%,rgba(255,48,128,.15) 50%,transparent 70%),linear-gradient(135deg,#200c00 0%,#3a1500 100%)',
+    artBg:'radial-gradient(ellipse at 40% 50%,rgba(251,191,36,.3) 0%,rgba(255,33,119,.15) 50%,transparent 70%),linear-gradient(135deg,#200c00 0%,#3a1500 100%)',
 
 
     why:['DLC lớn nhất FromSoftware từ trước đến nay, The Waning Moon Expanse rộng hơn cả DLC Elden Ring đầu tiên','Moonlight Resonance System hoàn toàn thay đổi cách tiếp cận build nhân vật','Boss designs đỉnh nhất series, đặc biệt là Hollow Moon Sovereign']
@@ -1622,16 +1622,16 @@ const GAMES = [
     mood:['action','explore'],
 
 
-    tags:[{t:'Mobile / PC',c:'#00e5ff'},{t:'Free to Play',c:'#a78bfa'},{t:'Gacha',c:'#fbbf24'}],
+    tags:[{t:'Mobile / PC',c:'#00f2ff'},{t:'Free to Play',c:'#a78bfa'},{t:'Gacha',c:'#fbbf24'}],
 
 
     eyebrow:'Mobile/PC · Kuro Games',
 
 
-    bg:'radial-gradient(ellipse at 40% 60%,rgba(0,229,255,.22) 0%,transparent 55%),radial-gradient(ellipse at 70% 25%,rgba(167,139,250,.18) 0%,transparent 50%),linear-gradient(135deg,#040e1a 0%,#0a1428 100%)',
+    bg:'radial-gradient(ellipse at 40% 60%,rgba(0,242,255,.22) 0%,transparent 55%),radial-gradient(ellipse at 70% 25%,rgba(167,139,250,.18) 0%,transparent 50%),linear-gradient(135deg,#040e1a 0%,#0a1428 100%)',
 
 
-    artBg:'radial-gradient(ellipse at 35% 55%,rgba(0,229,255,.35) 0%,rgba(167,139,250,.2) 50%,transparent 70%),linear-gradient(135deg,#020a14 0%,#080e20 100%)',
+    artBg:'radial-gradient(ellipse at 35% 55%,rgba(0,242,255,.35) 0%,rgba(167,139,250,.2) 50%,transparent 70%),linear-gradient(135deg,#020a14 0%,#080e20 100%)',
 
 
     why:['Ver 2.4 mang đến Shorekeeper reworks, combat feel mượt hơn hẳn mọi gacha khác','Event Tidal Resonance có story mode dài với voice acting chất lượng anime','F2P-friendly nhất hiện tại, 50+ pulls miễn phí mỗi patch']
@@ -1655,16 +1655,16 @@ const GAMES = [
     mood:['story','relax'],
 
 
-    tags:[{t:'Mobile / PC',c:'#00e5ff'},{t:'Turn-based',c:'#a78bfa'},{t:'Gacha',c:'#fbbf24'}],
+    tags:[{t:'Mobile / PC',c:'#00f2ff'},{t:'Turn-based',c:'#a78bfa'},{t:'Gacha',c:'#fbbf24'}],
 
 
     eyebrow:'Mobile/PC · HoYoverse',
 
 
-    bg:'radial-gradient(ellipse at 25% 55%,rgba(167,139,250,.25) 0%,transparent 55%),radial-gradient(ellipse at 75% 30%,rgba(0,229,255,.15) 0%,transparent 50%),linear-gradient(135deg,#0c0520 0%,#180a30 100%)',
+    bg:'radial-gradient(ellipse at 25% 55%,rgba(167,139,250,.25) 0%,transparent 55%),radial-gradient(ellipse at 75% 30%,rgba(0,242,255,.15) 0%,transparent 50%),linear-gradient(135deg,#0c0520 0%,#180a30 100%)',
 
 
-    artBg:'radial-gradient(ellipse at 40% 50%,rgba(167,139,250,.4) 0%,rgba(0,229,255,.15) 50%,transparent 70%),linear-gradient(135deg,#080318 0%,#120528 100%)',
+    artBg:'radial-gradient(ellipse at 40% 50%,rgba(167,139,250,.4) 0%,rgba(0,242,255,.15) 50%,transparent 70%),linear-gradient(135deg,#080318 0%,#120528 100%)',
 
 
     why:['Arc "Phiên tòa Xử lý" là story tốt nhất HoYoverse từng làm, writing chặt chẽ, twist bất ngờ','Turn-based combat đủ chiều sâu để chiến lược nhưng không quá phức tạp','Nhân vật mới patch 2.8 có kit hoàn toàn độc đáo, meta thay đổi hoàn toàn']
@@ -1688,7 +1688,7 @@ const GAMES = [
     mood:['action','compete'],
 
 
-    tags:[{t:'PC / Console',c:'#00e5ff'},{t:'Co-op',c:'#34d399'},{t:'Must Play',c:'#34d399'}],
+    tags:[{t:'PC / Console',c:'#00f2ff'},{t:'Co-op',c:'#34d399'},{t:'Must Play',c:'#34d399'}],
 
 
     eyebrow:'PC / Console · Capcom',
@@ -1721,16 +1721,16 @@ const GAMES = [
     mood:['explore','relax','story'],
 
 
-    tags:[{t:'Multi-platform',c:'#00e5ff'},{t:'Free to Play',c:'#a78bfa'},{t:'Open World',c:'#fbbf24'}],
+    tags:[{t:'Multi-platform',c:'#00f2ff'},{t:'Free to Play',c:'#a78bfa'},{t:'Open World',c:'#fbbf24'}],
 
 
     eyebrow:'Multi-platform · HoYoverse',
 
 
-    bg:'radial-gradient(ellipse at 35% 60%,rgba(0,229,255,.2) 0%,transparent 55%),radial-gradient(ellipse at 70% 30%,rgba(52,211,153,.15) 0%,transparent 50%),linear-gradient(135deg,#031018 0%,#051a20 100%)',
+    bg:'radial-gradient(ellipse at 35% 60%,rgba(0,242,255,.2) 0%,transparent 55%),radial-gradient(ellipse at 70% 30%,rgba(52,211,153,.15) 0%,transparent 50%),linear-gradient(135deg,#031018 0%,#051a20 100%)',
 
 
-    artBg:'radial-gradient(ellipse at 40% 50%,rgba(0,229,255,.3) 0%,rgba(52,211,153,.2) 50%,transparent 70%),linear-gradient(135deg,#020c10 0%,#031418 100%)',
+    artBg:'radial-gradient(ellipse at 40% 50%,rgba(0,242,255,.3) 0%,rgba(52,211,153,.2) 50%,transparent 70%),linear-gradient(135deg,#020c10 0%,#031418 100%)',
 
 
     why:['Natlan region mang architecture và lore hoàn toàn mới, exploration satisfying nhất từ trước','Citlali kit Cryo support thay đổi hẳn meta, nếu chưa build thì đây là thời điểm','Snezhnaya vừa mở cửa với cơ chế Stellar-Conduct mới, nội dung endgame cực kỳ đã tay']
@@ -1754,16 +1754,16 @@ const GAMES = [
     mood:['action','story','explore'],
 
 
-    tags:[{t:'PC / PS5',c:'#00e5ff'},{t:'Souls-like',c:'#ff3080'},{t:'Story Rich',c:'#a78bfa'}],
+    tags:[{t:'PC / PS5',c:'#00f2ff'},{t:'Souls-like',c:'#ff2177'},{t:'Story Rich',c:'#a78bfa'}],
 
 
     eyebrow:'PC / PS5 · Game Science',
 
 
-    bg:'radial-gradient(ellipse at 30% 60%,rgba(251,191,36,.22) 0%,transparent 55%),radial-gradient(ellipse at 65% 30%,rgba(255,48,128,.15) 0%,transparent 50%),linear-gradient(135deg,#1a1000 0%,#2a1800 100%)',
+    bg:'radial-gradient(ellipse at 30% 60%,rgba(251,191,36,.22) 0%,transparent 55%),radial-gradient(ellipse at 65% 30%,rgba(255,33,119,.15) 0%,transparent 50%),linear-gradient(135deg,#1a1000 0%,#2a1800 100%)',
 
 
-    artBg:'radial-gradient(ellipse at 40% 45%,rgba(251,191,36,.35) 0%,rgba(255,48,128,.2) 50%,transparent 70%),linear-gradient(135deg,#120c00 0%,#201000 100%)',
+    artBg:'radial-gradient(ellipse at 40% 45%,rgba(251,191,36,.35) 0%,rgba(255,33,119,.2) 50%,transparent 70%),linear-gradient(135deg,#120c00 0%,#201000 100%)',
 
 
     why:['Visual đẹp nhất PC 2024, Unreal Engine 5 được dùng đúng cách','Mỗi boss là một bài toán chiến thuật khác nhau, không có boss nào giống boss nào','World building dựa trên Tây Du Ký nhưng đủ original để không cần biết truyện gốc']
@@ -1787,7 +1787,7 @@ const GAMES = [
     mood:['relax'],
 
 
-    tags:[{t:'Multi-platform',c:'#00e5ff'},{t:'Chill',c:'#34d399'},{t:'Indie',c:'#a78bfa'}],
+    tags:[{t:'Multi-platform',c:'#00f2ff'},{t:'Chill',c:'#34d399'},{t:'Indie',c:'#a78bfa'}],
 
 
     eyebrow:'Multi-platform · ConcernedApe',
@@ -1820,16 +1820,16 @@ const GAMES = [
     mood:['compete','action'],
 
 
-    tags:[{t:'PC',c:'#00e5ff'},{t:'Free to Play',c:'#a78bfa'},{t:'Competitive',c:'#ff3080'}],
+    tags:[{t:'PC',c:'#00f2ff'},{t:'Free to Play',c:'#a78bfa'},{t:'Competitive',c:'#ff2177'}],
 
 
     eyebrow:'PC · Riot Games',
 
 
-    bg:'radial-gradient(ellipse at 30% 60%,rgba(255,48,128,.22) 0%,transparent 55%),radial-gradient(ellipse at 70% 25%,rgba(0,229,255,.15) 0%,transparent 50%),linear-gradient(135deg,#1a0408 0%,#200810 100%)',
+    bg:'radial-gradient(ellipse at 30% 60%,rgba(255,33,119,.22) 0%,transparent 55%),radial-gradient(ellipse at 70% 25%,rgba(0,242,255,.15) 0%,transparent 50%),linear-gradient(135deg,#1a0408 0%,#200810 100%)',
 
 
-    artBg:'radial-gradient(ellipse at 40% 50%,rgba(255,48,128,.35) 0%,rgba(0,229,255,.15) 50%,transparent 70%),linear-gradient(135deg,#100204 0%,#180608 100%)',
+    artBg:'radial-gradient(ellipse at 40% 50%,rgba(255,33,119,.35) 0%,rgba(0,242,255,.15) 50%,transparent 70%),linear-gradient(135deg,#100204 0%,#180608 100%)',
 
 
     why:['Episode mới với map Đông Nam Á, nhiều điểm tham chiếu văn hóa châu Á thú vị','Clove và Vyse là hai agents mới rất fun, skill kit đột phá trong meta hiện tại','Ranked system mới công bằng hơn, perfect cho mùa climb mới']
@@ -1853,16 +1853,16 @@ const GAMES = [
     mood:['explore','action'],
 
 
-    tags:[{t:'PC / Mobile',c:'#00e5ff'},{t:'MMORPG',c:'#a78bfa'},{t:'Anime Style',c:'#ff3080'}],
+    tags:[{t:'PC / Mobile',c:'#00f2ff'},{t:'MMORPG',c:'#a78bfa'},{t:'Anime Style',c:'#ff2177'}],
 
 
     eyebrow:'PC / Mobile · Bandai Namco',
 
 
-    bg:'radial-gradient(ellipse at 30% 60%,rgba(167,139,250,.22) 0%,transparent 55%),radial-gradient(ellipse at 70% 30%,rgba(0,229,255,.15) 0%,transparent 50%),linear-gradient(135deg,#0c0520 0%,#140830 100%)',
+    bg:'radial-gradient(ellipse at 30% 60%,rgba(167,139,250,.22) 0%,transparent 55%),radial-gradient(ellipse at 70% 30%,rgba(0,242,255,.15) 0%,transparent 50%),linear-gradient(135deg,#0c0520 0%,#140830 100%)',
 
 
-    artBg:'radial-gradient(ellipse at 40% 50%,rgba(167,139,250,.35) 0%,rgba(0,229,255,.2) 50%,transparent 70%),linear-gradient(135deg,#060318 0%,#0c0525 100%)',
+    artBg:'radial-gradient(ellipse at 40% 50%,rgba(167,139,250,.35) 0%,rgba(0,242,255,.2) 50%,transparent 70%),linear-gradient(135deg,#060318 0%,#0c0525 100%)',
 
 
     why:['Cell-shading đẹp nhất MMO hiện tại, nhìn như đang chơi trong anime','Combat system responsive và satisfying, không lag như các MMO châu Á khác','Guild system mới cho phép housing và customization cực kỳ sâu']
@@ -1886,16 +1886,16 @@ const GAMES = [
     mood:['relax','story'],
 
 
-    tags:[{t:'Multi-platform',c:'#00e5ff'},{t:'Story Rich',c:'#a78bfa'},{t:'Indie',c:'#34d399'}],
+    tags:[{t:'Multi-platform',c:'#00f2ff'},{t:'Story Rich',c:'#a78bfa'},{t:'Indie',c:'#34d399'}],
 
 
     eyebrow:'Multi-platform · Maddy Makes Games',
 
 
-    bg:'radial-gradient(ellipse at 35% 60%,rgba(255,48,128,.2) 0%,transparent 55%),radial-gradient(ellipse at 70% 30%,rgba(167,139,250,.18) 0%,transparent 50%),linear-gradient(135deg,#1a0410 0%,#20061a 100%)',
+    bg:'radial-gradient(ellipse at 35% 60%,rgba(255,33,119,.2) 0%,transparent 55%),radial-gradient(ellipse at 70% 30%,rgba(167,139,250,.18) 0%,transparent 50%),linear-gradient(135deg,#1a0410 0%,#20061a 100%)',
 
 
-    artBg:'radial-gradient(ellipse at 40% 50%,rgba(255,48,128,.3) 0%,rgba(167,139,250,.2) 50%,transparent 70%),linear-gradient(135deg,#100210 0%,#180418 100%)',
+    artBg:'radial-gradient(ellipse at 40% 50%,rgba(255,33,119,.3) 0%,rgba(167,139,250,.2) 50%,transparent 70%),linear-gradient(135deg,#100210 0%,#180418 100%)',
 
 
     why:['Câu chuyện về mental health được kể tinh tế và đầy cảm xúc, hiếm có trong game','Gameplay platformer đỉnh của đỉnh, mỗi màn là một bài học về precision','B-sides và C-sides cho player muốn thách thức thêm, độ khó lên đến trời']
@@ -1919,16 +1919,16 @@ const GAMES = [
     mood:['explore','story'],
 
 
-    tags:[{t:'PC / Console',c:'#00e5ff'},{t:'Metroidvania',c:'#a78bfa'},{t:'Indie',c:'#34d399'}],
+    tags:[{t:'PC / Console',c:'#00f2ff'},{t:'Metroidvania',c:'#a78bfa'},{t:'Indie',c:'#34d399'}],
 
 
     eyebrow:'PC / Console · Team Cherry',
 
 
-    bg:'radial-gradient(ellipse at 30% 65%,rgba(167,139,250,.22) 0%,transparent 55%),radial-gradient(ellipse at 65% 25%,rgba(0,229,255,.12) 0%,transparent 50%),linear-gradient(135deg,#080420 0%,#100830 100%)',
+    bg:'radial-gradient(ellipse at 30% 65%,rgba(167,139,250,.22) 0%,transparent 55%),radial-gradient(ellipse at 65% 25%,rgba(0,242,255,.12) 0%,transparent 50%),linear-gradient(135deg,#080420 0%,#100830 100%)',
 
 
-    artBg:'radial-gradient(ellipse at 40% 50%,rgba(167,139,250,.35) 0%,rgba(0,229,255,.15) 50%,transparent 70%),linear-gradient(135deg,#040218 0%,#080428 100%)',
+    artBg:'radial-gradient(ellipse at 40% 50%,rgba(167,139,250,.35) 0%,rgba(0,242,255,.15) 50%,transparent 70%),linear-gradient(135deg,#040218 0%,#080428 100%)',
 
 
     why:['World của Hallownest rộng lớn và đầy bí ẩn, exploration không bao giờ hết thú vị','Art style 2D hand-drawn cực kỳ đẹp, mỗi area có visual identity riêng biệt','Boss fights thách thức nhưng fair, mỗi lần thua là một bài học, không phải frustration']
@@ -1952,16 +1952,16 @@ const GAMES = [
     mood:['action','relax'],
 
 
-    tags:[{t:'Multi-platform',c:'#00e5ff'},{t:'Urban Fantasy',c:'#ff3080'},{t:'Gacha',c:'#fbbf24'}],
+    tags:[{t:'Multi-platform',c:'#00f2ff'},{t:'Urban Fantasy',c:'#ff2177'},{t:'Gacha',c:'#fbbf24'}],
 
 
     eyebrow:'Multi-platform · HoYoverse',
 
 
-    bg:'radial-gradient(ellipse at 30% 60%,rgba(255,48,128,.22) 0%,transparent 55%),radial-gradient(ellipse at 70% 30%,rgba(251,191,36,.15) 0%,transparent 50%),linear-gradient(135deg,#1a0408 0%,#241010 100%)',
+    bg:'radial-gradient(ellipse at 30% 60%,rgba(255,33,119,.22) 0%,transparent 55%),radial-gradient(ellipse at 70% 30%,rgba(251,191,36,.15) 0%,transparent 50%),linear-gradient(135deg,#1a0408 0%,#241010 100%)',
 
 
-    artBg:'radial-gradient(ellipse at 40% 50%,rgba(255,48,128,.32) 0%,rgba(251,191,36,.18) 50%,transparent 70%),linear-gradient(135deg,#100204 0%,#180806 100%)',
+    artBg:'radial-gradient(ellipse at 40% 50%,rgba(255,33,119,.32) 0%,rgba(251,191,36,.18) 50%,transparent 70%),linear-gradient(135deg,#100204 0%,#180806 100%)',
 
 
     why:['Combat system nhanh và satisfying nhất HoYoverse, dễ học khó master','New Eridu city setting mang aesthetic cyberpunk Asian rất độc đáo','Daily content ngắn, hoàn thành chỉ 20-30 phút/ngày là đủ']

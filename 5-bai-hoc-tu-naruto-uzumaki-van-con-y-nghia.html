@@ -70,7 +70,7 @@
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
 
 <style>
-:root{--bg:#0b0418;--surf:#150a2c;--surf2:#1d1040;--card:#190c36;--cyan:#00e5ff;--sakura:#ff3080;--violet:#7c3aed;--lav:#a78bfa;--amber:#fbbf24;--green:#34d399;--white:#f0eeff;--dim:rgba(240,238,255,.72);--muted:rgba(240,238,255,.38);--border:rgba(255,255,255,.07);--bcyan:rgba(0,229,255,.18);--ease:cubic-bezier(.16,1,.3,1);--fd:'Rajdhani',sans-serif;--fb:'Space Grotesk',sans-serif}
+@font-face{font-family:'BHN Fonarto Regular';src:url('/assets/fonts/BHNFonartoRegular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}:root{--bg:#0b0418;--surf:#150a2c;--surf2:#1d1040;--card:#190c36;--cyan:#00f2ff;--sakura:#ff2177;--violet:#7c3aed;--lav:#a78bfa;--amber:#fbbf24;--green:#34d399;--white:#f0eeff;--dim:rgba(240,238,255,.72);--muted:rgba(240,238,255,.38);--border:rgba(255,255,255,.07);--bcyan:rgba(0,242,255,.18);--ease:cubic-bezier(.16,1,.3,1);--fd:'Rajdhani',sans-serif;--fb:'Space Grotesk',sans-serif}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:300;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
@@ -85,9 +85,9 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .nav-in{max-width:1440px;margin:0 auto;padding:0 24px;width:100%;display:flex;align-items:center;gap:0}
 .logo{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0;margin-right:32px}
 .logo svg{width:30px;height:30px;animation:lp 3s ease-in-out infinite}
-@keyframes lp{0%,100%{filter:drop-shadow(0 0 4px #00e5ff)}50%{filter:drop-shadow(0 0 12px #00e5ff)}}
-.logo-t{font-family:var(--fd);font-weight:700;font-size:20px}
-.logo-ota{color:var(--white)}.logo-hub{color:var(--cyan)}
+@keyframes lp{0%,100%{filter:drop-shadow(0 0 4px #00f2ff)}50%{filter:drop-shadow(0 0 12px #00f2ff)}}
+.logo-t{font-family:'BHN Fonarto Regular',var(--fd);font-weight:400;font-size:20px}
+.logo-ota{color:var(--sakura)}.logo-hub{color:var(--cyan)}
 .nav-links{display:flex;align-items:center;list-style:none;gap:0;flex:1}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:12px;font-weight:400;letter-spacing:.07em;text-transform:uppercase;padding:0 13px;height:60px;display:flex;align-items:center;position:relative;transition:color .2s}
 .nav-links a::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:2px;background:var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
@@ -105,13 +105,13 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .lsep{width:1px;height:18px;background:var(--border)}
 .ham{min-width:44px;min-height:44px;display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px;align-items:center;justify-content:center}
 .ham span{display:block;width:22px;height:2px;background:rgba(240,238,255,.45);border-radius:2px;transition:all .3s}
-.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:#00e5ff}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:#00f2ff}
 .ham.open span:nth-child(2){opacity:0}
-.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:#00e5ff}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:#00f2ff}
 .mobile-nav{display:none;position:fixed;inset:0;top:62px;z-index:290;background:rgba(11,2,32,.97);backdrop-filter:blur(24px);padding:28px 24px;flex-direction:column;gap:0;transform:translateY(-8px);opacity:0;transition:transform .3s,opacity .3s;pointer-events:none}
 .mobile-nav.open{transform:translateY(0);opacity:1;pointer-events:all}
 .mobile-nav a{display:block;color:rgba(240,238,255,.62);text-decoration:none;font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08);transition:color .2s;min-height:44px}
-.mobile-nav a:hover{color:#00e5ff}
+.mobile-nav a:hover{color:#00f2ff}
 .m-sub{display:flex;gap:20px;padding-top:20px;flex-wrap:wrap}
 .m-sub a{font-size:14px;font-weight:400;letter-spacing:.05em;border-bottom:none!important;color:var(--muted)!important;padding:6px 0!important}
 .m-sub a:hover{color:var(--lav)!important;padding-left:0!important}
@@ -121,14 +121,14 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .search-overlay.open{display:flex!important;opacity:1!important;pointer-events:all!important}
 .search-box{width:min(640px,90vw);position:relative}
 .search-input{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--bcyan);outline:none;color:var(--white);font-family:var(--fb);font-size:22px;padding:18px 56px 18px 20px;transition:border-color .2s,box-shadow .2s}
-.search-input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,229,255,.12),0 0 32px rgba(0,229,255,.1)}
+.search-input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,242,255,.12),0 0 32px rgba(0,242,255,.1)}
 .search-input::placeholder{color:rgba(240,238,255,.25)}
 .search-close{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;transition:color .2s;padding:4px}
 .search-close:hover{color:var(--cyan)}
 .search-hint{font-size:12px;color:var(--muted);letter-spacing:.07em}
 .search-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 .stag{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:5px 14px;border:1px solid var(--border);transition:border-color .2s,color .2s,background .2s}
-.stag:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,229,255,.06)}
+.stag:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,242,255,.06)}
 #search-results,.search-results-dropdown{position:absolute;top:calc(100% + 8px);left:0;right:0;max-height:360px;overflow-y:auto;background:var(--surf);border:1px solid var(--border);border-radius:4px;z-index:510;box-shadow:0 12px 32px rgba(0,0,0,.6)}
 .sr-item{display:flex;align-items:center;gap:12px;padding:10px 14px;text-decoration:none;border-bottom:1px solid var(--border);transition:background .2s}
 .sr-item:last-child{border-bottom:none}
@@ -143,7 +143,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 @keyframes heroPulse{0%{opacity:.82;filter:saturate(1.05) brightness(.98)}100%{opacity:1;filter:saturate(1.2) brightness(1.06)}}
 .art-hero-grad{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,4,24,.35) 0%,rgba(11,4,24,.55) 40%,rgba(11,4,24,.97) 68%,rgba(11,4,24,1) 100%)}
 .art-hero-content,.art-hero-in{position:absolute;bottom:40px;left:0;right:0;max-width:860px;margin:0 auto;padding:0 24px;z-index:2}
-.art-hero-cat{display:inline-block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:5px 14px;border:1px solid rgba(0,229,255,.4);color:var(--cyan);background:rgba(11,4,24,.6);backdrop-filter:blur(8px);margin-bottom:14px}
+.art-hero-cat{display:inline-block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:5px 14px;border:1px solid rgba(0,242,255,.4);color:var(--cyan);background:rgba(11,4,24,.6);backdrop-filter:blur(8px);margin-bottom:14px}
 .art-hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
 .art-hero-title{font-family:var(--fd);font-weight:700;font-size:clamp(28px,4vw,52px);line-height:1.12;color:var(--white);margin-bottom:14px;letter-spacing:-.01em}
 .art-hero-excerpt{font-size:19px;color:var(--dim);line-height:1.75;max-width:660px;margin-bottom:10px}
@@ -160,29 +160,35 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .am-date{font-size:14px;color:var(--muted)}
 .am-read{font-size:14px;color:var(--muted)}
 .am-sep{width:1px;height:18px;background:var(--border)}
-.am-badge{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:rgba(255,48,128,.12);border:1px solid rgba(255,48,128,.3);color:var(--sakura)}
+.am-badge{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;background:rgba(255,33,119,.12);border:1px solid rgba(255,33,119,.3);color:var(--sakura)}
 .art-body,.art-content{font-size:19px;color:var(--dim);line-height:1.9}
-.art-body h2,.art-content h2{font-family:var(--fd);font-weight:700;font-size:clamp(20px,2.5vw,28px);color:var(--white);margin:48px 0 16px;letter-spacing:-.01em;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.art-body,.art-content{counter-reset:h2sec}
+.art-body h2,.art-content h2{counter-increment:h2sec;position:relative;font-family:var(--fd);font-weight:700;font-size:clamp(19px,2.3vw,26px);color:var(--white);letter-spacing:-.01em;margin:48px 0 20px;padding:18px 22px 18px 78px;border:1px solid var(--border);border-radius:10px;background:linear-gradient(110deg,rgba(0,242,255,.11),rgba(39,18,75,.16) 62%,rgba(255,33,119,.08))}
+.art-body h2::before,.art-content h2::before{content:counter(h2sec,decimal-leading-zero);position:absolute;left:18px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:42px;height:42px;color:#070311;background:linear-gradient(135deg,#00f2ff 0 76%,#ff2177 77% 100%);clip-path:polygon(0 0,84% 0,100% 16%,100% 100%,16% 100%,0 84%);font-size:14px;font-weight:800;font-family:var(--fd)}
+.art-video-embed{margin:28px 0}
+.art-video-embed>div{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;background:#000}
+.art-video-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.art-video-embed figcaption{margin-top:10px;font-size:13px;color:var(--muted);text-align:center}
 .art-body h3,.art-content h3{font-family:var(--fd);font-weight:700;font-size:clamp(17px,2vw,22px);color:var(--white);margin:32px 0 12px}
 .art-body p,.art-content p{margin-bottom:20px}
 .art-body ul,.art-content ul{margin:0 0 20px 0;list-style:none}
 .art-body ul li,.art-content ul li{padding:7px 0 7px 20px;border-bottom:1px solid rgba(255,255,255,.04);position:relative;line-height:1.75}
 .art-body ul li::before,.art-content ul li::before{content:'▸';position:absolute;left:0;color:var(--cyan);font-size:11px;top:10px}
 .art-body strong,.art-content strong{color:var(--white);font-weight:600}
-.art-body a,.art-content a{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(0,229,255,.3)}
+.art-body a,.art-content a{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(0,242,255,.3)}
 .art-body a:hover,.art-content a:hover{border-color:var(--cyan)}
-.art-body blockquote,.art-content blockquote{border-left:3px solid var(--cyan);padding:18px 22px;background:rgba(0,229,255,.04);margin:28px 0;font-style:italic;color:var(--dim);font-size:15px;line-height:1.8}
+.art-body blockquote,.art-content blockquote{border-left:3px solid var(--cyan);padding:18px 22px;background:rgba(0,242,255,.04);margin:28px 0;font-style:italic;color:var(--dim);font-size:15px;line-height:1.8}
 .art-body blockquote cite,.art-content blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .art-body figure,.art-content figure{margin:32px 0;overflow:hidden;background:var(--surf);border:1px solid var(--border)}
 .art-body figure img,.art-content figure img{width:100%;display:block;height:auto;max-height:80vh;aspect-ratio:auto;object-fit:contain;background:#0b0418}
 .art-body figcaption,.art-content figcaption{font-size:12px;color:var(--muted);padding:10px 14px;letter-spacing:.03em;line-height:1.5;border-top:1px solid var(--border);font-style:italic}
 .art-table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:28px 0;border:1px solid var(--border);border-radius:6px;background:var(--surf)}
 .art-table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.6;text-align:left}
-.art-table th{background:var(--surf2);color:var(--cyan);padding:12px 16px;font-family:var(--fd);font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid rgba(0,229,255,.2)}
+.art-table th{background:var(--surf2);color:var(--cyan);padding:12px 16px;font-family:var(--fd);font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid rgba(0,242,255,.2)}
 .art-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--dim)}
-.art-table tbody tr:hover{background:rgba(0,229,255,.03)}
+.art-table tbody tr:hover{background:rgba(0,242,255,.03)}
 .art-table tbody tr:last-child td{border-bottom:none}
-.highlight-box,.art-summary{background:rgba(0,229,255,.05);border:1px solid rgba(0,229,255,.15);padding:22px 26px;margin:0 0 36px;position:relative}
+.highlight-box,.art-summary{background:rgba(0,242,255,.05);border:1px solid rgba(0,242,255,.15);padding:22px 26px;margin:0 0 36px;position:relative}
 .highlight-box::before,.art-summary::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--cyan)}
 .hb-label,.art-summary-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px;font-weight:600;font-family:var(--fd)}
 .hb-text,.art-summary-text{font-size:17px;color:var(--dim);line-height:1.8}
@@ -197,7 +203,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .share-row,.art-share{display:flex;align-items:center;gap:10px;padding:24px 0;border-top:1px solid var(--border);margin-top:48px;flex-wrap:wrap}
 .share-lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .share-btn{display:flex;align-items:center;gap:7px;padding:7px 16px;border:1px solid var(--border);font-size:12px;color:var(--dim);cursor:pointer;background:none;transition:all .2s;font-family:var(--fd);font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;min-height:44px}
-.share-btn:hover{border-color:rgba(0,229,255,.3);color:var(--cyan);background:rgba(0,229,255,.04)}
+.share-btn:hover{border-color:rgba(0,242,255,.3);color:var(--cyan);background:rgba(0,242,255,.04)}
 .sidebar-block,.sb-block{background:var(--surf);padding:20px;margin-bottom:16px;border:1px solid var(--border);border-radius:4px}
 .sb-title,.sb-head{font-family:var(--fd);font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
 .sb-art,.sb-item{display:flex;gap:10px;margin-bottom:14px;text-decoration:none}
@@ -208,12 +214,12 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-weight:3
 .sb-art:hover .sb-t,.sb-item:hover .sb-item-title{color:var(--cyan)}
 .sb-tags{display:flex;flex-wrap:wrap;gap:6px}
 .sb-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--border);color:var(--muted);text-decoration:none;transition:all .2s;min-height:auto}
-.sb-tag:hover{border-color:rgba(0,229,255,.3);color:var(--cyan);background:rgba(0,229,255,.06)}
+.sb-tag:hover{border-color:rgba(0,242,255,.3);color:var(--cyan);background:rgba(0,242,255,.06)}
 .art-rel-section{margin-top:48px;padding-top:32px;border-top:1px solid var(--border)}
 .art-rel-title{font-family:var(--fd);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:20px}
 .art-rel-grid,.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px}
 .art-rel-card{display:flex;flex-direction:column;gap:10px;text-decoration:none;background:var(--surf);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:border-color .2s}
-.art-rel-card:hover{border-color:rgba(0,229,255,.4)}
+.art-rel-card:hover{border-color:rgba(0,242,255,.4)}
 .art-rel-card img{width:100%;aspect-ratio:16/9;object-fit:cover}
 .art-rel-info{padding:12px}
 .rc-cat{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--sakura);margin-bottom:4px;display:block}
@@ -243,7 +249,8 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
   .mobile-nav{display:flex}
   .score-box{flex-direction:column;text-align:center;gap:10px}
   .art-body,.art-content{font-size:17px;line-height:1.8}
-  .art-body h2,.art-content h2{font-size:22px;margin:32px 0 14px}
+  .art-body h2,.art-content h2{font-size:19px;margin:32px 0 16px;padding:14px 16px 14px 64px}
+  .art-body h2::before,.art-content h2::before{left:14px;width:36px;height:36px;font-size:12px}
   .art-body h3,.art-content h3{font-size:18px;margin:24px 0 10px}
   .highlight-box,.art-summary{padding:18px 20px;margin-bottom:28px}
   .share-row,.art-share{gap:8px}
@@ -280,7 +287,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 </div>
 <div id="amb"><div class="orb o1"></div><div class="orb o2"></div></div>
 <div id="gtex"></div>
-<nav class="nav"><div class="nav-in"><a class="logo" href="/"><span><svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="5" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect><rect x="27" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect></svg></span><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming">Gaming</a></li><li><a href="/anime" class="active">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><button class="ham" id="ham" aria-label="Menu" onclick="toggleMob()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="Tìm kiếm" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="/#newsletter" class="cta" id="cta-sub">Subscribe</a></div></div></nav>
+<nav class="nav"><div class="nav-in"><a class="logo" href="/"><span><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"></span><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming">Gaming</a></li><li><a href="/anime" class="active">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><button class="ham" id="ham" aria-label="Menu" onclick="toggleMob()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="Tìm kiếm" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="/#newsletter" class="cta" id="cta-sub">Subscribe</a></div></div></nav>
 <nav class="mobile-nav" id="mobnav"><a href="/choi-gi">Chơi Gì?</a><a href="/gaming">Gaming</a><a href="/anime" class="active">Anime</a><a href="/manga">Manga</a><a href="/reviews">Reviews</a><a href="/rankings">Rankings</a><a href="/chuyen-sau">Chuyên sâu</a><div class="m-sub"><a href="/about">Giới thiệu</a><a href="/#newsletter">Newsletter</a><a href="/about#contact">Liên hệ</a></div></nav>
 
 <section class="art-hero">
@@ -318,26 +325,26 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 <p>Naruto Uzumaki ra mắt độc giả Weekly Shonen Jump năm 1999 trong hình hài một đứa trẻ mồ côi, bị cả làng Konoha nhìn bằng ánh mắt dè chừng vì mang trong người Cửu Vĩ Hồ Ly. Hai mươi mấy năm sau, khi manga đã kết thúc và Boruto tiếp quản mạch truyện, Naruto vẫn là cái tên được nhắc đến mỗi khi người ta nói về sự kiên trì trong văn hóa đại chúng Nhật Bản. Không phải vì cậu mạnh nhất, mà vì cách cậu đi đến được đó.</p>
 <p>Ngày sinh nhật chính thức của Naruto trong truyện là 10/10, và mỗi năm vào dịp này cộng đồng fan quốc tế lại ôn lại hành trình của cậu như một cách nhắc nhở chính mình. Dưới đây là 5 bài học rút ra từ những khoảnh khắc quan trọng nhất của cậu, không chỉ dành cho fan Naruto.</p>
 
-<h2>1. Gục ngã bao nhiêu lần không quan trọng, đứng dậy được hay không mới quan trọng</h2>
+<h2>Gục ngã bao nhiêu lần không quan trọng, đứng dậy được hay không mới quan trọng</h2>
 <p>Naruto không phải thiên tài. Cậu học chậm hơn bạn cùng lớp, trượt kỳ thi tốt nghiệp Học viện Ninja đến ba lần, và trong phần lớn Naruto bản gốc luôn bị Sasuke bỏ xa. Thứ khiến cậu khác biệt không phải tài năng bẩm sinh mà là việc không bao giờ coi một lần thất bại là điểm dừng.</p>
 <p>Thử thách lớn nhất đến ở arc Pain trong Shippuden: làng Konoha bị san phẳng trong vài phút, hàng loạt người cậu quen biết gục ngã, và thầy dạy cậu nhiều nhất, Jiraiya, đã hy sinh trước đó không lâu khi cố mang về manh mối về Akatsuki. Thay vì để nỗi đau nhấn chìm mình, Naruto dồn nó vào việc hoàn thiện Sage Mode mà Jiraiya từng huấn luyện dở dang, rồi quay lại đối đầu Pain không phải bằng thù hận mà bằng chính bài học thầy để lại. Đây là khác biệt giữa "cố gắng" và "kiên trì": cố gắng là hành động, kiên trì là lựa chọn tiếp tục hành động đó sau khi mọi lý do để bỏ cuộc đã xuất hiện.</p>
 
-<h2>2. Xuất thân không phải là bản án chung thân</h2>
+<h2>Xuất thân không phải là bản án chung thân</h2>
 <p>Trước khi khán giả biết Naruto là ai, dân làng Konoha đã quyết định cậu là gì: một cái bóng của Cửu Vĩ, thứ từng tàn phá làng đêm cậu chào đời. Trẻ con bị cấm chơi cùng, người lớn thì thầm sau lưng, và không ai giải thích lý do cho một đứa bé còn chưa hiểu "Jinchuriki" nghĩa là gì. Đó là kiểu cô lập không đến từ việc cậu đã làm gì, mà từ việc cậu là ai ngay từ khi sinh ra, thứ không ai được chọn.</p>
 <p>Nhiều nhân vật trong hoàn cảnh tương tự chọn con đường oán hận, và bản thân Naruto cũng từng đứng rất gần lằn ranh đó. Nhưng cậu không để phần con quái vật bên trong định nghĩa mình; ngược lại, chính trải nghiệm bị xa lánh lại trở thành thứ giúp cậu nhận ra khi nào người khác đang chịu đựng điều tương tự. Xuất thân không biến mất, nhưng nó không nhất thiết phải là điểm kết thúc câu chuyện của một người.</p>
 <figure><img src="/assets/img/naruto-hokage-mountain-crop.jpg" alt="Tượng đài Hokage tại Konoha" loading="lazy" width="460" height="258"><figcaption>Tượng đài khắc hình các đời Hokage tại Konoha, nơi cậu bé Naruto lớn lên trong ánh mắt dè chừng của cả làng.</figcaption></figure>
 
-<h2>3. Một mình mạnh mẽ được, nhưng không đi được xa</h2>
+<h2>Một mình mạnh mẽ được, nhưng không đi được xa</h2>
 <p>Trước khi gặp Iruka, người thầy đầu tiên đối xử tử tế thay vì dè chừng, Naruto sống gần như hoàn toàn cô độc. Đội Bảy, cùng Sasuke, Sakura và thầy Kakashi, là nơi đầu tiên cậu học được cảm giác thuộc về một tập thể thực sự, dù ba người đó ban đầu chẳng hề ăn ý.</p>
 <p>Kakashi từng nói với học trò một câu gần như trở thành tôn chỉ xuyên suốt bộ truyện: "Kẻ phá luật là rác rưởi, nhưng kẻ bỏ rơi đồng đội còn tệ hơn cả rác rưởi." Naruto tin điều đó tuyệt đối, và chính niềm tin ấy là lý do cậu theo đuổi Sasuke qua hàng chục tập phim, ngay cả khi Sasuke đã quay lưng, phản bội làng, và nhiều lần cố lấy mạng cậu. Với Naruto, một mối quan hệ đã đủ ý nghĩa thì không dễ dàng bị vứt bỏ chỉ vì nó trở nên khó khăn.</p>
 <figure><img src="/assets/img/naruto-team7-genin-crop.jpg" alt="Naruto, Sasuke và Sakura - Đội Bảy" loading="lazy" width="950" height="400"><figcaption>Naruto, Sasuke và Sakura, bộ ba tạo nên Đội Bảy, tập thể đầu tiên Naruto thật sự thuộc về.</figcaption></figure>
 
-<h2>4. Đặt mình vào nỗi đau của người khác mạnh hơn bất kỳ đòn đánh nào</h2>
+<h2>Đặt mình vào nỗi đau của người khác mạnh hơn bất kỳ đòn đánh nào</h2>
 <p>Sức mạnh lớn nhất của Naruto chưa bao giờ nằm ở lượng chakra khổng lồ, mà ở khả năng nhìn thấy tổn thương phía sau những kẻ đáng lẽ chỉ là kẻ thù. Gaara, một Jinchuriki khác từng bị chính làng mình ruồng bỏ theo cách tàn nhẫn hơn cả Naruto, đã thay đổi hoàn toàn sau một cuộc đối thoại ngắn, không phải vì bị đánh bại, mà vì lần đầu tiên có người thật sự hiểu cậu đang trải qua điều gì.</p>
 <p>Ở cao trào của arc Pain, thay vì kết liễu Nagato ngay khi có cơ hội, Naruto chọn dừng lại và lắng nghe lý do phía sau vòng lặp bạo lực mà Nagato đang mắc kẹt. Kết quả không phải một chiến thắng quân sự, mà là một kẻ thù nguy hiểm nhất truyện chọn hy sinh bản thân để hồi sinh những người cậu đã giết. Đó là lúc bộ truyện khẳng định rõ nhất: hiểu một người không đồng nghĩa với tha thứ mọi thứ họ đã làm, nhưng nó có thể mở ra một kết cục mà bạo lực thuần túy không bao giờ chạm tới được.</p>
 <figure><img src="/assets/img/naruto-shippuden-pain-arc-banner.jpg" alt="Naruto đối đầu Pain" loading="lazy" width="1721" height="391"><figcaption>Chính tại arc Pain, Naruto chọn lắng nghe Nagato thay vì kết liễu, khoảnh khắc định hình bài học về sự đồng cảm.</figcaption></figure>
 
-<h2>5. Một giấc mơ bị cười nhạo vẫn đáng để theo đuổi đến cùng</h2>
+<h2>Một giấc mơ bị cười nhạo vẫn đáng để theo đuổi đến cùng</h2>
 <p>Lời tuyên bố "tôi sẽ trở thành Hokage" của Naruto ở những tập đầu tiên gần như luôn nhận lại tiếng cười. Với một đứa trẻ bị cả làng xa lánh, đó nghe như một câu nói cho vui hơn là một mục tiêu nghiêm túc. Nhưng với Naruto, Hokage chưa bao giờ chỉ là một chức danh, đó là cách duy nhất cậu nghĩ ra để buộc chính những người từng quay lưng phải nhìn nhận mình.</p>
 <p>Con đường đến đó kéo dài gần như toàn bộ series: hàng trăm tập phim, vô số trận chiến suýt mất mạng, và không ít lần bị chính đồng đội nghi ngờ khả năng. Khi Naruto cuối cùng trở thành Thất Đại Hokage, đó không phải một cái kết bất ngờ, nó là kết quả tất yếu của một lời hứa cậu không bao giờ để mình quên, kể cả khi cả thế giới từng nghĩ nó là điều nực cười.</p>
 <figure><img src="/assets/img/naruto-hokage-adult-crop.jpg" alt="Naruto trưởng thành trong vai trò Hokage" loading="lazy" width="750" height="400"><figcaption>Naruto khi đã trưởng thành, khoác áo choàng Hokage, lời tuyên bố từng bị cười nhạo năm nào nay đã thành hiện thực.</figcaption></figure>
@@ -350,7 +357,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 </main>
 <aside class="art-sidebar"><div class="sidebar-block"><div class="sb-title">Bài liên quan</div><a class="sb-art" href="/10-anime-dang-xem-khi-cho-jujutsu-kaisen-mua-4"><img class="sb-thumb" src="/assets/img/real-jjk-wait-gachiakuta.jpg" alt="10 Anime Đáng Xem Khi Chờ Jujutsu Kaisen Mùa 4" loading="lazy" width="1200" height="675"><div><div class="sb-cat">Anime</div><div class="sb-t">10 Anime Đáng Xem Khi Chờ Jujutsu Kaisen Mùa 4</div></div></a><a class="sb-art" href="/top-8-anime-han-quoc-aeni-dang-xem-nhat"><img class="sb-thumb" src="/assets/img/top-korean-anime-lookism-thumb.jpg" alt="Top 8 Anime Hàn Quốc (Aeni) Đáng Xem Nhất Hiện Nay" loading="lazy" width="1200" height="675"><div><div class="sb-cat">Anime</div><div class="sb-t">Top 8 Anime Hàn Quốc (Aeni) Đáng Xem Nhất Hiện Nay</div></div></a><a class="sb-art" href="/anime-dang-xem-cho-fan-van-hoa-lich-su-nhat-ban"><img class="sb-thumb" src="/assets/img/real-history-anime-kamuy.jpg" alt="Anime Đáng Xem Cho Người Yêu Lịch Sử Nhật Bản" loading="lazy" width="1200" height="675"><div><div class="sb-cat">Anime</div><div class="sb-t">Anime Đáng Xem Cho Người Yêu Lịch Sử Nhật Bản</div></div></a></div><div class="sidebar-block"><div class="sb-title">Tags</div><div class="sb-tags"><a class="sb-tag" href="/anime">Naruto</a><a class="sb-tag" href="/anime">Naruto Shippuden</a><a class="sb-tag" href="/anime">Bài học cuộc sống</a><a class="sb-tag" href="/anime">Shonen</a><a class="sb-tag" href="/anime">Masashi Kishimoto</a></div></div></aside>
 </div>
-<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub<br><span style="opacity:.75;font-size:12px">Vận hành bởi Công ty TNHH Marketing &amp; Truyền thông ANBU · MST 3301761892 · 47 Đặng Văn Ngữ, Phường An Cựu, TP. Huế, Việt Nam · Hotline 039 699 5252 · <a href="mailto:dat.phan@anbu.asia" style="color:inherit">dat.phan@anbu.asia</a></span></span></div></footer>
+<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Reviews</a></li><li><a href="/rankings">Rankings</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Newsletter</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub<br><span style="opacity:.75;font-size:12px">Vận hành bởi Công ty TNHH Marketing &amp; Truyền thông ANBU · MST 3301761892 · 47 Đặng Văn Ngữ, Phường An Cựu, TP. Huế, Việt Nam · Hotline 039 699 5252 · <a href="mailto:dat.phan@anbu.asia" style="color:inherit">dat.phan@anbu.asia</a></span></span></div></footer>
 
 <script>
 function toggleMob(){
