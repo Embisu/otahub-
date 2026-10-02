@@ -14,6 +14,7 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
 import { profilePaths, aliasPaths, displayName, rewriteProfileLinks, PROFILE_TYPES as TYPES } from './lib/profile-paths.mjs';
+import { profileMatchers, profilesForArticle, articleInfo } from './lib/profile-links.mjs';
 
 const CHECK = process.argv.includes('--check');
 const root = new URL('../', import.meta.url);
@@ -34,6 +35,31 @@ const allPaths = { ...paths, ...aliases };
 // ---- Chạy detail.v2.js với DOM giả lập ----
 const escHtml = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const IDX = (() => { const w = {}; vm.runInNewContext(read('assets/search.js'), { window: w }); return w.IDX || []; })();
+
+// ---- Bài viết <-> hồ sơ (scripts/lib/profile-links.mjs) ----
+const SKIP = /^(?:en\/)?(?:admin|game-detail|anime-detail|manga-detail)\.html$/;
+const htmlFiles = (dir) => fs.readdirSync(new URL(dir || '.', root), { withFileTypes: true }).flatMap((d) => {
+  const rel = (dir ? dir + '/' : '') + d.name;
+  if (d.isDirectory()) return ['en', 'author', 'en/author'].includes(rel) ? htmlFiles(rel) : [];
+  return d.name.endsWith('.html') ? [rel] : [];
+});
+const idxByUrl = new Map(IDX.map((a) => [a.url || a.href, a]));
+const matchers = profileMatchers(catalog);
+const articles = htmlFiles('').filter((f) => !SKIP.test(f) && !/^(?:en\/)?article\.html$/.test(f)).flatMap((file) => {
+  const html = read(file);
+  if (!html.includes('<aside class="art-sidebar">')) return [];
+  const url = '/' + file.replace(/\.html$/, '');
+  const meta = idxByUrl.get(url);
+  return [{ file, url, en: file.startsWith('en/'), date: meta?.date || '', picks: profilesForArticle(matchers, { ...articleInfo(html), cat: meta?.cat }) }];
+});
+// "Khóa catalog" -> [url bài], mới nhất trước, bài nhắc tên trong tiêu đề trước bài chỉ gắn thẻ
+const profileArticles = { vi: {}, en: {} };
+for (const a of [...articles].sort((x, y) => y.date.localeCompare(x.date))) {
+  for (const p of a.picks) (profileArticles[a.en ? 'en' : 'vi'][p.key] ||= []).push({ url: a.url, inTitle: p.inTitle });
+}
+for (const lang of Object.values(profileArticles)) {
+  for (const k of Object.keys(lang)) lang[k] = lang[k].sort((x, y) => y.inTitle - x.inTitle).map((x) => x.url);
+}
 
 function render(type, key, en) {
   const out = { title: '', metas: {}, links: {}, schema: null, html: '', style: '' };
@@ -56,7 +82,7 @@ function render(type, key, en) {
     querySelectorAll: () => [],
     set title(v) { out.title = v; }, get title() { return out.title; }
   };
-  const window = { IDX, OT_PROFILE_PATHS: allPaths, OT_PRERENDER: true };
+  const window = { IDX, OT_PROFILE_PATHS: allPaths, OT_PROFILE_ARTICLES: profileArticles[en ? 'en' : 'vi'], OT_PRERENDER: true };
   const fakeFetch = (url) => Promise.resolve({ ok: true, json: () => Promise.resolve(/catalog\.json/.test(url) ? catalog : allPaths) });
   const ctx = { document, window, location: { pathname: (en ? '/en/' : '/') + type + '-detail', search: '?t=' + encodeURIComponent(key) },
     URLSearchParams, fetch: fakeFetch, Promise, console, setTimeout, encodeURIComponent, JSON, Object, Array, Math, isNaN, parseFloat };
@@ -127,8 +153,27 @@ for (const [pk, path] of Object.entries(paths)) {
   }
 }
 
+// Khối "Hồ sơ tác phẩm" đầu sidebar bài viết; đánh dấu bằng comment để chạy lại thay đúng khối cũ
+const sbThumb = (img) => {
+  const m = /^\/assets\/img\/(?!_[ts]\/|brand\/)([^?#]+\.(?:jpe?g|png|webp|jfif))$/i.exec(img || '');
+  return m && exists(`assets/img/_s/${m[1]}.webp`) ? `/assets/img/_s/${m[1]}.webp` : (img || '/assets/img/placeholder.svg');
+};
+const TYPE_LABEL = { game: 'Game', anime: 'Anime', manga: 'Manga' };
+function withProfileBlock(html, a) {
+  html = html.replace(/<!-- PROFILE-LINKS -->[\s\S]*?<!-- \/PROFILE-LINKS -->/, '');
+  if (!a.picks.length) return html;
+  const items = a.picks.map((p) => {
+    const e = catalog[p.key];
+    return `<a class="sb-art" href="${a.en ? '/en' : ''}${paths[`${p.type}|${p.key}`]}"><img class="sb-thumb" src="${attrEsc(sbThumb(e.img))}" alt="" loading="lazy" width="76" height="60"><div><div class="sb-cat">${TYPE_LABEL[p.type]}</div><div class="sb-t">${escHtml(displayName(p.key))}</div></div></a>`;
+  }).join('');
+  const block = `<!-- PROFILE-LINKS --><div class="sidebar-block"><div class="sb-title">${a.en ? 'Title profiles' : 'Hồ sơ tác phẩm'}</div>${items}</div><!-- /PROFILE-LINKS -->`;
+  return html.replace('<aside class="art-sidebar">', () => '<aside class="art-sidebar">' + block);
+}
+const articleUpdates = articles.map((a) => { const before = read(a.file); return { file: a.file, before, after: withProfileBlock(before, a) }; })
+  .filter((u) => u.after !== u.before);
+
 if (CHECK) {
-  const stale = pages.filter((p) => !exists(p.file) || read(p.file) !== p.html).map((p) => p.file);
+  const stale = pages.filter((p) => !exists(p.file) || read(p.file) !== p.html).map((p) => p.file).concat(articleUpdates.map((u) => u.file));
   const pathsStale = !exists('assets/profile-paths.json') || read('assets/profile-paths.json') !== JSON.stringify(allPaths, null, 1) + '\n';
   if (stale.length || pathsStale) { console.error(`Trang hồ sơ chưa cập nhật (${stale.length} trang${pathsStale ? ' + profile-paths.json' : ''}), chạy: node scripts/build-profiles.mjs`); process.exit(1); }
   console.log(`Hồ sơ tĩnh: ${pages.length} trang khớp dữ liệu.`);
@@ -148,13 +193,8 @@ write('assets/profile-paths.json', JSON.stringify(allPaths, null, 1) + '\n');
 
 // Link trang hồ sơ động (?t=) trên các trang -> URL tĩnh. Dữ liệu nguồn trong JS (vd const REVIEWS)
 // giữ dạng ?t= vì các script chấm điểm dựa vào; link đó vẫn được worker chuyển hướng 301.
+for (const u of articleUpdates) write(u.file, u.after);
 let linkFiles = 0;
-const SKIP = /^(?:en\/)?(?:admin|game-detail|anime-detail|manga-detail)\.html$/;
-const htmlFiles = (dir) => fs.readdirSync(new URL(dir || '.', root), { withFileTypes: true }).flatMap((d) => {
-  const rel = (dir ? dir + '/' : '') + d.name;
-  if (d.isDirectory()) return ['en', 'author', 'en/author'].includes(rel) ? htmlFiles(rel) : [];
-  return d.name.endsWith('.html') ? [rel] : [];
-});
 for (const file of htmlFiles('')) {
   if (SKIP.test(file)) continue;
   const before = read(file);
@@ -169,4 +209,4 @@ const today = new Date().toISOString().slice(0, 10);
 const entries = pages.filter((p) => p.indexable).map((p) => `  <url><loc>${p.url}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>`);
 sm = sm.replace('</urlset>', `  <!-- PROFILES:START -->\n${entries.join('\n')}\n  <!-- PROFILES:END -->\n</urlset>`);
 write('sitemap.xml', sm);
-console.log(`Hồ sơ tĩnh: ${pages.length} trang (${Object.keys(paths).length} tác phẩm × VI/EN), ${entries.length} trang đưa vào sitemap, ${Object.keys(aliases).length} tên gọi khác, đổi link ở ${linkFiles} trang.`);
+console.log(`Hồ sơ tĩnh: ${pages.length} trang (${Object.keys(paths).length} tác phẩm × VI/EN), ${entries.length} trang đưa vào sitemap, ${Object.keys(aliases).length} tên gọi khác, đổi link ở ${linkFiles} trang, ${articles.filter((a) => a.picks.length).length}/${articles.length} bài có khối hồ sơ (cập nhật ${articleUpdates.length}).`);

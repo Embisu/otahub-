@@ -147,11 +147,87 @@ var TITLE_ALIAS={
   'Sousou no Frieren':'Frieren Season 2',
   'Kaiju No 8':'Kaiju No.8',
   'Ghost of Yōtei':'Ghost of Yōtei: Complete Edition',
-  'Bleach: TYBW Part 5':'Bleach: TYBW Final Part'
+  'Bleach: TYBW Part 5':'Bleach: TYBW Final Part',
+  "Genshin Impact: Natlan":"Genshin Impact",
+  "Genshin Impact Natlan":"Genshin Impact",
+  "Genshin Impact 7.0: Snezhnaya":"Genshin Impact",
+  "Genshin Impact 5.4":"Genshin Impact",
+  "Wuthering Waves 3.6":"Wuthering Waves",
+  "Wuthering Waves 3.6, Bản cập nhật lớn":"Wuthering Waves",
+  "Honkai: Star Rail 2.8":"Honkai: Star Rail",
+  "Zenless Zone Zero 1.5":"Zenless Zone Zero",
+  "Blue Protocol: Resonance":"Blue Protocol: Star Resonance",
+  "Monster Hunter Wilds: Ascendance":"Monster Hunter Wilds",
+  "Elden Ring DLC 2":"Elden Ring: Shadow of the Erdtree",
+  "Kingdom Come Deliverance 2":"Kingdom Come: Deliverance II",
+  "Space Marine 2 review: cận chiến và co-op đỉnh":"Warhammer 40,000: Space Marine 2",
+  "Cyberpunk 2077: Phantom Liberty":"Cyberpunk 2077",
+  "Disco Elysium: The Final Cut":"Disco Elysium",
+  "Frieren: Pháp Sư Tiễn Táng (Mùa 1 & 2)":"Frieren Season 2",
+  "Frieren: Beyond Journey's End Season 2":"Frieren Season 2",
+  "Kimetsu no Yaiba: Vô Hạn Thành (Trilogy 1)":"Demon Slayer: Infinity Castle",
+  "Chainsaw Man: Reze Arc (Movie)":"Chainsaw Man: Reze Arc",
+  "Chainsaw Man – The Movie: Reze Arc":"Chainsaw Man: Reze Arc",
+  "Dandadan Mùa 2":"Dandadan Season 2",
+  "Dan Da Dan Season 2":"Dandadan Season 2",
+  "Attack on Titan: The Final Season":"Attack on Titan: Final Season",
+  "Re:Zero Mùa 4":"Re:Zero Season 4",
+  "Re:ZERO -Starting Life in Another World- Season 4":"Re:Zero Season 4",
+  "Bleach: Huyết Chiến Ngàn Năm":"Bleach: TYBW Final Part",
+  "Bleach: Thousand-Year Blood War – The Calamity":"Bleach: TYBW Final Part",
+  "Oshi no Ko Anime":"Oshi no Ko",
+  "[Oshi no Ko] Season 3":"Oshi no Ko",
+  "JoJo's Bizarre Adventure: Steel Ball Run (2nd–3rd Stage)":"JoJo's Bizarre Adventure: Steel Ball Run",
+  "Aoashi Mùa 2":"Aoashi",
+  "Aoashi Season 2":"Aoashi",
+  "Laputa: Lâu Đài Trên Không":"Castle in the Sky",
+  "Haikyu!!: Trận Chiến Bãi Phế Liệu":"Haikyu!! The Dumpster Battle",
+  "Blue Lock Mùa 2: U-20 Arc":"Blue Lock (Anime)",
+  "That Time I Got Reincarnated as a Slime S4 (Cour 3)":"That Time I Got Reincarnated as a Slime",
+  "That Time I Got Reincarnated as a Slime Season 4":"That Time I Got Reincarnated as a Slime",
+  "Gachiakuta Season 2":"Gachiakuta",
+  "The Apothecary Diaries Season 3":"The Apothecary Diaries",
+  "The Apothecary Diaries: The Movie":"The Apothecary Diaries",
+  "Mushoku Tensei III: Jobless Reincarnation":"Mushoku Tensei",
+  "Hell's Paradise Season 2":"Hell's Paradise",
+  "Ghost in the Shell (2026)":"The Ghost in the Shell (2026)",
+  "Chained Soldier Season 2":"Chained Soldier",
+  "Ranma 1/2 Season 3":"Ranma 1/2",
+  "Made in Abyss: Mezameru Shinpi":"Made in Abyss",
+  "Hell Mode Season 2":"Hell Mode",
+  "Hell Mode Season 3":"Hell Mode",
+  "Draw This, Then Die! Season 2":"Draw This, Then Die!",
+  "Kore Kaite Shine":"Draw This, Then Die!",
+  "One Piece: Elbaf & Final Saga":"One Piece",
+  "One Piece: Final Saga":"One Piece",
+  "Black Clover: Hồi Kết":"Black Clover",
+  "Black Clover Kết Thúc":"Black Clover",
+  "Kaiju No. 8":"Kaiju No.8",
+  "Chainsaw Man: Phần 2 (Học Viện)":"Chainsaw Man",
+  "Chainsaw Man Manga":"Chainsaw Man",
+  "Jujutsu Kaisen: Đại Chiến Shinjuku":"Jujutsu Kaisen",
+  "Jujutsu Kaisen, Đánh giá arc cuối":"Jujutsu Kaisen",
+  "Vinland Saga Manga":"Vinland Saga",
+  "Berserk: Fantasia Arc":"Berserk",
+  "Omniscient Reader's Viewpoint":"Omniscient Reader",
+  "Hunter x Hunter: Lục Địa Tối":"Hunter x Hunter",
+  "Thám Tử Lừng Danh Conan":"Detective Conan",
+  "Địa Phủ Hanako-kun":"Toilet-bound Hanako-kun",
+  "Overgeared: Thợ Rèn Huyền Thoại":"Overgeared"
 };
 var TYPE_ENTRY_ALIAS={
   'anime|Chainsaw Man':'Chainsaw Man (Anime)',
-  'anime|Jujutsu Kaisen':'Jujutsu Kaisen (Anime)'
+  'anime|Jujutsu Kaisen':'Jujutsu Kaisen (Anime)',
+  "anime|Chainsaw Man Anime":"Chainsaw Man (Anime)",
+  "anime|Jujutsu Kaisen Anime":"Jujutsu Kaisen (Anime)",
+  "anime|Jujutsu Kaisen: Culling Game (Mùa 3)":"Jujutsu Kaisen (Anime)",
+  "anime|Jujutsu Kaisen: The Culling Game (Part 1)":"Jujutsu Kaisen (Anime)",
+  "anime|Overgeared":"Overgeared (Anime)",
+  "anime|Blue Lock":"Blue Lock (Anime)",
+  "anime|Black Clover":"Black Clover (Anime)",
+  "anime|Black Clover Season 2":"Black Clover (Anime)",
+  "anime|Akane-banashi":"Akane-banashi (Anime)",
+  "anime|Detective Conan":"Detective Conan (Anime)"
 };
 qTitle=TITLE_ALIAS[qTitle]||qTitle;
 
@@ -194,11 +270,15 @@ function detailArticles(title, entry){
     var u=a.url||a.href||'';
     return EN?/^\/en\//.test(u):!/^\/en\//.test(u);
   });
-  var matches=all.map(function(a){
+  // Bài đã gắn với hồ sơ (scripts/lib/profile-links.mjs, khi dựng trang tĩnh) đứng trước, rồi bài khớp theo từ khóa
+  var linked=((window.OT_PROFILE_ARTICLES||{})[title]||[]).map(function(u){
+    return all.find(function(a){return (a.url||a.href)===u;});
+  }).filter(Boolean);
+  var matches=linked.concat(all.filter(function(a){return linked.indexOf(a)<0;}).map(function(a){
     var hay=((a.title||'')+' '+(a.desc||'')+' '+((a.tags||[]).join(' '))).toLowerCase();
     var score=tokens.reduce(function(n,t){return n+(hay.indexOf(t)>-1?1:0);},0);
     return {a:a,score:score};
-  }).filter(function(x){return x.score>=Math.max(1,Math.min(2,tokens.length));}).sort(function(a,b){return b.score-a.score;}).slice(0,6).map(function(x){return x.a;});
+  }).filter(function(x){return x.score>=Math.max(1,Math.min(2,tokens.length));}).sort(function(a,b){return b.score-a.score;}).map(function(x){return x.a;})).slice(0,6);
   var review=(EN?entry.reviewEn:entry.review)||entry.article;
   if(review&&!matches.some(function(a){return a.url===review||a.href===review;})){
     matches.unshift({url:review,title:(EN?'In-depth review: ':'Đánh giá chuyên sâu: ')+title,img:entry.img,cat:'Review'});

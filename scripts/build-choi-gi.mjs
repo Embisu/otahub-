@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import { verifiedReviews, articleFile } from './lib/review-scores.mjs';
+import { profilePaths, aliasPaths } from './lib/profile-paths.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 
@@ -1626,6 +1627,8 @@ const thumb = (u, kind) => {
 };
 
 const REVIEWS = verifiedReviews();
+// Hồ sơ tác phẩm /type/slug (scripts/build-profiles.mjs), tra theo tên VI rồi tên EN của tựa
+const PROFILE_PATHS = (() => { const p = profilePaths(JSON.parse(fs.readFileSync(path.join(root, 'assets/catalog.json'), 'utf8'))); return { ...p, ...aliasPaths(p) }; })();
 const warnings = [];
 const VI_BY_ID = new Map(VI_ITEMS.map((x) => [x.id, x]));
 function prepare(items, lang) {
@@ -1637,7 +1640,8 @@ function prepare(items, lang) {
     let link = r ? (lang === 'en' ? r.enUrl : r.url) : it.link;
     if (!r && lang === 'en' && !(link && link.startsWith('/en/'))) link = enOf(VI_BY_ID.get(it.id)?.link);
     if (link && !pageFile(link)) link = null;
-    return { ...it, score: r ? r.score : null, link: link || null, reviewed: !!r };
+    const prof = PROFILE_PATHS[`${it.type}|${VI_BY_ID.get(it.id)?.name}`] || PROFILE_PATHS[`${it.type}|${it.name}`];
+    return { ...it, score: r ? r.score : null, link: link || null, reviewed: !!r, profile: prof ? (lang === 'en' ? '/en' : '') + prof : null };
   });
 }
 
@@ -1679,7 +1683,7 @@ const TXT = {
     today: 'Gợi ý hôm nay', forYou: 'Gợi ý cho bạn', chosen: 'Bạn đang xem',
     typeName: { game: 'Game', anime: 'Anime', manga: 'Manga', manhwa: 'Manhwa' },
     scoreDt: 'Điểm review OtaHub', noScoreDt: 'Điểm OtaHub', noScore: 'Chưa có review', timeDt: 'Thời lượng',
-    readReview: 'Đọc review', readArticle: 'Đọc bài viết', noArticle: 'Chưa có bài viết riêng',
+    readReview: 'Đọc review', readArticle: 'Đọc bài viết', noArticle: 'Chưa có bài viết riêng', profile: 'Hồ sơ', profileBtn: 'Hồ sơ tác phẩm',
     share: 'Chia sẻ gợi ý này', copied: 'Đã sao chép link gợi ý', recent: 'Vừa gợi ý',
     pick: 'Biên tập chọn', quick: 'Xem nhanh',
     allH: 'Tất cả gợi ý', allP: 'Danh sách thay đổi theo lựa chọn ở trên. Bấm vào một tựa để xem nhanh.',
@@ -1713,7 +1717,7 @@ const TXT = {
     today: "Today's pick", forYou: 'Picked for you', chosen: "You're viewing",
     typeName: { game: 'Game', anime: 'Anime', manga: 'Manga', manhwa: 'Manhwa' },
     scoreDt: 'OtaHub review score', noScoreDt: 'OtaHub score', noScore: 'Not reviewed yet', timeDt: 'Length',
-    readReview: 'Read the review', readArticle: 'Read the article', noArticle: 'No dedicated article yet',
+    readReview: 'Read the review', readArticle: 'Read the article', noArticle: 'No dedicated article yet', profile: 'Profile', profileBtn: 'Title profile',
     share: 'Share this pick', copied: 'Link copied', recent: 'Recent picks',
     pick: "Editor's pick", quick: 'Quick look',
     allH: 'All picks', allP: 'The list follows your choices above. Tap a title for a quick look.',
@@ -1774,7 +1778,7 @@ function buildHtml(lang, old) {
         <div class="c-media"><img src="${thumb(it.img, '_t')}" alt="" loading="lazy" decoding="async" width="320" height="200"><span class="c-type">${t.typeName[typeKey(it)]}</span>${scoreBadge(it)}</div>
         <div class="c-body">
           <h3 class="c-title"><button type="button" class="c-open" data-open="${it.id}">${esc(it.name)}</button></h3>
-          <p class="c-meta">${esc(it.genre)}</p>
+          <p class="c-meta">${esc(it.genre)}${it.profile ? ` · <a class="c-link c-prof" href="${it.profile}">${t.profile}</a>` : ''}</p>
           <p class="c-foot"><span>${esc(it.format)}</span>${it.link ? `<a class="c-link" href="${it.link}">${it.reviewed ? t.readReview : t.readArticle} →</a>` : `<span class="c-link c-link-soft">${t.quick}</span>`}</p>
         </div>
       </article>`;
@@ -1788,10 +1792,10 @@ function buildHtml(lang, old) {
       </div>`;
 
   // Dữ liệu cho script (img:'..' để build-thumbs.py tạo sẵn ảnh _t/_s)
-  const data = items.map((it) => `{id:${jsStr(it.id)},type:${jsStr(it.type)},sub:${jsStr(it.subType)},name:${jsStr(it.name)},creator:${jsStr(it.creator)},format:${jsStr(it.format)},genre:${jsStr(it.genre)},moods:[${it.moods.map(jsStr).join(',')}],time:${jsStr(it.time)},score:${it.score === null ? 'null' : it.score.toFixed(1)},img:${jsStr(it.img)},t:${jsStr(thumb(it.img, '_t'))},s:${jsStr(thumb(it.img, '_s'))},why:${jsStr(it.why)},link:${it.link ? jsStr(it.link) : 'null'},rv:${it.reviewed ? 1 : 0}}`).join(',\n      ');
+  const data = items.map((it) => `{id:${jsStr(it.id)},type:${jsStr(it.type)},sub:${jsStr(it.subType)},name:${jsStr(it.name)},creator:${jsStr(it.creator)},format:${jsStr(it.format)},genre:${jsStr(it.genre)},moods:[${it.moods.map(jsStr).join(',')}],time:${jsStr(it.time)},score:${it.score === null ? 'null' : it.score.toFixed(1)},img:${jsStr(it.img)},t:${jsStr(thumb(it.img, '_t'))},s:${jsStr(thumb(it.img, '_s'))},why:${jsStr(it.why)},link:${it.link ? jsStr(it.link) : 'null'},pf:${it.profile ? jsStr(it.profile) : 'null'},rv:${it.reviewed ? 1 : 0}}`).join(',\n      ');
   const I18N = {
     today: t.today, forYou: t.forYou, chosen: t.chosen, typeName: t.typeName, scoreDt: t.scoreDt, noScoreDt: t.noScoreDt, noScore: t.noScore,
-    readReview: t.readReview, readArticle: t.readArticle, noArticle: t.noArticle, copied: t.copied, more: t.more, subs: t.subs, moods: t.moods, count: t.count(0)
+    readReview: t.readReview, readArticle: t.readArticle, noArticle: t.noArticle, profileBtn: t.profileBtn, copied: t.copied, more: t.more, subs: t.subs, moods: t.moods, count: t.count(0)
   };
 
   return `<!DOCTYPE html>
@@ -1988,7 +1992,8 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     .btn-icon { width: 46px; padding: 0; border: 1px solid var(--line2); background: transparent; color: var(--text-sub); }
     .btn-icon:hover { color: #fff; border-color: var(--acc); }
     .no-article { align-self: center; color: var(--text-muted); font-size: 13.5px; }
-    .no-article[hidden] { display: none; }
+    .no-article[hidden], .pick-actions .btn[hidden] { display: none; }
+    .c-prof { font-weight: 600; }
     .recent { display: flex; align-items: center; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
     .recent[hidden] { display: none; }
     .recent-l { font-size: 12.5px; color: var(--text-muted); font-weight: 600; }
@@ -2189,6 +2194,7 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
         <div class="pick-actions">
           <a class="btn btn-main" id="pickLink" href="${first.link || '#'}"${first.link ? '' : ' hidden'}>${first.reviewed ? t.readReview : t.readArticle} →</a>
           <span class="no-article" id="noArticle"${first.link ? ' hidden' : ''}>${t.noArticle}</span>
+          <a class="btn btn-ghost" id="pickProfile" href="${first.profile || '#'}"${first.profile ? '' : ' hidden'}>${t.profileBtn}</a>
           <button type="button" class="btn btn-ghost" id="againBtn">🎲 ${t.rollAgain}</button>
           <button type="button" class="btn btn-icon" id="shareBtn" aria-label="${t.share}" title="${t.share}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"></path></svg></button>
         </div>
@@ -2277,6 +2283,8 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
       const a = $('pickLink');
       a.hidden = !it.link; $('noArticle').hidden = !!it.link;
       if (it.link) { a.href = it.link; a.textContent = (it.rv ? L.readReview : L.readArticle) + ' →'; }
+      const pf = $('pickProfile');
+      pf.hidden = !it.pf; if (it.pf) pf.href = it.pf;
       document.querySelectorAll('.card.is-current').forEach((c) => c.classList.remove('is-current'));
       const card = document.querySelector('.card[data-id="' + it.id + '"]');
       if (card) card.classList.add('is-current');
