@@ -171,6 +171,8 @@ function pageHtml(s, en, rs) {
     // Chỉ tab đầu có H1 và ảnh tải ngay; tab khác ẩn tới khi chọn
     const panels = rs.map((r, i) => {
       let h = thumbPoster(r.html);
+      // phiên bản mang đúng tên thương hiệu (vd. manga "Jujutsu Kaisen") -> hiện tên theo ngôn ngữ (Chú Thuật Hồi Chiến)
+      if (displayName(s.editions[i].key) === s.nameEn) h = h.replace(/<h1 class="ah-title">[\s\S]*?<\/h1>/, () => `<h1 class="ah-title">${escHtml(name)}</h1>`);
       if (i) h = h.replace(/<h1 class="ah-title">([\s\S]*?)<\/h1>/, '<h2 class="ah-title">$1</h2>').replace(' fetchpriority="high"', ' loading="lazy"');
       return `<div class="ed-panel" data-ed="${s.editions[i].tab}" role="tabpanel"${i ? ' hidden' : ''}>${h}</div>`;
     }).join('');
