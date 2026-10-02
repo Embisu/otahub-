@@ -28,7 +28,7 @@ export default {
     vi: {
       path: '/dem-nguoc-gta-6', file: 'dem-nguoc-gta-6.html', htmlLang: 'vi', home: '/',
       crumb: { name: 'Gaming', url: '/gaming' }, jsonName: 'Đếm ngược GTA 6',
-      ui: { by: 'OtaHub nghiên cứu, tổng hợp', updated: 'Cập nhật', date: '2/10/2026', play: 'Phát video', watch: 'Xem trên YouTube', close: 'Đóng', prev: 'Ảnh trước', next: 'Ảnh sau', scrollL: 'Cuộn trái', scrollR: 'Cuộn phải', credit: 'Ảnh: Rockstar Games.' },
+      ui: { by: 'OtaHub nghiên cứu, tổng hợp', updated: 'Cập nhật', date: '2/10/2026', play: 'Phát video', watch: 'Xem trên YouTube', close: 'Đóng', prev: 'Ảnh trước', next: 'Ảnh sau', scrollL: 'Cuộn trái', scrollR: 'Cuộn phải', credit: 'Ảnh: Rockstar Games.', scroll: 'Cuộn xuống nội dung' },
       meta: {
         title: 'Đếm ngược GTA 6: mọi điều cần biết trước 19/11',
         description: 'OtaHub nghiên cứu, tổng hợp GTA 6: đồng hồ đếm ngược, ngày ra mắt, giá, bản đồ Leonida, nhân vật, gameplay, xe và vũ khí đã lộ diện.',
@@ -36,7 +36,7 @@ export default {
         ogImage: 'https://otahub.asia/assets/img/gta6-official-art.jpg'
       },
       hero: {
-        kicker: 'Đếm ngược GTA 6', live: 'Cập nhật liên tục', title: 'GTA <em>VI</em>', bg: IMG.hero, bgPos: 'center 24%',
+        kicker: 'Đếm ngược GTA 6', live: 'Cập nhật liên tục', title: 'GTA <em>VI</em>', bg: IMG.hero, bgPos: 'center 24%', chips: ['19.11.2026', 'PS5', 'Xbox Series X|S', 'Một người chơi'],
         sub: 'Grand Theft Auto VI ra mắt ngày 19/11/2026 trên PS5 và Xbox Series X|S. OtaHub nghiên cứu, tổng hợp mọi điều Rockstar đã xác nhận: cốt truyện, bản đồ Leonida, gameplay, giá và các phiên bản.',
         ctas: [['Xem Extended Look', '#video', true], ['Thông tin nhanh', '#nhanh']],
         clock: { h: 'Còn lại đến ngày ra mắt', units: { d: 'Ngày', h: 'Giờ', m: 'Phút', s: 'Giây' }, note: 'Rockstar chưa công bố giờ mở bán chính thức. Chọn giả định:', vn: '00:00 giờ Việt Nam', us: '00:00 giờ miền Đông Mỹ', launched: 'GTA VI đã ra mắt. Chúc bạn chơi vui!' }
@@ -212,7 +212,7 @@ export default {
     en: {
       path: '/en/gta-6-countdown', file: 'en/gta-6-countdown.html', htmlLang: 'en', home: '/en/',
       crumb: { name: 'Gaming', url: '/en/gaming' }, jsonName: 'GTA 6 Countdown',
-      ui: { by: 'Researched & compiled by OtaHub', updated: 'Updated', date: 'October 2, 2026', play: 'Play video', watch: 'Watch on YouTube', close: 'Close', prev: 'Previous image', next: 'Next image', scrollL: 'Scroll left', scrollR: 'Scroll right', credit: 'Image: Rockstar Games.' },
+      ui: { by: 'Researched & compiled by OtaHub', updated: 'Updated', date: 'October 2, 2026', play: 'Play video', watch: 'Watch on YouTube', close: 'Close', prev: 'Previous image', next: 'Next image', scrollL: 'Scroll left', scrollR: 'Scroll right', credit: 'Image: Rockstar Games.', scroll: 'Scroll to content' },
       meta: {
         title: 'GTA 6 Countdown: Everything to Know Before Nov 19',
         description: 'OtaHub researched and compiled GTA 6: live countdown, release date, price, Leonida map, characters, gameplay, cars and weapons revealed so far.',
@@ -220,7 +220,7 @@ export default {
         ogImage: 'https://otahub.asia/assets/img/gta6-official-art.jpg'
       },
       hero: {
-        kicker: 'GTA 6 Countdown', live: 'Updated continuously', title: 'GTA <em>VI</em>', bg: IMG.hero, bgPos: 'center 24%',
+        kicker: 'GTA 6 Countdown', live: 'Updated continuously', title: 'GTA <em>VI</em>', bg: IMG.hero, bgPos: 'center 24%', chips: ['Nov 19, 2026', 'PS5', 'Xbox Series X|S', 'Single-player'],
         sub: 'Grand Theft Auto VI launches on November 19, 2026 for PS5 and Xbox Series X|S. OtaHub researched and compiled everything Rockstar has confirmed: story, the Leonida map, gameplay, price and editions.',
         ctas: [['Watch the Extended Look', '#video', true], ['Quick facts', '#nhanh']],
         clock: { h: 'Time until launch', units: { d: 'Days', h: 'Hours', m: 'Minutes', s: 'Seconds' }, note: 'Rockstar has not announced an official launch time. Pick an assumption:', vn: '00:00 Vietnam time', us: '00:00 US Eastern', launched: 'GTA VI is out. Enjoy the ride!' }

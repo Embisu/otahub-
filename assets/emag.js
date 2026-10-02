@@ -23,6 +23,7 @@
       cells.h.textContent = pad(Math.floor(left % 86400 / 3600));
       cells.m.textContent = pad(Math.floor(left % 3600 / 60));
       cells.s.textContent = pad(left % 60);
+      var st = cells.s.parentNode; st.classList.remove('tick'); void st.offsetWidth; st.classList.add('tick');
       return true;
     };
     var paint = function () { btns.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-mode') === mode ? 'true' : 'false'); }); tick(); };

@@ -53,6 +53,24 @@ Trường bắt buộc của từng khối nằm ở `SECTION_TYPES` trong `scri
 - Khối `todo` ("Còn chờ xác nhận") liệt kê rõ những gì hãng chưa công bố, để người đọc biết đâu là chắc chắn.
 - Khối `news` tự gom bài từ `assets/search.js` theo `newsMatch` (khớp tiêu đề hoặc thẻ), bài mới tự xuất hiện; đặt `newsMatch` đủ chặt để không lẫn bài khác.
 
+## Kích thước ảnh (để designer làm sẵn cho từng ngôn ngữ)
+
+Mỗi ngôn ngữ có ảnh riêng: đổi `hero.bg`, `hero.bgMobile`, `meta.ogImage` ở `pages.vi` và `pages.en` trong spec. Đặt file vào `assets/img/<slug>/`, định dạng JPG hoặc WebP (≤ 350 KB cho ảnh hero, ≤ 200 KB cho ảnh còn lại).
+
+| Ảnh | Kích thước gốc | Ghi chú vùng an toàn |
+|---|---|---|
+| **Ảnh bìa desktop** (`hero.bg`) | **2560 × 1440 px (16:9)** | Khung hiển thị: màn 1920×1080 cho vùng 1905×840 (cắt trên dưới, còn ~78% chiều cao); màn 1440×900 cho 1425×792. Nhân vật/tiêu đề chính đặt ở **giữa-phải, từ 8% đến 75% chiều cao**. Nửa trái và 35% dưới cùng được phủ gradient tối để đặt chữ, đồng hồ nằm góc phải-dưới, nên tránh chi tiết quan trọng ở đó. |
+| **Ảnh bìa điện thoại** (`hero.bgMobile`, tùy chọn) | **1080 × 1920 px (9:16)** | Trên điện thoại vùng hero cao ~936 px với màn 375 px (tỉ lệ ~0,4). Nếu không có ảnh riêng, ảnh desktop bị cắt chỉ còn dải giữa. Đặt chủ thể ở **45% phía trên**, phần dưới dành cho chữ. |
+| **Ảnh chia sẻ** (`meta.ogImage`) | **1200 × 630 px** | Hiện trên Facebook/X/Zalo. Chừa lề 60 px, chữ trong ảnh phải đọc được ở kích thước nhỏ. |
+| Ảnh intro (`intro.img`) | 1200 × 630 px | Hiển thị trong khung có viền màu. |
+| Thư viện ảnh, hàng tính năng, video | **1600 × 900 px (16:9)** | Thẻ 16:9, ảnh cắt vừa khung (cover). Ảnh video: 1280 × 720. |
+| Ảnh nhân vật (`people`) | 1400 × 1240 px (~1,13:1) | Thẻ gần vuông, chữ nằm đè nửa dưới nên đặt khuôn mặt ở nửa trên. |
+| Ảnh khu vực (`regions`) | 1400 × 700 px (2:1) | |
+| Thẻ phiên bản (`editions`) | 1200 × 460 px | Chỉ hiện dải cao 150 px, chủ thể ở giữa. |
+| Ô "Đi nhanh" (`guides`) | 800 × 600 px | Chữ đè phần dưới. |
+
+Nếu ảnh bìa đã có sẵn chữ/logo tiêu đề thì đặt `hero.hideTitle: true` để ẩn tiêu đề chữ khổng lồ (h1 vẫn còn cho SEO và trình đọc màn hình).
+
 ## Hành vi kỹ thuật cần nhớ
 
 - Đồng hồ đếm ngược dùng `countdown.vn` và `countdown.us` (ISO UTC). Khi hãng chưa công bố giờ mở bán, giữ hai giả định như bản GTA 6.

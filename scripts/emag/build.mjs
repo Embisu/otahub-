@@ -128,16 +128,16 @@ function renderPage(spec, lang) {
   const H = page.hero, clock = H.clock;
   const t = spec.theme;
 
-  const hero = `<section class="em-hero" id="top"><div class="em-hero-bg" style="--hero:${bg(H.bg)};--hero-pos:${H.bgPos}" role="img" aria-label="${esc(H.title.replace(/<[^>]+>/g, ''))}"></div><div class="em-wrap em-hero-in">
+  const hero = `<section class="em-hero" id="top"><div class="em-hero-bg" style="--hero:${bg(H.bg)};--hero-pos:${H.bgPos}${H.bgMobile ? `;--hero-m:${bg(H.bgMobile.src)};--hero-m-pos:${H.bgMobile.pos}` : ''}" role="img" aria-label="${esc(H.title.replace(/<[^>]+>/g, ''))}"></div><div class="em-wrap em-hero-in">
 <div><span class="em-kicker">${esc(H.kicker)}</span><span class="em-live"><i></i>${esc(H.live)}</span>
-<h1 class="em-title">${H.title}</h1><p class="em-sub">${esc(H.sub)}</p>
+<h1 class="em-title${H.hideTitle ? ' em-sr' : ''}">${H.title}</h1><div class="em-hchips">${H.chips.map((c) => `<span>${esc(c)}</span>`).join('')}</div><p class="em-sub">${esc(H.sub)}</p>
 <div class="em-cta">${H.ctas.map(([l, h, pri]) => `<a class="em-btn${pri ? ' pri' : ''}" href="${h}">${esc(l)}</a>`).join('')}</div>
 <div class="em-by">${esc(page.ui.by)} · ${esc(page.ui.updated)} ${esc(page.ui.date)}</div></div>
 <aside class="em-clock" data-countdown data-t-vn="${spec.countdown.vn}" data-t-us="${spec.countdown.us}"><h2>${esc(clock.h)}</h2>
 <div class="em-count" role="timer" aria-label="${esc(clock.h)}">${['d', 'h', 'm', 's'].map((u) => `<div class="em-tile"><b data-u="${u}">--</b><span>${esc(clock.units[u])}</span></div>`).join('')}</div>
 <div class="em-launched">${esc(clock.launched)}</div>
 <p class="em-note">${esc(clock.note)}</p><div class="em-seg" role="group" aria-label="${esc(clock.note)}"><button type="button" data-mode="vn" aria-pressed="true">${esc(clock.vn)}</button><button type="button" data-mode="us" aria-pressed="false">${esc(clock.us)}</button></div></aside>
-</div></section>`;
+</div><a class="em-scroll" href="#${chips[0].id}" aria-label="${esc(page.ui.scroll)}"></a></section>`;
   const ticks = page.ticker.map((x) => `<span>${esc(x)}</span>`).join('');
   const ticker = `<div class="em-ticker" aria-hidden="true"><div class="em-track">${ticks}${ticks}</div></div>`;
   const chapters = `<nav class="em-chapters" aria-label="${esc(H.kicker)}"><div class="em-chapters-in">${chips.map((s) => `<a class="em-chip" href="#${s.id}">${esc(s.nav)}</a>`).join('')}</div><div class="em-progress"></div></nav>`;

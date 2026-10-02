@@ -61,7 +61,10 @@ export function validate(spec, { exists }) {
     if (!p.meta.ogImage?.startsWith('https://otahub.asia/assets/img/') || !exists(p.meta.ogImage.replace('https://otahub.asia/', ''))) e(at + 'meta.ogImage phải là ảnh cục bộ có thật (URL đầy đủ otahub.asia)');
     // hero
     const H = p.hero;
-    for (const k of ['kicker', 'live', 'title', 'bg', 'bgPos', 'sub', 'ctas', 'clock']) if (H?.[k] == null) e(at + `hero.${k} thiếu`);
+    for (const k of ['kicker', 'live', 'title', 'bg', 'bgPos', 'sub', 'ctas', 'clock', 'chips']) if (H?.[k] == null) e(at + `hero.${k} thiếu`);
+    if (Array.isArray(H?.chips) && (H.chips.length < 2 || H.chips.length > 5)) e(at + 'hero.chips cần 2-5 nhãn (nhãn đầu là ngày ra mắt, được tô nổi bật)');
+    if (H?.bgMobile && (!H.bgMobile.src || !H.bgMobile.pos)) e(at + 'hero.bgMobile cần src và pos');
+    if (!p.ui?.scroll) e(at + 'ui.scroll (nhãn nút cuộn xuống) thiếu');
     if (H?.sub && !/OtaHub/.test(H.sub)) e(at + 'hero.sub phải nêu OtaHub nghiên cứu, tổng hợp');
     if (!Array.isArray(p.ticker) || p.ticker.length < 5) e(at + 'ticker cần tối thiểu 5 ý');
     // khối
