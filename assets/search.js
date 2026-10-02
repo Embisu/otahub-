@@ -763,17 +763,17 @@ window.IDX = [
     "url": "/gintama-sorachi-tung-nghi-anime-se-that-bai",
     "cat": "Anime",
     "date": "2026-09-29",
-    "excerpt": "Cha đẻ Gintama thú nhận: từng nghĩ bản anime sẽ thất bại. Cập nhật thông tin, bối cảnh và phân tích biên tập từ.",
+    "excerpt": "Hideaki Sorachi thừa nhận từng chắc mẩm anime Gintama sẽ thất bại và chỉ trông vào tiền tác quyền manga, tại buổi ra mắt phim Yoshiwara In Flames.",
     "img": "/assets/img/gintama-sorachi-flop-banner.jpg",
     "tags": [],
     "lang": "vi"
   },
   {
-    "title": "Delta Force sẽ có chế độ nhảy dù Battle Royale trong năm 2027",
+    "title": "Delta Force công bố kế hoạch 2027: bản đồ Siege, Unreal Engine 5 và chế độ Detonation",
     "url": "/delta-force-se-co-che-do-nhay-du-battle-royale-trong-nam-202",
     "cat": "Gaming",
     "date": "2026-09-29",
-    "excerpt": "Delta Force sẽ có chế độ nhảy dù Battle Royale trong năm 2027. Cập nhật thông tin, bối cảnh và phân tích biên tập từ.",
+    "excerpt": "Delta Force công bố kế hoạch cuối 2026 và năm 2027: bản đồ Siege trên Unreal Engine 5, chế độ Detonation, ghép trận cross-server và chống gian lận tốt hơn.",
     "img": "/assets/img/uploads/u1g6mg06-anh-bia-2.jpg",
     "tags": [],
     "lang": "vi"
@@ -823,7 +823,7 @@ window.IDX = [
     "url": "/minecraft-bo-sung-chieu-khong-gian-thu-4-the-sift-sau-hon-14",
     "cat": "Gaming",
     "date": "2026-09-29",
-    "excerpt": "Minecraft bổ sung chiều không gian thứ 4 The Sift sau hơn 14 năm. Cập nhật thông tin, bối cảnh và phân tích biên tập từ.",
+    "excerpt": "Mojang giới thiệu The Sift, chiều không gian thứ tư của Minecraft sau hơn 14 năm, xuất hiện trước trong Minecraft Dungeons II rồi đến Java và Bedrock năm 2027.",
     "img": "/assets/img/uploads/pne31nyx-anh-bia-3.webp",
     "tags": [],
     "lang": "vi"
@@ -833,7 +833,7 @@ window.IDX = [
     "url": "/nintendo-gamecube-chiec-may-mau-tim-nho-be-nhung-de-lai-dau-",
     "cat": "Gaming",
     "date": "2026-09-29",
-    "excerpt": "Nintendo GameCube: Chiếc máy màu tím nhỏ bé nhưng để lại dấu ấn lớn. Cập nhật thông tin, bối cảnh và phân tích biên tập từ.",
+    "excerpt": "Nhìn lại Nintendo GameCube: thiết kế hình hộp màu tím, tay cầm khác thường, thư viện game đáng nhớ và vai trò bản lề trước Nintendo DS và Wii.",
     "img": "/assets/img/uploads/clr63deq-images-14.jfif",
     "tags": [],
     "lang": "vi"
@@ -843,7 +843,7 @@ window.IDX = [
     "url": "/star-wars-zero-company-biet-doi-di-biet-tao-nen-nhung-tran-c",
     "cat": "Gaming",
     "date": "2026-09-29",
-    "excerpt": "Star Wars: Zero Company: Biệt đội dị biệt tạo nên những trận chiến đầy bất ngờ. Cập nhật thông tin, bối cảnh và phân tích biên tập từ.",
+    "excerpt": "Star Wars: Zero Company đưa lối chiến thuật theo lượt kiểu XCOM vào Star Wars với biệt đội lính đánh thuê, nơi mối quan hệ đồng đội tạo nên những trận đánh bất ngờ.",
     "img": "/assets/img/uploads/gc2nno6n-images.webp",
     "tags": [],
     "lang": "vi"
@@ -853,7 +853,7 @@ window.IDX = [
     "url": "/the-witcher-3-remastered-review-nang-cap-hinh-anh-nhung-chua",
     "cat": "Gaming",
     "date": "2026-09-29",
-    "excerpt": "The Witcher 3 Remastered Review: Nâng cấp hình ảnh nhưng chưa hoàn toàn thuyết phục. Cập nhật thông tin, bối cảnh và phân tích biên tập từ.",
+    "excerpt": "Review The Witcher 3 Remastered: ray tracing nâng cấp ánh sáng, bóng đổ và phản chiếu, nhưng một số cảnh kém tự nhiên hơn bản gốc. Điểm 8.5/10.",
     "img": "/assets/img/uploads/escdykqo-photo-2026-09-29-15-38-16.jpg",
     "tags": [],
     "lang": "vi"
@@ -883,7 +883,7 @@ window.IDX = [
     "url": "/uk-games-expo-cam-noi-dung-ai-chi-chua-mot-so-truong-hop-ngo",
     "cat": "Gaming",
     "date": "2026-09-29",
-    "excerpt": "UK Games Expo cấm nội dung AI, chỉ chừa một số trường hợp ngoại lệ. Cập nhật thông tin, bối cảnh và phân tích biên tập từ.",
+    "excerpt": "UK Games Expo cấm sản phẩm tabletop tạo hoàn toàn hoặc đáng kể bằng AI, chỉ cho phép công cụ hỗ trợ như kiểm tra chính tả, chỉnh sửa nhỏ hay hỗ trợ tiếp cận.",
     "img": "/assets/img/uploads/vz6citou-photo-2026-09-29-14-59-50.jpg",
     "tags": [],
     "lang": "vi"
@@ -1083,7 +1083,7 @@ window.IDX = [
     "url": "/one-piece-chuong-1192-luffy-xuyen-thung-khien-imu-do-mau",
     "cat": "Manga",
     "date": "2026-09-28",
-    "excerpt": "One Piece chương 1192: Luffy xuyên thủng lá chắn, khiến Imu đổ máu. Cập nhật thông tin, bối cảnh và phân tích biên tập từ.",
+    "excerpt": "One Piece chương 1192 “We Will Never Forgive!”: Luffy kết hợp sức mạnh của Loki với Nika thức tỉnh, lần đầu tiên gây thương tích thực sự cho Imu.",
     "img": "/assets/img/real-op1192-dawn-thor-bullet-banner.jpg",
     "tags": [],
     "lang": "vi"
