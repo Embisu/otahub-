@@ -124,6 +124,30 @@ const thumbPoster = (html) => html.replace(/(class="ah-poster" src=")\/assets\/i
 const scoreOf = (key) => { const n = parseFloat(catalog[key].score); return isNaN(n) ? '' : n.toFixed(1); };
 
 // s: thương hiệu; rs: kết quả render từng phiên bản (cùng thứ tự s.editions)
+// Bản VI: tên khóa catalog (tiếng Anh) hiện trong text (breadcrumb, "Có thể bạn quan tâm", tên phiên bản...) -> tên Việt hóa theo series.json
+const VI_NAMES = (() => {
+  const pairs = [];
+  for (const sr of series) {
+    if (!sr.nameEn || sr.nameEn === sr.name) continue;
+    const keys = [];
+    for (const e of sr.editions) { keys.push(e.key); for (const k of e.also || []) keys.push(k); }
+    for (const k of keys) {
+      const dn = displayName(k);
+      if (dn === sr.nameEn) pairs.push([dn, sr.name]);
+      else if (dn.startsWith(sr.nameEn)) pairs.push([dn, sr.name + dn.slice(sr.nameEn.length)]);
+    }
+  }
+  pairs.sort((x, y) => y[0].length - x[0].length);
+  return pairs.map(([en, vn]) => [new RegExp('(?<![\\w(])' + en.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?![\\w])', 'g'), vn]);
+})();
+function viNames(html) {
+  return html.split(/(<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<[^>]+>)/).map((part) => {
+    if (!part || part.startsWith('<')) return part;
+    for (const [rx, vn] of VI_NAMES) part = part.replace(rx, vn);
+    return part;
+  }).join('');
+}
+
 function pageHtml(s, en, rs) {
   const main = s.editions[0], r0 = rs[0];
   const multi = s.editions.length > 1;
@@ -193,7 +217,7 @@ for (const s of series) {
       if (!r.html || /Đang kiểm chứng|Being verified/.test(r.html)) throw new Error(`Không dựng được hồ sơ ${e.type}|${e.key} (${en ? 'EN' : 'VI'})`);
       rs.push(r);
     }
-    const html = pageHtml(s, en, rs);
+    const html = en ? pageHtml(s, en, rs) : viNames(pageHtml(s, en, rs));
     pages.push({ file: pagePath(s.slug, en).slice(1) + '.html', html, indexable: /<meta name="robots" content="index/.test(html), url: ORIGIN + pagePath(s.slug, en) });
   }
 }

@@ -274,7 +274,7 @@ const VI_ITEMS = [
   {
     id: 'frieren',
     type: 'anime',
-    name: 'Frieren: Pháp Sư Tiễn Táng (Mùa 1 & 2)',
+    name: 'Pháp Sư Tiễn Táng Frieren (Mùa 1 & 2)',
     creator: 'Madhouse',
     format: 'TV Series (2 mùa)',
     subType: 'series',
@@ -290,7 +290,7 @@ const VI_ITEMS = [
   {
     id: 'demon-slayer-infinity-castle',
     type: 'anime',
-    name: 'Kimetsu no Yaiba: Vô Hạn Thành (Trilogy 1)',
+    name: 'Thanh Gươm Diệt Quỷ: Vô Hạn Thành (Trilogy 1)',
     creator: 'Ufotable',
     format: 'Phim chiếu rạp (155 phút)',
     subType: 'movie',
@@ -306,7 +306,7 @@ const VI_ITEMS = [
   {
     id: 'jjk-culling-game',
     type: 'anime',
-    name: 'Jujutsu Kaisen: Culling Game (Mùa 3)',
+    name: 'Chú Thuật Hồi Chiến: Culling Game (Mùa 3)',
     creator: 'MAPPA',
     format: 'TV Series (Mùa 3)',
     subType: 'series',
@@ -322,7 +322,7 @@ const VI_ITEMS = [
   {
     id: 'chainsaw-man-reze',
     type: 'anime',
-    name: 'Chainsaw Man: Reze Arc (Movie)',
+    name: 'Thợ Săn Quỷ Chainsaw Man: Reze Arc (Movie)',
     creator: 'MAPPA',
     format: 'Phim chiếu rạp (100 phút)',
     subType: 'movie',
@@ -354,7 +354,7 @@ const VI_ITEMS = [
   {
     id: 'jojo-sbr',
     type: 'anime',
-    name: "JoJo's Bizarre Adventure: Steel Ball Run",
+    name: "Steel Ball Run: Cuộc Phiêu Lưu Kì Lạ Của JoJo",
     creator: 'David Production',
     format: 'TV Series (Netflix)',
     subType: 'series',
@@ -402,7 +402,7 @@ const VI_ITEMS = [
   {
     id: 'spy-family',
     type: 'anime',
-    name: 'Spy x Family',
+    name: 'Gia Đình Điệp Viên',
     creator: 'WIT Studio · CloverWorks',
     format: 'TV Series (3 mùa)',
     subType: 'series',
@@ -418,7 +418,7 @@ const VI_ITEMS = [
   {
     id: 'aot',
     type: 'anime',
-    name: 'Attack on Titan: The Final Season',
+    name: 'Đại Chiến Titan: The Final Season',
     creator: 'MAPPA',
     format: 'TV Series · Mùa cuối',
     subType: 'series',
@@ -514,7 +514,7 @@ const VI_ITEMS = [
   {
     id: 'oshi-no-ko',
     type: 'anime',
-    name: 'Oshi no Ko',
+    name: 'Đứa Con Của Thần Tượng',
     creator: 'Doga Kobo',
     format: 'TV Series (3 mùa)',
     subType: 'series',
@@ -612,7 +612,7 @@ const VI_ITEMS = [
   {
     id: 'black-clover',
     type: 'manga',
-    name: 'Black Clover: Hồi Kết',
+    name: 'Thế Giới Phép Thuật: Hồi Kết',
     creator: 'Yūki Tabata',
     format: 'Manga Hoàn Thành',
     subType: 'manga',
@@ -660,7 +660,7 @@ const VI_ITEMS = [
   {
     id: 'kaiju-no-8',
     type: 'manga',
-    name: 'Kaiju No. 8',
+    name: 'Quái Vật Số 8',
     creator: 'Naoya Matsumoto · Shonen Jump+',
     format: 'Manga Hoàn Thành',
     subType: 'manga',
@@ -676,7 +676,7 @@ const VI_ITEMS = [
   {
     id: 'chainsaw-man-p2',
     type: 'manga',
-    name: 'Chainsaw Man: Phần 2 (Học Viện)',
+    name: 'Thợ Săn Quỷ Chainsaw Man: Phần 2 (Học Viện)',
     creator: 'Tatsuki Fujimoto',
     format: 'Manga Hoàn Thành',
     subType: 'manga',
@@ -692,7 +692,7 @@ const VI_ITEMS = [
   {
     id: 'jujutsu-kaisen-manga',
     type: 'manga',
-    name: 'Jujutsu Kaisen: Đại Chiến Shinjuku',
+    name: 'Chú Thuật Hồi Chiến: Đại Chiến Shinjuku',
     creator: 'Gege Akutami',
     format: 'Manga Hoàn Thành (271 chap)',
     subType: 'manga',
@@ -788,7 +788,7 @@ const VI_ITEMS = [
   {
     id: 'overgeared',
     type: 'manga',
-    name: 'Overgeared: Thợ Rèn Huyền Thoại',
+    name: 'Thợ Rèn Huyền Thoại (Overgeared)',
     creator: 'Park Saenal · Team Argo',
     format: 'Manhwa Hàn Quốc (Webtoon)',
     subType: 'manhwa',
@@ -2020,6 +2020,23 @@ const REVIEWS = verifiedReviews();
 const PROFILE_PATHS = (() => { const p = profilePaths(JSON.parse(fs.readFileSync(path.join(root, 'assets/catalog.json'), 'utf8'))); return { ...p, ...aliasPaths(p) }; })();
 const warnings = [];
 const VI_BY_ID = new Map(VI_ITEMS.map((x) => [x.id, x]));
+// Tên VI đã Việt hóa -> tên VI cũ (khớp alias trong assets/detail.v2.js) để giữ link hồ sơ
+const VI_NAME_ALIAS = {
+  "Pháp Sư Tiễn Táng Frieren (Mùa 1 & 2)": "Frieren: Pháp Sư Tiễn Táng (Mùa 1 & 2)",
+  "Thanh Gươm Diệt Quỷ: Vô Hạn Thành (Trilogy 1)": "Kimetsu no Yaiba: Vô Hạn Thành (Trilogy 1)",
+  "Chú Thuật Hồi Chiến: Culling Game (Mùa 3)": "Jujutsu Kaisen: Culling Game (Mùa 3)",
+  "Thợ Săn Quỷ Chainsaw Man: Reze Arc (Movie)": "Chainsaw Man: Reze Arc (Movie)",
+  "Steel Ball Run: Cuộc Phiêu Lưu Kì Lạ Của JoJo": "JoJo's Bizarre Adventure: Steel Ball Run",
+  "Gia Đình Điệp Viên": "Spy x Family",
+  "Đại Chiến Titan: The Final Season": "Attack on Titan: The Final Season",
+  "Đứa Con Của Thần Tượng": "Oshi no Ko",
+  "Thế Giới Phép Thuật: Hồi Kết": "Black Clover: Hồi Kết",
+  "Quái Vật Số 8": "Kaiju No. 8",
+  "Thợ Săn Quỷ Chainsaw Man: Phần 2 (Học Viện)": "Chainsaw Man: Phần 2 (Học Viện)",
+  "Chú Thuật Hồi Chiến: Đại Chiến Shinjuku": "Jujutsu Kaisen: Đại Chiến Shinjuku",
+  "Thợ Rèn Huyền Thoại (Overgeared)": "Overgeared: Thợ Rèn Huyền Thoại"
+};
+
 function prepare(items, lang) {
   return items.map((it) => {
     const rid = REVIEW_OF[it.id];
@@ -2029,7 +2046,7 @@ function prepare(items, lang) {
     let link = r ? (lang === 'en' ? r.enUrl : r.url) : it.link;
     if (!r && lang === 'en' && !(link && link.startsWith('/en/'))) link = enOf(VI_BY_ID.get(it.id)?.link);
     if (link && !pageFile(link)) link = null;
-    const prof = PROFILE_PATHS[`${it.type}|${VI_BY_ID.get(it.id)?.name}`] || PROFILE_PATHS[`${it.type}|${it.name}`];
+    const prof = PROFILE_PATHS[`${it.type}|${VI_BY_ID.get(it.id)?.name}`] || PROFILE_PATHS[`${it.type}|${VI_NAME_ALIAS[VI_BY_ID.get(it.id)?.name]}`] || PROFILE_PATHS[`${it.type}|${it.name}`];
     return { ...it, score: r ? r.score : null, link: link || null, reviewed: !!r, profile: prof ? localize(prof, lang === 'en') : null };
   });
 }

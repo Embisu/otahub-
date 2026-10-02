@@ -545,5 +545,161 @@
         "labelEn": ""
       }
     ]
+  },
+  "swallowed-star": {
+    "name": "Thôn Phệ Tinh Không",
+    "nameEn": "Swallowed Star",
+    "editions": [
+      {
+        "tab": "manga",
+        "key": "Swallowed Star",
+        "label": "",
+        "labelEn": ""
+      }
+    ]
+  },
+  "martial-peak": {
+    "name": "Võ Luyện Đỉnh Phong",
+    "nameEn": "Martial Peak",
+    "editions": [
+      {
+        "tab": "manga",
+        "key": "Martial Peak",
+        "label": "",
+        "labelEn": ""
+      }
+    ]
+  },
+  "wu-shen-zhu-zai": {
+    "name": "Võ Thần Chúa Tể",
+    "nameEn": "Wu Shen Zhu Zai",
+    "editions": [
+      {
+        "tab": "manga",
+        "key": "Wu Shen Zhu Zai",
+        "label": "",
+        "labelEn": ""
+      }
+    ]
+  },
+  "rebirth-of-the-urban-immortal": {
+    "name": "Trọng Sinh Đô Thị Tu Tiên",
+    "nameEn": "Rebirth of the Urban Immortal",
+    "editions": [
+      {
+        "tab": "manga",
+        "key": "Rebirth of the Urban Immortal",
+        "label": "",
+        "labelEn": ""
+      }
+    ]
+  },
+  "omniscient-reader": {
+    "name": "Toàn Trí Độc Giả",
+    "nameEn": "Omniscient Reader",
+    "editions": [
+      {
+        "tab": "manga",
+        "key": "Omniscient Reader",
+        "label": "",
+        "labelEn": ""
+      }
+    ]
+  },
+  "dungeon-meshi": {
+    "name": "Mỹ Vị Hầm Ngục",
+    "nameEn": "Dungeon Meshi",
+    "editions": [
+      {
+        "tab": "manga",
+        "key": "Dungeon Meshi",
+        "label": "",
+        "labelEn": ""
+      }
+    ]
+  },
+  "dragon-ball-super-beerus": {
+    "name": "Bảy Viên Ngọc Rồng Super: Beerus",
+    "nameEn": "Dragon Ball Super: Beerus",
+    "editions": [
+      {
+        "tab": "anime",
+        "key": "Dragon Ball Super: Beerus",
+        "label": "",
+        "labelEn": ""
+      }
+    ]
+  },
+  "magic-knight-rayearth-2026": {
+    "name": "Hiệp Sĩ Phép Màu (2026)",
+    "nameEn": "Magic Knight Rayearth (2026)",
+    "editions": [
+      {
+        "tab": "anime",
+        "key": "Magic Knight Rayearth (2026)",
+        "label": "",
+        "labelEn": ""
+      }
+    ]
+  },
+  "reincarnated-as-a-sword-ii": {
+    "name": "Chuyển Sinh Thành Kiếm II",
+    "nameEn": "Reincarnated as a Sword II",
+    "editions": [
+      {
+        "tab": "anime",
+        "key": "Reincarnated as a Sword II",
+        "label": "",
+        "labelEn": ""
+      }
+    ]
+  },
+  "liar-game": {
+    "name": "Trò Chơi Dối Trá (Liar Game)",
+    "nameEn": "Liar Game",
+    "editions": [
+      {
+        "tab": "anime",
+        "key": "Liar Game",
+        "label": "",
+        "labelEn": ""
+      }
+    ]
+  },
+  "classroom-of-the-elite-season-4": {
+    "name": "Lớp Học Đề Cao Thực Lực mùa 4",
+    "nameEn": "Classroom of the Elite Season 4",
+    "editions": [
+      {
+        "tab": "anime",
+        "key": "Classroom of the Elite Season 4",
+        "label": "",
+        "labelEn": ""
+      }
+    ]
+  },
+  "my-hero-academia-vigilantes-season-2": {
+    "name": "Học Viện Anh Hùng: Vigilantes mùa 2",
+    "nameEn": "My Hero Academia: Vigilantes Season 2",
+    "editions": [
+      {
+        "tab": "anime",
+        "key": "My Hero Academia: Vigilantes Season 2",
+        "label": "",
+        "labelEn": ""
+      }
+    ]
+  },
+  "fist-of-the-north-star-2026": {
+    "name": "Bắc Đẩu Thần Quyền (2026)",
+    "nameEn": "Fist of the North Star (2026)",
+    "editions": [
+      {
+        "tab": "anime",
+        "key": "Fist of the North Star (2026)",
+        "label": "",
+        "labelEn": ""
+      }
+    ]
   }
 }
