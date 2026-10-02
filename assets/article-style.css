@@ -322,3 +322,10 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 .art-table tbody tr:hover{background:rgba(0,242,255,.03)}
 .art-table tbody tr:last-child td{border-bottom:none}
 .logo svg{width:30px;height:30px}
+
+/* Đoạn ghi nguồn cuối bài ("Nguồn: ...", "Source: ..."): chữ nhỏ, nhạt, căn phải như chú thích ảnh,
+   tách biệt khỏi nội dung chính. Class gắn tự động khi lưu bài trong admin. */
+.art-body p.art-source,.art-content p.art-source{font-size:13.5px;line-height:1.65;color:rgba(240,238,255,.58);font-style:italic;text-align:right;margin:32px 0 20px;padding-top:14px;border-top:1px solid var(--border)}
+.art-body p.art-source a,.art-content p.art-source a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.art-body p.art-source a:hover,.art-content p.art-source a:hover{color:var(--cyan)}
+.art-body p.art-source strong,.art-body p.art-source b,.art-content p.art-source strong,.art-content p.art-source b{font-weight:600;color:var(--dim)}

@@ -219,7 +219,7 @@ function normalizeAiResult(raw, article) {
     parsed = { title: article.title, excerpt: article.summary, body_html: `<p>${escapeHtml(String(raw || article.content_text || article.summary))}</p>` };
   }
   const title = String(parsed.title || article.title).slice(0, 180);
-  const sourceLink = `<p><strong>Nguồn tham khảo:</strong> <a href="${escapeHtml(article.canonical_url)}" rel="nofollow noopener" target="_blank">${escapeHtml(article.title)}</a></p>`;
+  const sourceLink = `<p class="art-source"><strong>Nguồn tham khảo:</strong> <a href="${escapeHtml(article.canonical_url)}" rel="nofollow noopener" target="_blank">${escapeHtml(article.title)}</a></p>`;
   return {
     title,
     slug: slugify(parsed.slug || title),

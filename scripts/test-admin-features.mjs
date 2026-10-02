@@ -171,10 +171,11 @@ let currentFile = 'sample-article.html';
 function repairArticleBodyHtml(h){ return h; }
 function validateArticleBodyHtml(h){ return []; }
 function cleanVisualHtml(h){ return h; }
-${mainScript.match(/^function replSafe.*$/m)?.[0] || ''}
-${mainScript.match(/^function categorySlug[\s\S]*?^}/m)?.[0] || ''}
-${mainScript.match(/^function keepCustomOgImage[\s\S]*?^}/m)?.[0] || ''}
-${mainScript.match(/^function pageTitleFor[\s\S]*?^}/m)?.[0] || ''}
+function currentArticleCls(){ return ''; }
+// Hàm phụ mà applyArticleEditsToHtml gọi tới: thêm vào đây khi admin có hàm phụ mới.
+${['replSafe'].map(n => mainScript.match(new RegExp('^function ' + n + '.*$', 'm'))?.[0] || '').join('\n')}
+${['categorySlug', 'keepCustomOgImage', 'pageTitleFor', 'writeArticleCls', 'tagSourceParagraphs'].map(n => mainScript.match(new RegExp('^function ' + n + '\\b[\\s\\S]*?^}', 'm'))?.[0] || '').join('\n')}
+${mainScript.match(/^const SOURCE_PARA_RE.*$/m)?.[0] || ''}
 ${mainScript.match(/function applyArticleEditsToHtml[\s\S]*?^}/m)?.[0]}
 `, sandbox);
 

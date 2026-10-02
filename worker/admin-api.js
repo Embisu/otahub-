@@ -515,6 +515,11 @@ async function handleGhPut(request, env, ghPath) {
       /\/assets\/enhance\.js(?:\?v=[^"']*)?/gi,
       '/assets/enhance.js?v=20261002h'
     );
+    // article-style.css chứa định dạng đoạn ghi nguồn (.art-source): luôn dùng bản mới nhất.
+    content = content.replace(
+      /\/assets\/article-style\.css(?:\?v=[^"']*)?/gi,
+      '/assets/article-style.css?v=20261002src'
+    );
     if (!/\/assets\/mobile-fix\.css(?:\?v=[^"']*)?/i.test(content) && /<\/head>/i.test(content)) {
       content = content.replace(
         /<\/head>/i,

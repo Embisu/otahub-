@@ -10060,8 +10060,11 @@ function visHighlightBox() {
 
 function visSourceNote() {
   const sel = window.getSelection();
-  const text = sel && sel.toString().trim() ? sel.toString().trim() : 'Nguồn tham khảo: ... Số liệu được cập nhật mới nhất.';
-  const html = `<div class="source-note">${esc(text)}</div><p><br></p>`;
+  const text = sel && sel.toString().trim() ? sel.toString().trim() : 'Nguồn: ...';
+  // Nội dung là ghi nguồn -> đoạn nguồn chuẩn (chữ nhỏ, căn phải); còn lại giữ khung ghi chú.
+  const html = SOURCE_PARA_RE.test(text)
+    ? `<p class="art-source">${esc(text)}</p><p><br></p>`
+    : `<div class="source-note">${esc(text)}</div><p><br></p>`;
   insertHtmlAtCursor(html);
   toast('success', '📌 Đã chèn Ghi chú/Nguồn');
   markChanged();
@@ -12486,7 +12489,7 @@ function buildStandardEnglishArticleTemplate(viSlug, enSlug, heroImg, heroPos, c
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <meta name="theme-color" content="#0b0418">
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
-<link rel="stylesheet" href="/assets/article-style.css?v=20261002e">
+<link rel="stylesheet" href="/assets/article-style.css?v=20261002src">
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
 <link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002l">
 </head>
@@ -15968,7 +15971,21 @@ function applyArticleEditsToHtml(baseHtml, customData) {
   } else if (blockMarkerRe.test(html)) {
     html = html.replace(blockMarkerRe, '');
   }
-  return html;
+  return tagSourceParagraphs(html);
+}
+
+// Đoạn ghi nguồn cuối bài ("Nguồn: ...", "Source: ...") hiển thị chữ nhỏ, căn phải nhờ class
+// art-source (assets/article-style.css). Gắn tự động khi lưu để biên tập viên không phải nhớ.
+const SOURCE_PARA_RE = /^(?:Nguồn tham khảo|Nguồn ảnh|Nguồn tin|Nguồn|Sources?|Image credits?|Credits?)\s*[:：]/i;
+function tagSourceParagraphs(html) {
+  return html.replace(/(<(article|div) class="art-body[^"]*">)([\s\S]*?)(<\/\2>)/, (whole, open, tag, body, close) =>
+    open + body.replace(/<p\b([^>]*)>([\s\S]*?)<\/p>/g, (p, attrs, inner) => {
+      const text = inner.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').trim();
+      if (!SOURCE_PARA_RE.test(text) || /\bart-source\b/.test(attrs)) return p;
+      let a = attrs.replace(/\s*style="margin-top:24px;font-size:13px;color:rgba\(255,255,255,0\.5\);?"/, '');
+      a = /\bclass="/.test(a) ? a.replace(/\bclass="([^"]*)"/, (m, c) => `class="${c} art-source"`) : a + ' class="art-source"';
+      return `<p${a}>${inner}</p>`;
+    }) + close);
 }
 
 function stampArticleAuthor(html, authorName) {
@@ -17214,7 +17231,7 @@ function newArticle(prefillTitle) {
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <meta name="theme-color" content="#0b0418">
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
-<link rel="stylesheet" href="/assets/article-style.css?v=20261002e">
+<link rel="stylesheet" href="/assets/article-style.css?v=20261002src">
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
 <link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002l">
 </head>
