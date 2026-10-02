@@ -36,7 +36,7 @@ window.IDX = [
     "tags": []
   },
   {
-    "title": "13 Grind-Worthy Mobile RPGs of 2026: Aniimo, Dragon Nest",
+    "title": "Top 13 Mobile Games Worth Grinding in 2026",
     "url": "/en/best-grind-worthy-mobile-rpgs-2026-aniimo-dragon-nest",
     "cat": "Gaming",
     "date": "2026-10-02",

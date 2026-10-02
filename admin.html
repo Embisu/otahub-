@@ -16131,14 +16131,23 @@ async function propagateTitleChange(slug, newTitle) {
 
 // Ảnh dán thẳng vào editor thường là base64 (mỗi ảnh vài MB, làm trang nặng hàng chục MB).
 // Trước khi lưu: đổi mỗi ảnh base64 thành file JPEG (tối đa 1200px) trong assets/img/uploads và thay bằng URL.
+// Ảnh dán trực tiếp đã tải lên trong phiên này (data URL -> URL đã tải). Nếu lần lưu bài thất bại
+// rồi bấm lưu lại, dùng lại URL cũ thay vì tải thêm một bản trùng mới (trước đây mỗi lần lưu lại
+// sinh thêm các file inline-… trùng nhau trong thư viện ảnh).
+const INLINE_UPLOAD_CACHE = new Map();
 async function externalizeInlineImages(html) {
   const re = /data:image\/(?:png|jpe?g|webp|gif);base64,[A-Za-z0-9+\/=]+/g;
   const found = [...new Set(html.match(re) || [])];
   if (!found.length) return html;
-  toast('info', '🖼️ Đang tối ưu ' + found.length + ' ảnh dán trực tiếp...');
+  const fresh = found.filter(d => !INLINE_UPLOAD_CACHE.has(d));
+  if (fresh.length) toast('info', '🖼️ Đang tối ưu ' + fresh.length + ' ảnh dán trực tiếp...');
   let i = 0;
   for (const dataUrl of found) {
     i++;
+    if (INLINE_UPLOAD_CACHE.has(dataUrl)) {
+      html = html.split(dataUrl).join(INLINE_UPLOAD_CACHE.get(dataUrl));
+      continue;
+    }
     try {
       const blob = await (await fetch(dataUrl)).blob();
       const bmp = await createImageBitmap(blob);
@@ -16158,7 +16167,13 @@ async function externalizeInlineImages(html) {
       if (!r.ok) throw new Error('upload ' + r.status);
       const uploadRes = await r.json().catch(() => ({}));
       const finalUrl = uploadRes.url || ('/' + path);
+      INLINE_UPLOAD_CACHE.set(dataUrl, finalUrl);
       html = html.split(dataUrl).join(finalUrl);
+      // Cập nhật cả dữ liệu dùng để lưu bài (VI/EN), không chỉ ô soạn thảo.
+      for (const lang of ['vi', 'en']) {
+        const d = typeof BILINGUAL_DATA !== 'undefined' ? BILINGUAL_DATA?.[lang] : null;
+        if (d && typeof d.bodyHtml === 'string' && d.bodyHtml.includes(dataUrl)) d.bodyHtml = d.bodyHtml.split(dataUrl).join(finalUrl);
+      }
 
       // Đồng bộ ngay URL mới về textarea và iframe để tránh upload trùng lại lần sau
       const bodyTa = document.getElementById('body-textarea');

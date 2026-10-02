@@ -554,6 +554,22 @@ async function handleGhPut(request, env, ghPath) {
         if (existingFileName && !(await env.ADMIN_KV.get(`upload_meta:${existingFileName}`))) {
           existingFileName = null;
         }
+        // Dự phòng khi chỉ mục KV không có (KV từng hết lượt ghi, hoặc chưa kịp đồng bộ giữa
+        // các khu vực): so SHA kiểu Git của ảnh với các file đã có trong thư mục uploads trên
+        // GitHub (1 lượt gọi API). Trước đây thiếu bước này nên cùng 1 ảnh bị lưu tới 16 bản.
+        if (!existingFileName && env.GITHUB_TOKEN) {
+          try {
+            const blobSha = await gitBlobSha(new Uint8Array(rawBytes));
+            const tr = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/git/trees/${GH_BRANCH}:assets/img/uploads`, { headers: ghHeaders(env), cache: 'no-store' });
+            if (tr.ok) {
+              const hit = ((await tr.json()).tree || []).find((t) => t.type === 'blob' && t.sha === blobSha);
+              if (hit) {
+                existingFileName = hit.path;
+                try { await env.ADMIN_KV.put(`upload_hash:${hashHex}`, existingFileName); } catch {}
+              }
+            }
+          } catch {}
+        }
         if (existingFileName) {
           // Ảnh này đã có sẵn trên hệ thống, tái sử dụng file cũ ngay lập tức
           return json({
