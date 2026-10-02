@@ -268,6 +268,12 @@ body {
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
 <link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002l">
+<style>
+.tag-more-wrap{grid-column:1/-1;display:flex;justify-content:center;padding:6px 0 4px}
+.tag-more{min-height:46px;padding:0 28px;border-radius:12px;border:1px solid rgba(0,242,255,.4);background:rgba(0,242,255,.08);color:var(--cyan,#00f2ff);font:inherit;font-weight:700;font-size:14px;cursor:pointer;transition:background .2s,border-color .2s}
+.tag-more:hover{background:rgba(0,242,255,.16);border-color:rgba(0,242,255,.7)}
+.tag-card-thumb{background:#110826}
+</style>
 </head>
 <body>
 
@@ -325,7 +331,7 @@ body {
 
   <!-- Search & Filter bar -->
   <div class="tag-filter-bar">
-    <input type="text" id="tag-search-input" class="tag-search-input" placeholder="🔍 Lọc bài viết theo từ khóa hoặc tag...">
+    <input type="text" id="tag-search-input" class="tag-search-input" autocomplete="off" enterkeyhint="search" inputmode="search" placeholder="🔍 Lọc bài viết theo từ khóa hoặc tag...">
     <div class="tag-count-badge" id="tag-count-badge">Đang tải...</div>
   </div>
 
@@ -338,153 +344,7 @@ body {
   </div>
 </main>
 
-<script>
-(function(){
-  function getQueryTag() {
-    const params = new URLSearchParams(window.location.search);
-    return (params.get('q') || params.get('tag') || params.get('t') || '').trim();
-  }
-
-  function norm(str) {
-    return (str || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/['"’“”]/g, '').replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
-  }
-
-  const tagLabel = document.getElementById('current-tag-label');
-  const tagDesc = document.getElementById('current-tag-desc');
-  const searchInput = document.getElementById('tag-search-input');
-  const grid = document.getElementById('tag-articles-grid');
-  const countBadge = document.getElementById('tag-count-badge');
-  const chips = document.querySelectorAll('.tag-chip');
-
-  let currentQuery = getQueryTag();
-
-  function updateTagView(query) {
-    currentQuery = query;
-    searchInput.value = query;
-
-    // Update active chip
-    chips.forEach(chip => {
-      const tagVal = chip.getAttribute('data-tag');
-      chip.classList.toggle('active', norm(tagVal) === norm(query) || (!tagVal && !query));
-    });
-
-    if (query) {
-      tagLabel.textContent = '#' + query;
-      tagDesc.textContent = `Danh sách toàn bộ các bài viết, tin tức và cập nhật liên quan tới chủ đề "${query}".`;
-      document.title = `Chủ đề: #${query} · OtaHub`;
-    } else {
-      tagLabel.textContent = 'Tất Cả Bài Viết';
-      tagDesc.textContent = 'Khám phá toàn bộ bài viết, tin tức nổi bật và phân tích chuyên sâu được gắn thẻ chủ đề trên OtaHub Asia.';
-      document.title = 'Chủ Đề & Thẻ Bài Viết · OtaHub';
-    }
-
-    if (!window.IDX || !Array.isArray(window.IDX)) {
-      grid.innerHTML = '<div class="tag-empty"><div class="tag-empty-icon">⚠️</div><div>Chưa tải được chỉ mục bài viết. Vui lòng tải lại trang.</div></div>';
-      return;
-    }
-
-    // Filter articles
-    const qNorm = norm(query);
-    const SKIP_CATS = new Set(['Chuyên mục', 'Trang']);
-    
-    let matches = window.IDX.filter(item => {
-      const url = item.url || item.u || '';
-      const cat = item.cat || item.c || '';
-      if (!url || url.startsWith('/en/') || SKIP_CATS.has(cat)) return false;
-      if (!qNorm) return true;
-      const title = item.title || item.t || '';
-      const excerpt = item.excerpt || item.s || '';
-      const tags = Array.isArray(item.tags) ? item.tags.join(' ') : (item.tags || '');
-
-      const tNorm = norm(title);
-      const sNorm = norm(excerpt);
-      const cNorm = norm(cat);
-      const uNorm = norm(url);
-      const tagNorm = norm(tags);
-
-      return tNorm.includes(qNorm) || sNorm.includes(qNorm) || cNorm.includes(qNorm) || uNorm.includes(qNorm) || tagNorm.includes(qNorm);
-    });
-
-    countBadge.textContent = `Tìm thấy ${matches.length} bài viết`;
-
-    if (!matches.length) {
-      grid.innerHTML = `
-        <div class="tag-empty">
-          <div class="tag-empty-icon">🔍</div>
-          <div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:6px">Không tìm thấy bài viết nào phù hợp</div>
-          <div>Không có bài viết nào khớp với từ khóa "${escapeHtml(query)}". Hãy thử chọn một tag khác ở trên!</div>
-        </div>`;
-      return;
-    }
-
-    grid.innerHTML = matches.map(item => {
-      const hero = item.img || item.hero || '/assets/img/placeholder.svg';
-      const cat = item.cat || item.c || 'Tin tức';
-      const title = item.title || item.t || 'Bài viết';
-      const desc = item.excerpt || item.s || 'Xem chi tiết bài viết tại OtaHub...';
-      const rawUrl = item.url || item.u || '#';
-      const url = rawUrl.startsWith('/') ? rawUrl : '/' + rawUrl;
-
-      return `
-        <a href="${url}" class="tag-card">
-          <div class="tag-card-thumb-wrap">
-            <img height="675" width="1200" src="${hero}" alt="${escapeHtml(title)}" class="tag-card-thumb" loading="lazy" onerror="this.src='/assets/img/placeholder.svg'">
-            <span class="tag-card-cat">${escapeHtml(cat)}</span>
-          </div>
-          <div class="tag-card-body">
-            <h2 class="tag-card-title">${escapeHtml(title)}</h2>
-            <p class="tag-card-excerpt">${escapeHtml(desc)}</p>
-            <div class="tag-card-meta">
-              <span>⚡ OtaHub Editorial</span>
-              <span>Xem chi tiết →</span>
-            </div>
-          </div>
-        </a>`;
-    }).join('');
-  }
-
-  function escapeHtml(str) {
-    return (str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-  }
-
-  // Setup click on chips
-  chips.forEach(chip => {
-    chip.addEventListener('click', function() {
-      const tag = this.getAttribute('data-tag');
-      const newUrl = tag ? `/tag?q=${encodeURIComponent(tag)}` : '/tag';
-      window.history.pushState({}, '', newUrl);
-      updateTagView(tag);
-    });
-  });
-
-  // Search input typing
-  let searchTimer = null;
-  searchInput.addEventListener('input', function() {
-    clearTimeout(searchTimer);
-    searchTimer = setTimeout(() => {
-      const val = this.value.trim();
-      const newUrl = val ? `/tag?q=${encodeURIComponent(val)}` : '/tag';
-      window.history.pushState({}, '', newUrl);
-      updateTagView(val);
-    }, 250);
-  });
-
-  // Listen to popstate
-  window.addEventListener('popstate', () => {
-    updateTagView(getQueryTag());
-  });
-
-  // Initial render when IDX is ready
-  function checkIdxReady() {
-    if (window.IDX && Array.isArray(window.IDX)) {
-      updateTagView(currentQuery);
-    } else {
-      setTimeout(checkIdxReady, 50);
-    }
-  }
-  checkIdxReady();
-})();
-</script>
+<script defer src="/assets/tag-page.js?v=20261002a"></script>
 
 <footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Tin tức, đánh giá và lịch phát sóng game, anime, manga cho cộng đồng Việt Nam và châu Á.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/news">Tin mới</a></li><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/lich-phat-song">Lịch phát sóng</a></li><li><a href="/choi-gi">Chơi Gì?</a></li></ul></div><div><div class="ft-h">Đánh giá</div><ul class="ft-links"><li><a href="/reviews">Bài đánh giá</a></li><li><a href="/rankings">Bảng xếp hạng</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li><li><a href="/tieu-chuan-danh-gia">Tiêu chuẩn đánh giá</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/lien-he">Liên hệ</a></li><li><a href="/chinh-sach-bao-mat">Chính sách bảo mật</a></li><li><a href="/#newsletter">Bản tin</a></li><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Tin tức game, anime &amp; manga</span></div></footer>
 
