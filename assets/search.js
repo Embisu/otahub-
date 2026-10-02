@@ -1,5 +1,23 @@
 window.IDX = [
   {
+    "title": "Best Grind-Worthy Mobile RPGs of 2026: Aniimo, Dragon Nest, Where Winds Meet",
+    "url": "/en/best-grind-worthy-mobile-rpgs-2026-aniimo-dragon-nest",
+    "cat": "Gaming",
+    "date": "2026-10-02",
+    "excerpt": "13 grind-worthy RPGs of 2026: Aniimo, Dragon Nest, Where Winds Meet, Ares, AION 2 and more. Release dates, platforms and Vietnamese support as of Oct 3, 2026.",
+    "img": "/assets/img/top-game-mobile-cay-cuoc-hero.jpg",
+    "tags": []
+  },
+  {
+    "title": "Top game mobile cày cuốc đáng chơi 2026: Aniimo, Dragon Nest, Yến Vân",
+    "url": "/top-game-mobile-cay-cuoc-dang-choi-2026-aniimo-dragon-nest",
+    "cat": "Gaming",
+    "date": "2026-10-02",
+    "excerpt": "Top 13 game cày cuốc đáng chơi 2026: Aniimo, Dragon Nest, Where Winds Meet, Ares, AION 2... Ngày ra mắt, nền tảng và hỗ trợ tiếng Việt cập nhật đến 3/10/2026.",
+    "img": "/assets/img/top-game-mobile-cay-cuoc-hero.jpg",
+    "tags": []
+  },
+  {
     "title": "Dynamite Blue: Cyberpunk Turn-Based RPG From Ex-Exos Heroes Devs",
     "url": "/en/dynamite-blue-cyberpunk-turn-based-rpg-kosmos12",
     "cat": "Gaming",
