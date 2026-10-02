@@ -2869,7 +2869,7 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSearch(); });
   </script>
   <script defer src="/assets/search-redirect.js?v=${SCRIPT_V(old, 'search-redirect.js', '20261002a')}"></script>
-  <script defer src="/assets/enhance.js?v=${SCRIPT_V(old, 'enhance.js', '20261002h')}"></script>
+  <script defer src="/assets/enhance.js?v=${SCRIPT_V(old, 'enhance.js', '20261002i')}"></script>
   <script src="/assets/lang-switch.js" defer></script>
 </body>
 </html>

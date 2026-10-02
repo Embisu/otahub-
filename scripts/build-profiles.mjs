@@ -18,7 +18,7 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
 import { profileSeries, profilePaths, aliasPaths, legacyMoves, localize, pagePath, displayName, rewriteProfileLinks, PROFILE_TYPES as TYPES } from './lib/profile-paths.mjs';
-import { profileMatchers, profilesForArticle, articleInfo } from './lib/profile-links.mjs';
+import { profileMatchers, profilesForArticle, articleInfo, nameTable, tagTable, norm } from './lib/profile-links.mjs';
 
 const CHECK = process.argv.includes('--check');
 const root = new URL('../', import.meta.url);
@@ -53,7 +53,7 @@ const htmlFiles = (dir) => fs.readdirSync(new URL(dir || '.', root), { withFileT
   return d.name.endsWith('.html') ? [rel] : [];
 });
 const idxByUrl = new Map(IDX.map((a) => [a.url || a.href, a]));
-const matchers = profileMatchers(catalog);
+const matchers = profileMatchers(catalog, series);
 const articles = htmlFiles('').filter((f) => !SKIP.test(f) && !/^(?:en\/)?article\.html$/.test(f)).flatMap((file) => {
   const html = read(file);
   if (!html.includes('<aside class="art-sidebar">')) return [];
@@ -204,9 +204,25 @@ const sbThumb = (img) => {
   return m && exists(`assets/img/_s/${m[1]}.webp`) ? `/assets/img/_s/${m[1]}.webp` : (img || '/assets/img/placeholder.svg');
 };
 const TYPE_LABEL = { game: 'Game', anime: 'Anime', manga: 'Manga' };
+// Bảng tên cho trình duyệt (bài mới đăng qua admin) và bảng link thẻ chủ đề
+const labelOf = (s, e, en, multi) => (multi ? (en ? e.labelEn : e.label) : TYPE_LABEL[e.type]);
+const names = nameTable(series, matchers, paths, labelOf, (k) => sbThumb(catalog[k].img));
+const tagOwner = tagTable(names);
+const namesJson = JSON.stringify(names) + '\n';
+// Thẻ chủ đề trùng tên một tác phẩm -> link thẳng hồ sơ (data-pf đánh dấu để chạy lại an toàn)
+const decodeEnt = (t) => t.replace(/&amp;/g, '&').replace(/&#39;|&apos;/g, "'").replace(/&quot;/g, '"');
+function withTagLinks(html, en) {
+  return html.replace(/<a class="sb-tag"( data-pf)? href="([^"]*)">([^<]*)<\/a>/g, (m, pf, href, text) => {
+    const r = tagOwner.get(norm(decodeEnt(text)));
+    if (r) return `<a class="sb-tag" data-pf href="${localize(r[1], en)}">${text}</a>`;
+    return pf ? `<a class="sb-tag" href="${en ? '/en/reviews' : '/reviews'}">${text}</a>` : m;
+  });
+}
 function withProfileBlock(html, a) {
   html = html.replace(/<!-- PROFILE-LINKS -->[\s\S]*?<!-- \/PROFILE-LINKS -->/, '');
-  if (!a.picks.length) return html;
+  html = withTagLinks(html, a.en);
+  // Bài đã xử lý nhưng không có tác phẩm nào: để dấu rỗng, enhance.js không phải tải bảng tên
+  if (!a.picks.length) return html.replace('<aside class="art-sidebar">', () => '<aside class="art-sidebar"><!-- PROFILE-LINKS --><!-- /PROFILE-LINKS -->');
   const items = a.picks.map((p) => {
     const { s, e } = editionOf.get(p.key);
     const multi = s.editions.length > 1;
@@ -223,7 +239,7 @@ const pathsJson = JSON.stringify(allPaths, null, 1) + '\n';
 const movesJson = JSON.stringify(moves, null, 1) + '\n';
 if (CHECK) {
   const stale = pages.filter((p) => !exists(p.file) || read(p.file) !== p.html).map((p) => p.file).concat(articleUpdates.map((u) => u.file));
-  const dataStale = [['assets/profile-paths.json', pathsJson], ['assets/profile-moves.json', movesJson]].filter(([f, s]) => !exists(f) || read(f) !== s).map(([f]) => f);
+  const dataStale = [['assets/profile-paths.json', pathsJson], ['assets/profile-moves.json', movesJson], ['assets/profile-names.json', namesJson]].filter(([f, s]) => !exists(f) || read(f) !== s).map(([f]) => f);
   const old = TYPES.flatMap((t) => [t, 'en/' + t]).filter(exists);
   if (stale.length || dataStale.length || old.length) { console.error(`Trang hồ sơ chưa cập nhật (${stale.length} trang${dataStale.length ? ' + ' + dataStale.join(', ') : ''}${old.length ? ' + thư mục cũ ' + old.join(', ') : ''}), chạy: node scripts/build-profiles.mjs`); process.exit(1); }
   console.log(`Hồ sơ tĩnh: ${pages.length} trang khớp dữ liệu.`);
@@ -242,6 +258,7 @@ for (const dir of TYPES.flatMap((t) => [t, 'en/' + t])) if (exists(dir)) fs.rmSy
 for (const p of pages) write(p.file, p.html);
 write('assets/profile-paths.json', pathsJson);
 write('assets/profile-moves.json', movesJson);
+write('assets/profile-names.json', namesJson);
 
 // Link hồ sơ trên các trang -> URL mới: trang động (?t=) và URL tĩnh cũ (/anime/<slug>). Dữ liệu nguồn
 // trong JS (vd const REVIEWS) giữ dạng ?t= vì các script chấm điểm dựa vào; link đó vẫn được worker chuyển hướng 301.

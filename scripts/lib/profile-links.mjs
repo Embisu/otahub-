@@ -60,11 +60,14 @@ function aliasTable() {
 }
 
 // [{ key, type, names: [tên đã chuẩn hoá] }]
-export function profileMatchers(catalog) {
+export function profileMatchers(catalog, series = []) {
   const { title, typed } = aliasTable();
   const out = [];
+  // Tên thương hiệu (series.json: name = tên Việt hóa, nameEn = tên gốc) cũng nhận diện được bài viết
+  const seriesNames = new Map();
+  for (const s of series) for (const e of s.editions) for (const k of [e.key, ...e.also]) seriesNames.set(k, [s.name, s.nameEn]);
   for (const [key, e] of Object.entries(catalog)) {
-    const names = new Set([displayName(key), ...(MATCH_EXTRA[key] || [])]);
+    const names = new Set([displayName(key), ...(MATCH_EXTRA[key] || []), ...(seriesNames.get(key) || [])]);
     const base = displayName(key).replace(/\s+(?:Season \d+|Final Season|Final Part)$/i, '');
     if (base !== displayName(key) && !catalog[base]) names.add(base);
     for (const [a, t] of Object.entries(title)) if (t === key && !/,|review|đánh giá/i.test(a)) names.add(a);
@@ -122,4 +125,27 @@ export function articleInfo(html) {
   const tagBox = html.match(/<div class="sb-tags">([\s\S]*?)<\/div>/);
   const tags = tagBox ? [...tagBox[1].matchAll(/<a[^>]*>([\s\S]*?)<\/a>/g)].map((m) => strip(m[1])) : [];
   return { title: h1 ? strip(h1[1]) : '', tags };
+}
+
+// Bảng tên cho trình duyệt (assets/profile-names.json): bài mới đăng qua admin chưa có khối hồ sơ dựng sẵn,
+// assets/enhance.js dùng bảng này để gắn khối "Hồ sơ tác phẩm" và link các thẻ chủ đề (sb-tag).
+// Mỗi dòng một phiên bản: [tên đã chuẩn hóa[], đường dẫn VI (kèm #tab), slug thương hiệu, tên VI, tên EN, nhãn VI, nhãn EN, ảnh]
+export function nameTable(series, matchers, paths, labelOf, thumbOf) {
+  const byKey = new Map(matchers.map((m) => [m.key, m]));
+  const rows = [];
+  for (const s of series) {
+    const multi = s.editions.length > 1;
+    for (const e of s.editions) {
+      const m = byKey.get(e.key);
+      rows.push([m ? m.names : [], paths[`${e.type}|${e.key}`], s.slug, s.name, s.nameEn, labelOf(s, e, false, multi), labelOf(s, e, true, multi), thumbOf(e.key)]);
+    }
+  }
+  return rows;
+}
+
+// Tên (chuẩn hóa) -> dòng bảng, chỉ giữ tên thuộc đúng một thương hiệu; dùng để link thẻ chủ đề trùng tên tác phẩm
+export function tagTable(rows) {
+  const owner = new Map();
+  for (const r of rows) for (const n of r[0]) { const o = owner.get(n); if (o === undefined) owner.set(n, r); else if (o && o[2] !== r[2]) owner.set(n, null); }
+  return owner;
 }
