@@ -1281,7 +1281,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-09-28",
     "excerpt": "One Piece chapter 1194 recap: Zoro vs. Saint Sommers, Mihawk’s lesson, and what the chapter confirms about Zoro’s Conqueror’s Haki.",
-    "img": "/assets/img/news-one-piece-1194-loki-elbaf.jpg",
+    "img": "/assets/img/zoro-haki-ba-vuong-king-of-hell.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -2107,11 +2107,11 @@ window.IDX = [
   },
   {
     "title": "One Piece chương 1194: Zoro đối đầu Sommers",
-    "url": "/one-piece-chapter-1194-spoilers-loki-uranus-elbaf",
+    "url": "/one-piece-chuong-1194-zoro-doi-dau-sommers",
     "cat": "Manga",
     "date": "2026-09-19",
     "excerpt": "Tóm tắt One Piece chương 1194: trận Zoro đối đầu Saint Sommers, bài học của Mihawk và bước tiến mới trong cách Zoro sử dụng Bá Vương Haki.",
-    "img": "/assets/img/news-one-piece-1194-loki-elbaf.jpg",
+    "img": "/assets/img/zoro-haki-ba-vuong-king-of-hell.jpg",
     "tags": [],
     "lang": "vi"
   },

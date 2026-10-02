@@ -24,7 +24,7 @@ const PURGE_SLUGS = [
   'en/one-piece-chapter-1191-theres-still-loki',
   'en/one-piece-chapter-1192-dawn-thor-bullet-imu',
   'en/one-piece-chapter-1193-zoro-sommers-still-practicing',
-  'en/one-piece-chapter-1194-spoilers-loki-uranus-elbaf',
+  'en/one-piece-chuong-1194-zoro-doi-dau-sommers',
   'en/rhythm-heaven-groove-nintendo',
   'en/splatoon-raiders-launch'
 ];

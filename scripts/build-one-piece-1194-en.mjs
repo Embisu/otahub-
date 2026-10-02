@@ -42,7 +42,7 @@ html = html
   .replaceAll(oldTitle, title)
   .replaceAll(oldSlug, slug)
   .replaceAll('Lin (Khanh Linh)', 'OtaHub Editorial')
-  .replaceAll('/one-piece-chapter-1194-tam-ngung-tro-lai-11-10', '/one-piece-chapter-1194-spoilers-loki-uranus-elbaf')
+  .replaceAll('/one-piece-chapter-1194-tam-ngung-tro-lai-11-10', '/one-piece-chuong-1194-zoro-doi-dau-sommers')
   .replaceAll('https://otahub.asia/assets/img/real-op-chapter1194-hiatus-banner.jpg', 'https://otahub.asia/assets/img/real-op1194-dexerto.jpg')
   .replaceAll('/assets/img/real-op-chapter1194-hiatus-banner.jpg', '/assets/img/real-op1194-dexerto.jpg')
   .replace(/(<meta name="description" content=")[^"]*(">)/, `$1${description}$2`)
