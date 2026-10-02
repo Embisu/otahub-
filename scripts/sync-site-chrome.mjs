@@ -9,9 +9,10 @@
 //        node scripts/sync-site-chrome.mjs --check   (chỉ báo trang lệch, thoát mã 1 nếu có)
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const CHECK = process.argv.includes('--check');
-const root = path.resolve(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')), '..');
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const rel = (f) => path.join(root, f);
 
 const NAV = {

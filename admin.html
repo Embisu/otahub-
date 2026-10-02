@@ -4751,6 +4751,11 @@ let currentRawHtml = '';
 let BODY_MODE = 'visual'; // 'visual' | 'code' | 'blocks' — chế độ soạn thảo nội dung bài viết
 let BODY_BLOCKS = null; // mảng block khi bài đang ở chế độ Khối kéo-thả (chỉ bài mới); null = không dùng block
 let HAS_UNSAVED_CHANGES = false; // cảnh báo khi rời trang nếu còn thay đổi chưa lưu
+// saveArticle() đang chạy (commit bài + đồng bộ search.js/feed/sitemap/hub/news). Trong lúc này
+// KHÔNG cho mở bài khác hay đóng/refresh tab: trước đây (1/10/2026) mở bài kế tiếp khi lần lưu
+// trước chưa xong khiến lần lưu cũ ghi đè currentFile → lần lưu sau tưởng là "đổi slug" và gỡ
+// bài trước khỏi mọi chỉ mục; còn refresh tab giữa chừng làm bài mới mất phần đồng bộ chỉ mục.
+let SAVE_IN_PROGRESS = false;
 
 // ── Quản lý Reviews Hub & Chuyên Sâu ──
 let REVIEWS_LIST = [];
@@ -4783,7 +4788,7 @@ let BILINGUAL_DATA = {
 
 // Cảnh báo trước khi rời trang / đóng tab nếu còn thay đổi chưa lưu
 window.addEventListener('beforeunload', (e) => {
-  if (!HAS_UNSAVED_CHANGES) return;
+  if (!HAS_UNSAVED_CHANGES && !SAVE_IN_PROGRESS) return;
   e.preventDefault();
   e.returnValue = '';
 });
@@ -4795,6 +4800,10 @@ window.addEventListener('beforeunload', (e) => {
 // mở Home/Hub editor...) trước đây KHÔNG qua showView() nên bỏ qua luôn cảnh
 // báo này — gọi hàm dùng chung này ở đầu mỗi điểm vào đó.
 function confirmDiscardUnsaved() {
+  if (SAVE_IN_PROGRESS) {
+    toast('warning', '⏳ Bài đang được lưu và đồng bộ chỉ mục (tìm kiếm, feed, sitemap, chuyên mục). Đợi xong rồi hãy mở bài khác.');
+    return false;
+  }
   if (!HAS_UNSAVED_CHANGES) return true;
   const ok = confirm('Bạn có thay đổi chưa lưu. Rời khỏi đây sẽ mất các thay đổi đó — tiếp tục?');
   if (ok) HAS_UNSAVED_CHANGES = false;
@@ -7365,6 +7374,7 @@ function extractHighlightBox(html) {
 function setMain(html) { document.getElementById('main-content').innerHTML = html; }
 
 function showView(view) {
+  if (SAVE_IN_PROGRESS) return void toast('warning', '⏳ Bài đang được lưu và đồng bộ chỉ mục. Đợi xong rồi hãy chuyển trang.');
   if (HAS_UNSAVED_CHANGES && !confirm('Bạn có thay đổi chưa lưu. Rời khỏi trang này sẽ mất các thay đổi đó — tiếp tục?')) return;
   HAS_UNSAVED_CHANGES = false;
   CURRENT_VIEW = view;
@@ -16216,6 +16226,8 @@ async function saveArticle() {
   CURRENT_ARTICLE_AUTHOR = publishingAuthor;
 
   if (!currentFile) return;
+  if (SAVE_IN_PROGRESS) return;
+  SAVE_IN_PROGRESS = true;
 
   const saveBtns = Array.from(document.querySelectorAll('#publish, #save-btn, #save-btn-article, #save-btn-top, [onclick*="saveArticle()"]'));
   saveBtns.forEach(b => {
@@ -16366,63 +16378,70 @@ async function saveArticle() {
     }
 
     // 2. LƯU BÀI VIẾT TIẾNG ANH (NẾU CÓ NỘI DUNG VÀ CÓ CHỈNH SỬA)
-    let enPutResult = null, newEnSha = null;
+    // Bản VI đã commit ở bước 1: lỗi ở bản EN không được làm dừng cả hàm, nếu không bài VI sẽ
+    // lên site mà không vào search.js/feed/sitemap/hub/news (đồng bộ chạy ở cuối hàm).
+    let enPutResult = null, newEnSha = null, enSaveError = null;
     if (shouldUpdateEn) {
-      let enHtml = '', enSha = isValidSha(BILINGUAL_DATA?.en?.sha) ? BILINGUAL_DATA.en.sha.trim() : null;
       try {
-        const existingEn = await ghGet(enFile);
-        if (isValidSha(existingEn?.sha)) {
-          enSha = existingEn.sha.trim();
-        }
-        if (existingEn?.content) {
-          try { enHtml = decodeURIComponent(escape(atob(String(existingEn.content || '').replace(/\s/g, '')))); } catch (e) {}
-        }
-      } catch (e) {}
+        let enHtml = '', enSha = isValidSha(BILINGUAL_DATA?.en?.sha) ? BILINGUAL_DATA.en.sha.trim() : null;
+        try {
+          const existingEn = await ghGet(enFile);
+          if (isValidSha(existingEn?.sha)) {
+            enSha = existingEn.sha.trim();
+          }
+          if (existingEn?.content) {
+            try { enHtml = decodeURIComponent(escape(atob(String(existingEn.content || '').replace(/\s/g, '')))); } catch (e) {}
+          }
+        } catch (e) {}
 
-      if (!enHtml || enHtml.length < 200 || !/<html/i.test(enHtml)) {
-        if (BILINGUAL_DATA?.en?.rawHtml && BILINGUAL_DATA.en.rawHtml.includes('<html')) {
-          enHtml = BILINGUAL_DATA.en.rawHtml;
-        } else {
+        if (!enHtml || enHtml.length < 200 || !/<html/i.test(enHtml)) {
+          if (BILINGUAL_DATA?.en?.rawHtml && BILINGUAL_DATA.en.rawHtml.includes('<html')) {
+            enHtml = BILINGUAL_DATA.en.rawHtml;
+          } else {
+            enHtml = buildStandardEnglishArticleTemplate(viSlug, enSlug, hero, heroPos, cat, publishingAuthor);
+          }
+        }
+        if (isLegacyEnglishSkeleton(enHtml)) {
           enHtml = buildStandardEnglishArticleTemplate(viSlug, enSlug, hero, heroPos, cat, publishingAuthor);
         }
-      }
-      if (isLegacyEnglishSkeleton(enHtml)) {
-        enHtml = buildStandardEnglishArticleTemplate(viSlug, enSlug, hero, heroPos, cat, publishingAuthor);
-      }
 
-      enHtml = applyArticleEditsToHtml(enHtml, {
-        title: enTitle,
-        desc: enDesc,
-        keyword: BILINGUAL_DATA?.en?.keyword,
-        hero,
-        heroPos,
-        cat,
-        bodyHtml: enBody,
-        blocks: BILINGUAL_DATA?.en?.blocks,
-        hasHb: BILINGUAL_DATA?.en?.hasHb,
-        hbLabel: BILINGUAL_DATA?.en?.hbLabel || 'Key Takeaway',
-        hbText: BILINGUAL_DATA?.en?.hbText || '',
-        slug: enSlug,
-        pubDate: CUSTOM_PUBLISH_DATE || formatVietnamIso(new Date())
-      });
-      enHtml = stampArticleAuthor(enHtml, publishingAuthor);
-      enHtml = ensureHreflangLinks(enHtml, viSlug, enSlug, 'en');
-      enHtml = await externalizeInlineImages(enHtml);
+        enHtml = applyArticleEditsToHtml(enHtml, {
+          title: enTitle,
+          desc: enDesc,
+          keyword: BILINGUAL_DATA?.en?.keyword,
+          hero,
+          heroPos,
+          cat,
+          bodyHtml: enBody,
+          blocks: BILINGUAL_DATA?.en?.blocks,
+          hasHb: BILINGUAL_DATA?.en?.hasHb,
+          hbLabel: BILINGUAL_DATA?.en?.hbLabel || 'Key Takeaway',
+          hbText: BILINGUAL_DATA?.en?.hbText || '',
+          slug: enSlug,
+          pubDate: CUSTOM_PUBLISH_DATE || formatVietnamIso(new Date())
+        });
+        enHtml = stampArticleAuthor(enHtml, publishingAuthor);
+        enHtml = ensureHreflangLinks(enHtml, viSlug, enSlug, 'en');
+        enHtml = await externalizeInlineImages(enHtml);
 
-      enPutResult = await ghPut(enFile, enHtml, enSha, `[admin] cap nhat ban tieng Anh: ${enTitle.slice(0, 50)}`);
-      await deleteDraft(enFile);
-      newEnSha = isValidSha(enPutResult?.content?.sha) ? enPutResult.content.sha.trim() : (isValidSha(enPutResult?.sha) ? enPutResult.sha.trim() : enSha);
-      if (BILINGUAL_DATA?.en) {
-        if (newEnSha) BILINGUAL_DATA.en.sha = newEnSha;
-        BILINGUAL_DATA.en.rawHtml = enHtml;
-        BILINGUAL_DATA.en.isDirty = false;
-      }
-      if (newEnSha && CURRENT_LANG === 'en') currentSha = newEnSha;
+        enPutResult = await ghPut(enFile, enHtml, enSha, `[admin] cap nhat ban tieng Anh: ${enTitle.slice(0, 50)}`);
+        await deleteDraft(enFile);
+        newEnSha = isValidSha(enPutResult?.content?.sha) ? enPutResult.content.sha.trim() : (isValidSha(enPutResult?.sha) ? enPutResult.sha.trim() : enSha);
+        if (BILINGUAL_DATA?.en) {
+          if (newEnSha) BILINGUAL_DATA.en.sha = newEnSha;
+          BILINGUAL_DATA.en.rawHtml = enHtml;
+          BILINGUAL_DATA.en.isDirty = false;
+        }
+        if (newEnSha && CURRENT_LANG === 'en') currentSha = newEnSha;
 
-      try {
-        await syncNewArticle({ file: enFile, title: enTitle, desc: enDesc, cat, hero, author: publishingAuthor });
-      } catch (syncErr) {
-        console.warn('Sync EN article error:', syncErr);
+        try {
+          await syncNewArticle({ file: enFile, title: enTitle, desc: enDesc, cat, hero, author: publishingAuthor });
+        } catch (syncErr) {
+          console.warn('Sync EN article error:', syncErr);
+        }
+      } catch (enErr) {
+        console.error('Lỗi lưu bản tiếng Anh:', enErr);
+        enSaveError = enErr;
       }
     } else if (hasEn) {
       // Đang lưu ở tab tiếng Việt, bản tiếng Anh đã có và không sửa trong phiên này:
@@ -16454,7 +16473,7 @@ async function saveArticle() {
     }
 
     if (BILINGUAL_DATA?.vi) BILINGUAL_DATA.vi.isDirty = false;
-    if (BILINGUAL_DATA?.en) BILINGUAL_DATA.en.isDirty = false;
+    if (BILINGUAL_DATA?.en && !enSaveError) BILINGUAL_DATA.en.isDirty = false;
 
     if (CURRENT_NEWS_DRAFT_ID) {
       try {
@@ -16501,7 +16520,7 @@ async function saveArticle() {
       if (hasEn) EN_FILES_SET.add(viFile);
     }
 
-    if (hasEn && EN_PAIRS[viFile] !== enFile) {
+    if (hasEn && !enSaveError && EN_PAIRS[viFile] !== enFile) {
       // Ghi cặp VI -> EN mới/đổi slug vào assets/en-pairs.json (chỉ ghi khi thật sự thay đổi).
       EN_PAIRS[viFile] = enFile;
       try {
@@ -16518,7 +16537,7 @@ async function saveArticle() {
       }
     }
 
-    if (hasEn) {
+    if (hasEn && !enSaveError) {
       try {
         const pairProblems = await verifyBilingualPair(viSlug, enSlug);
         if (pairProblems.length) toast('warning', '🔗 Kiểm tra liên kết VI⇄EN: ' + pairProblems.join(' | '));
@@ -16533,7 +16552,9 @@ async function saveArticle() {
     const log = document.getElementById('save-log-article') || document.getElementById('save-log');
     if (log) log.innerHTML = `✅ Commit lúc ${new Date().toLocaleTimeString('vi-VN')}<br>` + log.innerHTML;
 
-    if (hasEn) {
+    if (enSaveError) {
+      toast('error', '⚠️ Bản tiếng Việt đã lưu, nhưng bản tiếng Anh LỖI: ' + (enSaveError.message || enSaveError) + ' — hãy bấm lưu lại ở tab English.');
+    } else if (hasEn) {
       toast('success', '🎉 Đã lưu và xuất bản cả 2 phiên bản Song ngữ (🇻🇳 Tiếng Việt & 🇬🇧 English)! Chờ ~1-2 phút để live.');
     } else {
       toast('success', '✅ Đã lưu và deploy bài viết Tiếng Việt! Chờ ~1-2 phút để live.');
@@ -16578,6 +16599,7 @@ async function saveArticle() {
     if (txt) txt.textContent = 'Lỗi: ' + e.message;
     toast('error', 'Lỗi lưu: ' + e.message);
   } finally {
+    SAVE_IN_PROGRESS = false;
     saveBtns.forEach(b => {
       b.textContent = b.dataset.origText || (isNewFile ? '🚀 Đăng bài' : '💾 Cập nhật');
       b.disabled = false;

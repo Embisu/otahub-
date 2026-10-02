@@ -198,11 +198,29 @@ window.IDX = [
     "tags": []
   },
   {
+    "title": "Look Back vượt 1 triệu bản, phim live-action dự Venice",
+    "url": "/look-back-vuot-1-trieu-ban-tu-manga-one-shot-den-phim-live-a",
+    "cat": "Manga",
+    "date": "2026-10-01",
+    "excerpt": "Look Back của Tatsuki Fujimoto vượt 1 triệu bản phát hành và tiếp tục được chuyển thể live-action bởi Hirokazu Kore-eda, tranh giải tại Venice 2026.",
+    "img": "/assets/img/uploads/knzgipw6-maxresdefault-1.jpg",
+    "tags": []
+  },
+  {
     "title": "Chiikawa Surprises the Japanese Box Office, Beats Conan and Passes ¥13.9 Billion",
     "url": "/en/chiikawa-surprises-the-japanese-box-office-beats-conan",
     "cat": "Anime",
     "date": "2026-10-01",
     "excerpt": "Chiikawa the Movie: The Secret of Mermaid Island is a hit in Japan, passing ¥13.9 billion, beating Conan and entering the list of the highest-grossing films in the country’s history.",
+    "img": "/assets/img/uploads/inline-mup7jcqz-1.jpg",
+    "tags": []
+  },
+  {
+    "title": "Phim Chiikawa vượt Thám Tử Lừng Danh Conan, cán mốc 13,9 tỷ yên phòng vé",
+    "url": "/chiikawa-gay-bat-ngo-tai-phong-ve-nhat-ban-vuot-conan-va-can",
+    "cat": "Anime",
+    "date": "2026-10-01",
+    "excerpt": "Chiikawa: Bí mật đảo người cá gây sốt tại Nhật Bản khi vượt 13,9 tỷ yen, đánh bại Thám Tử Lừng Danh Conan và lọt top phim có doanh thu cao nhất lịch sử.",
     "img": "/assets/img/uploads/inline-mup7jcqz-1.jpg",
     "tags": []
   },
@@ -252,6 +270,15 @@ window.IDX = [
     "tags": []
   },
   {
+    "title": "Thẻ Raincoat Pikachu được bán với giá 8,4 triệu USD",
+    "url": "/raincoat-pikachu-duoc-ban-voi-gia-8-4-trieu-usd-tro-thanh-th",
+    "cat": "Gaming",
+    "date": "2026-10-01",
+    "excerpt": "Raincoat Pikachu chuẩn PSA 10 vừa được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử chỉ sau Pikachu Illustrator.",
+    "img": "/assets/img/uploads/raincoat-pikachu-card.jpg",
+    "tags": []
+  },
+  {
     "title": "GTA 6: A Dynamic Weather System Recreates Florida in Realistic Detail",
     "url": "/en/gta-6-a-dynamic-weather-system-recreates-florida",
     "cat": "Gaming",
@@ -266,6 +293,15 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-10-01",
     "excerpt": "Pearl Abyss has announced that Charting the Unknown, the first DLC for Crimson Desert, is delayed by two weeks from its original release date.",
+    "img": "/assets/img/uploads/crimson-desert-charting-the-unknown-steam.jpg",
+    "tags": []
+  },
+  {
+    "title": "Crimson Desert: Charting the Unknown bị trì hoãn 2 tuần",
+    "url": "/crimson-desert-charting-the-unknown-bi-tri-hoan-2-tuan",
+    "cat": "Gaming",
+    "date": "2026-10-01",
+    "excerpt": "Pearl Abyss vừa thông báo trì hoãn DLC đầu tiên của Crimson Desert, Charting the Unknown, thêm 2 tuần so với lịch phát hành ban đầu.",
     "img": "/assets/img/uploads/crimson-desert-charting-the-unknown-steam.jpg",
     "tags": []
   },
