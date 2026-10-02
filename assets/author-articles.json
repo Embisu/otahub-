@@ -12,17 +12,6 @@
   },
   {
     "key": "otahub",
-    "title": "13 game mobile cày cuốc 2026: Aniimo, Dragon Nest, Ares · OtaHub",
-    "date": "2026-10-02",
-    "cat": "Gaming",
-    "excerpt": "OtaHub nghiên cứu, tổng hợp 13 game cày cuốc 2026: Aniimo, Dragon Nest, Where Winds Meet, Ares... Ngày ra mắt, nền tảng, tiếng Việt đến 3/10/2026.",
-    "image": "/assets/img/top-game-mobile-cay-cuoc-hero.jpg",
-    "read": "11 phút đọc",
-    "url": "/top-game-mobile-cay-cuoc-dang-choi-2026-aniimo-dragon-nest",
-    "lang": "VI"
-  },
-  {
-    "key": "otahub",
     "title": "13 Grind-Worthy Mobile RPGs of 2026: Aniimo, Dragon Nest · OtaHub",
     "date": "2026-10-02",
     "cat": "Gaming",
@@ -118,6 +107,17 @@
     "image": "/assets/img/gears-of-war-e-day-review-hero.jpg",
     "read": "9 phút đọc",
     "url": "/gears-of-war-e-day-review-diem-so-uu-nhuoc-diem-cau-hinh-pc",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
+    "title": "Top 13 game mobile đáng cày cuốc nhất năm 2026 · OtaHub",
+    "date": "2026-10-02",
+    "cat": "Gaming",
+    "excerpt": "Yến Vân, Aniimo, Dragon Nest đã có tiếng Việt; 10 game còn lại ra mắt khi nào, chơi trên máy nào? Bảng so sánh 13 game cày cuốc cập nhật 2/10/2026.",
+    "image": "/assets/img/top-game-mobile-cay-cuoc-hero.jpg",
+    "read": "11 phút đọc",
+    "url": "/top-game-mobile-cay-cuoc-dang-choi-2026-aniimo-dragon-nest",
     "lang": "VI"
   },
   {
@@ -1001,7 +1001,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Gintama Creator Admits He Thought the Anime Would Flop · OtaHub",
     "date": "2026-09-29",
     "cat": "Anime",
@@ -1133,7 +1133,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Top 8 Korean Anime (Aeni) Worth Watching Right Now · OtaHub",
     "date": "2026-09-29",
     "cat": "Anime",
@@ -1221,7 +1221,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Ao no Hako Season 2 Premieres October 4 With New Studio · OtaHub",
     "date": "2026-09-28",
     "cat": "Anime",
@@ -1232,7 +1232,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Aoashi Season 2 Premieres October 4 With New Studio TMS · OtaHub",
     "date": "2026-09-28",
     "cat": "Anime",
@@ -1254,7 +1254,7 @@
     "lang": "VI"
   },
   {
-    "key": "otahub",
+    "key": "anhthu",
     "title": "Detective Conan Case 30 Murder: 30th Anniversary 2-Hour TV Special · OtaHub",
     "date": "2026-09-28",
     "cat": "Anime",
@@ -1265,7 +1265,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Diamond no Ace Act II: Cour 2 Premieres October 11, Heads To Koshien · OtaHub",
     "date": "2026-09-28",
     "cat": "Anime",
@@ -1276,7 +1276,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Eiichiro Oda Personally Endorsed These 6 Manga · OtaHub",
     "date": "2026-09-28",
     "cat": "Manga",
@@ -1287,7 +1287,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Hololive Announces Its First TV Anime: Odekake Hololive · OtaHub",
     "date": "2026-09-28",
     "cat": "Anime",
@@ -1320,7 +1320,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Magic Knight Rayearth 2026 Reboot Premieres October 7 · OtaHub",
     "date": "2026-09-28",
     "cat": "Anime",
@@ -1364,7 +1364,7 @@
     "lang": "VI"
   },
   {
-    "key": "otahub",
+    "key": "anhthu",
     "title": "One Piece 1194 Spoilers: Zoro Unleashes New Power, Mihawk Flashback · OtaHub",
     "date": "2026-09-28",
     "cat": "Manga",
@@ -1375,7 +1375,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "One Piece Chapter 1192: Luffy Pierces the Shield, Draws First Blood From Imu · OtaHub",
     "date": "2026-09-28",
     "cat": "Manga",
@@ -1408,7 +1408,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "One Piece Goes On Hiatus After Chapter 1194, Returns October 11 · OtaHub",
     "date": "2026-09-28",
     "cat": "Manga",
@@ -1441,7 +1441,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Re:Zero Season 4 Finale Runs 45 Minutes, Airs September 30 · OtaHub",
     "date": "2026-09-28",
     "cat": "Anime",
@@ -1463,7 +1463,7 @@
     "lang": "VI"
   },
   {
-    "key": "otahub",
+    "key": "anhthu",
     "title": "Roman Sands RE:Build: Trapped in a Collapsing Vaporwave Nightmare · OtaHub",
     "date": "2026-09-28",
     "cat": "Gaming",
@@ -1474,7 +1474,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Tokyo Revengers: Santen Sensou-hen Premieres October 2, Manga's Final Arc · OtaHub",
     "date": "2026-09-28",
     "cat": "Anime",
@@ -1496,7 +1496,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Tougen Anki Season 2: Nikko Kegon Falls Arc Premieres October 2 · OtaHub",
     "date": "2026-09-28",
     "cat": "Anime",
@@ -1507,7 +1507,7 @@
     "lang": "EN"
   },
   {
-    "key": "otahub",
+    "key": "anhthu",
     "title": "When GTA Becomes a Stage for Shakespeare in Grand Theft Hamlet · OtaHub",
     "date": "2026-09-28",
     "cat": "Gaming",
@@ -1518,7 +1518,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Battle Through the Heavens Review: A Classic Cultivation Donghua · OtaHub",
     "date": "2026-09-27",
     "cat": "Anime",
@@ -1540,7 +1540,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Solo Leveling: Ragnarok Review: An Ambitious Sequel · OtaHub",
     "date": "2026-09-27",
     "cat": "Manga",
@@ -1562,7 +1562,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Spy x Family Review: A Fake Family Full of Secrets · OtaHub",
     "date": "2026-09-27",
     "cat": "Anime",
@@ -1595,7 +1595,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "The Beginning After The End Review: Great Story, Controversial Animation · OtaHub",
     "date": "2026-09-27",
     "cat": "Anime",
@@ -1606,7 +1606,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "THE GHOST IN THE SHELL (2026): Season Wrap-Up · OtaHub",
     "date": "2026-09-27",
     "cat": "Anime",
@@ -1639,7 +1639,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "10 Anime To Watch While Waiting For Jujutsu Kaisen S4 · OtaHub",
     "date": "2026-09-26",
     "cat": "Anime",
@@ -1650,7 +1650,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Aixleft Wants To Recruit Himass For Delta Force · OtaHub",
     "date": "2026-09-26",
     "cat": "Gaming",
@@ -1683,7 +1683,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Anime Worth Watching For Japanese History Fans · OtaHub",
     "date": "2026-09-26",
     "cat": "Anime",
@@ -1694,7 +1694,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Bride of the Barrier Master Comes To Netflix In January 2027 · OtaHub",
     "date": "2026-09-26",
     "cat": "Anime",
@@ -1738,7 +1738,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Code Geass: Star Chaser Aspal Teaser, Airs In 2027 · OtaHub",
     "date": "2026-09-26",
     "cat": "Anime",
@@ -1760,7 +1760,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Draw This, Then Die! Season 2 Announced After Finale · OtaHub",
     "date": "2026-09-26",
     "cat": "Anime",
@@ -1782,7 +1782,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Gears of War: E-Day Goes Gold, Pre-Load From Sept 29 · OtaHub",
     "date": "2026-09-26",
     "cat": "Gaming",
@@ -1793,7 +1793,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Hell Mode Anime Announces Season 3: S-Rank Dungeon Conquest Arc · OtaHub",
     "date": "2026-09-26",
     "cat": "Anime",
@@ -1837,7 +1837,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Oishinbo Gets A New Anime After 35 Years: Shin Oishinbo · OtaHub",
     "date": "2026-09-26",
     "cat": "Manga",
@@ -1848,7 +1848,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Overgeared Gets Early Access On Prime Video September 27 · OtaHub",
     "date": "2026-09-26",
     "cat": "Anime",
@@ -1881,7 +1881,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Slime Season 4 Returns July 2027, Clayman's Revenge Anime · OtaHub",
     "date": "2026-09-26",
     "cat": "Anime",
@@ -1914,7 +1914,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Why Phantom Of Baker Street Is One Of The Best Conan Films · OtaHub",
     "date": "2026-09-26",
     "cat": "Anime",
@@ -1925,7 +1925,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Chiikawa Anime Pauses New Episodes Until December 25 · OtaHub",
     "date": "2026-09-25",
     "cat": "Anime",
@@ -1936,7 +1936,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Neoshoco's Phantom Busters Gets a TV Anime in 2027 · OtaHub",
     "date": "2026-09-25",
     "cat": "Anime",
@@ -1980,7 +1980,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Esports at the 2026 Asian Games: 11 Events in Aichi · OtaHub",
     "date": "2026-09-24",
     "cat": "Gaming",
@@ -1991,7 +1991,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "PUBG Drama: Himass and TanVuu Permanently Banned · OtaHub",
     "date": "2026-09-24",
     "cat": "Gaming",
@@ -2002,7 +2002,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "anhthu",
     "title": "Vietnamese Gamers Turn Away From PUBG · OtaHub",
     "date": "2026-09-24",
     "cat": "Gaming",
@@ -2013,7 +2013,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Honkai: Star Rail 4.6 Launches September 28 With Pearl · OtaHub",
     "date": "2026-09-23",
     "cat": "Gaming",
@@ -2035,7 +2035,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Hunter x Hunter Returns With Chapter 419, Hiatus Ahead · OtaHub",
     "date": "2026-09-23",
     "cat": "Manga",
@@ -2057,7 +2057,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Jujutsu Kaisen Culling Game Part 2: Sukuna Teaser · OtaHub",
     "date": "2026-09-23",
     "cat": "Anime",
@@ -2079,7 +2079,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Marvel’s Wolverine Launches: Brutal Combat but a Linear Story · OtaHub",
     "date": "2026-09-23",
     "cat": "Gaming",
@@ -2123,7 +2123,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Silent Hill: Townfall: What to Know About No Code Studios and Konami's Horror Project · OtaHub",
     "date": "2026-09-23",
     "cat": "Gaming",
@@ -2134,7 +2134,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Steam Leak Exposes Persona 6, Kingdom Hearts IV · OtaHub",
     "date": "2026-09-23",
     "cat": "Gaming",
@@ -2145,7 +2145,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "The Summer Hikaru Died Ends in 2 Chapters, October 20 · OtaHub",
     "date": "2026-09-23",
     "cat": "Manga",
@@ -2167,7 +2167,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Tokyo Game Show 2026: Biggest Announcements, 257,642 Attendees · OtaHub",
     "date": "2026-09-23",
     "cat": "Gaming",
@@ -2189,7 +2189,7 @@
     "lang": "VI"
   },
   {
-    "key": "editor",
+    "key": "otahub",
     "title": "Record of Ragnarok: Odin đang chuẩn bị điều gì? · OtaHub",
     "date": "2026-09-20",
     "cat": "Anime",
@@ -2200,7 +2200,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Record of Ragnarok: What Is Odin Really Planning? · OtaHub",
     "date": "2026-09-20",
     "cat": "Anime",
@@ -2211,7 +2211,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Chainsaw Man – Reze Arc Earns About $191.4 Million · OtaHub",
     "date": "2026-09-19",
     "cat": "Anime",
@@ -2255,7 +2255,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "GTA 6 Gameplay Trailer: Leonida With Lucia and Jason · OtaHub",
     "date": "2026-09-19",
     "cat": "Gaming",
@@ -2277,7 +2277,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Nintendo Switch 2 Price Rises to $499.99 · OtaHub",
     "date": "2026-09-19",
     "cat": "Gaming",
@@ -2310,7 +2310,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "The One Piece (Netflix x WIT) Premieres February 2027 · OtaHub",
     "date": "2026-09-19",
     "cat": "Anime",
@@ -2332,7 +2332,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Zenless Zone Zero 2.0 Launched; Version 2.1 Brings Back Miyabi · OtaHub",
     "date": "2026-09-19",
     "cat": "Gaming",
@@ -2354,7 +2354,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Monster Hunter Wilds: Title Update 4 Adds Gogmazios · OtaHub",
     "date": "2026-09-16",
     "cat": "Gaming",
@@ -2486,7 +2486,7 @@
     "lang": "VI"
   },
   {
-    "key": "otahub",
+    "key": "yu",
     "title": "The Eminence in Shadow: New Roguelite Game Announced · OtaHub",
     "date": "2026-09-09",
     "cat": "Gaming",
@@ -2508,7 +2508,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Dandadan Season 2 Premiered July 3, 2025 · OtaHub",
     "date": "2026-09-07",
     "cat": "Anime",
@@ -2519,7 +2519,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Ghost of Yōtei: PS5 Launch Oct 2, 2025, Atsu Wields Dual Katanas · OtaHub",
     "date": "2026-09-07",
     "cat": "Gaming",
@@ -2541,7 +2541,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Girls' Frontline 2: Exilium Beginner's Guide · OtaHub",
     "date": "2026-09-07",
     "cat": "Gaming",
@@ -2552,7 +2552,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Girls' Frontline 2: Lưu Đày – hướng dẫn tân thủ, reroll · OtaHub",
     "date": "2026-09-07",
     "cat": "Gaming",
@@ -2596,7 +2596,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Nintendo Direct September 2026: Zelda 40th, Ocarina Remake · OtaHub",
     "date": "2026-09-07",
     "cat": "Gaming",
@@ -2607,7 +2607,7 @@
     "lang": "EN"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Solo Leveling: Ragnarok Gets English Volume 1 · OtaHub",
     "date": "2026-09-07",
     "cat": "Anime",
@@ -2629,7 +2629,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Frieren Season 2 Aired From January 2026 (10 Episodes) · OtaHub",
     "date": "2026-09-05",
     "cat": "Anime",
@@ -2640,7 +2640,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Honkai: Star Rail 3.0 Launched January 15, 2025 · OtaHub",
     "date": "2026-09-05",
     "cat": "Gaming",
@@ -2662,7 +2662,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Bleach: TYBW – The Calamity Premieres July 25, 10 Episodes · OtaHub",
     "date": "2026-09-04",
     "cat": "Anime",
@@ -2673,7 +2673,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Demon Slayer: Infinity Castle Earns About $793 Million · OtaHub",
     "date": "2026-09-04",
     "cat": "Anime",
@@ -2706,7 +2706,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Chainsaw Man Part 2 Ends at Chapter 232 · OtaHub",
     "date": "2026-09-03",
     "cat": "Manga",
@@ -2739,7 +2739,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Solo Leveling Season 2: 13 Episodes, Aired Jan–Mar 2025 · OtaHub",
     "date": "2026-09-03",
     "cat": "Anime",
@@ -2761,7 +2761,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Wuthering Waves 2.0 Rinascita; Version 3.6 Runs Aug 20–Sept 30 · OtaHub",
     "date": "2026-09-03",
     "cat": "Gaming",
@@ -2772,7 +2772,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Genshin Impact 7.0 Snezhnaya: bản đồ băng giá khổng lồ · OtaHub",
     "date": "2026-09-02",
     "cat": "Gaming",
@@ -2783,7 +2783,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Monster Hunter Wilds Launched February 28, 2025 · OtaHub",
     "date": "2026-09-02",
     "cat": "Gaming",
@@ -2805,7 +2805,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Jujutsu Kaisen Manga Ends at Chapter 271 (September 30, 2024) · OtaHub",
     "date": "2026-09-01",
     "cat": "Manga",
@@ -2816,7 +2816,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Elden Ring Nightreign Launched May 30, 2025 · OtaHub",
     "date": "2026-08-30",
     "cat": "Gaming",
@@ -2838,7 +2838,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "COD Modern Warfare 4 cho chơi thử tại Gamescom 2026 · OtaHub",
     "date": "2026-08-29",
     "cat": "Gaming",
@@ -2849,7 +2849,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Jujutsu Kaisen mở màn Juju Fes 2026 kỷ niệm 5 năm · OtaHub",
     "date": "2026-08-29",
     "cat": "Gaming",
@@ -2860,7 +2860,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Gamescom 2026: PlayStation hé lộ hơn 20 game mới · OtaHub",
     "date": "2026-08-28",
     "cat": "Gaming",
@@ -2871,7 +2871,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Marvel Rivals tung bản cập nhật Endgame Encore · OtaHub",
     "date": "2026-08-28",
     "cat": "Gaming",
@@ -2882,7 +2882,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Sekiro: No Defeat anime ra rạp Nhật 4/9, không dùng AI · OtaHub",
     "date": "2026-08-28",
     "cat": "Anime",
@@ -2893,7 +2893,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Tokyopop công bố 7 manga bản quyền mới tại Anime NYC 2026 · OtaHub",
     "date": "2026-08-28",
     "cat": "Manga",
@@ -2904,7 +2904,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Girls' Frontline 2: Lưu Đày cập bến Việt Nam · OtaHub",
     "date": "2026-08-27",
     "cat": "Gaming",
@@ -2915,7 +2915,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "GTA 6: Rockstar tung Extended Look 26 phút trên Netflix · OtaHub",
     "date": "2026-08-27",
     "cat": "Gaming",
@@ -2926,7 +2926,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "One Punch Man: Murata dùng con trai làm mẫu vẽ bìa · OtaHub",
     "date": "2026-08-27",
     "cat": "Manga",
@@ -2959,7 +2959,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Elden Ring: Shadow of the Erdtree review: 9.7 điểm · OtaHub",
     "date": "2026-08-25",
     "cat": "Reviews",
@@ -2970,7 +2970,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Genshin Impact: Sandrone Arrives in Version 6.7, Not 7.0 · OtaHub",
     "date": "2026-08-25",
     "cat": "Gaming",
@@ -2992,7 +2992,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Honkai: Star Rail review: bản giao hưởng 9.2 điểm · OtaHub",
     "date": "2026-08-25",
     "cat": "Reviews",
@@ -3014,7 +3014,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Jujutsu Kaisen Season 3 Culling Game Part 1 Has Aired · OtaHub",
     "date": "2026-08-25",
     "cat": "Anime",
@@ -3025,7 +3025,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Monster Hunter Wilds review: kỷ nguyên mới (9.4 điểm) · OtaHub",
     "date": "2026-08-25",
     "cat": "Reviews",
@@ -3036,7 +3036,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "VCT Champions 2026: Paper Rex First to Qualify · OtaHub",
     "date": "2026-08-25",
     "cat": "Gaming",
@@ -3058,7 +3058,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Wuthering Waves review: đỉnh cao nhập vai mở (9.5 điểm) · OtaHub",
     "date": "2026-08-25",
     "cat": "Reviews",
@@ -3080,7 +3080,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Honor of Kings: Lanling Wang, Jungle Assassin in 2026 · OtaHub",
     "date": "2026-08-24",
     "cat": "Gaming",
@@ -3091,7 +3091,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Kagurabachi Passes 4 Million Copies, Anime April 2027 · OtaHub",
     "date": "2026-08-24",
     "cat": "Manga",
@@ -3124,7 +3124,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Solo Leveling: Arise Hits 50 Million Downloads · OtaHub",
     "date": "2026-08-24",
     "cat": "Gaming",
@@ -3135,7 +3135,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "One Piece công bố 2 phim điện ảnh mới: God Valley, BAAD · OtaHub",
     "date": "2026-08-23",
     "cat": "Anime",
@@ -3146,7 +3146,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Seven Seas công bố 18 bản quyền mới tại Anime NYC 2026 · OtaHub",
     "date": "2026-08-21",
     "cat": "Manga",
@@ -3157,7 +3157,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Haikyu!! The Movie: VS The Little Giant hé lộ visual mới · OtaHub",
     "date": "2026-08-20",
     "cat": "Anime",
@@ -3168,7 +3168,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Lies of P: Complete Edition ra mắt trên Switch 2 · OtaHub",
     "date": "2026-08-20",
     "cat": "Gaming",
@@ -3179,7 +3179,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Gosho Aoyama phác thảo storyboard chương cuối Conan · OtaHub",
     "date": "2026-08-19",
     "cat": "Anime",
@@ -3190,7 +3190,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Marvel Confirms Avengers: Doomsday Watchlist: 15 Titles · OtaHub",
     "date": "2026-08-19",
     "cat": "Gaming",
@@ -3201,7 +3201,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Marvel xác nhận 15 phim/series phải xem trước Doomsday · OtaHub",
     "date": "2026-08-19",
     "cat": "Gaming",
@@ -3212,7 +3212,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "The Sinking City 2 ra mắt 18/8, đậm chất kinh dị sinh tồn · OtaHub",
     "date": "2026-08-19",
     "cat": "Gaming",
@@ -3223,7 +3223,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Toilet-Bound Hanako-kun trở lại sau 10 tháng gián đoạn · OtaHub",
     "date": "2026-08-19",
     "cat": "Manga",
@@ -3234,7 +3234,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Akira Toriyama được ghi danh vào Eisner Hall of Fame · OtaHub",
     "date": "2026-08-18",
     "cat": "Manga",
@@ -3256,7 +3256,7 @@
     "lang": "EN"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Anime mới trên Crunchyroll 2026: Romelia, BLACK TORCH · OtaHub",
     "date": "2026-08-18",
     "cat": "Anime",
@@ -3267,7 +3267,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Anime NYC 2026: các premiere và panel đáng chú ý · OtaHub",
     "date": "2026-08-18",
     "cat": "Anime",
@@ -3278,7 +3278,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Anime NYC 2026: Crunchyroll Premieres to Watch · OtaHub",
     "date": "2026-08-18",
     "cat": "Anime",
@@ -3300,7 +3300,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Ball x Pit ra mắt bản cập nhật The Naturalist · OtaHub",
     "date": "2026-08-18",
     "cat": "Gaming",
@@ -3311,7 +3311,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Bleach TYBW: The Calamity công bố OP I-BULL và ED Rasen · OtaHub",
     "date": "2026-08-18",
     "cat": "Anime",
@@ -3366,7 +3366,7 @@
     "lang": "EN"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Crunchyroll Manga bổ sung Black Torch, Hana-Kimi tháng 7 · OtaHub",
     "date": "2026-08-18",
     "cat": "Manga",
@@ -3377,7 +3377,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Crunchyroll xác nhận Magical Buffs và Fate Rewinder · OtaHub",
     "date": "2026-08-18",
     "cat": "Anime",
@@ -3443,7 +3443,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Flamecraft xác nhận ra mắt PS5, Xbox Series, Switch · OtaHub",
     "date": "2026-08-18",
     "cat": "Gaming",
@@ -3465,7 +3465,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Free Fire Daybreak tung key visual, ấn định xuân 2027 · OtaHub",
     "date": "2026-08-18",
     "cat": "Anime",
@@ -3553,7 +3553,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Halo: Campaign Evolved ra mắt 28/7 với 13 thay đổi · OtaHub",
     "date": "2026-08-18",
     "cat": "Gaming",
@@ -3586,7 +3586,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "KONOSUBA mùa 4 ấn định ra mắt 2027, studio ENGI · OtaHub",
     "date": "2026-08-18",
     "cat": "Anime",
@@ -3608,7 +3608,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "LEGO Donkey Kong Arcade mở bán 1/8, giá 199,99 USD · OtaHub",
     "date": "2026-08-18",
     "cat": "Gaming",
@@ -3641,7 +3641,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Lou's Lagoon ấn định ra mắt PS5, công bố Deluxe Edition · OtaHub",
     "date": "2026-08-18",
     "cat": "Gaming",
@@ -3663,7 +3663,7 @@
     "lang": "EN"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Manga VIZ phát hành 18/8/2026: Vagabond, Undead Unluck · OtaHub",
     "date": "2026-08-18",
     "cat": "Manga",
@@ -3685,7 +3685,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Marvel Tōkon: Fighting Souls công bố DLC Phoenix Cyclops · OtaHub",
     "date": "2026-08-18",
     "cat": "Gaming",
@@ -3718,7 +3718,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Marvel's Wolverine tung trailer tại Comic-Con, ra mắt 15/9 · OtaHub",
     "date": "2026-08-18",
     "cat": "Gaming",
@@ -3729,7 +3729,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Mii-chan and Miss Yamada được chuyển thể anime 2027 · OtaHub",
     "date": "2026-08-18",
     "cat": "Anime",
@@ -3762,7 +3762,7 @@
     "lang": "EN"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "New Crunchyroll Anime for 2026: Romelia, BLACK TORCH · OtaHub",
     "date": "2026-08-18",
     "cat": "Anime",
@@ -3795,7 +3795,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Oblivion Remastered lên Switch 2, 1080p docked · OtaHub",
     "date": "2026-08-18",
     "cat": "Gaming",
@@ -3850,7 +3850,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Order of the Sinking Star xác nhận bản PS5, ra 8/10 · OtaHub",
     "date": "2026-08-18",
     "cat": "Gaming",
@@ -3872,7 +3872,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "PlayStation Plus tháng 8/2026: Dying Light 2, Big Walk · OtaHub",
     "date": "2026-08-18",
     "cat": "Gaming",
@@ -3883,7 +3883,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Ranma 1/2 mùa 3 công bố key visual, lên sóng 3/10 · OtaHub",
     "date": "2026-08-18",
     "cat": "Anime",
@@ -3916,7 +3916,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Re:ZERO tung visual kỷ niệm 10 năm, triển lãm Tokyo · OtaHub",
     "date": "2026-08-18",
     "cat": "Anime",
@@ -3938,7 +3938,7 @@
     "lang": "EN"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Senren Banka được chuyển thể anime, ra mắt 2027 · OtaHub",
     "date": "2026-08-18",
     "cat": "Anime",
@@ -3971,7 +3971,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Silent Hill: Townfall hé lộ bối cảnh Scotland 1996 · OtaHub",
     "date": "2026-08-18",
     "cat": "Gaming",
@@ -4004,7 +4004,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Sparking Zero tung DLC Neo với 33 nhân vật mới · OtaHub",
     "date": "2026-08-18",
     "cat": "Gaming",
@@ -4015,7 +4015,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Studio Cabana được chuyển thể anime, ra mắt 2027 · OtaHub",
     "date": "2026-08-18",
     "cat": "Anime",
@@ -4037,7 +4037,7 @@
     "lang": "EN"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "The Bugle Call: Song of War công bố TV anime 2027 · OtaHub",
     "date": "2026-08-18",
     "cat": "Anime",
@@ -4081,7 +4081,7 @@
     "lang": "EN"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Toei xác nhận phim Galaxy Express 999 mới · OtaHub",
     "date": "2026-08-18",
     "cat": "Anime",
@@ -4114,7 +4114,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "VIZ Manga Releases for August 18, 2026: Vagabond & More · OtaHub",
     "date": "2026-08-18",
     "cat": "Manga",
@@ -4147,7 +4147,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Xbox Game Pass Wave 2 tháng 7: Halo Campaign Evolved · OtaHub",
     "date": "2026-08-18",
     "cat": "Gaming",
@@ -4158,7 +4158,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Yen Press cấp phép Champignon Witch tại SDCC 2026 · OtaHub",
     "date": "2026-08-18",
     "cat": "Manga",
@@ -4180,7 +4180,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Apothecary Diaries Season 3: Trailer, Set October 2 · OtaHub",
     "date": "2026-08-17",
     "cat": "Anime",
@@ -4191,7 +4191,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "FF7 Revelation lộ diện tại Gamescom Opening Night · OtaHub",
     "date": "2026-08-17",
     "cat": "Gaming",
@@ -4202,7 +4202,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "FF7 Revelation Revealed At Gamescom Opening Night · OtaHub",
     "date": "2026-08-17",
     "cat": "Gaming",
@@ -4213,7 +4213,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Food Wars, We Never Learn Return on Jump GIGA Summer · OtaHub",
     "date": "2026-08-17",
     "cat": "Manga",
@@ -4224,7 +4224,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Food Wars, We Never Learn trở lại Jump GIGA hè 2026 · OtaHub",
     "date": "2026-08-17",
     "cat": "Manga",
@@ -4235,7 +4235,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "GTA 6 Trailer 3 công chiếu trên Netflix ngày 27/8 · OtaHub",
     "date": "2026-08-17",
     "cat": "Gaming",
@@ -4246,7 +4246,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "GTA 6 Trailer 3 Premieres on Netflix · OtaHub",
     "date": "2026-08-17",
     "cat": "Gaming",
@@ -4257,7 +4257,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Mortal Shell II ấn định ngày ra mắt 20/8/2026 · OtaHub",
     "date": "2026-08-17",
     "cat": "Gaming",
@@ -4268,7 +4268,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Mortal Shell II Set Release Date August 20, 2026 · OtaHub",
     "date": "2026-08-17",
     "cat": "Gaming",
@@ -4279,7 +4279,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Phantom Blade Zero: State of Play 17/8 · OtaHub",
     "date": "2026-08-17",
     "cat": "Gaming",
@@ -4290,7 +4290,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Phantom Blade Zero: State of Play Aug 17, Pre-Order Open · OtaHub",
     "date": "2026-08-17",
     "cat": "Gaming",
@@ -4301,7 +4301,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Reincarnated as a Sword mùa 2 ấn định ngày 7/10 · OtaHub",
     "date": "2026-08-17",
     "cat": "Anime",
@@ -4312,7 +4312,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Reincarnated As A Sword Season 2 Set For October 7 · OtaHub",
     "date": "2026-08-17",
     "cat": "Anime",
@@ -4323,7 +4323,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Resonance: A Plague Tale Legacy ra mắt 27/8/2026 · OtaHub",
     "date": "2026-08-17",
     "cat": "Gaming",
@@ -4334,7 +4334,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Resonance: A Plague Tale Legacy Released August 27 · OtaHub",
     "date": "2026-08-17",
     "cat": "Gaming",
@@ -4345,7 +4345,7 @@
     "lang": "EN"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Skip and Loafer mùa 2 tung teaser, ra mắt 4/2027 · OtaHub",
     "date": "2026-08-17",
     "cat": "Anime",
@@ -4356,7 +4356,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Skip and Loafer Season 2 Teaser Set for April 2027 · OtaHub",
     "date": "2026-08-17",
     "cat": "Anime",
@@ -4367,7 +4367,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "The Apothecary Diaries mùa 3 tung trailer, ấn định 2/10 · OtaHub",
     "date": "2026-08-17",
     "cat": "Anime",
@@ -4378,7 +4378,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Attack on Titan Final Season Review: A Fitting End · OtaHub",
     "date": "2026-08-16",
     "cat": "Anime",
@@ -4389,7 +4389,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Attack on Titan Final Season review: cái kết xứng đáng · OtaHub",
     "date": "2026-08-16",
     "cat": "Reviews",
@@ -4400,7 +4400,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Chainsaw Man Anime Review: A MAPPA Masterpiece · OtaHub",
     "date": "2026-08-16",
     "cat": "Anime",
@@ -4411,7 +4411,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Chainsaw Man anime review: MAPPA làm nên kiệt tác · OtaHub",
     "date": "2026-08-16",
     "cat": "Reviews",
@@ -4422,7 +4422,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Chainsaw Man Manga Review: From Denji To Asa Mitaka · OtaHub",
     "date": "2026-08-16",
     "cat": "Manga",
@@ -4433,7 +4433,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Chainsaw Man manga review: hành trình từ Denji đến Asa · OtaHub",
     "date": "2026-08-16",
     "cat": "Reviews",
@@ -4444,7 +4444,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Dandadan Review: A Whirlwind of Humor and Horror · OtaHub",
     "date": "2026-08-16",
     "cat": "Manga",
@@ -4455,7 +4455,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Dandadan review: hài hước, kinh dị, lãng mạn · OtaHub",
     "date": "2026-08-16",
     "cat": "Reviews",
@@ -4466,7 +4466,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Genshin 7.0 Snezhnaya review: chương cuối tham vọng · OtaHub",
     "date": "2026-08-16",
     "cat": "Reviews",
@@ -4477,7 +4477,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Genshin Impact 7.0: Snezhnaya Review: Final Chapter · OtaHub",
     "date": "2026-08-16",
     "cat": "Gaming",
@@ -4488,7 +4488,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Honkai: Star Rail Confirms Crossover With ZZZ · OtaHub",
     "date": "2026-08-16",
     "cat": "Gaming",
@@ -4499,7 +4499,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Honkai: Star Rail xác nhận crossover với ZZZ · OtaHub",
     "date": "2026-08-16",
     "cat": "Gaming",
@@ -4510,7 +4510,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Jujutsu Kaisen Anime Review: Mantra Goes Global · OtaHub",
     "date": "2026-08-16",
     "cat": "Anime",
@@ -4521,7 +4521,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Jujutsu Kaisen anime review: vươn tầm toàn cầu · OtaHub",
     "date": "2026-08-16",
     "cat": "Reviews",
@@ -4532,7 +4532,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Kaiju No.8 THE GAME review sau 1 năm vận hành · OtaHub",
     "date": "2026-08-16",
     "cat": "Reviews",
@@ -4543,7 +4543,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Kaiju No.8 THE GAME Review: A Worthy Adaptation · OtaHub",
     "date": "2026-08-16",
     "cat": "Gaming",
@@ -4554,7 +4554,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Oshi no Ko Anime Review: Entertainment Industry Exposed · OtaHub",
     "date": "2026-08-16",
     "cat": "Anime",
@@ -4565,7 +4565,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Oshi no Ko anime review: góc khuất ngành giải trí · OtaHub",
     "date": "2026-08-16",
     "cat": "Reviews",
@@ -4576,7 +4576,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Oshi no Ko mùa 4 cuối tung teaser đầu tiên · OtaHub",
     "date": "2026-08-16",
     "cat": "Anime",
@@ -4587,7 +4587,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Oshi no Ko Season 4 Final: Teaser Trailer Released · OtaHub",
     "date": "2026-08-16",
     "cat": "Anime",
@@ -4598,7 +4598,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Space Marine 2 Review: Brutal Melee And Co-op · OtaHub",
     "date": "2026-08-16",
     "cat": "Gaming",
@@ -4609,7 +4609,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Space Marine 2 review: cận chiến và co-op đỉnh · OtaHub",
     "date": "2026-08-16",
     "cat": "Reviews",
@@ -4620,7 +4620,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Vinland Saga manga review: cái kết sau 20 năm · OtaHub",
     "date": "2026-08-16",
     "cat": "Reviews",
@@ -4631,7 +4631,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Vinland Saga Manga Review: The End After 20 Years · OtaHub",
     "date": "2026-08-16",
     "cat": "Manga",
@@ -4642,7 +4642,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Big Walk: cha đẻ Untitled Goose Game ra game co-op mới · OtaHub",
     "date": "2026-08-15",
     "cat": "Gaming",
@@ -4653,7 +4653,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Big Walk: Untitled Goose Game Launches New Co-op · OtaHub",
     "date": "2026-08-15",
     "cat": "Gaming",
@@ -4664,7 +4664,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Black Clover Ending Review: 11 Years, A Perfect End · OtaHub",
     "date": "2026-08-15",
     "cat": "Manga",
@@ -4675,7 +4675,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Black Clover kết thúc: 11 năm, cái kết trọn vẹn · OtaHub",
     "date": "2026-08-15",
     "cat": "Reviews",
@@ -4686,7 +4686,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Black Myth: Wukong Review: A Souls-like Masterpiece · OtaHub",
     "date": "2026-08-15",
     "cat": "Gaming",
@@ -4697,7 +4697,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Black Myth: Wukong review: souls-like đầu tiên của Trung Quốc · OtaHub",
     "date": "2026-08-15",
     "cat": "Reviews",
@@ -4708,7 +4708,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Cha đẻ My Hero Academia trở lại với oneshot kinh dị · OtaHub",
     "date": "2026-08-15",
     "cat": "Manga",
@@ -4719,7 +4719,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Chainsaw Man: Reze Arc review, MAPPA lên màn ảnh · OtaHub",
     "date": "2026-08-15",
     "cat": "Reviews",
@@ -4730,7 +4730,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Chainsaw Man: Reze Arc Review, MAPPA's Big Screen Debut · OtaHub",
     "date": "2026-08-15",
     "cat": "Anime",
@@ -4741,7 +4741,7 @@
     "lang": "EN"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Dan Da Dan Season 2 review: Science SARU nâng tầm · OtaHub",
     "date": "2026-08-15",
     "cat": "Reviews",
@@ -4752,7 +4752,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Dandadan Season 2 Review: Science SARU Raises the Bar · OtaHub",
     "date": "2026-08-15",
     "cat": "Anime",
@@ -4763,7 +4763,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Death Stranding 2 Review: Kojima Surpasses Himself · OtaHub",
     "date": "2026-08-15",
     "cat": "Gaming",
@@ -4774,7 +4774,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Death Stranding 2 review: Kojima tự vượt qua mình · OtaHub",
     "date": "2026-08-15",
     "cat": "Reviews",
@@ -4785,7 +4785,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Demon Slayer: Infinity Castle: kiệt tác của Ufotable · OtaHub",
     "date": "2026-08-15",
     "cat": "Reviews",
@@ -4796,7 +4796,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Elden Ring: Tarnished Edition đổ bộ Switch 2 · OtaHub",
     "date": "2026-08-15",
     "cat": "Gaming",
@@ -4807,7 +4807,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Elden Ring: Tarnished Edition Lands on Switch 2 · OtaHub",
     "date": "2026-08-15",
     "cat": "Gaming",
@@ -4818,7 +4818,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Ghost of Yōtei Review: Surpassing Tsushima · OtaHub",
     "date": "2026-08-15",
     "cat": "Gaming",
@@ -4829,7 +4829,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Ghost of Yōtei review: vượt qua cả Tsushima · OtaHub",
     "date": "2026-08-15",
     "cat": "Reviews",
@@ -4840,7 +4840,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Kagurabachi Review · OtaHub",
     "date": "2026-08-15",
     "cat": "Reviews",
@@ -4851,7 +4851,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Kagurabachi Review: Manga Boom in the West · OtaHub",
     "date": "2026-08-15",
     "cat": "Manga",
@@ -4862,7 +4862,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Kaiju No.8 Review: A Phenomenal Shounen Monster Hit · OtaHub",
     "date": "2026-08-15",
     "cat": "Manga",
@@ -4873,7 +4873,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Kaiju No.8 review: shonen quái vật của Jump+ · OtaHub",
     "date": "2026-08-15",
     "cat": "Reviews",
@@ -4884,7 +4884,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Mafia: The Old Country Review: Sicilian Roots · OtaHub",
     "date": "2026-08-15",
     "cat": "Gaming",
@@ -4895,7 +4895,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Mafia: The Old Country review: về cội nguồn Sicily · OtaHub",
     "date": "2026-08-15",
     "cat": "Reviews",
@@ -4906,7 +4906,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Metal Gear Solid Delta: Snake Eater review chi tiết · OtaHub",
     "date": "2026-08-15",
     "cat": "Reviews",
@@ -4917,7 +4917,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "MGS Δ: Snake Eater Review: Loyal Remake Details · OtaHub",
     "date": "2026-08-15",
     "cat": "Gaming",
@@ -4928,7 +4928,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "My Hero Academia Creator Returns With Horror Oneshot · OtaHub",
     "date": "2026-08-15",
     "cat": "Manga",
@@ -4939,7 +4939,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "One Piece Final Saga Review: 25 Years to Laugh Tale · OtaHub",
     "date": "2026-08-15",
     "cat": "Manga",
@@ -4950,7 +4950,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "One Piece: Egghead Arc review: Vegapunk kể lịch sử · OtaHub",
     "date": "2026-08-15",
     "cat": "Reviews",
@@ -4961,7 +4961,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "One Piece: Final Saga review: 25 năm đến Laugh Tale · OtaHub",
     "date": "2026-08-15",
     "cat": "Reviews",
@@ -4972,7 +4972,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Split Fiction Review: Hazelight Redefining Co-op · OtaHub",
     "date": "2026-08-15",
     "cat": "Gaming",
@@ -4983,7 +4983,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Split Fiction review: Hazelight tái định nghĩa co-op · OtaHub",
     "date": "2026-08-15",
     "cat": "Reviews",
@@ -4994,7 +4994,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Suikoden STAR LEAP review: Konami hồi sinh huyền thoại · OtaHub",
     "date": "2026-08-15",
     "cat": "Reviews",
@@ -5005,7 +5005,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Suikoden STAR LEAP Review: Reviving the Legend · OtaHub",
     "date": "2026-08-15",
     "cat": "Gaming",
@@ -5016,7 +5016,7 @@
     "lang": "EN"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "WIT Studio hé lộ bí ẩn Attack on Titan ngày 20/8 · OtaHub",
     "date": "2026-08-15",
     "cat": "Anime",
@@ -5027,7 +5027,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "WIT Studio Reveals Attack on Titan Mystery Aug 20 · OtaHub",
     "date": "2026-08-15",
     "cat": "Anime",
@@ -5038,7 +5038,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Wuthering Waves 3.6: Ren Realm & Two New Characters · OtaHub",
     "date": "2026-08-15",
     "cat": "Gaming",
@@ -5049,7 +5049,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Wuthering Waves 3.6: Ren Realm và 2 nhân vật mới · OtaHub",
     "date": "2026-08-15",
     "cat": "Gaming",
@@ -5060,7 +5060,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Beast of Reincarnation: Game Freak's First AAA Game · OtaHub",
     "date": "2026-08-14",
     "cat": "Gaming",
@@ -5071,7 +5071,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Beast of Reincarnation: tựa AAA đầu tiên của Game Freak · OtaHub",
     "date": "2026-08-14",
     "cat": "Gaming",
@@ -5082,7 +5082,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Black Clover Closes With Volume 38, New Guidebook · OtaHub",
     "date": "2026-08-14",
     "cat": "Manga",
@@ -5093,7 +5093,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Black Clover khép lại với volume 38 và guidebook mới · OtaHub",
     "date": "2026-08-14",
     "cat": "Manga",
@@ -5104,7 +5104,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Crunchyroll Acquires New Makoto Shinkai Film Rights · OtaHub",
     "date": "2026-08-14",
     "cat": "Anime",
@@ -5115,7 +5115,7 @@
     "lang": "EN"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Crunchyroll và Sony phát hành phim mới của Shinkai · OtaHub",
     "date": "2026-08-14",
     "cat": "Anime",
@@ -5126,7 +5126,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Genshin Impact 7.0: Best Meta Team After Snezhnaya · OtaHub",
     "date": "2026-08-14",
     "cat": "Gaming",
@@ -5137,7 +5137,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Genshin Impact 7.0: tier list đội hình meta Snezhnaya · OtaHub",
     "date": "2026-08-14",
     "cat": "Gaming",
@@ -5148,7 +5148,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Ghost of Yōtei Complete Edition ra mắt 1/10 · OtaHub",
     "date": "2026-08-14",
     "cat": "Gaming",
@@ -5159,7 +5159,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Ghost of Yōtei Complete Edition Released October 1 · OtaHub",
     "date": "2026-08-14",
     "cat": "Gaming",
@@ -5170,7 +5170,7 @@
     "lang": "EN"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Link Click Season 3 Part 1 Officially Aired Today · OtaHub",
     "date": "2026-08-14",
     "cat": "Anime",
@@ -5181,7 +5181,7 @@
     "lang": "EN"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Link Click Season 3 phần 1 lên sóng hôm nay · OtaHub",
     "date": "2026-08-14",
     "cat": "Anime",
@@ -5192,7 +5192,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Made in Abyss: Awakening Mystery ra trailer chính · OtaHub",
     "date": "2026-08-14",
     "cat": "Anime",
@@ -5203,7 +5203,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Made in Abyss: Awakening Mystery Trailer Out October 23 · OtaHub",
     "date": "2026-08-14",
     "cat": "Anime",
@@ -5214,7 +5214,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Mafia: Old Country – DLC Man of Honor ra mắt · OtaHub",
     "date": "2026-08-14",
     "cat": "Gaming",
@@ -5225,7 +5225,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Mafia: Old Country – Man of Honor DLC Out Now · OtaHub",
     "date": "2026-08-14",
     "cat": "Gaming",
@@ -5236,7 +5236,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "MANGA MILLION mở near-simulcast cho 30 bộ manga · OtaHub",
     "date": "2026-08-14",
     "cat": "Manga",
@@ -5247,7 +5247,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "MANGA MILLION Opens Near-Simulcast For 30 Series · OtaHub",
     "date": "2026-08-14",
     "cat": "Manga",
@@ -5258,7 +5258,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Suikoden STAR LEAP Launches Mobile in Japan · OtaHub",
     "date": "2026-08-14",
     "cat": "Gaming",
@@ -5269,7 +5269,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Suikoden STAR LEAP ra mắt mobile Nhật Bản · OtaHub",
     "date": "2026-08-14",
     "cat": "Gaming",
@@ -5280,7 +5280,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "The Ribbon Hero: Netflix Adaptation Princess Knight · OtaHub",
     "date": "2026-08-14",
     "cat": "Anime",
@@ -5291,7 +5291,7 @@
     "lang": "EN"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "The Ribbon Hero: Netflix chuyển thể Princess Knight · OtaHub",
     "date": "2026-08-14",
     "cat": "Anime",
@@ -5302,7 +5302,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Genshin Impact 7.0: Snezhnaya mở cửa, Odette xuất hiện · OtaHub",
     "date": "2026-08-13",
     "cat": "Gaming",
@@ -5313,7 +5313,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Genshin Impact 7.0: Snezhnaya Opens, Odette Debuts · OtaHub",
     "date": "2026-08-13",
     "cat": "Gaming",
@@ -5324,7 +5324,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Hollow Knight: Silksong Announces Sea of Sorrow DLC · OtaHub",
     "date": "2026-08-13",
     "cat": "Gaming",
@@ -5335,7 +5335,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Hollow Knight: Silksong ra DLC miễn phí Sea of Sorrow · OtaHub",
     "date": "2026-08-13",
     "cat": "Gaming",
@@ -5346,7 +5346,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Black Clover mùa 2 tung trailer, trở lại tháng 10 · OtaHub",
     "date": "2026-08-12",
     "cat": "Anime",
@@ -5357,7 +5357,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Black Clover Season 2 Trailer Drops, Returns October · OtaHub",
     "date": "2026-08-12",
     "cat": "Anime",
@@ -5368,7 +5368,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Chained Soldier Season 3: ngày phát sóng và thông tin đã biết · OtaHub",
     "date": "2026-08-12",
     "cat": "Anime",
@@ -5379,7 +5379,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Chained Soldier Season 3: Release Date And What We Know · OtaHub",
     "date": "2026-08-12",
     "cat": "Anime",
@@ -5390,7 +5390,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "JoJo's Bizarre Adventure: Golden Spirit ra mắt 13/8 · OtaHub",
     "date": "2026-08-12",
     "cat": "Gaming",
@@ -5401,7 +5401,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "JoJo's: Golden Spirit Launches Worldwide August 13 · OtaHub",
     "date": "2026-08-12",
     "cat": "Gaming",
@@ -5412,7 +5412,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Kaiju No.8 THE GAME: 1-Year Update Roadmap · OtaHub",
     "date": "2026-08-12",
     "cat": "Gaming",
@@ -5423,7 +5423,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Kaiju No.8 THE GAME: lộ trình cập nhật 1 năm · OtaHub",
     "date": "2026-08-12",
     "cat": "Gaming",
@@ -5434,7 +5434,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "MGS: Master Collection Vol. 2 ấn định ra mắt 27/8 · OtaHub",
     "date": "2026-08-12",
     "cat": "Gaming",
@@ -5445,7 +5445,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "MGS: Master Collection Vol. 2 Launches August 27 · OtaHub",
     "date": "2026-08-12",
     "cat": "Gaming",
@@ -5456,7 +5456,7 @@
     "lang": "EN"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Mushoku Tensei S3: Chaos Breaker Trailer, Aug 16 · OtaHub",
     "date": "2026-08-12",
     "cat": "Anime",
@@ -5467,7 +5467,7 @@
     "lang": "EN"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Mushoku Tensei S3: Chaos Breaker tung trailer, 16/8 · OtaHub",
     "date": "2026-08-12",
     "cat": "Anime",
@@ -5478,7 +5478,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Re:Zero Season 4 Recapture Arc: Finale Sept 30 · OtaHub",
     "date": "2026-08-12",
     "cat": "Anime",
@@ -5500,7 +5500,7 @@
     "lang": "VI"
   },
   {
-    "key": "tik-khanh-quynh",
+    "key": "otahub",
     "title": "Shueisha Launches MANGA MILLION: 400 Free Series · OtaHub",
     "date": "2026-08-12",
     "cat": "Manga",
@@ -5511,7 +5511,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Shueisha ra mắt MANGA MILLION: đọc miễn phí 400 bộ · OtaHub",
     "date": "2026-08-12",
     "cat": "Manga",
@@ -5522,7 +5522,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Star Wars Zero Company: chiến thuật mới từ EA, 27/8 · OtaHub",
     "date": "2026-08-12",
     "cat": "Gaming",
@@ -5533,7 +5533,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Star Wars Zero Company: New EA Strategy Game, Aug 27 · OtaHub",
     "date": "2026-08-12",
     "cat": "Gaming",
@@ -5555,7 +5555,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "VCT Pacific 2026 Stage 2: Global Esports Win · OtaHub",
     "date": "2026-08-11",
     "cat": "Gaming",
@@ -5566,7 +5566,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "One Piece Final Saga: Elbaph đến chương 1194 · OtaHub",
     "date": "2026-08-09",
     "cat": "Manga",
@@ -5577,7 +5577,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "One Piece Final Saga: Oda Reveals Laugh Tale Map · OtaHub",
     "date": "2026-08-09",
     "cat": "Manga",
@@ -5588,7 +5588,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Space Marine 2 năm 3: Chaos Siege Mode, class mới · OtaHub",
     "date": "2026-07-30",
     "cat": "Gaming",
@@ -5599,7 +5599,7 @@
     "lang": "VI"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Space Marine 2 Year 3: Chaos Siege Mode, New Class · OtaHub",
     "date": "2026-07-30",
     "cat": "Gaming",
@@ -5621,7 +5621,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Highest-Rated Games of 2026 (As of September 2026) · OtaHub",
     "date": "2026-06-20",
     "cat": "Gaming",
@@ -5643,7 +5643,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Summer 2026 Anime: Notable Shows and Air Dates · OtaHub",
     "date": "2026-06-18",
     "cat": "Anime",
@@ -5654,7 +5654,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Blue Protocol: Star Resonance: Global Overview (Unrated) · OtaHub",
     "date": "2026-06-17",
     "cat": "Reviews",
@@ -5676,7 +5676,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Berserk arc cuối: Studio Gaga hoàn thành di sản Miura · OtaHub",
     "date": "2026-06-16",
     "cat": "Manga",
@@ -5687,7 +5687,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Berserk Final Arc: Studio Gaga Completes the Legacy · OtaHub",
     "date": "2026-06-16",
     "cat": "Manga",
@@ -5698,7 +5698,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Elden Ring Tarnished Pack: 2 class mới Heavy, Idus Knight · OtaHub",
     "date": "2026-06-12",
     "cat": "Gaming",
@@ -5709,7 +5709,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Elden Ring Tarnished Pack: Heavy, Idus Knight Guide · OtaHub",
     "date": "2026-06-12",
     "cat": "Gaming",
@@ -5731,7 +5731,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Stellar Blade x NIKKE: Free DLC Released June 12, 2025 · OtaHub",
     "date": "2026-06-11",
     "cat": "Gaming",
@@ -5742,7 +5742,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "GTA 6 Launches Nov 19, 2026, $79.99, No PC Yet · OtaHub",
     "date": "2026-06-10",
     "cat": "Gaming",
@@ -5764,7 +5764,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Kingdom Come Deliverance 2 Review: A Top Historical RPG · OtaHub",
     "date": "2026-06-10",
     "cat": "Gaming",
@@ -5775,7 +5775,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Kingdom Come Deliverance 2 review: RPG lịch sử đỉnh · OtaHub",
     "date": "2026-06-10",
     "cat": "Gaming",
@@ -5786,7 +5786,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Resident Evil Requiem: Everything You Need to Know · OtaHub",
     "date": "2026-06-10",
     "cat": "Gaming",
@@ -5797,7 +5797,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Resident Evil Requiem: những điều cần biết · OtaHub",
     "date": "2026-06-10",
     "cat": "Gaming",
@@ -5819,7 +5819,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Tekken 8 Season 2: Four DLC Characters in 2025 · OtaHub",
     "date": "2026-06-10",
     "cat": "Gaming",
@@ -5830,7 +5830,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Stellar Blade: Blood Rain lộ diện, nữ chính mới Evie · OtaHub",
     "date": "2026-06-08",
     "cat": "Gaming",
@@ -5841,7 +5841,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Stellar Blade: Blood Rain Revealed, New Hero Evie · OtaHub",
     "date": "2026-06-08",
     "cat": "Gaming",
@@ -5852,7 +5852,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Xbox Games Showcase 2026: All the Announcements · OtaHub",
     "date": "2026-06-08",
     "cat": "Gaming",
@@ -5863,7 +5863,7 @@
     "lang": "EN"
   },
   {
-    "key": "mambu-duc-anh",
+    "key": "otahub",
     "title": "Xbox Games Showcase 2026: tất cả game được công bố · OtaHub",
     "date": "2026-06-08",
     "cat": "Gaming",
@@ -5874,7 +5874,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "One Piece Egghead Arc: Vegapunk và bí mật thế giới · OtaHub",
     "date": "2026-06-07",
     "cat": "Manga",
@@ -5885,7 +5885,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "One Piece Egghead Arc: Vegapunk's Secret World · OtaHub",
     "date": "2026-06-07",
     "cat": "Manga",
@@ -5896,7 +5896,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Genshin Impact Natlan: Land of Fire Review · OtaHub",
     "date": "2026-06-04",
     "cat": "Reviews",
@@ -5907,7 +5907,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Genshin Impact Natlan: vùng đất lửa và bí mật Celestia · OtaHub",
     "date": "2026-06-04",
     "cat": "Reviews",
@@ -5918,7 +5918,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Dragon Ball DAIMA: di sản Toriyama, tương lai anime · OtaHub",
     "date": "2026-06-03",
     "cat": "Anime",
@@ -5929,7 +5929,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Dragon Ball DAIMA: Toriyama's Legacy Lives On · OtaHub",
     "date": "2026-06-03",
     "cat": "Anime",
@@ -5940,7 +5940,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Jujutsu Kaisen Ending: A Controversial Finale Analyzed · OtaHub",
     "date": "2026-06-01",
     "cat": "Manga",
@@ -5951,7 +5951,7 @@
     "lang": "EN"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Jujutsu Kaisen kết thúc: phân tích ending gây tranh cãi · OtaHub",
     "date": "2026-06-01",
     "cat": "Manga",
@@ -5973,7 +5973,7 @@
     "lang": "VI"
   },
   {
-    "key": "lin-khanh-linh",
+    "key": "otahub",
     "title": "Nintendo Switch 2 Review: Perfect Console or Upgrade? · OtaHub",
     "date": "2026-05-28",
     "cat": "Reviews",

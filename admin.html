@@ -15980,6 +15980,10 @@ function stampArticleAuthor(html, authorName) {
   html = html.replace(/(<meta\s+name="author"\s+content=")[^"]*(")/i, `$1${replSafe(escaped)}$2`);
   html = html.replace(/(<meta\s+property="article:author"\s+content=")[^"]*(")/i, `$1${replSafe(escaped)}$2`);
   html = html.replace(/("author"\s*:\s*\{[\s\S]*?"name"\s*:\s*")[^"]*(")/i, `$1${replSafe(jsonAuthor)}$2`);
+  // Ban biên tập (OtaHub Editorial) = tác giả kiểu Organization, người viết = Person; url trỏ trang hồ sơ
+  // (cùng quy tắc với scripts/sync-article-authors.mjs)
+  html = html.replace(/("author"\s*:\s*\{\s*"@type"\s*:\s*")[^"]*(")/i, `$1${profileSlug === 'otahub' ? 'Organization' : 'Person'}$2`);
+  html = html.replace(/("author"\s*:\s*\{[^{}]*?"url"\s*:\s*")[^"]*(")/i, `$1https://otahub.asia${replSafe(profilePrefix)}${replSafe(profileSlug)}$2`);
   html = html.replace(/(?:<a\b[^>]*class="author-profile-link"[^>]*>)?(<span\b[^>]*\bclass="[^"]*am-badge[^"]*"[^>]*>)[\s\S]*?(<\/span>)(?:<\/a>)?/i, `<a class="author-profile-link" href="${replSafe(profilePrefix)}${replSafe(profileSlug)}">$1${replSafe(escaped)}$2</a>`);
   return html;
 }
