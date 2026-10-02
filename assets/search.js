@@ -1,5 +1,23 @@
 window.IDX = [
   {
+    "title": "Forgotten Island: Why DreamWorks Is Compared to KPop Demon Hunters",
+    "url": "/en/forgotten-island-dreamworks-vs-kpop-demon-hunters",
+    "cat": "Anime",
+    "date": "2026-10-02",
+    "excerpt": "DreamWorks’ Forgotten Island draws on Filipino myth and scored 95% on Rotten Tomatoes but opened weakly. How does it compare with KPop Demon Hunters?",
+    "img": "/assets/img/forgotten-island-home-hero.jpg",
+    "tags": []
+  },
+  {
+    "title": "Forgotten Island của DreamWorks: vì sao được so sánh với KPop Demon Hunters?",
+    "url": "/forgotten-island-dreamworks-so-sanh-kpop-demon-hunters",
+    "cat": "Anime",
+    "date": "2026-10-02",
+    "excerpt": "Forgotten Island của DreamWorks lấy cảm hứng từ thần thoại Philippines, đạt 95% Rotten Tomatoes nhưng phòng vé yếu. Giống và khác KPop Demon Hunters ra sao?",
+    "img": "/assets/img/forgotten-island-home-hero.jpg",
+    "tags": []
+  },
+  {
     "title": "A-1 Pictures Anime Worth Watching: From Lycoris Recoil to Solo Leveling",
     "url": "/en/a-1-pictures-best-anime-lycoris-recoil-solo-leveling",
     "cat": "Anime",
