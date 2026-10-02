@@ -701,5 +701,59 @@
         "labelEn": ""
       }
     ]
+  },
+  "the-beginning-after-the-end": {
+    "name": "The Beginning After The End",
+    "nameEn": "The Beginning After the End",
+    "editions": [
+      {
+        "tab": "manga",
+        "key": "The Beginning After The End",
+        "label": "Manhwa",
+        "labelEn": "Manhwa"
+      },
+      {
+        "tab": "anime-2",
+        "key": "The Strongest King, Second Life Season 2",
+        "label": "Anime mùa 2",
+        "labelEn": "Anime Season 2"
+      }
+    ]
+  },
+  "yoroi-shinden-samurai-troopers": {
+    "name": "Yoroi Shinden Samurai Troopers",
+    "nameEn": "Yoroi Shinden Samurai Troopers",
+    "editions": [
+      {
+        "tab": "anime",
+        "key": "Yoroi Shin Den Samurai Troopers",
+        "label": "Anime phần 1",
+        "labelEn": "Anime Part 1"
+      },
+      {
+        "tab": "part-2",
+        "key": "Yoroi Shin Den Samurai Troopers (Part 2)",
+        "label": "Anime phần 2",
+        "labelEn": "Anime Part 2"
+      }
+    ]
+  },
+  "mahou-no-shimai-lulutto-lilly": {
+    "name": "Mahou no Shimai Lulutto Lilly",
+    "nameEn": "Mahou no Shimai Lulutto Lilly",
+    "editions": [
+      {
+        "tab": "anime",
+        "key": "Mahou no Shimai Lulutto Lilly",
+        "label": "Anime phần 1",
+        "labelEn": "Anime Part 1"
+      },
+      {
+        "tab": "part-2",
+        "key": "Mahou no Shimai Lulutto Lilly (Part 2)",
+        "label": "Anime phần 2",
+        "labelEn": "Anime Part 2"
+      }
+    ]
   }
 }
