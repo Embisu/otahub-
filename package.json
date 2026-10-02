@@ -17,7 +17,9 @@
     "authors": "node scripts/sync-article-authors.mjs",
     "authors:check": "node scripts/sync-article-authors.mjs --check",
     "chrome": "node scripts/sync-site-chrome.mjs",
-    "gta6": "node scripts/build-gta6-hub.mjs && node scripts/sync-site-chrome.mjs",
+    "emag": "node scripts/emag/build.mjs && node scripts/sync-site-chrome.mjs",
+    "emag:check": "node scripts/emag/build.mjs --check",
+    "gta6": "npm run emag",
     "chrome:check": "node scripts/sync-site-chrome.mjs --check",
     "scores:check": "node scripts/build-rankings.mjs --check && node scripts/sync-profile-scores.mjs --check",
     "profiles:complete": "node scripts/complete-profile-catalog.mjs",
@@ -25,7 +27,7 @@
     "news:db:local": "wrangler d1 migrations apply otahub-news --local",
     "news:db:remote": "wrangler d1 migrations apply otahub-news --remote",
     "news:dev": "wrangler dev --test-scheduled",
-    "deploy:check": "node scripts/audit-public-html-safety.mjs && wrangler deploy --dry-run"
+    "deploy:check": "node scripts/audit-public-html-safety.mjs && npm run emag:check && wrangler deploy --dry-run"
   },
   "author": "OtaHub Team",
   "license": "ISC",

@@ -66,3 +66,7 @@ rồi kiểm tra lại `git diff` để chắc chắn chỉ còn đúng phần b
 ## 8. Khi không chắc chắn
 
 Nếu gặp tình huống không có trong tài liệu này (ví dụ cấu trúc trang khác hẳn dự kiến, không tìm thấy pattern để theo, hoặc việc được giao mơ hồ) — DỪNG LẠI, mô tả rõ vấn đề, và hỏi lại thay vì tự suy đoán rồi làm liều. Một lỗi "nhìn có vẻ ổn nhưng thực ra sai" (như các nút filter giả) khó phát hiện hơn nhiều so với việc hỏi lại 1 câu trước khi làm.
+
+## 8. Trang E-Magazine (đếm ngược, đại sự kiện, tổng hợp một tựa)
+
+Mọi trang kiểu e-magazine (hiện có: `/dem-nguoc-gta-6`, `/en/gta-6-countdown`) **chỉ được tạo và sửa bằng spec** trong `src/emag/` rồi chạy `npm run emag`. Tuyệt đối không sửa tay file HTML được sinh ra. Bố cục khóa cứng, quy tắc và cách tạo mới nằm ở `docs/EMAGAZINE-GUIDE.md`; `npm run emag:check` chặn spec vi phạm (tiêu đề, mô tả, ảnh ngoài, VI/EN lệch nhau...).

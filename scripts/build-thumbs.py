@@ -6,7 +6,7 @@ Script này:
      dữ liệu ảnh thẻ trong JS (img:'...' ở rankings/reviews, search.js).
   2. Tạo bản WebP:  /assets/img/_t/<đường-dẫn-gốc>.webp  (rộng tối đa 640px, thẻ thường)
                     /assets/img/_s/<đường-dẫn-gốc>.webp  (rộng tối đa 240px, ảnh nhỏ ≤160px)
-  3. Đổi src sang bản thu nhỏ. Ảnh đầu bài (hero), ảnh trong thân bài, og:image giữ ảnh gốc.
+  3. Đổi src sang bản thu nhỏ. Ảnh đầu bài (hero), ảnh trong thân bài, toàn bộ <main class="em"> (E-Magazine, cần ảnh nét), og:image giữ ảnh gốc.
 Bản thu nhỏ chưa có (ảnh mới tải lên sau lần chạy) -> worker/index.js chuyển hướng về ảnh gốc.
 
 Chạy lại sau khi đăng bài mới:  python scripts/build-thumbs.py --write
@@ -53,7 +53,7 @@ changed = 0
 for f in pages:
     s0 = load(f)
     # Giữ nguyên: thân bài (ảnh nội dung) và ảnh hero/figure đầu bài
-    parts = re.split(r'(<article class="art-body"[\s\S]*?</article>|<figure class="art-hero"[\s\S]*?</figure>)', s0)
+    parts = re.split(r'(<article class="art-body"[\s\S]*?</article>|<figure class="art-hero"[\s\S]*?</figure>|<main class="em">[\s\S]*?</main>)', s0)
     s = ''.join(p if i % 2 else rewrite_tags(p) for i, p in enumerate(parts))
     # Dữ liệu thẻ trong JS (img:'/assets/img/..'): admin đọc/ghi lại các khối dữ liệu này nên
     # KHÔNG đổi URL ở đây; trang tự đổi lúc vẽ thẻ bằng hàm otThumb(). Chỉ cần tạo sẵn ảnh.
