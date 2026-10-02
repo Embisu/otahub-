@@ -51,8 +51,9 @@ def rewrite_tags(chunk):
         return tag.replace(sm.group(0), f' src="{u}"', 1) if u else tag
     return IMG.sub(fix, chunk)
 
-pages = [f for f in subprocess.run(['git', 'ls-files', '*.html'], capture_output=True, text=True).stdout.split()
-         if not f.startswith(('templates/', 'docs/', 'src/')) and f not in ('admin.html',)]
+# Gồm cả trang mới chưa commit (vd hồ sơ vừa dựng), bỏ trang đã xóa
+pages = [f for f in subprocess.run(['git', 'ls-files', '--cached', '--others', '--exclude-standard', '*.html'], capture_output=True, text=True).stdout.split()
+         if not f.startswith(('templates/', 'docs/', 'src/')) and f not in ('admin.html',) and os.path.exists(f)]
 changed = 0
 for f in pages:
     s0 = load(f)

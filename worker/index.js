@@ -57,21 +57,32 @@ async function cachedPublicAuthor(env, url, ctx) {
   return res;
 }
 
-// Hồ sơ tác phẩm đã có trang tĩnh /game|anime|manga/<slug> (scripts/build-profiles.mjs):
-// link cũ /game-detail?t=Tên chuyển hướng 301 sang URL mới. Tựa chưa có hồ sơ vẫn dùng trang động.
-let profilePathsCache = null;
-async function profileRedirect(env, url) {
-  const m = url.pathname.match(/^\/(en\/)?(game|anime|manga)-detail\/?$/);
-  const title = url.searchParams.get('t');
-  if (!m || !title) return null;
-  if (!profilePathsCache) {
+// Hồ sơ tác phẩm có trang tĩnh /ho-so/<slug> (EN /en/profile/<slug>), mỗi phiên bản là một #tab
+// (scripts/build-profiles.mjs). Chuyển hướng 301 sang URL đó:
+//   - trang động cũ /game-detail?t=Tên (bảng assets/profile-paths.json); tựa chưa có hồ sơ vẫn dùng trang động,
+//   - URL hồ sơ cũ /game|anime|manga/<slug> (2026-10-02, bảng assets/profile-moves.json).
+const profileTables = {};
+async function profileTable(env, url, name) {
+  if (!profileTables[name]) {
     try {
-      const res = await env.ASSETS.fetch(new Request(new URL('/assets/profile-paths.json', url)));
-      profilePathsCache = res.ok ? await res.json() : {};
-    } catch (e) { profilePathsCache = {}; }
+      const res = await env.ASSETS.fetch(new Request(new URL(`/assets/${name}.json`, url)));
+      profileTables[name] = res.ok ? await res.json() : {};
+    } catch (e) { profileTables[name] = {}; }
   }
-  const path = profilePathsCache[`${m[2]}|${title}`];
-  return path ? Response.redirect(`${url.origin}${m[1] ? '/en' : ''}${path}`, 301) : null;
+  return profileTables[name];
+}
+async function profileRedirect(env, url) {
+  let m = url.pathname.match(/^\/(en\/)?(game|anime|manga)-detail\/?$/);
+  let path = null;
+  if (m) {
+    const title = url.searchParams.get('t');
+    if (title) path = (await profileTable(env, url, 'profile-paths'))[`${m[2]}|${title}`];
+  } else if ((m = url.pathname.match(/^\/(en\/)?((?:game|anime|manga)\/[a-z0-9-]+?)(?:\.html)?\/?$/))) {
+    path = (await profileTable(env, url, 'profile-moves'))['/' + m[2]];
+  }
+  if (!path) return null;
+  if (m[1]) path = path.replace(/^\/ho-so\//, '/en/profile/');
+  return Response.redirect(`${url.origin}${path}`, 301);
 }
 
 export default {

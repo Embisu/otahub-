@@ -1,6 +1,8 @@
-// Đường dẫn trang hồ sơ tĩnh của từng tác phẩm trong assets/catalog.json: /game|anime|manga/<slug>.
-// Tính tất định từ catalog nên mọi script (build-profiles, build-rankings, sync-home-rankings,
-// sync-profile-scores) cho ra cùng một URL mà không phụ thuộc thứ tự chạy.
+// Đường dẫn trang hồ sơ tác phẩm. Mỗi thương hiệu một trang /ho-so/<slug> (EN: /en/profile/<slug>);
+// các phiên bản (manga, anime từng mùa, phim, game chuyển thể...) là các tab trên cùng trang: /ho-so/<slug>#<tab>.
+// Nhóm thương hiệu khai báo trong assets/series.json; khóa catalog không thuộc nhóm nào là trang một phiên bản.
+// Tính tất định từ catalog + series.json nên mọi script (build-profiles, build-rankings, sync-home-rankings,
+// sync-profile-scores, build-choi-gi) cho ra cùng một URL mà không phụ thuộc thứ tự chạy.
 import fs from 'node:fs';
 
 const root = new URL('../../', import.meta.url);
@@ -10,23 +12,56 @@ export function slugify(s) {
   return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd')
     .replace(/δ/g, 'delta').replace(/&/g, ' and ').replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
-// "Jujutsu Kaisen (Anime)" -> "Jujutsu Kaisen": loại đã có trong đường dẫn
+// "Jujutsu Kaisen (Anime)" -> "Jujutsu Kaisen": loại đã có trong nhãn
 export const displayName = (key) => key.replace(/\s*\((?:Anime|Manga)\)$/, '');
 
-// { "type|Khóa catalog": "/type/slug" } cho mọi hồ sơ trong catalog
-export function profilePaths(catalog) {
-  const paths = {};
-  const used = new Set();
+// Đường dẫn VI -> EN: /ho-so/x#tab -> /en/profile/x#tab
+export const localize = (p, en) => (p && en ? p.replace(/^\/ho-so\//, '/en/profile/') : p);
+export const pagePath = (slug, en) => (en ? '/en/profile/' : '/ho-so/') + slug;
+
+function readSeries() {
+  return JSON.parse(fs.readFileSync(new URL('assets/series.json', root), 'utf8'));
+}
+
+// [{ slug, name, editions: [{ key, type, tab, label, labelEn, also: [] }] }] — mọi hồ sơ, gộp theo thương hiệu
+export function profileSeries(catalog) {
+  const declared = readSeries();
+  const out = [];
+  const taken = new Set();
+  const usedSlugs = new Set();
+  for (const [slug, s] of Object.entries(declared)) {
+    const editions = s.editions.filter((e) => catalog[e.key]).map((e) => ({
+      key: e.key, type: catalog[e.key].type, tab: e.tab, label: e.label, labelEn: e.labelEn || e.label,
+      also: (e.also || []).filter((k) => catalog[k]),
+    }));
+    if (!editions.length) continue;
+    editions.forEach((e) => { taken.add(e.key); e.also.forEach((k) => taken.add(k)); });
+    out.push({ slug, name: s.name, editions });
+    usedSlugs.add(slug);
+  }
   for (const key of Object.keys(catalog).sort()) {
     const e = catalog[key];
-    if (!PROFILE_TYPES.includes(e.type)) continue;
+    if (taken.has(key) || !PROFILE_TYPES.includes(e.type)) continue;
     let slug = slugify(displayName(key)) || 'ho-so';
-    // "Chainsaw Man" và "Chainsaw Man (Manga)" cùng loại: giữ phân biệt
-    if (used.has(`${e.type}/${slug}`)) slug = slugify(key);
+    if (usedSlugs.has(slug)) slug = slugify(key);
     let n = 2; const base = slug;
-    while (used.has(`${e.type}/${slug}`)) slug = `${base}-${n++}`;
-    used.add(`${e.type}/${slug}`);
-    paths[`${e.type}|${key}`] = `/${e.type}/${slug}`;
+    while (usedSlugs.has(slug)) slug = `${base}-${n++}`;
+    usedSlugs.add(slug);
+    out.push({ slug, name: displayName(key), editions: [{ key, type: e.type, tab: e.type, label: '', labelEn: '', also: [] }] });
+  }
+  return out;
+}
+
+// { "type|Khóa catalog": "/ho-so/slug" hoặc "/ho-so/slug#tab" } (đường dẫn VI; EN dùng localize)
+// Phiên bản mặc định (tab đầu) không kèm #tab.
+export function profilePaths(catalog) {
+  const paths = {};
+  for (const s of profileSeries(catalog)) {
+    s.editions.forEach((e, i) => {
+      const p = '/ho-so/' + s.slug + (i ? '#' + e.tab : '');
+      paths[`${e.type}|${e.key}`] = p;
+      for (const k of e.also) paths[`${catalog[k].type}|${k}`] = p;
+    });
   }
   return paths;
 }
@@ -46,18 +81,30 @@ export function aliasPaths(paths) {
   return out;
 }
 
+// URL hồ sơ cũ (/game|anime|manga/<slug>, dùng tới 2026-10-02) -> đường dẫn mới, để chuyển hướng 301
+export function legacyMoves(paths) {
+  const legacy = JSON.parse(fs.readFileSync(new URL('scripts/data/legacy-profile-paths.json', root), 'utf8'));
+  const out = {};
+  for (const [old, k] of Object.entries(legacy)) if (paths[k]) out[old] = paths[k];
+  return out;
+}
+
 // Link hồ sơ cho một khóa catalog (prefix '' hoặc '/en'); không có hồ sơ -> null
 export function profileUrl(catalog, type, key, prefix = '') {
   const p = profilePaths(catalog)[`${type}|${key}`];
-  return p ? prefix + p : null;
+  return p ? localize(p, prefix === '/en') : null;
 }
 
-// Đổi link trang hồ sơ động href="/game-detail?t=..." trong HTML sang URL tĩnh (nếu tựa đã có hồ sơ)
-export function rewriteProfileLinks(html, allPaths) {
+// Đổi link hồ sơ trong HTML sang URL mới: trang động href="/game-detail?t=..." (nếu tựa đã có hồ sơ)
+// và URL tĩnh cũ href="/anime/<slug>" (moves từ legacyMoves)
+export function rewriteProfileLinks(html, allPaths, moves = {}) {
   return html.replace(/href="\/(en\/)?(game|anime|manga)-detail\?t=([^"&#]+)"/g, (m, en, type, enc) => {
     let title;
     try { title = decodeURIComponent(enc.replace(/\+/g, ' ')); } catch { return m; }
     const p = allPaths[`${type}|${title}`];
-    return p ? `href="${en ? '/en' : ''}${p}"` : m;
+    return p ? `href="${localize(p, !!en)}"` : m;
+  }).replace(/href="\/(en\/)?((?:game|anime|manga)\/[a-z0-9-]+)"/g, (m, en, old) => {
+    const p = moves['/' + old];
+    return p ? `href="${localize(p, !!en)}"` : m;
   });
 }

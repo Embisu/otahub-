@@ -5,6 +5,18 @@ if(!root)return;
 var detailStyle=document.createElement('style');detailStyle.id='ot-detail-style';
 detailStyle.textContent=`
 .ah-bg{filter:blur(22px) saturate(1.15) brightness(.55);transform:scale(1.12)}
+.ed-bar{position:relative;z-index:2;background:rgba(11,4,24,.92);border-bottom:1px solid rgba(255,255,255,.08)}
+.ed-in{max-width:1440px;margin:0 auto;padding:12px 40px;display:flex;align-items:center;gap:16px}
+.ed-name{font-family:var(--fd);font-weight:800;font-size:15px;color:var(--white);white-space:nowrap}
+.ed-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.ed-tabs::-webkit-scrollbar{display:none}
+.ed-tab{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:var(--dim);font-family:var(--fd);font-weight:700;font-size:13px;text-decoration:none;white-space:nowrap;transition:border-color .2s,color .2s,background .2s}
+.ed-tab b{font-weight:800;color:var(--amber)}
+.ed-tab:hover{color:var(--white);border-color:rgba(255,255,255,.3)}
+.ed-tab.on{color:#0b0220;background:var(--acc);border-color:var(--acc)}
+.ed-tab.on b{color:#0b0220}
+.ed-panel[hidden]{display:none}
+@media(max-width:768px){.ed-in{padding:10px 16px;flex-direction:column;align-items:flex-start;gap:8px}.ed-tabs{max-width:100%}}
 .ah-poster{border-radius:6px;background:var(--surf)}
 .anime-hero.is-wide .ah-poster{width:320px;height:180px}
 .ah-badge.type{border-color:color-mix(in srgb,var(--acc) 40%,transparent);background:color-mix(in srgb,var(--acc) 8%,transparent)}
@@ -255,9 +267,10 @@ function generatedEntry(title){
 }
 
 // Trang hồ sơ tĩnh /game|anime|manga/<slug> (scripts/build-profiles.mjs); thiếu trong bảng thì dùng trang động ?t=
+function localize(p){return EN?p.replace(/^\/ho-so\//,'/en/profile/'):p;}
 function profilePath(type, title){
   var p=(window.OT_PROFILE_PATHS||{})[type+'|'+title];
-  return p?(EN?'/en':'')+p:(EN?'/en/':'/')+type+'-detail?t='+encodeURIComponent(title);
+  return p?localize(p):(EN?'/en/':'/')+type+'-detail?t='+encodeURIComponent(title);
 }
 function hrefFor(title, entry){
   return profilePath(entry.type||TYPE, title);
@@ -305,12 +318,13 @@ function renderEntry(title, entry, catalog){
   document.title=name+(hasScore?(EN?' · Review '+entry.score+'/10':' · Đánh giá '+entry.score+'/10'):'')+(EN?' · Profile · OtaHub':' · Hồ sơ · OtaHub');
   var descEl=document.querySelector('meta[name="description"]');
   if(descEl)descEl.setAttribute('content', entry.desc.slice(0,155));
-  var pageUrl='https://otahub.asia'+profilePath(TYPE, title);
+  var pageUrl='https://otahub.asia'+profilePath(TYPE, title).replace(/#.*/,'');
   var canon=document.querySelector('link[rel="canonical"]');
   if(canon)canon.setAttribute('href', pageUrl);
   var viPath=(window.OT_PROFILE_PATHS||{})[TYPE+'|'+title];
+  viPath=viPath&&viPath.replace(/#.*/,'');
   var viUrl='https://otahub.asia'+(viPath||'/'+TYPE+'-detail?t='+encodeURIComponent(title));
-  var enUrl='https://otahub.asia/en'+(viPath||'/'+TYPE+'-detail?t='+encodeURIComponent(title));
+  var enUrl='https://otahub.asia'+(viPath?viPath.replace(/^\/ho-so\//,'/en/profile/'):'/en/'+TYPE+'-detail?t='+encodeURIComponent(title));
   document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(function(link){
     link.setAttribute('href',link.getAttribute('hreflang')==='en'?enUrl:viUrl);
   });
@@ -367,7 +381,8 @@ function renderEntry(title, entry, catalog){
   // Gợi ý: cùng loại, ưu tiên cùng thể loại rồi điểm cao; không gợi ý chính nó / bản trùng tên
   var genreWords=(entry.genre||'').toLowerCase().split(/[\/,·]+/).map(function(s){return s.trim();}).filter(Boolean);
   var related=Object.keys(catalog).filter(function(k){
-    return k!==title&&catalog[k].type===entry.type&&k.replace(/\s*\((?:Anime|Manga)\)$/,'')!==name;
+    var base=function(x){return ((window.OT_PROFILE_PATHS||{})[catalog[x].type+'|'+x]||x).replace(/#.*/,'');};
+    return k!==title&&catalog[k].type===entry.type&&k.replace(/\s*\((?:Anime|Manga)\)$/,'')!==name&&base(k)!==base(title);
   }).map(function(k){
     var e=catalog[k], g=(e.genre||'').toLowerCase();
     var overlap=genreWords.reduce(function(n,w){return n+(g.indexOf(w)>-1?1:0);},0);
@@ -425,15 +440,37 @@ function renderEntry(title, entry, catalog){
 
 // Ảnh ngang (banner Steam...) không cắt vào khung dọc
 function markWidePoster(){
-  var poster=root.querySelector('.ah-poster');
-  if(poster&&poster.addEventListener){
-    var markWide=function(){if(poster.naturalWidth>poster.naturalHeight*1.15)root.querySelector('.anime-hero').classList.add('is-wide');};
+  if(!root.querySelectorAll)return;
+  Array.prototype.forEach.call(root.querySelectorAll('.anime-hero'),function(hero){
+    var poster=hero.querySelector('.ah-poster');
+    if(!poster||!poster.addEventListener)return;
+    var markWide=function(){if(poster.naturalWidth>poster.naturalHeight*1.15)hero.classList.add('is-wide');};
     if(poster.complete)markWide();else poster.addEventListener('load',markWide);
+  });
+}
+
+// Trang hồ sơ nhiều phiên bản (manga / anime / phim / game): mỗi phiên bản một tab, #tab trên URL chọn sẵn
+function initEditionTabs(){
+  var tabs=root.querySelectorAll('.ed-tab');
+  if(!tabs.length)return;
+  function show(id, push){
+    var panel=root.querySelector('.ed-panel[data-ed="'+id+'"]');
+    if(!panel)return;
+    Array.prototype.forEach.call(root.querySelectorAll('.ed-panel'),function(p){p.hidden=p!==panel;});
+    Array.prototype.forEach.call(tabs,function(t){var on=t.getAttribute('data-ed')===id;t.classList.toggle('on',on);t.setAttribute('aria-selected',on?'true':'false');});
+    if(push&&history.replaceState)history.replaceState(null,'',id===tabs[0].getAttribute('data-ed')?location.pathname:'#'+id);
   }
+  Array.prototype.forEach.call(tabs,function(t){
+    t.addEventListener('click',function(ev){ev.preventDefault();show(t.getAttribute('data-ed'),true);});
+  });
+  var fromHash=function(){var h=decodeURIComponent(location.hash.slice(1));if(h)show(h,false);};
+  window.addEventListener('hashchange',fromHash);
+  fromHash();
 }
 
 if(root.hasAttribute('data-prerendered')){
   markWidePoster();
+  initEditionTabs();
 }else if(!qTitle){
   renderEmpty();
 }else{
@@ -445,7 +482,7 @@ if(root.hasAttribute('data-prerendered')){
     var found=findEntry(catalog, qTitle);
     // Tựa đã có trang hồ sơ tĩnh: chuyển sang URL chính (worker thường đã chuyển hướng 301 trước)
     var clean=found&&window.OT_PROFILE_PATHS[TYPE+'|'+found[0]];
-    if(clean&&!window.OT_PRERENDER){location.replace((EN?'/en':'')+clean);return;}
+    if(clean&&!window.OT_PRERENDER){location.replace(localize(clean));return;}
     if(!found){renderEntry(qTitle, generatedEntry(qTitle), catalog);return;}
     renderEntry(found[0], found[1], catalog);
   }).catch(function(){

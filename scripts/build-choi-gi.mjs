@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import { verifiedReviews, articleFile } from './lib/review-scores.mjs';
-import { profilePaths, aliasPaths } from './lib/profile-paths.mjs';
+import { profilePaths, aliasPaths, localize } from './lib/profile-paths.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 
@@ -1641,7 +1641,7 @@ function prepare(items, lang) {
     if (!r && lang === 'en' && !(link && link.startsWith('/en/'))) link = enOf(VI_BY_ID.get(it.id)?.link);
     if (link && !pageFile(link)) link = null;
     const prof = PROFILE_PATHS[`${it.type}|${VI_BY_ID.get(it.id)?.name}`] || PROFILE_PATHS[`${it.type}|${it.name}`];
-    return { ...it, score: r ? r.score : null, link: link || null, reviewed: !!r, profile: prof ? (lang === 'en' ? '/en' : '') + prof : null };
+    return { ...it, score: r ? r.score : null, link: link || null, reviewed: !!r, profile: prof ? localize(prof, lang === 'en') : null };
   });
 }
 

@@ -131,7 +131,8 @@ for (const r of verified.values()) { scoreByUrl.set(r.url, r.score.toFixed(1)); 
 const PROFILE_ALIAS = { 'Kaiju No 8': 'Kaiju No.8', 'Ghost of Yōtei': 'Ghost of Yōtei: Complete Edition', 'Solo Leveling': 'Solo Leveling Season 2', TBATE: 'The Beginning After The End', 'Sousou no Frieren': 'Frieren Season 2', 'Bleach: TYBW Part 5': 'Bleach: TYBW Final Part' };
 const PROFILE_BY_PATH = new Map(Object.entries(profilePaths(catalog)).map(([k, p]) => [p, k.slice(k.indexOf('|') + 1)]));
 function canonFor(url) {
-  const s = url.match(/^(?:\/en)?(\/(?:game|anime|manga)\/[a-z0-9-]+)\/?$/);
+  // /ho-so/<slug>[#tab] hoặc /en/profile/<slug>[#tab]
+  const s = url.replace(/^\/en\/profile\//, '/ho-so/').match(/^(\/ho-so\/[a-z0-9-]+(?:#[a-z0-9-]+)?)$/);
   if (s && PROFILE_BY_PATH.has(s[1])) return catalog[PROFILE_BY_PATH.get(s[1])].score;
   const m = url.match(/^(?:\/en)?\/(game|anime|manga)-detail\?t=([^"'&#]+)/);
   if (m) {

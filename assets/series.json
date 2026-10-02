@@ -1,0 +1,125 @@
+{
+  "chainsaw-man": {
+    "name": "Chainsaw Man",
+    "editions": [
+      { "tab": "manga", "key": "Chainsaw Man", "also": ["Chainsaw Man (Manga)"], "label": "Manga", "labelEn": "Manga" },
+      { "tab": "anime", "key": "Chainsaw Man (Anime)", "label": "Anime mùa 1", "labelEn": "Anime Season 1" },
+      { "tab": "movie", "key": "Chainsaw Man: Reze Arc", "label": "Phim Reze Arc", "labelEn": "Reze Arc movie" }
+    ]
+  },
+  "jujutsu-kaisen": {
+    "name": "Jujutsu Kaisen",
+    "editions": [
+      { "tab": "manga", "key": "Jujutsu Kaisen", "label": "Manga", "labelEn": "Manga" },
+      { "tab": "anime", "key": "Jujutsu Kaisen (Anime)", "label": "Anime", "labelEn": "Anime" }
+    ]
+  },
+  "dandadan": {
+    "name": "Dandadan",
+    "editions": [
+      { "tab": "manga", "key": "Dandadan", "label": "Manga", "labelEn": "Manga" },
+      { "tab": "anime-2", "key": "Dandadan Season 2", "label": "Anime mùa 2", "labelEn": "Anime Season 2" }
+    ]
+  },
+  "one-piece": {
+    "name": "One Piece",
+    "editions": [
+      { "tab": "manga", "key": "One Piece", "label": "Manga · Final Saga", "labelEn": "Manga · Final Saga" },
+      { "tab": "egghead", "key": "One Piece: Egghead Arc", "label": "Arc Egghead", "labelEn": "Egghead Arc" }
+    ]
+  },
+  "kaiju-no-8": {
+    "name": "Kaiju No.8",
+    "editions": [
+      { "tab": "manga", "key": "Kaiju No.8", "label": "Manga", "labelEn": "Manga" },
+      { "tab": "game", "key": "Kaiju No.8 THE GAME", "label": "Game", "labelEn": "Game" }
+    ]
+  },
+  "black-clover": {
+    "name": "Black Clover",
+    "editions": [
+      { "tab": "manga", "key": "Black Clover", "label": "Manga", "labelEn": "Manga" },
+      { "tab": "anime", "key": "Black Clover (Anime)", "label": "Anime", "labelEn": "Anime" }
+    ]
+  },
+  "blue-lock": {
+    "name": "Blue Lock",
+    "editions": [
+      { "tab": "manga", "key": "Blue Lock", "label": "Manga", "labelEn": "Manga" },
+      { "tab": "anime", "key": "Blue Lock (Anime)", "label": "Anime", "labelEn": "Anime" }
+    ]
+  },
+  "overgeared": {
+    "name": "Overgeared",
+    "editions": [
+      { "tab": "webtoon", "key": "Overgeared", "label": "Tiểu thuyết & webtoon", "labelEn": "Novel & webtoon" },
+      { "tab": "anime", "key": "Overgeared (Anime)", "label": "Anime", "labelEn": "Anime" }
+    ]
+  },
+  "detective-conan": {
+    "name": "Detective Conan",
+    "editions": [
+      { "tab": "manga", "key": "Detective Conan", "label": "Manga", "labelEn": "Manga" },
+      { "tab": "anime", "key": "Detective Conan (Anime)", "label": "Anime & phim", "labelEn": "Anime & films" }
+    ]
+  },
+  "akane-banashi": {
+    "name": "Akane-banashi",
+    "editions": [
+      { "tab": "manga", "key": "Akane-banashi", "label": "Manga", "labelEn": "Manga" },
+      { "tab": "anime", "key": "Akane-banashi (Anime)", "label": "Anime", "labelEn": "Anime" }
+    ]
+  },
+  "haikyu": {
+    "name": "Haikyu!!",
+    "editions": [
+      { "tab": "manga", "key": "Haikyu!!", "label": "Manga", "labelEn": "Manga" },
+      { "tab": "movie", "key": "Haikyu!! The Dumpster Battle", "label": "Phim Trận Chiến Bãi Phế Liệu", "labelEn": "The Dumpster Battle movie" }
+    ]
+  },
+  "solo-leveling": {
+    "name": "Solo Leveling",
+    "editions": [
+      { "tab": "anime-2", "key": "Solo Leveling Season 2", "label": "Anime mùa 2", "labelEn": "Anime Season 2" },
+      { "tab": "ragnarok", "key": "Solo Leveling: Ragnarok", "label": "Manhwa Ragnarok", "labelEn": "Ragnarok manhwa" }
+    ]
+  },
+  "dragon-ball": {
+    "name": "Dragon Ball",
+    "editions": [
+      { "tab": "daima", "key": "Dragon Ball DAIMA", "label": "Anime DAIMA", "labelEn": "DAIMA anime" },
+      { "tab": "sparking-zero", "key": "Dragon Ball: Sparking! Zero", "label": "Game Sparking! Zero", "labelEn": "Sparking! Zero game" }
+    ]
+  },
+  "jojos-bizarre-adventure": {
+    "name": "JoJo's Bizarre Adventure",
+    "editions": [
+      { "tab": "steel-ball-run", "key": "JoJo's Bizarre Adventure: Steel Ball Run", "label": "Anime Steel Ball Run", "labelEn": "Steel Ball Run anime" },
+      { "tab": "golden-spirit", "key": "JoJo's Bizarre Adventure: Golden Spirit", "label": "Game Golden Spirit", "labelEn": "Golden Spirit game" }
+    ]
+  },
+  "cyberpunk": {
+    "name": "Cyberpunk",
+    "editions": [
+      { "tab": "2077", "key": "Cyberpunk 2077", "label": "Game Cyberpunk 2077", "labelEn": "Cyberpunk 2077 game" },
+      { "tab": "edgerunners-2", "key": "Cyberpunk: Edgerunners 2", "label": "Anime Edgerunners 2", "labelEn": "Edgerunners 2 anime" }
+    ]
+  },
+  "hollow-knight": {
+    "name": "Hollow Knight",
+    "editions": [
+      { "tab": "hollow-knight", "key": "Hollow Knight", "label": "Hollow Knight (2017)", "labelEn": "Hollow Knight (2017)" },
+      { "tab": "silksong", "key": "Hollow Knight: Silksong", "label": "Silksong", "labelEn": "Silksong" }
+    ]
+  },
+  "frieren": { "name": "Frieren", "editions": [{ "tab": "anime-2", "key": "Frieren Season 2", "label": "Anime mùa 2", "labelEn": "Anime Season 2" }] },
+  "demon-slayer": { "name": "Demon Slayer", "editions": [{ "tab": "infinity-castle", "key": "Demon Slayer: Infinity Castle", "label": "Phim Vô Hạn Thành", "labelEn": "Infinity Castle movie" }] },
+  "bleach": { "name": "Bleach", "editions": [{ "tab": "tybw", "key": "Bleach: TYBW Final Part", "label": "Anime Huyết Chiến Ngàn Năm", "labelEn": "Thousand-Year Blood War anime" }] },
+  "attack-on-titan": { "name": "Attack on Titan", "editions": [{ "tab": "final-season", "key": "Attack on Titan: Final Season", "label": "Anime Final Season", "labelEn": "Final Season anime" }] },
+  "re-zero": { "name": "Re:Zero", "editions": [{ "tab": "anime-4", "key": "Re:Zero Season 4", "label": "Anime mùa 4", "labelEn": "Anime Season 4" }] },
+  "link-click": { "name": "Link Click", "editions": [{ "tab": "anime-3", "key": "Link Click Season 3", "label": "Anime mùa 3", "labelEn": "Anime Season 3" }] },
+  "my-hero-academia": { "name": "My Hero Academia", "editions": [{ "tab": "final-season", "key": "My Hero Academia Final Season", "label": "Anime Final Season", "labelEn": "Final Season anime" }] },
+  "elden-ring": { "name": "Elden Ring", "editions": [{ "tab": "shadow-of-the-erdtree", "key": "Elden Ring: Shadow of the Erdtree", "label": "DLC Shadow of the Erdtree", "labelEn": "Shadow of the Erdtree DLC" }] },
+  "ghost-of-yotei": { "name": "Ghost of Yōtei", "editions": [{ "tab": "complete-edition", "key": "Ghost of Yōtei: Complete Edition", "label": "Complete Edition", "labelEn": "Complete Edition" }] },
+  "tekken-8": { "name": "Tekken 8", "editions": [{ "tab": "season-2", "key": "Tekken 8: Season 2", "label": "Season 2", "labelEn": "Season 2" }] }
+}

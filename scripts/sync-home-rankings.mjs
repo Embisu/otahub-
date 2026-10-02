@@ -12,7 +12,7 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
 import { verifiedReviews } from './lib/review-scores.mjs';
-import { profilePaths } from './lib/profile-paths.mjs';
+import { profilePaths, localize } from './lib/profile-paths.mjs';
 import { profileKeyForReview } from './lib/profile-review-map.mjs';
 
 const UPDATED = { y: 2026, m: 10, d: 1 };
@@ -60,7 +60,7 @@ function rankedItems(group) {
 
 // Link hồ sơ của một tựa trên bảng xếp hạng (khóa hồ sơ do build-rankings.mjs ghi vào CATS).
 function profileHref(item, prefix, type) {
-  if (item.profile) return (PROFILE_PATHS[`${type}|${item.profile}`] && prefix + PROFILE_PATHS[`${type}|${item.profile}`]) || `${prefix}/${type}-detail?t=${encodeURIComponent(item.profile)}`;
+  if (item.profile) return (PROFILE_PATHS[`${type}|${item.profile}`] && localize(PROFILE_PATHS[`${type}|${item.profile}`], prefix === '/en')) || `${prefix}/${type}-detail?t=${encodeURIComponent(item.profile)}`;
   return item.url || `${prefix}/${type}-detail?t=${encodeURIComponent(item.title)}`;
 }
 
@@ -147,7 +147,7 @@ function syncMangaColumns(html, prefix, mangaTop) {
     } else if (found.length) {
       const items = found.map((m, i) => {
         const hit = mangaEntry(m[2], m[1]);
-        const href = hit ? (PROFILE_PATHS[`manga|${hit.key}`] ? prefix + PROFILE_PATHS[`manga|${hit.key}`] : `${prefix}/manga-detail?t=${encodeURIComponent(hit.key)}`) : m[1];
+        const href = hit ? (PROFILE_PATHS[`manga|${hit.key}`] ? localize(PROFILE_PATHS[`manga|${hit.key}`], prefix === '/en') : `${prefix}/manga-detail?t=${encodeURIComponent(hit.key)}`) : m[1];
         const score = hit ? hit.entry.score : reviewScoreByUrl.get(m[1]) || null;
         return { href, body: m[2].replace(/<div class="mi-score"[^>]*>[^<]*<\/div>/, ''), score, i };
       }).sort((a, b) => (parseFloat(b.score) || 0) - (parseFloat(a.score) || 0) || a.i - b.i);

@@ -10,7 +10,7 @@
     "not_found_handling": "404-page",
     "binding": "ASSETS",
     // Trang hồ sơ động cũ (?t=) phải qua worker để chuyển hướng 301 sang trang hồ sơ tĩnh
-    "run_worker_first": ["/game-detail*", "/anime-detail*", "/manga-detail*", "/en/game-detail*", "/en/anime-detail*", "/en/manga-detail*"]
+    "run_worker_first": ["/game-detail*", "/anime-detail*", "/manga-detail*", "/en/game-detail*", "/en/anime-detail*", "/en/manga-detail*", "/game/*", "/anime/*", "/manga/*", "/en/game/*", "/en/anime/*", "/en/manga/*"]
   },
   "kv_namespaces": [
     {
