@@ -189,12 +189,12 @@
     },
     "review": "/gia-dinh-diep-vien-anime-review",
     "reviewEn": "/en/spy-x-family-anime-review",
-    "verdict": "Xuất Sắc",
+    "verdict": "Xuất sắc",
     "verdictEn": "Excellent",
     "reviewSummary": "Gia Đình Điệp Viên là sự kết hợp hoàn hảo giữa những pha hành động điệp viên căng thẳng và những khoảnh khắc gia đình ấm áp, hài hước giữa ba con người xa lạ: điệp viên Twilight, sát thủ Yor và cô bé có khả năng đọc suy nghĩ Anya. Đánh giá sự phối hợp sản xuất giữa Wit Studio và CloverWorks mang lại tác phẩm chữa lành quốc dân.",
     "reviewSummaryEn": "Spy x Family delivers an exquisite balance between cold-war espionage action and heartwarming domestic comedy among three undercover strangers: master spy Twilight, lethal assassin Yor, and telepathic toddler Anya. An in-depth review of Wit Studio and CloverWorks' hit anime adaptation.",
-    "reviewNote": "Wit Studio & CloverWorks, 3 mùa (2022–2025); manga hơn 42 triệu bản",
-    "reviewNoteEn": "Wit Studio & CloverWorks, 3 seasons (2022–2025); manga over 42 million copies"
+    "reviewNote": "Gia Đình Điệp Viên là một trong những anime hài gia đình thành công nhất thập niên, nhờ ba nhân vật chính duyên dáng và công thức hài-hành động cân bằng tốt.",
+    "reviewNoteEn": "Spy x Family is one of the most successful family comedy anime of the decade, thanks to three charming leads and a well-balanced comedy-action formula."
   },
   "Elden Ring: Shadow of the Erdtree": {
     "type": "game",
@@ -243,12 +243,12 @@
     "scoreSource": "review",
     "review": "/elden-ring-shadow-of-the-erdtree-review",
     "reviewEn": "/en/elden-ring-shadow-of-the-erdtree-review",
-    "verdict": "Kiệt Tác",
+    "verdict": "Kiệt tác",
     "verdictEn": "Masterpiece",
     "reviewSummary": "Review Elden Ring: Shadow of the Erdtree: bản mở rộng dài như một game riêng, Land of Shadow đầy hầm ngục, vũ khí mới và hệ Scadutree; Metacritic 94, độ khó cao là rào cản.",
     "reviewSummaryEn": "Elden Ring: Shadow of the Erdtree review: an expansion as big as a standalone game, with the Land of Shadow, new weapons and the Scadutree system; Metacritic 94, though the difficulty is a barrier.",
-    "reviewNote": "Metacritic 94 (PS5), IGN 10/10, GameSpot 10/10",
-    "reviewNoteEn": "Metacritic 94 (PS5), IGN 10/10, GameSpot 10/10"
+    "reviewNote": "Shadow of the Erdtree là chương kết xứng đáng cho Elden Ring và là chuẩn mực mới cho bản mở rộng: quy mô lớn, thiết kế thế giới sắc sảo, chiến đấu và trùm đáng nhớ. Độ khó và cách kể chuyện tường minh là hai điều đáng cân nhắc.",
+    "reviewNoteEn": "Shadow of the Erdtree is a worthy closing chapter for Elden Ring and a new benchmark for expansions: large in scale, sharp in world design, with memorable combat and bosses. The difficulty and more explicit storytelling are the two things to weigh."
   },
   "Monster Hunter Wilds": {
     "type": "game",
@@ -297,12 +297,12 @@
     "scoreSource": "review",
     "review": "/monster-hunter-wilds-review",
     "reviewEn": "/en/monster-hunter-wilds-review",
-    "verdict": "Xuất Sắc",
+    "verdict": "Xuất sắc",
     "verdictEn": "Excellent",
     "reviewSummary": "Review Monster Hunter Wilds: Capcom thêm Focus Mode, thú cưỡi Seikret và hệ sinh thái động, Metacritic 88, bán 8 triệu bản trong 3 ngày; hiệu năng PC và độ khó thấp là điểm trừ.",
     "reviewSummaryEn": "Monster Hunter Wilds review: Capcom adds Focus Mode, the Seikret mount and a dynamic ecosystem, Metacritic 88 and 8 million copies in three days; PC performance and low difficulty are the drawbacks.",
-    "reviewNote": "Metacritic 88 (PS5, PC), OpenCritic 95% khuyên chơi",
-    "reviewNoteEn": "Metacritic 88 (PS5, PC), OpenCritic 95% recommend"
+    "reviewNote": "Monster Hunter Wilds là game săn quái đẹp và liền mạch nhất của Capcom, mạnh ở hệ sinh thái và chiến đấu, yếu ở hiệu năng PC và hậu game.",
+    "reviewNoteEn": "Monster Hunter Wilds is Capcom's best-looking and most seamless monster hunter, strong in ecosystem and combat, weaker in PC performance and endgame."
   },
   "Solo Leveling Season 2": {
     "type": "anime",
@@ -418,12 +418,12 @@
     "scoreSource": "review",
     "review": "/wuthering-waves-review",
     "reviewEn": "/en/wuthering-waves-review",
-    "verdict": "Kiệt Tác",
+    "verdict": "Kiệt tác",
     "verdictEn": "Masterpiece",
     "reviewSummary": "Review Wuthering Waves: game hành động thế giới mở gacha của Kuro Games, ra 23/5/2024, chiến đấu Echo và parry, di chuyển parkour; Metacritic 71–76, gacha dễ chịu nhưng khởi đầu lỗi.",
     "reviewSummaryEn": "Wuthering Waves review: Kuro Games' open-world gacha action RPG launched May 23, 2024, with Echo and parry combat and parkour traversal; Metacritic 71 to 76, a forgiving gacha but a buggy start.",
-    "reviewNote": "Metacritic 71 (PC), 76 (PS5); OpenCritic 82%",
-    "reviewNoteEn": "Metacritic 71 (PC), 76 (PS5); OpenCritic 82%"
+    "reviewNote": "Wuthering Waves là game gacha hành động thế giới mở đáng thử, mạnh ở chiến đấu và di chuyển, được cải thiện đều theo từng bản cập nhật. Điểm Metacritic thấp hơn và khởi đầu lỗi là hai lưu ý.",
+    "reviewNoteEn": "Wuthering Waves is an open-world action gacha worth trying, strong in combat and traversal and improving steadily with each update. The lower Metacritic scores and rocky launch are two caveats."
   },
   "Genshin Impact": {
     "type": "game",
@@ -469,12 +469,12 @@
     "scoreSource": "review",
     "review": "/genshin-70-snezhnaya-review",
     "reviewEn": "/en/genshin-70-snezhnaya-review",
-    "verdict": "Xuất Sắc",
+    "verdict": "Xuất sắc",
     "verdictEn": "Excellent",
     "reviewSummary": "Review Genshin Impact 7.0 Snezhnaya (12/8/2026): quốc gia thứ bảy của Teyvat, chuyến tàu khám phá, chế độ TPS Eye of Graeae và Odette Cryo; điểm mạnh là quy mô, gacha vẫn là điểm trừ.",
     "reviewSummaryEn": "Genshin Impact 7.0 Snezhnaya review (August 12, 2026): Teyvat's seventh nation, train exploration, the Eye of Graeae TPS mode and Cryo Odette; scale is the strength, while gacha remains the drawback.",
-    "reviewNote": "Snezhnaya, chế độ bắn súng góc nhìn thứ ba, Odette; game \"được ưa chuộng chung\" theo Wikipedia",
-    "reviewNoteEn": "Snezhnaya, a third-person shooter mode and Odette; generally favorable reception per Wikipedia"
+    "reviewNote": "Genshin Impact 7.0 là một bản cập nhật lớn và đáng chờ, mở ra Snezhnaya, thêm chế độ TPS và tiếp tục các mạch truyện quan trọng. Điểm trừ vẫn là gacha và endgame.",
+    "reviewNoteEn": "Genshin Impact 7.0 is a major, worthwhile update that opens Snezhnaya, adds a TPS mode and advances key story threads. Gacha and endgame remain the drawbacks."
   },
   "Honkai: Star Rail": {
     "type": "game",
@@ -520,12 +520,12 @@
     "scoreSource": "review",
     "review": "/honkai-star-rail-review",
     "reviewEn": "/en/honkai-star-rail-review",
-    "verdict": "Xuất Sắc",
+    "verdict": "Xuất sắc",
     "verdictEn": "Excellent",
     "reviewSummary": "Review Honkai: Star Rail: JRPG theo lượt miễn phí của HoYoverse, ra 26/4/2023, chiến đấu Weakness Break sâu, cốt truyện Astral Express; IGN 9/10, có gacha.",
     "reviewSummaryEn": "Honkai: Star Rail review: HoYoverse's free turn-based JRPG launched April 26, 2023, with deep Weakness Break combat and the Astral Express story; IGN 9/10, with gacha monetization.",
-    "reviewNote": "Metacritic 80 (PC), 82 (PS5); IGN 9/10; OpenCritic 90%",
-    "reviewNoteEn": "Metacritic 80 (PC), 82 (PS5); IGN 9/10; OpenCritic 90%"
+    "reviewNote": "Honkai: Star Rail là một trong những game gacha có chiều sâu nhất hiện nay, nhờ chiến đấu theo lượt và thế giới có bản sắc. Gacha vẫn là điều bạn phải chấp nhận.",
+    "reviewNoteEn": "Honkai: Star Rail is one of the deepest gacha games around thanks to its turn-based combat and distinctive worlds. Gacha remains something you must accept."
   },
   "Zenless Zone Zero": {
     "type": "game",
@@ -613,12 +613,12 @@
     "scoreSource": "review",
     "review": "/black-myth-wukong-review",
     "reviewEn": "/en/black-myth-wukong-review",
-    "verdict": "Rất Hay",
+    "verdict": "Rất hay",
     "verdictEn": "Great",
     "reviewSummary": "Review Black Myth: Wukong: action RPG soulslike của Game Science trên Tây Du Ký, Unreal Engine 5, bán 20 triệu bản tháng đầu; Metacritic 81, đẹp và ấn tượng nhưng nhịp giữa game không đều.",
     "reviewSummaryEn": "Black Myth: Wukong review: Game Science's soulslike action RPG based on Journey to the West on Unreal Engine 5, 20 million copies in its first month; Metacritic 81, gorgeous and striking but uneven mid-game pacing.",
-    "reviewNote": "Metacritic 81 (PC), 76 (PS5), OpenCritic 81%",
-    "reviewNoteEn": "Metacritic 81 (PC), 76 (PS5), OpenCritic 81%"
+    "reviewNote": "Black Myth: Wukong là một khởi đầu ấn tượng cho game AAA Trung Quốc, đẹp và có chiến đấu thú vị, dù nhịp truyện giữa game chưa đều.",
+    "reviewNoteEn": "Black Myth: Wukong is an impressive start for Chinese AAA games, beautiful and fun in combat, though the mid-game pacing is uneven."
   },
   "Final Fantasy VII Rebirth": {
     "type": "game",
@@ -730,12 +730,12 @@
     },
     "review": "/thanh-guom-diet-quy-infinity-castle-review",
     "reviewEn": "/en/demon-slayer-infinity-castle-review",
-    "verdict": "Kiệt Tác",
+    "verdict": "Kiệt tác",
     "verdictEn": "Masterpiece",
     "reviewSummary": "Review Thanh Gươm Diệt Quỷ: Vô Hạn Thành của Ufotable: phần đầu bộ ba phim, ra 18/7/2025, doanh thu 820,4 triệu USD, kỷ lục phim Nhật; Rotten Tomatoes 98%, nhịp bị chê vì hồi tưởng lặp.",
     "reviewSummaryEn": "Demon Slayer: Infinity Castle review from Ufotable: the first of a planned trilogy released July 18, 2025, grossing $820.4 million, a Japanese film record; Rotten Tomatoes 98%, with pacing criticized for repeated flashbacks.",
-    "reviewNote": "Doanh thu 820,4 triệu USD; Rotten Tomatoes 98% (62 bài)",
-    "reviewNoteEn": "Grossed $820.4 million; Rotten Tomatoes 98% (62 reviews)"
+    "reviewNote": "Infinity Castle là một cú lớn về hình ảnh và thương mại, dù nhịp phim vì hồi tưởng chưa đều.",
+    "reviewNoteEn": "Infinity Castle is a big win visually and commercially, though its pacing is uneven because of the flashbacks."
   },
   "Frieren Season 2": {
     "type": "anime",
@@ -857,12 +857,12 @@
     },
     "review": "/one-piece-final-saga-review",
     "reviewEn": "/en/one-piece-final-saga-review",
-    "verdict": "Xuất Sắc",
+    "verdict": "Xuất sắc",
     "verdictEn": "Excellent",
     "reviewSummary": "One Piece Final Saga chính thức bước vào chặng đua sinh tử cuối cùng kể từ chương 1054, đưa người đọc qua những biến động lịch sử tại Egghead, bí mật sự kiện God Valley và thánh địa các chiến binh Elbaf. Đánh giá chi tiết cách Eiichiro Oda làm chủ bức tranh địa chính trị thế giới và quy mô vĩ đại của hồi kết.",
     "reviewSummaryEn": "One Piece Final Saga has entered its decisive endgame, catapulting readers from Egghead Island into the God Valley revelations and the long-anticipated giants' kingdom of Elbaf. An in-depth review of Eiichiro Oda's sweeping geopolitical mastery and the monumental momentum toward the series finale.",
-    "reviewNote": "Final Saga từ chương 1054; hơn 600 triệu bản in; anime Elbaph từ 4/2026",
-    "reviewNoteEn": "Final Saga from chapter 1054; over 600 million copies; the Elbaph anime from April 2026"
+    "reviewNote": "One Piece Final Saga là minh chứng cho việc một series dài hơi vẫn có thể giữ chất lượng kể chuyện ở chặng cuối. Với Elbaph và God Valley, đây là giai đoạn đáng theo dõi nhất của manga shonen.",
+    "reviewNoteEn": "One Piece's Final Saga shows that a long-running series can keep its storytelling quality in the final stretch. With Elbaph and God Valley, it is the most worthwhile period to follow in shonen manga."
   },
   "Chainsaw Man": {
     "type": "manga",
@@ -920,12 +920,12 @@
     },
     "review": "/tho-san-quy-chainsaw-man-manga-part2-review",
     "reviewEn": "/en/chainsaw-man-manga-part2-review",
-    "verdict": "Xuất Sắc",
+    "verdict": "Xuất sắc",
     "verdictEn": "Excellent",
     "reviewSummary": "Thợ Săn Quỷ Chainsaw Man Part 2 (Academy Saga) đánh dấu bước chuyển mình bất ngờ của Tatsuki Fujimoto khi chuyển trọng tâm từ Denji sang nữ sinh lập dị Asa Mitaka và Quỷ Chiến Tranh Yoru. Đánh giá chi tiết về chiều sâu tâm lý học đường, nhịp độ kỳ dị đặc trưng và cách bộ truyện tái định nghĩa thể loại shonen đen tối.",
     "reviewSummaryEn": "Chainsaw Man Part 2 (Academy Saga) marks Tatsuki Fujimoto's bold shift in narrative focus from Denji to socially awkward high schooler Asa Mitaka and the War Devil Yoru. An in-depth review of its psychological adolescent themes, surrealist pacing, and how it continues to reinvent dark modern shonen.",
-    "reviewNote": "Hơn 36 triệu bản in, 24 tập, Part 2 kết thúc 3/2026",
-    "reviewNoteEn": "Over 36 million copies, 24 volumes, Part 2 ended March 2026"
+    "reviewNote": "Thợ Săn Quỷ Chainsaw Man là manga đột phá của thập niên, mạnh ở cách kể chuyện và nhân vật. Điểm cần lưu ý là bạo lực và sự thay đổi ở Part 2.",
+    "reviewNoteEn": "Chainsaw Man is a breakout manga of the decade, strong in storytelling and characters. Points to note are the violence and the shift in Part 2."
   },
   "Jujutsu Kaisen": {
     "type": "manga",
@@ -987,8 +987,8 @@
     "verdictEn": "Excellent",
     "reviewSummary": "JJK kết thúc chương 271 (2025). Itadori Yuji sống sót. Gojo Satoru đã mất. Sukuna bị đánh bại. Megumi Fushiguro bị ảnh hưởng lâu dài. Ending mở, gây tranh cãi về số phận các nhân vật.",
     "reviewSummaryEn": "Manga Jujutsu Kaisen officially ended after 5 years with a highly controversial ending. Full analysis of the ending of Itadori and Gojo",
-    "reviewNote": "Điểm OtaHub cho arc cuối của manga Chú Thuật Hồi Chiến",
-    "reviewNoteEn": "OtaHub score for Jujutsu Kaisen's final arc"
+    "reviewNote": "Bất chấp tranh cãi về cái kết, Chú Thuật Hồi Chiến vẫn là một trong những manga shonen xuất sắc nhất thập niên 2020, với thế giới có luật riêng và những trận đấu dàn dựng tinh tế.",
+    "reviewNoteEn": "Despite the controversy over its ending, Jujutsu Kaisen remains one of the best shonen manga of the 2020s, with a world that plays by its own rules and finely staged battles."
   },
   "Berserk": {
     "type": "manga",
@@ -1353,12 +1353,12 @@
     "scoreSource": "review",
     "review": "/ghost-of-yotei-review",
     "reviewEn": "/en/ghost-of-yotei-review",
-    "verdict": "Xuất Sắc",
+    "verdict": "Xuất sắc",
     "verdictEn": "Excellent",
     "reviewSummary": "Review Ghost of Yōtei: Atsu báo thù Yōtei Six ở Ezo năm 1603 với kusarigama, ōdachi, song kiếm và sói đồng hành; Metacritic 86, khen kiếm chiến, chê nhiệm vụ phụ và thế giới mở lỗi thời.",
     "reviewSummaryEn": "Ghost of Yōtei review: Atsu hunts the Yōtei Six in 1603 Ezo with kusarigama, ōdachi, dual katanas and a wolf companion; Metacritic 86, praised swordplay but criticized for weak side quests and a dated open world.",
-    "reviewNote": "Metacritic 86 (138 bài), OpenCritic 94% khuyên chơi",
-    "reviewNoteEn": "Metacritic 86 (138 reviews), OpenCritic 94% recommend"
+    "reviewNote": "Ghost of Yōtei là game hành động thế giới mở đáng chơi, mạnh nhất ở kiếm chiến, nhân vật Atsu và bối cảnh Ezo. Điểm yếu nằm ở nhiệm vụ phụ và công thức thế giới mở đã quen.",
+    "reviewNoteEn": "Ghost of Yōtei is a rewarding open-world action game, strongest in swordplay, the character of Atsu and the Ezo setting. Its weak spots are side quests and a familiar open-world formula."
   },
   "Big Walk": {
     "type": "game",
@@ -1442,12 +1442,12 @@
     "scoreSource": "review",
     "review": "/suikoden-star-leap-review",
     "reviewEn": "/en/suikoden-star-leap-review",
-    "verdict": "Rất Hay",
+    "verdict": "Rất hay",
     "verdictEn": "Great",
     "reviewSummary": "Review Suikoden STAR LEAP: game di động gacha của Konami ra Nhật 7/8/2026, sprite pixel trong môi trường 3D, chiến đấu theo lượt và 108 nhân vật; hoài niệm được khen nhưng gacha gây tranh cãi.",
     "reviewSummaryEn": "Suikoden STAR LEAP review: Konami's mobile gacha launched in Japan on August 7, 2026 with pixel sprites in 3D environments, turn-based battles and 108 characters; nostalgia is praised but gacha divides fans.",
-    "reviewNote": "Ra Nhật Bản 7/8/2026 trên iOS và Android, có 108 nhân vật, gacha",
-    "reviewNoteEn": "Launched in Japan August 7, 2026 on iOS and Android, with 108 characters and gacha"
+    "reviewNote": "Suikoden STAR LEAP là một bước đi khác biệt cho thương hiệu, hấp dẫn ở phong cách và sự trở lại của 108 Sao, nhưng gacha là điều cần cân nhắc.",
+    "reviewNoteEn": "Suikoden STAR LEAP is a different step for the franchise, appealing in style and the return of the 108 Stars, but gacha is a consideration."
   },
   "Honor of Kings Global": {
     "type": "game",
@@ -1584,12 +1584,12 @@
     "scoreSource": "review",
     "review": "/split-fiction-review",
     "reviewEn": "/en/split-fiction-review",
-    "verdict": "Kiệt Tác",
+    "verdict": "Kiệt tác",
     "verdictEn": "Masterpiece",
     "reviewSummary": "Review Split Fiction: game co-op của Hazelight với Mio và Zoe, mỗi màn một cơ chế mới, Friend's Pass; Metacritic 91, OpenCritic 98%, bán 7 triệu bản.",
     "reviewSummaryEn": "Split Fiction review: Hazelight's co-op game with Mio and Zoe, a new mechanic every stage, and Friend's Pass; Metacritic 91, OpenCritic 98%, seven million copies sold.",
-    "reviewNote": "Metacritic 91 (PS5), OpenCritic 98% khuyên chơi",
-    "reviewNoteEn": "Metacritic 91 (PS5), OpenCritic 98% recommend"
+    "reviewNote": "Split Fiction là một trong những game co-op hay nhất hiện nay, sáng tạo liên tục và trau chuốt tốt. Điều kiện duy nhất là bạn cần có người chơi cùng.",
+    "reviewNoteEn": "Split Fiction is one of the best co-op games available, endlessly inventive and well polished. The only condition is that you need someone to play with."
   },
   "Death Stranding 2: On the Beach": {
     "type": "game",
@@ -1628,12 +1628,12 @@
     "scoreSource": "review",
     "review": "/death-stranding-2-review",
     "reviewEn": "/en/death-stranding-2-review",
-    "verdict": "Kiệt Tác",
+    "verdict": "Kiệt tác",
     "verdictEn": "Masterpiece",
     "reviewSummary": "Review Death Stranding 2: On the Beach: Kojima kéo Sam đến Mexico và Úc, thêm chiến đấu, xe cộ, monorail; Metacritic 89, cái giá là vài ý tưởng lặp lại từ phần đầu.",
     "reviewSummaryEn": "Death Stranding 2: On the Beach review: Kojima sends Sam to Mexico and Australia with deeper combat, vehicles and monorails; Metacritic 89, with some ideas recycled from the first game.",
-    "reviewNote": "Metacritic 89 (152 bài), OpenCritic 95% khuyên chơi",
-    "reviewNoteEn": "Metacritic 89 (152 reviews), OpenCritic 95% recommend"
+    "reviewNote": "Death Stranding 2 là phần tiếp theo tự tin: mở rộng chiến đấu, hạ tầng và trình bày mà vẫn giữ nguyên bản sắc lạ lùng của Kojima. Điểm trừ nằm ở chỗ một phần ý tưởng nghe quen tai.",
+    "reviewNoteEn": "Death Stranding 2 is a confident sequel: it expands combat, infrastructure and presentation while keeping Kojima's strange identity intact. The main mark against it is that some ideas sound familiar."
   },
   "Kingdom Come: Deliverance II": {
     "type": "game",
@@ -1672,12 +1672,12 @@
     "scoreSource": "review",
     "review": "/kingdom-come-deliverance-2",
     "reviewEn": "/en/kingdom-come-deliverance-2",
-    "verdict": "Xuất Sắc",
+    "verdict": "Xuất sắc",
     "verdictEn": "Excellent",
     "reviewSummary": "Review Kingdom Come: Deliverance II: RPG thế giới mở góc nhìn thứ nhất của Warhorse trong Bohemia 1403, Metacritic 89, PC Gamer Game of the Year, bán trên 6 triệu bản.",
     "reviewSummaryEn": "Kingdom Come: Deliverance II review: Warhorse's first-person open-world RPG in 1403 Bohemia, Metacritic 89, PC Gamer Game of the Year, over six million copies sold.",
-    "reviewNote": "Metacritic 89 (PC), 88 (PS5, Xbox), OpenCritic 95% khuyên chơi",
-    "reviewNoteEn": "Metacritic 89 (PC), 88 (PS5, Xbox), OpenCritic 95% recommend"
+    "reviewNote": "Kingdom Come: Deliverance II là RPG lịch sử tham vọng, chân thực và được hoàn thiện tốt, một trong những game hay nhất năm 2025.",
+    "reviewNoteEn": "Kingdom Come: Deliverance II is an ambitious, authentic and well-polished historical RPG, one of the best games of 2025."
   },
   "Metal Gear Solid Δ: Snake Eater": {
     "type": "game",
@@ -1716,12 +1716,12 @@
     "scoreSource": "review",
     "review": "/metal-gear-solid-delta-review",
     "reviewEn": "/en/metal-gear-solid-delta-review",
-    "verdict": "Rất Hay",
+    "verdict": "Rất hay",
     "verdictEn": "Great",
     "reviewSummary": "Review Metal Gear Solid Delta: Snake Eater: bản làm lại trung thành của Konami trên Unreal Engine 5, hai kiểu điều khiển, Metacritic 85; đẹp và đúng bản gốc nhưng ít đổi mới.",
     "reviewSummaryEn": "Metal Gear Solid Delta: Snake Eater review: Konami's faithful remake on Unreal Engine 5 with two control schemes and Metacritic 85; beautiful and true to the original, but light on new ideas.",
-    "reviewNote": "Metacritic 85 (PS5), OpenCritic 89% khuyên chơi",
-    "reviewNoteEn": "Metacritic 85 (PS5), OpenCritic 89% recommend"
+    "reviewNote": "Metal Gear Solid Delta là bản làm lại chỉn chu và đúng tinh thần, phù hợp làm cách tiếp cận Snake Eater hiện đại nhất. Cái giá là sự thận trọng: ít thay đổi hơn nhiều người mong đợi.",
+    "reviewNoteEn": "Metal Gear Solid Delta is a polished, faithful remake and the most modern way to approach Snake Eater. The price is caution: fewer changes than many hoped for."
   },
   "Mafia: The Old Country": {
     "type": "game",
@@ -1764,8 +1764,8 @@
     "verdictEn": "Good",
     "reviewSummary": "Review Mafia: The Old Country: Hangar 13 quay lại lối kể tuyến tính ở Sicily 1900, giá 50 USD, Metacritic 73; cốt truyện và bối cảnh đẹp, cơ chế chiến đấu nông và lặp.",
     "reviewSummaryEn": "Mafia: The Old Country review: Hangar 13 returns to linear storytelling in 1900s Sicily at $50, Metacritic 73; a striking setting and story, but shallow, repetitive mechanics.",
-    "reviewNote": "Metacritic 73, OpenCritic 66% khuyên chơi",
-    "reviewNoteEn": "Metacritic 73, OpenCritic 66% recommend"
+    "reviewNote": "Mafia: The Old Country là một câu chuyện tội phạm đẹp mắt, gọn gàng và chia rẽ. Nó mạnh ở bối cảnh và nhân vật nhưng yếu ở cơ chế chơi.",
+    "reviewNoteEn": "Mafia: The Old Country is a handsome, tidy and divisive crime story. It is strong in setting and character but weak in gameplay mechanics."
   },
   "Warhammer 40,000: Space Marine 2": {
     "type": "game",
@@ -1808,8 +1808,8 @@
     "verdictEn": "Good",
     "reviewSummary": "Review Warhammer 40,000: Space Marine 2: Saber dựng game hành động bắn súng góc nhìn thứ ba với Titus, Tyranid và Chaos; Metacritic 80–83, bán 12 triệu bản, cận chiến và co-op là điểm mạnh.",
     "reviewSummaryEn": "Warhammer 40,000: Space Marine 2 review: Saber's third-person shooter starring Titus, Tyranids and Chaos; Metacritic 80 to 83, 12 million copies sold, with melee and co-op as its strengths.",
-    "reviewNote": "Metacritic 80–83, OpenCritic 86% khuyên chơi",
-    "reviewNoteEn": "Metacritic 80 to 83, OpenCritic 86% recommend"
+    "reviewNote": "Space Marine 2 là game hành động bắn súng cận chiến mạnh mẽ, đáng chơi nhất khi có bạn cùng co-op. Điểm trừ nằm ở độ đa dạng nhiệm vụ.",
+    "reviewNoteEn": "Space Marine 2 is a powerful melee-and-shooter action game, best enjoyed with friends in co-op. Mission variety is its main drawback."
   },
   "Girls' Frontline 2: Exilium": {
     "type": "game",
@@ -1848,8 +1848,8 @@
     "scoreSource": "review",
     "review": "/girls-frontline-2-exilium-danh-gia-chuyen-sau",
     "reviewEn": "/en/girls-frontline-2-exilium-in-depth-review",
-    "verdict": "Rất hay, đặc biệt với người thích xây đội hình",
-    "verdictEn": "Great, especially if you love building squads",
+    "verdict": "Rất hay",
+    "verdictEn": "Great",
     "reviewSummary": "Girls' Frontline 2: Exilium đáng thử nếu bạn thích chiến thuật theo lượt, nhân vật anime và tối ưu đội hình. Cover, Stability Index và đòn hỗ trợ tạo ra nhiều quyết định thú vị, nhưng chiều sâu chiến thuật đôi lúc bị lấn át bởi chỉ số, trang bị và gacha. Người chơi Việt Nam có bản tiếng Việt chính thức (Lưu Đày) từ 27/8/2026. Điểm OtaHub: 8.5/10, Rất hay.",
     "reviewSummaryEn": "Girls' Frontline 2: Exilium is worth trying if you like turn-based tactics, anime characters and squad optimisation. Cover, the Stability Index and support attacks create plenty of interesting decisions, though tactical depth is sometimes drowned out by stats, gear and gacha. Players in Vietnam get an official Vietnamese version (Lưu Đày) from August 27, 2026. OtaHub score: 8.5/10, Great.",
     "reviewNote": "GFL2 kết hợp chiến thuật theo lượt và trình diễn nhân vật thuyết phục. Game chưa có độ tự do hay áp lực chiến trường của XCOM, nhưng hệ thống phối hợp riêng đủ hấp dẫn để không trở thành một bản sao. Gacha và vòng farm là cái giá phải trả.",
@@ -1892,12 +1892,12 @@
     "scoreSource": "review",
     "review": "/kaiju-no-8-the-game-review",
     "reviewEn": "/en/kaiju-no-8-the-game-review",
-    "verdict": "Rất Hay",
+    "verdict": "Rất hay",
     "verdictEn": "Great",
     "reviewSummary": "Review Kaiju No. 8 The Game: game di động chiến đấu theo lượt của Akatsuki Games, Toho và Production I.G, ra 31/8/2025, đội hình Lực lượng Phòng vệ và kaiju, free-to-play.",
     "reviewSummaryEn": "Kaiju No. 8 The Game review: the turn-based mobile game from Akatsuki Games, Toho and Production I.G, launched August 31, 2025, with Defense Force squads and kaiju battles, free to play.",
-    "reviewNote": "Ra 31/8/2025 trên iOS, Android; Steam 30/9/2025; do Akatsuki Games phát triển",
-    "reviewNoteEn": "Launched August 31, 2025 on iOS and Android; Steam September 30, 2025; developed by Akatsuki Games"
+    "reviewNote": "Kaiju No. 8 THE GAME là bản chuyển thể di động trung thành, dễ chơi và đẹp mắt, phù hợp người hâm mộ nguyên tác.",
+    "reviewNoteEn": "Kaiju No. 8 THE GAME is a faithful, easy and good-looking mobile adaptation suited to fans of the source."
   },
   "Blue Protocol: Star Resonance": {
     "type": "game",
@@ -1940,8 +1940,8 @@
     "verdictEn": "Decent",
     "reviewSummary": "Review Blue Protocol: Star Resonance: MMORPG hành động miễn phí ra 9/10/2025 với đỉnh khoảng 95.000 người chơi trên Steam nhưng đánh giá Mixed vì server và monetization; đẹp nhưng tốn thời gian.",
     "reviewSummaryEn": "Blue Protocol: Star Resonance review: a free action MMORPG launched October 9, 2025 with about 95,000 concurrent Steam players but Mixed reviews over servers.",
-    "reviewNote": "Steam \"Mixed\", đỉnh khoảng 95.000 người chơi đồng thời, chịu chỉ trích về monetization",
-    "reviewNoteEn": "Steam Mixed, peak of about 95,000 concurrent players, criticized for monetization"
+    "reviewNote": "Blue Protocol: Star Resonance đẹp mắt và thu hút ở những giờ đầu nhưng monetization nặng, máy chủ và tiến trình chậm kéo tụt trải nghiệm.",
+    "reviewNoteEn": "Blue Protocol: Star Resonance is pretty and engaging in the first hours, but heavy monetization, servers and slow progression drag down the experience."
   },
   "Chainsaw Man: Reze Arc": {
     "type": "anime",
@@ -2004,12 +2004,12 @@
     },
     "review": "/tho-san-quy-chainsaw-man-reze-arc-review",
     "reviewEn": "/en/chainsaw-man-reze-arc-review",
-    "verdict": "Xuất Sắc",
+    "verdict": "Xuất sắc",
     "verdictEn": "Excellent",
     "reviewSummary": "Review Thợ Săn Quỷ Chainsaw Man – The Movie: Reze Arc của MAPPA: phim 100 phút ra 19/9/2025, \"Iris Out\" của Kenshi Yonezu, doanh thu 191,4 triệu USD; Rotten Tomatoes 96%, câu chuyện tình cảm đắng ngọt.",
     "reviewSummaryEn": "Chainsaw Man – The Movie: Reze Arc review from MAPPA: a 100-minute film released September 19, 2025, with Kenshi Yonezu's \"Iris Out\" and $191.4 million at the box office; Rotten Tomatoes 96%, a bittersweet love story.",
-    "reviewNote": "Doanh thu 191,4 triệu USD; Rotten Tomatoes 96%; CinemaScore A",
-    "reviewNoteEn": "Grossed $191.4 million; Rotten Tomatoes 96%; CinemaScore A"
+    "reviewNote": "Reze Arc là bước tiến ngoạn mục của MAPPA lên màn ảnh rộng, mạnh ở hoạt hình, cảm xúc và âm nhạc.",
+    "reviewNoteEn": "Reze Arc is a spectacular step up for MAPPA on the big screen, strong in animation, emotion and music."
   },
   "Attack on Titan: Final Season": {
     "type": "anime",
@@ -2076,12 +2076,12 @@
     },
     "review": "/dai-chien-titan-final-season-review",
     "reviewEn": "/en/attack-on-titan-final-season-review",
-    "verdict": "Xuất Sắc",
+    "verdict": "Xuất sắc",
     "verdictEn": "Excellent",
     "reviewSummary": "Review Đại Chiến Titan The Final Season của MAPPA (từ 7/12/2020): nhạc Hiroyuki Sawano, bốn phần đến 11/2023; manga Isayama hơn 140 triệu bản, giải Kodansha và Harvey, kèm tranh luận về chủ đề quân phiệt.",
     "reviewSummaryEn": "Review of Attack on Titan The Final Season from MAPPA (from December 7, 2020): Hiroyuki Sawano's score, four parts through November 2023; Isayama's manga over 140 million copies, Kodansha and Harvey awards, with debate over militarism.",
-    "reviewNote": "MAPPA, 4 phần phát sóng 2020–2023; manga hơn 140 triệu bản",
-    "reviewNoteEn": "MAPPA, four parts aired 2020–2023; manga over 140 million copies"
+    "reviewNote": "The Final Season là hồi kết đáng xem của một tượng đài shonen, mạnh ở hoạt hình, nhạc và quy mô câu chuyện, và vẫn còn nhiều tranh luận.",
+    "reviewNoteEn": "The Final Season is a worthwhile conclusion to a shonen landmark, strong in animation, music and story scale, and still debated."
   },
   "Jujutsu Kaisen (Anime)": {
     "type": "anime",
@@ -2147,12 +2147,12 @@
     },
     "review": "/chu-thuat-hoi-chien-anime-review",
     "reviewEn": "/en/jujutsu-kaisen-anime-review",
-    "verdict": "Xuất Sắc",
+    "verdict": "Xuất sắc",
     "verdictEn": "Excellent",
     "reviewSummary": "Chú Thuật Hồi Chiến Anime dưới bàn tay phù phép của studio MAPPA đã đưa câu chuyện chú thuật sư của Gege Akutami trở thành thương hiệu văn hóa đại chúng toàn cầu. Đánh giá toàn diện từ Mùa 1, Movie 0 đến thảm họa Biến cố Shibuya và Culling Game: chất lượng hoạt họa sakuga đỉnh cao và chiều sâu triết lý thiện - ác.",
     "reviewSummaryEn": "Jujutsu Kaisen Anime by studio MAPPA has propelled Gege Akutami's dark fantasy epic into a worldwide pop-culture phenomenon. A comprehensive review tracing its evolution from Season 1 and Movie 0 to the devastating Shibuya Incident and the high-stakes Culling Game arc.",
-    "reviewNote": "MAPPA, 3 mùa và 1 phim; manga hơn 150 triệu bản",
-    "reviewNoteEn": "MAPPA, three seasons and one film; manga over 150 million copies"
+    "reviewNote": "Chú Thuật Hồi Chiến là một trong những anime shonen tiêu biểu của thập niên nhờ sản xuất của MAPPA và nguyên tác thuộc hàng bán chạy nhất.",
+    "reviewNoteEn": "Jujutsu Kaisen is one of the decade's defining shonen anime thanks to MAPPA's production and one of the best-selling source manga."
   },
   "Dandadan Season 2": {
     "type": "anime",
@@ -2219,12 +2219,12 @@
     },
     "review": "/dandadan-season-2-review",
     "reviewEn": "/en/dandadan-season-2-review",
-    "verdict": "Xuất Sắc",
+    "verdict": "Xuất sắc",
     "verdictEn": "Excellent",
     "reviewSummary": "Dan Da Dan Season 2 tiếp tục chứng minh tài năng bậc thầy của Science SARU và đạo diễn Fuga Yamashiro trong việc biến từng khung tranh siêu thực thành bữa tiệc thị giác bùng nổ. Đánh giá chi tiết về phong cách đồ họa psychedelic đầy mê hoặc, nhịp phim mãn nhãn và sự phát triển tình cảm của cặp đôi chính.",
     "reviewSummaryEn": "Dan Da Dan Season 2 cements Science SARU and director Fuga Yamashiro as animation visionaries, transforming surrealist manga panels into a breathtaking kinetic visual spectacle. An in-depth review of its psychedelic art direction, fluid action sequences, and the burgeoning emotional bonds of its cast.",
-    "reviewNote": "Science SARU, 12 tập (7–9/2025); mùa 3 dự kiến 2027",
-    "reviewNoteEn": "Science SARU, 12 episodes (July–September 2025); season 3 scheduled for 2027"
+    "reviewNote": "Dandadan mùa 2 tiếp tục là một trong những anime độc đáo nhất hiện nay, mạnh ở hoạt hình và cách kể chuyện pha thể loại.",
+    "reviewNoteEn": "Dandadan season 2 remains one of the most distinctive anime around, strong in animation and genre-blending storytelling."
   },
   "Oshi no Ko": {
     "type": "anime",
@@ -2294,12 +2294,12 @@
     },
     "review": "/dua-con-cua-than-tuong-anime-review",
     "reviewEn": "/en/oshi-no-ko-anime-review",
-    "verdict": "Xuất Sắc",
+    "verdict": "Xuất sắc",
     "verdictEn": "Excellent",
     "reviewSummary": "Đứa Con Của Thần Tượng Anime do Doga Kobo thực hiện đã bóc trần những góc khuất tăm tối, áp lực tàn khốc và sự giả dối đằng sau ánh đèn sân khấu của ngành công nghiệp thần tượng Nhật Bản. Đánh giá tập mở màn 90 phút chấn động, siêu hit \"Idol\" của YOASOBI và hành trình báo thù ly kỳ của Aqua Hoshino.",
     "reviewSummaryEn": "Oshi no Ko Anime by Doga Kobo fearlessly exposes the ruthless pressures, emotional exploitation, and dark secrets of the Japanese entertainment industry. An in-depth review of its cinematic 90-minute premiere, YOASOBI's smash hit \"Idol,\" and Aqua Hoshino's gripping revenge thriller.",
-    "reviewNote": "3 mùa đã phát sóng, mùa 4 là mùa cuối; manga hơn 25 triệu bản",
-    "reviewNoteEn": "Three seasons aired, season 4 is the last; manga over 25 million copies"
+    "reviewNote": "Đứa Con Của Thần Tượng là anime đáng xem với mở đầu ấn tượng và đề tài độc đáo, dù cái kết của nguyên tác còn nhiều tranh luận.",
+    "reviewNoteEn": "Oshi no Ko is a worthwhile anime with a striking opening and unusual theme, even though the source's ending remains debated."
   },
   "Chainsaw Man (Anime)": {
     "type": "anime",
@@ -2361,12 +2361,12 @@
     },
     "review": "/tho-san-quy-chainsaw-man-anime-review",
     "reviewEn": "/en/chainsaw-man-anime-review",
-    "verdict": "Xuất Sắc",
+    "verdict": "Xuất sắc",
     "verdictEn": "Excellent",
     "reviewSummary": "Thợ Săn Quỷ Chainsaw Man Anime do studio MAPPA chuyển thể là một trong những dự án hoạt hình tham vọng bậc nhất với cách tiếp cận điện ảnh hóa hoàn toàn khác biệt. Đánh giá chi tiết về phong cách hình ảnh chân thực, 12 ca khúc ending độc bản cho từng tập phim, cùng màn trình diễn xuất sắc của Denji, Makima và Power.",
     "reviewSummaryEn": "Chainsaw Man anime review from MAPPA: 12 episodes aired October–December 2022, directed by Ryū Nakayama, scored by Kensuke Ushio with Kenshi Yonezu's \"Kick Back\"; Rotten Tomatoes 97%, with a cinematic style.",
-    "reviewNote": "MAPPA, 12 tập; Rotten Tomatoes 97% (89 bài); Crunchyroll Best New Series 2024",
-    "reviewNoteEn": "MAPPA, 12 episodes; Rotten Tomatoes 97% (89 reviews); Crunchyroll Best New Series 2024"
+    "reviewNote": "Thợ Săn Quỷ Chainsaw Man là anime khác biệt, mạnh ở dàn dựng, âm nhạc và tông truyện, dù phong cách điện ảnh không hợp mọi người.",
+    "reviewNoteEn": "Chainsaw Man is a distinctive anime, strong in staging, music and tone, though its cinematic style will not suit everyone."
   },
   "Vinland Saga": {
     "type": "manga",
@@ -2418,12 +2418,12 @@
     },
     "review": "/vinland-saga-manga-review",
     "reviewEn": "/en/vinland-saga-manga-review",
-    "verdict": "Kiệt Tác",
+    "verdict": "Kiệt tác",
     "verdictEn": "Masterpiece",
     "reviewSummary": "Vinland Saga của Makoto Yukimura là thiên anh hùng ca lịch sử vĩ đại kéo dài tròn hai thập kỷ (2005–2025), khắc họa sự chuyển hóa phi thường của Thorfinn từ một sát thủ báo thù đẫm máu thành một người đàn ông đi tìm miền đất hòa bình không có chiến tranh và nô lệ. Đánh giá đại kết cục 29 tập truyện xứng đáng được tôn vinh là kiệt tác.",
     "reviewSummaryEn": "Vinland Saga by Makoto Yukimura stands as a generational historical epic spanning two decades (2005–2025), chronicling Thorfinn Karlsefni's profound transformation from a vengeance-obsessed teenage warrior into an apostle of peace. An in-depth review of the 29-volume masterpiece.",
-    "reviewNote": "29 tập, kết thúc 25/7/2025; Kodansha Manga Award lần 36",
-    "reviewNoteEn": "29 volumes, ended July 25, 2025; 36th Kodansha Manga Award"
+    "reviewNote": "Vinland Saga là manga lịch sử xuất sắc với phát triển nhân vật ấn tượng, hoàn tất trọn vẹn sau hai mươi năm.",
+    "reviewNoteEn": "Vinland Saga is an outstanding historical manga with impressive character development, fully complete after twenty years."
   },
   "Chainsaw Man (Manga)": {
     "type": "manga",
@@ -2475,12 +2475,12 @@
     },
     "review": "/tho-san-quy-chainsaw-man-manga-part2-review",
     "reviewEn": "/en/chainsaw-man-manga-part2-review",
-    "verdict": "Xuất Sắc",
+    "verdict": "Xuất sắc",
     "verdictEn": "Excellent",
     "reviewSummary": "Thợ Săn Quỷ Chainsaw Man Part 2 (Academy Saga) đánh dấu bước chuyển mình bất ngờ của Tatsuki Fujimoto khi chuyển trọng tâm từ Denji sang nữ sinh lập dị Asa Mitaka và Quỷ Chiến Tranh Yoru. Đánh giá chi tiết về chiều sâu tâm lý học đường, nhịp độ kỳ dị đặc trưng và cách bộ truyện tái định nghĩa thể loại shonen đen tối.",
     "reviewSummaryEn": "Chainsaw Man Part 2 (Academy Saga) marks Tatsuki Fujimoto's bold shift in narrative focus from Denji to socially awkward high schooler Asa Mitaka and the War Devil Yoru. An in-depth review of its psychological adolescent themes, surrealist pacing, and how it continues to reinvent dark modern shonen.",
-    "reviewNote": "Hơn 36 triệu bản in, 24 tập, Part 2 kết thúc 3/2026",
-    "reviewNoteEn": "Over 36 million copies, 24 volumes, Part 2 ended March 2026"
+    "reviewNote": "Thợ Săn Quỷ Chainsaw Man là manga đột phá của thập niên, mạnh ở cách kể chuyện và nhân vật. Điểm cần lưu ý là bạo lực và sự thay đổi ở Part 2.",
+    "reviewNoteEn": "Chainsaw Man is a breakout manga of the decade, strong in storytelling and characters. Points to note are the violence and the shift in Part 2."
   },
   "Dandadan": {
     "type": "manga",
@@ -2531,12 +2531,12 @@
     },
     "review": "/dandadan-manga-review",
     "reviewEn": "/en/dandadan-manga-review",
-    "verdict": "Xuất Sắc",
+    "verdict": "Xuất sắc",
     "verdictEn": "Excellent",
     "reviewSummary": "Dandadan của Yukinobu Tatsu là một hiện tượng bùng nổ trên Shonen Jump+ nhờ sự kết hợp tài tình giữa yếu tố ma quỷ tâm linh, người ngoài hành tinh khoa học viễn tưởng và chuyện tình tuổi mới lớn dở khóc dở cười giữa Momo và Okarun. Đánh giá nét vẽ siêu chi tiết và nhịp độ hành động cuốn hút của manga.",
     "reviewSummaryEn": "Dandadan by Yukinobu Tatsu has become a global smash hit on Shonen Jump+, seamlessly blending supernatural spirits, extraterrestrial sci-fi, slapstick humor, and sweet teenage romance between Momo and Okarun. An in-depth review of its jaw-dropping hyper-detailed art and exhilarating comedic pacing.",
-    "reviewNote": "25 tập, hơn 10 triệu bản; Shogakukan Manga Award lần 71 (2026)",
-    "reviewNoteEn": "25 volumes, over 10 million copies; 71st Shogakukan Manga Award (2026)"
+    "reviewNote": "Dandadan là một trong những manga độc đáo nhất hiện nay, mạnh ở công thức pha thể loại và nhân vật.",
+    "reviewNoteEn": "Dandadan is one of the most distinctive manga at the moment, strong in its genre-blending formula and characters."
   },
   "Kaiju No.8": {
     "type": "manga",
@@ -2589,12 +2589,12 @@
     },
     "review": "/kaiju-no-8-manga-review",
     "reviewEn": "/en/kaiju-no-8-manga-review",
-    "verdict": "Rất Hay",
+    "verdict": "Rất hay",
     "verdictEn": "Great",
     "reviewSummary": "Quái Vật Số 8 của Naoya Matsumoto từng tạo nên cơn sốt kỷ lục trên Shonen Jump+ khi khai thác góc nhìn của Kafka Hibino, một người đàn ông trung niên dọn dẹp xác quái vật khao khát thực hiện ước mơ thuở nhỏ. Đánh giá chuyên sâu về ý tưởng đột phá, nhịp truyện mở màn xuất sắc và những thách thức về nhịp độ ở giai đoạn sau.",
     "reviewSummaryEn": "Kaiju No. 8 by Naoya Matsumoto broke Shonen Jump+ records by spotlighting Kafka Hibino - a 32-year-old monster disposal worker pursuing his abandoned childhood dream. An in-depth review examining its refreshing adult perspective, explosive monster fights, and pacing dynamics.",
-    "reviewNote": "16 tập, hơn 19 triệu bản đến 9/2025; Next Manga Award 2021",
-    "reviewNoteEn": "16 volumes, over 19 million copies by September 2025; 2021 Next Manga Award"
+    "reviewNote": "Quái Vật Số 8 là shonen quái vật đáng đọc với ý tưởng mạnh và thành công thương mại lớn, dù mở đầu công thức và nét vẽ không đều.",
+    "reviewNoteEn": "Kaiju No. 8 is a worthwhile monster shonen with a strong idea and major commercial success, despite a formulaic opening and uneven art."
   },
   "Kagurabachi": {
     "type": "manga",
@@ -2645,12 +2645,12 @@
     },
     "review": "/kagurabachi-review",
     "reviewEn": "/en/kagurabachi-review",
-    "verdict": "Rất Hay",
+    "verdict": "Rất hay",
     "verdictEn": "Great",
     "reviewSummary": "Review manga Kagurabachi của Takeru Hokazono: Weekly Shonen Jump từ 9/2023, chương đầu có hơn 99 triệu lượt xem trên Manga Plus, hơn 4 triệu bản in, anime Cypic tháng 4/2027.",
     "reviewSummaryEn": "Review of Takeru Hokazono's Kagurabachi manga: Weekly Shonen Jump since September 2023, a debut chapter with over 99 million views on Manga Plus, over 4 million copies and a Cypic anime in April 2027.",
-    "reviewNote": "Hơn 4 triệu bản đến 4/2026; Next Manga Award 2024; anime tháng 4/2027",
-    "reviewNoteEn": "Over 4 million copies by April 2026; 2024 Next Manga Award; anime in April 2027"
+    "reviewNote": "Kagurabachi là manga đầy triển vọng với chương mở đầu ấn tượng và hệ kiếm rõ ràng, được nhiều giải thưởng và tác giả lớn công nhận.",
+    "reviewNoteEn": "Kagurabachi is a promising manga with an impressive debut and a clear sword system, recognized by many awards and major creators."
   },
   "One Piece: Egghead Arc": {
     "type": "manga",
@@ -2689,12 +2689,12 @@
     "scoreSource": "review",
     "review": "/one-piece-egghead-arc-review",
     "reviewEn": "/en/one-piece-egghead-arc-review",
-    "verdict": "Rất Hay · Tuyệt Phẩm Khởi Đầu Hồi Kết",
-    "verdictEn": "Exceptional · The Grand Gateway to the Finale",
+    "verdict": "Rất hay",
+    "verdictEn": "Great",
     "reviewSummary": "Egghead Arc (Manga chương 1058–1125, Anime từ tập 1089) đánh dấu bước ngoặt lịch sử khi mở màn cho Final Saga (Hồi Kết) của One Piece. Không chỉ hé lộ những bí mật chấn động suốt 25 năm qua về Thế Kỷ Trống, Joy Boy và nguồn gốc Trái Ác Quỷ qua thông điệp toàn cầu của Tiến sĩ Vegapunk, arc này còn gây ấn tượng sâu sắc bởi quá khứ bi tráng của Bartholomew Kuma, đại chiến với Ngũ Lão Tinh và phong cách mỹ thuật retro-futuristic đầy táo bạo của Toei Animation.",
     "reviewSummaryEn": "The Egghead Arc (Manga chapters 1058–1125, Anime from episode 1089) represents a historic turning point kicking off One Piece's long-awaited Final Saga. Beyond unraveling 25 years of secrets regarding the Void Century, Joy Boy, and Devil Fruit origins through Dr. Vegapunk's worldwide broadcast, the arc delivers profound emotional resonance through Bartholomew Kuma's heartbreaking backstory, a catastrophic clash against the Five Elders, and Toei Animation's ambitious retro-futuristic visual overhaul.",
-    "reviewNote": "Manga chương 1058–1125 (tập 105–111) · Anime Mùa 21 (từ tập 1089)",
-    "reviewNoteEn": "Manga Chapters 1058–1125 (Volumes 105–111) · Anime Season 21 (from Ep. 1089)"
+    "reviewNote": "Egghead cho thấy Oda hoàn toàn làm chủ câu chuyện: khoa học viễn tưởng, bi kịch nhân vật và những tiết lộ lớn về lịch sử thế giới hòa vào nhau, dù mật độ thông tin rất dày.",
+    "reviewNoteEn": "Egghead shows Oda in full command of his story, blending sci-fi wonder, character tragedy and major world-history reveals, even if the information density is heavy."
   },
   "Black Clover": {
     "type": "manga",
@@ -2750,8 +2750,8 @@
     "verdictEn": "Good",
     "reviewSummary": "Thế Giới Phép Thuật (Black Clover) của tác giả Yuki Tabata đã chính thức khép lại hành trình 11 năm đầy thăng trầm trên Jump GIGA. Bài đánh giá chuyên sâu về tập 37 và đại kết cục: cách Asta và Yuno hiện thực hóa ước mơ trở thành Ma Pháp Vương, cuộc đại chiến định đoạt số phận Ma Pháp Giới, cùng những điểm sáng và tiếc nuối lớn nhất trong cái kết của series.",
     "reviewSummaryEn": "Black Clover by Yuki Tabata reaches its emotional conclusion after an 11-year run on Jump GIGA. An in-depth review of Volume 37 and the grand finale: Asta and Yuno fulfilling their shared dream to become the Wizard King, the final war against Lucius Zogratis, and the series' enduring strengths and missed opportunities.",
-    "reviewNote": "38 tập, hơn 24,5 triệu bản; kết thúc trên Jump Giga ngày 1/5/2026",
-    "reviewNoteEn": "38 volumes, over 24.5 million copies; concluded on Jump Giga on May 1, 2026"
+    "reviewNote": "Thế Giới Phép Thuật là shonen phép thuật giàu năng lượng, đã có một cái kết đầy đủ sau hơn mười một năm.",
+    "reviewNoteEn": "Black Clover is an energetic magical shonen that has reached a full ending after more than eleven years."
   },
   "God of Blackfield": {
     "type": "manga",
@@ -3550,12 +3550,12 @@
     },
     "review": "/bay-vien-ngoc-rong-daima",
     "reviewEn": "/en/dragon-ball-daima",
-    "verdict": "Rất tốt",
-    "verdictEn": "Very good",
+    "verdict": "Hay",
+    "verdictEn": "Good",
     "reviewSummary": "Bảy Viên Ngọc Rồng DAIMA ra mắt tháng 10/2024. Cốt truyện: Goku và đồng đội trở thành trẻ em do phép thuật Demon Realm. 20 tập phim, sản xuất bởi Toei Animation. Điểm số: 8.2/10.",
     "reviewSummaryEn": "Is Dragon Ball DAIMA, the last anime title directly supervised by Akira Toriyama, worthy of a legacy? Full review of all 20 episodes.",
-    "reviewNote": "Điểm OtaHub cho Bảy Viên Ngọc Rồng DAIMA (20 tập, Toei Animation)",
-    "reviewNoteEn": "OtaHub score for Dragon Ball DAIMA (20 episodes, Toei Animation)"
+    "reviewNote": "Không hoàn hảo, nhưng là Bảy Viên Ngọc Rồng hay nhất kể từ thời đỉnh cao của Z và là lời từ biệt đẹp mà fan có thể mong từ Toriyama.",
+    "reviewNoteEn": "Not perfect, but the best Dragon Ball since Z’s peak years and the most fitting farewell fans could hope for from Toriyama."
   },
   "Battle Through the Heavens": {
     "type": "anime",
@@ -3621,8 +3621,8 @@
     "verdictEn": "Decent",
     "reviewSummary": "Review Đấu Phá Thương Khung (Doupo Cangqiong): tiểu thuyết của Thiên Tàm Thổ Đậu, donghua 5 mùa từ 2017 trên Tencent Penguin Pictures, Xiao Yan tu luyện đấu khí lục địa để trả thù và lấy lại sức mạnh.",
     "reviewSummaryEn": "Battle Through the Heavens (Doupo Cangqiong) review: a novel by Tiancan Tudou, donghua across five seasons since 2017 on Tencent Penguin Pictures, following Xiao Yan's cultivation and revenge on the Dou Qi continent.",
-    "reviewNote": "Đấu Phá Thương Khung, donghua Trung Quốc 5 mùa từ 2017; Xiao Yan tu luyện báo thù",
-    "reviewNoteEn": "Doupo Cangqiong, Chinese donghua across five seasons since 2017; Xiao Yan's path of cultivation and revenge"
+    "reviewNote": "Đấu Phá Thương Khung là một trụ cột của thể loại donghua tu luyện, với hệ thống sức mạnh chặt chẽ và độ phủ sóng qua nhiều định dạng, dù chất lượng hoạt hình ban đầu từng là điểm trừ.",
+    "reviewNoteEn": "Battle Through the Heavens is a pillar of the cultivation donghua genre, with a tight power system and reach across multiple formats, even though early animation quality was a drawback."
   },
   "Solo Leveling: Ragnarok": {
     "type": "manga",
@@ -3704,8 +3704,8 @@
     "verdictEn": "Good",
     "reviewSummary": "Solo Leveling: Ragnarok là hậu truyện chính thức của tượng đài Tôi Thăng Cấp Một Mình, dõi theo bước chân của Sung Suho, con trai Thợ Săn Sung Jin-woo, trong hành trình kế thừa và khai phá sức mạnh bóng tối trước những mối hiểm họa vũ trụ mới. Đánh giá chất lượng hình ảnh của REDICE Studio và tiềm năng mở rộng vũ trụ thợ săn.",
     "reviewSummaryEn": "Solo Leveling: Ragnarok serves as the official continuation of the legendary manhwa series, following Sung Suho - son of Shadow Monarch Sung Jin-woo - as he awakens his dormant heritage against cosmic invaders. An in-depth review of REDICE Studio's dynamic artwork and its universe expansion.",
-    "reviewNote": "REDICE Studio, tạm ngưng từ 1/2026 khi họa sĩ JIN nhập ngũ, trở lại với chương 69",
-    "reviewNoteEn": "REDICE Studio, on hiatus since January 2026 as illustrator JIN entered military service, returned with chapter 69"
+    "reviewNote": "Solo Leveling: Ragnarok là một hậu truyện đầy tham vọng, có nền tảng tốt từ êkíp gốc nhưng vẫn đang phải chứng minh mình qua những gián đoạn xuất bản.",
+    "reviewNoteEn": "Solo Leveling: Ragnarok is an ambitious sequel with a solid foundation from the original team, but still has to prove itself through publishing disruptions."
   },
   "Hades II": {
     "type": "game",

@@ -31,4 +31,13 @@ Voice, signature blocks (Nắm nhanh, Góc OtaHub, FAQ, Nguồn), banned phrases
 5. Sources line.
 
 ## Form C - Review
-`Thông tin nhanh` / `Câu chuyện` / `Bối cảnh sản xuất` / `Trải nghiệm` (3 `H3`) / `Điểm mạnh` / `Điểm yếu` / `Giới phê bình nói gì` / `Dành cho ai` / `Điểm OtaHub` (score box) / `Kết luận` / `Câu hỏi thường gặp` (3 Q&A). 780-1200 words in Vietnamese. Generator: `rv2.mjs` in the working scripts (data in `rv2_specs*.mjs`).
+Reference page: `/girls-frontline-2-exilium-danh-gia-chuyen-sau` (and its EN pair).
+1. Sapo + `highlight-box` "Kết luận nhanh" (who it is for, main trade-off, score + band).
+2. `H2 Thông tin nhanh`: `art-table` (developer/studio, release dates incl. Vietnam if any, platforms, model/price, **Chơi/Xem ở đâu** with official links, critic or user scores with date, Điểm OtaHub X/10 + band).
+3. Body sections (`Câu chuyện`, `Bối cảnh sản xuất`, `Trải nghiệm` with `H3`s, or topic-specific H2s), one inline image per ~400 words, official screenshots with source in `figcaption`.
+4. `H2 Điểm mạnh và điểm yếu`: `review-pros-cons` (two `review-panel`s).
+5. `H2 Giới phê bình nói gì`: named outlets and scores, user scores with the date taken.
+6. `H2 Điểm OtaHub`: one `review-verdict` block (`<span class="score-num">` is what `build-rankings.mjs` reads; `<small>` = band from the review standards; `score-verdict` = one-line verdict; `score-sub` = 1-2 sentence verdict) followed by `review-score-grid` with the **4 standard criteria and weights** (Cốt truyện & Nội dung 25%, Trải nghiệm 30%, Hình ảnh & Âm thanh 25%, Giá trị lâu dài 20%; weighted average within ±0.2 of the score) and the link to `/tieu-chuan-danh-gia`. Never a second score box.
+7. `Dành cho ai` / `Kết luận`, then `Câu hỏi thường gặp` as `review-faq` `<details>` (3-5 Q&A, mirrored in FAQPage JSON-LD).
+8. `p.source-note` with linked sources. JSON-LD: NewsArticle + FAQPage + **Review** (itemReviewed VideoGame / TVSeries / Movie / Book / Product, reviewRating 0-10).
+Builder used for the conversion: `review_upgrade.py` / `convert_reviews.py` (working scripts); after any review change run `npm run scores`.

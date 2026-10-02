@@ -40,7 +40,8 @@ export function articleSummary(file) {
   const pick = (re) => text((s.match(re) || [])[1]);
   return {
     summary: pick(/<div class="hb-text">([\s\S]*?)<\/div>/) || pick(/<meta name="description" content="([^"]*)"/),
-    verdict: pick(/class="score-verdict">([\s\S]*?)<\/div>/),
+    // form review mới: nhãn xếp hạng ngắn (Xuất sắc, Rất hay...) nằm dưới điểm; score-verdict là câu phán quyết dài
+    verdict: pick(/class="review-verdict-score">[\s\S]*?<small>([\s\S]*?)<\/small>/) || pick(/class="score-verdict">([\s\S]*?)<\/div>/),
     sub: pick(/class="score-sub">([\s\S]*?)<\/div>/)
   };
 }
