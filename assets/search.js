@@ -2534,7 +2534,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-25",
     "excerpt": "Review Honkai: Star Rail: JRPG theo lượt miễn phí của HoYoverse, ra 26/4/2023, chiến đấu Weakness Break sâu, cốt truyện Astral Express; IGN 9/10, có gacha.",
-    "img": "/assets/img/news-honkai-star-rail-31-amphoreus.jpg",
+    "img": "/assets/img/news-honkai-star-rail-30-amphoreus.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -3064,7 +3064,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-08-18",
     "excerpt": "Honkai: Star Rail review: HoYoverse",
-    "img": "/assets/img/news-honkai-star-rail-31-amphoreus.jpg",
+    "img": "/assets/img/news-honkai-star-rail-30-amphoreus.jpg",
     "tags": [],
     "lang": "en"
   },

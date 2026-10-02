@@ -3110,7 +3110,7 @@ function buildHtml(lang = 'vi') {
     updateSubfilterRow();
   </script>
   <script defer src="/assets/search-redirect.js"></script>
-  <script defer src="/assets/enhance.js?v=20261002f"></script>
+  <script defer src="/assets/enhance.js?v=20261002g"></script>
   <script defer src="/assets/img-fit.v2.js?v=20260926"></script>
   <script src="/assets/lang-switch.js" defer></script>
 </body>

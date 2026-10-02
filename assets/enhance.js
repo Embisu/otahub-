@@ -34,6 +34,12 @@ document.querySelectorAll('.am-badge,.am-name').forEach(function(el){
   link.appendChild(el);
 });
 
+// "Bài viết liên quan" không được trỏ về chính bài đang đọc
+var herePath=location.pathname.replace(/\.html$/,'').replace(/\/$/,'');
+document.querySelectorAll('.art-sidebar a.sb-art').forEach(function(a){
+  if(a.getAttribute('href').replace(/\.html$/,'').replace(/\/$/,'')===herePath)a.remove();
+});
+
 var body=document.querySelector('.art-body');
 if(body){
   var heads=body.querySelectorAll('h2');
@@ -45,7 +51,7 @@ if(body){
       items.push('<a href="#'+id+'">'+h.textContent+'</a>');
     });
     var toc=document.createElement('div');
-    toc.className='toc-block open';
+    toc.className=window.innerWidth<900?'toc-block':'toc-block open';
     toc.innerHTML='<button type="button" class="toc-toggle">'+OT_T('Mục lục bài viết','Contents')+' <span class="toc-arrow">▾</span></button><nav class="toc-list">'+items.join('')+'</nav>';
     var hb=document.querySelector('.highlight-box');
     if(hb)hb.insertAdjacentElement('afterend',toc);

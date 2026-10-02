@@ -87,7 +87,7 @@ var TITLE_IMAGE={
   'Mushoku Tensei Season 3':'/assets/img/77948dbff7-mushoku-tensei-s3-chaosbreaker.jpg',
   'Monster Hunter Wilds':'/assets/img/news-monster-hunter-wilds-autumn-update.jpg',
   'Black Myth: Wukong':'/assets/img/6eef9e5628-library_hero.jpg','Wuthering Waves':'/assets/img/news-wuthering-waves-guide-ren-realm.jpg',
-  'Genshin Impact':'/assets/img/news-genshin-impact-70-abyss-teams.jpg','Honkai: Star Rail':'/assets/img/news-honkai-star-rail-31-amphoreus.jpg',
+  'Genshin Impact':'/assets/img/news-genshin-impact-70-abyss-teams.jpg','Honkai: Star Rail':'/assets/img/news-honkai-star-rail-30-amphoreus.jpg',
   'Honor of Kings Global':'/assets/img/news-honor-of-kings-lanling-wang.jpg','Berserk':'/assets/img/7b5a968234-maxresdefault.jpg',
   'One Piece':'/assets/img/news-one-piece-chapter-1192-elbaf-uranus.jpg','Chainsaw Man':'/assets/img/10728427f3-chainsaw-man-hero.jpg',
   'Solo Leveling: Ragnarok':'/assets/img/news-solo-leveling-ragnarok-manhwa.jpg','Vinland Saga':'/assets/img/7807ea1948-vinland-saga-manga-hero.jpg',
