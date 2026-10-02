@@ -1678,6 +1678,24 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
 <link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002l">
 <script>/* Ảnh thu nhỏ cho thẻ do JS vẽ: /assets/img/X -> /assets/img/_t/X.webp (scripts/build-thumbs.py; thiếu thì worker trả ảnh gốc) */function otThumb(u,k){return /^\/assets\/img\/(?!_[ts]\/|brand\/)[^?#]+\.(jpe?g|png|webp|jfif)$/i.test(u||'')?'/assets/img/'+(k||'_t')+'/'+u.slice(12)+'.webp':u}</script>
+<style id="hero-layout-v2">
+/* Hero (bài Tiêu điểm): chữ dồn xuống đáy và trải hết chiều ngang ảnh, lớp phủ tối đi từ dưới
+   lên thay vì phủ gần nửa trái, để ảnh bìa lộ rõ thay vì bị chữ và nền tối che gần hết. */
+.hero-main .h-ov{background:linear-gradient(0deg, var(--bg) 0%, rgba(11,4,24,.82) 24%, rgba(11,4,24,.32) 46%, rgba(11,4,24,0) 66%), linear-gradient(90deg, rgba(11,4,24,.35) 0%, rgba(11,4,24,0) 40%)}
+@media (min-width:769px){
+  .hero-main{justify-content:flex-end;padding-left:56px;padding-right:56px;padding-bottom:48px}
+  .hero-main .h-content{max-width:none;width:100%}
+  .hero-main .h-title{max-width:none;margin-bottom:12px}
+  .hero-main .h-sub{max-width:none}
+}
+@media (min-width:1101px){
+  .hero-main{padding-top:56px;padding-bottom:48px}
+}
+/* Điện thoại: chừa phần trên cho ảnh lộ ra, chữ nằm phía dưới thay vì phủ kín ảnh. */
+@media (max-width:768px){
+  .hero-main{padding-top:min(48vw,260px)}
+}
+</style>
 </head>
 
 
