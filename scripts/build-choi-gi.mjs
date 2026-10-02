@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import { verifiedReviews, articleFile } from './lib/review-scores.mjs';
-import { profilePaths, aliasPaths, localize } from './lib/profile-paths.mjs';
+import { profilePaths, aliasPaths, localize, profileSeries, slugify } from './lib/profile-paths.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 
@@ -2037,6 +2037,60 @@ const VI_NAME_ALIAS = {
   "Thợ Rèn Huyền Thoại (Overgeared)": "Overgeared: Thợ Rèn Huyền Thoại"
 };
 
+// Tựa bổ sung từ kho hồ sơ tác phẩm (assets/catalog.json + series.json): mọi hồ sơ có ảnh và câu giới thiệu VI/EN,
+// chưa nằm trong danh sách tuyển chọn ở trên. Điểm chỉ lấy khi hồ sơ trỏ tới bài review đã xác thực.
+const CATALOG = JSON.parse(fs.readFileSync(path.join(root, 'assets/catalog.json'), 'utf8'));
+const SERIES = profileSeries(CATALOG);
+const REVIEW_BY_URL = new Map([...REVIEWS.values()].map((r) => [r.url, r]));
+const MOOD_RULES = [
+  [/action|hành động|fight|shooter|soulslike|hack|battle|mecha|martial/i, 'action'],
+  [/comedy|slice of life|romance|healing|iyashikei|cozy|farming|life sim|music|idol|family|food/i, 'relax'],
+  [/drama|mystery|thriller|psychological|narrative|visual novel|crime|historical|sci-fi|supernatural/i, 'story'],
+  [/adventure|fantasy|open world|isekai|exploration|rpg|sandbox/i, 'explore'],
+  [/co-op|coop|multiplayer|party|mmo|sports|team/i, 'coop'],
+  [/horror|soulslike|roguelike|roguelite|survival|strategy|tactic|hunting|puzzle/i, 'challenge'],
+  [/movie|film|phim|short|oneshot/i, 'quick']
+];
+const TYPE_ORDER = { game: 0, anime: 1, manga: 2 };
+function catalogExtras(lang, usedProfiles, usedNames) {
+  const en = lang === 'en';
+  const out = [];
+  for (const sr of SERIES) sr.editions.forEach((e, i) => {
+    const c = CATALOG[e.key];
+    if (!c || !c.img || !c.hook || !c.hookEn) return;
+    const prof = localize('/ho-so/' + sr.slug + (i ? '#' + e.tab : ''), en);
+    if (usedProfiles.has(prof)) return;
+    const generic = !e.label || /^(Manga|Anime|Game)$/i.test(e.label);
+    const name = en ? (generic ? sr.nameEn : `${sr.nameEn}: ${e.labelEn}`) : (generic ? sr.name : `${sr.name}: ${e.label}`);
+    if (usedNames.has(name.toLowerCase()) || usedNames.has(e.key.toLowerCase())) return;
+    const genre = String(c.genre || '').replace(/\s*\/\s*/g, ' · ');
+    const plat = String(c.platforms || '');
+    const hay = `${genre} ${e.label} ${e.labelEn} ${e.key}`;
+    const subType = c.type === 'game' ? (/ios|android|mobile/i.test(plat) ? 'mobile' : /\bpc\b/i.test(plat) ? 'pc' : 'console')
+      : c.type === 'anime' ? (/movie|film|phim/i.test(hay) ? 'movie' : 'series')
+      : (/manhwa|webtoon|korea|naver|kakao|hàn/i.test(hay + ' ' + (c.studio || '')) ? 'manhwa' : 'manga');
+    let moods = [...new Set(MOOD_RULES.filter(([re]) => re.test(hay)).map(([, m]) => m))];
+    if (!moods.length) moods = ['story'];
+    const format = c.type === 'game'
+      ? (plat.replace(/PlayStation (\d)/g, 'PS$1').replace(/Xbox Series X\|S|Xbox Series|Xbox One/g, 'Xbox').replace(/Nintendo Switch 2/g, 'Switch 2').replace(/Nintendo Switch/g, 'Switch').replace(/iOS \/ Android/g, 'Mobile').split(' / ').filter((x, k, a) => a.indexOf(x) === k).join(' / ') || (en ? 'Multi-platform' : 'Nhiều nền tảng'))
+      : c.type === 'anime' ? (subType === 'movie' ? (en ? 'Movie' : 'Phim điện ảnh') : (en ? 'TV Series' : 'Phim bộ'))
+      : (subType === 'manhwa' ? 'Manhwa' : 'Manga');
+    const status = (en ? (c.statusEn || c.status) : c.status) || '';
+    const year = (String(c.release || c.startDate || '').match(/(\d{4})/) || [])[1];
+    const live = /gacha|mmo|live|online/i.test(hay);
+    const time = c.type === 'game'
+      ? ([year ? (en ? `Released ${year}` : `Phát hành ${year}`) : null, live ? 'Live-service' : null].filter(Boolean).join(' · ') || status || (en ? 'See profile' : 'Xem hồ sơ'))
+      : (status || (en ? 'See profile' : 'Xem hồ sơ'));
+    let r = c.scoreSource === 'review' && c.review ? REVIEW_BY_URL.get(c.review) : null;
+    if (r && r.type !== c.type) r = null;
+    let link = r ? (en ? r.enUrl : r.url) : ((en ? c.reviewEn : c.review) || null);
+    if (link && !pageFile(link)) link = null;
+    out.push({ id: 'cat-' + slugify(e.key), type: c.type, name, creator: [c.studio, year].filter(Boolean).join(' · '), format, subType, genre, moods, time,
+      score: r ? r.score : null, img: c.img, why: en ? c.hookEn : c.hook, link, reviewed: !!r, profile: prof, extra: true });
+  });
+  return out.sort((a, b) => TYPE_ORDER[a.type] - TYPE_ORDER[b.type]);
+}
+
 function prepare(items, lang) {
   return items.map((it) => {
     const rid = REVIEW_OF[it.id];
@@ -2157,7 +2211,8 @@ function keepBlock(old, re, fallback) {
 function buildHtml(lang, old) {
   const isEn = lang === 'en';
   const t = TXT[lang];
-  const items = prepare(isEn ? EN_ITEMS : VI_ITEMS, lang);
+  const curated = prepare(isEn ? EN_ITEMS : VI_ITEMS, lang);
+  const items = [...curated, ...catalogExtras(lang, new Set(curated.map((x) => x.profile).filter(Boolean)), new Set(curated.map((x) => x.name.toLowerCase())))];
   const top = rankingsTop(lang);
   const prefix = isEn ? '/en' : '';
   const canonical = `https://otahub.asia${prefix}/choi-gi`;
@@ -2178,7 +2233,7 @@ function buildHtml(lang, old) {
     { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: t.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) }
   ];
 
-  const segBtn = (k) => `<button type="button" class="seg-btn${k === 'all' ? ' on' : ''}" data-type="${k}" aria-pressed="${k === 'all'}"><span class="seg-ic" aria-hidden="true">${t.types[k][0]}</span><span class="seg-tx">${t.types[k][1]}</span><span class="seg-n">${k === 'all' ? items.length : items.filter((x) => x.type === k).length}</span></button>`;
+  const segBtn = (k) => `<button type="button" class="seg-btn${k === 'all' ? ' on' : ''}" data-type="${k}" aria-pressed="${k === 'all'}"><span class="seg-ic" aria-hidden="true">${t.types[k][0]}</span><span class="seg-tx">${t.types[k][1]}</span></button>`;
   const moodBtn = (k) => `<button type="button" class="chip${k === 'all' ? ' on' : ''}" data-mood="${k}" aria-pressed="${k === 'all'}"><span aria-hidden="true">${t.moods[k][0]}</span>${t.moods[k][1]}</button>`;
 
   const scoreBadge = (it) => (it.score !== null ? `<span class="c-score" title="${esc(t.scoreDt)}">${it.score.toFixed(1)}</span>` : `<span class="c-pick">${t.pick}</span>`);
@@ -2200,10 +2255,11 @@ function buildHtml(lang, old) {
       </div>`;
 
   // Dữ liệu cho script (img:'..' để build-thumbs.py tạo sẵn ảnh _t/_s)
-  const data = items.map((it) => `{id:${jsStr(it.id)},type:${jsStr(it.type)},sub:${jsStr(it.subType)},name:${jsStr(it.name)},creator:${jsStr(it.creator)},format:${jsStr(it.format)},genre:${jsStr(it.genre)},moods:[${it.moods.map(jsStr).join(',')}],time:${jsStr(it.time)},score:${it.score === null ? 'null' : it.score.toFixed(1)},img:${jsStr(it.img)},t:${jsStr(thumb(it.img, '_t'))},s:${jsStr(thumb(it.img, '_s'))},why:${jsStr(it.why)},link:${it.link ? jsStr(it.link) : 'null'},pf:${it.profile ? jsStr(it.profile) : 'null'},rv:${it.reviewed ? 1 : 0}}`).join(',\n      ');
+  const data = items.map((it) => `{id:${jsStr(it.id)},type:${jsStr(it.type)},sub:${jsStr(it.subType)},name:${jsStr(it.name)},creator:${jsStr(it.creator)},format:${jsStr(it.format)},genre:${jsStr(it.genre)},moods:[${it.moods.map(jsStr).join(',')}],time:${jsStr(it.time)},score:${it.score === null ? 'null' : it.score.toFixed(1)},img:${jsStr(it.img)},t:${jsStr(thumb(it.img, '_t'))},s:${jsStr(thumb(it.img, '_s'))},why:${jsStr(it.why)},link:${it.link ? jsStr(it.link) : 'null'},pf:${it.profile ? jsStr(it.profile) : 'null'},rv:${it.reviewed ? 1 : 0}${it.extra ? ',x:1' : ''}}`).join(',\n      ');
   const I18N = {
     today: t.today, forYou: t.forYou, chosen: t.chosen, typeName: t.typeName, scoreDt: t.scoreDt, noScoreDt: t.noScoreDt, noScore: t.noScore,
-    readReview: t.readReview, readArticle: t.readArticle, noArticle: t.noArticle, profileBtn: t.profileBtn, copied: t.copied, more: t.more, subs: t.subs, moods: t.moods, count: t.count(0)
+    readReview: t.readReview, readArticle: t.readArticle, noArticle: t.noArticle, profileBtn: t.profileBtn, copied: t.copied, more: t.more, subs: t.subs, moods: t.moods, count: t.count(0),
+    pick: t.pick, quick: t.quick, profile: t.profile
   };
 
   return `<!DOCTYPE html>
@@ -2391,6 +2447,12 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     .pick.is-wide .pick-title { font-size: clamp(24px, 2.4vw, 30px); }
     .pick.is-wide .pick-facts { grid-template-columns: repeat(2, minmax(0, 220px)); }
     .pick.is-wide .pick-actions { margin-top: auto; padding-top: 20px; }
+    .pick-media-link { position: absolute; inset: 0; z-index: 2; }
+    .pick-media-link[hidden] { display: none; }
+    .pick-img { transition: transform .45s var(--ease); }
+    .pick-media:has(.pick-media-link:hover) .pick-img { transform: scale(1.03); }
+    .pick-title-link { color: inherit; text-decoration: none; transition: color .2s; }
+    .pick-title-link[href]:hover { color: var(--acc); }
     .pick-type { position: absolute; z-index: 2; left: 16px; top: 16px; font-family: var(--fd); font-size: 11.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #0b0418; background: var(--acc); padding: 5px 11px; border-radius: 8px; }
     .pick-body { position: relative; padding: 26px 28px; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
     .pick-body::before { content: ''; position: absolute; right: -80px; top: -80px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--acc) 22%, transparent), transparent 70%); pointer-events: none; }
@@ -2635,11 +2697,12 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
       <div class="pick-media">
         <img class="pick-bg" id="pickBg" src="${thumb(first.img, '_t')}" alt="" aria-hidden="true" width="320" height="200">
         <img class="pick-img" id="pickImg" src="${thumb(first.img, '_t')}" alt="${esc(first.name)}" width="640" height="400" fetchpriority="high">
+        <a class="pick-media-link" id="pickMediaLink" href="${first.link || first.profile || '#'}" aria-label="${esc(first.name)}"${first.link || first.profile ? '' : ' hidden'}></a>
         <span class="pick-type" id="pickType">${t.typeName[typeKey(first)]}</span>
       </div>
       <div class="pick-body">
         <div class="pick-top"><span class="pick-ic" aria-hidden="true">🎲</span><span class="pick-eyebrow" id="pickLabel">${t.today}</span></div>
-        <h2 class="pick-title" id="pickTitle">${esc(first.name)}</h2>
+        <h2 class="pick-title"><a class="pick-title-link" id="pickTitle"${first.link || first.profile ? ` href="${first.link || first.profile}"` : ''}>${esc(first.name)}</a></h2>
         <p class="pick-meta" id="pickMeta">${esc(first.creator)}</p>
         <div class="pick-tags" id="pickTags"><span>${esc(first.format)}</span><span>${esc(first.genre)}</span></div>
         <p class="pick-why" id="pickWhy">${esc(first.why)}</p>
@@ -2664,7 +2727,7 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     <section class="sec" id="all" aria-labelledby="allH">
       <div class="sec-head"><h2 id="allH">${t.allH} <span class="n" id="allCount">${items.length}</span></h2><p>${t.allP}</p></div>
       <div class="grid" id="grid">
-      ${items.map(card).join('\n      ')}
+      ${items.filter((x) => !x.extra).map(card).join('\n      ')}
       </div>
       <div class="more-wrap" id="moreWrap"><button type="button" class="btn btn-ghost" id="moreBtn" style="--acc:var(--cyan)"></button></div>
       <div class="empty" id="empty" hidden><p>${t.empty}</p><button type="button" class="btn btn-ghost" id="clearMood" style="--acc:var(--cyan)">${t.clearMood}</button></div>
@@ -2736,6 +2799,9 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
       $('pickType').textContent = L.typeName[typeKey(it)];
       $('pickLabel').textContent = label;
       $('pickTitle').textContent = it.name;
+      const go = it.link || it.pf;
+      if (go) $('pickTitle').href = go; else $('pickTitle').removeAttribute('href');
+      $('pickMediaLink').hidden = !go; if (go) $('pickMediaLink').href = go;
       $('pickMeta').textContent = it.creator;
       $('pickTags').innerHTML = '<span>' + escH(it.format) + '</span><span>' + escH(it.genre) + '</span>';
       $('pickWhy').textContent = it.why;
@@ -2798,8 +2864,6 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     function applyFilters() {
       $('finder').style.setProperty('--facc', state.type === 'all' ? 'var(--amber)' : ACC[state.type]);
       document.querySelectorAll('.seg-btn').forEach((b) => { const on = b.dataset.type === state.type; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
-      // số tựa mỗi loại theo tâm trạng đang chọn
-      document.querySelectorAll('.seg-btn').forEach((b) => { b.querySelector('.seg-n').textContent = ITEMS.filter((it) => matches(it, { type: b.dataset.type, sub: 'all', mood: state.mood })).length; });
       document.querySelectorAll('#moodChips .chip').forEach((b) => {
         const on = b.dataset.mood === state.mood;
         b.classList.toggle('on', on); b.setAttribute('aria-pressed', on);
@@ -2863,6 +2927,17 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     document.addEventListener('click', (e) => { const b = e.target.closest('[data-open]'); if (b) showPick(byId[b.dataset.open], L.chosen, true); });
 
     // Trạng thái ban đầu: theo link (?type=&sub=&mood=&pick=) hoặc gợi ý hôm nay (đổi mỗi ngày, ưu tiên tựa có review)
+    // Thẻ cho tựa bổ sung từ kho hồ sơ (x:1) dựng khi tải trang để HTML tĩnh gọn
+    (function buildExtraCards() {
+      const html = ITEMS.filter((it) => it.x).map((it) => '<article class="card" data-id="' + it.id + '" data-type="' + it.type + '" data-sub="' + it.sub + '" data-moods="' + it.moods.join(' ') + '" style="--acc:' + ACC[it.type] + '">'
+        + '<div class="c-media"><img src="' + it.t + '" alt="" loading="lazy" decoding="async" width="320" height="200"><span class="c-type">' + escH(L.typeName[typeKey(it)]) + '</span>'
+        + (it.score !== null ? '<span class="c-score" title="' + escH(L.scoreDt) + '">' + it.score.toFixed(1) + '</span>' : '<span class="c-pick">' + escH(L.pick) + '</span>') + '</div>'
+        + '<div class="c-body"><h3 class="c-title"><button type="button" class="c-open" data-open="' + it.id + '">' + escH(it.name) + '</button></h3>'
+        + '<p class="c-meta">' + escH(it.genre) + (it.pf ? ' · <a class="c-link c-prof" href="' + it.pf + '">' + escH(L.profile) + '</a>' : '') + '</p>'
+        + '<p class="c-foot"><span>' + escH(it.format) + '</span>' + (it.link ? '<a class="c-link" href="' + it.link + '">' + escH(it.rv ? L.readReview : L.readArticle) + ' →</a>' : '<span class="c-link c-link-soft">' + escH(L.quick) + '</span>') + '</p></div></article>').join('');
+      $('grid').insertAdjacentHTML('beforeend', html);
+    })();
+
     (function init() {
       const p = new URLSearchParams(location.search);
       if (['game', 'anime', 'manga'].includes(p.get('type'))) state.type = p.get('type');
