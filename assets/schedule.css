@@ -83,8 +83,24 @@
 .sch-src{margin-top:34px;font-size:13px;line-height:1.7;color:var(--muted)}
 .sch-src a{color:var(--cyan)}
 
+.sch-wrap.sch-nextwrap{padding-bottom:0}.sch-nextwrap:empty{display:none}
+.sch-next{margin-bottom:18px}.sch-next .sch-h{margin-top:22px}
+.sch-next-hero{display:grid;grid-template-columns:132px minmax(0,1fr);gap:22px;align-items:center;padding:16px;margin-bottom:16px;border:1px solid rgba(0,242,255,.28);border-radius:16px;background:linear-gradient(135deg,rgba(0,242,255,.07),rgba(255,45,170,.06) 70%),var(--surf)}
+.sch-next-hero img{width:132px;height:185px;object-fit:cover;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.45)}
+.sch-next-info{display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-width:0}
+.sch-next-t{font-family:var(--fd);font-weight:800;font-size:24px;line-height:1.2;color:#fff}
+.sch-next-t a{color:inherit;text-decoration:none}.sch-next-t a:hover{color:var(--cyan)}
+.sch-next-m{font-size:13.5px;color:var(--dim)}
+.sch-cd-l{margin-top:10px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.sch-cd{font-family:var(--fd);font-weight:800;font-size:38px;line-height:1.1;color:var(--cyan);font-variant-numeric:tabular-nums;letter-spacing:.01em;text-shadow:0 0 18px rgba(0,242,255,.35)}
+.sch-next-row{grid-auto-columns:minmax(170px,200px)}
 @media(max-width:1000px){.sch-list{grid-template-columns:1fr}}
 @media(max-width:768px){
+  .sch-next-hero{grid-template-columns:88px minmax(0,1fr);gap:14px;padding:12px;margin-bottom:12px}
+  .sch-next-hero img{width:88px;height:123px}
+  .sch-next-t{font-size:17px}.sch-next-m{font-size:12px}
+  .sch-cd-l{margin-top:6px;font-size:10.5px}.sch-cd{font-size:27px}
+  .sch-next-row{grid-auto-columns:44%}
   .sch-modes{display:flex;width:100%}.sch-mode{flex:1;justify-content:center;padding:0 10px;font-size:13.5px}
   .sch-bar{position:static}
   .sch-seasons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;flex:1 1 100%}
@@ -114,3 +130,5 @@
   .sch-card-t{font-size:14px}.sch-card-m{font-size:11.5px}.sch-card-body{padding:10px;gap:4px}
   .sch-allbtn{display:block;width:100%;margin-top:8px;min-height:38px;border:1px solid var(--border);border-radius:10px;background:none;color:var(--cyan);font-weight:600;font-size:13px;cursor:pointer}
 }
+.sch-card .sch-st{background:rgba(8,2,20,.86);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.sch-card::after{background:linear-gradient(180deg,transparent 30%,rgba(8,2,20,.97) 92%)}

@@ -18,7 +18,8 @@ var T = EN ? {
   none:'No titles match your filters.', count:function(n){ return n + ' titles'; },
   summary:function(c){ return [c.tv && c.tv + ' TV series', c.ona && c.ona + ' streaming', c.film && c.film + ' films & specials'].filter(Boolean).join(' · '); },
   tz:'Times in Vietnam time (UTC+7)', updated:'Updated', source:'Sources', note:'Times can shift by broadcaster or streaming platform.',
-  read:'Read on OtaHub', allWeek:'Show the whole week', oneDay:'Show one day only'
+  read:'Read on OtaHub', allWeek:'Show the whole week', oneDay:'Show one day only',
+  nextUp:'Premiering soon', nextIn:'Next premiere in', premToday:'Premieres today', premNow:'On air now', dUnit:'d', released:'Japan release'
 } : {
   seasons: {winter:'Mùa Đông', spring:'Mùa Xuân', summer:'Mùa Hè', fall:'Mùa Thu'},
   months: {winter:'T1–T3', spring:'T4–T6', summer:'T7–T9', fall:'T10–T12'},
@@ -32,7 +33,8 @@ var T = EN ? {
   none:'Không có tựa nào khớp bộ lọc.', count:function(n){ return n + ' tựa'; },
   summary:function(c){ return [c.tv && c.tv + ' phim TV', c.ona && c.ona + ' phim trực tuyến', c.film && c.film + ' phim rạp & đặc biệt'].filter(Boolean).join(' · '); },
   tz:'Giờ Việt Nam (UTC+7)', updated:'Cập nhật', source:'Nguồn', note:'Giờ chiếu có thể thay đổi theo đài hoặc nền tảng phát hành.',
-  read:'Đọc trên OtaHub', allWeek:'Xem cả tuần', oneDay:'Chỉ xem một ngày'
+  read:'Đọc trên OtaHub', allWeek:'Xem cả tuần', oneDay:'Chỉ xem một ngày',
+  nextUp:'Sắp lên sóng', nextIn:'Tập đầu lên sóng sau', premToday:'Ra mắt hôm nay', premNow:'Đang lên sóng', dUnit:' ngày', released:'Khởi chiếu tại Nhật'
 };
 var ORDER = ['winter','spring','summer','fall'];
 var WEEK = [1,2,3,4,5,6,0];                 // Thứ Hai -> Chủ Nhật
@@ -47,6 +49,12 @@ var dowOf = function(iso){ return new Date(iso + 'T00:00:00Z').getUTCDay(); };
 var fmtDate = function(iso){ var p = iso.split('-'); return EN ? new Date(iso + 'T00:00:00Z').toLocaleDateString('en-US', {month:'short', day:'numeric', timeZone:'UTC'}) : (+p[2]) + '/' + (+p[1]); };
 var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
 var thumb = function(u, k){ return /^\/assets\/img\/(?!_[ts]\/)[^?#]+\.(jpe?g|png|webp)$/i.test(u || '') ? '/assets/img/' + (k || '_s') + '/' + u.slice(12) + '.webp' : u; };
+var tsOf = function(a){ return Date.parse(a.d + 'T' + (a.h || '00:00') + ':00+07:00'); };
+var pad2 = function(n){ return n < 10 ? '0' + n : '' + n; };
+var fmtCd = function(ms){
+  var s = Math.max(0, Math.floor(ms / 1000)), d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60);
+  return (d ? d + T.dUnit + ' ' : '') + pad2(h) + ':' + pad2(m) + ':' + pad2(s % 60);
+};
 var linkOf = function(a){ return EN ? (a.le || '') : (a.l || ''); };
 
 var MQ = window.matchMedia('(max-width:768px)');
@@ -82,6 +90,33 @@ function tile(a){
   var ini = ((w[0] || '?').charAt(0) + (w.length > 1 ? w[1].charAt(0) : (w[0] || '').charAt(1))).toUpperCase();
   return '<span class="sch-thumb sch-tile t-' + a.y + '" aria-hidden="true">' + esc(ini) + '</span>';
 }
+function card(a){
+  var st = status(a), href = linkOf(a), tag = href ? 'a' : 'div';
+  return '<' + tag + (href ? ' href="' + esc(href) + '"' : '') + ' class="sch-card"><img src="' + esc(thumb(a.i, '_t')) + '" alt="' + esc(a.t) + '" loading="lazy" decoding="async" width="300" height="400" onerror="this.onerror=null;this.src=\'' + esc(a.i) + '\'"><div class="sch-card-body"><span class="sch-st ' + st.k + '">' + esc(st.label) + '</span><div class="sch-card-t">' + esc(a.t) + '</div><div class="sch-card-m">' + esc(T.days[dowOf(a.d)]) + (a.h ? ' · ' + a.h : '') + ' · ' + esc(a.s) + '</div></div></' + tag + '>';
+}
+// khối "Sắp lên sóng": tựa kế tiếp có đếm ngược trực tiếp + hàng thẻ các tựa sau đó
+function nextUp(all){
+  var now = Date.now();
+  var up = all.filter(function(a){ return a.i && tsOf(a) > now; }).sort(function(a, b){ return tsOf(a) - tsOf(b) || a.t.localeCompare(b.t); }).slice(0, 10);
+  if (!up.length) return '';
+  var a = up[0], href = linkOf(a);
+  var title = href ? '<a href="' + esc(href) + '">' + esc(a.t) + '</a>' : esc(a.t);
+  var meta = [T.days[dowOf(a.d)] + ' ' + fmtDate(a.d) + (a.h ? ' · ' + a.h : ''), a.s].filter(Boolean).map(esc).join(' · ');
+  var hero = '<div class="sch-next-hero"><img src="' + esc(thumb(a.i, '_t')) + '" alt="" width="300" height="420" decoding="async" onerror="this.onerror=null;this.src=\'' + esc(a.i) + '\'">' +
+    '<div class="sch-next-info"><span class="sch-type t-' + a.y + '">' + esc(T.types[a.y]) + '</span><div class="sch-next-t">' + title + '</div><div class="sch-next-m">' + meta + '</div>' +
+    '<div class="sch-cd-l">' + T.nextIn + '</div><div class="sch-cd" data-ts="' + tsOf(a) + '" role="timer" aria-live="off">' + fmtCd(tsOf(a) - now) + '</div></div></div>';
+  var rest = up.slice(1);
+  return '<section class="sch-next"><h2 class="sch-h">' + T.nextUp + '</h2>' + hero +
+    (rest.length ? '<div class="sch-feat-row sch-next-row">' + rest.map(card).join('') + '</div>' : '') + '</section>';
+}
+function tick(){
+  var els = document.querySelectorAll('.sch-cd[data-ts]');
+  for (var i = 0; i < els.length; i++){
+    var left = +els[i].dataset.ts - Date.now();
+    if (left <= 0){ render(); return; }
+    var t = fmtCd(left); if (els[i].textContent !== t) els[i].textContent = t;
+  }
+}
 function row(a){
   var st = status(a), href = linkOf(a);
   var title = href ? '<a href="' + esc(href) + '">' + esc(a.t) + '</a>' : esc(a.t);
@@ -116,10 +151,12 @@ function render(){
   }).join('');
 
   // nổi bật: tựa có ảnh, chỉ khi không lọc
+  var isCurSeason = state.season === D.current;
   var feat = (!state.q && state.type === 'all') ? all.filter(function(a){ return a.i; }) : [];
+  var nx = document.getElementById('schNext');
+  if (nx) nx.innerHTML = isCurSeason ? nextUp(all) : '';
   var html = feat.length ? '<section class="sch-feat"><h2 class="sch-h">' + T.featured + '</h2><div class="sch-feat-row">' + feat.map(function(a){
-    var st = status(a), href = linkOf(a), tag = href ? 'a' : 'div';
-    return '<' + tag + (href ? ' href="' + esc(href) + '"' : '') + ' class="sch-card"><img src="' + esc(thumb(a.i, '_t')) + '" alt="' + esc(a.t) + '" loading="lazy" decoding="async" width="300" height="400" onerror="this.onerror=null;this.src=\'' + esc(a.i) + '\'"><div class="sch-card-body"><span class="sch-st ' + st.k + '">' + esc(st.label) + '</span><div class="sch-card-t">' + esc(a.t) + '</div><div class="sch-card-m">' + esc(T.days[dowOf(a.d)]) + (a.h ? ' · ' + a.h : '') + ' · ' + esc(a.s) + '</div></div></' + tag + '>';
+    return card(a);
   }).join('') + '</div></section>' : '';
 
   // dải ngày trong tuần + từng ngày
@@ -144,6 +181,7 @@ function render(){
 
 // khung tĩnh
 root.innerHTML =
+  '<div class="sch-wrap sch-nextwrap" id="schNext"></div>' +
   '<div class="sch-bar"><div class="sch-bar-in">' +
     '<div class="sch-seasons" role="group">' + ORDER.map(function(s){
       return '<button type="button" class="sch-season" data-s="' + s + '"><b>' + T.seasons[s] + '</b><span>' + T.months[s] + ' · ' + (D.seasons[s] || []).length + '</span></button>';
@@ -166,6 +204,8 @@ root.addEventListener('click', function(e){
 var qt;
 document.getElementById('schQ').addEventListener('input', function(e){ clearTimeout(qt); qt = setTimeout(function(){ state.q = e.target.value.trim().toLowerCase(); render(); }, 120); });
 if (MQ.addEventListener) MQ.addEventListener('change', render);
+setInterval(function(){ if (!document.hidden) tick(); }, 1000);
+document.addEventListener('visibilitychange', function(){ if (!document.hidden) tick(); });
 window.otScheduleRender = render;
 render();
 })();
