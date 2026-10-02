@@ -7253,6 +7253,19 @@ function keepCustomOgImage(html, hero) {
   return !!(cur && hero && abs(cur) === abs(hero) && /^https:\/\/otahub\.asia\/assets\/img\//.test(og) && og !== abs(hero));
 }
 
+// Thẻ <title> cho bài: Google cắt tiêu đề quá ~65 ký tự.
+// - Có <meta name="seo-title"> (tiêu đề SEO rút gọn) và tiêu đề bài không đổi: dùng tiêu đề SEO.
+// - Tiêu đề bài đã đổi: bỏ seo-title cũ (không còn khớp nội dung).
+// - Còn lại: "Tiêu đề · OtaHub", bỏ đuôi khi tổng dài quá 65 ký tự (Google tự hiện tên site).
+function pageTitleFor(html, titleEsc) {
+  const seo = (html.match(/<meta name="seo-title" content="([^"]*)">/) || [])[1] || '';
+  const oldH1 = ((html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i) || [])[1] || '').replace(/<[^>]+>/g, '').trim();
+  if (seo && oldH1 === titleEsc) return { html, title: seo };
+  html = html.replace(/<meta name="seo-title" content="[^"]*">\n?/, '');
+  const full = `${titleEsc} · OtaHub`;
+  return { html, title: full.length > 65 ? titleEsc : full };
+}
+
 function extractHero(html) {
   let m = html.match(/class="(?:art-hero-bg|art-hero-img)"\s+style="([^"]+)"/);
   if (m) {
@@ -8885,7 +8898,7 @@ async function saveQuickEdit(file) {
     let html = decodeURIComponent(escape(atob(data.content)));
     
     // Patch title, cat, desc in HTML
-    html = html.replace(/<title>[^<]*<\/title>/i, `<title>${replSafe(esc(title))} · OtaHub</title>`);
+    { const pt = pageTitleFor(html, esc(title)); html = pt.html; html = html.replace(/<title>[^<]*<\/title>/i, `<title>${replSafe(pt.title)}</title>`); }
     html = html.replace(/(<meta\s+property="og:title"\s+content=")[^"]*(")/i, `$1${replSafe(esc(title))} · OtaHub$2`);
     html = html.replace(/(<meta\s+name="twitter:title"\s+content=")[^"]*(")/i, `$1${replSafe(esc(title))} · OtaHub$2`);
     html = html.replace(/("headline":\s*")[^"]*(")/i, `$1${replSafe(title.replace(/\\/g,'\\\\').replace(/"/g,'\\"'))}$2`);
@@ -15639,7 +15652,7 @@ function applyArticleEditsToHtml(baseHtml, customData) {
 
   let html = baseHtml;
   // Apply edits (esc() để tránh vỡ HTML nếu tiêu đề/mô tả chứa <, >, &, ")
-  html = html.replace(/<title>[^<]*<\/title>/i, `<title>${replSafe(esc(title))} · OtaHub</title>`);
+  { const pt = pageTitleFor(html, esc(title)); html = pt.html; html = html.replace(/<title>[^<]*<\/title>/i, `<title>${replSafe(pt.title)}</title>`); }
   html = html.replace(/(<meta\s+name="description"\s+content=")[^"]*(")/i,   `$1${replSafe(esc(desc))}$2`);
 
   // Từ khóa trọng tâm (SEO Score) — lưu dạng meta ẩn, chỉ admin.html đọc lại
