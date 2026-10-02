@@ -20,6 +20,18 @@ const NAV = {
   en: [['/en/choi-gi', 'What to Play'], ['/en/gaming', 'Gaming'], ['/en/anime', 'Anime'], ['/en/manga', 'Manga'], ['/en/lich-phat-song', 'Schedule'],
     ['/en/reviews', 'Reviews'], ['/en/rankings', 'Rankings'], ['/en/in-depth', 'In-Depth']]
 };
+// ===== MỤC NỔI BẬT TẠM THỜI (chiến dịch) =====
+// Thêm một nút nổi bật cuối menu ngang (và đầu menu trượt trên điện thoại) ở mọi trang VI / EN.
+// Toàn bộ kiểu dáng viết thẳng trong thẻ nên không phụ thuộc file CSS nào.
+// GỠ XUỐNG: đổi `FEATURED` thành `null`, chạy `npm run chrome`, rồi commit. Menu về lại đúng 8 mục chuẩn.
+const FEATURED = {
+  vi: { href: '/dem-nguoc-gta-6', label: 'GTA VI', mobile: 'GTA VI · Đếm ngược 19/11' },
+  en: { href: '/en/gta-6-countdown', label: 'GTA VI', mobile: 'GTA VI · Countdown to Nov 19' }
+};
+const HOT_DOT = '<svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true" style="flex:none;margin-right:7px"><circle cx="4" cy="4" r="4" fill="#1a0a24"><animate attributeName="opacity" values="1;.25;1" dur="1.4s" repeatCount="indefinite"/></circle></svg>';
+const HOT_BASE = 'background:linear-gradient(135deg,#ff4fa3,#ff9a3c);color:#1a0a24;font-weight:800;letter-spacing:.06em;box-shadow:0 0 16px rgba(255,79,163,.55);';
+const hotDesktop = (lang, act) => FEATURED ? `<li class="nav-hot-li" style="display:flex;align-items:center"><a href="${FEATURED[lang].href}" class="nav-hot${act ? ' active' : ''}" style="${HOT_BASE}border-radius:999px;padding:0 14px;height:32px;margin-left:8px">${HOT_DOT}${FEATURED[lang].label}</a></li>` : '';
+const hotMobile = (lang, act) => FEATURED ? `<a href="${FEATURED[lang].href}" class="nav-hot${act ? ' active' : ''}" style="${HOT_BASE}border-radius:12px;padding:12px 16px;margin-bottom:10px;border-bottom:0;display:flex;align-items:center;justify-content:center;font-size:17px">${HOT_DOT}${FEATURED[lang].mobile}</a>` : '';
 const CTA = { vi: ['/#newsletter', 'Đăng ký'], en: ['/en/#newsletter', 'Subscribe'] };
 const SUB = { vi: [['/about', 'Giới thiệu'], ['/#newsletter', 'Bản tin'], ['/lien-he', 'Liên hệ']], en: [['/en/about', 'About'], ['/en/#newsletter', 'Newsletter'], ['/en/contact', 'Contact']] };
 const LOGO = (home, lazy) => `<a href="${home}" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block"${lazy ? ' loading="lazy"' : ''}><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a>`;
@@ -66,17 +78,19 @@ function replaceElement(html, openRe, tag, build) {
 const activeOf = (block, lang) => {
   const m = block.match(/<a\b[^>]*href="([^"]*)"[^>]*class="[^"]*\bactive\b[^"]*"|<a\b[^>]*class="[^"]*\bactive\b[^"]*"[^>]*href="([^"]*)"/);
   const href = m && norm(m[1] || m[2]);
-  return href && NAV[lang].some(([u]) => norm(u) === href) ? href : null;
+  return href && (NAV[lang].some(([u]) => norm(u) === href) || (FEATURED && norm(FEATURED[lang].href) === href)) ? href : null;
 };
 // Ngôn ngữ theo đường dẫn trang; riêng admin.html ("mixed") chứa mẫu cả VI lẫn EN nên đoán theo link trong từng khối
 const langOfBlock = (block, pageLang) => (pageLang !== 'mixed' ? pageLang : /href="\/en[\/"#]/.test(block) ? 'en' : 'vi');
 
-function syncHtml(html, pageLang) {
+function syncHtml(html, pageLang, pagePath) {
+  // trang đích của mục nổi bật luôn được đánh dấu là trang đang xem
+  const actOf = (block, lang) => (FEATURED && pagePath && norm(FEATURED[lang].href) === pagePath ? norm(FEATURED[lang].href) : activeOf(block, lang));
   // menu ngang
   html = replaceElement(html, /<ul class="nav-links"[^>]*>/, 'ul', (block) => {
     const lang = langOfBlock(block, pageLang);
-    const act = activeOf(block, lang);
-    return `<ul class="nav-links">${NAV[lang].map(([u, t]) => `<li><a href="${u}"${norm(u) === act ? ' class="active"' : ''}>${t}</a></li>`).join('')}</ul>`;
+    const act = actOf(block, lang);
+    return `<ul class="nav-links">${NAV[lang].map(([u, t]) => `<li><a href="${u}"${norm(u) === act ? ' class="active"' : ''}>${t}</a></li>`).join('')}${hotDesktop(lang, FEATURED && norm(FEATURED[lang].href) === act)}</ul>`;
   });
   // logo trên menu -> trang chủ đúng ngôn ngữ (trang 404 giữ đường dẫn tương đối riêng)
   html = replaceElement(html, /<nav class="nav"[^>]*>/, 'nav', (block) => {
@@ -88,10 +102,10 @@ function syncHtml(html, pageLang) {
     html = replaceElement(html, new RegExp(`<${tag} class="mobile-nav"[^>]*>`), tag, (block) => {
       const open = block.match(new RegExp(`^<${tag}[^>]*>`))[0];
       const lang = langOfBlock(block, pageLang);
-      const act = activeOf(block, lang);
+      const act = actOf(block, lang);
       // trang bài viết có thêm dòng phụ (Giới thiệu · Bản tin · Liên hệ) ở cuối menu trượt
       const sub = /class="m-sub"/.test(block) ? `<div class="m-sub">${SUB[lang].map(([u, t]) => `<a href="${u}">${t}</a>`).join('')}</div>` : '';
-      return `${open}\n  ${NAV[lang].map(([u, t]) => `<a href="${u}"${norm(u) === act ? ' class="active"' : ''}>${t}</a>`).join('')}${sub}\n</${tag}>`;
+      return `${open}\n  ${hotMobile(lang, FEATURED && norm(FEATURED[lang].href) === act)}${NAV[lang].map(([u, t]) => `<a href="${u}"${norm(u) === act ? ' class="active"' : ''}>${t}</a>`).join('')}${sub}\n</${tag}>`;
     });
   }
   // nút Đăng ký
@@ -121,7 +135,7 @@ let changed = 0;
 for (const f of files) {
   const lang = f === 'admin.html' ? 'mixed' : /^en\/|\.en\.html$/.test(f) ? 'en' : 'vi';
   const before = fs.readFileSync(rel(f), 'utf8');
-  const after = syncHtml(before, lang);
+  const after = syncHtml(before, lang, '/' + f.replace(/\.html$/, ''));
   if (after === before) continue;
   changed++;
   if (CHECK) console.log('lệch:', f);

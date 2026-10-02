@@ -1,5 +1,23 @@
 window.IDX = [
   {
+    "title": "GTA 6 Countdown: Everything to Know Before Nov 19",
+    "url": "/en/gta-6-countdown",
+    "cat": "Gaming",
+    "date": "2026-10-02",
+    "excerpt": "OtaHub researched and compiled GTA 6: live countdown, release date, price, Leonida map, characters, gameplay, cars and weapons revealed so far.",
+    "img": "/assets/img/gta6-official-art.jpg",
+    "tags": []
+  },
+  {
+    "title": "Đếm ngược GTA 6: mọi điều cần biết trước 19/11",
+    "url": "/dem-nguoc-gta-6",
+    "cat": "Gaming",
+    "date": "2026-10-02",
+    "excerpt": "OtaHub nghiên cứu, tổng hợp GTA 6: đồng hồ đếm ngược, ngày ra mắt, giá, bản đồ Leonida, nhân vật, gameplay, xe và vũ khí đã lộ diện.",
+    "img": "/assets/img/gta6-official-art.jpg",
+    "tags": []
+  },
+  {
     "title": "Gears of War: E-Day Review Roundup: Scores, Pros, Cons and PC Specs",
     "url": "/en/gears-of-war-e-day-review-roundup-scores-pc-specs",
     "cat": "Gaming",
