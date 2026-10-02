@@ -18,10 +18,9 @@
     game: {
       vi: 'Gaming', en: 'Gaming',
       // Tin tức gồm cả ra mắt / trailer / cập nhật. "Đánh giá" vẫn là mục hợp lệ nhưng KHÔNG hiện ở trang Gaming (đã có trang Đánh giá).
-      types: [['tin-tuc', 'Tin tức', 'News'], ['huong-dan', 'Hướng dẫn', 'Guides'], ['esports', 'Esports', 'Esports'], ['goc-nhin', 'Góc nhìn', 'Features'],
+      types: [['tin-tuc', 'Tin tức', 'News'], ['huong-dan', 'Hướng dẫn', 'Guides'], ['esports', 'Esports', 'Esports'], ['goc-nhin', 'Góc nhìn', 'Features'], ['e-magazine', 'E-Magazine', 'E-Magazine'],
         ['danh-gia', 'Đánh giá', 'Reviews'], ['top-list', 'Top List', 'Top Lists']],
       hiddenTypes: ['danh-gia'],
-      emag: ['E-Magazine', 'E-Magazine'],
       // Nhóm phụ độc lập, lưu thành chuỗi từ khóa trong otahub:facet, ví dụ "pc online vn".
       // Trong cùng nhóm: chọn nhiều = HOẶC; giữa các nhóm: VÀ.
       facetGroups: [

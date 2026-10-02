@@ -17,6 +17,7 @@ const NEWS_MATCH = '\\bGTA\\s*(?:6|VI)\\b|Grand Theft Auto\\s*(?:6|VI)\\b';
 export default {
   slug: 'gta6',
   updated: '2026-10-02',
+  hubFacet: 'pc offline', // nhóm lọc ở trang Gaming (nền tảng + hình thức): GTA 6 là game console chơi một mình
   theme: { a1: '#ff4fa3', a2: '#ff9a3c', a3: '#2de2e6', a4: '#8b5cf6' },
   countdown: { vn: '2026-11-18T17:00:00Z', us: '2026-11-19T05:00:00Z' },
   newsMatch: NEWS_MATCH,

@@ -40,7 +40,7 @@ const PAGES = [
   { file: 'en/anime.html', hub: 'anime', lang: 'en', p: 'anime', data: 'ANIME_FEATURED_DATA' },
   { file: 'en/manga.html', hub: 'manga', lang: 'en', p: 'manga', data: 'MANGA_FEATURED_DATA' }
 ];
-const TAG_CLASS = { 'tin-tuc': 'tc', 'ra-mat': 'tc', 'lich-chieu': 'ts', 'phim-rap': 'ta', 'chuong-moi': 'ts', 'chuyen-the': 'tv', 'danh-gia': 'ta', 'huong-dan': 'tg', esports: 'tv', 'goc-nhin': 'tv', 'top-list': 'ta' };
+const TAG_CLASS = { 'e-magazine': 'tv', 'tin-tuc': 'tc', 'ra-mat': 'tc', 'lich-chieu': 'ts', 'phim-rap': 'ta', 'chuong-moi': 'ts', 'chuyen-the': 'tv', 'danh-gia': 'ta', 'huong-dan': 'tg', esports: 'tv', 'goc-nhin': 'tv', 'top-list': 'ta' };
 const TOP_LINK = { vi: { game: '🏆 Top Game', anime: '🏆 Top Anime', manga: '🏆 Top Manga' }, en: { game: '🏆 Top Games', anime: '🏆 Top Anime', manga: '🏆 Top Manga' } };
 const ALL = { vi: 'Tất cả', en: 'All' };
 const SEC_TITLE = {
@@ -84,6 +84,16 @@ const files = [...fs.readdirSync(new URL('../', import.meta.url)).filter((f) => 
   ...fs.readdirSync(new URL('../en/', import.meta.url)).filter((f) => f.endsWith('.html')).map((f) => 'en/' + f)]
   .filter((f) => !/^(en\/)?(admin|article|bai-viet)\.html$/.test(f));
 const all = files.map(parse).filter(Boolean);
+// Mỗi số E-Magazine (src/emag/*.mjs) là một thẻ bài ở trang Gaming: mục con "E-Magazine", nhóm lọc lấy từ spec.hubFacet
+for (const f of fs.readdirSync(new URL('../src/emag/', import.meta.url)).filter((x) => x.endsWith('.mjs'))) {
+  const spec = (await import(new URL('../src/emag/' + f, import.meta.url).href)).default;
+  for (const lang of ['vi', 'en']) {
+    const pg = spec.pages[lang];
+    all.push({ f: pg.file, s: '', slug: spec.slug, url: pg.path, en: lang === 'en', date: spec.updated + 'T00:00:00+07:00', sec: 'Gaming',
+      title: pg.meta.title, desc: pg.meta.description, img: spec.searchImg, author: 'OtaHub Editorial', mins: null, viAlt: '',
+      meta: { hub: 'game', type: 'e-magazine', facet: spec.hubFacet || '' }, virtual: true });
+  }
+}
 const byUrl = new Map(all.map((a) => [a.url, a]));
 let backfilled = 0;
 for (const a of [...all.filter((x) => !x.en), ...all.filter((x) => x.en)]) {
