@@ -64,6 +64,7 @@ export function isArticleFile(ghPath) {
 // tren trang chu, chuyen muc, luong tin, cong cu tim kiem va sitemap/feed.
 export const CASCADE_SYNC_FILES = new Set([
   'assets/search.js',
+  'assets/en-pairs.json', // cap bai VI -> EN de admin biet bai nao da co ban tieng Anh
   'sitemap.xml',
   'feed.xml',
   'feed.json',

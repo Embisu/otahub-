@@ -172,6 +172,8 @@ function repairArticleBodyHtml(h){ return h; }
 function validateArticleBodyHtml(h){ return []; }
 function cleanVisualHtml(h){ return h; }
 ${mainScript.match(/^function replSafe.*$/m)?.[0] || ''}
+${mainScript.match(/^function categorySlug[\s\S]*?^}/m)?.[0] || ''}
+${mainScript.match(/^function keepCustomOgImage[\s\S]*?^}/m)?.[0] || ''}
 ${mainScript.match(/function applyArticleEditsToHtml[\s\S]*?^}/m)?.[0]}
 `, sandbox);
 

@@ -24,11 +24,15 @@ while ((match = eventRegex.exec(js)) !== null) {
 
 console.log(`Found ${handlerCalls.length} dynamic event handler function calls inside JS templates.`);
 
+// Hàm thuộc trang công khai mà admin sinh HTML hộ (vd khối "Thịnh hành" của choi-gi.html),
+// không cần định nghĩa trong admin.
+const PUBLIC_PAGE_FUNCTIONS = new Set(['selectItemById']);
+
 const missingFunctions = new Set();
 const checkedFunctions = new Set();
 
 for (const { fn, snippet, event } of handlerCalls) {
-  if (checkedFunctions.has(fn)) continue;
+  if (checkedFunctions.has(fn) || PUBLIC_PAGE_FUNCTIONS.has(fn)) continue;
   checkedFunctions.add(fn);
 
   const defRegex = new RegExp(`(?:function\\s+${fn}\\b|window\\.${fn}\\s*=|const\\s+${fn}\\s*=|let\\s+${fn}\\s*=|var\\s+${fn}\\s*=)`);

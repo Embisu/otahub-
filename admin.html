@@ -978,7 +978,8 @@ html.theme-light .wp-collapse-btn:hover { background: #f8fafc; color: #0f172a; }
 }
 
 /* ── 7. CLASSIC EDITOR ── */
-.editor-layout { display: grid; grid-template-columns: 1fr 280px; gap: 20px; align-items: start; margin-top: 10px; }
+.editor-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 20px; align-items: start; margin-top: 10px; }
+.editor-main { min-width: 0; }
 .editor-sidebar { position: sticky; top: 32px; }
 
 /* Post Title & Heading */
@@ -1963,6 +1964,20 @@ html.theme-light .media-tab.active { background: #e0f2fe; color: #0284c7; border
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+/* Thanh trên: ẩn dần mục trang trí theo độ rộng để không tràn ngang trên laptop 1366–1600px;
+   nếu vẫn thiếu chỗ thì cho xuống dòng thay vì đẩy nút ra ngoài màn hình. */
+.wp-top-bar { flex-wrap: wrap; height: auto; min-height: 46px; }
+.wtb-left, .wtb-right { flex-wrap: wrap; }
+@media(max-width:1700px) {
+  .wtb-badge-seo, .wtb-badge-live { display: none !important; }
+  .wtb-left > .wtb-item:has(> .wtb-badge-live), .wtb-left > .wtb-item:has(> .wtb-badge-seo) { display: none !important; }
+}
+@media(max-width:1400px) {
+  .wtb-item kbd, .wtb-right .wtb-hide-sm, #theme-toggle-label { display: none !important; }
+}
+@media(max-width:1100px) {
+  #wtb-user-name { display: none !important; }
+}
 @media(max-width:1280px) {
   .wtb-badge-seo, .wtb-badge-live { display: none !important; }
 }
@@ -1984,6 +1999,38 @@ html.theme-light .media-tab.active { background: #e0f2fe; color: #0284c7; border
   .wp-sidebar { width: 48px !important; min-width: 48px !important; max-width: 48px !important; }
   .wp-sidebar .wp-nav-text, .wp-sidebar .wp-nav-badge, .wp-sidebar .wp-nav-badge-red { display: none !important; }
   .wp-main { padding: 14px 12px 60px; }
+}
+/* Điện thoại: thanh trên chỉ giữ thao tác chính (các mục ẩn đều có lối khác trong admin)
+   để không tràn ngang khiến mọi trang phải kéo sang hai bên. */
+@media(max-width:640px) {
+  .wtb-left, .wtb-right { flex-shrink: 1; max-width: 100%; flex-wrap: wrap; }
+  .wtb-hide-sm, #theme-toggle-label, #wtb-user-name, .wtb-item kbd { display: none !important; }
+  .wtb-theme-btn { padding: 0 8px; }
+  /* Lưới/cột dùng minmax(0,…) để nội dung dài không ép rộng quá màn hình */
+  .studio-cols-grid, .editor-layout { grid-template-columns: minmax(0, 1fr) !important; }
+  .studio-col, .editor-main, .editor-sidebar { min-width: 0; }
+  .np-source-form, .np-cols { grid-template-columns: minmax(0, 1fr) !important; }
+  .dash-recent-row .dash-recent-title { white-space: normal; overflow-wrap: anywhere; }
+  .rank-entry { grid-template-columns: 56px minmax(0, 1fr); }
+  .rank-row { grid-template-columns: minmax(0, 1fr) !important; }
+  /* Thanh bên hẹp trên điện thoại: menu con bật ra bên cạnh khi chạm (giống chế độ thu gọn),
+     thay vì nằm trong cột 48px và tràn chữ đè lên nội dung. */
+  .wp-sidebar .wp-nav-item.has-sub { position: relative; }
+  .wp-sidebar .wp-nav-item.has-sub.active .wp-submenu { display: none; }
+  .wp-sidebar .wp-nav-item.has-sub:hover .wp-submenu,
+  .wp-sidebar .wp-nav-item.has-sub:focus-within .wp-submenu {
+    display: block; position: absolute; left: 48px; top: 0; width: 210px; max-height: 75vh; overflow-y: auto;
+    background: #0d0221; border: 1px solid rgba(0,242,255,.12); box-shadow: 4px 4px 20px rgba(0,0,0,.6);
+    z-index: 500; border-radius: 0 8px 8px 0; margin-left: 0;
+  }
+  html.theme-light .wp-sidebar .wp-nav-item.has-sub .wp-submenu { background: #ffffff; border-color: #e2e8f0; }
+  .wp-sidebar .wp-sub-btn { padding-left: 16px; }
+  .rm-header-score-wrap, .rank-math-tabs { flex-wrap: wrap; }
+  .wp-editor-tools { flex-wrap: wrap; gap: 6px; }
+  .wp-editor-tabs { flex-wrap: wrap; margin-left: 0; }
+  .rank-math-metabox .postbox-header, .rank-math-metabox > div:first-child { flex-wrap: wrap; gap: 8px; }
+  .page-header, .wp-page-header { flex-wrap: wrap; gap: 8px; }
+  .header-actions, .wp-header-tools { flex-wrap: wrap; }
 }
 
 /* ── 6. NÂNG CẤP CAO CẤP: FILTER TABS, BULK ACTIONS, QUICK EDIT, ZEN MODE & AI COPILOT ── */
@@ -4348,22 +4395,22 @@ html.theme-light .wp-draft-banner-text {
         <div class="wtb-logo-text">Ota<span>Hub</span></div>
         <span class="wtb-logo-badge">Studio</span>
       </a>
-      <a href="https://otahub.asia" target="_blank" rel="noopener noreferrer" class="wtb-item" onclick="window.open('https://otahub.asia','_blank')">🏠 Xem trang web (Live)</a>
-      <div class="wtb-item"><span class="wtb-badge-live">Cloudflare Workers: Live</span></div>
+      <a href="https://otahub.asia" target="_blank" rel="noopener noreferrer" class="wtb-item wtb-hide-sm" onclick="window.open('https://otahub.asia','_blank')">🏠 Xem trang web (Live)</a>
+      <div class="wtb-item wtb-hide-sm"><span class="wtb-badge-live">Cloudflare Workers: Live</span></div>
       <button onclick="newArticle()" class="wtb-item">➕ Thêm bài mới</button>
-      <button onclick="triggerManualIndexNowPing()" class="wtb-item" style="color:#00f2ff" title="Báo cáo lập chỉ mục tức thì cho Bing, Yandex, Seznam">🚀 Ping IndexNow</button>
-      <div class="wtb-item"><span class="wtb-badge-seo" id="wtb-top-seo-badge">🎯 SEO: chưa chấm điểm</span></div>
+      <button onclick="triggerManualIndexNowPing()" class="wtb-item wtb-hide-sm" style="color:#00f2ff" title="Báo cáo lập chỉ mục tức thì cho Bing, Yandex, Seznam">🚀 Ping IndexNow</button>
+      <div class="wtb-item wtb-hide-sm"><span class="wtb-badge-seo" id="wtb-top-seo-badge">🎯 SEO: chưa chấm điểm</span></div>
     </div>
     <div class="wtb-right">
       <button onclick="openCmdk()" class="wtb-item" title="Tìm nhanh (Ctrl+K)">🔍 Tìm nhanh <kbd style="background:rgba(255,255,255,.1);padding:1px 4px;border-radius:2px;font-size:10px;margin-left:4px">Ctrl+K</kbd></button>
-      <button onclick="openKeyboardShortcutsModal()" class="wtb-item" title="Bảng tra cứu phím tắt (?)">⌨️ <kbd style="background:rgba(255,255,255,.1);padding:1px 4px;border-radius:2px;font-size:10px">?</kbd></button>
+      <button onclick="openKeyboardShortcutsModal()" class="wtb-item wtb-hide-sm" title="Bảng tra cứu phím tắt (?)">⌨️ <kbd style="background:rgba(255,255,255,.1);padding:1px 4px;border-radius:2px;font-size:10px">?</kbd></button>
       <button id="theme-toggle-btn" class="wtb-theme-btn" onclick="toggleAdminTheme()" title="Chuyển chế độ Sáng / Tối">
         <span id="theme-toggle-icon">☀️</span> <span id="theme-toggle-label">Giao diện sáng</span>
       </button>
       <div class="wtb-item" onclick="openAuthorProfileModal()" style="cursor:pointer" title="Chỉnh sửa hồ sơ tác giả của bạn">
         <span class="wtb-avatar" id="wtb-avatar">AD</span>
         <span id="wtb-user-name">Chào, Admin</span>
-        <span style="font-size:10px;background:rgba(0,242,255,.15);color:#00f2ff;padding:2px 7px;border-radius:4px;margin-left:6px;font-weight:600">👤 Sửa hồ sơ</span>
+        <span class="wtb-hide-sm" style="font-size:10px;background:rgba(0,242,255,.15);color:#00f2ff;padding:2px 7px;border-radius:4px;margin-left:6px;font-weight:600">👤 Sửa hồ sơ</span>
       </div>
       <button onclick="disconnect()" class="wtb-item" style="color:#ff8099">Đăng xuất</button>
     </div>
@@ -4690,6 +4737,7 @@ let CURRENT_USER = null;
 let ARTICLES = [];
 let DRAFT_FILES = new Set(); // các file (bài viết/trang) hiện có bản nháp chưa xuất bản — dùng để hiện huy hiệu "Nháp"
 let EN_FILES_SET = new Set(); // tập hợp các file bài viết đã có bản tiếng Anh tương ứng trong en/
+let EN_PAIRS = {}; // { "bai-viet.html": "en/english-slug.html" } từ assets/en-pairs.json
 let ARTICLES_META_MAP = {}; // bộ nhớ đệm metadata tác giả đọc từ assets/articles-meta.json
 let CURRENT_ARTICLE_AUTHOR = 'OtaHub Editorial'; // tác giả của bài viết hiện đang mở
 let PUBLISHABLE_AUTHORS = ['OtaHub Editorial', 'Yu', 'Anh Thu', 'Anna'];
@@ -7187,6 +7235,13 @@ async function loadArticles(landOnDashboard) {
     }
     EN_FILES_SET = new Set(enFiles || []);
 
+    // Cặp VI -> EN theo hreflang (scripts/generate-en-manifest.mjs): bản EN thường có slug
+    // tiếng Anh riêng nên không ghép được theo tên file.
+    try {
+      const pairsRes = await fetch('/assets/en-pairs.json?nocache=' + Date.now(), { cache: 'no-store' });
+      if (pairsRes.ok) EN_PAIRS = await pairsRes.json();
+    } catch(e) {}
+
     // Tải metadata tác giả từ cache tĩnh
     try {
       const metaRes = await fetch('/assets/articles-meta.json?nocache=' + Date.now(), { cache: 'no-store' });
@@ -7211,7 +7266,7 @@ async function loadArticles(landOnDashboard) {
           cat: e.cat || e.c || 'Gaming',
           date: e.date || '',
           author: meta.author || 'OtaHub Editorial',
-          hasEn: EN_FILES_SET.has(file)
+          hasEn: !!EN_PAIRS[file] || EN_FILES_SET.has(file)
         };
       });
     document.getElementById('article-count').textContent = ARTICLES.length;
@@ -7350,7 +7405,9 @@ function renderDashboard() {
   const total = ARTICLES.length;
   const drafts = ARTICLES.filter(a => DRAFT_FILES.has(a.file)).length;
   const published = total - drafts;
-  const enCount = (typeof EN_FILES_SET !== 'undefined' && EN_FILES_SET.size) ? EN_FILES_SET.size : ARTICLES.filter(a => a.hasEn).length;
+  // Đếm theo từng bài (cờ hasEn) để khớp với dòng "còn X bài cần tạo bản EN" bên dưới;
+  // số file trong en/ gồm cả trang hệ thống nên không dùng được.
+  const enCount = ARTICLES.filter(a => a.hasEn).length;
   const missingEnCount = ARTICLES.filter(a => !a.hasEn).length;
   const bilingualRate = Math.round((enCount / (total || 1)) * 100);
 
@@ -10405,7 +10462,7 @@ function renderEditor(file, html) {
         <h1 class="wp-heading-inline">Chỉnh sửa bài viết</h1>
         <button type="button" class="page-title-action" onclick="newArticle()">Thêm bài mới</button>
       </div>
-      <div style="display:flex;gap:8px;align-items:center">
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
         <button type="button" class="btn btn-secondary btn-sm" onclick="openHeadingsOutline()" title="Mục lục các thẻ tiêu đề">📑 Mục lục</button>
         <button type="button" class="btn btn-secondary btn-sm" onclick="copyArticleJson()" title="Sao chép JSON">📋 Copy JSON</button>
         <button type="button" class="btn btn-secondary btn-sm" id="zen-mode-btn" onclick="toggleZenMode()" title="Toàn màn hình">⛶ Toàn màn hình</button>
@@ -15045,7 +15102,7 @@ const ART_BRIDGE_SCRIPT = `<script>(function(){
           parent.toast('success', '⏳ Đang tải ảnh dán từ clipboard...');
           parent.uploadImageFile(file).then(function(url){
             if (url) {
-              var alt = file.name.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ');
+              var alt = file.name.replace(/\\.[^.]+$/, '').replace(/[-_]+/g, ' ');
               var figHtml = '<figure><img height="675" width="1200" src="' + url + '" alt="' + alt + '" loading="lazy"></figure><p><br></p>';
               document.execCommand('insertHTML', false, figHtml);
               editable.dispatchEvent(new Event('input', { bubbles: true }));
@@ -15064,9 +15121,9 @@ const ART_BRIDGE_SCRIPT = `<script>(function(){
     if (isPlainField) {
       e.preventDefault();
       var plain = e.clipboardData ? (e.clipboardData.getData('text/plain') || e.clipboardData.getData('text/html')) : '';
-      plain = plain.replace(/<!--[\s\S]*?-->/g, '')
-                   .replace(/<style[\s\S]*?<\/style>/gi, '')
-                   .replace(/<script[\s\S]*?<\/script>/gi, '')
+      plain = plain.replace(/<!--[\\s\\S]*?-->/g, '')
+                   .replace(/<style[\\s\\S]*?<\\/style>/gi, '')
+                   .replace(/<script[\\s\\S]*?<\\/script>/gi, '')
                    .replace(/<[^>]+>/g, ' ')
                    .replace(/&quot;/g, '"')
                    .replace(/&amp;/g, '&')
@@ -15074,9 +15131,9 @@ const ART_BRIDGE_SCRIPT = `<script>(function(){
                    .replace(/&gt;/g, '>')
                    .replace(/&#39;/g, "'")
                    .replace(/&nbsp;/g, ' ')
-                   .replace(/^[a-f0-9\-]{8,40}["'>\s]+/i, '')
-                   .replace(/^[a-z0-9\-]+="[^"]*"[>\s]*/i, '')
-                   .replace(/\s+/g, ' ')
+                   .replace(/^[a-f0-9\\-]{8,40}["'>\\s]+/i, '')
+                   .replace(/^[a-z0-9\\-]+="[^"]*"[>\\s]*/i, '')
+                   .replace(/\\s+/g, ' ')
                    .trim();
       document.execCommand('insertText', false, plain);
       editable.dispatchEvent(new Event('input', { bubbles: true }));
@@ -15087,19 +15144,22 @@ const ART_BRIDGE_SCRIPT = `<script>(function(){
     if (rawHtml) {
       e.preventDefault();
       var clean = rawHtml
-        .replace(/<!--[\s\S]*?-->/g, '')
-        .replace(/<style[\s\S]*?<\/style>/gi, '')
-        .replace(/<xml[\s\S]*?<\/xml>/gi, '')
-        .replace(/<meta[\s\S]*?>/gi, '')
-        .replace(/<link[\s\S]*?>/gi, '')
+        .replace(/<!--[\\s\\S]*?-->/g, '')
+        .replace(/<style[\\s\\S]*?<\\/style>/gi, '')
+        .replace(/<script[\\s\\S]*?<\\/script>/gi, '')
+        .replace(/<\\/?(?:html|head|body)\\b[^>]*>/gi, '')
+        .replace(/ on[a-z]+="[^"]*"/gi, '')
+        .replace(/<xml[\\s\\S]*?<\\/xml>/gi, '')
+        .replace(/<meta[\\s\\S]*?>/gi, '')
+        .replace(/<link[\\s\\S]*?>/gi, '')
         .replace(/ id="docs-internal-guid-[^"]*"/gi, '')
         .replace(/ class="Mso[^"]*"/gi, '')
         .replace(/ style="[^"]*"/gi, '')
         .replace(/ dir="[^"]*"/gi, '')
-        .replace(/<o:p>[\s\S]*?<\/o:p>/gi, '')
-        .replace(/<span[^>]*>/gi, '').replace(/<\/span>/gi, '')
-        .replace(/<div>/gi, '<p>').replace(/<\/div>/gi, '</p>')
-        .replace(/<p>(\s|&nbsp;|<br\s*\/?>)*<\/p>/gi, '')
+        .replace(/<o:p>[\\s\\S]*?<\\/o:p>/gi, '')
+        .replace(/<span[^>]*>/gi, '').replace(/<\\/span>/gi, '')
+        .replace(/<div>/gi, '<p>').replace(/<\\/div>/gi, '</p>')
+        .replace(/<p>(\\s|&nbsp;|<br\\s*\\/?>)*<\\/p>/gi, '')
         .trim();
       document.execCommand('insertHTML', false, clean || e.clipboardData.getData('text/plain'));
       editable.dispatchEvent(new Event('input', { bubbles: true }));
@@ -15122,7 +15182,7 @@ const ART_BRIDGE_SCRIPT = `<script>(function(){
           parent.toast('success', '⏳ Đang tải ảnh thả vào...');
           parent.uploadImageFile(file).then(function(url){
             if (url) {
-              var alt = file.name.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ');
+              var alt = file.name.replace(/\\.[^.]+$/, '').replace(/[-_]+/g, ' ');
               var figHtml = '<figure><img height="675" width="1200" src="' + url + '" alt="' + alt + '" loading="lazy"></figure><p><br></p>';
               if (editable) {
                 editable.focus();
@@ -16298,6 +16358,23 @@ async function saveArticle() {
       if (hasEn) EN_FILES_SET.add(viFile);
     }
 
+    if (hasEn && EN_PAIRS[viFile] !== enFile) {
+      // Ghi cặp VI -> EN mới/đổi slug vào assets/en-pairs.json (chỉ ghi khi thật sự thay đổi).
+      EN_PAIRS[viFile] = enFile;
+      try {
+        await ghSyncStep('assets/en-pairs.json', (raw) => {
+          let pairs = {};
+          try { pairs = JSON.parse(raw); } catch (e) {}
+          if (pairs[viFile] === enFile) return null;
+          pairs[viFile] = enFile;
+          const sorted = Object.fromEntries(Object.entries(pairs).sort(([a], [b]) => a.localeCompare(b)));
+          return JSON.stringify(sorted, null, 2);
+        }, `[admin] ghep cap VI-EN cho /${viSlug}`);
+      } catch (pairErr) {
+        console.warn('Không cập nhật được en-pairs.json:', pairErr);
+      }
+    }
+
     if (hasEn) {
       try {
         const pairProblems = await verifyBilingualPair(viSlug, enSlug);
@@ -16870,9 +16947,9 @@ async function renderNewsPipeline(status = 'new') {
 
     setMain(`
       <div class="wp-page-header"><h1 class="wp-page-title">Nguồn tin AI <small>RSS → AI → Biên tập → Đăng bài</small></h1><div class="wp-header-tools"><button class="button-primary" id="news-collect-btn" onclick="collectNewsNow(this)">↻ Thu thập ngay</button></div></div>
-      <div class="postbox"><div class="postbox-header"><h2>Thêm nguồn RSS/Atom</h2></div><div class="inside"><form onsubmit="addNewsSource(event)" style="display:grid;grid-template-columns:1fr 2fr 150px auto;gap:8px"><input class="regular-text" name="name" required placeholder="Tên nguồn"><input class="regular-text" name="feedUrl" required type="url" placeholder="https://example.com/feed.xml"><select name="category"><option value="anime">Anime</option><option value="gaming">Gaming</option><option value="manga">Manga</option><option value="news">Tin tức</option></select><button class="button">Thêm nguồn</button></form></div></div>
+      <div class="postbox"><div class="postbox-header"><h2>Thêm nguồn RSS/Atom</h2></div><div class="inside"><form class="np-source-form" onsubmit="addNewsSource(event)" style="display:grid;grid-template-columns:1fr 2fr 150px auto;gap:8px"><input class="regular-text" name="name" required placeholder="Tên nguồn"><input class="regular-text" name="feedUrl" required type="url" placeholder="https://example.com/feed.xml"><select name="category"><option value="anime">Anime</option><option value="gaming">Gaming</option><option value="manga">Manga</option><option value="news">Tin tức</option></select><button class="button">Thêm nguồn</button></form></div></div>
       <div class="postbox"><div class="postbox-header"><h2>Nguồn đang theo dõi</h2></div><div class="inside" style="padding:0"><table class="wp-list-table widefat fixed striped"><thead><tr><th>Nguồn</th><th>Chuyên mục</th><th>Trạng thái</th><th>Lần cuối</th><th>Thao tác</th></tr></thead><tbody>${sourceRows || '<tr><td colspan="5">Chưa có nguồn tin.</td></tr>'}</tbody></table></div></div>
-      <div style="display:grid;grid-template-columns:minmax(0,1.25fr) minmax(340px,.75fr);gap:16px;align-items:start">
+      <div class="np-cols" style="display:grid;grid-template-columns:minmax(0,1.25fr) minmax(340px,.75fr);gap:16px;align-items:start">
         <section><div class="tablenav top" style="margin-bottom:8px"><select onchange="renderNewsPipeline(this.value)"><option value="new" ${status==='new'?'selected':''}>Bài mới</option><option value="shortlisted" ${status==='shortlisted'?'selected':''}>Đã chọn</option><option value="drafted" ${status==='drafted'?'selected':''}>Đã tạo nháp</option><option value="ignored" ${status==='ignored'?'selected':''}>Đã bỏ qua</option><option value="failed" ${status==='failed'?'selected':''}>Lỗi</option></select></div>${articleCards}</section>
         <section><h2 style="font-size:16px;margin:0 0 10px">Bản nháp chờ duyệt</h2>${draftCards}</section>
       </div>`);
