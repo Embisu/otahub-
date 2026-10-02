@@ -1,5 +1,23 @@
 window.IDX = [
   {
+    "title": "$70–80 Games: Who Still Pays Full Price at Launch?",
+    "url": "/en/who-pays-70-80-for-new-games-at-launch",
+    "cat": "Gaming",
+    "date": "2026-10-02",
+    "excerpt": "GTA 6 is set at $79.99 and $69.99 is the AAA norm. Reddit debates who still pays full price; OtaHub checks Steam prices in the US and Vietnam and how fast games drop.",
+    "img": "/assets/img/gia-game-70-80-usd-hero.jpg",
+    "tags": []
+  },
+  {
+    "title": "Giá game 70–80 USD: ai vẫn mua ngay ngày ra mắt?",
+    "url": "/gia-game-70-80-usd-ai-con-mua-ngay-ngay-ra-mat",
+    "cat": "Gaming",
+    "date": "2026-10-02",
+    "excerpt": "GTA 6 chốt 79,99 USD, game AAA phổ biến ở mức 69,99 USD. Cộng đồng Reddit tranh luận ai còn mua giá gốc; OtaHub so giá Steam Việt Nam và thời gian chờ giảm giá.",
+    "img": "/assets/img/gia-game-70-80-usd-hero.jpg",
+    "tags": []
+  },
+  {
     "title": "GTA 6 Countdown: Everything to Know Before Nov 19",
     "url": "/en/gta-6-countdown",
     "cat": "Gaming",

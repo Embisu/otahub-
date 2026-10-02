@@ -29,6 +29,11 @@ COLLAGES = {
         'top-game-mobile-cay-cuoc-aion-2-1.jpg',
         'top-game-mobile-cay-cuoc-aniimo-2.jpg',
     ],
+    'gia-game-70-80-usd-hero.jpg': [
+        'gta6-official-art.jpg',
+        'gia-game-70-80-usd-battlefield-6-2.jpg',
+        'gia-game-70-80-usd-borderlands-4-1.jpg',
+    ],
 }
 
 
