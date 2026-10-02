@@ -2404,7 +2404,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-03",
     "excerpt": "Wuthering Waves bản 3.6 ra mắt 20/8/2026 với Ren Realm, Sword Flight, Guqin Performance và hai Resonator 5 sao mới, trong đó có Qingxiao.",
-    "img": "/assets/img/news-wuthering-waves-black-shores-shorekeeper.jpg",
+    "img": "/assets/img/c53329917b-wuthering-waves-hero.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -2414,7 +2414,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-03",
     "excerpt": "Kuro Games’ Wuthering Waves launched version 2.0 on January 2, 2025 with the Rinascita region; version 3.6 runs August 20–September 30, 2026.",
-    "img": "/assets/img/news-wuthering-waves-black-shores-shorekeeper.jpg",
+    "img": "/assets/img/c53329917b-wuthering-waves-hero.jpg",
     "tags": [],
     "lang": "en"
   },
