@@ -7244,6 +7244,15 @@ function extract(html, re) {
   return m ? m[1].replace(' · OtaHub','').trim() : null;
 }
 
+// og:image được chọn riêng (ảnh lớn hơn ảnh bìa, cho chia sẻ mạng xã hội/Google Discover):
+// giữ nguyên khi ảnh bìa không đổi, chỉ ghi đè khi biên tập viên thay ảnh bìa.
+function keepCustomOgImage(html, hero) {
+  const cur = (html.match(/class="(?:art-hero-bg|art-hero-img)"\s+style="[^"]*url\(['"]?([^'")]+)/) || [])[1] || '';
+  const og = (html.match(/<meta\s+property="og:image"\s+content="([^"]*)"/i) || [])[1] || '';
+  const abs = u => /^(https?:|data:)/i.test(u) ? u : `https://otahub.asia${u.startsWith('/') ? '' : '/'}${u}`;
+  return !!(cur && hero && abs(cur) === abs(hero) && /^https:\/\/otahub\.asia\/assets\/img\//.test(og) && og !== abs(hero));
+}
+
 function extractHero(html) {
   let m = html.match(/class="(?:art-hero-bg|art-hero-img)"\s+style="([^"]+)"/);
   if (m) {
@@ -12185,13 +12194,16 @@ function syncSharedFieldsIntoHtml(html, f) {
   }
   if (f.hero) {
     const pos = f.heroPos || '50';
+    const keepOg = keepCustomOgImage(html, f.hero);
     if (/class="art-hero-img"\s+style="[^"]*"/.test(html)) {
       html = html.replace(/(class="art-hero-img"\s+style=")[^"]*(")/, `$1background-image:url('${replSafe(f.hero)}');background-position:center ${replSafe(pos)}%;background-color:#0b0418;$2`);
     }
     const full = /^(https?:|data:)/i.test(f.hero) ? f.hero : `https://otahub.asia${f.hero.startsWith('/') ? '' : '/'}${f.hero}`;
-    html = html.replace(/(<meta\s+property="og:image"\s+content=")[^"]*(")/i, `$1${replSafe(full)}$2`);
-    html = html.replace(/(<meta\s+name="twitter:image"\s+content=")[^"]*(")/i, `$1${replSafe(full)}$2`);
-    html = html.replace(/("image":\s*")[^"]*(")/i, `$1${replSafe(full)}$2`);
+    if (!keepOg) {
+      html = html.replace(/(<meta\s+property="og:image"\s+content=")[^"]*(")/i, `$1${replSafe(full)}$2`);
+      html = html.replace(/(<meta\s+name="twitter:image"\s+content=")[^"]*(")/i, `$1${replSafe(full)}$2`);
+      html = html.replace(/("image":\s*")[^"]*(")/i, `$1${replSafe(full)}$2`);
+    }
   }
   if (f.pubDate) {
     html = html.replace(/(<meta\s+property="article:published_time"\s+content=")[^"]*(")/i, `$1${replSafe(f.pubDate)}$2`);
@@ -15700,6 +15712,7 @@ function applyArticleEditsToHtml(baseHtml, customData) {
 
   // Hero Image (đồng bộ toàn bộ cấu trúc bài viết, meta tag & schema)
   if (hero) {
+    const keepOg = keepCustomOgImage(html, hero);
     if (/class="art-hero-bg"\s+style="[^"]*"/.test(html)) {
       html = html.replace(/(class="art-hero-bg"\s+style=")[^"]*(")/,
         `$1background-image:url('${replSafe(hero)}');background-position:center ${replSafe(heroPos)}%;$2`);
@@ -15712,9 +15725,11 @@ function applyArticleEditsToHtml(baseHtml, customData) {
       html = html.replace(/(<header\b[^>]*class="[^"]*hero[^"]*"[^>]*>[\s\S]*?<img[^>]+src=")[^"]*(")/i, `$1${replSafe(hero)}$2`);
     }
     const fullHeroUrl = hero.startsWith('http') || hero.startsWith('data:') ? hero : `https://otahub.asia${hero.startsWith('/') ? '' : '/'}${hero}`;
-    html = html.replace(/(<meta\s+property="og:image"\s+content=")[^"]*(")/i, `$1${replSafe(fullHeroUrl)}$2`);
-    html = html.replace(/(<meta\s+name="twitter:image"\s+content=")[^"]*(")/i, `$1${replSafe(fullHeroUrl)}$2`);
-    html = html.replace(/("image":\s*")[^"]*(")/i, `$1${replSafe(fullHeroUrl)}$2`);
+    if (!keepOg) {
+      html = html.replace(/(<meta\s+property="og:image"\s+content=")[^"]*(")/i, `$1${replSafe(fullHeroUrl)}$2`);
+      html = html.replace(/(<meta\s+name="twitter:image"\s+content=")[^"]*(")/i, `$1${replSafe(fullHeroUrl)}$2`);
+      html = html.replace(/("image":\s*")[^"]*(")/i, `$1${replSafe(fullHeroUrl)}$2`);
+    }
     html = html.replace(/(<figure class="art-hero"><img[^>]*src=")[^"]*(")/i, `$1${replSafe(hero)}$2`);
   }
 
