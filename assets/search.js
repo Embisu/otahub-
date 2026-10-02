@@ -2868,7 +2868,7 @@ window.IDX = [
   },
   {
     "title": "Contact",
-    "url": "/en/lien-he",
+    "url": "/en/contact",
     "cat": "Gaming",
     "date": "2026-08-18",
     "excerpt": "Contact the OtaHub team for partnerships, story tips, corrections or feedback. Email dat.phan@anbu.asia or call 039 699 5252. Office: 47 Dang Van Ngu, An Cuu.",
@@ -3408,7 +3408,7 @@ window.IDX = [
   },
   {
     "title": "Security & Privacy Policy",
-    "url": "/en/chinh-sach-bao-mat",
+    "url": "/en/privacy",
     "cat": "Gaming",
     "date": "2026-08-18",
     "excerpt": "OtaHub Privacy Policy: Learn how we protect user data, respect privacy rights, and ensure transparent browsing for anime and gaming enthusiasts.",

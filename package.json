@@ -12,6 +12,8 @@
     "rankings:sync": "node scripts/sync-ranking-catalog.mjs",
     "rankings:home": "node scripts/sync-home-rankings.mjs",
     "scores": "node scripts/build-rankings.mjs && node scripts/sync-ranking-catalog.mjs && node scripts/sync-profile-scores.mjs && node scripts/sync-home-rankings.mjs && python scripts/build-thumbs.py --write",
+    "chrome": "node scripts/sync-site-chrome.mjs",
+    "chrome:check": "node scripts/sync-site-chrome.mjs --check",
     "scores:check": "node scripts/build-rankings.mjs --check && node scripts/sync-profile-scores.mjs --check",
     "profiles:complete": "node scripts/complete-profile-catalog.mjs",
     "content:clean-dashes": "node scripts/remove-em-dashes.mjs",

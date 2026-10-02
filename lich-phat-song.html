@@ -13,13 +13,13 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 
-<meta name="description" content="Lịch phát sóng anime 2026 theo mùa, cùng bảng cập nhật chapter manga/manhwa/manhua mới nhất. Xem ngày chiếu, studio, thể loại tại một nơi.">
+<meta name="description" content="Lịch chiếu anime Mùa Thu 2026 theo từng ngày, giờ Việt Nam: hơn 60 phim TV, phim chiếu rạp và ONA, kèm lịch các mùa Đông, Xuân, Hè 2026 và lịch ra chương manga.">
 
 
 <meta property="og:title" content="Lịch phát sóng anime &amp; lịch ra chapter manga 2026 · OtaHub"><meta property="og:url" content="https://otahub.asia/lich-phat-song">
 
 
-<meta property="og:description" content="Lịch chiếu anime theo mùa và bảng cập nhật chapter manga/manhwa/manhua mới nhất, filter theo loại, studio và thể loại.">
+<meta property="og:description" content="Lịch chiếu anime Mùa Thu 2026 theo từng ngày, giờ Việt Nam: hơn 60 phim TV, phim chiếu rạp và ONA, kèm lịch các mùa Đông, Xuân, Hè 2026 và lịch ra chương manga.">
 
 
   <meta property="og:image:width" content="1200">
@@ -650,7 +650,8 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002i">
+<link rel="stylesheet" href="/assets/schedule.css?v=20261002a">
+<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002j">
 <script>/* Ảnh thu nhỏ cho thẻ do JS vẽ: /assets/img/X -> /assets/img/_t/X.webp (scripts/build-thumbs.py; thiếu thì worker trả ảnh gốc) */function otThumb(u,k){return /^\/assets\/img\/(?!_[ts]\/|brand\/)[^?#]+\.(jpe?g|png|webp|jfif)$/i.test(u||'')?'/assets/img/'+(k||'_t')+'/'+u.slice(12)+'.webp':u}</script>
 </head>
 
@@ -676,28 +677,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
     </a>
 
 
-    <ul class="nav-links">
-
-
-      <li><a href="/choi-gi">Chơi Gì?</a></li>
-
-
-      <li><a href="/gaming">Gaming</a></li>
-
-
-      <li><a href="/anime">Anime</a></li>
-
-
-      <li><a href="/manga">Manga</a></li>
-
-
-      <li><a href="/lich-phat-song" class="active">Lịch phát sóng</a></li><li><a href="/reviews">Đánh giá</a></li>
-
-
-      <li><a href="/rankings">Xếp hạng</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li>
-
-
-    </ul>
+    <ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/lich-phat-song" class="active">Lịch phát sóng</a></li><li><a href="/reviews">Đánh giá</a></li><li><a href="/rankings">Xếp hạng</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul>
 
 
     <button class="ham" id="hamBtn" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
@@ -713,399 +693,36 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 
 
 <div class="mobile-nav" id="mobileNav">
-
-
-  <a href="/choi-gi">Chơi Gì?</a><a href="/gaming">Gaming</a><a href="/anime">Anime</a>
-
-
-  <a href="/manga">Manga</a><a href="/lich-phat-song" class="active">Lịch phát sóng</a><a href="/reviews">Đánh giá</a><a href="/rankings">Xếp hạng</a><a href="/chuyen-sau">Chuyên sâu</a>
-
-
+  <a href="/choi-gi">Chơi Gì?</a><a href="/gaming">Gaming</a><a href="/anime">Anime</a><a href="/manga">Manga</a><a href="/lich-phat-song" class="active">Lịch phát sóng</a><a href="/reviews">Đánh giá</a><a href="/rankings">Xếp hạng</a><a href="/chuyen-sau">Chuyên sâu</a>
 </div>
 
 
 
 
 
-<div class="page-hero">
-
-
-  <div class="ph-in">
-
-
-    <div class="ph-eyebrow">📅 Lịch Chiếu &amp; Cập Nhật</div>
-
-
-    <h1 class="ph-title" id="pageTitle"><span id="modeLabel">Anime</span> <span style="color:var(--sakura)" id="seasonTitle">Mùa Thu 2026</span></h1>
-
-
-    <p class="ph-sub" id="pageSub">Cập nhật đầy đủ lịch chiếu, studio, thể loại cho từng anime theo mùa</p>
-
-
+<header class="sch-hero"><div class="sch-hero-in">
+  <div class="sch-eyebrow">📅 Lịch phát sóng</div>
+  <h1 id="schTitle">Lịch chiếu anime <em>Mùa Thu 2026</em></h1>
+  <p class="sch-summary" id="schSummary"></p>
+  <div class="sch-modes" role="tablist">
+    <button type="button" class="sch-mode on" role="tab" aria-selected="true" data-mode="anime">🎬 Lịch anime</button>
+    <button type="button" class="sch-mode" role="tab" aria-selected="false" data-mode="manga">📖 Chương manga</button>
   </div>
-
-
-  <div class="mode-bar">
-
-
-    <button class="mode-btn active" id="modeBtnAnime" onclick="setMode('anime',this)">🎬 Anime</button>
-
-
-    <button class="mode-btn" id="modeBtnManga" onclick="setMode('manga',this)">📖 Manga</button>
-
-
-  </div>
-
-
-  <div class="year-bar" id="yearBar">
-
-
-    <button class="yr-btn" onclick="setYear(2025,this)">2025</button>
-
-
-    <button class="yr-btn active" onclick="setYear(2026,this)">2026</button>
-
-
-    <button class="yr-btn" onclick="setYear(2027,this)">2027</button>
-
-
-  </div>
-
-
-</div>
-
-
-
-
-
-<div class="season-wrap" id="animeSection">
-
-
-  <div class="season-tabs">
-
-
-    <button class="st-btn" onclick="setSeason('winter',this)"><span class="st-icon">❄️</span>Đông (Tháng 1–3)</button>
-
-
-    <button class="st-btn" onclick="setSeason('spring',this)"><span class="st-icon">🌸</span>Xuân (Tháng 4–6)</button>
-
-
-    <button class="st-btn" onclick="setSeason('summer',this)"><span class="st-icon">☀️</span>Hè (Tháng 7–9)</button>
-
-
-    <button class="st-btn active" onclick="setSeason('fall',this)"><span class="st-icon">🍁</span>Thu (Tháng 10–12)</button>
-
-
-  </div>
-
-
-
-
-
-  <div class="filter-bar">
-
-
-    <span class="filter-label">Loại:</span>
-
-
-    <button class="filter-btn active" onclick="setFilter('all',this)">Tất cả</button>
-
-
-    <button class="filter-btn" onclick="setFilter('tv',this)">📺 TV</button>
-
-
-    <button class="filter-btn" onclick="setFilter('movie',this)">🎬 Movie</button>
-
-
-    <button class="filter-btn" onclick="setFilter('ona',this)">📱 ONA</button>
-
-
-    <button class="filter-btn" onclick="setFilter('ova',this)">💿 OVA</button>
-
-
-  </div>
-
-
-
-
-
-  <div class="anime-grid" id="animeGrid"></div>
-
-
-</div>
-
-
-<div class="season-wrap" id="mangaSection" style="display:none">
-
-
-  <div class="filter-bar" style="margin-top:0">
-
-
-    <span class="filter-label">Loại:</span>
-
-
-    <button class="filter-btn active" onclick="setMangaFilter('all',this)">Tất cả</button>
-
-
-    <button class="filter-btn" onclick="setMangaFilter('manga',this)">Manga</button>
-
-
-    <button class="filter-btn" onclick="setMangaFilter('manhwa',this)">Manhwa</button>
-
-
-    <button class="filter-btn" onclick="setMangaFilter('manhua',this)">Manhua</button>
-
-
-  </div>
-
-
-
-
-  <div class="anime-grid" id="mangaGrid"></div>
-
-
-</div>
-
-
-
-
-
-<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Chuyên trang tin tức gaming và tin tức anime, manga Việt Nam và Châu Á.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Đánh giá</a></li><li><a href="/rankings">Xếp hạng</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Bản tin</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
+</div></header>
+<div id="schRoot"></div>
+<section id="mangaSection" hidden><div class="sch-wrap">
+  <h2 class="sch-h">Chương mới nhất <small id="mangaCount"></small></h2>
+  <ul class="sch-list" id="mangaList"></ul>
+  <p class="sch-src">Ngày ra chương theo VIZ, MANGA Plus và trang chính thức của từng bộ; bộ tạm ngưng hoặc đã hoàn kết vẫn giữ để tiện theo dõi.</p>
+</div></section>
+<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Tin tức, đánh giá và lịch phát sóng game, anime, manga cho cộng đồng Việt Nam và châu Á.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/news">Tin mới</a></li><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/lich-phat-song">Lịch phát sóng</a></li><li><a href="/choi-gi">Chơi Gì?</a></li></ul></div><div><div class="ft-h">Đánh giá</div><ul class="ft-links"><li><a href="/reviews">Bài đánh giá</a></li><li><a href="/rankings">Bảng xếp hạng</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li><li><a href="/tieu-chuan-danh-gia">Tiêu chuẩn đánh giá</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/lien-he">Liên hệ</a></li><li><a href="/chinh-sach-bao-mat">Chính sách bảo mật</a></li><li><a href="/#newsletter">Bản tin</a></li><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Tin tức game, anime &amp; manga</span></div></footer>
 
 
 
 
 
 <script>
-
-
-const DATA = {
-  // Nguon: LiveChart.me, AnimeSchedule.net, Crunchyroll News, Anime News Network,
-  // GamesRadar, CBR (kiem chung thang 9/2026). Chi liet ke tua thuc su co xac
-  // nhan chinh thuc, khong doan/suy dien ngay gio phat song.
-  fall: [
-    {type:'tv',title:'Black Clover Season 2',titleJp:'ブラッククローバー 2期',studio:'Pierrot',day:'Thứ Bảy, 3/10',genres:['Shounen','Action','Fantasy'],air:'3/10/2026',status:'upcoming',synopsis:'Asta và Yuno dẫn đầu những nhiệm vụ tuyệt vọng chống lại thế lực hắc ám đe dọa vương quốc Clover.'},
-    {type:'tv',title:'The Apothecary Diaries Season 3',titleJp:'薬屋のひとりごと 3期',studio:'OLM',day:'Thứ Sáu, 2/10',genres:['Drama','Historical','Mystery'],air:'2/10/2026',status:'upcoming',synopsis:'Maomao cảm nhận điều bất thường trong hậu cung và bắt đầu điều tra sự thật phía sau.'},
-    {type:'tv',title:'Ranma 1/2 Season 3',titleJp:'らんま1/2 3期',studio:'MAPPA',day:'Thứ Bảy, 3/10',genres:['Comedy','Martial Arts','Romance'],air:'3/10/2026',status:'upcoming',synopsis:'Ranma tiếp tục hành trình dở khóc dở cười giữa võ thuật, tình yêu và lời nguyền hóa thân.'},
-    {type:'tv',title:'Ao no Hako Season 2',titleJp:'アオのハコ 2期',studio:'Electric Circus',day:'Chủ Nhật, 4/10',genres:['Sports','Romance','School'],air:'4/10/2026',status:'upcoming',synopsis:'Taiki và Chinatsu tiếp tục vun đắp tình cảm giữa những buổi tập cầu lông và bóng rổ.'},
-    {type:'tv',title:'Tokyo Revengers: Santen Sensou-hen',titleJp:'東京リベンジャーズ 三天戦争編',studio:'LIDENFILMS',day:'Thứ Sáu, 2/10',genres:['Action','Drama','Time Travel'],air:'2/10/2026',status:'upcoming',synopsis:'Takemichi tiếp tục du hành thời gian để cứu những người anh trân trọng khỏi bi kịch.'},
-    {type:'tv',title:'Aoashi Season 2',titleJp:'アオアシ 2期',studio:'TMS Entertainment',day:'Chủ Nhật, 4/10',genres:['Sports','Soccer'],air:'4/10/2026',status:'upcoming',synopsis:'Ashito tiếp tục thử thách bản thân giữa dàn cầu thủ tinh anh ở giải U-18 Premier League.'},
-    {type:'tv',title:'Dragon Ball Super: Beerus',titleJp:'ドラゴンボール超 ビルス編',studio:'Toei Animation',day:'Chủ Nhật, 11/10',genres:['Action','Comedy','Martial Arts'],air:'11/10/2026',status:'upcoming',synopsis:'Bản dựng lại có vẽ mới của arc Beerus trong Dragon Ball Super, mở màn saga thần hủy diệt.'},
-    {type:'tv',title:'Reincarnated as a Sword II',titleJp:'転生したら剣でした II',studio:'C2C',day:'Thứ Tư, 7/10',genres:['Action','Isekai','Fantasy'],air:'7/10/2026 (ABEMA chiếu sớm 30/9)',status:'upcoming',synopsis:'Thanh kiếm biết nói và Fran tiếp tục hành trình phiêu lưu ở thế giới dị giới.'},
-    {type:'tv',title:'Magic Knight Rayearth (2026)',titleJp:'魔法騎士レイアース',studio:'E&H Production',day:'Thứ Tư, 7/10',genres:['Fantasy','Adventure','Shoujo'],air:'7/10/2026 (2 cour, Crunchyroll)',status:'upcoming',synopsis:'Bản anime mới của tác phẩm kinh điển CLAMP, ba cô gái được triệu hồi tới thế giới Cephiro.'},
-    {type:'tv',title:'Tougen Anki Season 2',titleJp:'桃源暗鬼 2期',studio:'Studio HIBARI',day:'Thứ Sáu, 2/10',genres:['Action','Supernatural','Shounen'],air:'2/10/2026 (arc Nikko Kegon Falls)',status:'upcoming',synopsis:'Shiki Ichinose tiếp tục cuộc chiến giữa Oni và Momotaro với những kẻ thù mới mạnh hơn.'},
-    {type:'tv',title:'Cyberpunk: Edgerunners 2',titleJp:'サイバーパンク エッジランナーズ 2',studio:'Trigger',day:'Thứ Ba, 20/10',genres:['Sci-Fi','Action','Cyberpunk'],air:'20/10/2026 (Netflix, 10 tập)',status:'upcoming',synopsis:'Phần mới độc lập về bốn nhân vật mới có số phận đan xen tại Night City, không phải sequel trực tiếp.'},
-    {type:'tv',title:'Diamond no Ace act II (Cour 2)',titleJp:'ダイヤのA act II',studio:'OLM',day:'Chủ Nhật, 11/10',genres:['Sports','Baseball','School'],air:'11/10/2026',status:'upcoming',synopsis:'Đội Seido bước vào vòng đấu Koshien, đối đầu những đối thủ đáng gờm nhất.'},
-  ],
-  summer: [
-    {type:'tv',title:'Mushoku Tensei Season 3: Chaos Breaker Arc',titleJp:'無職転生 3期',studio:'Studio Bind',day:'Chủ Nhật',genres:['Isekai','Fantasy','Drama'],air:'từ 5/7/2026 (arc Chaos Breaker từ 16/8)',status:'airing',synopsis:'Rudeus cùng đồng đội tiến vào pháo đài bay của Perugius Dola, đối mặt thảm họa Chaos Breaker.'},
-    {type:'tv',title:'Bleach: TYBW Final Part, The Calamity',titleJp:'BLEACH 千年血戦篇 相剋譚',studio:'Pierrot',day:'Đã kết thúc',genres:['Shounen','Action','Supernatural'],air:'25/7 – 26/9/2026',status:'ended',synopsis:'Chương cuối cùng của Thousand-Year Blood War, Ichigo đối đầu Yhwach trong trận chiến quyết định.'},
-    {type:'tv',title:'Re:Zero Season 4: Recapture Part',titleJp:'Re:ゼロから始める異世界生活 4期',studio:'White Fox',day:'Thứ Tư',genres:['Isekai','Drama','Fantasy'],air:'12/8 – 30/9/2026 (tập 19 là tập cuối)',status:'airing',synopsis:'Subaru bước vào phần Recapture của mùa 4, phần thứ hai gồm 8 tập nối tiếp Loss Part chiếu hồi mùa xuân.'},
-    {type:'tv',title:'Youjo Senki II',titleJp:'幼女戦記 II',studio:'NUT',day:'Thứ Tư',genres:['Military','Isekai','Action'],air:'8/7 – 23/9/2026',status:'ended',synopsis:'Tanya Degurechaff tiếp tục cuộc chiến khốc liệt trên chiến trường ma thuật.'},
-    {type:'tv',title:'Grand Blue Season 3',titleJp:'ぐらんぶる 3期',studio:'Saber Works',day:'Đã hoàn thành',genres:['Comedy','Seinen','Slice of Life'],air:'7–9/2026',status:'ended',synopsis:'Iori và hội lặn biển Grand Blue tiếp tục những trò náo loạn ở thị trấn biển Izu.'},
-    {type:'tv',title:'Ghost in the Shell (2026)',titleJp:'攻殻機動隊',studio:'Science SARU',day:'Thứ Ba',genres:['Sci-Fi','Psychological','Seinen'],air:'7/7 – 8/9/2026 (Prime Video, 10 tập)',status:'ended',synopsis:'Bản chuyển thể mới của Ghost in the Shell do Science SARU thực hiện, khai thác lại thế giới cyberpunk kinh điển.'},
-  ],
-  winter: [
-    {type:'tv',title:"Frieren: Beyond Journey's End Season 2",titleJp:'葬送のフリーレン 2期',studio:'Madhouse',day:'Đã kết thúc',genres:['Fantasy','Adventure','Drama'],air:'16/1 – 27/3/2026',status:'ended',synopsis:'Frieren tiếp tục hành trình chậm rãi khám phá ký ức và cảm xúc con người sau khi Hùng Đoàn giải tán.'},
-    {type:'tv',title:'Jujutsu Kaisen Season 3: Culling Game Part 1',titleJp:'呪術廻戦 3期',studio:'MAPPA',day:'Đã kết thúc (12 tập)',genres:['Action','Supernatural','Shounen'],air:'9/1 – 27/3/2026',status:'ended',synopsis:'Trò chơi thanh trừng bắt đầu, các chú thuật sư bị cuốn vào cuộc chiến sinh tồn khốc liệt.'},
-  ],
-  spring: [
-    {type:'tv',title:'JoJo no Kimyou na Bouken: Steel Ball Run',titleJp:'ジョジョの奇妙な冒険 スティール・ボール・ラン',studio:'david production',day:'Đang phát sóng',genres:['Action','Adventure','Mystery'],air:'từ 4/2026',status:'airing',synopsis:'Johnny Joestar tham gia cuộc đua xuyên lục địa Steel Ball Run đầy bí ẩn siêu nhiên.'},
-  ],
-};
-
-const REAL_LINK = {
-  'Ao no Hako Season 2':'/ao-no-hako-mua-2-len-song-4-10',
-  'Tokyo Revengers: Santen Sensou-hen':'/tokyo-revengers-santen-sensou-hen-len-song-2-10',
-  'Aoashi Season 2':'/aoashi-mua-2-doi-studio-len-song-4-10',
-  'Magic Knight Rayearth (2026)':'/magic-knight-rayearth-2026-remake-len-song-7-10',
-  'Tougen Anki Season 2':'/tougen-anki-mua-2-nikko-kegon-falls-len-song-2-10',
-  'Diamond no Ace act II (Cour 2)':'/diamond-no-ace-act-ii-cour-2-len-song-11-10',
-  'Youjo Senki II':'/youjo-senki-ii-ket-thuc-phat-song',
-  'Dragon Ball Super: Beerus':'/dragon-ball-super-beerus-len-song-11-10',
-  'Ghost in the Shell (2026)':'/ghost-in-the-shell-2026-tong-ket-mua-phat-song',
-  'Cyberpunk: Edgerunners 2':'/cyberpunk-edgerunners-2-ra-mat-20-10-netflix',
-  'JoJo no Kimyou na Bouken: Steel Ball Run':'/jojo-steel-ball-run-stage-2-3-len-song-25-9',
-  'Grand Blue Season 3':'/grand-blue-mua-4-cong-bo-sau-mua-3-ket-thuc',
-  'Black Clover Season 2':'/black-clover-season-2',
-  'The Apothecary Diaries Season 3':'/apothecary-diaries-season3-trailer',
-  'Ranma 1/2 Season 3':'/ranma-half-season-3-visual',
-  "Frieren: Beyond Journey's End Season 2":'/frieren-mua-2-phat-song-thang-1-2026',
-  'Jujutsu Kaisen Season 3: Culling Game Part 1':'/jujutsu-kaisen-season-3-culling-game-release',
-  'Mushoku Tensei Season 3: Chaos Breaker Arc':'/mushoku-tensei-s3-chaos-breaker',
-  'Bleach: TYBW Final Part, The Calamity':'/bleach-tybw-the-calamity-25-7-2026',
-  'Re:Zero Season 4: Recapture Part':'/re-zero-season4-recapture-arc',
-  'Reincarnated as a Sword II':'/reincarnated-as-a-sword-season2-premiere',
-};
-
-const REAL_IMG = {
-  'Black Clover Season 2':'/assets/img/00ecd3dafc-banner.jpg',
-  'The Apothecary Diaries Season 3':'/assets/img/ba56514692-apothecary-diaries-s3-key-visual.jpg',
-  'Ranma 1/2 Season 3':'/assets/img/news-ranma-half-season-3-visual.jpg',
-  "Frieren: Beyond Journey's End Season 2":'/assets/img/3f4f599cac-frieren-s2-hero.jpg',
-  'Jujutsu Kaisen Season 3: Culling Game Part 1':'/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg',
-  'Mushoku Tensei Season 3: Chaos Breaker Arc':'/assets/img/77948dbff7-mushoku-tensei-s3-chaosbreaker.jpg',
-  'Bleach: TYBW Final Part, The Calamity':'/assets/img/news-bleach-tybw-part4-farewell.jpg',
-  'Re:Zero Season 4: Recapture Part':'/assets/img/087af8ed98-rezero-s4-hero.jpg',
-  'Ao no Hako Season 2':'/assets/img/poster-real-ao-no-hako-s2.jpg',
-  'Tokyo Revengers: Santen Sensou-hen':'/assets/img/poster-real-tokyo-revengers-santen.jpg',
-  'Aoashi Season 2':'/assets/img/poster-real-aoashi-s2.jpg',
-  'Dragon Ball Super: Beerus':'/assets/img/poster-real-dragon-ball-super-beerus.jpg',
-  'Reincarnated as a Sword II':'/assets/img/poster-real-reincarnated-as-a-sword-s2.jpg',
-  'Diamond no Ace act II (Cour 2)':'/assets/img/poster-real-diamond-no-ace-act2.jpg',
-  'Magic Knight Rayearth (2026)':'/assets/img/poster-real-magic-knight-rayearth-2026.jpg',
-  'Cyberpunk: Edgerunners 2':'/assets/img/poster-real-cyberpunk-edgerunners-2.jpg',
-  'Tougen Anki Season 2':'/assets/img/poster-real-tougen-anki-s2.jpg',
-  'Youjo Senki II':'/assets/img/poster-real-youjo-senki-ii.jpg',
-  'Ghost in the Shell (2026)':'/assets/img/poster-real-ghost-in-the-shell-2026.jpg',
-  'Grand Blue Season 3':'/assets/img/poster-real-grand-blue-s3.jpg',
-  'JoJo no Kimyou na Bouken: Steel Ball Run':'/assets/img/poster-real-steel-ball-run.jpg',
-};
-
-
-function resolveLink(title){ return REAL_LINK[title] || ('/anime-detail?t=' + encodeURIComponent(title)); }
-
-
-function resolveImg(title, fallback){ return REAL_IMG[title] || '/assets/img/placeholder.svg'; }
-const STATUS_LABEL = {airing:'Đang phát',ended:'Đã kết thúc',upcoming:'Sắp chiếu',tba:'Chưa rõ ngày'};
-
-
-
-
-
-const SEASON_NAMES = {spring:'Mùa Xuân',summer:'Mùa Hè',fall:'Mùa Thu',winter:'Mùa Đông'};
-
-
-let currentSeason = 'fall', currentFilter = 'all', currentYear = 2026;
-
-
-
-
-
-function renderGrid(){
-
-
-  const grid = document.getElementById('animeGrid');
-
-
-  let items = DATA[currentSeason] || [];
-
-
-  if(currentFilter !== 'all') items = items.filter(a => a.type === currentFilter);
-
-
-  if(!items.length){
-
-
-    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">🌙</div><p>Chưa có thông tin cho mùa này. Hãy quay lại sau!</p></div>';
-
-
-    return;
-
-
-  }
-
-
-  grid.innerHTML = items.map(a => `
-
-
-    <a href="${resolveLink(a.title)}" class="ac">
-      <div class="ac-cover-wrap">
-        <img height="675" width="1200" class="ac-cover" src="${otThumb(resolveImg(a.title, a.img))}" alt="${a.title}" loading="lazy" decoding="async" onerror="this.src='/assets/img/placeholder.svg'">
-        <span class="ac-status-pill ${a.status}"><span class="ac-air-dot"></span>${STATUS_LABEL[a.status] || a.status}</span>
-        <span class="ac-type-corner ${a.type}">${a.type.toUpperCase()}</span>
-      </div>
-      <div class="ac-body">
-        <div class="ac-title">${a.title}</div>
-        <div class="ac-studio">${a.studio}${a.studio ? ' · ' : ''}${a.day}</div>
-        ${a.synopsis ? `<div class="ac-synopsis">${a.synopsis}</div>` : ''}
-        <div class="ac-genres">${a.genres.map(g=>`<span class="ac-genre">${g}</span>`).join('')}</div>
-        <div class="ac-air">${a.air}</div>
-      </div>
-    </a>`).join('');
-
-
-}
-
-
-
-
-
-function setSeason(s, btn){
-
-
-  currentSeason = s;
-
-
-  document.querySelectorAll('.st-btn').forEach(b=>b.classList.remove('active'));
-
-
-  btn.classList.add('active');
-
-
-  document.getElementById('seasonTitle').textContent = SEASON_NAMES[s]+' '+currentYear;
-
-
-  renderGrid();
-
-
-}
-
-
-
-
-
-function setFilter(f, btn){
-
-
-  currentFilter = f;
-
-
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-
-
-  btn.classList.add('active');
-
-
-  renderGrid();
-
-
-}
-
-
-
-
-
-function setYear(y, btn){
-
-
-  currentYear = y;
-
-
-  document.querySelectorAll('.yr-btn').forEach(b=>b.classList.remove('active'));
-
-
-  btn.classList.add('active');
-
-
-  document.getElementById('seasonTitle').textContent = SEASON_NAMES[currentSeason]+' '+y;
-
-
-  renderGrid();
-
-
-}
-
-
-
-
-
-function toggleMobileNav(){const b=document.getElementById('hamBtn'),n=document.getElementById('mobileNav');b.classList.toggle('open');n.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':''}
-
-/* ===== MANGA: bang cap nhat chapter moi nhat ===== */
-// Kiem chung thang 9/2026 qua VIZ, MANGA Plus, Popverse, Fandom wiki cua tung
-// bo, KHONG dung gio/phut gia dinh vi khong the biet chinh xac; chi ghi ngay
-// phat hanh chapter that va tinh trang (dang ra/tam ngung/da ket thuc).
+/* Manga: chương mới nhất (dữ liệu kiểm chứng qua VIZ, MANGA Plus, trang chính thức) */
 const MANGA_DATA = [
   {type:'manga',title:'One Piece',chapter:'Chapter 1194',status:'ongoing',time:'27/9/2026',genres:['Adventure','Shonen'],img:'/assets/img/8d631824e5-maxresdefault.jpg',link:'/one-piece-chapter-1194-spoilers-loki-uranus-elbaf'},
   {type:'manga',title:'Spy x Family',chapter:'Chapter 140',status:'ongoing',time:'30/8/2026',genres:['Comedy','Action'],img:'/assets/img/a7f0eee58e-122795l.jpg',link:'/spy-x-family-anime-review'},
@@ -1116,85 +733,44 @@ const MANGA_DATA = [
   {type:'manhwa',title:'Solo Leveling: Ragnarok',chapter:'Chapter 69',status:'hiatus',time:'tạm ngưng từ 1/2026',genres:['Action','Fantasy'],img:'/assets/img/a4f75364fc-maxresdefault.jpg',link:'/manga-detail?t=Solo%20Leveling%3A%20Ragnarok'},
   {type:'manhwa',title:"Omniscient Reader's Viewpoint",chapter:'Chapter 311 (hết Season 1)',status:'hiatus',time:'tạm ngưng từ 19/5/2026',genres:['Fantasy','Adventure'],img:'/assets/img/real-orv-cover.jpg',link:'/manga-detail?t=Omniscient%20Reader'},
 ];
-let currentMangaFilter = 'all';
-
-function renderMangaGrid(){
-  const grid = document.getElementById('mangaGrid');
-  let items = MANGA_DATA;
-  if(currentMangaFilter !== 'all') items = items.filter(m => m.type === currentMangaFilter);
-  if(!items.length){
-    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">📖</div><p>Chưa có chapter mới cho loại này.</p></div>';
-    return;
+(function(){
+  var ST = {ongoing:'Đang ra',ended:'Đã hoàn kết',hiatus:'Tạm ngưng'}, TY = {manga:'Manga',manhwa:'Manhwa',manhua:'Manhua'};
+  var esc = function(x){ return String(x).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+  document.getElementById('mangaCount').textContent = MANGA_DATA.length + ' tựa';
+  document.getElementById('mangaList').innerHTML = MANGA_DATA.map(function(m){
+    return '<li class="sch-row has-link"><span class="sch-time tba">' + esc(TY[m.type]) + '</span>' +
+      '<img class="sch-thumb" src="' + esc(m.img) + '" alt="" loading="lazy" decoding="async" width="56" height="76">' +
+      '<div class="sch-info"><div class="sch-title"><a href="' + esc(m.link) + '">' + esc(m.title) + '</a></div>' +
+      '<div class="sch-meta" data-time="' + esc(TY[m.type]) + '">' + esc(m.chapter) + ' · Ngày ra chương: ' + esc(m.time) + '</div></div>' +
+      '<div class="sch-tags"><span class="sch-st ' + m.status + '">' + esc(ST[m.status]) + '</span></div></li>';
+  }).join('');
+  var hero = {title: document.getElementById('schTitle'), sum: document.getElementById('schSummary')};
+  function setMode(mode){
+    var manga = mode === 'manga';
+    document.querySelectorAll('.sch-mode').forEach(function(b){ var on = b.dataset.mode === mode; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
+    document.getElementById('schRoot').hidden = manga;
+    document.getElementById('mangaSection').hidden = !manga;
+    if (manga){ hero.title.innerHTML = 'Lịch ra chương <em>manga</em>'; hero.sum.textContent = 'Chương mới nhất của manga, manhwa, manhua OtaHub đang theo dõi'; }
+    else if (window.otScheduleRender) window.otScheduleRender();
+    history.replaceState(null, '', manga ? '#manga' : location.pathname + location.search);
   }
-  const MANGA_STATUS_LABEL = {ongoing:'Đang ra',ended:'Đã hoàn kết',hiatus:'Tạm ngưng'};
-  grid.innerHTML = items.map(m => `
-    <a href="${m.link}" class="ac">
-      <div class="ac-cover-wrap">
-        <img height="675" width="1200" class="ac-cover" src="${otThumb(m.img)}" alt="${m.title}" loading="lazy" decoding="async" onerror="this.src='/assets/img/placeholder.svg'">
-        <span class="ac-status-pill ${m.status}"><span class="ac-air-dot"></span>${MANGA_STATUS_LABEL[m.status] || m.status}</span>
-        <span class="ac-type-corner ${m.type}">${m.type.toUpperCase()}</span>
-      </div>
-      <div class="ac-body">
-        <div class="ac-title">${m.title}</div>
-        <div class="ac-studio">${m.chapter}</div>
-        <div class="ac-genres">${m.genres.map(g=>`<span class="ac-genre">${g}</span>`).join('')}</div>
-        <div class="ac-air">Ngày ra chapter: ${m.time}</div>
-      </div>
-    </a>`).join('');
-}
-
-function setMangaFilter(f, btn){
-  currentMangaFilter = f;
-  btn.parentElement.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderMangaGrid();
-}
-
-function setMode(mode, btn){
-  document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  const animeSection = document.getElementById('animeSection');
-  const mangaSection = document.getElementById('mangaSection');
-  const yearBar = document.getElementById('yearBar');
-  const modeLabel = document.getElementById('modeLabel');
-  const seasonTitle = document.getElementById('seasonTitle');
-  if(mode === 'manga'){
-    animeSection.style.display = 'none';
-    mangaSection.style.display = '';
-    yearBar.style.display = 'none';
-    modeLabel.textContent = 'Manga';
-    seasonTitle.textContent = 'Cập Nhật Chapter';
-    document.getElementById('pageSub').textContent = 'Chapter mới nhất từ manga, manhwa và manhua đang theo dõi trên OtaHub';
-  } else {
-    animeSection.style.display = '';
-    mangaSection.style.display = 'none';
-    yearBar.style.display = '';
-    modeLabel.textContent = 'Anime';
-    seasonTitle.textContent = SEASON_NAMES[currentSeason]+' '+currentYear;
-    document.getElementById('pageSub').textContent = 'Cập nhật đầy đủ lịch chiếu, studio, thể loại cho từng anime theo mùa';
-  }
-}
-
-renderMangaGrid();
-if(location.hash === '#manga'){
-  setMode('manga', document.getElementById('modeBtnManga'));
-}
-
-renderGrid();
-
-
+  document.querySelectorAll('.sch-mode').forEach(function(b){ b.addEventListener('click', function(){ setMode(b.dataset.mode); }); });
+  if (location.hash === '#manga') document.addEventListener('DOMContentLoaded', function(){ setMode('manga'); });
+})();
 </script>
 
 
 <script defer src="/assets/search-redirect.js"></script>
 
 
+<script defer src="/assets/schedule-data.js?v=20261002a"></script>
+<script defer src="/assets/schedule.js?v=20261002a"></script>
 <script defer src="/assets/enhance.js?v=20261002g"></script>
 
 
 
 
-<script defer src="/assets/img-fit.v2.js?v=20260926"></script>
+<script defer src="/assets/img-fit.v2.js?v=20261002a"></script>
 <script src="/assets/lang-switch.js" defer></script>
 </body>
 

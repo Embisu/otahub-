@@ -1,0 +1,153 @@
+/* Trang Lịch phát sóng (/lich-phat-song, /en/lich-phat-song): vẽ lịch theo ngày trong tuần từ assets/schedule-data.js. */
+(function(){
+var D = window.OT_SCHEDULE;
+var root = document.getElementById('schRoot');
+if (!D || !root) return;
+var EN = /^\/en(\/|$)/.test(location.pathname);
+
+var T = EN ? {
+  seasons: {winter:'Winter', spring:'Spring', summer:'Summer', fall:'Fall'},
+  months: {winter:'Jan–Mar', spring:'Apr–Jun', summer:'Jul–Sep', fall:'Oct–Dec'},
+  title: function(s, y){ return 'Anime <em>' + s + ' ' + y + '</em> schedule'; },
+  days: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+  dshort: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+  types: {all:'All', tv:'TV', short:'Shorts', ona:'Streaming (ONA)', movie:'Films', special:'Specials', ova:'OVA'},
+  today:'Today', upcoming:'Upcoming', airing:'Airing', aired:'Aired', inDays:function(n){ return n === 1 ? 'tomorrow' : 'in ' + n + ' days'; },
+  premiere:'Premieres', premiered:'Premiered', release:'Japan release', noTime:'TBA',
+  featured:'Featured this season', films:'Films, specials & OVAs', search:'Search anime or studio…',
+  none:'No titles match your filters.', count:function(n){ return n + ' titles'; },
+  summary:function(c){ return [c.tv && c.tv + ' TV series', c.ona && c.ona + ' streaming', c.film && c.film + ' films & specials'].filter(Boolean).join(' · '); },
+  tz:'Times in Vietnam time (UTC+7)', updated:'Updated', source:'Sources', note:'Times can shift by broadcaster or streaming platform.',
+  read:'Read on OtaHub'
+} : {
+  seasons: {winter:'Mùa Đông', spring:'Mùa Xuân', summer:'Mùa Hè', fall:'Mùa Thu'},
+  months: {winter:'T1–T3', spring:'T4–T6', summer:'T7–T9', fall:'T10–T12'},
+  title: function(s, y){ return 'Lịch chiếu anime <em>' + s + ' ' + y + '</em>'; },
+  days: ['Chủ Nhật','Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm','Thứ Sáu','Thứ Bảy'],
+  dshort: ['CN','T2','T3','T4','T5','T6','T7'],
+  types: {all:'Tất cả', tv:'TV', short:'Phim ngắn', ona:'Trực tuyến (ONA)', movie:'Phim chiếu rạp', special:'Đặc biệt', ova:'OVA'},
+  today:'Hôm nay', upcoming:'Sắp chiếu', airing:'Đang chiếu', aired:'Đã chiếu', inDays:function(n){ return n === 1 ? 'ngày mai' : 'còn ' + n + ' ngày'; },
+  premiere:'Ra mắt', premiered:'Ra mắt', release:'Khởi chiếu tại Nhật', noTime:'Chưa rõ giờ',
+  featured:'Nổi bật mùa này', films:'Phim chiếu rạp, tập đặc biệt & OVA', search:'Tìm anime hoặc studio…',
+  none:'Không có tựa nào khớp bộ lọc.', count:function(n){ return n + ' tựa'; },
+  summary:function(c){ return [c.tv && c.tv + ' phim TV', c.ona && c.ona + ' phim trực tuyến', c.film && c.film + ' phim rạp & đặc biệt'].filter(Boolean).join(' · '); },
+  tz:'Giờ Việt Nam (UTC+7)', updated:'Cập nhật', source:'Nguồn', note:'Giờ chiếu có thể thay đổi theo đài hoặc nền tảng phát hành.',
+  read:'Đọc trên OtaHub'
+};
+var ORDER = ['winter','spring','summer','fall'];
+var WEEK = [1,2,3,4,5,6,0];                 // Thứ Hai -> Chủ Nhật
+var FILM = {movie:1, special:1, ova:1};
+
+// "Hôm nay" theo giờ Việt Nam, không phụ thuộc múi giờ máy
+var nowVN = new Date(Date.now() + 7 * 3600e3);
+var todayKey = nowVN.toISOString().slice(0, 10);
+var todayDow = nowVN.getUTCDay();
+var dayNum = function(iso){ return Math.round(Date.parse(iso + 'T00:00:00Z') / 864e5); };
+var dowOf = function(iso){ return new Date(iso + 'T00:00:00Z').getUTCDay(); };
+var fmtDate = function(iso){ var p = iso.split('-'); return EN ? new Date(iso + 'T00:00:00Z').toLocaleDateString('en-US', {month:'short', day:'numeric', timeZone:'UTC'}) : (+p[2]) + '/' + (+p[1]); };
+var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+var thumb = function(u, k){ return /^\/assets\/img\/(?!_[ts]\/)[^?#]+\.(jpe?g|png|webp)$/i.test(u || '') ? '/assets/img/' + (k || '_s') + '/' + u.slice(12) + '.webp' : u; };
+var linkOf = function(a){ return EN ? (a.le || '') : (a.l || ''); };
+
+var params = new URLSearchParams(location.search);
+var state = {
+  season: ORDER.indexOf(params.get('mua') || params.get('season')) > -1 ? (params.get('mua') || params.get('season')) : D.current,
+  type: 'all', q: ''
+};
+
+function status(a){
+  var diff = dayNum(a.d) - dayNum(todayKey);
+  if (diff > 0) return {k:'upcoming', label: T.upcoming + ' · ' + T.inDays(diff)};
+  if (state.season !== D.current) return {k:'aired', label: T.aired};
+  return {k:'airing', label: FILM[a.y] ? T.aired : T.airing};
+}
+function matches(a){
+  if (state.type !== 'all' && a.y !== state.type) return false;
+  if (!state.q) return true;
+  var hay = (a.t + ' ' + (a.r || '') + ' ' + (a.s || '')).toLowerCase();
+  return hay.indexOf(state.q) > -1;
+}
+function tile(a){
+  if (a.i) return '<img class="sch-thumb" src="' + esc(thumb(a.i)) + '" alt="" loading="lazy" decoding="async" width="56" height="76" onerror="this.onerror=null;this.src=\'' + esc(a.i) + '\'">';
+  return '<span class="sch-thumb sch-tile t-' + a.y + '" aria-hidden="true">' + esc(a.t.replace(/^[^A-Za-z0-9]+/, '').charAt(0).toUpperCase()) + '</span>';
+}
+function row(a){
+  var st = status(a), href = linkOf(a);
+  var title = href ? '<a href="' + esc(href) + '">' + esc(a.t) + '</a>' : esc(a.t);
+  var meta = [a.s, (FILM[a.y] ? T.release : (st.k === 'upcoming' ? T.premiere : T.premiered)) + ' ' + fmtDate(a.d), a.p].filter(Boolean).map(esc).join(' · ');
+  return '<li class="sch-row' + (href ? ' has-link' : '') + '">' +
+    '<span class="sch-time' + (a.h ? '' : ' tba') + '">' + (a.h || T.noTime) + '</span>' + tile(a) +
+    '<div class="sch-info"><div class="sch-title">' + title + '</div>' + (a.r && a.r !== a.t ? '<div class="sch-romaji">' + esc(a.r) + '</div>' : '') +
+    '<div class="sch-meta" data-time="' + (a.h || T.noTime) + '">' + meta + '</div></div>' +
+    '<div class="sch-tags"><span class="sch-type t-' + a.y + '">' + esc(T.types[a.y]) + '</span><span class="sch-st ' + st.k + '">' + esc(st.label) + '</span></div></li>';
+}
+
+function render(){
+  var all = D.seasons[state.season] || [];
+  var list = all.filter(matches);
+  var weekly = list.filter(function(a){ return !FILM[a.y]; });
+  var films = list.filter(function(a){ return FILM[a.y]; }).sort(function(a, b){ return a.d < b.d ? -1 : 1; });
+  var c = {tv:0, ona:0, film:0};
+  all.forEach(function(a){ if (FILM[a.y]) c.film++; else if (a.y === 'ona') c.ona++; else c.tv++; });
+  var year = D.year;
+
+  document.getElementById('schTitle').innerHTML = T.title(T.seasons[state.season], year);
+  document.getElementById('schSummary').textContent = T.summary(c) + ' · ' + T.tz;
+  document.querySelectorAll('.sch-season').forEach(function(b){
+    var on = b.dataset.s === state.season; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on);
+  });
+  // bộ lọc loại: chỉ hiện loại có trong mùa
+  var types = ['all'].concat(['tv','short','ona','movie','special','ova'].filter(function(t){ return all.some(function(a){ return a.y === t; }); }));
+  if (types.indexOf(state.type) < 0) state.type = 'all';
+  document.getElementById('schTypes').innerHTML = types.map(function(t){
+    var n = t === 'all' ? all.length : all.filter(function(a){ return a.y === t; }).length;
+    return '<button type="button" class="sch-chip' + (t === state.type ? ' on' : '') + '" data-t="' + t + '">' + esc(T.types[t]) + ' <span>' + n + '</span></button>';
+  }).join('');
+
+  // nổi bật: tựa có ảnh, chỉ khi không lọc
+  var feat = (!state.q && state.type === 'all') ? all.filter(function(a){ return a.i; }) : [];
+  var html = feat.length ? '<section class="sch-feat"><h2 class="sch-h">' + T.featured + '</h2><div class="sch-feat-row">' + feat.map(function(a){
+    var st = status(a), href = linkOf(a), tag = href ? 'a' : 'div';
+    return '<' + tag + (href ? ' href="' + esc(href) + '"' : '') + ' class="sch-card"><img src="' + esc(thumb(a.i, '_t')) + '" alt="' + esc(a.t) + '" loading="lazy" decoding="async" width="300" height="400" onerror="this.onerror=null;this.src=\'' + esc(a.i) + '\'"><div class="sch-card-body"><span class="sch-st ' + st.k + '">' + esc(st.label) + '</span><div class="sch-card-t">' + esc(a.t) + '</div><div class="sch-card-m">' + esc(T.days[dowOf(a.d)]) + (a.h ? ' · ' + a.h : '') + ' · ' + esc(a.s) + '</div></div></' + tag + '>';
+  }).join('') + '</div></section>' : '';
+
+  // dải ngày trong tuần + từng ngày
+  var byDay = {}; WEEK.forEach(function(d){ byDay[d] = []; });
+  weekly.forEach(function(a){ byDay[dowOf(a.d)].push(a); });
+  WEEK.forEach(function(d){ byDay[d].sort(function(a, b){ return (a.h || '99') < (b.h || '99') ? -1 : (a.h || '99') > (b.h || '99') ? 1 : a.t.localeCompare(b.t); }); });
+  var isCur = state.season === D.current;
+  document.getElementById('schWeek').innerHTML = WEEK.map(function(d){
+    return '<a class="sch-day' + (isCur && d === todayDow ? ' today' : '') + (byDay[d].length ? '' : ' empty') + '" href="#sch-d' + d + '"><b>' + T.dshort[d] + '</b><span>' + byDay[d].length + '</span></a>';
+  }).join('') + (films.length ? '<a class="sch-day films" href="#sch-films"><b>🎬</b><span>' + films.length + '</span></a>' : '');
+  html += WEEK.filter(function(d){ return byDay[d].length; }).map(function(d){
+    var today = isCur && d === todayDow;
+    return '<section class="sch-dayblock' + (today ? ' today' : '') + '" id="sch-d' + d + '"><h2 class="sch-h">' + T.days[d] + (today ? ' <span class="sch-today">' + T.today + '</span>' : '') + ' <small>' + T.count(byDay[d].length) + '</small></h2><ul class="sch-list">' + byDay[d].map(row).join('') + '</ul></section>';
+  }).join('');
+  if (films.length) html += '<section class="sch-dayblock" id="sch-films"><h2 class="sch-h">' + T.films + ' <small>' + T.count(films.length) + '</small></h2><ul class="sch-list">' + films.map(row).join('') + '</ul></section>';
+  if (!weekly.length && !films.length) html = '<p class="sch-empty">' + T.none + '</p>';
+  document.getElementById('schBody').innerHTML = html;
+}
+
+// khung tĩnh
+root.innerHTML =
+  '<div class="sch-bar"><div class="sch-bar-in">' +
+    '<div class="sch-seasons" role="group">' + ORDER.map(function(s){
+      return '<button type="button" class="sch-season" data-s="' + s + '"><b>' + T.seasons[s] + '</b><span>' + T.months[s] + ' · ' + (D.seasons[s] || []).length + '</span></button>';
+    }).join('') + '</div>' +
+    '<label class="sch-search"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6"/></svg><input id="schQ" type="search" placeholder="' + esc(T.search) + '" autocomplete="off"></label>' +
+  '</div><div class="sch-bar-in sch-bar-2"><div class="sch-types" id="schTypes"></div></div>' +
+  '<div class="sch-bar-in"><nav class="sch-week" id="schWeek" aria-label="' + esc(EN ? 'Days of the week' : 'Các ngày trong tuần') + '"></nav></div></div>' +
+  '<div class="sch-wrap"><div id="schBody"></div>' +
+  '<p class="sch-src">' + T.updated + ' ' + fmtDate(D.updated) + '/' + D.updated.slice(0, 4) + ' · ' + T.source + ': ' + D.sources.map(function(s){ return '<a href="' + esc(s[1]) + '" target="_blank" rel="noopener">' + esc(s[0]) + '</a>'; }).join(', ') + '. ' + T.note + '</p></div>';
+
+root.addEventListener('click', function(e){
+  var s = e.target.closest('.sch-season');
+  if (s){ state.season = s.dataset.s; state.type = 'all'; render(); var u = new URL(location.href); if (state.season === D.current) u.searchParams.delete('mua'); else u.searchParams.set('mua', state.season); history.replaceState(null, '', u); return; }
+  var t = e.target.closest('.sch-chip');
+  if (t){ state.type = t.dataset.t; render(); }
+});
+var qt;
+document.getElementById('schQ').addEventListener('input', function(e){ clearTimeout(qt); qt = setTimeout(function(){ state.q = e.target.value.trim().toLowerCase(); render(); }, 120); });
+window.otScheduleRender = render;
+render();
+})();

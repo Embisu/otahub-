@@ -148,7 +148,7 @@ if (!enNews.includes('/en/roman-sands-re-build-trapped-in-a-collapsing-vaporwave
 
 // 6. Fix lien-he.html and en/contact.html
 let lienHe = fs.readFileSync('lien-he.html', 'utf8');
-lienHe = lienHe.replace('https://otahub.asia/en/lien-he', 'https://otahub.asia/en/contact');
+lienHe = lienHe.replace('https://otahub.asia/en/contact', 'https://otahub.asia/en/contact');
 fs.writeFileSync('lien-he.html', lienHe, 'utf8');
 
 let contact = fs.readFileSync('en/contact.html', 'utf8');
@@ -161,7 +161,7 @@ console.log('Updated lien-he.html and en/contact.html hreflang');
 
 // 7. Fix chinh-sach-bao-mat.html and en/privacy.html
 let chinhSach = fs.readFileSync('chinh-sach-bao-mat.html', 'utf8');
-chinhSach = chinhSach.replace('https://otahub.asia/en/chinh-sach-bao-mat', 'https://otahub.asia/en/privacy');
+chinhSach = chinhSach.replace('https://otahub.asia/en/privacy', 'https://otahub.asia/en/privacy');
 fs.writeFileSync('chinh-sach-bao-mat.html', chinhSach, 'utf8');
 
 let privacy = fs.readFileSync('en/privacy.html', 'utf8');
@@ -186,13 +186,13 @@ const dieuKhoanContent = `<!DOCTYPE html>
 <link rel="alternate" hreflang="x-default" href="https://otahub.asia/dieu-khoan-su-dung">
 <link rel="canonical" href="https://otahub.asia/dieu-khoan-su-dung">
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002i">
+<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002j">
 </head>
 <body style="background:#0b0418;color:#f0eeff;font-family:sans-serif;padding:40px 24px;max-width:800px;margin:0 auto">
 <h1>Điều Khoản Sử Dụng</h1>
 <p>Mọi nội dung về Gaming, Anime và Manga xuất bản trên OtaHub đều nhằm mục đích cung cấp thông tin, phân tích và giáo dục.</p>
 <p><a href="/about" style="color:#00e5ff">← Về Chúng Tôi</a> | <a href="/" style="color:#00e5ff">Trang Chủ</a></p>
-<script defer src="/assets/img-fit.v2.js?v=20260926"></script>
+<script defer src="/assets/img-fit.v2.js?v=20261002a"></script>
 <script src="/assets/lang-switch.js" defer></script>
 </body>
 </html>`;

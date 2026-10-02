@@ -206,3 +206,17 @@ body .nav-links a{white-space:nowrap}
   body:has(.mob-bottom-bar) .nav .ham,
   body:has(.mob-bottom-bar) .nav .nsearch{display:none!important}
 }
+/* ── Footer chuẩn (2026-10-02) ──
+   scripts/sync-site-chrome.mjs ghi cùng một footer lên mọi trang; khối này tự đủ để footer trông giống nhau
+   kể cả trên trang không có CSS footer riêng (trang hồ sơ, bài-viet...). */
+body>footer{display:block;margin:0;color:#94a3b8;font-family:var(--fb,'Be Vietnam Pro',system-ui,sans-serif)}
+body>footer .ft-in{display:grid;grid-template-columns:minmax(220px,1.3fr) repeat(3,minmax(0,1fr));gap:40px;max-width:1440px;margin:0 auto;padding:52px 24px 32px;box-sizing:border-box}
+body>footer .logo{display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+body>footer .ft-desc{margin:14px 0 0;max-width:300px;font-size:13px;line-height:1.7;color:#94a3b8}
+body>footer .ft-h{color:#e2e8f0;font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 16px}
+body>footer .ft-links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+body>footer .ft-links a{font-size:14px;text-decoration:none;transition:color .2s}
+body>footer .ft-bot{max-width:1440px;margin:0 auto;padding:18px 24px 26px;border-top:1px solid rgba(255,255,255,.07);box-sizing:border-box}
+body>footer .ft-copy{font-size:12px;color:#64748b;letter-spacing:.02em}
+@media(min-width:1101px){body>footer .ft-in{grid-template-columns:minmax(220px,1.3fr) repeat(3,minmax(0,1fr))!important;gap:48px!important}}
+@media(min-width:769px) and (max-width:1100px){body>footer .ft-in{grid-template-columns:1fr 1fr 1fr!important;gap:32px 24px!important}body>footer .ft-in>div:first-child{grid-column:1/-1}}

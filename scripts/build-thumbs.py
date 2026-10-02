@@ -67,6 +67,9 @@ for f in pages:
 # Ảnh hồ sơ (assets/catalog.json): trang hồ sơ dùng bản _s cho thẻ gợi ý/bài liên quan
 for m in re.finditer(r'"img":\s*"(/assets/img/[^"]+)"', load('assets/catalog.json')):
     want(m.group(1), '_s')
+# Ảnh lịch phát sóng (assets/schedule-data.js, trường i:'...'): thẻ nổi bật dùng _t, dòng lịch dùng _s
+for m in re.finditer(r"[{ ,]i:'(/assets/img/[^']+)'", load('assets/schedule-data.js')):
+    want(m.group(1), '_t'); want(m.group(1), '_s')
 
 made = 0
 for u, (orig, width) in sorted(needed.items()):

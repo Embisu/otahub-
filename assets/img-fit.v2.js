@@ -1,6 +1,6 @@
 /* OtaHub: stop object-fit:cover from chopping images whose shape differs a lot from their frame (posters, wide banners) */
 (function(){
-var SKIP='.art-hero-img,.art-hero-bg,.anime-card .an-poster';
+var SKIP='.art-hero-img,.art-hero-bg,.anime-card .an-poster,.sch-card';
 function fit(img){
   if(!img.naturalWidth||img.dataset.fitDone==='1')return;
   if(img.closest&&img.closest(SKIP))return;

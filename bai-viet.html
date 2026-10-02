@@ -1224,6 +1224,9 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   }
   body { padding-bottom: 72px; }
 }
+
+/* menu chuẩn toàn trang (scripts/sync-site-chrome.mjs) */
+.nav-links{display:flex;align-items:center;list-style:none;gap:0;flex:1;margin:0;padding:0}.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;font-weight:400;letter-spacing:.07em;text-transform:uppercase;padding:0 13px;height:60px;display:flex;align-items:center;position:relative;transition:color .2s}.nav-links a::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:2px;background:var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform .25s}.nav-links a:hover,.nav-links a.active{color:var(--white)}.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}@media(max-width:768px){.nav-links{display:none}}
 </style>
 
 
@@ -1472,7 +1475,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002i">
+<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002j">
 </head>
 
 
@@ -1560,16 +1563,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     </a>
 
 
-    <a href="/" class="nav-back">
-
-
-      <svg width="14" height="14" viewbox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg>
-
-
-      <span>Trang chủ</span>
-
-
-    </a>
+    <ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/lich-phat-song">Lịch phát sóng</a></li><li><a href="/reviews">Đánh giá</a></li><li><a href="/rankings">Xếp hạng</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul>
 
 
     <button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
@@ -1591,41 +1585,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 <div class="mobile-nav" id="mobileNav">
-
-
-  <a href="/" class="active">Tin mới</a>
-
-
-  <a href="/gaming">Gaming</a>
-
-
-  <a href="/anime">Anime</a>
-
-
-  <a href="/manga">Manga</a>
-
-
-  <a href="/lich-phat-song">Lịch phát sóng</a><a href="/reviews">Đánh giá</a>
-
-
-  <a href="/rankings">Xếp hạng</a><a href="/chuyen-sau">Chuyên sâu</a>
-
-
-  <div class="m-sub">
-
-
-    <a href="/about">Giới thiệu</a>
-
-
-    <a href="/#newsletter">Bản tin</a>
-
-
-    <a href="/about#contact">Liên hệ</a>
-
-
-  </div>
-
-
+  <a href="/choi-gi">Chơi Gì?</a><a href="/gaming">Gaming</a><a href="/anime">Anime</a><a href="/manga">Manga</a><a href="/lich-phat-song">Lịch phát sóng</a><a href="/reviews">Đánh giá</a><a href="/rankings">Xếp hạng</a><a href="/chuyen-sau">Chuyên sâu</a>
 </div>
 
 
@@ -2270,7 +2230,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 <!-- FOOTER -->
 
 
-<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Chuyên trang tin tức gaming và tin tức anime, manga Việt Nam và Châu Á.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/reviews">Đánh giá</a></li><li><a href="/rankings">Xếp hạng</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/about#contact">Liên hệ</a></li><li><a href="/#newsletter">Bản tin</a></li></ul></div><div><div class="ft-h">Theo dõi</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
+<footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Tin tức, đánh giá và lịch phát sóng game, anime, manga cho cộng đồng Việt Nam và châu Á.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/news">Tin mới</a></li><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/lich-phat-song">Lịch phát sóng</a></li><li><a href="/choi-gi">Chơi Gì?</a></li></ul></div><div><div class="ft-h">Đánh giá</div><ul class="ft-links"><li><a href="/reviews">Bài đánh giá</a></li><li><a href="/rankings">Bảng xếp hạng</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li><li><a href="/tieu-chuan-danh-gia">Tiêu chuẩn đánh giá</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/lien-he">Liên hệ</a></li><li><a href="/chinh-sach-bao-mat">Chính sách bảo mật</a></li><li><a href="/#newsletter">Bản tin</a></li><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Tin tức game, anime &amp; manga</span></div></footer>
 
 
 
@@ -2456,7 +2416,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSearch(
 
 
 </div>
-<script defer src="/assets/img-fit.v2.js?v=20260926"></script>
+<script defer src="/assets/img-fit.v2.js?v=20261002a"></script>
 <script src="/assets/lang-switch.js" defer></script>
 </body>
 
