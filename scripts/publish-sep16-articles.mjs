@@ -375,7 +375,7 @@ function copyArticleLink(button){
 }
 </script>
 <script defer src="/assets/search.js"></script>
-<script defer src="/assets/enhance.js?v=20261001e"></script>
+<script defer src="/assets/enhance.js?v=20261002"></script>
 <script defer src="/assets/engage.js?v=20260818b"></script>
 <script defer src="/assets/supabase-client.js"></script>
 <script defer src="/assets/otahub-community.js"></script>

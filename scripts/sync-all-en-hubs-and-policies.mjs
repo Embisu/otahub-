@@ -186,7 +186,7 @@ const dieuKhoanContent = `<!DOCTYPE html>
 <link rel="alternate" hreflang="x-default" href="https://otahub.asia/dieu-khoan-su-dung">
 <link rel="canonical" href="https://otahub.asia/dieu-khoan-su-dung">
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261001b">
+<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002">
 </head>
 <body style="background:#0b0418;color:#f0eeff;font-family:sans-serif;padding:40px 24px;max-width:800px;margin:0 auto">
 <h1>Điều Khoản Sử Dụng</h1>

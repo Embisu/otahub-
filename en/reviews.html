@@ -633,7 +633,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 
 
 
-@media(max-width:1100px){.main-layout{grid-template-columns:1fr}.rv-sidebar{display:grid;grid-template-columns:1fr 1fr;gap:3px}}
+@media(max-width:1100px){.main-layout{grid-template-columns:minmax(0,1fr)}.rv-sidebar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px}}
 
 
 @media(max-width:900px){.rv-grid{grid-template-columns:repeat(2,1fr)}}
@@ -642,7 +642,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 @media(max-width:768px){.nav-links{display:none}.rv-hero{grid-template-columns:1fr;min-height:380px}.rvh-score-panel{display:none}}
 
 
-@media(max-width:560px){.rv-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.rv-grid{grid-template-columns:minmax(0,1fr)}.rv-sidebar{grid-template-columns:minmax(0,1fr)}}
 
 
 
@@ -1041,7 +1041,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261001b">
+<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002">
 </head>
 
 
@@ -1790,7 +1790,7 @@ function toggleMobileNav(){
 <script defer src="/assets/search-redirect.js"></script>
 
 
-<script defer src="/assets/enhance.js?v=20261001e"></script>
+<script defer src="/assets/enhance.js?v=20261002"></script>
 
 
 

@@ -632,3 +632,24 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
     }).observe(document.documentElement, { childList: true, subtree: true });
   }
 })();
+
+/* ── 📱 Chữ tối thiểu 10px trên điện thoại ──
+   Nhiều nhãn/huy hiệu (chuyên mục, thể loại, nền tảng...) đặt 8–9px ở từng trang với tên class khác
+   nhau; dưới 10px gần như không đọc được trên màn hình điện thoại. Chỉ nâng phần chữ quá nhỏ. */
+(function(){
+  if (!window.matchMedia || !window.matchMedia('(max-width: 768px)').matches) return;
+  function bump(){
+    var els = document.body ? document.body.getElementsByTagName('*') : [];
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i], hasText = false;
+      for (var c = el.firstChild; c; c = c.nextSibling) {
+        if (c.nodeType === 3 && c.nodeValue.trim().length > 1) { hasText = true; break; }
+      }
+      if (!hasText) continue;
+      var fs = parseFloat(getComputedStyle(el).fontSize);
+      if (fs && fs < 10) el.style.fontSize = '10px';
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bump); else bump();
+  window.addEventListener('load', function(){ setTimeout(bump, 600); });
+})();

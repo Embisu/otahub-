@@ -142,3 +142,23 @@
 }
 .ah-poster{object-fit:cover!important}
 @media(max-width:768px){.ah-poster{width:100%!important;height:180px!important;max-width:none}}
+
+/* ── 📱 Sửa lỗi mobile (2026-10-02) ──
+   1. Đầu mục (sec-h): tiêu đề dài như "Bảng xếp hạng Game hàng đầu" không xuống dòng nên đẩy
+      nút "Xem tất cả" ra ngoài màn hình 375px (không bấm được) ở trang chủ và /news.
+   2. Nhãn chuyên mục/huy hiệu chỉ 8,5–9px: khó đọc trên điện thoại, nâng tối thiểu 10px.
+   3. Nút đổi ngôn ngữ EN/VI chỉ 36×22px: nâng vùng bấm lên 32px. */
+@media(max-width:768px){
+  .sec-h{flex-wrap:wrap;row-gap:8px}
+  .sec-h>.sec-t{white-space:normal;min-width:0;flex:1 1 auto;line-height:1.25}
+  .sec-h>.sec-l{display:none}
+  .sec-h>.sec-more{flex-shrink:0;margin-left:auto}
+  .sa-c,.wc-c,.tag,.side-badge,.rk-tag-pill,.rk-badge,.an-status,.an-genre,.pod-tag,.pod-score-label,.rkr-pill,
+  .rvc-tag,.rvc-verdict,.cs-pick-tag,.csc-tag,.tc-role-badge,.ah-badge,.ah-sc-label,.article-type{font-size:10px!important}
+  .lang-sw{min-height:32px;min-width:40px;justify-content:center}
+}
+@media(max-width:768px){
+  /* Trang Hướng dẫn: dải thông tin không xuống dòng (mục bị ép 33px, tràn ra 412px); bảng rộng hơn khung */
+  .guide-meta{flex-wrap:wrap;row-gap:10px}
+  .g-table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
