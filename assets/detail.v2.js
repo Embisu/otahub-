@@ -2,7 +2,7 @@
 (function(){
 var root=document.getElementById('detailRoot');
 if(!root)return;
-var detailStyle=document.createElement('style');
+var detailStyle=document.createElement('style');detailStyle.id='ot-detail-style';
 detailStyle.textContent=`
 .ah-bg{filter:blur(22px) saturate(1.15) brightness(.55);transform:scale(1.12)}
 .ah-poster{border-radius:6px;background:var(--surf)}
@@ -61,7 +61,7 @@ detailStyle.textContent=`
   .review-body{font-size:16.5px;line-height:1.8}
 }
 `;
-document.head.appendChild(detailStyle);
+if(!document.getElementById('ot-detail-style'))document.head.appendChild(detailStyle);
 var TYPE=document.body.getAttribute('data-detail-type')||'anime';
 var EN=/^\/en(?:\/|$)/.test(location.pathname);
 var LABEL={anime:'Anime',game:'Game',manga:'Manga'};
@@ -178,9 +178,13 @@ function generatedEntry(title){
   return {type:TYPE,img:pickImg(title),score:null,genre:kind,status:EN?'Being verified':'Đang kiểm chứng',desc:story[0],hook:story[0],story:story,generated:true};
 }
 
+// Trang hồ sơ tĩnh /game|anime|manga/<slug> (scripts/build-profiles.mjs); thiếu trong bảng thì dùng trang động ?t=
+function profilePath(type, title){
+  var p=(window.OT_PROFILE_PATHS||{})[type+'|'+title];
+  return p?(EN?'/en':'')+p:(EN?'/en/':'/')+type+'-detail?t='+encodeURIComponent(title);
+}
 function hrefFor(title, entry){
-  var t=entry.type||TYPE;
-  return (EN?'/en/':'/')+t+'-detail?t='+encodeURIComponent(title);
+  return profilePath(entry.type||TYPE, title);
 }
 
 function detailArticles(title, entry){
@@ -221,11 +225,12 @@ function renderEntry(title, entry, catalog){
   document.title=name+(hasScore?(EN?' · Review '+entry.score+'/10':' · Đánh giá '+entry.score+'/10'):'')+(EN?' · Profile · OtaHub':' · Hồ sơ · OtaHub');
   var descEl=document.querySelector('meta[name="description"]');
   if(descEl)descEl.setAttribute('content', entry.desc.slice(0,155));
-  var pageUrl='https://otahub.asia/'+(EN?'en/':'')+TYPE+'-detail?t='+encodeURIComponent(title);
+  var pageUrl='https://otahub.asia'+profilePath(TYPE, title);
   var canon=document.querySelector('link[rel="canonical"]');
   if(canon)canon.setAttribute('href', pageUrl);
-  var viUrl='https://otahub.asia/'+TYPE+'-detail?t='+encodeURIComponent(title);
-  var enUrl='https://otahub.asia/en/'+TYPE+'-detail?t='+encodeURIComponent(title);
+  var viPath=(window.OT_PROFILE_PATHS||{})[TYPE+'|'+title];
+  var viUrl='https://otahub.asia'+(viPath||'/'+TYPE+'-detail?t='+encodeURIComponent(title));
+  var enUrl='https://otahub.asia/en'+(viPath||'/'+TYPE+'-detail?t='+encodeURIComponent(title));
   document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(function(link){
     link.setAttribute('href',link.getAttribute('hreflang')==='en'?enUrl:viUrl);
   });
@@ -335,19 +340,32 @@ function renderEntry(title, entry, catalog){
     '</aside>'+
   '</div>';
 
-  // Ảnh ngang (banner Steam...) không cắt vào khung dọc
+  markWidePoster();
+}
+
+// Ảnh ngang (banner Steam...) không cắt vào khung dọc
+function markWidePoster(){
   var poster=root.querySelector('.ah-poster');
-  if(poster){
+  if(poster&&poster.addEventListener){
     var markWide=function(){if(poster.naturalWidth>poster.naturalHeight*1.15)root.querySelector('.anime-hero').classList.add('is-wide');};
     if(poster.complete)markWide();else poster.addEventListener('load',markWide);
   }
 }
 
-if(!qTitle){
+if(root.hasAttribute('data-prerendered')){
+  markWidePoster();
+}else if(!qTitle){
   renderEmpty();
 }else{
-  fetch('/assets/catalog.json?v=20261002p').then(function(r){return r.json();}).then(function(catalog){
+  Promise.all([
+    fetch('/assets/catalog.json?v=20261002p').then(function(r){return r.json();}),
+    fetch('/assets/profile-paths.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})
+  ]).then(function(res){
+    var catalog=res[0];window.OT_PROFILE_PATHS=res[1];
     var found=findEntry(catalog, qTitle);
+    // Tựa đã có trang hồ sơ tĩnh: chuyển sang URL chính (worker thường đã chuyển hướng 301 trước)
+    var clean=found&&window.OT_PROFILE_PATHS[TYPE+'|'+found[0]];
+    if(clean&&!window.OT_PRERENDER){location.replace((EN?'/en':'')+clean);return;}
     if(!found){renderEntry(qTitle, generatedEntry(qTitle), catalog);return;}
     renderEntry(found[0], found[1], catalog);
   }).catch(function(){

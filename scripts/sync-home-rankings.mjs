@@ -12,6 +12,8 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
 import { verifiedReviews } from './lib/review-scores.mjs';
+import { profilePaths } from './lib/profile-paths.mjs';
+import { profileKeyForReview } from './lib/profile-review-map.mjs';
 
 const UPDATED = { y: 2026, m: 10, d: 1 };
 const pad = (n) => String(n).padStart(2, '0');
@@ -23,6 +25,7 @@ const root = new URL('../', import.meta.url);
 const read = (f) => fs.readFileSync(new URL(f, root), 'utf8');
 const write = (f, s) => fs.writeFileSync(new URL(f, root), s, 'utf8');
 const catalog = JSON.parse(read('assets/catalog.json'));
+const PROFILE_PATHS = profilePaths(catalog); // "type|Khóa" -> /type/slug (trang hồ sơ tĩnh)
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const SCORE_COLORS = ['var(--amber)', 'var(--cyan)', 'var(--green)', 'var(--lavender)', 'var(--sakura)'];
 const TYPE = { game: 'game', pc: 'game', mobile: 'game', anime: 'anime', manga: 'manga' };
@@ -57,7 +60,7 @@ function rankedItems(group) {
 
 // Link hồ sơ của một tựa trên bảng xếp hạng (khóa hồ sơ do build-rankings.mjs ghi vào CATS).
 function profileHref(item, prefix, type) {
-  if (item.profile) return `${prefix}/${type}-detail?t=${encodeURIComponent(item.profile)}`;
+  if (item.profile) return (PROFILE_PATHS[`${type}|${item.profile}`] && prefix + PROFILE_PATHS[`${type}|${item.profile}`]) || `${prefix}/${type}-detail?t=${encodeURIComponent(item.profile)}`;
   return item.url || `${prefix}/${type}-detail?t=${encodeURIComponent(item.title)}`;
 }
 
@@ -106,9 +109,11 @@ const MANGA_ENTRY = {
   'Wu Shen Zhu Zai': 'Wu Shen Zhu Zai'
 };
 
-function mangaEntry(body) {
+// Ghép theo tên hiển thị (MANGA_ENTRY); không có thì ghép qua bài review mà thẻ đang trỏ tới
+const REVIEW_ID_BY_URL = new Map([...verifiedReviews().values()].flatMap((r) => [[r.url, r.id], [r.enUrl, r.id]]));
+function mangaEntry(body, url) {
   const title = (body.match(/class="mi-title">([^<]*)</) || [])[1];
-  const key = MANGA_ENTRY[title];
+  const key = MANGA_ENTRY[title] || (REVIEW_ID_BY_URL.has(url) ? profileKeyForReview(catalog, REVIEW_ID_BY_URL.get(url), 'manga') : null);
   const entry = key && catalog[key];
   return entry && entry.type === 'manga' ? { key, entry } : null;
 }
@@ -116,10 +121,10 @@ function mangaEntry(body) {
 // Điểm chỉ hiện khi có nguồn review: hồ sơ (catalog, do sync-profile-scores.mjs ghi) hoặc bài review hợp lệ.
 const reviewScoreByUrl = new Map([...verifiedReviews().values()].flatMap((r) => [[r.url, r.score.toFixed(1)], [r.enUrl, r.score.toFixed(1)]]));
 
-// Cột "Manga" = top 5 của bảng xếp hạng manga (/rankings), link thẳng bài review.
-function mangaItemHtml(it, idx) {
+// Cột "Manga" = top 5 của bảng xếp hạng manga (/rankings), bấm vào mở hồ sơ (chưa có hồ sơ thì về bài review).
+function mangaItemHtml(it, idx, prefix) {
   const meta = it.studio || '';
-  return `<a class="manga-item${idx < 3 ? ` top${idx + 1}` : ''}" href="${it.url}"><div class="mi-num">${pad(idx + 1)}</div><div class="mi-thumb"><img src="${thumbS(it.img)}" alt="${esc(it.title)}" loading="lazy" width="46" height="62"></div><div><div class="mi-title">${esc(it.title)}</div><div class="mi-meta">${esc(meta)}</div></div><div class="mi-score" style="color:${SCORE_COLORS[idx]}">${it.score}</div></a>`;
+  return `<a class="manga-item${idx < 3 ? ` top${idx + 1}` : ''}" href="${profileHref(it, prefix, 'manga')}"><div class="mi-num">${pad(idx + 1)}</div><div class="mi-thumb"><img src="${thumbS(it.img)}" alt="${esc(it.title)}" loading="lazy" width="46" height="62"></div><div><div class="mi-title">${esc(it.title)}</div><div class="mi-meta">${esc(meta)}</div></div><div class="mi-score" style="color:${SCORE_COLORS[idx]}">${it.score}</div></a>`;
 }
 
 function syncMangaColumns(html, prefix, mangaTop) {
@@ -133,7 +138,7 @@ function syncMangaColumns(html, prefix, mangaTop) {
     const found = [...col.matchAll(itemRe)];
     const colTitle = ((col.match(/class="manga-col-title"[^>]*>([^<]*)</) || [])[1] || '').trim();
     if (found.length && colTitle === 'Manga') {
-      const built = mangaTop.map(mangaItemHtml).join('\n\n\n      ');
+      const built = mangaTop.map((it, i) => mangaItemHtml(it, i, prefix)).join('\n\n\n      ');
       const start = col.indexOf(found[0][0]);
       const end = col.lastIndexOf(found[found.length - 1][0]) + found[found.length - 1][0].length;
       const newCol = col.slice(0, start) + built + col.slice(end);
@@ -141,8 +146,8 @@ function syncMangaColumns(html, prefix, mangaTop) {
       from = colAt + newCol.length;
     } else if (found.length) {
       const items = found.map((m, i) => {
-        const hit = mangaEntry(m[2]);
-        const href = hit ? `${prefix}/manga-detail?t=${encodeURIComponent(hit.key)}` : m[1];
+        const hit = mangaEntry(m[2], m[1]);
+        const href = hit ? (PROFILE_PATHS[`manga|${hit.key}`] ? prefix + PROFILE_PATHS[`manga|${hit.key}`] : `${prefix}/manga-detail?t=${encodeURIComponent(hit.key)}`) : m[1];
         const score = hit ? hit.entry.score : reviewScoreByUrl.get(m[1]) || null;
         return { href, body: m[2].replace(/<div class="mi-score"[^>]*>[^<]*<\/div>/, ''), score, i };
       }).sort((a, b) => (parseFloat(b.score) || 0) - (parseFloat(a.score) || 0) || a.i - b.i);

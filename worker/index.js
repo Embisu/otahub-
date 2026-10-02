@@ -57,6 +57,23 @@ async function cachedPublicAuthor(env, url, ctx) {
   return res;
 }
 
+// Hồ sơ tác phẩm đã có trang tĩnh /game|anime|manga/<slug> (scripts/build-profiles.mjs):
+// link cũ /game-detail?t=Tên chuyển hướng 301 sang URL mới. Tựa chưa có hồ sơ vẫn dùng trang động.
+let profilePathsCache = null;
+async function profileRedirect(env, url) {
+  const m = url.pathname.match(/^\/(en\/)?(game|anime|manga)-detail\/?$/);
+  const title = url.searchParams.get('t');
+  if (!m || !title) return null;
+  if (!profilePathsCache) {
+    try {
+      const res = await env.ASSETS.fetch(new Request(new URL('/assets/profile-paths.json', url)));
+      profilePathsCache = res.ok ? await res.json() : {};
+    } catch (e) { profilePathsCache = {}; }
+  }
+  const path = profilePathsCache[`${m[2]}|${title}`];
+  return path ? Response.redirect(`${url.origin}${m[1] ? '/en' : ''}${path}`, 301) : null;
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -67,6 +84,9 @@ export default {
       url.protocol = 'https:';
       return Response.redirect(url.toString(), 301);
     }
+
+    const profileMove = await profileRedirect(env, url);
+    if (profileMove) return profileMove;
 
     if (url.pathname === '/admin' || url.pathname === '/admin.html') {
       const res = await env.ASSETS.fetch(request);

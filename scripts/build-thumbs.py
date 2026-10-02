@@ -13,6 +13,10 @@ Chạy lại sau khi đăng bài mới:  python scripts/build-thumbs.py --write
 """
 import glob, io, os, re, subprocess, sys
 from PIL import Image
+# Console Windows (cp1252) khong in duoc tieng Viet -> ep UTF-8
+for _s in (sys.stdout, sys.stderr):
+    try: _s.reconfigure(encoding="utf-8")
+    except Exception: pass
 
 WRITE = '--write' in sys.argv
 EXT = ('.jpg', '.jpeg', '.png', '.webp', '.jfif')

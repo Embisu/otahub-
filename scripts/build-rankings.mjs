@@ -17,6 +17,7 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
 import { profileKeyForReview } from './lib/profile-review-map.mjs';
+import { profileUrl } from './lib/profile-paths.mjs';
 
 const CHECK = process.argv.includes('--check');
 const root = new URL('../', import.meta.url);
@@ -147,10 +148,11 @@ function catsLiteral(lang) {
       const r = isVi ? c.vi : c.en;
       const { studio, genre } = splitSub(r.sub, isVi);
       // profile: khóa hồ sơ (catalog.json) để bấm vào tựa mở trang hồ sơ; null nếu tựa chưa có hồ sơ (về bài review)
-      return { title: workTitle(r, lang), url: r.url, profile: profileKeyForReview(CATALOG, c.id, cat), img: isVi ? c.img : c.enImg, studio, genre, score: c.score.toFixed(1), date: c.date };
+      const profile = profileKeyForReview(CATALOG, c.id, cat);
+      return { title: workTitle(r, lang), url: r.url, profile, profileUrl: profile && profileUrl(CATALOG, cat, profile, isVi ? '' : '/en'), img: isVi ? c.img : c.enImg, studio, genre, score: c.score.toFixed(1), date: c.date };
     });
-    const top = items.slice(0, 3).map((t) => `      {img:${q(t.img)},title:${q(t.title)},url:${q(t.url)},profile:${t.profile ? q(t.profile) : 'null'},studio:${q(t.studio)},genre:${q(t.genre)},score:${q(t.score)},date:${q(t.date)},trend:'=',trendDir:'eq',tag:null,tagAcc:'rgba(251,191,36,.3)'}`);
-    const rest = items.slice(3).map((t) => `      {img:${q(t.img)},title:${q(t.title)},url:${q(t.url)},profile:${t.profile ? q(t.profile) : 'null'},studio:${q(t.studio)},sub:${q(t.genre)},score:${q(t.score)},date:${q(t.date)},sc:'var(--cyan)',w:${q(Math.round(parseFloat(t.score) * 10) + '%')},trend:'=',dir:'eq',pills:[]}`);
+    const top = items.slice(0, 3).map((t) => `      {img:${q(t.img)},title:${q(t.title)},url:${q(t.url)},profile:${t.profile ? q(t.profile) : 'null'},profileUrl:${t.profileUrl ? q(t.profileUrl) : 'null'},studio:${q(t.studio)},genre:${q(t.genre)},score:${q(t.score)},date:${q(t.date)},trend:'=',trendDir:'eq',tag:null,tagAcc:'rgba(251,191,36,.3)'}`);
+    const rest = items.slice(3).map((t) => `      {img:${q(t.img)},title:${q(t.title)},url:${q(t.url)},profile:${t.profile ? q(t.profile) : 'null'},profileUrl:${t.profileUrl ? q(t.profileUrl) : 'null'},studio:${q(t.studio)},sub:${q(t.genre)},score:${q(t.score)},date:${q(t.date)},sc:'var(--cyan)',w:${q(Math.round(parseFloat(t.score) * 10) + '%')},trend:'=',dir:'eq',pills:[]}`);
     out.push(`  ${cat}:{\n    label:${q(LABEL[lang][cat])},accent:${q(ACCENT[cat])},\n    top:[\n${top.join(',\n')}\n    ],\n    rest:[\n${rest.join(',\n')}\n    ]\n  }`);
   }
   return '{\n' + out.join(',\n') + '\n}';
