@@ -207,11 +207,20 @@ window.IDX = [
     "tags": []
   },
   {
-    "title": "Thunder 3 Anime Officially Confirms Season 2 for 2027",
+    "title": "Thunder 3 Season 2 Set for 2027: Gantz Creator’s Anime",
     "url": "/en/thunder-3-anime-officially-confirms-season-2-for-2027",
     "cat": "Anime",
     "date": "2026-10-01",
-    "excerpt": "Thunder 3 has officially confirmed Season 2, set to premiere in 2027 right after Episode 12 wrapped up. Here are the broadcast details and the new teaser trailer.",
+    "excerpt": "The Thunder 3 anime returns for Season 2 in 2027, announced right after episode 12. The manga is by Gantz creator Hiroya Oku under the pen name Yuki Ikeda; Season 1 is on Netflix.",
+    "img": "/assets/img/uploads/thunder-3-season-2-pv.jpg",
+    "tags": []
+  },
+  {
+    "title": "Thunder 3 có mùa 2 năm 2027: anime từ tác giả Gantz",
+    "url": "/anime-thunder-3-chinh-thuc-xac-nhan-mua-2-ra-mat-nam-2027",
+    "cat": "Anime",
+    "date": "2026-10-01",
+    "excerpt": "Anime Thunder 3 xác nhận mùa 2 lên sóng năm 2027, ngay sau tập 12. Manga gốc do Hiroya Oku (Gantz) vẽ dưới bút danh Yuki Ikeda; mùa 1 đang có trên Netflix.",
     "img": "/assets/img/uploads/thunder-3-season-2-pv.jpg",
     "tags": []
   },

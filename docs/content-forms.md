@@ -2,6 +2,8 @@
 
 Three fixed forms. Every new article uses one of them. Voice: natural editorial prose (like a good entertainment desk), no meta talk about how the article was researched, no invented hands-on experience. Facts must come from at least one verified source; unverified numbers are left out.
 
+Voice, signature blocks (Nắm nhanh, Góc OtaHub, FAQ, Nguồn), banned phrases and the pre-publish checklist: see `docs/GIONG-VAN-OTAHUB.md`.
+
 ## Common rules
 - Title: 40-55 characters, name of the work first, one key fact (date, platform, number). No "review chuyên sâu" style fillers.
 - Sapo / description (also `art-hero-excerpt`, meta description, search excerpt): 1-2 sentences containing who, what, when, where.
