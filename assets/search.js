@@ -960,7 +960,7 @@ window.IDX = [
     "url": "/en/5-life-lessons-from-naruto-uzumaki-still-hold-up",
     "cat": "Anime",
     "date": "2026-09-29",
-    "excerpt": "From village outcast to Seventh Hokage, Naruto Uzumaki",
+    "excerpt": "From village outcast to Seventh Hokage, Naruto Uzumaki's journey still holds up: 5 lessons on persistence, empathy and why the bonds you fight for matter.",
     "img": "/assets/img/covers/5-bai-hoc-tu-naruto-uzumaki-van-con-y-nghia.jpg",
     "tags": [],
     "lang": "en"
@@ -1190,7 +1190,7 @@ window.IDX = [
     "url": "/en/hololive-announces-first-tv-anime-odekake",
     "cat": "Anime",
     "date": "2026-09-28",
-    "excerpt": "Cover Corporation announced Odekake Hololive (Odeholo), the VTuber brand hololive",
+    "excerpt": "Cover Corporation announced Odekake Hololive (Odeholo), the VTuber brand hololive's first-ever television anime, produced by Studio Kai and featuring 29.",
     "img": "/assets/img/uploads/odekake-hololive-key-visual.jpg",
     "tags": [],
     "lang": "en"
@@ -1220,7 +1220,7 @@ window.IDX = [
     "url": "/en/magic-knight-rayearth-2026-reboot-premieres-october-7",
     "cat": "Anime",
     "date": "2026-09-28",
-    "excerpt": "Magic Knight Rayearth, the 2026 anime reboot marking the 30th anniversary of CLAMP",
+    "excerpt": "Magic Knight Rayearth, the 2026 anime reboot marking the 30th anniversary of CLAMP's classic, premieres October 7, 2026 with an entirely new cast, exclusively on Crunchyroll.",
     "img": "/assets/img/poster-real-magic-knight-rayearth-2026.jpg",
     "tags": [],
     "lang": "en"
@@ -1260,7 +1260,7 @@ window.IDX = [
     "url": "/en/one-piece-1194-spoiler-zoro-unleashes-new-power-mihawk-flashback",
     "cat": "Manga",
     "date": "2026-09-28",
-    "excerpt": "One Piece 1194 spoilers: Zoro pushes the limits of Conqueror",
+    "excerpt": "One Piece 1194 spoilers: Zoro pushes the limits of Conqueror's Haki against Saint Sommers, recalling pivotal swordsmanship lessons from Dracule Mihawk.",
     "img": "/assets/img/real-op1194-dexerto.jpg",
     "tags": [],
     "lang": "en"
@@ -1350,17 +1350,17 @@ window.IDX = [
     "url": "/en/roman-sands-re-build-trapped-in-a-collapsing-vaporwave-nightmare",
     "cat": "Gaming",
     "date": "2026-09-28",
-    "excerpt": "Roman Sands RE:Build combines time loops, service labor satire, vaporwave nostalgia, and psychological horror into one of the year",
+    "excerpt": "Roman Sands RE:Build combines time loops, service labor satire, vaporwave nostalgia, and psychological horror into one of the year's most bizarre indie experiences.",
     "img": "/assets/img/uploads/x6scgjsi-roman-sands-header.webp",
     "tags": [],
     "lang": "en"
   },
   {
-    "title": "Tokyo Revengers: Santen Sensou-hen Premieres October 2, Manga",
+    "title": "Tokyo Revengers: Santen Sensou-hen Premieres October 2, Manga's Final Arc",
     "url": "/en/tokyo-revengers-santen-sensou-hen-premieres-october-2",
     "cat": "Anime",
     "date": "2026-09-28",
-    "excerpt": "Tokyo Revengers: Santen Sensou-hen (War of the Three Titans arc), season 4 and the adaptation of the manga",
+    "excerpt": "Tokyo Revengers: Santen Sensou-hen (War of the Three Titans arc), season 4 and the adaptation of the manga's final arc, premieres October 2, 2026, produced.",
     "img": "/assets/img/poster-real-tokyo-revengers-santen.jpg",
     "tags": [],
     "lang": "en"
@@ -1420,7 +1420,7 @@ window.IDX = [
     "url": "/en/solo-leveling-ragnarok-manhwa-review",
     "cat": "Manga",
     "date": "2026-09-27",
-    "excerpt": "In-depth review of Solo Leveling: Ragnarok: Sung Suho rises to inherit his father",
+    "excerpt": "In-depth review of Solo Leveling: Ragnarok: Sung Suho rises to inherit his father's shadow mantle and protect humanity against galactic threats.",
     "img": "/assets/img/uploads/solo-leveling-ragnarok-suho-key-visual.jpg",
     "tags": [],
     "lang": "en"
@@ -1470,7 +1470,7 @@ window.IDX = [
     "url": "/en/the-beginning-after-the-end-anime-review",
     "cat": "Anime",
     "date": "2026-09-27",
-    "excerpt": "The Beginning After the End review: King Grey reincarnated as Arthur Leywin in the magical world of Dicathen; TurtleMe and Fuyuki23",
+    "excerpt": "The Beginning After the End review: King Grey reincarnated as Arthur Leywin in the magical world of Dicathen; TurtleMe and Fuyuki23's popular webtoon, though.",
     "img": "/assets/img/covers/the-beginning-after-the-end-anime-review.jpg",
     "tags": [],
     "lang": "en"
@@ -1480,7 +1480,7 @@ window.IDX = [
     "url": "/en/ghost-in-the-shell-2026-season-wrap-up",
     "cat": "Anime",
     "date": "2026-09-27",
-    "excerpt": "THE GHOST IN THE SHELL, Science SARU",
+    "excerpt": "THE GHOST IN THE SHELL, Science SARU's new anime adaptation based on Masamune Shirow's original manga, has finished airing after running from July to September 2026.",
     "img": "/assets/img/poster-real-ghost-in-the-shell-2026.jpg",
     "tags": [],
     "lang": "en"
@@ -1510,7 +1510,7 @@ window.IDX = [
     "url": "/en/10-anime-to-watch-while-waiting-for-jujutsu-kaisen-season-4",
     "cat": "Anime",
     "date": "2026-09-26",
-    "excerpt": "There is no air date for Jujutsu Kaisen season 4 yet. Here are 10 dark action anime to watch while you wait, from Gachiakuta and Hell",
+    "excerpt": "There is no air date for Jujutsu Kaisen season 4 yet. Here are 10 dark action anime to watch while you wait, from Gachiakuta and Hell's Paradise onward.",
     "img": "/assets/img/covers/10-anime-dang-xem-khi-cho-chu-thuat-hoi-chien-mua-4.jpg",
     "tags": [],
     "lang": "en"
@@ -1520,7 +1520,7 @@ window.IDX = [
     "url": "/en/aixleft-wants-himass-delta-force-team",
     "cat": "Gaming",
     "date": "2026-09-26",
-    "excerpt": "According to reports in the Vietnamese PUBG community, Aixleft, PERO chairman and player, wants to bring Himass onto his Delta Force team after KRAFTON",
+    "excerpt": "According to reports in the Vietnamese PUBG community, Aixleft, PERO chairman and player, wants to bring Himass onto his Delta Force team after KRAFTON's permanent ban.",
     "img": "/assets/img/covers/aixleft-chieu-mo-himass-ve-delta-force.jpg",
     "tags": [],
     "lang": "en"
@@ -1600,7 +1600,7 @@ window.IDX = [
     "url": "/en/code-geass-star-chaser-aspal-anime-2027-teaser",
     "cat": "Anime",
     "date": "2026-09-26",
-    "excerpt": "The new Code Geass: Star Chaser Aspal anime celebrates the franchise",
+    "excerpt": "The new Code Geass: Star Chaser Aspal anime celebrates the franchise's 20th anniversary, directed by Kazuya Nomura at Bandai Namco Filmworks, with a teaser and a 2027 premiere.",
     "img": "/assets/img/real-code-geass-star-chaser-aspal.jpg",
     "tags": [],
     "lang": "en"
@@ -1620,7 +1620,7 @@ window.IDX = [
     "url": "/en/draw-this-then-die-season-2-announced-after-finale",
     "cat": "Anime",
     "date": "2026-09-26",
-    "excerpt": "Right after episode 12, the season 1 finale, aired on September 25, 2026, the Draw This, Then Die! anime",
+    "excerpt": "Right after episode 12, the season 1 finale, aired on September 25, 2026, the Draw This, Then Die! anime's official site announced a second season, though no.",
     "img": "/assets/img/real-draw-this-then-die-trailer.jpg",
     "tags": [],
     "lang": "en"
@@ -1690,7 +1690,7 @@ window.IDX = [
     "url": "/en/shin-oishinbo-new-anime-35-years",
     "cat": "Manga",
     "date": "2026-09-26",
-    "excerpt": "Tetsu Kariya and Akira Hanasaki",
+    "excerpt": "Tetsu Kariya and Akira Hanasaki's cooking manga Oishinbo is getting a new TV anime, Shin Oishinbo, announced at ABEMA Anime Matsuri 2026 during Shin-Ei.",
     "img": "/assets/img/uploads/shin-oishinbo-teaser-still.jpg",
     "tags": [],
     "lang": "en"
@@ -1726,11 +1726,11 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Slime Season 4 Returns July 2027, Clayman",
+    "title": "Slime Season 4 Returns July 2027, Clayman's Revenge Anime",
     "url": "/en/slime-season-4-cour-3-july-2027-claymans-revenge",
     "cat": "Anime",
     "date": "2026-09-26",
-    "excerpt": "Slime Season 4 announces Cour 3 for July 2027 alongside a new TV anime adaptation of the spinoff manga Clayman",
+    "excerpt": "Slime Season 4 announces Cour 3 for July 2027 alongside a new TV anime adaptation of the spinoff manga Clayman's Revenge by 8-Bit.",
     "img": "/assets/img/covers/chuyen-sinh-thanh-slime-mua-4-tap-3-thang-7-2027-clayman-revenge.jpg",
     "tags": [],
     "lang": "en"
@@ -1776,11 +1776,11 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Neoshoco",
+    "title": "Neoshoco's Phantom Busters Gets a TV Anime in 2027",
     "url": "/en/phantom-busters-manga-gets-tv-anime-2027",
     "cat": "Anime",
     "date": "2026-09-25",
-    "excerpt": "Neoshoco",
+    "excerpt": "Neoshoco's Phantom Busters, a Jump SQ. manga with over 1.4 million copies in circulation, will get a TV anime in 2027; studio and cast have not been announced.",
     "img": "/assets/img/real-phantom-busters.jpg",
     "tags": [],
     "lang": "en"
@@ -1906,11 +1906,11 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Marvel",
+    "title": "Marvel's Wolverine: chiến đấu tàn bạo, cốt truyện tuyến tính",
     "url": "/marvel-wolverine-review-roundup",
     "cat": "Gaming",
     "date": "2026-09-23",
-    "excerpt": "Marvel",
+    "excerpt": "Marvel's Wolverine của Insomniac Games chính thức ra mắt PS5 ngày 15/9/2026, đạt 77 điểm Metacritic, thấp hơn Spider-Man 2 nhưng vẫn bán chạy hàng đầu năm.",
     "img": "/assets/img/yt-G62QQ42Ewwg.jpg",
     "tags": [],
     "lang": "vi"
@@ -1946,7 +1946,7 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Silent Hill: Townfall: What to Know About No Code Studios and Konami",
+    "title": "Silent Hill: Townfall: What to Know About No Code Studios and Konami's Horror Project",
     "url": "/en/silent-hill-townfall-launches-september-24-2026",
     "cat": "Gaming",
     "date": "2026-09-23",
@@ -2046,7 +2046,7 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Girls",
+    "title": "Girls' Frontline 2: Exilium review: chiến thuật lượt đáng thử (8.5 điểm)",
     "url": "/girls-frontline-2-exilium-danh-gia-chuyen-sau",
     "cat": "Reviews",
     "date": "2026-09-19",
@@ -2056,11 +2056,11 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Girls",
+    "title": "Girls' Frontline 2: Exilium Review: Turn-Based Tactics Worth Trying (8.5/10)",
     "url": "/en/girls-frontline-2-exilium-in-depth-review",
     "cat": "Reviews",
     "date": "2026-09-19",
-    "excerpt": "Girls",
+    "excerpt": "Girls' Frontline 2: Exilium review: turn-based combat built on cover and the Stability Index, gorgeous 3D presentation, and gacha to weigh up. OtaHub scores it 8.5/10.",
     "img": "/assets/img/yt-5fV_Egk4Nvw.jpg",
     "tags": [],
     "lang": "en"
@@ -2210,7 +2210,7 @@ window.IDX = [
     "url": "/en/black-clover-season-2-witch-hat-atelier-trailers",
     "cat": "Anime",
     "date": "2026-09-09",
-    "excerpt": "Black Clover Season 2 from Studio Pierrot premieres October 3, 2026 with a new trailer; Bug Films",
+    "excerpt": "Black Clover Season 2 from Studio Pierrot premieres October 3, 2026 with a new trailer; Bug Films' Witch Hat Atelier has aired since April 6, 2026.",
     "img": "/assets/img/real-black-clover-s2.jpg",
     "tags": [],
     "lang": "en"
@@ -2326,21 +2326,21 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Girls",
+    "title": "Girls' Frontline 2: Lưu Đày – hướng dẫn tân thủ, reroll",
     "url": "/girls-frontline-2-huong-dan-tan-thu-doi-hinh-reroll",
     "cat": "Gaming",
     "date": "2026-09-07",
-    "excerpt": "Hướng dẫn tân thủ Girls",
+    "excerpt": "Hướng dẫn tân thủ Girls' Frontline 2: Lưu Đày: cơ chế Cover và Stability, banner tân thủ 50 lượt. THS Game phát hành tại Việt Nam từ 27/8/2026.",
     "img": "/assets/img/yt-X55bhHkc2VU.jpg",
     "tags": [],
     "lang": "vi"
   },
   {
-    "title": "Girls",
+    "title": "Girls' Frontline 2: Exilium Beginner's Guide",
     "url": "/en/girls-frontline-2-exilium-beginners-guide",
     "cat": "Gaming",
     "date": "2026-09-07",
-    "excerpt": "Beginner guide to Girls",
+    "excerpt": "Beginner guide to Girls' Frontline 2: Exilium: cover and stability mechanics and the 50-pull beginner banner.",
     "img": "/assets/img/yt-X55bhHkc2VU.jpg",
     "tags": [],
     "lang": "en"
@@ -2380,7 +2380,7 @@ window.IDX = [
     "url": "/en/nintendo-direct-september-2026-switch-2-mario-kart-9",
     "cat": "Gaming",
     "date": "2026-09-07",
-    "excerpt": "Nintendo",
+    "excerpt": "Nintendo's September 2026 Directs revealed the Zelda anniversary lineup and an Ocarina of Time remake for Switch 2 launching November 5.",
     "img": "/assets/img/yt-B_QJ4BYIGME.jpg",
     "tags": [],
     "lang": "en"
@@ -2480,7 +2480,7 @@ window.IDX = [
     "url": "/en/chainsaw-man-chapter-180-death-devil",
     "cat": "Manga",
     "date": "2026-09-03",
-    "excerpt": "Chainsaw Man Part 2 concludes its thrilling Academy Saga: Celebrating 135 chapters of Tatsuki Fujimoto",
+    "excerpt": "Chainsaw Man Part 2 concludes its thrilling Academy Saga: Celebrating 135 chapters of Tatsuki Fujimoto's dark fantasy and final volume release details.",
     "img": "/assets/img/covers/tho-san-quy-chainsaw-man-chapter-180-death-devil.jpg",
     "tags": [],
     "lang": "en"
@@ -2570,7 +2570,7 @@ window.IDX = [
     "url": "/en/jujutsu-kaisen-chapter-271-final-climax-epilogue",
     "cat": "Manga",
     "date": "2026-09-01",
-    "excerpt": "Jujutsu Kaisen concludes with Chapter 271: Reflecting on six years of Gege Akutami",
+    "excerpt": "Jujutsu Kaisen concludes with Chapter 271: Reflecting on six years of Gege Akutami's dark fantasy phenomenon and the final volume releases.",
     "img": "/assets/img/covers/chu-thuat-hoi-chien-chapter-271-final-climax-epilogue.jpg",
     "tags": [],
     "lang": "en"
@@ -2656,11 +2656,11 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Girls",
+    "title": "Girls' Frontline 2: Lưu Đày cập bến Việt Nam",
     "url": "/girls-frontline-2-luu-day-vietnam-launch",
     "cat": "Gaming",
     "date": "2026-08-27",
-    "excerpt": "Girls",
+    "excerpt": "Girls' Frontline 2 – Lưu Đày ra mắt Việt Nam ngày 27/8/2026: nhà phát hành THS Game, nền tảng, giấy phép, lối chơi và lưu ý cho người mới.",
     "img": "/assets/img/yt-L8WHmgGHGBo.jpg",
     "tags": [],
     "lang": "vi"
@@ -2700,7 +2700,7 @@ window.IDX = [
     "url": "/en/chainsaw-man-season-2-assassins-arc-in-production",
     "cat": "Anime",
     "date": "2026-08-25",
-    "excerpt": "MAPPA officially launches production on Chainsaw Man Season 2 adapting the International Assassins arc following Reze Arc",
+    "excerpt": "MAPPA officially launches production on Chainsaw Man Season 2 adapting the International Assassins arc following Reze Arc's $191.4M global box office surge.",
     "img": "/assets/img/yt-s8cP1Vt5US8.jpg",
     "tags": [],
     "lang": "en"
@@ -3120,7 +3120,7 @@ window.IDX = [
     "url": "/en/doraemon-steam-time-machine-film",
     "cat": "Anime",
     "date": "2026-08-18",
-    "excerpt": "Explore Doraemon",
+    "excerpt": "Explore Doraemon's 45-year cinematic journey across Film 44 'Picture World Story' and Film 45 'New Subaquatic Citadel', dominating Asian box offices.",
     "img": "/assets/img/news-doraemon-steam-time-machine-film.jpg",
     "tags": [],
     "lang": "en"
@@ -3206,17 +3206,17 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Girls",
+    "title": "Girls' Frontline 2: Exilium Launches in Vietnam",
     "url": "/en/girls-frontline-2-luu-day-vietnam-launch",
     "cat": "Gaming",
     "date": "2026-08-18",
-    "excerpt": "Girls",
+    "excerpt": "Girls' Frontline 2 launched in Vietnam on August 27, 2026. See supported platforms, gameplay details, downloads and official support links.",
     "img": "/assets/img/yt-L8WHmgGHGBo.jpg",
     "tags": [],
     "lang": "en"
   },
   {
-    "title": "Gosho Aoyama Drafts Detective Conan",
+    "title": "Gosho Aoyama Drafts Detective Conan's Final Chapter",
     "url": "/en/detective-conan-final-chapter",
     "cat": "Anime",
     "date": "2026-08-18",
@@ -3270,7 +3270,7 @@ window.IDX = [
     "url": "/en/honkai-star-rail-review",
     "cat": "Reviews",
     "date": "2026-08-18",
-    "excerpt": "Honkai: Star Rail review: HoYoverse",
+    "excerpt": "Honkai: Star Rail review: HoYoverse's free turn-based JRPG launched April 26, 2023, with deep Weakness Break combat and the Astral Express story; IGN 9/10, with gacha monetization.",
     "img": "/assets/img/news-honkai-star-rail-30-amphoreus.jpg",
     "tags": [],
     "lang": "en"
@@ -3336,7 +3336,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Lou",
+    "title": "Lou's Lagoon ấn định ra mắt PS5, công bố Deluxe Edition",
     "url": "/lous-lagoon-ps5-august-27",
     "cat": "Gaming",
     "date": "2026-08-18",
@@ -3366,11 +3366,11 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Marvel",
+    "title": "Marvel's Wolverine tung trailer tại Comic-Con, ra mắt 15/9",
     "url": "/marvel-wolverine-story-trailer",
     "cat": "Gaming",
     "date": "2026-08-18",
-    "excerpt": "Marvel",
+    "excerpt": "Marvel's Wolverine đã phát hành trên PS5 ngày 15/9/2026: cốt truyện Logan, The Hand, Team X, lối chơi, tính năng và lựa chọn hỗ trợ tiếp cận.",
     "img": "/assets/img/yt-3Z42tBfBLJY.jpg",
     "tags": [],
     "lang": "vi"
@@ -3496,7 +3496,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "One Piece: Egghead Arc Review: Vegapunk",
+    "title": "One Piece: Egghead Arc Review: Vegapunk's Revelations",
     "url": "/en/one-piece-egghead-arc-review",
     "cat": "Anime",
     "date": "2026-08-18",
@@ -3660,7 +3660,7 @@ window.IDX = [
     "url": "/en/silent-hill-townfall-gameplay",
     "cat": "Gaming",
     "date": "2026-08-18",
-    "excerpt": "An in-depth analysis of Silent Hill: Townfall",
+    "excerpt": "An in-depth analysis of Silent Hill: Townfall's gameplay design, exploring how No Code Studios weaves analog radio frequencies and psychological dread.",
     "img": "/assets/img/yt-bpqRBsXP6M0.jpg",
     "tags": [],
     "lang": "en"
@@ -3780,7 +3780,7 @@ window.IDX = [
     "url": "/en/viz-manga-releases-august-18-2026",
     "cat": "Manga",
     "date": "2026-08-18",
-    "excerpt": "August 18 is one of VIZ",
+    "excerpt": "August 18 is one of VIZ's busiest release dates of the month, spanning action shonen, historical seinen and premium collected editions.",
     "img": "/assets/img/covers/viz-manga-phat-hanh-18-8-2026.jpg",
     "tags": [],
     "lang": "en"
@@ -3790,7 +3790,7 @@ window.IDX = [
     "url": "/en/wuthering-waves-review",
     "cat": "Reviews",
     "date": "2026-08-18",
-    "excerpt": "Wuthering Waves review: Kuro Games",
+    "excerpt": "Wuthering Waves review: Kuro Games' open-world gacha action RPG launched May 23, 2024, with Echo and parry combat and parkour traversal; Metacritic 71 to 76.",
     "img": "/assets/img/covers/wuthering-waves-review.jpg",
     "tags": [],
     "lang": "en"
@@ -4020,7 +4020,7 @@ window.IDX = [
     "url": "/en/attack-on-titan-final-season-review",
     "cat": "Anime",
     "date": "2026-08-16",
-    "excerpt": "Review of Attack on Titan The Final Season from MAPPA (from December 7, 2020): Hiroyuki Sawano",
+    "excerpt": "Review of Attack on Titan The Final Season from MAPPA (from December 7, 2020): Hiroyuki Sawano's score, four parts through November 2023; Isayama's manga.",
     "img": "/assets/img/48ca2f8976-attack-on-titan-final-season-hero.jpg",
     "tags": [],
     "lang": "en"
@@ -4040,7 +4040,7 @@ window.IDX = [
     "url": "/en/chainsaw-man-anime-review",
     "cat": "Anime",
     "date": "2026-08-16",
-    "excerpt": "Chainsaw Man anime review from MAPPA: 12 episodes aired October–December 2022, directed by Ryū Nakayama, scored by Kensuke Ushio with Kenshi Yonezu",
+    "excerpt": "Chainsaw Man anime review from MAPPA: 12 episodes aired October–December 2022, directed by Ryū Nakayama, scored by Kensuke Ushio with Kenshi Yonezu's.",
     "img": "/assets/img/6b2483c562-chainsaw-man-anime-hero.jpg",
     "tags": [],
     "lang": "en"
@@ -4060,7 +4060,7 @@ window.IDX = [
     "url": "/en/chainsaw-man-manga-part2-review",
     "cat": "Manga",
     "date": "2026-08-16",
-    "excerpt": "In-depth review of Chainsaw Man Part 2: Tatsuki Fujimoto",
+    "excerpt": "In-depth review of Chainsaw Man Part 2: Tatsuki Fujimoto's psychological, surrealist evolution through the eyes of Asa Mitaka and the War Devil Yoru.",
     "img": "/assets/img/covers/tho-san-quy-chainsaw-man-manga-part2-review.jpg",
     "tags": [],
     "lang": "en"
@@ -4110,7 +4110,7 @@ window.IDX = [
     "url": "/en/genshin-70-snezhnaya-review",
     "cat": "Gaming",
     "date": "2026-08-16",
-    "excerpt": "Genshin Impact 7.0 Snezhnaya review (August 12, 2026): Teyvat",
+    "excerpt": "Genshin Impact 7.0 Snezhnaya review (August 12, 2026): Teyvat’s seventh nation, a new Archon Quest, a third-person shooter mode and Cryo character Odette.",
     "img": "/assets/img/yt-QgLZe9BtRJE.jpg",
     "tags": [],
     "lang": "en"
@@ -4140,7 +4140,7 @@ window.IDX = [
     "url": "/en/jujutsu-kaisen-anime-review",
     "cat": "Anime",
     "date": "2026-08-16",
-    "excerpt": "Comprehensive review of MAPPA",
+    "excerpt": "Comprehensive review of MAPPA's Jujutsu Kaisen anime: From explosive early beginnings to the harrowing Shibuya Incident and world-shattering Culling Game.",
     "img": "/assets/img/yt-MPfZhgLiK6w.jpg",
     "tags": [],
     "lang": "en"
@@ -4220,7 +4220,7 @@ window.IDX = [
     "url": "/en/space-marine-2-chaos-rising-review",
     "cat": "Gaming",
     "date": "2026-08-16",
-    "excerpt": "Warhammer 40,000: Space Marine 2 review: Saber",
+    "excerpt": "Warhammer 40,000: Space Marine 2 review: Saber’s third-person shooter with Titus, Tyranids and Chaos, Metacritic 80 to 83 and 12 million copies sold.",
     "img": "/assets/img/space-marine-2-chaos-rising-review-hero.jpg",
     "tags": [],
     "lang": "en"
@@ -4250,7 +4250,7 @@ window.IDX = [
     "url": "/en/vinland-saga-manga-review",
     "cat": "Manga",
     "date": "2026-08-16",
-    "excerpt": "Comprehensive review of the Vinland Saga manga: Makoto Yukimura",
+    "excerpt": "Comprehensive review of the Vinland Saga manga: Makoto Yukimura's 20-year magnum opus celebrating Thorfinn's hard-fought journey toward true peace.",
     "img": "/assets/img/7807ea1948-vinland-saga-manga-hero.jpg",
     "tags": [],
     "lang": "en"
@@ -4280,7 +4280,7 @@ window.IDX = [
     "url": "/en/black-clover-final-volume-review",
     "cat": "Manga",
     "date": "2026-08-15",
-    "excerpt": "In-depth review of Black Clover",
+    "excerpt": "In-depth review of Black Clover's final volume: An emotional conclusion to Asta and Yuno's 11-year journey, celebrating its biggest triumphs and farewell moments.",
     "img": "/assets/img/bd3666212d-black-clover-cover.jpg",
     "tags": [],
     "lang": "en"
@@ -4300,7 +4300,7 @@ window.IDX = [
     "url": "/en/black-myth-wukong-review",
     "cat": "Gaming",
     "date": "2026-08-15",
-    "excerpt": "Black Myth: Wukong review: Game Science",
+    "excerpt": "Black Myth: Wukong review: Game Science's soulslike action RPG based on Journey to the West on Unreal Engine 5, 20 million copies in its first month.",
     "img": "/assets/img/black-myth-wukong-review-hero.jpg",
     "tags": [],
     "lang": "en"
@@ -4326,11 +4326,11 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Chainsaw Man: Reze Arc Review, MAPPA",
+    "title": "Chainsaw Man: Reze Arc Review, MAPPA's Big Screen Debut",
     "url": "/en/chainsaw-man-reze-arc-review",
     "cat": "Anime",
     "date": "2026-08-15",
-    "excerpt": "Chainsaw Man – The Movie: Reze Arc review from MAPPA: a 100-minute film released September 19, 2025, with Kenshi Yonezu",
+    "excerpt": "Chainsaw Man – The Movie: Reze Arc review from MAPPA: a 100-minute film released September 19, 2025, with Kenshi Yonezu's \"Iris Out\" and $191.4.",
     "img": "/assets/img/yt-tAzAhDNdehs.jpg",
     "tags": [],
     "lang": "en"
@@ -4450,7 +4450,7 @@ window.IDX = [
     "url": "/en/kagurabachi-review",
     "cat": "Manga",
     "date": "2026-08-15",
-    "excerpt": "Review of Takeru Hokazono",
+    "excerpt": "Review of Takeru Hokazono's Kagurabachi manga: Weekly Shonen Jump since September 2023, a debut chapter with over 99 million views on Manga Plus, over 4.",
     "img": "/assets/img/1acdb70bf9-kagurabachi-review-hero.jpg",
     "tags": [],
     "lang": "en"
@@ -4460,7 +4460,7 @@ window.IDX = [
     "url": "/en/kaiju-no-8-manga-review",
     "cat": "Manga",
     "date": "2026-08-15",
-    "excerpt": "In-depth review of the Kaiju No. 8 manga: Naoya Matsumoto",
+    "excerpt": "In-depth review of the Kaiju No. 8 manga: Naoya Matsumoto's monster-hunting blockbuster, Kafka's endearing grit, and its shonen impact.",
     "img": "/assets/img/covers/kaiju-no-8-manga-review.jpg",
     "tags": [],
     "lang": "en"
@@ -4510,7 +4510,7 @@ window.IDX = [
     "url": "/en/metal-gear-solid-delta-review",
     "cat": "Gaming",
     "date": "2026-08-15",
-    "excerpt": "Metal Gear Solid Delta: Snake Eater review: Konami",
+    "excerpt": "Metal Gear Solid Delta: Snake Eater review: Konami’s faithful Unreal Engine 5 remake keeps the original voice work and structure, scoring Metacritic 85.",
     "img": "/assets/img/ce3825d43e-mgs-delta-snake-eater-review-hero.jpg",
     "tags": [],
     "lang": "en"
@@ -4530,7 +4530,7 @@ window.IDX = [
     "url": "/en/one-piece-final-saga-review",
     "cat": "Manga",
     "date": "2026-08-15",
-    "excerpt": "In-depth review of One Piece Final Saga: Eiichiro Oda",
+    "excerpt": "In-depth review of One Piece Final Saga: Eiichiro Oda's grand endgame unravelling decades of secrets as the Straw Hats arrive at the shores of Elbaf.",
     "img": "/assets/img/yt-YnczpEoeaDM.jpg",
     "tags": [],
     "lang": "en"
@@ -4560,7 +4560,7 @@ window.IDX = [
     "url": "/en/split-fiction-review",
     "cat": "Gaming",
     "date": "2026-08-15",
-    "excerpt": "Split Fiction review: Hazelight",
+    "excerpt": "Split Fiction review: Hazelight's co-op game with Mio and Zoe, a new mechanic every stage, and Friend's Pass; Metacritic 91, OpenCritic 98%, seven million copies sold.",
     "img": "/assets/img/4c8ef98e63-split-fiction-review-hero.jpg",
     "tags": [],
     "lang": "en"
@@ -4570,7 +4570,7 @@ window.IDX = [
     "url": "/split-fiction-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Review Split Fiction: game co-op của Hazelight với Mio và Zoe, mỗi màn một cơ chế mới, Friend",
+    "excerpt": "Review Split Fiction: game co-op của Hazelight với Mio và Zoe, mỗi màn một cơ chế mới, Friend's Pass; Metacritic 91, OpenCritic 98%, bán 7 triệu bản.",
     "img": "/assets/img/4c8ef98e63-split-fiction-review-hero.jpg",
     "tags": [],
     "lang": "vi"
@@ -4590,7 +4590,7 @@ window.IDX = [
     "url": "/en/suikoden-star-leap-review",
     "cat": "Gaming",
     "date": "2026-08-15",
-    "excerpt": "Suikoden STAR LEAP review: Konami",
+    "excerpt": "Suikoden STAR LEAP review: Konami's mobile gacha launched in Japan on August 7, 2026 with pixel sprites in 3D environments, turn-based battles and 108.",
     "img": "/assets/img/3a6da459ec-suikoden-star-leap-hero.jpg",
     "tags": [],
     "lang": "en"
@@ -4636,7 +4636,7 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Beast of Reincarnation: Game Freak",
+    "title": "Beast of Reincarnation: Game Freak's First AAA Game",
     "url": "/en/beast-of-reincarnation",
     "cat": "Gaming",
     "date": "2026-08-14",
@@ -4770,7 +4770,7 @@ window.IDX = [
     "url": "/en/made-in-abyss-awakening-mystery",
     "cat": "Anime",
     "date": "2026-08-14",
-    "excerpt": "Made in Abyss: Awakening Mystery debuts its official trailer, revealing new adventurers and Kevin Penkin",
+    "excerpt": "Made in Abyss: Awakening Mystery debuts its official trailer, revealing new adventurers and Kevin Penkin's haunting soundtrack ahead of theatrical release.",
     "img": "/assets/img/b05891325a-made-in-abyss-awakening-mystery-hero.jpg",
     "tags": [],
     "lang": "en"
@@ -4936,7 +4936,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "JoJo",
+    "title": "JoJo's Bizarre Adventure: Golden Spirit ra mắt 13/8",
     "url": "/jojo-golden-spirit-launch",
     "cat": "Gaming",
     "date": "2026-08-12",
@@ -4946,7 +4946,7 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "JoJo",
+    "title": "JoJo's: Golden Spirit Launches Worldwide August 13",
     "url": "/en/jojo-golden-spirit-launch",
     "cat": "Gaming",
     "date": "2026-08-12",
@@ -5110,7 +5110,7 @@ window.IDX = [
     "url": "/en/one-piece-final-saga",
     "cat": "Manga",
     "date": "2026-08-09",
-    "excerpt": "A summary of One Piece",
+    "excerpt": "A summary of One Piece's Final Saga in Elbaph through chapter 1194: Imu, Loki, the Dawn Thor Bullet and Zoro vs Sommers, plus the God Valley film in summer 2027.",
     "img": "/assets/img/covers/one-piece-final-saga.jpg",
     "tags": [],
     "lang": "en"
@@ -5260,7 +5260,7 @@ window.IDX = [
     "url": "/en/gta6-preview",
     "cat": "Gaming",
     "date": "2026-06-10",
-    "excerpt": "Grand Theft Auto VI launch preview: Release date, preorder editions, next-generation Vice City details, and Rockstar",
+    "excerpt": "Grand Theft Auto VI launch preview: Release date, preorder editions, next-generation Vice City details, and Rockstar's platform strategy.",
     "img": "/assets/img/c8cd09fede-maxresdefault.jpg",
     "tags": [],
     "lang": "en"
@@ -5280,7 +5280,7 @@ window.IDX = [
     "url": "/en/kingdom-come-deliverance-2",
     "cat": "Gaming",
     "date": "2026-06-10",
-    "excerpt": "Kingdom Come: Deliverance II review: Warhorse",
+    "excerpt": "Kingdom Come: Deliverance II review: Warhorse's first-person open-world RPG in 1403 Bohemia, Metacritic 89, PC Gamer Game of the Year, over six million copies sold.",
     "img": "/assets/img/covers/kingdom-come-deliverance-2.jpg",
     "tags": [],
     "lang": "en"
@@ -5376,7 +5376,7 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "One Piece Egghead Arc: Vegapunk",
+    "title": "One Piece Egghead Arc: Vegapunk's Secret World",
     "url": "/en/one-piece-egghead-arc",
     "cat": "Manga",
     "date": "2026-06-07",
@@ -5426,7 +5426,7 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Dragon Ball DAIMA: Toriyama",
+    "title": "Dragon Ball DAIMA: Toriyama's Legacy Lives On",
     "url": "/en/dragon-ball-daima",
     "cat": "Anime",
     "date": "2026-06-03",
@@ -5480,7 +5480,7 @@ window.IDX = [
     "url": "/en/jojo-steel-ball-run-stages-2-3-premiere-september-25",
     "cat": "Anime",
     "date": "",
-    "excerpt": "STEEL BALL RUN JoJo",
+    "excerpt": "STEEL BALL RUN JoJo's Bizarre Adventure 2nd–3rd STAGE streams exclusively on Netflix starting September 25, 2026, featuring 11 weekly episodes animated by David Production.",
     "img": "/assets/img/real-jojo-sbr-stage2.jpg",
     "tags": [],
     "lang": "en"

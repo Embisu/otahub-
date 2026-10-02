@@ -14,10 +14,14 @@ const escXml = (value = '') => String(value)
   .replaceAll('"', '&quot;').replaceAll("'", '&apos;');
 const plain = (value = '') => String(value).replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
 const decode = (value = '') => String(value)
-  .replaceAll('&amp;', '&').replaceAll('&quot;', '"').replaceAll('&#39;', "'")
+  .replaceAll('&amp;', '&').replaceAll('&quot;', '"').replaceAll('&#39;', "'").replaceAll('&#x27;', "'")
   .replaceAll('&lt;', '<').replaceAll('&gt;', '>');
 const match = (html, regex) => decode(plain((html.match(regex) || [,''])[1] || ''));
-const attr = (html, property, name) => match(html, new RegExp(`<meta[^>]+${property}=["']${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["'][^>]+content=["']([^"']*)`, 'i'));
+// content="..." có thể chứa dấu nháy đơn (Girls' Frontline, Marvel's...): đọc tới đúng dấu nháy đã mở
+const attr = (html, property, name) => {
+  const m = html.match(new RegExp(`<meta[^>]+${property}=["']${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["'][^>]+content=(["'])([\\s\\S]*?)\\1`, 'i'));
+  return decode(plain(m ? m[2] : ''));
+};
 const truncate = (value, max = 160) => {
   if (value.length <= max) return value;
   const slice = value.slice(0, max - 1);

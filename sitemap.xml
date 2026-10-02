@@ -2529,6 +2529,14 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://otahub.asia/e-magazine</loc>
+    <lastmod>2026-10-02</lastmod>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/e-magazine</loc>
+    <lastmod>2026-10-02</lastmod>
+  </url>
   <!-- PROFILES:START -->
   <url><loc>https://otahub.asia/ho-so/tho-san-quy-chainsaw-man</loc><lastmod>2026-10-02</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://otahub.asia/en/profile/chainsaw-man</loc><lastmod>2026-10-02</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -3309,12 +3317,4 @@
   <url><loc>https://otahub.asia/ho-so/oja-no-ban-kuruwase</loc><lastmod>2026-10-02</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://otahub.asia/en/profile/oja-no-ban-kuruwase</loc><lastmod>2026-10-02</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <!-- PROFILES:END -->
-  <url>
-    <loc>https://otahub.asia/e-magazine</loc>
-    <lastmod>2026-10-02</lastmod>
-  </url>
-  <url>
-    <loc>https://otahub.asia/en/e-magazine</loc>
-    <lastmod>2026-10-02</lastmod>
-  </url>
 </urlset>
