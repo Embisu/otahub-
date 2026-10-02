@@ -1514,7 +1514,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-26",
     "excerpt": "Gears of War: E-Day đã hoàn thiện bản phát hành, mở tải trước ngày 29/9, truy cập sớm 1/10 và ra mắt chính thức 6/10/2026 trên Windows, Xbox Series X|S.",
-    "img": "/assets/img/real-gears-of-war-e-day.jpg",
+    "img": "/assets/img/gears-of-war-e-day-review-hero.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -1524,7 +1524,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-26",
     "excerpt": "Gears of War: E-Day has gone gold, with pre-load opening September 29, early access October 1 and full launch on October 6, 2026 on Windows and Xbox Series X|S.",
-    "img": "/assets/img/real-gears-of-war-e-day.jpg",
+    "img": "/assets/img/gears-of-war-e-day-review-hero.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -2354,7 +2354,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-04",
     "excerpt": "Khám phá kiến trúc phần cứng thế hệ mới của Nintendo Switch 2 với chip tùy biến NVIDIA T239, RAM 12GB LPDDR5X, công nghệ DLSS và Joy-Con hít nam châm.",
-    "img": "/assets/img/news-switch2-specs-oled.jpg",
+    "img": "/assets/img/d7d77f5de9-maxresdefault.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -2964,7 +2964,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-08-18",
     "excerpt": "Crunchyroll Manga added Black Torch, Hana-Kimi and more titles on July 13, 2026, exclusively for subscribers in the US and Canada.",
-    "img": "/assets/img/news-crunchyroll-manga-black-torch-hana-kimi.jpg",
+    "img": "/assets/img/news-crunchyroll-manga-black-torch-hana-kimi-card.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -2974,7 +2974,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-08-18",
     "excerpt": "Crunchyroll Manga bổ sung Black Torch, Hana-Kimi cùng nhiều bộ khác vào thư viện từ ngày 13/7/2026, độc quyền cho thuê bao tại Mỹ và Canada.",
-    "img": "/assets/img/news-crunchyroll-manga-black-torch-hana-kimi.jpg",
+    "img": "/assets/img/news-crunchyroll-manga-black-torch-hana-kimi-card.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -3344,7 +3344,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-18",
     "excerpt": "Explore Nintendo Switch 2 hardware architecture featuring the custom NVIDIA T239 SoC, 12GB LPDDR5X RAM, DLSS AI upscaling, and magnetic Joy-Con design.",
-    "img": "/assets/img/news-switch2-specs-oled.jpg",
+    "img": "/assets/img/d7d77f5de9-maxresdefault.jpg",
     "tags": [],
     "lang": "en"
   },
