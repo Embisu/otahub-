@@ -1,19 +1,19 @@
 window.IDX = [
   {
-    "title": "Best Grind-Worthy Mobile RPGs of 2026: Aniimo, Dragon Nest, Where Winds Meet",
+    "title": "13 Grind-Worthy Mobile RPGs of 2026: Aniimo, Dragon Nest",
     "url": "/en/best-grind-worthy-mobile-rpgs-2026-aniimo-dragon-nest",
     "cat": "Gaming",
     "date": "2026-10-02",
-    "excerpt": "13 grind-worthy RPGs of 2026: Aniimo, Dragon Nest, Where Winds Meet, Ares, AION 2 and more. Release dates, platforms and Vietnamese support as of Oct 3, 2026.",
+    "excerpt": "13 grind-heavy RPGs are drawing attention in 2026, from Aniimo and Dragon Nest to Where Winds Meet: some already have a Vietnamese release, others still have no launch date. OtaHub researched and compiled release dates, platforms and Vietnamese support for each game, current as of Oct 3, 2026.",
     "img": "/assets/img/top-game-mobile-cay-cuoc-hero.jpg",
     "tags": []
   },
   {
-    "title": "Top game mobile cày cuốc đáng chơi 2026: Aniimo, Dragon Nest, Yến Vân",
+    "title": "13 game mobile cày cuốc 2026: Aniimo, Dragon Nest, Ares",
     "url": "/top-game-mobile-cay-cuoc-dang-choi-2026-aniimo-dragon-nest",
     "cat": "Gaming",
     "date": "2026-10-02",
-    "excerpt": "Top 13 game cày cuốc đáng chơi 2026: Aniimo, Dragon Nest, Where Winds Meet, Ares, AION 2... Ngày ra mắt, nền tảng và hỗ trợ tiếng Việt cập nhật đến 3/10/2026.",
+    "excerpt": "13 game cày cuốc đang được cộng đồng quan tâm năm 2026, từ Aniimo, Dragon Nest đến Where Winds Meet: có tựa đã mở bản Việt, có tựa chưa chốt ngày ra mắt. OtaHub nghiên cứu, tổng hợp ngày phát hành, nền tảng và tiếng Việt của từng game, cập nhật đến 3/10/2026.",
     "img": "/assets/img/top-game-mobile-cay-cuoc-hero.jpg",
     "tags": []
   },
