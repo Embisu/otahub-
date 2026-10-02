@@ -1,0 +1,56 @@
+/* Trang Xếp hạng: bố cục gọn hơn (bỏ khối đầu trang, cột nội dung vừa tầm mắt, bục top 3 gọn trên điện thoại, mục Câu hỏi thường gặp).
+   Nạp SAU style nội tuyến của rankings.html / en/rankings.html nên chỉ ghi đè những gì cần đổi. */
+.rk-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ===== Máy tính ===== */
+body .main-wrap{max-width:1160px;padding-top:26px!important}
+body .cat-tabs{max-width:1160px}
+@media(min-width:769px){
+  body .podium{gap:18px!important}
+  body .pod-item.p1{min-height:372px!important}
+  body .pod-item.p2{min-height:316px!important}
+  body .pod-item.p3{min-height:292px!important}
+  body .pod-body{padding:22px 24px!important}
+  body .rk-row{grid-template-columns:48px 76px minmax(0,1fr) 210px!important;gap:20px!important;padding:14px 24px!important}
+  body .rkr-thumb{width:76px!important;height:76px!important;border-radius:12px}
+  body .rkr-name{font-size:17px}
+  body .rkr-sub{font-size:13px}
+}
+
+/* ===== Điện thoại: bục top 3 thành 1 thẻ lớn + 2 thẻ nhỏ cạnh nhau ===== */
+@media(max-width:768px){
+  body .main-wrap{padding:16px 14px 44px!important}
+  body .podium{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;margin-bottom:14px!important}
+  body .pod-item.p1{grid-column:1 / 3!important;min-height:232px!important}
+  body .pod-item.p2,body .pod-item.p3{grid-column:auto!important;min-height:214px!important}
+  body .pod-item.p1 .pod-body{padding:56px 16px 16px!important}
+  body .pod-item.p2 .pod-body,body .pod-item.p3 .pod-body{padding:50px 12px 12px!important}
+  body .pod-item.p2 .pod-tag,body .pod-item.p3 .pod-tag,body .pod-item.p2 .pod-studio,body .pod-item.p3 .pod-studio{display:none}
+  body .pod-item.p2 .pod-title,body .pod-item.p3 .pod-title{font-size:15px;line-height:1.2;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  body .pod-item.p2 .pod-score,body .pod-item.p3 .pod-score{font-size:30px}
+  body .pod-item.p1 .pod-score{font-size:40px}
+  body .pod-item.p2 .pod-rank,body .pod-item.p3 .pod-rank{font-size:10px;padding:5px 9px;left:10px;top:10px}
+  body .rk-table{border-radius:12px}
+}
+
+/* ===== Câu hỏi thường gặp + ngày cập nhật ===== */
+.rk-faq{max-width:900px;margin:46px auto 8px}
+.rk-faq h2{font-family:var(--fd);font-weight:800;font-size:clamp(20px,2.4vw,26px);color:#fff;margin:0 0 16px;letter-spacing:-.01em}
+.rk-faq-list{display:grid;gap:10px}
+.rk-faq details{border:1px solid rgba(255,255,255,.09);border-radius:12px;background:rgba(255,255,255,.025);overflow:hidden}
+.rk-faq details[open]{border-color:rgba(0,242,255,.3);background:rgba(0,242,255,.04)}
+.rk-faq summary{cursor:pointer;list-style:none;padding:15px 18px;font-family:var(--fd);font-weight:700;font-size:15.5px;line-height:1.4;color:#fff;display:flex;align-items:center;gap:12px}
+.rk-faq summary::-webkit-details-marker{display:none}
+.rk-faq summary::after{content:'+';margin-left:auto;font-size:20px;line-height:1;color:var(--cyan)}
+.rk-faq details[open] summary::after{content:'\2013'}
+.rk-faq details p{margin:0;padding:0 18px 16px;font-size:14.5px;line-height:1.75;color:rgba(240,238,255,.75)}
+.rk-faq details a{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(0,242,255,.35)}
+.rk-updated{max-width:900px;margin:18px auto 0;font-size:12.5px;color:rgba(240,238,255,.5);display:flex;flex-wrap:wrap;gap:6px 18px}
+.rk-updated span{display:inline-flex;align-items:center;gap:7px}
+.rk-updated span::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.rk-updated span+span::before{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+@media(max-width:768px){
+  .rk-faq{margin-top:32px}
+  .rk-faq summary{padding:13px 14px;font-size:14.5px}
+  .rk-faq details p{padding:0 14px 14px;font-size:14px}
+}

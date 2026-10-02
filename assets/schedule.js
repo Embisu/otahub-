@@ -18,7 +18,7 @@ var T = EN ? {
   none:'No titles match your filters.', count:function(n){ return n + ' titles'; },
   summary:function(c){ return [c.tv && c.tv + ' TV series', c.ona && c.ona + ' streaming', c.film && c.film + ' films & specials'].filter(Boolean).join(' · '); },
   tz:'Times in Vietnam time (UTC+7)', updated:'Updated', source:'Sources', note:'Times can shift by broadcaster or streaming platform.',
-  read:'Read on OtaHub'
+  read:'Read on OtaHub', allWeek:'Show the whole week', oneDay:'Show one day only'
 } : {
   seasons: {winter:'Mùa Đông', spring:'Mùa Xuân', summer:'Mùa Hè', fall:'Mùa Thu'},
   months: {winter:'T1–T3', spring:'T4–T6', summer:'T7–T9', fall:'T10–T12'},
@@ -32,7 +32,7 @@ var T = EN ? {
   none:'Không có tựa nào khớp bộ lọc.', count:function(n){ return n + ' tựa'; },
   summary:function(c){ return [c.tv && c.tv + ' phim TV', c.ona && c.ona + ' phim trực tuyến', c.film && c.film + ' phim rạp & đặc biệt'].filter(Boolean).join(' · '); },
   tz:'Giờ Việt Nam (UTC+7)', updated:'Cập nhật', source:'Nguồn', note:'Giờ chiếu có thể thay đổi theo đài hoặc nền tảng phát hành.',
-  read:'Đọc trên OtaHub'
+  read:'Đọc trên OtaHub', allWeek:'Xem cả tuần', oneDay:'Chỉ xem một ngày'
 };
 var ORDER = ['winter','spring','summer','fall'];
 var WEEK = [1,2,3,4,5,6,0];                 // Thứ Hai -> Chủ Nhật
@@ -49,11 +49,20 @@ var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, func
 var thumb = function(u, k){ return /^\/assets\/img\/(?!_[ts]\/)[^?#]+\.(jpe?g|png|webp)$/i.test(u || '') ? '/assets/img/' + (k || '_s') + '/' + u.slice(12) + '.webp' : u; };
 var linkOf = function(a){ return EN ? (a.le || '') : (a.l || ''); };
 
+var MQ = window.matchMedia('(max-width:768px)');
 var params = new URLSearchParams(location.search);
 var state = {
   season: ORDER.indexOf(params.get('mua') || params.get('season')) > -1 ? (params.get('mua') || params.get('season')) : D.current,
-  type: 'all', q: ''
+  type: 'all', q: '', day: null
 };
+function pickDay(byDay, isCur, films){
+  if (!MQ.matches || state.day === 'all') return 'all';
+  if (state.day === 'films' && films.length) return 'films';
+  if (state.day !== null && state.day !== 'films' && byDay[state.day] && byDay[state.day].length) return state.day;
+  if (isCur && byDay[todayDow].length) return todayDow;
+  for (var i = 0; i < WEEK.length; i++) if (byDay[WEEK[i]].length) return WEEK[i];
+  return films.length ? 'films' : 'all';
+}
 
 function status(a){
   var diff = dayNum(a.d) - dayNum(todayKey);
@@ -69,7 +78,9 @@ function matches(a){
 }
 function tile(a){
   if (a.i) return '<img class="sch-thumb" src="' + esc(thumb(a.i)) + '" alt="" loading="lazy" decoding="async" width="56" height="76" onerror="this.onerror=null;this.src=\'' + esc(a.i) + '\'">';
-  return '<span class="sch-thumb sch-tile t-' + a.y + '" aria-hidden="true">' + esc(a.t.replace(/^[^A-Za-z0-9]+/, '').charAt(0).toUpperCase()) + '</span>';
+  var w = a.t.replace(/[^A-Za-z0-9 ]+/g, ' ').trim().split(/\s+/).filter(Boolean);
+  var ini = ((w[0] || '?').charAt(0) + (w.length > 1 ? w[1].charAt(0) : (w[0] || '').charAt(1))).toUpperCase();
+  return '<span class="sch-thumb sch-tile t-' + a.y + '" aria-hidden="true">' + esc(ini) + '</span>';
 }
 function row(a){
   var st = status(a), href = linkOf(a);
@@ -116,16 +127,19 @@ function render(){
   weekly.forEach(function(a){ byDay[dowOf(a.d)].push(a); });
   WEEK.forEach(function(d){ byDay[d].sort(function(a, b){ return (a.h || '99') < (b.h || '99') ? -1 : (a.h || '99') > (b.h || '99') ? 1 : a.t.localeCompare(b.t); }); });
   var isCur = state.season === D.current;
+  var day = pickDay(byDay, isCur, films);
   document.getElementById('schWeek').innerHTML = WEEK.map(function(d){
-    return '<a class="sch-day' + (isCur && d === todayDow ? ' today' : '') + (byDay[d].length ? '' : ' empty') + '" href="#sch-d' + d + '"><b>' + T.dshort[d] + '</b><span>' + byDay[d].length + '</span></a>';
-  }).join('') + (films.length ? '<a class="sch-day films" href="#sch-films"><b>🎬</b><span>' + films.length + '</span></a>' : '');
-  html += WEEK.filter(function(d){ return byDay[d].length; }).map(function(d){
+    return '<a class="sch-day' + (isCur && d === todayDow ? ' today' : '') + (MQ.matches && day === d ? ' on' : '') + (byDay[d].length ? '' : ' empty') + '" data-d="' + d + '" href="#sch-d' + d + '"><b>' + T.dshort[d] + '</b><span>' + byDay[d].length + '</span></a>';
+  }).join('') + (films.length ? '<a class="sch-day films' + (MQ.matches && day === 'films' ? ' on' : '') + '" data-d="films" href="#sch-films"><b>🎬</b><span>' + films.length + '</span></a>' : '');
+  html += WEEK.filter(function(d){ return byDay[d].length && (day === 'all' || day === d); }).map(function(d){
     var today = isCur && d === todayDow;
     return '<section class="sch-dayblock' + (today ? ' today' : '') + '" id="sch-d' + d + '"><h2 class="sch-h">' + T.days[d] + (today ? ' <span class="sch-today">' + T.today + '</span>' : '') + ' <small>' + T.count(byDay[d].length) + '</small></h2><ul class="sch-list">' + byDay[d].map(row).join('') + '</ul></section>';
   }).join('');
-  if (films.length) html += '<section class="sch-dayblock" id="sch-films"><h2 class="sch-h">' + T.films + ' <small>' + T.count(films.length) + '</small></h2><ul class="sch-list">' + films.map(row).join('') + '</ul></section>';
+  if (films.length && (day === 'all' || day === 'films')) html += '<section class="sch-dayblock" id="sch-films"><h2 class="sch-h">' + T.films + ' <small>' + T.count(films.length) + '</small></h2><ul class="sch-list">' + films.map(row).join('') + '</ul></section>';
   if (!weekly.length && !films.length) html = '<p class="sch-empty">' + T.none + '</p>';
   document.getElementById('schBody').innerHTML = html;
+  var ab = document.getElementById('schAll');
+  if (ab){ ab.hidden = !MQ.matches; ab.textContent = day === 'all' ? T.oneDay : T.allWeek; }
 }
 
 // khung tĩnh
@@ -135,19 +149,23 @@ root.innerHTML =
       return '<button type="button" class="sch-season" data-s="' + s + '"><b>' + T.seasons[s] + '</b><span>' + T.months[s] + ' · ' + (D.seasons[s] || []).length + '</span></button>';
     }).join('') + '</div>' +
     '<label class="sch-search"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6"/></svg><input id="schQ" type="search" placeholder="' + esc(T.search) + '" autocomplete="off"></label>' +
-  '</div><div class="sch-bar-in sch-bar-2"><div class="sch-types" id="schTypes"></div></div>' +
-  '<div class="sch-bar-in"><nav class="sch-week" id="schWeek" aria-label="' + esc(EN ? 'Days of the week' : 'Các ngày trong tuần') + '"></nav></div></div>' +
+  '</div><div class="sch-bar-in sch-bar-2"><div class="sch-types" id="schTypes"></div></div></div>' +
+  '<div class="sch-weekbar"><div class="sch-bar-in"><nav class="sch-week" id="schWeek" aria-label="' + esc(EN ? 'Days of the week' : 'Các ngày trong tuần') + '"></nav><button type="button" class="sch-allbtn" id="schAll" hidden></button></div></div>' +
   '<div class="sch-wrap"><div id="schBody"></div>' +
   '<p class="sch-src">' + T.updated + ' ' + fmtDate(D.updated) + '/' + D.updated.slice(0, 4) + ' · ' + T.source + ': ' + D.sources.map(function(s){ return '<a href="' + esc(s[1]) + '" target="_blank" rel="noopener">' + esc(s[0]) + '</a>'; }).join(', ') + '. ' + T.note + '</p></div>';
 
 root.addEventListener('click', function(e){
   var s = e.target.closest('.sch-season');
-  if (s){ state.season = s.dataset.s; state.type = 'all'; render(); var u = new URL(location.href); if (state.season === D.current) u.searchParams.delete('mua'); else u.searchParams.set('mua', state.season); history.replaceState(null, '', u); return; }
+  if (s){ state.season = s.dataset.s; state.type = 'all'; state.day = null; render(); var u = new URL(location.href); if (state.season === D.current) u.searchParams.delete('mua'); else u.searchParams.set('mua', state.season); history.replaceState(null, '', u); return; }
+  var dd = e.target.closest('.sch-day');
+  if (dd && MQ.matches){ e.preventDefault(); state.day = dd.dataset.d === 'films' ? 'films' : +dd.dataset.d; render(); var b = document.getElementById('schBody'); if (b && b.getBoundingClientRect().top < 0) b.scrollIntoView(); return; }
+  if (e.target.closest('#schAll')){ state.day = document.getElementById('schAll').textContent === T.allWeek ? 'all' : null; render(); return; }
   var t = e.target.closest('.sch-chip');
   if (t){ state.type = t.dataset.t; render(); }
 });
 var qt;
 document.getElementById('schQ').addEventListener('input', function(e){ clearTimeout(qt); qt = setTimeout(function(){ state.q = e.target.value.trim().toLowerCase(); render(); }, 120); });
+if (MQ.addEventListener) MQ.addEventListener('change', render);
 window.otScheduleRender = render;
 render();
 })();

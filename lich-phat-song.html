@@ -650,7 +650,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-<link rel="stylesheet" href="/assets/schedule.css?v=20261002a">
+<link rel="stylesheet" href="/assets/schedule.css?v=20261002d">
 <link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002l">
 <script>/* Ảnh thu nhỏ cho thẻ do JS vẽ: /assets/img/X -> /assets/img/_t/X.webp (scripts/build-thumbs.py; thiếu thì worker trả ảnh gốc) */function otThumb(u,k){return /^\/assets\/img\/(?!_[ts]\/|brand\/)[^?#]+\.(jpe?g|png|webp|jfif)$/i.test(u||'')?'/assets/img/'+(k||'_t')+'/'+u.slice(12)+'.webp':u}</script>
 </head>
@@ -700,15 +700,14 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 
 
 
-<header class="sch-hero"><div class="sch-hero-in">
-  <div class="sch-eyebrow">📅 Lịch phát sóng</div>
-  <h1 id="schTitle">Lịch chiếu anime <em>Mùa Thu 2026</em></h1>
-  <p class="sch-summary" id="schSummary"></p>
+<div class="sch-top"><div class="sch-top-in">
   <div class="sch-modes" role="tablist">
     <button type="button" class="sch-mode on" role="tab" aria-selected="true" data-mode="anime">🎬 Lịch anime</button>
     <button type="button" class="sch-mode" role="tab" aria-selected="false" data-mode="manga">📖 Chương manga</button>
   </div>
-</div></header>
+  <span class="sch-tz">🕘 Giờ Việt Nam (UTC+7)</span>
+</div></div>
+<div class="sch-sr"><h1 id="schTitle">Lịch chiếu anime <em>Mùa Thu 2026</em></h1><p id="schSummary"></p></div>
 <div id="schRoot"></div>
 <section id="mangaSection" hidden><div class="sch-wrap">
   <h2 class="sch-h">Chương mới nhất <small id="mangaCount"></small></h2>
@@ -763,8 +762,8 @@ const MANGA_DATA = [
 <script defer src="/assets/search-redirect.js?v=20261002a"></script>
 
 
-<script defer src="/assets/schedule-data.js?v=20261002a"></script>
-<script defer src="/assets/schedule.js?v=20261002a"></script>
+<script defer src="/assets/schedule-data.js?v=20261002d"></script>
+<script defer src="/assets/schedule.js?v=20261002d"></script>
 <script defer src="/assets/enhance.js?v=20261002h"></script>
 
 
