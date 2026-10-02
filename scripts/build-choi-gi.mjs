@@ -1,10 +1,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import vm from 'node:vm';
+import { verifiedReviews, articleFile } from './lib/review-scores.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 
 // ═════════════════════════════════════════════════════════════════════
-// 1. DATA SOURCES: 48 CURATED TITLES (VIETNAMESE & ENGLISH)
+// 1. DỮ LIỆU: 48 TỰA TUYỂN CHỌN (VI & EN). Trường score bên dưới KHÔNG được dùng,
+//    điểm lấy từ bài review (xem REVIEW_OF ở mục 2).
 // ═════════════════════════════════════════════════════════════════════
 
 const VI_ITEMS = [
@@ -166,7 +169,7 @@ const VI_ITEMS = [
     score: 9.3,
     img: '/assets/img/7403bc0e49-header.jpg',
     why: 'Hóa thân thành Thiên Mệnh Nhân tái hiện hành trình Tây Du Ký. Đồ họa Unreal Engine 5 đỉnh cao và dàn boss biến hóa khôn lường.',
-    link: null,
+    link: '/black-myth-wukong-review',
     color: ['#140803', '#2a1205']
   },
   {
@@ -202,18 +205,18 @@ const VI_ITEMS = [
     color: ['#0a1a06', '#1a3d0a']
   },
   {
-    id: 'it-takes-two',
+    id: 'split-fiction',
     type: 'game',
-    name: 'It Takes Two',
-    creator: 'Hazelight Studios',
+    name: 'Split Fiction',
+    creator: 'Hazelight Studios · 2025',
     format: 'PC / Console',
     subType: 'console',
     genre: 'Co-op Adventure',
-    moods: ['coop', 'story', 'quick', 'relax'],
-    time: '12 - 15h',
+    moods: ['coop', 'story', 'quick', 'action'],
+    time: '14 - 16h',
     score: 9.6,
-    img: '/assets/img/recommend-ittakestwo.jpg',
-    why: 'Game hai người chơi xuất sắc nhất mọi thời đại. Mỗi màn chơi là một cơ chế gameplay hoàn toàn mới, vừa hài hước vừa gắn kết tình cảm bạn bè.',
+    img: '/assets/img/4c8ef98e63-split-fiction-review-hero.jpg',
+    why: 'Mio và Zoe kẹt giữa hai thế giới khoa học viễn tưởng và giả tưởng. Mỗi màn một cơ chế mới, chơi co-op 2 người, bạn bè chơi miễn phí nhờ Friend’s Pass.',
     link: null,
     color: ['#050f0a', '#0a1e14']
   },
@@ -381,17 +384,17 @@ const VI_ITEMS = [
   },
   {
     id: 'vinland-saga',
-    type: 'anime',
+    type: 'manga',
     name: 'Vinland Saga',
-    creator: 'WIT Studio / MAPPA',
-    format: 'TV Series (48 tập)',
-    subType: 'series',
-    genre: 'Historical · Seinen Masterpiece',
+    creator: 'Makoto Yukimura',
+    format: 'Manga Nhật Bản',
+    subType: 'manga',
+    genre: 'Historical · Seinen',
     moods: ['story', 'challenge', 'explore'],
-    time: '48 tập (~19 giờ)',
+    time: '14 tập (đã hoàn thành)',
     score: 9.7,
-    img: '/assets/img/701f6a9728-vinland.jpg',
-    why: 'Từ một cậu bé Viking nung nấu hận thù biến đổi thành người đàn ông chuộc lỗi tìm kiếm vùng đất bình yên. Triết lý sâu sắc hiếm có trong thế giới anime.',
+    img: '/assets/img/7807ea1948-vinland-saga-manga-hero.jpg',
+    why: 'Hành trình 20 năm của Thorfinn từ cậu bé Viking nung nấu báo thù đến người đàn ông đi tìm vùng đất không chiến tranh. Một trong những manga vĩ đại nhất.',
     link: '/vinland-saga-manga-review',
     color: ['#100a06', '#22150c']
   },
@@ -406,7 +409,7 @@ const VI_ITEMS = [
     moods: ['relax', 'quick', 'coop', 'story'],
     time: '25 tập',
     score: 9.2,
-    img: '/assets/img/news-dandadan-season-2-evil-eye.jpg',
+    img: '/assets/img/real-spy-family-banner.jpg',
     why: 'Gia đình Forger gồm điệp viên Loid, sát thủ Yor và cô bé đọc suy nghĩ Anya. Những tình huống dở khóc dở cười cực kỳ ấm áp và giải tỏa căng thẳng.',
     link: '/spy-x-family-anime-review',
     color: ['#061214', '#0d282a']
@@ -414,15 +417,15 @@ const VI_ITEMS = [
   {
     id: 'aot',
     type: 'anime',
-    name: 'Attack on Titan: Hồi Kết',
+    name: 'Attack on Titan: The Final Season',
     creator: 'MAPPA',
-    format: 'TV Special Chiếu Rạp',
-    subType: 'movie',
+    format: 'TV Series · Mùa cuối',
+    subType: 'series',
     genre: 'Dark Fantasy · Action Epic',
     moods: ['story', 'challenge', 'action', 'explore'],
-    time: '2 tập đặc biệt (145 phút)',
+    time: 'Mùa cuối (~30 tập + 2 phần đặc biệt)',
     score: 9.9,
-    img: '/assets/img/pool-jujutsu-kaisen-1.jpg',
+    img: '/assets/img/48ca2f8976-attack-on-titan-final-season-hero.jpg',
     why: 'Cơn địa chấn Rung Chấn quét qua nhân loại và hồi kết bi tráng của Eren Yeager. Tượng đài anime kinh điển không thể bỏ qua trong đời.',
     link: '/attack-on-titan-wit-teaser',
     color: ['#120804', '#2a140a']
@@ -438,7 +441,7 @@ const VI_ITEMS = [
     moods: ['story', 'challenge', 'quick'],
     time: '24 tập',
     score: 9.4,
-    img: '/assets/img/3f4f599cac-frieren-s2-hero.jpg',
+    img: '/assets/img/087af8ed98-rezero-s4-hero.jpg',
     why: 'Khả năng Trở Về Từ Cõi Chết của Subaru đối mặt với những âm mưu tăm tối của các Đại Tội Giám Mục. Kịch tính tới nghẹt thở từng phút giây.',
     link: '/rezero-mua-4-tap-cuoi-keo-dai-45-phut-30-9',
     color: ['#0a0515', '#1a0d30']
@@ -508,18 +511,18 @@ const VI_ITEMS = [
     color: ['#030a18', '#081636']
   },
   {
-    id: 'kaiju-no-8-anime',
+    id: 'oshi-no-ko',
     type: 'anime',
-    name: 'Kaiju No. 8',
-    creator: 'Production I.G',
-    format: 'TV Series (12 tập)',
+    name: 'Oshi no Ko',
+    creator: 'Doga Kobo',
+    format: 'TV Series (3 mùa)',
     subType: 'series',
-    genre: 'Action Sci-Fi · Monster',
-    moods: ['action', 'coop', 'quick', 'challenge'],
-    time: '12 tập (~5 giờ)',
+    genre: 'Drama · Idol · Mystery',
+    moods: ['story', 'quick', 'relax'],
+    time: '3 mùa (~35 tập)',
     score: 9.3,
-    img: '/assets/img/7917847814-kaiju8-hero.jpg',
-    why: 'Gã dọn dẹp xác quái vật 32 tuổi Kafka Hibino bất ngờ biến thành Kaiju mang sức mạnh hủy diệt. Hài hước, đồng đội và những trận solo mãn nhãn.',
+    img: '/assets/img/9506aefbae-oshi-no-ko-hero.jpg',
+    why: 'Góc khuất ngành giải trí Nhật Bản qua câu chuyện báo thù của Aqua và giấc mơ idol của Ruby. Mở đầu chấn động, càng xem càng cuốn.',
     link: '/kaiju-no-8-manga-review',
     color: ['#02140c', '#062d1a']
   },
@@ -712,7 +715,7 @@ const VI_ITEMS = [
     moods: ['story', 'explore', 'challenge'],
     time: '419+ Chapter',
     score: 9.8,
-    img: '/assets/img/7b5a968234-maxresdefault.jpg',
+    img: '/assets/img/photo-hunter-x-hunter-chapter-419-tro-lai.jpg',
     why: 'Bộ não thiên tài của Togashi biến cuộc chiến tranh ngai vàng trên tàu cá voi Đen thành bàn cờ trí tuệ phức tạp, tinh vi và lôi cuốn bậc nhất thế giới.',
     link: '/hunter-x-hunter-chapter-419-tro-lai',
     color: ['#080e04', '#142008']
@@ -763,6 +766,22 @@ const VI_ITEMS = [
     img: '/assets/img/3eb1c4a80b-the-beginning-after-the-end.jpg',
     why: 'Vua Grey chuyển sinh thành Arthur Leywin trong lục địa ma pháp Dicathen. Xây dựng thế giới công phu, hệ thống phép thuật chặt chẽ và chiến trường bi tráng.',
     link: '/the-beginning-after-the-end-anime-review',
+    color: ['#040c14', '#0a1a2a']
+  },
+  {
+    id: 'dandadan-manga',
+    type: 'manga',
+    name: 'Dandadan',
+    creator: 'Yukinobu Tatsu',
+    format: 'Manga Nhật Bản',
+    subType: 'manga',
+    genre: 'Action · Comedy · Supernatural',
+    moods: ['action', 'quick', 'relax'],
+    time: '25+ tập (đang ra)',
+    score: 9.4,
+    img: '/assets/img/2c0d7f7a34-dandadan-manga-hero.jpg',
+    why: 'Momo tin ma, Okarun tin người ngoài hành tinh, và cả hai đều đúng. Pha trộn hài, kinh dị, hành động và lãng mạn với nét vẽ bùng nổ.',
+    link: '/dandadan-manga-review',
     color: ['#040c14', '#0a1a2a']
   },
   {
@@ -942,7 +961,7 @@ const EN_ITEMS = [
     score: 9.3,
     img: '/assets/img/7403bc0e49-header.jpg',
     why: 'Journey to the West reimagined as a soul-stirring action RPG. Master staff transformations and conquer legendary mythical bosses in Unreal Engine 5.',
-    link: null,
+    link: '/en/black-myth-wukong-review',
     color: ['#140803', '#2a1205']
   },
   {
@@ -978,18 +997,18 @@ const EN_ITEMS = [
     color: ['#0a1a06', '#1a3d0a']
   },
   {
-    id: 'it-takes-two',
+    id: 'split-fiction',
     type: 'game',
-    name: 'It Takes Two',
-    creator: 'Hazelight Studios',
+    name: 'Split Fiction',
+    creator: 'Hazelight Studios · 2025',
     format: 'PC / Console',
     subType: 'console',
     genre: 'Co-op Adventure',
-    moods: ['coop', 'story', 'quick', 'relax'],
-    time: '12 - 15h',
+    moods: ['coop', 'story', 'quick', 'action'],
+    time: '14 - 16h',
     score: 9.6,
-    img: '/assets/img/recommend-ittakestwo.jpg',
-    why: 'The undisputed benchmark of cooperative game design. Every level introduces brand-new gameplay mechanics engineered for laughter and genuine teamwork.',
+    img: '/assets/img/4c8ef98e63-split-fiction-review-hero.jpg',
+    why: 'Mio and Zoe are trapped between sci-fi and fantasy worlds. Every stage brings a new mechanic, built for two players, and a friend can join free with Friend’s Pass.',
     link: null,
     color: ['#050f0a', '#0a1e14']
   },
@@ -1157,17 +1176,17 @@ const EN_ITEMS = [
   },
   {
     id: 'vinland-saga',
-    type: 'anime',
+    type: 'manga',
     name: 'Vinland Saga',
-    creator: 'WIT Studio / MAPPA',
-    format: 'TV Series (48 Episodes)',
-    subType: 'series',
-    genre: 'Historical · Seinen Masterpiece',
+    creator: 'Makoto Yukimura',
+    format: 'Japanese Manga',
+    subType: 'manga',
+    genre: 'Historical · Seinen',
     moods: ['story', 'challenge', 'explore'],
-    time: '48 Episodes (~19 hours)',
+    time: '14 volumes (completed)',
     score: 9.7,
-    img: '/assets/img/701f6a9728-vinland.jpg',
-    why: 'From a vengeful young Viking raider into an enlightened man seeking redemption and peace. Unmatched maturity, philosophy, and historical grit.',
+    img: '/assets/img/7807ea1948-vinland-saga-manga-hero.jpg',
+    why: 'Thorfinn’s 20-year journey from a Viking boy consumed by revenge to a man searching for a land without war. One of the greatest manga ever made.',
     link: '/en/vinland-saga-manga-review',
     color: ['#100a06', '#22150c']
   },
@@ -1182,7 +1201,7 @@ const EN_ITEMS = [
     moods: ['relax', 'quick', 'coop', 'story'],
     time: '25 Episodes',
     score: 9.2,
-    img: '/assets/img/news-dandadan-season-2-evil-eye.jpg',
+    img: '/assets/img/real-spy-family-banner.jpg',
     why: 'Agent Twilight constructs a fake family with telepath Anya and deadly assassin Yor. A charming blend of Cold War espionage and heartwarming domestic comedy.',
     link: null,
     color: ['#061214', '#0d282a']
@@ -1190,15 +1209,15 @@ const EN_ITEMS = [
   {
     id: 'aot',
     type: 'anime',
-    name: 'Attack on Titan: The Final Chapters',
+    name: 'Attack on Titan: The Final Season',
     creator: 'MAPPA',
-    format: 'Theatrical Anime Feature',
-    subType: 'movie',
+    format: 'TV Series · Final Season',
+    subType: 'series',
     genre: 'Dark Fantasy · Action Epic',
     moods: ['story', 'challenge', 'action', 'explore'],
-    time: '145 min Feature',
+    time: 'Final Season (~30 eps + 2 specials)',
     score: 9.9,
-    img: '/assets/img/pool-jujutsu-kaisen-1.jpg',
+    img: '/assets/img/48ca2f8976-attack-on-titan-final-season-hero.jpg',
     why: 'The catastrophic Rumbling shakes civilization to its foundations. An earth-shattering conclusion to one of the most celebrated anime sagas in history.',
     link: '/en/attack-on-titan-wit-teaser',
     color: ['#120804', '#2a140a']
@@ -1214,7 +1233,7 @@ const EN_ITEMS = [
     moods: ['story', 'challenge', 'quick'],
     time: '24 Episodes',
     score: 9.4,
-    img: '/assets/img/3f4f599cac-frieren-s2-hero.jpg',
+    img: '/assets/img/087af8ed98-rezero-s4-hero.jpg',
     why: 'Subaru’s Return by Death ability faces brutal psychological traps laid by the Sin Archbishops. Unflinching tension and heartbreaking character growth.',
     link: null,
     color: ['#0a0515', '#1a0d30']
@@ -1284,18 +1303,18 @@ const EN_ITEMS = [
     color: ['#030a18', '#081636']
   },
   {
-    id: 'kaiju-no-8-anime',
+    id: 'oshi-no-ko',
     type: 'anime',
-    name: 'Kaiju No. 8',
-    creator: 'Production I.G',
-    format: 'TV Series (12 Episodes)',
+    name: 'Oshi no Ko',
+    creator: 'Doga Kobo',
+    format: 'TV Series (3 seasons)',
     subType: 'series',
-    genre: 'Action Sci-Fi · Monster',
-    moods: ['action', 'coop', 'quick', 'challenge'],
-    time: '12 Episodes (~5 hours)',
+    genre: 'Drama · Idol · Mystery',
+    moods: ['story', 'quick', 'relax'],
+    time: '3 seasons (~35 eps)',
     score: 9.3,
-    img: '/assets/img/7917847814-kaiju8-hero.jpg',
-    why: 'A 32-year-old monster carcass sweeper inherits catastrophic kaiju abilities. Great ensemble chemistry, comedic banter, and earth-splitting punches.',
+    img: '/assets/img/9506aefbae-oshi-no-ko-hero.jpg',
+    why: 'The dark side of Japan’s entertainment industry, told through Aqua’s revenge and Ruby’s idol dream. A shocking opener that keeps pulling you in.',
     link: null,
     color: ['#02140c', '#062d1a']
   },
@@ -1488,7 +1507,7 @@ const EN_ITEMS = [
     moods: ['story', 'explore', 'challenge'],
     time: '419+ Chapters',
     score: 9.8,
-    img: '/assets/img/7b5a968234-maxresdefault.jpg',
+    img: '/assets/img/photo-hunter-x-hunter-chapter-419-tro-lai.jpg',
     why: 'Togashi transforms the Black Whale voyage into a labyrinthine war of succession. Mind games, political factions, and Nen abilities at their absolute peak.',
     link: null,
     color: ['#080e04', '#142008']
@@ -1542,6 +1561,22 @@ const EN_ITEMS = [
     color: ['#040c14', '#0a1a2a']
   },
   {
+    id: 'dandadan-manga',
+    type: 'manga',
+    name: 'Dandadan',
+    creator: 'Yukinobu Tatsu',
+    format: 'Japanese Manga',
+    subType: 'manga',
+    genre: 'Action · Comedy · Supernatural',
+    moods: ['action', 'quick', 'relax'],
+    time: '25+ volumes (ongoing)',
+    score: 9.4,
+    img: '/assets/img/2c0d7f7a34-dandadan-manga-hero.jpg',
+    why: 'Momo believes in ghosts, Okarun believes in aliens, and both are right. Comedy, horror, action and romance with explosive artwork.',
+    link: null,
+    color: ['#040c14', '#0a1a2a']
+  },
+  {
     id: 'overgeared',
     type: 'manga',
     name: 'Overgeared',
@@ -1560,1573 +1595,804 @@ const EN_ITEMS = [
 ];
 
 // ═════════════════════════════════════════════════════════════════════
-// 2. HTML GENERATOR WITH ADVANCED SHUFFLE DECK & KINETIC ROULETTE
+// 2. ĐIỂM & LINK: CHỈ LẤY TỪ BÀI REVIEW OTAHUB
 // ═════════════════════════════════════════════════════════════════════
+// Tựa nào có bài review thật (đã kiểm chứng ở reviews.html + en/reviews.html) thì gắn id review ở đây:
+// điểm, link VI và link EN đều lấy từ bài review đó. Tựa không có trong bảng này hiển thị "Biên tập chọn",
+// không có điểm. KHÔNG tự ghi điểm vào VI_ITEMS / EN_ITEMS (trường score ở trên bị bỏ qua).
+const REVIEW_OF = {
+  'elden-ring': 'ersote', wuwa: 'wuwa', mhwilds: 'mhw', genshin: 'gsnat', kcd2: 'kcd2', bmw: 'bmwk', hsr: 'hsr', 'split-fiction': 'spf',
+  'demon-slayer-infinity-castle': 'dsic', 'jjk-culling-game': 'jjkanime', 'chainsaw-man-reze': 'csmreze', 'dandadan-s2': 'ddd2',
+  'spy-family': 'sxfanime', aot: 'aotfs', 'oshi-no-ko': 'onkanime',
+  'vinland-saga': 'vlsaga', 'solo-leveling-ragnarok': 'slragreview', 'one-piece-final': 'opfs', kagurabachi: 'kgb', 'black-clover': 'bcfv',
+  'kaiju-no-8': 'kj8m', 'chainsaw-man-p2': 'csmmanga2', 'jujutsu-kaisen-manga': 'jjkfinal', 'dandadan-manga': 'ddmg'
+};
 
-function buildHtml(lang = 'vi') {
+const exists = (u) => fs.existsSync(path.join(root, u.replace(/^\//, '')));
+const pageFile = (u) => (u ? articleFile(u) : null);
+// Bản EN của bài VI (theo hreflang trong bài VI)
+function enOf(viLink) {
+  const f = pageFile(viLink);
+  if (!f) return null;
+  const m = fs.readFileSync(path.join(root, f), 'utf8').match(/<link rel="alternate" hreflang="en" href="https:\/\/otahub\.asia(\/en\/[^"]+)"/);
+  return m && pageFile(m[1]) ? m[1] : null;
+}
+const THUMB_RE = /^\/assets\/img\/(?!_[ts]\/|brand\/)[^?#]+\.(jpe?g|png|webp|jfif)$/i;
+// Ảnh thu nhỏ do scripts/build-thumbs.py tạo (_t rộng 640, _s rộng 240); chưa có thì dùng ảnh gốc
+const thumb = (u, kind) => {
+  if (!THUMB_RE.test(u || '')) return u;
+  const t = `/assets/img/${kind}/${u.slice(12)}.webp`;
+  return exists(t) ? t : u;
+};
+
+const REVIEWS = verifiedReviews();
+const warnings = [];
+const VI_BY_ID = new Map(VI_ITEMS.map((x) => [x.id, x]));
+function prepare(items, lang) {
+  return items.map((it) => {
+    const rid = REVIEW_OF[it.id];
+    const r = rid ? REVIEWS.get(rid) : null;
+    if (rid && !r) warnings.push(`${it.id}: review "${rid}" không còn hợp lệ, bỏ điểm`);
+    if (r && r.type !== it.type) warnings.push(`${it.id}: review "${rid}" là ${r.type}, tựa là ${it.type}`);
+    let link = r ? (lang === 'en' ? r.enUrl : r.url) : it.link;
+    if (!r && lang === 'en' && !(link && link.startsWith('/en/'))) link = enOf(VI_BY_ID.get(it.id)?.link);
+    if (link && !pageFile(link)) link = null;
+    return { ...it, score: r ? r.score : null, link: link || null, reviewed: !!r };
+  });
+}
+
+// Top 5 mỗi mục: cùng dữ liệu với trang Xếp hạng (scripts/build-rankings.mjs ghi const CATS)
+function rankingsTop(lang) {
+  const html = fs.readFileSync(path.join(root, lang === 'en' ? 'en/rankings.html' : 'rankings.html'), 'utf8');
+  const m = html.match(/const CATS\s*=\s*(\{[\s\S]*?\n\})\s*;/);
+  if (!m) throw new Error('Không đọc được const CATS trong trang Xếp hạng');
+  const scope = {};
+  vm.runInNewContext('c=' + m[1], scope);
+  const out = {};
+  for (const k of ['game', 'anime', 'manga']) {
+    out[k] = [...scope.c[k].top, ...scope.c[k].rest].slice(0, 5)
+      .map((x) => ({ title: x.title, url: x.url, img: x.img, studio: x.studio, genre: x.genre || x.sub || '', score: x.score }));
+  }
+  return out;
+}
+
+// ═════════════════════════════════════════════════════════════════════
+// 3. GIAO DIỆN
+// ═════════════════════════════════════════════════════════════════════
+const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const jsStr = (s) => "'" + String(s ?? '').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, ' ').replace(/<\//g, '<\\/') + "'";
+
+const TXT = {
+  vi: {
+    title: 'Gợi ý chơi gì, xem gì, đọc gì hôm nay · OtaHub',
+    ogTitle: 'Chơi Gì · Xem Gì · Đọc Gì? | Gợi Ý Game, Anime & Manga Hôm Nay · OtaHub',
+    desc: 'Không biết hôm nay chơi game gì, xem anime gì hay đọc manga nào? Chọn tâm trạng, OtaHub gợi ý ngay một tựa đáng thử kèm bài review và điểm số thật.',
+    keywords: 'chơi game gì, xem anime gì, đọc manga gì, gợi ý game, gợi ý anime hôm nay, manhwa hay, top game 2026, otahub choi gi',
+    locale: 'vi_VN', home: 'Trang chủ', crumb: 'Chơi gì?',
+    h1: 'Hôm nay <em>chơi gì, xem gì, đọc gì?</em>',
+    lead: 'Chọn thứ bạn muốn và tâm trạng lúc này. OtaHub gợi ý ngay một tựa đáng thử, kèm bài viết để bạn đọc trước khi bắt đầu.',
+    want: 'Bạn muốn', format: 'Định dạng', mood: 'Tâm trạng',
+    types: { all: ['✨', 'Gì cũng được'], game: ['🎮', 'Chơi game'], anime: ['🎬', 'Xem anime'], manga: ['📖', 'Đọc truyện'] },
+    subs: { game: { all: 'Mọi nền tảng', pc: 'PC', console: 'Console', mobile: 'Mobile' }, anime: { all: 'Tất cả', series: 'Phim bộ', movie: 'Phim điện ảnh' }, manga: { all: 'Tất cả', manga: 'Manga Nhật', manhwa: 'Manhwa Hàn' } },
+    moods: { all: ['✨', 'Bất kỳ'], relax: ['☕', 'Thư giãn'], action: ['⚔️', 'Hành động'], story: ['🧠', 'Cốt truyện'], coop: ['👥', 'Cùng bạn bè'], quick: ['⚡', 'Nhanh gọn'], explore: ['🗺️', 'Thế giới mở'], challenge: ['💀', 'Thử thách'] },
+    more: 'Xem thêm {n} tựa ↓', roll: 'Gợi ý cho tôi', rollAgain: 'Gợi ý khác', count: (n) => `<b>${n}</b> tựa phù hợp`, seeAll: 'Xem danh sách',
+    today: 'Gợi ý hôm nay', forYou: 'Gợi ý cho bạn', chosen: 'Bạn đang xem',
+    typeName: { game: 'Game', anime: 'Anime', manga: 'Manga', manhwa: 'Manhwa' },
+    scoreDt: 'Điểm review OtaHub', noScoreDt: 'Điểm OtaHub', noScore: 'Chưa có review', timeDt: 'Thời lượng',
+    readReview: 'Đọc review', readArticle: 'Đọc bài viết', noArticle: 'Chưa có bài viết riêng',
+    share: 'Chia sẻ gợi ý này', copied: 'Đã sao chép link gợi ý', recent: 'Vừa gợi ý',
+    pick: 'Biên tập chọn',
+    allH: 'Tất cả gợi ý', allP: 'Danh sách thay đổi theo lựa chọn ở trên. Bấm vào một tựa để xem nhanh.',
+    empty: 'Chưa có tựa nào khớp cả định dạng lẫn tâm trạng này.', clearMood: 'Bỏ chọn tâm trạng',
+    topH: 'Điểm cao nhất trên OtaHub',
+    topP: 'Top 5 mỗi mục theo điểm bài review, cùng nguồn với <a href="/rankings">Bảng xếp hạng</a>.',
+    topCols: { game: '🎮 Game', anime: '🎬 Anime', manga: '📖 Manga' }, topMore: 'Xem top 10', rankings: '/rankings',
+    faqH: 'Câu hỏi thường gặp',
+    faq: [
+      ['OtaHub gợi ý tựa game, anime, manga như thế nào?', 'Bạn chọn loại (game, anime hay truyện), định dạng và tâm trạng. OtaHub lọc trong danh sách tựa do ban biên tập tuyển chọn rồi gợi ý ngẫu nhiên, không lặp lại cho tới khi bạn đã xem hết các tựa phù hợp.'],
+      ['Điểm số trên trang này lấy từ đâu?', 'Điểm là điểm của bài review OtaHub về chính tựa đó, chấm theo Tiêu chuẩn đánh giá công khai của OtaHub. Tựa chưa có bài review được ghi "Biên tập chọn" và không gắn điểm.'],
+      ['Manga và Manhwa khác nhau như thế nào?', 'Manga là truyện tranh Nhật Bản, thường in đen trắng và đọc từ phải sang trái. Manhwa là truyện tranh Hàn Quốc, phần lớn là webtoon màu đọc cuộn dọc, rất hợp với điện thoại.'],
+      ['Tôi có cần tài khoản để dùng tính năng gợi ý không?', 'Không. Bộ lọc, nút gợi ý và các bài review trên OtaHub đều miễn phí và không cần đăng nhập.']
+    ],
+    search: 'Tìm kiếm game, anime, manga...', searchHint: 'Nhấn ESC để đóng', searchLabel: 'Tìm kiếm',
+    appName: 'Cỗ máy gợi ý giải trí OtaHub', listName: 'Gợi ý game, anime, manga có review trên OtaHub'
+  },
+  en: {
+    title: 'What to Play, Watch & Read? · OtaHub Entertainment Picker',
+    ogTitle: 'What to Play, Watch & Read? · OtaHub Entertainment Picker',
+    desc: "Can't decide what game to play, anime to watch or manga to read today? Pick a mood and OtaHub suggests a title worth your time, with a review and a real score.",
+    keywords: 'what to play, what to watch, what to read, game recommendations, anime suggestions, manga picks, otahub',
+    locale: 'en_US', home: 'Home', crumb: 'What to Play',
+    h1: 'What should I <em>play, watch or read today?</em>',
+    lead: "Pick what you're after and how you feel right now. OtaHub suggests a title worth your time, with an article to read before you start.",
+    want: 'I want to', format: 'Format', mood: 'Mood',
+    types: { all: ['✨', 'Anything'], game: ['🎮', 'Play a game'], anime: ['🎬', 'Watch anime'], manga: ['📖', 'Read manga'] },
+    subs: { game: { all: 'All platforms', pc: 'PC', console: 'Console', mobile: 'Mobile' }, anime: { all: 'All', series: 'TV series', movie: 'Movies' }, manga: { all: 'All', manga: 'Manga', manhwa: 'Manhwa' } },
+    moods: { all: ['✨', 'Any mood'], relax: ['☕', 'Chill'], action: ['⚔️', 'Action'], story: ['🧠', 'Story-rich'], coop: ['👥', 'With friends'], quick: ['⚡', 'Quick fun'], explore: ['🗺️', 'Open world'], challenge: ['💀', 'Challenge'] },
+    more: 'Show {n} more ↓', roll: 'Suggest something', rollAgain: 'Another pick', count: (n) => `<b>${n}</b> matching titles`, seeAll: 'See the list',
+    today: "Today's pick", forYou: 'Picked for you', chosen: "You're viewing",
+    typeName: { game: 'Game', anime: 'Anime', manga: 'Manga', manhwa: 'Manhwa' },
+    scoreDt: 'OtaHub review score', noScoreDt: 'OtaHub score', noScore: 'Not reviewed yet', timeDt: 'Length',
+    readReview: 'Read the review', readArticle: 'Read the article', noArticle: 'No dedicated article yet',
+    share: 'Share this pick', copied: 'Link copied', recent: 'Recent picks',
+    pick: "Editor's pick",
+    allH: 'All picks', allP: 'The list follows your choices above. Tap a title for a quick look.',
+    empty: 'No title matches both this format and this mood yet.', clearMood: 'Clear mood',
+    topH: 'Highest rated on OtaHub',
+    topP: 'Top 5 in each section by review score, from the same data as our <a href="/en/rankings">Rankings</a>.',
+    topCols: { game: '🎮 Games', anime: '🎬 Anime', manga: '📖 Manga' }, topMore: 'See the top 10', rankings: '/en/rankings',
+    faqH: 'Frequently asked questions',
+    faq: [
+      ['How does OtaHub pick a game, anime or manga for me?', 'Choose what you want (a game, anime or manga), a format and a mood. OtaHub filters our editor-curated list and picks at random, without repeats until you have seen every matching title.'],
+      ['Where do the scores on this page come from?', "Each score is the score from OtaHub's own review of that title, under our published review standards. Titles we have not reviewed yet are marked \"Editor's pick\" and show no score."],
+      ['What is the difference between manga and manhwa?', 'Manga are Japanese comics, usually black and white and read right to left. Manhwa are Korean comics, mostly full-colour webtoons read by scrolling down, which suits phones well.'],
+      ['Do I need an account to use the picker?', 'No. The filters, the pick button and every OtaHub review are free, with no sign-up.']
+    ],
+    search: 'Search games, anime, manga...', searchHint: 'Press ESC to close', searchLabel: 'Search',
+    appName: 'OtaHub Entertainment Picker', listName: 'Games, anime and manga reviewed on OtaHub'
+  }
+};
+
+const ACC = { game: 'var(--cyan)', anime: 'var(--sakura)', manga: 'var(--lav)' };
+const typeKey = (it) => (it.type === 'manga' && it.subType === 'manhwa' ? 'manhwa' : it.type);
+
+// Giữ nguyên menu / menu trượt / footer đang có trên trang (scripts/sync-site-chrome.mjs quản lý các khối này)
+function keepBlock(old, re, fallback) {
+  const m = old && old.match(re);
+  return m ? m[0] : fallback;
+}
+
+function buildHtml(lang, old) {
   const isEn = lang === 'en';
-  const items = isEn ? EN_ITEMS : VI_ITEMS;
-
-  const pageTitle = isEn
-    ? 'What to Play, Watch & Read? · OtaHub Entertainment Picker'
-    : 'Chơi Gì · Xem Gì · Đọc Gì? | Gợi Ý Game, Anime & Manga Hôm Nay · OtaHub';
-
-  const pageDesc = isEn
-    ? "Can't decide what game to play, anime to watch, or manga to read today? OtaHub provides smart entertainment picks tailored to your mood and platforms."
-    : 'Không biết hôm nay chơi game gì, xem anime gì hay đọc manga nào? OtaHub gợi ý chuẩn xác theo tâm trạng và thời gian rảnh của bạn. Khám phá kho siêu phẩm ngay!';
-
-  const canonicalUrl = isEn ? 'https://otahub.asia/en/choi-gi' : 'https://otahub.asia/choi-gi';
+  const t = TXT[lang];
+  const items = prepare(isEn ? EN_ITEMS : VI_ITEMS, lang);
+  const top = rankingsTop(lang);
   const prefix = isEn ? '/en' : '';
-  const topPick = items[0];
+  const canonical = `https://otahub.asia${prefix}/choi-gi`;
+  const first = items.find((x) => x.reviewed) || items[0];
 
-  // JSON-LD Schemas
-  const webAppSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebApplication',
-    'name': isEn ? 'OtaHub Entertainment Discovery Engine' : 'Cỗ Máy Gợi Ý Giải Trí OtaHub',
-    'applicationCategory': 'EntertainmentApplication',
-    'operatingSystem': 'Any Web Browser',
-    'url': canonicalUrl,
-    'description': pageDesc,
-    'offers': {
-      '@type': 'Offer',
-      'price': '0',
-      'priceCurrency': 'USD'
-    }
+  const NAV_FALLBACK = `<nav class="nav"><div class="nav-in"><a href="${prefix}/" class="logo"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"></ul><button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="${t.searchLabel}" onclick="openSearch()"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="${prefix}/#newsletter" class="cta" id="cta-sub">${isEn ? 'Subscribe' : 'Đăng ký'}</a></div></div></nav>`;
+  const nav = keepBlock(old, /<nav class="nav">[\s\S]*?<\/nav>/, NAV_FALLBACK);
+  const mobileNav = keepBlock(old, /<div class="mobile-nav" id="mobileNav">[\s\S]*?\n<\/div>/, '<div class="mobile-nav" id="mobileNav">\n</div>');
+  const footer = keepBlock(old, /<footer>[\s\S]*?<\/footer>/, '<footer></footer>');
+
+  const schema = [
+    { '@context': 'https://schema.org', '@type': 'WebApplication', name: t.appName, applicationCategory: 'EntertainmentApplication', operatingSystem: 'Any', url: canonical, description: t.desc, inLanguage: lang, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: t.home, item: `https://otahub.asia${prefix}/` },
+      { '@type': 'ListItem', position: 2, name: t.crumb, item: canonical }] },
+    { '@context': 'https://schema.org', '@type': 'ItemList', name: t.listName, itemListElement: items.filter((x) => x.reviewed).map((x, i) => ({ '@type': 'ListItem', position: i + 1, name: x.name, url: 'https://otahub.asia' + x.link })) },
+    { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: t.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) }
+  ];
+
+  const segBtn = (k) => `<button type="button" class="seg-btn${k === 'all' ? ' on' : ''}" data-type="${k}" aria-pressed="${k === 'all'}"><span class="seg-ic" aria-hidden="true">${t.types[k][0]}</span><span class="seg-tx">${t.types[k][1]}</span><span class="seg-n">${k === 'all' ? items.length : items.filter((x) => x.type === k).length}</span></button>`;
+  const moodBtn = (k) => `<button type="button" class="chip${k === 'all' ? ' on' : ''}" data-mood="${k}" aria-pressed="${k === 'all'}"><span aria-hidden="true">${t.moods[k][0]}</span>${t.moods[k][1]}</button>`;
+
+  const scoreBadge = (it) => (it.score !== null ? `<span class="c-score" title="${esc(t.scoreDt)}">${it.score.toFixed(1)}</span>` : `<span class="c-pick">${t.pick}</span>`);
+  const card = (it) => `<article class="card" data-id="${it.id}" data-type="${it.type}" data-sub="${it.subType}" data-moods="${it.moods.join(' ')}" style="--acc:${ACC[it.type]}">
+        <div class="c-media"><img src="${thumb(it.img, '_t')}" alt="" loading="lazy" decoding="async" width="320" height="200"><span class="c-type">${t.typeName[typeKey(it)]}</span>${scoreBadge(it)}</div>
+        <div class="c-body">
+          <h3 class="c-title"><button type="button" class="c-open" data-open="${it.id}">${esc(it.name)}</button></h3>
+          <p class="c-meta">${esc(it.genre)}</p>
+          <p class="c-foot"><span>${esc(it.format)}</span>${it.link ? `<a class="c-link" href="${it.link}">${it.reviewed ? t.readReview : t.readArticle} →</a>` : ''}</p>
+        </div>
+      </article>`;
+
+  const topCol = (k) => `<div class="top-col" data-col="${k}" style="--acc:${ACC[k]}">
+        <h3 class="top-h">${t.topCols[k]}</h3>
+        <ol class="top-list">${top[k].map((x, i) => `
+          <li><a href="${x.url}"><span class="tl-n">${i + 1}</span><img src="${thumb(x.img, '_s')}" alt="" loading="lazy" decoding="async" width="52" height="52"><span class="tl-t"><b>${esc(x.title)}</b><small>${esc([x.studio, x.genre].filter(Boolean).join(' · '))}</small></span><span class="tl-s">${esc(x.score)}</span></a></li>`).join('')}
+        </ol>
+        <a class="top-more" href="${t.rankings}">${t.topMore} →</a>
+      </div>`;
+
+  // Dữ liệu cho script (img:'..' để build-thumbs.py tạo sẵn ảnh _t/_s)
+  const data = items.map((it) => `{id:${jsStr(it.id)},type:${jsStr(it.type)},sub:${jsStr(it.subType)},name:${jsStr(it.name)},creator:${jsStr(it.creator)},format:${jsStr(it.format)},genre:${jsStr(it.genre)},moods:[${it.moods.map(jsStr).join(',')}],time:${jsStr(it.time)},score:${it.score === null ? 'null' : it.score.toFixed(1)},img:${jsStr(it.img)},t:${jsStr(thumb(it.img, '_t'))},s:${jsStr(thumb(it.img, '_s'))},why:${jsStr(it.why)},link:${it.link ? jsStr(it.link) : 'null'},rv:${it.reviewed ? 1 : 0}}`).join(',\n      ');
+  const I18N = {
+    today: t.today, forYou: t.forYou, chosen: t.chosen, typeName: t.typeName, scoreDt: t.scoreDt, noScoreDt: t.noScoreDt, noScore: t.noScore,
+    readReview: t.readReview, readArticle: t.readArticle, noArticle: t.noArticle, copied: t.copied, more: t.more, subs: t.subs, moods: t.moods, count: t.count(0)
   };
-
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    'itemListElement': [
-      {
-        '@type': 'ListItem',
-        'position': 1,
-        'name': isEn ? 'Home' : 'Trang chủ',
-        'item': isEn ? 'https://otahub.asia/en' : 'https://otahub.asia'
-      },
-      {
-        '@type': 'ListItem',
-        'position': 2,
-        'name': isEn ? 'What to Play & Watch' : 'Chơi Gì · Xem Gì · Đọc Gì',
-        'item': canonicalUrl
-      }
-    ]
-  };
-
-  const itemListSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    'name': isEn ? 'OtaHub Top Entertainment Recommendations' : 'Top Tác Phẩm Giải Trí Được Bình Chọn Nhiều Nhất OtaHub',
-    'itemListElement': items.slice(0, 10).map((it, idx) => ({
-      '@type': 'ListItem',
-      'position': idx + 1,
-      'name': it.name,
-      'url': it.link ? `https://otahub.asia${it.link}` : canonicalUrl
-    }))
-  };
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    'mainEntity': isEn
-      ? [
-          {
-            '@type': 'Question',
-            'name': 'How does OtaHub match games, anime, and manga to my mood?',
-            'acceptedAnswer': {
-              '@type': 'Answer',
-              'text': 'OtaHub categorizes titles by emotional pace, runtime investment, and genre tags. By filtering for relaxation, high-octane action, deep narratives, or co-op sessions, our engine instantly surfaces the most relevant titles with high review scores.'
-            }
-          },
-          {
-            '@type': 'Question',
-            'name': 'What criteria determine the OtaHub Score?',
-            'acceptedAnswer': {
-              '@type': 'Answer',
-              'text': 'Scores combine editorial critical analysis, technical performance (optimization/animation quality), narrative depth, and community reception on a 10-point scale.'
-            }
-          },
-          {
-            '@type': 'Question',
-            'name': 'What is the difference between Manga and Manhwa on OtaHub?',
-            'acceptedAnswer': {
-              '@type': 'Answer',
-              'text': 'Manga refers to traditional Japanese black-and-white print comics read right-to-left. Manhwa refers to South Korean full-color digital webtoons formatted for seamless vertical scrolling on mobile phones.'
-            }
-          },
-          {
-            '@type': 'Question',
-            'name': 'Do I need an account to use the Discovery Engine?',
-            'acceptedAnswer': {
-              '@type': 'Answer',
-              'text': 'No account required. All random rolls, filters, and curated review links are 100% free and instantly accessible in your browser.'
-            }
-          }
-        ]
-      : [
-          {
-            '@type': 'Question',
-            'name': 'Làm thế nào để OtaHub gợi ý đúng tựa game, anime hoặc manga tôi muốn?',
-            'acceptedAnswer': {
-              '@type': 'Answer',
-              'text': 'Hệ thống phân loại dựa trên 3 tiêu chí cốt lõi: Định dạng (Game, Anime, Manga), Tâm trạng thưởng thức (Thư giãn, Hành động, Cốt truyện sâu, Co-op, Nhanh gọn, Thế giới mở, Thử thách) và Thời lượng rảnh rỗi của bạn để đưa ra kết quả tối ưu nhất.'
-            }
-          },
-          {
-            '@type': 'Question',
-            'name': 'Điểm số OtaHub Score được chấm dựa trên tiêu chí nào?',
-            'acceptedAnswer': {
-              '@type': 'Answer',
-              'text': 'OtaHub Score được tổng hợp từ bài đánh giá chuyên sâu của ban biên tập, chất lượng đồ họa/hoạt họa, chiều sâu kịch bản và độ hoàn thiện kỹ thuật theo thang điểm 10.'
-            }
-          },
-          {
-            '@type': 'Question',
-            'name': 'Manga và Manhwa khác nhau như thế nào?',
-            'acceptedAnswer': {
-              '@type': 'Answer',
-              'text': 'Manga là truyện tranh xuất xứ Nhật Bản, chủ yếu là tranh đen trắng đọc từ phải sang trái. Manhwa là truyện tranh Hàn Quốc, định dạng webtoon đọc cuộn dọc full màu tối ưu hoàn hảo cho màn hình điện thoại.'
-            }
-          },
-          {
-            '@type': 'Question',
-            'name': 'Tôi có cần đăng ký tài khoản để roll gợi ý không?',
-            'acceptedAnswer': {
-              '@type': 'Answer',
-              'text': 'Hoàn toàn không. Mọi tính năng roll ngẫu nhiên, bộ lọc tâm trạng và xem bài viết đánh giá chi tiết trên OtaHub đều miễn phí 100% không cần đăng nhập.'
-            }
-          }
-        ]
-  };
-
-  // Curated items for top 3 columns
-  const topGames = items.filter(x => x.type === 'game').slice(0, 4);
-  const topAnime = items.filter(x => x.type === 'anime').slice(0, 4);
-  const topManga = items.filter(x => x.type === 'manga').slice(0, 4);
 
   return `<!DOCTYPE html>
 <html lang="${lang}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${pageTitle}</title>
-  <meta name="description" content="${pageDesc}">
-  <meta name="keywords" content="${isEn ? 'what to play, what to watch, what to read, game recommendations, anime suggestions, manga picks, otahub' : 'chơi game gì, xem anime gì, đọc manga gì, gợi ý game, gợi ý anime hôm nay, manhwa hay, top game 2026, otahub choi gi'}">
+  <title>${esc(t.title)}</title>
+  <meta name="description" content="${esc(t.desc)}">
+  <meta name="keywords" content="${esc(t.keywords)}">
   <meta name="author" content="OtaHub">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <link rel="canonical" href="${canonicalUrl}">
+  <link rel="canonical" href="${canonical}">
   <link rel="alternate" hreflang="vi" href="https://otahub.asia/choi-gi">
   <link rel="alternate" hreflang="en" href="https://otahub.asia/en/choi-gi">
   <link rel="alternate" hreflang="x-default" href="https://otahub.asia/choi-gi">
-
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="${pageTitle}">
-  <meta property="og:description" content="${pageDesc}">
-  <meta property="og:url" content="${canonicalUrl}">
+  <meta property="og:title" content="${esc(t.ogTitle)}">
+  <meta property="og:description" content="${esc(t.desc)}">
+  <meta property="og:url" content="${canonical}">
   <meta property="og:image" content="https://otahub.asia/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:site_name" content="OtaHub">
-  <meta property="og:locale" content="${isEn ? 'en_US' : 'vi_VN'}">
-
-  <!-- Twitter -->
+  <meta property="og:locale" content="${t.locale}">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${pageTitle}">
-  <meta name="twitter:description" content="${pageDesc}">
+  <meta name="twitter:title" content="${esc(t.ogTitle)}">
+  <meta name="twitter:description" content="${esc(t.desc)}">
   <meta name="twitter:image" content="https://otahub.asia/og-image.png">
   <meta name="twitter:site" content="@OtaHubAsia">
-
-  <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <meta name="theme-color" content="#080318">
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">${JSON.stringify(webAppSchema)}</script>
-  <script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>
-  <script type="application/ld+json">${JSON.stringify(itemListSchema)}</script>
-  <script type="application/ld+json">${JSON.stringify(faqSchema)}</script>
-
-  <!-- Google tag (gtag.js) -->
+${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n')}
   <script>/* GA tải sau khi trang hiển thị (không tranh băng thông/CPU với nội dung) */(function(){var d=0;function l(){if(d)return;d=1;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-12852ZFD0K';document.head.appendChild(s);}['pointerdown','keydown','scroll','touchstart'].forEach(function(e){addEventListener(e,l,{once:true,passive:true});});function idle(){(window.requestIdleCallback||function(f){setTimeout(f,1500)})(l,{timeout:3000});}if(document.readyState==='complete')idle();else addEventListener('load',idle);})();</script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-12852ZFD0K');
-  </script>
-
-  <!-- Typography & Global CSS -->
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-12852ZFD0K');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"></noscript>
-  <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-  <link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002l">
-
+  <link rel="stylesheet" href="/assets/mobile-fix.css?v=${MOBILE_FIX_V(old)}">
   <style>
     :root {
-      --bg: #070314;
-      --surf: rgba(18, 9, 44, 0.72);
-      --surf2: rgba(30, 16, 72, 0.85);
-      --card: rgba(22, 11, 54, 0.65);
-      --cyan: #00e5ff;
-      --cyan-glow: rgba(0, 229, 255, 0.35);
-      --sakura: #ff3080;
-      --sakura-glow: rgba(255, 48, 128, 0.35);
-      --violet: #7c3aed;
-      --lavender: #a78bfa;
-      --amber: #fbbf24;
-      --green: #34d399;
-      --white: #ffffff;
-      --text-main: #f8fafc;
-      --text-sub: #cbd5e1;
-      --text-muted: #94a3b8;
-      --border: rgba(255, 255, 255, 0.12);
-      --border-cyan: rgba(0, 229, 255, 0.3);
-      --fd: 'Plus Jakarta Sans','Be Vietnam Pro',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-      --fb: 'Be Vietnam Pro',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --bg: #070314; --panel: rgba(20, 10, 48, .72); --panel2: rgba(255, 255, 255, .035);
+      --line: rgba(255, 255, 255, .1); --line2: rgba(255, 255, 255, .2);
+      --cyan: #00f2ff; --sakura: #ff2177; --lav: #a78bfa; --amber: #fbbf24; --violet: #7c3aed;
+      --white: #fff; --text: #f1f5f9; --text-sub: #cbd5e1; --text-muted: #94a3b8;
+      --border: rgba(255, 255, 255, .12); --border-cyan: rgba(0, 242, 255, .3); --cyan-glow: rgba(0, 242, 255, .35);
+      --fd: 'Plus Jakarta Sans', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --fb: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --ease: cubic-bezier(.16, 1, .3, 1); --r: 18px;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     html, body { overflow-x: hidden; width: 100%; }
-    body {
-      background: var(--bg);
-      color: var(--text-main);
-      font-family: var(--fb);
-      font-size: 15px;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-      background-image:
-        radial-gradient(ellipse 110% 50% at 50% 0%, rgba(124, 58, 237, 0.22) 0%, transparent 60%),
-        radial-gradient(ellipse 70% 40% at 0% 50%, rgba(0, 229, 255, 0.08) 0%, transparent 55%),
-        radial-gradient(ellipse 70% 40% at 100% 40%, rgba(255, 48, 128, 0.08) 0%, transparent 55%);
-    }
+    body { background: var(--bg); color: var(--text); font-family: var(--fb); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+      background-image: radial-gradient(ellipse 90% 420px at 50% 0, rgba(124, 58, 237, .26), transparent 70%), radial-gradient(ellipse 60% 40% at 100% 30%, rgba(255, 33, 119, .07), transparent 60%), radial-gradient(ellipse 60% 40% at 0 60%, rgba(0, 242, 255, .06), transparent 60%); }
+    button { font: inherit; color: inherit; }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
 
-    /* Ambient animated orbs */
-    #amb { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-    .orb { position: absolute; border-radius: 50%; filter: blur(90px); }
-    .o1 { width: 850px; height: 850px; background: radial-gradient(circle, var(--violet), transparent 70%); opacity: .18; top: -200px; left: -200px; animation: orbA 20s ease-in-out infinite; }
-    .o2 { width: 700px; height: 700px; background: radial-gradient(circle, var(--cyan), transparent 70%); opacity: .14; bottom: 5%; right: -150px; animation: orbB 24s ease-in-out infinite; }
-    .o3 { width: 550px; height: 550px; background: radial-gradient(circle, var(--sakura), transparent 70%); opacity: .12; top: 40%; left: 35%; animation: orbC 22s ease-in-out infinite; }
-    @keyframes orbA { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(40px, -30px); } }
-    @keyframes orbB { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-30px, 40px); } }
-    @keyframes orbC { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-25px, -35px); } }
-
-    /* Standard Hub Navigation Bar */
-    .nav { position: sticky; top: 0; z-index: 300; height: 60px; background: rgba(11, 2, 32, 0.88); border-bottom: 1px solid var(--border); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); display: flex; align-items: center; }
-    .nav-in { max-width: 1440px; margin: 0 auto; padding: 0 24px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 0; }
+    /* Menu (khối dùng chung, nội dung do sync-site-chrome.mjs quản lý) */
+    .nav { position: sticky; top: 0; z-index: 300; height: 60px; background: rgba(11, 2, 32, .88); border-bottom: 1px solid var(--border); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); display: flex; align-items: center; }
+    .nav-in { max-width: 1440px; margin: 0 auto; padding: 0 24px; width: 100%; display: flex; align-items: center; justify-content: space-between; }
     .logo { display: flex; align-items: center; gap: 9px; text-decoration: none; flex-shrink: 0; margin-right: 24px; }
-    .logo svg { width: 34px; height: 34px; flex-shrink: 0; }
-    .logo-t { font-family: var(--fd); font-weight: 700; font-size: 20px; letter-spacing: -0.01em; line-height: 1; }
-    .logo-ota { color: var(--white); }
-    .logo-hub { color: var(--cyan); }
-    .nav-links { display: flex; align-items: center; list-style: none; gap: 0; flex: 1; }
-    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 12px; font-weight: 400; letter-spacing: 0.07em; text-transform: uppercase; padding: 0 13px; height: 60px; display: flex; align-items: center; position: relative; transition: color 0.2s; font-family: var(--fd); }
-    .nav-links a::after { content: ''; position: absolute; bottom: -1px; left: 13px; right: 13px; height: 2px; background: linear-gradient(90deg, var(--cyan), var(--sakura)); transform: scaleX(0); transform-origin: left; transition: transform 0.28s var(--ease); }
+    .logo-t { font-family: var(--fd); font-weight: 700; font-size: 20px; letter-spacing: -.01em; line-height: 1; }
+    .logo-ota { color: var(--white); } .logo-hub { color: var(--cyan); }
+    .nav-links { display: flex; align-items: center; list-style: none; flex: 1; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 12px; letter-spacing: .07em; text-transform: uppercase; padding: 0 13px; height: 60px; display: flex; align-items: center; position: relative; transition: color .2s; font-family: var(--fd); }
+    .nav-links a::after { content: ''; position: absolute; bottom: -1px; left: 13px; right: 13px; height: 2px; background: linear-gradient(90deg, var(--cyan), var(--sakura)); transform: scaleX(0); transform-origin: left; transition: transform .28s var(--ease); }
     .nav-links a:hover, .nav-links a.active { color: var(--white); }
     .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
     .nav-r { display: flex; align-items: center; gap: 10px; margin-left: auto; }
-    .nsearch { background: none; border: 1px solid var(--border); color: var(--text-muted); width: 32px; height: 32px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, color 0.2s; border-radius: 2px; }
+    .nsearch { background: none; border: 1px solid var(--border); color: var(--text-muted); width: 32px; height: 32px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color .2s, color .2s; border-radius: 2px; }
     .nsearch:hover { border-color: var(--cyan); color: var(--cyan); }
-    .cta { background: linear-gradient(135deg, var(--cyan), #0099bb); color: var(--bg); font-family: var(--fd); font-weight: 700; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; padding: 8px 20px; clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%); transition: filter 0.18s, transform 0.12s; text-decoration: none; display: inline-block; white-space: nowrap; }
+    .cta { background: linear-gradient(135deg, var(--cyan), #0099bb); color: var(--bg); font-family: var(--fd); font-weight: 700; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; padding: 8px 20px; clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%); text-decoration: none; display: inline-block; white-space: nowrap; }
     .cta:hover { filter: brightness(1.15); }
-    .cta:active { transform: translateY(1px) scale(0.98); }
     .ham { min-width: 44px; min-height: 44px; display: none; background: none; border: none; cursor: pointer; padding: 8px; flex-direction: column; gap: 5px; align-items: center; justify-content: center; }
-    .ham span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.3s var(--ease); }
+    .ham span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all .3s var(--ease); }
     .ham.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--cyan); }
     .ham.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .ham.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--cyan); }
-
-    /* Standard Mobile Nav Drawer */
-    .mobile-nav { display: none; position: fixed; inset: 0; top: 60px; z-index: 290; background: rgba(11, 2, 32, 0.98); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); padding: 24px 20px 40px; flex-direction: column; gap: 0; transform: translateY(-8px); opacity: 0; transition: transform 0.3s var(--ease), opacity 0.3s var(--ease); pointer-events: none; overflow-y: auto; }
-    .mobile-nav.open { display: flex; transform: translateY(0); opacity: 1; pointer-events: all; }
-    .mobile-nav a { display: block; color: var(--text-sub); text-decoration: none; font-family: var(--fd); font-size: 19px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 13px 0; border-bottom: 1px solid var(--border); transition: color 0.2s, padding-left 0.2s; }
-    .mobile-nav a:hover, .mobile-nav a.active { color: var(--cyan); padding-left: 6px; }
-    .m-sub { display: flex; gap: 16px; padding-top: 20px; flex-wrap: wrap; border-top: 1px solid var(--border); margin-top: 12px; }
-    .m-sub a { font-size: 13.5px; font-weight: 500; letter-spacing: 0.04em; color: var(--text-muted); border-bottom: none; padding: 4px 0; text-transform: none; }
-    .m-sub a:hover { color: var(--cyan); }
-
-    /* Search Overlay */
-    .search-overlay { position: fixed; inset: 0; z-index: 500; background: rgba(7, 3, 20, 0.96); backdrop-filter: blur(20px); display: none; flex-direction: column; align-items: center; padding-top: 120px; }
+    .mobile-nav { display: none; position: fixed; inset: 0; top: 60px; z-index: 290; background: rgba(11, 2, 32, .98); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); padding: 24px 20px 40px; flex-direction: column; overflow-y: auto; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { display: block; color: var(--text-sub); text-decoration: none; font-family: var(--fd); font-size: 19px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 13px 0; border-bottom: 1px solid var(--border); }
+    .mobile-nav a:hover, .mobile-nav a.active { color: var(--cyan); }
+    .search-overlay { position: fixed; inset: 0; z-index: 500; background: rgba(7, 3, 20, .96); backdrop-filter: blur(20px); display: none; flex-direction: column; align-items: center; padding-top: 120px; }
     .search-overlay.open { display: flex; }
     .search-box { width: min(640px, 92vw); position: relative; }
-    .search-input { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid var(--border-cyan); border-radius: 12px; color: #ffffff; font-family: var(--fb); font-size: 18px; padding: 16px 52px 16px 20px; outline: none; }
+    .search-input { width: 100%; background: rgba(255, 255, 255, .06); border: 1px solid var(--border-cyan); border-radius: 12px; color: #fff; font-family: var(--fb); font-size: 18px; padding: 16px 52px 16px 20px; outline: none; }
     .search-input:focus { border-color: var(--cyan); box-shadow: 0 0 20px var(--cyan-glow); }
     .search-close { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #94a3b8; font-size: 22px; cursor: pointer; }
-    .search-hint { margin-top: 16px; font-size: 12px; color: #94a3b8; letter-spacing: 0.05em; }
+    .search-hint { margin-top: 16px; font-size: 12px; color: #94a3b8; letter-spacing: .05em; }
+    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); background: rgba(7, 1, 18, .98); margin-top: 72px; }
 
-    /* Page Hero */
-    .page-hero { position: relative; z-index: 1; text-align: center; padding: 56px 20px 32px; max-width: 900px; margin: 0 auto; }
-    .ph-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-family: var(--fd); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan); background: rgba(0, 229, 255, 0.08); border: 1px solid var(--border-cyan); padding: 6px 14px; border-radius: 20px; margin-bottom: 18px; }
-    .ph-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
-    .ph-title { font-family: var(--fd); font-weight: 800; font-size: clamp(34px, 5.5vw, 68px); line-height: 1.05; letter-spacing: -0.025em; color: #ffffff; margin-bottom: 16px; }
-    .ph-title em { font-style: normal; color: transparent; background: linear-gradient(135deg, var(--cyan) 0%, #38bdf8 50%, var(--sakura) 100%); -webkit-background-clip: text; background-clip: text; }
-    .ph-sub { font-size: 15.5px; color: var(--text-sub); max-width: 600px; margin: 0 auto; line-height: 1.7; }
+    /* ── Trang Chơi gì ── */
+    .cg { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+    .cg-hero { text-align: center; padding: 30px 0 24px; }
+    .crumbs { font-size: 12.5px; color: var(--text-muted); margin-bottom: 14px; }
+    .crumbs a { text-decoration: none; color: var(--text-muted); } .crumbs a:hover { color: var(--cyan); }
+    .crumbs span { color: var(--text-sub); }
+    .cg-hero h1 { font-family: var(--fd); font-weight: 800; font-size: clamp(30px, 4.4vw, 50px); line-height: 1.12; letter-spacing: -.025em; color: #fff; }
+    .cg-hero h1 em { font-style: normal; background: linear-gradient(100deg, var(--cyan) 0%, #7dd3fc 40%, var(--lav) 70%, var(--sakura) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .cg-lead { max-width: 640px; margin: 14px auto 0; color: var(--text-sub); font-size: 16px; line-height: 1.65; }
 
-    /* Category Switcher Tabs */
-    .cat-zone { position: relative; z-index: 1; max-width: 780px; margin: 24px auto 0; padding: 0 20px; }
-    .cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; background: rgba(14, 7, 34, 0.7); padding: 6px; border-radius: 16px; border: 1px solid var(--border); backdrop-filter: blur(12px); }
-    .cat-btn { background: none; border: none; color: var(--text-sub); font-family: var(--fd); font-weight: 700; font-size: 14px; padding: 12px 10px; border-radius: 12px; cursor: pointer; transition: all 0.22s var(--ease); display: flex; align-items: center; justify-content: center; gap: 7px; }
-    .cat-btn:hover { color: #ffffff; background: rgba(255,255,255,0.06); }
-    .cat-btn.active { color: #070314; background: linear-gradient(135deg, var(--cyan), #38bdf8); box-shadow: 0 6px 20px var(--cyan-glow); font-weight: 800; }
-    .cat-btn.active.cat-anime { background: linear-gradient(135deg, #ff3080, #f43f5e); color: #ffffff; box-shadow: 0 6px 20px var(--sakura-glow); }
-    .cat-btn.active.cat-manga { background: linear-gradient(135deg, #a78bfa, #8b5cf6); color: #ffffff; box-shadow: 0 6px 20px rgba(167, 139, 250, 0.4); }
-    .cat-btn.active.cat-all { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #070314; box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4); }
+    /* Bộ lọc */
+    .finder { background: var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 22px 24px; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 24px 60px rgba(0, 0, 0, .35); }
+    .f-row { display: grid; grid-template-columns: 100px 1fr; gap: 14px; align-items: start; }
+    .f-row + .f-row { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--line); }
+    .f-row[hidden] { display: none; }
+    .f-label { font-family: var(--fd); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); padding-top: 11px; }
+    .seg { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .seg-btn { display: flex; align-items: center; gap: 9px; padding: 11px 14px; border-radius: 14px; border: 1px solid var(--line); background: var(--panel2); cursor: pointer; font-family: var(--fd); font-weight: 700; font-size: 14.5px; color: var(--text-sub); transition: border-color .2s, background .2s, color .2s, transform .15s; text-align: left; }
+    .seg-btn:hover { border-color: var(--line2); color: #fff; }
+    .seg-btn:active { transform: scale(.98); }
+    .seg-ic { font-size: 18px; line-height: 1; }
+    .seg-tx { flex: 1; }
+    .seg-n { font-size: 11.5px; font-weight: 700; color: var(--text-muted); background: rgba(255, 255, 255, .06); border-radius: 999px; padding: 2px 8px; }
+    .seg-btn.on { color: #fff; border-color: var(--acc, var(--amber)); background: color-mix(in srgb, var(--acc, var(--amber)) 14%, transparent); box-shadow: inset 0 0 0 1px var(--acc, var(--amber)); }
+    .seg-btn.on .seg-n { color: #0b0418; background: var(--acc, var(--amber)); }
+    .seg-btn[data-type="game"] { --acc: var(--cyan); } .seg-btn[data-type="anime"] { --acc: var(--sakura); } .seg-btn[data-type="manga"] { --acc: var(--lav); }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip { display: inline-flex; align-items: center; gap: 6px; padding: 7px 11px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel2); color: var(--text-sub); font-size: 13px; font-weight: 600; cursor: pointer; transition: border-color .2s, background .2s, color .2s; white-space: nowrap; }
+    .chip:hover { border-color: var(--line2); color: #fff; }
+    .chip.on { border-color: var(--cyan); color: #fff; background: rgba(0, 242, 255, .1); }
+    .chip:disabled { opacity: .38; cursor: not-allowed; }
+    .f-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 18px; flex-wrap: wrap; }
+    .roll { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-width: 240px; padding: 15px 30px; border: none; border-radius: 999px; cursor: pointer; font-family: var(--fd); font-weight: 800; font-size: 16.5px; color: #fff; background: linear-gradient(120deg, #7c3aed, #c026d3 55%, var(--sakura)); box-shadow: 0 10px 30px rgba(192, 38, 211, .35); transition: transform .15s, box-shadow .2s, filter .2s; }
+    .roll:hover { filter: brightness(1.08); box-shadow: 0 14px 38px rgba(192, 38, 211, .45); }
+    .roll:active { transform: scale(.97); }
+    .roll:disabled { opacity: .5; cursor: not-allowed; }
+    .dice { display: inline-block; font-size: 20px; }
+    .rolling .dice { animation: spin .55s var(--ease); }
+    @keyframes spin { to { transform: rotate(360deg) scale(1.1); } }
+    .f-count { color: var(--text-muted); font-size: 14px; }
+    .f-count b { color: #fff; font-family: var(--fd); }
+    .f-count a { color: var(--cyan); text-decoration: none; margin-left: 6px; }
+    .f-count a:hover { text-decoration: underline; }
 
-    /* Sub-type Filters Row */
-    .subfilter-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
-    .sf-btn { background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border); color: var(--text-muted); font-family: var(--fd); font-weight: 600; font-size: 12px; padding: 6px 14px; border-radius: 20px; cursor: pointer; transition: all 0.2s; }
-    .sf-btn:hover { color: #ffffff; border-color: rgba(255, 255, 255, 0.3); }
-    .sf-btn.active { color: var(--cyan); border-color: var(--cyan); background: rgba(0, 229, 255, 0.09); font-weight: 700; }
+    /* Thẻ gợi ý */
+    .pick { margin-top: 22px; display: grid; grid-template-columns: minmax(0, 46%) 1fr; border-radius: 22px; overflow: hidden; border: 1px solid var(--line); background: linear-gradient(160deg, rgba(30, 16, 70, .85), rgba(14, 7, 34, .92)); box-shadow: 0 24px 60px rgba(0, 0, 0, .4); scroll-margin-top: 76px; transition: opacity .25s, transform .25s; }
+    .pick.is-rolling { opacity: .35; transform: scale(.992); }
+    .pick-media { position: relative; min-height: 380px; overflow: hidden; background: #0b0418; }
+    .pick-bg { position: absolute; inset: -20px; width: calc(100% + 40px); height: calc(100% + 40px); object-fit: cover; filter: blur(22px) brightness(.55) saturate(1.2); }
+    .pick-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+    .pick-type { position: absolute; left: 16px; top: 16px; font-family: var(--fd); font-size: 11.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #0b0418; background: var(--acc); padding: 5px 11px; border-radius: 8px; }
+    .pick-body { padding: 30px 32px; display: flex; flex-direction: column; min-width: 0; }
+    .pick-eyebrow { font-family: var(--fd); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--acc); }
+    .pick-title { font-family: var(--fd); font-weight: 800; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.18; letter-spacing: -.015em; color: #fff; margin-top: 8px; }
+    .pick-meta { color: var(--text-muted); font-size: 14px; margin-top: 6px; }
+    .pick-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+    .pick-tags span { font-size: 12px; font-weight: 600; color: var(--text-sub); border: 1px solid var(--line); border-radius: 8px; padding: 3px 9px; }
+    .pick-why { margin-top: 16px; color: #e2e8f0; font-size: 15.5px; line-height: 1.7; }
+    .pick-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+    .fact { border: 1px solid var(--line); background: var(--panel2); border-radius: 14px; padding: 10px 14px; min-width: 0; }
+    .fact dt { font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; }
+    .fact dd { font-family: var(--fd); font-weight: 800; font-size: 17px; color: #fff; margin-top: 2px; }
+    .fact-score dd { color: var(--amber); font-size: 24px; line-height: 1.2; }
+    .fact-score dd small { font-size: 13px; color: var(--text-muted); font-weight: 600; }
+    .fact-score.is-none dd { color: var(--text-sub); font-size: 15px; font-weight: 700; padding-top: 5px; }
+    .pick-moods { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+    .pick-moods span { font-size: 12.5px; color: var(--text-sub); background: rgba(255, 255, 255, .05); border-radius: 999px; padding: 3px 10px; }
+    .pick-actions { display: flex; gap: 10px; margin-top: auto; padding-top: 22px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 0 20px; border-radius: 12px; font-family: var(--fd); font-weight: 700; font-size: 14.5px; text-decoration: none; cursor: pointer; transition: filter .2s, border-color .2s, background .2s; }
+    .btn-main { background: var(--acc); color: #0b0418; border: none; }
+    .btn-main:hover { filter: brightness(1.1); }
+    .btn-main[hidden] { display: none; }
+    .btn-ghost { border: 1px solid var(--line2); background: transparent; color: #fff; }
+    .btn-ghost:hover { border-color: var(--acc); background: rgba(255, 255, 255, .04); }
+    .btn-icon { width: 46px; padding: 0; border: 1px solid var(--line2); background: transparent; color: var(--text-sub); }
+    .btn-icon:hover { color: #fff; border-color: var(--acc); }
+    .no-article { align-self: center; color: var(--text-muted); font-size: 13.5px; }
+    .no-article[hidden] { display: none; }
+    .recent { display: flex; align-items: center; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+    .recent[hidden] { display: none; }
+    .recent-l { font-size: 12.5px; color: var(--text-muted); font-weight: 600; }
+    .recent-list { display: flex; gap: 8px; flex-wrap: wrap; }
+    .recent-list button { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px 4px 4px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel2); cursor: pointer; font-size: 12.5px; color: var(--text-sub); max-width: 220px; }
+    .recent-list button:hover { border-color: var(--line2); color: #fff; }
+    .recent-list img { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    .recent-list span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-    /* Mood Filters Swiper */
-    .mood-zone { position: relative; z-index: 1; max-width: 960px; margin: 28px auto 0; padding: 0 20px; }
-    .mood-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 12px; }
-    .mood-title { font-family: var(--fd); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
-    .mood-nav-wrap { display: flex; align-items: center; gap: 10px; }
-    .mood-hint { font-size: 12px; color: var(--text-muted); display: inline-flex; align-items: center; gap: 4px; }
-    .mood-arrows { display: inline-flex; align-items: center; gap: 6px; }
-    .mood-arrow-btn {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--border);
-      color: var(--text-sub);
-      font-size: 15px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s;
-      line-height: 1;
-      padding: 0;
-      user-select: none;
-    }
-    .mood-arrow-btn:hover {
-      background: rgba(0, 229, 255, 0.15);
-      border-color: var(--cyan);
-      color: var(--cyan);
-      transform: scale(1.08);
-    }
-    .mood-arrow-btn:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-    .mood-swiper {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      overflow-y: hidden;
-      padding: 6px 4px 16px;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-      scroll-behavior: smooth;
-      cursor: grab;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: pan-x pan-y;
-    }
-    .mood-swiper.is-dragging {
-      cursor: grabbing;
-      scroll-behavior: auto;
-    }
-    .mood-swiper::-webkit-scrollbar {
-      display: none;
-    }
-    .mood-pill {
-      flex-shrink: 0;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
-      color: var(--text-sub);
-      font-family: var(--fb);
-      font-size: 13px;
-      font-weight: 500;
-      padding: 9px 18px;
-      border-radius: 24px;
-      cursor: pointer;
-      transition: all 0.2s var(--ease);
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      white-space: nowrap;
-      user-select: none;
-      -webkit-user-select: none;
-    }
-    .mood-pill:hover {
-      color: #ffffff;
-      border-color: rgba(0, 229, 255, 0.4);
-      background: rgba(0, 229, 255, 0.06);
-    }
-    .mood-pill.active {
-      color: var(--cyan);
-      border-color: var(--cyan);
-      background: rgba(0, 229, 255, 0.12);
-      box-shadow: 0 0 18px rgba(0, 229, 255, 0.2);
-      font-weight: 600;
-    }
+    /* Khối chung */
+    .sec { margin-top: 64px; scroll-margin-top: 76px; }
+    .sec-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+    .sec-head h2 { font-family: var(--fd); font-weight: 800; font-size: clamp(22px, 2.4vw, 28px); letter-spacing: -.015em; color: #fff; }
+    .sec-head h2 .n { font-size: .6em; color: var(--text-muted); font-weight: 700; margin-left: 6px; }
+    .sec-head p { color: var(--text-muted); font-size: 14px; max-width: 560px; }
+    .sec-head p a { color: var(--cyan); text-decoration: none; } .sec-head p a:hover { text-decoration: underline; }
 
-    /* Spin / Roll Button Zone */
-    .roll-zone { position: relative; z-index: 1; text-align: center; margin: 28px auto 0; padding: 0 20px; }
-    .roll-btn {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      background: linear-gradient(135deg, #00e5ff 0%, #7c3aed 50%, #ff3080 100%);
-      background-size: 200% 200%;
-      color: #ffffff;
-      font-family: var(--fd);
-      font-weight: 800;
-      font-size: 19px;
-      letter-spacing: 0.04em;
-      padding: 18px 46px;
-      border-radius: 50px;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 10px 36px rgba(0, 229, 255, 0.35), 0 0 20px rgba(124, 58, 237, 0.2);
-      transition: all 0.3s var(--ease);
-      animation: gradientShift 6s ease infinite;
+    /* Lưới tất cả gợi ý */
+    .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+    .card { position: relative; display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: rgba(22, 11, 54, .6); transition: transform .2s var(--ease), border-color .2s, box-shadow .2s; }
+    .card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--acc) 55%, transparent); box-shadow: 0 14px 32px rgba(0, 0, 0, .35); }
+    .card.is-current { border-color: var(--acc); box-shadow: 0 0 0 1px var(--acc), 0 14px 32px rgba(0, 0, 0, .35); }
+    .card[hidden] { display: none; }
+    .c-media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #0b0418; }
+    .c-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; transition: transform .4s var(--ease); }
+    .card:hover .c-media img { transform: scale(1.04); }
+    .c-type { position: absolute; left: 10px; top: 10px; font-family: var(--fd); font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #0b0418; background: var(--acc); padding: 3px 8px; border-radius: 6px; }
+    .c-score, .c-pick { position: absolute; right: 10px; top: 10px; font-family: var(--fd); font-weight: 800; border-radius: 8px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+    .c-score { font-size: 14px; color: var(--amber); background: rgba(7, 3, 20, .78); padding: 3px 9px; border: 1px solid rgba(251, 191, 36, .45); }
+    .c-pick { font-size: 10.5px; letter-spacing: .04em; color: var(--text-sub); background: rgba(7, 3, 20, .72); padding: 4px 8px; border: 1px solid var(--line); }
+    .c-body { padding: 13px 14px 14px; display: flex; flex-direction: column; flex: 1; }
+    .c-title { font-family: var(--fd); font-weight: 700; font-size: 15.5px; line-height: 1.3; }
+    .c-open { all: unset; cursor: pointer; color: #fff; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .c-open::after { content: ''; position: absolute; inset: 0; z-index: 1; }
+    .c-open:focus-visible { outline: none; }
+    .card:has(.c-open:focus-visible) { outline: 2px solid var(--cyan); outline-offset: 2px; }
+    .c-meta { color: var(--text-muted); font-size: 12.5px; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .c-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: auto; padding-top: 10px; font-size: 12px; color: var(--text-muted); }
+    .c-foot > span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .c-link { position: relative; z-index: 2; color: var(--acc); text-decoration: none; font-weight: 700; white-space: nowrap; }
+    .c-link:hover { text-decoration: underline; }
+    .more-wrap { text-align: center; margin-top: 22px; }
+    .more-wrap[hidden] { display: none; }
+    .empty { text-align: center; padding: 36px 20px; border: 1px dashed var(--line2); border-radius: 16px; color: var(--text-sub); }
+    .empty[hidden] { display: none; }
+    .empty button { margin-top: 12px; }
+
+    /* Top theo điểm review */
+    .top-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .top-col { border: 1px solid var(--line); background: rgba(22, 11, 54, .55); border-radius: 18px; padding: 16px 16px 12px; display: flex; flex-direction: column; }
+    .top-h { font-family: var(--fd); font-size: 15px; font-weight: 800; color: var(--acc); letter-spacing: .02em; padding: 0 4px 10px; border-bottom: 1px solid var(--line); }
+    .top-list { list-style: none; }
+    .top-list a { display: grid; grid-template-columns: 22px 52px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 10px 4px; text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, .05); border-radius: 10px; transition: background .2s; }
+    .top-list li:last-child a { border-bottom: none; }
+    .top-list a:hover { background: rgba(255, 255, 255, .04); }
+    .tl-n { font-family: var(--fd); font-weight: 800; font-size: 16px; color: var(--text-muted); text-align: center; }
+    .top-list li:first-child .tl-n { color: var(--amber); }
+    .top-list img { width: 52px; height: 52px; border-radius: 10px; object-fit: cover; background: #0b0418; }
+    .tl-t { min-width: 0; }
+    .tl-t b { display: block; font-family: var(--fd); font-size: 14px; color: #fff; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .tl-t small { display: block; font-size: 12px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
+    .tl-s { font-family: var(--fd); font-weight: 800; font-size: 16px; color: var(--amber); }
+    .top-more { margin-top: auto; padding: 10px 4px 2px; font-size: 13px; font-weight: 700; color: var(--acc); text-decoration: none; }
+    .top-more:hover { text-decoration: underline; }
+
+    /* FAQ */
+    .faq { max-width: 860px; }
+    .faq details { border: 1px solid var(--line); background: rgba(22, 11, 54, .5); border-radius: 14px; margin-bottom: 10px; transition: border-color .2s; }
+    .faq details[open] { border-color: var(--border-cyan); }
+    .faq summary { cursor: pointer; list-style: none; padding: 16px 48px 16px 18px; font-family: var(--fd); font-weight: 700; font-size: 15px; color: #fff; position: relative; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: '+'; position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-size: 20px; color: var(--cyan); transition: transform .2s; }
+    .faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+    .faq details p { padding: 0 18px 16px; color: var(--text-sub); font-size: 14.5px; line-height: 1.7; }
+
+    .toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; z-index: 400; background: rgba(20, 10, 48, .96); border: 1px solid var(--border-cyan); color: #fff; font-size: 14px; font-weight: 600; padding: 10px 18px; border-radius: 999px; transition: opacity .25s, transform .25s; }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @media (max-width: 1100px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    @media (max-width: 1024px) { .top-cols { grid-template-columns: 1fr; } .top-col { padding-bottom: 8px; } }
+    @media (max-width: 900px) {
+      .pick { grid-template-columns: 1fr; }
+      .pick-media { min-height: 0; aspect-ratio: 16 / 9; }
+      .pick-body { padding: 22px 20px 22px; }
+      .seg { grid-template-columns: repeat(2, 1fr); }
     }
-    @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-    .roll-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 14px 44px rgba(0, 229, 255, 0.5), 0 0 30px rgba(255, 48, 128, 0.3); }
-    .roll-btn:active { transform: translateY(1px) scale(0.98); }
-    .roll-icon { font-size: 24px; transition: transform 0.6s var(--ease); }
-    .roll-btn.rolling .roll-icon { animation: rollSpin 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite; }
-    @keyframes rollSpin { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(1.2); } 100% { transform: rotate(360deg) scale(1); } }
-    .roll-meta { font-size: 12.5px; color: var(--text-muted); margin-top: 12px; }
-    .roll-counter { color: var(--cyan); font-weight: 700; }
-
-    /* Smart notification toast */
-    .roll-toast {
-      display: none;
-      max-width: 520px;
-      margin: 12px auto 0;
-      padding: 8px 16px;
-      border-radius: 20px;
-      background: rgba(124, 58, 237, 0.25);
-      border: 1px solid rgba(167, 139, 250, 0.4);
-      color: #ede9fe;
-      font-size: 12.5px;
-      font-family: var(--fb);
-      text-align: center;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
-      animation: fadeInToast 0.3s var(--ease);
-    }
-    @keyframes fadeInToast { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
-
-    /* Interactive Result Card & Slot Machine Roulette */
-    .result-zone { position: relative; z-index: 1; max-width: 900px; margin: 32px auto 0; padding: 0 20px 60px; }
-    .empty-state { text-align: center; padding: 64px 24px; background: rgba(18, 9, 44, 0.5); border: 1px dashed var(--border); border-radius: 20px; }
-    .es-icon { font-size: 52px; margin-bottom: 14px; opacity: 0.8; }
-    .es-title { font-family: var(--fd); font-size: 22px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
-    .es-sub { font-size: 14px; color: var(--text-muted); }
-
-    .result-card {
-      position: relative;
-      background: rgba(18, 9, 44, 0.82);
-      border: 1px solid var(--border-cyan);
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65), 0 0 30px rgba(0, 229, 255, 0.12);
-      transition: all 0.25s var(--ease);
-    }
-    .result-card.slot-cycling {
-      filter: blur(1px) brightness(1.15);
-      transform: scale(0.985);
-      border-color: var(--sakura);
-      box-shadow: 0 0 36px var(--sakura-glow);
-    }
-    .result-card.slot-snapped {
-      animation: slotSnap 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    @keyframes slotSnap {
-      0% { transform: scale(0.97); filter: brightness(1.25); }
-      50% { transform: scale(1.02); filter: brightness(1.1); box-shadow: 0 0 40px var(--cyan-glow); }
-      100% { transform: scale(1); filter: brightness(1); }
-    }
-    .rc-glow { position: absolute; inset: 0; pointer-events: none; opacity: 0.6; mix-blend-mode: screen; transition: background 0.4s ease; }
-    .rc-inner { display: grid; grid-template-columns: 320px 1fr; min-height: 380px; position: relative; z-index: 2; }
-    .rc-media { position: relative; overflow: hidden; background: #0c051a; display: flex; align-items: center; justify-content: center; }
-    .rc-media img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.4s ease; }
-    .rc-media:hover img { transform: scale(1.04); }
-    .rc-type-tag { position: absolute; top: 16px; left: 16px; z-index: 3; font-family: var(--fd); font-weight: 800; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border-radius: 8px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); }
-    .tag-game { background: rgba(0, 229, 255, 0.25); color: #a5f3fc; border-color: rgba(0, 229, 255, 0.5); }
-    .tag-anime { background: rgba(255, 48, 128, 0.25); color: #fecdd3; border-color: rgba(255, 48, 128, 0.5); }
-    .tag-manga { background: rgba(167, 139, 250, 0.25); color: #ede9fe; border-color: rgba(167, 139, 250, 0.5); }
-
-    .rc-content { padding: 32px 30px; display: flex; flex-direction: column; justify-content: space-between; }
-    .rc-header { margin-bottom: 16px; }
-    .rc-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
-    .rc-pill { font-size: 11px; font-family: var(--fd); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; border: 1px solid; }
-    .rc-title { font-family: var(--fd); font-size: clamp(22px, 3.2vw, 32px); font-weight: 800; line-height: 1.15; color: #ffffff; margin-bottom: 6px; letter-spacing: -0.015em; }
-    .rc-creator { font-size: 13px; color: var(--text-muted); font-weight: 500; }
-    .rc-quote { background: rgba(255, 255, 255, 0.035); border-left: 3px solid var(--cyan); padding: 14px 16px; border-radius: 0 10px 10px 0; margin: 18px 0; font-size: 14px; color: var(--text-sub); line-height: 1.6; font-style: italic; }
-
-    .rc-stats { display: grid; grid-template-columns: auto 1fr 1fr; gap: 16px; align-items: center; padding: 14px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 22px; }
-    .rc-stat-score { display: flex; align-items: baseline; gap: 4px; }
-    .rc-score-val { font-family: var(--fd); font-size: 30px; font-weight: 800; color: var(--amber); text-shadow: 0 0 14px rgba(251, 191, 36, 0.4); line-height: 1; }
-    .rc-score-max { font-size: 13px; color: var(--text-muted); font-family: var(--fd); font-weight: 600; }
-    .rc-stat-item { display: flex; flex-direction: column; }
-    .rc-stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); font-weight: 600; margin-bottom: 3px; }
-    .rc-stat-text { font-size: 13px; font-weight: 600; color: #f8fafc; font-family: var(--fd); }
-
-    .rc-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .btn-review {
-      background: linear-gradient(135deg, rgba(0, 229, 255, 0.18), rgba(0, 229, 255, 0.05));
-      border: 1px solid var(--cyan);
-      color: #ffffff;
-      font-family: var(--fd);
-      font-weight: 700;
-      font-size: 13.5px;
-      padding: 12px 22px;
-      border-radius: 10px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s;
-    }
-    .btn-review:hover { background: var(--cyan); color: #070314; box-shadow: 0 4px 18px var(--cyan-glow); transform: translateY(-1px); }
-    .btn-reroll { background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border); color: #f8fafc; font-family: var(--fd); font-weight: 700; font-size: 13px; padding: 12px 18px; border-radius: 10px; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
-    .btn-reroll:hover { background: rgba(255, 255, 255, 0.15); color: #ffffff; }
-    .btn-skip { background: none; border: 1px solid var(--border); color: var(--text-muted); font-family: var(--fd); font-weight: 600; font-size: 13px; padding: 12px 16px; border-radius: 10px; cursor: pointer; transition: all 0.2s; }
-    .btn-skip:hover { color: var(--sakura); border-color: rgba(255, 48, 128, 0.4); }
-    .btn-share { width: 44px; height: 44px; border-radius: 10px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); color: #cbd5e1; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; margin-left: auto; transition: all 0.2s; }
-    .btn-share:hover { border-color: var(--cyan); color: var(--cyan); }
-
-    /* Curated Weekly Showcase */
-    .showcase-zone { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 20px 20px 64px; }
-    .sc-header { text-align: center; margin-bottom: 32px; }
-    .sc-eye { font-family: var(--fd); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan); margin-bottom: 8px; }
-    .sc-title { font-family: var(--fd); font-size: clamp(24px, 3.5vw, 36px); font-weight: 800; color: #ffffff; }
-    .sc-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .sc-col { background: var(--surf); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; backdrop-filter: blur(14px); display: flex; flex-direction: column; }
-    .sc-col-head { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-    .sc-col-title { font-family: var(--fd); font-weight: 800; font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
-    .sc-col-link { font-size: 12px; font-weight: 600; font-family: var(--fd); color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-    .sc-col-link:hover { color: var(--cyan); }
-
-    .sc-list { display: flex; flex-direction: column; }
-    .sc-item { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); cursor: pointer; transition: background 0.2s; }
-    .sc-item:last-child { border-bottom: none; }
-    .sc-item:hover { background: rgba(255, 255, 255, 0.05); }
-    .sc-rank { font-family: var(--fd); font-size: 20px; font-weight: 800; color: rgba(255, 255, 255, 0.15); width: 24px; text-align: center; flex-shrink: 0; }
-    .sc-item:nth-child(1) .sc-rank { color: var(--amber); }
-    .sc-item:nth-child(2) .sc-rank { color: #e2e8f0; }
-    .sc-item:nth-child(3) .sc-rank { color: #fb923c; }
-    .sc-thumb { width: 56px; height: 56px; border-radius: 8px; overflow: hidden; flex-shrink: 0; background: var(--surf2); border: 1px solid var(--border); }
-    .sc-thumb img { width: 100%; height: 100%; object-fit: cover; }
-    .sc-info { flex: 1; min-width: 0; }
-    .sc-name { font-family: var(--fd); font-weight: 700; font-size: 14px; color: #ffffff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; }
-    .sc-item:hover .sc-name { color: var(--cyan); }
-    .sc-meta { font-size: 11.5px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .sc-score { font-family: var(--fd); font-weight: 800; font-size: 15px; color: var(--amber); flex-shrink: 0; }
-
-    /* FAQ & Educational SEO Section */
-    .faq-zone { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 20px 80px; }
-    .faq-title { font-family: var(--fd); font-size: 24px; font-weight: 800; color: #ffffff; text-align: center; margin-bottom: 24px; }
-    .faq-list { display: flex; flex-direction: column; gap: 12px; }
-    .faq-item { background: var(--surf); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: border-color 0.2s; }
-    .faq-item:hover { border-color: rgba(0, 229, 255, 0.3); }
-    .faq-q { padding: 18px 22px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: var(--fd); font-weight: 700; font-size: 15.5px; color: #f8fafc; }
-    .faq-q::after { content: '+'; font-size: 20px; color: var(--cyan); transition: transform 0.25s; }
-    .faq-item.open .faq-q::after { transform: rotate(45deg); }
-    .faq-a { padding: 0 22px 18px; font-size: 14px; color: var(--text-sub); line-height: 1.65; display: none; }
-    .faq-item.open .faq-a { display: block; }
-
-    /* History Drawer */
-    .hist-zone { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 20px 48px; display: none; }
-    .hist-title { font-family: var(--fd); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 12px; }
-    .hist-list { display: flex; flex-direction: column; gap: 6px; }
-    .hist-card { display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; transition: background 0.2s; }
-    .hist-card:hover { background: rgba(255,255,255,0.06); }
-    .hist-name { font-family: var(--fd); font-weight: 700; font-size: 13.5px; color: #f8fafc; flex: 1; }
-    .hist-type { font-size: 10px; text-transform: uppercase; font-weight: 700; font-family: var(--fd); }
-
-    /* Showcase Mobile Tabs (hidden on desktop, visible on mobile) */
-    .sc-mobile-tabs {
-      display: none;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 0 4px 14px;
-      margin-bottom: 18px;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-    }
-    .sc-mobile-tabs::-webkit-scrollbar { display: none; }
-    .sc-tab-btn {
-      flex-shrink: 0;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      color: var(--text-sub);
-      font-family: var(--fd);
-      font-size: 12.5px;
-      font-weight: 600;
-      padding: 7px 16px;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .sc-tab-btn.active {
-      color: #070314;
-      background: var(--cyan);
-      border-color: var(--cyan);
-      font-weight: 800;
-      box-shadow: 0 2px 10px var(--cyan-glow);
-    }
-
-    /* Floating Mobile Thumb Dock */
-    .mobile-thumb-dock { display: none; }
-    @media(max-width: 768px) {
-      .mobile-thumb-dock {
-        display: flex;
-        position: fixed;
-        bottom: 16px;
-        left: 16px;
-        right: 16px;
-        max-width: 420px;
-        margin: 0 auto;
-        background: rgba(12, 5, 28, 0.94);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid var(--border-cyan);
-        border-radius: 30px;
-        padding: 6px 14px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 24px rgba(0, 229, 255, 0.2);
-        z-index: 150;
-        align-items: center;
-        justify-content: space-between;
-        transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
-      }
-      .mobile-nav.open ~ .mobile-thumb-dock,
-      body.menu-open .mobile-thumb-dock {
-        display: none !important;
-        pointer-events: none;
-      }
-      .mtd-btn {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background: none;
-        border: none;
-        color: #cbd5e1;
-        font-family: var(--fd);
-        font-weight: 700;
-        font-size: 10px;
-        gap: 3px;
-        padding: 6px 10px;
-        border-radius: 12px;
-        cursor: pointer;
-        transition: all 0.2s;
-      }
-      .mtd-btn.active { color: var(--cyan); background: rgba(0, 229, 255, 0.12); }
-      .mtd-btn-roll {
-        background: linear-gradient(135deg, var(--cyan), var(--violet));
-        color: #070314;
-        font-weight: 800;
-        padding: 8px 16px;
-        border-radius: 20px;
-        box-shadow: 0 4px 14px var(--cyan-glow);
-      }
-      body { padding-bottom: 84px; }
-    }
-
-    /* Standard Hub Footer */
-    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); background: rgba(7, 1, 18, 0.98); }
-    .ft-in { max-width: 1440px; margin: 0 auto; padding: 52px 24px 32px; display: grid; grid-template-columns: 200px 1fr 1fr 1fr; gap: 48px; }
-    .ft-desc { font-size: 12px; color: rgba(240, 238, 255, 0.3); line-height: 1.75; max-width: 175px; margin-top: 12px; }
-    .ft-h { font-family: var(--fd); font-size: 10px; letter-spacing: 0.19em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 18px; font-weight: 600; }
-    .ft-links { display: flex; flex-direction: column; gap: 9px; list-style: none; }
-    .ft-links a { font-size: 13px; color: rgba(240, 238, 255, 0.4); text-decoration: none; transition: color 0.2s; }
-    .ft-links a:hover { color: var(--cyan); }
-    .ft-bot { max-width: 1440px; margin: 0 auto; padding: 16px 24px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-    .ft-copy { font-size: 11px; color: rgba(240, 238, 255, 0.22); letter-spacing: 0.04em; }
-
-    /* Media Queries */
-    @media(max-width: 1024px) {
-      .ft-in { grid-template-columns: 1fr 1fr; gap: 36px; }
-    }
-    @media(max-width: 992px) {
-      .sc-mobile-tabs { display: flex; }
-      .sc-cols { grid-template-columns: 1fr; }
-      .rc-inner { grid-template-columns: 1fr; }
-      .rc-media { min-height: 260px; max-height: 320px; }
-    }
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
       .nav-in { height: 56px; padding: 0 16px; }
       .nav-links { display: none !important; }
       .ham { display: flex; }
       .mobile-nav { top: 56px; }
-      .cat-grid { grid-template-columns: repeat(2, 1fr); }
-      .mood-zone { padding: 0 16px; }
-      .mood-swiper { margin: 0 -16px; padding: 6px 16px 16px; }
-      .rc-stats { grid-template-columns: 1fr 1fr; }
-      .ft-in { grid-template-columns: 1fr; gap: 28px; }
-      .ft-bot { flex-direction: column; gap: 10px; text-align: center; }
+      .cg { padding: 0 16px; }
+      .cg-hero { padding: 26px 0 20px; }
+      .cg-lead { font-size: 15px; }
+      .finder { padding: 16px; border-radius: 18px; }
+      .f-row { grid-template-columns: 1fr; gap: 8px; }
+      .f-row + .f-row { margin-top: 14px; padding-top: 14px; }
+      .f-label { padding-top: 0; font-size: 11px; }
+      .chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 0 16px 2px; scroll-padding: 0 16px; }
+      .chips::-webkit-scrollbar { display: none; }
+      .f-foot { flex-direction: column; align-items: stretch; text-align: center; gap: 10px; margin-top: 16px; }
+      .roll { width: 100%; min-width: 0; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .sec { margin-top: 48px; }
+      footer { margin-top: 56px; }
     }
-    @media(max-width: 480px) {
+    @media (max-width: 480px) {
       .cta#cta-sub { padding: 6px 12px; font-size: 11px; }
-      .rc-actions .btn-review { flex: 1 1 100%; }
-      .rc-actions .btn-reroll { flex: 1; }
+      .seg-btn { padding: 10px 11px; font-size: 13.5px; gap: 7px; }
+      .seg-n { display: none; }
+      .pick-facts { grid-template-columns: 1fr 1fr; }
+      .pick-actions .btn-main { flex: 1 1 100%; }
+      .pick-actions .btn-ghost { flex: 1; }
+      .c-body { padding: 10px 11px 12px; }
+      .c-title { font-size: 14px; }
+      .c-foot > span { display: none; }
     }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } html { scroll-behavior: auto; } }
   </style>
 </head>
 
 <body>
-  <!-- Ambient orbs -->
-  <div id="amb"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
-
-  <!-- Search Overlay -->
   <div class="search-overlay" id="searchOverlay">
     <div class="search-box">
-      <input class="search-input" id="searchInput" type="text" placeholder="${isEn ? 'Search games, anime, manga...' : 'Tìm kiếm game, anime, manga...'}">
-      <button class="search-close" onclick="closeSearch()">✕</button>
+      <input class="search-input" id="searchInput" type="text" placeholder="${t.search}">
+      <button class="search-close" onclick="closeSearch()" aria-label="${isEn ? 'Close' : 'Đóng'}">✕</button>
     </div>
-    <div class="search-hint">${isEn ? 'Press ESC to close' : 'Nhấn ESC để đóng'}</div>
+    <div class="search-hint">${t.searchHint}</div>
   </div>
 
-  <!-- Standard Hub Navigation -->
-  <nav class="nav">
-    <div class="nav-in">
-      <a href="${prefix}/" class="logo">
-        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0">
-          <polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.05)"></polygon>
-          <rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect>
-          <rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect>
-          <rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect>
-          <rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect>
-          <rect x="5" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect>
-          <rect x="27" y="5" width="2" height="2" fill="#00e5ff" opacity=".6"></rect>
-          <rect x="5" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect>
-          <rect x="27" y="27" width="2" height="2" fill="#00e5ff" opacity=".6"></rect>
-        </svg>
-        <span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="${prefix}/choi-gi" class="active">${isEn ? 'What to play?' : 'Chơi Gì?'}</a></li>
-        <li><a href="${prefix}/gaming">Gaming</a></li>
-        <li><a href="${prefix}/anime">Anime</a></li>
-        <li><a href="${prefix}/manga">Manga</a></li>
-        <li><a href="${prefix}/reviews">${isEn ? 'Reviews' : 'Đánh giá'}</a></li>
-        <li><a href="${prefix}/rankings">${isEn ? 'Rankings' : 'Xếp hạng'}</a></li>
-        <li><a href="${isEn ? '/en/in-depth' : '/chuyen-sau'}">${isEn ? 'In-depth' : 'Chuyên sâu'}</a></li>
-      </ul>
-      <button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
-      <div class="nav-r">
-        <button class="nsearch" aria-label="${isEn ? 'Search' : 'Tìm kiếm'}" onclick="openSearch()">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg>
-        </button>
-        <a href="${isEn ? '/en/index#newsletter' : '/#newsletter'}" class="cta" id="cta-sub">${isEn ? 'Subscribe' : 'Đăng ký'}</a>
+  ${nav}
+
+  ${mobileNav}
+
+  <main class="cg">
+    <header class="cg-hero">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="${prefix}/">${t.home}</a> / <span>${t.crumb}</span></nav>
+      <h1>${t.h1}</h1>
+      <p class="cg-lead">${t.lead}</p>
+    </header>
+
+    <section class="finder" aria-label="${esc(t.want)}">
+      <div class="f-row">
+        <div class="f-label">${t.want}</div>
+        <div class="seg" id="typeSeg">${['all', 'game', 'anime', 'manga'].map(segBtn).join('')}</div>
       </div>
-    </div>
-  </nav>
-
-  <!-- Standard Mobile Nav Drawer -->
-  <div class="mobile-nav" id="mobileNav">
-    <a href="${prefix}/choi-gi" class="active">${isEn ? 'What to play?' : 'Chơi Gì?'}</a>
-    <a href="${prefix}/gaming">Gaming</a>
-    <a href="${prefix}/anime">Anime</a>
-    <a href="${prefix}/manga">Manga</a>
-    <a href="${prefix}/reviews">${isEn ? 'Reviews' : 'Đánh giá'}</a>
-    <a href="${prefix}/rankings">${isEn ? 'Rankings' : 'Xếp hạng'}</a>
-    <a href="${isEn ? '/en/in-depth' : '/chuyen-sau'}">${isEn ? 'In-depth' : 'Chuyên sâu'}</a>
-    <div class="m-sub">
-      <a href="${prefix}/about">${isEn ? 'Introduction' : 'Giới thiệu'}</a>
-      <a href="${isEn ? '/en/index#newsletter' : '/#newsletter'}">Newsletter</a>
-      <a href="${prefix}/about#contact">${isEn ? 'Contact' : 'Liên hệ'}</a>
-    </div>
-  </div>
-
-  <!-- Hero Section -->
-  <header class="page-hero">
-    <div class="ph-badge">${isEn ? 'OtaHub · 3-in-1 Entertainment Picker' : 'OtaHub · Cỗ Máy Gợi Ý Giải Trí Thông Minh'}</div>
-    <h1 class="ph-title">${isEn ? 'What to<br><em>play, watch & read today?</em>' : 'Hôm nay<br><em>chơi gì · xem gì · đọc gì?</em>'}</h1>
-    <p class="ph-sub">${isEn ? 'Stuck in decision paralysis? Select your mood and platform, roll the wheel, and let OtaHub pick your next obsession with in-depth reviews.' : 'Đứng trước hàng ngàn tựa game, anime và manga mà không biết chọn gì? Chọn tâm trạng, bấm nút và để OtaHub gợi ý siêu phẩm đỉnh nhất kèm bài review chi tiết.'}</p>
-  </header>
-
-  <!-- Category Tabs -->
-  <div class="cat-zone">
-    <div class="cat-grid" id="catTabs">
-      <button class="cat-btn active cat-all" data-type="all" onclick="setCategory('all', this)">
-        <span>✨</span> <span>${isEn ? 'All Picks' : 'Tất cả'}</span>
-      </button>
-      <button class="cat-btn" data-type="game" onclick="setCategory('game', this)">
-        <span>🎮</span> <span>${isEn ? 'Games' : 'Chơi gì?'}</span>
-      </button>
-      <button class="cat-btn cat-anime" data-type="anime" onclick="setCategory('anime', this)">
-        <span>🎬</span> <span>${isEn ? 'Anime' : 'Xem gì?'}</span>
-      </button>
-      <button class="cat-btn cat-manga" data-type="manga" onclick="setCategory('manga', this)">
-        <span>📖</span> <span>${isEn ? 'Manga' : 'Đọc gì?'}</span>
-      </button>
-    </div>
-
-    <!-- Dynamic Subfilters -->
-    <div class="subfilter-row" id="subfilterRow">
-      <button class="sf-btn active" data-sub="all" onclick="setSubfilter('all', this)">${isEn ? 'All Formats' : 'Tất cả định dạng'}</button>
-      <button class="sf-btn" data-sub="pc" onclick="setSubfilter('pc', this)">PC</button>
-      <button class="sf-btn" data-sub="mobile" onclick="setSubfilter('mobile', this)">Mobile</button>
-      <button class="sf-btn" data-sub="console" onclick="setSubfilter('console', this)">Console</button>
-    </div>
-  </div>
-
-  <!-- Mood Filter Swiper -->
-  <div class="mood-zone">
-    <div class="mood-head">
-      <span class="mood-title">${isEn ? 'Filter by Mood & Vibe' : 'Chọn theo tâm trạng hôm nay'}</span>
-      <div class="mood-nav-wrap">
-        <span class="mood-hint">${isEn ? 'Swipe horizontal →' : 'Vuốt ngang →'}</span>
-        <div class="mood-arrows">
-          <button type="button" class="mood-arrow-btn" id="moodPrev" onclick="scrollMood(-240)" aria-label="${isEn ? 'Previous' : 'Trước'}">‹</button>
-          <button type="button" class="mood-arrow-btn" id="moodNext" onclick="scrollMood(240)" aria-label="${isEn ? 'Next' : 'Tiếp'}">›</button>
-        </div>
+      <div class="f-row" id="subRow" hidden>
+        <div class="f-label">${t.format}</div>
+        <div class="chips" id="subChips"></div>
       </div>
-    </div>
-    <div class="mood-swiper" id="moodSwiper">
-      <button type="button" class="mood-pill active" data-mood="all" onclick="handleMoodClick('all', this)"><span>✨</span> ${isEn ? 'Any Vibe' : 'Bất kỳ tâm trạng nào'}</button>
-      <button type="button" class="mood-pill" data-mood="relax" onclick="handleMoodClick('relax', this)"><span>☕</span> ${isEn ? 'Relax & Chill' : 'Thư giãn, nhẹ nhàng'}</button>
-      <button type="button" class="mood-pill" data-mood="action" onclick="handleMoodClick('action', this)"><span>⚔️</span> ${isEn ? 'Action & Hype' : 'Hành động, xả stress'}</button>
-      <button type="button" class="mood-pill" data-mood="story" onclick="handleMoodClick('story', this)"><span>🧠</span> ${isEn ? 'Deep Narrative' : 'Cốt truyện sâu sắc'}</button>
-      <button type="button" class="mood-pill" data-mood="coop" onclick="handleMoodClick('coop', this)"><span>👥</span> ${isEn ? 'With Friends / Co-op' : 'Chơi cùng bạn bè / Nhóm'}</button>
-      <button type="button" class="mood-pill" data-mood="quick" onclick="handleMoodClick('quick', this)"><span>⚡</span> ${isEn ? 'Quick Bite (<1h)' : 'Nhanh gọn, giải trí tức thì'}</button>
-      <button type="button" class="mood-pill" data-mood="explore" onclick="handleMoodClick('explore', this)"><span>🗺️</span> ${isEn ? 'Open World' : 'Khám phá thế giới mở'}</button>
-      <button type="button" class="mood-pill" data-mood="challenge" onclick="handleMoodClick('challenge', this)"><span>💀</span> ${isEn ? 'Hardcore Challenge' : 'Thử thách, kỹ năng cao'}</button>
-    </div>
-  </div>
+      <div class="f-row">
+        <div class="f-label">${t.mood}</div>
+        <div class="chips" id="moodChips">${Object.keys(t.moods).map(moodBtn).join('')}</div>
+      </div>
+      <div class="f-foot">
+        <button type="button" class="roll" id="rollBtn"><span class="dice" aria-hidden="true">🎲</span><span>${t.roll}</span></button>
+        <p class="f-count"><span id="fCount">${t.count(items.length)}</span><a href="#all">${t.seeAll} ↓</a></p>
+      </div>
+    </section>
 
-  <!-- Spin Roller Zone -->
-  <div class="roll-zone">
-    <button class="roll-btn" id="rollBtn" onclick="rollItem()">
-      <span class="roll-icon" id="rollIcon">🎲</span>
-      <span id="rollBtnText">${isEn ? 'Roll My Pick' : 'Gợi ý ngẫu nhiên'}</span>
-    </button>
-    <div class="roll-meta">${isEn ? 'Explored' : 'Đã khám phá'} <span class="roll-counter" id="rollCounter">0</span> ${isEn ? 'titles today' : 'tác phẩm hôm nay'}</div>
-    <div class="roll-toast" id="rollToast"></div>
-  </div>
-
-  <!-- Result Zone -->
-  <div class="result-zone">
-    <div class="empty-state" id="emptyState" style="display:none">
-      <div class="es-icon">🎯</div>
-      <div class="es-title">${isEn ? 'No titles matched your filters' : 'Chưa có tựa nào khớp với bộ lọc này'}</div>
-      <div class="es-sub">${isEn ? "Try adjusting your mood or format filter to discover more titles." : 'Hãy thử nới lỏng bộ lọc tâm trạng hoặc định dạng để khám phá thêm nhiều siêu phẩm nhé.'}</div>
-    </div>
-
-    <!-- Result Card -->
-    <article class="result-card show" id="resultCard" style="display:block; opacity:1; transform:none;">
-      <div class="rc-glow" id="rcGlow" style="background:radial-gradient(ellipse at 80% 20%, ${topPick.color[0]}22 0%, transparent 60%), radial-gradient(ellipse at 10% 90%, ${topPick.color[1]}22 0%, transparent 60%)"></div>
-      <div class="rc-inner">
-        <div class="rc-media">
-          <span class="rc-type-tag tag-${topPick.type}" id="rcTypeTag">${topPick.type.toUpperCase()}</span>
-          <img id="rcImg" src="${topPick.img}" alt="${topPick.name}" width="320" height="380">
-        </div>
-        <div class="rc-content">
-          <div class="rc-header">
-            <div class="rc-badges" id="rcBadges">
-              <span class="rc-pill" style="border-color:${topPick.type === 'game' ? 'var(--cyan)' : topPick.type === 'anime' ? 'var(--sakura)' : 'var(--lavender)'};color:${topPick.type === 'game' ? 'var(--cyan)' : topPick.type === 'anime' ? 'var(--sakura)' : 'var(--lavender)'};background:rgba(0,229,255,0.1)">${topPick.format}</span>
-              <span class="rc-pill" style="border-color:rgba(255,255,255,0.2);color:#ffffff;background:rgba(255,255,255,0.06)">${topPick.genre}</span>
-            </div>
-            <h2 class="rc-title" id="rcTitle">${topPick.name}</h2>
-            <div class="rc-creator" id="rcCreator">${topPick.creator}</div>
-            <p class="rc-quote" id="rcWhy">"${topPick.why}"</p>
-          </div>
-
-          <div class="rc-stats">
-            <div class="rc-stat-score">
-              <span class="rc-score-val" id="rcScore">${topPick.score}</span>
-              <span class="rc-score-max">/10</span>
-            </div>
-            <div class="rc-stat-item">
-              <span class="rc-stat-label">${isEn ? 'Investment' : 'Thời lượng'}</span>
-              <span class="rc-stat-text" id="rcTime">${topPick.time}</span>
-            </div>
-            <div class="rc-stat-item">
-              <span class="rc-stat-label">${isEn ? 'Vibe' : 'Tâm trạng'}</span>
-              <span class="rc-stat-text" id="rcMoods">${topPick.moods.map(m => ({relax: isEn ? 'Relax' : 'Thư giãn', action: isEn ? 'Action' : 'Hành động', story: isEn ? 'Story' : 'Cốt truyện', coop: 'Co-op', quick: isEn ? 'Quick' : 'Nhanh', explore: isEn ? 'Explore' : 'Khám phá', challenge: isEn ? 'Challenge' : 'Thử thách'})[m] || m).join(' · ')}</span>
-            </div>
-          </div>
-
-          <div class="rc-actions">
-            <a href="${topPick.link || '#'}" class="btn-review" id="rcReviewLink"${topPick.link ? '' : ' style="display:none"'}>
-              <span>📖</span> <span>${isEn ? 'Read In-Depth Review' : 'Đọc Review Chi Tiết'}</span>
-            </a>
-            <button class="btn-reroll" onclick="rollItem()">
-              <span>🎲</span> <span>${isEn ? 'Roll Another' : 'Roll khác'}</span>
-            </button>
-            <button class="btn-skip" onclick="skipItem()">${isEn ? 'Skip' : 'Bỏ qua'}</button>
-            <button class="btn-share" onclick="shareItem()" title="${isEn ? 'Share this pick' : 'Chia sẻ gợi ý'}">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"></path></svg>
-            </button>
-          </div>
+    <article class="pick" id="pick" aria-live="polite" style="--acc:${ACC[first.type]}">
+      <div class="pick-media">
+        <img class="pick-bg" id="pickBg" src="${thumb(first.img, '_t')}" alt="" aria-hidden="true" width="320" height="200">
+        <img class="pick-img" id="pickImg" src="${thumb(first.img, '_t')}" alt="${esc(first.name)}" width="640" height="400" fetchpriority="high">
+        <span class="pick-type" id="pickType">${t.typeName[typeKey(first)]}</span>
+      </div>
+      <div class="pick-body">
+        <div class="pick-eyebrow" id="pickLabel">${t.today}</div>
+        <h2 class="pick-title" id="pickTitle">${esc(first.name)}</h2>
+        <p class="pick-meta" id="pickMeta">${esc(first.creator)}</p>
+        <div class="pick-tags" id="pickTags"><span>${esc(first.format)}</span><span>${esc(first.genre)}</span></div>
+        <p class="pick-why" id="pickWhy">${esc(first.why)}</p>
+        <dl class="pick-facts">
+          <div class="fact fact-score${first.score === null ? ' is-none' : ''}" id="pickScoreBox"><dt id="pickScoreDt">${first.score === null ? t.noScoreDt : t.scoreDt}</dt><dd id="pickScore">${first.score === null ? t.noScore : `${first.score.toFixed(1)}<small>/10</small>`}</dd></div>
+          <div class="fact"><dt>${t.timeDt}</dt><dd id="pickTime">${esc(first.time)}</dd></div>
+        </dl>
+        <div class="pick-moods" id="pickMoods">${first.moods.map((m) => `<span>${t.moods[m][0]} ${t.moods[m][1]}</span>`).join('')}</div>
+        <div class="pick-actions">
+          <a class="btn btn-main" id="pickLink" href="${first.link || '#'}"${first.link ? '' : ' hidden'}>${first.reviewed ? t.readReview : t.readArticle} →</a>
+          <span class="no-article" id="noArticle"${first.link ? ' hidden' : ''}>${t.noArticle}</span>
+          <button type="button" class="btn btn-ghost" id="againBtn">🎲 ${t.rollAgain}</button>
+          <button type="button" class="btn btn-icon" id="shareBtn" aria-label="${t.share}" title="${t.share}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"></path></svg></button>
         </div>
       </div>
     </article>
-  </div>
+    <div class="recent" id="recent" hidden><span class="recent-l">${t.recent}:</span><div class="recent-list" id="recentList"></div></div>
 
-  <!-- Discovered History -->
-  <div class="hist-zone" id="histZone">
-    <div class="hist-title">${isEn ? 'Recently Discovered Today' : 'Lịch sử đã gợi ý hôm nay'}</div>
-    <div class="hist-list" id="histList"></div>
-  </div>
-
-  <!-- Curated Weekly Showcase -->
-  <section class="showcase-zone">
-    <div class="sc-header">
-      <div class="sc-eye">${isEn ? 'Curated Weekly Highlights' : 'Bảng Xếp Hạng Đề Cử Tuần Này'}</div>
-      <h2 class="sc-title">${isEn ? 'Top Games, Anime & Manga Worth Your Time' : 'Top Tác Phẩm Đáng Trải Nghiệm Nhất'}</h2>
-    </div>
-
-    <!-- Mobile Switcher Tabs for Showcase -->
-    <div class="sc-mobile-tabs" id="scMobileTabs">
-      <button type="button" class="sc-tab-btn active" data-tab="all" onclick="filterShowcaseCols('all', this)">${isEn ? 'All (12)' : 'Tất cả (12)'}</button>
-      <button type="button" class="sc-tab-btn" data-tab="game" onclick="filterShowcaseCols('game', this)">🎮 Game (4)</button>
-      <button type="button" class="sc-tab-btn" data-tab="anime" onclick="filterShowcaseCols('anime', this)">🎬 Anime (4)</button>
-      <button type="button" class="sc-tab-btn" data-tab="manga" onclick="filterShowcaseCols('manga', this)">📖 Manga (4)</button>
-    </div>
-
-    <div class="sc-cols">
-      <!-- Col 1: Games -->
-      <div class="sc-col" data-col-type="game">
-        <div class="sc-col-head">
-          <div class="sc-col-title" style="color:var(--cyan)"><span>🎮</span> <span>${isEn ? 'Hot Games' : 'Game Thịnh Hành'}</span></div>
-          <a href="${prefix}/gaming" class="sc-col-link">${isEn ? 'Explore Gaming →' : 'Kho Game →'}</a>
-        </div>
-        <div class="sc-list">
-          ${topGames.map((g, i) => `
-          <div class="sc-item" onclick="selectItemById('${g.id}')">
-            <div class="sc-rank">0${i + 1}</div>
-            <div class="sc-thumb"><img src="${g.img}" alt="${g.name}" loading="lazy" width="56" height="56"></div>
-            <div class="sc-info">
-              <div class="sc-name">${g.name}</div>
-              <div class="sc-meta">${g.format} · ${g.genre}</div>
-            </div>
-            <div class="sc-score">${g.score}</div>
-          </div>`).join('')}
-        </div>
+    <section class="sec" id="all" aria-labelledby="allH">
+      <div class="sec-head"><h2 id="allH">${t.allH} <span class="n" id="allCount">${items.length}</span></h2><p>${t.allP}</p></div>
+      <div class="grid" id="grid">
+      ${items.map(card).join('\n      ')}
       </div>
+      <div class="more-wrap" id="moreWrap"><button type="button" class="btn btn-ghost" id="moreBtn" style="--acc:var(--cyan)"></button></div>
+      <div class="empty" id="empty" hidden><p>${t.empty}</p><button type="button" class="btn btn-ghost" id="clearMood" style="--acc:var(--cyan)">${t.clearMood}</button></div>
+    </section>
 
-      <!-- Col 2: Anime -->
-      <div class="sc-col" data-col-type="anime">
-        <div class="sc-col-head">
-          <div class="sc-col-title" style="color:var(--sakura)"><span>🎬</span> <span>${isEn ? 'Peak Anime' : 'Anime Đỉnh Nóc'}</span></div>
-          <a href="${prefix}/anime" class="sc-col-link">${isEn ? 'Air Schedule →' : 'Lịch Chiếu →'}</a>
-        </div>
-        <div class="sc-list">
-          ${topAnime.map((a, i) => `
-          <div class="sc-item" onclick="selectItemById('${a.id}')">
-            <div class="sc-rank">0${i + 1}</div>
-            <div class="sc-thumb"><img src="${a.img}" alt="${a.name}" loading="lazy" width="56" height="56"></div>
-            <div class="sc-info">
-              <div class="sc-name">${a.name}</div>
-              <div class="sc-meta">${a.format} · ${a.genre}</div>
-            </div>
-            <div class="sc-score">${a.score}</div>
-          </div>`).join('')}
-        </div>
+    <section class="sec" aria-labelledby="topH">
+      <div class="sec-head"><h2 id="topH">${t.topH}</h2><p>${t.topP}</p></div>
+      <div class="top-cols">
+      ${['game', 'anime', 'manga'].map(topCol).join('\n      ')}
       </div>
+    </section>
 
-      <!-- Col 3: Manga -->
-      <div class="sc-col" data-col-type="manga">
-        <div class="sc-col-head">
-          <div class="sc-col-title" style="color:var(--lavender)"><span>📖</span> <span>${isEn ? 'Top Manga / Manhwa' : 'Manga & Manhwa Đỉnh'}</span></div>
-          <a href="${prefix}/manga" class="sc-col-link">${isEn ? 'Read Hub →' : 'Đọc Manga →'}</a>
-        </div>
-        <div class="sc-list">
-          ${topManga.map((m, i) => `
-          <div class="sc-item" onclick="selectItemById('${m.id}')">
-            <div class="sc-rank">0${i + 1}</div>
-            <div class="sc-thumb"><img src="${m.img}" alt="${m.name}" loading="lazy" width="56" height="56"></div>
-            <div class="sc-info">
-              <div class="sc-name">${m.name}</div>
-              <div class="sc-meta">${m.format} · ${m.genre}</div>
-            </div>
-            <div class="sc-score">${m.score}</div>
-          </div>`).join('')}
-        </div>
-      </div>
-    </div>
-  </section>
+    <section class="sec faq" aria-labelledby="faqH">
+      <div class="sec-head"><h2 id="faqH">${t.faqH}</h2></div>
+      ${t.faq.map(([q, a], i) => `<details${i ? '' : ' open'}><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('\n      ')}
+    </section>
+  </main>
 
-  <!-- Educational FAQ Section -->
-  <section class="faq-zone">
-    <h2 class="faq-title">${isEn ? 'Frequently Asked Questions & Tips' : 'Câu Hỏi Thường Gặp Về Gợi Ý Giải Trí'}</h2>
-    <div class="faq-list">
-      ${(faqSchema.mainEntity).map((faq, i) => `
-      <div class="faq-item${i === 0 ? ' open' : ''}" onclick="toggleFaq(this)">
-        <div class="faq-q">${faq.name}</div>
-        <div class="faq-a">${faq.acceptedAnswer.text}</div>
-      </div>`).join('')}
-    </div>
-  </section>
+  <div class="toast" id="toast" role="status"></div>
 
-  <!-- Floating Mobile Thumb Dock -->
-  <div class="mobile-thumb-dock">
-    <button class="mtd-btn" onclick="setCategory('game', null)">
-      <span>🎮</span> <span>Game</span>
-    </button>
-    <button class="mtd-btn" onclick="setCategory('anime', null)">
-      <span>🎬</span> <span>Anime</span>
-    </button>
-    <button class="mtd-btn mtd-btn-roll" onclick="rollItem()">
-      <span>🎲</span> <span>${isEn ? 'Roll' : 'Roll ngay'}</span>
-    </button>
-    <button class="mtd-btn" onclick="setCategory('manga', null)">
-      <span>📖</span> <span>Manga</span>
-    </button>
-    <button class="mtd-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-      <span>🔝</span> <span>Top</span>
-    </button>
-  </div>
+  ${footer}
 
-  <!-- Standard Hub Footer matching templates/partials/hub-footer.html -->
-  <footer><div class="ft-in"><div><a href="${prefix}/" class="logo" style="display:inline-flex"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="width:34px;height:34px;flex-shrink:0"><polygon points="11,2 23,2 32,11 32,23 23,32 11,32 2,23 2,11" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,.04)"></polygon><rect x="8" y="14" width="18" height="2" fill="#ff3080"></rect><rect x="9" y="12" width="16" height="1.5" fill="#ff3080"></rect><rect x="13" y="16" width="2" height="9" fill="#ff3080"></rect><rect x="19" y="16" width="2" height="9" fill="#ff3080"></rect></svg><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">${isEn ? "Asian Gaming, Anime and Manga news hub. Fast, specialized, no bias." : "Hub tin tức Gaming, Anime và Manga châu Á. Nhanh, chuyên sâu, không bias."}</p></div><div><div class="ft-h">${isEn ? "Category" : "Chuyên mục"}</div><ul class="ft-links"><li><a href="${prefix}/gaming">Gaming</a></li><li><a href="${prefix}/anime">Anime</a></li><li><a href="${prefix}/manga">Manga</a></li><li><a href="${prefix}/reviews">${isEn ? 'Reviews' : 'Đánh giá'}</a></li><li><a href="${prefix}/rankings">${isEn ? 'Rankings' : 'Xếp hạng'}</a></li></ul></div><div><div class="ft-h">${isEn ? "About OtaHub" : "Về OtaHub"}</div><ul class="ft-links"><li><a href="${prefix}/about">${isEn ? "Introduction" : "Giới thiệu"}</a></li><li><a href="${prefix}/about#team">${isEn ? "Team" : "Đội ngũ"}</a></li><li><a href="${prefix}/about#contact">${isEn ? "Contact" : "Liên hệ"}</a></li><li><a href="${isEn ? "/en/index#newsletter" : "/#newsletter"}">${isEn ? 'Newsletter' : 'Bản tin'}</a></li></ul></div><div><div class="ft-h">${isEn ? "Follow" : "Theo dõi"}</div><ul class="ft-links"><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Asia's Gaming &amp; Anime Hub</span></div></footer>
-  <script src="/assets/lang-switch.js" defer></script>
-
-  <!-- Embedded Client Script -->
   <script>
-    const ITEMS = ${JSON.stringify(items)};
-    let currentCategory = 'all';
-    let currentSubfilter = 'all';
-    let currentMood = 'all';
-    let currentItem = ITEMS[0];
-    let rollCount = 0;
-    let history = [];
-    let skipped = [];
-    let isRollingAnimation = false;
+    const ITEMS = [
+      ${data}
+    ];
+    const L = ${JSON.stringify(I18N)};
+    const ACC = { game: 'var(--cyan)', anime: 'var(--sakura)', manga: 'var(--lav)' };
+    const byId = Object.fromEntries(ITEMS.map((x) => [x.id, x]));
+    const state = { type: 'all', sub: 'all', mood: 'all', cur: null, limit: 12 };
+    const PAGE = 12;
+    const decks = {};
+    const recent = [];
+    const $ = (id) => document.getElementById(id);
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const typeKey = (it) => (it.type === 'manga' && it.sub === 'manhwa' ? 'manhwa' : it.type);
+    const escH = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-    // Shuffle-deck memory maps per filter session to guarantee ZERO repetitive back-to-back rolls
-    const deckMap = {};
-
-    const SUB_OPTIONS = {
-      all: [
-        { id: 'all', label: '${isEn ? "All Formats" : "Tất cả định dạng"}' },
-        { id: 'game', label: '🎮 Game' },
-        { id: 'anime', label: '🎬 Anime' },
-        { id: 'manga', label: '📖 Manga/Manhwa' }
-      ],
-      game: [
-        { id: 'all', label: '${isEn ? "All Platforms" : "Tất cả hệ máy"}' },
-        { id: 'pc', label: 'PC' },
-        { id: 'mobile', label: 'Mobile' },
-        { id: 'console', label: 'Console' }
-      ],
-      anime: [
-        { id: 'all', label: '${isEn ? "All Formats" : "Tất cả định dạng"}' },
-        { id: 'series', label: '${isEn ? "TV Series" : "TV Series"}' },
-        { id: 'movie', label: '${isEn ? "Movie" : "Movie Chiếu Rạp"}' }
-      ],
-      manga: [
-        { id: 'all', label: '${isEn ? "All Comics" : "Tất cả truyện"}' },
-        { id: 'manga', label: '${isEn ? "Japanese Manga" : "Manga Nhật Bản"}' },
-        { id: 'manhwa', label: '${isEn ? "Korean Manhwa" : "Manhwa Webtoon"}' }
-      ]
-    };
-
-    function updateSubfilterRow() {
-      const container = document.getElementById('subfilterRow');
-      const list = SUB_OPTIONS[currentCategory] || SUB_OPTIONS.all;
-      container.innerHTML = list.map((opt) => \`
-        <button class="sf-btn\${opt.id === currentSubfilter ? ' active' : ''}" data-sub="\${opt.id}" onclick="setSubfilter('\${opt.id}', this)">\${opt.label}</button>
-      \`).join('');
-    }
-
-    function setCategory(type, btn) {
-      if (isRollingAnimation) return;
-      currentCategory = type;
-      currentSubfilter = 'all';
-      if (btn) {
-        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      } else {
-        document.querySelectorAll('.cat-btn').forEach(b => {
-          b.classList.toggle('active', b.dataset.type === type);
-        });
+    const matches = (it, s = state) => (s.type === 'all' || it.type === s.type) && (s.sub === 'all' || it.sub === s.sub) && (s.mood === 'all' || it.moods.includes(s.mood));
+    const pool = () => ITEMS.filter((it) => matches(it));
+    function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+    // Bộ bài theo bộ lọc: không lặp lại cho tới khi đã gợi ý hết các tựa phù hợp
+    function nextItem() {
+      const key = state.type + '|' + state.sub + '|' + state.mood;
+      const ids = pool().map((x) => x.id);
+      if (!ids.length) return null;
+      let deck = (decks[key] || []).filter((id) => ids.includes(id));
+      if (!deck.length) {
+        deck = shuffle(ids.slice());
+        if (state.cur && deck.length > 1 && deck[deck.length - 1] === state.cur.id) deck.unshift(deck.pop());
       }
-      updateSubfilterRow();
-      hideToast();
-      rollItem();
+      const id = deck.pop();
+      decks[key] = deck;
+      return byId[id];
     }
 
-    function setSubfilter(sub, btn) {
-      if (isRollingAnimation) return;
-      currentSubfilter = sub;
-      document.querySelectorAll('.sf-btn').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      hideToast();
-      rollItem();
+    function render(it, label) {
+      state.cur = it; state.daily = label === L.today;
+      const pick = $('pick');
+      pick.style.setProperty('--acc', ACC[it.type]);
+      $('pickImg').src = it.t; $('pickImg').alt = it.name; $('pickBg').src = it.t;
+      $('pickType').textContent = L.typeName[typeKey(it)];
+      $('pickLabel').textContent = label;
+      $('pickTitle').textContent = it.name;
+      $('pickMeta').textContent = it.creator;
+      $('pickTags').innerHTML = '<span>' + escH(it.format) + '</span><span>' + escH(it.genre) + '</span>';
+      $('pickWhy').textContent = it.why;
+      const box = $('pickScoreBox');
+      box.classList.toggle('is-none', it.score === null);
+      $('pickScoreDt').textContent = it.score === null ? L.noScoreDt : L.scoreDt;
+      $('pickScore').innerHTML = it.score === null ? escH(L.noScore) : it.score.toFixed(1) + '<small>/10</small>';
+      $('pickTime').textContent = it.time;
+      $('pickMoods').innerHTML = it.moods.map((m) => '<span>' + L.moods[m][0] + ' ' + escH(L.moods[m][1]) + '</span>').join('');
+      const a = $('pickLink');
+      a.hidden = !it.link; $('noArticle').hidden = !!it.link;
+      if (it.link) { a.href = it.link; a.textContent = (it.rv ? L.readReview : L.readArticle) + ' →'; }
+      document.querySelectorAll('.card.is-current').forEach((c) => c.classList.remove('is-current'));
+      const card = document.querySelector('.card[data-id="' + it.id + '"]');
+      if (card) card.classList.add('is-current');
+      const i = recent.indexOf(it.id);
+      if (i >= 0) recent.splice(i, 1);
+      recent.unshift(it.id);
+      recent.length = Math.min(recent.length, 7);
+      renderRecent();
     }
 
-    function setMood(mood, btn) {
-      if (isRollingAnimation) return;
-      currentMood = mood;
-      document.querySelectorAll('.mood-pill').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      hideToast();
-      rollItem();
+    function renderRecent() {
+      const list = recent.slice(1);
+      $('recent').hidden = !list.length;
+      $('recentList').innerHTML = list.map((id) => { const it = byId[id]; return '<button type="button" data-open="' + id + '"><img src="' + it.s + '" alt="" width="26" height="26"><span>' + escH(it.name) + '</span></button>'; }).join('');
     }
 
-    function getPool() {
-      return ITEMS.filter(it => {
-        if (currentCategory !== 'all' && it.type !== currentCategory) return false;
-        if (currentSubfilter !== 'all') {
-          if (currentCategory === 'all') {
-            if (it.type !== currentSubfilter) return false;
-          } else {
-            if (it.subType !== currentSubfilter) return false;
-          }
-        }
-        if (currentMood !== 'all' && !it.moods.includes(currentMood)) return false;
-        if (skipped.includes(it.id)) return false;
-        return true;
-      });
+    function inView(el) { const r = el.getBoundingClientRect(); return r.top >= 56 && r.top < window.innerHeight * 0.5; }
+    function showPick(it, label, scroll) {
+      const pick = $('pick');
+      const go = () => {
+        render(it, label);
+        pick.classList.remove('is-rolling');
+        if (scroll && !inView(pick)) pick.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+        syncUrl();
+      };
+      if (reduce) return go();
+      pick.classList.add('is-rolling');
+      setTimeout(go, 220);
     }
 
-    function showToast(msg) {
-      const toast = document.getElementById('rollToast');
-      if (!toast) return;
-      toast.textContent = msg;
-      toast.style.display = 'block';
-    }
-
-    function hideToast() {
-      const toast = document.getElementById('rollToast');
-      if (toast) toast.style.display = 'none';
-    }
-
-    // Smart Non-Repeating Shuffle-Bag Selection
-    function pickNextItem() {
-      const filterKey = \`\${currentCategory}_\${currentSubfilter}_\${currentMood}\`;
-      if (!deckMap[filterKey]) deckMap[filterKey] = new Set();
-      const seen = deckMap[filterKey];
-
-      let pool = getPool();
-      let isRelaxed = false;
-
-      // 1. Filter out items already seen in this deck session AND current item
-      let available = pool.filter(it => !seen.has(it.id) && (!currentItem || it.id !== currentItem.id));
-
-      if (!available.length) {
-        if (pool.length > 1) {
-          // Deck exhausted! Reset seen history but preserve current item so no back-to-back duplicate
-          seen.clear();
-          if (currentItem) seen.add(currentItem.id);
-          available = pool.filter(it => !currentItem || it.id !== currentItem.id);
-        } else {
-          // Pool has <= 1 item: dynamically relax mood to discover sister highlights in same category!
-          seen.clear();
-          const relaxedPool = ITEMS.filter(it => {
-            const catOk = currentCategory === 'all' || it.type === currentCategory;
-            const notCurrent = !currentItem || it.id !== currentItem.id;
-            return catOk && notCurrent && !skipped.includes(it.id);
-          });
-          available = relaxedPool.length ? relaxedPool : ITEMS.filter(it => !currentItem || it.id !== currentItem.id);
-          isRelaxed = true;
-        }
-      }
-
-      if (!available.length) {
-        // Fallback safety net: pick any item different from current
-        available = ITEMS.filter(it => !currentItem || it.id !== currentItem.id);
-      }
-
-      const chosen = available[Math.floor(Math.random() * available.length)];
-      seen.add(chosen.id);
-
-      if (isRelaxed && currentMood !== 'all') {
-        showToast("${isEn ? '💡 You have seen all exact matches! Surfacing related highlights ✨' : '💡 Bạn đã khám phá hết mục này! OtaHub gợi ý thêm tác phẩm nổi bật liên quan ✨'}");
-      } else {
-        hideToast();
-      }
-
-      return chosen;
-    }
-
-    // High-speed visual slot-machine roulette roll
-    function rollItem() {
-      if (isRollingAnimation) return;
-      isRollingAnimation = true;
-
-      const rollBtn = document.getElementById('rollBtn');
-      const card = document.getElementById('resultCard');
-      const empty = document.getElementById('emptyState');
-      empty.style.display = 'none';
-
-      rollBtn.classList.add('rolling');
-      card.classList.add('slot-cycling');
-
-      const chosen = pickNextItem();
-      const pool = getPool();
-      const rouletteCandidates = pool.length > 2 ? pool : ITEMS;
-
-      // 350ms rapid candidate flickering (slot machine effect)
-      let flips = 0;
-      const maxFlips = 5;
-      const flipTimer = setInterval(() => {
-        flips++;
-        const temp = rouletteCandidates[Math.floor(Math.random() * rouletteCandidates.length)];
-        renderCardPreview(temp);
-
-        if (flips >= maxFlips) {
-          clearInterval(flipTimer);
-          // Snap into winner!
-          renderCard(chosen);
-          rollBtn.classList.remove('rolling');
-          card.classList.remove('slot-cycling');
-          card.classList.add('slot-snapped');
-          setTimeout(() => card.classList.remove('slot-snapped'), 400);
-
-          rollCount++;
-          document.getElementById('rollCounter').textContent = rollCount;
-
-          if (!history.find(h => h.id === chosen.id)) history.unshift(chosen);
-          if (history.length > 5) history.pop();
-          renderHistory();
-
-          isRollingAnimation = false;
-        }
-      }, 65);
-    }
-
-    function renderCardPreview(item) {
-      if (!item) return;
-      document.getElementById('rcImg').src = item.img;
-      document.getElementById('rcTitle').textContent = item.name;
-      document.getElementById('rcScore').textContent = item.score;
-      document.getElementById('rcCreator').textContent = item.creator;
-    }
-
-    function selectItemById(id) {
-      const it = ITEMS.find(x => x.id === id);
+    function roll(btn) {
+      const it = nextItem();
       if (!it) return;
-      document.getElementById('emptyState').style.display = 'none';
-      const card = document.getElementById('resultCard');
-      card.classList.remove('show');
-      setTimeout(() => {
-        renderCard(it);
-        card.classList.add('show');
-        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 150);
+      if (btn) { btn.classList.remove('rolling'); void btn.offsetWidth; btn.classList.add('rolling'); }
+      showPick(it, L.forYou, true);
     }
 
-    function renderCard(item) {
-      currentItem = item;
-      const tag = document.getElementById('rcTypeTag');
-      tag.className = 'rc-type-tag tag-' + item.type;
-      tag.textContent = item.type.toUpperCase();
-
-      const img = document.getElementById('rcImg');
-      img.src = item.img;
-      img.alt = item.name;
-
-      document.getElementById('rcTitle').textContent = item.name;
-      document.getElementById('rcCreator').textContent = item.creator;
-      document.getElementById('rcWhy').textContent = '"' + item.why + '"';
-      document.getElementById('rcScore').textContent = item.score;
-      document.getElementById('rcTime').textContent = item.time;
-      document.getElementById('rcMoods').textContent = item.moods.map(m => {
-        const map = {
-          relax: '${isEn ? "Relax" : "Thư giãn"}',
-          action: '${isEn ? "Action" : "Hành động"}',
-          story: '${isEn ? "Story" : "Cốt truyện"}',
-          coop: 'Co-op',
-          quick: '${isEn ? "Quick" : "Nhanh"}',
-          explore: '${isEn ? "Explore" : "Khám phá"}',
-          challenge: '${isEn ? "Challenge" : "Thử thách"}'
-        };
-        return map[m] || m;
-      }).join(' · ');
-
-      const badges = document.getElementById('rcBadges');
-      const typeColor = item.type === 'game' ? 'var(--cyan)' : item.type === 'anime' ? 'var(--sakura)' : 'var(--lavender)';
-      badges.innerHTML = \`
-        <span class="rc-pill" style="border-color:\${typeColor};color:\${typeColor};background:\${typeColor}15">\${item.format}</span>
-        <span class="rc-pill" style="border-color:rgba(255,255,255,0.2);color:#ffffff;background:rgba(255,255,255,0.06)">\${item.genre}</span>
-      \`;
-
-      const reviewBtn = document.getElementById('rcReviewLink');
-      if (item.link) {
-        reviewBtn.href = item.link;
-        reviewBtn.style.display = 'inline-flex';
-      } else {
-        reviewBtn.style.display = 'none';
-      }
-
-      const glow = document.getElementById('rcGlow');
-      const c = item.color || ['#00e5ff', '#7c3aed'];
-      glow.style.background = \`radial-gradient(ellipse at 80% 20%, \${c[0]}22 0%, transparent 60%), radial-gradient(ellipse at 10% 90%, \${c[1]}22 0%, transparent 60%)\`;
+    function renderSubs() {
+      const row = $('subRow');
+      if (state.type === 'all') { row.hidden = true; return; }
+      row.hidden = false;
+      const opts = L.subs[state.type];
+      $('subChips').innerHTML = Object.keys(opts).map((k) => '<button type="button" class="chip' + (k === state.sub ? ' on' : '') + '" data-sub="' + k + '" aria-pressed="' + (k === state.sub) + '">' + escH(opts[k]) + '</button>').join('');
     }
 
-    function skipItem() {
-      if (currentItem) skipped.push(currentItem.id);
-      rollItem();
+    function applyFilters() {
+      document.querySelectorAll('.seg-btn').forEach((b) => { const on = b.dataset.type === state.type; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+      // số tựa mỗi loại theo tâm trạng đang chọn
+      document.querySelectorAll('.seg-btn').forEach((b) => { b.querySelector('.seg-n').textContent = ITEMS.filter((it) => matches(it, { type: b.dataset.type, sub: 'all', mood: state.mood })).length; });
+      document.querySelectorAll('#moodChips .chip').forEach((b) => {
+        const on = b.dataset.mood === state.mood;
+        b.classList.toggle('on', on); b.setAttribute('aria-pressed', on);
+        b.disabled = !on && !ITEMS.some((it) => matches(it, { type: state.type, sub: state.sub, mood: b.dataset.mood }));
+      });
+      let n = 0;
+      document.querySelectorAll('#grid .card').forEach((c) => { const ok = matches(byId[c.dataset.id]); if (ok) n++; c.hidden = !ok || n > state.limit; });
+      $('moreWrap').hidden = n <= state.limit;
+      $('moreBtn').textContent = L.more.replace('{n}', n - state.limit);
+      $('allCount').textContent = n;
+      $('fCount').innerHTML = L.count.replace('0', n);
+      $('empty').hidden = n > 0;
+      $('rollBtn').disabled = n === 0; $('againBtn').disabled = n === 0;
+      syncUrl();
     }
 
-    function shareItem() {
-      if (!currentItem) return;
-      const text = \`\${currentItem.name} (\${currentItem.score}/10) · OtaHub Discovery\`;
-      if (navigator.share) {
-        navigator.share({ title: currentItem.name, text: text, url: window.location.href });
-      } else if (navigator.clipboard) {
-        navigator.clipboard.writeText(window.location.href);
-        alert('${isEn ? "Link copied to clipboard!" : "Đã copy link vào clipboard!"}');
-      }
+    function setFilter(part, value) {
+      state[part] = value;
+      state.limit = PAGE;
+      if (part === 'type') { state.sub = 'all'; renderSubs(); }
+      applyFilters();
+      // gợi ý đang hiện không còn hợp bộ lọc -> đổi ngay sang một tựa phù hợp
+      if (state.cur && !matches(state.cur)) { const it = nextItem(); if (it) showPick(it, L.forYou, false); }
     }
 
-    function renderHistory() {
-      const zone = document.getElementById('histZone');
-      const list = document.getElementById('histList');
-      if (!history.length) {
-        zone.style.display = 'none';
-        return;
-      }
-      zone.style.display = 'block';
-      list.innerHTML = history.map((it) => \`
-        <div class="hist-card" onclick="selectItemById('\${it.id}')">
-          <span style="font-size:16px">\${it.type === 'game' ? '🎮' : it.type === 'anime' ? '🎬' : '📖'}</span>
-          <span class="hist-name">\${it.name}</span>
-          <span class="hist-type" style="color:var(--text-muted)">\${it.genre}</span>
-          <span style="font-family:var(--fd);font-weight:800;color:var(--amber)">\${it.score}</span>
-        </div>
-      \`).join('');
+    function syncUrl() {
+      const p = new URLSearchParams();
+      if (state.type !== 'all') p.set('type', state.type);
+      if (state.sub !== 'all') p.set('sub', state.sub);
+      if (state.mood !== 'all') p.set('mood', state.mood);
+      if (state.cur && !state.daily) p.set('pick', state.cur.id);
+      const q = p.toString();
+      history.replaceState(null, '', location.pathname + (q ? '?' + q : '') + location.hash);
     }
 
-    function toggleFaq(el) {
-      el.classList.toggle('open');
+    let toastT;
+    function toast(msg) { const el = $('toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('show'), 2200); }
+    async function share() {
+      const it = state.cur;
+      const url = location.origin + location.pathname + '?pick=' + encodeURIComponent(it.id);
+      if (navigator.share) { try { await navigator.share({ title: it.name, url }); return; } catch (e) { if (e && e.name === 'AbortError') return; } }
+      try { await navigator.clipboard.writeText(url); toast(L.copied); } catch (e) { prompt('', url); }
     }
 
-    function openSearch() {
-      const el = document.getElementById('searchOverlay');
-      if (el) {
-        el.classList.add('open');
-        setTimeout(() => document.getElementById('searchInput')?.focus(), 50);
-        document.body.style.overflow = 'hidden';
-      }
-    }
+    $('typeSeg').addEventListener('click', (e) => { const b = e.target.closest('.seg-btn'); if (b) setFilter('type', b.dataset.type); });
+    $('subChips').addEventListener('click', (e) => { const b = e.target.closest('.chip'); if (b) { setFilter('sub', b.dataset.sub); renderSubs(); } });
+    $('moodChips').addEventListener('click', (e) => { const b = e.target.closest('.chip'); if (b && !b.disabled) setFilter('mood', b.dataset.mood); });
+    $('rollBtn').addEventListener('click', (e) => roll(e.currentTarget));
+    $('againBtn').addEventListener('click', () => roll($('rollBtn')));
+    $('shareBtn').addEventListener('click', share);
+    $('clearMood').addEventListener('click', () => setFilter('mood', 'all'));
+    $('moreBtn').addEventListener('click', () => { state.limit = Infinity; applyFilters(); });
+    document.addEventListener('click', (e) => { const b = e.target.closest('[data-open]'); if (b) showPick(byId[b.dataset.open], L.chosen, true); });
 
-    function closeSearch() {
-      const el = document.getElementById('searchOverlay');
-      if (el) {
-        el.classList.remove('open');
-        document.body.style.overflow = '';
-      }
-    }
+    // Trạng thái ban đầu: theo link (?type=&sub=&mood=&pick=) hoặc gợi ý hôm nay (đổi mỗi ngày, ưu tiên tựa có review)
+    (function init() {
+      const p = new URLSearchParams(location.search);
+      if (['game', 'anime', 'manga'].includes(p.get('type'))) state.type = p.get('type');
+      if (state.type !== 'all' && L.subs[state.type][p.get('sub')]) state.sub = p.get('sub');
+      if (L.moods[p.get('mood')]) state.mood = p.get('mood');
+      renderSubs();
+      applyFilters();
+      const shared = byId[p.get('pick')];
+      if (shared) { render(shared, L.forYou); syncUrl(); return; }
+      const list = pool().filter((x) => x.rv);
+      const from = list.length ? list : pool();
+      if (!from.length) return;
+      const day = Math.floor((Date.now() - new Date().getTimezoneOffset() * 6e4) / 864e5);
+      render(from[day % from.length], L.today);
+    })();
 
+    // Tìm kiếm + menu trượt
+    function openSearch() { const el = $('searchOverlay'); el.classList.add('open'); setTimeout(() => $('searchInput').focus(), 50); document.body.style.overflow = 'hidden'; }
+    function closeSearch() { $('searchOverlay').classList.remove('open'); document.body.style.overflow = ''; }
     function toggleMobileNav() {
-      const nav = document.getElementById('mobileNav');
-      const ham = document.getElementById('hamBtn');
+      const nav = $('mobileNav'), ham = $('hamBtn');
       if (!nav || !ham) return;
       const open = nav.classList.toggle('open');
       ham.classList.toggle('open', open);
       document.body.classList.toggle('menu-open', open);
       document.body.style.overflow = open ? 'hidden' : '';
     }
-
-    // ── SHOWCASE MOBILE TABS ──
-    function filterShowcaseCols(tab, btn) {
-      document.querySelectorAll('.sc-tab-btn').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      document.querySelectorAll('.sc-col').forEach(col => {
-        if (tab === 'all' || col.dataset.colType === tab) {
-          col.style.display = 'block';
-        } else {
-          col.style.display = 'none';
-        }
-      });
-    }
-
-    // ── MOOD SWIPER HORIZONTAL SCROLL & DRAG ENGINE ──
-    const moodSwiper = document.getElementById('moodSwiper');
-    let isSwiperDown = false;
-    let swiperStartX = 0;
-    let swiperScrollLeft = 0;
-    let swiperHasMoved = false;
-
-    if (moodSwiper) {
-      function updateMoodArrows() {
-        const prev = document.getElementById('moodPrev');
-        const next = document.getElementById('moodNext');
-        if (!prev || !next) return;
-        const maxScroll = moodSwiper.scrollWidth - moodSwiper.clientWidth;
-        prev.disabled = moodSwiper.scrollLeft <= 4;
-        next.disabled = moodSwiper.scrollLeft >= maxScroll - 4;
-      }
-
-      moodSwiper.addEventListener('scroll', updateMoodArrows, { passive: true });
-      window.addEventListener('resize', updateMoodArrows);
-      setTimeout(updateMoodArrows, 100);
-
-      moodSwiper.addEventListener('pointerdown', (e) => {
-        isSwiperDown = true;
-        swiperHasMoved = false;
-        moodSwiper.classList.add('is-dragging');
-        swiperStartX = e.pageX - moodSwiper.offsetLeft;
-        swiperScrollLeft = moodSwiper.scrollLeft;
-      });
-
-      window.addEventListener('pointermove', (e) => {
-        if (!isSwiperDown) return;
-        const x = e.pageX - moodSwiper.offsetLeft;
-        const walk = (x - swiperStartX) * 1.5;
-        if (Math.abs(walk) > 4) {
-          swiperHasMoved = true;
-        }
-        moodSwiper.scrollLeft = swiperScrollLeft - walk;
-      });
-
-      window.addEventListener('pointerup', () => {
-        if (!isSwiperDown) return;
-        isSwiperDown = false;
-        moodSwiper.classList.remove('is-dragging');
-      });
-
-      window.addEventListener('pointercancel', () => {
-        isSwiperDown = false;
-        moodSwiper.classList.remove('is-dragging');
-      });
-    }
-
-    function scrollMood(amount) {
-      const swiper = document.getElementById('moodSwiper');
-      if (swiper) {
-        swiper.scrollBy({ left: amount, behavior: 'smooth' });
-      }
-    }
-
-    function handleMoodClick(mood, btn) {
-      // Ignore click if user was dragging
-      if (swiperHasMoved) return;
-      setMood(mood, btn);
-      if (btn) {
-        btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      }
-    }
-
-    // ── RESULT CARD TOUCH & SWIPE GESTURES ──
-    const resultCardEl = document.getElementById('resultCard');
-    let cardTouchStartX = 0;
-    let cardTouchStartY = 0;
-    let cardDeltaX = 0;
-    let cardDeltaY = 0;
-    let isCardSwiping = false;
-
-    if (resultCardEl) {
-      resultCardEl.addEventListener('touchstart', (e) => {
-        if (isRollingAnimation) return;
-        if (e.target.closest('a, button')) return;
-        const touch = e.touches[0];
-        cardTouchStartX = touch.clientX;
-        cardTouchStartY = touch.clientY;
-        cardDeltaX = 0;
-        cardDeltaY = 0;
-        isCardSwiping = true;
-      }, { passive: true });
-
-      resultCardEl.addEventListener('touchmove', (e) => {
-        if (!isCardSwiping || isRollingAnimation) return;
-        const touch = e.touches[0];
-        cardDeltaX = touch.clientX - cardTouchStartX;
-        cardDeltaY = touch.clientY - cardTouchStartY;
-
-        if (Math.abs(cardDeltaX) > Math.abs(cardDeltaY) && Math.abs(cardDeltaX) > 10) {
-          const rotation = cardDeltaX * 0.04;
-          const opacity = Math.max(0.4, 1 - Math.abs(cardDeltaX) / 450);
-          resultCardEl.style.transform = \`translateX(\${cardDeltaX}px) rotate(\${rotation}deg)\`;
-          resultCardEl.style.opacity = opacity;
-        }
-      }, { passive: true });
-
-      resultCardEl.addEventListener('touchend', () => {
-        if (!isCardSwiping) return;
-        isCardSwiping = false;
-
-        const threshold = 65;
-        if (cardDeltaX > threshold) {
-          // Swipe Right -> Roll next
-          resultCardEl.style.transition = 'transform 0.25s ease-out, opacity 0.25s ease-out';
-          resultCardEl.style.transform = \`translateX(\${window.innerWidth}px) rotate(16deg)\`;
-          resultCardEl.style.opacity = '0';
-          setTimeout(() => {
-            resultCardEl.style.transition = '';
-            resultCardEl.style.transform = '';
-            resultCardEl.style.opacity = '';
-            rollItem();
-          }, 200);
-        } else if (cardDeltaX < -threshold) {
-          // Swipe Left -> Skip
-          resultCardEl.style.transition = 'transform 0.25s ease-out, opacity 0.25s ease-out';
-          resultCardEl.style.transform = \`translateX(-\${window.innerWidth}px) rotate(-16deg)\`;
-          resultCardEl.style.opacity = '0';
-          setTimeout(() => {
-            resultCardEl.style.transition = '';
-            resultCardEl.style.transform = '';
-            resultCardEl.style.opacity = '';
-            skipItem();
-          }, 200);
-        } else {
-          // Snap back
-          resultCardEl.style.transition = 'transform 0.2s ease, opacity 0.2s ease';
-          resultCardEl.style.transform = '';
-          resultCardEl.style.opacity = '';
-          setTimeout(() => {
-            resultCardEl.style.transition = '';
-          }, 200);
-        }
-      });
-
-      resultCardEl.addEventListener('touchcancel', () => {
-        isCardSwiping = false;
-        resultCardEl.style.transform = '';
-        resultCardEl.style.opacity = '';
-      });
-    }
-
-    // Close mobile nav on link click
-    document.querySelectorAll('.mobile-nav a').forEach(a => {
-      a.addEventListener('click', () => {
-        const nav = document.getElementById('mobileNav');
-        const ham = document.getElementById('hamBtn');
-        if (nav && nav.classList.contains('open')) {
-          nav.classList.remove('open');
-          ham.classList.remove('open');
-          document.body.classList.remove('menu-open');
-          document.body.style.overflow = '';
-        }
-      });
-    });
-
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeSearch();
-    });
-
-    // Initialize subfilters
-    updateSubfilterRow();
+    document.querySelectorAll('.mobile-nav a').forEach((a) => a.addEventListener('click', () => { if ($('mobileNav').classList.contains('open')) toggleMobileNav(); }));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSearch(); });
   </script>
-  <script defer src="/assets/search-redirect.js?v=20261002a"></script>
-  <script defer src="/assets/enhance.js?v=20261002h"></script>
-  <script defer src="/assets/img-fit.v2.js?v=20261002a"></script>
+  <script defer src="/assets/search-redirect.js?v=${SCRIPT_V(old, 'search-redirect.js', '20261002a')}"></script>
+  <script defer src="/assets/enhance.js?v=${SCRIPT_V(old, 'enhance.js', '20261002h')}"></script>
   <script src="/assets/lang-switch.js" defer></script>
 </body>
-</html>`;
+</html>
+`;
 }
 
-// ═════════════════════════════════════════════════════════════════════
-// 3. EXECUTE BUILD
-// ═════════════════════════════════════════════════════════════════════
+// Giữ phiên bản ?v= hiện có trên trang (các script đổi phiên bản hàng loạt sẽ cập nhật tiếp)
+function SCRIPT_V(old, name, fallback) {
+  const m = old && old.match(new RegExp('/assets/' + name.replace('.', '\\.') + '\\?v=([\\w.-]+)'));
+  return m ? m[1] : fallback;
+}
+function MOBILE_FIX_V(old) { return SCRIPT_V(old, 'mobile-fix.css', '20261002l'); }
 
-const viHtml = buildHtml('vi');
-const viPath = path.join(root, 'choi-gi.html');
-fs.writeFileSync(viPath, viHtml, 'utf8');
-console.log('✅ Generated choi-gi.html (' + viHtml.length + ' bytes)');
-
-const enHtml = buildHtml('en');
-const enPath = path.join(root, 'en', 'choi-gi.html');
-fs.writeFileSync(enPath, enHtml, 'utf8');
-console.log('✅ Generated en/choi-gi.html (' + enHtml.length + ' bytes)');
+// ═════════════════════════════════════════════════════════════════════
+// 4. GHI FILE
+// ═════════════════════════════════════════════════════════════════════
+const CHECK = process.argv.includes('--check');
+let stale = 0;
+for (const [lang, file] of [['vi', 'choi-gi.html'], ['en', 'en/choi-gi.html']]) {
+  const p = path.join(root, file);
+  const old = fs.existsSync(p) ? fs.readFileSync(p, 'utf8') : '';
+  const html = buildHtml(lang, old);
+  if (html === old) continue;
+  stale++;
+  if (CHECK) console.log('cần tạo lại:', file);
+  else { fs.writeFileSync(p, html, 'utf8'); console.log(`✅ ${file} (${html.length} bytes)`); }
+}
+for (const w of [...new Set(warnings)]) console.warn('⚠️ ', w);
+if (!stale) console.log('choi-gi: đã khớp dữ liệu review + xếp hạng');
+if (CHECK && stale) process.exitCode = 1;

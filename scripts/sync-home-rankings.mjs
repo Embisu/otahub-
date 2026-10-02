@@ -250,3 +250,5 @@ for (const [cat, page] of [['game', 'gaming'], ['anime', 'anime'], ['manga', 'ma
 }
 syncRankingsPage('rankings.html', '', 'vi');
 syncRankingsPage('en/rankings.html', '/en', 'en');
+// Trang Chơi gì (VI + EN): khối "Điểm cao nhất" lấy top 5 từ CATS, điểm từng tựa lấy từ bài review
+await import('./build-choi-gi.mjs');
