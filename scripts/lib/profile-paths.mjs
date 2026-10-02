@@ -17,9 +17,30 @@ const shortSlug = (s) => (s.length <= 60 ? s : s.slice(0, 61).replace(/-[^-]*$/,
 // "Jujutsu Kaisen (Anime)" -> "Jujutsu Kaisen": loại đã có trong nhãn
 export const displayName = (key) => key.replace(/\s*\((?:Anime|Manga)\)$/, '');
 
-// Đường dẫn VI -> EN: /ho-so/x#tab -> /en/profile/x#tab
-export const localize = (p, en) => (p && en ? p.replace(/^\/ho-so\//, '/en/profile/') : p);
-export const pagePath = (slug, en) => (en ? '/en/profile/' : '/ho-so/') + slug;
+// Slug trang hồ sơ: khóa trong assets/series.json là slug EN (/en/profile/<khóa>); bản VI dùng slug theo TÊN VIỆT HÓA
+// (vd. khóa "oshi-no-ko" -> /ho-so/dua-con-cua-than-tuong). Hai bản trùng slug khi tên VI trùng tên gốc.
+export function declaredSlugs() {
+  const declared = readSeries();
+  const out = new Map(), taken = new Set();
+  for (const [slug, s] of Object.entries(declared)) {
+    // slugVi trong series.json ghi đè; mặc định lấy tên Việt hóa, bỏ phần chú thích trong ngoặc (vd. "(Black Clover)")
+    let vi = s.slugVi || shortSlug(slugify(s.name.replace(/\s*\([^)]*\)/g, ''))) || slug;
+    if (taken.has(vi)) vi = slug;
+    taken.add(vi); out.set(slug, vi);
+  }
+  return out;
+}
+let _enBySlugVi = null;
+const enSlugOfVi = (vi) => { _enBySlugVi ||= new Map([...declaredSlugs()].map(([en, v]) => [v, en])); return _enBySlugVi.get(vi) || vi; };
+// { slugVi: slugEn } cho các trang có slug khác nhau (trình duyệt dùng để dựng link EN / hreflang)
+export const slugTable = () => Object.fromEntries([...declaredSlugs()].filter(([en, vi]) => en !== vi).map(([en, vi]) => [vi, en]));
+// Đường dẫn VI -> EN: /ho-so/x#tab -> /en/profile/<slug EN>#tab
+export const localize = (p, en) => (p && en ? p.replace(/^\/ho-so\/([a-z0-9-]+)/, (m, s) => '/en/profile/' + enSlugOfVi(s)) : p);
+// s: thương hiệu { slug, slugVi } (hoặc chuỗi slug dùng chung)
+export const pagePath = (s, en) => {
+  const o = typeof s === 'string' ? { slug: s, slugVi: s } : s;
+  return en ? '/en/profile/' + o.slug : '/ho-so/' + (o.slugVi || o.slug);
+};
 
 function readSeries() {
   return JSON.parse(fs.readFileSync(new URL('assets/series.json', root), 'utf8'));
@@ -29,6 +50,7 @@ function readSeries() {
 // name: tên hiển thị VI (series.json cho phép tên Việt hóa, vd. "Pháp Sư Tiễn Táng Frieren"), nameEn: tên EN
 export function profileSeries(catalog) {
   const declared = readSeries();
+  const viSlugs = declaredSlugs();
   const out = [];
   const taken = new Set();
   const usedSlugs = new Set();
@@ -39,7 +61,7 @@ export function profileSeries(catalog) {
     }));
     if (!editions.length) continue;
     editions.forEach((e) => { taken.add(e.key); e.also.forEach((k) => taken.add(k)); });
-    out.push({ slug, name: s.name, nameEn: s.nameEn || s.name, editions });
+    out.push({ slug, slugVi: viSlugs.get(slug), name: s.name, nameEn: s.nameEn || s.name, editions });
     usedSlugs.add(slug);
   }
   for (const key of Object.keys(catalog).sort()) {
@@ -50,7 +72,7 @@ export function profileSeries(catalog) {
     let n = 2; const base = slug;
     while (usedSlugs.has(slug)) slug = `${base}-${n++}`;
     usedSlugs.add(slug);
-    out.push({ slug, name: displayName(key), nameEn: displayName(key), editions: [{ key, type: e.type, tab: e.type, label: '', labelEn: '', also: [] }] });
+    out.push({ slug, slugVi: slug, name: displayName(key), nameEn: displayName(key), editions: [{ key, type: e.type, tab: e.type, label: '', labelEn: '', also: [] }] });
   }
   return out;
 }
@@ -61,7 +83,7 @@ export function profilePaths(catalog) {
   const paths = {};
   for (const s of profileSeries(catalog)) {
     s.editions.forEach((e, i) => {
-      const p = '/ho-so/' + s.slug + (i ? '#' + e.tab : '');
+      const p = '/ho-so/' + s.slugVi + (i ? '#' + e.tab : '');
       paths[`${e.type}|${e.key}`] = p;
       for (const k of e.also) paths[`${catalog[k].type}|${k}`] = p;
     });
@@ -89,6 +111,8 @@ export function legacyMoves(paths) {
   const legacy = JSON.parse(fs.readFileSync(new URL('scripts/data/legacy-profile-paths.json', root), 'utf8'));
   const out = {};
   for (const [old, k] of Object.entries(legacy)) if (paths[k]) out[old] = paths[k];
+  // URL hồ sơ VI cũ theo slug tiếng Anh -> slug tên Việt hóa
+  for (const [en, vi] of declaredSlugs()) if (en !== vi) out['/ho-so/' + en] = '/ho-so/' + vi;
   return out;
 }
 

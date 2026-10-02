@@ -72,16 +72,30 @@ async function profileTable(env, url, name) {
   return profileTables[name];
 }
 async function profileRedirect(env, url) {
+  // Slug VI (tên Việt hóa) khác slug EN: assets/profile-slugs.json = { slugVi: slugEn }
+  const toEn = async (path) => {
+    const slugs = await profileTable(env, url, 'profile-slugs');
+    return path.replace(/^\/ho-so\/([a-z0-9-]+)/, (x, s) => '/en/profile/' + (slugs[s] || s));
+  };
   let m = url.pathname.match(/^\/(en\/)?(game|anime|manga)-detail\/?$/);
-  let path = null;
+  let path = null, en = false;
   if (m) {
     const title = url.searchParams.get('t');
     if (title) path = (await profileTable(env, url, 'profile-paths'))[`${m[2]}|${title}`];
+    en = !!m[1];
   } else if ((m = url.pathname.match(/^\/(en\/)?((?:game|anime|manga)\/[a-z0-9-]+?)(?:\.html)?\/?$/))) {
     path = (await profileTable(env, url, 'profile-moves'))['/' + m[2]];
+    en = !!m[1];
+  } else if ((m = url.pathname.match(/^\/ho-so\/([a-z0-9-]+?)(?:\.html)?\/?$/))) {
+    // URL hồ sơ VI cũ theo slug tiếng Anh -> slug tên Việt hóa
+    path = (await profileTable(env, url, 'profile-moves'))['/ho-so/' + m[1]];
+  } else if ((m = url.pathname.match(/^\/en\/profile\/([a-z0-9-]+?)(?:\.html)?\/?$/))) {
+    // Link EN dựng từ slug VI (bản cũ của enhance.js) -> slug EN
+    const slug = (await profileTable(env, url, 'profile-slugs'))[m[1]];
+    if (slug) path = '/en/profile/' + slug;
   }
   if (!path) return null;
-  if (m[1]) path = path.replace(/^\/ho-so\//, '/en/profile/');
+  if (en) path = await toEn(path);
   return Response.redirect(`${url.origin}${path}`, 301);
 }
 

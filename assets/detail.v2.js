@@ -104,6 +104,49 @@ var TXT=EN?{
   noArticles:'Chưa có bài viết riêng. Hồ sơ sẽ tự cập nhật khi OtaHub xuất bản nội dung liên quan.'
 };
 
+// Tên gốc và thông tin phát hành lấy từ AniList (entry.meta, scripts/enrich-catalog.mjs): tên tiếng Nhật, romaji, tiếng Anh,
+// loại hình, số tập, mùa, nguồn gốc và đội ngũ chính.
+var NM=EN?{vi:'Vietnamese title',en:'English title',ja:'Japanese title',ro:'Romaji',format:'Format',eps:'Episodes',vols:'Volumes',aired:'Premiered',published:'Published',source:'Source',native:'Native title'}
+  :{vi:'Tên tiếng Việt',en:'Tên tiếng Anh',ja:'Tên tiếng Nhật',ro:'Romaji',format:'Loại hình',eps:'Số tập',vols:'Số tập truyện',aired:'Khởi chiếu',published:'Khởi đăng',source:'Nguồn gốc',native:'Tên gốc'};
+var FORMAT_LBL=EN?{TV:'TV series',TV_SHORT:'TV short',MOVIE:'Film',SPECIAL:'Special',OVA:'OVA',ONA:'ONA (streaming)',MUSIC:'Music video',MANGA:'Manga',ONE_SHOT:'One-shot',NOVEL:'Novel',LIGHT_NOVEL:'Light novel'}
+  :{TV:'Phim truyền hình (TV)',TV_SHORT:'TV ngắn',MOVIE:'Phim chiếu rạp',SPECIAL:'Tập đặc biệt',OVA:'OVA',ONA:'ONA (phát trực tuyến)',MUSIC:'MV âm nhạc',MANGA:'Manga',ONE_SHOT:'Oneshot',NOVEL:'Tiểu thuyết',LIGHT_NOVEL:'Light novel'};
+var SEASON_LBL=EN?{WINTER:'Winter',SPRING:'Spring',SUMMER:'Summer',FALL:'Fall'}:{WINTER:'mùa Đông',SPRING:'mùa Xuân',SUMMER:'mùa Hè',FALL:'mùa Thu'};
+var SOURCE_LBL=EN?{MANGA:'Manga',LIGHT_NOVEL:'Light novel',NOVEL:'Novel',WEB_NOVEL:'Web novel',ORIGINAL:'Original anime',VIDEO_GAME:'Video game',VISUAL_NOVEL:'Visual novel',GAME:'Game',WEB_MANGA:'Web manga',COMIC:'Comic',OTHER:'Other'}
+  :{MANGA:'Manga',LIGHT_NOVEL:'Light novel',NOVEL:'Tiểu thuyết',WEB_NOVEL:'Tiểu thuyết đăng web',ORIGINAL:'Anime nguyên tác',VIDEO_GAME:'Trò chơi điện tử',VISUAL_NOVEL:'Visual novel',GAME:'Trò chơi',WEB_MANGA:'Manga đăng web',COMIC:'Truyện tranh',OTHER:'Khác'};
+var STAFF_LBL=EN?{'Original Creator':'Original creator','Story & Art':'Story & art','Story':'Story','Art':'Art','Director':'Director','Series Composition':'Series composition','Character Design':'Character design','Music':'Music'}
+  :{'Original Creator':'Tác giả gốc','Story & Art':'Tác giả (cốt truyện & minh họa)','Story':'Tác giả cốt truyện','Art':'Họa sĩ','Director':'Đạo diễn','Series Composition':'Kịch bản tổng','Character Design':'Thiết kế nhân vật','Music':'Âm nhạc'};
+function metaRow(label,val,attrs){return val?'<div class="info-row"><span class="ir-label">'+label+'</span><span class="ir-val"'+(attrs||'')+'>'+val+'</span></div>':'';}
+// Dòng tên gọi: tên Việt hóa (bản VI), tên Anh, tên Nhật, romaji. Tên gốc bọc trong .nm-keep để bản dựng VI không đổi nó thành tên Việt hóa.
+function nameRows(entry,name){
+  var m=entry.meta||{};
+  var keep=function(t,lang){return '<span class="nm-keep" lang="'+lang+'">'+esc(t)+'</span>';};
+  // bản VI luôn ghi tên tiếng Anh (tiêu đề trang đã là tên Việt hóa); bản EN chỉ ghi khi khác tiêu đề
+  var en=m.en&&(!EN||m.en!==name)?m.en:'';
+  var rows='';
+  if(!EN)rows+=metaRow(NM.vi,esc(name));
+  if(en)rows+=metaRow(NM.en,keep(en,'en'));
+  if(m.ja)rows+=metaRow(NM.ja,keep(m.ja,'ja'));
+  if(m.romaji&&m.romaji!==en&&m.romaji!==name)rows+=metaRow(NM.ro,keep(m.romaji,'ja-Latn'));
+  return rows;
+}
+function factRows(entry){
+  var m=entry.meta||{};
+  var rows=metaRow(NM.format,esc(FORMAT_LBL[m.format]||''));
+  if(m.format==='MANGA'||m.format==='ONE_SHOT'||m.format==='NOVEL'||m.format==='LIGHT_NOVEL'){
+    if(m.volumes)rows+=metaRow(NM.vols,esc(String(m.volumes)));
+    if(m.year)rows+=metaRow(NM.published,esc(String(m.year)));
+  }else{
+    if(m.episodes)rows+=metaRow(NM.eps,esc(String(m.episodes)));
+    if(m.year)rows+=metaRow(NM.aired,esc(((m.season&&SEASON_LBL[m.season])?SEASON_LBL[m.season]+' ':'')+m.year));
+  }
+  rows+=metaRow(NM.source,esc(SOURCE_LBL[m.source]||''));
+  return rows;
+}
+function staffCredits(entry){
+  var m=entry.meta||{};
+  return (m.staff||[]).filter(function(s){return STAFF_LBL[s.role]&&s.name;}).map(function(s){return {label:STAFF_LBL[s.role],labelEn:STAFF_LBL[s.role],value:s.name};});
+}
+
 var TITLE_IMAGE={
   'Demon Slayer: Infinity Castle':'/assets/img/0feb0c5f50-99889l.jpg','Frieren Season 2':'/assets/img/4a7324f467-138006l.jpg',
   'Sousou no Frieren':'/assets/img/4a7324f467-138006l.jpg','Re:Zero Season 4':'/assets/img/087af8ed98-rezero-s4-hero.jpg',
@@ -268,7 +311,8 @@ function generatedEntry(title){
 }
 
 // Trang hồ sơ tĩnh /game|anime|manga/<slug> (scripts/build-profiles.mjs); thiếu trong bảng thì dùng trang động ?t=
-function localize(p){return EN?p.replace(/^\/ho-so\//,'/en/profile/'):p;}
+function enSlug(s){return (window.OT_PROFILE_SLUGS||{})[s]||s;}
+function localize(p){return EN?p.replace(/^\/ho-so\/([a-z0-9-]+)/,function(m,s){return '/en/profile/'+enSlug(s);}):p;}
 function profilePath(type, title){
   var p=(window.OT_PROFILE_PATHS||{})[type+'|'+title];
   return p?localize(p):(EN?'/en/':'/')+type+'-detail?t='+encodeURIComponent(title);
@@ -288,11 +332,13 @@ function detailArticles(title, entry){
   var linked=((window.OT_PROFILE_ARTICLES||{})[title]||[]).map(function(u){
     return all.find(function(a){return (a.url||a.href)===u;});
   }).filter(Boolean);
-  var matches=linked.concat(all.filter(function(a){return linked.indexOf(a)<0;}).map(function(a){
+  // Trang tĩnh (dựng sẵn) chỉ dùng bài đã gắn đúng tác phẩm (khớp nguyên cụm trong tiêu đề/thẻ); trang động mới dò thêm
+  // theo từ khóa, nhưng phải khớp NGUYÊN TỪ và đủ mọi từ (trước đây "oshi" khớp nhầm "Koshien").
+  var extra=window.OT_PRERENDER||!tokens.length?[]:all.filter(function(a){return linked.indexOf(a)<0;}).filter(function(a){
     var hay=((a.title||'')+' '+(a.desc||'')+' '+((a.tags||[]).join(' '))).toLowerCase();
-    var score=tokens.reduce(function(n,t){return n+(hay.indexOf(t)>-1?1:0);},0);
-    return {a:a,score:score};
-  }).filter(function(x){return x.score>=Math.max(1,Math.min(2,tokens.length));}).sort(function(a,b){return b.score-a.score;}).map(function(x){return x.a;})).slice(0,6);
+    return tokens.every(function(t){return new RegExp('(^|[^a-z0-9à-ỹ])'+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'($|[^a-z0-9à-ỹ])').test(hay);});
+  });
+  var matches=linked.concat(extra).slice(0,6);
   var review=(EN?entry.reviewEn:entry.review)||entry.article;
   if(review&&!matches.some(function(a){return a.url===review||a.href===review;})){
     matches.unshift({url:review,title:(EN?'In-depth review: ':'Đánh giá chuyên sâu: ')+title,img:entry.img,cat:'Review'});
@@ -331,7 +377,7 @@ function renderEntry(title, entry, catalog){
   var viPath=(window.OT_PROFILE_PATHS||{})[TYPE+'|'+title];
   viPath=viPath&&viPath.replace(/#.*/,'');
   var viUrl='https://otahub.asia'+(viPath||'/'+TYPE+'-detail?t='+encodeURIComponent(title));
-  var enUrl='https://otahub.asia'+(viPath?viPath.replace(/^\/ho-so\//,'/en/profile/'):'/en/'+TYPE+'-detail?t='+encodeURIComponent(title));
+  var enUrl='https://otahub.asia'+(viPath?viPath.replace(/^\/ho-so\/([a-z0-9-]+)/,function(m,s){return '/en/profile/'+enSlug(s);}):'/en/'+TYPE+'-detail?t='+encodeURIComponent(title));
   document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(function(link){
     link.setAttribute('href',link.getAttribute('hreflang')==='en'?enUrl:viUrl);
   });
@@ -346,6 +392,7 @@ function renderEntry(title, entry, catalog){
   var schema=document.createElement('script');schema.type='application/ld+json';
   var schemaData={'@context':'https://schema.org','@type':entry.type==='game'?'VideoGame':entry.type==='anime'?'TVSeries':'Book','name':name,'description':entry.desc,'url':pageUrl,'image':entry.img?'https://otahub.asia'+entry.img:undefined,'genre':entry.genre};
   if(entry.platforms)schemaData.gamePlatform=entry.platforms;
+  if(entry.meta){var alt=[entry.meta.ja,entry.meta.romaji,entry.meta.en].filter(function(x,i,a){return x&&x!==name&&a.indexOf(x)===i;});if(alt.length)schemaData.alternateName=alt;}
   // Chỉ khai báo Review khi điểm đến từ bài review đã đăng
   if(hasScore)schemaData.review={'@type':'Review','author':{'@type':'Organization','name':'OtaHub'},'url':review?'https://otahub.asia'+review:pageUrl,'reviewRating':{'@type':'Rating','ratingValue':entry.score,'bestRating':'10','worstRating':'0'}};
   schema.textContent=JSON.stringify(schemaData);document.head.appendChild(schema);
@@ -369,6 +416,8 @@ function renderEntry(title, entry, catalog){
 
   var credits=entry.credits||((TITLE_CREDITS[title]||[]).map(function(c){return {label:c[0],value:c[1]};}));
   credits=credits.filter(function(c){return c.value&&c.value!==entry.studio;});
+  // đội ngũ chính từ AniList, bỏ dòng đã có cùng nhãn/giá trị
+  staffCredits(entry).forEach(function(c){if(!credits.some(function(x){return x.value===c.value;}))credits=credits.concat([c]);});
   var creditsHtml=credits.length?'<h2 class="review-heading">'+TXT.credits+'</h2><div class="credit-grid">'+credits.map(function(c){var label=EN?(c.labelEn||CREDIT_LABEL_EN[c.label]||c.label):c.label;return '<div class="credit-item"><div class="credit-label">'+esc(label)+'</div><div class="credit-value">'+esc(c.value)+'</div></div>';}).join('')+'</div>':'';
 
   // Tiêu đề mục theo đúng vai trò đoạn văn: giới thiệu, nhận định, kết luận
@@ -405,7 +454,7 @@ function renderEntry(title, entry, catalog){
       '<div class="ah-info">'+
         '<div class="ah-badges"><span class="ah-badge type">'+LABEL[entry.type]+'</span>'+(entry.genre?'<span class="ah-badge">'+esc(entry.genre)+'</span>':'')+(entry.status?'<span class="ah-badge"'+flipAttr+'>'+esc(entry.status)+'</span>':'')+'</div>'+
         '<h1 class="ah-title">'+esc(name)+'</h1>'+
-        (entry.studio?'<div class="ah-title-jp">'+esc(entry.studio)+'</div>':'')+
+        (entry.meta&&(entry.meta.ja||entry.meta.romaji)?'<div class="ah-title-jp">'+(entry.meta.ja?'<span class="nm-keep" lang="ja">'+esc(entry.meta.ja)+'</span>':'')+(entry.meta.ja&&entry.meta.romaji&&entry.meta.romaji!==name?' · ':'')+(entry.meta.romaji&&entry.meta.romaji!==name?'<span class="nm-keep" lang="ja-Latn">'+esc(entry.meta.romaji)+'</span>':'')+'</div>':(entry.studio?'<div class="ah-title-jp">'+esc(entry.studio)+'</div>':''))+
         '<p class="ah-synopsis">'+esc(entry.hook||storyParas[0])+'</p>'+
         '<div class="ah-scores">'+heroScore+heroCta+'</div>'+
       '</div>'+
@@ -415,6 +464,7 @@ function renderEntry(title, entry, catalog){
     '<main class="anime-main">'+
       '<nav class="breadcrumb" aria-label="breadcrumb"><a href="'+(EN?'/en':'/')+'">OtaHub</a><span class="breadcrumb-sep">›</span><a href="'+CATPAGE[entry.type]+'">'+LABEL[entry.type]+'</a><span class="breadcrumb-sep">›</span><span>'+esc(name)+'</span></nav>'+
       '<div class="info-table">'+
+        nameRows(entry,name)+factRows(entry)+
         (entry.studio?'<div class="info-row"><span class="ir-label">'+META_LABEL[entry.type]+'</span><span class="ir-val">'+esc(entry.studio)+'</span></div>':'')+
         (entry.genre?'<div class="info-row"><span class="ir-label">'+TXT.genre+'</span><span class="ir-val">'+esc(entry.genre)+'</span></div>':'')+
         (entry.platforms?'<div class="info-row"><span class="ir-label">'+TXT.platform+'</span><span class="ir-val">'+esc(entry.platforms)+'</span></div>':'')+
@@ -491,10 +541,11 @@ if(root.hasAttribute('data-prerendered')){
   renderEmpty();
 }else{
   Promise.all([
-    fetch('/assets/catalog.json?v=20261002p').then(function(r){return r.json();}),
-    fetch('/assets/profile-paths.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})
+    fetch('/assets/catalog.json?v=20261002q').then(function(r){return r.json();}),
+    fetch('/assets/profile-paths.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}),
+    fetch('/assets/profile-slugs.json').then(function(r){return r.ok?r.json():{};}).catch(function(){return {};})
   ]).then(function(res){
-    var catalog=res[0];window.OT_PROFILE_PATHS=res[1];
+    var catalog=res[0];window.OT_PROFILE_PATHS=res[1];window.OT_PROFILE_SLUGS=res[2];
     var found=findEntry(catalog, qTitle);
     // Tựa đã có trang hồ sơ tĩnh: chuyển sang URL chính (worker thường đã chuyển hướng 301 trước)
     var clean=found&&window.OT_PROFILE_PATHS[TYPE+'|'+found[0]];

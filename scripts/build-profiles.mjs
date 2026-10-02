@@ -17,7 +17,7 @@
 // Chạy lại sau khi sửa assets/catalog.json hoặc assets/series.json (npm run scores đã gọi script này).
 import fs from 'node:fs';
 import vm from 'node:vm';
-import { profileSeries, profilePaths, aliasPaths, legacyMoves, localize, pagePath, displayName, rewriteProfileLinks, PROFILE_TYPES as TYPES } from './lib/profile-paths.mjs';
+import { profileSeries, profilePaths, aliasPaths, legacyMoves, localize, pagePath, slugTable, displayName, rewriteProfileLinks, PROFILE_TYPES as TYPES } from './lib/profile-paths.mjs';
 import { profileMatchers, profilesForArticle, articleInfo, nameTable, tagTable, norm } from './lib/profile-links.mjs';
 
 const CHECK = process.argv.includes('--check');
@@ -97,7 +97,7 @@ function render(type, key, en) {
     querySelectorAll: () => [],
     set title(v) { out.title = v; }, get title() { return out.title; }
   };
-  const window = { IDX, OT_PROFILE_PATHS: allPaths, OT_PROFILE_ARTICLES: profileArticles[en ? 'en' : 'vi'], OT_PRERENDER: true };
+  const window = { IDX, OT_PROFILE_PATHS: allPaths, OT_PROFILE_SLUGS: slugTable(), OT_PROFILE_ARTICLES: profileArticles[en ? 'en' : 'vi'], OT_PRERENDER: true };
   const fakeFetch = (url) => Promise.resolve({ ok: true, json: () => Promise.resolve(/catalog\.json/.test(url) ? catalog : allPaths) });
   const ctx = { document, window, location: { pathname: (en ? '/en/' : '/') + type + '-detail', search: '?t=' + encodeURIComponent(key) },
     URLSearchParams, fetch: fakeFetch, Promise, console, setTimeout, encodeURIComponent, JSON, Object, Array, Math, isNaN, parseFloat };
@@ -141,8 +141,10 @@ const VI_NAMES = (() => {
   return pairs.map(([en, vn]) => [new RegExp('(?<![\\w(])' + en.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?![\\w])', 'g'), vn]);
 })();
 function viNames(html) {
+  let keep = false;   // trong <span class="nm-keep">: tên gốc (Anh/Nhật/romaji) giữ nguyên, không đổi sang tên Việt hóa
   return html.split(/(<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<[^>]+>)/).map((part) => {
-    if (!part || part.startsWith('<')) return part;
+    if (part && part.startsWith('<')) { if (/^<span class="nm-keep"/.test(part)) keep = true; else if (keep && part === '</span>') keep = false; return part; }
+    if (!part || keep) return part;
     for (const [rx, vn] of VI_NAMES) part = part.replace(rx, vn);
     return part;
   }).join('');
@@ -152,8 +154,8 @@ function pageHtml(s, en, rs) {
   const main = s.editions[0], r0 = rs[0];
   const multi = s.editions.length > 1;
   const tpl = read((en ? 'en/' : '') + main.type + '-detail.html');
-  const url = ORIGIN + pagePath(s.slug, en);
-  const viUrl = ORIGIN + pagePath(s.slug, false), enUrl = ORIGIN + pagePath(s.slug, true);
+  const url = ORIGIN + pagePath(s, en);
+  const viUrl = ORIGIN + pagePath(s, false), enUrl = ORIGIN + pagePath(s, true);
   const desc = r0.metas['meta[name="description"]'] || '';
   const robots = rs.some((r) => /^index/.test(r.metas['meta[name="robots"]'] || '')) ? 'index, follow, max-image-preview:large' : 'noindex, follow';
   const e0 = catalog[main.key];
@@ -218,7 +220,7 @@ for (const s of series) {
       rs.push(r);
     }
     const html = en ? pageHtml(s, en, rs) : viNames(pageHtml(s, en, rs));
-    pages.push({ file: pagePath(s.slug, en).slice(1) + '.html', html, indexable: /<meta name="robots" content="index/.test(html), url: ORIGIN + pagePath(s.slug, en) });
+    pages.push({ file: pagePath(s, en).slice(1) + '.html', html, indexable: /<meta name="robots" content="index/.test(html), url: ORIGIN + pagePath(s, en) });
   }
 }
 
@@ -260,10 +262,11 @@ const articleUpdates = articles.map((a) => { const before = read(a.file); return
   .filter((u) => u.after !== u.before);
 
 const pathsJson = JSON.stringify(allPaths, null, 1) + '\n';
+const slugsJson = JSON.stringify(slugTable(), null, 1) + '\n';
 const movesJson = JSON.stringify(moves, null, 1) + '\n';
 if (CHECK) {
   const stale = pages.filter((p) => !exists(p.file) || read(p.file) !== p.html).map((p) => p.file).concat(articleUpdates.map((u) => u.file));
-  const dataStale = [['assets/profile-paths.json', pathsJson], ['assets/profile-moves.json', movesJson], ['assets/profile-names.json', namesJson]].filter(([f, s]) => !exists(f) || read(f) !== s).map(([f]) => f);
+  const dataStale = [['assets/profile-paths.json', pathsJson], ['assets/profile-slugs.json', slugsJson], ['assets/profile-moves.json', movesJson], ['assets/profile-names.json', namesJson]].filter(([f, s]) => !exists(f) || read(f) !== s).map(([f]) => f);
   const old = TYPES.flatMap((t) => [t, 'en/' + t]).filter(exists);
   if (stale.length || dataStale.length || old.length) { console.error(`Trang hồ sơ chưa cập nhật (${stale.length} trang${dataStale.length ? ' + ' + dataStale.join(', ') : ''}${old.length ? ' + thư mục cũ ' + old.join(', ') : ''}), chạy: node scripts/build-profiles.mjs`); process.exit(1); }
   console.log(`Hồ sơ tĩnh: ${pages.length} trang khớp dữ liệu.`);
@@ -281,6 +284,7 @@ for (const dir of ['ho-so', 'en/profile']) {
 for (const dir of TYPES.flatMap((t) => [t, 'en/' + t])) if (exists(dir)) fs.rmSync(new URL(dir + '/', root), { recursive: true });
 for (const p of pages) write(p.file, p.html);
 write('assets/profile-paths.json', pathsJson);
+write('assets/profile-slugs.json', slugsJson);
 write('assets/profile-moves.json', movesJson);
 write('assets/profile-names.json', namesJson);
 
