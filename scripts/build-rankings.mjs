@@ -16,6 +16,7 @@
 // Cả chuỗi (xếp hạng -> hồ sơ -> trang chủ/chuyên mục -> ảnh thu nhỏ): npm run scores
 import fs from 'node:fs';
 import vm from 'node:vm';
+import { profileKeyForReview } from './lib/profile-review-map.mjs';
 
 const CHECK = process.argv.includes('--check');
 const root = new URL('../', import.meta.url);
@@ -24,6 +25,7 @@ const write = (f, s) => fs.writeFileSync(new URL(f, root), s, 'utf8');
 const exists = (f) => fs.existsSync(new URL(f, root));
 
 const CATS_ORDER = ['game', 'anime', 'manga'];
+const CATALOG = JSON.parse(read('assets/catalog.json'));
 const TOP_N = 10;
 // Không phải tác phẩm để xếp hạng
 const NOT_RANKED = { ns2: 'phần cứng (máy Nintendo Switch 2)', wuwa24: 'bài phân tích bản cập nhật 3.6, không chấm điểm trong bài' };
@@ -144,10 +146,11 @@ function catsLiteral(lang) {
     const items = result[cat].map((c) => {
       const r = isVi ? c.vi : c.en;
       const { studio, genre } = splitSub(r.sub, isVi);
-      return { title: workTitle(r, lang), url: r.url, img: isVi ? c.img : c.enImg, studio, genre, score: c.score.toFixed(1), date: c.date };
+      // profile: khóa hồ sơ (catalog.json) để bấm vào tựa mở trang hồ sơ; null nếu tựa chưa có hồ sơ (về bài review)
+      return { title: workTitle(r, lang), url: r.url, profile: profileKeyForReview(CATALOG, c.id, cat), img: isVi ? c.img : c.enImg, studio, genre, score: c.score.toFixed(1), date: c.date };
     });
-    const top = items.slice(0, 3).map((t) => `      {img:${q(t.img)},title:${q(t.title)},url:${q(t.url)},studio:${q(t.studio)},genre:${q(t.genre)},score:${q(t.score)},date:${q(t.date)},trend:'=',trendDir:'eq',tag:null,tagAcc:'rgba(251,191,36,.3)'}`);
-    const rest = items.slice(3).map((t) => `      {img:${q(t.img)},title:${q(t.title)},url:${q(t.url)},studio:${q(t.studio)},sub:${q(t.genre)},score:${q(t.score)},date:${q(t.date)},sc:'var(--cyan)',w:${q(Math.round(parseFloat(t.score) * 10) + '%')},trend:'=',dir:'eq',pills:[]}`);
+    const top = items.slice(0, 3).map((t) => `      {img:${q(t.img)},title:${q(t.title)},url:${q(t.url)},profile:${t.profile ? q(t.profile) : 'null'},studio:${q(t.studio)},genre:${q(t.genre)},score:${q(t.score)},date:${q(t.date)},trend:'=',trendDir:'eq',tag:null,tagAcc:'rgba(251,191,36,.3)'}`);
+    const rest = items.slice(3).map((t) => `      {img:${q(t.img)},title:${q(t.title)},url:${q(t.url)},profile:${t.profile ? q(t.profile) : 'null'},studio:${q(t.studio)},sub:${q(t.genre)},score:${q(t.score)},date:${q(t.date)},sc:'var(--cyan)',w:${q(Math.round(parseFloat(t.score) * 10) + '%')},trend:'=',dir:'eq',pills:[]}`);
     out.push(`  ${cat}:{\n    label:${q(LABEL[lang][cat])},accent:${q(ACCENT[cat])},\n    top:[\n${top.join(',\n')}\n    ],\n    rest:[\n${rest.join(',\n')}\n    ]\n  }`);
   }
   return '{\n' + out.join(',\n') + '\n}';

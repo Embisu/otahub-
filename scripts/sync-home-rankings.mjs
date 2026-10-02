@@ -49,10 +49,16 @@ function matchingClose(html, start) {
 
 function rankedItems(group) {
   const all = [
-    ...group.top.map((t) => ({ title: t.title, url: t.url, img: t.img, score: t.score, studio: t.studio, sub: t.studio, tag: t.tag })),
-    ...group.rest.map((r) => ({ title: r.title, url: r.url, img: r.img, score: r.score, studio: r.studio, subOnly: r.sub, sub: `${r.studio} · ${r.sub}`, pills: r.pills }))
+    ...group.top.map((t) => ({ title: t.title, url: t.url, profile: t.profile, img: t.img, score: t.score, studio: t.studio, sub: t.studio, tag: t.tag })),
+    ...group.rest.map((r) => ({ title: r.title, url: r.url, profile: r.profile, img: r.img, score: r.score, studio: r.studio, subOnly: r.sub, sub: `${r.studio} · ${r.sub}`, pills: r.pills }))
   ];
   return all.map((x, i) => ({ ...x, i })).sort((a, b) => parseFloat(b.score) - parseFloat(a.score) || a.i - b.i);
+}
+
+// Link hồ sơ của một tựa trên bảng xếp hạng (khóa hồ sơ do build-rankings.mjs ghi vào CATS).
+function profileHref(item, prefix, type) {
+  if (item.profile) return `${prefix}/${type}-detail?t=${encodeURIComponent(item.profile)}`;
+  return item.url || `${prefix}/${type}-detail?t=${encodeURIComponent(item.title)}`;
 }
 
 function cardItem(item, idx, prefix, type) {
@@ -61,8 +67,8 @@ function cardItem(item, idx, prefix, type) {
   if (item.tag) pills.push(`<span class="rk-tag-pill" style="border-color:${item.tag.c};color:${item.tag.t}">${esc(item.tag.l)}</span>`);
   for (const p of item.pills || []) pills.push(`<span class="rk-tag-pill" style="border-color:${p.c};color:${p.t}">${esc(p.l)}</span>`);
   const tags = pills.length ? `<div class="rk-tags">${pills.join('')}</div>` : '';
-  // link thẳng tới bài review (nguồn của điểm); dữ liệu cũ không có url thì về trang hồ sơ
-  const href = item.url || `${prefix}/${type}-detail?t=${encodeURIComponent(item.title)}`;
+  // Bấm vào tựa mở trang hồ sơ (có điểm + link bài review); tựa chưa có hồ sơ thì về thẳng bài review.
+  const href = profileHref(item, prefix, type);
   const top = idx < 3 ? ` top${idx + 1}` : '';
   const width = `${Math.round(parseFloat(item.score) * 10)}%`;
   return `<a class="rk-item${top}" href="${href}"><div class="rk-num">${pad(idx + 1)}</div><div class="rk-thumb"><img src="${thumbS(item.img)}" alt="${esc(item.title)}" loading="lazy" width="76" height="76"></div><div class="rk-info"><div class="rk-name">${esc(item.title)}</div><div class="rk-sub">${esc(item.sub)}</div>${tags}</div><div class="rk-score-col"><div class="rk-score" style="color:${color}">${item.score}</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="${width}" style="background:${color}"></div></div></div></a>`;
@@ -170,8 +176,8 @@ const thumbS = (u) => (/^\/assets\/img\/(?!_[ts]\/|brand\/)[^?#]+\.(jpe?g|png|we
 function syncSideTop(file, rankingsFile, cat, lang) {
   const group = loadCats(rankingsFile)[cat];
   const items = [
-    ...group.top.map((t) => ({ title: t.title, url: t.url, img: t.img, score: t.score, sub: [t.studio, t.genre].filter(Boolean).join(' · ') })),
-    ...group.rest.map((r) => ({ title: r.title, url: r.url, img: r.img, score: r.score, sub: [r.studio, r.sub].filter(Boolean).join(' · ') }))
+    ...group.top.map((t) => ({ title: t.title, url: t.url, profile: t.profile, img: t.img, score: t.score, sub: [t.studio, t.genre].filter(Boolean).join(' · ') })),
+    ...group.rest.map((r) => ({ title: r.title, url: r.url, profile: r.profile, img: r.img, score: r.score, sub: [r.studio, r.sub].filter(Boolean).join(' · ') }))
   ].slice(0, 5);
   let html = read(file);
   const headRe = /<div class="side-head" id="side-head">[^<]*<\/div>/;
@@ -179,7 +185,7 @@ function syncSideTop(file, rankingsFile, cat, lang) {
   if (at < 0) throw new Error('Thiếu side-head trong ' + file);
   const boxStart = html.lastIndexOf('<div class="side-box">', at);
   const boxEnd = matchingClose(html, boxStart);
-  const rows = items.map((it, i) => `<a class="rk t${i + 1}" href="${it.url}">
+  const rows = items.map((it, i) => `<a class="rk t${i + 1}" href="${profileHref(it, lang === 'en' ? '/en' : '', cat)}">
           <div class="rk-num">${i + 1}</div>
           <div class="rk-poster"><img src="${thumbS(it.img)}" alt="${esc(it.title)}" loading="lazy" width="46" height="62"></div>
           <div class="rk-info"><div class="rk-title">${esc(it.title)}</div><div class="rk-sub">${esc(it.sub)}</div></div>

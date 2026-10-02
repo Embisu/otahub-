@@ -10,25 +10,11 @@
 // Chạy:  node scripts/sync-profile-scores.mjs          (kiểm tra + ghi catalog.json)
 //        node scripts/sync-profile-scores.mjs --check  (chỉ kiểm tra)
 import { read, write, loadReviews, verifiedReviews, articleSummary } from './lib/review-scores.mjs';
+import { PROFILE_REVIEW } from './lib/profile-review-map.mjs';
 
 const CHECK = process.argv.includes('--check');
 
 // Hồ sơ -> id bài review (reviews.html). Cùng loại (game/anime/manga) mới được ghép.
-const PROFILE_REVIEW = {
-  'Elden Ring: Shadow of the Erdtree': 'ersote', 'Monster Hunter Wilds': 'mhw', 'Wuthering Waves': 'wuwa',
-  'Genshin Impact': 'gs70sn', 'Honkai: Star Rail': 'hsr', 'Black Myth: Wukong': 'bmwk',
-  'Ghost of Yōtei: Complete Edition': 'goy', 'Suikoden STAR LEAP': 'sksl', 'Split Fiction': 'spf',
-  'Death Stranding 2: On the Beach': 'ds2', 'Kingdom Come: Deliverance II': 'kcd2',
-  'Metal Gear Solid Δ: Snake Eater': 'mgsdelta', 'Mafia: The Old Country': 'mafiaoc',
-  'Warhammer 40,000: Space Marine 2': 'sm2cr', "Girls' Frontline 2: Exilium": 'gfl2',
-  'Kaiju No.8 THE GAME': 'kj8game', 'Blue Protocol: Star Resonance': 'bp',
-  'Spy x Family': 'sxfanime', 'Demon Slayer: Infinity Castle': 'dsic', 'Chainsaw Man: Reze Arc': 'csmreze',
-  'Attack on Titan: Final Season': 'aotfs', 'Jujutsu Kaisen (Anime)': 'jjkanime', 'Dandadan Season 2': 'ddd2',
-  'Oshi no Ko': 'onkanime', 'Chainsaw Man (Anime)': 'csmanime',
-  'One Piece': 'opfs', 'One Piece: Egghead Arc': 'opeg', 'Chainsaw Man': 'csmmanga2', 'Chainsaw Man (Manga)': 'csmmanga2',
-  'Jujutsu Kaisen': 'jjkfinal', 'Vinland Saga': 'vlsaga', 'Dandadan': 'ddmg', 'Kaiju No.8': 'kj8m',
-  'Kagurabachi': 'kgb', 'Black Clover': 'bcfv'
-};
 
 // Đoạn văn mẫu (không mang thông tin riêng của tác phẩm) -> gỡ khỏi hồ sơ
 const BOILERPLATE = [
