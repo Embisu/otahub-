@@ -14,6 +14,8 @@
     "scores": "node scripts/build-rankings.mjs && node scripts/sync-ranking-catalog.mjs && node scripts/sync-profile-scores.mjs && node scripts/sync-home-rankings.mjs && python scripts/build-thumbs.py --write",
     "hubs": "node scripts/sync-hub-articles.mjs",
     "hubs:check": "node scripts/sync-hub-articles.mjs --check",
+    "authors": "node scripts/sync-article-authors.mjs",
+    "authors:check": "node scripts/sync-article-authors.mjs --check",
     "chrome": "node scripts/sync-site-chrome.mjs",
     "chrome:check": "node scripts/sync-site-chrome.mjs --check",
     "scores:check": "node scripts/build-rankings.mjs --check && node scripts/sync-profile-scores.mjs --check",
