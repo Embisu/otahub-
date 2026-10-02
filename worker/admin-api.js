@@ -513,12 +513,12 @@ async function handleGhPut(request, env, ghPath) {
   if (/\.html$/i.test(ghPath) && !isImageUpload) {
     content = content.replace(
       /\/assets\/enhance\.js(?:\?v=[^"']*)?/gi,
-      '/assets/enhance.js?v=20261002d'
+      '/assets/enhance.js?v=20261002f'
     );
     if (!/\/assets\/mobile-fix\.css(?:\?v=[^"']*)?/i.test(content) && /<\/head>/i.test(content)) {
       content = content.replace(
         /<\/head>/i,
-        '<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002e">\n</head>'
+        '<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002i">\n</head>'
       );
     }
   }

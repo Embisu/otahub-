@@ -486,6 +486,7 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
         { name: '🎮 Gaming', url: '/en/gaming', match: ['/en/gaming'] },
         { name: '🎬 Anime', url: '/en/anime', match: ['/en/anime'] },
         { name: '📖 Manga', url: '/en/manga', match: ['/en/manga'] },
+        { name: '📅 Schedule', url: '/en/lich-phat-song', match: ['/en/lich-phat-song'] },
         { name: '⭐ Reviews', url: '/en/reviews', match: ['/en/reviews'] },
         { name: '🏆 Rankings', url: '/en/rankings', match: ['/en/rankings'] },
         { name: '💡 Deep Dives', url: '/en/in-depth', match: ['/en/in-depth'] }
@@ -494,6 +495,7 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
         { name: '🎮 Gaming', url: '/gaming', match: ['/gaming'] },
         { name: '🎬 Anime', url: '/anime', match: ['/anime'] },
         { name: '📖 Manga', url: '/manga', match: ['/manga'] },
+        { name: '📅 Lịch phát sóng', url: '/lich-phat-song', match: ['/lich-phat-song'] },
         { name: '⭐ Đánh giá', url: '/reviews', match: ['/reviews'] },
         { name: '🏆 Xếp hạng', url: '/rankings', match: ['/rankings'] },
         { name: '🎲 Chơi Gì?', url: '/choi-gi', match: ['/choi-gi'] },
@@ -707,4 +709,37 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
   var t;
   window.addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(function(){ items.forEach(apply); }, 150); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+
+/* ── ☰ Menu trượt: hàm dự phòng ──
+   Một số trang hub (Gaming, Anime, Manga) gọi toggleMobileNav() nhưng không khai báo hàm này, nên nút ☰
+   và nút "Menu" ở thanh dưới không mở được menu. Chỉ dùng khi trang không tự định nghĩa. */
+(function(){
+  function toggle(){
+    var n = document.getElementById('mobileNav') || document.getElementById('mobnav') || document.querySelector('.mobile-nav');
+    if (!n) return;
+    var o = n.classList.toggle('open');
+    var h = document.getElementById('hamBtn') || document.getElementById('ham') || document.querySelector('.ham');
+    if (h) h.classList.toggle('open', o);
+    document.body.style.overflow = o ? 'hidden' : '';
+  }
+  if (typeof window.toggleMobileNav !== 'function') window.toggleMobileNav = toggle;
+  if (typeof window.toggleMob !== 'function') window.toggleMob = toggle;
+})();
+
+/* ── 🔍 Tìm kiếm: hàm dự phòng ──
+   27 trang (Anime, trang tác giả, trang chi tiết...) có nút tìm kiếm nhưng không khai báo openSearch(),
+   nên nút ở đầu trang và ở thanh dưới không làm gì. Có lớp phủ tìm kiếm thì mở, không thì sang /tag. */
+(function(){
+  if (typeof window.openSearch === 'function') return;
+  window.openSearch = function(){
+    var ov = document.getElementById('searchOverlay') || document.querySelector('.search-overlay');
+    if (ov) {
+      ov.classList.add('open');
+      var inp = ov.querySelector('input');
+      if (inp) setTimeout(function(){ inp.focus(); }, 50);
+      return;
+    }
+    location.href = '/tag';
+  };
 })();

@@ -1156,6 +1156,52 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 
 .stag:hover{border-color:rgba(0,242,255,.3);color:#00f2ff;background:rgba(0,242,255,.06)}
 
+
+/* rk-redesign 2026-10-02 */
+.rk-hero{position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:44px 24px 26px}
+.rk-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan)}
+.rk-eyebrow::before{content:'';width:26px;height:2px;background:linear-gradient(90deg,var(--cyan),var(--sakura))}
+.rk-h1{font-family:var(--fd);font-weight:800;font-size:clamp(26px,3.3vw,40px);line-height:1.16;color:#fff;margin:14px 0 12px;letter-spacing:-.015em;max-width:860px}
+.rk-lede{font-size:15px;line-height:1.75;color:rgba(240,238,255,.72);max-width:760px;margin:0}
+.rk-lede a{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(0,242,255,.35)}
+.rk-lede a:hover{border-bottom-color:var(--cyan)}
+.rk-meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:16px;font-size:12px;color:rgba(240,238,255,.5);letter-spacing:.02em}
+.rk-meta span{display:inline-flex;align-items:center;gap:7px}
+.rk-meta span::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.rk-meta span+span::before{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+.cat-strip{top:60px!important}
+.main-wrap{padding-top:28px!important}
+.week-row,.rk-editorial-notice,.rk-table-head{display:none!important}
+.pod-item{border-radius:14px}
+.pod-item::after{border-radius:14px}
+.pod-item.p1{box-shadow:0 0 0 1px rgba(251,191,36,.45),0 24px 60px -20px rgba(251,191,36,.35)}
+@media(min-width:769px){
+  .podium{grid-template-columns:1fr 1.18fr 1fr!important;gap:16px!important;align-items:end!important;margin-bottom:24px!important}
+  .pod-item.p1{order:2;min-height:390px!important}
+  .pod-item.p2{order:1;min-height:330px!important}
+  .pod-item.p3{order:3;min-height:300px!important}
+  .p1 .pod-title{font-size:clamp(20px,2vw,26px)}
+}
+.rk-table{border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.07);margin-top:8px!important}
+.rk-row{grid-template-columns:56px 64px minmax(0,1fr) 220px!important;gap:18px!important;padding:14px 22px!important}
+.rkr-num{font-size:24px!important;font-weight:800!important;color:rgba(240,238,255,.3)!important;text-align:center!important}
+.rkr-thumb{width:64px!important;height:64px!important;border-radius:10px;overflow:hidden}
+.rkr-score-col{display:flex!important;align-items:center;justify-content:flex-end;gap:14px}
+.rkr-bar-wrap{order:-1;flex:1;max-width:130px;height:6px!important;border-radius:99px;margin:0!important;overflow:hidden}
+.rkr-bar{border-radius:99px}
+.rkr-score{font-size:24px!important;margin:0!important;min-width:48px;text-align:right}
+.rkr-pill{border-radius:99px}
+@media(max-width:768px){
+  .rk-hero{padding:26px 16px 18px}
+  .rk-lede{font-size:14px}
+  .main-wrap{padding-top:18px!important}
+  .rk-row{grid-template-columns:30px 52px minmax(0,1fr) auto!important;gap:12px!important;padding:12px 14px!important}
+  .rkr-num{font-size:17px!important}
+  .rkr-thumb{width:52px!important;height:52px!important;border-radius:8px}
+  .rkr-bar-wrap{display:none}
+  .rkr-score{font-size:20px!important;min-width:0}
+}
+
 /* pod-rank-contrast */
 @media(max-width:768px){.pod-item{min-height:250px!important}.pod-body{padding-top:64px!important}}
 .pod-rank{background-clip:padding-box;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(0,0,0,.45)}
@@ -1198,7 +1244,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002e">
+<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002i">
 <script type="application/ld+json" id="rankings-itemlist">{"@context":"https://schema.org","@graph":[{"@type":"ItemList","name":"PC / Console Games OtaHub ranking","itemListOrder":"https://schema.org/ItemListOrderDescending","numberOfItems":11,"itemListElement":[{"@type":"ListItem","position":1,"name":"Elden Ring: Shadow of the Erdtree","url":"https://otahub.asia/en/game-detail?t=Elden%20Ring%3A%20Shadow%20of%20the%20Erdtree"},{"@type":"ListItem","position":2,"name":"Split Fiction","url":"https://otahub.asia/en/game-detail?t=Split%20Fiction"},{"@type":"ListItem","position":3,"name":"Death Stranding 2: On the Beach","url":"https://otahub.asia/en/game-detail?t=Death%20Stranding%202%3A%20On%20the%20Beach"},{"@type":"ListItem","position":4,"name":"Kingdom Come: Deliverance II","url":"https://otahub.asia/en/game-detail?t=Kingdom%20Come%3A%20Deliverance%20II"},{"@type":"ListItem","position":5,"name":"Monster Hunter Wilds","url":"https://otahub.asia/en/game-detail?t=Monster%20Hunter%20Wilds"},{"@type":"ListItem","position":6,"name":"Ghost of Yōtei: Complete Edition","url":"https://otahub.asia/en/game-detail?t=Ghost%20of%20Y%C5%8Dtei%3A%20Complete%20Edition"},{"@type":"ListItem","position":7,"name":"Big Walk","url":"https://otahub.asia/en/game-detail?t=Big%20Walk"},{"@type":"ListItem","position":8,"name":"Black Myth: Wukong","url":"https://otahub.asia/en/game-detail?t=Black%20Myth%3A%20Wukong"},{"@type":"ListItem","position":9,"name":"Metal Gear Solid Δ: Snake Eater","url":"https://otahub.asia/en/game-detail?t=Metal%20Gear%20Solid%20%CE%94%3A%20Snake%20Eater"},{"@type":"ListItem","position":10,"name":"Mafia: The Old Country","url":"https://otahub.asia/en/game-detail?t=Mafia%3A%20The%20Old%20Country"},{"@type":"ListItem","position":11,"name":"Warhammer 40,000: Space Marine 2","url":"https://otahub.asia/en/game-detail?t=Warhammer%2040%2C000%3A%20Space%20Marine%202"}]},{"@type":"ItemList","name":"Mobile & Gacha Games OtaHub ranking","itemListOrder":"https://schema.org/ItemListOrderDescending","numberOfItems":8,"itemListElement":[{"@type":"ListItem","position":1,"name":"Wuthering Waves","url":"https://otahub.asia/en/game-detail?t=Wuthering%20Waves"},{"@type":"ListItem","position":2,"name":"Honkai: Star Rail","url":"https://otahub.asia/en/game-detail?t=Honkai%3A%20Star%20Rail"},{"@type":"ListItem","position":3,"name":"Genshin Impact","url":"https://otahub.asia/en/game-detail?t=Genshin%20Impact"},{"@type":"ListItem","position":4,"name":"Suikoden STAR LEAP","url":"https://otahub.asia/en/game-detail?t=Suikoden%20STAR%20LEAP"},{"@type":"ListItem","position":5,"name":"Honor of Kings Global","url":"https://otahub.asia/en/game-detail?t=Honor%20of%20Kings%20Global"},{"@type":"ListItem","position":6,"name":"Girls' Frontline 2: Exilium","url":"https://otahub.asia/en/game-detail?t=Girls'%20Frontline%202%3A%20Exilium"},{"@type":"ListItem","position":7,"name":"Kaiju No.8 THE GAME","url":"https://otahub.asia/en/game-detail?t=Kaiju%20No.8%20THE%20GAME"},{"@type":"ListItem","position":8,"name":"Blue Protocol: Star Resonance","url":"https://otahub.asia/en/game-detail?t=Blue%20Protocol%3A%20Star%20Resonance"}]},{"@type":"ItemList","name":"Anime Reviews OtaHub ranking","itemListOrder":"https://schema.org/ItemListOrderDescending","numberOfItems":7,"itemListElement":[{"@type":"ListItem","position":1,"name":"Demon Slayer: Infinity Castle","url":"https://otahub.asia/en/anime-detail?t=Demon%20Slayer%3A%20Infinity%20Castle"},{"@type":"ListItem","position":2,"name":"Chainsaw Man: Reze Arc","url":"https://otahub.asia/en/anime-detail?t=Chainsaw%20Man%3A%20Reze%20Arc"},{"@type":"ListItem","position":3,"name":"Attack on Titan: Final Season","url":"https://otahub.asia/en/anime-detail?t=Attack%20on%20Titan%3A%20Final%20Season"},{"@type":"ListItem","position":4,"name":"Jujutsu Kaisen","url":"https://otahub.asia/en/anime-detail?t=Jujutsu%20Kaisen"},{"@type":"ListItem","position":5,"name":"Dandadan Season 2","url":"https://otahub.asia/en/anime-detail?t=Dandadan%20Season%202"},{"@type":"ListItem","position":6,"name":"Oshi no Ko","url":"https://otahub.asia/en/anime-detail?t=Oshi%20no%20Ko"},{"@type":"ListItem","position":7,"name":"Chainsaw Man","url":"https://otahub.asia/en/anime-detail?t=Chainsaw%20Man"}]},{"@type":"ItemList","name":"Manga / Manhwa OtaHub ranking","itemListOrder":"https://schema.org/ItemListOrderDescending","numberOfItems":8,"itemListElement":[{"@type":"ListItem","position":1,"name":"Vinland Saga","url":"https://otahub.asia/en/manga-detail?t=Vinland%20Saga"},{"@type":"ListItem","position":2,"name":"Chainsaw Man (Manga)","url":"https://otahub.asia/en/manga-detail?t=Chainsaw%20Man%20(Manga)"},{"@type":"ListItem","position":3,"name":"One Piece","url":"https://otahub.asia/en/manga-detail?t=One%20Piece"},{"@type":"ListItem","position":4,"name":"Dandadan","url":"https://otahub.asia/en/manga-detail?t=Dandadan"},{"@type":"ListItem","position":5,"name":"Kaiju No.8","url":"https://otahub.asia/en/manga-detail?t=Kaiju%20No.8"},{"@type":"ListItem","position":6,"name":"Kagurabachi","url":"https://otahub.asia/en/manga-detail?t=Kagurabachi"},{"@type":"ListItem","position":7,"name":"One Piece: Egghead Arc","url":"https://otahub.asia/en/manga-detail?t=One%20Piece%3A%20Egghead%20Arc"},{"@type":"ListItem","position":8,"name":"Black Clover","url":"https://otahub.asia/en/manga-detail?t=Black%20Clover"}]}]}</script>
 <script>/* Ảnh thu nhỏ cho thẻ do JS vẽ: /assets/img/X -> /assets/img/_t/X.webp (scripts/build-thumbs.py; thiếu thì worker trả ảnh gốc) */function otThumb(u,k){return /^\/assets\/img\/(?!_[ts]\/|brand\/)[^?#]+\.(jpe?g|png|webp|jfif)$/i.test(u||'')?'/assets/img/'+(k||'_t')+'/'+u.slice(12)+'.webp':u}</script>
 </head>
@@ -1264,7 +1310,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
       <li><a href="/en/manga">Manga</a></li>
 
 
-      <li><a href="/en/reviews">Reviews</a></li>
+      <li><a href="/en/lich-phat-song">Schedule</a></li><li><a href="/en/reviews">Reviews</a></li>
 
 
       <li><a href="/en/rankings" class="active">Rankings</a></li>
@@ -1304,7 +1350,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   <a href="/en/manga">Manga</a>
 
 
-  <a href="/en/reviews">Reviews</a>
+  <a href="/en/lich-phat-song">Schedule</a><a href="/en/reviews">Reviews</a>
 
 
   <a href="/en/rankings" class="active">Rankings</a><a href="/en/in-depth">In-depth</a>
@@ -1319,45 +1365,12 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 
 
 
-<div class="page-hero">
-
-
-  <div class="hero-text">
-
-
-    <div class="pg-label">Editorial scores · Updated October 1, 2026</div>
-
-
-    <h1 class="pg-title">Game, Anime &amp;<br>Manga <em>Rankings</em></h1>
-
-
-    <p class="pg-sub">Editorial scores for games, anime and manga, with a profile and related coverage behind every title.</p>
-
-
-  </div>
-
-
-  <div class="hero-stats">
-
-
-    <div class="h-stat"><div class="hs-num" style="color:var(--cyan)">34</div><div class="hs-label">Titles ranked</div></div>
-
-
-    <div class="h-stat"><div class="hs-num" style="color:var(--sakura)">4</div><div class="hs-label">Categories</div></div>
-
-
-    <div class="h-stat"><div class="hs-num" style="color:var(--amber)">Editorial</div><div class="hs-label">Scoring</div></div>
-
-
-  </div>
-
-
-</div>
-
-
-
-
-
+<section class="rk-hero">
+  <div class="rk-eyebrow">OtaHub Rankings</div>
+  <h1 class="rk-h1">The best games, anime and manga of 2026</h1>
+  <p class="rk-lede">Every score is set by the OtaHub editorial team after playing, watching or reading the title in full. Pick a category, then tap any title for its profile, editorial score and related coverage. <a href="/en/about">About our editorial team</a></p>
+  <div class="rk-meta"><span>Updated October 1, 2026</span><span>Editorial scores out of 10</span></div>
+</section>
 <div class="cat-strip">
 
 
@@ -1774,6 +1787,7 @@ function renderPodium(data,cat){
 
 
 
+function rkTier(s){s=parseFloat(s)||0;return s>=9.5?'var(--amber)':s>=9?'var(--cyan)':s>=8.5?'var(--green)':'var(--lavender,#a78bfa)'}
 function renderList(data, catKeyForList){
 
 
@@ -1834,10 +1848,10 @@ function renderList(data, catKeyForList){
       <div class="rkr-score-col">
 
 
-        <div class="rkr-score" style="color:${r.sc}">${r.score}</div>
+        <div class="rkr-score" style="color:${rkTier(r.score)}">${r.score}</div>
 
 
-        <div class="rkr-bar-wrap"><div class="rkr-bar" data-w="${r.w}" style="background:${r.sc}"></div></div>
+        <div class="rkr-bar-wrap"><div class="rkr-bar" data-w="${r.w}" style="background:${rkTier(r.score)}"></div></div>
 
 
       </div>
@@ -1935,7 +1949,7 @@ function toggleMobileNav(){
 <script defer src="/assets/search-redirect.js"></script>
 
 
-<script defer src="/assets/enhance.js?v=20261002d"></script>
+<script defer src="/assets/enhance.js?v=20261002f"></script>
 
 
 
