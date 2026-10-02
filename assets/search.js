@@ -1,5 +1,23 @@
 window.IDX = [
   {
+    "title": "Dynamite Blue: Cyberpunk Turn-Based RPG From Ex-Exos Heroes Devs",
+    "url": "/en/dynamite-blue-cyberpunk-turn-based-rpg-kosmos12",
+    "cat": "Gaming",
+    "date": "2026-10-02",
+    "excerpt": "Dynamite Blue is a 2.5D pixel cyberpunk turn-based RPG by Kosmo’s12, out September 30, 2026 on iOS, Android and Steam. Gameplay, cast, PC specs.",
+    "img": "/assets/img/dynamite-blue-hero.jpg",
+    "tags": []
+  },
+  {
+    "title": "Dynamite Blue: game RPG chiến thuật cyberpunk của dev Exos Heroes",
+    "url": "/dynamite-blue-game-rpg-chien-thuat-cyberpunk-kosmos12",
+    "cat": "Gaming",
+    "date": "2026-10-02",
+    "excerpt": "Dynamite Blue là game RPG theo lượt 2.5D pixel cyberpunk của Kosmo’s12, ra mắt toàn cầu 30/9/2026 trên iOS, Android, Steam. Lối chơi, nhân vật, cấu hình.",
+    "img": "/assets/img/dynamite-blue-hero.jpg",
+    "tags": []
+  },
+  {
     "title": "Forgotten Island: Why DreamWorks Is Compared to KPop Demon Hunters",
     "url": "/en/forgotten-island-dreamworks-vs-kpop-demon-hunters",
     "cat": "Anime",
