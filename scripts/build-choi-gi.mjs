@@ -1675,7 +1675,8 @@ const TXT = {
     locale: 'vi_VN', home: 'Trang chủ', crumb: 'Chơi gì?',
     h1: 'Hôm nay <em>chơi gì, xem gì, đọc gì?</em>',
     lead: 'Chọn thứ bạn muốn và tâm trạng lúc này. OtaHub gợi ý ngay một tựa đáng thử, kèm bài viết để bạn đọc trước khi bắt đầu.',
-    want: 'Bạn muốn', format: 'Định dạng', mood: 'Tâm trạng',
+    want: 'Bạn muốn gì?', format: 'Định dạng', mood: 'Tâm trạng lúc này',
+    panelT: 'Hôm nay chơi gì?', panelP: 'Chọn loại và tâm trạng rồi bấm nút. OtaHub rút ngẫu nhiên một tựa từ danh sách biên tập tuyển chọn, kèm điểm review thật.', stepRoll: 'Nhận gợi ý', resultH: 'Kết quả',
     types: { all: ['✨', 'Gì cũng được'], game: ['🎮', 'Chơi game'], anime: ['🎬', 'Xem anime'], manga: ['📖', 'Đọc truyện'] },
     subs: { game: { all: 'Mọi nền tảng', pc: 'PC', console: 'Console', mobile: 'Mobile' }, anime: { all: 'Tất cả', series: 'Phim bộ', movie: 'Phim điện ảnh' }, manga: { all: 'Tất cả', manga: 'Manga Nhật', manhwa: 'Manhwa Hàn' } },
     moods: { all: ['✨', 'Bất kỳ'], relax: ['☕', 'Thư giãn'], action: ['⚔️', 'Hành động'], story: ['🧠', 'Cốt truyện'], coop: ['👥', 'Cùng bạn bè'], quick: ['⚡', 'Nhanh gọn'], explore: ['🗺️', 'Thế giới mở'], challenge: ['💀', 'Thử thách'] },
@@ -1709,7 +1710,8 @@ const TXT = {
     locale: 'en_US', home: 'Home', crumb: 'What to Play',
     h1: 'What should I <em>play, watch or read today?</em>',
     lead: "Pick what you're after and how you feel right now. OtaHub suggests a title worth your time, with an article to read before you start.",
-    want: 'I want to', format: 'Format', mood: 'Mood',
+    want: 'What do you want?', format: 'Format', mood: 'Your mood right now',
+    panelT: 'What should I play today?', panelP: 'Pick a type and a mood, then hit the button. OtaHub draws one title at random from our editor-curated list, with its real review score.', stepRoll: 'Get a pick', resultH: 'Your pick',
     types: { all: ['✨', 'Anything'], game: ['🎮', 'Play a game'], anime: ['🎬', 'Watch anime'], manga: ['📖', 'Read manga'] },
     subs: { game: { all: 'All platforms', pc: 'PC', console: 'Console', mobile: 'Mobile' }, anime: { all: 'All', series: 'TV series', movie: 'Movies' }, manga: { all: 'All', manga: 'Manga', manhwa: 'Manhwa' } },
     moods: { all: ['✨', 'Any mood'], relax: ['☕', 'Chill'], action: ['⚔️', 'Action'], story: ['🧠', 'Story-rich'], coop: ['👥', 'With friends'], quick: ['⚡', 'Quick fun'], explore: ['🗺️', 'Open world'], challenge: ['💀', 'Challenge'] },
@@ -1925,13 +1927,20 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
     /* Bộ lọc */
-    .finder { --facc: var(--amber); margin-top: 28px; background: var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 22px 24px 24px; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 24px 60px rgba(0, 0, 0, .35); }
-    .f-row + .f-row { margin-top: 18px; }
+    .machine { margin-top: 24px; display: grid; grid-template-columns: 380px minmax(0, 1fr); gap: 20px; align-items: start; min-width: 0; }
+    .machine-out { min-width: 0; }
+    .finder { --facc: var(--amber); min-width: 0; position: sticky; top: 76px; background: var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 20px 20px 22px; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 24px 60px rgba(0, 0, 0, .35); }
+    .f-head { margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+    .f-title { font-family: var(--fd); font-weight: 800; font-size: 21px; letter-spacing: -.015em; color: #fff; line-height: 1.2; }
+    .f-sub { margin-top: 6px; font-size: 13.5px; line-height: 1.55; color: var(--text-muted); }
+    .f-row + .f-row { margin-top: 16px; }
     .f-row[hidden] { display: none; }
-    .f-label { display: flex; align-items: center; gap: 12px; font-family: var(--fd); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
-    .f-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
-    .seg { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 6px; border-radius: 16px; background: rgba(0, 0, 0, .3); border: 1px solid var(--line); }
-    .seg-btn { display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 46px; padding: 10px 14px; border-radius: 11px; border: 1px solid transparent; background: transparent; cursor: pointer; font-family: var(--fd); font-weight: 700; font-size: 14.5px; color: var(--text-sub); transition: border-color .2s, background .2s, color .2s, transform .15s, box-shadow .2s; }
+    .f-label { display: flex; align-items: center; gap: 9px; font-family: var(--fd); font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-sub); margin-bottom: 9px; }
+    .f-step { flex: none; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; letter-spacing: 0; color: #0b0418; background: var(--facc); transition: background .2s; }
+    .f-step-sub { background: rgba(255, 255, 255, .14); color: #fff; }
+    .seg { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 6px; border-radius: 16px; background: rgba(0, 0, 0, .3); border: 1px solid var(--line); }
+    .seg-btn { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 9px 11px; border-radius: 11px; border: 1px solid transparent; background: transparent; cursor: pointer; font-family: var(--fd); font-weight: 700; font-size: 14px; color: var(--text-sub); text-align: left; transition: border-color .2s, background .2s, color .2s, transform .15s, box-shadow .2s; }
+    .seg-tx { flex: 1; min-width: 0; }
     .seg-btn:hover { background: rgba(255, 255, 255, .05); color: #fff; }
     .seg-btn:active { transform: scale(.98); }
     .seg-ic { font-size: 18px; line-height: 1; }
@@ -1944,21 +1953,21 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     .chip:hover { border-color: var(--line2); color: #fff; }
     .chip.on { border-color: var(--facc); color: #fff; background: color-mix(in srgb, var(--facc) 14%, transparent); box-shadow: inset 0 0 0 1px var(--facc); }
     .chip:disabled { opacity: .38; cursor: not-allowed; }
-    .f-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 22px; flex-wrap: wrap; }
-    .roll { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-width: 240px; padding: 15px 30px; border: none; border-radius: 999px; cursor: pointer; font-family: var(--fd); font-weight: 800; font-size: 16.5px; color: #fff; background: linear-gradient(120deg, #7c3aed, #c026d3 55%, var(--sakura)); box-shadow: 0 10px 30px rgba(192, 38, 211, .35); transition: transform .15s, box-shadow .2s, filter .2s; }
+    .f-foot { margin-top: 18px; }
+    .roll { display: flex; width: 100%; align-items: center; justify-content: center; gap: 10px; padding: 15px 30px; border: none; border-radius: 999px; cursor: pointer; font-family: var(--fd); font-weight: 800; font-size: 16.5px; color: #fff; background: linear-gradient(120deg, #7c3aed, #c026d3 55%, var(--sakura)); box-shadow: 0 10px 30px rgba(192, 38, 211, .35); transition: transform .15s, box-shadow .2s, filter .2s; }
     .roll:hover { filter: brightness(1.08); box-shadow: 0 14px 38px rgba(192, 38, 211, .45); }
     .roll:active { transform: scale(.97); }
     .roll:disabled { opacity: .5; cursor: not-allowed; }
     .dice { display: inline-block; font-size: 20px; }
     .rolling .dice { animation: spin .55s var(--ease); }
     @keyframes spin { to { transform: rotate(360deg) scale(1.1); } }
-    .f-count { color: var(--text-muted); font-size: 14px; }
+    .f-count { color: var(--text-muted); font-size: 13.5px; text-align: center; margin-top: 10px; }
     .f-count b { color: #fff; font-family: var(--fd); }
     .f-count a { color: var(--cyan); text-decoration: none; margin-left: 6px; }
     .f-count a:hover { text-decoration: underline; }
 
     /* Thẻ gợi ý */
-    .pick { margin-top: 22px; display: grid; grid-template-columns: minmax(0, 44%) 1fr; border-radius: 22px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--acc) 32%, var(--line)); background: linear-gradient(160deg, rgba(30, 16, 70, .85), rgba(14, 7, 34, .92)); box-shadow: 0 24px 60px rgba(0, 0, 0, .4), 0 0 60px -20px color-mix(in srgb, var(--acc) 35%, transparent); scroll-margin-top: 76px; transition: opacity .25s, transform .25s, border-color .3s, box-shadow .3s; }
+    .pick { display: grid; grid-template-columns: minmax(0, 42%) 1fr; border-radius: 22px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--acc) 32%, var(--line)); background: linear-gradient(160deg, rgba(30, 16, 70, .85), rgba(14, 7, 34, .92)); box-shadow: 0 24px 60px rgba(0, 0, 0, .4), 0 0 60px -20px color-mix(in srgb, var(--acc) 35%, transparent); scroll-margin-top: 76px; transition: opacity .25s, transform .25s, border-color .3s, box-shadow .3s; }
     .pick.is-rolling { opacity: .35; transform: scale(.992); }
     .pick-media { position: relative; min-height: 400px; overflow: hidden; background: #0b0418; isolation: isolate; }
     .pick-bg { position: absolute; inset: -30px; width: calc(100% + 60px); height: calc(100% + 60px); object-fit: cover; filter: blur(28px) brightness(.42) saturate(1.4); }
@@ -1966,7 +1975,9 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     .pick-img { position: absolute; inset: 24px; width: calc(100% - 48px); height: calc(100% - 48px); object-fit: contain; filter: drop-shadow(0 22px 40px rgba(0, 0, 0, .65)); z-index: 1; }
     .pick-media::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, transparent 78%, rgba(14, 7, 34, .55)); }
     .pick-type { position: absolute; z-index: 2; left: 16px; top: 16px; font-family: var(--fd); font-size: 11.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #0b0418; background: var(--acc); padding: 5px 11px; border-radius: 8px; }
-    .pick-body { padding: 30px 32px; display: flex; flex-direction: column; min-width: 0; }
+    .pick-body { padding: 26px 28px; display: flex; flex-direction: column; min-width: 0; }
+    .pick-top { display: flex; align-items: center; gap: 8px; }
+    .pick-ic { font-size: 16px; line-height: 1; }
     .pick-eyebrow { font-family: var(--fd); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--acc); }
     .pick-title { font-family: var(--fd); font-weight: 800; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.18; letter-spacing: -.015em; color: #fff; margin-top: 8px; }
     .pick-meta { color: var(--text-muted); font-size: 14px; margin-top: 6px; }
@@ -1994,7 +2005,7 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     .no-article { align-self: center; color: var(--text-muted); font-size: 13.5px; }
     .no-article[hidden], .pick-actions .btn[hidden] { display: none; }
     .c-prof { font-weight: 600; }
-    .recent { display: flex; align-items: center; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+    .recent { display: flex; align-items: center; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
     .recent[hidden] { display: none; }
     .recent-l { font-size: 12.5px; color: var(--text-muted); font-weight: 600; }
     .recent-list { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -2089,11 +2100,24 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
       .top-cols.tabbed .top-h { display: none; }
       .top-cols.tabbed .top-col { padding-top: 6px; }
     }
+    @media (max-width: 1024px) {
+      .machine { grid-template-columns: 340px minmax(0, 1fr); gap: 16px; }
+      .pick { grid-template-columns: 1fr; }
+      .pick-media { min-height: 0; aspect-ratio: 16 / 10; }
+      .pick-img { inset: 16px; width: calc(100% - 32px); height: calc(100% - 32px); }
+      .pick-media::after { background: linear-gradient(to top, rgba(16, 8, 40, .9), transparent 32%); }
+      .pick-body { padding: 22px 22px 24px; }
+    }
     @media (max-width: 900px) {
+      .machine { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+      .finder { position: static; }
+      .seg { grid-template-columns: repeat(4, 1fr); }
+      .seg-btn { justify-content: center; }
+      .seg-tx { flex: 0 1 auto; }
       .pick { grid-template-columns: minmax(0, 40%) 1fr; }
-      .pick-media { min-height: 320px; }
-      .pick-body { padding: 24px 22px; }
-      .seg { grid-template-columns: repeat(2, 1fr); }
+      .pick-media { min-height: 320px; aspect-ratio: auto; }
+      .pick-img { inset: 20px; width: calc(100% - 40px); height: calc(100% - 40px); }
+      .pick-media::after { background: linear-gradient(90deg, transparent 78%, rgba(14, 7, 34, .55)); }
     }
     @media (max-width: 640px) {
       .pick { grid-template-columns: 1fr; }
@@ -2105,14 +2129,20 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     }
     @media (max-width: 768px) {
       .cg { padding: 0 16px; }
-      .finder { margin-top: 20px; padding: 16px; border-radius: 18px; }
-      .f-row + .f-row { margin-top: 16px; }
-      .f-label { font-size: 10.5px; margin-bottom: 9px; }
+      .machine { margin-top: 16px; }
+      .finder { padding: 16px; border-radius: 18px; }
+      .f-head { margin-bottom: 14px; padding-bottom: 12px; }
+      .f-title { font-size: 19px; }
+      .f-sub { font-size: 13px; }
+      .f-row + .f-row { margin-top: 14px; }
+      .f-label { font-size: 10.5px; margin-bottom: 8px; }
+      .seg { grid-template-columns: repeat(2, 1fr); }
+      .seg-btn { justify-content: flex-start; }
+      .seg-tx { flex: 1; }
       .chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 0 16px 2px; scroll-padding: 0 16px; }
       .chips::-webkit-scrollbar { display: none; }
       .chips { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 40px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 40px), transparent); }
-      .f-foot { flex-direction: column; align-items: stretch; text-align: center; gap: 10px; margin-top: 16px; }
-      .roll { width: 100%; min-width: 0; }
+      .f-foot { margin-top: 16px; }
       .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
       .sec { margin-top: 48px; }
       footer { margin-top: 56px; }
@@ -2155,25 +2185,32 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
   <main class="cg">
     <h1 class="sr-only">${t.h1.replace(/<\/?em>/g, '')}</h1>
 
-    <section class="finder" id="finder" aria-label="${esc(t.want)}">
+    <div class="machine">
+    <section class="finder" id="finder" aria-label="${esc(t.panelT)}">
+      <div class="f-head">
+        <h2 class="f-title">${t.panelT}</h2>
+        <p class="f-sub">${t.panelP}</p>
+      </div>
       <div class="f-row">
-        <div class="f-label">${t.want}</div>
+        <div class="f-label"><span class="f-step">1</span>${t.want}</div>
         <div class="seg" id="typeSeg">${['all', 'game', 'anime', 'manga'].map(segBtn).join('')}</div>
       </div>
       <div class="f-row" id="subRow" hidden>
-        <div class="f-label">${t.format}</div>
+        <div class="f-label"><span class="f-step f-step-sub" aria-hidden="true">+</span>${t.format}</div>
         <div class="chips" id="subChips"></div>
       </div>
       <div class="f-row">
-        <div class="f-label">${t.mood}</div>
+        <div class="f-label"><span class="f-step">2</span>${t.mood}</div>
         <div class="chips" id="moodChips">${Object.keys(t.moods).map(moodBtn).join('')}</div>
       </div>
-      <div class="f-foot">
+      <div class="f-row f-foot">
+        <div class="f-label"><span class="f-step">3</span>${t.stepRoll}</div>
         <button type="button" class="roll" id="rollBtn"><span class="dice" aria-hidden="true">🎲</span><span>${t.roll}</span></button>
         <p class="f-count"><span id="fCount">${t.count(items.length)}</span><a href="#all">${t.seeAll} ↓</a></p>
       </div>
     </section>
 
+    <div class="machine-out">
     <article class="pick" id="pick" aria-live="polite" style="--acc:${ACC[first.type]}">
       <div class="pick-media">
         <img class="pick-bg" id="pickBg" src="${thumb(first.img, '_t')}" alt="" aria-hidden="true" width="320" height="200">
@@ -2181,7 +2218,7 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
         <span class="pick-type" id="pickType">${t.typeName[typeKey(first)]}</span>
       </div>
       <div class="pick-body">
-        <div class="pick-eyebrow" id="pickLabel">${t.today}</div>
+        <div class="pick-top"><span class="pick-ic" aria-hidden="true">🎲</span><span class="pick-eyebrow" id="pickLabel">${t.today}</span></div>
         <h2 class="pick-title" id="pickTitle">${esc(first.name)}</h2>
         <p class="pick-meta" id="pickMeta">${esc(first.creator)}</p>
         <div class="pick-tags" id="pickTags"><span>${esc(first.format)}</span><span>${esc(first.genre)}</span></div>
@@ -2201,6 +2238,8 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
       </div>
     </article>
     <div class="recent" id="recent" hidden><span class="recent-l">${t.recent}:</span><div class="recent-list" id="recentList"></div></div>
+    </div>
+    </div>
 
     <section class="sec" id="all" aria-labelledby="allH">
       <div class="sec-head"><h2 id="allH">${t.allH} <span class="n" id="allCount">${items.length}</span></h2><p>${t.allP}</p></div>
