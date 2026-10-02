@@ -5,7 +5,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-10-02",
     "excerpt": "Tax Shield is a free browser game from a Threads user that simulates Vietnamese tax filing, year-end settlement and audits under the 2026 tax laws.",
-    "img": "/assets/img/tax-shield-game-thue-hero-v2.jpg",
+    "img": "/assets/img/tax-shield-game-thue-hero-v3.jpg",
     "tags": []
   },
   {
@@ -14,7 +14,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-10-02",
     "excerpt": "Tax Shield là game web miễn phí của một người dùng Threads, mô phỏng khai thuế, quyết toán và đối đầu thanh tra theo luật thuế 2026, chơi được trên điện thoại.",
-    "img": "/assets/img/tax-shield-game-thue-hero-v2.jpg",
+    "img": "/assets/img/tax-shield-game-thue-hero-v3.jpg",
     "tags": []
   },
   {

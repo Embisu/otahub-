@@ -93,8 +93,8 @@
     "date": "2026-10-02",
     "cat": "Gaming",
     "excerpt": "Tax Shield là game web miễn phí của một người dùng Threads, mô phỏng khai thuế, quyết toán và đối đầu thanh tra theo luật thuế 2026, chơi được trên điện thoại.",
-    "image": "/assets/img/tax-shield-game-thue-hero-v2.jpg",
-    "read": "8 phút đọc",
+    "image": "/assets/img/tax-shield-game-thue-hero-v3.jpg",
+    "read": "7 phút đọc",
     "url": "/tax-shield-game-mo-phong-khai-thue",
     "lang": "VI"
   },
@@ -148,8 +148,8 @@
     "date": "2026-10-02",
     "cat": "Gaming",
     "excerpt": "Tax Shield is a free browser game from a Threads user that simulates Vietnamese tax filing, year-end settlement and audits under the 2026 tax laws.",
-    "image": "/assets/img/tax-shield-game-thue-hero-v2.jpg",
-    "read": "8 min read",
+    "image": "/assets/img/tax-shield-game-thue-hero-v3.jpg",
+    "read": "7 min read",
     "url": "/en/tax-shield-vietnam-tax-filing-simulator-game",
     "lang": "EN"
   },
@@ -716,17 +716,6 @@
   },
   {
     "key": "anna",
-    "title": "Trò Chơi Dối Trá (Liar Game) chính thức có mùa 2 sau khi anime mùa đầu kết thúc · OtaHub",
-    "date": "2026-09-30",
-    "cat": "Anime",
-    "excerpt": "Liar Game chính thức có mùa 2 sau khi mùa đầu 26 tập khép lại; thời điểm phát hành, số tập và nội dung chi tiết vẫn chưa được công bố.",
-    "image": "/assets/img/uploads/liar-game-anime-trailer-2.jpg",
-    "read": "5 phút đọc",
-    "url": "/tro-choi-doi-tra-chinh-thuc-co-mua-2-sau-khi-anime-mua-dau-ket-thuc",
-    "lang": "VI"
-  },
-  {
-    "key": "anna",
     "title": "Liar Game Officially Gets Season 2 After the Anime’s First Season Ends · OtaHub",
     "date": "2026-09-30",
     "cat": "Anime",
@@ -924,6 +913,17 @@
     "lang": "EN"
   },
   {
+    "key": "anna",
+    "title": "Trò Chơi Dối Trá (Liar Game) chính thức có mùa 2 sau khi anime mùa đầu kết thúc · OtaHub",
+    "date": "2026-09-30",
+    "cat": "Anime",
+    "excerpt": "Trò Chơi Dối Trá chính thức có mùa 2 sau khi mùa đầu 26 tập khép lại; thời điểm phát hành, số tập và nội dung chi tiết vẫn chưa được công bố.",
+    "image": "/assets/img/uploads/liar-game-anime-trailer-2.jpg",
+    "read": "5 phút đọc",
+    "url": "/tro-choi-doi-tra-chinh-thuc-co-mua-2-sau-khi-anime-mua-dau-ket-thuc",
+    "lang": "VI"
+  },
+  {
     "key": "yu",
     "title": "Vì sao The Isle lại hot đến vậy trong năm 2026? · OtaHub",
     "date": "2026-09-30",
@@ -1005,7 +1005,7 @@
     "title": "Cha đẻ Linh Hồn Bạc (Gintama) thú nhận: từng nghĩ bản anime sẽ thất bại · OtaHub",
     "date": "2026-09-29",
     "cat": "Anime",
-    "excerpt": "Hideaki Sorachi thừa nhận từng chắc mẩm anime Gintama sẽ thất bại và chỉ trông vào tiền tác quyền manga, tại buổi ra mắt phim Yoshiwara In Flames.",
+    "excerpt": "Hideaki Sorachi thừa nhận từng chắc mẩm anime Linh Hồn Bạc sẽ thất bại và chỉ trông vào tiền tác quyền manga, tại buổi ra mắt phim Yoshiwara In Flames.",
     "image": "/assets/img/gintama-sorachi-flop-banner.jpg",
     "read": "3 phút đọc",
     "url": "/linh-hon-bac-sorachi-tung-nghi-anime-se-that-bai",
@@ -1893,17 +1893,6 @@
   },
   {
     "key": "otahub",
-    "title": "Steel Ball Run: Cuộc Phiêu Lưu Kì Lạ Của JoJo Stage 2–3 lên sóng ngày 25/9 · OtaHub",
-    "date": "2026-09-26",
-    "cat": "Anime",
-    "excerpt": "STEEL BALL RUN JoJo's Bizarre Adventure 2nd–3rd STAGE lên sóng độc quyền trên Netflix từ 25/9/2026, gồm 11 tập phát hàng tuần do David Production thực hiện.",
-    "image": "/assets/img/real-jojo-sbr-stage2.jpg",
-    "read": "3 phút đọc",
-    "url": "/jojo-steel-ball-run-stage-2-3-len-song-25-9",
-    "lang": "VI"
-  },
-  {
-    "key": "otahub",
     "title": "Oishinbo có anime mới sau 35 năm: Shin Oishinbo · OtaHub",
     "date": "2026-09-26",
     "cat": "Manga",
@@ -1945,6 +1934,17 @@
     "read": "3 min read",
     "url": "/en/slime-season-4-cour-3-july-2027-claymans-revenge",
     "lang": "EN"
+  },
+  {
+    "key": "otahub",
+    "title": "Steel Ball Run: Cuộc Phiêu Lưu Kì Lạ Của JoJo Stage 2–3 lên sóng ngày 25/9 · OtaHub",
+    "date": "2026-09-26",
+    "cat": "Anime",
+    "excerpt": "Steel Ball Run: Cuộc Phiêu Lưu Kì Lạ Của JoJo 2nd–3rd STAGE lên sóng độc quyền trên Netflix từ 25/9/2026, gồm 11 tập phát hàng tuần do David Production thực hiện.",
+    "image": "/assets/img/real-jojo-sbr-stage2.jpg",
+    "read": "3 phút đọc",
+    "url": "/jojo-steel-ball-run-stage-2-3-len-song-25-9",
+    "lang": "VI"
   },
   {
     "key": "otahub",
@@ -2259,7 +2259,7 @@
     "title": "Đại Chiến Nhân Thần (Record of Ragnarok): Odin đang chuẩn bị điều gì? · OtaHub",
     "date": "2026-09-20",
     "cat": "Anime",
-    "excerpt": "Trận chiến Record of Ragnarok liệu có đơn thuần quyết định số phận nhân loại, hay Odin đang toan tính kế hoạch hồi sinh các Primordial Gods cổ xưa?",
+    "excerpt": "Trận chiến Đại Chiến Nhân Thần liệu có đơn thuần quyết định số phận nhân loại, hay Odin đang toan tính kế hoạch hồi sinh các Primordial Gods cổ xưa?",
     "image": "/assets/img/uploads/onqih37d-record-of-ragnarok-shuumatsu-no-valkyrie-has-some-really-v0-.jpg",
     "read": "5 phút đọc",
     "url": "/dai-chien-nhan-than-odin-thuc-su-dang-chuan-bi-cho-dieu-gi",
@@ -2465,17 +2465,6 @@
   },
   {
     "key": "otahub",
-    "title": "Thế Giới Phép Thuật (Black Clover) mùa 2 và Xưởng Phép Thuật (Witch Hat Atelier) cùng tung trailer · OtaHub",
-    "date": "2026-09-09",
-    "cat": "Anime",
-    "excerpt": "Black Clover mùa 2 phát ngày 3/10/2026; Xưởng Phép Thuật đã kết thúc 13 tập và xác nhận mùa 2. Lịch chiếu, cốt truyện và thông tin chính thức.",
-    "image": "/assets/img/real-black-clover-s2.jpg",
-    "read": "5 phút đọc",
-    "url": "/the-gioi-phep-thuat-season-2-xuong-phep-thuat-trailers",
-    "lang": "VI"
-  },
-  {
-    "key": "otahub",
     "title": "Black Clover Season 2 & Witch Hat Atelier Drop Trailers · OtaHub",
     "date": "2026-09-09",
     "cat": "Anime",
@@ -2561,6 +2550,17 @@
     "read": "5 min read",
     "url": "/en/the-eminence-in-shadow-roguelite-game-announcement",
     "lang": "EN"
+  },
+  {
+    "key": "otahub",
+    "title": "Thế Giới Phép Thuật (Black Clover) mùa 2 và Xưởng Phép Thuật (Witch Hat Atelier) cùng tung trailer · OtaHub",
+    "date": "2026-09-09",
+    "cat": "Anime",
+    "excerpt": "Thế Giới Phép Thuật mùa 2 phát ngày 3/10/2026; Xưởng Phép Thuật đã kết thúc 13 tập và xác nhận mùa 2. Lịch chiếu, cốt truyện và thông tin chính thức.",
+    "image": "/assets/img/real-black-clover-s2.jpg",
+    "read": "5 phút đọc",
+    "url": "/the-gioi-phep-thuat-season-2-xuong-phep-thuat-trailers",
+    "lang": "VI"
   },
   {
     "key": "otahub",
@@ -5413,17 +5413,6 @@
   },
   {
     "key": "otahub",
-    "title": "Thế Giới Phép Thuật (Black Clover) mùa 2 tung trailer, trở lại tháng 10 · OtaHub",
-    "date": "2026-08-12",
-    "cat": "Anime",
-    "excerpt": "Sau 5 năm chờ đợi, Black Clover Season 2 chính thức có trailer, ấn định lịch chiếu tháng 10/2026 với nhạc mở đầu do ban nhạc WANIMA trình bày.",
-    "image": "/assets/img/00ecd3dafc-banner.jpg",
-    "read": "6 phút đọc",
-    "url": "/the-gioi-phep-thuat-season-2",
-    "lang": "VI"
-  },
-  {
-    "key": "otahub",
     "title": "Black Clover Season 2 Trailer Drops, Returns October · OtaHub",
     "date": "2026-08-12",
     "cat": "Anime",
@@ -5607,6 +5596,17 @@
     "image": "/assets/img/77948dbff7-mushoku-tensei-s3-chaosbreaker.jpg",
     "read": "5 phút đọc",
     "url": "/that-nghiep-chuyen-sinh-s3-chaos-breaker",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
+    "title": "Thế Giới Phép Thuật (Black Clover) mùa 2 tung trailer, trở lại tháng 10 · OtaHub",
+    "date": "2026-08-12",
+    "cat": "Anime",
+    "excerpt": "Sau 5 năm chờ đợi, Thế Giới Phép Thuật Season 2 chính thức có trailer, ấn định lịch chiếu tháng 10/2026 với nhạc mở đầu do ban nhạc WANIMA trình bày.",
+    "image": "/assets/img/00ecd3dafc-banner.jpg",
+    "read": "6 phút đọc",
+    "url": "/the-gioi-phep-thuat-season-2",
     "lang": "VI"
   },
   {
