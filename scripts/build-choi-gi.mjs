@@ -800,6 +800,199 @@ const VI_ITEMS = [
     why: 'Từ một gã nợ nần lông bông hóa thân thành Hậu duệ của Pagma trong thế giới game thực tế ảo Satisfy. Chế tạo trang bị thần cấp và quật ngã mọi bảng xếp hạng.',
     link: '/overgeared-anime-len-song-som-tren-prime-video-27-9',
     color: ['#100a04', '#26180a']
+  },
+  // ── BỔ SUNG: các tựa đã có bài review trên OtaHub ──────────────────
+  {
+    id: 'ghost-of-yotei',
+    type: 'game',
+    name: 'Ghost of Yōtei',
+    creator: 'Sucker Punch · 2025',
+    format: 'PS5',
+    subType: 'console',
+    genre: 'Open World · Samurai Action',
+    moods: ['action', 'explore', 'story', 'challenge'],
+    time: '30 - 50h',
+    score: 9.3,
+    img: '/assets/img/3c84e61b4e-ghost-of-yotei-review-hero.jpg',
+    why: 'Atsu lần theo dấu Lục Yêu Quái trên vùng đất Ezo năm 1603. Thế giới mở đẹp như tranh thủy mặc, kiếm thuật đa vũ khí sâu hơn hẳn Ghost of Tsushima.',
+    link: '/ghost-of-yotei-review',
+    color: ['#0a0f14', '#1a2a30']
+  },
+  {
+    id: 'death-stranding-2',
+    type: 'game',
+    name: 'Death Stranding 2: On the Beach',
+    creator: 'Kojima Productions · 2025',
+    format: 'PS5',
+    subType: 'console',
+    genre: 'Action Adventure · Open World',
+    moods: ['story', 'explore', 'relax'],
+    time: '40 - 60h',
+    score: 9.5,
+    img: '/assets/img/9c68ea445d-death-stranding-2-on-the-beach-review-hero.jpg',
+    why: 'Sam Porter Bridges nối lại mạng chiral xuyên Mexico và Úc. Hành trình giao hàng độc nhất vô nhị, cốt truyện điên rồ kiểu Kojima và nhạc nền xuất sắc.',
+    link: '/death-stranding-2-review',
+    color: ['#0b0f12', '#1b2630']
+  },
+  {
+    id: 'mgs-delta',
+    type: 'game',
+    name: 'Metal Gear Solid Δ: Snake Eater',
+    creator: 'Konami · 2025',
+    format: 'PC / PS5 / Xbox',
+    subType: 'console',
+    genre: 'Stealth Action',
+    moods: ['story', 'action', 'challenge'],
+    time: '15 - 25h',
+    score: 8.8,
+    img: '/assets/img/ce3825d43e-mgs-delta-snake-eater-review-hero.jpg',
+    why: 'Bản làm lại trung thành của Snake Eater trên Unreal Engine 5: giữ nguyên cốt truyện Chiến tranh Lạnh và lối chơi ẩn nấp, sinh tồn trong rừng rậm kinh điển.',
+    link: '/metal-gear-solid-delta-review',
+    color: ['#0a1208', '#1a2c14']
+  },
+  {
+    id: 'suikoden-star-leap',
+    type: 'game',
+    name: 'Suikoden STAR LEAP',
+    creator: 'Konami · 2025',
+    format: 'Mobile',
+    subType: 'mobile',
+    genre: 'JRPG · Gacha',
+    moods: ['story', 'relax', 'quick'],
+    time: 'Chơi lâu dài (Live-service)',
+    score: 8.8,
+    img: '/assets/img/3a6da459ec-suikoden-star-leap-hero.jpg',
+    why: 'Suikoden trở lại trên di động với 108 Sao Định Mệnh, chiến đấu theo lượt đội hình 6 người và tinh thần xây dựng căn cứ quen thuộc của dòng game.',
+    link: '/suikoden-star-leap-review',
+    color: ['#0c0a16', '#1e1a3a']
+  },
+  {
+    id: 'mafia-old-country',
+    type: 'game',
+    name: 'Mafia: The Old Country',
+    creator: 'Hangar 13 · 2025',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Action Adventure · Mafia',
+    moods: ['story', 'action'],
+    time: '12 - 20h',
+    score: 8.3,
+    img: '/assets/img/pool-mafia-1.jpg',
+    why: 'Sicily đầu thế kỷ 20: Enzo Favara từ mỏ lưu huỳnh bước vào gia tộc Torrisi. Cốt truyện tuyến tính gọn gàng, đậm chất phim mafia cổ điển.',
+    link: '/mafia-old-country-review',
+    color: ['#140c06', '#2c1a0c']
+  },
+  {
+    id: 'space-marine-2',
+    type: 'game',
+    name: 'Space Marine 2',
+    creator: 'Saber Interactive · 2024',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Third-person Shooter · Co-op',
+    moods: ['action', 'coop', 'quick'],
+    time: '10 - 15h chiến dịch + Operations',
+    score: 8.0,
+    img: '/assets/img/space-marine-2-chaos-rising-review-hero.jpg',
+    why: 'Titus chém hàng trăm Tyranid trong từng trận; bản mở rộng Chaos Rising thêm chiến dịch co-op 3 người đối đầu thế lực Chaos.',
+    link: '/space-marine-2-chaos-rising-review',
+    color: ['#120808', '#2a1010']
+  },
+  {
+    id: 'gfl2',
+    type: 'game',
+    name: "Girls' Frontline 2: Exilium",
+    creator: 'MICA Team · 2024',
+    format: 'Mobile / PC',
+    subType: 'mobile',
+    genre: 'Tactical RPG · Gacha',
+    moods: ['story', 'challenge', 'quick'],
+    time: 'Chơi lâu dài (Live-service)',
+    score: 8.5,
+    img: '/assets/img/f661df27f7-gfl2-exilium-hero.jpg',
+    why: 'Chiến thuật theo lượt kiểu XCOM với địa hình, che chắn và đội hình T-Doll; cốt truyện hậu tận thế nối tiếp phần một.',
+    link: '/girls-frontline-2-exilium-danh-gia-chuyen-sau',
+    color: ['#08100f', '#102420']
+  },
+  {
+    id: 'kaiju-no-8-game',
+    type: 'game',
+    name: 'Kaiju No. 8 THE GAME',
+    creator: 'Akatsuki Games · 2025',
+    format: 'Mobile / PC',
+    subType: 'mobile',
+    genre: 'Action RPG · Gacha',
+    moods: ['action', 'quick', 'coop'],
+    time: 'Chơi lâu dài (Live-service)',
+    score: 8.5,
+    img: '/assets/img/pool-kaiju-game-1.jpg',
+    why: 'Hóa thân Kafka và Lực lượng Phòng vệ diệt kaiju với chiến đấu thời gian thực đúng nhịp anime. Hợp fan đã xem anime muốn kéo dài cảm hứng.',
+    link: '/kaiju-no-8-the-game-review',
+    color: ['#0a0c14', '#141c30']
+  },
+  {
+    id: 'blue-protocol',
+    type: 'game',
+    name: 'Blue Protocol: Star Resonance',
+    creator: 'Bokura · 2025',
+    format: 'PC / Mobile',
+    subType: 'mobile',
+    genre: 'MMORPG · Anime',
+    moods: ['coop', 'explore', 'relax'],
+    time: 'Chơi lâu dài (Live-service)',
+    score: 7.0,
+    img: '/assets/img/3578d308d7-library_hero.jpg',
+    why: 'MMORPG phong cách anime với thế giới Regnas rực rỡ, đánh boss cùng bạn bè. Điểm trừ là cày cuốc nặng và gacha, hợp người thích chơi nhóm hơn solo.',
+    link: '/blue-protocol-review',
+    color: ['#06101a', '#0c2238']
+  },
+  {
+    id: 'dragon-ball-daima',
+    type: 'anime',
+    name: 'Bảy Viên Ngọc Rồng DAIMA',
+    creator: 'Toei Animation · 2024',
+    format: 'TV Series (20 tập)',
+    subType: 'series',
+    genre: 'Shonen · Adventure',
+    moods: ['relax', 'action', 'quick'],
+    time: '20 tập (~7 giờ)',
+    score: 8.2,
+    img: '/assets/img/1f0540d7a3-maxresdefault.jpg',
+    why: 'Goku và đồng đội bị biến thành trẻ con, phiêu lưu xuống Thế giới Quỷ. Tác phẩm cuối cùng Akira Toriyama trực tiếp tham gia: vui tươi, hoài niệm và dễ xem.',
+    link: '/bay-vien-ngoc-rong-daima',
+    color: ['#14100a', '#30240c']
+  },
+  {
+    id: 'battle-through-the-heavens',
+    type: 'anime',
+    name: 'Đấu Phá Thương Khung',
+    creator: 'Motion Magic · 2018 - nay',
+    format: 'Donghua (dài tập)',
+    subType: 'series',
+    genre: 'Huyền huyễn · Tu tiên',
+    moods: ['action', 'story', 'challenge'],
+    time: 'Dài tập (đang phát hành)',
+    score: 7.8,
+    img: '/assets/img/uploads/battle-through-the-heavens-donghua.jpg',
+    why: 'Tiêu Viêm từ thiên tài sa sút vươn lên Đấu Đế. Donghua 3D hoành tráng, đánh nhau mãn nhãn, dành cho người mê truyện tu tiên.',
+    link: '/dau-pha-thuong-khung-review',
+    color: ['#140a06', '#2e180a']
+  },
+  {
+    id: 'tbate-anime',
+    type: 'anime',
+    name: 'The Beginning After The End (anime)',
+    creator: 'Studio A-CAT · 2025',
+    format: 'TV Series (24 tập)',
+    subType: 'series',
+    genre: 'Isekai · Fantasy',
+    moods: ['story', 'action', 'explore'],
+    time: '24 tập (~9 giờ)',
+    score: 7.5,
+    img: '/assets/img/real-tbate-anime-banner.jpg',
+    why: 'Chuyển thể anime của manhwa đình đám về vua Grey tái sinh thành Arthur Leywin. Cốt truyện và nhân vật vẫn cuốn dù hoạt họa chưa xứng tầm nguyên tác.',
+    link: '/the-beginning-after-the-end-anime-review',
+    color: ['#040c14', '#0a1a2a']
   }
 ];
 
@@ -1592,6 +1785,199 @@ const EN_ITEMS = [
     why: 'From deep debt into Pagma’s Successor in the VRMMO world of Satisfy. Forging god-tier equipment, founding kingdoms, and shattering raid records.',
     link: null,
     color: ['#100a04', '#26180a']
+  },
+  // ── ADDED: titles with an OtaHub review ───────────────────────────
+  {
+    id: 'ghost-of-yotei',
+    type: 'game',
+    name: 'Ghost of Yōtei',
+    creator: 'Sucker Punch · 2025',
+    format: 'PS5',
+    subType: 'console',
+    genre: 'Open World · Samurai Action',
+    moods: ['action', 'explore', 'story', 'challenge'],
+    time: '30 - 50h',
+    score: 9.3,
+    img: '/assets/img/3c84e61b4e-ghost-of-yotei-review-hero.jpg',
+    why: 'Atsu hunts the Yōtei Six across Ezo in 1603. An open world painted like ink-wash art, with a deeper multi-weapon swordplay system than Ghost of Tsushima.',
+    link: '/en/ghost-of-yotei-review',
+    color: ['#0a0f14', '#1a2a30']
+  },
+  {
+    id: 'death-stranding-2',
+    type: 'game',
+    name: 'Death Stranding 2: On the Beach',
+    creator: 'Kojima Productions · 2025',
+    format: 'PS5',
+    subType: 'console',
+    genre: 'Action Adventure · Open World',
+    moods: ['story', 'explore', 'relax'],
+    time: '40 - 60h',
+    score: 9.5,
+    img: '/assets/img/9c68ea445d-death-stranding-2-on-the-beach-review-hero.jpg',
+    why: 'Sam Porter Bridges reconnects the chiral network across Mexico and Australia. A one-of-a-kind delivery journey, a wild Kojima story and a superb soundtrack.',
+    link: '/en/death-stranding-2-review',
+    color: ['#0b0f12', '#1b2630']
+  },
+  {
+    id: 'mgs-delta',
+    type: 'game',
+    name: 'Metal Gear Solid Δ: Snake Eater',
+    creator: 'Konami · 2025',
+    format: 'PC / PS5 / Xbox',
+    subType: 'console',
+    genre: 'Stealth Action',
+    moods: ['story', 'action', 'challenge'],
+    time: '15 - 25h',
+    score: 8.8,
+    img: '/assets/img/ce3825d43e-mgs-delta-snake-eater-review-hero.jpg',
+    why: 'A faithful Unreal Engine 5 remake of Snake Eater: the Cold War story and the classic jungle stealth and survival gameplay, untouched.',
+    link: '/en/metal-gear-solid-delta-review',
+    color: ['#0a1208', '#1a2c14']
+  },
+  {
+    id: 'suikoden-star-leap',
+    type: 'game',
+    name: 'Suikoden STAR LEAP',
+    creator: 'Konami · 2025',
+    format: 'Mobile',
+    subType: 'mobile',
+    genre: 'JRPG · Gacha',
+    moods: ['story', 'relax', 'quick'],
+    time: 'Ongoing (live service)',
+    score: 8.8,
+    img: '/assets/img/3a6da459ec-suikoden-star-leap-hero.jpg',
+    why: 'Suikoden returns on mobile with the 108 Stars of Destiny, six-member turn-based parties and the series\' beloved base-building spirit.',
+    link: '/en/suikoden-star-leap-review',
+    color: ['#0c0a16', '#1e1a3a']
+  },
+  {
+    id: 'mafia-old-country',
+    type: 'game',
+    name: 'Mafia: The Old Country',
+    creator: 'Hangar 13 · 2025',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Action Adventure · Mafia',
+    moods: ['story', 'action'],
+    time: '12 - 20h',
+    score: 8.3,
+    img: '/assets/img/pool-mafia-1.jpg',
+    why: 'Early 1900s Sicily: Enzo Favara climbs from the sulphur mines into the Torrisi family. A tight linear story with classic mob-movie flavour.',
+    link: '/en/mafia-old-country-review',
+    color: ['#140c06', '#2c1a0c']
+  },
+  {
+    id: 'space-marine-2',
+    type: 'game',
+    name: 'Space Marine 2',
+    creator: 'Saber Interactive · 2024',
+    format: 'PC / Console',
+    subType: 'pc',
+    genre: 'Third-person Shooter · Co-op',
+    moods: ['action', 'coop', 'quick'],
+    time: '10 - 15h campaign + Operations',
+    score: 8.0,
+    img: '/assets/img/space-marine-2-chaos-rising-review-hero.jpg',
+    why: 'Titus carves through hundreds of Tyranids in every fight; the Chaos Rising expansion adds a three-player co-op campaign against the forces of Chaos.',
+    link: '/en/space-marine-2-chaos-rising-review',
+    color: ['#120808', '#2a1010']
+  },
+  {
+    id: 'gfl2',
+    type: 'game',
+    name: "Girls' Frontline 2: Exilium",
+    creator: 'MICA Team · 2024',
+    format: 'Mobile / PC',
+    subType: 'mobile',
+    genre: 'Tactical RPG · Gacha',
+    moods: ['story', 'challenge', 'quick'],
+    time: 'Ongoing (live service)',
+    score: 8.5,
+    img: '/assets/img/f661df27f7-gfl2-exilium-hero.jpg',
+    why: 'XCOM-style turn-based tactics with terrain, cover and T-Doll squads; a post-apocalyptic story that continues from the first game.',
+    link: '/en/girls-frontline-2-exilium-in-depth-review',
+    color: ['#08100f', '#102420']
+  },
+  {
+    id: 'kaiju-no-8-game',
+    type: 'game',
+    name: 'Kaiju No. 8 THE GAME',
+    creator: 'Akatsuki Games · 2025',
+    format: 'Mobile / PC',
+    subType: 'mobile',
+    genre: 'Action RPG · Gacha',
+    moods: ['action', 'quick', 'coop'],
+    time: 'Ongoing (live service)',
+    score: 8.5,
+    img: '/assets/img/pool-kaiju-game-1.jpg',
+    why: 'Play as Kafka and the Defense Force in real-time kaiju fights that match the anime\'s pace. Best for fans who want more after the show.',
+    link: '/en/kaiju-no-8-the-game-review',
+    color: ['#0a0c14', '#141c30']
+  },
+  {
+    id: 'blue-protocol',
+    type: 'game',
+    name: 'Blue Protocol: Star Resonance',
+    creator: 'Bokura · 2025',
+    format: 'PC / Mobile',
+    subType: 'mobile',
+    genre: 'MMORPG · Anime',
+    moods: ['coop', 'explore', 'relax'],
+    time: 'Ongoing (live service)',
+    score: 7.0,
+    img: '/assets/img/3578d308d7-library_hero.jpg',
+    why: 'An anime-styled MMORPG with the vivid world of Regnas and boss fights with friends. Heavy grind and gacha hold it back; better in a group than solo.',
+    link: '/en/blue-protocol-review',
+    color: ['#06101a', '#0c2238']
+  },
+  {
+    id: 'dragon-ball-daima',
+    type: 'anime',
+    name: 'Dragon Ball DAIMA',
+    creator: 'Toei Animation · 2024',
+    format: 'TV Series (20 episodes)',
+    subType: 'series',
+    genre: 'Shonen · Adventure',
+    moods: ['relax', 'action', 'quick'],
+    time: '20 episodes (~7 hours)',
+    score: 8.2,
+    img: '/assets/img/1f0540d7a3-maxresdefault.jpg',
+    why: 'Goku and friends are turned into kids and journey into the Demon Realm. The last work Akira Toriyama was directly involved in: cheerful, nostalgic and easy to watch.',
+    link: '/en/dragon-ball-daima',
+    color: ['#14100a', '#30240c']
+  },
+  {
+    id: 'battle-through-the-heavens',
+    type: 'anime',
+    name: 'Battle Through the Heavens',
+    creator: 'Motion Magic · 2018 - present',
+    format: 'Donghua (long-running)',
+    subType: 'series',
+    genre: 'Xianxia · Cultivation',
+    moods: ['action', 'story', 'challenge'],
+    time: 'Long-running (ongoing)',
+    score: 7.8,
+    img: '/assets/img/uploads/battle-through-the-heavens-donghua.jpg',
+    why: 'Xiao Yan rises from fallen prodigy to Dou Emperor. Grand 3D donghua with spectacular fights, made for cultivation-novel fans.',
+    link: '/en/battle-through-the-heavens-review',
+    color: ['#140a06', '#2e180a']
+  },
+  {
+    id: 'tbate-anime',
+    type: 'anime',
+    name: 'The Beginning After The End (anime)',
+    creator: 'Studio A-CAT · 2025',
+    format: 'TV Series (24 episodes)',
+    subType: 'series',
+    genre: 'Isekai · Fantasy',
+    moods: ['story', 'action', 'explore'],
+    time: '24 episodes (~9 hours)',
+    score: 7.5,
+    img: '/assets/img/real-tbate-anime-banner.jpg',
+    why: 'The anime adaptation of the hit manhwa about King Grey reborn as Arthur Leywin. The story and cast still grip even though the animation falls short of the source.',
+    link: '/en/the-beginning-after-the-end-anime-review',
+    color: ['#040c14', '#0a1a2a']
   }
 ];
 
@@ -1606,7 +1992,10 @@ const REVIEW_OF = {
   'demon-slayer-infinity-castle': 'dsic', 'jjk-culling-game': 'jjkanime', 'chainsaw-man-reze': 'csmreze', 'dandadan-s2': 'ddd2',
   'spy-family': 'sxfanime', aot: 'aotfs', 'oshi-no-ko': 'onkanime',
   'vinland-saga': 'vlsaga', 'solo-leveling-ragnarok': 'slragreview', 'one-piece-final': 'opfs', kagurabachi: 'kgb', 'black-clover': 'bcfv',
-  'kaiju-no-8': 'kj8m', 'chainsaw-man-p2': 'csmmanga2', 'jujutsu-kaisen-manga': 'jjkfinal', 'dandadan-manga': 'ddmg'
+  'kaiju-no-8': 'kj8m', 'chainsaw-man-p2': 'csmmanga2', 'jujutsu-kaisen-manga': 'jjkfinal', 'dandadan-manga': 'ddmg',
+  'ghost-of-yotei': 'goy', 'death-stranding-2': 'ds2', 'mgs-delta': 'mgsdelta', 'suikoden-star-leap': 'sksl', 'mafia-old-country': 'mafiaoc',
+  'space-marine-2': 'sm2cr', gfl2: 'gfl2', 'kaiju-no-8-game': 'kj8game', 'blue-protocol': 'bp',
+  'dragon-ball-daima': 'dbdaima', 'battle-through-the-heavens': 'btthreview', 'tbate-anime': 'tbatereview'
 };
 
 const exists = (u) => fs.existsSync(path.join(root, u.replace(/^\//, '')));
@@ -1927,9 +2316,9 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
     /* Bộ lọc */
-    .machine { margin-top: 24px; display: grid; grid-template-columns: 380px minmax(0, 1fr); gap: 20px; align-items: start; min-width: 0; }
-    .machine-out { min-width: 0; }
-    .finder { --facc: var(--amber); min-width: 0; position: sticky; top: 76px; background: var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 20px 20px 22px; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 24px 60px rgba(0, 0, 0, .35); }
+    .machine { margin-top: 24px; display: grid; grid-template-columns: 400px minmax(0, 1fr); gap: 20px; align-items: stretch; min-width: 0; }
+    .machine-out { min-width: 0; display: flex; flex-direction: column; }
+    .finder { --facc: var(--amber); min-width: 0; display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 20px 20px 22px; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 24px 60px rgba(0, 0, 0, .35); }
     .f-head { margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
     .f-title { font-family: var(--fd); font-weight: 800; font-size: 21px; letter-spacing: -.015em; color: #fff; line-height: 1.2; }
     .f-sub { margin-top: 6px; font-size: 13.5px; line-height: 1.55; color: var(--text-muted); }
@@ -1953,7 +2342,7 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     .chip:hover { border-color: var(--line2); color: #fff; }
     .chip.on { border-color: var(--facc); color: #fff; background: color-mix(in srgb, var(--facc) 14%, transparent); box-shadow: inset 0 0 0 1px var(--facc); }
     .chip:disabled { opacity: .38; cursor: not-allowed; }
-    .f-foot { margin-top: 18px; }
+    .f-foot { margin-top: auto; padding-top: 18px; }
     .roll { display: flex; width: 100%; align-items: center; justify-content: center; gap: 10px; padding: 15px 30px; border: none; border-radius: 999px; cursor: pointer; font-family: var(--fd); font-weight: 800; font-size: 16.5px; color: #fff; background: linear-gradient(120deg, #7c3aed, #c026d3 55%, var(--sakura)); box-shadow: 0 10px 30px rgba(192, 38, 211, .35); transition: transform .15s, box-shadow .2s, filter .2s; }
     .roll:hover { filter: brightness(1.08); box-shadow: 0 14px 38px rgba(192, 38, 211, .45); }
     .roll:active { transform: scale(.97); }
@@ -1967,19 +2356,24 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     .f-count a:hover { text-decoration: underline; }
 
     /* Thẻ gợi ý */
-    .pick { display: grid; grid-template-columns: minmax(0, 42%) 1fr; border-radius: 22px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--acc) 32%, var(--line)); background: linear-gradient(160deg, rgba(30, 16, 70, .85), rgba(14, 7, 34, .92)); box-shadow: 0 24px 60px rgba(0, 0, 0, .4), 0 0 60px -20px color-mix(in srgb, var(--acc) 35%, transparent); scroll-margin-top: 76px; transition: opacity .25s, transform .25s, border-color .3s, box-shadow .3s; }
+    .pick { flex: 1; display: grid; grid-template-columns: minmax(0, 42%) 1fr; border-radius: 22px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--acc) 32%, var(--line)); background: linear-gradient(160deg, rgba(30, 16, 70, .85), rgba(14, 7, 34, .92)); box-shadow: 0 24px 60px rgba(0, 0, 0, .4), 0 0 60px -20px color-mix(in srgb, var(--acc) 35%, transparent); scroll-margin-top: 76px; transition: opacity .25s, transform .25s, border-color .3s, box-shadow .3s; }
     .pick.is-rolling { opacity: .35; transform: scale(.992); }
     .pick-media { position: relative; min-height: 400px; overflow: hidden; background: #0b0418; isolation: isolate; }
     .pick-bg { position: absolute; inset: -30px; width: calc(100% + 60px); height: calc(100% + 60px); object-fit: cover; filter: blur(28px) brightness(.42) saturate(1.4); }
     .pick-media::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 70% at 50% 45%, transparent 40%, rgba(7, 3, 20, .55) 100%); }
     .pick-img { position: absolute; inset: 24px; width: calc(100% - 48px); height: calc(100% - 48px); object-fit: contain; filter: drop-shadow(0 22px 40px rgba(0, 0, 0, .65)); z-index: 1; }
     .pick-media::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, transparent 78%, rgba(14, 7, 34, .55)); }
+    .pick.is-wide .pick-img { inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; filter: none; }
+    .pick.is-wide .pick-bg { display: none; }
+    .pick.is-wide .pick-media::before { background: linear-gradient(to top, rgba(7, 3, 20, .6), transparent 55%); z-index: 1; }
     .pick-type { position: absolute; z-index: 2; left: 16px; top: 16px; font-family: var(--fd); font-size: 11.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #0b0418; background: var(--acc); padding: 5px 11px; border-radius: 8px; }
-    .pick-body { padding: 26px 28px; display: flex; flex-direction: column; min-width: 0; }
+    .pick-body { position: relative; padding: 26px 28px; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+    .pick-body::before { content: ''; position: absolute; right: -80px; top: -80px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--acc) 22%, transparent), transparent 70%); pointer-events: none; }
+    .pick-body > * { position: relative; }
     .pick-top { display: flex; align-items: center; gap: 8px; }
     .pick-ic { font-size: 16px; line-height: 1; }
     .pick-eyebrow { font-family: var(--fd); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--acc); }
-    .pick-title { font-family: var(--fd); font-weight: 800; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.18; letter-spacing: -.015em; color: #fff; margin-top: 8px; }
+    .pick-title { font-family: var(--fd); font-weight: 800; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.18; letter-spacing: -.015em; color: #fff; margin-top: 8px; }
     .pick-meta { color: var(--text-muted); font-size: 14px; margin-top: 6px; }
     .pick-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
     .pick-tags span { font-size: 12px; font-weight: 600; color: var(--text-sub); border: 1px solid var(--line); border-radius: 8px; padding: 3px 9px; }
@@ -1993,7 +2387,7 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     .fact-score.is-none dd { color: var(--text-sub); font-size: 15px; font-weight: 700; padding-top: 5px; }
     .pick-moods { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
     .pick-moods span { font-size: 12.5px; color: var(--text-sub); background: rgba(255, 255, 255, .05); border-radius: 999px; padding: 3px 10px; }
-    .pick-actions { display: flex; gap: 10px; margin-top: auto; padding-top: 22px; flex-wrap: wrap; }
+    .pick-actions { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 0 20px; border-radius: 12px; font-family: var(--fd); font-weight: 700; font-size: 14.5px; text-decoration: none; cursor: pointer; transition: filter .2s, border-color .2s, background .2s; }
     .btn-main { background: var(--acc); color: #0b0418; border: none; }
     .btn-main:hover { filter: brightness(1.1); }
@@ -2101,7 +2495,7 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
       .top-cols.tabbed .top-col { padding-top: 6px; }
     }
     @media (max-width: 1024px) {
-      .machine { grid-template-columns: 340px minmax(0, 1fr); gap: 16px; }
+      .machine { grid-template-columns: 360px minmax(0, 1fr); gap: 16px; }
       .pick { grid-template-columns: 1fr; }
       .pick-media { min-height: 0; aspect-ratio: 16 / 10; }
       .pick-img { inset: 16px; width: calc(100% - 32px); height: calc(100% - 32px); }
@@ -2110,7 +2504,7 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     }
     @media (max-width: 900px) {
       .machine { grid-template-columns: minmax(0, 1fr); gap: 18px; }
-      .finder { position: static; }
+      .f-foot { margin-top: 18px; padding-top: 0; }
       .seg { grid-template-columns: repeat(4, 1fr); }
       .seg-btn { justify-content: center; }
       .seg-tx { flex: 0 1 auto; }
@@ -2301,6 +2695,12 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
       decks[key] = deck;
       return byId[id];
     }
+
+    // Ảnh ngang: phủ kín cột; ảnh dọc: poster nổi trên nền mờ
+    const pickImg = $('pickImg');
+    const fitPick = () => { if (pickImg.naturalWidth) $('pick').classList.toggle('is-wide', pickImg.naturalWidth > pickImg.naturalHeight * 1.15); };
+    pickImg.addEventListener('load', fitPick);
+    if (pickImg.complete) fitPick();
 
     function render(it, label) {
       state.cur = it; state.daily = label === L.today;
