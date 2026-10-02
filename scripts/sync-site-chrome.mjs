@@ -34,6 +34,9 @@ const HOT_SHINE = '<span aria-hidden="true" style="position:absolute;inset:0;ove
 const HOT_BASE = 'position:relative;background:linear-gradient(135deg,#ff4fa3,#ff9a3c);color:#1a0a24;font-weight:800;text-transform:uppercase;white-space:nowrap;box-shadow:0 0 0 1px rgba(255,255,255,.4) inset,0 0 22px rgba(255,79,163,.7),0 4px 14px rgba(0,0,0,.35);';
 const hotDesktop = (lang, act) => FEATURED ? `<li class="nav-hot-li" style="display:flex;align-items:center"><a href="${FEATURED[lang].href}" class="nav-hot${act ? ' active' : ''}" style="${HOT_BASE}display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:0 15px 0 12px;height:34px;margin-left:8px;font-size:11.5px;letter-spacing:.07em">${HOT_SHINE}${HOT_CLOCK}<span style="position:relative">${FEATURED[lang].label}</span></a></li>` : '';
 const hotMobile = (lang, act) => FEATURED ? `<a href="${FEATURED[lang].href}" class="nav-hot${act ? ' active' : ''}" style="${HOT_BASE}border-radius:14px;padding:14px 18px;margin-bottom:12px;border-bottom:0;display:flex;align-items:center;justify-content:center;gap:10px;font-size:17px;letter-spacing:.06em">${HOT_SHINE}${HOT_CLOCK}<span style="position:relative">${FEATURED[lang].label}<small style="display:block;font-size:11px;letter-spacing:.14em;opacity:.78;margin-top:2px;text-align:center">${FEATURED[lang].sub}</small></span></a>` : '';
+// Dải nổi bật chỉ hiện trên điện thoại (≤1100px, lúc menu ngang bị ẩn), nằm ngay dưới thanh menu.
+// Không hiện trên chính trang đích của chiến dịch.
+const hotStrip = (lang) => FEATURED ? `<style data-hot-m>@media(min-width:1101px){.nav-hot-m{display:none!important}}</style><a href="${FEATURED[lang].href}" class="nav-hot-m" style="position:relative;overflow:hidden;z-index:2;display:flex;align-items:center;justify-content:center;gap:9px;padding:12px 16px;background:linear-gradient(135deg,#ff4fa3,#ff9a3c);color:#1a0a24;font-weight:800;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;text-decoration:none;white-space:nowrap;box-shadow:0 8px 26px rgba(255,79,163,.4)">${HOT_SHINE}${HOT_CLOCK}<span style="position:relative">${FEATURED[lang].label} · ${FEATURED[lang].sub}</span><span aria-hidden="true" style="position:relative;font-size:18px;line-height:1">›</span></a>` : '';
 const CTA = { vi: ['/#newsletter', 'Đăng ký'], en: ['/en/#newsletter', 'Subscribe'] };
 const SUB = { vi: [['/about', 'Giới thiệu'], ['/#newsletter', 'Bản tin'], ['/lien-he', 'Liên hệ']], en: [['/en/about', 'About'], ['/en/#newsletter', 'Newsletter'], ['/en/contact', 'Contact']] };
 const LOGO = (home, lazy) => `<a href="${home}" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block"${lazy ? ' loading="lazy"' : ''}><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a>`;
@@ -95,9 +98,11 @@ function syncHtml(html, pageLang, pagePath) {
     return `<ul class="nav-links">${NAV[lang].map(([u, t]) => `<li><a href="${u}"${norm(u) === act ? ' class="active"' : ''}>${t}</a></li>`).join('')}${hotDesktop(lang, FEATURED && norm(FEATURED[lang].href) === act)}</ul>`;
   });
   // logo trên menu -> trang chủ đúng ngôn ngữ (trang 404 giữ đường dẫn tương đối riêng)
+  html = html.replace(/<style data-hot-m>[\s\S]*?<\/style><a [^>]*class="nav-hot-m"[\s\S]*?<\/a>/g, '');
   html = replaceElement(html, /<nav class="nav"[^>]*>/, 'nav', (block) => {
     const lang = langOfBlock(block, pageLang);
-    return block.replace(/<a\b[^>]*\bclass="logo"[^>]*>/, (tag) => tag.replace(/href="(?!\.\/)[^"]*"/, `href="${FOOTER[lang].home}"`));
+    const strip = FEATURED && norm(FEATURED[lang].href) !== pagePath ? hotStrip(lang) : '';
+    return block.replace(/<a\b[^>]*\bclass="logo"[^>]*>/, (tag) => tag.replace(/href="(?!\.\/)[^"]*"/, `href="${FOOTER[lang].home}"`)) + strip;
   });
   // menu trượt (trang hub dùng <div>, vài trang như Top List dùng <nav>)
   for (const tag of ['div', 'nav']) {

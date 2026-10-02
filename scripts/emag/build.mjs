@@ -28,7 +28,7 @@ function chrome(lang) {
   let tail = grab(h, /<footer>[\s\S]*<\/body>/, 'footer').replace(/function copyArticleLink[\s\S]*?\n}\n/, '').replace('</body>', '').trim();
   return {
     css, tail,
-    body: grab(h, /<div class="search-overlay"[\s\S]*?<\/nav>\s*<nav class="mobile-nav"[\s\S]*?<\/nav>/, 'khung menu'),
+    body: grab(h, /<div class="search-overlay"[\s\S]*?<nav class="mobile-nav"[\s\S]*?<\/nav>/, 'khung menu'),
     // GA luôn lấy từ bài mẫu VI (bài mẫu EN hiện chưa có GA)
     ga: grab(v, /<script>\/\* GA tải sau[\s\S]*?<\/script>/, 'GA') + '\n' + grab(v, /<script>\s*window\.dataLayer[\s\S]*?<\/script>/, 'gtag'),
     fonts: grab(h, /<link rel="preconnect" href="https:\/\/fonts\.googleapis\.com">[\s\S]*?<\/noscript>/, 'font')
@@ -286,7 +286,7 @@ for (const f of specFiles) {
     const file = spec.pages[lang].file, html = renderPage(spec, lang);
     const cur = exists(file) ? read(file) : '';
     // phần menu do sync-site-chrome quản lý (nút nổi bật, mục đang xem): so sánh sau khi bỏ khối menu
-    const strip = (s) => s.replace(/<ul class="nav-links">[\s\S]*?<\/ul>/, '').replace(/<nav class="mobile-nav"[\s\S]*?<\/nav>/, '');
+    const strip = (s) => s.replace(/<ul class="nav-links">[\s\S]*?<\/ul>/, '').replace(/<style data-hot-m>[\s\S]*?<\/style><a [^>]*class="nav-hot-m"[\s\S]*?<\/a>/, '').replace(/<nav class="mobile-nav"[\s\S]*?<\/nav>/, '');
     if (strip(cur) === strip(html)) { console.log(`  ${file}: đã khớp`); continue; }
     if (CHECK) { failed = true; console.log(`  ${file}: LỆCH so với spec (chạy npm run emag)`); continue; }
     fs.writeFileSync(rel(file), html);
