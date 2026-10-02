@@ -19487,10 +19487,15 @@ async function syncNewArticle(art) {
   }
 
   // 3. Update Category Hub (VI hoặc EN)
+  // Chuyên mục theo nội dung bài: bài "Reviews"/"Đánh giá"/"Tin mới" không mặc định vào Gaming nữa
+  // (scripts/sync-hub-articles.mjs sẽ sắp lại danh sách + nhãn lọc menu con theo đúng chuyên mục).
   let targetHub = isEn ? 'en/gaming.html' : 'gaming.html';
   const c = (cat || '').toLowerCase();
-  if (c.includes('anime')) targetHub = isEn ? 'en/anime.html' : 'anime.html';
-  else if (c.includes('manga') || c.includes('manhwa')) targetHub = isEn ? 'en/manga.html' : 'manga.html';
+  const tl = (title || '').toLowerCase();
+  const isAnime = c.includes('anime') || (!/game|gaming/.test(c) && /\banime\b|season \d|mùa \d|phim điện ảnh|chiếu rạp|the movie/.test(tl));
+  const isManga = c.includes('manga') || c.includes('manhwa') || (!/game|gaming|anime/.test(c) && /manga|manhwa|manhua|webtoon|chương \d|chapter \d/.test(tl));
+  if (isAnime) targetHub = isEn ? 'en/anime.html' : 'anime.html';
+  else if (isManga) targetHub = isEn ? 'en/manga.html' : 'manga.html';
 
   toast('success', `📁 Đang dồn bài vào chuyên mục ${targetHub}...`);
   try {
@@ -19502,7 +19507,7 @@ async function syncNewArticle(art) {
       const dateLabel = isEn
         ? new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })
         : new Date().toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
-      const cardHtml = `\n      <a href="/${slug}" class="ac">\n        <div class="ac-thumb"><img height="675" width="1200" src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy"><span class="tag">${esc(tagLabel)}</span></div>\n        <div class="ac-body">\n          <h3 class="ac-title">${esc(title)}</h3>\n          <div class="ac-meta"><span class="ac-author">${esc(author)}</span> · <span class="ac-date">${dateLabel}</span></div>\n        </div>\n      </a>\n`;
+      const cardHtml = `\n      <a href="/${slug}" class="ac" data-cat="">\n        <div class="ac-thumb"><img height="675" width="1200" src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy"><span class="tag">${esc(tagLabel)}</span></div>\n        <div class="ac-body">\n          <h3 class="ac-title">${esc(title)}</h3>\n          <div class="ac-meta"><span class="ac-author">${esc(author)}</span> · <span class="ac-date">${dateLabel}</span></div>\n        </div>\n      </a>\n`;
       return hubHtml.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/, replSafe(markerMatch[1] + cardHtml + markerMatch[2] + markerMatch[3]));
     }, `[admin] don bai /${slug} vao ${targetHub}`);
   } catch(e) {
