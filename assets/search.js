@@ -99,7 +99,7 @@ window.IDX = [
     "tags": []
   },
   {
-    "title": "Forgotten Island của DreamWorks: vì sao được so sánh với KPop Demon Hunters?",
+    "title": "Forgotten Island của DreamWorks: vì sao được so sánh với Thợ Săn Quỷ K-Pop (KPop Demon Hunters)?",
     "url": "/forgotten-island-dreamworks-so-sanh-kpop-demon-hunters",
     "cat": "Anime",
     "date": "2026-10-02",
@@ -117,7 +117,7 @@ window.IDX = [
     "tags": []
   },
   {
-    "title": "A-1 Pictures có anime nào đáng xem? Từ Lycoris Recoil đến Solo Leveling",
+    "title": "A-1 Pictures có anime nào đáng xem? Từ Lycoris Recoil đến Tôi Thăng Cấp Một Mình (Solo Leveling)",
     "url": "/a-1-pictures-anime-dang-xem-lycoris-recoil-solo-leveling",
     "cat": "Anime",
     "date": "2026-10-02",
@@ -504,7 +504,7 @@ window.IDX = [
     "tags": []
   },
   {
-    "title": "Chainsaw Man và One Piece cùng góp mặt tại Harvey Awards 2026",
+    "title": "Thợ Săn Quỷ Chainsaw Man và One Piece cùng góp mặt tại Harvey Awards 2026",
     "url": "/chainsaw-man-va-one-piece-cung-gop-mat-tai-harvey-awards-202",
     "cat": "Anime",
     "date": "2026-10-01",
@@ -513,7 +513,7 @@ window.IDX = [
     "tags": []
   },
   {
-    "title": "Frieren mùa 3: Golden Land Arc và câu chuyện về Macht",
+    "title": "Pháp Sư Tiễn Táng Frieren mùa 3: Golden Land Arc và câu chuyện về Macht",
     "url": "/en/frieren-season-3-golden-land-arc-story-macht",
     "cat": "Anime",
     "date": "2026-10-01",
@@ -522,7 +522,7 @@ window.IDX = [
     "tags": []
   },
   {
-    "title": "Frieren mùa 3: Golden Land Arc và câu chuyện về Macht",
+    "title": "Pháp Sư Tiễn Táng Frieren mùa 3: Golden Land Arc và câu chuyện về Macht",
     "url": "/frieren-mua-3-golden-land-arc-va-cau-chuyen-ve-macht",
     "cat": "Anime",
     "date": "2026-10-01",
@@ -540,7 +540,7 @@ window.IDX = [
     "tags": []
   },
   {
-    "title": "Frieren: Beyond Journey’s End mùa 3 chính thức trở lại tháng 10/2027",
+    "title": "Pháp Sư Tiễn Táng Frieren mùa 3 chính thức trở lại tháng 10/2027",
     "url": "/frieren-beyond-journey-s-end-mua-3-chinh-thuc-tro-lai-thang",
     "cat": "Anime",
     "date": "2026-10-01",
@@ -667,7 +667,7 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Frieren mùa 2 đã phát sóng từ tháng 1/2026 (10 tập)",
+    "title": "Pháp Sư Tiễn Táng Frieren mùa 2 đã phát sóng từ tháng 1/2026 (10 tập)",
     "url": "/frieren-mua-2-phat-song-thang-1-2026",
     "cat": "Anime",
     "date": "2026-09-30",
@@ -887,7 +887,7 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Dragon Ball Super: Beerus – Dragon Ball Super trở lại với phiên bản nâng cấp",
+    "title": "Bảy Viên Ngọc Rồng Super: Beerus – Bảy Viên Ngọc Rồng Super trở lại với phiên bản nâng cấp",
     "url": "/dragon-ball-super-beerus-dragon-ball-super-tro-lai-voi-phien",
     "cat": "Anime",
     "date": "2026-09-29",
@@ -897,7 +897,7 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Dragon Ball Super: Beerus: Goku đối đầu Thần Hủy Diệt Beerus",
+    "title": "Bảy Viên Ngọc Rồng Super: Beerus: Goku đối đầu Thần Hủy Diệt Beerus",
     "url": "/dragon-ball-super-beerus-goku-doi-dau-than-huy-diet-beerus",
     "cat": "Anime",
     "date": "2026-09-29",
@@ -1047,7 +1047,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Detective Conan 30号殺人事件: Vụ án đặc biệt kỷ niệm 30 năm lên sóng",
+    "title": "Thám Tử Lừng Danh Conan 30号殺人事件: Vụ án đặc biệt kỷ niệm 30 năm lên sóng",
     "url": "/detective-conan-30-vu-an-dac-biet-ky-niem-30-nam-len-song",
     "cat": "Anime",
     "date": "2026-09-28",
@@ -1127,7 +1127,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Magic Knight Rayearth bản làm lại 2026 lên sóng 7/10",
+    "title": "Hiệp Sĩ Phép Màu (Magic Knight Rayearth) bản làm lại 2026 lên sóng 7/10",
     "url": "/magic-knight-rayearth-2026-remake-len-song-7-10",
     "cat": "Anime",
     "date": "2026-09-28",
@@ -1307,7 +1307,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Battle Through the Heavens review: donghua tu luyện kinh điển",
+    "title": "Đấu Phá Thương Khung (Battle Through the Heavens) review: donghua tu luyện kinh điển",
     "url": "/battle-through-the-heavens-review",
     "cat": "Reviews",
     "date": "2026-09-27",
@@ -1347,7 +1347,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Spy x Family review: gia đình giả đầy bí mật",
+    "title": "Gia Đình Điệp Viên (Spy x Family) review: gia đình giả đầy bí mật",
     "url": "/spy-x-family-anime-review",
     "cat": "Reviews",
     "date": "2026-09-27",
@@ -1397,7 +1397,7 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "10 anime đáng xem khi chờ Jujutsu Kaisen mùa 4",
+    "title": "10 anime đáng xem khi chờ Chú Thuật Hồi Chiến mùa 4",
     "url": "/10-anime-dang-xem-khi-cho-jujutsu-kaisen-mua-4",
     "cat": "Anime",
     "date": "2026-09-26",
@@ -1607,7 +1607,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Overgeared lên sóng sớm trên Prime Video ngày 27/9",
+    "title": "Thợ Rèn Huyền Thoại (Overgeared) lên sóng sớm trên Prime Video ngày 27/9",
     "url": "/overgeared-anime-len-song-som-tren-prime-video-27-9",
     "cat": "Anime",
     "date": "2026-09-26",
@@ -1647,7 +1647,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Vì sao Phantom of Baker Street là phim Conan xuất sắc",
+    "title": "Vì sao Bóng Ma Phố Baker là phim Thám Tử Lừng Danh Conan xuất sắc",
     "url": "/vi-sao-bong-ma-pho-baker-la-mot-trong-nhung-phim-conan-hay-nhat",
     "cat": "Anime",
     "date": "2026-09-26",
@@ -1797,7 +1797,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Jujutsu Kaisen Culling Game phần 2: teaser Sukuna",
+    "title": "Chú Thuật Hồi Chiến Culling Game phần 2: teaser Sukuna",
     "url": "/jujutsu-kaisen-culling-game-part-2-sukuna-teaser",
     "cat": "Anime",
     "date": "2026-09-23",
@@ -1937,7 +1937,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Chainsaw Man – Reze Arc thu 191,4 triệu USD",
+    "title": "Thợ Săn Quỷ Chainsaw Man – Reze Arc thu 191,4 triệu USD",
     "url": "/chainsaw-man-movie-reze-arc-chieu-rap-viet-nam-doanh-thu-ky-luc",
     "cat": "Anime",
     "date": "2026-09-19",
@@ -2097,7 +2097,7 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Black Clover mùa 2 và Witch Hat Atelier cùng tung trailer",
+    "title": "Black Clover mùa 2 và Xưởng Phép Thuật (Witch Hat Atelier) cùng tung trailer",
     "url": "/black-clover-season-2-witch-hat-atelier-trailers",
     "cat": "Anime",
     "date": "2026-09-09",
@@ -2357,7 +2357,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Kimetsu no Yaiba: Vô Hạn Thành thu 793 triệu USD",
+    "title": "Thanh Gươm Diệt Quỷ: Vô Hạn Thành thu 793 triệu USD",
     "url": "/kimetsu-no-yaiba-vo-han-thanh-doanh-thu-793-trieu-usd",
     "cat": "Anime",
     "date": "2026-09-04",
@@ -2397,7 +2397,7 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Solo Leveling mùa 2: 13 tập, phát sóng 5/1–30/3/2025",
+    "title": "Tôi Thăng Cấp Một Mình (Solo Leveling) mùa 2: 13 tập, phát sóng 5/1–30/3/2025",
     "url": "/solo-leveling-season-2-arise-from-the-shadow-premiere",
     "cat": "Anime",
     "date": "2026-09-03",
@@ -2507,7 +2507,7 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Jujutsu Kaisen mở màn Juju Fes 2026 kỷ niệm 5 năm",
+    "title": "Chú Thuật Hồi Chiến mở màn Juju Fes 2026 kỷ niệm 5 năm",
     "url": "/jujutsu-kaisen-juju-fes-2026-anniversary",
     "cat": "Gaming",
     "date": "2026-08-29",
@@ -2587,7 +2587,7 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Chainsaw Man mùa 2 “Assassins Arc” đang sản xuất",
+    "title": "Thợ Săn Quỷ Chainsaw Man mùa 2 “Assassins Arc” đang sản xuất",
     "url": "/chainsaw-man-mua-2-assassins-arc-dang-san-xuat",
     "cat": "Anime",
     "date": "2026-08-25",
@@ -2647,7 +2647,7 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Jujutsu Kaisen mùa 3: Culling Game phần 1 đã phát sóng",
+    "title": "Chú Thuật Hồi Chiến mùa 3: Culling Game phần 1 đã phát sóng",
     "url": "/jujutsu-kaisen-season-3-culling-game-release",
     "cat": "Anime",
     "date": "2026-08-25",
@@ -2807,7 +2807,7 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Gosho Aoyama phác thảo storyboard chương cuối Conan",
+    "title": "Gosho Aoyama phác thảo storyboard chương cuối Thám Tử Lừng Danh Conan",
     "url": "/detective-conan-final-chapter",
     "cat": "Anime",
     "date": "2026-08-19",
@@ -3187,7 +3187,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "KONOSUBA mùa 4 ấn định ra mắt 2027, studio ENGI",
+    "title": "Chúc Phúc Cho Thế Giới Tuyệt Vời Này! (KonoSuba) mùa 4 ấn định ra mắt 2027, studio ENGI",
     "url": "/konosuba-season-4-2027",
     "cat": "Anime",
     "date": "2026-08-18",
@@ -3647,7 +3647,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Toei xác nhận phim Galaxy Express 999 mới",
+    "title": "Toei xác nhận phim Chuyến Tàu Ngân Hà 999 (Galaxy Express 999) mới",
     "url": "/galaxy-express-999-new-film",
     "cat": "Anime",
     "date": "2026-08-18",
@@ -3847,7 +3847,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Reincarnated as a Sword mùa 2 ấn định ngày 7/10",
+    "title": "Chuyển Sinh Thành Kiếm (Reincarnated as a Sword) mùa 2 ấn định ngày 7/10",
     "url": "/reincarnated-as-a-sword-season2-premiere",
     "cat": "Anime",
     "date": "2026-08-17",
@@ -3887,7 +3887,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Skip and Loafer mùa 2 tung teaser, ra mắt 4/2027",
+    "title": "Nhịp Bước Tuổi Xanh (Skip and Loafer) mùa 2 tung teaser, ra mắt 4/2027",
     "url": "/skip-and-loafer-season2-teaser",
     "cat": "Anime",
     "date": "2026-08-17",
@@ -3907,7 +3907,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "The Apothecary Diaries mùa 3 tung trailer, ấn định 2/10",
+    "title": "Dược Sư Tự Sự mùa 3 tung trailer, ấn định 2/10",
     "url": "/apothecary-diaries-season3-trailer",
     "cat": "Anime",
     "date": "2026-08-17",
@@ -3927,7 +3927,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Attack on Titan Final Season review: cái kết xứng đáng",
+    "title": "Đại Chiến Titan Final Season review: cái kết xứng đáng",
     "url": "/attack-on-titan-final-season-review",
     "cat": "Reviews",
     "date": "2026-08-16",
@@ -3947,7 +3947,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Chainsaw Man anime review: MAPPA làm nên kiệt tác",
+    "title": "Thợ Săn Quỷ Chainsaw Man anime review: MAPPA làm nên kiệt tác",
     "url": "/chainsaw-man-anime-review",
     "cat": "Reviews",
     "date": "2026-08-16",
@@ -4047,7 +4047,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Jujutsu Kaisen anime review: vươn tầm toàn cầu",
+    "title": "Chú Thuật Hồi Chiến anime review: vươn tầm toàn cầu",
     "url": "/jujutsu-kaisen-anime-review",
     "cat": "Reviews",
     "date": "2026-08-16",
@@ -4087,7 +4087,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Oshi no Ko anime review: góc khuất ngành giải trí",
+    "title": "Đứa Con Của Thần Tượng (Oshi no Ko) anime review: góc khuất ngành giải trí",
     "url": "/oshi-no-ko-anime-review",
     "cat": "Reviews",
     "date": "2026-08-16",
@@ -4097,7 +4097,7 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Oshi no Ko mùa 4 cuối tung teaser đầu tiên",
+    "title": "Đứa Con Của Thần Tượng (Oshi no Ko) mùa 4 cuối tung teaser đầu tiên",
     "url": "/oshi-no-ko-season4-teaser",
     "cat": "Anime",
     "date": "2026-08-16",
@@ -4237,7 +4237,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Chainsaw Man: Reze Arc review, MAPPA lên màn ảnh",
+    "title": "Thợ Săn Quỷ Chainsaw Man: Reze Arc review, MAPPA lên màn ảnh",
     "url": "/chainsaw-man-reze-arc-review",
     "cat": "Reviews",
     "date": "2026-08-15",
@@ -4287,7 +4287,7 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Demon Slayer: Infinity Castle: kiệt tác của Ufotable",
+    "title": "Thanh Gươm Diệt Quỷ: Vô Hạn Thành: kiệt tác của Ufotable",
     "url": "/demon-slayer-infinity-castle-review",
     "cat": "Reviews",
     "date": "2026-08-15",
@@ -4497,7 +4497,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "WIT Studio hé lộ bí ẩn Attack on Titan ngày 20/8",
+    "title": "WIT Studio hé lộ bí ẩn Đại Chiến Titan ngày 20/8",
     "url": "/attack-on-titan-wit-teaser",
     "cat": "Anime",
     "date": "2026-08-15",
@@ -4817,7 +4817,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Chained Soldier Season 3: ngày phát sóng và thông tin đã biết",
+    "title": "Nô Lệ Của Ma Đô Tinh Binh (Chained Soldier) Season 3: ngày phát sóng và thông tin đã biết",
     "url": "/chained-soldier-season-3",
     "cat": "Anime",
     "date": "2026-08-12",
@@ -4907,7 +4907,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Mushoku Tensei S3: Chaos Breaker tung trailer, 16/8",
+    "title": "Thất Nghiệp Chuyển Sinh (Mushoku Tensei) S3: Chaos Breaker tung trailer, 16/8",
     "url": "/mushoku-tensei-s3-chaos-breaker",
     "cat": "Anime",
     "date": "2026-08-12",
@@ -5317,7 +5317,7 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Dragon Ball DAIMA: di sản Toriyama, tương lai anime",
+    "title": "Bảy Viên Ngọc Rồng DAIMA: di sản Toriyama, tương lai anime",
     "url": "/dragon-ball-daima",
     "cat": "Anime",
     "date": "2026-06-03",
