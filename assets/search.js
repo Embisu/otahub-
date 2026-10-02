@@ -23,7 +23,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-10-02",
     "excerpt": "Gears of War: E-Day sits near 87-88 on Metacritic. Review roundup from IGN, GameSpot and GamesRadar, pros and cons, PC requirements and whether to buy.",
-    "img": "/assets/img/gears-of-war-e-day-review-hero.jpg",
+    "img": "/assets/img/gears-of-war-e-day-review-hero-v2.jpg",
     "tags": []
   },
   {
@@ -32,7 +32,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-10-02",
     "excerpt": "Gears of War: E-Day được khoảng 87-88 điểm Metacritic. Tổng hợp review IGN, GameSpot, GamesRadar, ưu nhược điểm, cấu hình PC và có nên mua không.",
-    "img": "/assets/img/gears-of-war-e-day-review-hero.jpg",
+    "img": "/assets/img/gears-of-war-e-day-review-hero-v2.jpg",
     "tags": []
   },
   {
@@ -41,7 +41,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-10-02",
     "excerpt": "13 grind-heavy RPGs are drawing attention in 2026, from Aniimo and Dragon Nest to Where Winds Meet: some already have a Vietnamese release, others still have no launch date. OtaHub researched and compiled release dates, platforms and Vietnamese support for each game, current as of Oct 2, 2026.",
-    "img": "/assets/img/top-game-mobile-cay-cuoc-hero.jpg",
+    "img": "/assets/img/top-game-mobile-cay-cuoc-hero-v2.jpg",
     "tags": []
   },
   {
@@ -50,7 +50,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-10-02",
     "excerpt": "13 game cày cuốc đang được cộng đồng quan tâm năm 2026, từ Aniimo, Dragon Nest đến Where Winds Meet: có tựa đã mở bản Việt, có tựa chưa chốt ngày ra mắt. OtaHub nghiên cứu, tổng hợp ngày phát hành, nền tảng và tiếng Việt của từng game, cập nhật đến 2/10/2026.",
-    "img": "/assets/img/top-game-mobile-cay-cuoc-hero.jpg",
+    "img": "/assets/img/top-game-mobile-cay-cuoc-hero-v2.jpg",
     "tags": []
   },
   {
@@ -1514,7 +1514,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-26",
     "excerpt": "Gears of War: E-Day đã hoàn thiện bản phát hành, mở tải trước ngày 29/9, truy cập sớm 1/10 và ra mắt chính thức 6/10/2026 trên Windows, Xbox Series X|S.",
-    "img": "/assets/img/gears-of-war-e-day-review-hero.jpg",
+    "img": "/assets/img/gears-of-war-e-day-review-hero-v2.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -1524,7 +1524,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-26",
     "excerpt": "Gears of War: E-Day has gone gold, with pre-load opening September 29, early access October 1 and full launch on October 6, 2026 on Windows and Xbox Series X|S.",
-    "img": "/assets/img/gears-of-war-e-day-review-hero.jpg",
+    "img": "/assets/img/gears-of-war-e-day-review-hero-v2.jpg",
     "tags": [],
     "lang": "en"
   },
