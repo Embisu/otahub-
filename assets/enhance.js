@@ -106,7 +106,8 @@ function update(){
 }
 window.addEventListener('scroll',update,{passive:true});
 window.addEventListener('resize',update);
-update();
+// lần tính đầu sau khi tải xong: tránh ép layout trước lần vẽ đầu
+if(document.readyState==='complete')update();else window.addEventListener('load',update);
 var css='.ot-progress{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.06);z-index:10000;pointer-events:none}'+
 '.ot-progress-fill{height:100%;width:0;background:linear-gradient(90deg,#ff2177,#00f2ff);transition:width .12s linear}';
 var st2=document.createElement('style');st2.textContent=css;document.head.appendChild(st2);
@@ -126,7 +127,7 @@ function toggle(){
   else btt.classList.remove('show');
 }
 window.addEventListener('scroll',toggle,{passive:true});
-toggle();
+if(document.readyState==='complete')toggle();else window.addEventListener('load',toggle);
 var css='.ot-btt{position:fixed;right:18px;bottom:22px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(0,242,255,.35);background:rgba(8,4,24,.92);color:#00f2ff;font-size:18px;line-height:1;cursor:pointer;z-index:9998;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s,border-color .2s,box-shadow .2s;backdrop-filter:blur(8px)}'+
 '.ot-btt.show{opacity:1;transform:translateY(0);pointer-events:auto}'+
 '.ot-btt:hover{border-color:#00f2ff;box-shadow:0 0 18px rgba(0,242,255,.35)}'+
@@ -571,7 +572,7 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
     }
 
     // 3. Tự động thu gọn Mục Lục (TOC) trên màn hình điện thoại
-    if (window.innerWidth <= 768) {
+    if (window.matchMedia('(max-width: 768px)').matches) {
       var toc = document.querySelector('.art-toc');
       if (toc && !toc.classList.contains('collapsed')) {
         toc.classList.add('collapsed');
@@ -663,8 +664,9 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
       if (fs && fs < 10) el.style.fontSize = '10px';
     }
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bump); else bump();
-  window.addEventListener('load', function(){ setTimeout(bump, 600); });
+  // Chạy 1 lần lúc trình duyệt rảnh sau khi tải, không chặn lần vẽ đầu
+  function later(){ (window.requestIdleCallback || function(f){ setTimeout(f, 300); })(bump, { timeout: 2000 }); }
+  if (document.readyState === 'complete') later(); else window.addEventListener('load', later);
 })();
 
 /* ── 🖼️ Ảnh hero độ phân giải thấp ──
