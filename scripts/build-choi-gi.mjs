@@ -2019,6 +2019,9 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     .empty button { margin-top: 12px; }
 
     /* Top theo điểm review */
+    .top-tabs { display: none; gap: 8px; margin-bottom: 12px; }
+    .top-tab { flex: 1; min-height: 44px; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--panel2); font-family: var(--fd); font-weight: 700; font-size: 14px; color: var(--text-sub); cursor: pointer; transition: border-color .2s, background .2s, color .2s; }
+    .top-tab.on { color: #fff; border-color: var(--acc); background: color-mix(in srgb, var(--acc) 14%, transparent); box-shadow: inset 0 0 0 1px var(--acc); }
     .top-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
     .top-col { border: 1px solid var(--line); background: rgba(22, 11, 54, .55); border-radius: 18px; padding: 16px 16px 12px; display: flex; flex-direction: column; }
     .top-h { font-family: var(--fd); font-size: 15px; font-weight: 800; color: var(--acc); letter-spacing: .02em; padding: 0 4px 10px; border-bottom: 1px solid var(--line); }
@@ -2030,7 +2033,7 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     .top-list li:first-child .tl-n { color: var(--amber); }
     .top-list img { width: 52px; height: 52px; border-radius: 10px; object-fit: cover; background: #0b0418; }
     .tl-t { min-width: 0; }
-    .tl-t b { display: block; font-family: var(--fd); font-size: 14px; color: #fff; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .tl-t b { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; font-family: var(--fd); font-size: 14px; color: #fff; line-height: 1.3; overflow: hidden; }
     .tl-t small { display: block; font-size: 12px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
     .tl-s { font-family: var(--fd); font-weight: 800; font-size: 16px; color: var(--amber); }
     .top-more { margin-top: auto; padding: 10px 4px 2px; font-size: 13px; font-weight: 700; color: var(--acc); text-decoration: none; }
@@ -2050,7 +2053,14 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
     @media (max-width: 1100px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-    @media (max-width: 1024px) { .top-cols { grid-template-columns: 1fr; } .top-col { padding-bottom: 8px; } }
+    @media (max-width: 1024px) {
+      .top-tabs { display: flex; }
+      .top-cols { grid-template-columns: 1fr; }
+      .top-col { padding-bottom: 8px; }
+      .top-cols.tabbed .top-col:not(.on) { display: none; }
+      .top-cols.tabbed .top-h { display: none; }
+      .top-cols.tabbed .top-col { padding-top: 6px; }
+    }
     @media (max-width: 900px) {
       .pick { grid-template-columns: minmax(0, 40%) 1fr; }
       .pick-media { min-height: 320px; }
@@ -2184,7 +2194,8 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
 
     <section class="sec" aria-labelledby="topH">
       <div class="sec-head"><h2 id="topH">${t.topH}</h2><p>${t.topP}</p></div>
-      <div class="top-cols">
+      <div class="top-tabs" id="topTabs" role="tablist" aria-label="${esc(t.topH)}">${['game', 'anime', 'manga'].map((k) => `<button type="button" role="tab" class="top-tab${k === 'game' ? ' on' : ''}" data-tab="${k}" aria-selected="${k === 'game'}" style="--acc:${ACC[k]}">${t.topCols[k]}</button>`).join('')}</div>
+      <div class="top-cols" id="topCols">
       ${['game', 'anime', 'manga'].map(topCol).join('\n      ')}
       </div>
     </section>
@@ -2321,7 +2332,7 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     function setFilter(part, value) {
       state[part] = value;
       state.limit = PAGE;
-      if (part === 'type') { state.sub = 'all'; renderSubs(); }
+      if (part === 'type') { state.sub = 'all'; renderSubs(); if (value !== 'all') setTopTab(value); }
       applyFilters();
       // gợi ý đang hiện không còn hợp bộ lọc -> đổi ngay sang một tựa phù hợp
       if (state.cur && !matches(state.cur)) { const it = nextItem(); if (it) showPick(it, L.forYou, false); }
@@ -2336,6 +2347,14 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
       const q = p.toString();
       history.replaceState(null, '', location.pathname + (q ? '?' + q : '') + location.hash);
     }
+
+    function setTopTab(k) {
+      document.querySelectorAll('.top-tab').forEach((b) => { const on = b.dataset.tab === k; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
+      document.querySelectorAll('.top-col').forEach((c) => c.classList.toggle('on', c.dataset.col === k));
+    }
+    $('topCols').classList.add('tabbed');
+    setTopTab('game');
+    $('topTabs').addEventListener('click', (e) => { const b = e.target.closest('.top-tab'); if (b) setTopTab(b.dataset.tab); });
 
     let toastT;
     function toast(msg) { const el = $('toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('show'), 2200); }
@@ -2364,6 +2383,7 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
       if (L.moods[p.get('mood')]) state.mood = p.get('mood');
       renderSubs();
       applyFilters();
+      if (state.type !== 'all') setTopTab(state.type);
       const shared = byId[p.get('pick')];
       if (shared) { render(shared, L.forYou); syncUrl(); return; }
       const list = pool().filter((x) => x.rv);
