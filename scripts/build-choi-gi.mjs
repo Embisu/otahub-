@@ -1750,7 +1750,7 @@ function buildHtml(lang = 'vi') {
   <script type="application/ld+json">${JSON.stringify(faqSchema)}</script>
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-12852ZFD0K"></script>
+  <script>/* GA tải sau khi trang hiển thị (không tranh băng thông/CPU với nội dung) */(function(){var d=0;function l(){if(d)return;d=1;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-12852ZFD0K';document.head.appendChild(s);}['pointerdown','keydown','scroll','touchstart'].forEach(function(e){addEventListener(e,l,{once:true,passive:true});});function idle(){(window.requestIdleCallback||function(f){setTimeout(f,1500)})(l,{timeout:3000});}if(document.readyState==='complete')idle();else addEventListener('load',idle);})();</script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -1763,7 +1763,7 @@ function buildHtml(lang = 'vi') {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"></noscript>
   <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-  <link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002d">
+  <link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002e">
 
   <style>
     :root {

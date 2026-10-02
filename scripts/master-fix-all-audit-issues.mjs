@@ -209,10 +209,10 @@ for (const file of allHtmls) {
     }
   }
 
-  // B. Performance: Replace inline article <style> block with <link rel="stylesheet" href="/assets/article-style.css?v=20261002c">
+  // B. Performance: Replace inline article <style> block with <link rel="stylesheet" href="/assets/article-style.css?v=20261002d">
   if (!['index.html', 'anime.html', 'manga.html', 'gaming.html', 'news.html', 'reviews.html', 'community.html', 'tag.html', '404.html', 'about.html', 'anime-detail.html', 'article.html', 'bai-viet.html', 'chinh-sach-bao-mat.html', 'choi-gi.html', 'chuyen-sau.html', 'game-detail.html', 'huong-dan.html', 'lich-phat-song.html', 'lien-he.html', 'manga-detail.html', 'rankings.html', 'recommend.html', 'sap-ra-mat.html', 'admin.html'].includes(path.basename(file))) {
     if (content.includes(':root{--bg:#0b0418') || content.includes(':root{--bg:#0b0418;--surf:#150a2c')) {
-      content = content.replace(/<style>[\s\S]*?:root\{--bg:#0b0418[\s\S]*?<\/style>/i, '<link rel="stylesheet" href="/assets/article-style.css?v=20261002c">');
+      content = content.replace(/<style>[\s\S]*?:root\{--bg:#0b0418[\s\S]*?<\/style>/i, '<link rel="stylesheet" href="/assets/article-style.css?v=20261002d">');
       optimizedCssCount++;
       modified = true;
     }

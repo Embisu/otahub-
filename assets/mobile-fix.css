@@ -180,3 +180,18 @@
   #amb{display:none!important}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
+/* ── Khung trang đồng nhất (2026-10-02) ──
+   Mỗi trang hub tự viết CSS menu/logo/footer nên có 9 kiểu nền menu, 4 kiểu logo (Chơi gì? còn dùng chữ
+   đậm 20px thay font logo), 7 kiểu nền footer: chuyển trang thấy logo/menu "nhảy". Chuẩn theo
+   article-style.css (~560 trang bài). Dùng "body ..." để thắng CSS inline bất kể thứ tự nạp; lưới
+   footer chỉ chuẩn hóa ở màn lớn để không đè luật responsive của từng trang. Màu nút Đăng ký theo
+   chuyên mục (Anime hồng, Manga tím) là chủ ý nên giữ. */
+body .nav{background:rgba(11,4,24,.92);border-bottom:1px solid rgba(0,242,255,.18)}
+body .logo-t{font-family:'BHN Fonarto Regular',var(--fd);font-weight:400;letter-spacing:-.01em;line-height:1;position:relative;top:.14em}
+@media(min-width:769px){body .logo-t{font-size:32px}}
+@media(max-width:768px){body .logo-t{font-size:20px}}
+body footer{background:rgba(7,1,18,.98);border-top:1px solid rgba(255,255,255,.07)}
+@media(min-width:1101px){body .ft-in{max-width:1440px;padding:52px 24px 32px;grid-template-columns:200px 1fr 1fr 1fr;gap:48px}}
+body .ft-h{font-size:10px;letter-spacing:.19em;text-transform:uppercase;margin-bottom:18px;font-weight:500}
+body .ft-links a{color:#cbd5e1!important}
+body .ft-links a:hover{color:var(--cyan,#00f2ff)!important}

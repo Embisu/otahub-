@@ -310,3 +310,12 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);background
 .art-toc-link:hover{color:var(--cyan) !important;border-bottom-color:var(--cyan) !important}
 .art-toc.collapsed .art-toc-list{display:none !important}
 .art-toc.collapsed .art-toc-head{border-bottom:none;padding-bottom:0}
+
+/* Bảng trong bài (trước chỉ có ở CSS inline của các bài mẫu cũ) */
+.art-table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:28px 0;border:1px solid var(--border);border-radius:6px;background:var(--surf)}
+.art-table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.6;text-align:left}
+.art-table th{background:var(--surf2);color:var(--cyan);padding:12px 16px;font-family:var(--fd);font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid rgba(0,242,255,.2)}
+.art-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--dim)}
+.art-table tbody tr:hover{background:rgba(0,242,255,.03)}
+.art-table tbody tr:last-child td{border-bottom:none}
+.logo svg{width:30px;height:30px}

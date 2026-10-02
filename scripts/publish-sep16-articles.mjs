@@ -265,7 +265,7 @@ function generateArticleHtml(art, isEn) {
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <meta name="theme-color" content="#0b0418">
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
-<link rel="stylesheet" href="/assets/article-style.css?v=20261002c">
+<link rel="stylesheet" href="/assets/article-style.css?v=20261002d">
 </head>
 <body>
 
