@@ -247,6 +247,7 @@ qTitle=TITLE_ALIAS[qTitle]||qTitle;
 function otThumbImg(u){return /^\/assets\/img\/(?!_[ts]\/|brand\/)[^?#]+\.(jpe?g|png|webp|jfif)$/i.test(u||'')?'/assets/img/_s/'+u.slice(12)+'.webp':u;}
 // Nhãn chuyên mục của bài (search.js ghi bằng tiếng Anh)
 function catLabel(c){return (!EN&&{Reviews:'Đánh giá',Review:'Đánh giá',News:'Tin tức'}[c])||c||'OtaHub';}
+function todayVN(){return new Date(Date.now()+7*36e5).toISOString().slice(0,10);}
 function esc(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML;}
 
 function findEntry(catalog, title){
@@ -307,6 +308,12 @@ function renderEmpty(){
 function renderEntry(title, entry, catalog){
   if(EN&&entry.storyEn){entry=Object.assign({},entry,{story:entry.storyEn,desc:entry.descEn||entry.storyEn[0],hook:entry.hookEn||entry.storyEn[0],status:entry.statusEn||entry.status});}
   entry.desc=entry.desc||entry.hook||(entry.story&&entry.story[0])||title;
+  // Trạng thái "Sắp ..." tự đổi khi tới ngày (startDate, giờ Việt Nam): lúc dựng trang và, với trang tĩnh, cả khi người xem mở trang
+  var liveSt=entry.startDate&&(EN?entry.statusLiveEn:entry.statusLive), flipAttr='';
+  if(liveSt){
+    if(todayVN()>=entry.startDate)entry=Object.assign({},entry,{status:liveSt});
+    else flipAttr=' data-flip="'+entry.startDate+'" data-live="'+esc(liveSt)+'"';
+  }
   // "Jujutsu Kaisen (Anime)" -> "Jujutsu Kaisen": loại đã có ở nhãn
   var name=title.replace(/\s*\((?:Anime|Manga)\)$/,'');
   var scoreNum=parseFloat(entry.score), hasScore=!isNaN(scoreNum);
@@ -396,7 +403,7 @@ function renderEntry(title, entry, catalog){
     '<div class="ah-content">'+
       (img?'<img class="ah-poster" src="'+img+'" alt="'+esc(name)+'" fetchpriority="high"/>':'')+
       '<div class="ah-info">'+
-        '<div class="ah-badges"><span class="ah-badge type">'+LABEL[entry.type]+'</span>'+(entry.genre?'<span class="ah-badge">'+esc(entry.genre)+'</span>':'')+(entry.status?'<span class="ah-badge">'+esc(entry.status)+'</span>':'')+'</div>'+
+        '<div class="ah-badges"><span class="ah-badge type">'+LABEL[entry.type]+'</span>'+(entry.genre?'<span class="ah-badge">'+esc(entry.genre)+'</span>':'')+(entry.status?'<span class="ah-badge"'+flipAttr+'>'+esc(entry.status)+'</span>':'')+'</div>'+
         '<h1 class="ah-title">'+esc(name)+'</h1>'+
         (entry.studio?'<div class="ah-title-jp">'+esc(entry.studio)+'</div>':'')+
         '<p class="ah-synopsis">'+esc(entry.hook||storyParas[0])+'</p>'+
@@ -412,7 +419,7 @@ function renderEntry(title, entry, catalog){
         (entry.genre?'<div class="info-row"><span class="ir-label">'+TXT.genre+'</span><span class="ir-val">'+esc(entry.genre)+'</span></div>':'')+
         (entry.platforms?'<div class="info-row"><span class="ir-label">'+TXT.platform+'</span><span class="ir-val">'+esc(entry.platforms)+'</span></div>':'')+
         (entry.release&&entry.release!==entry.status?'<div class="info-row"><span class="ir-label">'+TXT.release+'</span><span class="ir-val">'+esc(entry.release)+'</span></div>':'')+
-        (entry.status?'<div class="info-row"><span class="ir-label">'+TXT.status+'</span><span class="ir-val">'+esc(entry.status)+'</span></div>':'')+
+        (entry.status?'<div class="info-row"><span class="ir-label">'+TXT.status+'</span><span class="ir-val"'+flipAttr+'>'+esc(entry.status)+'</span></div>':'')+
       '</div>'+
       verdictHtml+
       '<div class="review-body">'+storyHtml+'</div>'+
@@ -468,9 +475,18 @@ function initEditionTabs(){
   fromHash();
 }
 
+// Trang tĩnh dựng sẵn "Sắp ..." trước ngày ra mắt: tới ngày thì đổi sang trạng thái đang phát sóng / đã phát hành
+function flipStatuses(){
+  var t=todayVN();
+  Array.prototype.forEach.call(root.querySelectorAll('[data-flip]'),function(el){
+    if(t>=el.getAttribute('data-flip')){el.textContent=el.getAttribute('data-live');el.removeAttribute('data-flip');}
+  });
+}
+
 if(root.hasAttribute('data-prerendered')){
   markWidePoster();
   initEditionTabs();
+  flipStatuses();
 }else if(!qTitle){
   renderEmpty();
 }else{
