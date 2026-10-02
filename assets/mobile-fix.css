@@ -162,3 +162,12 @@
   .guide-meta{flex-wrap:wrap;row-gap:10px}
   .g-table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
 }
+@media(max-width:640px){
+  /* Đoạn tóm tắt đầu bài: 20px nghiêng, giãn dòng 36px chiếm cả màn hình điện thoại và khó đọc với chữ có dấu */
+  .art-body .art-lead,.art-content .art-lead{font-size:17px!important;line-height:1.65!important;font-style:normal!important;font-weight:500!important;padding:12px 14px!important;margin:18px 0 22px!important}
+}
+@media(max-width:768px){
+  /* Vùng bấm tối thiểu ~32px cho liên kết nhỏ (tên tác giả, "Xem tất cả", "Đọc toàn bài", breadcrumb):
+     nới bằng padding + margin âm để không làm xê dịch bố cục */
+  .author-profile-link,.sec-more,.read-more,.bc-item,.nav-back,.sc-col-link{display:inline-block;padding-top:7px!important;padding-bottom:7px!important;margin-top:-7px;margin-bottom:-7px}
+}

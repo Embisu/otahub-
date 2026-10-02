@@ -8,7 +8,9 @@ function fmtDate(iso){
   var m=/^(\d{4})-(\d{2})-(\d{2})/.exec(iso);
   if(!m)return iso;
   var y=m[1],mo=parseInt(m[2],10),d=parseInt(m[3],10);
-  return d+' '+MONTHS[mo-1]+', '+y;
+  // Tiếng Việt: dd/mm/yyyy như trang chủ ("1 Th10, 2026" khó đọc); tiếng Anh: "Oct 1, 2026"
+  if(!OT_EN)return (d<10?'0':'')+d+'/'+m[2]+'/'+y;
+  return MONTHS[mo-1]+' '+d+', '+y;
 }
 document.querySelectorAll('.am-date').forEach(function(el){
   var t=el.textContent.trim();
@@ -608,7 +610,18 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
     for (var i = 0; i < RULES.length; i++) if (RULES[i][0].test(t)) return RULES[i][1];
     return '';
   }
+  // Trang tiếng Việt: chuyên mục nội bộ (Reviews, Rankings...) hiển thị bằng tiếng Việt,
+  // kể cả khi admin ghi lại nhãn gốc lúc lưu bài.
+  var IS_VI = /^vi/i.test(document.documentElement.lang || '');
+  var VI_LABEL = { 'Reviews': 'Đánh giá', 'Review': 'Đánh giá', 'Rankings': 'Xếp hạng', 'Guides': 'Hướng dẫn', 'Guide': 'Hướng dẫn',
+    'News': 'Tin tức', 'Tags': 'Chủ đề', 'In-Depth': 'Chuyên sâu' };
+  var LABEL_SEL = SEL + ',.art-hero-cat,.am-tag,.sb-tag,.sb-title,.cat-name,.rg-cat,.qcard-t';
   function paint(root){
+    if (IS_VI) (root || document).querySelectorAll(LABEL_SEL).forEach(function(el){
+      if (el.children.length) return;
+      var t = el.textContent.trim();
+      if (VI_LABEL[t]) el.textContent = VI_LABEL[t];
+    });
     (root || document).querySelectorAll(SEL).forEach(function(el){
       if (el.hasAttribute('data-cat')) return;
       var c = catOf(el.textContent);
