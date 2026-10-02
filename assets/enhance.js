@@ -357,8 +357,8 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
       keywords: ['dragon ball', 'dragon-ball', 'toriyama', 'goku', 'beerus', 'daima', 'sparking zero'],
       articles: [
         { url: '/akira-toriyama-eisner-hall-of-fame', title: 'Akira Toriyama Được Ghi Danh Vào Eisner Hall of Fame' },
-        { url: '/dragon-ball-daima', title: 'Dragon Ball DAIMA: Di Sản Cuối Cùng Của Toriyama' },
-        { url: '/dragon-ball-super-beerus-goku-doi-dau-than-huy-diet-beerus', title: 'Dragon Ball Super: Beerus - Goku Đối Đầu Thần Hủy Diệt' }
+        { url: '/bay-vien-ngoc-rong-daima', title: 'Dragon Ball DAIMA: Di Sản Cuối Cùng Của Toriyama' },
+        { url: '/bay-vien-ngoc-rong-super-beerus-goku-doi-dau-than-huy-diet-beerus', title: 'Dragon Ball Super: Beerus - Goku Đối Đầu Thần Hủy Diệt' }
       ]
     },
     'Genshin & HoYoverse': {
@@ -372,9 +372,9 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
     'Jujutsu Kaisen': {
       keywords: ['jujutsu', 'gojo', 'sukuna', 'culling game'],
       articles: [
-        { url: '/jujutsu-kaisen-anime-review', title: 'Jujutsu Kaisen Anime Review: Định Hình Chuẩn Mực Shonen' },
-        { url: '/jujutsu-kaisen-culling-game-part-2-sukuna-teaser', title: 'Jujutsu Kaisen Culling Game Phần 2: Teaser Sukuna' },
-        { url: '/jujutsu-kaisen-juju-fes-2026-anniversary', title: 'Jujutsu Kaisen Mở Màn Juju Fes Kỷ Niệm 5 Năm' }
+        { url: '/chu-thuat-hoi-chien-anime-review', title: 'Jujutsu Kaisen Anime Review: Định Hình Chuẩn Mực Shonen' },
+        { url: '/chu-thuat-hoi-chien-culling-game-part-2-sukuna-teaser', title: 'Jujutsu Kaisen Culling Game Phần 2: Teaser Sukuna' },
+        { url: '/chu-thuat-hoi-chien-juju-fes-2026-anniversary', title: 'Jujutsu Kaisen Mở Màn Juju Fes Kỷ Niệm 5 Năm' }
       ]
     },
     'Monster Hunter': {
@@ -394,16 +394,16 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
     'Chainsaw Man': {
       keywords: ['chainsaw man', 'chainsaw-man', 'reze', 'denji'],
       articles: [
-        { url: '/chainsaw-man-movie-reze-arc-chieu-rap-viet-nam-doanh-thu-ky-luc', title: 'Chainsaw Man: Reze Arc Phá Kỷ Lục Doanh Thu Phòng Vé' },
-        { url: '/chainsaw-man-mua-2-assassins-arc-dang-san-xuat', title: 'Chainsaw Man Mùa 2 “Assassins Arc” Đang Sản Xuất' },
-        { url: '/chainsaw-man-anime-review', title: 'Chainsaw Man Anime Review: MAPPA Làm Nên Kiệt Tác' }
+        { url: '/tho-san-quy-chainsaw-man-movie-reze-arc-chieu-rap-viet-nam-doanh-thu-ky-luc', title: 'Chainsaw Man: Reze Arc Phá Kỷ Lục Doanh Thu Phòng Vé' },
+        { url: '/tho-san-quy-chainsaw-man-mua-2-assassins-arc-dang-san-xuat', title: 'Chainsaw Man Mùa 2 “Assassins Arc” Đang Sản Xuất' },
+        { url: '/tho-san-quy-chainsaw-man-anime-review', title: 'Chainsaw Man Anime Review: MAPPA Làm Nên Kiệt Tác' }
       ]
     },
     'Bleach': {
       keywords: ['bleach', 'tybw', 'shinigami', 'quincy'],
       articles: [
-        { url: '/bleach-tybw-the-calamity-25-7-2026', title: 'Bleach: TYBW - The Calamity Lên Sóng 10 Tập' },
-        { url: '/bleach-tybw-calamity-opening-ending', title: 'Bleach TYBW: Công Bố Opening I-BULL Và Ending Rasen' }
+        { url: '/bleach-huyet-chien-ngan-nam-the-calamity-25-7-2026', title: 'Bleach: TYBW - The Calamity Lên Sóng 10 Tập' },
+        { url: '/bleach-huyet-chien-ngan-nam-calamity-opening-ending', title: 'Bleach TYBW: Công Bố Opening I-BULL Và Ending Rasen' }
       ]
     }
   };

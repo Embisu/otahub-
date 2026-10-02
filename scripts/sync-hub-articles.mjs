@@ -200,7 +200,7 @@ ${facets.map(([k, vi, en]) => `    <button class="ffacet" data-facet="${k}">${es
     });
   }
   // e) bộ lọc dùng chung
-  if (!html.includes('/assets/hub-filter.js')) html = html.replace('<script defer src="/assets/enhance.js', '<script defer src="/assets/hub-filter.js?v=20261002a"></script>\n<script defer src="/assets/enhance.js');
+  if (!html.includes('/assets/hub-filter.js')) html = html.replace('<script defer src="/assets/enhance.js', '<script defer src="/assets/hub-filter.js?v=20261002d"></script>\n<script defer src="/assets/enhance.js');
   const changed = html !== before;
   if (changed && !CHECK) write(P.file, html);
   console.log(`${P.file}: ${list.length} bài · ${tabs.map(([k]) => `${k}:${count(k)}`).join(' ')} · top-list:${count('top-list')}${changed ? (CHECK ? ' (cần cập nhật)' : ' (đã ghi)') : ''}`);

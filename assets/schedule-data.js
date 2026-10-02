@@ -11,9 +11,9 @@ window.OT_SCHEDULE = {
   sources: [['AnimeSchedule.net', 'https://animeschedule.net/seasons/fall-2026'], ['LiveChart.me', 'https://www.livechart.me/fall-2026/tv']],
   seasons: {
     fall: [
-      {t:'The Apothecary Diaries Season 3', r:'Kusuriya no Hitorigoto 3rd Season', y:'tv', s:'OLM', d:'2026-10-02', h:'21:00', l:'/apothecary-diaries-season3-trailer', le:'/en/apothecary-diaries-season3-trailer', i:'/assets/img/ba56514692-apothecary-diaries-s3-key-visual.jpg'},
-      {t:'Black Clover Season 2', r:'Black Clover 2nd Season', y:'tv', s:'Studio Pierrot', d:'2026-10-03', h:'21:00', l:'/black-clover-season-2', le:'/en/black-clover-season-2', i:'/assets/img/00ecd3dafc-banner.jpg'},
-      {t:'Reincarnated as a Sword II', r:'Tensei shitara Ken deshita 2', y:'tv', s:'C2C', d:'2026-09-30', h:'22:30', l:'/reincarnated-as-a-sword-season2-premiere', le:'/en/reincarnated-as-a-sword-season2-premiere', i:'/assets/img/poster-real-reincarnated-as-a-sword-s2.jpg'},
+      {t:'The Apothecary Diaries Season 3', r:'Kusuriya no Hitorigoto 3rd Season', y:'tv', s:'OLM', d:'2026-10-02', h:'21:00', l:'/duoc-su-tu-su-season3-trailer', le:'/en/apothecary-diaries-season3-trailer', i:'/assets/img/ba56514692-apothecary-diaries-s3-key-visual.jpg'},
+      {t:'Black Clover Season 2', r:'Black Clover 2nd Season', y:'tv', s:'Studio Pierrot', d:'2026-10-03', h:'21:00', l:'/the-gioi-phep-thuat-season-2', le:'/en/black-clover-season-2', i:'/assets/img/00ecd3dafc-banner.jpg'},
+      {t:'Reincarnated as a Sword II', r:'Tensei shitara Ken deshita 2', y:'tv', s:'C2C', d:'2026-09-30', h:'22:30', l:'/chuyen-sinh-thanh-kiem-season2-premiere', le:'/en/reincarnated-as-a-sword-season2-premiere', i:'/assets/img/poster-real-reincarnated-as-a-sword-s2.jpg'},
       {t:'Tokyo Revengers: Santen Sensou-hen', y:'tv', s:'LIDENFILMS', d:'2026-10-02', h:'14:00', l:'/tokyo-revengers-santen-sensou-hen-len-song-2-10', le:'/en/tokyo-revengers-santen-sensou-hen-premieres-october-2', i:'/assets/img/poster-real-tokyo-revengers-santen.jpg'},
       {t:'Tougen Anki: Nikko Kegon Falls Arc', r:'Tougen Anki: Nikko Kegon no Taki-hen', y:'tv', s:'Studio Hibari', d:'2026-10-02', h:'21:30', l:'/tougen-anki-mua-2-nikko-kegon-falls-len-song-2-10', le:'/en/tougen-anki-season-2-nikko-kegon-falls-premieres-october-2', i:'/assets/img/poster-real-tougen-anki-s2.jpg'},
       {t:'Ranma 1/2 Season 3', r:'Ranma ½ (2024) 3rd Season', y:'tv', s:'MAPPA', d:'2026-10-03', h:'23:25', l:'/ranma-half-season-3-visual', le:'/en/ranma-half-season-3-visual', i:'/assets/img/news-ranma-half-season-3-visual.jpg'},
@@ -21,9 +21,9 @@ window.OT_SCHEDULE = {
       {t:'Aoashi Season 2', r:'Ao Ashi 2nd Season', y:'tv', s:'TMS Entertainment', d:'2026-10-04', h:'15:00', l:'/aoashi-mua-2-doi-studio-len-song-4-10', le:'/en/aoashi-season-2-new-studio-premieres-october-4', i:'/assets/img/poster-real-aoashi-s2.jpg'},
       {t:'PSYREN', r:'PSYЯEN', y:'tv', s:'Satelight', d:'2026-10-05', h:'21:00', i:'/assets/img/sch/psyen.jpg'},
       {t:'The Detective Is Already Dead Season 2', r:'Tantei wa Mou, Shindeiru. Season 2', y:'tv', s:'ENGI', d:'2026-10-07', h:'19:30', i:'/assets/img/sch/tantei-wa-mou-shindeiru-season-2.jpg'},
-      {t:'Magic Knight Rayearth (2026)', y:'tv', s:'E&H Production', d:'2026-10-07', h:'21:45', p:'Crunchyroll', l:'/magic-knight-rayearth-2026-remake-len-song-7-10', le:'/en/magic-knight-rayearth-2026-reboot-premieres-october-7', i:'/assets/img/poster-real-magic-knight-rayearth-2026.jpg'},
+      {t:'Magic Knight Rayearth (2026)', y:'tv', s:'E&H Production', d:'2026-10-07', h:'21:45', p:'Crunchyroll', l:'/hiep-si-phep-mau-2026-remake-len-song-7-10', le:'/en/magic-knight-rayearth-2026-reboot-premieres-october-7', i:'/assets/img/poster-real-magic-knight-rayearth-2026.jpg'},
       {t:'Firefly Wedding', r:'Hotaru no Yomeiri', y:'tv', s:'David Production', d:'2026-10-09', h:'21:30', i:'/assets/img/sch/hotaru-no-yomeiri.jpg'},
-      {t:'Dragon Ball Super: Beerus', y:'tv', s:'Toei Animation', d:'2026-10-11', h:'21:16', l:'/dragon-ball-super-beerus-goku-doi-dau-than-huy-diet-beerus', le:'/en/dragon-ball-super-beerus-goku-faces-beerus-the-god', i:'/assets/img/poster-real-dragon-ball-super-beerus.jpg'},
+      {t:'Dragon Ball Super: Beerus', y:'tv', s:'Toei Animation', d:'2026-10-11', h:'21:16', l:'/bay-vien-ngoc-rong-super-beerus-goku-doi-dau-than-huy-diet-beerus', le:'/en/dragon-ball-super-beerus-goku-faces-beerus-the-god', i:'/assets/img/poster-real-dragon-ball-super-beerus.jpg'},
       {t:'Ace of Diamond act II Second Season (Part 2)', r:'Diamond no Ace Act II: Second Season Part 2', y:'tv', s:'OLM', d:'2026-10-11', h:'15:30', l:'/diamond-no-ace-act-ii-cour-2-len-song-11-10', le:'/en/diamond-no-ace-act-ii-cour-2-premieres-october-11', i:'/assets/img/poster-real-diamond-no-ace-act2.jpg'},
       {t:'Mission: Yozakura Family Season 2 (Part 2)', r:'Yozakura-san Chi no Daisakusen 2nd Season Part 2', y:'tv', s:'SILVER LINK.', d:'2026-10-11', h:'15:00', i:'/assets/img/sch/yozakura-san-chi-no-daisakusen-2nd-season-part-2.jpg'},
       {t:'Overgeared', r:'Tempal ~Item no Chikara~', y:'tv', s:'J.C. Staff', d:'2026-09-27', h:'21:31', i:'/assets/img/sch/tempal-item-no-chikara.jpg'},
@@ -103,8 +103,8 @@ window.OT_SCHEDULE = {
       {t:'Meitantei Precure! Fushigi na Niwa to Futari no Himitsu', y:'movie', s:'Toei Animation', d:'2026-09-18', i:'/assets/img/sch/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu.jpg'}
     ],
     summer: [
-      {t:'Mushoku Tensei III: Jobless Reincarnation', r:'Mushoku Tensei III: Isekai Ittara Honki Dasu', y:'tv', s:'Studio Bind', d:'2026-07-04', h:'22:01', l:'/mushoku-tensei-s3-chaos-breaker', le:'/en/mushoku-tensei-s3-chaos-breaker', i:'/assets/img/77948dbff7-mushoku-tensei-s3-chaosbreaker.jpg'},
-      {t:'Bleach: Thousand-Year Blood War – The Calamity', r:'BLEACH: Sennen Kessen-hen - Kashin-tan', y:'tv', s:'Pierrot Films', d:'2026-07-25', h:'22:30', l:'/bleach-tybw-the-calamity-25-7-2026', le:'/en/bleach-tybw-the-calamity-premieres-july-25-2026', i:'/assets/img/news-bleach-tybw-part4-farewell.jpg'},
+      {t:'Mushoku Tensei III: Jobless Reincarnation', r:'Mushoku Tensei III: Isekai Ittara Honki Dasu', y:'tv', s:'Studio Bind', d:'2026-07-04', h:'22:01', l:'/that-nghiep-chuyen-sinh-s3-chaos-breaker', le:'/en/mushoku-tensei-s3-chaos-breaker', i:'/assets/img/77948dbff7-mushoku-tensei-s3-chaosbreaker.jpg'},
+      {t:'Bleach: Thousand-Year Blood War – The Calamity', r:'BLEACH: Sennen Kessen-hen - Kashin-tan', y:'tv', s:'Pierrot Films', d:'2026-07-25', h:'22:30', l:'/bleach-huyet-chien-ngan-nam-the-calamity-25-7-2026', le:'/en/bleach-tybw-the-calamity-premieres-july-25-2026', i:'/assets/img/news-bleach-tybw-part4-farewell.jpg'},
       {t:'The Saga of Tanya the Evil II', r:'Youjo Senki II', y:'tv', s:'NUT', d:'2026-07-08', h:'20:30', i:'/assets/img/poster-real-youjo-senki-ii.jpg'},
       {t:'Ghost in the Shell (2026)', r:'Koukaku Kidoutai', y:'tv', s:'Science SARU', d:'2026-07-07', h:'21:30', l:'/ghost-in-the-shell-2026-tong-ket-mua-phat-song', le:'/en/ghost-in-the-shell-2026-season-wrap-up', i:'/assets/img/poster-real-ghost-in-the-shell-2026.jpg'},
       {t:'Grand Blue Season 3', r:'Grand Blue 3rd Season', y:'tv', s:'Saber Works', d:'2026-07-06', h:'22:30', i:'/assets/img/poster-real-grand-blue-s3.jpg'},
@@ -225,8 +225,8 @@ window.OT_SCHEDULE = {
       {t:'Komekami! Girls', y:'tv', s:'Daily Plan.net', d:'2026-04-02', h:'23:50', i:'/assets/img/sch/komekami-girls.jpg'}
     ],
     winter: [
-      {t:"Frieren: Beyond Journey's End Season 2", r:'Sousou no Frieren 2nd Season', y:'tv', s:'MADHOUSE', d:'2026-01-16', h:'22:00', l:'/frieren-mua-2-phat-song-thang-1-2026', le:'/en/frieren-season-2-aired-january-2026', i:'/assets/img/3f4f599cac-frieren-s2-hero.jpg'},
-      {t:'Jujutsu Kaisen: The Culling Game (Part 1)', r:'Jujutsu Kaisen Shimetsu Kaiyuu - Zenpen', y:'tv', s:'MAPPA', d:'2026-01-08', h:'23:30', l:'/jujutsu-kaisen-season-3-culling-game-release', le:'/en/jujutsu-kaisen-season-3-culling-game-release', i:'/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg'},
+      {t:"Frieren: Beyond Journey's End Season 2", r:'Sousou no Frieren 2nd Season', y:'tv', s:'MADHOUSE', d:'2026-01-16', h:'22:00', l:'/phap-su-tien-tang-frieren-mua-2-phat-song-thang-1-2026', le:'/en/frieren-season-2-aired-january-2026', i:'/assets/img/3f4f599cac-frieren-s2-hero.jpg'},
+      {t:'Jujutsu Kaisen: The Culling Game (Part 1)', r:'Jujutsu Kaisen Shimetsu Kaiyuu - Zenpen', y:'tv', s:'MAPPA', d:'2026-01-08', h:'23:30', l:'/chu-thuat-hoi-chien-season-3-culling-game-release', le:'/en/jujutsu-kaisen-season-3-culling-game-release', i:'/assets/img/news-jujutsu-kaisen-season-3-culling-game.jpg'},
       {t:"Hell's Paradise Season 2", r:'Jigokuraku 2nd Season', y:'tv', s:'MAPPA', d:'2026-01-11', h:'22:15', i:'/assets/img/sch/jigokuraku-2nd-season.jpg'},
       {t:'[Oshi no Ko] Season 3', r:'[Oshi no Ko] 3rd Season', y:'tv', s:'Doga Kobo', d:'2026-01-14', h:'22:00', i:'/assets/img/sch/oshi-no-ko-3rd-season.jpg'},
       {t:'Fire Force Season 3 (Part 2)', r:'Enen no Shouboutai: San no Shou Part 2', y:'tv', s:'David Production', d:'2026-01-09', h:'00:30', i:'/assets/img/sch/enen-no-shouboutai-san-no-shou-part-2.jpg'},

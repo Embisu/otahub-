@@ -4,9 +4,13 @@ Quy ước (áp dụng từ 2/10/2026 cho toàn bộ bài hub Anime tiếng Vi�
 
 - **Tiêu đề (H1, og:title, breadcrumb, JSON-LD)**: dùng tên Việt hóa. Tên ít phổ biến thì kèm tên gốc trong ngoặc, ví dụ `Thợ Rèn Huyền Thoại (Overgeared)`.
 - **Thẻ `<title>` / seo-title**: tên Việt hóa + tên gốc trong ngoặc (giữ từ khóa gốc cho SEO).
-- **Lần nhắc đầu tiên trong thân bài**: `Tên Việt (tên gốc)`, ví dụ `Pháp Sư Tiễn Táng Frieren (Frieren: Beyond Journey’s End)`; các lần sau chỉ dùng tên Việt (hoặc tên ngắn như Frieren, Chainsaw Man).
-- Tên nhân vật trùng tên tác phẩm (Frieren, Conan, Naruto...) giữ nguyên khi chỉ nhân vật.
-- Bản EN (`/en/...`) giữ tên tiếng Anh, không đổi.
+- **Lần nhắc đầu tiên trong thân bài**: `Tên Việt (tên gốc)`, ví dụ `Pháp Sư Tiễn Táng Frieren (Frieren: Beyond Journey’s End)`; mọi lần nhắc sau tới *tác phẩm* đều dùng tên Việt (kể cả "Pháp Sư Tiễn Táng Frieren mùa 3", "Thợ Săn Quỷ Chainsaw Man – Reze Arc").
+- Tên nhân vật trùng tên tác phẩm (Frieren, Conan, Naruto...) giữ nguyên khi chỉ nhân vật ("Frieren và Fern"); khi chỉ series ("Frieren mùa 3", "anime Frieren", "phim Conan") thì dùng tên Việt.
+- **Slug URL**: đoạn tên trong slug cũng Việt hóa (`phap-su-tien-tang-frieren-...`, `chu-thuat-hoi-chien-...`); đổi slug bài cũ thì thêm dòng 301 vào `_redirects` và thay link toàn site (index, news, hub, feed, search.js, author, ho-so, trang EN, en-pairs.json).
+- **Tag "Chủ đề"** trong sidebar: tên tác phẩm trong tag cũng là tên Việt; không để bộ tag mặc định (Gaming/Anime/Manga/Đánh giá/Xếp hạng).
+- **Ảnh trong bài**: luôn dùng `<figure><img alt="..."><figcaption>...</figcaption></figure>`; alt và caption dùng tên Việt.
+- **Hồ sơ tác phẩm** (`/ho-so/<slug>`): tên hiển thị VI khai báo trong `assets/series.json` (`name` = tên Việt, `nameEn` = tên gốc cho trang EN); chạy `node scripts/build-profiles.mjs` sau khi sửa.
+- Bản EN (`/en/...`) giữ tên tiếng Anh và slug tiếng Anh, không đổi.
 
 ## Bảng tên (nguồn: NXB Kim Đồng / IPM, Netflix VN, rạp Việt)
 
@@ -14,7 +18,7 @@ Quy ước (áp dụng từ 2/10/2026 cho toàn bộ bài hub Anime tiếng Vi�
 |---|---|
 | Frieren: Beyond Journey’s End / Sousou no Frieren | Pháp Sư Tiễn Táng Frieren |
 | Jujutsu Kaisen | Chú Thuật Hồi Chiến |
-| Chainsaw Man | Thợ Săn Quỷ Chainsaw Man (thân bài: Chainsaw Man (Thợ Săn Quỷ)) |
+| Chainsaw Man | Thợ Săn Quỷ Chainsaw Man |
 | Demon Slayer / Kimetsu no Yaiba | Thanh Gươm Diệt Quỷ (Infinity Castle → Vô Hạn Thành) |
 | Attack on Titan | Đại Chiến Titan |
 | Spy x Family | Gia Đình Điệp Viên |
@@ -30,7 +34,7 @@ Quy ước (áp dụng từ 2/10/2026 cho toàn bộ bài hub Anime tiếng Vi�
 | The Apothecary Diaries / Kusuriya no Hitorigoto | Dược Sư Tự Sự |
 | Detective Conan | Thám Tử Lừng Danh Conan |
 | The Phantom of Baker Street | Bóng Ma Phố Baker |
-| Gintama | Gintama (Linh Hồn Bạc) |
+| Gintama | Linh Hồn Bạc (Gintama), sau đó Linh Hồn Bạc |
 | JoJo’s Bizarre Adventure: Steel Ball Run | Steel Ball Run: Cuộc Phiêu Lưu Kì Lạ Của JoJo |
 | Overgeared | Thợ Rèn Huyền Thoại |
 | Magic Knight Rayearth | Hiệp Sĩ Phép Màu |
@@ -41,16 +45,16 @@ Quy ước (áp dụng từ 2/10/2026 cho toàn bộ bài hub Anime tiếng Vi�
 | KPop Demon Hunters | Thợ Săn Quỷ K-Pop |
 | Witch Hat Atelier | Xưởng Phép Thuật |
 | Galaxy Express 999 | Chuyến Tàu Ngân Hà 999 |
-| Record of Ragnarok | Record of Ragnarok (Đại Chiến Nhân Thần) |
+| Record of Ragnarok | Đại Chiến Nhân Thần (Record of Ragnarok) |
 | Hell’s Paradise: Jigokuraku | Địa Ngục Cực Lạc |
 | Mashle: Magic and Muscles | Mashle: Ma Thuật Và Cơ Bắp |
-| Liar Game | Liar Game (Trò Chơi Dối Trá) |
+| Liar Game | Trò Chơi Dối Trá (Liar Game) |
 | Lycoris Recoil | Lycoris Recoil: Quán Cà Phê Bất Ổn |
 | Bungo Stray Dogs | Văn Hào Lưu Lạc |
 | Delicious in Dungeon | Mỹ Vị Hầm Ngục |
 | Fullmetal Alchemist | Giả Kim Thuật Sư |
 | Kaguya-sama: Love Is War | Kaguya-sama: Cuộc Chiến Tỏ Tình |
-| Black Clover | Black Clover (Thế Giới Phép Thuật) |
+| Black Clover | Thế Giới Phép Thuật (Black Clover) |
 | Sailor Moon | Thủy Thủ Mặt Trăng |
 | Your Name. | Tên Cậu Là Gì? |
 | Suzume | Khóa Chặt Cửa Nào Suzume |

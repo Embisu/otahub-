@@ -23,7 +23,8 @@ function readSeries() {
   return JSON.parse(fs.readFileSync(new URL('assets/series.json', root), 'utf8'));
 }
 
-// [{ slug, name, editions: [{ key, type, tab, label, labelEn, also: [] }] }] — mọi hồ sơ, gộp theo thương hiệu
+// [{ slug, name, nameEn, editions: [{ key, type, tab, label, labelEn, also: [] }] }] — mọi hồ sơ, gộp theo thương hiệu
+// name: tên hiển thị VI (series.json cho phép tên Việt hóa, vd. "Pháp Sư Tiễn Táng Frieren"), nameEn: tên EN
 export function profileSeries(catalog) {
   const declared = readSeries();
   const out = [];
@@ -36,7 +37,7 @@ export function profileSeries(catalog) {
     }));
     if (!editions.length) continue;
     editions.forEach((e) => { taken.add(e.key); e.also.forEach((k) => taken.add(k)); });
-    out.push({ slug, name: s.name, editions });
+    out.push({ slug, name: s.name, nameEn: s.nameEn || s.name, editions });
     usedSlugs.add(slug);
   }
   for (const key of Object.keys(catalog).sort()) {
@@ -47,7 +48,7 @@ export function profileSeries(catalog) {
     let n = 2; const base = slug;
     while (usedSlugs.has(slug)) slug = `${base}-${n++}`;
     usedSlugs.add(slug);
-    out.push({ slug, name: displayName(key), editions: [{ key, type: e.type, tab: e.type, label: '', labelEn: '', also: [] }] });
+    out.push({ slug, name: displayName(key), nameEn: displayName(key), editions: [{ key, type: e.type, tab: e.type, label: '', labelEn: '', also: [] }] });
   }
   return out;
 }

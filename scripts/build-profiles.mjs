@@ -134,9 +134,9 @@ function pageHtml(s, en, rs) {
   const robots = rs.some((r) => /^index/.test(r.metas['meta[name="robots"]'] || '')) ? 'index, follow, max-image-preview:large' : 'noindex, follow';
   const e0 = catalog[main.key];
   const img = e0.img && !/placeholder/.test(e0.img) ? ORIGIN + e0.img : ORIGIN + '/og-image.png';
-  const name = multi ? s.name : displayName(main.key);
+  const name = en ? s.nameEn : s.name;   // tên hiển thị theo ngôn ngữ (series.json: name = tên Việt hóa, nameEn = tên gốc)
   const labels = s.editions.map((e) => (en ? e.labelEn : e.label));
-  const title = multi ? `${name}: ${labels.join(', ')} · ${en ? 'Profile' : 'Hồ sơ'} · OtaHub` : r0.title;
+  const title = multi ? `${name}: ${labels.join(', ')} · ${en ? 'Profile' : 'Hồ sơ'} · OtaHub` : r0.title.replace(displayName(main.key), name);
   const hub = { game: en ? ['Gaming', '/en/gaming'] : ['Gaming', '/gaming'], anime: en ? ['Anime', '/en/anime'] : ['Anime', '/anime'], manga: en ? ['Manga', '/en/manga'] : ['Manga', '/manga'] }[main.type];
   const crumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'OtaHub', item: ORIGIN + (en ? '/en/' : '/') },
@@ -161,7 +161,7 @@ function pageHtml(s, en, rs) {
   const schemas = rs.map((r, i) => { const o = JSON.parse(r.schema); o.url = url + (i ? '#' + s.editions[i].tab : ''); return ld(o); });
   html = setTag(html, /<\/head>/, `<style id="ot-detail-style">${r0.style}</style>\n${schemas.join('\n')}\n${ld(crumbs)}\n</head>`);
   let body;
-  if (!multi) body = thumbPoster(r0.html);
+  if (!multi) body = thumbPoster(r0.html).replace(/<h1 class="ah-title">[\s\S]*?<\/h1>/, () => `<h1 class="ah-title">${escHtml(name)}</h1>`);
   else {
     const tabs = s.editions.map((e, i) => {
       const sc = scoreOf(e.key);
@@ -209,7 +209,7 @@ function withProfileBlock(html, a) {
     const { s, e } = editionOf.get(p.key);
     const multi = s.editions.length > 1;
     const cat = multi ? (a.en ? e.labelEn : e.label) : TYPE_LABEL[p.type];
-    return `<a class="sb-art" href="${localize(paths[`${p.type}|${p.key}`], a.en)}"><img class="sb-thumb" src="${attrEsc(sbThumb(catalog[p.key].img))}" alt="" loading="lazy" width="76" height="60"><div><div class="sb-cat">${escHtml(cat)}</div><div class="sb-t">${escHtml(multi ? s.name : displayName(p.key))}</div></div></a>`;
+    return `<a class="sb-art" href="${localize(paths[`${p.type}|${p.key}`], a.en)}"><img class="sb-thumb" src="${attrEsc(sbThumb(catalog[p.key].img))}" alt="" loading="lazy" width="76" height="60"><div><div class="sb-cat">${escHtml(cat)}</div><div class="sb-t">${escHtml(a.en ? s.nameEn : s.name)}</div></div></a>`;
   }).join('');
   const block = `<!-- PROFILE-LINKS --><div class="sidebar-block"><div class="sb-title">${a.en ? 'Title profiles' : 'Hồ sơ tác phẩm'}</div>${items}</div><!-- /PROFILE-LINKS -->`;
   return html.replace('<aside class="art-sidebar">', () => '<aside class="art-sidebar">' + block);
