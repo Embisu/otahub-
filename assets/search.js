@@ -1,5 +1,23 @@
 window.IDX = [
   {
+    "title": "A-1 Pictures Anime Worth Watching: From Lycoris Recoil to Solo Leveling",
+    "url": "/en/a-1-pictures-best-anime-lycoris-recoil-solo-leveling",
+    "cat": "Anime",
+    "date": "2026-10-02",
+    "excerpt": "From Lycoris Recoil and 86 to Solo Leveling, what is worth watching from A-1 Pictures? Eight standout anime plus Beyond the System and Mashle S3 news.",
+    "img": "/assets/img/a1-pictures-home-hero.jpg",
+    "tags": []
+  },
+  {
+    "title": "A-1 Pictures có anime nào đáng xem? Từ Lycoris Recoil đến Solo Leveling",
+    "url": "/a-1-pictures-anime-dang-xem-lycoris-recoil-solo-leveling",
+    "cat": "Anime",
+    "date": "2026-10-02",
+    "excerpt": "Từ Lycoris Recoil, 86 đến Solo Leveling, A-1 Pictures có gì đáng xem? Điểm lại 8 anime tiêu biểu cùng tin mới: phim Beyond the System và Mashle mùa 3.",
+    "img": "/assets/img/a1-pictures-home-hero.jpg",
+    "tags": []
+  },
+  {
     "title": "Chainsaw Man and One Piece Both Nominated at the 2026 Harvey Awards",
     "url": "/en/chainsaw-man-and-one-piece-both-nominated-at-the-2026-harvey",
     "cat": "Anime",
