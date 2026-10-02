@@ -42,10 +42,6 @@
       }
     ],
     "scoreSource": "hub",
-    "verdict": "Rất tốt",
-    "verdictEn": "Very good",
-    "reviewSummary": "Sát thủ huyền thoại nghỉ hưu mở tiệm tạp hóa. Action dàn dựng điện ảnh kết hợp hài hước gia đình ấm áp.",
-    "reviewSummaryEn": "Legendary assassin retires and opens a convenience store. Action-packed cinematic production combined with heartwarming family humor.",
     "meta": {
       "ja": "SAKAMOTO DAYS",
       "en": "Sakamoto Days",
@@ -57,7 +53,11 @@
           "name": "Yuuto  Suzuki"
         }
       ]
-    }
+    },
+    "verdict": "Rất tốt",
+    "verdictEn": "Very good",
+    "reviewSummary": "Sát thủ huyền thoại nghỉ hưu mở tiệm tạp hóa. Action dàn dựng điện ảnh kết hợp hài hước gia đình ấm áp.",
+    "reviewSummaryEn": "Legendary assassin retires and opens a convenience store. Action-packed cinematic production combined with heartwarming family humor."
   },
   "Undead Unluck": {
     "type": "manga",
@@ -100,10 +100,6 @@
       }
     ],
     "scoreSource": "hub",
-    "verdict": "Rất tốt",
-    "verdictEn": "Very good",
-    "reviewSummary": "Khép lại 5 năm serialization với cái kết trọn vẹn. Hệ thống sức mạnh UMA sáng tạo bậc nhất thể loại.",
-    "reviewSummaryEn": "Concluding 5 years of serialization with a perfect ending. The most innovative UMA power system in the genre.",
     "meta": {
       "ja": "アンデッドアンラック",
       "en": "Undead Unluck",
@@ -116,7 +112,11 @@
           "name": "Yoshifumi Tozuka"
         }
       ]
-    }
+    },
+    "verdict": "Rất tốt",
+    "verdictEn": "Very good",
+    "reviewSummary": "Khép lại 5 năm serialization với cái kết trọn vẹn. Hệ thống sức mạnh UMA sáng tạo bậc nhất thể loại.",
+    "reviewSummaryEn": "Concluding 5 years of serialization with a perfect ending. The most innovative UMA power system in the genre."
   },
   "Spy x Family": {
     "type": "anime",
@@ -159,14 +159,6 @@
       }
     ],
     "scoreSource": "review",
-    "review": "/gia-dinh-diep-vien-anime-review",
-    "reviewEn": "/en/spy-x-family-anime-review",
-    "verdict": "Xuất Sắc",
-    "verdictEn": "Excellent",
-    "reviewSummary": "Gia Đình Điệp Viên là sự kết hợp hoàn hảo giữa những pha hành động điệp viên căng thẳng và những khoảnh khắc gia đình ấm áp, hài hước giữa ba con người xa lạ: điệp viên Twilight, sát thủ Yor và cô bé có khả năng đọc suy nghĩ Anya. Đánh giá sự phối hợp sản xuất giữa Wit Studio và CloverWorks mang lại tác phẩm chữa lành quốc dân.",
-    "reviewSummaryEn": "Spy x Family delivers an exquisite balance between cold-war espionage action and heartwarming domestic comedy among three undercover strangers: master spy Twilight, lethal assassin Yor, and telepathic toddler Anya. An in-depth review of Wit Studio and CloverWorks' hit anime adaptation.",
-    "reviewNote": "Wit Studio & CloverWorks, 3 mùa (2022–2025); manga hơn 42 triệu bản",
-    "reviewNoteEn": "Wit Studio & CloverWorks, 3 seasons (2022–2025); manga over 42 million copies",
     "meta": {
       "ja": "SPY×FAMILY",
       "romaji": "SPY×FAMILY",
@@ -194,7 +186,15 @@
           "name": "Kazuaki Shimada"
         }
       ]
-    }
+    },
+    "review": "/gia-dinh-diep-vien-anime-review",
+    "reviewEn": "/en/spy-x-family-anime-review",
+    "verdict": "Xuất Sắc",
+    "verdictEn": "Excellent",
+    "reviewSummary": "Gia Đình Điệp Viên là sự kết hợp hoàn hảo giữa những pha hành động điệp viên căng thẳng và những khoảnh khắc gia đình ấm áp, hài hước giữa ba con người xa lạ: điệp viên Twilight, sát thủ Yor và cô bé có khả năng đọc suy nghĩ Anya. Đánh giá sự phối hợp sản xuất giữa Wit Studio và CloverWorks mang lại tác phẩm chữa lành quốc dân.",
+    "reviewSummaryEn": "Spy x Family delivers an exquisite balance between cold-war espionage action and heartwarming domestic comedy among three undercover strangers: master spy Twilight, lethal assassin Yor, and telepathic toddler Anya. An in-depth review of Wit Studio and CloverWorks' hit anime adaptation.",
+    "reviewNote": "Wit Studio & CloverWorks, 3 mùa (2022–2025); manga hơn 42 triệu bản",
+    "reviewNoteEn": "Wit Studio & CloverWorks, 3 seasons (2022–2025); manga over 42 million copies"
   },
   "Elden Ring: Shadow of the Erdtree": {
     "type": "game",
@@ -346,10 +346,6 @@
       }
     ],
     "scoreSource": "hub",
-    "verdict": "Khá",
-    "verdictEn": "Quite",
-    "reviewSummary": "Animation chiến đấu vẫn đỉnh cao nhưng nhịp kể chuyện dồn nén khiến chiều sâu cốt truyện bị ảnh hưởng.",
-    "reviewSummaryEn": "The combat animation is still top-notch, but the rushed storytelling pace affects the depth of the plot.",
     "meta": {
       "ja": "俺だけレベルアップな件",
       "romaji": "Ore dake Level Up na Ken",
@@ -368,7 +364,11 @@
           "name": "Tomoko Sudou"
         }
       ]
-    }
+    },
+    "verdict": "Khá",
+    "verdictEn": "Quite",
+    "reviewSummary": "Animation chiến đấu vẫn đỉnh cao nhưng nhịp kể chuyện dồn nén khiến chiều sâu cốt truyện bị ảnh hưởng.",
+    "reviewSummaryEn": "The combat animation is still top-notch, but the rushed storytelling pace affects the depth of the plot."
   },
   "Wuthering Waves": {
     "type": "game",
@@ -704,14 +704,6 @@
       }
     ],
     "scoreSource": "review",
-    "review": "/thanh-guom-diet-quy-infinity-castle-review",
-    "reviewEn": "/en/demon-slayer-infinity-castle-review",
-    "verdict": "Kiệt Tác",
-    "verdictEn": "Masterpiece",
-    "reviewSummary": "Review Thanh Gươm Diệt Quỷ: Vô Hạn Thành của Ufotable: phần đầu bộ ba phim, ra 18/7/2025, doanh thu 820,4 triệu USD, kỷ lục phim Nhật; Rotten Tomatoes 98%, nhịp bị chê vì hồi tưởng lặp.",
-    "reviewSummaryEn": "Demon Slayer: Infinity Castle review from Ufotable: the first of a planned trilogy released July 18, 2025, grossing $820.4 million, a Japanese film record; Rotten Tomatoes 98%, with pacing criticized for repeated flashbacks.",
-    "reviewNote": "Doanh thu 820,4 triệu USD; Rotten Tomatoes 98% (62 bài)",
-    "reviewNoteEn": "Grossed $820.4 million; Rotten Tomatoes 98% (62 reviews)",
     "meta": {
       "ja": "劇場版「鬼滅の刃」無限城編 第一章 猗窩座再来",
       "romaji": "Kimetsu no Yaiba: Mugenjou-hen Movie 1 - Akaza Sairai",
@@ -735,7 +727,15 @@
           "name": "Akira Matsushima"
         }
       ]
-    }
+    },
+    "review": "/thanh-guom-diet-quy-infinity-castle-review",
+    "reviewEn": "/en/demon-slayer-infinity-castle-review",
+    "verdict": "Kiệt Tác",
+    "verdictEn": "Masterpiece",
+    "reviewSummary": "Review Thanh Gươm Diệt Quỷ: Vô Hạn Thành của Ufotable: phần đầu bộ ba phim, ra 18/7/2025, doanh thu 820,4 triệu USD, kỷ lục phim Nhật; Rotten Tomatoes 98%, nhịp bị chê vì hồi tưởng lặp.",
+    "reviewSummaryEn": "Demon Slayer: Infinity Castle review from Ufotable: the first of a planned trilogy released July 18, 2025, grossing $820.4 million, a Japanese film record; Rotten Tomatoes 98%, with pacing criticized for repeated flashbacks.",
+    "reviewNote": "Doanh thu 820,4 triệu USD; Rotten Tomatoes 98% (62 bài)",
+    "reviewNoteEn": "Grossed $820.4 million; Rotten Tomatoes 98% (62 reviews)"
   },
   "Frieren Season 2": {
     "type": "anime",
@@ -778,10 +778,6 @@
       }
     ],
     "scoreSource": "hub",
-    "verdict": "Kiệt tác",
-    "verdictEn": "Masterpiece",
-    "reviewSummary": "MyAnimeList 9.34/10, soán ngôi chính mùa 1 để trở thành anime được đánh giá cao thứ hai mọi thời đại.",
-    "reviewSummaryEn": "MyAnimeList 9.34/10, dethroning Season 1 to become the second highest-rated anime of all time.",
     "meta": {
       "ja": "葬送のフリーレン",
       "romaji": "Sousou no Frieren",
@@ -800,7 +796,11 @@
           "name": "Reiko Nagasawa"
         }
       ]
-    }
+    },
+    "verdict": "Kiệt tác",
+    "verdictEn": "Masterpiece",
+    "reviewSummary": "MyAnimeList 9.34/10, soán ngôi chính mùa 1 để trở thành anime được đánh giá cao thứ hai mọi thời đại.",
+    "reviewSummaryEn": "MyAnimeList 9.34/10, dethroning Season 1 to become the second highest-rated anime of all time."
   },
   "One Piece": {
     "type": "manga",
@@ -843,14 +843,6 @@
       }
     ],
     "scoreSource": "review",
-    "review": "/one-piece-final-saga-review",
-    "reviewEn": "/en/one-piece-final-saga-review",
-    "verdict": "Xuất Sắc",
-    "verdictEn": "Excellent",
-    "reviewSummary": "One Piece Final Saga chính thức bước vào chặng đua sinh tử cuối cùng kể từ chương 1054, đưa người đọc qua những biến động lịch sử tại Egghead, bí mật sự kiện God Valley và thánh địa các chiến binh Elbaf. Đánh giá chi tiết cách Eiichiro Oda làm chủ bức tranh địa chính trị thế giới và quy mô vĩ đại của hồi kết.",
-    "reviewSummaryEn": "One Piece Final Saga has entered its decisive endgame, catapulting readers from Egghead Island into the God Valley revelations and the long-anticipated giants' kingdom of Elbaf. An in-depth review of Eiichiro Oda's sweeping geopolitical mastery and the monumental momentum toward the series finale.",
-    "reviewNote": "Final Saga từ chương 1054; hơn 600 triệu bản in; anime Elbaph từ 4/2026",
-    "reviewNoteEn": "Final Saga from chapter 1054; over 600 million copies; the Elbaph anime from April 2026",
     "meta": {
       "ja": "ONE PIECE",
       "en": "One Piece",
@@ -862,7 +854,15 @@
           "name": "Eiichirou Oda"
         }
       ]
-    }
+    },
+    "review": "/one-piece-final-saga-review",
+    "reviewEn": "/en/one-piece-final-saga-review",
+    "verdict": "Xuất Sắc",
+    "verdictEn": "Excellent",
+    "reviewSummary": "One Piece Final Saga chính thức bước vào chặng đua sinh tử cuối cùng kể từ chương 1054, đưa người đọc qua những biến động lịch sử tại Egghead, bí mật sự kiện God Valley và thánh địa các chiến binh Elbaf. Đánh giá chi tiết cách Eiichiro Oda làm chủ bức tranh địa chính trị thế giới và quy mô vĩ đại của hồi kết.",
+    "reviewSummaryEn": "One Piece Final Saga has entered its decisive endgame, catapulting readers from Egghead Island into the God Valley revelations and the long-anticipated giants' kingdom of Elbaf. An in-depth review of Eiichiro Oda's sweeping geopolitical mastery and the monumental momentum toward the series finale.",
+    "reviewNote": "Final Saga từ chương 1054; hơn 600 triệu bản in; anime Elbaph từ 4/2026",
+    "reviewNoteEn": "Final Saga from chapter 1054; over 600 million copies; the Elbaph anime from April 2026"
   },
   "Chainsaw Man": {
     "type": "manga",
@@ -905,14 +905,6 @@
       }
     ],
     "scoreSource": "review",
-    "review": "/tho-san-quy-chainsaw-man-manga-part2-review",
-    "reviewEn": "/en/chainsaw-man-manga-part2-review",
-    "verdict": "Xuất Sắc",
-    "verdictEn": "Excellent",
-    "reviewSummary": "Thợ Săn Quỷ Chainsaw Man Part 2 (Academy Saga) đánh dấu bước chuyển mình bất ngờ của Tatsuki Fujimoto khi chuyển trọng tâm từ Denji sang nữ sinh lập dị Asa Mitaka và Quỷ Chiến Tranh Yoru. Đánh giá chi tiết về chiều sâu tâm lý học đường, nhịp độ kỳ dị đặc trưng và cách bộ truyện tái định nghĩa thể loại shonen đen tối.",
-    "reviewSummaryEn": "Chainsaw Man Part 2 (Academy Saga) marks Tatsuki Fujimoto's bold shift in narrative focus from Denji to socially awkward high schooler Asa Mitaka and the War Devil Yoru. An in-depth review of its psychological adolescent themes, surrealist pacing, and how it continues to reinvent dark modern shonen.",
-    "reviewNote": "Hơn 36 triệu bản in, 24 tập, Part 2 kết thúc 3/2026",
-    "reviewNoteEn": "Over 36 million copies, 24 volumes, Part 2 ended March 2026",
     "meta": {
       "ja": "チェンソーマン",
       "en": "Chainsaw Man",
@@ -925,7 +917,15 @@
           "name": "Tatsuki Fujimoto"
         }
       ]
-    }
+    },
+    "review": "/tho-san-quy-chainsaw-man-manga-part2-review",
+    "reviewEn": "/en/chainsaw-man-manga-part2-review",
+    "verdict": "Xuất Sắc",
+    "verdictEn": "Excellent",
+    "reviewSummary": "Thợ Săn Quỷ Chainsaw Man Part 2 (Academy Saga) đánh dấu bước chuyển mình bất ngờ của Tatsuki Fujimoto khi chuyển trọng tâm từ Denji sang nữ sinh lập dị Asa Mitaka và Quỷ Chiến Tranh Yoru. Đánh giá chi tiết về chiều sâu tâm lý học đường, nhịp độ kỳ dị đặc trưng và cách bộ truyện tái định nghĩa thể loại shonen đen tối.",
+    "reviewSummaryEn": "Chainsaw Man Part 2 (Academy Saga) marks Tatsuki Fujimoto's bold shift in narrative focus from Denji to socially awkward high schooler Asa Mitaka and the War Devil Yoru. An in-depth review of its psychological adolescent themes, surrealist pacing, and how it continues to reinvent dark modern shonen.",
+    "reviewNote": "Hơn 36 triệu bản in, 24 tập, Part 2 kết thúc 3/2026",
+    "reviewNoteEn": "Over 36 million copies, 24 volumes, Part 2 ended March 2026"
   },
   "Jujutsu Kaisen": {
     "type": "manga",
@@ -968,14 +968,6 @@
       }
     ],
     "scoreSource": "review",
-    "review": "/chu-thuat-hoi-chien-ket-thuc",
-    "reviewEn": "/en/jujutsu-kaisen-ending-analysis",
-    "verdict": "Xuất sắc",
-    "verdictEn": "Excellent",
-    "reviewSummary": "JJK kết thúc chương 271 (2025). Itadori Yuji sống sót. Gojo Satoru đã mất. Sukuna bị đánh bại. Megumi Fushiguro bị ảnh hưởng lâu dài. Ending mở, gây tranh cãi về số phận các nhân vật.",
-    "reviewSummaryEn": "Manga Jujutsu Kaisen officially ended after 5 years with a highly controversial ending. Full analysis of the ending of Itadori and Gojo",
-    "reviewNote": "Điểm OtaHub cho arc cuối của manga Chú Thuật Hồi Chiến",
-    "reviewNoteEn": "OtaHub score for Jujutsu Kaisen's final arc",
     "meta": {
       "ja": "呪術廻戦",
       "en": "Jujutsu Kaisen",
@@ -988,7 +980,15 @@
           "name": "Gege Akutami"
         }
       ]
-    }
+    },
+    "review": "/chu-thuat-hoi-chien-ket-thuc",
+    "reviewEn": "/en/jujutsu-kaisen-ending-analysis",
+    "verdict": "Xuất sắc",
+    "verdictEn": "Excellent",
+    "reviewSummary": "JJK kết thúc chương 271 (2025). Itadori Yuji sống sót. Gojo Satoru đã mất. Sukuna bị đánh bại. Megumi Fushiguro bị ảnh hưởng lâu dài. Ending mở, gây tranh cãi về số phận các nhân vật.",
+    "reviewSummaryEn": "Manga Jujutsu Kaisen officially ended after 5 years with a highly controversial ending. Full analysis of the ending of Itadori and Gojo",
+    "reviewNote": "Điểm OtaHub cho arc cuối của manga Chú Thuật Hồi Chiến",
+    "reviewNoteEn": "OtaHub score for Jujutsu Kaisen's final arc"
   },
   "Berserk": {
     "type": "manga",
@@ -1031,10 +1031,6 @@
       }
     ],
     "scoreSource": "hub",
-    "verdict": "Tốt",
-    "verdictEn": "Good",
-    "reviewSummary": "Chương 384 trở lại sau 9 tháng gián đoạn, Studio Gaga tiếp tục hoàn thiện di sản của Miura đầy tôn trọng.",
-    "reviewSummaryEn": "Chapter 384 returns after a 9-month hiatus, Gaga Studio continues to respectfully complete Miura's legacy.",
     "meta": {
       "ja": "ベルセルク",
       "en": "Berserk",
@@ -1050,7 +1046,11 @@
           "name": "Studio Gaga"
         }
       ]
-    }
+    },
+    "verdict": "Tốt",
+    "verdictEn": "Good",
+    "reviewSummary": "Chương 384 trở lại sau 9 tháng gián đoạn, Studio Gaga tiếp tục hoàn thiện di sản của Miura đầy tôn trọng.",
+    "reviewSummaryEn": "Chapter 384 returns after a 9-month hiatus, Gaga Studio continues to respectfully complete Miura's legacy."
   },
   "Hollow Knight: Silksong": {
     "type": "game",
@@ -1978,14 +1978,6 @@
       }
     ],
     "scoreSource": "review",
-    "review": "/tho-san-quy-chainsaw-man-reze-arc-review",
-    "reviewEn": "/en/chainsaw-man-reze-arc-review",
-    "verdict": "Xuất Sắc",
-    "verdictEn": "Excellent",
-    "reviewSummary": "Review Thợ Săn Quỷ Chainsaw Man – The Movie: Reze Arc của MAPPA: phim 100 phút ra 19/9/2025, \"Iris Out\" của Kenshi Yonezu, doanh thu 191,4 triệu USD; Rotten Tomatoes 96%, câu chuyện tình cảm đắng ngọt.",
-    "reviewSummaryEn": "Chainsaw Man – The Movie: Reze Arc review from MAPPA: a 100-minute film released September 19, 2025, with Kenshi Yonezu's \"Iris Out\" and $191.4 million at the box office; Rotten Tomatoes 96%, a bittersweet love story.",
-    "reviewNote": "Doanh thu 191,4 triệu USD; Rotten Tomatoes 96%; CinemaScore A",
-    "reviewNoteEn": "Grossed $191.4 million; Rotten Tomatoes 96%; CinemaScore A",
     "meta": {
       "ja": "チェンソーマン レゼ篇",
       "romaji": "Chainsaw Man: Reze-hen",
@@ -2009,7 +2001,15 @@
           "name": "Kazutaka Sugiyama"
         }
       ]
-    }
+    },
+    "review": "/tho-san-quy-chainsaw-man-reze-arc-review",
+    "reviewEn": "/en/chainsaw-man-reze-arc-review",
+    "verdict": "Xuất Sắc",
+    "verdictEn": "Excellent",
+    "reviewSummary": "Review Thợ Săn Quỷ Chainsaw Man – The Movie: Reze Arc của MAPPA: phim 100 phút ra 19/9/2025, \"Iris Out\" của Kenshi Yonezu, doanh thu 191,4 triệu USD; Rotten Tomatoes 96%, câu chuyện tình cảm đắng ngọt.",
+    "reviewSummaryEn": "Chainsaw Man – The Movie: Reze Arc review from MAPPA: a 100-minute film released September 19, 2025, with Kenshi Yonezu's \"Iris Out\" and $191.4 million at the box office; Rotten Tomatoes 96%, a bittersweet love story.",
+    "reviewNote": "Doanh thu 191,4 triệu USD; Rotten Tomatoes 96%; CinemaScore A",
+    "reviewNoteEn": "Grossed $191.4 million; Rotten Tomatoes 96%; CinemaScore A"
   },
   "Attack on Titan: Final Season": {
     "type": "anime",
@@ -2046,14 +2046,6 @@
       }
     ],
     "scoreSource": "review",
-    "review": "/dai-chien-titan-final-season-review",
-    "reviewEn": "/en/attack-on-titan-final-season-review",
-    "verdict": "Xuất Sắc",
-    "verdictEn": "Excellent",
-    "reviewSummary": "Review Đại Chiến Titan The Final Season của MAPPA (từ 7/12/2020): nhạc Hiroyuki Sawano, bốn phần đến 11/2023; manga Isayama hơn 140 triệu bản, giải Kodansha và Harvey, kèm tranh luận về chủ đề quân phiệt.",
-    "reviewSummaryEn": "Review of Attack on Titan The Final Season from MAPPA (from December 7, 2020): Hiroyuki Sawano's score, four parts through November 2023; Isayama's manga over 140 million copies, Kodansha and Harvey awards, with debate over militarism.",
-    "reviewNote": "MAPPA, 4 phần phát sóng 2020–2023; manga hơn 140 triệu bản",
-    "reviewNoteEn": "MAPPA, four parts aired 2020–2023; manga over 140 million copies",
     "meta": {
       "ja": "進撃の巨人 The Final Season",
       "romaji": "Shingeki no Kyojin: The Final Season",
@@ -2081,7 +2073,15 @@
           "name": "Tomohiro Kishi"
         }
       ]
-    }
+    },
+    "review": "/dai-chien-titan-final-season-review",
+    "reviewEn": "/en/attack-on-titan-final-season-review",
+    "verdict": "Xuất Sắc",
+    "verdictEn": "Excellent",
+    "reviewSummary": "Review Đại Chiến Titan The Final Season của MAPPA (từ 7/12/2020): nhạc Hiroyuki Sawano, bốn phần đến 11/2023; manga Isayama hơn 140 triệu bản, giải Kodansha và Harvey, kèm tranh luận về chủ đề quân phiệt.",
+    "reviewSummaryEn": "Review of Attack on Titan The Final Season from MAPPA (from December 7, 2020): Hiroyuki Sawano's score, four parts through November 2023; Isayama's manga over 140 million copies, Kodansha and Harvey awards, with debate over militarism.",
+    "reviewNote": "MAPPA, 4 phần phát sóng 2020–2023; manga hơn 140 triệu bản",
+    "reviewNoteEn": "MAPPA, four parts aired 2020–2023; manga over 140 million copies"
   },
   "Jujutsu Kaisen (Anime)": {
     "type": "anime",
@@ -2118,14 +2118,6 @@
       }
     ],
     "scoreSource": "review",
-    "review": "/chu-thuat-hoi-chien-anime-review",
-    "reviewEn": "/en/jujutsu-kaisen-anime-review",
-    "verdict": "Xuất Sắc",
-    "verdictEn": "Excellent",
-    "reviewSummary": "Chú Thuật Hồi Chiến Anime dưới bàn tay phù phép của studio MAPPA đã đưa câu chuyện chú thuật sư của Gege Akutami trở thành thương hiệu văn hóa đại chúng toàn cầu. Đánh giá toàn diện từ Mùa 1, Movie 0 đến thảm họa Biến cố Shibuya và Culling Game: chất lượng hoạt họa sakuga đỉnh cao và chiều sâu triết lý thiện - ác.",
-    "reviewSummaryEn": "Jujutsu Kaisen Anime by studio MAPPA has propelled Gege Akutami's dark fantasy epic into a worldwide pop-culture phenomenon. A comprehensive review tracing its evolution from Season 1 and Movie 0 to the devastating Shibuya Incident and the high-stakes Culling Game arc.",
-    "reviewNote": "MAPPA, 3 mùa và 1 phim; manga hơn 150 triệu bản",
-    "reviewNoteEn": "MAPPA, three seasons and one film; manga over 150 million copies",
     "meta": {
       "ja": "呪術廻戦",
       "en": "Jujutsu Kaisen",
@@ -2152,7 +2144,15 @@
           "name": "Tadashi Hiramatsu"
         }
       ]
-    }
+    },
+    "review": "/chu-thuat-hoi-chien-anime-review",
+    "reviewEn": "/en/jujutsu-kaisen-anime-review",
+    "verdict": "Xuất Sắc",
+    "verdictEn": "Excellent",
+    "reviewSummary": "Chú Thuật Hồi Chiến Anime dưới bàn tay phù phép của studio MAPPA đã đưa câu chuyện chú thuật sư của Gege Akutami trở thành thương hiệu văn hóa đại chúng toàn cầu. Đánh giá toàn diện từ Mùa 1, Movie 0 đến thảm họa Biến cố Shibuya và Culling Game: chất lượng hoạt họa sakuga đỉnh cao và chiều sâu triết lý thiện - ác.",
+    "reviewSummaryEn": "Jujutsu Kaisen Anime by studio MAPPA has propelled Gege Akutami's dark fantasy epic into a worldwide pop-culture phenomenon. A comprehensive review tracing its evolution from Season 1 and Movie 0 to the devastating Shibuya Incident and the high-stakes Culling Game arc.",
+    "reviewNote": "MAPPA, 3 mùa và 1 phim; manga hơn 150 triệu bản",
+    "reviewNoteEn": "MAPPA, three seasons and one film; manga over 150 million copies"
   },
   "Dandadan Season 2": {
     "type": "anime",
@@ -2189,14 +2189,6 @@
       }
     ],
     "scoreSource": "review",
-    "review": "/dandadan-season-2-review",
-    "reviewEn": "/en/dandadan-season-2-review",
-    "verdict": "Xuất Sắc",
-    "verdictEn": "Excellent",
-    "reviewSummary": "Dan Da Dan Season 2 tiếp tục chứng minh tài năng bậc thầy của Science SARU và đạo diễn Fuga Yamashiro trong việc biến từng khung tranh siêu thực thành bữa tiệc thị giác bùng nổ. Đánh giá chi tiết về phong cách đồ họa psychedelic đầy mê hoặc, nhịp phim mãn nhãn và sự phát triển tình cảm của cặp đôi chính.",
-    "reviewSummaryEn": "Dan Da Dan Season 2 cements Science SARU and director Fuga Yamashiro as animation visionaries, transforming surrealist manga panels into a breathtaking kinetic visual spectacle. An in-depth review of its psychedelic art direction, fluid action sequences, and the burgeoning emotional bonds of its cast.",
-    "reviewNote": "Science SARU, 12 tập (7–9/2025); mùa 3 dự kiến 2027",
-    "reviewNoteEn": "Science SARU, 12 episodes (July–September 2025); season 3 scheduled for 2027",
     "meta": {
       "ja": "ダンダダン 第2期",
       "romaji": "Dandadan 2nd Season",
@@ -2224,7 +2216,15 @@
           "name": "Naoyuki Onda"
         }
       ]
-    }
+    },
+    "review": "/dandadan-season-2-review",
+    "reviewEn": "/en/dandadan-season-2-review",
+    "verdict": "Xuất Sắc",
+    "verdictEn": "Excellent",
+    "reviewSummary": "Dan Da Dan Season 2 tiếp tục chứng minh tài năng bậc thầy của Science SARU và đạo diễn Fuga Yamashiro trong việc biến từng khung tranh siêu thực thành bữa tiệc thị giác bùng nổ. Đánh giá chi tiết về phong cách đồ họa psychedelic đầy mê hoặc, nhịp phim mãn nhãn và sự phát triển tình cảm của cặp đôi chính.",
+    "reviewSummaryEn": "Dan Da Dan Season 2 cements Science SARU and director Fuga Yamashiro as animation visionaries, transforming surrealist manga panels into a breathtaking kinetic visual spectacle. An in-depth review of its psychedelic art direction, fluid action sequences, and the burgeoning emotional bonds of its cast.",
+    "reviewNote": "Science SARU, 12 tập (7–9/2025); mùa 3 dự kiến 2027",
+    "reviewNoteEn": "Science SARU, 12 episodes (July–September 2025); season 3 scheduled for 2027"
   },
   "Oshi no Ko": {
     "type": "anime",
@@ -2261,14 +2261,6 @@
       }
     ],
     "scoreSource": "review",
-    "review": "/dua-con-cua-than-tuong-anime-review",
-    "reviewEn": "/en/oshi-no-ko-anime-review",
-    "verdict": "Xuất Sắc",
-    "verdictEn": "Excellent",
-    "reviewSummary": "Đứa Con Của Thần Tượng Anime do Doga Kobo thực hiện đã bóc trần những góc khuất tăm tối, áp lực tàn khốc và sự giả dối đằng sau ánh đèn sân khấu của ngành công nghiệp thần tượng Nhật Bản. Đánh giá tập mở màn 90 phút chấn động, siêu hit \"Idol\" của YOASOBI và hành trình báo thù ly kỳ của Aqua Hoshino.",
-    "reviewSummaryEn": "Oshi no Ko Anime by Doga Kobo fearlessly exposes the ruthless pressures, emotional exploitation, and dark secrets of the Japanese entertainment industry. An in-depth review of its cinematic 90-minute premiere, YOASOBI's smash hit \"Idol,\" and Aqua Hoshino's gripping revenge thriller.",
-    "reviewNote": "3 mùa đã phát sóng, mùa 4 là mùa cuối; manga hơn 25 triệu bản",
-    "reviewNoteEn": "Three seasons aired, season 4 is the last; manga over 25 million copies",
     "meta": {
       "ja": "【推しの子】",
       "en": "Oshi no Ko",
@@ -2299,7 +2291,15 @@
           "name": "Kanna Hirayama"
         }
       ]
-    }
+    },
+    "review": "/dua-con-cua-than-tuong-anime-review",
+    "reviewEn": "/en/oshi-no-ko-anime-review",
+    "verdict": "Xuất Sắc",
+    "verdictEn": "Excellent",
+    "reviewSummary": "Đứa Con Của Thần Tượng Anime do Doga Kobo thực hiện đã bóc trần những góc khuất tăm tối, áp lực tàn khốc và sự giả dối đằng sau ánh đèn sân khấu của ngành công nghiệp thần tượng Nhật Bản. Đánh giá tập mở màn 90 phút chấn động, siêu hit \"Idol\" của YOASOBI và hành trình báo thù ly kỳ của Aqua Hoshino.",
+    "reviewSummaryEn": "Oshi no Ko Anime by Doga Kobo fearlessly exposes the ruthless pressures, emotional exploitation, and dark secrets of the Japanese entertainment industry. An in-depth review of its cinematic 90-minute premiere, YOASOBI's smash hit \"Idol,\" and Aqua Hoshino's gripping revenge thriller.",
+    "reviewNote": "3 mùa đã phát sóng, mùa 4 là mùa cuối; manga hơn 25 triệu bản",
+    "reviewNoteEn": "Three seasons aired, season 4 is the last; manga over 25 million copies"
   },
   "Chainsaw Man (Anime)": {
     "type": "anime",
@@ -2336,14 +2336,6 @@
       }
     ],
     "scoreSource": "review",
-    "review": "/tho-san-quy-chainsaw-man-anime-review",
-    "reviewEn": "/en/chainsaw-man-anime-review",
-    "verdict": "Xuất Sắc",
-    "verdictEn": "Excellent",
-    "reviewSummary": "Thợ Săn Quỷ Chainsaw Man Anime do studio MAPPA chuyển thể là một trong những dự án hoạt hình tham vọng bậc nhất với cách tiếp cận điện ảnh hóa hoàn toàn khác biệt. Đánh giá chi tiết về phong cách hình ảnh chân thực, 12 ca khúc ending độc bản cho từng tập phim, cùng màn trình diễn xuất sắc của Denji, Makima và Power.",
-    "reviewSummaryEn": "Chainsaw Man anime review from MAPPA: 12 episodes aired October–December 2022, directed by Ryū Nakayama, scored by Kensuke Ushio with Kenshi Yonezu's \"Kick Back\"; Rotten Tomatoes 97%, with a cinematic style.",
-    "reviewNote": "MAPPA, 12 tập; Rotten Tomatoes 97% (89 bài); Crunchyroll Best New Series 2024",
-    "reviewNoteEn": "MAPPA, 12 episodes; Rotten Tomatoes 97% (89 reviews); Crunchyroll Best New Series 2024",
     "meta": {
       "ja": "チェンソーマン",
       "en": "Chainsaw Man",
@@ -2366,7 +2358,15 @@
           "name": "Kazutaka Sugiyama"
         }
       ]
-    }
+    },
+    "review": "/tho-san-quy-chainsaw-man-anime-review",
+    "reviewEn": "/en/chainsaw-man-anime-review",
+    "verdict": "Xuất Sắc",
+    "verdictEn": "Excellent",
+    "reviewSummary": "Thợ Săn Quỷ Chainsaw Man Anime do studio MAPPA chuyển thể là một trong những dự án hoạt hình tham vọng bậc nhất với cách tiếp cận điện ảnh hóa hoàn toàn khác biệt. Đánh giá chi tiết về phong cách hình ảnh chân thực, 12 ca khúc ending độc bản cho từng tập phim, cùng màn trình diễn xuất sắc của Denji, Makima và Power.",
+    "reviewSummaryEn": "Chainsaw Man anime review from MAPPA: 12 episodes aired October–December 2022, directed by Ryū Nakayama, scored by Kensuke Ushio with Kenshi Yonezu's \"Kick Back\"; Rotten Tomatoes 97%, with a cinematic style.",
+    "reviewNote": "MAPPA, 12 tập; Rotten Tomatoes 97% (89 bài); Crunchyroll Best New Series 2024",
+    "reviewNoteEn": "MAPPA, 12 episodes; Rotten Tomatoes 97% (89 reviews); Crunchyroll Best New Series 2024"
   },
   "Vinland Saga": {
     "type": "manga",
@@ -2403,14 +2403,6 @@
       }
     ],
     "scoreSource": "review",
-    "review": "/vinland-saga-manga-review",
-    "reviewEn": "/en/vinland-saga-manga-review",
-    "verdict": "Kiệt Tác",
-    "verdictEn": "Masterpiece",
-    "reviewSummary": "Vinland Saga của Makoto Yukimura là thiên anh hùng ca lịch sử vĩ đại kéo dài tròn hai thập kỷ (2005–2025), khắc họa sự chuyển hóa phi thường của Thorfinn từ một sát thủ báo thù đẫm máu thành một người đàn ông đi tìm miền đất hòa bình không có chiến tranh và nô lệ. Đánh giá đại kết cục 29 tập truyện xứng đáng được tôn vinh là kiệt tác.",
-    "reviewSummaryEn": "Vinland Saga by Makoto Yukimura stands as a generational historical epic spanning two decades (2005–2025), chronicling Thorfinn Karlsefni's profound transformation from a vengeance-obsessed teenage warrior into an apostle of peace. An in-depth review of the 29-volume masterpiece.",
-    "reviewNote": "29 tập, kết thúc 25/7/2025; Kodansha Manga Award lần 36",
-    "reviewNoteEn": "29 volumes, ended July 25, 2025; 36th Kodansha Manga Award",
     "meta": {
       "ja": "ヴィンランド・サガ",
       "en": "Vinland Saga",
@@ -2423,7 +2415,15 @@
           "name": "Makoto Yukimura"
         }
       ]
-    }
+    },
+    "review": "/vinland-saga-manga-review",
+    "reviewEn": "/en/vinland-saga-manga-review",
+    "verdict": "Kiệt Tác",
+    "verdictEn": "Masterpiece",
+    "reviewSummary": "Vinland Saga của Makoto Yukimura là thiên anh hùng ca lịch sử vĩ đại kéo dài tròn hai thập kỷ (2005–2025), khắc họa sự chuyển hóa phi thường của Thorfinn từ một sát thủ báo thù đẫm máu thành một người đàn ông đi tìm miền đất hòa bình không có chiến tranh và nô lệ. Đánh giá đại kết cục 29 tập truyện xứng đáng được tôn vinh là kiệt tác.",
+    "reviewSummaryEn": "Vinland Saga by Makoto Yukimura stands as a generational historical epic spanning two decades (2005–2025), chronicling Thorfinn Karlsefni's profound transformation from a vengeance-obsessed teenage warrior into an apostle of peace. An in-depth review of the 29-volume masterpiece.",
+    "reviewNote": "29 tập, kết thúc 25/7/2025; Kodansha Manga Award lần 36",
+    "reviewNoteEn": "29 volumes, ended July 25, 2025; 36th Kodansha Manga Award"
   },
   "Chainsaw Man (Manga)": {
     "type": "manga",
@@ -2460,14 +2460,6 @@
       }
     ],
     "scoreSource": "review",
-    "review": "/tho-san-quy-chainsaw-man-manga-part2-review",
-    "reviewEn": "/en/chainsaw-man-manga-part2-review",
-    "verdict": "Xuất Sắc",
-    "verdictEn": "Excellent",
-    "reviewSummary": "Thợ Săn Quỷ Chainsaw Man Part 2 (Academy Saga) đánh dấu bước chuyển mình bất ngờ của Tatsuki Fujimoto khi chuyển trọng tâm từ Denji sang nữ sinh lập dị Asa Mitaka và Quỷ Chiến Tranh Yoru. Đánh giá chi tiết về chiều sâu tâm lý học đường, nhịp độ kỳ dị đặc trưng và cách bộ truyện tái định nghĩa thể loại shonen đen tối.",
-    "reviewSummaryEn": "Chainsaw Man Part 2 (Academy Saga) marks Tatsuki Fujimoto's bold shift in narrative focus from Denji to socially awkward high schooler Asa Mitaka and the War Devil Yoru. An in-depth review of its psychological adolescent themes, surrealist pacing, and how it continues to reinvent dark modern shonen.",
-    "reviewNote": "Hơn 36 triệu bản in, 24 tập, Part 2 kết thúc 3/2026",
-    "reviewNoteEn": "Over 36 million copies, 24 volumes, Part 2 ended March 2026",
     "meta": {
       "ja": "チェンソーマン",
       "en": "Chainsaw Man",
@@ -2480,7 +2472,15 @@
           "name": "Tatsuki Fujimoto"
         }
       ]
-    }
+    },
+    "review": "/tho-san-quy-chainsaw-man-manga-part2-review",
+    "reviewEn": "/en/chainsaw-man-manga-part2-review",
+    "verdict": "Xuất Sắc",
+    "verdictEn": "Excellent",
+    "reviewSummary": "Thợ Săn Quỷ Chainsaw Man Part 2 (Academy Saga) đánh dấu bước chuyển mình bất ngờ của Tatsuki Fujimoto khi chuyển trọng tâm từ Denji sang nữ sinh lập dị Asa Mitaka và Quỷ Chiến Tranh Yoru. Đánh giá chi tiết về chiều sâu tâm lý học đường, nhịp độ kỳ dị đặc trưng và cách bộ truyện tái định nghĩa thể loại shonen đen tối.",
+    "reviewSummaryEn": "Chainsaw Man Part 2 (Academy Saga) marks Tatsuki Fujimoto's bold shift in narrative focus from Denji to socially awkward high schooler Asa Mitaka and the War Devil Yoru. An in-depth review of its psychological adolescent themes, surrealist pacing, and how it continues to reinvent dark modern shonen.",
+    "reviewNote": "Hơn 36 triệu bản in, 24 tập, Part 2 kết thúc 3/2026",
+    "reviewNoteEn": "Over 36 million copies, 24 volumes, Part 2 ended March 2026"
   },
   "Dandadan": {
     "type": "manga",
@@ -2517,14 +2517,6 @@
       }
     ],
     "scoreSource": "review",
-    "review": "/dandadan-manga-review",
-    "reviewEn": "/en/dandadan-manga-review",
-    "verdict": "Xuất Sắc",
-    "verdictEn": "Excellent",
-    "reviewSummary": "Dandadan của Yukinobu Tatsu là một hiện tượng bùng nổ trên Shonen Jump+ nhờ sự kết hợp tài tình giữa yếu tố ma quỷ tâm linh, người ngoài hành tinh khoa học viễn tưởng và chuyện tình tuổi mới lớn dở khóc dở cười giữa Momo và Okarun. Đánh giá nét vẽ siêu chi tiết và nhịp độ hành động cuốn hút của manga.",
-    "reviewSummaryEn": "Dandadan by Yukinobu Tatsu has become a global smash hit on Shonen Jump+, seamlessly blending supernatural spirits, extraterrestrial sci-fi, slapstick humor, and sweet teenage romance between Momo and Okarun. An in-depth review of its jaw-dropping hyper-detailed art and exhilarating comedic pacing.",
-    "reviewNote": "25 tập, hơn 10 triệu bản; Shogakukan Manga Award lần 71 (2026)",
-    "reviewNoteEn": "25 volumes, over 10 million copies; 71st Shogakukan Manga Award (2026)",
     "meta": {
       "ja": "ダンダダン",
       "en": "Dandadan",
@@ -2536,7 +2528,15 @@
           "name": "Yukinobu Tatsu"
         }
       ]
-    }
+    },
+    "review": "/dandadan-manga-review",
+    "reviewEn": "/en/dandadan-manga-review",
+    "verdict": "Xuất Sắc",
+    "verdictEn": "Excellent",
+    "reviewSummary": "Dandadan của Yukinobu Tatsu là một hiện tượng bùng nổ trên Shonen Jump+ nhờ sự kết hợp tài tình giữa yếu tố ma quỷ tâm linh, người ngoài hành tinh khoa học viễn tưởng và chuyện tình tuổi mới lớn dở khóc dở cười giữa Momo và Okarun. Đánh giá nét vẽ siêu chi tiết và nhịp độ hành động cuốn hút của manga.",
+    "reviewSummaryEn": "Dandadan by Yukinobu Tatsu has become a global smash hit on Shonen Jump+, seamlessly blending supernatural spirits, extraterrestrial sci-fi, slapstick humor, and sweet teenage romance between Momo and Okarun. An in-depth review of its jaw-dropping hyper-detailed art and exhilarating comedic pacing.",
+    "reviewNote": "25 tập, hơn 10 triệu bản; Shogakukan Manga Award lần 71 (2026)",
+    "reviewNoteEn": "25 volumes, over 10 million copies; 71st Shogakukan Manga Award (2026)"
   },
   "Kaiju No.8": {
     "type": "manga",
@@ -2573,14 +2573,6 @@
       }
     ],
     "scoreSource": "review",
-    "review": "/kaiju-no-8-manga-review",
-    "reviewEn": "/en/kaiju-no-8-manga-review",
-    "verdict": "Rất Hay",
-    "verdictEn": "Great",
-    "reviewSummary": "Quái Vật Số 8 của Naoya Matsumoto từng tạo nên cơn sốt kỷ lục trên Shonen Jump+ khi khai thác góc nhìn của Kafka Hibino, một người đàn ông trung niên dọn dẹp xác quái vật khao khát thực hiện ước mơ thuở nhỏ. Đánh giá chuyên sâu về ý tưởng đột phá, nhịp truyện mở màn xuất sắc và những thách thức về nhịp độ ở giai đoạn sau.",
-    "reviewSummaryEn": "Kaiju No. 8 by Naoya Matsumoto broke Shonen Jump+ records by spotlighting Kafka Hibino - a 32-year-old monster disposal worker pursuing his abandoned childhood dream. An in-depth review examining its refreshing adult perspective, explosive monster fights, and pacing dynamics.",
-    "reviewNote": "16 tập, hơn 19 triệu bản đến 9/2025; Next Manga Award 2021",
-    "reviewNoteEn": "16 volumes, over 19 million copies by September 2025; 2021 Next Manga Award",
     "meta": {
       "ja": "怪獣８号",
       "romaji": "Kaijuu 8-gou",
@@ -2594,7 +2586,15 @@
           "name": "Naoya Matsumoto"
         }
       ]
-    }
+    },
+    "review": "/kaiju-no-8-manga-review",
+    "reviewEn": "/en/kaiju-no-8-manga-review",
+    "verdict": "Rất Hay",
+    "verdictEn": "Great",
+    "reviewSummary": "Quái Vật Số 8 của Naoya Matsumoto từng tạo nên cơn sốt kỷ lục trên Shonen Jump+ khi khai thác góc nhìn của Kafka Hibino, một người đàn ông trung niên dọn dẹp xác quái vật khao khát thực hiện ước mơ thuở nhỏ. Đánh giá chuyên sâu về ý tưởng đột phá, nhịp truyện mở màn xuất sắc và những thách thức về nhịp độ ở giai đoạn sau.",
+    "reviewSummaryEn": "Kaiju No. 8 by Naoya Matsumoto broke Shonen Jump+ records by spotlighting Kafka Hibino - a 32-year-old monster disposal worker pursuing his abandoned childhood dream. An in-depth review examining its refreshing adult perspective, explosive monster fights, and pacing dynamics.",
+    "reviewNote": "16 tập, hơn 19 triệu bản đến 9/2025; Next Manga Award 2021",
+    "reviewNoteEn": "16 volumes, over 19 million copies by September 2025; 2021 Next Manga Award"
   },
   "Kagurabachi": {
     "type": "manga",
@@ -2631,14 +2631,6 @@
       }
     ],
     "scoreSource": "review",
-    "review": "/kagurabachi-review",
-    "reviewEn": "/en/kagurabachi-review",
-    "verdict": "Rất Hay",
-    "verdictEn": "Great",
-    "reviewSummary": "Review manga Kagurabachi của Takeru Hokazono: Weekly Shonen Jump từ 9/2023, chương đầu có hơn 99 triệu lượt xem trên Manga Plus, hơn 4 triệu bản in, anime Cypic tháng 4/2027.",
-    "reviewSummaryEn": "Review of Takeru Hokazono's Kagurabachi manga: Weekly Shonen Jump since September 2023, a debut chapter with over 99 million views on Manga Plus, over 4 million copies and a Cypic anime in April 2027.",
-    "reviewNote": "Hơn 4 triệu bản đến 4/2026; Next Manga Award 2024; anime tháng 4/2027",
-    "reviewNoteEn": "Over 4 million copies by April 2026; 2024 Next Manga Award; anime in April 2027",
     "meta": {
       "ja": "カグラバチ",
       "en": "Kagurabachi",
@@ -2650,7 +2642,15 @@
           "name": "Takeru Hokazono"
         }
       ]
-    }
+    },
+    "review": "/kagurabachi-review",
+    "reviewEn": "/en/kagurabachi-review",
+    "verdict": "Rất Hay",
+    "verdictEn": "Great",
+    "reviewSummary": "Review manga Kagurabachi của Takeru Hokazono: Weekly Shonen Jump từ 9/2023, chương đầu có hơn 99 triệu lượt xem trên Manga Plus, hơn 4 triệu bản in, anime Cypic tháng 4/2027.",
+    "reviewSummaryEn": "Review of Takeru Hokazono's Kagurabachi manga: Weekly Shonen Jump since September 2023, a debut chapter with over 99 million views on Manga Plus, over 4 million copies and a Cypic anime in April 2027.",
+    "reviewNote": "Hơn 4 triệu bản đến 4/2026; Next Manga Award 2024; anime tháng 4/2027",
+    "reviewNoteEn": "Over 4 million copies by April 2026; 2024 Next Manga Award; anime in April 2027"
   },
   "One Piece: Egghead Arc": {
     "type": "manga",
@@ -2731,14 +2731,6 @@
       }
     ],
     "scoreSource": "review",
-    "review": "/the-gioi-phep-thuat-final-volume-review",
-    "reviewEn": "/en/black-clover-final-volume-review",
-    "verdict": "Hay",
-    "verdictEn": "Good",
-    "reviewSummary": "Thế Giới Phép Thuật (Black Clover) của tác giả Yuki Tabata đã chính thức khép lại hành trình 11 năm đầy thăng trầm trên Jump GIGA. Bài đánh giá chuyên sâu về tập 37 và đại kết cục: cách Asta và Yuno hiện thực hóa ước mơ trở thành Ma Pháp Vương, cuộc đại chiến định đoạt số phận Ma Pháp Giới, cùng những điểm sáng và tiếc nuối lớn nhất trong cái kết của series.",
-    "reviewSummaryEn": "Black Clover by Yuki Tabata reaches its emotional conclusion after an 11-year run on Jump GIGA. An in-depth review of Volume 37 and the grand finale: Asta and Yuno fulfilling their shared dream to become the Wizard King, the final war against Lucius Zogratis, and the series' enduring strengths and missed opportunities.",
-    "reviewNote": "38 tập, hơn 24,5 triệu bản; kết thúc trên Jump Giga ngày 1/5/2026",
-    "reviewNoteEn": "38 volumes, over 24.5 million copies; concluded on Jump Giga on May 1, 2026",
     "meta": {
       "ja": "ブラッククローバー",
       "en": "Black Clover",
@@ -2751,7 +2743,15 @@
           "name": "Yuuki Tabata"
         }
       ]
-    }
+    },
+    "review": "/the-gioi-phep-thuat-final-volume-review",
+    "reviewEn": "/en/black-clover-final-volume-review",
+    "verdict": "Hay",
+    "verdictEn": "Good",
+    "reviewSummary": "Thế Giới Phép Thuật (Black Clover) của tác giả Yuki Tabata đã chính thức khép lại hành trình 11 năm đầy thăng trầm trên Jump GIGA. Bài đánh giá chuyên sâu về tập 37 và đại kết cục: cách Asta và Yuno hiện thực hóa ước mơ trở thành Ma Pháp Vương, cuộc đại chiến định đoạt số phận Ma Pháp Giới, cùng những điểm sáng và tiếc nuối lớn nhất trong cái kết của series.",
+    "reviewSummaryEn": "Black Clover by Yuki Tabata reaches its emotional conclusion after an 11-year run on Jump GIGA. An in-depth review of Volume 37 and the grand finale: Asta and Yuno fulfilling their shared dream to become the Wizard King, the final war against Lucius Zogratis, and the series' enduring strengths and missed opportunities.",
+    "reviewNote": "38 tập, hơn 24,5 triệu bản; kết thúc trên Jump Giga ngày 1/5/2026",
+    "reviewNoteEn": "38 volumes, over 24.5 million copies; concluded on Jump Giga on May 1, 2026"
   },
   "God of Blackfield": {
     "type": "manga",
@@ -3224,10 +3224,6 @@
       }
     ],
     "scoreSource": "hub",
-    "verdict": "Rất tốt",
-    "verdictEn": "Very good",
-    "reviewSummary": "Cuộc đối đầu hoành tráng Deku vs Shigaraki khép lại một trong những anime shonen định hình thế hệ 2010s.",
-    "reviewSummaryEn": "The epic showdown between Deku and Shigaraki concludes one of the shonen anime that shaped the 2010s generation.",
     "meta": {
       "ja": "僕のヒーローアカデミア FINAL SEASON",
       "romaji": "Boku no Hero Academia FINAL SEASON",
@@ -3259,7 +3255,11 @@
           "name": "Hitomi Odashima"
         }
       ]
-    }
+    },
+    "verdict": "Rất tốt",
+    "verdictEn": "Very good",
+    "reviewSummary": "Cuộc đối đầu hoành tráng Deku vs Shigaraki khép lại một trong những anime shonen định hình thế hệ 2010s.",
+    "reviewSummaryEn": "The epic showdown between Deku and Shigaraki concludes one of the shonen anime that shaped the 2010s generation."
   },
   "JoJo's Bizarre Adventure: Golden Spirit": {
     "type": "game",
@@ -3336,10 +3336,6 @@
       }
     ],
     "scoreSource": "hub",
-    "verdict": "Rất tốt",
-    "verdictEn": "Very good",
-    "reviewSummary": "Vòng xoáy thời gian trở lại quanh sự mất tích của Hạ Phi, giữ vững chất lượng kịch bản phức tạp và animation tinh tế.",
-    "reviewSummaryEn": "The time vortex returns around the disappearance of Xia Fei, maintaining the quality of its complex storyline and exquisite animation.",
     "meta": {
       "ja": "时光代理人 第三季",
       "romaji": "Shiguang Dailiren III",
@@ -3353,7 +3349,11 @@
           "name": "Haoling Li"
         }
       ]
-    }
+    },
+    "verdict": "Rất tốt",
+    "verdictEn": "Very good",
+    "reviewSummary": "Vòng xoáy thời gian trở lại quanh sự mất tích của Hạ Phi, giữ vững chất lượng kịch bản phức tạp và animation tinh tế.",
+    "reviewSummaryEn": "The time vortex returns around the disappearance of Xia Fei, maintaining the quality of its complex storyline and exquisite animation."
   },
   "The Ribbon Hero": {
     "type": "anime",
@@ -3390,10 +3390,6 @@
       }
     ],
     "scoreSource": "hub",
-    "verdict": "Tốt",
-    "verdictEn": "Good",
-    "reviewSummary": "Bản chuyển thể điện ảnh đầu tiên của Princess Knight (Osamu Tezuka), tôn vinh di sản khai sinh dòng shoujo và magical girl.",
-    "reviewSummaryEn": "The first film adaptation of Princess Knight (Osamu Tezuka), honoring the legacy of the shoujo and magical girl genres.",
     "meta": {
       "ja": "THE RIBBON HERO",
       "en": "The Ribbon Hero",
@@ -3411,7 +3407,11 @@
           "name": "Yuuki Igarashi"
         }
       ]
-    }
+    },
+    "verdict": "Tốt",
+    "verdictEn": "Good",
+    "reviewSummary": "Bản chuyển thể điện ảnh đầu tiên của Princess Knight (Osamu Tezuka), tôn vinh di sản khai sinh dòng shoujo và magical girl.",
+    "reviewSummaryEn": "The first film adaptation of Princess Knight (Osamu Tezuka), honoring the legacy of the shoujo and magical girl genres."
   },
   "Re:Zero Season 4": {
     "type": "anime",
@@ -3448,10 +3448,6 @@
       }
     ],
     "scoreSource": "hub",
-    "verdict": "Xuất sắc",
-    "verdictEn": "Excellent",
-    "reviewSummary": "Recapture Arc đẩy căng thẳng tâm lý lên cao trào mới, giữ vững cường độ cảm xúc đặc trưng của series.",
-    "reviewSummaryEn": "The Recapture Arc pushes psychological tension to a new climax, maintaining the series' signature emotional intensity.",
     "meta": {
       "ja": "Re:ゼロから始める異世界生活",
       "romaji": "Re:Zero kara Hajimeru Isekai Seikatsu",
@@ -3470,7 +3466,11 @@
           "name": "Kyuuta Sakai"
         }
       ]
-    }
+    },
+    "verdict": "Xuất sắc",
+    "verdictEn": "Excellent",
+    "reviewSummary": "Recapture Arc đẩy căng thẳng tâm lý lên cao trào mới, giữ vững cường độ cảm xúc đặc trưng của series.",
+    "reviewSummaryEn": "The Recapture Arc pushes psychological tension to a new climax, maintaining the series' signature emotional intensity."
   },
   "Dragon Ball DAIMA": {
     "type": "anime",
@@ -3521,14 +3521,6 @@
       }
     ],
     "scoreSource": "review",
-    "review": "/bay-vien-ngoc-rong-daima",
-    "reviewEn": "/en/dragon-ball-daima",
-    "verdict": "Rất tốt",
-    "verdictEn": "Very good",
-    "reviewSummary": "Bảy Viên Ngọc Rồng DAIMA ra mắt tháng 10/2024. Cốt truyện: Goku và đồng đội trở thành trẻ em do phép thuật Demon Realm. 20 tập phim, sản xuất bởi Toei Animation. Điểm số: 8.2/10.",
-    "reviewSummaryEn": "Is Dragon Ball DAIMA, the last anime title directly supervised by Akira Toriyama, worthy of a legacy? Full review of all 20 episodes.",
-    "reviewNote": "Điểm OtaHub cho Bảy Viên Ngọc Rồng DAIMA (20 tập, Toei Animation)",
-    "reviewNoteEn": "OtaHub score for Dragon Ball DAIMA (20 episodes, Toei Animation)",
     "meta": {
       "ja": "ドラゴンボールDAIMA",
       "en": "Dragon Ball DAIMA",
@@ -3555,7 +3547,15 @@
           "name": "Katsuyoshi Nakatsuru"
         }
       ]
-    }
+    },
+    "review": "/bay-vien-ngoc-rong-daima",
+    "reviewEn": "/en/dragon-ball-daima",
+    "verdict": "Rất tốt",
+    "verdictEn": "Very good",
+    "reviewSummary": "Bảy Viên Ngọc Rồng DAIMA ra mắt tháng 10/2024. Cốt truyện: Goku và đồng đội trở thành trẻ em do phép thuật Demon Realm. 20 tập phim, sản xuất bởi Toei Animation. Điểm số: 8.2/10.",
+    "reviewSummaryEn": "Is Dragon Ball DAIMA, the last anime title directly supervised by Akira Toriyama, worthy of a legacy? Full review of all 20 episodes.",
+    "reviewNote": "Điểm OtaHub cho Bảy Viên Ngọc Rồng DAIMA (20 tập, Toei Animation)",
+    "reviewNoteEn": "OtaHub score for Dragon Ball DAIMA (20 episodes, Toei Animation)"
   },
   "Battle Through the Heavens": {
     "type": "anime",
@@ -3606,14 +3606,6 @@
       }
     ],
     "scoreSource": "review",
-    "review": "/dau-pha-thuong-khung-review",
-    "reviewEn": "/en/battle-through-the-heavens-review",
-    "verdict": "Khá",
-    "verdictEn": "Decent",
-    "reviewSummary": "Review Đấu Phá Thương Khung (Doupo Cangqiong): tiểu thuyết của Thiên Tàm Thổ Đậu, donghua 5 mùa từ 2017 trên Tencent Penguin Pictures, Xiao Yan tu luyện đấu khí lục địa để trả thù và lấy lại sức mạnh.",
-    "reviewSummaryEn": "Battle Through the Heavens (Doupo Cangqiong) review: a novel by Tiancan Tudou, donghua across five seasons since 2017 on Tencent Penguin Pictures, following Xiao Yan's cultivation and revenge on the Dou Qi continent.",
-    "reviewNote": "Đấu Phá Thương Khung, donghua Trung Quốc 5 mùa từ 2017; Xiao Yan tu luyện báo thù",
-    "reviewNoteEn": "Doupo Cangqiong, Chinese donghua across five seasons since 2017; Xiao Yan's path of cultivation and revenge",
     "meta": {
       "ja": "斗破苍穹",
       "romaji": "Dou Po Cangqiong",
@@ -3622,7 +3614,15 @@
       "episodes": 12,
       "year": 2017,
       "source": "OTHER"
-    }
+    },
+    "review": "/dau-pha-thuong-khung-review",
+    "reviewEn": "/en/battle-through-the-heavens-review",
+    "verdict": "Khá",
+    "verdictEn": "Decent",
+    "reviewSummary": "Review Đấu Phá Thương Khung (Doupo Cangqiong): tiểu thuyết của Thiên Tàm Thổ Đậu, donghua 5 mùa từ 2017 trên Tencent Penguin Pictures, Xiao Yan tu luyện đấu khí lục địa để trả thù và lấy lại sức mạnh.",
+    "reviewSummaryEn": "Battle Through the Heavens (Doupo Cangqiong) review: a novel by Tiancan Tudou, donghua across five seasons since 2017 on Tencent Penguin Pictures, following Xiao Yan's cultivation and revenge on the Dou Qi continent.",
+    "reviewNote": "Đấu Phá Thương Khung, donghua Trung Quốc 5 mùa từ 2017; Xiao Yan tu luyện báo thù",
+    "reviewNoteEn": "Doupo Cangqiong, Chinese donghua across five seasons since 2017; Xiao Yan's path of cultivation and revenge"
   },
   "Solo Leveling: Ragnarok": {
     "type": "manga",
@@ -3677,14 +3677,6 @@
       }
     ],
     "scoreSource": "review",
-    "review": "/solo-leveling-ragnarok-manhwa-review",
-    "reviewEn": "/en/solo-leveling-ragnarok-manhwa-review",
-    "verdict": "Hay",
-    "verdictEn": "Good",
-    "reviewSummary": "Solo Leveling: Ragnarok là hậu truyện chính thức của tượng đài Tôi Thăng Cấp Một Mình, dõi theo bước chân của Sung Suho, con trai Thợ Săn Sung Jin-woo, trong hành trình kế thừa và khai phá sức mạnh bóng tối trước những mối hiểm họa vũ trụ mới. Đánh giá chất lượng hình ảnh của REDICE Studio và tiềm năng mở rộng vũ trụ thợ săn.",
-    "reviewSummaryEn": "Solo Leveling: Ragnarok serves as the official continuation of the legendary manhwa series, following Sung Suho - son of Shadow Monarch Sung Jin-woo - as he awakens his dormant heritage against cosmic invaders. An in-depth review of REDICE Studio's dynamic artwork and its universe expansion.",
-    "reviewNote": "REDICE Studio, tạm ngưng từ 1/2026 khi họa sĩ JIN nhập ngũ, trở lại với chương 69",
-    "reviewNoteEn": "REDICE Studio, on hiatus since January 2026 as illustrator JIN entered military service, returned with chapter 69",
     "meta": {
       "ja": "나 혼자만 레벨업 : 라그나로크",
       "romaji": "Na Honjaman Level Up: Ragnarok",
@@ -3705,7 +3697,15 @@
           "name": "REDICE"
         }
       ]
-    }
+    },
+    "review": "/solo-leveling-ragnarok-manhwa-review",
+    "reviewEn": "/en/solo-leveling-ragnarok-manhwa-review",
+    "verdict": "Hay",
+    "verdictEn": "Good",
+    "reviewSummary": "Solo Leveling: Ragnarok là hậu truyện chính thức của tượng đài Tôi Thăng Cấp Một Mình, dõi theo bước chân của Sung Suho, con trai Thợ Săn Sung Jin-woo, trong hành trình kế thừa và khai phá sức mạnh bóng tối trước những mối hiểm họa vũ trụ mới. Đánh giá chất lượng hình ảnh của REDICE Studio và tiềm năng mở rộng vũ trụ thợ săn.",
+    "reviewSummaryEn": "Solo Leveling: Ragnarok serves as the official continuation of the legendary manhwa series, following Sung Suho - son of Shadow Monarch Sung Jin-woo - as he awakens his dormant heritage against cosmic invaders. An in-depth review of REDICE Studio's dynamic artwork and its universe expansion.",
+    "reviewNote": "REDICE Studio, tạm ngưng từ 1/2026 khi họa sĩ JIN nhập ngũ, trở lại với chương 69",
+    "reviewNoteEn": "REDICE Studio, on hiatus since January 2026 as illustrator JIN entered military service, returned with chapter 69"
   },
   "Hades II": {
     "type": "game",
@@ -27482,6 +27482,48 @@
         "label": "Studio",
         "labelEn": "Studio",
         "value": "Sunrise"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Hitozukiai ga Nigate na Miboujin no Yukionna-san to Noroi no Yubiwa": {
+    "type": "anime",
+    "img": "/assets/img/prof-shy-snow-woman-cursed-ring.jpg",
+    "score": null,
+    "genre": "Ecchi / Supernatural / Romance",
+    "studio": "",
+    "platforms": "Streaming",
+    "release": "11/09/2026",
+    "status": "Đang phát sóng",
+    "statusEn": "Airing",
+    "generated": false,
+    "hook": "Anime 8 tập về anh quản lý chung cư và nàng Yukionna góa chồng nhút nhát, kết nối nhau qua một chiếc nhẫn lạ.",
+    "hookEn": "An eight-episode anime about an apartment manager and a shy widowed snow woman who are drawn together by a strange ring.",
+    "story": [
+      "The Shy Snow Woman and the Cursed Ring (Hitozukiai ga Nigate na Miboujin no Yukionna-san to Noroi no Yubiwa) là anime 8 tập, được chuyển thể từ một tác phẩm gốc và đặt trong thế giới hiện đại, nơi con người, yokai và nhiều chủng tộc khác sống chung dưới một mái nhà.",
+      "Nhân vật chính Satoru làm quản lý chung cư. Một lần anh vô tình làm phật lòng Mifuyu, nàng Yukionna góa chồng sống cùng tòa nhà mà anh thầm thích. Để xin lỗi, anh dùng một chiếc nhẫn kỳ lạ được cho là giúp giao tiếp, và từ đó quan hệ giữa hai người đổi hướng.",
+      "Kết luận: tác phẩm thuộc nhóm hài lãng mạn pha siêu nhiên, được xếp vào thể loại ecchi nên có nội dung gợi cảm dành cho khán giả trưởng thành. Các nguồn ghi ngày khởi chiếu khác nhau (11/9 theo lịch phát sóng, 4/10/2026 theo Kitsu), nên hãy theo dõi thông báo của nơi phát sóng."
+    ],
+    "storyEn": [
+      "The Shy Snow Woman and the Cursed Ring (Hitozukiai ga Nigate na Miboujin no Yukionna-san to Noroi no Yubiwa) is an eight-episode anime adapted from an original work, set in a modern world where humans, yokai and other races live side by side under one roof.",
+      "The lead, Satoru, works as an apartment manager. He accidentally upsets Mifuyu, a widowed snow woman who lives in the same building and whom he secretly likes. To make amends he uses a strange ring said to help with communication, and the relationship between the two takes a new turn.",
+      "Verdict: a supernatural romantic comedy classed as ecchi, so it contains suggestive content meant for adult viewers. Sources give different premiere dates (September 11 in the broadcast schedule, October 4, 2026 on Kitsu), so check the streaming service for the exact date."
+    ],
+    "sources": [
+      {
+        "name": "Kitsu: The Shy Snow Woman and the Cursed Ring",
+        "url": "https://kitsu.io/anime/hitozukiai-ga-nigate-na-miboujin-no-yukionna-san-to-noroi-no-yubiwa"
+      },
+      {
+        "name": "AnimeSchedule.net: summer 2026",
+        "url": "https://animeschedule.net/seasons/summer-2026"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Số tập",
+        "labelEn": "Episodes",
+        "value": "8"
       }
     ],
     "scoreSource": null
