@@ -19,6 +19,7 @@ export const SECTION_TYPES = {
   todo: ['id', 'nav', 'eyebrow', 'h', 'items'],
   faq: ['id', 'nav', 'eyebrow', 'h', 'items'],
   news: ['id', 'nav', 'eyebrow', 'h', 'more'],
+  banner: ['img', 'h'],
   cta: ['h', 'p', 'btn'],
   sources: ['h', 'p', 'links']
 };
@@ -65,6 +66,8 @@ export function validate(spec, { exists }) {
     if (Array.isArray(H?.chips) && (H.chips.length < 2 || H.chips.length > 5)) e(at + 'hero.chips cần 2-5 nhãn (nhãn đầu là ngày ra mắt, được tô nổi bật)');
     if (H?.bgMobile && (!H.bgMobile.src || !H.bgMobile.pos)) e(at + 'hero.bgMobile cần src và pos');
     if (!p.ui?.scroll) e(at + 'ui.scroll (nhãn nút cuộn xuống) thiếu');
+    for (const k of ['today', 'soon', 'daysLeft']) if (!p.ui?.[k]) e(at + `ui.${k} thiếu`);
+    if (p.ui?.daysLeft && !p.ui.daysLeft.includes('{n}')) e(at + 'ui.daysLeft phải chứa {n}');
     if (H?.sub && !/OtaHub/.test(H.sub)) e(at + 'hero.sub phải nêu OtaHub nghiên cứu, tổng hợp');
     if (!Array.isArray(p.ticker) || p.ticker.length < 5) e(at + 'ticker cần tối thiểu 5 ý');
     // khối
@@ -85,7 +88,14 @@ export function validate(spec, { exists }) {
         if (next !== 1) e(w + `phải có đúng 1 mốc state "next" (đang có ${next})`);
         s.items.forEach((x) => { if (!['done', 'todo', 'next'].includes(x.state)) e(w + `state "${x.state}" không hợp lệ`); });
       }
-      if (s.type === 'facts') s.items.forEach((x) => { if (!ICONS[x.icon]) e(w + `icon "${x.icon}" không có trong parts.mjs`); });
+      if (s.type === 'facts') {
+        s.items.forEach((x) => { if (!ICONS[x.icon]) e(w + `icon "${x.icon}" không có trong parts.mjs`); });
+        // lưới 4 cột: các hàng phải đầy, không để ô trống
+        let used = 0, row = 1;
+        s.items.forEach((x) => { const sp = x.wide ? 2 : 1; if (used + sp > 4) { if (used !== 4) e(w + `hàng ${row} bị hụt ô (đang ${used}/4), chỉnh "wide"`); used = 0; row++; } used += sp; });
+        if (used !== 4) e(w + `hàng cuối bị hụt ô (đang ${used}/4), chỉnh "wide"`);
+      }
+      if (s.type === 'timeline') s.items.forEach((x) => { if (x.kind && !['media', 'delay', 'leak', 'sale', 'news', 'launch'].includes(x.kind)) e(w + `kind "${x.kind}" không hợp lệ`); });
       if (s.type === 'editions' && s.cards.filter((c) => c.hot).length > 1) e(w + 'chỉ một phiên bản được "hot"');
       if (s.type === 'videos') s.items.forEach((v) => { if (!/^[\w-]{11}$/.test(v.id)) e(w + `id video "${v.id}" phải 11 ký tự`); });
       if (s.type === 'faq' && s.items.length < 5) e(w + 'FAQ cần tối thiểu 5 câu');

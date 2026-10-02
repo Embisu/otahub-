@@ -38,6 +38,22 @@
     var timer = setInterval(function () { if (!tick()) clearInterval(timer); }, 1000);
   }
 
+  /* ----- Số ngày còn lại (theo giả định giờ Việt Nam) ----- */
+  if (clock) {
+    var fmtDays = function () {
+      var n = Math.max(0, Math.floor((T.vn - Date.now()) / 86400000));
+      $$('[data-days]').forEach(function (el) { el.textContent = el.getAttribute('data-fmt').replace('{n}', n); });
+    };
+    fmtDays(); setInterval(fmtDays, 60000);
+  }
+
+  /* ----- Timeline: tô đường tiến độ tới mốc "Hôm nay" ----- */
+  $$('[data-tl]').forEach(function (ol) {
+    var mark = $('.em-tl-today', ol);
+    var set = function () { ol.style.setProperty('--prog', (mark ? mark.offsetTop + mark.offsetHeight / 2 : ol.offsetHeight) + 'px'); };
+    set(); addEventListener('resize', set); addEventListener('load', set);
+  });
+
   /* ----- Tab (có điều hướng bàn phím) ----- */
   $$('[data-tabs]').forEach(function (group) {
     var tabs = $$('[role="tab"]', group), panels = $$('[role="tabpanel"]', group);

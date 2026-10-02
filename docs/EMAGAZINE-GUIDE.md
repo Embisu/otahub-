@@ -28,9 +28,14 @@ Cập nhật về sau: sửa spec (nhớ đổi `updated` và `ui.date`), chạy
 
 ## Khối được phép (thứ tự chuẩn)
 
-`intro` (bắt buộc đầu tiên) → `guides` → `facts` → `timeline` → `people` → `regions` → `features` → `gallery` → `tabs` → `editions` → `videos` → `history` → `todo` → `faq` (bắt buộc) → `news` (bắt buộc) → `cta` → `sources` (bắt buộc cuối cùng).
+`intro` (bắt buộc đầu tiên) → `guides` → `facts` → `banner` → `timeline` → `people` → `regions` → `features` → `gallery` → `tabs` → `banner` → `editions` → `videos` → `history` → `todo` → `faq` (bắt buộc) → `news` (bắt buộc) → `cta` → `sources` (bắt buộc cuối cùng).
 
-Trường bắt buộc của từng khối nằm ở `SECTION_TYPES` trong `scripts/emag/validate.mjs`. Mỗi khối có `id` (kebab-case, duy nhất) và `nav` (nhãn trên thanh mục lục). Chương được đánh số tự động 01, 02...
+- `banner`: dải ảnh toàn chiều ngang xen giữa các chương để tạo nhịp (`img`, `h` có thể chứa `<em>`, tùy chọn `p`, `btn`, `credit`). Không có `id`/`nav`, không đánh số chương. Ảnh 2400 × 800 px là đẹp nhất.
+- `facts`: lưới 4 cột, mỗi ô chiếm 1 cột hoặc 2 cột nếu `wide: true`; các hàng phải đầy (bộ kiểm tra sẽ báo hàng bị hụt). `hl: true` tô nổi ô đầu, `days: true` thêm nhãn "Còn N ngày" tự cập nhật.
+- `timeline`: mỗi mốc có `kind` (`media`, `delay`, `leak`, `sale`, `news`, `launch`) và `tag` (nhãn chữ), có thể thêm `img` + `imgAlt`. Bộ dựng tự chèn mốc "Hôm nay" (lấy từ `ui.date`) trước mốc đầu tiên chưa diễn ra; mốc `next` hiển thị lớn ở cuối.
+- `regions`: khu vực chưa có `img` sẽ hiện nền đường đồng mức sinh tự động kèm nhãn `ui.soon`; có ảnh thì dùng ảnh.
+
+Trường bắt buộc của từng khối nằm ở `SECTION_TYPES` trong `scripts/emag/validate.mjs`. Mỗi khối (trừ `banner`, `cta`, `sources`) có `id` (kebab-case, duy nhất) và `nav` (nhãn trên thanh mục lục). Chương được đánh số tự động 01, 02...
 
 ## Quy tắc cứng (bộ dựng sẽ chặn nếu vi phạm)
 
