@@ -12,6 +12,8 @@ export function slugify(s) {
   return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd')
     .replace(/δ/g, 'delta').replace(/&/g, ' and ').replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
+// Tên rất dài (romaji của light novel) cắt ở ranh giới từ để URL gọn, tối đa 60 ký tự
+const shortSlug = (s) => (s.length <= 60 ? s : s.slice(0, 61).replace(/-[^-]*$/, ''));
 // "Jujutsu Kaisen (Anime)" -> "Jujutsu Kaisen": loại đã có trong nhãn
 export const displayName = (key) => key.replace(/\s*\((?:Anime|Manga)\)$/, '');
 
@@ -43,8 +45,8 @@ export function profileSeries(catalog) {
   for (const key of Object.keys(catalog).sort()) {
     const e = catalog[key];
     if (taken.has(key) || !PROFILE_TYPES.includes(e.type)) continue;
-    let slug = slugify(displayName(key)) || 'ho-so';
-    if (usedSlugs.has(slug)) slug = slugify(key);
+    let slug = shortSlug(slugify(displayName(key))) || 'ho-so';
+    if (usedSlugs.has(slug)) slug = shortSlug(slugify(key));
     let n = 2; const base = slug;
     while (usedSlugs.has(slug)) slug = `${base}-${n++}`;
     usedSlugs.add(slug);
