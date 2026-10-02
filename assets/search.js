@@ -1,5 +1,23 @@
 window.IDX = [
   {
+    "title": "Gears of War: E-Day Review Roundup: Scores, Pros, Cons and PC Specs",
+    "url": "/en/gears-of-war-e-day-review-roundup-scores-pc-specs",
+    "cat": "Gaming",
+    "date": "2026-10-02",
+    "excerpt": "Gears of War: E-Day sits near 87-88 on Metacritic. Review roundup from IGN, GameSpot and GamesRadar, pros and cons, PC requirements and whether to buy.",
+    "img": "/assets/img/gears-of-war-e-day-review-hero.jpg",
+    "tags": []
+  },
+  {
+    "title": "Gears of War: E-Day review: điểm số, ưu nhược điểm và cấu hình PC",
+    "url": "/gears-of-war-e-day-review-diem-so-uu-nhuoc-diem-cau-hinh-pc",
+    "cat": "Gaming",
+    "date": "2026-10-02",
+    "excerpt": "Gears of War: E-Day được khoảng 87-88 điểm Metacritic. Tổng hợp review IGN, GameSpot, GamesRadar, ưu nhược điểm, cấu hình PC và có nên mua không.",
+    "img": "/assets/img/gears-of-war-e-day-review-hero.jpg",
+    "tags": []
+  },
+  {
     "title": "13 Grind-Worthy Mobile RPGs of 2026: Aniimo, Dragon Nest",
     "url": "/en/best-grind-worthy-mobile-rpgs-2026-aniimo-dragon-nest",
     "cat": "Gaming",
