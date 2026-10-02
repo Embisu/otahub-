@@ -24,7 +24,7 @@ const write = (f, s) => fs.writeFileSync(new URL(f, root), s, 'utf8');
 const catalog = JSON.parse(read('assets/catalog.json'));
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const SCORE_COLORS = ['var(--amber)', 'var(--cyan)', 'var(--green)', 'var(--lavender)', 'var(--sakura)'];
-const TYPE = { pc: 'game', mobile: 'game', anime: 'anime', manga: 'manga' };
+const TYPE = { game: 'game', pc: 'game', mobile: 'game', anime: 'anime', manga: 'manga' };
 
 function loadCats(file) {
   const m = read(file).match(/const CATS\s*=\s*(\{[\s\S]*?\n\})\s*;/);
@@ -48,8 +48,8 @@ function matchingClose(html, start) {
 
 function rankedItems(group) {
   const all = [
-    ...group.top.map((t) => ({ title: t.title, img: t.img, score: t.score, sub: t.studio, tag: t.tag })),
-    ...group.rest.map((r) => ({ title: r.title, img: r.img, score: r.score, sub: `${r.studio} · ${r.sub}`, pills: r.pills }))
+    ...group.top.map((t) => ({ title: t.title, url: t.url, img: t.img, score: t.score, sub: t.studio, tag: t.tag })),
+    ...group.rest.map((r) => ({ title: r.title, url: r.url, img: r.img, score: r.score, sub: `${r.studio} · ${r.sub}`, pills: r.pills }))
   ];
   return all.map((x, i) => ({ ...x, i })).sort((a, b) => parseFloat(b.score) - parseFloat(a.score) || a.i - b.i);
 }
@@ -60,14 +60,15 @@ function cardItem(item, idx, prefix, type) {
   if (item.tag) pills.push(`<span class="rk-tag-pill" style="border-color:${item.tag.c};color:${item.tag.t}">${esc(item.tag.l)}</span>`);
   for (const p of item.pills || []) pills.push(`<span class="rk-tag-pill" style="border-color:${p.c};color:${p.t}">${esc(p.l)}</span>`);
   const tags = pills.length ? `<div class="rk-tags">${pills.join('')}</div>` : '';
-  const href = `${prefix}/${type}-detail?t=${encodeURIComponent(item.title)}`;
+  // link thẳng tới bài review (nguồn của điểm); dữ liệu cũ không có url thì về trang hồ sơ
+  const href = item.url || `${prefix}/${type}-detail?t=${encodeURIComponent(item.title)}`;
   const top = idx < 3 ? ` top${idx + 1}` : '';
   const width = `${Math.round(parseFloat(item.score) * 10)}%`;
   return `<a class="rk-item${top}" href="${href}"><div class="rk-num">${pad(idx + 1)}</div><div class="rk-thumb"><img src="${item.img}" alt="${esc(item.title)}" loading="lazy" width="76" height="76"></div><div class="rk-info"><div class="rk-name">${esc(item.title)}</div><div class="rk-sub">${esc(item.sub)}</div>${tags}</div><div class="rk-score-col"><div class="rk-score" style="color:${color}">${item.score}</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="${width}" style="background:${color}"></div></div></div></a>`;
 }
 
 function syncRankCards(html, cats, prefix) {
-  const keys = ['pc', 'mobile'];
+  const keys = cats.game ? ['game', 'anime'] : ['pc', 'mobile'];
   let from = 0;
   for (const key of keys) {
     const cardAt = html.indexOf('<div class="rk-card">', from);
@@ -156,10 +157,10 @@ function syncHome(file, rankingsFile, prefix, lang) {
 function syncRankingsPage(file, prefix, lang) {
   const cats = loadCats(file);
   const origin = 'https://otahub.asia';
-  const order = ['pc', 'mobile', 'anime', 'manga'];
+  const order = Object.keys(cats);
   const lists = order.map((key) => {
     const items = rankedItems(cats[key]);
-    return { key, label: cats[key].label, items, url: (t) => `${origin}${prefix}/${TYPE[key]}-detail?t=${encodeURIComponent(t)}` };
+    return { key, label: cats[key].label, items, url: (t) => { const it = items.find((x) => x.title === t); return it && it.url ? origin + it.url : `${origin}${prefix}/${TYPE[key]}-detail?t=${encodeURIComponent(t)}`; } };
   });
   const ld = {
     '@context': 'https://schema.org',

@@ -17268,7 +17268,7 @@ async function loadRankings() {
 }
 
 function renderRankingsEditor() {
-  const rankIcons = { pc: '💻', mobile: '📱', console: '🎮', anime: '🎬', manga: '📖', esports: '🏆', goty: '👑' };
+  const rankIcons = { game: '🎮', pc: '💻', mobile: '📱', console: '🎮', anime: '🎬', manga: '📖', esports: '🏆', goty: '👑' };
   const tabs = Object.keys(CATS_DATA).map(k => `
     <button class="rank-tab ${k===currentRankTab?'active':''}" onclick="switchRankTab('${k}')">
       ${CATS_DATA[k].icon || rankIcons[k] || '📊'} ${CATS_DATA[k].label || k}
@@ -17279,10 +17279,15 @@ function renderRankingsEditor() {
       <div class="page-title">Bảng xếp hạng <small>rankings.html</small></div>
       <div class="header-actions">
         <a class="btn btn-secondary btn-sm" href="https://otahub.asia/rankings" target="_blank">🔗 Xem live</a>
-        <button class="btn btn-primary" id="rank-save-btn" onclick="saveRankings()">💾 Lưu & Deploy</button>
+        <button class="btn btn-secondary" id="rank-save-btn" disabled title="Bảng xếp hạng tự tạo từ điểm bài review">🔒 Tự động từ điểm review</button>
       </div>
     </div>
     <div class="content-area">
+      <div style="background:rgba(0,242,255,.06);border:1px solid rgba(0,242,255,.25);border-radius:12px;padding:14px 18px;margin-bottom:14px;font-size:13px;line-height:1.7">
+        <strong>🔒 Bảng xếp hạng tự động:</strong> mỗi bảng (Game, Anime, Manga) là đúng 10 tựa có bài review đã đăng, điểm lấy từ ô điểm cuối bài review và phải khớp trang Đánh giá.
+        Muốn thay đổi thứ hạng: sửa điểm trong bài review (và trang Đánh giá), hoặc đăng bài review mới, rồi chạy <code>node scripts/build-rankings.mjs</code>.
+        Màn hình này chỉ để xem; sửa tay ở đây sẽ làm lệch điểm với bài review nên đã bị khóa.
+      </div>
       <div style="background:var(--surf);border:1px solid var(--border);border-radius:12px;padding:20px">
         <div class="rank-tabs" id="rank-tabs">${tabs}</div>
         <div id="rank-content"></div>
@@ -17376,6 +17381,9 @@ function updateRankData(catKey, listKey, idx, field, value) {
 }
 
 async function saveRankings() {
+  // Bảng xếp hạng tạo tự động từ điểm bài review (scripts/build-rankings.mjs); không cho lưu tay
+  toast('info', 'Bảng xếp hạng tự động lấy điểm từ bài review — hãy sửa điểm trong bài review rồi chạy scripts/build-rankings.mjs.');
+  return;
   const btn = document.getElementById('rank-save-btn');
   btn.textContent = '⏳ Đang lưu...'; btn.disabled = true;
   try {

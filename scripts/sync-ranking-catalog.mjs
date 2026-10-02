@@ -49,7 +49,9 @@ const aliases = {
 };
 
 for (const item of ranked) {
-  const key = aliases[item.title] || item.title;
+  // Cùng tên ở 2 bảng (vd. Chainsaw Man anime 9.0 và manga 9.4): ưu tiên hồ sơ có hậu tố theo loại
+  const typed = item.category === 'manga' ? `${item.title} (Manga)` : item.category === 'anime' ? `${item.title} (Anime)` : null;
+  const key = (typed && catalog[typed]) ? typed : (aliases[item.title] || item.title);
   const fact = facts[key] || facts[item.title];
   if (catalog[key]) {
     catalog[key].score = item.score;
