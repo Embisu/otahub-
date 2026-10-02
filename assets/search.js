@@ -1,5 +1,23 @@
 window.IDX = [
   {
+    "title": "Genshin Impact Turns 6 and Tops Gacha Revenue in September 2026",
+    "url": "/en/genshin-impact-6-years-tops-gacha-revenue-september-2026",
+    "cat": "Gaming",
+    "date": "2026-10-02",
+    "excerpt": "Genshin Impact made an estimated $50.2M on mobile in September 2026, up 30%, retaking the top gacha spot. The full ranking and why a 6-year-old game still wins.",
+    "img": "/assets/img/genshin-6-nam-doanh-thu-gacha-hero.jpg",
+    "tags": []
+  },
+  {
+    "title": "Genshin Impact 6 tuổi vẫn đứng đầu doanh thu gacha tháng 9/2026",
+    "url": "/genshin-impact-6-nam-van-dan-dau-doanh-thu-gacha",
+    "cat": "Gaming",
+    "date": "2026-10-02",
+    "excerpt": "Tháng 9/2026, Genshin Impact thu khoảng 50,2 triệu USD trên di động, tăng 30% và trở lại số 1 gacha toàn cầu. Bảng xếp hạng và vì sao game 6 tuổi vẫn thắng.",
+    "img": "/assets/img/genshin-6-nam-doanh-thu-gacha-hero.jpg",
+    "tags": []
+  },
+  {
     "title": "Tax Shield: A Free Vietnamese Tax Filing Simulator Game",
     "url": "/en/tax-shield-vietnam-tax-filing-simulator-game",
     "cat": "Gaming",

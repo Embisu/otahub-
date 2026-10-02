@@ -3151,4 +3151,16 @@
   <url><loc>https://otahub.asia/ho-so/zenless-zone-zero</loc><lastmod>2026-10-02</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://otahub.asia/en/profile/zenless-zone-zero</loc><lastmod>2026-10-02</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <!-- PROFILES:END -->
+  <url>
+    <loc>https://otahub.asia/genshin-impact-6-nam-van-dan-dau-doanh-thu-gacha</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/genshin-impact-6-years-tops-gacha-revenue-september-2026</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

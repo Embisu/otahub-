@@ -39,6 +39,12 @@ COLLAGES = {
         ('zoro-haki-ba-vuong-king-of-hell.jpg', (0, 0, 1, 1), 0.3),  # tiêu điểm: Zoro ở khoảng 30% chiều ngang ảnh
         'real-op1194-dexerto.jpg',
     ],
+    # 6 năm Genshin: Mondstadt lúc ra mắt -> Natlan -> Snezhnaya (7.0)
+    'genshin-6-nam-doanh-thu-gacha-hero.jpg': [
+        'ae2a55e940-genshin-citlali-hero.jpg',
+        ('real-genshin-natlan.jpg', (0, 0, 1, 1), 0.47),
+        '99357880d4-genshin-70-odette.jpg',
+    ],
 }
 
 
