@@ -49,8 +49,8 @@ function matchingClose(html, start) {
 
 function rankedItems(group) {
   const all = [
-    ...group.top.map((t) => ({ title: t.title, url: t.url, img: t.img, score: t.score, sub: t.studio, tag: t.tag })),
-    ...group.rest.map((r) => ({ title: r.title, url: r.url, img: r.img, score: r.score, sub: `${r.studio} · ${r.sub}`, pills: r.pills }))
+    ...group.top.map((t) => ({ title: t.title, url: t.url, img: t.img, score: t.score, studio: t.studio, sub: t.studio, tag: t.tag })),
+    ...group.rest.map((r) => ({ title: r.title, url: r.url, img: r.img, score: r.score, studio: r.studio, subOnly: r.sub, sub: `${r.studio} · ${r.sub}`, pills: r.pills }))
   ];
   return all.map((x, i) => ({ ...x, i })).sort((a, b) => parseFloat(b.score) - parseFloat(a.score) || a.i - b.i);
 }
@@ -110,7 +110,13 @@ function mangaEntry(body) {
 // Điểm chỉ hiện khi có nguồn review: hồ sơ (catalog, do sync-profile-scores.mjs ghi) hoặc bài review hợp lệ.
 const reviewScoreByUrl = new Map([...verifiedReviews().values()].flatMap((r) => [[r.url, r.score.toFixed(1)], [r.enUrl, r.score.toFixed(1)]]));
 
-function syncMangaColumns(html, prefix) {
+// Cột "Manga" = top 5 của bảng xếp hạng manga (/rankings), link thẳng bài review.
+function mangaItemHtml(it, idx) {
+  const meta = it.studio || '';
+  return `<a class="manga-item${idx < 3 ? ` top${idx + 1}` : ''}" href="${it.url}"><div class="mi-num">${pad(idx + 1)}</div><div class="mi-thumb"><img src="${thumbS(it.img)}" alt="${esc(it.title)}" loading="lazy" width="46" height="62"></div><div><div class="mi-title">${esc(it.title)}</div><div class="mi-meta">${esc(meta)}</div></div><div class="mi-score" style="color:${SCORE_COLORS[idx]}">${it.score}</div></a>`;
+}
+
+function syncMangaColumns(html, prefix, mangaTop) {
   const itemRe = /<a class="manga-item[^"]*" href="([^"]+)">([\s\S]*?)<\/a>/g;
   let from = 0;
   for (;;) {
@@ -119,18 +125,29 @@ function syncMangaColumns(html, prefix) {
     const colEnd = matchingClose(html, colAt);
     const col = html.slice(colAt, colEnd);
     const found = [...col.matchAll(itemRe)];
-    if (found.length) {
+    const colTitle = ((col.match(/class="manga-col-title"[^>]*>([^<]*)</) || [])[1] || '').trim();
+    if (found.length && colTitle === 'Manga') {
+      const built = mangaTop.map(mangaItemHtml).join('\n\n\n      ');
+      const start = col.indexOf(found[0][0]);
+      const end = col.lastIndexOf(found[found.length - 1][0]) + found[found.length - 1][0].length;
+      const newCol = col.slice(0, start) + built + col.slice(end);
+      html = html.slice(0, colAt) + newCol + html.slice(colEnd);
+      from = colAt + newCol.length;
+    } else if (found.length) {
       const items = found.map((m, i) => {
         const hit = mangaEntry(m[2]);
         const href = hit ? `${prefix}/manga-detail?t=${encodeURIComponent(hit.key)}` : m[1];
         const score = hit ? hit.entry.score : reviewScoreByUrl.get(m[1]) || null;
         return { href, body: m[2].replace(/<div class="mi-score"[^>]*>[^<]*<\/div>/, ''), score, i };
       }).sort((a, b) => (parseFloat(b.score) || 0) - (parseFloat(a.score) || 0) || a.i - b.i);
-      let colorIdx = 0;
-      const built = items.map((it, idx) => {
-        const scoreHtml = it.score ? `<div class="mi-score" style="color:${SCORE_COLORS[colorIdx++] || 'var(--muted)'}">${it.score}</div>` : '';
-        const body = it.body.replace(/<div class="mi-num">\d+<\/div>/, `<div class="mi-num">${pad(idx + 1)}</div>`).replace(/<\/div>\s*$/, `</div>${scoreHtml}`);
-        return `<a class="manga-item${idx < 3 ? ` top${idx + 1}` : ''}" href="${it.href}">${body}</a>`;
+      // Chỉ tựa có điểm review mới có số thứ hạng; tựa chưa chấm điểm hiện "–" và xếp sau.
+      let rank = 0;
+      const built = items.map((it) => {
+        const scored = !!it.score;
+        const idx = scored ? rank++ : -1;
+        const scoreHtml = scored ? `<div class="mi-score" style="color:${SCORE_COLORS[idx] || 'var(--muted)'}">${it.score}</div>` : '';
+        const body = it.body.replace(/<div class="mi-num">[^<]*<\/div>/, `<div class="mi-num">${scored ? pad(idx + 1) : '–'}</div>`).replace(/<\/div>\s*$/, `</div>${scoreHtml}`);
+        return `<a class="manga-item${scored && idx < 3 ? ` top${idx + 1}` : ''}" href="${it.href}">${body}</a>`;
       }).join('\n\n\n      ');
       const start = col.indexOf(found[0][0]);
       const end = col.lastIndexOf(found[found.length - 1][0]) + found[found.length - 1][0].length;
@@ -184,7 +201,7 @@ function syncHome(file, rankingsFile, prefix, lang) {
   const cats = loadCats(rankingsFile);
   let html = read(file);
   html = syncRankCards(html, cats, prefix);
-  html = syncMangaColumns(html, prefix);
+  html = syncMangaColumns(html, prefix, rankedItems(cats.manga).slice(0, 5));
   html = syncBadges(html, lang);
   write(file, html);
   console.log(`${file}: đã đồng bộ`);
