@@ -108,7 +108,10 @@ function pageHtml(type, key, en, r) {
   html = html.replace(/<meta property="og:type" content="[^"]*">/, () => '<meta property="og:type" content="article">');
   const ld = (o) => `<script type="application/ld+json">${(typeof o === 'string' ? o : JSON.stringify(o)).replace(/</g, '\\u003c')}</script>`;
   html = setTag(html, /<\/head>/, `<style id="ot-detail-style">${r.style}</style>\n${ld(r.schema)}\n${ld(crumbs)}\n</head>`);
-  html = setTag(html, /<div id="detailRoot">[\s\S]*?<\/div><\/div>/, `<div id="detailRoot" data-prerendered>${r.html}</div>`);
+  // Poster dùng ảnh thu nhỏ 640px nếu đã có (scripts/build-thumbs.py), giống cách script đó viết lại trang
+  const body = r.html.replace(/(class="ah-poster" src=")\/assets\/img\/(?!_[ts]\/|brand\/)([^"?#]+\.(?:jpe?g|png|webp|jfif))"/i,
+    (m, pre, rel) => (exists(`assets/img/_t/${rel}.webp`) ? `${pre}/assets/img/_t/${rel}.webp"` : m));
+  html = setTag(html, /<div id="detailRoot">[\s\S]*?<\/div><\/div>/, `<div id="detailRoot" data-prerendered>${body}</div>`);
   html = html.replace(/\/assets\/detail\.v2\.js\?v=[^"]+/, `/assets/detail.v2.js?v=${DETAIL_VER}`);
   return html;
 }

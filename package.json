@@ -11,7 +11,7 @@
     "indexes:build": "node scripts/normalize-publishing-data.mjs && node scripts/generate-author-profiles.mjs && node scripts/rebuild-discovery-indexes.mjs",
     "rankings:sync": "node scripts/sync-ranking-catalog.mjs",
     "rankings:home": "node scripts/sync-home-rankings.mjs",
-    "scores": "node scripts/build-rankings.mjs && node scripts/sync-ranking-catalog.mjs && node scripts/sync-profile-scores.mjs && node scripts/sync-home-rankings.mjs && node scripts/build-profiles.mjs && python scripts/build-thumbs.py --write",
+    "scores": "node scripts/build-rankings.mjs && node scripts/sync-ranking-catalog.mjs && node scripts/sync-profile-scores.mjs && node scripts/sync-home-rankings.mjs && node scripts/build-profiles.mjs && python scripts/build-thumbs.py --write && node scripts/build-profiles.mjs",
     "hubs": "node scripts/sync-hub-articles.mjs",
     "hubs:check": "node scripts/sync-hub-articles.mjs --check",
     "authors": "node scripts/sync-article-authors.mjs",
