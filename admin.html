@@ -12656,6 +12656,12 @@ function esc(s) { return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt
 function replSafe(s) { return String(s).split('$').join('$$'); }
 // Slug trang chuyên mục cho breadcrumb/schema/nav. Không dùng cat.toLowerCase():
 // "Chuyên sâu", "Tin tức", "Chơi Gì?"... sẽ thành URL có dấu/khoảng trắng (404).
+// Thẻ "Chủ đề" mang đúng tên một chuyên mục -> slug chuyên mục đó (nhãn VI + EN).
+const SB_TAG_HUB_LABELS = {
+  'gaming': 'gaming', 'anime': 'anime', 'manga': 'manga', 'reviews': 'reviews', 'đánh giá': 'reviews',
+  'rankings': 'rankings', 'xếp hạng': 'rankings', 'bảng xếp hạng': 'rankings',
+  'chuyên sâu': 'chuyen-sau', 'in-depth': 'chuyen-sau', 'chơi gì?': 'choi-gi', 'what to play?': 'choi-gi',
+};
 function categorySlug(cat, isEn = false) {
   const map = {
     'gaming': 'gaming', 'esports': 'gaming', 'công nghệ': 'gaming', 'anime': 'anime', 'manga': 'manga',
@@ -15700,9 +15706,16 @@ function applyArticleEditsToHtml(baseHtml, customData) {
       (m, slug) => `<a href="${navPrefix}${slug}"${slug === catSlug ? ' class="active"' : ''}>`);
   }
 
-  // Thẻ chủ đề trong sidebar (.sb-tags)
+  // Thẻ chủ đề trong sidebar (.sb-tags): thẻ từ khoá ("Naruto", "Shonen"...) dẫn về chuyên mục
+  // của bài; thẻ mang tên chuyên mục ("Anime", "Đánh giá"...) phải dẫn đúng chuyên mục đó
+  // (trước đây thẻ "Gaming" của bài manga bị đổi thành link /manga).
   html = html.replace(/(<div class="sb-tags">)([\s\S]*?)(<\/div>)/i, (m, open, inner, close) =>
-    open + inner.replace(/(<a class="sb-tag" href=")\/(?:en\/)?(?:gaming|anime|manga|reviews|rankings|choi-gi|chuyen-sau|in-depth)(")/gi, `$1${replSafe(isEnDoc ? '/en' : '')}/${replSafe(catSlug)}$2`) + close);
+    open + inner.replace(/(<a class="sb-tag" href=")\/(?:en\/)?(?:gaming|anime|manga|reviews|rankings|choi-gi|chuyen-sau|in-depth)(">)([^<]*)/gi,
+      (tag, pre, mid, text) => {
+        const own = SB_TAG_HUB_LABELS[text.trim().toLowerCase()];
+        const slug = own ? (isEnDoc && own === 'chuyen-sau' ? 'in-depth' : own) : catSlug;
+        return pre + (isEnDoc ? '/en' : '') + '/' + slug + mid + text;
+      }) + close);
 
   // Nút chia sẻ Twitter/Facebook
   const currentSlugNoExt = (isCustom && customData.slug) ? customData.slug : (currentFile ? currentFile.replace(/^en\//, '').replace(/\.html$/, '') : '');
@@ -17096,7 +17109,7 @@ ${initialBody}
 </div>
 <div class="sidebar-block">
 <div class="sb-title">Chủ đề</div>
-<div class="sb-tags"><a class="sb-tag" href="/${catSlug}">Gaming</a><a class="sb-tag" href="/${catSlug}">Anime</a><a class="sb-tag" href="/${catSlug}">Manga</a><a class="sb-tag" href="/${catSlug}">Đánh giá</a><a class="sb-tag" href="/${catSlug}">Xếp hạng</a></div>
+<div class="sb-tags"><a class="sb-tag" href="/gaming">Gaming</a><a class="sb-tag" href="/anime">Anime</a><a class="sb-tag" href="/manga">Manga</a><a class="sb-tag" href="/reviews">Đánh giá</a><a class="sb-tag" href="/rankings">Xếp hạng</a></div>
 </div>
 </aside>
 </div>
