@@ -2697,4 +2697,16 @@
   <url><loc>https://otahub.asia/ho-so/zenless-zone-zero</loc><lastmod>2026-10-02</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://otahub.asia/en/profile/zenless-zone-zero</loc><lastmod>2026-10-02</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <!-- PROFILES:END -->
+  <url>
+    <loc>https://otahub.asia/haki-ba-vuong-cua-zoro-4-chieu-thuc-one-piece</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/zoro-conquerors-haki-4-techniques-one-piece</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

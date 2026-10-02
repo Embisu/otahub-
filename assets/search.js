@@ -1,5 +1,23 @@
 window.IDX = [
   {
+    "title": "Zoro’s Conqueror’s Haki: 4 Techniques From Wano to Elbaf",
+    "url": "/en/zoro-conquerors-haki-4-techniques-one-piece",
+    "cat": "Manga",
+    "date": "2026-10-02",
+    "excerpt": "From the slash that scarred Kaido to the Conqueror’s-infused strike that cost Sommers his hand in chapter 1194: four techniques that trace Zoro’s path to control.",
+    "img": "/assets/img/zoro-haki-ba-vuong-hero.jpg",
+    "tags": []
+  },
+  {
+    "title": "Haki Bá Vương của Zoro: 4 chiêu thức từ Wano đến Elbaf",
+    "url": "/haki-ba-vuong-cua-zoro-4-chieu-thuc-one-piece",
+    "cat": "Manga",
+    "date": "2026-10-02",
+    "excerpt": "Từ nhát kiếm để lại sẹo trên người Kaido đến đòn Haki Bá Vương chặt tay Sommers ở chương 1194: 4 chiêu thức cho thấy Zoro đi từ vô thức đến làm chủ.",
+    "img": "/assets/img/zoro-haki-ba-vuong-hero.jpg",
+    "tags": []
+  },
+  {
     "title": "Should You Buy $70–80 Games? When to Pay and When to Wait",
     "url": "/en/should-you-buy-70-80-dollar-games",
     "cat": "Gaming",

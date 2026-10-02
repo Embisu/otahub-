@@ -26,7 +26,7 @@
     "title": "A-1 Pictures có anime nào đáng xem? Từ Lycoris Recoil đến Tôi Thăng Cấp Một Mình (Solo Leveling) · OtaHub",
     "date": "2026-10-02",
     "cat": "Anime",
-    "excerpt": "Từ Lycoris Recoil, 86 đến Solo Leveling, A-1 Pictures có gì đáng xem? Điểm lại 8 anime tiêu biểu cùng tin mới: phim Beyond the System và Mashle mùa 3.",
+    "excerpt": "Từ Lycoris Recoil, 86 đến Tôi Thăng Cấp Một Mình, A-1 Pictures có gì đáng xem? Điểm lại 8 anime tiêu biểu cùng tin mới: phim Beyond the System và Mashle mùa 3.",
     "image": "/assets/img/a1-pictures-home-hero.jpg",
     "read": "8 phút đọc",
     "url": "/a-1-pictures-anime-dang-xem-lycoris-recoil-solo-leveling",
@@ -70,7 +70,7 @@
     "title": "Forgotten Island của DreamWorks: vì sao được so sánh với Thợ Săn Quỷ K-Pop (KPop Demon Hunters)? · OtaHub",
     "date": "2026-10-02",
     "cat": "Anime",
-    "excerpt": "Forgotten Island của DreamWorks lấy cảm hứng từ thần thoại Philippines, đạt 95% Rotten Tomatoes nhưng phòng vé yếu. Giống và khác KPop Demon Hunters ra sao?",
+    "excerpt": "Forgotten Island của DreamWorks lấy cảm hứng từ thần thoại Philippines, đạt 95% Rotten Tomatoes nhưng phòng vé yếu. Giống và khác Thợ Săn Quỷ K-Pop ra sao?",
     "image": "/assets/img/forgotten-island-home-hero.jpg",
     "read": "10 phút đọc",
     "url": "/forgotten-island-dreamworks-so-sanh-kpop-demon-hunters",
@@ -111,6 +111,17 @@
   },
   {
     "key": "otahub",
+    "title": "Haki Bá Vương của Zoro: 4 chiêu thức từ Wano đến Elbaf · OtaHub",
+    "date": "2026-10-02",
+    "cat": "Manga",
+    "excerpt": "Từ nhát kiếm để lại sẹo trên người Kaido đến đòn Haki Bá Vương chặt tay Sommers ở chương 1194: 4 chiêu thức cho thấy Zoro đi từ vô thức đến làm chủ.",
+    "image": "/assets/img/zoro-haki-ba-vuong-hero.jpg",
+    "read": "8 phút đọc",
+    "url": "/haki-ba-vuong-cua-zoro-4-chieu-thuc-one-piece",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
     "title": "Should You Buy $70–80 Games? When to Pay and When to Wait · OtaHub",
     "date": "2026-10-02",
     "cat": "Gaming",
@@ -140,6 +151,17 @@
     "image": "/assets/img/top-game-mobile-cay-cuoc-hero-v2.jpg",
     "read": "10 min read",
     "url": "/en/best-grind-worthy-mobile-rpgs-2026-aniimo-dragon-nest",
+    "lang": "EN"
+  },
+  {
+    "key": "otahub",
+    "title": "Zoro’s Conqueror’s Haki: 4 Techniques From Wano to Elbaf · OtaHub",
+    "date": "2026-10-02",
+    "cat": "Manga",
+    "excerpt": "From the slash that scarred Kaido to the Conqueror’s-infused strike that cost Sommers his hand in chapter 1194: four techniques that trace Zoro’s path to control.",
+    "image": "/assets/img/zoro-haki-ba-vuong-hero.jpg",
+    "read": "8 min read",
+    "url": "/en/zoro-conquerors-haki-4-techniques-one-piece",
     "lang": "EN"
   },
   {
@@ -188,21 +210,10 @@
   },
   {
     "key": "yu",
-    "title": "Thợ Săn Quỷ Chainsaw Man và One Piece cùng góp mặt tại Harvey Awards 2026 · OtaHub",
-    "date": "2026-10-01",
-    "cat": "Anime",
-    "excerpt": "Chainsaw Man – The Movie: Reze Arc và One Piece Season 2 cùng được đề cử Harvey Awards 2026 ở hạng mục Best Adaptation.",
-    "image": "/assets/img/uploads/inline-mup8rux6-2.jpg",
-    "read": "5 phút đọc",
-    "url": "/chainsaw-man-va-one-piece-cung-gop-mat-tai-harvey-awards-202",
-    "lang": "VI"
-  },
-  {
-    "key": "yu",
     "title": "Chiikawa gây bất ngờ tại phòng vé Nhật Bản, vượt Thám Tử Lừng Danh Conan và cán mốc 13,9 tỷ yen · OtaHub",
     "date": "2026-10-01",
     "cat": "Anime",
-    "excerpt": "Chiikawa: Bí mật đảo người cá gây sốt tại Nhật Bản khi vượt 13,9 tỷ yen, đánh bại Conan và lọt top phim có doanh thu cao nhất lịch sử.",
+    "excerpt": "Chiikawa: Bí mật đảo người cá gây sốt tại Nhật Bản khi vượt 13,9 tỷ yen, đánh bại Thám Tử Lừng Danh Conan và lọt top phim có doanh thu cao nhất lịch sử.",
     "image": "/assets/img/uploads/inline-mup7jcqz-1.jpg",
     "read": "5 phút đọc",
     "url": "/chiikawa-gay-bat-ngo-tai-phong-ve-nhat-ban-vuot-conan-va-can",
@@ -243,17 +254,6 @@
   },
   {
     "key": "yu",
-    "title": "Pháp Sư Tiễn Táng Frieren mùa 3: Golden Land Arc và câu chuyện về Macht · OtaHub",
-    "date": "2026-10-01",
-    "cat": "Anime",
-    "excerpt": "Frieren mùa 3 chuyển thể Golden Land Arc, xoay quanh Macht, Denken và vùng đất hóa vàng, mở ra câu chuyện mới về ma tộc và quá khứ của Denken.",
-    "image": "/assets/img/uploads/0lu7u0fb-maxresdefault.jpg",
-    "read": "5 phút đọc",
-    "url": "/frieren-mua-3-golden-land-arc-va-cau-chuyen-ve-macht",
-    "lang": "VI"
-  },
-  {
-    "key": "yu",
     "title": "Frieren Season 3: The Golden Land Arc and the Story of Macht · OtaHub",
     "date": "2026-10-01",
     "cat": "Anime",
@@ -262,17 +262,6 @@
     "read": "5 min read",
     "url": "/en/frieren-season-3-golden-land-arc-story-macht",
     "lang": "EN"
-  },
-  {
-    "key": "yu",
-    "title": "Pháp Sư Tiễn Táng Frieren mùa 3 chính thức trở lại tháng 10/2027 · OtaHub",
-    "date": "2026-10-01",
-    "cat": "Anime",
-    "excerpt": "Frieren mùa 3 trở lại tháng 10/2027 với Golden Land Arc. Cập nhật lịch phát sóng, teaser Macht và những thông tin mới nhất về phần anime tiếp theo.",
-    "image": "/assets/img/uploads/inline-mup6iqrc-1.jpg",
-    "read": "5 phút đọc",
-    "url": "/frieren-beyond-journey-s-end-mua-3-chinh-thuc-tro-lai-thang",
-    "lang": "VI"
   },
   {
     "key": "yu",
@@ -374,6 +363,28 @@
     "lang": "VI"
   },
   {
+    "key": "yu",
+    "title": "Pháp Sư Tiễn Táng Frieren mùa 3 chính thức trở lại tháng 10/2027 · OtaHub",
+    "date": "2026-10-01",
+    "cat": "Anime",
+    "excerpt": "Pháp Sư Tiễn Táng Frieren mùa 3 trở lại tháng 10/2027 với Golden Land Arc. Cập nhật lịch phát sóng, teaser Macht và những thông tin mới nhất về phần anime tiếp theo.",
+    "image": "/assets/img/uploads/inline-mup6iqrc-1.jpg",
+    "read": "5 phút đọc",
+    "url": "/frieren-beyond-journey-s-end-mua-3-chinh-thuc-tro-lai-thang",
+    "lang": "VI"
+  },
+  {
+    "key": "yu",
+    "title": "Pháp Sư Tiễn Táng Frieren mùa 3: Golden Land Arc và câu chuyện về Macht · OtaHub",
+    "date": "2026-10-01",
+    "cat": "Anime",
+    "excerpt": "Pháp Sư Tiễn Táng Frieren mùa 3 chuyển thể Golden Land Arc, xoay quanh Macht, Denken và vùng đất hóa vàng, mở ra câu chuyện mới về ma tộc và quá khứ của Denken.",
+    "image": "/assets/img/uploads/0lu7u0fb-maxresdefault.jpg",
+    "read": "5 phút đọc",
+    "url": "/frieren-mua-3-golden-land-arc-va-cau-chuyen-ve-macht",
+    "lang": "VI"
+  },
+  {
     "key": "anhthu",
     "title": "Raincoat Pikachu được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử · OtaHub",
     "date": "2026-10-01",
@@ -394,6 +405,17 @@
     "read": "3 min read",
     "url": "/en/raincoat-pikachu-sells-for-8-4-million-becoming-the-second",
     "lang": "EN"
+  },
+  {
+    "key": "yu",
+    "title": "Thợ Săn Quỷ Chainsaw Man và One Piece cùng góp mặt tại Harvey Awards 2026 · OtaHub",
+    "date": "2026-10-01",
+    "cat": "Anime",
+    "excerpt": "Thợ Săn Quỷ Chainsaw Man – The Movie: Reze Arc và One Piece Season 2 cùng được đề cử Harvey Awards 2026 ở hạng mục Best Adaptation.",
+    "image": "/assets/img/uploads/inline-mup8rux6-2.jpg",
+    "read": "5 phút đọc",
+    "url": "/chainsaw-man-va-one-piece-cung-gop-mat-tai-harvey-awards-202",
+    "lang": "VI"
   },
   {
     "key": "anna",
@@ -583,17 +605,6 @@
     "lang": "VI"
   },
   {
-    "key": "otahub",
-    "title": "Pháp Sư Tiễn Táng Frieren mùa 2 đã phát sóng từ tháng 1/2026 (10 tập) · OtaHub",
-    "date": "2026-09-30",
-    "cat": "Anime",
-    "excerpt": "Frieren mùa 2 gồm 10 tập đã phát sóng từ 16/1 đến 27/3/2026. Tổng hợp nội dung, ê-kíp Madhouse và thông tin mùa 3 Golden Land tháng 10/2027.",
-    "image": "/assets/img/news-frieren-season-2-official-visual.jpg",
-    "read": "2 phút đọc",
-    "url": "/frieren-mua-2-phat-song-thang-1-2026",
-    "lang": "VI"
-  },
-  {
     "key": "anhthu",
     "title": "Gears of War: E-Day Release Time and How to Play Early · OtaHub",
     "date": "2026-09-30",
@@ -770,6 +781,17 @@
     "lang": "VI"
   },
   {
+    "key": "otahub",
+    "title": "Pháp Sư Tiễn Táng Frieren mùa 2 đã phát sóng từ tháng 1/2026 (10 tập) · OtaHub",
+    "date": "2026-09-30",
+    "cat": "Anime",
+    "excerpt": "Pháp Sư Tiễn Táng Frieren mùa 2 gồm 10 tập đã phát sóng từ 16/1 đến 27/3/2026. Tổng hợp nội dung, ê-kíp Madhouse và thông tin mùa 3 Golden Land tháng 10/2027.",
+    "image": "/assets/img/news-frieren-season-2-official-visual.jpg",
+    "read": "2 phút đọc",
+    "url": "/frieren-mua-2-phat-song-thang-1-2026",
+    "lang": "VI"
+  },
+  {
     "key": "anna",
     "title": "Rom-Com Manga Everyone’s Darling Has a Secret Officially Gets an Anime · OtaHub",
     "date": "2026-09-30",
@@ -862,7 +884,7 @@
     "title": "Top 10 anime đáng mong chờ sẽ ra mắt năm 2027 · OtaHub",
     "date": "2026-09-30",
     "cat": "Anime",
-    "excerpt": "Top 10 anime đáng mong chờ năm 2027 gồm The One Piece, Frieren mùa 3, Sakamoto Days mùa 2, Kagurabachi, Dược Sư Tự Sự và nhiều cái tên nổi bật khác.",
+    "excerpt": "Top 10 anime đáng mong chờ năm 2027 gồm The One Piece, Pháp Sư Tiễn Táng Frieren mùa 3, Sakamoto Days mùa 2, Kagurabachi, Dược Sư Tự Sự và nhiều cái tên nổi bật khác.",
     "image": "/assets/img/uploads/5y6fou86-voh-loat-anime-noi-tieng-se-ra-mat-phan-moi-trong-nam-2027-1.webp",
     "read": "5 phút đọc",
     "url": "/top-10-anime-dang-mong-cho-se-ra-mat-nam-2027",
@@ -935,6 +957,28 @@
     "lang": "EN"
   },
   {
+    "key": "yu",
+    "title": "Bảy Viên Ngọc Rồng Super: Beerus – Bảy Viên Ngọc Rồng Super trở lại với phiên bản nâng cấp · OtaHub",
+    "date": "2026-09-29",
+    "cat": "Anime",
+    "excerpt": "Bảy Viên Ngọc Rồng Super: Beerus phát từ 11/10/2026: bản ENHANCED làm lại phần Battle of Gods với hình ảnh, âm thanh, cảnh quay và cấu trúc mới.",
+    "image": "/assets/img/uploads/7b3q8nv7-maxresdefault-2.jpg",
+    "read": "5 phút đọc",
+    "url": "/dragon-ball-super-beerus-dragon-ball-super-tro-lai-voi-phien",
+    "lang": "VI"
+  },
+  {
+    "key": "yu",
+    "title": "Bảy Viên Ngọc Rồng Super: Beerus: Goku đối đầu Thần Hủy Diệt Beerus · OtaHub",
+    "date": "2026-09-29",
+    "cat": "Anime",
+    "excerpt": "Bảy Viên Ngọc Rồng Super: Beerus đưa Goku đối đầu Thần Hủy Diệt Beerus, tái hiện trận chiến Super Saiyan God với hình ảnh và nội dung được nâng cấp",
+    "image": "/assets/img/uploads/mvh7st8i-dragon-ball-super-beerus-remake-anime.avif",
+    "read": "5 phút đọc",
+    "url": "/dragon-ball-super-beerus-goku-doi-dau-than-huy-diet-beerus",
+    "lang": "VI"
+  },
+  {
     "key": "otahub",
     "title": "Cha đẻ Gintama thú nhận: từng nghĩ bản anime sẽ thất bại · OtaHub",
     "date": "2026-09-29",
@@ -980,17 +1024,6 @@
   },
   {
     "key": "yu",
-    "title": "Bảy Viên Ngọc Rồng Super: Beerus – Bảy Viên Ngọc Rồng Super trở lại với phiên bản nâng cấp · OtaHub",
-    "date": "2026-09-29",
-    "cat": "Anime",
-    "excerpt": "Dragon Ball Super: Beerus phát từ 11/10/2026: bản ENHANCED làm lại phần Battle of Gods với hình ảnh, âm thanh, cảnh quay và cấu trúc mới.",
-    "image": "/assets/img/uploads/7b3q8nv7-maxresdefault-2.jpg",
-    "read": "5 phút đọc",
-    "url": "/dragon-ball-super-beerus-dragon-ball-super-tro-lai-voi-phien",
-    "lang": "VI"
-  },
-  {
-    "key": "yu",
     "title": "Dragon Ball Super: Beerus – Goku Faces Beerus, the God of Destruction · OtaHub",
     "date": "2026-09-29",
     "cat": "Anime",
@@ -999,17 +1032,6 @@
     "read": "2 min read",
     "url": "/en/dragon-ball-super-beerus-goku-faces-beerus-the-god",
     "lang": "EN"
-  },
-  {
-    "key": "yu",
-    "title": "Bảy Viên Ngọc Rồng Super: Beerus: Goku đối đầu Thần Hủy Diệt Beerus · OtaHub",
-    "date": "2026-09-29",
-    "cat": "Anime",
-    "excerpt": "Dragon Ball Super: Beerus đưa Goku đối đầu Thần Hủy Diệt Beerus, tái hiện trận chiến Super Saiyan God với hình ảnh và nội dung được nâng cấp",
-    "image": "/assets/img/uploads/mvh7st8i-dragon-ball-super-beerus-remake-anime.avif",
-    "read": "5 phút đọc",
-    "url": "/dragon-ball-super-beerus-goku-doi-dau-than-huy-diet-beerus",
-    "lang": "VI"
   },
   {
     "key": "yu",
@@ -1266,17 +1288,6 @@
   },
   {
     "key": "anhthu",
-    "title": "Thám Tử Lừng Danh Conan 30号殺人事件: Vụ án đặc biệt kỷ niệm 30 năm lên sóng · OtaHub",
-    "date": "2026-09-28",
-    "cat": "Anime",
-    "excerpt": "Detective Conan chính thức kỷ niệm 30 năm anime bằng một tập đặc biệt kéo dài 2 giờ mang tên “30号殺人事件”. Tác phẩm đưa Conan cùng hàng loạt nhân vật quen thuộc.",
-    "image": "/assets/img/uploads/35vurs6i-axod6nnldq0hjychecz2qijj1gcjgnhpl.jpg",
-    "read": "5 phút đọc",
-    "url": "/detective-conan-30-vu-an-dac-biet-ky-niem-30-nam-len-song",
-    "lang": "VI"
-  },
-  {
-    "key": "anhthu",
     "title": "Detective Conan Case 30 Murder: 30th Anniversary 2-Hour TV Special · OtaHub",
     "date": "2026-09-28",
     "cat": "Anime",
@@ -1307,6 +1318,17 @@
     "read": "6 min read",
     "url": "/en/oda-personally-endorsed-these-6-manga",
     "lang": "EN"
+  },
+  {
+    "key": "otahub",
+    "title": "Hiệp Sĩ Phép Màu (Magic Knight Rayearth) bản làm lại 2026 lên sóng 7/10 · OtaHub",
+    "date": "2026-09-28",
+    "cat": "Anime",
+    "excerpt": "Hiệp Sĩ Phép Màu 2026 phát từ 7/10 trong 2 cour liên tiếp: lịch chiếu, nền tảng, ê-kíp, diễn viên và những điểm người mới cần biết.",
+    "image": "/assets/img/poster-real-magic-knight-rayearth-2026.jpg",
+    "read": "4 phút đọc",
+    "url": "/magic-knight-rayearth-2026-remake-len-song-7-10",
+    "lang": "VI"
   },
   {
     "key": "otahub",
@@ -1351,17 +1373,6 @@
     "read": "4 min read",
     "url": "/en/magic-knight-rayearth-2026-reboot-premieres-october-7",
     "lang": "EN"
-  },
-  {
-    "key": "otahub",
-    "title": "Hiệp Sĩ Phép Màu (Magic Knight Rayearth) bản làm lại 2026 lên sóng 7/10 · OtaHub",
-    "date": "2026-09-28",
-    "cat": "Anime",
-    "excerpt": "Magic Knight Rayearth 2026 phát từ 7/10 trong 2 cour liên tiếp: lịch chiếu, nền tảng, ê-kíp, diễn viên và những điểm người mới cần biết.",
-    "image": "/assets/img/poster-real-magic-knight-rayearth-2026.jpg",
-    "read": "4 phút đọc",
-    "url": "/magic-knight-rayearth-2026-remake-len-song-7-10",
-    "lang": "VI"
   },
   {
     "key": "otahub",
@@ -1496,6 +1507,17 @@
     "lang": "EN"
   },
   {
+    "key": "anhthu",
+    "title": "Thám Tử Lừng Danh Conan 30号殺人事件: Vụ án đặc biệt kỷ niệm 30 năm lên sóng · OtaHub",
+    "date": "2026-09-28",
+    "cat": "Anime",
+    "excerpt": "Thám Tử Lừng Danh Conan chính thức kỷ niệm 30 năm anime bằng một tập đặc biệt kéo dài 2 giờ mang tên “30号殺人事件”. Tác phẩm đưa Conan cùng hàng loạt nhân vật quen thuộc.",
+    "image": "/assets/img/uploads/35vurs6i-axod6nnldq0hjychecz2qijj1gcjgnhpl.jpg",
+    "read": "5 phút đọc",
+    "url": "/detective-conan-30-vu-an-dac-biet-ky-niem-30-nam-len-song",
+    "lang": "VI"
+  },
+  {
     "key": "otahub",
     "title": "Tokyo Revengers: Santen Sensou-hen Premieres October 2, Manga's Final Arc · OtaHub",
     "date": "2026-09-28",
@@ -1555,10 +1577,21 @@
     "title": "Đấu Phá Thương Khung (Battle Through the Heavens) review: donghua tu luyện kinh điển · OtaHub",
     "date": "2026-09-27",
     "cat": "Reviews",
-    "excerpt": "Review Battle Through the Heavens (Doupo Cangqiong): tiểu thuyết của Thiên Tàm Thổ Đậu, donghua 5 mùa từ 2017 trên Tencent Penguin Pictures, Xiao Yan tu.",
+    "excerpt": "Review Đấu Phá Thương Khung (Doupo Cangqiong): tiểu thuyết của Thiên Tàm Thổ Đậu, donghua 5 mùa từ 2017 trên Tencent Penguin Pictures, Xiao Yan tu.",
     "image": "/assets/img/uploads/battle-through-the-heavens-donghua.jpg",
     "read": "4 phút đọc",
     "url": "/battle-through-the-heavens-review",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
+    "title": "Gia Đình Điệp Viên (Spy x Family) review: gia đình giả đầy bí mật · OtaHub",
+    "date": "2026-09-27",
+    "cat": "Reviews",
+    "excerpt": "Đánh giá anime Gia Đình Điệp Viên: Tuyệt tác hoạt hình gia đình chữa lành và hài hước, sự kết hợp duyên dáng giữa thế giới điệp viên và tình cảm gia đình giả tưởng.",
+    "image": "/assets/img/real-spy-family-banner.jpg",
+    "read": "4 phút đọc",
+    "url": "/spy-x-family-anime-review",
     "lang": "VI"
   },
   {
@@ -1593,17 +1626,6 @@
     "read": "4 min read",
     "url": "/en/spy-x-family-anime-review",
     "lang": "EN"
-  },
-  {
-    "key": "otahub",
-    "title": "Gia Đình Điệp Viên (Spy x Family) review: gia đình giả đầy bí mật · OtaHub",
-    "date": "2026-09-27",
-    "cat": "Reviews",
-    "excerpt": "Đánh giá anime Spy x Family: Tuyệt tác hoạt hình gia đình chữa lành và hài hước, sự kết hợp duyên dáng giữa thế giới điệp viên và tình cảm gia đình giả tưởng.",
-    "image": "/assets/img/real-spy-family-banner.jpg",
-    "read": "4 phút đọc",
-    "url": "/spy-x-family-anime-review",
-    "lang": "VI"
   },
   {
     "key": "otahub",
@@ -1654,7 +1676,7 @@
     "title": "10 anime đáng xem khi chờ Chú Thuật Hồi Chiến mùa 4 · OtaHub",
     "date": "2026-09-26",
     "cat": "Anime",
-    "excerpt": "Chưa có ngày phát sóng cho Jujutsu Kaisen mùa 4, đây là 10 anime hành động tông tối đáng xem trong lúc chờ: Gachiakuta, Hell's Paradise, Attack on Titan.",
+    "excerpt": "Chưa có ngày phát sóng cho Chú Thuật Hồi Chiến mùa 4, đây là 10 anime hành động tông tối đáng xem trong lúc chờ: Gachiakuta, Địa Ngục Cực Lạc, Đại Chiến Titan.",
     "image": "/assets/img/real-jjk-wait-gachiakuta.jpg",
     "read": "6 phút đọc",
     "url": "/10-anime-dang-xem-khi-cho-jujutsu-kaisen-mua-4",
@@ -1698,7 +1720,7 @@
     "title": "Anime mùa thu 2026: top 10 được mong đợi nhất · OtaHub",
     "date": "2026-09-26",
     "cat": "Anime",
-    "excerpt": "BXH anime mùa thu quy tụ các thương hiệu lớn: Dược Sư Tự Sự, Dragon Ball Daima, Bleach TYBW và Ranma 1/2 trong cuộc cạnh tranh bản quyền streaming khốc liệt.",
+    "excerpt": "BXH anime mùa thu quy tụ các thương hiệu lớn: Dược Sư Tự Sự, Bảy Viên Ngọc Rồng Daima, Bleach TYBW và Ranma 1/2 trong cuộc cạnh tranh bản quyền streaming khốc liệt.",
     "image": "/assets/img/real-fall-2026-anticipated.jpg",
     "read": "5 phút đọc",
     "url": "/anime-mua-thu-2026-top-10-duoc-mong-doi",
@@ -1746,6 +1768,17 @@
     "image": "/assets/img/pool-delta-force-1.jpg",
     "read": "4 phút đọc",
     "url": "/aixleft-chieu-mo-himass-ve-delta-force",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
+    "title": "Chuyển Sinh Thành Slime mùa 4 trở lại 7/2027, Clayman's Revenge có anime · OtaHub",
+    "date": "2026-09-26",
+    "cat": "Anime",
+    "excerpt": "Chuyển Sinh Thành Slime Mùa 4 ấn định lịch trở lại cour 3 vào tháng 7/2027 cùng dự án anime spinoff Clayman's Revenge từ studio 8-Bit.",
+    "image": "/assets/img/pool-slime-1.jpg",
+    "read": "3 phút đọc",
+    "url": "/slime-mua-4-tap-3-thang-7-2027-clayman-revenge",
     "lang": "VI"
   },
   {
@@ -1882,28 +1915,6 @@
   },
   {
     "key": "otahub",
-    "title": "Thợ Rèn Huyền Thoại (Overgeared) lên sóng sớm trên Prime Video ngày 27/9 · OtaHub",
-    "date": "2026-09-26",
-    "cat": "Anime",
-    "excerpt": "Anime Overgeared, chuyển thể từ tiểu thuyết mạng Hàn Quốc của Saenal, phát sớm trên Prime Video tại Nhật ngày 27/9/2026, lên sóng truyền hình chính thức 2/10.",
-    "image": "/assets/img/real-overgeared-banner.jpg",
-    "read": "3 phút đọc",
-    "url": "/overgeared-anime-len-song-som-tren-prime-video-27-9",
-    "lang": "VI"
-  },
-  {
-    "key": "otahub",
-    "title": "Chuyển Sinh Thành Slime mùa 4 trở lại 7/2027, Clayman's Revenge có anime · OtaHub",
-    "date": "2026-09-26",
-    "cat": "Anime",
-    "excerpt": "Slime Mùa 4 ấn định lịch trở lại cour 3 vào tháng 7/2027 cùng dự án anime spinoff Clayman's Revenge từ studio 8-Bit.",
-    "image": "/assets/img/pool-slime-1.jpg",
-    "read": "3 phút đọc",
-    "url": "/slime-mua-4-tap-3-thang-7-2027-clayman-revenge",
-    "lang": "VI"
-  },
-  {
-    "key": "otahub",
     "title": "Slime Season 4 Returns July 2027, Clayman's Revenge Anime · OtaHub",
     "date": "2026-09-26",
     "cat": "Anime",
@@ -1912,6 +1923,17 @@
     "read": "3 min read",
     "url": "/en/slime-season-4-cour-3-july-2027-claymans-revenge",
     "lang": "EN"
+  },
+  {
+    "key": "otahub",
+    "title": "Thợ Rèn Huyền Thoại (Overgeared) lên sóng sớm trên Prime Video ngày 27/9 · OtaHub",
+    "date": "2026-09-26",
+    "cat": "Anime",
+    "excerpt": "Anime Thợ Rèn Huyền Thoại, chuyển thể từ tiểu thuyết mạng Hàn Quốc của Saenal, phát sớm trên Prime Video tại Nhật ngày 27/9/2026, lên sóng truyền hình chính thức 2/10.",
+    "image": "/assets/img/real-overgeared-banner.jpg",
+    "read": "3 phút đọc",
+    "url": "/overgeared-anime-len-song-som-tren-prime-video-27-9",
+    "lang": "VI"
   },
   {
     "key": "otahub",
@@ -1929,7 +1951,7 @@
     "title": "Vì sao Bóng Ma Phố Baker là phim Thám Tử Lừng Danh Conan xuất sắc · OtaHub",
     "date": "2026-09-26",
     "cat": "Anime",
-    "excerpt": "Phantom of Baker Street (2002), phim điện ảnh Conan thứ sáu, đưa Conan vào một trò chơi VR mô phỏng London thời Sherlock Holmes; đây là lý do phim vẫn được.",
+    "excerpt": "Bóng Ma Phố Baker (2002), phim điện ảnh Thám Tử Lừng Danh Conan thứ sáu, đưa Conan vào một trò chơi VR mô phỏng London thời Sherlock Holmes; đây là lý do phim vẫn được.",
     "image": "/assets/img/real-conan-baker-street-banner.jpg",
     "read": "5 phút đọc",
     "url": "/vi-sao-bong-ma-pho-baker-la-mot-trong-nhung-phim-conan-hay-nhat",
@@ -2036,6 +2058,17 @@
   },
   {
     "key": "otahub",
+    "title": "Chú Thuật Hồi Chiến Culling Game phần 2: teaser Sukuna · OtaHub",
+    "date": "2026-09-23",
+    "cat": "Anime",
+    "excerpt": "Tại sự kiện Juju Fes 2026 kỷ niệm 5 năm anime, MAPPA tung teaser visual mới cho Culling Game Arc Phần 2, tập trung vào Sukuna với dòng chữ 'Are you watching?' gây rùng mình.",
+    "image": "/assets/img/pool-jujutsu-kaisen-1.jpg",
+    "read": "5 phút đọc",
+    "url": "/jujutsu-kaisen-culling-game-part-2-sukuna-teaser",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
     "title": "Honkai: Star Rail 4.6 Launches September 28 With Pearl · OtaHub",
     "date": "2026-09-23",
     "cat": "Gaming",
@@ -2088,17 +2121,6 @@
     "read": "3 min read",
     "url": "/en/jujutsu-kaisen-culling-game-part-2-sukuna-teaser-juju-fes-2026",
     "lang": "EN"
-  },
-  {
-    "key": "otahub",
-    "title": "Chú Thuật Hồi Chiến Culling Game phần 2: teaser Sukuna · OtaHub",
-    "date": "2026-09-23",
-    "cat": "Anime",
-    "excerpt": "Tại sự kiện Juju Fes 2026 kỷ niệm 5 năm anime, MAPPA tung teaser visual mới cho Culling Game Arc Phần 2, tập trung vào Sukuna với dòng chữ 'Are you watching?' gây rùng mình.",
-    "image": "/assets/img/pool-jujutsu-kaisen-1.jpg",
-    "read": "5 phút đọc",
-    "url": "/jujutsu-kaisen-culling-game-part-2-sukuna-teaser",
-    "lang": "VI"
   },
   {
     "key": "otahub",
@@ -2245,17 +2267,6 @@
   },
   {
     "key": "otahub",
-    "title": "Thợ Săn Quỷ Chainsaw Man – Reze Arc thu 191,4 triệu USD · OtaHub",
-    "date": "2026-09-19",
-    "cat": "Anime",
-    "excerpt": "Chainsaw Man – The Movie: Reze Arc do MAPPA sản xuất ra rạp Nhật ngày 19/9/2025, khởi chiếu tại Việt Nam ngày 26/9/2025, thu khoảng 191,4 triệu USD toàn cầu.",
-    "image": "/assets/img/pool-chainsaw-man-1.jpg",
-    "read": "2 phút đọc",
-    "url": "/chainsaw-man-movie-reze-arc-chieu-rap-viet-nam-doanh-thu-ky-luc",
-    "lang": "VI"
-  },
-  {
-    "key": "otahub",
     "title": "Girls' Frontline 2: Exilium In-Depth Review · OtaHub",
     "date": "2026-09-19",
     "cat": "Reviews",
@@ -2355,6 +2366,17 @@
   },
   {
     "key": "otahub",
+    "title": "Thợ Săn Quỷ Chainsaw Man – Reze Arc thu 191,4 triệu USD · OtaHub",
+    "date": "2026-09-19",
+    "cat": "Anime",
+    "excerpt": "Thợ Săn Quỷ Chainsaw Man – The Movie: Reze Arc do MAPPA sản xuất ra rạp Nhật ngày 19/9/2025, khởi chiếu tại Việt Nam ngày 26/9/2025, thu khoảng 191,4 triệu USD toàn cầu.",
+    "image": "/assets/img/pool-chainsaw-man-1.jpg",
+    "read": "2 phút đọc",
+    "url": "/chainsaw-man-movie-reze-arc-chieu-rap-viet-nam-doanh-thu-ky-luc",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
     "title": "Zenless Zone Zero 2.0 Launched; Version 2.1 Brings Back Miyabi · OtaHub",
     "date": "2026-09-19",
     "cat": "Gaming",
@@ -2424,7 +2446,7 @@
     "title": "Black Clover mùa 2 và Xưởng Phép Thuật (Witch Hat Atelier) cùng tung trailer · OtaHub",
     "date": "2026-09-09",
     "cat": "Anime",
-    "excerpt": "Black Clover mùa 2 phát ngày 3/10/2026; Witch Hat Atelier đã kết thúc 13 tập và xác nhận mùa 2. Lịch chiếu, cốt truyện và thông tin chính thức.",
+    "excerpt": "Black Clover mùa 2 phát ngày 3/10/2026; Xưởng Phép Thuật đã kết thúc 13 tập và xác nhận mùa 2. Lịch chiếu, cốt truyện và thông tin chính thức.",
     "image": "/assets/img/real-black-clover-s2.jpg",
     "read": "5 phút đọc",
     "url": "/black-clover-season-2-witch-hat-atelier-trailers",
@@ -2677,7 +2699,7 @@
     "title": "Bleach: TYBW – The Calamity lên sóng 25/7, 10 tập · OtaHub",
     "date": "2026-09-04",
     "cat": "Anime",
-    "excerpt": "Bleach: TYBW – The Calamity, phần cuối của Thousand-Year Blood War, lên sóng 25/7/2026 trên Hulu (Mỹ) và Disney+ (quốc tế) mỗi thứ Bảy, gồm 10 tập.",
+    "excerpt": "Bleach: TYBW – The Calamity, phần cuối của Huyết Chiến Ngàn Năm, lên sóng 25/7/2026 trên Hulu (Mỹ) và Disney+ (quốc tế) mỗi thứ Bảy, gồm 10 tập.",
     "image": "/assets/img/pool-bleach-1.jpg",
     "read": "2 phút đọc",
     "url": "/bleach-tybw-the-calamity-25-7-2026",
@@ -2707,17 +2729,6 @@
   },
   {
     "key": "otahub",
-    "title": "Thanh Gươm Diệt Quỷ: Vô Hạn Thành thu 793 triệu USD · OtaHub",
-    "date": "2026-09-04",
-    "cat": "Anime",
-    "excerpt": "Demon Slayer: Infinity Castle của Ufotable ra rạp Nhật 18/7/2025, thu 40,24 tỷ yên tại Nhật và khoảng 793 triệu USD toàn cầu; đây là phần đầu của bộ ba phim.",
-    "image": "/assets/img/news-demon-slayer-infinity-castle-official.jpg",
-    "read": "2 phút đọc",
-    "url": "/kimetsu-no-yaiba-vo-han-thanh-doanh-thu-793-trieu-usd",
-    "lang": "VI"
-  },
-  {
-    "key": "otahub",
     "title": "Nintendo Switch 2: thông số kỹ thuật hệ máy · OtaHub",
     "date": "2026-09-04",
     "cat": "Gaming",
@@ -2725,6 +2736,17 @@
     "image": "/assets/img/d7d77f5de9-maxresdefault.jpg",
     "read": "6 phút đọc",
     "url": "/nintendo-switch-2-launch-lineup-specs",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
+    "title": "Thanh Gươm Diệt Quỷ: Vô Hạn Thành thu 793 triệu USD · OtaHub",
+    "date": "2026-09-04",
+    "cat": "Anime",
+    "excerpt": "Thanh Gươm Diệt Quỷ: Vô Hạn Thành của Ufotable ra rạp Nhật 18/7/2025, thu 40,24 tỷ yên tại Nhật và khoảng 793 triệu USD toàn cầu; đây là phần đầu của bộ ba phim.",
+    "image": "/assets/img/news-demon-slayer-infinity-castle-official.jpg",
+    "read": "2 phút đọc",
+    "url": "/kimetsu-no-yaiba-vo-han-thanh-doanh-thu-793-trieu-usd",
     "lang": "VI"
   },
   {
@@ -2751,17 +2773,6 @@
   },
   {
     "key": "otahub",
-    "title": "Tôi Thăng Cấp Một Mình (Solo Leveling) mùa 2: 13 tập, phát sóng 5/1–30/3/2025 · OtaHub",
-    "date": "2026-09-03",
-    "cat": "Anime",
-    "excerpt": "Solo Leveling mùa 2 của A-1 Pictures (đạo diễn Shunsuke Nakashige) phát độc quyền trên Crunchyroll từ 5/1 đến 30/3/2025 với 13 tập.",
-    "image": "/assets/img/pool-solo-leveling-5.jpg",
-    "read": "2 phút đọc",
-    "url": "/solo-leveling-season-2-arise-from-the-shadow-premiere",
-    "lang": "VI"
-  },
-  {
-    "key": "otahub",
     "title": "Solo Leveling Season 2: 13 Episodes, Aired Jan–Mar 2025 · OtaHub",
     "date": "2026-09-03",
     "cat": "Anime",
@@ -2770,6 +2781,17 @@
     "read": "3 min read",
     "url": "/en/solo-leveling-season-2-arise-from-the-shadow-premiere",
     "lang": "EN"
+  },
+  {
+    "key": "otahub",
+    "title": "Tôi Thăng Cấp Một Mình (Solo Leveling) mùa 2: 13 tập, phát sóng 5/1–30/3/2025 · OtaHub",
+    "date": "2026-09-03",
+    "cat": "Anime",
+    "excerpt": "Tôi Thăng Cấp Một Mình mùa 2 của A-1 Pictures (đạo diễn Shunsuke Nakashige) phát độc quyền trên Crunchyroll từ 5/1 đến 30/3/2025 với 13 tập.",
+    "image": "/assets/img/pool-solo-leveling-5.jpg",
+    "read": "2 phút đọc",
+    "url": "/solo-leveling-season-2-arise-from-the-shadow-premiere",
+    "lang": "VI"
   },
   {
     "key": "otahub",
@@ -2861,17 +2883,6 @@
   },
   {
     "key": "otahub",
-    "title": "COD Modern Warfare 4 cho chơi thử tại Gamescom 2026 · OtaHub",
-    "date": "2026-08-29",
-    "cat": "Gaming",
-    "excerpt": "Call of Duty: Modern Warfare 4 xuất hiện tại gian hàng Xbox ở Gamescom 2026 với bản demo Core 6v6 Multiplayer, xác nhận ra mắt 23/10 trên cả Nintendo Switch 2.",
-    "image": "/assets/img/news-call-of-duty-modern-warfare-4-gamescom-playable.jpg",
-    "read": "6 phút đọc",
-    "url": "/call-of-duty-modern-warfare-4-gamescom-playable",
-    "lang": "VI"
-  },
-  {
-    "key": "otahub",
     "title": "Chú Thuật Hồi Chiến mở màn Juju Fes 2026 kỷ niệm 5 năm · OtaHub",
     "date": "2026-08-29",
     "cat": "Gaming",
@@ -2879,6 +2890,17 @@
     "image": "/assets/img/pool-jujutsu-kaisen-3.jpg",
     "read": "5 phút đọc",
     "url": "/jujutsu-kaisen-juju-fes-2026-anniversary",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
+    "title": "COD Modern Warfare 4 cho chơi thử tại Gamescom 2026 · OtaHub",
+    "date": "2026-08-29",
+    "cat": "Gaming",
+    "excerpt": "Call of Duty: Modern Warfare 4 xuất hiện tại gian hàng Xbox ở Gamescom 2026 với bản demo Core 6v6 Multiplayer, xác nhận ra mắt 23/10 trên cả Nintendo Switch 2.",
+    "image": "/assets/img/news-call-of-duty-modern-warfare-4-gamescom-playable.jpg",
+    "read": "6 phút đọc",
+    "url": "/call-of-duty-modern-warfare-4-gamescom-playable",
     "lang": "VI"
   },
   {
@@ -2960,17 +2982,6 @@
   },
   {
     "key": "otahub",
-    "title": "Thợ Săn Quỷ Chainsaw Man mùa 2 “Assassins Arc” đang sản xuất · OtaHub",
-    "date": "2026-08-25",
-    "cat": "Anime",
-    "excerpt": "MAPPA chính thức khởi động sản xuất Chainsaw Man Mùa 2 chuyển thể arc Sát Thủ Quốc Tế sau cú hích doanh thu 191,4 triệu USD từ phim điện ảnh Reze Arc.",
-    "image": "/assets/img/yt-s8cP1Vt5US8.jpg",
-    "read": "6 phút đọc",
-    "url": "/chainsaw-man-mua-2-assassins-arc-dang-san-xuat",
-    "lang": "VI"
-  },
-  {
-    "key": "otahub",
     "title": "Chainsaw Man Season 2",
     "date": "2026-08-25",
     "cat": "Anime",
@@ -2979,6 +2990,17 @@
     "read": "6 min read",
     "url": "/en/chainsaw-man-season-2-assassins-arc-in-production",
     "lang": "EN"
+  },
+  {
+    "key": "otahub",
+    "title": "Chú Thuật Hồi Chiến mùa 3: Culling Game phần 1 đã phát sóng · OtaHub",
+    "date": "2026-08-25",
+    "cat": "Anime",
+    "excerpt": "Chú Thuật Hồi Chiến mùa 3 Culling Game phần đầu gồm 12 tập; mùa 4 tiếp tục phần sau. Tóm tắt không spoiler, thứ tự xem và thông tin chính thức.",
+    "image": "/assets/img/yt--gvtWDUHmiU.jpg",
+    "read": "2 phút đọc",
+    "url": "/jujutsu-kaisen-season-3-culling-game-release",
+    "lang": "VI"
   },
   {
     "key": "otahub",
@@ -3026,17 +3048,6 @@
   },
   {
     "key": "otahub",
-    "title": "Chú Thuật Hồi Chiến mùa 3: Culling Game phần 1 đã phát sóng · OtaHub",
-    "date": "2026-08-25",
-    "cat": "Anime",
-    "excerpt": "Jujutsu Kaisen mùa 3 Culling Game phần đầu gồm 12 tập; mùa 4 tiếp tục phần sau. Tóm tắt không spoiler, thứ tự xem và thông tin chính thức.",
-    "image": "/assets/img/yt--gvtWDUHmiU.jpg",
-    "read": "2 phút đọc",
-    "url": "/jujutsu-kaisen-season-3-culling-game-release",
-    "lang": "VI"
-  },
-  {
-    "key": "otahub",
     "title": "Jujutsu Kaisen Season 3 Culling Game Part 1 Has Aired · OtaHub",
     "date": "2026-08-25",
     "cat": "Anime",
@@ -3055,6 +3066,17 @@
     "image": "/assets/img/monster-hunter-wilds-review-hero.jpg",
     "read": "5 phút đọc",
     "url": "/monster-hunter-wilds-review",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
+    "title": "Thợ Săn Quỷ Chainsaw Man mùa 2 “Assassins Arc” đang sản xuất · OtaHub",
+    "date": "2026-08-25",
+    "cat": "Anime",
+    "excerpt": "MAPPA chính thức khởi động sản xuất Thợ Săn Quỷ Chainsaw Man Mùa 2 chuyển thể arc Sát Thủ Quốc Tế sau cú hích doanh thu 191,4 triệu USD từ phim điện ảnh Reze Arc.",
+    "image": "/assets/img/yt-s8cP1Vt5US8.jpg",
+    "read": "6 phút đọc",
+    "url": "/chainsaw-man-mua-2-assassins-arc-dang-san-xuat",
     "lang": "VI"
   },
   {
@@ -3293,7 +3315,7 @@
     "title": "Anime NYC 2026: các premiere và panel đáng chú ý · OtaHub",
     "date": "2026-08-18",
     "cat": "Anime",
-    "excerpt": "Anime NYC 2026 diễn ra 20–23/8: lịch premiere, panel Re:ZERO, Bungo Stray Dogs, Iruma-kun và những điểm đáng chú ý từ Crunchyroll.",
+    "excerpt": "Anime NYC 2026 diễn ra 20–23/8: lịch premiere, panel Re:ZERO, Văn Hào Lưu Lạc, Iruma-kun và những điểm đáng chú ý từ Crunchyroll.",
     "image": "/assets/img/yt-zjTA2uE_y_8.jpg",
     "read": "7 phút đọc",
     "url": "/anime-nyc-2026-crunchyroll",
@@ -3337,7 +3359,7 @@
     "title": "Bleach TYBW: The Calamity công bố OP I-BULL và ED Rasen · OtaHub",
     "date": "2026-08-18",
     "cat": "Anime",
-    "excerpt": "Bleach: Thousand-Year Blood War - The Calamity công bố opening cùng cẩm nang phân tích chuyên sâu độc quyền tại OtaHub.",
+    "excerpt": "Bleach: Huyết Chiến Ngàn Năm - The Calamity công bố opening cùng cẩm nang phân tích chuyên sâu độc quyền tại OtaHub.",
     "image": "/assets/img/news-bleach-tybw-calamity-opening-ending.jpg",
     "read": "6 phút đọc",
     "url": "/bleach-tybw-calamity-opening-ending",
@@ -3353,6 +3375,17 @@
     "read": "6 min read",
     "url": "/en/bleach-tybw-calamity-opening-ending",
     "lang": "EN"
+  },
+  {
+    "key": "otahub",
+    "title": "Chúc Phúc Cho Thế Giới Tuyệt Vời Này! (KonoSuba) mùa 4 ấn định ra mắt 2027, studio ENGI · OtaHub",
+    "date": "2026-08-18",
+    "cat": "Anime",
+    "excerpt": "Chúc Phúc Cho Thế Giới Tuyệt Vời Này! xác nhận mùa 4 lên sóng năm 2027, chuyển sang studio ENGI, giữ lại đạo diễn Takaomi Kanasaki và toàn bộ dàn lồng tiếng gốc.",
+    "image": "/assets/img/news-konosuba-season-4-2027.jpg",
+    "read": "5 phút đọc",
+    "url": "/konosuba-season-4-2027",
+    "lang": "VI"
   },
   {
     "key": "otahub",
@@ -3606,17 +3639,6 @@
     "read": "5 min read",
     "url": "/en/jujutsu-kaisen-juju-fes-2026-anniversary",
     "lang": "EN"
-  },
-  {
-    "key": "otahub",
-    "title": "Chúc Phúc Cho Thế Giới Tuyệt Vời Này! (KonoSuba) mùa 4 ấn định ra mắt 2027, studio ENGI · OtaHub",
-    "date": "2026-08-18",
-    "cat": "Anime",
-    "excerpt": "KONOSUBA xác nhận mùa 4 lên sóng năm 2027, chuyển sang studio ENGI, giữ lại đạo diễn Takaomi Kanasaki và toàn bộ dàn lồng tiếng gốc.",
-    "image": "/assets/img/news-konosuba-season-4-2027.jpg",
-    "read": "5 phút đọc",
-    "url": "/konosuba-season-4-2027",
-    "lang": "VI"
   },
   {
     "key": "otahub",
@@ -4107,7 +4129,7 @@
     "title": "Toei xác nhận phim Chuyến Tàu Ngân Hà 999 (Galaxy Express 999) mới · OtaHub",
     "date": "2026-08-18",
     "cat": "Anime",
-    "excerpt": "Toei Animation hồi sinh huyền thoại Galaxy Express 999 với phim điện ảnh mới do đạo diễn kỳ cựu Rintaro viết cốt truyện.",
+    "excerpt": "Toei Animation hồi sinh huyền thoại Chuyến Tàu Ngân Hà 999 với phim điện ảnh mới do đạo diễn kỳ cựu Rintaro viết cốt truyện.",
     "image": "/assets/img/news-galaxy-express-999-new-film.jpg",
     "read": "6 phút đọc",
     "url": "/galaxy-express-999-new-film",
@@ -4214,6 +4236,28 @@
   },
   {
     "key": "otahub",
+    "title": "Chuyển Sinh Thành Kiếm (Reincarnated as a Sword) mùa 2 ấn định ngày 7/10 · OtaHub",
+    "date": "2026-08-17",
+    "cat": "Anime",
+    "excerpt": "Chuyển Sinh Thành Kiếm Mùa 2 chính thức ấn định ngày phát sóng 7/10/2026, tung trailer mới và công bố nhạc mở đầu",
+    "image": "/assets/img/ae00527a02-reincarnated-as-a-sword-s2-hero.jpg",
+    "read": "4 phút đọc",
+    "url": "/reincarnated-as-a-sword-season2-premiere",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
+    "title": "Dược Sư Tự Sự mùa 3 tung trailer, ấn định 2/10 · OtaHub",
+    "date": "2026-08-17",
+    "cat": "Anime",
+    "excerpt": "Dược Sư Tự Sự Mùa 3 chính thức tung trailer và key visual mới, xác nhận ngày phát sóng 2/10/2026 cùng ca khúc mở đầu mới.",
+    "image": "/assets/img/ba56514692-apothecary-diaries-s3-key-visual.jpg",
+    "read": "5 phút đọc",
+    "url": "/apothecary-diaries-season3-trailer",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
     "title": "FF7 Revelation lộ diện tại Gamescom Opening Night · OtaHub",
     "date": "2026-08-17",
     "cat": "Gaming",
@@ -4302,6 +4346,17 @@
   },
   {
     "key": "otahub",
+    "title": "Nhịp Bước Tuổi Xanh (Skip and Loafer) mùa 2 tung teaser, ra mắt 4/2027 · OtaHub",
+    "date": "2026-08-17",
+    "cat": "Anime",
+    "excerpt": "Nhịp Bước Tuổi Xanh Mùa 2 chính thức tung trailer teaser, xác nhận lên sóng tháng 4/2027, P.A.Works và đạo diễn Kotomi Deai trở lại sản xuất.",
+    "image": "/assets/img/2715e60035-skip-and-loafer-s2-teaser.jpg",
+    "read": "4 phút đọc",
+    "url": "/skip-and-loafer-season2-teaser",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
     "title": "Phantom Blade Zero: State of Play 17/8 · OtaHub",
     "date": "2026-08-17",
     "cat": "Gaming",
@@ -4321,17 +4376,6 @@
     "read": "5 min read",
     "url": "/en/phantom-blade-zero-state-of-play",
     "lang": "EN"
-  },
-  {
-    "key": "otahub",
-    "title": "Chuyển Sinh Thành Kiếm (Reincarnated as a Sword) mùa 2 ấn định ngày 7/10 · OtaHub",
-    "date": "2026-08-17",
-    "cat": "Anime",
-    "excerpt": "Reincarnated as a Sword Mùa 2 chính thức ấn định ngày phát sóng 7/10/2026, tung trailer mới và công bố nhạc mở đầu",
-    "image": "/assets/img/ae00527a02-reincarnated-as-a-sword-s2-hero.jpg",
-    "read": "4 phút đọc",
-    "url": "/reincarnated-as-a-sword-season2-premiere",
-    "lang": "VI"
   },
   {
     "key": "otahub",
@@ -4368,17 +4412,6 @@
   },
   {
     "key": "otahub",
-    "title": "Nhịp Bước Tuổi Xanh (Skip and Loafer) mùa 2 tung teaser, ra mắt 4/2027 · OtaHub",
-    "date": "2026-08-17",
-    "cat": "Anime",
-    "excerpt": "Skip and Loafer Mùa 2 chính thức tung trailer teaser, xác nhận lên sóng tháng 4/2027, P.A.Works và đạo diễn Kotomi Deai trở lại sản xuất.",
-    "image": "/assets/img/2715e60035-skip-and-loafer-s2-teaser.jpg",
-    "read": "4 phút đọc",
-    "url": "/skip-and-loafer-season2-teaser",
-    "lang": "VI"
-  },
-  {
-    "key": "otahub",
     "title": "Skip and Loafer Season 2 Teaser Set for April 2027 · OtaHub",
     "date": "2026-08-17",
     "cat": "Anime",
@@ -4387,17 +4420,6 @@
     "read": "5 min read",
     "url": "/en/skip-and-loafer-season2-teaser",
     "lang": "EN"
-  },
-  {
-    "key": "otahub",
-    "title": "Dược Sư Tự Sự mùa 3 tung trailer, ấn định 2/10 · OtaHub",
-    "date": "2026-08-17",
-    "cat": "Anime",
-    "excerpt": "The Apothecary Diaries Mùa 3 chính thức tung trailer và key visual mới, xác nhận ngày phát sóng 2/10/2026 cùng ca khúc mở đầu mới.",
-    "image": "/assets/img/ba56514692-apothecary-diaries-s3-key-visual.jpg",
-    "read": "5 phút đọc",
-    "url": "/apothecary-diaries-season3-trailer",
-    "lang": "VI"
   },
   {
     "key": "otahub",
@@ -4412,17 +4434,6 @@
   },
   {
     "key": "otahub",
-    "title": "Đại Chiến Titan Final Season review: cái kết xứng đáng · OtaHub",
-    "date": "2026-08-16",
-    "cat": "Reviews",
-    "excerpt": "Review Attack on Titan The Final Season của MAPPA (từ 7/12/2020): nhạc Hiroyuki Sawano, bốn phần đến 11/2023; manga Isayama hơn 140 triệu bản, giải Kodansha.",
-    "image": "/assets/img/48ca2f8976-attack-on-titan-final-season-hero.jpg",
-    "read": "4 phút đọc",
-    "url": "/attack-on-titan-final-season-review",
-    "lang": "VI"
-  },
-  {
-    "key": "otahub",
     "title": "Chainsaw Man Anime Review: A MAPPA Masterpiece · OtaHub",
     "date": "2026-08-16",
     "cat": "Anime",
@@ -4431,17 +4442,6 @@
     "read": "4 min read",
     "url": "/en/chainsaw-man-anime-review",
     "lang": "EN"
-  },
-  {
-    "key": "otahub",
-    "title": "Thợ Săn Quỷ Chainsaw Man anime review: MAPPA làm nên kiệt tác · OtaHub",
-    "date": "2026-08-16",
-    "cat": "Reviews",
-    "excerpt": "Đánh giá anime Chainsaw Man của MAPPA: Bước đột phá mang đậm ngôn ngữ điện ảnh, bạo lực nghệ thuật và âm nhạc đỉnh cao gây sốt toàn cầu.",
-    "image": "/assets/img/6b2483c562-chainsaw-man-anime-hero.jpg",
-    "read": "4 phút đọc",
-    "url": "/chainsaw-man-anime-review",
-    "lang": "VI"
   },
   {
     "key": "otahub",
@@ -4467,6 +4467,17 @@
   },
   {
     "key": "otahub",
+    "title": "Chú Thuật Hồi Chiến anime review: vươn tầm toàn cầu · OtaHub",
+    "date": "2026-08-16",
+    "cat": "Reviews",
+    "excerpt": "Đánh giá toàn diện anime Chú Thuật Hồi Chiến của MAPPA: Từ khởi đầu ấn tượng đến đỉnh cao Biến cố Shibuya và bước ngoặt Culling Game làm rung chuyển toàn cầu.",
+    "image": "/assets/img/yt-MPfZhgLiK6w.jpg",
+    "read": "4 phút đọc",
+    "url": "/jujutsu-kaisen-anime-review",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
     "title": "Dandadan Review: A Whirlwind of Humor and Horror · OtaHub",
     "date": "2026-08-16",
     "cat": "Manga",
@@ -4485,6 +4496,39 @@
     "image": "/assets/img/2c0d7f7a34-dandadan-manga-hero.jpg",
     "read": "4 phút đọc",
     "url": "/dandadan-manga-review",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
+    "title": "Đại Chiến Titan Final Season review: cái kết xứng đáng · OtaHub",
+    "date": "2026-08-16",
+    "cat": "Reviews",
+    "excerpt": "Review Đại Chiến Titan The Final Season của MAPPA (từ 7/12/2020): nhạc Hiroyuki Sawano, bốn phần đến 11/2023; manga Isayama hơn 140 triệu bản, giải Kodansha.",
+    "image": "/assets/img/48ca2f8976-attack-on-titan-final-season-hero.jpg",
+    "read": "4 phút đọc",
+    "url": "/attack-on-titan-final-season-review",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
+    "title": "Đứa Con Của Thần Tượng (Oshi no Ko) anime review: góc khuất ngành giải trí · OtaHub",
+    "date": "2026-08-16",
+    "cat": "Reviews",
+    "excerpt": "Đánh giá anime Đứa Con Của Thần Tượng: Bản cáo trạng sắc sảo và đầy ám ảnh về mặt tối giới showbiz, ánh hào quang thần tượng và bi kịch gia đình Hoshino.",
+    "image": "/assets/img/9506aefbae-oshi-no-ko-hero.jpg",
+    "read": "5 phút đọc",
+    "url": "/oshi-no-ko-anime-review",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
+    "title": "Đứa Con Của Thần Tượng (Oshi no Ko) mùa 4 cuối tung teaser đầu tiên · OtaHub",
+    "date": "2026-08-16",
+    "cat": "Anime",
+    "excerpt": "Đứa Con Của Thần Tượng Mùa 4, mùa cuối cùng của anime, chính thức tung teaser visual và trailer tại sự kiện Ichigo Production Fan Thanksgiving 2026 ngày 16/8.",
+    "image": "/assets/img/02716b9688-oshi-no-ko-season4-teaser-hero.jpg",
+    "read": "5 phút đọc",
+    "url": "/oshi-no-ko-season4-teaser",
     "lang": "VI"
   },
   {
@@ -4544,17 +4588,6 @@
   },
   {
     "key": "otahub",
-    "title": "Chú Thuật Hồi Chiến anime review: vươn tầm toàn cầu · OtaHub",
-    "date": "2026-08-16",
-    "cat": "Reviews",
-    "excerpt": "Đánh giá toàn diện anime Jujutsu Kaisen của MAPPA: Từ khởi đầu ấn tượng đến đỉnh cao Biến cố Shibuya và bước ngoặt Culling Game làm rung chuyển toàn cầu.",
-    "image": "/assets/img/yt-MPfZhgLiK6w.jpg",
-    "read": "4 phút đọc",
-    "url": "/jujutsu-kaisen-anime-review",
-    "lang": "VI"
-  },
-  {
-    "key": "otahub",
     "title": "Kaiju No.8 THE GAME review sau 1 năm vận hành · OtaHub",
     "date": "2026-08-16",
     "cat": "Reviews",
@@ -4588,28 +4621,6 @@
   },
   {
     "key": "otahub",
-    "title": "Đứa Con Của Thần Tượng (Oshi no Ko) anime review: góc khuất ngành giải trí · OtaHub",
-    "date": "2026-08-16",
-    "cat": "Reviews",
-    "excerpt": "Đánh giá anime Oshi no Ko: Bản cáo trạng sắc sảo và đầy ám ảnh về mặt tối giới showbiz, ánh hào quang thần tượng và bi kịch gia đình Hoshino.",
-    "image": "/assets/img/9506aefbae-oshi-no-ko-hero.jpg",
-    "read": "5 phút đọc",
-    "url": "/oshi-no-ko-anime-review",
-    "lang": "VI"
-  },
-  {
-    "key": "otahub",
-    "title": "Đứa Con Của Thần Tượng (Oshi no Ko) mùa 4 cuối tung teaser đầu tiên · OtaHub",
-    "date": "2026-08-16",
-    "cat": "Anime",
-    "excerpt": "Oshi no Ko Mùa 4, mùa cuối cùng của anime, chính thức tung teaser visual và trailer tại sự kiện Ichigo Production Fan Thanksgiving 2026 ngày 16/8.",
-    "image": "/assets/img/02716b9688-oshi-no-ko-season4-teaser-hero.jpg",
-    "read": "5 phút đọc",
-    "url": "/oshi-no-ko-season4-teaser",
-    "lang": "VI"
-  },
-  {
-    "key": "otahub",
     "title": "Oshi no Ko Season 4 Final: Teaser Trailer Released · OtaHub",
     "date": "2026-08-16",
     "cat": "Anime",
@@ -4639,6 +4650,17 @@
     "image": "/assets/img/pool-space-marine-1.jpg",
     "read": "4 phút đọc",
     "url": "/space-marine-2-chaos-rising-review",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
+    "title": "Thợ Săn Quỷ Chainsaw Man anime review: MAPPA làm nên kiệt tác · OtaHub",
+    "date": "2026-08-16",
+    "cat": "Reviews",
+    "excerpt": "Đánh giá anime Thợ Săn Quỷ Chainsaw Man của MAPPA: Bước đột phá mang đậm ngôn ngữ điện ảnh, bạo lực nghệ thuật và âm nhạc đỉnh cao gây sốt toàn cầu.",
+    "image": "/assets/img/6b2483c562-chainsaw-man-anime-hero.jpg",
+    "read": "4 phút đọc",
+    "url": "/chainsaw-man-anime-review",
     "lang": "VI"
   },
   {
@@ -4742,17 +4764,6 @@
   },
   {
     "key": "otahub",
-    "title": "Thợ Săn Quỷ Chainsaw Man: Reze Arc review, MAPPA lên màn ảnh · OtaHub",
-    "date": "2026-08-15",
-    "cat": "Reviews",
-    "excerpt": "Review Chainsaw Man – The Movie: Reze Arc của MAPPA: phim 100 phút ra 19/9/2025, \"Iris Out\" của Kenshi Yonezu, doanh thu 191,4 triệu USD; Rotten.",
-    "image": "/assets/img/yt-tAzAhDNdehs.jpg",
-    "read": "4 phút đọc",
-    "url": "/chainsaw-man-reze-arc-review",
-    "lang": "VI"
-  },
-  {
-    "key": "otahub",
     "title": "Chainsaw Man: Reze Arc Review, MAPPA's Big Screen Debut · OtaHub",
     "date": "2026-08-15",
     "cat": "Anime",
@@ -4804,17 +4815,6 @@
     "image": "/assets/img/9c68ea445d-death-stranding-2-on-the-beach-review-hero.jpg",
     "read": "6 phút đọc",
     "url": "/death-stranding-2-review",
-    "lang": "VI"
-  },
-  {
-    "key": "otahub",
-    "title": "Thanh Gươm Diệt Quỷ: Vô Hạn Thành: kiệt tác của Ufotable · OtaHub",
-    "date": "2026-08-15",
-    "cat": "Reviews",
-    "excerpt": "Review Demon Slayer: Infinity Castle của Ufotable: phần đầu bộ ba phim, ra 18/7/2025, doanh thu 820,4 triệu USD, kỷ lục phim Nhật; Rotten Tomatoes 98%, nhịp.",
-    "image": "/assets/img/5418135572-demon-slayer-infinity-castle-review-hero.jpg",
-    "read": "4 phút đọc",
-    "url": "/demon-slayer-infinity-castle-review",
     "lang": "VI"
   },
   {
@@ -5039,10 +5039,32 @@
   },
   {
     "key": "otahub",
+    "title": "Thanh Gươm Diệt Quỷ: Vô Hạn Thành: kiệt tác của Ufotable · OtaHub",
+    "date": "2026-08-15",
+    "cat": "Reviews",
+    "excerpt": "Review Thanh Gươm Diệt Quỷ: Vô Hạn Thành của Ufotable: phần đầu bộ ba phim, ra 18/7/2025, doanh thu 820,4 triệu USD, kỷ lục phim Nhật; Rotten Tomatoes 98%, nhịp.",
+    "image": "/assets/img/5418135572-demon-slayer-infinity-castle-review-hero.jpg",
+    "read": "4 phút đọc",
+    "url": "/demon-slayer-infinity-castle-review",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
+    "title": "Thợ Săn Quỷ Chainsaw Man: Reze Arc review, MAPPA lên màn ảnh · OtaHub",
+    "date": "2026-08-15",
+    "cat": "Reviews",
+    "excerpt": "Review Thợ Săn Quỷ Chainsaw Man – The Movie: Reze Arc của MAPPA: phim 100 phút ra 19/9/2025, \"Iris Out\" của Kenshi Yonezu, doanh thu 191,4 triệu USD; Rotten.",
+    "image": "/assets/img/yt-tAzAhDNdehs.jpg",
+    "read": "4 phút đọc",
+    "url": "/chainsaw-man-reze-arc-review",
+    "lang": "VI"
+  },
+  {
+    "key": "otahub",
     "title": "WIT Studio hé lộ bí ẩn Đại Chiến Titan ngày 20/8 · OtaHub",
     "date": "2026-08-15",
     "cat": "Anime",
-    "excerpt": "WIT Studio tung teaser bí ẩn về Attack on Titan, mở ra nhiều dự đoán về dự án anime mới nhân dịp kỷ niệm thương hiệu.",
+    "excerpt": "WIT Studio tung teaser bí ẩn về Đại Chiến Titan, mở ra nhiều dự đoán về dự án anime mới nhân dịp kỷ niệm thương hiệu.",
     "image": "/assets/img/a7548f6c8e-attack-on-titan-wit-teaser-hero.jpg",
     "read": "5 phút đọc",
     "url": "/attack-on-titan-wit-teaser",
@@ -5391,17 +5413,6 @@
   },
   {
     "key": "otahub",
-    "title": "Nô Lệ Của Ma Đô Tinh Binh (Chained Soldier) Season 3: ngày phát sóng và thông tin đã biết · OtaHub",
-    "date": "2026-08-12",
-    "cat": "Anime",
-    "excerpt": "Chained Soldier xác nhận sản xuất Mùa 3: Cuộc chiến Ma Đô tiếp diễn với những thử thách mới và quy mô mở rộng.",
-    "image": "/assets/img/cc1f44dabd-chained-soldier-s3.jpg",
-    "read": "5 phút đọc",
-    "url": "/chained-soldier-season-3",
-    "lang": "VI"
-  },
-  {
-    "key": "otahub",
     "title": "Chained Soldier Season 3: Release Date And What We Know · OtaHub",
     "date": "2026-08-12",
     "cat": "Anime",
@@ -5490,13 +5501,13 @@
   },
   {
     "key": "otahub",
-    "title": "Thất Nghiệp Chuyển Sinh (Mushoku Tensei) S3: Chaos Breaker tung trailer, 16/8 · OtaHub",
+    "title": "Nô Lệ Của Ma Đô Tinh Binh (Chained Soldier) Season 3: ngày phát sóng và thông tin đã biết · OtaHub",
     "date": "2026-08-12",
     "cat": "Anime",
-    "excerpt": "Studio Bind tung trailer cho Chaos Breaker Arc của Mushoku Tensei Season 3, khởi chiếu từ tập 8 ngày 16/8/2026 với Rikiya Koyama lồng tiếng Perugius",
-    "image": "/assets/img/77948dbff7-mushoku-tensei-s3-chaosbreaker.jpg",
+    "excerpt": "Nô Lệ Của Ma Đô Tinh Binh xác nhận sản xuất Mùa 3: Cuộc chiến Ma Đô tiếp diễn với những thử thách mới và quy mô mở rộng.",
+    "image": "/assets/img/cc1f44dabd-chained-soldier-s3.jpg",
     "read": "5 phút đọc",
-    "url": "/mushoku-tensei-s3-chaos-breaker",
+    "url": "/chained-soldier-season-3",
     "lang": "VI"
   },
   {
@@ -5564,6 +5575,17 @@
     "read": "5 min read",
     "url": "/en/star-wars-zero-company",
     "lang": "EN"
+  },
+  {
+    "key": "otahub",
+    "title": "Thất Nghiệp Chuyển Sinh (Mushoku Tensei) S3: Chaos Breaker tung trailer, 16/8 · OtaHub",
+    "date": "2026-08-12",
+    "cat": "Anime",
+    "excerpt": "Studio Bind tung trailer cho Chaos Breaker Arc của Thất Nghiệp Chuyển Sinh Season 3, khởi chiếu từ tập 8 ngày 16/8/2026 với Rikiya Koyama lồng tiếng Perugius",
+    "image": "/assets/img/77948dbff7-mushoku-tensei-s3-chaosbreaker.jpg",
+    "read": "5 phút đọc",
+    "url": "/mushoku-tensei-s3-chaos-breaker",
+    "lang": "VI"
   },
   {
     "key": "otahub",
@@ -5658,7 +5680,7 @@
     "title": "Anime mùa hè 2026: bộ đáng xem và lịch phát sóng · OtaHub",
     "date": "2026-06-18",
     "cat": "Anime",
-    "excerpt": "Tổng hợp anime mùa hè 2026: Mushoku Tensei S3, The Ghost in the Shell (Science SARU), Youjo Senki II, Bleach: The Calamity, Re:Zero S4 Recapture Part cùng.",
+    "excerpt": "Tổng hợp anime mùa hè 2026: Thất Nghiệp Chuyển Sinh S3, The Ghost in the Shell (Science SARU), Youjo Senki II, Bleach: The Calamity, Re:Zero S4 Recapture Part cùng.",
     "image": "/assets/img/pool-mushoku-1.jpg",
     "read": "2 phút đọc",
     "url": "/anime-mua-he-2026",
@@ -5944,7 +5966,7 @@
     "title": "Bảy Viên Ngọc Rồng DAIMA: di sản Toriyama, tương lai anime · OtaHub",
     "date": "2026-06-03",
     "cat": "Anime",
-    "excerpt": "Dragon Ball DAIMA, tựa anime cuối cùng được Akira Toriyama giám sát trực tiếp, có xứng đáng là di sản? Đánh giá đầy đủ 20 tập.",
+    "excerpt": "Bảy Viên Ngọc Rồng DAIMA, tựa anime cuối cùng được Akira Toriyama giám sát trực tiếp, có xứng đáng là di sản? Đánh giá đầy đủ 20 tập.",
     "image": "/assets/img/1f0540d7a3-maxresdefault.jpg",
     "read": "8 phút đọc",
     "url": "/dragon-ball-daima",

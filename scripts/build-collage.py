@@ -19,7 +19,7 @@ COLORS = [(255, 33, 119), (0, 242, 255)]
 
 COLLAGES = {
     'gears-of-war-e-day-review-hero-v2.jpg': [
-        # (file, vùng cắt theo tỉ lệ trái, trên, phải, dưới): bỏ dải phụ đề trong game ở mép dưới
+        # (file, vùng cắt theo tỉ lệ trái, trên, phải, dưới[, tiêu điểm ngang]): bỏ dải phụ đề trong game ở mép dưới
         ('gears-of-war-e-day-review-kalona-street.jpg', (0, 0, 1, 0.84)),
         'gears-of-war-e-day-review-marcus-fenix.jpg',
         ('gears-of-war-e-day-review-gunship-explosion.jpg', (0, 0, 1, 0.84)),
@@ -33,6 +33,11 @@ COLLAGES = {
         'gta6-official-art.jpg',
         'gia-game-70-80-usd-battlefield-6-2.jpg',
         'gia-game-70-80-usd-borderlands-4-1.jpg',
+    ],
+    'zoro-haki-ba-vuong-hero.jpg': [
+        'zoro-haki-ba-vuong-ashura-kaido.jpg',
+        ('zoro-haki-ba-vuong-king-of-hell.jpg', (0, 0, 1, 1), 0.3),  # tiêu điểm: Zoro ở khoảng 30% chiều ngang ảnh
+        'real-op1194-dexerto.jpg',
     ],
 }
 
@@ -56,13 +61,14 @@ def build(out, sources):
     edges = [-10 * W] + centers + [10 * W]
     canvas = Image.new('RGB', (W, H), (11, 4, 24))
     for i, src in enumerate(sources):
-        src, box = src if isinstance(src, tuple) else (src, (0, 0, 1, 1))
+        # (file, vùng cắt, tiêu điểm ngang 0..1 của phần ảnh đặt vào giữa khung; mặc định 0.5)
+        src, box, focus = (tuple(src) + (0.5,))[:3] if isinstance(src, tuple) else (src, (0, 0, 1, 1), 0.5)
         im = Image.open(os.path.join(IMG, src)).convert('RGB')
         im = cover(im.crop((round(box[0] * im.width), round(box[1] * im.height), round(box[2] * im.width), round(box[3] * im.height))))
         # dời ảnh để tâm ảnh nằm giữa khung của nó
         mid = (max(edges[i], 0) + min(edges[i + 1], W)) / 2
         shifted = Image.new('RGB', (W, H), (11, 4, 24))
-        shifted.paste(im, (round(mid - W / 2), 0))
+        shifted.paste(im, (round(mid - W * focus), 0))
         mask = Image.new('L', (W, H), 0)
         left, right = edges[i], edges[i + 1]
         poly = [(seam_x(left, 0) if i else -1, 0), (seam_x(right, 0) if i < n - 1 else W + 1, 0),
