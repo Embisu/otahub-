@@ -61,6 +61,7 @@ var cdHtml = function(ts){
     return '<span class="sch-cd-u"><b data-u="' + i + '">' + pad2(v) + '</b><i>' + esc(T.units[i]) + '</i></span>';
   }).join('') + '</div>';
 };
+var nameOf = function(a){ return (!EN && a.tv) || a.t; };   // ban VI dung ten Viet hoa (tv) neu co
 var linkOf = function(a){ return EN ? (a.le || '') : (a.l || ''); };
 
 var MQ = window.matchMedia('(max-width:768px)');
@@ -87,7 +88,7 @@ function status(a){
 function matches(a){
   if (state.type !== 'all' && a.y !== state.type) return false;
   if (!state.q) return true;
-  var hay = (a.t + ' ' + (a.r || '') + ' ' + (a.s || '')).toLowerCase();
+  var hay = (a.t + ' ' + (a.tv || '') + ' ' + (a.r || '') + ' ' + (a.s || '')).toLowerCase();
   return hay.indexOf(state.q) > -1;
 }
 function tile(a){
@@ -98,15 +99,15 @@ function tile(a){
 }
 function card(a){
   var st = status(a), href = linkOf(a), tag = href ? 'a' : 'div';
-  return '<' + tag + (href ? ' href="' + esc(href) + '"' : '') + ' class="sch-card"><img src="' + esc(thumb(a.i, '_t')) + '" alt="' + esc(a.t) + '" loading="lazy" decoding="async" width="300" height="400" onerror="this.onerror=null;this.src=\'' + esc(a.i) + '\'"><div class="sch-card-body"><span class="sch-st ' + st.k + '">' + esc(st.label) + '</span><div class="sch-card-t">' + esc(a.t) + '</div><div class="sch-card-m">' + esc(T.days[dowOf(a.d)]) + (a.h ? ' · ' + a.h : '') + ' · ' + esc(a.s) + '</div></div></' + tag + '>';
+  return '<' + tag + (href ? ' href="' + esc(href) + '"' : '') + ' class="sch-card"><img src="' + esc(thumb(a.i, '_t')) + '" alt="' + esc(nameOf(a)) + '" loading="lazy" decoding="async" width="300" height="400" onerror="this.onerror=null;this.src=\'' + esc(a.i) + '\'"><div class="sch-card-body"><span class="sch-st ' + st.k + '">' + esc(st.label) + '</span><div class="sch-card-t">' + esc(nameOf(a)) + '</div><div class="sch-card-m">' + esc(T.days[dowOf(a.d)]) + (a.h ? ' · ' + a.h : '') + ' · ' + esc(a.s) + '</div></div></' + tag + '>';
 }
 // khối "Sắp lên sóng": tựa kế tiếp có đồng hồ đếm ngược trực tiếp + danh sách các tựa sau đó
 function nextUp(all){
   var now = Date.now();
-  var up = all.filter(function(a){ return a.i && tsOf(a) > now; }).sort(function(a, b){ return tsOf(a) - tsOf(b) || a.t.localeCompare(b.t); }).slice(0, 5);
+  var up = all.filter(function(a){ return a.i && tsOf(a) > now; }).sort(function(a, b){ return tsOf(a) - tsOf(b) || nameOf(a).localeCompare(nameOf(b)); }).slice(0, 5);
   if (!up.length) return '';
   var a = up[0], href = linkOf(a);
-  var title = href ? '<a href="' + esc(href) + '">' + esc(a.t) + '</a>' : esc(a.t);
+  var title = href ? '<a href="' + esc(href) + '">' + esc(nameOf(a)) + '</a>' : esc(nameOf(a));
   var meta = [T.days[dowOf(a.d)] + ' ' + fmtDate(a.d) + (a.h ? ' · ' + a.h : ''), a.s].filter(Boolean).map(esc).join(' · ');
   var hero = '<div class="sch-next-hero"><img src="' + esc(thumb(a.i, '_t')) + '" alt="" width="300" height="420" decoding="async" onerror="this.onerror=null;this.src=\'' + esc(a.i) + '\'">' +
     '<div class="sch-next-info"><span class="sch-type t-' + a.y + '">' + esc(T.types[a.y]) + '</span><div class="sch-next-t">' + title + '</div><div class="sch-next-m">' + meta + '</div>' +
@@ -115,7 +116,7 @@ function nextUp(all){
   var side = rest.length ? '<div class="sch-next-side"><h3>' + T.upNext + '</h3><ol class="sch-nx-list">' + rest.map(function(b){
     var h = linkOf(b), tag = h ? 'a' : 'div', diff = dayNum(b.d) - dayNum(todayKey);
     return '<li><' + tag + (h ? ' href="' + esc(h) + '"' : '') + ' class="sch-nx-row"><img src="' + esc(thumb(b.i)) + '" alt="" width="40" height="56" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\'' + esc(b.i) + '\'">' +
-      '<span class="sch-nx-i"><span class="sch-nx-t">' + esc(b.t) + '</span><span class="sch-nx-m">' + esc(T.dshort[dowOf(b.d)] + ' ' + fmtDate(b.d) + (b.h ? ' · ' + b.h : '') + (b.s ? ' · ' + b.s : '')) + '</span></span>' +
+      '<span class="sch-nx-i"><span class="sch-nx-t">' + esc(nameOf(b)) + '</span><span class="sch-nx-m">' + esc(T.dshort[dowOf(b.d)] + ' ' + fmtDate(b.d) + (b.h ? ' · ' + b.h : '') + (b.s ? ' · ' + b.s : '')) + '</span></span>' +
       '<span class="sch-nx-in">' + esc(diff > 0 ? T.inDays(diff) : T.today2) + '</span></' + tag + '></li>';
   }).join('') + '</ol></div>' : '';
   return '<section class="sch-next"><h2 class="sch-h">' + T.nextUp + '</h2><div class="sch-next-grid' + (side ? '' : ' solo') + '">' + hero + side + '</div></section>';
@@ -131,11 +132,11 @@ function tick(){
 }
 function row(a){
   var st = status(a), href = linkOf(a);
-  var title = href ? '<a href="' + esc(href) + '">' + esc(a.t) + '</a>' : esc(a.t);
+  var title = href ? '<a href="' + esc(href) + '">' + esc(nameOf(a)) + '</a>' : esc(nameOf(a));
   var meta = [a.s, (FILM[a.y] ? T.release : (st.k === 'upcoming' ? T.premiere : T.premiered)) + ' ' + fmtDate(a.d), a.p].filter(Boolean).map(esc).join(' · ');
   return '<li class="sch-row' + (href ? ' has-link' : '') + '">' +
     '<span class="sch-time' + (a.h ? '' : ' tba') + '">' + (a.h || T.noTime) + '</span>' + tile(a) +
-    '<div class="sch-info"><div class="sch-title">' + title + '</div>' + (a.r && a.r !== a.t ? '<div class="sch-romaji">' + esc(a.r) + '</div>' : '') +
+    '<div class="sch-info"><div class="sch-title">' + title + '</div>' + (a.r && a.r !== nameOf(a) ? '<div class="sch-romaji">' + esc(a.r) + '</div>' : (a.tv && !EN ? '<div class="sch-romaji">' + esc(a.t) + '</div>' : '')) +
     '<div class="sch-meta" data-time="' + (a.h || T.noTime) + '">' + meta + '</div></div>' +
     '<div class="sch-tags"><span class="sch-type t-' + a.y + '">' + esc(T.types[a.y]) + '</span><span class="sch-st ' + st.k + '">' + esc(st.label) + '</span></div></li>';
 }

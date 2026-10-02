@@ -743,8 +743,8 @@ window.IDX = [
     "lang": "vi"
   },
   {
-    "title": "Jujutsu Kaisen: manga kết thúc ở chương 271 (30/9/2024)",
-    "url": "/jujutsu-kaisen-chapter-271-final-climax-epilogue",
+    "title": "Chú Thuật Hồi Chiến: manga kết thúc ở chương 271 (30/9/2024)",
+    "url": "/chu-thuat-hoi-chien-chapter-271-final-climax-epilogue",
     "cat": "Manga",
     "date": "2026-09-30",
     "excerpt": "Jujutsu Kaisen kết thúc ở chương 271 sau hơn sáu năm. Nhìn lại ý nghĩa hồi kết, bốn epilogue trong tập 30 và cách đọc bản chính thức.",
@@ -2423,8 +2423,8 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Chainsaw Man Part 2 kết thúc ở chương 232",
-    "url": "/chainsaw-man-chapter-180-death-devil",
+    "title": "Thợ Săn Quỷ Chainsaw Man Part 2 kết thúc ở chương 232",
+    "url": "/tho-san-quy-chainsaw-man-chapter-180-death-devil",
     "cat": "Manga",
     "date": "2026-09-03",
     "excerpt": "Chainsaw Man Part 2 khép lại hành trình Academy Saga đầy ấn tượng: Tổng kết 135 chương truyện của Tatsuki Fujimoto và kế hoạch phát hành tập cuối.",
@@ -4003,8 +4003,8 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Chainsaw Man manga review: hành trình từ Denji đến Asa",
-    "url": "/chainsaw-man-manga-part2-review",
+    "title": "Thợ Săn Quỷ Chainsaw Man manga review: hành trình từ Denji đến Asa",
+    "url": "/tho-san-quy-chainsaw-man-manga-part2-review",
     "cat": "Reviews",
     "date": "2026-08-16",
     "excerpt": "Đánh giá chuyên sâu Chainsaw Man Part 2: Cuộc phiêu lưu tâm lý độc dị của Asa Mitaka và Quỷ Chiến Tranh Yoru trong kỷ nguyên mới của Tatsuki Fujimoto.",
@@ -4223,8 +4223,8 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Black Clover kết thúc: 11 năm, cái kết trọn vẹn",
-    "url": "/black-clover-final-volume-review",
+    "title": "Thế Giới Phép Thuật (Black Clover) kết thúc: 11 năm, cái kết trọn vẹn",
+    "url": "/the-gioi-phep-thuat-final-volume-review",
     "cat": "Reviews",
     "date": "2026-08-15",
     "excerpt": "Review tập cuối Black Clover: cái kết trọn vẹn sau 11 năm đồng hành cùng Asta và Yuno, cùng những điểm sáng và tiếc nuối lớn nhất của bộ truyện.",
@@ -4403,7 +4403,7 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Kaiju No.8 review: shonen quái vật của Jump+",
+    "title": "Quái Vật Số 8 (Kaiju No. 8) review: shonen quái vật của Jump+",
     "url": "/kaiju-no-8-manga-review",
     "cat": "Reviews",
     "date": "2026-08-15",
@@ -4603,8 +4603,8 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Black Clover khép lại với volume 38 và guidebook mới",
-    "url": "/black-clover-final-volume-guidebook",
+    "title": "Thế Giới Phép Thuật (Black Clover) khép lại với volume 38 và guidebook mới",
+    "url": "/the-gioi-phep-thuat-final-volume-guidebook",
     "cat": "Manga",
     "date": "2026-08-14",
     "excerpt": "Black Clover chính thức khép lại phần manga với Volume 38 và sách hướng dẫn chính thức Black Clover: Perfect Grimoire, kèm truyện ngắn 15 trang vẽ.",
@@ -5383,8 +5383,8 @@ window.IDX = [
     "lang": "en"
   },
   {
-    "title": "Jujutsu Kaisen kết thúc: phân tích ending gây tranh cãi",
-    "url": "/jujutsu-kaisen-ket-thuc",
+    "title": "Chú Thuật Hồi Chiến kết thúc: phân tích ending gây tranh cãi",
+    "url": "/chu-thuat-hoi-chien-ket-thuc",
     "cat": "Manga",
     "date": "2026-06-01",
     "excerpt": "Manga Jujutsu Kaisen chính thức kết thúc sau 5 năm với một cái kết gây tranh cãi lớn. Phân tích đầy đủ kết cục của Itadori, Gojo",

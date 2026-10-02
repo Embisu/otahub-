@@ -1,6 +1,6 @@
-# Tên Việt hóa anime dùng trên OtaHub (bản VI)
+# Tên Việt hóa anime / manga dùng trên OtaHub (bản VI)
 
-Quy ước (áp dụng từ 2/10/2026 cho toàn bộ bài hub Anime tiếng Việt):
+Quy ước (áp dụng từ 2/10/2026 cho toàn bộ bản VI: bài hub Anime và Manga, hub, bảng xếp hạng, hồ sơ tác phẩm, lịch phát sóng, trang Đánh giá):
 
 - **Tiêu đề (H1, og:title, breadcrumb, JSON-LD)**: dùng tên Việt hóa. Tên ít phổ biến thì kèm tên gốc trong ngoặc, ví dụ `Thợ Rèn Huyền Thoại (Overgeared)`.
 - **Thẻ `<title>` / seo-title**: tên Việt hóa + tên gốc trong ngoặc (giữ từ khóa gốc cho SEO).
@@ -10,6 +10,10 @@ Quy ước (áp dụng từ 2/10/2026 cho toàn bộ bài hub Anime tiếng Vi�
 - **Tag "Chủ đề"** trong sidebar: tên tác phẩm trong tag cũng là tên Việt; không để bộ tag mặc định (Gaming/Anime/Manga/Đánh giá/Xếp hạng).
 - **Ảnh trong bài**: luôn dùng `<figure><img alt="..."><figcaption>...</figcaption></figure>`; alt và caption dùng tên Việt.
 - **Hồ sơ tác phẩm** (`/ho-so/<slug>`): tên hiển thị VI khai báo trong `assets/series.json` (`name` = tên Việt, `nameEn` = tên gốc cho trang EN); chạy `node scripts/build-profiles.mjs` sau khi sửa.
+- **Lịch phát sóng** (`assets/schedule-data.js`): thêm trường `tv` = tên Việt cho tựa có tên Việt; `schedule.js` dùng `tv` ở bản VI, `t` ở bản EN.
+- **Xếp hạng / Đánh giá**: tên trong mảng `REVIEWS` của `reviews.html` (VI) và bảng `DISPLAY` trong `scripts/build-rankings.mjs` dùng tên Việt; chạy `npm run scores` sau khi sửa.
+- **Catalog** (`assets/catalog.json`): khóa giữ tên gốc (đường dẫn hồ sơ phụ thuộc khóa); chỉ các trường văn bản VI (hook, story, verdict, reviewSummary...) dùng tên Việt.
+- Bài hub Gaming nói về game chuyển thể (Dragon Ball Sparking! Zero, Kaiju No.8 THE GAME, Solo Leveling: Arise, JoJo Golden Spirit...) giữ tên game gốc.
 - Bản EN (`/en/...`) giữ tên tiếng Anh và slug tiếng Anh, không đổi.
 
 ## Bảng tên (nguồn: NXB Kim Đồng / IPM, Netflix VN, rạp Việt)
@@ -60,6 +64,11 @@ Quy ước (áp dụng từ 2/10/2026 cho toàn bộ bài hub Anime tiếng Vi�
 | Suzume | Khóa Chặt Cửa Nào Suzume |
 | Weathering With You | Đứa Con Của Thời Tiết |
 | Laputa | Laputa: Lâu Đài Trên Không |
+| Swallowed Star | Thôn Phệ Tinh Không |
+| Martial Peak | Võ Luyện Đỉnh Phong |
+| Wu Shen Zhu Zai | Võ Thần Chúa Tể |
+| Rebirth of the Urban Immortal | Trọng Sinh Đô Thị Tu Tiên |
+| Omniscient Reader | Toàn Trí Độc Giả |
 
 ## Giữ nguyên tên gốc (chưa có tên Việt chính thức/phổ biến)
 

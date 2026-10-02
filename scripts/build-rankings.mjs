@@ -64,11 +64,11 @@ const cleanTitle = (t) => t.replace(/\\'/g, "'")
 const DISPLAY = {
   gs70sn: ['Genshin Impact', 'Genshin Impact'], gsnat: ['Genshin Impact', 'Genshin Impact'],
   wuwa: ['Wuthering Waves', 'Wuthering Waves'], kcd2: ['Kingdom Come: Deliverance II', 'Kingdom Come: Deliverance II'],
-  jjkanime: ['Jujutsu Kaisen', 'Jujutsu Kaisen'], onkanime: ['Oshi no Ko', 'Oshi no Ko'], csmanime: ['Chainsaw Man', 'Chainsaw Man'],
-  csmreze: ['Chainsaw Man – Reze Arc (phim)', 'Chainsaw Man – Reze Arc (film)'], dsic: ['Demon Slayer: Infinity Castle (phim)', 'Demon Slayer: Infinity Castle (film)'],
-  csmmanga2: ['Chainsaw Man', 'Chainsaw Man'], vlsaga: ['Vinland Saga', 'Vinland Saga'], bcfv: ['Black Clover', 'Black Clover'],
-  jjkfinal: ['Jujutsu Kaisen (arc cuối)', 'Jujutsu Kaisen (final arc)'], sm2cr: ['Warhammer 40,000: Space Marine 2', 'Warhammer 40,000: Space Marine 2'],
-  kj8m: ['Kaiju No.8', 'Kaiju No.8'], kj8game: ['Kaiju No.8 THE GAME', 'Kaiju No.8 THE GAME'], ddd2: ['Dandadan mùa 2', 'Dandadan Season 2']
+  jjkanime: ['Chú Thuật Hồi Chiến', 'Jujutsu Kaisen'], onkanime: ['Đứa Con Của Thần Tượng (Oshi no Ko)', 'Oshi no Ko'], csmanime: ['Thợ Săn Quỷ Chainsaw Man', 'Chainsaw Man'],
+  csmreze: ['Thợ Săn Quỷ Chainsaw Man – Reze Arc (phim)', 'Chainsaw Man – Reze Arc (film)'], dsic: ['Thanh Gươm Diệt Quỷ: Vô Hạn Thành (phim)', 'Demon Slayer: Infinity Castle (film)'],
+  csmmanga2: ['Thợ Săn Quỷ Chainsaw Man', 'Chainsaw Man'], vlsaga: ['Vinland Saga', 'Vinland Saga'], bcfv: ['Thế Giới Phép Thuật (Black Clover)', 'Black Clover'],
+  jjkfinal: ['Chú Thuật Hồi Chiến (arc cuối)', 'Jujutsu Kaisen (final arc)'], sm2cr: ['Warhammer 40,000: Space Marine 2', 'Warhammer 40,000: Space Marine 2'],
+  kj8m: ['Quái Vật Số 8 (Kaiju No.8)', 'Kaiju No.8'], kj8game: ['Kaiju No.8 THE GAME', 'Kaiju No.8 THE GAME'], ddd2: ['Dandadan mùa 2', 'Dandadan Season 2']
 };
 const workTitle = (r, lang) => (DISPLAY[r.id] ? DISPLAY[r.id][lang === 'en' ? 1 : 0] : cleanTitle(r.title));
 
