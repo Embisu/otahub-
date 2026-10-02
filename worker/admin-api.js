@@ -518,7 +518,7 @@ async function handleGhPut(request, env, ghPath) {
     if (!/\/assets\/mobile-fix\.css(?:\?v=[^"']*)?/i.test(content) && /<\/head>/i.test(content)) {
       content = content.replace(
         /<\/head>/i,
-        '<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002j">\n</head>'
+        '<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002l">\n</head>'
       );
     }
   }
