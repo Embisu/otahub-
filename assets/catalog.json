@@ -3407,7 +3407,7 @@
   },
   "Valorant": {
     "type": "game",
-    "img": "/assets/img/4c17ff1a96-Valorant_Champions_Los_Angeles_2023.jpg",
+    "img": "/assets/img/valorant-key-art.webp",
     "score": null,
     "genre": "FPS / Tactical Shooter / Hero Shooter",
     "studio": "Riot Games",
@@ -17647,6 +17647,1258 @@
         "label": "Âm nhạc",
         "labelEn": "Music",
         "value": "Hijiri Kuwano"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Aniimo": {
+    "img": "/assets/img/real-aniimo.jpg",
+    "genre": "Action / RPG / Open World / Creature Collection",
+    "studio": "Pawprint Studio / Pawprint Studio",
+    "platforms": "PC / PlayStation 5 / Xbox Series X|S / iOS / Android",
+    "release": "16/09/2026",
+    "status": "Đang vận hành",
+    "statusEn": "Live service",
+    "hook": "RPG thế giới mở miễn phí của Pawprint Studio, nơi người chơi thu phục sinh vật Aniimo và khám phá lục địa Idyll cùng một người bạn đồng hành.",
+    "hookEn": "A free-to-play open-world RPG from Pawprint Studio in which you befriend Aniimo creatures and explore the continent of Idyll with a companion.",
+    "story": [
+      "Aniimo là game nhập vai thế giới mở thuộc dòng thu phục sinh vật, do Pawprint Studio phát triển và phát hành theo mô hình chơi miễn phí. Người chơi vào vai một Pathfinder đặt chân đến lục địa Idyll, nơi các sinh vật Aniimo sống rải rác khắp địa hình. Bản PC và console chính thức mở cửa ngày 16/9/2026 trên Steam, Epic Games Store, PlayStation 5 và Xbox, còn bản iOS và Android ra mắt sau đó một tuần, vào 23/9.",
+      "Điểm làm Aniimo khác một game bắt quái vật thông thường là mỗi sinh vật có cách di chuyển, tương tác và chiến đấu riêng, nên chúng vừa là đồng đội vừa là công cụ để vượt địa hình hay giải câu đố. Nhịp chơi vì thế nghiêng về quan sát và thử nghiệm: người chơi phải hiểu vai trò của từng Aniimo thay vì chỉ so sánh chỉ số. Phần khám phá diễn ra theo thời gian thực, đan xen việc tìm tài nguyên, làm nhiệm vụ và sưu tầm sinh vật mới.",
+      "Ngoài hành trình chính, game có nhiều vòng lặp song song. Homeland cho phép xây và trang trí căn cứ, thu hoạch tài nguyên cùng sinh vật; chế độ co-op để chơi nhóm với các công cụ như Horn và Flute; còn Diamond Egg Heist là chế độ đối kháng xoay quanh việc tranh giành mục tiêu. Tiến trình có thể chia sẻ giữa các nền tảng khi dùng chung tài khoản và máy chủ, và Xbox Cloud Gaming cũng được hỗ trợ.",
+      "Kết luận: Aniimo hợp với người thích khám phá, sưu tầm sinh vật và tùy biến căn cứ hơn là đấu xếp hạng. Vì là game dịch vụ miễn phí, nội dung và cân bằng sẽ còn thay đổi sau ra mắt, nên người mới nên xem thông báo trong launcher trước khi cài, và chọn đúng máy chủ nếu định chơi trên nhiều thiết bị."
+    ],
+    "storyEn": [
+      "Aniimo is an open-world creature-collection RPG developed by Pawprint Studio and released as a free-to-play game. Players take the role of a Pathfinder arriving on the continent of Idyll, where Aniimo creatures roam across varied terrain. The PC and console versions went live on 16 September 2026 on Steam, the Epic Games Store, PlayStation 5 and Xbox, with the iOS and Android versions following a week later on 23 September.",
+      "What sets Aniimo apart from a typical monster-catching game is that each creature has its own way of moving, interacting and fighting, so it is both a teammate and a tool for crossing terrain or solving puzzles. The pace leans toward observation and experimentation: players need to understand each Aniimo's role rather than just compare stats. Exploration runs in real time, mixing resource gathering, quests and collecting new creatures.",
+      "Beyond the main journey the game runs several loops in parallel. Homeland lets you build and decorate a base and harvest resources with your creatures; co-op supports group play with tools such as the Horn and Flute; and Diamond Egg Heist is a versus mode built around contested objectives. Progress can be shared across platforms on the same account and server, and Xbox Cloud Gaming is supported.",
+      "Verdict: Aniimo suits players who like exploring, collecting creatures and customising a base more than ranked competition. As a free live-service game its content and balance will keep changing after launch, so newcomers should read the launcher notices before installing and pick the right server if they plan to play on several devices."
+    ],
+    "sources": [
+      {
+        "name": "Aniimo – Steam",
+        "url": "https://store.steampowered.com/app/4126040/Aniimo/"
+      },
+      {
+        "name": "Aniimo – official site (news)",
+        "url": "https://aniimo.com/newslist/detail/100089"
+      },
+      {
+        "name": "Aniimo Launches Today – Xbox Wire",
+        "url": "https://news.xbox.com/en-us/2026/09/15/aniimo-launches-today-xbox/"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển / Phát hành",
+        "labelEn": "Developer / Publisher",
+        "value": "Pawprint Studio"
+      },
+      {
+        "label": "Mô hình",
+        "labelEn": "Model",
+        "value": "Free-to-play"
+      }
+    ],
+    "type": "game",
+    "score": null,
+    "generated": false,
+    "scoreSource": null
+  },
+  "Delta Force": {
+    "img": "/assets/img/uploads/delta-force-gameplay-steam.jpg",
+    "genre": "FPS / Tactical Shooter / Extraction",
+    "studio": "Team Jade / TiMi Studio Group",
+    "platforms": "PC / PlayStation 5 / Xbox Series X|S / iOS / Android",
+    "release": "20/01/2025",
+    "status": "Đang vận hành",
+    "statusEn": "Live service",
+    "hook": "Game bắn súng chiến thuật miễn phí của Team Jade, kết hợp chiến trường quy mô lớn Warfare với chế độ extraction Hazard Operations trên nhiều nền tảng.",
+    "hookEn": "Team Jade's free-to-play tactical shooter, pairing large-scale Warfare battles with the Hazard Operations extraction mode across platforms.",
+    "story": [
+      "Delta Force là game bắn súng góc nhìn thứ nhất miễn phí do Team Jade phát triển, TiMi Studio Group phát hành, làm mới thương hiệu Delta Force vốn có từ thập niên 1990. Bản PC mở thử nghiệm trên Steam từ đầu tháng 12/2024 rồi ra mắt chính thức vào tháng 1/2025; bản mobile đến vào 21/4/2025, và PS5 cùng Xbox Series X|S theo sau ngày 19/8/2025, với tiến trình chia sẻ giữa các nền tảng ở mức nhất định.",
+      "Game xoay quanh hai trụ cột. Warfare là chế độ nhiều người quy mô lớn với bộ binh, xe cộ và các bản đồ rộng, gợi nhớ tinh thần Battlefield. Hazard Operations là chế độ extraction, nơi người chơi vào bản đồ, thu gom chiến lợi phẩm rồi tìm đường rút an toàn. Người chơi chọn operator thuộc bốn nhóm vai trò là Assault, Support, Engineer và Recon, mỗi nhóm có kỹ năng riêng, lấy bối cảnh năm 2035 với các phe GTI, Haavk và Ahsarah Guard.",
+      "Về mảng nội dung, chiến dịch đơn và co-op Black Hawk Down tái hiện chiến dịch Gothic Serpent của Task Force Ranger, được dựng trên Unreal Engine 5. Theo bài viết của OtaHub về kế hoạch kỷ niệm hai năm, Game Director Shadow cho biết chế độ Detonation bắt đầu beta từ 27/9/2026, Unreal Engine 5 sẽ áp dụng cho bản đồ Warfare, bản đồ Siege dự kiến đầu năm 2027, và Delta Force Invitational diễn ra tại Stockholm cuối tháng 11.",
+      "Kết luận: Delta Force dành cho người muốn một game bắn súng chiến thuật miễn phí có cả trận đánh lớn lẫn chế độ extraction trong cùng một game, và sẵn sàng theo kịp lịch cập nhật dày đặc của một sản phẩm dịch vụ."
+    ],
+    "storyEn": [
+      "Delta Force is a free-to-play first-person shooter developed by Team Jade and published by TiMi Studio Group, reviving the Delta Force franchise that dates back to the 1990s. The PC version opened for testing on Steam in early December 2024 and launched officially in January 2025; mobile followed on 21 April 2025, and PS5 and Xbox Series X|S on 19 August 2025, with progression shared across platforms to a degree.",
+      "The game rests on two pillars. Warfare is a large-scale multiplayer mode with infantry, vehicles and big maps, recalling the spirit of Battlefield. Hazard Operations is an extraction mode in which players enter a map, gather loot and find a safe way out. Players pick operators from four roles, Assault, Support, Engineer and Recon, each with its own abilities, in a 2035 setting featuring the GTI, Haavk and Ahsarah Guard factions.",
+      "On the content side, the Black Hawk Down single-player and co-op campaign recreates Task Force Ranger's Operation Gothic Serpent and is built on Unreal Engine 5. According to OtaHub's report on the two-year anniversary plans, Game Director Shadow said the Detonation mode entered beta on 27 September 2026, Unreal Engine 5 will come to Warfare maps, the Siege map is planned for early 2027, and the Delta Force Invitational will be held in Stockholm in late November.",
+      "Verdict: Delta Force is for players who want a free tactical shooter with both big battles and an extraction mode in one game, and who are ready to keep up with the heavy update schedule of a live-service product."
+    ],
+    "sources": [
+      {
+        "name": "Delta Force – Steam",
+        "url": "https://store.steampowered.com/app/2507950/Delta_Force/"
+      },
+      {
+        "name": "Delta Force (2025 video game) – Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Delta_Force_(2025_video_game)"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developer",
+        "value": "Team Jade"
+      },
+      {
+        "label": "Nhà phát hành",
+        "labelEn": "Publisher",
+        "value": "TiMi Studio Group"
+      },
+      {
+        "label": "Engine",
+        "labelEn": "Engine",
+        "value": "Unreal Engine 4 (multiplayer) / Unreal Engine 5 (Black Hawk Down)"
+      }
+    ],
+    "type": "game",
+    "score": null,
+    "generated": false,
+    "scoreSource": null
+  },
+  "CONTROL Resonant": {
+    "img": "/assets/img/real-control-resonant.jpg",
+    "genre": "Action / RPG / Adventure",
+    "studio": "Remedy Entertainment / Remedy Entertainment",
+    "platforms": "PC / PlayStation 5 / Xbox Series X|S",
+    "release": "24/09/2026",
+    "status": "Đã phát hành",
+    "statusEn": "Released",
+    "hook": "Phần tiếp theo của Control đưa Dylan Faden vào một Manhattan méo mó, với lối đánh cận chiến và hệ thống nhập vai sâu hơn.",
+    "hookEn": "The Control sequel sends Dylan Faden into a warped Manhattan, with melee-focused combat and deeper RPG systems.",
+    "story": [
+      "CONTROL Resonant là phần tiếp theo của Control (2019), do Remedy Entertainment vừa phát triển vừa phát hành. Game ra mắt ngày 24/9/2026 trên PC, PlayStation 5 và Xbox Series X|S, lấy bối cảnh khoảng bảy năm sau phần đầu. Nhân vật chính lần này là Dylan Faden, em trai của Jesse trong phần trước, bị cuốn vào một Manhattan bị bóp méo bởi hiện tượng siêu nhiên mà tựa game gọi là Patterning.",
+      "Khác với bản gốc thiên về súng và năng lực tâm linh, Resonant chuyển trọng tâm sang cận chiến quanh vũ khí biến hình Aberrant của Dylan. Game bổ sung các chỉ số nhân vật, nhiều cây kỹ năng và vũ khí tùy chỉnh, tức là nghiêng hẳn về hướng action RPG. Thay vì một thế giới mở đúng nghĩa, nó chia thành những khu vực lớn, có bản sắc riêng để khám phá.",
+      "Tin tức gần đây trên OtaHub cho thấy Remedy đang chỉnh game sau khi phát hành. Bản cập nhật 1.3.3 giảm máu nhiều kẻ địch, tăng khả năng làm choáng, nâng trần Aberrant Strength và Ability Strength, giảm chi phí respec kỹ năng và thêm Assist Mode với các thanh trượt độ khó. Riêng bản PC bị lỗi khiến người chơi phải tải lại toàn bộ game để nhận bản vá.",
+      "Kết luận: Resonant hợp với người đã thích phong cách siêu nhiên kỳ quặc của Remedy và muốn một trải nghiệm hành động nhập vai có chiều sâu hơn. Người mới có thể chơi mà không cần chơi phần đầu, dù hiểu bối cảnh Control sẽ giúp đọc câu chuyện dễ hơn."
+    ],
+    "storyEn": [
+      "CONTROL Resonant is the sequel to Control (2019), both developed and published by Remedy Entertainment. It launched on 24 September 2026 on PC, PlayStation 5 and Xbox Series X|S and is set roughly seven years after the first game. This time the protagonist is Dylan Faden, brother of the previous game's Jesse, who is drawn into a Manhattan warped by a paranormal phenomenon the game calls the Patterning.",
+      "Unlike the original, which leaned on guns and psychic powers, Resonant shifts its focus to melee combat built around Dylan's shapeshifting weapon, the Aberrant. It adds character stats, multiple talent trees and customisable weapons, moving clearly toward action RPG. Rather than a true open world, it is split into large, distinct zones to explore.",
+      "Recent OtaHub coverage shows Remedy tuning the game after launch. Update 1.3.3 lowers the health of many enemies, improves stun chances, raises the caps of Aberrant Strength and Ability Strength, cuts skill respec costs and adds an Assist Mode with difficulty sliders. The PC version, however, hit a fault that forced players to download the entire game again to receive the patch.",
+      "Verdict: Resonant suits fans of Remedy's strange supernatural style who want a deeper action-RPG experience. Newcomers can play without the first game, though knowing Control makes the story easier to follow."
+    ],
+    "sources": [
+      {
+        "name": "CONTROL Resonant – Steam",
+        "url": "https://store.steampowered.com/app/3669870/CONTROL_Resonant/"
+      },
+      {
+        "name": "Control Resonant – Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Control_Resonant"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển / Phát hành",
+        "labelEn": "Developer / Publisher",
+        "value": "Remedy Entertainment"
+      },
+      {
+        "label": "Đạo diễn",
+        "labelEn": "Director",
+        "value": "Mikael Kasurinen"
+      },
+      {
+        "label": "Âm nhạc",
+        "labelEn": "Music",
+        "value": "Petri Alanko"
+      }
+    ],
+    "type": "game",
+    "score": null,
+    "generated": false,
+    "scoreSource": null
+  },
+  "Halo: Campaign Evolved": {
+    "img": "/assets/img/news-halo-campaign-evolved-modernizes.jpg",
+    "genre": "FPS / Action / Remake",
+    "studio": "Halo Studios / Xbox Game Studios",
+    "platforms": "PC / PlayStation 5 / Xbox Series X|S",
+    "release": "28/07/2026",
+    "status": "Đã phát hành",
+    "statusEn": "Released",
+    "hook": "Bản làm lại chiến dịch Halo: Combat Evolved trên Unreal Engine 5, thêm ba màn tiền truyện và lần đầu đưa Halo lên PlayStation 5.",
+    "hookEn": "A remake of the Halo: Combat Evolved campaign on Unreal Engine 5, adding three prequel missions and bringing Halo to PlayStation 5 for the first time.",
+    "story": [
+      "Halo: Campaign Evolved là bản làm lại toàn bộ chiến dịch của Halo: Combat Evolved (2001), do Halo Studios phát triển và Xbox Game Studios phát hành, nhân dịp 25 năm thương hiệu. Game ra mắt ngày 28/7/2026 trên Xbox Series X|S, PC và PlayStation 5 sau giai đoạn chơi sớm từ 23/7, và có mặt trong Game Pass ngay ngày đầu. Đây là lần đầu một game Halo chính thức xuất hiện trên hệ máy của Sony.",
+      "Thay vì chỉ nâng cấp đồ họa, Halo Studios dựng lại trên Unreal Engine 5 và hiện đại hóa cách chơi. Sprint gắn với L3, máu tự hồi phục như khiên năng lượng, kẻ địch được bổ sung các loại từ những phần sau, người chơi có thể cướp xe địch, và Warthog có sơ đồ điều khiển mới. Smart-link cho phép ngắm phóng đại khoảng 1,4 lần, kèm hỗ trợ phản hồi haptic của DualSense và nhạc nền được làm lại.",
+      "Nội dung mới gồm ba màn tiền truyện kể về Operation Meteorite, diễn ra một năm trước sự kiện chính, cùng 42 Skull và 13 Terminal được bố trí lại so với bản Anniversary. Chế độ co-op trực tuyến hỗ trợ bốn người chơi xuyên nền tảng với tiến trình chia sẻ, và có chia màn hình hai người trên console. Game không đi kèm multiplayer đối kháng.",
+      "Kết luận: đây là cách tiếp cận dễ vào nhất cho người chưa từng chơi Halo, và là lý do để người cũ quay lại với chiến dịch quen thuộc. Người muốn một game bắn súng nhiều người sẽ không tìm thấy ở đây."
+    ],
+    "storyEn": [
+      "Halo: Campaign Evolved is a full remake of the Halo: Combat Evolved (2001) campaign, developed by Halo Studios and published by Xbox Game Studios to mark the franchise's 25th anniversary. It launched on 28 July 2026 on Xbox Series X|S, PC and PlayStation 5 after an early-play period from 23 July, and was in Game Pass from day one. It is the first official Halo game on Sony's platform.",
+      "Rather than a graphical upgrade alone, Halo Studios rebuilt the game on Unreal Engine 5 and modernised how it plays. Sprint is mapped to L3, health regenerates like an energy shield, enemies from later games join the roster, players can hijack enemy vehicles, and the Warthog gets a new control scheme. Smart-link offers roughly 1.4x magnification, alongside DualSense haptics and a reworked soundtrack.",
+      "New content includes three prequel missions covering Operation Meteorite, set a year before the main events, plus 42 Skulls and 13 Terminals placed differently from the Anniversary edition. Online co-op supports four players across platforms with shared progression, and console versions offer two-player split screen. The game ships without competitive multiplayer.",
+      "Verdict: this is the easiest way in for anyone who never played Halo, and a reason for veterans to revisit the familiar campaign. Anyone wanting a multiplayer shooter will not find one here."
+    ],
+    "sources": [
+      {
+        "name": "Halo: Campaign Evolved – Steam",
+        "url": "https://store.steampowered.com/app/2806050/Halo_Campaign_Evolved/"
+      },
+      {
+        "name": "13 ways Halo: Campaign Evolved modernizes the iconic FPS – PlayStation Blog",
+        "url": "https://blog.playstation.com/2026/07/23/13-ways-halo-campaign-evolved-modernizes-the-iconic-fps/"
+      },
+      {
+        "name": "Halo: Campaign Evolved – Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Halo:_Campaign_Evolved"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developer",
+        "value": "Halo Studios"
+      },
+      {
+        "label": "Nhà phát hành",
+        "labelEn": "Publisher",
+        "value": "Xbox Game Studios"
+      },
+      {
+        "label": "Giám đốc sáng tạo",
+        "labelEn": "Creative directors",
+        "value": "Max Szalgor, Greg Hermann"
+      }
+    ],
+    "type": "game",
+    "score": null,
+    "generated": false,
+    "scoreSource": null
+  },
+  "Marvel Tōkon: Fighting Souls": {
+    "img": "/assets/img/news-marvel-tokon-phoenix-cyclops-dlc.jpg",
+    "genre": "Fighting / Tag Team / Action",
+    "studio": "Arc System Works / Sony Interactive Entertainment",
+    "platforms": "PC / PlayStation 5",
+    "release": "06/08/2026",
+    "status": "Đã phát hành",
+    "statusEn": "Released",
+    "hook": "Game đối kháng tag team 4 đấu 4 của Arc System Works với các siêu anh hùng Marvel, mang phong cách anime và đã bước vào kế hoạch DLC Year 1.",
+    "hookEn": "Arc System Works' 4v4 tag-team fighter starring Marvel heroes in an anime style, now moving into its Year 1 DLC plan.",
+    "story": [
+      "MARVEL Tōkon: Fighting Souls là game đối kháng 2.5D do Arc System Works phát triển và Sony Interactive Entertainment phát hành. Game ra mắt ngày 6/8/2026 trên PlayStation 5 và PC (Steam, Epic Games Store), tại Nhật Bản một ngày sau đó. Đây là tựa Marvel đầu tiên của studio nổi tiếng với dòng Guilty Gear và Dragon Ball FighterZ, với đồ họa lấy cảm hứng từ anime thay vì nét vẽ truyện tranh phương Tây.",
+      "Trọng tâm là trận đấu 4 đấu 4. Mỗi người chơi bắt đầu với một nhân vật chính và một nhân vật hỗ trợ, rồi mở dần các thành viên còn lại khi đạt điều kiện như Wall Break. Cả đội dùng chung một thanh máu gọi là Vital Gauge. Danh sách có 20 nhân vật chia thành năm đội, gồm Fighting Avengers, Unbreakable X-Men, The Amazing Guardians, Knights of Doom và Samurai Outriders, cộng một nhân vật boss mở khóa. Kieron Gillen viết phần cốt truyện.",
+      "Theo OtaHub, Arc System Works công bố Phoenix Cyclops tại San Diego Comic-Con 2026 là nhân vật DLC đầu tiên trong bốn nhân vật Year 1, dự kiến mùa thu 2026 và do Ray Chase lồng tiếng. Phiên bản này lấy cảm hứng từ Phoenix Five trong Avengers vs. X-Men. Bộ chiêu đầy đủ và ngày bán chính xác vẫn chưa được công bố. Game cũng hợp tác với Insomniac: bộ Battle Reborn của Wolverine tặng miễn phí từ 1/9.",
+      "Kết luận: Tōkon phù hợp với người chơi game đối kháng thích hệ thống đội hình nhiều tầng và hình ảnh Marvel theo phong cách anime. Người chỉ chơi đối kháng 1 đấu 1 cần thời gian làm quen với cơ chế hỗ trợ và đổi người."
+    ],
+    "storyEn": [
+      "MARVEL Tōkon: Fighting Souls is a 2.5D fighting game developed by Arc System Works and published by Sony Interactive Entertainment. It launched on 6 August 2026 on PlayStation 5 and PC (Steam, Epic Games Store), with a Japanese release a day later. It is the first Marvel game from the studio behind Guilty Gear and Dragon Ball FighterZ, with art inspired by anime rather than Western comic linework.",
+      "The focus is 4v4 battles. Each player starts with one point character and one assist, then unlocks the remaining members by meeting conditions such as Wall Breaks. The whole team shares a single health bar called the Vital Gauge. The roster has 20 characters in five teams, Fighting Avengers, Unbreakable X-Men, The Amazing Guardians, Knights of Doom and Samurai Outriders, plus one unlockable boss character. Kieron Gillen wrote the story mode.",
+      "According to OtaHub's coverage, Arc System Works revealed Phoenix Cyclops at San Diego Comic-Con 2026 as the first DLC character of four planned for Year 1, due in autumn 2026 and voiced by Ray Chase. The version is inspired by the Phoenix Five from Avengers vs. X-Men. His full move list and exact release date have not been announced. The game also teamed up with Insomniac: Wolverine's Battle Reborn set is free from 1 September.",
+      "Verdict: Tōkon suits fighting-game players who enjoy layered team systems and anime-styled Marvel visuals. Players who only know one-on-one fighters will need time to learn the assist and character-swap mechanics."
+    ],
+    "sources": [
+      {
+        "name": "MARVEL Tōkon: Fighting Souls – Marvel.com",
+        "url": "https://www.marvel.com/games/marvel-tokon-fighting-souls"
+      },
+      {
+        "name": "Phoenix Cyclops revealed as Year 1 DLC character – PlayStation Blog",
+        "url": "https://blog.playstation.com/2026/07/23/phoenix-cyclops-revealed-as-marvel-tokon-fighting-souls-first-year-1-dlc-character/"
+      },
+      {
+        "name": "Marvel Tokon: Fighting Souls – Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Marvel_Tokon:_Fighting_Souls"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developer",
+        "value": "Arc System Works"
+      },
+      {
+        "label": "Nhà phát hành",
+        "labelEn": "Publisher",
+        "value": "Sony Interactive Entertainment"
+      },
+      {
+        "label": "Cốt truyện",
+        "labelEn": "Story",
+        "value": "Kieron Gillen"
+      }
+    ],
+    "type": "game",
+    "score": null,
+    "generated": false,
+    "scoreSource": null
+  },
+  "Diablo IV": {
+    "img": "/assets/img/uploads/diablo-4-steam.jpg",
+    "genre": "Action / RPG / Hack and Slash",
+    "studio": "Blizzard Entertainment / Blizzard Entertainment",
+    "platforms": "PC / PlayStation 4 / PlayStation 5 / Xbox One / Xbox Series X|S / Nintendo Switch 2",
+    "release": "05/06/2023",
+    "status": "Đang vận hành",
+    "statusEn": "Live service",
+    "hook": "Action RPG của Blizzard đưa Sanctuary trở lại phong cách u tối, vận hành theo mùa và vẫn tiếp tục dù Diablo 5 đã được xác nhận cho năm 2029.",
+    "hookEn": "Blizzard's action RPG returning Sanctuary to a darker tone, run in seasons and set to continue even though Diablo 5 is confirmed for 2029.",
+    "story": [
+      "Diablo IV là phần chính thứ tư của loạt action RPG do Blizzard Entertainment phát triển, ra mắt ngày 5/6/2023 (bản Steam xuất hiện từ 17/10/2023). Câu chuyện diễn ra khoảng 50 năm sau Diablo III, khi Lilith, con gái của Mephisto, được triệu hồi vào thế giới Sanctuary. Người chơi vào vai Wanderer, tìm cách ngăn kế hoạch triệu hồi các Lesser Evil và chiếm lấy Địa ngục của cô ta.",
+      "Game đưa series về tông màu u tối và mở rộng thành thế giới chia sẻ với người chơi khác, kết hợp chiến đấu chặt chém, săn trang bị và xây dựng build quen thuộc. Hiện có tám lớp nhân vật là Barbarian, Sorcerer, Druid, Rogue, Necromancer, Spiritborn, Paladin và Warlock. Từ tháng 7/2023, game vận hành theo các mùa kéo dài khoảng ba tháng, mỗi mùa có nhiệm vụ, battle pass và hành trình riêng.",
+      "Về mở rộng, Vessel of Hatred (8/10/2024) thêm lớp Spiritborn và vùng Nahantu, còn Lord of Hatred (tháng 4/2026) thêm Paladin, Warlock và vùng Skovos Isles. Blizzard cho biết đây là bản mở rộng cuối cùng được lên kế hoạch. Theo tin OtaHub, Diablo 5 đã được công bố tại BlizzCon 2026 cho mùa xuân 2029, nhưng Diablo IV vẫn có mùa mới khi cộng đồng còn gắn bó, và Amazon sẽ trở lại vào nửa đầu 2027.",
+      "Kết luận: Diablo IV hợp với người thích săn đồ và thử nghiệm build theo mùa, nhất là khi game đã có nhiều lớp nhân vật và hai bản mở rộng. Người chơi cần lưu ý đây là game luôn trực tuyến, cần tài khoản Battle.net."
+    ],
+    "storyEn": [
+      "Diablo IV is the fourth mainline entry in the action-RPG series, developed by Blizzard Entertainment and released on 5 June 2023 (the Steam version arrived on 17 October 2023). The story takes place about 50 years after Diablo III, when Lilith, daughter of Mephisto, is summoned to the world of Sanctuary. Players take the role of the Wanderer, trying to stop her plan to summon the Lesser Evils and seize Hell.",
+      "The game returns the series to a darker tone and expands into a world shared with other players, combining the familiar hack-and-slash combat, loot hunting and build crafting. There are now eight classes: Barbarian, Sorcerer, Druid, Rogue, Necromancer, Spiritborn, Paladin and Warlock. Since July 2023 it has run in seasons of roughly three months, each with its own quests, battle pass and journey.",
+      "On the expansion side, Vessel of Hatred (8 October 2024) added the Spiritborn class and the Nahantu region, while Lord of Hatred (April 2026) added the Paladin, Warlock and the Skovos Isles. Blizzard says it is the last expansion currently planned. According to OtaHub, Diablo 5 was announced at BlizzCon 2026 for spring 2029, but Diablo IV will keep receiving seasons while the community stays engaged, and the Amazon returns in the first half of 2027.",
+      "Verdict: Diablo IV suits players who enjoy loot hunting and testing builds season by season, especially now that it has many classes and two expansions. Note that it is always online and needs a Battle.net account."
+    ],
+    "sources": [
+      {
+        "name": "Diablo IV – Steam",
+        "url": "https://store.steampowered.com/app/2344520/Diablo_IV/"
+      },
+      {
+        "name": "Diablo IV – Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Diablo_IV"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển / Phát hành",
+        "labelEn": "Developer / Publisher",
+        "value": "Blizzard Entertainment"
+      },
+      {
+        "label": "Bản mở rộng",
+        "labelEn": "Expansions",
+        "value": "Vessel of Hatred (2024), Lord of Hatred (2026)"
+      }
+    ],
+    "type": "game",
+    "score": null,
+    "generated": false,
+    "scoreSource": null
+  },
+  "Ball x Pit": {
+    "img": "/assets/img/news-ball-x-pit-naturalist-update.jpg",
+    "genre": "Roguelite / Action / Brick Breaker",
+    "studio": "Kenny Sun and Friends / Devolver Digital",
+    "platforms": "PC / PlayStation 5 / Xbox Series X|S / Nintendo Switch / Nintendo Switch 2 / iOS / Android",
+    "release": "15/10/2025",
+    "status": "Đã phát hành",
+    "statusEn": "Released",
+    "hook": "Roguelite ném bóng phá gạch của Kenny Sun and Friends, nơi bạn ghép và tiến hóa hàng loạt loại bóng rồi xây thị trấn giữa các lượt chơi.",
+    "hookEn": "A ball-throwing brick-breaker roguelite from Kenny Sun and Friends, where you fuse and evolve balls and build a town between runs.",
+    "story": [
+      "Ball x Pit là roguelite hành động do Kenny Sun and Friends phát triển, Devolver Digital phát hành, ra mắt ngày 15/10/2025 trên PC, PS5, Xbox Series X|S và Switch, bản Switch 2 theo sau ngày 28/10. Bản mobile iOS và Android đến vào 12/3/2026. Game pha trộn lối chơi phá gạch kiểu Arkanoid, bắn đạn dày đặc và quản lý xây dựng.",
+      "Trong mỗi lượt, người chơi phóng bóng vào đám quái đang tiến lại gần, nhặt gem để lên cấp và chọn thêm bóng hay chỉ số passive. Điểm thú vị nằm ở việc ghép bóng với nhau để hợp nhất hoặc tiến hóa thành loại mạnh hơn, tạo ra rất nhiều hướng build. Giữa các lượt, tài nguyên thu được dùng để xây công trình cho thị trấn, mở nhân vật và nội dung mới.",
+      "Theo OtaHub, ngày 6/8/2026 nhà phát triển phát hành The Naturalist, bản cập nhật miễn phí cuối cùng trên mọi nền tảng. Bản này thêm hai nhân vật đối lập là The Ballbearer, nhân đôi ô bóng nhưng bỏ hoàn toàn passive, và The Hoary Hoarder, chỉ hai ô bóng nhưng gấp đôi ô passive, cùng 11 quả bóng và năm chỉ số passive mới. Bản mở rộng trả phí Risen Ballbylon dự kiến ngày 12/11/2026.",
+      "Kết luận: Ball x Pit hợp với người thích vòng chơi ngắn, dễ nhập môn nhưng có nhiều chiều sâu về build. Đây cũng là lựa chọn gọn nhẹ cho người muốn một roguelite chơi được cả trên máy cầm tay và điện thoại."
+    ],
+    "storyEn": [
+      "Ball x Pit is an action roguelite developed by Kenny Sun and Friends and published by Devolver Digital. It launched on 15 October 2025 on PC, PS5, Xbox Series X|S and Switch, with the Switch 2 version following on 28 October. The iOS and Android versions arrived on 12 March 2026. The game blends Arkanoid-style brick breaking, dense bullet patterns and base management.",
+      "In each run, players launch balls at an advancing horde, collect gems to level up and pick more balls or passive stats. The fun lies in combining balls to fuse or evolve them into stronger types, which opens a huge range of builds. Between runs, gathered resources go into constructing buildings for the town and unlocking characters and new content.",
+      "According to OtaHub, on 6 August 2026 the developer released The Naturalist, the final free update, on all platforms. It adds two opposing characters: The Ballbearer, which doubles ball slots but gives up passives entirely, and The Hoary Hoarder, which has only two ball slots but twice the passive slots, plus 11 new balls and five new passive stats. The paid expansion Risen Ballbylon is scheduled for 12 November 2026.",
+      "Verdict: Ball x Pit suits players who like short, easy-to-pick-up runs with plenty of build depth. It is also a compact choice for anyone wanting a roguelite that plays well on handhelds and phones."
+    ],
+    "sources": [
+      {
+        "name": "BALL x PIT – Steam",
+        "url": "https://store.steampowered.com/app/2062430/BALL_x_PIT/"
+      },
+      {
+        "name": "Ball x Pit – Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Ball_x_Pit"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developer",
+        "value": "Kenny Sun and Friends"
+      },
+      {
+        "label": "Nhà phát hành",
+        "labelEn": "Publisher",
+        "value": "Devolver Digital"
+      },
+      {
+        "label": "Âm nhạc",
+        "labelEn": "Music",
+        "value": "Amos Roddy"
+      }
+    ],
+    "type": "game",
+    "score": null,
+    "generated": false,
+    "scoreSource": null
+  },
+  "Flamecraft": {
+    "type": "game",
+    "img": "/assets/img/news-flamecraft-ps5-demo.jpg",
+    "score": null,
+    "genre": "Strategy / Casual / Indie",
+    "studio": "Monster Couch / Monster Couch, Cardboard Alchemy",
+    "platforms": "PC / Mac / PlayStation 5 / Xbox Series X|S / Nintendo Switch",
+    "release": "17/09/2026",
+    "status": "Đã phát hành",
+    "statusEn": "Released",
+    "generated": false,
+    "hook": "Bản điện tử của board game dễ thương về những chú rồng thợ thủ công, do Monster Couch, studio từng chuyển thể Wingspan, thực hiện.",
+    "hookEn": "The digital version of the charming board game about artisan dragons, made by Monster Couch, the studio behind the Wingspan adaptation.",
+    "story": [
+      "Flamecraft là game chiến lược thư giãn dành cho 1 đến 5 người chơi, chuyển thể từ board game cùng tên của Cardboard Alchemy. Bạn vào vai một Flamekeeper, giúp những chú rồng thợ thủ công tìm được mái nhà phù hợp trong một khu phố mua sắm nhỏ, rồi cùng các cửa hàng phục vụ người dân thị trấn. Bản điện tử do Monster Couch phát triển và ra mắt ngày 17/9/2026 trên PC, PS5, Xbox Series và Switch.",
+      "Cách chơi xoay quanh việc thu thập và quản lý tài nguyên, đặt rồng vào các cửa hàng và nâng cấp chúng bằng phép enchant để tạo chuỗi hiệu ứng kết hợp. Theo trang giới thiệu chính thức, game có hơn 70 chú rồng hoạt hình và 30 cửa hàng khác nhau. Mọi quyết định đều mang tính tính toán, nhưng không có bạo lực hay đồng hồ đếm ngược thúc ép.",
+      "Monster Couch là cái tên quen thuộc với người thích board game số hóa nhờ bản chuyển thể Wingspan, và phần nhạc do cùng nhà soạn nhạc của Wingspan đảm nhiệm. Theo tin OtaHub đăng, studio đã mở bản demo miễn phí trên mọi nền tảng từ 28/7/2026 trước khi chốt ngày phát hành, một cách làm hợp với dòng game cozy vốn cần được cầm tay chơi thử mới thấy hết sức hút.",
+      "Kết luận: hợp với người thích chiến lược nhẹ nhàng, chơi ngắn gọn từng ván, hoặc fan Wingspan muốn một board game số hóa mang không khí dễ thương và ít áp lực."
+    ],
+    "storyEn": [
+      "Flamecraft is a cozy strategy game for one to five players, adapted from the board game of the same name by Cardboard Alchemy. You play a Flamekeeper who helps artisan dragons find the right home in a small shopping district, and then lets the shops serve the townspeople. The digital version is developed by Monster Couch and launched on 17 September 2026 on PC, PS5, Xbox Series and Switch.",
+      "Play revolves around gathering and managing resources, placing dragons in shops and upgrading them with enchantments to build chains of combined effects. According to the official description there are more than 70 animated dragons and 30 different shops. Every decision is a calculation, yet there is no violence and no countdown clock pushing you along.",
+      "Monster Couch is a familiar name to digital board game fans thanks to its Wingspan adaptation, and the music comes from the same composer as Wingspan. As OtaHub reported, the studio opened a free demo on every platform from 28 July 2026 before locking in a release date, a sensible approach for a cozy game that needs to be played by hand to show its appeal.",
+      "Verdict: suits players who enjoy gentle strategy with short sessions, and Wingspan fans looking for a digital board game with a charming, low-pressure mood."
+    ],
+    "sources": [
+      {
+        "name": "Flamecraft – Steam",
+        "url": "https://store.steampowered.com/app/3201730/Flamecraft/"
+      },
+      {
+        "name": "Flamecraft gets Nintendo Switch release date – Nintendo Everything",
+        "url": "https://nintendoeverything.com/flamecraft-gets-nintendo-switch-release-date-new-trailer/"
+      },
+      {
+        "name": "Flamecraft – Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Flamecraft"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Phát triển",
+        "labelEn": "Developer",
+        "value": "Monster Couch"
+      },
+      {
+        "label": "Nhà phát hành",
+        "labelEn": "Publisher",
+        "value": "Monster Couch, Cardboard Alchemy"
+      },
+      {
+        "label": "Board game gốc",
+        "labelEn": "Original board game",
+        "value": "Cardboard Alchemy"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Facing the Rain": {
+    "type": "game",
+    "img": "/assets/img/uploads/facing-the-rain-steam.jpg",
+    "score": null,
+    "genre": "RPG / Adventure / Indie",
+    "studio": "Peremett-Studio / Peremett-Studio",
+    "platforms": "PC",
+    "release": "08/12/2024",
+    "status": "Đã phát hành",
+    "statusEn": "Released",
+    "generated": false,
+    "hook": "RPG indie pixel art đậm chất kể chuyện, nơi bạn làm hầu phòng ở một khách sạn u ám, nay miễn phí vĩnh viễn trên Steam.",
+    "hookEn": "A story-driven pixel art indie RPG about a hotel maid in a gloomy hotel, now permanently free on Steam.",
+    "story": [
+      "Facing the Rain là game phiêu lưu nhập vai do Peremett-Studio làm, ra mắt trên Steam ngày 8/12/2024. Bạn vào vai Billy, cô gái trẻ nhận công việc hầu phòng đầu tiên tại một khách sạn ở thị trấn Drumberg. Càng làm việc, cô càng nhận ra bầu không khí ảm đạm bao trùm nơi này và người chủ khách sạn tên Irma, từ đó mở ra những câu chuyện mà không ai chủ động kể.",
+      "Game không có chiến đấu. Thay vào đó, bạn đi lại trong khách sạn, trò chuyện với nhân vật, nhặt vật phẩm và giải những câu đố nhỏ. Các lựa chọn của bạn ảnh hưởng đến diễn biến và dẫn tới nhiều kết thúc khác nhau, nên một lượt chơi chỉ khoảng 2 đến 3 giờ nhưng vẫn khuyến khích chơi lại để xem những nhánh còn lại.",
+      "Về hình thức, game dùng pixel art 2D nhìn từ trên xuống với phần nhạc nền sáng tác riêng, gợi cảm giác của các JRPG kinh điển. Theo mô tả trên OtaHub, những chủ đề chính là mất mát, trầm cảm và lòng trắc ẩn. Cuối tháng 9/2026, nhà phát triển bỏ mức giá khoảng 3 USD, đưa game thành miễn phí vĩnh viễn trên Steam.",
+      "Kết luận: hợp với người thích game ngắn thiên về cốt truyện và khám phá, muốn một buổi cuối tuần nhẹ nhàng mà không cần bỏ tiền."
+    ],
+    "storyEn": [
+      "Facing the Rain is an adventure RPG made by Peremett-Studio and released on Steam on 8 December 2024. You play Billy, a young woman taking her first job as a hotel maid in the town of Drumberg. The longer she works, the more she notices the gloom hanging over the place and over the hotel's owner, Irma, which opens up stories nobody volunteers to tell.",
+      "There is no combat. Instead you walk around the hotel, talk to characters, pick up items and solve small puzzles. Your choices affect how events unfold and lead to several different endings, so a run lasts only around two to three hours but still invites a replay to see the other branches.",
+      "Visually it uses 2D top-down pixel art with an original soundtrack, recalling classic JRPGs. As OtaHub describes it, the main themes are loss, depression and compassion. At the end of September 2026 the developer removed the price of roughly 3 USD, making the game permanently free on Steam.",
+      "Verdict: suits players who like short, story-focused games built on exploration, looking for a relaxed weekend experience that costs nothing."
+    ],
+    "sources": [
+      {
+        "name": "Facing the Rain – Steam",
+        "url": "https://store.steampowered.com/app/3294370/Facing_the_Rain/"
+      },
+      {
+        "name": "Facing the Rain Is Now Permanently Free on Steam – GamingHQ",
+        "url": "https://gaminghq.eu/2026/09/29/facing-the-rain-permanently-free-steam/"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Phát triển & phát hành",
+        "labelEn": "Developer & publisher",
+        "value": "Peremett-Studio"
+      },
+      {
+        "label": "Thời lượng",
+        "labelEn": "Length",
+        "value": "Khoảng 2 đến 3 giờ / About 2 to 3 hours"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Dynamite Blue": {
+    "type": "game",
+    "img": "/assets/img/dynamite-blue-hero.jpg",
+    "score": null,
+    "genre": "RPG / Strategy / Turn-based",
+    "studio": "Kosmo's12 / Kosmo's12",
+    "platforms": "iOS / Android / PC / STOVE",
+    "release": "01/07/2026",
+    "status": "Đang vận hành",
+    "statusEn": "Live service",
+    "generated": false,
+    "hook": "RPG sưu tầm nhân vật theo lượt, 2.5D pixel, bối cảnh cyberpunk, do nhóm cũ của Exos Heroes làm và ra mắt toàn cầu ngày 30/9/2026.",
+    "hookEn": "A 2.5D pixel-style, turn-based cyberpunk collectible RPG from the former Exos Heroes team, launched globally on 30 September 2026.",
+    "story": [
+      "Dynamite Blue là RPG sưu tầm nhân vật theo lượt, đồ họa 2.5D, do Kosmo's12 phát triển. Đây là studio ở Seoul được lập năm 2026 bởi những thành viên chủ chốt từng làm Exos Heroes. Bản Hàn Quốc chạy trên ONE Store từ 1/7/2026, còn bản toàn cầu ra mắt ngày 30/9/2026 trên iOS, Android, Steam và STOVE, hỗ trợ 9 ngôn ngữ nhưng chưa có tiếng Việt.",
+      "Bạn làm chủ một văn phòng thám tử nhỏ tên Dynamite Blue tại Vierhaven, thành phố cyberpunk chia thành các tầng sống khác nhau, từ khu trên cao cho đến khu ngầm. Game có hơn 60 nhân vật, mỗi người có câu chuyện riêng, và bắt đầu từ những vụ việc vặt trước khi lần ra các vụ án đủ sức làm rung chuyển cả thành phố.",
+      "Chiến đấu theo lượt dựa trên hệ tương khắc thuộc tính, trong đó đánh trúng điểm yếu giúp phá lớp bảo vệ của kẻ địch và tạo cơ hội dồn sát thương. Cả đội dùng chung điểm chiến đấu BP, nên việc ghép đội ảnh hưởng trực tiếp đến cách đánh. OtaHub ghi nhận game cố ý đơn giản ở giai đoạn đầu, rồi phức tạp dần về sau.",
+      "Kết luận: hợp với người thích RPG theo lượt thiên về cốt truyện nhân vật và bối cảnh cyberpunk, chấp nhận mô hình miễn phí có giao dịch trong ứng dụng."
+    ],
+    "storyEn": [
+      "Dynamite Blue is a turn-based, 2.5D collectible RPG developed by Kosmo's12, a Seoul studio founded in 2026 by core members who worked on Exos Heroes. The Korean version has run on ONE Store since 1 July 2026, while the global release came on 30 September 2026 on iOS, Android, Steam and STOVE, with nine languages but no Vietnamese yet.",
+      "You run a small detective office called Dynamite Blue in Vierhaven, a cyberpunk city split into different layers of life, from the elevated district down to the underground. The game features more than 60 characters, each with their own story, and starts with minor jobs before tracing cases big enough to shake the whole city.",
+      "Turn-based combat is built on an elemental matchup system, where hitting a weakness breaks an enemy's protective layer and opens a window for heavy damage. The whole team shares a battle point pool called BP, so team composition directly changes how you fight. OtaHub notes the game is deliberately simple early on and grows more complex later.",
+      "Verdict: suits fans of turn-based RPGs that lean on character stories and a cyberpunk setting, as long as a free-to-play model with in-app purchases is acceptable."
+    ],
+    "sources": [
+      {
+        "name": "Dynamite Blue – Steam",
+        "url": "https://store.steampowered.com/app/4714620/Dynamite_Blue/"
+      },
+      {
+        "name": "'Dynamite Blue' Set for Global Launch on September 30 – Inven Global",
+        "url": "https://www.invenglobal.com/articles/25907/dynamite-blue-set-for-global-launch-on-september-30"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Phát triển & phát hành",
+        "labelEn": "Developer & publisher",
+        "value": "Kosmo's12"
+      },
+      {
+        "label": "Ra mắt toàn cầu",
+        "labelEn": "Global launch",
+        "value": "30/09/2026"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Mortal Shell II": {
+    "type": "game",
+    "img": "/assets/img/pool-mortal-shell-2.jpg",
+    "score": null,
+    "genre": "Action / RPG / Soulslike",
+    "studio": "Cold Symmetry / Playstack",
+    "platforms": "PC / PlayStation 5 / Xbox Series X|S",
+    "release": "20/08/2026",
+    "status": "Đã phát hành",
+    "statusEn": "Released",
+    "generated": false,
+    "hook": "Phần hậu bản độc lập của Mortal Shell, thay thể lực bằng hệ thống posture và mở rộng lên 8 Shell cùng hơn 60 hầm ngục.",
+    "hookEn": "The standalone sequel to Mortal Shell, swapping stamina for a posture system and expanding to eight Shells and over 60 dungeons.",
+    "story": [
+      "Mortal Shell II là phần tiếp theo độc lập của tựa Soulslike Mortal Shell, do Cold Symmetry phát triển và Playstack phát hành. Game được công bố tại Summer Game Fest tháng 6/2025 và ra mắt ngày 20/8/2026 trên PC, PS5 và Xbox Series X|S. Bạn vào vai Harbinger, nhân vật nhập vào thân xác các chiến binh đã ngã xuống, gọi là Shell, để đi đoạt lại những quả trứng bị đánh cắp của Undermether.",
+      "Thay đổi lớn nhất nằm ở chiến đấu. Game bỏ hẳn thanh thể lực quen thuộc của dòng Soulslike và thay bằng cơ chế posture: bạn tấn công liên tục để phá thế đứng của kẻ địch rồi tung đòn kết liễu. Phần chiến đấu còn có thêm đi lén, vũ khí tầm xa và các đòn finisher riêng cho từng loại vũ khí.",
+      "Thế giới là một bản đồ mở nhỏ gọn nhưng liên kết chặt, chứa hơn 60 hầm ngục ẩn. Có 8 Shell chơi được, mỗi Shell có chỉ số và lối đánh riêng. Âm nhạc do Lustmord và A. Liam Neighbours soạn, giữ bầu không khí u tối của phần đầu. Bản tiêu chuẩn giá 49,99 USD, còn Devout Edition cho chơi sớm tối đa 72 giờ.",
+      "Kết luận: hợp với người chơi Soulslike muốn lối đánh tấn công chủ động hơn, và fan phần đầu muốn một thế giới rộng hơn."
+    ],
+    "storyEn": [
+      "Mortal Shell II is the standalone sequel to the Soulslike Mortal Shell, developed by Cold Symmetry and published by Playstack. It was announced at Summer Game Fest in June 2025 and launched on 20 August 2026 on PC, PS5 and Xbox Series X|S. You play the Harbinger, who possesses the bodies of fallen warriors called Shells in order to recover the stolen eggs of the Undermether.",
+      "The biggest change is combat. The game drops the familiar stamina bar of the Soulslike genre in favor of a posture mechanic: you attack relentlessly to break an enemy's stance, then land an execution. Combat also adds stealth, ranged sidearms and finishers tailored to each weapon type.",
+      "The world is a compact but tightly connected open map containing more than 60 hidden dungeons. There are eight playable Shells, each with its own stats and playstyle. The music is by Lustmord and A. Liam Neighbours and keeps the dark atmosphere of the first game. The standard edition costs 49.99 USD, and the Devout Edition grants up to 72 hours of early access.",
+      "Verdict: suits Soulslike players who want a more aggressive combat flow, and fans of the first game who want a wider world."
+    ],
+    "sources": [
+      {
+        "name": "Mortal Shell II – Steam",
+        "url": "https://store.steampowered.com/app/2584270/Mortal_Shell_II/"
+      },
+      {
+        "name": "Mortal Shell II – Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Mortal_Shell_II"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Phát triển",
+        "labelEn": "Developer",
+        "value": "Cold Symmetry"
+      },
+      {
+        "label": "Nhà phát hành",
+        "labelEn": "Publisher",
+        "value": "Playstack"
+      },
+      {
+        "label": "Âm nhạc",
+        "labelEn": "Music",
+        "value": "Lustmord, A. Liam Neighbours"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Star Wars: Zero Company": {
+    "type": "game",
+    "img": "/assets/img/b293aa2b32-swzc-hero.jpg",
+    "score": null,
+    "genre": "Strategy / Turn-based Tactics / RPG",
+    "studio": "Bit Reactor / Electronic Arts",
+    "platforms": "PC / PlayStation 5 / Xbox Series X|S",
+    "release": "27/08/2026",
+    "status": "Đã phát hành",
+    "statusEn": "Released",
+    "generated": false,
+    "hook": "Game chiến thuật theo lượt kiểu XCOM trong vũ trụ Star Wars, kể về một đội lính đánh thuê vào cuối Chiến Tranh Vô Tính.",
+    "hookEn": "An XCOM-style turn-based tactics game in the Star Wars universe, following a mercenary squad at the end of the Clone Wars.",
+    "story": [
+      "Star Wars Zero Company là game chiến thuật theo lượt dành cho một người chơi, do Bit Reactor phát triển với sự hỗ trợ của Respawn Entertainment và EA phát hành. Game ra mắt ngày 27/8/2026 trên PC, PS5 và Xbox Series X|S. Bối cảnh là giai đoạn cuối Chiến Tranh Vô Tính, năm 19 BBY, nhìn cuộc chiến từ rìa thay vì từ phía các Jedi hay tướng lĩnh Cộng Hòa.",
+      "Bạn vào vai Tesh Hawks, chỉ huy Zero Company, một nhóm lính đánh thuê độc lập gồm những người đến từ khắp thiên hà. Kẻ thù là Infinite Coil, giáo phái thân Separatist đang lan truyền một loại dịch bệnh bí ẩn: người sống sót trở nên mạnh hơn nhưng dễ bị thao túng. Nhân vật trong đội gồm cả lính do bạn tự tạo lẫn các gương mặt trong truyện.",
+      "Lối chơi mang dáng dấp XCOM hiện đại: chiến đấu theo lượt trên góc nhìn từ trên xuống với số điểm hành động hạn chế, đồng đội ngã xuống là mất hẳn trong truyện. Giữa các nhiệm vụ, bạn quản lý căn cứ, nghiên cứu, nâng cấp và điều tra. Bạn còn có thể tự tạo droid astromech hỗ trợ. Studio có nhân sự cũ từng làm ở Firaxis.",
+      "Kết luận: hợp với fan chiến thuật theo lượt muốn một dự án Star Wars không phải bắn súng hay hành động, và người thích đội hình nhân vật có quan hệ ảnh hưởng đến trận đánh."
+    ],
+    "storyEn": [
+      "Star Wars Zero Company is a single-player, turn-based tactics game developed by Bit Reactor with support from Respawn Entertainment and published by EA. It launched on 27 August 2026 on PC, PS5 and Xbox Series X|S. It is set in the twilight of the Clone Wars, in 19 BBY, viewing the conflict from the edges rather than through the Jedi or Republic generals.",
+      "You play Tesh Hawks, who commands Zero Company, an independent mercenary outfit of people from across the galaxy. The enemy is the Infinite Coil, a Separatist-aligned cult spreading a mysterious plague: survivors grow stronger but easier to manipulate. Your squad mixes soldiers you create yourself with characters from the story.",
+      "The gameplay resembles modern XCOM: turn-based combat from a top-down view with limited action points, and fallen squad members are gone for good in the story. Between missions you manage a base, research, upgrades and investigations. You can also build custom astromech droids for support. The studio includes veterans who previously worked at Firaxis.",
+      "Verdict: suits turn-based tactics fans who want a Star Wars project that is not a shooter or action game, and players who like squads whose relationships affect the battlefield."
+    ],
+    "sources": [
+      {
+        "name": "STAR WARS Zero Company – Steam",
+        "url": "https://store.steampowered.com/app/2075800/STAR_WARS_Zero_Company/"
+      },
+      {
+        "name": "Star Wars Zero Company – Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Star_Wars_Zero_Company"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Phát triển",
+        "labelEn": "Developer",
+        "value": "Bit Reactor (hỗ trợ: Respawn Entertainment)"
+      },
+      {
+        "label": "Nhà phát hành",
+        "labelEn": "Publisher",
+        "value": "Electronic Arts"
+      },
+      {
+        "label": "Đạo diễn",
+        "labelEn": "Director",
+        "value": "Greg Foertsch"
+      },
+      {
+        "label": "Âm nhạc",
+        "labelEn": "Music",
+        "value": "Gordy Haab"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Resident Evil Requiem": {
+    "type": "game",
+    "img": "/assets/img/4d865718ab-library_hero.jpg",
+    "score": null,
+    "genre": "Survival Horror / Action / Adventure",
+    "studio": "Capcom / Capcom",
+    "platforms": "PC / PlayStation 5 / Xbox Series X|S / Nintendo Switch 2",
+    "release": "27/02/2026",
+    "status": "Đã phát hành",
+    "statusEn": "Released",
+    "generated": false,
+    "hook": "Phần chính thứ chín của Resident Evil, với hai nhân vật chính Grace Ashcroft và Leon Kennedy cùng lựa chọn chuyển góc nhìn thứ nhất và thứ ba.",
+    "hookEn": "The ninth mainline Resident Evil, with two leads, Grace Ashcroft and Leon Kennedy, and a switch between first and third person.",
+    "story": [
+      "Resident Evil Requiem là phần thứ chín của dòng chính Resident Evil, do Capcom phát triển và phát hành ngày 27/2/2026 trên PC, PS5, Xbox Series X|S và Nintendo Switch 2. Đạo diễn là Koshi Nakanishi, người từng dẫn dắt Resident Evil 7. Theo OtaHub, bản Switch 2 chạy trực tiếp trên máy, không phải cloud streaming như RE7 và RE8 trên Switch.",
+      "Câu chuyện diễn ra khoảng 30 năm sau vụ Raccoon City bị xóa sổ. Grace Ashcroft, chuyên viên phân tích của FBI và con gái một phóng viên sống sót sau thảm họa, điều tra những cái chết bí ẩn tại khách sạn Wrenwood. Cô sớm bị cựu nhà khoa học Umbrella Victor Gideon nhắm tới vì khả năng miễn dịch đặc biệt, gắn với một dự án tên Elpis.",
+      "Game luân phiên hai nhân vật: các phân đoạn của Grace thiên về kinh dị điều tra và sinh tồn, còn Leon S. Kennedy mang đến nhịp hành động dồn dập. Lần đầu trong loạt, người chơi có thể tự do chuyển giữa góc nhìn thứ nhất và thứ ba suốt chiến dịch, chiến dịch dài khoảng 12 giờ theo OtaHub.",
+      "Kết luận: hợp với fan dòng Resident Evil muốn cả hai kiểu trải nghiệm kinh dị và hành động trong một game, cũng như người chơi mới muốn tự chọn góc nhìn phù hợp."
+    ],
+    "storyEn": [
+      "Resident Evil Requiem is the ninth mainline Resident Evil, developed and published by Capcom and released on 27 February 2026 on PC, PS5, Xbox Series X|S and Nintendo Switch 2. It is directed by Koshi Nakanishi, who previously led Resident Evil 7. According to OtaHub, the Switch 2 version runs natively rather than through cloud streaming like RE7 and RE8 on Switch.",
+      "The story takes place around 30 years after Raccoon City was wiped out. Grace Ashcroft, an FBI analyst and the daughter of a reporter who survived the disaster, investigates a series of mysterious deaths at the Wrenwood hotel. She is soon targeted by former Umbrella scientist Victor Gideon because of her unusual immunity, tied to a project called Elpis.",
+      "The game alternates between two protagonists: Grace's sections lean toward investigative horror and survival, while Leon S. Kennedy brings a faster, action-driven pace. For the first time in the series, players can freely switch between first and third person throughout the campaign, which runs around 12 hours according to OtaHub.",
+      "Verdict: suits Resident Evil fans who want both horror and action in one game, and newcomers who would like to pick the camera perspective that suits them."
+    ],
+    "sources": [
+      {
+        "name": "Resident Evil Requiem – Steam",
+        "url": "https://store.steampowered.com/app/3764200/Resident_Evil_Requiem/"
+      },
+      {
+        "name": "Resident Evil Requiem – Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Resident_Evil_Requiem"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Phát triển & phát hành",
+        "labelEn": "Developer & publisher",
+        "value": "Capcom"
+      },
+      {
+        "label": "Đạo diễn",
+        "labelEn": "Director",
+        "value": "Koshi Nakanishi"
+      },
+      {
+        "label": "Nhà sản xuất",
+        "labelEn": "Producers",
+        "value": "Masachika Kawata, Masato Kumazawa"
+      },
+      {
+        "label": "Âm nhạc",
+        "labelEn": "Music",
+        "value": "Nao Sato, Masahiro Ohki, Shigeyuki Kameda, Joseph Holiday"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Crimson Desert": {
+    "type": "game",
+    "img": "/assets/img/prof-crimson-desert.jpg",
+    "score": null,
+    "genre": "Action / Adventure / Open World",
+    "studio": "Pearl Abyss / Pearl Abyss",
+    "platforms": "PC / Mac / PlayStation 5 / Xbox Series X|S",
+    "release": "19/03/2026",
+    "status": "Đã phát hành",
+    "statusEn": "Released",
+    "generated": false,
+    "hook": "Game hành động phiêu lưu thế giới mở của Pearl Abyss tại lục địa Pywel, sắp có DLC Charting the Unknown vào ngày 29/10/2026.",
+    "hookEn": "Pearl Abyss's open-world action-adventure on the continent of Pywel, with the Charting the Unknown DLC due on 29 October 2026.",
+    "story": [
+      "Crimson Desert là game hành động phiêu lưu thế giới mở do Pearl Abyss phát triển và phát hành, ra mắt ngày 19/3/2026. Game chạy trên PC, Mac, PS5 và Xbox Series X|S. Bối cảnh là lục địa Pywel, nơi bạn vào vai Kliff của phe Greymanes, đi tìm lại những đồng đội thất lạc, dựng lại phe này và đối đầu một mối đe dọa đang lớn dần.",
+      "Pywel trải dài từ đồng hoang, thành thị đến tàn tích và vùng bí ẩn mang tên Abyss, để người chơi tự chọn lối đi qua chiến đấu và khám phá. Dự án nổi tiếng vì quá trình phát triển kéo dài nhiều năm, và theo thông tin đã công bố, Pearl Abyss đã chuyển hướng sang trải nghiệm một người chơi trong quá trình làm game.",
+      "Sau khi ra mắt, game tiếp tục được mở rộng. Theo OtaHub, DLC Charting the Unknown bổ sung điều khiển thuyền, khám phá đảo, lặn xuống biển tìm kho báu và tàn tích, cùng hệ thống xây dựng, trang trí căn cứ. Cốt truyện mới vẫn xoay quanh Kliff, Oongka và Damiane. DLC bị lùi hai tuần, từ 15/10 sang 29/10/2026, để hoàn thiện thêm.",
+      "Kết luận: hợp với người thích thế giới mở rộng lớn, nhiều thứ để khám phá, và sẵn sàng bỏ nhiều giờ vào một chuyến phiêu lưu một mình."
+    ],
+    "storyEn": [
+      "Crimson Desert is an open-world action-adventure developed and published by Pearl Abyss, released on 19 March 2026. It runs on PC, Mac, PS5 and Xbox Series X|S. The setting is the continent of Pywel, where you play Kliff of the Greymanes faction, searching for scattered comrades, rebuilding the faction and facing a growing threat.",
+      "Pywel stretches from wilderness and cities to ruins and a mysterious region called the Abyss, leaving players to choose their own path through combat and discovery. The project drew attention for a development that spanned many years, and as publicly reported, Pearl Abyss shifted toward a single-player experience along the way.",
+      "The game keeps expanding after launch. According to OtaHub, the Charting the Unknown DLC adds boat control, island exploration, diving for treasure and ruins, plus a base building and decoration system. The new story still follows Kliff, Oongka and Damiane. The DLC was delayed two weeks, from 15 to 29 October 2026, for further polish.",
+      "Verdict: suits players who enjoy vast open worlds with plenty to discover, and who are ready to spend many hours on a solo adventure."
+    ],
+    "sources": [
+      {
+        "name": "Crimson Desert – Steam",
+        "url": "https://store.steampowered.com/app/3321460/Crimson_Desert/"
+      },
+      {
+        "name": "Crimson Desert – Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Crimson_Desert"
+      },
+      {
+        "name": "Charting the Unknown – Steam",
+        "url": "https://store.steampowered.com/app/5001840/Crimson_Desert_Enhanced_Charting_the_Unknown/"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Phát triển & phát hành",
+        "labelEn": "Developer & publisher",
+        "value": "Pearl Abyss"
+      },
+      {
+        "label": "DLC",
+        "labelEn": "DLC",
+        "value": "Charting the Unknown (29/10/2026)"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Record of Ragnarok": {
+    "type": "anime",
+    "img": "/assets/img/prof-record-of-ragnarok.jpg",
+    "score": null,
+    "genre": "Action / Fantasy / Supernatural",
+    "studio": "Graphinica / Yumeta Company",
+    "platforms": "Streaming (Netflix)",
+    "release": "17/06/2021",
+    "status": "Đã phát sóng",
+    "statusEn": "Finished airing",
+    "generated": false,
+    "hook": "Đại Chiến Nhân Thần đưa 13 trận tay đôi giữa thần linh và loài người lên Netflix, từ manga của Takumi Fukui, Shinya Umemura và Azychika.",
+    "hookEn": "Record of Ragnarok stages 13 one-on-one duels between gods and humans on Netflix, adapted from the manga by Takumi Fukui, Shinya Umemura and Azychika.",
+    "story": [
+      "Đại Chiến Nhân Thần (Shuumatsu no Valkyrie, tên quốc tế Record of Ragnarok) mở đầu bằng cuộc họp của các vị thần, nơi họ quyết định loài người đã hết giá trị tồn tại. Valkyrie Brunhilde đưa ra một đề nghị gây sốc: tổ chức giải đấu gồm 13 trận tay đôi giữa thần và người. Nếu nhân loại thắng bảy trận, thế giới được tha. Mỗi trận là một cặp đối đầu cụ thể, đặt các nhân vật thần thoại và lịch sử vào cùng một sàn đấu.",
+      "Nguyên tác là manga do Shinya Umemura và Takumi Fukui viết kịch bản, Azychika vẽ, đăng trên Monthly Comic Zenon từ ngày 25/11/2017. Theo Wikipedia, bộ truyện hiện đã có 28 tập và vẫn đang tiếp tục, kèm các ngoại truyện như Kitan: Jack the Ripper no Jikenbo hay Kinden: Kamigami no Apocalypse. Cấu trúc mỗi trận một nhân vật chính giúp series dễ theo dõi, đồng thời cho phép tác giả dành trọn thời lượng để khai thác quá khứ của từng chiến binh.",
+      "Bản anime do Netflix phát hành dạng ONA. Mùa 1 gồm 12 tập, ra mắt ngày 17/6/2021 với Graphinica sản xuất. Mùa 2 chia hai đợt, tháng 1 và tháng 7/2023, tổng cộng 15 tập, có Yumeta Company tham gia. Mùa 3 lên sóng từ ngày 10/12/2025 với Yumeta Company và Maru Animation, còn mùa 4 đã được công bố hồi tháng 6/2026. Phần nhạc do Yasuharu Takanashi phụ trách ở các mùa đầu.",
+      "Trong các bài phân tích gần đây, OtaHub dành nhiều chú ý cho Odin, vị thần luôn đứng ngoài các trận đấu và bị nghi có toan tính riêng. Đây mới chỉ là suy đoán của người đọc manga, nên cần hiểu như một hướng theo dõi chứ không phải thông tin chính thức. Kết luận: phù hợp với người thích hành động theo từng màn đối đầu, thần thoại và những cái tên lịch sử được tái hiện theo phong cách phóng đại."
+    ],
+    "storyEn": [
+      "Record of Ragnarok (Shuumatsu no Valkyrie) opens with a council of gods deciding that humanity no longer deserves to exist. The Valkyrie Brunhilde makes a startling proposal: a tournament of 13 one-on-one duels between gods and humans. If humanity wins seven, the world is spared. Each fight is a specific pairing that puts mythological and historical figures in the same arena.",
+      "The source is a manga written by Shinya Umemura and Takumi Fukui and drawn by Azychika, serialized in Monthly Comic Zenon since 25 November 2017. According to Wikipedia it has reached 28 volumes and is still running, alongside spin-offs such as Kitan: Jack the Ripper no Jikenbo and Kinden: Kamigami no Apocalypse. One duel per spotlight character keeps the series easy to follow and lets the authors spend a whole stretch on each fighter's past.",
+      "The anime is a Netflix ONA release. Season 1 has 12 episodes and premiered on 17 June 2021, produced by Graphinica. Season 2 came in two parts in January and July 2023, 15 episodes in total, with Yumeta Company joining. Season 3 began on 10 December 2025 with Yumeta Company and Maru Animation, and season 4 was announced in June 2026. Yasuharu Takanashi composed the music for the early seasons.",
+      "In its recent analysis, OtaHub has paid particular attention to Odin, the god who stays outside the matches and is suspected of having an agenda of his own. That is reader speculation, so treat it as something to watch rather than official information. Verdict: suited to viewers who like action built around individual showdowns, mythology and historical names reimagined in an exaggerated style."
+    ],
+    "sources": [
+      {
+        "name": "Record of Ragnarok (anime) – AniList",
+        "url": "https://anilist.co/anime/127399"
+      },
+      {
+        "name": "Record of Ragnarok (manga) – AniList",
+        "url": "https://anilist.co/manga/107098"
+      },
+      {
+        "name": "Record of Ragnarok – Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Record_of_Ragnarok"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nguyên tác (manga)",
+        "labelEn": "Original manga",
+        "value": "Takumi Fukui, Shinya Umemura, Azychika"
+      },
+      {
+        "label": "Nhà xuất bản",
+        "labelEn": "Publisher",
+        "value": "Coamix – Monthly Comic Zenon"
+      },
+      {
+        "label": "Studio",
+        "labelEn": "Studio",
+        "value": "Graphinica, Yumeta Company, Maru Animation"
+      },
+      {
+        "label": "Âm nhạc",
+        "labelEn": "Music",
+        "value": "Yasuharu Takanashi"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Lycoris Recoil": {
+    "type": "anime",
+    "img": "/assets/img/a1-pictures-lycoris-recoil.jpg",
+    "score": null,
+    "genre": "Action / Slice of Life / Comedy",
+    "studio": "A-1 Pictures",
+    "platforms": "TV / Streaming",
+    "release": "02/07/2022",
+    "status": "Đã phát sóng",
+    "statusEn": "Finished airing",
+    "generated": false,
+    "hook": "Anime gốc của A-1 Pictures về hai đặc vụ trẻ làm việc trong một quán cà phê ở Tokyo, kết hợp hành động súng đạn với nhịp sống thường ngày.",
+    "hookEn": "An A-1 Pictures original about two young agents working in a Tokyo café, mixing gunplay with everyday life.",
+    "story": [
+      "Lycoris Recoil (Quán Cà Phê Bất Ổn trong cách gọi của một số báo Việt Nam) là anime gốc phát sóng từ ngày 2/7 đến 24/9/2022, tổng cộng 13 tập. Bối cảnh là Tokyo hiện đại, nơi một tổ chức bí mật mang tên Lycoris đào tạo các cô gái trẻ thành đặc vụ ngăn tội phạm trước khi sự việc kịp xảy ra. Hai nhân vật chính là Chisato Nishikigi và Takina Inoue, cùng làm việc tại quán cà phê LycoReco, vừa phục vụ khách vừa nhận nhiệm vụ.",
+      "Sức hút của tác phẩm nằm ở sự lệch pha giữa hai cô gái: Chisato thoải mái, hay đùa, còn Takina nghiêm túc và cứng nhắc. Từ đó nhịp phim luân phiên giữa những tập sinh hoạt ở quán và các màn hành động gọn gàng, dựng cảnh súng tỉ mỉ. Series đủ nhẹ để xem như một bộ slice of life, nhưng vẫn có tuyến truyện đen tối hơn chạy ngầm bên dưới.",
+      "Shingo Adachi vừa đạo diễn vừa viết kịch bản, đây là lần đầu ông đứng ghế đạo diễn chính. Imigimuru thiết kế nhân vật, Shūhei Mutsuki soạn nhạc và A-1 Pictures sản xuất hoạt hình. Tại Crunchyroll Anime Awards 2023, phim thắng hạng mục Best Original Anime và có đề cử Anime of the Year. Tháng 4 và 5/2025, studio phát thêm sáu tập ngắn Friends are thieves of time.",
+      "Kết luận: lựa chọn tốt cho người muốn tìm một anime hành động nhẹ nhàng, nhân vật dễ mến và không cần đọc nguyên tác. Đây cũng là tác phẩm gốc, nên khán giả không phải lo chuyện phim đi trước hoặc sau bản chuyển thể nào, và có thể xem trọn vẹn trong một buổi cuối tuần."
+    ],
+    "storyEn": [
+      "Lycoris Recoil is an original anime that aired from 2 July to 24 September 2022 for 13 episodes. It is set in modern Tokyo, where a secret organization called Lycoris trains young girls as agents who stop crimes before they happen. The leads are Chisato Nishikigi and Takina Inoue, who work at the LycoReco café, serving customers between missions.",
+      "Its appeal lies in the mismatch between the two girls: Chisato is relaxed and jokey, while Takina is serious and rigid. The show alternates between café-life episodes and tidy action set pieces with carefully staged gunfights. It is light enough to watch as a slice-of-life series, yet a darker plot runs beneath the surface.",
+      "Shingo Adachi directed and wrote the series, his first time as lead director. Imigimuru designed the characters, Shūhei Mutsuki composed the music and A-1 Pictures handled the animation. At the Crunchyroll Anime Awards 2023 it won Best Original Anime and was nominated for Anime of the Year. In April and May 2025 a six-part short series, Friends are thieves of time, followed.",
+      "Verdict: a good pick for anyone after a gentle action anime with likeable characters and no source material to read. Because it is an original work, viewers do not have to worry about timelines against any adaptation, and it can be finished over a single weekend."
+    ],
+    "sources": [
+      {
+        "name": "Lycoris Recoil – AniList",
+        "url": "https://anilist.co/anime/143270"
+      },
+      {
+        "name": "Lycoris Recoil – Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Lycoris_Recoil"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Studio",
+        "labelEn": "Studio",
+        "value": "A-1 Pictures"
+      },
+      {
+        "label": "Đạo diễn & biên kịch",
+        "labelEn": "Director & writer",
+        "value": "Shingo Adachi"
+      },
+      {
+        "label": "Thiết kế nhân vật",
+        "labelEn": "Character design",
+        "value": "Imigimuru"
+      },
+      {
+        "label": "Âm nhạc",
+        "labelEn": "Music",
+        "value": "Shūhei Mutsuki"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Galaxy Express 999": {
+    "type": "anime",
+    "img": "/assets/img/news-galaxy-express-999-new-film.jpg",
+    "score": null,
+    "genre": "Sci-Fi / Adventure / Drama",
+    "studio": "Toei Animation",
+    "platforms": "TV / Cinema",
+    "release": "14/09/1978",
+    "status": "Đã phát sóng",
+    "statusEn": "Finished airing",
+    "generated": false,
+    "hook": "Chuyến tàu vũ trụ kinh điển của Leiji Matsumoto sắp có phim chiếu rạp mới do Toei Animation công bố hồi tháng 7/2026, với ý tưởng cốt truyện của Rintaro.",
+    "hookEn": "Leiji Matsumoto's classic space train gets a new theatrical film announced by Toei Animation in July 2026, with the story draft by Rintaro.",
+    "story": [
+      "Chuyến Tàu Ngân Hà 999 (Galaxy Express 999) khởi đầu là manga của Leiji Matsumoto, đăng trên Weekly Shōnen King từ ngày 24/1/1977. Cậu bé mồ côi Tetsuro Hoshino lên đoàn tàu hơi nước bay giữa các vì sao cùng một người phụ nữ bí ẩn tên Maetel, với hy vọng đến được hành tinh nơi người ta tặng cơ thể máy miễn phí để sống mãi. Mỗi ga dừng là một xã hội khác nhau, và Tetsuro dần đặt lại câu hỏi mình thật sự muốn gì.",
+      "Bản anime truyền hình của Toei Animation phát sóng từ 14/9/1978, gồm 113 tập, do Nobutaka Nishizawa làm tổng đạo diễn. Sau đó là phim điện ảnh năm 1979 và Adieu Chuyến Tàu Ngân Hà 999 năm 1981, cả hai do Rintaro đạo diễn, rồi Eternal Fantasy năm 1998. Các tập phim thường được nhớ nhờ không khí cô độc: bất tử, giai cấp, công nghệ và ký ức được đặt lên bàn cân ở từng điểm dừng.",
+      "Ngày 25/7/2026, Toei Animation công bố đang sản xuất một phim anime chiếu rạp mới, trong đó Rintaro phụ trách ý tưởng cốt truyện. Theo thông tin hiện có, tên phim đầy đủ, đạo diễn, dàn diễn viên và ngày ra rạp đều chưa được công bố, cũng chưa rõ đây là remake hay phần tiếp theo. Đây sẽ là phim chiếu rạp mới đầu tiên của thương hiệu kể từ Eternal Fantasy.",
+      "Kết luận: nếu chưa từng xem, phim 1979 và bản TV là hai lối vào thường được nhắc tới nhiều nhất. Người quen với anime hiện đại có thể cần thời gian làm quen với nhịp chậm, nhưng đổi lại là một tác phẩm khoa học viễn tưởng đặt câu hỏi về con người nhiều hơn là về hành động."
+    ],
+    "storyEn": [
+      "Galaxy Express 999 began as a manga by Leiji Matsumoto, serialized in Weekly Shōnen King from 24 January 1977. The orphan boy Tetsuro Hoshino boards a steam train that flies between the stars with a mysterious woman named Maetel, hoping to reach a planet that gives away mechanical bodies for eternal life. Every stop is a different society, and Tetsuro slowly begins to question what he actually wants.",
+      "Toei Animation's TV anime aired from 14 September 1978 for 113 episodes, with Nobutaka Nishizawa as chief director. It was followed by the 1979 film and Adieu Galaxy Express 999 in 1981, both directed by Rintaro, and then Eternal Fantasy in 1998. The episodes are remembered for their lonely atmosphere: immortality, class, technology and memory are weighed at each stop.",
+      "On 25 July 2026 Toei Animation announced it is producing a new theatrical anime film, with Rintaro in charge of the story draft. As far as is known, the full title, director, cast and release date have not been announced, and it is unclear whether it is a remake or a continuation. It would be the franchise's first new theatrical film since Eternal Fantasy.",
+      "Verdict: for newcomers, the 1979 film and the TV series are the entry points most often mentioned. Viewers used to modern anime may need time to adjust to the slow pace, but they get a science-fiction work that asks questions about being human rather than leaning on action."
+    ],
+    "sources": [
+      {
+        "name": "Galaxy Express 999 – AniList",
+        "url": "https://anilist.co/anime/1491"
+      },
+      {
+        "name": "New Galaxy Express 999 Theatrical Anime Announced – Anime News Network",
+        "url": "https://www.animenewsnetwork.com/news/2026-07-25/new-galaxy-express-999-theatrical-anime-announced-with-story-by-rintaro/.239959"
+      },
+      {
+        "name": "Galaxy Express 999 – Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Galaxy_Express_999"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nguyên tác",
+        "labelEn": "Original creator",
+        "value": "Leiji Matsumoto"
+      },
+      {
+        "label": "Studio",
+        "labelEn": "Studio",
+        "value": "Toei Animation"
+      },
+      {
+        "label": "Tổng đạo diễn (TV)",
+        "labelEn": "Chief director (TV)",
+        "value": "Nobutaka Nishizawa"
+      },
+      {
+        "label": "Ý tưởng phim mới",
+        "labelEn": "New film story draft",
+        "value": "Rintaro"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Chiikawa": {
+    "type": "anime",
+    "img": "/assets/img/prof-chiikawa.jpg",
+    "score": null,
+    "genre": "Comedy / Slice of Life",
+    "studio": "Doga Kobo",
+    "platforms": "TV / Streaming",
+    "release": "04/04/2022",
+    "status": "Đang phát sóng",
+    "statusEn": "Airing",
+    "generated": false,
+    "hook": "Anime ngắn chuyển thể từ manga của Nagano, tạm nghỉ tập mới từ 2/10 đến cuối năm 2026 và dự kiến trở lại vào tháng 1/2027.",
+    "hookEn": "A short-form anime based on Nagano's manga, pausing new episodes from 2 October through the end of 2026 and due back in January 2027.",
+    "story": [
+      "Chiikawa là series của tác giả Nagano, bắt nguồn từ nhân vật mà bà đăng lên Twitter từ tháng 5/2017. Truyện kể về Chiikawa, Hachiware và Usagi, những sinh vật nhỏ sống trong một thế giới có công việc, kỳ thi và cả quái vật. Vẻ ngoài tròn trịa dễ thương đi cùng những quy tắc sinh tồn khá khắc nghiệt, điều tạo nên sự tương phản đặc trưng của bộ truyện.",
+      "Bản anime do Doga Kobo sản xuất, phát sóng từ ngày 4/4/2022 trong chương trình buổi sáng Mezamashi TV của Fuji TV. Mỗi tập chỉ dài vài phút, nhưng nhiều mẩu chuyện nối tiếp nhau thành arc về việc đi làm, tình bạn hay những sinh vật nguy hiểm. Takenori Mihara được ghi nhận là đạo diễn trên AniList. Nội dung sau khi lên sóng còn được cung cấp có thời hạn trên YouTube, FOD và TVer.",
+      "Tháng 7/2026, thương hiệu có thêm phim điện ảnh Chiikawa: Ningyo no Shima no Himitsu, do Cypic sản xuất và Kei Oikawa đạo diễn, ra rạp ngày 24/7. Sau đó, đội ngũ anime thông báo tạm nghỉ tập mới: từ 2/10 đến 25/12/2026 sẽ phát lại 25 suất, mở đầu bằng tập 6, rồi tập mới dự kiến trở lại tháng 1/2027. Thông báo không nêu lý do, nên đây chỉ nên hiểu là một khoảng nghỉ có thời hạn.",
+      "Kết luận: phù hợp với người muốn xem anime ngắn, nhẹ và dễ theo dõi từng mẩu. Đợt phát lại cuối năm cũng là dịp thuận lợi để người mới xem từ đầu, làm quen với các nhân vật và những arc nổi tiếng, rồi theo kịp khi các tập mới trở lại vào đầu năm 2027. Người xem ở Việt Nam nên kiểm tra kênh chính thức đang có bản quyền, vì không phải tập nào cũng mở toàn cầu."
+    ],
+    "storyEn": [
+      "Chiikawa is a series by the creator Nagano, which grew out of a character posted on Twitter in May 2017. It follows Chiikawa, Hachiware and Usagi, small creatures living in a world with jobs, exams and monsters. The round, cute look comes with fairly harsh survival rules, and that contrast is the series' trademark.",
+      "The anime is produced by Doga Kobo and has aired since 4 April 2022 in Fuji TV's morning program Mezamashi TV. Each episode runs only a few minutes, but many segments chain into arcs about work, friendship or dangerous creatures. AniList credits Takenori Mihara as director. After broadcast the content is also available for a limited time on YouTube, FOD and TVer.",
+      "In July 2026 the franchise also got a film, Chiikawa: Ningyo no Shima no Himitsu, produced by Cypic and directed by Kei Oikawa, released on 24 July. The anime team then announced a break from new episodes: from 2 October to 25 December 2026 it will air 25 reruns, starting with episode 6, with new episodes expected back in January 2027. No reason was given, so it should be read as a temporary pause.",
+      "Verdict: suited to viewers who want a short, light anime they can follow in small pieces. The year-end reruns are also a convenient chance for newcomers to start from the beginning, get to know the characters and the well-known arcs, and catch up when new episodes return in early 2027. Viewers in Vietnam should check which official channel holds the rights, since not every episode is available worldwide."
+    ],
+    "sources": [
+      {
+        "name": "Chiikawa – AniList",
+        "url": "https://anilist.co/anime/140842"
+      },
+      {
+        "name": "Chiikawa Anime to Temporarily Halt New Episodes – Anime News Network",
+        "url": "https://www.animenewsnetwork.com/news/2026-09-24/chiikawa-anime-to-temporarily-halt-new-episodes/.242160"
+      },
+      {
+        "name": "Chiikawa – Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Chiikawa"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nguyên tác",
+        "labelEn": "Original creator",
+        "value": "Nagano"
+      },
+      {
+        "label": "Studio",
+        "labelEn": "Studio",
+        "value": "Doga Kobo"
+      },
+      {
+        "label": "Đạo diễn",
+        "labelEn": "Director",
+        "value": "Takenori Mihara"
+      },
+      {
+        "label": "Phát sóng",
+        "labelEn": "Broadcast",
+        "value": "Mezamashi TV (Fuji TV)"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Food Wars!": {
+    "type": "manga",
+    "img": "/assets/img/320021956a-food-wars-jump-giga-hero.jpg",
+    "score": null,
+    "genre": "Cooking / Comedy / Drama",
+    "studio": "Yuto Tsukuda, Shun Saeki / Shueisha",
+    "platforms": "Weekly Shonen Jump",
+    "release": "26/11/2012",
+    "status": "Đã hoàn thành",
+    "statusEn": "Completed",
+    "generated": false,
+    "hook": "Manga nấu ăn Shokugeki no Soma của Yuto Tsukuda và Shun Saeki, đã hoàn thành năm 2019, vừa có one-shot mới trên Jump GIGA Mùa Hè 2026.",
+    "hookEn": "The cooking manga Shokugeki no Soma by Yuto Tsukuda and Shun Saeki, finished in 2019, has just returned with a new one-shot in Jump GIGA Summer 2026.",
+    "story": [
+      "Food Wars! (Shokugeki no Soma) là manga do Yuto Tsukuda viết kịch bản và Shun Saeki vẽ, đăng trên Weekly Shonen Jump của Shueisha từ ngày 26/11/2012 đến 17/6/2019. Nhân vật chính Soma Yukihira, con trai chủ một quán ăn bình dân, bị cha ném vào Học viện Ẩm thực Totsuki, ngôi trường khắc nghiệt nơi học sinh giải quyết tranh chấp bằng những cuộc đấu nấu ăn gọi là shokugeki, với cái giá là việc bị đuổi học.",
+      "Điểm đặc trưng của truyện là cách biến nấu ăn thành đấu trường kiểu shonen: mỗi trận có đề bài, đối thủ, chiến thuật và những phản ứng phóng đại của người nếm. Bộ truyện gồm 324 chương, gom thành 36 tập, kèm phần kết ba chương trên Jump GIGA năm 2019. Ngoại truyện gồm L'étoile trên Shonen Jump+ và Shokugeki no Sanji, bản giao thoa với One Piece năm 2018.",
+      "J.C.Staff chuyển thể thành anime năm mùa trong giai đoạn 2015 đến 2020, tổng cộng 86 tập. Về phía tác giả, theo bài viết của OtaHub, Tsukuda và Saeki sau đó thực hiện Tenmaku Cinema năm 2023 nhưng series bị dừng sau chưa đầy sáu tháng. Cả hai trở lại với one-shot 4 trang thể loại hài lãng mạn Futari Dake no Quiz-bu trên Jump GIGA Mùa Hè 2026, phát hành tại Nhật ngày 17/8/2026.",
+      "Kết luận: phù hợp với người thích shonen có yếu tố thi đấu nhưng muốn đổi bối cảnh sang nhà bếp. Người đọc cần chấp nhận phong cách phóng đại và các cảnh fan service, vốn là một phần đặc trưng của bộ truyện. Vì đã hoàn thành, đây cũng là lựa chọn dễ đọc liền mạch từ đầu đến cuối mà không phải chờ chương mới."
+    ],
+    "storyEn": [
+      "Food Wars! (Shokugeki no Soma) is a manga written by Yuto Tsukuda and drawn by Shun Saeki, serialized in Shueisha's Weekly Shonen Jump from 26 November 2012 to 17 June 2019. The hero, Soma Yukihira, the son of a humble diner owner, is thrown by his father into Tōtsuki Culinary Academy, a harsh school where students settle disputes in cooking duels called shokugeki, with expulsion as the price of losing.",
+      "Its signature is turning cooking into a shonen arena: each match has a theme, an opponent, a strategy and the exaggerated reactions of the tasters. The series runs 324 chapters collected in 36 volumes, plus a three-chapter epilogue in Jump GIGA in 2019. Spin-offs include L'étoile on Shonen Jump+ and Shokugeki no Sanji, a 2018 One Piece crossover.",
+      "J.C.Staff adapted it into five anime seasons between 2015 and 2020, 86 episodes in total. On the creators' side, per OtaHub's coverage, Tsukuda and Saeki followed up with Tenmaku Cinema in 2023, which was ended after less than six months. They have now returned with the four-page romantic comedy one-shot Futari Dake no Quiz-bu in Jump GIGA Summer 2026, released in Japan on 17 August 2026.",
+      "Verdict: suited to readers who like competitive shonen but want a kitchen setting. Readers should be ready for the exaggerated style and the fan service that are part of the series' character. Since it is finished, it can also be read straight through from start to end without waiting for new chapters."
+    ],
+    "sources": [
+      {
+        "name": "Food Wars! – VIZ",
+        "url": "https://www.viz.com/food-wars"
+      },
+      {
+        "name": "Shokugeki no Souma – AniList",
+        "url": "https://anilist.co/manga/75757"
+      },
+      {
+        "name": "Food Wars!: Shokugeki no Soma – Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Food_Wars!:_Shokugeki_no_Soma"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Kịch bản",
+        "labelEn": "Story",
+        "value": "Yuto Tsukuda"
+      },
+      {
+        "label": "Tranh",
+        "labelEn": "Art",
+        "value": "Shun Saeki"
+      },
+      {
+        "label": "Tạp chí",
+        "labelEn": "Magazine",
+        "value": "Weekly Shonen Jump (Shueisha)"
+      },
+      {
+        "label": "Anime",
+        "labelEn": "Anime",
+        "value": "J.C.Staff, 5 mùa (2015–2020)"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Kuri-hime: Ayakashi Yobanashi": {
+    "type": "manga",
+    "img": "/assets/img/uploads/kuri-hime-ayakashi-yobanashi-cover.jpg",
+    "score": null,
+    "genre": "Mystery / Supernatural / Drama",
+    "studio": "Anko Chōchin, Natsu Hyuuga / Ichijinsha",
+    "platforms": "Monthly Comic Zero-Sum",
+    "release": "27/12/2024",
+    "status": "Đang phát hành",
+    "statusEn": "Ongoing",
+    "generated": false,
+    "hook": "Manga chuyển thể từ tiểu thuyết của Natsu Hyuuga, tác giả Dược Sư Tự Sự, sẽ khép lại trên Monthly Comic Zero-Sum số ra ngày 28/10/2026.",
+    "hookEn": "The manga based on the novel by Natsu Hyuuga, author of The Apothecary Diaries, will end in the 28 October 2026 issue of Monthly Comic Zero-Sum.",
+    "story": [
+      "Kuri Hime Ayakashi Yobanashi là manga do Anko Chōchin thực hiện, chuyển thể từ tiểu thuyết của Natsu Hyuuga (Hyuganatsu), tác giả của Dược Sư Tự Sự. Trên AniList và các trang dữ liệu, tên gốc tiếng Nhật được ghi là Kurimiko Ayakashi Yobanashi (繰り巫女あやかし夜噺), còn cách viết Kuri Hime là cách gọi thường gặp trên báo chí. Truyện đăng trên Monthly Comic Zero-Sum của Ichijinsha từ tháng 12/2024.",
+      "Nhân vật chính là một cô gái sống như miko trong căn nhà dệt nằm trong khuôn viên đền ở cố đô, đồng thời làm giảng viên đại học bán thời gian dạy về dệt may và văn hóa Nhật Bản. Khi một sinh viên tìm đến hỏi chuyện trừ tà và lời nguyền, cô bước vào thế giới huyền bí ẩn sau lớp vỏ bình yên của đời sống thường ngày.",
+      "Khác với Dược Sư Tự Sự đặt trong cung đình, tác phẩm này thiên về đời sống thường ngày, văn hóa dân gian và yêu quái. Nguyên tác ban đầu được đăng trên trang tiểu thuyết Shōsetsuka ni Narō. Ichijinsha đã phát hành tập 1 vào tháng 7/2025 và tập 2 vào tháng 4/2026, tức manga mới chỉ có hai tập trước khi kết thúc.",
+      "Theo thông báo, chương cuối sẽ xuất hiện trong số Monthly Comic Zero-Sum ra ngày 28/10/2026, sau gần hai năm đăng tải. Do đó tính đến ngày 2/10/2026 truyện vẫn đang được phát hành. Kết luận: phù hợp với người thích truyện huyền bí nhẹ, có yếu tố văn hóa Nhật Bản và muốn đọc một bộ ngắn."
+    ],
+    "storyEn": [
+      "Kuri Hime Ayakashi Yobanashi is a manga by Anko Chōchin, adapted from the novel by Natsu Hyuuga (Hyuganatsu), author of The Apothecary Diaries. AniList and other databases list the original Japanese title as Kurimiko Ayakashi Yobanashi (繰り巫女あやかし夜噺), while Kuri Hime is the spelling commonly seen in news coverage. It has run in Ichijinsha's Monthly Comic Zero-Sum since December 2024.",
+      "The heroine lives as a shrine maiden in a weaving hut on the grounds of a shrine in the old capital, while also working part-time as a university lecturer teaching textiles and Japanese culture. When a student comes to ask about exorcism and a curse, she steps into a supernatural world hidden behind a peaceful everyday life.",
+      "Unlike The Apothecary Diaries, set in an imperial court, this work leans toward daily life, folklore and yokai. The original story was first posted on the novel site Shōsetsuka ni Narō. Ichijinsha released volume 1 in July 2025 and volume 2 in April 2026, so the manga has only two volumes before it ends.",
+      "According to the announcement, the final chapter will appear in the Monthly Comic Zero-Sum issue dated 28 October 2026, after nearly two years of serialization. As of 2 October 2026 it is therefore still ongoing. Verdict: suited to readers who like light mystery with Japanese cultural elements and want a short series."
+    ],
+    "sources": [
+      {
+        "name": "Kuri Hime Ayakashi Yobanashi Manga Ends on October 28 – Anime News Network",
+        "url": "https://www.animenewsnetwork.com/news/2026-09-29/kuri-hime-ayakashi-yobanashi-manga-ends-on-october-28/.242302"
+      },
+      {
+        "name": "Kurimiko Ayakashi Yobanashi – AniList",
+        "url": "https://anilist.co/manga/187577"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Tranh & chuyển thể",
+        "labelEn": "Manga art",
+        "value": "Anko Chōchin"
+      },
+      {
+        "label": "Nguyên tác",
+        "labelEn": "Original story",
+        "value": "Natsu Hyuuga"
+      },
+      {
+        "label": "Tạp chí",
+        "labelEn": "Magazine",
+        "value": "Monthly Comic Zero-Sum (Ichijinsha)"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Odekake Hololive": {
+    "type": "anime",
+    "img": "/assets/img/uploads/odekake-hololive-key-visual.jpg",
+    "score": null,
+    "genre": "Slice of Life / Comedy",
+    "studio": "Studio KAI",
+    "platforms": "TV",
+    "release": "Chưa công bố",
+    "status": "Sắp phát sóng",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "Dự án anime truyền hình đầu tiên của hololive production, kể những chuyến đi chơi của 29 talent khắp Nhật Bản do Studio KAI thực hiện.",
+    "hookEn": "The first TV anime project from hololive production, following 29 talents on day trips across Japan, animated by Studio KAI.",
+    "story": [
+      "Odekake Hololive (おでかけホロライブ, gọi tắt là Odeholo, tên tiếng Anh hololive: Let's Head Out!) là dự án anime truyền hình đầu tiên của hololive production, thương hiệu VTuber thuộc COVER Corporation. Dự án được Kadokawa và COVER công bố trong buổi phát trực tiếp hololive Next ngày 7/9/2026, trong khuôn khổ các hoạt động kỷ niệm 10 năm của thương hiệu.",
+      "Theo phần giới thiệu chính thức, đây là câu chuyện du lịch dạng tuyển tập. Các thành viên hololive, vốn quen thuộc với khán giả qua livestream, tranh thủ ngày nghỉ để đi khắp Nhật Bản theo từng mùa, ăn món địa phương và trải nghiệm cảnh sắc. Cấu trúc này hợp với dàn nhân vật lớn vì mỗi hành trình có thể tập trung vào một nhóm khác nhau thay vì phải đưa tất cả vào cùng một tuyến truyện.",
+      "Studio KAI chịu trách nhiệm hoạt hình, theo AniList với Shunsuke Machiya làm đạo diễn, Kōdai Minami phụ trách kịch bản series và Masatoshi Tsuji thiết kế nhân vật. Website chính thức đã giới thiệu 29 talent, trong đó có Tokino Sora, Shirakami Fubuki, Hoshimachi Suisei và Usada Pekora. Con số này là danh sách được giới thiệu, không có nghĩa tất cả sẽ có thời lượng ngang nhau.",
+      "Tính đến ngày 2/10/2026, ngày phát sóng, số tập và nền tảng quốc tế vẫn chưa được xác nhận. Kết luận: dành cho người đã theo dõi hololive, và có thể làm quen với những gương mặt này qua một định dạng đời thường nếu bạn chưa xem livestream, nhưng nên chờ thông tin lịch chiếu chính thức."
+    ],
+    "storyEn": [
+      "Odekake Hololive (おでかけホロライブ, abbreviated Odeholo, English title hololive: Let's Head Out!) is the first TV anime project from hololive production, the VTuber brand of COVER Corporation. Kadokawa and COVER announced it during the hololive Next livestream on 7 September 2026, as part of events marking the brand's 10th anniversary.",
+      "According to the official introduction, it is an omnibus travel story. hololive members, familiar to audiences from livestreams, use their days off to travel across Japan season by season, eating local food and taking in the scenery. The structure suits a large cast because each trip can focus on a different group instead of squeezing everyone into one storyline.",
+      "Studio KAI handles the animation; per AniList, Shunsuke Machiya directs, Kōdai Minami handles series composition and Masatoshi Tsuji designs the characters. The official website presents 29 talents, including Tokino Sora, Shirakami Fubuki, Hoshimachi Suisei and Usada Pekora. That is the list of introduced characters, not a promise that everyone gets equal screen time.",
+      "As of 2 October 2026 the air date, episode count and international platforms have not been confirmed. Verdict: for people who already follow hololive, and a possible way in through an everyday-life format if you have not watched the streams, but it is best to wait for the official schedule."
+    ],
+    "sources": [
+      {
+        "name": "Odekake Hololive – official site",
+        "url": "https://odeholo.com/"
+      },
+      {
+        "name": "hololive production – announcement",
+        "url": "https://hololive.hololivepro.com/news/20260907-01-408/"
+      },
+      {
+        "name": "Odekake Hololive – AniList",
+        "url": "https://anilist.co/anime/216558"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nguyên tác",
+        "labelEn": "Original work",
+        "value": "COVER Corporation"
+      },
+      {
+        "label": "Studio",
+        "labelEn": "Studio",
+        "value": "Studio KAI"
+      },
+      {
+        "label": "Đạo diễn",
+        "labelEn": "Director",
+        "value": "Shunsuke Machiya"
+      },
+      {
+        "label": "Thiết kế nhân vật",
+        "labelEn": "Character design",
+        "value": "Masatoshi Tsuji"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Romelia War Chronicle": {
+    "type": "anime",
+    "img": "/assets/img/prof-romelia-war-chronicle.jpg",
+    "score": null,
+    "genre": "Fantasy / Adventure / Drama",
+    "studio": "Atra",
+    "platforms": "TV / Streaming",
+    "release": "03/10/2026",
+    "status": "Sắp phát sóng",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "Anime fantasy chuyển thể từ light novel, nơi người từng giúp đánh bại Ma Vương lập quân đội vì loài người vẫn chưa an toàn; Crunchyroll phát hành năm 2026.",
+    "hookEn": "A fantasy anime adapted from a light novel in which a woman who helped defeat the Demon Lord raises an army because humanity is still not safe; streaming on Crunchyroll in 2026.",
+    "story": [
+      "Romelia War Chronicle (Romeria Senki) chuyển thể từ light novel của Ryō Ariyama, do Shogakukan xuất bản dưới nhãn Gagaga Books từ năm 2020, với bản manga của Ryō Kamito trên Manga Doa từ tháng 4/2021. Tên đầy đủ có thể hiểu là Dù đã đánh bại Ma Vương, loài người vẫn nguy hiểm nên tôi lập quân đội. Phiên bản truyền hình do Atra sản xuất và dự kiến chạy hai cour liên tiếp.",
+      "Nhân vật chính Romelia góp phần vào chiến thắng trước Ma Vương nhưng sau đó bị bỏ lại, khi hôn ước với Hoàng tử Henri bị phá bỏ. Cô không sở hữu sức mạnh chiến đấu áp đảo; thế mạnh nằm ở khả năng nhìn người, tổ chức và huy động nguồn lực. Vì vậy câu chuyện nghiêng về việc xây dựng một lực lượng quân sự hơn là báo thù tức thời.",
+      "Theo Wikipedia và AniList, Hiroshi Shirai là đạo diễn, Aya Satsuki phụ trách series composition, Yoshiko Saitō và Yūta Ōtaka thiết kế nhân vật, còn Kohta Yamamoto soạn nhạc. Yuna Nemoto lồng tiếng Romelia. Lịch phát sóng cho thấy phim lên nền tảng trực tuyến sớm vào ngày 3/10/2026 và phát trên TV, Crunchyroll từ ngày 5/10/2026.",
+      "Crunchyroll đã xác nhận phát hành bộ phim trong năm 2026 ở Bắc Mỹ, Mỹ Latin, châu Âu, châu Phi, châu Đại Dương, Trung Đông và CIS; danh sách này không nêu riêng Việt Nam. Kết luận: dành cho người thích fantasy chính trị, chiến lược và nữ chính giải quyết vấn đề bằng lãnh đạo. Người xem tại Việt Nam nên kiểm tra trang series trên Crunchyroll khi phim lên sóng."
+    ],
+    "storyEn": [
+      "Romelia War Chronicle (Romeria Senki) is adapted from the light novel by Ryō Ariyama, published by Shogakukan under Gagaga Books since 2020, with a manga by Ryō Kamito on Manga Doa since April 2021. The full title roughly means Even After Defeating the Demon Lord, Humanity Still Looks Dangerous, So I Organized an Army. The TV version is produced by Atra and is planned to run for two consecutive cours.",
+      "The heroine Romelia helped defeat the Demon Lord but is then cast aside when her engagement to Prince Henri is broken. She has no overwhelming combat power; her strengths are judging people, organizing and mobilizing resources. The story therefore leans toward building a military force rather than immediate revenge.",
+      "According to Wikipedia and AniList, Hiroshi Shirai directs, Aya Satsuki handles series composition, Yoshiko Saitō and Yūta Ōtaka design the characters, and Kohta Yamamoto composes the music. Yuna Nemoto voices Romelia. The schedule has the show arriving early on streaming on 3 October 2026 and airing on TV and Crunchyroll from 5 October 2026.",
+      "Crunchyroll has confirmed it will stream the series in 2026 across North America, Latin America, Europe, Africa, Oceania, the Middle East and the CIS; the list does not name Vietnam separately. Verdict: for fans of political fantasy and strategy with a heroine who solves problems through leadership. Viewers in Vietnam should check the series page on Crunchyroll once it airs."
+    ],
+    "sources": [
+      {
+        "name": "Romelia War Chronicle – Crunchyroll announcement",
+        "url": "https://www.crunchyroll.com/news/announcements/2026/7/27/romelia-war-chronicle-anime-2026-stream-crunchyroll"
+      },
+      {
+        "name": "Romelia War Chronicle – AniList",
+        "url": "https://anilist.co/anime/180894"
+      },
+      {
+        "name": "Romelia War Chronicle – Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Romelia_War_Chronicle"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nguyên tác (light novel)",
+        "labelEn": "Original light novel",
+        "value": "Ryō Ariyama"
+      },
+      {
+        "label": "Studio",
+        "labelEn": "Studio",
+        "value": "Atra"
+      },
+      {
+        "label": "Đạo diễn",
+        "labelEn": "Director",
+        "value": "Hiroshi Shirai"
+      },
+      {
+        "label": "Âm nhạc",
+        "labelEn": "Music",
+        "value": "Kohta Yamamoto"
       }
     ],
     "scoreSource": null

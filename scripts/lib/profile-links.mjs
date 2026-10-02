@@ -46,6 +46,13 @@ const MATCH_EXTRA = {
   'Solo Leveling Season 2': ['Solo Leveling'],
   'Chainsaw Man: Reze Arc': ['Reze Arc'],
   'One Piece: Egghead Arc': ['Egghead'],
+  'Diablo IV': ['Diablo 4'],
+  'Food Wars!': ['Food Wars', 'Shokugeki no Soma'],
+  'Kuri-hime: Ayakashi Yobanashi': ['Kuri Hime Ayakashi Yobanashi', 'Kurimiko'],
+  'Galaxy Express 999': ['Chuyến Tàu Ngân Hà 999'],
+  'Record of Ragnarok': ['Đại Chiến Nhân Thần', 'Shuumatsu no Valkyrie'],
+  'Romelia War Chronicle': ['Romelia'],
+  'CONTROL Resonant': ['Control Resonant'],
 };
 // Tên quá chung chung, dễ khớp nhầm, không dùng để nhận diện
 const NO_MATCH = new Set(['big walk']);
