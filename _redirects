@@ -149,3 +149,7 @@
 # Bản EN trùng nội dung (2026-10-02): giữ trang slug tiếng Anh đầy đủ hơn
 /en/lien-he /en/contact 301
 /en/chinh-sach-bao-mat /en/privacy 301
+
+# Trang mẫu cũ với nội dung giả (Elden Ring DLC 2, tác giả không có thật) -> trang tin (2026-10-02)
+/bai-viet /news 301
+/en/bai-viet /en/news 301

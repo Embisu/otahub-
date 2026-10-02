@@ -513,7 +513,7 @@ async function handleGhPut(request, env, ghPath) {
   if (/\.html$/i.test(ghPath) && !isImageUpload) {
     content = content.replace(
       /\/assets\/enhance\.js(?:\?v=[^"']*)?/gi,
-      '/assets/enhance.js?v=20261002g'
+      '/assets/enhance.js?v=20261002h'
     );
     if (!/\/assets\/mobile-fix\.css(?:\?v=[^"']*)?/i.test(content) && /<\/head>/i.test(content)) {
       content = content.replace(

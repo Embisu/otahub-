@@ -2449,4 +2449,16 @@
     <loc>https://otahub.asia/en/top-list</loc>
     <lastmod>2026-10-02</lastmod>
   </url>
+  <url>
+    <loc>https://otahub.asia/en/review-standards</loc>
+    <lastmod>2026-10-02</lastmod>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/tag</loc>
+    <lastmod>2026-10-02</lastmod>
+  </url>
+  <url>
+    <loc>https://otahub.asia/tag</loc>
+    <lastmod>2026-10-02</lastmod>
+  </url>
 </urlset>

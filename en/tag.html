@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topics &amp; Tags · OtaHub</title>
+<link rel="alternate" hreflang="vi" href="https://otahub.asia/tag">
+<link rel="alternate" hreflang="en" href="https://otahub.asia/en/tag">
+<link rel="alternate" hreflang="x-default" href="https://otahub.asia/tag">
+<link rel="canonical" href="https://otahub.asia/en/tag">
+<meta name="description" content="Browse every OtaHub article, news story, review and deep dive by topic and tag.">
+<meta property="og:title" content="Topics &amp; Tags · OtaHub">
+<meta property="og:description" content="Browse every OtaHub article, news story, review and deep dive by topic and tag.">
+<meta property="og:url" content="https://otahub.asia/en/tag">
+<meta property="og:site_name" content="OtaHub.asia">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"></noscript><link rel="stylesheet" href="/assets/article-style.css?v=20261002e">
+<style>
+:root {
+  --bg: #070210;
+  --card-bg: rgba(21, 10, 44, 0.75);
+  --cyan: #00f2ff;
+  --sakura: #ff2177;
+  --violet: #7c3aed;
+  --text-muted: rgba(240, 238, 255, 0.6);
+  --border: rgba(255, 255, 255, 0.08);
+}
+body {
+  background: var(--bg);
+  color: #f0eeff;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.tag-hero-sec {
+  position: relative;
+  padding: 120px 24px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+.tag-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,242,255, 0.12);
+  border: 1px solid rgba(0,242,255, 0.35);
+  color: var(--cyan);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.tag-hero-title {
+  font-family:var(--fb);
+  font-size: clamp(28px, 4.5vw, 46px);
+  font-weight: 800;
+  margin: 0 0 12px;
+  line-height: 1.2;
+}
+.tag-hero-title span {
+  background: linear-gradient(135deg, var(--cyan), #9d4edd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.tag-hero-sub {
+  color: var(--text-muted);
+  font-size: 15px;
+  max-width: 600px;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+/* Tag Cloud */
+.tag-cloud-wrap {
+  margin-bottom: 36px;
+}
+.tag-cloud-lbl {
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(240, 238, 255, 0.5);
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+.tag-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  color: rgba(240, 238, 255, 0.8);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(.16,1,.3,1);
+  cursor: pointer;
+}
+.tag-chip:hover, .tag-chip.active {
+  background: rgba(0,242,255, 0.15);
+  border-color: var(--cyan);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,242,255, 0.25);
+}
+.tag-chip.active {
+  background: linear-gradient(135deg, var(--sakura), var(--violet));
+  border-color: transparent;
+}
+
+/* Filter bar */
+.tag-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.tag-search-input {
+  flex: 1;
+  min-width: 240px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 13.5px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.tag-search-input:focus {
+  border-color: var(--cyan);
+}
+.tag-count-badge {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Articles Grid */
+.tag-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 22px;
+  margin-bottom: 60px;
+}
+.tag-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.22s cubic-bezier(.16,1,.3,1), border-color 0.22s, box-shadow 0.22s;
+}
+.tag-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0,242,255, 0.45);
+  box-shadow: 0 12px 32px rgba(0,242,255, 0.15);
+}
+.tag-card-thumb-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #110826;
+  overflow: hidden;
+}
+.tag-card-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.tag-card:hover .tag-card-thumb {
+  transform: scale(1.05);
+}
+.tag-card-cat {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: linear-gradient(135deg, var(--sakura), var(--violet));
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.tag-card-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.tag-card-title {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.45;
+  margin: 0 0 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color 0.15s;
+}
+.tag-card:hover .tag-card-title {
+  color: var(--cyan);
+}
+.tag-card-excerpt {
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0 0 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+.tag-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: rgba(240, 238, 255, 0.45);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 12px;
+}
+.tag-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--card-bg);
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+  color: var(--text-muted);
+}
+.tag-empty-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
+<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002l">
+</head>
+<body>
+
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <input class="search-input" id="searchInput" type="text" placeholder="Search for games, anime, manga...">
+    <button class="search-close" onclick="closeSearch()">✕</button>
+  </div>
+  <div class="search-hint">Press ESC to close · Ctrl+K to open</div>
+  <div class="search-tags">
+    <a href="/en/gaming" class="stag">Gaming</a>
+    <a href="/en/anime" class="stag">Anime</a>
+    <a href="/en/manga" class="stag">Manga</a>
+    <a href="/en/reviews" class="stag">Reviews</a>
+    <a href="/en/rankings" class="stag">Rankings</a>
+  </div>
+</div>
+
+<div id="amb"><div class="orb o1"></div><div class="orb o2"></div></div>
+<div id="gtex"></div>
+<nav class="nav"><div class="nav-in"><a class="logo" href="/en/"><span><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block"></span><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/en/choi-gi">What to Play</a></li><li><a href="/en/gaming">Gaming</a></li><li><a href="/en/anime">Anime</a></li><li><a href="/en/manga">Manga</a></li><li><a href="/en/lich-phat-song">Schedule</a></li><li><a href="/en/reviews">Reviews</a></li><li><a href="/en/rankings">Rankings</a></li><li><a href="/en/in-depth">In-Depth</a></li></ul><button class="ham" id="ham" aria-label="Menu" onclick="toggleMob()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="Tìm kiếm" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="/en/#newsletter" class="cta" id="cta-sub">Subscribe</a></div></div></nav>
+<nav class="mobile-nav" id="mobnav">
+  <a href="/en/choi-gi">What to Play</a><a href="/en/gaming">Gaming</a><a href="/en/anime">Anime</a><a href="/en/manga">Manga</a><a href="/en/lich-phat-song">Schedule</a><a href="/en/reviews">Reviews</a><a href="/en/rankings">Rankings</a><a href="/en/in-depth">In-Depth</a><div class="m-sub"><a href="/en/about">About</a><a href="/en/#newsletter">Newsletter</a><a href="/en/contact">Contact</a></div>
+</nav>
+
+<main class="tag-hero-sec">
+  <div class="tag-hero-badge">🏷️ Topic Discovery Hub</div>
+  <h1 class="tag-hero-title">Topics &amp; tags: <span id="current-tag-label">All Articles</span></h1>
+  <p class="tag-hero-sub" id="current-tag-desc">Explore every article, top story and deep dive tagged by topic on OtaHub.</p>
+
+  <!-- Popular Tags Cloud -->
+  <div class="tag-cloud-wrap">
+    <div class="tag-cloud-lbl">🔥 MOST POPULAR TOPICS:</div>
+    <div class="tag-chips" id="popular-tags-container">
+      <button class="tag-chip active" data-tag="">🌟 All</button>
+      <button class="tag-chip" data-tag="One Piece">🏴‍☠️ One Piece</button>
+      <button class="tag-chip" data-tag="Madhouse">⛩️ Madhouse</button>
+      <button class="tag-chip" data-tag="MAPPA">🔥 MAPPA</button>
+      <button class="tag-chip" data-tag="Ufotable">⚔️ Ufotable</button>
+      <button class="tag-chip" data-tag="Genshin Impact">✨ Genshin Impact</button>
+      <button class="tag-chip" data-tag="Honkai: Star Rail">🚆 Honkai: Star Rail</button>
+      <button class="tag-chip" data-tag="Black Myth: Wukong">🐵 Wukong</button>
+      <button class="tag-chip" data-tag="Solo Leveling">🗡️ Solo Leveling</button>
+      <button class="tag-chip" data-tag="Chainsaw Man">🪚 Chainsaw Man</button>
+      <button class="tag-chip" data-tag="Jujutsu Kaisen">👁️ Jujutsu Kaisen</button>
+      <button class="tag-chip" data-tag="Frieren">🧝 Frieren</button>
+      <button class="tag-chip" data-tag="Nintendo Switch 2">🎮 Switch 2</button>
+      <button class="tag-chip" data-tag="GTA 6">🌴 GTA 6</button>
+      <button class="tag-chip" data-tag="Bleach">⚡ Bleach</button>
+      <button class="tag-chip" data-tag="Wuthering Waves">🌊 Wuthering Waves</button>
+      <button class="tag-chip" data-tag="Girls Frontline 2">🎯 Girls Frontline 2</button>
+      <button class="tag-chip" data-tag="Ghost of Yotei">🌸 Ghost of Yotei</button>
+    </div>
+  </div>
+
+  <!-- Search & Filter bar -->
+  <div class="tag-filter-bar">
+    <input type="text" id="tag-search-input" class="tag-search-input" placeholder="🔍 Filter articles by keyword or tag...">
+    <div class="tag-count-badge" id="tag-count-badge">Loading...</div>
+  </div>
+
+  <!-- Grid of articles -->
+  <div class="tag-grid" id="tag-articles-grid">
+    <div class="tag-empty">
+      <div class="tag-empty-icon">⏳</div>
+      <div>Loading articles from the OtaHub index...</div>
+    </div>
+  </div>
+</main>
+
+<script>
+(function(){
+  function getQueryTag() {
+    const params = new URLSearchParams(window.location.search);
+    return (params.get('q') || params.get('tag') || params.get('t') || '').trim();
+  }
+
+  function norm(str) {
+    return (str || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/['"’“”]/g, '').replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+
+  const tagLabel = document.getElementById('current-tag-label');
+  const tagDesc = document.getElementById('current-tag-desc');
+  const searchInput = document.getElementById('tag-search-input');
+  const grid = document.getElementById('tag-articles-grid');
+  const countBadge = document.getElementById('tag-count-badge');
+  const chips = document.querySelectorAll('.tag-chip');
+
+  let currentQuery = getQueryTag();
+
+  function updateTagView(query) {
+    currentQuery = query;
+    searchInput.value = query;
+
+    // Update active chip
+    chips.forEach(chip => {
+      const tagVal = chip.getAttribute('data-tag');
+      chip.classList.toggle('active', norm(tagVal) === norm(query) || (!tagVal && !query));
+    });
+
+    if (query) {
+      tagLabel.textContent = '#' + query;
+      tagDesc.textContent = `Every article, news story and update about "${query}".`;
+      document.title = `Topic: #${query} · OtaHub`;
+    } else {
+      tagLabel.textContent = 'All Articles';
+      tagDesc.textContent = 'Explore every article, top story and deep dive tagged by topic on OtaHub.';
+      document.title = 'Topics & Tags · OtaHub';
+    }
+
+    if (!window.IDX || !Array.isArray(window.IDX)) {
+      grid.innerHTML = '<div class="tag-empty"><div class="tag-empty-icon">⚠️</div><div>Could not load the article index. Please reload the page.</div></div>';
+      return;
+    }
+
+    // Filter articles
+    const qNorm = norm(query);
+    const SKIP_CATS = new Set(['Chuyên mục', 'Trang']);
+    
+    let matches = window.IDX.filter(item => {
+      const url = item.url || item.u || '';
+      const cat = item.cat || item.c || '';
+      if (!url || !url.startsWith('/en/') || SKIP_CATS.has(cat)) return false;
+      if (!qNorm) return true;
+      const title = item.title || item.t || '';
+      const excerpt = item.excerpt || item.s || '';
+      const tags = Array.isArray(item.tags) ? item.tags.join(' ') : (item.tags || '');
+
+      const tNorm = norm(title);
+      const sNorm = norm(excerpt);
+      const cNorm = norm(cat);
+      const uNorm = norm(url);
+      const tagNorm = norm(tags);
+
+      return tNorm.includes(qNorm) || sNorm.includes(qNorm) || cNorm.includes(qNorm) || uNorm.includes(qNorm) || tagNorm.includes(qNorm);
+    });
+
+    countBadge.textContent = `${matches.length} article${matches.length === 1 ? '' : 's'} found`;
+
+    if (!matches.length) {
+      grid.innerHTML = `
+        <div class="tag-empty">
+          <div class="tag-empty-icon">🔍</div>
+          <div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:6px">No matching articles</div>
+          <div>Nothing matches "${escapeHtml(query)}". Try another tag above!</div>
+        </div>`;
+      return;
+    }
+
+    grid.innerHTML = matches.map(item => {
+      const hero = item.img || item.hero || '/assets/img/placeholder.svg';
+      const cat = item.cat || item.c || 'News';
+      const title = item.title || item.t || 'Article';
+      const desc = item.excerpt || item.s || 'Read the full article on OtaHub...';
+      const rawUrl = item.url || item.u || '#';
+      const url = rawUrl.startsWith('/') ? rawUrl : '/' + rawUrl;
+
+      return `
+        <a href="${url}" class="tag-card">
+          <div class="tag-card-thumb-wrap">
+            <img height="675" width="1200" src="${hero}" alt="${escapeHtml(title)}" class="tag-card-thumb" loading="lazy" onerror="this.src='/assets/img/placeholder.svg'">
+            <span class="tag-card-cat">${escapeHtml(cat)}</span>
+          </div>
+          <div class="tag-card-body">
+            <h2 class="tag-card-title">${escapeHtml(title)}</h2>
+            <p class="tag-card-excerpt">${escapeHtml(desc)}</p>
+            <div class="tag-card-meta">
+              <span>⚡ OtaHub Editorial</span>
+              <span>Read more →</span>
+            </div>
+          </div>
+        </a>`;
+    }).join('');
+  }
+
+  function escapeHtml(str) {
+    return (str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  // Setup click on chips
+  chips.forEach(chip => {
+    chip.addEventListener('click', function() {
+      const tag = this.getAttribute('data-tag');
+      const newUrl = tag ? `/tag?q=${encodeURIComponent(tag)}` : '/tag';
+      window.history.pushState({}, '', newUrl);
+      updateTagView(tag);
+    });
+  });
+
+  // Search input typing
+  let searchTimer = null;
+  searchInput.addEventListener('input', function() {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      const val = this.value.trim();
+      const newUrl = val ? `/tag?q=${encodeURIComponent(val)}` : '/tag';
+      window.history.pushState({}, '', newUrl);
+      updateTagView(val);
+    }, 250);
+  });
+
+  // Listen to popstate
+  window.addEventListener('popstate', () => {
+    updateTagView(getQueryTag());
+  });
+
+  // Initial render when IDX is ready
+  function checkIdxReady() {
+    if (window.IDX && Array.isArray(window.IDX)) {
+      updateTagView(currentQuery);
+    } else {
+      setTimeout(checkIdxReady, 50);
+    }
+  }
+  checkIdxReady();
+})();
+</script>
+
+<footer><div class="ft-in"><div><a href="/en/" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">News, reviews and broadcast schedules for games, anime and manga, from Vietnam and across Asia.</p></div><div><div class="ft-h">Sections</div><ul class="ft-links"><li><a href="/en/news">Latest news</a></li><li><a href="/en/gaming">Gaming</a></li><li><a href="/en/anime">Anime</a></li><li><a href="/en/manga">Manga</a></li><li><a href="/en/lich-phat-song">Schedule</a></li><li><a href="/en/choi-gi">What to Play</a></li></ul></div><div><div class="ft-h">Reviews</div><ul class="ft-links"><li><a href="/en/reviews">All reviews</a></li><li><a href="/en/rankings">Rankings</a></li><li><a href="/en/in-depth">In-Depth</a></li><li><a href="/en/review-standards">Review standards</a></li></ul></div><div><div class="ft-h">About OtaHub</div><ul class="ft-links"><li><a href="/en/about">About us</a></li><li><a href="/en/about#team">Team</a></li><li><a href="/en/contact">Contact</a></li><li><a href="/en/privacy">Privacy policy</a></li><li><a href="/en/#newsletter">Newsletter</a></li><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Gaming, anime &amp; manga news</span></div></footer>
+
+<script>
+function toggleMob(){
+  var h=document.getElementById('ham')||document.getElementById('hamBtn');
+  var m=document.getElementById('mobnav')||document.getElementById('mobileNav');
+  if(!m)return;
+  var open=m.classList.toggle('open');
+  if(h)h.classList.toggle('open',open);
+  document.body.style.overflow=open?'hidden':'';
+}
+function toggleMobileNav(){toggleMob();}
+function openSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.add('open');setTimeout(function(){var i=document.getElementById('searchInput');if(i)i.focus();},50);document.body.style.overflow='hidden';}}
+function closeSearch(){var o=document.getElementById('searchOverlay');if(o){o.classList.remove('open');var i=document.getElementById('searchInput');if(i)i.value='';document.body.style.overflow='';}}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSearch();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch();}});
+var _sO=document.getElementById('searchOverlay');if(_sO){_sO.addEventListener('click',function(e){if(e.target===this)closeSearch();});}
+</script>
+<script defer src="/assets/search.js?v=20261001"></script>
+<script defer src="/assets/search-redirect.js?v=20261002a"></script>
+
+<script defer src="/assets/img-fit.v2.js?v=20261002a"></script>
+<script src="/assets/lang-switch.js" defer></script>
+</body>
+</html>

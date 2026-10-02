@@ -2409,100 +2409,28 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 <script>
 
 
-const ANIME={
-
-  summer:[
-    {title:'Mushoku Tensei: Jobless Reincarnation Season 3',genre:'Isekai / Fantasy',score:'',day:'Chủ Nhật',ep:'Đang chiếu',status:'airing',img:'/assets/img/93dc86c38d-117776l.jpg'},
-    {title:'Bleach: Thousand-Year Blood War – The Calamity',genre:'Action / Shonen',score:'',day:'Thứ Bảy',ep:'Tập cuối 26/9',status:'airing',img:'/assets/img/bleach-tybw-poster.jpg'},
-    {title:'Re:Zero Season 4 (Recapture Part)',genre:'Isekai / Drama',score:'',day:'Thứ Tư',ep:'Tập 18/19',status:'airing',img:'/assets/img/087af8ed98-rezero-s4-hero.jpg'},
-    {title:'The Ghost in the Shell (2026)',genre:'Sci-Fi / Seinen',score:'',day:'Hoàn tất',ep:'10/10 tập',status:'done',img:'/assets/img/poster-real-ghost-in-the-shell-2026.jpg'},
-    {title:'Youjo Senki II',genre:'Military / Isekai',score:'',day:'Hoàn tất',ep:'12/12 tập',status:'done',img:'/assets/img/poster-real-youjo-senki-ii.jpg'},
-  ],
-
-  spring:[
-    {title:'One Piece (Mùa mới - TV Series)',genre:'Adventure / Shonen',score:'',day:'Chủ Nhật',ep:'Đang chiếu',status:'airing',img:'/assets/img/d653b4c00a-one-piece-hero.jpg'},
-  ],
-
-  winter:[
-    {title:'Sousou no Frieren Season 2',genre:'Fantasy',score:'',day:'Hoàn tất',ep:'10/10 tập',status:'done',img:'/assets/img/4a7324f467-138006l.jpg'},
-    {title:'Jujutsu Kaisen Season 3 (Culling Game Part 1)',genre:'Action / Supernatural',score:'',day:'Hoàn tất',ep:'12/12 tập',status:'done',img:'/assets/img/a4d82e012d-138022l.jpg'},
-  ],
-
-  fall:[
-    {title:'The Apothecary Diaries Season 3',genre:'Mystery / Drama',score:'',day:'Thứ Sáu 2/10',ep:'Sắp ra',status:'soon',img:'/assets/img/ba56514692-apothecary-diaries-s3-key-visual.jpg'},
-    {title:'Tokyo Revengers: Three Deities Arc',genre:'Action / Drama',score:'',day:'Thứ Sáu 2/10',ep:'Sắp ra',status:'soon',img:'/assets/img/poster-real-tokyo-revengers-santen.jpg'},
-    {title:'Tougen Anki Season 2',genre:'Action / Supernatural',score:'',day:'Thứ Sáu 2/10',ep:'Sắp ra',status:'soon',img:'/assets/img/poster-real-tougen-anki-s2.jpg'},
-    {title:'Black Clover Season 2',genre:'Action / Fantasy',score:'',day:'Thứ Bảy 3/10',ep:'Sắp ra',status:'soon',img:'/assets/img/00ecd3dafc-banner.jpg'},
-    {title:'Ranma 1/2 Season 3',genre:'Comedy / Romance',score:'',day:'Thứ Bảy 3/10',ep:'Sắp ra',status:'soon',img:'/assets/img/news-ranma-half-season-3-visual.jpg'},
-    {title:'Magic Knight Rayearth (2026)',genre:'Fantasy / Adventure',score:'',day:'Thứ Tư 7/10',ep:'Sắp ra',status:'soon',img:'/assets/img/poster-real-magic-knight-rayearth-2026.jpg'},
-    {title:'Reincarnated as a Sword Season 2',genre:'Isekai / Action',score:'',day:'Thứ Tư 7/10',ep:'Sắp ra',status:'soon',img:'/assets/img/ae00527a02-reincarnated-as-a-sword-s2-hero.jpg'},
-    {title:'Cyberpunk: Edgerunners 2',genre:'Sci-Fi / Action',score:'',day:'Thứ Ba 20/10',ep:'Sắp ra',status:'soon',img:'/assets/img/poster-real-cyberpunk-edgerunners-2.jpg'},
-  ],
-
-};
-
-
-function resolveAnimeHref(title){
-
-
-  return '/anime-detail?t=' + encodeURIComponent(title);
-
-
-}
-
-
-
-
-
+/* Anime theo mùa: dữ liệu lịch đã kiểm chứng dùng chung với trang Lịch phát sóng (assets/schedule-data.js) */
 function renderAnime(season){
-
-
-  const grid=document.getElementById('anime-grid');
-
-
-  grid.innerHTML=ANIME[season].map(a=>`
-
-
-    <a href="${resolveAnimeHref(a.title)}" class="anime-card">
-
-
-      <div class="an-poster">
-
-
-        <img height="675" width="1200" src="${otThumb(a.img)}" alt="${a.title}" loading="lazy"/>
-
-
-        <span class="an-ep">${a.ep}</span>
-
-
-        <span class="an-status ${a.status==='airing'?'st-airing':a.status==='done'?'st-done':'st-soon'}">${a.status==='airing'?'Đang chiếu':a.status==='done'?'Hoàn tất':'Sắp ra'}</span>
-
-
-      </div>
-
-
-      <div class="an-body">
-
-
-        <div class="an-genre" style="color:var(--sakura)">${a.genre}</div>
-
-
-        <div class="an-title">${a.title}</div>
-
-
-        <div class="an-meta"><span class="an-score-num">${a.score}</span><span class="an-day">${a.day}</span></div>
-
-
-      </div>
-
-
-    </a>`).join('');
-
-
+  var D = window.OT_SCHEDULE, grid = document.getElementById('anime-grid');
+  if (!D || !grid) return;
+  var DAYS = ['CN','T2','T3','T4','T5','T6','T7'], today = new Date(Date.now() + 7 * 3600e3).toISOString().slice(0, 10);
+  var esc = function(x){ return String(x == null ? '' : x).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+  var list = (D.seasons[season] || []).filter(function(a){ return a.y === 'tv' || a.y === 'ona'; })
+    .sort(function(a, b){ return (b.i ? 1 : 0) - (a.i ? 1 : 0) || (a.d < b.d ? -1 : 1); }).slice(0, 8);
+  grid.innerHTML = list.map(function(a){
+    var st = a.d > today ? ['st-soon', 'Sắp chiếu'] : (season === D.current ? ['st-airing', 'Đang chiếu'] : ['st-done', 'Đã chiếu']);
+    var dow = DAYS[new Date(a.d + 'T00:00:00Z').getUTCDay()];
+    var p = a.d.split('-'), href = a.l ? (a.l) : '';
+    var poster = a.i ? '<img src="' + esc(otThumb(a.i)) + '" alt="' + esc(a.t) + '" loading="lazy" width="640" height="360"/>'
+      : '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:800 42px var(--fd);color:rgba(255,255,255,.8);background:linear-gradient(140deg,rgba(124,58,237,.55),rgba(255,33,119,.35))">' + esc(a.t.charAt(0)) + '</div>';
+    var tag = href ? 'a' : 'article';
+    return '<' + tag + ' class="anime-card"' + (href ? ' href="' + esc(href) + '" style="text-decoration:none"' : '') + '><div class="an-poster">' + poster +
+      '<span class="an-ep">' + dow + (a.h ? ' · ' + a.h : '') + '</span><span class="an-status ' + st[0] + '">' + st[1] + '</span></div>' +
+      '<div class="an-body"><div class="an-genre" style="color:var(--sakura)">' + esc(a.s) + '</div><div class="an-title">' + esc(a.t) + '</div>' +
+      '<div class="an-meta"><span class="an-day">Ra mắt ' + (+p[2]) + '/' + (+p[1]) + '</span><span class="an-day">' + (a.y === 'ona' ? 'ONA' : 'TV') + '</span></div></div></' + tag + '>';
+  }).join('');
 }
-
-
-renderAnime('fall');
+document.addEventListener('DOMContentLoaded', function(){ renderAnime('fall'); });
 
 
 function setTab(btn,season){document.querySelectorAll('.s-tab').forEach(t=>t.classList.remove('on'));btn.classList.add('on');renderAnime(season);}
@@ -2608,10 +2536,11 @@ document.querySelectorAll('.rk-card').forEach(c=>barObs.observe(c));
 
 
 
-<script defer src="/assets/search-redirect.js"></script>
+<script defer src="/assets/search-redirect.js?v=20261002a"></script>
 
 
-<script defer src="/assets/enhance.js?v=20261002g"></script>
+<script defer src="/assets/schedule-data.js?v=20261002a"></script>
+<script defer src="/assets/enhance.js?v=20261002h"></script>
 
 
 

@@ -8,6 +8,7 @@
     if (e.key !== 'Enter') return;
     e.preventDefault();
     var q = this.value.trim();
-    window.location.href = q ? '/tag?q=' + encodeURIComponent(q) : '/tag';
+    var base = location.pathname.indexOf('/en/') === 0 || location.pathname === '/en' ? '/en/tag' : '/tag'; // trang tag đúng ngôn ngữ
+    window.location.href = q ? base + '?q=' + encodeURIComponent(q) : base;
   });
 })();

@@ -2264,107 +2264,34 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 </section>
 
 
-<footer><div class="ft-in"><div><a href="/en/" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">News, reviews and broadcast schedules for games, anime and manga, from Vietnam and across Asia.</p></div><div><div class="ft-h">Sections</div><ul class="ft-links"><li><a href="/en/news">Latest news</a></li><li><a href="/en/gaming">Gaming</a></li><li><a href="/en/anime">Anime</a></li><li><a href="/en/manga">Manga</a></li><li><a href="/en/lich-phat-song">Schedule</a></li><li><a href="/en/choi-gi">What to Play</a></li></ul></div><div><div class="ft-h">Reviews</div><ul class="ft-links"><li><a href="/en/reviews">All reviews</a></li><li><a href="/en/rankings">Rankings</a></li><li><a href="/en/in-depth">In-Depth</a></li></ul></div><div><div class="ft-h">About OtaHub</div><ul class="ft-links"><li><a href="/en/about">About us</a></li><li><a href="/en/about#team">Team</a></li><li><a href="/en/contact">Contact</a></li><li><a href="/en/privacy">Privacy policy</a></li><li><a href="/en/#newsletter">Newsletter</a></li><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Gaming, anime &amp; manga news</span></div></footer>
+<footer><div class="ft-in"><div><a href="/en/" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">News, reviews and broadcast schedules for games, anime and manga, from Vietnam and across Asia.</p></div><div><div class="ft-h">Sections</div><ul class="ft-links"><li><a href="/en/news">Latest news</a></li><li><a href="/en/gaming">Gaming</a></li><li><a href="/en/anime">Anime</a></li><li><a href="/en/manga">Manga</a></li><li><a href="/en/lich-phat-song">Schedule</a></li><li><a href="/en/choi-gi">What to Play</a></li></ul></div><div><div class="ft-h">Reviews</div><ul class="ft-links"><li><a href="/en/reviews">All reviews</a></li><li><a href="/en/rankings">Rankings</a></li><li><a href="/en/in-depth">In-Depth</a></li><li><a href="/en/review-standards">Review standards</a></li></ul></div><div><div class="ft-h">About OtaHub</div><ul class="ft-links"><li><a href="/en/about">About us</a></li><li><a href="/en/about#team">Team</a></li><li><a href="/en/contact">Contact</a></li><li><a href="/en/privacy">Privacy policy</a></li><li><a href="/en/#newsletter">Newsletter</a></li><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Gaming, anime &amp; manga news</span></div></footer>
 
 
 <script>
 
 
-const ANIME={
-
-  summer:[
-    {title:'Mushoku Tensei: Jobless Reincarnation Season 3',genre:'Isekai / Fantasy',score:'',day:'Sunday',ep:'Airing',status:'airing',img:'/assets/img/93dc86c38d-117776l.jpg'},
-    {title:'Bleach: Thousand-Year Blood War – The Calamity',genre:'Action / Shounen',score:'',day:'Saturday',ep:'Finale Sep 26',status:'airing',img:'/assets/img/bleach-tybw-poster.jpg'},
-    {title:'Re:Zero Season 4 (Recapture Part)',genre:'Isekai / Drama',score:'',day:'Wednesday',ep:'Ep 18/19',status:'airing',img:'/assets/img/087af8ed98-rezero-s4-hero.jpg'},
-    {title:'The Ghost in the Shell (2026)',genre:'Sci-Fi / Seinen',score:'',day:'Completed',ep:'10/10 Ep',status:'done',img:'/assets/img/poster-real-ghost-in-the-shell-2026.jpg'},
-    {title:'Youjo Senki II',genre:'Military / Isekai',score:'',day:'Completed',ep:'12/12 Ep',status:'done',img:'/assets/img/poster-real-youjo-senki-ii.jpg'},
-  ],
-
-  spring:[
-    {title:'One Piece (New TV Season)',genre:'Adventure / Shounen',score:'',day:'Sunday',ep:'Airing',status:'airing',img:'/assets/img/d653b4c00a-one-piece-hero.jpg'},
-  ],
-
-  winter:[
-    {title:'Sousou no Frieren Season 2',genre:'Fantasy',score:'',day:'Completed',ep:'10/10 Ep',status:'done',img:'/assets/img/4a7324f467-138006l.jpg'},
-    {title:'Jujutsu Kaisen Season 3 (Culling Game Part 1)',genre:'Action / Supernatural',score:'',day:'Completed',ep:'12/12 Ep',status:'done',img:'/assets/img/a4d82e012d-138022l.jpg'},
-  ],
-
-  fall:[
-    {title:'The Apothecary Diaries Season 3',genre:'Mystery / Drama',score:'',day:'Fri Oct 2',ep:'Coming soon',status:'soon',img:'/assets/img/ba56514692-apothecary-diaries-s3-key-visual.jpg'},
-    {title:'Tokyo Revengers: Three Deities Arc',genre:'Action / Drama',score:'',day:'Fri Oct 2',ep:'Coming soon',status:'soon',img:'/assets/img/poster-real-tokyo-revengers-santen.jpg'},
-    {title:'Tougen Anki Season 2',genre:'Action / Supernatural',score:'',day:'Fri Oct 2',ep:'Coming soon',status:'soon',img:'/assets/img/poster-real-tougen-anki-s2.jpg'},
-    {title:'Black Clover Season 2',genre:'Action / Fantasy',score:'',day:'Sat Oct 3',ep:'Coming soon',status:'soon',img:'/assets/img/00ecd3dafc-banner.jpg'},
-    {title:'Ranma 1/2 Season 3',genre:'Comedy / Romance',score:'',day:'Sat Oct 3',ep:'Coming soon',status:'soon',img:'/assets/img/news-ranma-half-season-3-visual.jpg'},
-    {title:'Magic Knight Rayearth (2026)',genre:'Fantasy / Adventure',score:'',day:'Wed Oct 7',ep:'Coming soon',status:'soon',img:'/assets/img/poster-real-magic-knight-rayearth-2026.jpg'},
-    {title:'Reincarnated as a Sword Season 2',genre:'Isekai / Action',score:'',day:'Wed Oct 7',ep:'Coming soon',status:'soon',img:'/assets/img/ae00527a02-reincarnated-as-a-sword-s2-hero.jpg'},
-    {title:'Cyberpunk: Edgerunners 2',genre:'Sci-Fi / Action',score:'',day:'Tue Oct 20',ep:'Coming soon',status:'soon',img:'/assets/img/poster-real-cyberpunk-edgerunners-2.jpg'},
-  ],
-
-
-};
-
-
-function resolveAnimeHref(title){
-
-
-  return '/en/anime-detail?t=' + encodeURIComponent(title);
-
-
-}
-
-
-
-
-
+/* Anime theo mùa: dữ liệu lịch đã kiểm chứng dùng chung với trang Lịch phát sóng (assets/schedule-data.js) */
 function renderAnime(season){
-
-
-  const grid=document.getElementById('anime-grid');
-
-
-  grid.innerHTML=ANIME[season].map(a=>`
-
-
-    <a href="${resolveAnimeHref(a.title)}" class="anime-card">
-
-
-      <div class="an-poster">
-
-
-        <img height="675" width="1200" src="${otThumb(a.img)}" alt="${a.title}" loading="lazy"/>
-
-
-        <span class="an-ep">${a.ep}</span>
-
-
-        <span class="an-status ${a.status==='airing'?'st-airing':a.status==='done'?'st-done':'st-soon'}">${a.status==='airing'?'Currently showing':a.status==='done'?'Completed':'Coming soon'}</span>
-
-
-      </div>
-
-
-      <div class="an-body">
-
-
-        <div class="an-genre" style="color:var(--sakura)">${a.genre}</div>
-
-
-        <div class="an-title">${a.title}</div>
-
-
-        <div class="an-meta"><span class="an-score-num">${a.score}</span><span class="an-day">${a.day}</span></div>
-
-
-      </div>
-
-
-    </a>`).join('');
-
-
+  var D = window.OT_SCHEDULE, grid = document.getElementById('anime-grid');
+  if (!D || !grid) return;
+  var DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], today = new Date(Date.now() + 7 * 3600e3).toISOString().slice(0, 10);
+  var esc = function(x){ return String(x == null ? '' : x).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+  var list = (D.seasons[season] || []).filter(function(a){ return a.y === 'tv' || a.y === 'ona'; })
+    .sort(function(a, b){ return (b.i ? 1 : 0) - (a.i ? 1 : 0) || (a.d < b.d ? -1 : 1); }).slice(0, 8);
+  grid.innerHTML = list.map(function(a){
+    var st = a.d > today ? ['st-soon', 'Upcoming'] : (season === D.current ? ['st-airing', 'Airing'] : ['st-done', 'Aired']);
+    var dow = DAYS[new Date(a.d + 'T00:00:00Z').getUTCDay()];
+    var p = a.d.split('-'), href = a.le ? (a.le) : '';
+    var poster = a.i ? '<img src="' + esc(otThumb(a.i)) + '" alt="' + esc(a.t) + '" loading="lazy" width="640" height="360"/>'
+      : '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:800 42px var(--fd);color:rgba(255,255,255,.8);background:linear-gradient(140deg,rgba(124,58,237,.55),rgba(255,33,119,.35))">' + esc(a.t.charAt(0)) + '</div>';
+    var tag = href ? 'a' : 'article';
+    return '<' + tag + ' class="anime-card"' + (href ? ' href="' + esc(href) + '" style="text-decoration:none"' : '') + '><div class="an-poster">' + poster +
+      '<span class="an-ep">' + dow + (a.h ? ' · ' + a.h : '') + '</span><span class="an-status ' + st[0] + '">' + st[1] + '</span></div>' +
+      '<div class="an-body"><div class="an-genre" style="color:var(--sakura)">' + esc(a.s) + '</div><div class="an-title">' + esc(a.t) + '</div>' +
+      '<div class="an-meta"><span class="an-day">Premieres ' + (+p[2]) + '/' + (+p[1]) + '</span><span class="an-day">' + (a.y === 'ona' ? 'ONA' : 'TV') + '</span></div></div></' + tag + '>';
+  }).join('');
 }
-
-
-renderAnime('fall');
+document.addEventListener('DOMContentLoaded', function(){ renderAnime('fall'); });
 
 
 function setTab(btn,season){document.querySelectorAll('.s-tab').forEach(t=>t.classList.remove('on'));btn.classList.add('on');renderAnime(season);}
@@ -2470,10 +2397,11 @@ document.querySelectorAll('.rk-card').forEach(c=>barObs.observe(c));
 
 
 
-<script defer src="/assets/search-redirect.js"></script>
+<script defer src="/assets/search-redirect.js?v=20261002a"></script>
 
 
-<script defer src="/assets/enhance.js?v=20261002g"></script>
+<script defer src="/assets/schedule-data.js?v=20261002a"></script>
+<script defer src="/assets/enhance.js?v=20261002h"></script>
 
 
 

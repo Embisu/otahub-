@@ -30,7 +30,7 @@ const FOOTER = {
       ['Về OtaHub', [['/about', 'Giới thiệu'], ['/about#team', 'Đội ngũ'], ['/lien-he', 'Liên hệ'], ['/chinh-sach-bao-mat', 'Chính sách bảo mật'], ['/#newsletter', 'Bản tin'], ['/feed.xml', 'RSS Feed']]]] },
   en: { home: '/en/', desc: 'News, reviews and broadcast schedules for games, anime and manga, from Vietnam and across Asia.', copy: '© 2026 OtaHub.asia · Gaming, anime &amp; manga news',
     cols: [['Sections', [['/en/news', 'Latest news'], ['/en/gaming', 'Gaming'], ['/en/anime', 'Anime'], ['/en/manga', 'Manga'], ['/en/lich-phat-song', 'Schedule'], ['/en/choi-gi', 'What to Play']]],
-      ['Reviews', [['/en/reviews', 'All reviews'], ['/en/rankings', 'Rankings'], ['/en/in-depth', 'In-Depth']]],
+      ['Reviews', [['/en/reviews', 'All reviews'], ['/en/rankings', 'Rankings'], ['/en/in-depth', 'In-Depth'], ['/en/review-standards', 'Review standards']]],
       ['About OtaHub', [['/en/about', 'About us'], ['/en/about#team', 'Team'], ['/en/contact', 'Contact'], ['/en/privacy', 'Privacy policy'], ['/en/#newsletter', 'Newsletter'], ['/feed.xml', 'RSS Feed']]]] }
 };
 
@@ -68,7 +68,8 @@ const activeOf = (block, lang) => {
   const href = m && norm(m[1] || m[2]);
   return href && NAV[lang].some(([u]) => norm(u) === href) ? href : null;
 };
-const langOfBlock = (block, fallback) => fallback === 'en' ? 'en' : (/href="\/en[\/"#]/.test(block) ? 'en' : /href="\/(?!en[\/"#])/.test(block) ? 'vi' : fallback);
+// Ngôn ngữ theo đường dẫn trang; riêng admin.html ("mixed") chứa mẫu cả VI lẫn EN nên đoán theo link trong từng khối
+const langOfBlock = (block, pageLang) => (pageLang !== 'mixed' ? pageLang : /href="\/en[\/"#]/.test(block) ? 'en' : 'vi');
 
 function syncHtml(html, pageLang) {
   // menu ngang
@@ -96,7 +97,7 @@ function syncHtml(html, pageLang) {
   // nút Đăng ký
   html = html.replace(/<a\b([^>]*)\bclass="cta"([^>]*)>[^<]*<\/a>/g, (a, pre, post) => {
     if (!/newsletter/.test(a)) return a; // vd. trang 404: nút "Về trang chủ"
-    const lang = /href="\/en/.test(a) ? 'en' : pageLang;
+    const lang = pageLang === 'mixed' ? (/href="\/en/.test(a) ? 'en' : 'vi') : pageLang;
     const attrs = (pre + post).replace(/\s*href="[^"]*"/, '').trim();
     return `<a href="${CTA[lang][0]}" class="cta"${attrs ? ' ' + attrs : ''}>${CTA[lang][1]}</a>`;
   });
@@ -118,7 +119,7 @@ const files = [...walk(''), ...['article-nav.html', 'article-nav.en.html', 'arti
 
 let changed = 0;
 for (const f of files) {
-  const lang = /^en\/|\.en\.html$/.test(f) ? 'en' : 'vi';
+  const lang = f === 'admin.html' ? 'mixed' : /^en\/|\.en\.html$/.test(f) ? 'en' : 'vi';
   const before = fs.readFileSync(rel(f), 'utf8');
   const after = syncHtml(before, lang);
   if (after === before) continue;

@@ -240,13 +240,13 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
       
       // If it is already an <a> tag
       if (el.tagName.toLowerCase() === 'a') {
-        el.href = '/tag?q=' + encodeURIComponent(tagText);
+        el.href = (location.pathname.indexOf('/en/') === 0 ? '/en' : '') + '/tag?q=' + encodeURIComponent(tagText);
       } else if (!el.closest('a')) {
         // If not wrapped in an anchor, convert to clickable tag link
         el.style.cursor = 'pointer';
         el.addEventListener('click', function(e) {
           e.preventDefault();
-          window.location.href = '/tag?q=' + encodeURIComponent(tagText);
+          window.location.href = (location.pathname.indexOf('/en/') === 0 ? '/en' : '') + '/tag?q=' + encodeURIComponent(tagText);
         });
       }
     });
@@ -746,6 +746,6 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
       if (inp) setTimeout(function(){ inp.focus(); }, 50);
       return;
     }
-    location.href = '/tag';
+    location.href = /^\/en(\/|$)/.test(location.pathname) ? '/en/tag' : '/tag';
   };
 })();
