@@ -1752,7 +1752,8 @@ function buildHtml(lang, old) {
   const first = items.find((x) => x.reviewed) || items[0];
 
   const NAV_FALLBACK = `<nav class="nav"><div class="nav-in"><a href="${prefix}/" class="logo"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"></ul><button class="ham" id="hamBtn" aria-label="Menu" onclick="toggleMobileNav()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="${t.searchLabel}" onclick="openSearch()"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="${prefix}/#newsletter" class="cta" id="cta-sub">${isEn ? 'Subscribe' : 'Đăng ký'}</a></div></div></nav>`;
-  const nav = keepBlock(old, /<nav class="nav">[\s\S]*?<\/nav>/, NAV_FALLBACK);
+  // Giữ luôn dải nổi bật trên điện thoại (nav-hot-m) nếu sync-site-chrome.mjs đã chèn ngay sau menu
+  const nav = keepBlock(old, /<nav class="nav">[\s\S]*?<\/nav>(?:<style data-hot-m>[\s\S]*?<\/style><a [^>]*class="nav-hot-m"[\s\S]*?<\/a>)?/, NAV_FALLBACK);
   const mobileNav = keepBlock(old, /<div class="mobile-nav" id="mobileNav">[\s\S]*?\n<\/div>/, '<div class="mobile-nav" id="mobileNav">\n</div>');
   const footer = keepBlock(old, /<footer>[\s\S]*?<\/footer>/, '<footer></footer>');
 
