@@ -2380,9 +2380,17 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     .pick-media::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 70% at 50% 45%, transparent 40%, rgba(7, 3, 20, .55) 100%); }
     .pick-img { position: absolute; inset: 24px; width: calc(100% - 48px); height: calc(100% - 48px); object-fit: contain; filter: drop-shadow(0 22px 40px rgba(0, 0, 0, .65)); z-index: 1; }
     .pick-media::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, transparent 78%, rgba(14, 7, 34, .55)); }
+    /* Ảnh ngang: ảnh nằm trên (khung 21:9 chỉ xén nhẹ mép), nội dung bên dưới */
+    .pick.is-wide { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+    .pick.is-wide .pick-media { min-height: 0; aspect-ratio: 21 / 9; }
     .pick.is-wide .pick-img { inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; filter: none; }
     .pick.is-wide .pick-bg { display: none; }
-    .pick.is-wide .pick-media::before { background: linear-gradient(to top, rgba(7, 3, 20, .6), transparent 55%); z-index: 1; }
+    .pick.is-wide .pick-media::before { background: linear-gradient(to top, rgba(14, 7, 34, .7), transparent 45%); z-index: 1; }
+    .pick.is-wide .pick-media::after { background: none; }
+    .pick.is-wide .pick-body { padding: 20px 28px 26px; justify-content: flex-start; }
+    .pick.is-wide .pick-title { font-size: clamp(24px, 2.4vw, 30px); }
+    .pick.is-wide .pick-facts { grid-template-columns: repeat(2, minmax(0, 220px)); }
+    .pick.is-wide .pick-actions { margin-top: auto; padding-top: 20px; }
     .pick-type { position: absolute; z-index: 2; left: 16px; top: 16px; font-family: var(--fd); font-size: 11.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #0b0418; background: var(--acc); padding: 5px 11px; border-radius: 8px; }
     .pick-body { position: relative; padding: 26px 28px; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
     .pick-body::before { content: ''; position: absolute; right: -80px; top: -80px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--acc) 22%, transparent), transparent 70%); pointer-events: none; }
@@ -2533,6 +2541,7 @@ ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</
     @media (max-width: 640px) {
       .pick { grid-template-columns: 1fr; }
       .pick-media { min-height: 0; aspect-ratio: 4 / 3; }
+      .pick.is-wide .pick-media { aspect-ratio: 16 / 9; }
       .pick-img { inset: 16px; width: calc(100% - 32px); height: calc(100% - 32px); }
       .pick-media::after { background: linear-gradient(to top, rgba(16, 8, 40, .9), transparent 32%); }
       .pick-body { padding: 20px 18px 22px; }
