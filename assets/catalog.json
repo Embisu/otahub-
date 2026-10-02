@@ -25452,7 +25452,31 @@
         "value": "Yasuharu Takanashi"
       }
     ],
-    "scoreSource": null
+    "scoreSource": null,
+    "meta": {
+      "ja": "終末のワルキューレ",
+      "romaji": "Shuumatsu no Valkyrie",
+      "en": "Record of Ragnarok",
+      "format": "ONA",
+      "episodes": 12,
+      "season": "SPRING",
+      "year": 2021,
+      "source": "MANGA",
+      "staff": [
+        {
+          "role": "Director",
+          "name": "Masao Ookubo"
+        },
+        {
+          "role": "Series Composition",
+          "name": "Kazuyuki Fudeyasu"
+        },
+        {
+          "role": "Character Design",
+          "name": "Masaki Satou"
+        }
+      ]
+    }
   },
   "Lycoris Recoil": {
     "type": "anime",
@@ -25511,7 +25535,30 @@
         "value": "Shūhei Mutsuki"
       }
     ],
-    "scoreSource": null
+    "scoreSource": null,
+    "meta": {
+      "ja": "リコリス・リコイル",
+      "en": "Lycoris Recoil",
+      "format": "TV",
+      "episodes": 13,
+      "season": "SUMMER",
+      "year": 2022,
+      "source": "ORIGINAL",
+      "staff": [
+        {
+          "role": "Director",
+          "name": "Shingo Adachi"
+        },
+        {
+          "role": "Series Composition",
+          "name": "Shingo Adachi"
+        },
+        {
+          "role": "Character Design",
+          "name": "Muru Imigi"
+        }
+      ]
+    }
   },
   "Galaxy Express 999": {
     "type": "anime",
@@ -25574,7 +25621,31 @@
         "value": "Rintaro"
       }
     ],
-    "scoreSource": null
+    "scoreSource": null,
+    "meta": {
+      "ja": "銀河鉄道９９９",
+      "romaji": "Ginga Tetsudou 999",
+      "en": "Galaxy Express 999",
+      "format": "TV",
+      "episodes": 113,
+      "season": "FALL",
+      "year": 1978,
+      "source": "MANGA",
+      "staff": [
+        {
+          "role": "Original Creator",
+          "name": "Leiji Matsumoto"
+        },
+        {
+          "role": "Character Design",
+          "name": "Shingo Araki"
+        },
+        {
+          "role": "Music",
+          "name": "Nozomi Aoki"
+        }
+      ]
+    }
   },
   "Chiikawa": {
     "type": "anime",
@@ -25637,7 +25708,30 @@
         "value": "Mezamashi TV (Fuji TV)"
       }
     ],
-    "scoreSource": null
+    "scoreSource": null,
+    "meta": {
+      "ja": "映画ちいかわ 人魚の島のひみつ",
+      "romaji": "Chiikawa: Ningyo no Shima no Himitsu",
+      "format": "MOVIE",
+      "episodes": 1,
+      "season": "SUMMER",
+      "year": 2026,
+      "source": "MANGA",
+      "staff": [
+        {
+          "role": "Original Creator",
+          "name": "Nagano"
+        },
+        {
+          "role": "Director",
+          "name": "Kei Oikawa"
+        },
+        {
+          "role": "Character Design",
+          "name": "Tomoko Tsuji"
+        }
+      ]
+    }
   },
   "Food Wars!": {
     "type": "manga",
@@ -25700,7 +25794,33 @@
         "value": "J.C.Staff, 5 mùa (2015–2020)"
       }
     ],
-    "scoreSource": null
+    "scoreSource": null,
+    "meta": {
+      "ja": "食戟のサンジ",
+      "romaji": "Shokugeki no Sanji",
+      "en": "One Piece: Shokugeki no Sanji",
+      "format": "MANGA",
+      "volumes": 1,
+      "year": 2018,
+      "staff": [
+        {
+          "role": "Story",
+          "name": "Yuki Morisaki"
+        },
+        {
+          "role": "Story",
+          "name": "Yuuto Tsukuda"
+        },
+        {
+          "role": "Art",
+          "name": "Shun Saeki"
+        },
+        {
+          "role": "Original Creator",
+          "name": "Eiichirou Oda"
+        }
+      ]
+    }
   },
   "Kuri-hime: Ayakashi Yobanashi": {
     "type": "manga",
@@ -25817,7 +25937,26 @@
         "value": "Masatoshi Tsuji"
       }
     ],
-    "scoreSource": null
+    "scoreSource": null,
+    "meta": {
+      "ja": "おでかけホロライブ",
+      "format": "TV",
+      "source": "ORIGINAL",
+      "staff": [
+        {
+          "role": "Director",
+          "name": "Shunsuke Machiya"
+        },
+        {
+          "role": "Character Design",
+          "name": "Masatoshi  Tsuji"
+        },
+        {
+          "role": "Series Composition",
+          "name": "Koudai Minami"
+        }
+      ]
+    }
   },
   "Romelia War Chronicle": {
     "type": "anime",
@@ -25880,7 +26019,30 @@
         "value": "Kohta Yamamoto"
       }
     ],
-    "scoreSource": null
+    "scoreSource": null,
+    "meta": {
+      "ja": "ロメリア戦記 〜魔王を倒した後も人類やばそうだから軍隊組織した〜",
+      "romaji": "Romeria Senki: Maou wo Taoshita nochi mo Jinrui Yabasou dakara Guntai Soshiki Shita",
+      "en": "Romelia War Chronicle",
+      "format": "ONA",
+      "season": "FALL",
+      "year": 2026,
+      "source": "LIGHT_NOVEL",
+      "staff": [
+        {
+          "role": "Music",
+          "name": "Kouta Yamamoto"
+        },
+        {
+          "role": "Character Design",
+          "name": "Yuuta Ootaka"
+        },
+        {
+          "role": "Director",
+          "name": "Hiroshi Shirai"
+        }
+      ]
+    }
   },
   "Romelia Senki": {
     "type": "anime",
@@ -26279,7 +26441,29 @@
     "scoreSource": null,
     "startDate": "2026-10-04",
     "statusLive": "Đang phát sóng",
-    "statusLiveEn": "Airing"
+    "statusLiveEn": "Airing",
+    "meta": {
+      "ja": "タヌキとキツネ",
+      "format": "ONA",
+      "episodes": 18,
+      "season": "WINTER",
+      "year": 2018,
+      "source": "MANGA",
+      "staff": [
+        {
+          "role": "Original Creator",
+          "name": "Atamoto"
+        },
+        {
+          "role": "Director",
+          "name": "Tomohiro Tsukimisato"
+        },
+        {
+          "role": "Music",
+          "name": "Koguma"
+        }
+      ]
+    }
   },
   "Yuusanchi! from Yuu-hachi": {
     "type": "anime",
