@@ -212,7 +212,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-30",
     "excerpt": "After the success of Hades, Supergiant Games wasn’t sure whether to make a sequel. In the end, Hades 2 was chosen because the team still saw so much left to explore.",
-    "img": "/assets/img/uploads/iieknlvg-images-22.jpg",
+    "img": "/assets/img/uploads/hades-2-melinoe-key-art.webp",
     "tags": []
   },
   {
@@ -284,7 +284,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-29",
     "excerpt": "For its second anniversary, Delta Force outlined plans for late 2026 and 2027, including the Siege map on Unreal Engine 5, the Detonation mode, better matchmaking and anti-cheat.",
-    "img": "/assets/img/uploads/u1g6mg06-anh-bia-2.jpg",
+    "img": "/assets/img/uploads/delta-force-gameplay-steam.jpg",
     "tags": []
   },
   {
@@ -320,7 +320,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-29",
     "excerpt": "The Witcher 3 Remastered upgrades lighting, shadows and reflections with ray tracing, but some scenes look less natural than the original. Our review and score.",
-    "img": "/assets/img/uploads/escdykqo-photo-2026-09-29-15-38-16.jpg",
+    "img": "/assets/img/uploads/witcher-3-remastered-geralt-igni.jpg",
     "tags": []
   },
   {
@@ -584,7 +584,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-30",
     "excerpt": "Sau thành công của Hades, Supergiant từng không chắc có nên làm phần tiếp theo; họ chọn Hades 2 vì lý do sáng tạo hơn là phương án an toàn về kinh doanh.",
-    "img": "/assets/img/uploads/iieknlvg-images-22.jpg",
+    "img": "/assets/img/uploads/hades-2-melinoe-key-art.webp",
     "tags": [],
     "lang": "vi"
   },
@@ -774,7 +774,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-29",
     "excerpt": "Delta Force công bố kế hoạch cuối 2026 và năm 2027: bản đồ Siege trên Unreal Engine 5, chế độ Detonation, ghép trận cross-server và chống gian lận tốt hơn.",
-    "img": "/assets/img/uploads/u1g6mg06-anh-bia-2.jpg",
+    "img": "/assets/img/uploads/delta-force-gameplay-steam.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -854,7 +854,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-09-29",
     "excerpt": "Review The Witcher 3 Remastered: ray tracing nâng cấp ánh sáng, bóng đổ và phản chiếu, nhưng một số cảnh kém tự nhiên hơn bản gốc. Điểm 8.5/10.",
-    "img": "/assets/img/uploads/escdykqo-photo-2026-09-29-15-38-16.jpg",
+    "img": "/assets/img/uploads/witcher-3-remastered-geralt-igni.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -984,7 +984,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-09-28",
     "excerpt": "Cover Corporation announced Odekake Hololive (Odeholo), the VTuber brand hololive",
-    "img": "/assets/img/real-odekake-hololive-visual-wide.jpg",
+    "img": "/assets/img/uploads/odekake-hololive-key-visual.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -994,7 +994,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-09-28",
     "excerpt": "Odekake Hololive là anime truyền hình đầu tiên của hololive: nội dung du lịch dạng tuyển tập, 29 talent, ê-kíp Studio KAI và những thông tin đã xác nhận.",
-    "img": "/assets/img/real-odekake-hololive-visual-wide.jpg",
+    "img": "/assets/img/uploads/odekake-hololive-key-visual.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -1194,7 +1194,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-09-27",
     "excerpt": "Battle Through the Heavens (Doupo Cangqiong) review: a novel by Tiancan Tudou, donghua across five seasons since 2017 on Tencent Penguin Pictures, following.",
-    "img": "/assets/img/real-btth-trailer-wide.jpg",
+    "img": "/assets/img/uploads/battle-through-the-heavens-donghua.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -1204,7 +1204,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-09-27",
     "excerpt": "Review Battle Through the Heavens (Doupo Cangqiong): tiểu thuyết của Thiên Tàm Thổ Đậu, donghua 5 mùa từ 2017 trên Tencent Penguin Pictures, Xiao Yan tu.",
-    "img": "/assets/img/real-btth-trailer-wide.jpg",
+    "img": "/assets/img/uploads/battle-through-the-heavens-donghua.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -1214,7 +1214,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-09-27",
     "excerpt": "In-depth review of Solo Leveling: Ragnarok: Sung Suho rises to inherit his father",
-    "img": "/assets/img/news-solo-leveling-ragnarok-manhwa-wide.jpg",
+    "img": "/assets/img/uploads/solo-leveling-ragnarok-suho-key-visual.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -1224,7 +1224,7 @@ window.IDX = [
     "cat": "Reviews",
     "date": "2026-09-27",
     "excerpt": "Đánh giá manhwa Solo Leveling: Ragnarok: Cuộc phiêu lưu kế thừa ngai vàng bóng tối của Sung Suho và hành trình bảo vệ Trái Đất trước các thế lực vũ trụ.",
-    "img": "/assets/img/news-solo-leveling-ragnarok-manhwa-wide.jpg",
+    "img": "/assets/img/uploads/solo-leveling-ragnarok-suho-key-visual.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -2644,7 +2644,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-24",
     "excerpt": "Solo Leveling: Arise của Netmarble vượt 50 triệu lượt tải sau khoảng 5 tháng kể từ khi ra mắt toàn cầu tháng 5/2024, kèm sự kiện điểm danh tặng tối đa 10.000.",
-    "img": "/assets/img/news-solo-leveling-arise-monarch-update-wide.jpg",
+    "img": "/assets/img/uploads/solo-leveling-arise-key-art.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -2654,7 +2654,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-24",
     "excerpt": "Netmarble’s Solo Leveling: Arise passed 50 million downloads about 5 months after its May 2024 global launch, with a login event giving up to 10,000 Essence.",
-    "img": "/assets/img/news-solo-leveling-arise-monarch-update-wide.jpg",
+    "img": "/assets/img/uploads/solo-leveling-arise-key-art.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -2864,7 +2864,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-18",
     "excerpt": "Crunchyroll confirms Magical Buffs (Jan. 2027) and Fate Rewinder (Apr. 2027) at its July 3 Anime Expo 2026 showcase at the Peacock Theater in Los Angeles.",
-    "img": "/assets/img/news-magical-buffs-fate-rewinder-crunchyroll.jpg",
+    "img": "/assets/img/uploads/magical-buffs-crunchyroll-teaser.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -2894,7 +2894,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-08-18",
     "excerpt": "Crunchyroll xác nhận Magical Buffs (1/2027) và Fate Rewinder (4/2027) tại showcase Anime Expo 2026 ở Nhà hát Peacock, Los Angeles ngày 3/7.",
-    "img": "/assets/img/news-magical-buffs-fate-rewinder-crunchyroll.jpg",
+    "img": "/assets/img/uploads/magical-buffs-crunchyroll-teaser.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -3154,7 +3154,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-08-18",
     "excerpt": "Danh sách manga VIZ phát hành ngày 18/8/2026 gồm Vagabond Definitive Edition 6, Undead Unluck 26, Kingdom 10 và nhiều tựa khác.",
-    "img": "/assets/img/5492106922-undead-unluck-hero-wide.jpg",
+    "img": "/assets/img/uploads/undead-unluck-viz-key-art.jpg",
     "tags": [],
     "lang": "vi"
   },
@@ -3574,7 +3574,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-08-18",
     "excerpt": "August 18 is one of VIZ",
-    "img": "/assets/img/5492106922-undead-unluck-hero-wide.jpg",
+    "img": "/assets/img/uploads/undead-unluck-viz-key-art.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -3594,7 +3594,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-18",
     "excerpt": "Halo: Campaign Evolved joined Xbox Game Pass on July 28, 2026, leading the July wave 2 additions alongside Beast of Reincarnation, Heretic + Hexen.",
-    "img": "/assets/img/news-xbox-game-pass-july-wave-2.jpg",
+    "img": "/assets/img/uploads/xbox-game-pass-july-2026-wave-2.jpg",
     "tags": [],
     "lang": "en"
   },
@@ -3604,7 +3604,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-08-18",
     "excerpt": "Halo: Campaign Evolved gia nhập Xbox Game Pass ngày 28/7/2026, dẫn đầu đợt bổ sung wave 2 tháng 7 cùng Beast of Reincarnation, Heretic + Hexen, Hell Is Us.",
-    "img": "/assets/img/news-xbox-game-pass-july-wave-2.jpg",
+    "img": "/assets/img/uploads/xbox-game-pass-july-2026-wave-2.jpg",
     "tags": [],
     "lang": "vi"
   },
