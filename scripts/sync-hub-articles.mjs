@@ -143,22 +143,43 @@ function syncPage(P) {
   let html = read(P.file);
   const before = html;
   const H = TX.hubs[P.hub], L = P.lang === 'en' ? 2 : 1;
-  const list = all.filter((a) => a.cls.hub === P.hub && a.en === (P.lang === 'en')).sort((a, b) => (a.date < b.date ? 1 : -1));
+  const hidden = H.hiddenTypes || [];
+  const list = all.filter((a) => a.cls.hub === P.hub && a.en === (P.lang === 'en') && !hidden.includes(a.cls.type)).sort((a, b) => (a.date < b.date ? 1 : -1));
   const count = (k) => list.filter((a) => a.cls.type === k).length;
-  // a) thanh menu con: mục con (có bài) | nhóm phụ | Top
-  const tabs = H.types.filter(([k]) => k !== 'top-list' && count(k));
-  const facets = H.facets.filter(([k]) => k !== 'multi' && list.some((a) => a.cls.facet === k || (a.cls.facet === 'multi' && P.hub === 'game')));
+  // a) thanh menu con: mục con (có bài) | E-Magazine, Top List ; hàng 2 (Gaming): chip nhóm phụ độc lập
+  const tabs = H.types.filter(([k]) => k !== 'top-list' && !hidden.includes(k) && count(k));
   const topHref = (P.lang === 'en' ? '/en' : '') + '/top-list?loai=' + P.hub;
+  const nameOf = (r) => esc(P.lang === 'en' ? r[2] : r[1]);
+  const tokens = (a) => String(a.cls.facet || '').split(' ').filter(Boolean);
+  const NL = String.fromCharCode(10);
+  let sub = '';
+  if (H.facetGroups) {
+    // chỉ hiện chip có ít nhất 1 bài; nhóm còn dưới 1 chip có nghĩa thì ẩn
+    const groups = H.facetGroups.map((g) => ({ ...g, items: g.items.filter(([k]) => list.some((a) => tokens(a).includes(k))) })).filter((g) => g.items.length);
+    const chips = groups.flatMap((g, i) => [...(i ? ['    <div class="filter-sep"></div>'] : []),
+      ...g.items.map(([k, vi, en]) => `    <button class="ffacet" data-facet="${k}" data-group="${g.key}">${esc(P.lang === 'en' ? en : vi)}</button>`)]);
+    if (chips.length) sub = `
+  <div class="filter-in filter-sub">
+${chips.join(NL)}
+  </div>`;
+  } else {
+    const facets = H.facets.filter(([k]) => k !== 'multi' && list.some((a) => a.cls.facet === k));
+    if (facets.length > 1) sub = `
+  <div class="filter-in filter-sub">
+    <span class="ffacet-label">${esc(H.facetLabel[L - 1])}</span>
+    <button class="ffacet on" data-facet="all">${ALL[P.lang]}</button>
+${facets.map(([k, vi, en]) => `    <button class="ffacet" data-facet="${k}" data-group="origin" data-single="1">${esc(P.lang === 'en' ? en : vi)}</button>`).join(NL)}
+  </div>`;
+  }
+  const emag = H.emag ? `    <a class="ftab femag" href="${P.lang === 'en' ? '/en' : ''}/e-magazine">${H.emag[P.lang === 'en' ? 1 : 0]}</a>
+` : '';
   const bar = `<div class="filter-bar" data-hub="${P.hub}" data-prefix="${P.p}">
   <div class="filter-in">
     <button class="ftab on" data-type="all">${ALL[P.lang]} <span class="ftab-n">${list.length}</span></button>
-${tabs.map(([k, vi, en]) => `    <button class="ftab" data-type="${k}">${esc(P.lang === 'en' ? en : vi)} <span class="ftab-n">${count(k)}</span></button>`).join('\n')}
-${facets.length > 1 ? `    <div class="filter-sep"></div>
-    <span class="ffacet-label">${esc(H.facetLabel[L - 1])}</span>
-    <button class="ffacet on" data-facet="all">${ALL[P.lang]}</button>
-${facets.map(([k, vi, en]) => `    <button class="ffacet" data-facet="${k}">${esc(P.lang === 'en' ? en : vi)}</button>`).join('\n')}\n` : ''}    <div class="filter-sep"></div>
-    <a class="ftab ftop" href="${topHref}">${TOP_LINK[P.lang][P.hub]}</a>
-  </div>
+${tabs.map(([k, vi, en]) => `    <button class="ftab" data-type="${k}">${esc(P.lang === 'en' ? en : vi)} <span class="ftab-n">${count(k)}</span></button>`).join(NL)}
+    <div class="filter-sep"></div>
+${emag}    <a class="ftab ftop" href="${topHref}">${TOP_LINK[P.lang][P.hub]}</a>
+  </div>${sub}
 </div>`;
   html = html.replace(/<div class="filter-bar"[^>]*>\s*<div class="filter-in">[\s\S]*?<\/div>\s*<\/div>/, () => bar);
   // b) danh sách bài
@@ -200,7 +221,7 @@ ${facets.map(([k, vi, en]) => `    <button class="ffacet" data-facet="${k}">${es
     });
   }
   // e) bộ lọc dùng chung
-  if (!html.includes('/assets/hub-filter.js')) html = html.replace('<script defer src="/assets/enhance.js', '<script defer src="/assets/hub-filter.js?v=20261002d"></script>\n<script defer src="/assets/enhance.js');
+  if (!html.includes('/assets/hub-filter.js')) html = html.replace('<script defer src="/assets/enhance.js', '<script defer src="/assets/hub-filter.js?v=20261002e"></script>\n<script defer src="/assets/enhance.js');
   const changed = html !== before;
   if (changed && !CHECK) write(P.file, html);
   console.log(`${P.file}: ${list.length} bài · ${tabs.map(([k]) => `${k}:${count(k)}`).join(' ')} · top-list:${count('top-list')}${changed ? (CHECK ? ' (cần cập nhật)' : ' (đã ghi)') : ''}`);

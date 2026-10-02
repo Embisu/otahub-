@@ -1636,7 +1636,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002l">
+<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002m">
 </head>
 
 
@@ -1793,12 +1793,13 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
     <button class="ftab" data-type="danh-gia">Reviews <span class="ftab-n">10</span></button>
     <button class="ftab" data-type="goc-nhin">Features <span class="ftab-n">2</span></button>
     <div class="filter-sep"></div>
+    <a class="ftab ftop" href="/en/top-list?loai=manga">🏆 Top Manga</a>
+  </div>
+  <div class="filter-in filter-sub">
     <span class="ffacet-label">Origin</span>
     <button class="ffacet on" data-facet="all">All</button>
-    <button class="ffacet" data-facet="manga">Manga (Japan)</button>
-    <button class="ffacet" data-facet="manhwa">Manhwa (Korea)</button>
-    <div class="filter-sep"></div>
-    <a class="ftab ftop" href="/en/top-list?loai=manga">🏆 Top Manga</a>
+    <button class="ffacet" data-facet="manga" data-group="origin" data-single="1">Manga (Japan)</button>
+    <button class="ffacet" data-facet="manhwa" data-group="origin" data-single="1">Manhwa (Korea)</button>
   </div>
 </div>
 
@@ -2167,7 +2168,7 @@ function setMangaFilter(btn, cat){
   });
 })();
 </script>
-<script defer src="/assets/hub-filter.js?v=20261002d"></script>
+<script defer src="/assets/hub-filter.js?v=20261002e"></script>
 <script defer src="/assets/enhance.js?v=20261002i"></script>
 <script defer src="/assets/img-fit.v2.js?v=20261002a"></script>
 <script src="/assets/lang-switch.js" defer></script>

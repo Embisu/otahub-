@@ -232,3 +232,9 @@ body>footer .ft-copy{font-size:12px;color:#64748b;letter-spacing:.02em}
 .filter-bar[data-hub] .ftop{color:var(--amber,#fbbf24)!important;text-decoration:none;white-space:nowrap}
 .hub-empty{padding:48px 0;text-align:center;color:var(--muted,#8b8aa3)}
 @media(min-width:769px) and (max-width:1520px){.filter-bar[data-hub] .ftab{padding-left:12px!important;padding-right:12px!important;letter-spacing:.05em!important}.filter-bar[data-hub] .ffacet-label{display:none}.filter-bar[data-hub] .ffacet{padding:6px 10px}}
+/* Hàng 2 của thanh menu con (chip nhóm phụ): mỏng hơn hàng tab, tách bằng đường kẻ mờ */
+.filter-bar[data-hub] .filter-sub{border-top:1px solid rgba(255,255,255,.06);padding-top:7px;padding-bottom:7px}
+.filter-bar[data-hub] .filter-sub .ffacet:first-child{margin-left:0}
+.filter-bar[data-hub] .filter-sub .filter-sep{height:16px}
+.filter-bar[data-hub] .femag{color:var(--lavender,#a78bfa)!important;text-decoration:none;white-space:nowrap}
+@media(max-width:768px){.filter-bar[data-hub] .filter-sub{padding-top:6px;padding-bottom:6px}}

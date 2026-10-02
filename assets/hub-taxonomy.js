@@ -17,18 +17,26 @@
   var T = {
     game: {
       vi: 'Gaming', en: 'Gaming',
-      types: [['tin-tuc', 'Tin tức', 'News'], ['ra-mat', 'Ra mắt & Trailer', 'Releases & Trailers'], ['danh-gia', 'Đánh giá', 'Reviews'],
-        ['huong-dan', 'Hướng dẫn', 'Guides'], ['esports', 'Esports', 'Esports'], ['goc-nhin', 'Góc nhìn', 'Features'], ['top-list', 'Top List', 'Top Lists']],
-      facetLabel: ['Nền tảng', 'Platform'],
-      facets: [['pc', 'PC / Console', 'PC / Console'], ['mobile', 'Mobile', 'Mobile'], ['multi', 'Đa nền tảng', 'Cross-platform']],
+      // Tin tức gồm cả ra mắt / trailer / cập nhật. "Đánh giá" vẫn là mục hợp lệ nhưng KHÔNG hiện ở trang Gaming (đã có trang Đánh giá).
+      types: [['tin-tuc', 'Tin tức', 'News'], ['huong-dan', 'Hướng dẫn', 'Guides'], ['esports', 'Esports', 'Esports'], ['goc-nhin', 'Góc nhìn', 'Features'],
+        ['danh-gia', 'Đánh giá', 'Reviews'], ['top-list', 'Top List', 'Top Lists']],
+      hiddenTypes: ['danh-gia'],
+      emag: ['E-Magazine', 'E-Magazine'],
+      // Nhóm phụ độc lập, lưu thành chuỗi từ khóa trong otahub:facet, ví dụ "pc online vn".
+      // Trong cùng nhóm: chọn nhiều = HOẶC; giữa các nhóm: VÀ.
+      facetGroups: [
+        { key: 'platform', label: ['Nền tảng', 'Platform'], items: [['pc', 'PC / Console', 'PC / Console'], ['mobile', 'Mobile', 'Mobile']] },
+        { key: 'mode', label: ['Hình thức', 'Mode'], items: [['offline', 'Offline', 'Offline'], ['online', 'Online', 'Online']] },
+        { key: 'origin', label: ['Xuất xứ', 'Origin'], items: [['vn', 'Game Việt', 'Vietnamese games']] }
+      ],
+      facetLabel: ['Nền tảng · hình thức', 'Platform · mode'],
+      facets: [],
       pre: [
         ['esports', R('esports|e-sports|giải đấu|tournament|championship|champions\\b|\\bvct\\b|\\blck\\b|\\bmsi\\b|\\bworlds\\b|asian games|pubg asia|\\bmpl\\b|\\bevo\\b|world tour|án cấm|cấm vĩnh viễn|tuyển thủ|chiêu mộ|chieu mo|đội tuyển|roster|\\bbanned\\b|himass|recruit')],
         ['huong-dan', R('hướng dẫn|\\bguide\\b|tier ?list|build (nhân vật|đồ|meta)|\\bbuilds\\b|cách chơi|mẹo|\\btips\\b|walkthrough|reroll|tân thủ|beginner|đội hình meta|meta team|best team|meta 20\\d\\d|đi rừng')]
       ],
-      news: R('cập nhật|\\bupdate\\b|bản \\d+\\.\\d|version \\d|\\b\\d\\.\\d\\b|\\bpatch\\b|tăng giá|price (hike|increase)|thông số|\\bspecs?\\b|doanh số|lượt tải|downloads|\\bdừng\\b|hủy|cancel|mùa mới|season pass|\\bdlc\\b|crossover|sự kiện|\\bevent\\b|game pass|ps plus|playstation plus|title update|tarnished pack'),
-      rules: [
-        ['ra-mat', R('trailer|teaser|công bố|announce|reveal|hé lộ|lộ diện|ra mắt|launch|ấn định|phát hành|release|state of play|showcase|direct\\b|gamescom|tokyo game show|\\btgs\\b|đặt trước|pre-?order|pre-?install|\\bdemo\\b|\\bbeta\\b|trì hoãn|delay|rò rỉ|leak|gold\\b|chơi thử|playtest|mở bán|on sale|lên switch|đổ bộ|cập bến|game mới|new game|extended look|gameplay')]
-      ]
+      news: /(?!)/,
+      rules: []
     },
     anime: {
       vi: 'Anime', en: 'Anime',
@@ -62,6 +70,25 @@
     pc: R('\\bpc\\b|steam|ps5|ps4|playstation|xbox|switch|nintendo|console|game pass|epic games|unreal|remaster|remake|elden|monster hunter|metal gear|silent hill|gears of war|wolverine|witcher|cyberpunk|death stranding|ghost of|split fiction|hollow knight|black myth|kingdom come|space marine|mafia|resident evil|final fantasy|persona|zelda|mario|tekken|street fighter|marvel|stellar blade|gta|halo|diablo|minecraft|crimson desert|sparking zero|star wars|call of duty|\\bcod\\b|battlefield|assassin|valorant|delta force'),
     notGame: R('lego|thẻ pok[eé]mon|pok[eé]mon card|games expo|hamlet')
   };
+  // Danh sách chọn nhanh cho admin: mỗi tổ hợp nền tảng × hình thức (× Game Việt) là một giá trị facet.
+  (function () {
+    var plats = [['pc', 'PC / Console', 'PC / Console'], ['mobile', 'Mobile', 'Mobile'], ['pc mobile', 'PC + Mobile', 'PC + Mobile']];
+    var modes = [['offline', 'Offline', 'Offline'], ['online', 'Online', 'Online']];
+    var out = [];
+    [false, true].forEach(function (vn) {
+      plats.forEach(function (p) {
+        modes.forEach(function (m) {
+          out.push([p[0] + ' ' + m[0] + (vn ? ' vn' : ''), p[1] + ' · ' + m[1] + (vn ? ' · Game Việt' : ''), p[2] + ' · ' + m[2] + (vn ? ' · Vietnamese' : '')]);
+        });
+      });
+    });
+    T.game.facets = out;
+  })();
+  var MODE = {
+    online: R('genshin|honkai|wuthering|zenless|nikke|girls.? frontline|aniimo|solo leveling|honor of kings|kaiju no.? ?8|jojo.*golden spirit|blue protocol|delta force|pubg|valorant|marvel rivals|call of duty|nightreign|diablo|minecraft|rematch|the isle|dynamite blue|gacha|mmo|battle royale|live service'),
+    offline: R('offline|single-player|một người chơi')
+  };
+  var VN = R('studio việt|game việt|dev việt|nhà phát triển việt|made in vietnam|vietnamese (studio|developer)');
   var ORIGIN = {
     manhua: R('manhua|donghua|battle through|martial peak|swallowed star|wu shen|urban immortal|soul land|tales of demons'),
     manhwa: R('manhwa|webtoon|solo leveling|beginning after the end|tbate|omniscient|tower of god|naver|kakao|tapas|second life ranker|god of blackfield|lookism|eleceed|nano machine|return of the mount hua')
@@ -78,7 +105,10 @@
     var facet = '';
     if (hub === 'game') {
       var m = PLATFORM.mobile.test(t), p = PLATFORM.pc.test(t);
-      facet = m && p ? 'multi' : m ? 'mobile' : p ? 'pc' : (PLATFORM.notGame.test(t) ? '' : 'pc');
+      var plat = m && p ? 'pc mobile' : m ? 'mobile' : p ? 'pc' : (PLATFORM.notGame.test(t) ? '' : 'pc');
+      // Online = trọng tâm là chơi mạng / live-service / esports; còn lại là Offline (chơi một mình, có thể co-op cục bộ).
+      var mode = !plat ? '' : (type === 'esports' || MODE.online.test(t) || (plat !== 'pc' && !MODE.offline.test(t))) ? 'online' : 'offline';
+      facet = [plat, mode, VN.test(t) ? 'vn' : ''].filter(Boolean).join(' ');
     } else if (hub === 'manga') {
       facet = ORIGIN.manhua.test(t) ? 'manhua' : ORIGIN.manhwa.test(t) ? 'manhwa' : 'manga';
     }

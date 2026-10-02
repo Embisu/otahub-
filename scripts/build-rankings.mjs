@@ -20,6 +20,7 @@ import { profileKeyForReview } from './lib/profile-review-map.mjs';
 import { profileUrl } from './lib/profile-paths.mjs';
 
 const CHECK = process.argv.includes('--check');
+const NL = String.fromCharCode(10);
 const root = new URL('../', import.meta.url);
 const read = (f) => fs.readFileSync(new URL(f, root), 'utf8');
 const write = (f, s) => fs.writeFileSync(new URL(f, root), s, 'utf8');
@@ -118,6 +119,7 @@ for (const r of vi) {
 
 const cmp = (a, b) => b.score - a.score || (b.date || '').localeCompare(a.date || '') || workTitle(a.vi,'vi').localeCompare(workTitle(b.vi,'vi'));
 const result = {};
+let gameAll = [];
 for (const cat of CATS_ORDER) {
   const latest = new Map();
   for (const c of candidates[cat]) {
@@ -125,15 +127,31 @@ for (const cat of CATS_ORDER) {
     if (!prev || (c.date || '') > (prev.date || '')) latest.set(c.work, c);
   }
   const list = [...latest.values()].sort(cmp);
+  if (cat === 'game') gameAll = list;
   if (list.length < TOP_N) fail(`Bảng ${cat}: chỉ có ${list.length} tác phẩm có bài review hợp lệ (cần ${TOP_N})`);
   result[cat] = list.slice(0, TOP_N);
 }
+
+// ---- Tab con của Game: nền tảng x hình thức, và Game Việt (scripts/data/game-segments.json) ----
+const SEGMENTS = JSON.parse(read('scripts/data/game-segments.json'));
+const SEG_DEFS = [
+  { key: 'all', vi: 'Tất cả', en: 'All', ok: () => true },
+  { key: 'pc-offline', vi: 'PC/Console · Offline', en: 'PC/Console · Offline', ok: (g) => g.p === 'pc' && g.m === 'offline' },
+  { key: 'pc-online', vi: 'PC/Console · Online', en: 'PC/Console · Online', ok: (g) => g.p === 'pc' && g.m === 'online' },
+  { key: 'mobile-online', vi: 'Mobile · Online', en: 'Mobile · Online', ok: (g) => g.p === 'mobile' && g.m === 'online' },
+  { key: 'mobile-offline', vi: 'Mobile · Offline', en: 'Mobile · Offline', ok: (g) => g.p === 'mobile' && g.m === 'offline' },
+  { key: 'vn', vi: 'Game Việt', en: 'Vietnamese games', ok: (g) => g.vn === true }
+];
+for (const c of gameAll) if (!SEGMENTS[c.id]) fail(`scripts/data/game-segments.json thiếu nhóm cho game "${c.id}" (${c.vi.title}): thêm {"p":"pc|mobile","m":"online|offline"}`);
+const segResult = {};
+for (const d of SEG_DEFS) segResult[d.key] = d.key === 'all' ? result.game : gameAll.filter((c) => SEGMENTS[c.id] && d.ok(SEGMENTS[c.id])).slice(0, TOP_N);
 
 if (errors.length) {
   console.error('KHÔNG cập nhật bảng xếp hạng, cần sửa:\n  - ' + errors.join('\n  - '));
   process.exit(1);
 }
 for (const cat of CATS_ORDER) console.log(`${cat}: ` + result[cat].map((c, i) => `${i + 1}. ${workTitle(c.vi,'vi')} ${c.score.toFixed(1)}`).join(' | '));
+for (const d of SEG_DEFS.slice(1)) console.log(`game/${d.key}: ${segResult[d.key].length} tựa`);
 if (CHECK) process.exit(0);
 
 // ---- Ghi CATS + tab + noscript/ItemList vào trang Xếp hạng ----
@@ -157,6 +175,21 @@ function catsLiteral(lang) {
   }
   return '{\n' + out.join(',\n') + '\n}';
 }
+function segsLiteral(lang) {
+  const isVi = lang === 'vi';
+  const rows = SEG_DEFS.map((d) => {
+    const items = segResult[d.key].map((c) => {
+      const r = isVi ? c.vi : c.en;
+      const { studio, genre } = splitSub(r.sub, isVi);
+      const profile = profileKeyForReview(CATALOG, c.id, 'game');
+      return { title: workTitle(r, lang), url: r.url, profile, profileUrl: profile && profileUrl(CATALOG, 'game', profile, isVi ? '' : '/en'), img: isVi ? c.img : c.enImg, studio, genre, score: c.score.toFixed(1), date: c.date };
+    });
+    const top = items.slice(0, 3).map((t) => ({ ...t, trend: '=', trendDir: 'eq', tag: null, tagAcc: 'rgba(251,191,36,.3)' }));
+    const rest = items.slice(3).map((t) => ({ img: t.img, title: t.title, url: t.url, profile: t.profile, profileUrl: t.profileUrl, studio: t.studio, sub: t.genre, score: t.score, date: t.date, sc: 'var(--cyan)', w: Math.round(parseFloat(t.score) * 10) + '%', trend: '=', dir: 'eq', pills: [] }));
+    return `  ${q(d.key)}:{label:${q(isVi ? d.vi : d.en)},count:${items.length},top:${JSON.stringify(top)},rest:${JSON.stringify(rest)}}`;
+  });
+  return '{' + NL + rows.join(',' + NL) + NL + '}';
+}
 const TAB_ICON = {
   game: '<svg class="tab-icon" width="16" height="16" viewbox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="3" stroke="currentColor" stroke-width="1.5"></rect><path d="M7 12h4M9 10v4" stroke="currentColor" stroke-width="1.5"></path><circle cx="16" cy="11" r="1" fill="currentColor"></circle><circle cx="18" cy="13" r="1" fill="currentColor"></circle></svg>',
   anime: '<svg class="tab-icon" width="16" height="16" viewbox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"></circle><ellipse cx="9" cy="11" rx="1.5" ry="2" fill="currentColor"></ellipse><ellipse cx="15" cy="11" rx="1.5" ry="2" fill="currentColor"></ellipse></svg>',
@@ -170,6 +203,17 @@ function writePage(file, lang) {
   const tabs = CATS_ORDER.map((cat, i) => `    <button class="cat-tab${i ? '' : ' on'}" onclick="showCat(this,'${cat}')" data-cat="${cat}">\n      ${TAB_ICON[cat]}\n      ${LABEL[lang][cat]} <span class="tab-count">TOP ${TOP_N}</span>\n    </button>`).join('\n');
   // các nút tab không chứa <div>, nên </div> đầu tiên sau "cat-tabs" là thẻ đóng của nó
   html = html.replace(/(<div class="cat-tabs">)[\s\S]*?(<\/div>)/, (m, a, b) => `${a}\n${tabs}\n  ${b}`);
+  // tab con của Game: dữ liệu + hàng nút (ẩn khi đang xem Anime / Manga)
+  const segLit = `const GAME_SEGS = ${segsLiteral(lang)};`;
+  const segRe = /const GAME_SEGS\s*=\s*\{[\s\S]*?\n\}\s*;/;
+  html = segRe.test(html)
+    ? html.replace(segRe, () => segLit)
+    : html.replace(/(const CATS\s*=\s*\{[\s\S]*?\n\}\s*;)/, (m) => m + NL + segLit);
+  const segBtns = SEG_DEFS.map((d, i) => `    <button class="seg-tab${i ? '' : ' on'}${segResult[d.key].length || !i ? '' : ' seg-empty'}" onclick="showSeg(this,'${d.key}')" data-seg="${d.key}">${esc(isVi ? d.vi : d.en)} <span class="seg-n">${segResult[d.key].length}</span></button>`).join(NL);
+  const segRow = `<div class="seg-tabs" id="segTabs" aria-label="${isVi ? 'Nhóm game' : 'Game groups'}">${NL}${segBtns}${NL}  </div>`;
+  html = /<div class="seg-tabs"[^>]*>[\s\S]*?<\/div>/.test(html)
+    ? html.replace(/<div class="seg-tabs"[^>]*>[\s\S]*?<\/div>/, () => segRow)
+    : html.replace(/(<div class="cat-tabs">[\s\S]*?<\/div>)/, (m) => m + NL + '  ' + segRow);
   html = html.replace(/const CAT_TYPE = \{[^}]*\};/, "const CAT_TYPE = {game:'game', anime:'anime', manga:'manga'};");
   // Link thẳng tới bài review (nguồn của điểm)
   html = html.replace('href="${resolveHref(t.title, cat)}"', 'href="${t.url || resolveHref(t.title, cat)}"')
