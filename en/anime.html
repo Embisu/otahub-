@@ -1637,7 +1637,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002j">
+<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002l">
 </head>
 
 
@@ -1785,27 +1785,28 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 <!-- ══ ANIME FILTER BAR ══ -->
-<div class="filter-bar">
+<div class="filter-bar" data-hub="anime" data-prefix="anime">
   <div class="filter-in">
-    <button class="ftab on" onclick="setAnimeFilter(this,'all')">All</button>
-    <button class="ftab" onclick="setAnimeFilter(this,'lich-chieu')">Schedule & Announcements</button>
-    <button class="ftab" onclick="setAnimeFilter(this,'review')">Reviews</button>
+    <button class="ftab on" data-type="all">All <span class="ftab-n">99</span></button>
+    <button class="ftab" data-type="tin-tuc">News <span class="ftab-n">6</span></button>
+    <button class="ftab" data-type="lich-chieu">Schedule &amp; Announcements <span class="ftab-n">58</span></button>
+    <button class="ftab" data-type="phim-rap">Films <span class="ftab-n">12</span></button>
+    <button class="ftab" data-type="danh-gia">Reviews <span class="ftab-n">11</span></button>
+    <button class="ftab" data-type="goc-nhin">Features <span class="ftab-n">5</span></button>
     <div class="filter-sep"></div>
-    <button class="ftab" onclick="setAnimeFilter(this,'action')">Action / Shonen</button>
-    <button class="ftab" onclick="setAnimeFilter(this,'isekai')">Isekai & Fantasy</button>
-    <button class="ftab" onclick="setAnimeFilter(this,'news')">Cinema / Movie</button>
+    <a class="ftab ftop" href="/en/top-list?loai=anime">🏆 Top Anime</a>
   </div>
 </div>
 
 <div class="wrap rv" style="padding-top:0;padding-bottom:0">
-  <div class="sec-h"><span class="sec-t" id="animeSecTitle">Anime <em>Featured</em></span><div class="sec-l"></div><a href="/en/news" class="sec-more">View all</a></div>
+  <div class="sec-h"><span class="sec-t" id="animeSecTitle">Anime <em>Highlights</em></span><div class="sec-l"></div><a href="/en/news" class="sec-more">View all</a></div>
 
   <!-- 5-Card Featured Grid -->
   <div class="f-grid">
     <a class="fc" id="animeHeroCard" href="/en/forgotten-island-dreamworks-vs-kpop-demon-hunters">
       <div class="fc-img" id="animeHeroImg" style="background-image:url(/assets/img/forgotten-island-home-hero.jpg);background-position:center center"></div><div class="fc-ov"></div>
       <div class="fc-body">
-        <span class="tag tc" id="animeHeroTag">Anime</span>
+        <span class="tag tv" id="animeHeroTag">Features</span>
         <h2 class="fc-title" id="animeHeroTitle">Forgotten Island: Why DreamWorks Is Compared to KPop Demon Hunters</h2>
         <p class="fc-sub" id="animeHeroSub">DreamWorks’ Forgotten Island draws on Filipino myth and scored 95% on Rotten Tomatoes but opened weakly. How does it compare with KPop Demon Hunters?</p>
         <div class="fc-meta" id="animeHeroMeta">OtaHub Editorial · Oct 2, 2026</div>
@@ -1814,7 +1815,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
     <a class="sc" id="animeSideCard0" href="/en/a-1-pictures-best-anime-lycoris-recoil-solo-leveling">
       <div class="sc-img"><img id="animeSideImg0" src="/assets/img/_t/a1-pictures-home-hero.jpg.webp" alt="A-1 Pictures Anime Worth Watching: From Lycoris Recoil to Solo Leveling" fetchpriority="high" decoding="async" width="1200" height="675"></div>
-      <div class="sc-body"><span class="tag tv" id="animeSideTag0" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Shonen</span><div class="sc-title" id="animeSideTitle0">A-1 Pictures Anime Worth Watching: From Lycoris Recoil to Solo Leveling</div><div class="sc-meta" id="animeSideMeta0">OtaHub Editorial · Oct 2</div></div>
+      <div class="sc-body"><span class="tag ta" id="animeSideTag0" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Top Lists</span><div class="sc-title" id="animeSideTitle0">A-1 Pictures Anime Worth Watching: From Lycoris Recoil to Solo Leveling</div><div class="sc-meta" id="animeSideMeta0">OtaHub Editorial · Oct 2</div></div>
     </a>
 
     
@@ -1823,7 +1824,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
     <a class="sc" id="animeSideCard3" href="/en/thunder-3-anime-officially-confirms-season-2-for-2027">
       <div class="sc-img"><img id="animeSideImg3" src="/assets/img/_t/uploads/thunder-3-season-2-pv.jpg.webp" alt="Thunder 3 Anime Officially Confirms Season 2 for 2027" loading="lazy" width="1200" height="675"></div>
-      <div class="sc-body"><span class="tag ts" id="animeSideTag3" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Schedule</span><div class="sc-title" id="animeSideTitle3">Thunder 3 Anime Officially Confirms Season 2 for 2027</div><div class="sc-meta" id="animeSideMeta3">Anna · Oct 1</div></div>
+      <div class="sc-body"><span class="tag ts" id="animeSideTag3" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Schedule &amp; Announcements</span><div class="sc-title" id="animeSideTitle3">Thunder 3 Anime Officially Confirms Season 2 for 2027</div><div class="sc-meta" id="animeSideMeta3">Anna · Oct 1</div></div>
     </a>
   </div>
 
@@ -1834,413 +1835,401 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
       <div class="ac-list">
         <!-- ADMIN:ARTICLES_START -->
-        <a href="/en/forgotten-island-dreamworks-vs-kpop-demon-hunters" class="ac" data-cat="">
+        <a href="/en/forgotten-island-dreamworks-vs-kpop-demon-hunters" class="ac" data-type="goc-nhin" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/forgotten-island-home-hero.jpg.webp" alt="Forgotten Island: Why DreamWorks Is Compared to KPop Demon Hunters" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Anime</span></div><div class="ac-title">Forgotten Island: Why DreamWorks Is Compared to KPop Demon Hunters</div></div><div class="ac-meta"><span>OtaHub Editorial · Oct 2, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Features</span></div><div class="ac-title">Forgotten Island: Why DreamWorks Is Compared to KPop Demon Hunters</div></div><div class="ac-meta"><span>OtaHub Editorial · Oct 2, 2026</span></div></div>
         </a>
-        <a href="/en/a-1-pictures-best-anime-lycoris-recoil-solo-leveling" class="ac" data-cat="action">
+        <a href="/en/a-1-pictures-best-anime-lycoris-recoil-solo-leveling" class="ac" data-type="top-list" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/a1-pictures-home-hero.jpg.webp" alt="A-1 Pictures Anime Worth Watching: From Lycoris Recoil to Solo Leveling" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Shonen</span></div><div class="ac-title">A-1 Pictures Anime Worth Watching: From Lycoris Recoil to Solo Leveling</div></div><div class="ac-meta"><span>OtaHub Editorial · Oct 2, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Top Lists</span></div><div class="ac-title">A-1 Pictures Anime Worth Watching: From Lycoris Recoil to Solo Leveling</div></div><div class="ac-meta"><span>OtaHub Editorial · Oct 2, 2026</span></div></div>
         </a>
-        <a href="/en/chainsaw-man-and-one-piece-both-nominated-at-the-2026-harvey" class="ac" data-cat="lich-chieu action">
+        <a href="/en/chainsaw-man-and-one-piece-both-nominated-at-the-2026-harvey" class="ac" data-type="tin-tuc" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/inline-mup8rux6-2.jpg.webp" alt="Chainsaw Man and One Piece Both Nominated at the 2026 Harvey Awards" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Chainsaw Man and One Piece Both Nominated at the 2026 Harvey Awards</div></div><div class="ac-meta"><span>Yu · Oct 1, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">News</span></div><div class="ac-title">Chainsaw Man and One Piece Both Nominated at the 2026 Harvey Awards</div></div><div class="ac-meta"><span>Yu · Oct 1, 2026</span></div></div>
         </a>
-        <a href="/en/chiikawa-surprises-the-japanese-box-office-beats-conan" class="ac" data-cat="news">
+        <a href="/en/chiikawa-surprises-the-japanese-box-office-beats-conan" class="ac" data-type="phim-rap" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/inline-mup7jcqz-1.jpg.webp" alt="Chiikawa Surprises the Japanese Box Office, Beats Conan and Passes ¥13.9 Billion" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Film</span></div><div class="ac-title">Chiikawa Surprises the Japanese Box Office, Beats Conan and Passes ¥13.9 Billion</div></div><div class="ac-meta"><span>Yu · Oct 1, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Films</span></div><div class="ac-title">Chiikawa Surprises the Japanese Box Office, Beats Conan and Passes ¥13.9 Billion</div></div><div class="ac-meta"><span>Yu · Oct 1, 2026</span></div></div>
         </a>
-        <a href="/en/thunder-3-anime-officially-confirms-season-2-for-2027" class="ac" data-cat="lich-chieu">
+        <a href="/en/thunder-3-anime-officially-confirms-season-2-for-2027" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/thunder-3-season-2-pv.jpg.webp" alt="Thunder 3 Anime Officially Confirms Season 2 for 2027" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Thunder 3 Anime Officially Confirms Season 2 for 2027</div></div><div class="ac-meta"><span>Anna · Oct 1, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Thunder 3 Anime Officially Confirms Season 2 for 2027</div></div><div class="ac-meta"><span>Anna · Oct 1, 2026</span></div></div>
         </a>
-        <a href="/en/frieren-season-3-golden-land-arc-story-macht" class="ac" data-cat="lich-chieu isekai">
+        <a href="/en/frieren-season-3-golden-land-arc-story-macht" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/0lu7u0fb-maxresdefault.jpg.webp" alt="Frieren Season 3: The Golden Land Arc and the Story of Macht" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Frieren Season 3: The Golden Land Arc and the Story of Macht</div></div><div class="ac-meta"><span>Yu · Oct 1, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Frieren Season 3: The Golden Land Arc and the Story of Macht</div></div><div class="ac-meta"><span>Yu · Oct 1, 2026</span></div></div>
         </a>
-        <a href="/en/frieren-beyond-journeys-end-season-3-returns-in-october-2027" class="ac" data-cat="lich-chieu isekai">
+        <a href="/en/frieren-beyond-journeys-end-season-3-returns-in-october-2027" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/inline-mup6iqrc-1.jpg.webp" alt="Frieren: Beyond Journey’s End Season 3 Returns in October 2027" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Frieren: Beyond Journey’s End Season 3 Returns in October 2027</div></div><div class="ac-meta"><span>Yu · Oct 1, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Frieren: Beyond Journey’s End Season 3 Returns in October 2027</div></div><div class="ac-meta"><span>Yu · Oct 1, 2026</span></div></div>
         </a>
-        <a href="/en/top-10-most-anticipated-anime-coming-in-2027" class="ac" data-cat="lich-chieu">
+        <a href="/en/top-10-most-anticipated-anime-coming-in-2027" class="ac" data-type="top-list" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/5y6fou86-voh-loat-anime-noi-tieng-se-ra-mat-phan-moi-trong-nam-2027-1.webp.webp" alt="Top 10 Most Anticipated Anime Coming in 2027" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Top 10 Most Anticipated Anime Coming in 2027</div></div><div class="ac-meta"><span>Yu · Sep 30, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Top Lists</span></div><div class="ac-title">Top 10 Most Anticipated Anime Coming in 2027</div></div><div class="ac-meta"><span>Yu · Sep 30, 2026</span></div></div>
         </a>
-        <a href="/en/naruto-confirms-a-new-anime-after-three-quiet-years" class="ac" data-cat="action">
+        <a href="/en/naruto-confirms-a-new-anime-after-three-quiet-years" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/naruto-shippuden-bonds-movie-banner.jpg.webp" alt="Naruto Confirms a New Anime After Three Quiet Years" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Shonen</span></div><div class="ac-title">Naruto Confirms a New Anime After Three Quiet Years</div></div><div class="ac-meta"><span>OtaHub Editorial · Sep 30, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Naruto Confirms a New Anime After Three Quiet Years</div></div><div class="ac-meta"><span>OtaHub Editorial · Sep 30, 2026</span></div></div>
         </a>
-        <a href="/en/rom-com-manga-everyones-darling-has-a-secret-officially-gets" class="ac" data-cat="">
+        <a href="/en/rom-com-manga-everyones-darling-has-a-secret-officially-gets" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/y8conuxi-1790594348-678c4ac8a2f01edc1c0d3d91656946a0.jpg.webp" alt="Rom-Com Manga Everyone’s Darling Has a Secret Officially Gets an Anime" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Anime</span></div><div class="ac-title">Rom-Com Manga Everyone’s Darling Has a Secret Officially Gets an Anime</div></div><div class="ac-meta"><span>Anna · Sep 30, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Rom-Com Manga Everyone’s Darling Has a Secret Officially Gets an Anime</div></div><div class="ac-meta"><span>Anna · Sep 30, 2026</span></div></div>
         </a>
-        <a href="/en/sakamoto-days-season-2-reveals-a-new-trailer-returns" class="ac" data-cat="lich-chieu action">
+        <a href="/en/sakamoto-days-season-2-reveals-a-new-trailer-returns" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/xwv04u5g-aaaaqfufjk-gc2lxpr5ck4nk1nrf47vpkxwl-guhkt3pdrxjqo-rhfhjgykp.jpg.webp" alt="Sakamoto Days Season 2 Reveals a New Trailer, Returns in January 2027" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Sakamoto Days Season 2 Reveals a New Trailer, Returns in January 2027</div></div><div class="ac-meta"><span>Yu · Sep 30, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Sakamoto Days Season 2 Reveals a New Trailer, Returns in January 2027</div></div><div class="ac-meta"><span>Yu · Sep 30, 2026</span></div></div>
         </a>
-        <a href="/en/liar-game-officially-gets-season-2-after-the-animes-first" class="ac" data-cat="lich-chieu">
+        <a href="/en/liar-game-officially-gets-season-2-after-the-animes-first" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/liar-game-anime-trailer-2.jpg.webp" alt="Liar Game Officially Gets Season 2 After the Anime’s First Season Ends" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Liar Game Officially Gets Season 2 After the Anime’s First Season Ends</div></div><div class="ac-meta"><span>Anna · Sep 30, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Liar Game Officially Gets Season 2 After the Anime’s First Season Ends</div></div><div class="ac-meta"><span>Anna · Sep 30, 2026</span></div></div>
         </a>
-        <a href="/en/laputa-castle-in-the-sky-returns-to-vietnamese-cinemas" class="ac" data-cat="lich-chieu news">
+        <a href="/en/laputa-castle-in-the-sky-returns-to-vietnamese-cinemas" class="ac" data-type="phim-rap" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/eofdaug8-maxresdefault-1.jpg.webp" alt="Laputa: Castle in the Sky Returns to Vietnamese Cinemas in 2026" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Film</span></div><div class="ac-title">Laputa: Castle in the Sky Returns to Vietnamese Cinemas in 2026</div></div><div class="ac-meta"><span>Yu · Sep 30, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Films</span></div><div class="ac-title">Laputa: Castle in the Sky Returns to Vietnamese Cinemas in 2026</div></div><div class="ac-meta"><span>Yu · Sep 30, 2026</span></div></div>
         </a>
-        <a href="/en/5-life-lessons-from-naruto-uzumaki-still-hold-up" class="ac" data-cat="action">
+        <a href="/en/5-life-lessons-from-naruto-uzumaki-still-hold-up" class="ac" data-type="goc-nhin" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/naruto-5-lessons-banner.jpg.webp" alt="5 Life Lessons From Naruto Uzumaki That Still Hold Up" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Shonen</span></div><div class="ac-title">5 Life Lessons From Naruto Uzumaki That Still Hold Up</div></div><div class="ac-meta"><span>OtaHub Editorial · Sep 29, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Features</span></div><div class="ac-title">5 Life Lessons From Naruto Uzumaki That Still Hold Up</div></div><div class="ac-meta"><span>OtaHub Editorial · Sep 29, 2026</span></div></div>
         </a>
-        <a href="/en/top-korean-anime-aeni-worth-watching" class="ac" data-cat="">
+        <a href="/en/top-korean-anime-aeni-worth-watching" class="ac" data-type="top-list" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/top-korean-anime-lookism-banner.jpg.webp" alt="Top 8 Korean Anime (Aeni) Worth Watching Right Now" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Anime</span></div><div class="ac-title">Top 8 Korean Anime (Aeni) Worth Watching Right Now</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 29, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Top Lists</span></div><div class="ac-title">Top 8 Korean Anime (Aeni) Worth Watching Right Now</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 29, 2026</span></div></div>
         </a>
-        <a href="/en/gintama-creator-hideaki-sorachi-thought-anime-would-flop" class="ac" data-cat="">
+        <a href="/en/gintama-creator-hideaki-sorachi-thought-anime-would-flop" class="ac" data-type="tin-tuc" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/gintama-sorachi-flop-banner.jpg.webp" alt="Gintama Creator Admits He Thought the Anime Would Flop" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Anime</span></div><div class="ac-title">Gintama Creator Admits He Thought the Anime Would Flop</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 29, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">News</span></div><div class="ac-title">Gintama Creator Admits He Thought the Anime Would Flop</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 29, 2026</span></div></div>
         </a>
-        <a href="/en/the-apothecary-diaries-season-3-premieres-a-thrilling-new" class="ac" data-cat="lich-chieu isekai">
+        <a href="/en/the-apothecary-diaries-season-3-premieres-a-thrilling-new" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/ytysmngi-anh-bia-1.webp.webp" alt="The Apothecary Diaries Season 3 Premieres: A Thrilling New Journey for Maomao and Jinshi" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">The Apothecary Diaries Season 3 Premieres: A Thrilling New Journey for Maomao and Jinshi</div></div><div class="ac-meta"><span>Anna · Sep 29, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">The Apothecary Diaries Season 3 Premieres: A Thrilling New Journey for Maomao and Jinshi</div></div><div class="ac-meta"><span>Anna · Sep 29, 2026</span></div></div>
         </a>
-        <a href="/en/dragon-ball-super-beerus-goku-faces-beerus-the-god" class="ac" data-cat="action">
+        <a href="/en/dragon-ball-super-beerus-goku-faces-beerus-the-god" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/uploads/mvh7st8i-dragon-ball-super-beerus-remake-anime.avif" alt="Dragon Ball Super: Beerus – Goku Faces Beerus, the God of Destruction" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Shonen</span></div><div class="ac-title">Dragon Ball Super: Beerus – Goku Faces Beerus, the God of Destruction</div></div><div class="ac-meta"><span>Yu · Sep 29, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Dragon Ball Super: Beerus – Goku Faces Beerus, the God of Destruction</div></div><div class="ac-meta"><span>Yu · Sep 29, 2026</span></div></div>
         </a>
-        <a href="/en/dragon-ball-super-beerus-dragon-ball-super-returns" class="ac" data-cat="action">
+        <a href="/en/dragon-ball-super-beerus-dragon-ball-super-returns" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/7b3q8nv7-maxresdefault-2.jpg.webp" alt="Dragon Ball Super: Beerus – Dragon Ball Super Returns in an Enhanced Edition" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Shonen</span></div><div class="ac-title">Dragon Ball Super: Beerus – Dragon Ball Super Returns in an Enhanced Edition</div></div><div class="ac-meta"><span>Yu · Sep 29, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Dragon Ball Super: Beerus – Dragon Ball Super Returns in an Enhanced Edition</div></div><div class="ac-meta"><span>Yu · Sep 29, 2026</span></div></div>
         </a>
-        <a href="/en/the-apothecary-diaries-season-3-maomao-takes-on-new-cases" class="ac" data-cat="lich-chieu isekai">
+        <a href="/en/the-apothecary-diaries-season-3-maomao-takes-on-new-cases" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/apothecary-diaries-s3-pv2.jpg.webp" alt="The Apothecary Diaries Season 3: Maomao Takes on New Cases Into 2027" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">The Apothecary Diaries Season 3: Maomao Takes on New Cases Into 2027</div></div><div class="ac-meta"><span>Yu · Sep 29, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">The Apothecary Diaries Season 3: Maomao Takes on New Cases Into 2027</div></div><div class="ac-meta"><span>Yu · Sep 29, 2026</span></div></div>
         </a>
-        <a href="/en/why-you-should-see-laputa-castle-in-the-sky-on-the-big" class="ac" data-cat="">
+        <a href="/en/why-you-should-see-laputa-castle-in-the-sky-on-the-big" class="ac" data-type="goc-nhin" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/bmnjzftx-1788505364131-c2-1788504847736952838044-0-0-1005-1920-crop-1.webp.webp" alt="Why You Should See Laputa: Castle in the Sky on the Big Screen" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Anime</span></div><div class="ac-title">Why You Should See Laputa: Castle in the Sky on the Big Screen</div></div><div class="ac-meta"><span>Yu · Sep 29, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Features</span></div><div class="ac-title">Why You Should See Laputa: Castle in the Sky on the Big Screen</div></div><div class="ac-meta"><span>Yu · Sep 29, 2026</span></div></div>
         </a>
-        <a href="/en/we-are-aliens-french-japanese-animated-film-hits-theaters" class="ac" data-cat="news">
+        <a href="/en/we-are-aliens-french-japanese-animated-film-hits-theaters" class="ac" data-type="phim-rap" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/inline-mumbpbot-2.jpg.webp" alt="We Are Aliens: French–Japanese Animated Film Hits Theaters on September 25" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Film</span></div><div class="ac-title">We Are Aliens: French–Japanese Animated Film Hits Theaters on September 25</div></div><div class="ac-meta"><span>Yu · Sep 29, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Films</span></div><div class="ac-title">We Are Aliens: French–Japanese Animated Film Hits Theaters on September 25</div></div><div class="ac-meta"><span>Yu · Sep 29, 2026</span></div></div>
         </a>
-        <a href="/en/rezero-season-4-finale-extended-45-minutes-september-30" class="ac" data-cat="lich-chieu isekai">
+        <a href="/en/rezero-season-4-finale-extended-45-minutes-september-30" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/real-rezero-s4-finale-banner.jpg.webp" alt="Re:Zero Season 4 Finale Runs 45 Minutes, Airs September 30" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Re:Zero Season 4 Finale Runs 45 Minutes, Airs September 30</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 28, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Re:Zero Season 4 Finale Runs 45 Minutes, Airs September 30</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 28, 2026</span></div></div>
         </a>
-        <a href="/en/hololive-announces-first-tv-anime-odekake" class="ac" data-cat="lich-chieu">
+        <a href="/en/hololive-announces-first-tv-anime-odekake" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/odekake-hololive-key-visual.jpg.webp" alt="Hololive Announces Its First TV Anime: Odekake Hololive" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Hololive Announces Its First TV Anime: Odekake Hololive</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 28, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Hololive Announces Its First TV Anime: Odekake Hololive</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 28, 2026</span></div></div>
         </a>
-        <a href="/en/tougen-anki-season-2-nikko-kegon-falls-premieres-october-2" class="ac" data-cat="lich-chieu action">
+        <a href="/en/tougen-anki-season-2-nikko-kegon-falls-premieres-october-2" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/poster-real-tougen-anki-s2.jpg.webp" alt="Tougen Anki Season 2: Nikko Kegon Falls Arc Premieres October 2" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Tougen Anki Season 2: Nikko Kegon Falls Arc Premieres October 2</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 28, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Tougen Anki Season 2: Nikko Kegon Falls Arc Premieres October 2</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 28, 2026</span></div></div>
         </a>
-        <a href="/en/tokyo-revengers-santen-sensou-hen-premieres-october-2" class="ac" data-cat="lich-chieu action">
+        <a href="/en/tokyo-revengers-santen-sensou-hen-premieres-october-2" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/poster-real-tokyo-revengers-santen.jpg.webp" alt="Tokyo Revengers: Santen Sensou-hen Premieres October 2, Manga's Final Arc" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Tokyo Revengers: Santen Sensou-hen Premieres October 2, Manga's Final Arc</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 28, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Tokyo Revengers: Santen Sensou-hen Premieres October 2, Manga's Final Arc</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 28, 2026</span></div></div>
         </a>
-        <a href="/en/magic-knight-rayearth-2026-reboot-premieres-october-7" class="ac" data-cat="lich-chieu isekai">
+        <a href="/en/magic-knight-rayearth-2026-reboot-premieres-october-7" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/poster-real-magic-knight-rayearth-2026.jpg.webp" alt="Magic Knight Rayearth 2026 Reboot Premieres October 7" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Magic Knight Rayearth 2026 Reboot Premieres October 7</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 28, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Magic Knight Rayearth 2026 Reboot Premieres October 7</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 28, 2026</span></div></div>
         </a>
-        <a href="/en/diamond-no-ace-act-ii-cour-2-premieres-october-11" class="ac" data-cat="lich-chieu">
+        <a href="/en/diamond-no-ace-act-ii-cour-2-premieres-october-11" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/poster-real-diamond-no-ace-act2.jpg.webp" alt="Diamond no Ace Act II: Cour 2 Premieres October 11, Heads To Koshien" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Diamond no Ace Act II: Cour 2 Premieres October 11, Heads To Koshien</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 28, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Diamond no Ace Act II: Cour 2 Premieres October 11, Heads To Koshien</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 28, 2026</span></div></div>
         </a>
-        <a href="/en/aoashi-season-2-new-studio-premieres-october-4" class="ac" data-cat="lich-chieu">
+        <a href="/en/aoashi-season-2-new-studio-premieres-october-4" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/poster-real-aoashi-s2.jpg.webp" alt="Aoashi Season 2 Premieres October 4 With New Studio TMS" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Aoashi Season 2 Premieres October 4 With New Studio TMS</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 28, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Aoashi Season 2 Premieres October 4 With New Studio TMS</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 28, 2026</span></div></div>
         </a>
-        <a href="/en/ao-no-hako-season-2-premieres-october-4" class="ac" data-cat="lich-chieu">
+        <a href="/en/ao-no-hako-season-2-premieres-october-4" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/poster-real-ao-no-hako-s2.jpg.webp" alt="Ao no Hako Season 2 Premieres October 4 With New Studio" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Ao no Hako Season 2 Premieres October 4 With New Studio</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 28, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Ao no Hako Season 2 Premieres October 4 With New Studio</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 28, 2026</span></div></div>
         </a>
-        <a href="/en/detective-conan-case-30-murder-30th-anniversary-special" class="ac" data-cat="">
+        <a href="/en/detective-conan-case-30-murder-30th-anniversary-special" class="ac" data-type="tin-tuc" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/35vurs6i-axod6nnldq0hjychecz2qijj1gcjgnhpl.jpg.webp" alt="Detective Conan Case 30 Murder: 30th Anniversary 2-Hour TV Special" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Anime</span></div><div class="ac-title">Detective Conan Case 30 Murder: 30th Anniversary 2-Hour TV Special</div></div><div class="ac-meta"><span>OtaHub Editorial · Sep 28, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">News</span></div><div class="ac-title">Detective Conan Case 30 Murder: 30th Anniversary 2-Hour TV Special</div></div><div class="ac-meta"><span>OtaHub Editorial · Sep 28, 2026</span></div></div>
         </a>
-        <a href="/en/ghost-in-the-shell-2026-season-wrap-up" class="ac" data-cat="lich-chieu">
+        <a href="/en/ghost-in-the-shell-2026-season-wrap-up" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/poster-real-ghost-in-the-shell-2026.jpg.webp" alt="THE GHOST IN THE SHELL (2026): Season Wrap-Up" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">THE GHOST IN THE SHELL (2026): Season Wrap-Up</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 27, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">THE GHOST IN THE SHELL (2026): Season Wrap-Up</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 27, 2026</span></div></div>
         </a>
-        <a href="/en/the-beginning-after-the-end-anime-review" class="ac" data-cat="review">
+        <a href="/en/the-beginning-after-the-end-anime-review" class="ac" data-type="danh-gia" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/real-tbate-anime-banner.jpg.webp" alt="The Beginning After The End Review: Great Story, Controversial Animation" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Review</span></div><div class="ac-title">The Beginning After The End Review: Great Story, Controversial Animation</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 27, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Reviews</span></div><div class="ac-title">The Beginning After The End Review: Great Story, Controversial Animation</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 27, 2026</span></div></div>
         </a>
-        <a href="/en/spy-x-family-anime-review" class="ac" data-cat="review">
+        <a href="/en/spy-x-family-anime-review" class="ac" data-type="danh-gia" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/real-spy-family-banner.jpg.webp" alt="Spy x Family Review: A Fake Family Full of Secrets" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Review</span></div><div class="ac-title">Spy x Family Review: A Fake Family Full of Secrets</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 27, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Reviews</span></div><div class="ac-title">Spy x Family Review: A Fake Family Full of Secrets</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 27, 2026</span></div></div>
         </a>
-        <a href="/en/battle-through-the-heavens-review" class="ac" data-cat="review">
+        <a href="/en/battle-through-the-heavens-review" class="ac" data-type="danh-gia" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/battle-through-the-heavens-donghua.jpg.webp" alt="Battle Through the Heavens Review: A Classic Cultivation Donghua" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Review</span></div><div class="ac-title">Battle Through the Heavens Review: A Classic Cultivation Donghua</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 27, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Reviews</span></div><div class="ac-title">Battle Through the Heavens Review: A Classic Cultivation Donghua</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 27, 2026</span></div></div>
         </a>
-        <a href="/en/why-phantom-of-baker-street-is-one-of-the-best-conan-films" class="ac" data-cat="">
+        <a href="/en/why-phantom-of-baker-street-is-one-of-the-best-conan-films" class="ac" data-type="goc-nhin" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/real-conan-baker-street-banner.jpg.webp" alt="Why Phantom Of Baker Street Is One Of The Best Conan Films" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Anime</span></div><div class="ac-title">Why Phantom Of Baker Street Is One Of The Best Conan Films</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 26, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Features</span></div><div class="ac-title">Why Phantom Of Baker Street Is One Of The Best Conan Films</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 26, 2026</span></div></div>
         </a>
-        <a href="/en/slime-season-4-cour-3-july-2027-claymans-revenge" class="ac" data-cat="lich-chieu isekai">
+        <a href="/en/slime-season-4-cour-3-july-2027-claymans-revenge" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-slime-1.jpg.webp" alt="Slime Season 4 Returns July 2027, Clayman's Revenge Anime" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Slime Season 4 Returns July 2027, Clayman's Revenge Anime</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 26, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Slime Season 4 Returns July 2027, Clayman's Revenge Anime</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 26, 2026</span></div></div>
         </a>
-        <a href="/en/overgeared-anime-early-access-prime-video-september-27" class="ac" data-cat="">
+        <a href="/en/overgeared-anime-early-access-prime-video-september-27" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/real-overgeared-banner.jpg.webp" alt="Overgeared Gets Early Access On Prime Video September 27" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Anime</span></div><div class="ac-title">Overgeared Gets Early Access On Prime Video September 27</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 26, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Overgeared Gets Early Access On Prime Video September 27</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 26, 2026</span></div></div>
         </a>
-        <a href="/en/hell-mode-anime-season-3-s-rank-dungeon-conquest-arc" class="ac" data-cat="lich-chieu isekai">
+        <a href="/en/hell-mode-anime-season-3-s-rank-dungeon-conquest-arc" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/real-hell-mode-trailer.jpg.webp" alt="Hell Mode Anime Announces Season 3: S-Rank Dungeon Conquest Arc" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Hell Mode Anime Announces Season 3: S-Rank Dungeon Conquest Arc</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 26, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Hell Mode Anime Announces Season 3: S-Rank Dungeon Conquest Arc</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 26, 2026</span></div></div>
         </a>
-        <a href="/en/fall-2026-anime-top-10-most-anticipated" class="ac" data-cat="lich-chieu">
+        <a href="/en/fall-2026-anime-top-10-most-anticipated" class="ac" data-type="top-list" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/real-fall-2026-anticipated.jpg.webp" alt="Top 10 Most Anticipated Fall Anime: Heavyweight Adaptations Face Off" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Top 10 Most Anticipated Fall Anime: Heavyweight Adaptations Face Off</div></div><div class="ac-meta"><span>OtaHub Editorial · Sep 26, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Top Lists</span></div><div class="ac-title">Top 10 Most Anticipated Fall Anime: Heavyweight Adaptations Face Off</div></div><div class="ac-meta"><span>OtaHub Editorial · Sep 26, 2026</span></div></div>
         </a>
-        <a href="/en/draw-this-then-die-season-2-announced-after-finale" class="ac" data-cat="lich-chieu">
+        <a href="/en/draw-this-then-die-season-2-announced-after-finale" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/real-draw-this-then-die-banner.jpg.webp" alt="Draw This, Then Die! Season 2 Announced After Finale" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Draw This, Then Die! Season 2 Announced After Finale</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 26, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Draw This, Then Die! Season 2 Announced After Finale</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 26, 2026</span></div></div>
         </a>
-        <a href="/en/code-geass-star-chaser-aspal-anime-2027-teaser" class="ac" data-cat="lich-chieu">
+        <a href="/en/code-geass-star-chaser-aspal-anime-2027-teaser" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/real-code-geass-star-chaser-aspal.jpg.webp" alt="Code Geass: Star Chaser Aspal Teaser, Airs In 2027" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Code Geass: Star Chaser Aspal Teaser, Airs In 2027</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 26, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Code Geass: Star Chaser Aspal Teaser, Airs In 2027</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 26, 2026</span></div></div>
         </a>
-        <a href="/en/bride-of-the-barrier-master-netflix-january-2027-trailer" class="ac" data-cat="lich-chieu">
+        <a href="/en/bride-of-the-barrier-master-netflix-january-2027-trailer" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/real-bride-of-the-barrier-master.jpg.webp" alt="Bride of the Barrier Master Comes To Netflix In January 2027" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Bride of the Barrier Master Comes To Netflix In January 2027</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 26, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Bride of the Barrier Master Comes To Netflix In January 2027</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 26, 2026</span></div></div>
         </a>
-        <a href="/en/anime-worth-watching-japanese-history-culture" class="ac" data-cat="">
+        <a href="/en/anime-worth-watching-japanese-history-culture" class="ac" data-type="top-list" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/real-history-anime-kamuy.jpg.webp" alt="Anime Worth Watching For Japanese History Fans" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Anime</span></div><div class="ac-title">Anime Worth Watching For Japanese History Fans</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 26, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Top Lists</span></div><div class="ac-title">Anime Worth Watching For Japanese History Fans</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 26, 2026</span></div></div>
         </a>
-        <a href="/en/10-anime-to-watch-while-waiting-for-jujutsu-kaisen-season-4" class="ac" data-cat="lich-chieu action">
+        <a href="/en/10-anime-to-watch-while-waiting-for-jujutsu-kaisen-season-4" class="ac" data-type="top-list" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/real-jjk-wait-gachiakuta.jpg.webp" alt="10 Anime To Watch While Waiting For Jujutsu Kaisen S4" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">10 Anime To Watch While Waiting For Jujutsu Kaisen S4</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 26, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Top Lists</span></div><div class="ac-title">10 Anime To Watch While Waiting For Jujutsu Kaisen S4</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 26, 2026</span></div></div>
         </a>
-        <a href="/en/phantom-busters-manga-gets-tv-anime-2027" class="ac" data-cat="lich-chieu">
+        <a href="/en/phantom-busters-manga-gets-tv-anime-2027" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/real-phantom-busters.jpg.webp" alt="Neoshoco's Phantom Busters Gets a TV Anime in 2027" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Neoshoco's Phantom Busters Gets a TV Anime in 2027</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 25, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Neoshoco's Phantom Busters Gets a TV Anime in 2027</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 25, 2026</span></div></div>
         </a>
-        <a href="/en/chiikawa-anime-pauses-new-episodes" class="ac" data-cat="">
+        <a href="/en/chiikawa-anime-pauses-new-episodes" class="ac" data-type="tin-tuc" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/real-chiikawa.jpg.webp" alt="Chiikawa Anime Pauses New Episodes Until December 25" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Anime</span></div><div class="ac-title">Chiikawa Anime Pauses New Episodes Until December 25</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 25, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">News</span></div><div class="ac-title">Chiikawa Anime Pauses New Episodes Until December 25</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 25, 2026</span></div></div>
         </a>
-        <a href="/en/jujutsu-kaisen-culling-game-part-2-sukuna-teaser-juju-fes-2026" class="ac" data-cat="lich-chieu action">
+        <a href="/en/jujutsu-kaisen-culling-game-part-2-sukuna-teaser-juju-fes-2026" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-jujutsu-kaisen-1.jpg.webp" alt="Jujutsu Kaisen Culling Game Part 2: Sukuna Teaser" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Jujutsu Kaisen Culling Game Part 2: Sukuna Teaser</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 23, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Jujutsu Kaisen Culling Game Part 2: Sukuna Teaser</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 23, 2026</span></div></div>
         </a>
-        <a href="/en/record-of-ragnarok-what-is-odin-planning" class="ac" data-cat="">
+        <a href="/en/record-of-ragnarok-what-is-odin-planning" class="ac" data-type="goc-nhin" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/onqih37d-record-of-ragnarok-shuumatsu-no-valkyrie-has-some-really-v0-.jpg.webp" alt="Record of Ragnarok: What Is Odin Really Planning?" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Anime</span></div><div class="ac-title">Record of Ragnarok: What Is Odin Really Planning?</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 20, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Features</span></div><div class="ac-title">Record of Ragnarok: What Is Odin Really Planning?</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 20, 2026</span></div></div>
         </a>
-        <a href="/en/the-one-piece-netflix-wit-teaser-february-2027" class="ac" data-cat="lich-chieu action">
+        <a href="/en/the-one-piece-netflix-wit-teaser-february-2027" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-one-piece-1.jpg.webp" alt="The One Piece (Netflix x WIT) Premieres February 2027" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">The One Piece (Netflix x WIT) Premieres February 2027</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 19, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">The One Piece (Netflix x WIT) Premieres February 2027</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 19, 2026</span></div></div>
         </a>
-        <a href="/en/chainsaw-man-reze-arc-movie-box-office-vietnam-release" class="ac" data-cat="action news">
+        <a href="/en/chainsaw-man-reze-arc-movie-box-office-vietnam-release" class="ac" data-type="phim-rap" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-chainsaw-man-1.jpg.webp" alt="Chainsaw Man – Reze Arc Earns About $191.4 Million" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Film</span></div><div class="ac-title">Chainsaw Man – Reze Arc Earns About $191.4 Million</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 19, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Films</span></div><div class="ac-title">Chainsaw Man – Reze Arc Earns About $191.4 Million</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 19, 2026</span></div></div>
         </a>
-        <a href="/en/black-clover-season-2-witch-hat-atelier-trailers" class="ac" data-cat="lich-chieu action isekai">
+        <a href="/en/black-clover-season-2-witch-hat-atelier-trailers" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/real-black-clover-s2.jpg.webp" alt="Black Clover Season 2 &amp; Witch Hat Atelier Drop Trailers" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Black Clover Season 2 &amp; Witch Hat Atelier Drop Trailers</div></div><div class="ac-meta"><span>OtaHub Editorial · Sep 9, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Black Clover Season 2 &amp; Witch Hat Atelier Drop Trailers</div></div><div class="ac-meta"><span>OtaHub Editorial · Sep 9, 2026</span></div></div>
         </a>
-        <a href="/en/solo-leveling-ragnarok-webtoon-english-volume-1" class="ac" data-cat="action">
-          <div class="ac-thumb"><img src="/assets/img/_t/pool-solo-leveling-1.jpg.webp" alt="Solo Leveling: Ragnarok Gets English Volume 1" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Shonen</span></div><div class="ac-title">Solo Leveling: Ragnarok Gets English Volume 1</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Sep 7, 2026</span></div></div>
-        </a>
-        <a href="/en/dandadan-season-2-cursed-house-evil-eye-arcs" class="ac" data-cat="lich-chieu action">
+        <a href="/en/dandadan-season-2-cursed-house-evil-eye-arcs" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/news-dandadan-season-2-evil-eye.jpg.webp" alt="Dandadan Season 2 Premiered July 3, 2025" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Dandadan Season 2 Premiered July 3, 2025</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 7, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Dandadan Season 2 Premiered July 3, 2025</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 7, 2026</span></div></div>
         </a>
-        <a href="/en/frieren-season-2-aired-january-2026" class="ac" data-cat="lich-chieu isekai">
+        <a href="/en/frieren-season-2-aired-january-2026" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/news-frieren-season-2-official-visual.jpg.webp" alt="Frieren Season 2 Aired From January 2026 (10 Episodes)" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Frieren Season 2 Aired From January 2026 (10 Episodes)</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 5, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Frieren Season 2 Aired From January 2026 (10 Episodes)</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 5, 2026</span></div></div>
         </a>
-        <a href="/en/demon-slayer-infinity-castle-793-million-box-office" class="ac" data-cat="action news">
+        <a href="/en/demon-slayer-infinity-castle-793-million-box-office" class="ac" data-type="phim-rap" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/news-demon-slayer-infinity-castle-official.jpg.webp" alt="Demon Slayer: Infinity Castle Earns About $793 Million" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Film</span></div><div class="ac-title">Demon Slayer: Infinity Castle Earns About $793 Million</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 4, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Films</span></div><div class="ac-title">Demon Slayer: Infinity Castle Earns About $793 Million</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 4, 2026</span></div></div>
         </a>
-        <a href="/en/bleach-tybw-the-calamity-premieres-july-25-2026" class="ac" data-cat="lich-chieu action">
+        <a href="/en/bleach-tybw-the-calamity-premieres-july-25-2026" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-bleach-1.jpg.webp" alt="Bleach: TYBW – The Calamity Premieres July 25, 10 Episodes" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Bleach: TYBW – The Calamity Premieres July 25, 10 Episodes</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 4, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Bleach: TYBW – The Calamity Premieres July 25, 10 Episodes</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 4, 2026</span></div></div>
         </a>
-        <a href="/en/solo-leveling-season-2-arise-from-the-shadow-premiere" class="ac" data-cat="lich-chieu action">
+        <a href="/en/solo-leveling-season-2-arise-from-the-shadow-premiere" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-solo-leveling-5.jpg.webp" alt="Solo Leveling Season 2: 13 Episodes, Aired Jan–Mar 2025" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Solo Leveling Season 2: 13 Episodes, Aired Jan–Mar 2025</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 3, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Solo Leveling Season 2: 13 Episodes, Aired Jan–Mar 2025</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Sep 3, 2026</span></div></div>
         </a>
-        <a href="/en/jujutsu-kaisen-season-3-culling-game-release" class="ac" data-cat="lich-chieu action">
+        <a href="/en/jujutsu-kaisen-season-3-culling-game-release" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/yt--gvtWDUHmiU.jpg.webp" alt="Jujutsu Kaisen Season 3 Culling Game Part 1 Has Aired" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Jujutsu Kaisen Season 3 Culling Game Part 1 Has Aired</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Aug 25, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Jujutsu Kaisen Season 3 Culling Game Part 1 Has Aired</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Aug 25, 2026</span></div></div>
         </a>
-        <a href="/en/chainsaw-man-season-2-assassins-arc-in-production" class="ac" data-cat="lich-chieu action">
+        <a href="/en/chainsaw-man-season-2-assassins-arc-in-production" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-s8cP1Vt5US8.jpg.webp" alt="Chainsaw Man Season 2 " loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Chainsaw Man Season 2 </div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 25, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Chainsaw Man Season 2 </div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 25, 2026</span></div></div>
         </a>
-        <a href="/en/the-bugle-call-anime-2027" class="ac" data-cat="lich-chieu">
+        <a href="/en/the-bugle-call-anime-2027" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/news-the-bugle-call-anime-2027.jpg.webp" alt="The Bugle Call: Song of War Gets TV Anime for 2027" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">The Bugle Call: Song of War Gets TV Anime for 2027</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">The Bugle Call: Song of War Gets TV Anime for 2027</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
         </a>
-        <a href="/en/studio-cabana-anime-2027" class="ac" data-cat="lich-chieu">
+        <a href="/en/studio-cabana-anime-2027" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/news-studio-cabana-anime-2027.jpg.webp" alt="Studio Cabana Manga Gets TV Anime, Set For 2027" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Studio Cabana Manga Gets TV Anime, Set For 2027</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Studio Cabana Manga Gets TV Anime, Set For 2027</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
         </a>
-        <a href="/en/senren-banka-anime-2027" class="ac" data-cat="lich-chieu">
+        <a href="/en/senren-banka-anime-2027" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/news-senren-banka-anime-2027.jpg.webp" alt="Senren Banka Gets Anime Adaptation, 2027 Premiere" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Senren Banka Gets Anime Adaptation, 2027 Premiere</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Senren Banka Gets Anime Adaptation, 2027 Premiere</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
         </a>
-        <a href="/en/sekiro-no-defeat-anime-release" class="ac" data-cat="news">
+        <a href="/en/sekiro-no-defeat-anime-release" class="ac" data-type="phim-rap" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/news-sekiro-no-defeat-anime-release.png.webp" alt="Sekiro: No Defeat Anime Confirms Sept 4 Theatrical Release" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Film</span></div><div class="ac-title">Sekiro: No Defeat Anime Confirms Sept 4 Theatrical Release</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Films</span></div><div class="ac-title">Sekiro: No Defeat Anime Confirms Sept 4 Theatrical Release</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
         </a>
-        <a href="/en/rezero-10th-anniversary-visual" class="ac" data-cat="lich-chieu isekai">
+        <a href="/en/rezero-10th-anniversary-visual" class="ac" data-type="tin-tuc" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/news-rezero-10th-anniversary-visual.jpg.webp" alt="Re:ZERO Reveals 10th Anniversary Visual, Tokyo Exhibit" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Re:ZERO Reveals 10th Anniversary Visual, Tokyo Exhibit</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">News</span></div><div class="ac-title">Re:ZERO Reveals 10th Anniversary Visual, Tokyo Exhibit</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
         </a>
-        <a href="/en/ranma-half-season-3-visual" class="ac" data-cat="lich-chieu">
+        <a href="/en/ranma-half-season-3-visual" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/news-ranma-half-season-3-visual.jpg.webp" alt="Ranma 1/2 Season 3 Reveals Key Visual, Oct 3 Premiere" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Ranma 1/2 Season 3 Reveals Key Visual, Oct 3 Premiere</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Ranma 1/2 Season 3 Reveals Key Visual, Oct 3 Premiere</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
         </a>
-        <a href="/en/one-piece-god-valley-baad-films-announced" class="ac" data-cat="lich-chieu action">
+        <a href="/en/one-piece-god-valley-baad-films-announced" class="ac" data-type="phim-rap" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/news-one-piece-god-valley-baad-films-announced.png.webp" alt="One Piece Announces 2 New Films: God Valley &amp; BAAD" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">One Piece Announces 2 New Films: God Valley &amp; BAAD</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Films</span></div><div class="ac-title">One Piece Announces 2 New Films: God Valley &amp; BAAD</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
         </a>
-        <a href="/en/one-piece-egghead-arc-review" class="ac" data-cat="review action">
-          <div class="ac-thumb"><img src="/assets/img/_t/yt-YJ34bLwtVUM.jpg.webp" alt="One Piece: Egghead Arc Review: Vegapunk's Revelations" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Review</span></div><div class="ac-title">One Piece: Egghead Arc Review: Vegapunk's Revelations</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
-        </a>
-        <a href="/en/mii-chan-miss-yamada-anime" class="ac" data-cat="lich-chieu">
+        <a href="/en/mii-chan-miss-yamada-anime" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/news-mii-chan-miss-yamada-anime.jpg.webp" alt="Mii-chan and Miss Yamada Manga Gets 2027 Anime" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Mii-chan and Miss Yamada Manga Gets 2027 Anime</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Mii-chan and Miss Yamada Manga Gets 2027 Anime</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
         </a>
-        <a href="/en/magical-buffs-fate-rewinder-crunchyroll" class="ac" data-cat="isekai">
+        <a href="/en/magical-buffs-fate-rewinder-crunchyroll" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/magical-buffs-crunchyroll-teaser.jpg.webp" alt="Crunchyroll Confirms Magical Buffs, Fate Rewinder" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Fantasy</span></div><div class="ac-title">Crunchyroll Confirms Magical Buffs, Fate Rewinder</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Crunchyroll Confirms Magical Buffs, Fate Rewinder</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
         </a>
-        <a href="/en/konosuba-season-4-2027" class="ac" data-cat="lich-chieu isekai">
+        <a href="/en/konosuba-season-4-2027" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/news-konosuba-season-4-2027.jpg.webp" alt="KONOSUBA Season 4 Confirmed For 2027, New Studio" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">KONOSUBA Season 4 Confirmed For 2027, New Studio</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">KONOSUBA Season 4 Confirmed For 2027, New Studio</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
         </a>
-        <a href="/en/jujutsu-kaisen-juju-fes-2026-anniversary" class="ac" data-cat="lich-chieu action">
+        <a href="/en/jujutsu-kaisen-juju-fes-2026-anniversary" class="ac" data-type="tin-tuc" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-jujutsu-kaisen-3.jpg.webp" alt="Jujutsu Kaisen Kicks Off Juju Fes 2026 Anniversary Event" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Jujutsu Kaisen Kicks Off Juju Fes 2026 Anniversary Event</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">News</span></div><div class="ac-title">Jujutsu Kaisen Kicks Off Juju Fes 2026 Anniversary Event</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
         </a>
-        <a href="/en/haikyu-movie2-little-giant-teaser" class="ac" data-cat="lich-chieu action news">
+        <a href="/en/haikyu-movie2-little-giant-teaser" class="ac" data-type="phim-rap" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/news-haikyu-movie2-little-giant-teaser.jpg.webp" alt="Haikyu!! The Movie: VS The Little Giant Reveals New Visual" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Film</span></div><div class="ac-title">Haikyu!! The Movie: VS The Little Giant Reveals New Visual</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Films</span></div><div class="ac-title">Haikyu!! The Movie: VS The Little Giant Reveals New Visual</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
         </a>
-        <a href="/en/galaxy-express-999-new-film" class="ac" data-cat="news">
+        <a href="/en/galaxy-express-999-new-film" class="ac" data-type="phim-rap" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/news-galaxy-express-999-new-film.jpg.webp" alt="Toei Confirms New Galaxy Express 999 Film" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Film</span></div><div class="ac-title">Toei Confirms New Galaxy Express 999 Film</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Films</span></div><div class="ac-title">Toei Confirms New Galaxy Express 999 Film</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
         </a>
-        <a href="/en/free-fire-daybreak-anime-2027" class="ac" data-cat="lich-chieu">
+        <a href="/en/free-fire-daybreak-anime-2027" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/news-free-fire-daybreak-anime-2027.jpg.webp" alt="Free Fire Daybreak Reveals Key Visual, Spring 2027" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Free Fire Daybreak Reveals Key Visual, Spring 2027</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Free Fire Daybreak Reveals Key Visual, Spring 2027</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
         </a>
-        <a href="/en/doraemon-steam-time-machine-film" class="ac" data-cat="lich-chieu news">
+        <a href="/en/doraemon-steam-time-machine-film" class="ac" data-type="phim-rap" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/news-doraemon-steam-time-machine-film.jpg.webp" alt="Doraemon Announces 46th Film: Nobita Goes To London" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Film</span></div><div class="ac-title">Doraemon Announces 46th Film: Nobita Goes To London</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Films</span></div><div class="ac-title">Doraemon Announces 46th Film: Nobita Goes To London</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
         </a>
-        <a href="/en/detective-conan-final-chapter" class="ac" data-cat="">
-          <div class="ac-thumb"><img src="/assets/img/_t/uploads/detective-conan-key-visual.jpg.webp" alt="Gosho Aoyama Drafts Detective Conan's Final Chapter" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Anime</span></div><div class="ac-title">Gosho Aoyama Drafts Detective Conan's Final Chapter</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
-        </a>
-        <a href="/en/demon-slayer-infinity-castle-review" class="ac" data-cat="review action">
+        <a href="/en/demon-slayer-infinity-castle-review" class="ac" data-type="danh-gia" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/5418135572-demon-slayer-infinity-castle-review-hero.jpg.webp" alt="Demon Slayer: Infinity Castle Review (9.9/10)" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Review</span></div><div class="ac-title">Demon Slayer: Infinity Castle Review (9.9/10)</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Reviews</span></div><div class="ac-title">Demon Slayer: Infinity Castle Review (9.9/10)</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
         </a>
-        <a href="/en/bleach-tybw-calamity-opening-ending" class="ac" data-cat="action">
+        <a href="/en/bleach-tybw-calamity-opening-ending" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/news-bleach-tybw-calamity-opening-ending.jpg.webp" alt="Bleach TYBW: The Calamity Reveals OP I-BULL, ED Rasen" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Shonen</span></div><div class="ac-title">Bleach TYBW: The Calamity Reveals OP I-BULL, ED Rasen</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Bleach TYBW: The Calamity Reveals OP I-BULL, ED Rasen</div></div><div class="ac-meta"><span>OtaHub Editorial · Aug 18, 2026</span></div></div>
         </a>
-        <a href="/en/new-crunchyroll-anime-2026-romelia-black-torch" class="ac" data-cat="lich-chieu action">
+        <a href="/en/new-crunchyroll-anime-2026-romelia-black-torch" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/anime-nyc-2026-hero-v2.png.webp" alt="New Crunchyroll Anime for 2026: Romelia, BLACK TORCH" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">New Crunchyroll Anime for 2026: Romelia, BLACK TORCH</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 18, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">New Crunchyroll Anime for 2026: Romelia, BLACK TORCH</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 18, 2026</span></div></div>
         </a>
-        <a href="/en/anime-nyc-2026-crunchyroll" class="ac" data-cat="lich-chieu">
+        <a href="/en/anime-nyc-2026-crunchyroll" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-zjTA2uE_y_8.jpg.webp" alt="Anime NYC 2026: Crunchyroll Premieres to Watch" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Anime NYC 2026: Crunchyroll Premieres to Watch</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 18, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Anime NYC 2026: Crunchyroll Premieres to Watch</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 18, 2026</span></div></div>
         </a>
-        <a href="/en/skip-and-loafer-season2-teaser" class="ac" data-cat="lich-chieu">
+        <a href="/en/skip-and-loafer-season2-teaser" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/2715e60035-skip-and-loafer-s2-teaser.jpg.webp" alt="Skip and Loafer Season 2 Teaser Set for April 2027" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Skip and Loafer Season 2 Teaser Set for April 2027</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 17, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Skip and Loafer Season 2 Teaser Set for April 2027</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 17, 2026</span></div></div>
         </a>
-        <a href="/en/reincarnated-as-a-sword-season2-premiere" class="ac" data-cat="lich-chieu isekai">
+        <a href="/en/reincarnated-as-a-sword-season2-premiere" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/ae00527a02-reincarnated-as-a-sword-s2-hero.jpg.webp" alt="Reincarnated As A Sword Season 2 Set For October 7" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Reincarnated As A Sword Season 2 Set For October 7</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Aug 17, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Reincarnated As A Sword Season 2 Set For October 7</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Aug 17, 2026</span></div></div>
         </a>
-        <a href="/en/apothecary-diaries-season3-trailer" class="ac" data-cat="lich-chieu isekai">
+        <a href="/en/apothecary-diaries-season3-trailer" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/ba56514692-apothecary-diaries-s3-key-visual.jpg.webp" alt="Apothecary Diaries Season 3: Trailer, Set October 2" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Apothecary Diaries Season 3: Trailer, Set October 2</div></div><div class="ac-meta"><span>Mambu (Duc Anh) · Aug 17, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Apothecary Diaries Season 3: Trailer, Set October 2</div></div><div class="ac-meta"><span>Mambu (Duc Anh) · Aug 17, 2026</span></div></div>
         </a>
-        <a href="/en/oshi-no-ko-season4-teaser" class="ac" data-cat="lich-chieu">
+        <a href="/en/oshi-no-ko-season4-teaser" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/02716b9688-oshi-no-ko-season4-teaser-hero.jpg.webp" alt="Oshi no Ko Season 4 Final: Teaser Trailer Released" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Oshi no Ko Season 4 Final: Teaser Trailer Released</div></div><div class="ac-meta"><span>Mambu (Duc Anh) · Aug 16, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Oshi no Ko Season 4 Final: Teaser Trailer Released</div></div><div class="ac-meta"><span>Mambu (Duc Anh) · Aug 16, 2026</span></div></div>
         </a>
-        <a href="/en/oshi-no-ko-anime-review" class="ac" data-cat="review">
+        <a href="/en/oshi-no-ko-anime-review" class="ac" data-type="danh-gia" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/9506aefbae-oshi-no-ko-hero.jpg.webp" alt="Oshi no Ko Anime Review: Entertainment Industry Exposed" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Review</span></div><div class="ac-title">Oshi no Ko Anime Review: Entertainment Industry Exposed</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Aug 16, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Reviews</span></div><div class="ac-title">Oshi no Ko Anime Review: Entertainment Industry Exposed</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Aug 16, 2026</span></div></div>
         </a>
-        <a href="/en/jujutsu-kaisen-anime-review" class="ac" data-cat="review action">
+        <a href="/en/jujutsu-kaisen-anime-review" class="ac" data-type="danh-gia" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-MPfZhgLiK6w.jpg.webp" alt="Jujutsu Kaisen Anime Review: Mantra Goes Global" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Review</span></div><div class="ac-title">Jujutsu Kaisen Anime Review: Mantra Goes Global</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Aug 16, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Reviews</span></div><div class="ac-title">Jujutsu Kaisen Anime Review: Mantra Goes Global</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Aug 16, 2026</span></div></div>
         </a>
-        <a href="/en/chainsaw-man-anime-review" class="ac" data-cat="review action">
+        <a href="/en/chainsaw-man-anime-review" class="ac" data-type="danh-gia" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/6b2483c562-chainsaw-man-anime-hero.jpg.webp" alt="Chainsaw Man Anime Review: A MAPPA Masterpiece" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Review</span></div><div class="ac-title">Chainsaw Man Anime Review: A MAPPA Masterpiece</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Aug 16, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Reviews</span></div><div class="ac-title">Chainsaw Man Anime Review: A MAPPA Masterpiece</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Aug 16, 2026</span></div></div>
         </a>
-        <a href="/en/attack-on-titan-final-season-review" class="ac" data-cat="review action">
+        <a href="/en/attack-on-titan-final-season-review" class="ac" data-type="danh-gia" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/48ca2f8976-attack-on-titan-final-season-hero.jpg.webp" alt="Attack on Titan Final Season Review: A Fitting End" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Review</span></div><div class="ac-title">Attack on Titan Final Season Review: A Fitting End</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Aug 16, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Reviews</span></div><div class="ac-title">Attack on Titan Final Season Review: A Fitting End</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Aug 16, 2026</span></div></div>
         </a>
-        <a href="/en/attack-on-titan-wit-teaser" class="ac" data-cat="lich-chieu action">
+        <a href="/en/attack-on-titan-wit-teaser" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/a7548f6c8e-attack-on-titan-wit-teaser-hero.jpg.webp" alt="WIT Studio Reveals Attack on Titan Mystery Aug 20" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">WIT Studio Reveals Attack on Titan Mystery Aug 20</div></div><div class="ac-meta"><span>Mambu (Duc Anh) · Aug 15, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">WIT Studio Reveals Attack on Titan Mystery Aug 20</div></div><div class="ac-meta"><span>Mambu (Duc Anh) · Aug 15, 2026</span></div></div>
         </a>
-        <a href="/en/dandadan-season-2-review" class="ac" data-cat="lich-chieu review action">
+        <a href="/en/dandadan-season-2-review" class="ac" data-type="danh-gia" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/322e6e6826-dandadan-season-2-review-hero.jpg.webp" alt="Dandadan Season 2 Review: Science SARU Raises the Bar" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Review</span></div><div class="ac-title">Dandadan Season 2 Review: Science SARU Raises the Bar</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 15, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Reviews</span></div><div class="ac-title">Dandadan Season 2 Review: Science SARU Raises the Bar</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 15, 2026</span></div></div>
         </a>
-        <a href="/en/chainsaw-man-reze-arc-review" class="ac" data-cat="review action">
+        <a href="/en/chainsaw-man-reze-arc-review" class="ac" data-type="danh-gia" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-tAzAhDNdehs.jpg.webp" alt="Chainsaw Man: Reze Arc Review, MAPPA's Big Screen Debut" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Review</span></div><div class="ac-title">Chainsaw Man: Reze Arc Review, MAPPA's Big Screen Debut</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 15, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Reviews</span></div><div class="ac-title">Chainsaw Man: Reze Arc Review, MAPPA's Big Screen Debut</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 15, 2026</span></div></div>
         </a>
-        <a href="/en/the-ribbon-hero-netflix" class="ac" data-cat="lich-chieu">
+        <a href="/en/the-ribbon-hero-netflix" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/632c9aeaf5-the-ribbon-hero-netflix-hero.jpg.webp" alt="The Ribbon Hero: Netflix Adaptation Princess Knight" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">The Ribbon Hero: Netflix Adaptation Princess Knight</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 14, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">The Ribbon Hero: Netflix Adaptation Princess Knight</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 14, 2026</span></div></div>
         </a>
-        <a href="/en/made-in-abyss-awakening-mystery" class="ac" data-cat="lich-chieu">
+        <a href="/en/made-in-abyss-awakening-mystery" class="ac" data-type="phim-rap" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/b05891325a-made-in-abyss-awakening-mystery-hero.jpg.webp" alt="Made in Abyss: Awakening Mystery Trailer Out October 23" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Made in Abyss: Awakening Mystery Trailer Out October 23</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 14, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Films</span></div><div class="ac-title">Made in Abyss: Awakening Mystery Trailer Out October 23</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 14, 2026</span></div></div>
         </a>
-        <a href="/en/crunchyroll-makoto-shinkai-next-film" class="ac" data-cat="news">
+        <a href="/en/crunchyroll-makoto-shinkai-next-film" class="ac" data-type="phim-rap" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/c2c43ada05-shinkai-next-film-crunchyroll-hero.jpg.webp" alt="Crunchyroll Acquires New Makoto Shinkai Film Rights" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Film</span></div><div class="ac-title">Crunchyroll Acquires New Makoto Shinkai Film Rights</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 14, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Films</span></div><div class="ac-title">Crunchyroll Acquires New Makoto Shinkai Film Rights</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 14, 2026</span></div></div>
         </a>
-        <a href="/en/link-click-season3-premiere" class="ac" data-cat="lich-chieu">
+        <a href="/en/link-click-season3-premiere" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/1f8bc2e797-link-click-s3-hero.jpg.webp" alt="Link Click Season 3 Part 1 Officially Aired Today" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Link Click Season 3 Part 1 Officially Aired Today</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 14, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Link Click Season 3 Part 1 Officially Aired Today</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 14, 2026</span></div></div>
         </a>
-        <a href="/en/re-zero-season4-recapture-arc" class="ac" data-cat="lich-chieu isekai">
+        <a href="/en/re-zero-season4-recapture-arc" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-rezero-1.jpg.webp" alt="Re:Zero Season 4 Recapture Arc: Finale Sept 30" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Re:Zero Season 4 Recapture Arc: Finale Sept 30</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 12, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Re:Zero Season 4 Recapture Arc: Finale Sept 30</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 12, 2026</span></div></div>
         </a>
-        <a href="/en/mushoku-tensei-s3-chaos-breaker" class="ac" data-cat="lich-chieu isekai">
+        <a href="/en/mushoku-tensei-s3-chaos-breaker" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/77948dbff7-mushoku-tensei-s3-chaosbreaker.jpg.webp" alt="Mushoku Tensei S3: Chaos Breaker Trailer, Aug 16" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Mushoku Tensei S3: Chaos Breaker Trailer, Aug 16</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 12, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Mushoku Tensei S3: Chaos Breaker Trailer, Aug 16</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 12, 2026</span></div></div>
         </a>
-        <a href="/en/chained-soldier-season-3" class="ac" data-cat="lich-chieu action">
+        <a href="/en/chained-soldier-season-3" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/cc1f44dabd-chained-soldier-s3.jpg.webp" alt="Chained Soldier Season 3: Release Date And What We Know" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Chained Soldier Season 3: Release Date And What We Know</div></div><div class="ac-meta"><span>Mambu (Duc Anh) · Aug 12, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Chained Soldier Season 3: Release Date And What We Know</div></div><div class="ac-meta"><span>Mambu (Duc Anh) · Aug 12, 2026</span></div></div>
         </a>
-        <a href="/en/black-clover-season-2" class="ac" data-cat="lich-chieu action isekai">
+        <a href="/en/black-clover-season-2" class="ac" data-type="lich-chieu" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/00ecd3dafc-banner.jpg.webp" alt="Black Clover Season 2 Trailer Drops, Returns October" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Black Clover Season 2 Trailer Drops, Returns October</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 12, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule &amp; Announcements</span></div><div class="ac-title">Black Clover Season 2 Trailer Drops, Returns October</div></div><div class="ac-meta"><span>Tik (Khanh Quynh) · Aug 12, 2026</span></div></div>
         </a>
-        <a href="/en/summer-2026-anime-verified-air-dates" class="ac" data-cat="lich-chieu">
+        <a href="/en/summer-2026-anime-verified-air-dates" class="ac" data-type="top-list" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-mushoku-1.jpg.webp" alt="Summer 2026 Anime: Notable Shows and Air Dates" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ts">Schedule</span></div><div class="ac-title">Summer 2026 Anime: Notable Shows and Air Dates</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Jun 18, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Top Lists</span></div><div class="ac-title">Summer 2026 Anime: Notable Shows and Air Dates</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Jun 18, 2026</span></div></div>
         </a>
-        <a href="/en/dragon-ball-daima" class="ac" data-cat="action">
+        <a href="/en/dragon-ball-daima" class="ac" data-type="danh-gia" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/1f0540d7a3-maxresdefault.jpg.webp" alt="Dragon Ball DAIMA: Toriyama's Legacy Lives On" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Shonen</span></div><div class="ac-title">Dragon Ball DAIMA: Toriyama's Legacy Lives On</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Jun 3, 2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Reviews</span></div><div class="ac-title">Dragon Ball DAIMA: Toriyama's Legacy Lives On</div></div><div class="ac-meta"><span>Lin (Khanh Linh) · Jun 3, 2026</span></div></div>
         </a>
       <!-- ADMIN:ARTICLES_END -->
       </div>
@@ -2295,12 +2284,13 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 <script>
 /* ─── ANIME DYNAMIC 5-CARD SWITCHER ─── */
 var ANIME_FEATURED_DATA = {
-  "all": {"secTitle":"Anime \u003cem>Featured\u003c/em>","hero":{"url":"/en/forgotten-island-dreamworks-vs-kpop-demon-hunters","img":"/assets/img/forgotten-island-home-hero.jpg","tag":"Anime","tagClass":"tc","title":"Forgotten Island: Why DreamWorks Is Compared to KPop Demon Hunters","sub":"DreamWorks’ Forgotten Island draws on Filipino myth and scored 95% on Rotten Tomatoes but opened weakly. How does it compare with KPop Demon Hunters?","meta":"OtaHub Editorial · Oct 2, 2026"},"sides":[{"url":"/en/a-1-pictures-best-anime-lycoris-recoil-solo-leveling","img":"/assets/img/_t/a1-pictures-home-hero.jpg.webp","tag":"Shonen","tagClass":"tv","title":"A-1 Pictures Anime Worth Watching: From Lycoris Recoil to Solo Leveling","meta":"OtaHub Editorial · Oct 2"},{"url":"/en/chainsaw-man-and-one-piece-both-nominated-at-the-2026-harvey","img":"/assets/img/_t/uploads/inline-mup8rux6-2.jpg.webp","tag":"Schedule","tagClass":"ts","title":"Chainsaw Man and One Piece Both Nominated at the 2026 Harvey Awards","meta":"Yu · Oct 1"},{"url":"/en/chiikawa-surprises-the-japanese-box-office-beats-conan","img":"/assets/img/_t/uploads/inline-mup7jcqz-1.jpg.webp","tag":"Film","tagClass":"tc","title":"Chiikawa Surprises the Japanese Box Office, Beats Conan and Passes ¥13.9 Billion","meta":"Yu · Oct 1"},{"url":"/en/thunder-3-anime-officially-confirms-season-2-for-2027","img":"/assets/img/_t/uploads/thunder-3-season-2-pv.jpg.webp","tag":"Schedule","tagClass":"ts","title":"Thunder 3 Anime Officially Confirms Season 2 for 2027","meta":"Anna · Oct 1"}]},
-  "lich-chieu": {"secTitle":"Schedule \u003cem>&amp; Announcements\u003c/em>","hero":{"url":"/en/chainsaw-man-and-one-piece-both-nominated-at-the-2026-harvey","img":"/assets/img/uploads/inline-mup8rux6-2.jpg","tag":"Schedule","tagClass":"ts","title":"Chainsaw Man and One Piece Both Nominated at the 2026 Harvey Awards","sub":"Chainsaw Man – The Movie: Reze Arc and One Piece Season 2 are both nominated for Best Adaptation at the 2026 Harvey Awards.","meta":"Yu · Oct 1, 2026"},"sides":[{"url":"/en/thunder-3-anime-officially-confirms-season-2-for-2027","img":"/assets/img/_t/uploads/thunder-3-season-2-pv.jpg.webp","tag":"Schedule","tagClass":"ts","title":"Thunder 3 Anime Officially Confirms Season 2 for 2027","meta":"Anna · Oct 1"},{"url":"/en/frieren-season-3-golden-land-arc-story-macht","img":"/assets/img/_t/uploads/0lu7u0fb-maxresdefault.jpg.webp","tag":"Schedule","tagClass":"ts","title":"Frieren Season 3: The Golden Land Arc and the Story of Macht","meta":"Yu · Oct 1"},{"url":"/en/frieren-beyond-journeys-end-season-3-returns-in-october-2027","img":"/assets/img/_t/uploads/inline-mup6iqrc-1.jpg.webp","tag":"Schedule","tagClass":"ts","title":"Frieren: Beyond Journey’s End Season 3 Returns in October 2027","meta":"Yu · Oct 1"},{"url":"/en/top-10-most-anticipated-anime-coming-in-2027","img":"/assets/img/_t/uploads/5y6fou86-voh-loat-anime-noi-tieng-se-ra-mat-phan-moi-trong-nam-2027-1.webp.webp","tag":"Schedule","tagClass":"ts","title":"Top 10 Most Anticipated Anime Coming in 2027","meta":"Yu · Sep 30"}]},
-  "review": {"secTitle":"Anime \u003cem>Reviews\u003c/em>","hero":{"url":"/en/the-beginning-after-the-end-anime-review","img":"/assets/img/real-tbate-anime-banner.jpg","tag":"Review","tagClass":"ta","title":"The Beginning After The End Review: Great Story, Controversial Animation","sub":"The Beginning After the End review: King Grey reincarnated as Arthur Leywin in the magical world of Dicathen; TurtleMe and Fuyuki23's popular webtoon, though.","meta":"Lin (Khanh Linh) · Sep 27, 2026"},"sides":[{"url":"/en/spy-x-family-anime-review","img":"/assets/img/_t/real-spy-family-banner.jpg.webp","tag":"Review","tagClass":"ta","title":"Spy x Family Review: A Fake Family Full of Secrets","meta":"Lin (Khanh Linh) · Sep 27"},{"url":"/en/battle-through-the-heavens-review","img":"/assets/img/_t/uploads/battle-through-the-heavens-donghua.jpg.webp","tag":"Review","tagClass":"ta","title":"Battle Through the Heavens Review: A Classic Cultivation Donghua","meta":"Lin (Khanh Linh) · Sep 27"},{"url":"/en/one-piece-egghead-arc-review","img":"/assets/img/_t/yt-YJ34bLwtVUM.jpg.webp","tag":"Review","tagClass":"ta","title":"One Piece: Egghead Arc Review: Vegapunk's Revelations","meta":"OtaHub Editorial · Aug 18"},{"url":"/en/demon-slayer-infinity-castle-review","img":"/assets/img/_t/5418135572-demon-slayer-infinity-castle-review-hero.jpg.webp","tag":"Review","tagClass":"ta","title":"Demon Slayer: Infinity Castle Review (9.9/10)","meta":"OtaHub Editorial · Aug 18"}]},
-  "action": {"secTitle":"Action & \u003cem>Shonen Anime\u003c/em>","hero":{"url":"/en/a-1-pictures-best-anime-lycoris-recoil-solo-leveling","img":"/assets/img/a1-pictures-home-hero.jpg","tag":"Shonen","tagClass":"tv","title":"A-1 Pictures Anime Worth Watching: From Lycoris Recoil to Solo Leveling","sub":"From Lycoris Recoil and 86 to Solo Leveling, what is worth watching from A-1 Pictures? Eight standout anime plus Beyond the System and Mashle S3 news.","meta":"OtaHub Editorial · Oct 2, 2026"},"sides":[{"url":"/en/chainsaw-man-and-one-piece-both-nominated-at-the-2026-harvey","img":"/assets/img/_t/uploads/inline-mup8rux6-2.jpg.webp","tag":"Schedule","tagClass":"ts","title":"Chainsaw Man and One Piece Both Nominated at the 2026 Harvey Awards","meta":"Yu · Oct 1"},{"url":"/en/naruto-confirms-a-new-anime-after-three-quiet-years","img":"/assets/img/_t/naruto-shippuden-bonds-movie-banner.jpg.webp","tag":"Shonen","tagClass":"tv","title":"Naruto Confirms a New Anime After Three Quiet Years","meta":"OtaHub Editorial · Sep 30"},{"url":"/en/sakamoto-days-season-2-reveals-a-new-trailer-returns","img":"/assets/img/_t/uploads/xwv04u5g-aaaaqfufjk-gc2lxpr5ck4nk1nrf47vpkxwl-guhkt3pdrxjqo-rhfhjgykp.jpg.webp","tag":"Schedule","tagClass":"ts","title":"Sakamoto Days Season 2 Reveals a New Trailer, Returns in January 2027","meta":"Yu · Sep 30"},{"url":"/en/5-life-lessons-from-naruto-uzumaki-still-hold-up","img":"/assets/img/_t/naruto-5-lessons-banner.jpg.webp","tag":"Shonen","tagClass":"tv","title":"5 Life Lessons From Naruto Uzumaki That Still Hold Up","meta":"OtaHub Editorial · Sep 29"}]},
-  "isekai": {"secTitle":"Isekai & \u003cem>Fantasy Anime\u003c/em>","hero":{"url":"/en/frieren-season-3-golden-land-arc-story-macht","img":"/assets/img/uploads/0lu7u0fb-maxresdefault.jpg","tag":"Schedule","tagClass":"ts","title":"Frieren Season 3: The Golden Land Arc and the Story of Macht","sub":"Frieren Season 3 adapts the Golden Land Arc, centered on Macht, Denken and a land turned to gold, opening a new chapter on the demons and Denken’s past.","meta":"Yu · Oct 1, 2026"},"sides":[{"url":"/en/frieren-beyond-journeys-end-season-3-returns-in-october-2027","img":"/assets/img/_t/uploads/inline-mup6iqrc-1.jpg.webp","tag":"Schedule","tagClass":"ts","title":"Frieren: Beyond Journey’s End Season 3 Returns in October 2027","meta":"Yu · Oct 1"},{"url":"/en/the-apothecary-diaries-season-3-premieres-a-thrilling-new","img":"/assets/img/_t/uploads/ytysmngi-anh-bia-1.webp.webp","tag":"Schedule","tagClass":"ts","title":"The Apothecary Diaries Season 3 Premieres: A Thrilling New Journey for Maomao and Jinshi","meta":"Anna · Sep 29"},{"url":"/en/the-apothecary-diaries-season-3-maomao-takes-on-new-cases","img":"/assets/img/_t/uploads/apothecary-diaries-s3-pv2.jpg.webp","tag":"Schedule","tagClass":"ts","title":"The Apothecary Diaries Season 3: Maomao Takes on New Cases Into 2027","meta":"Yu · Sep 29"},{"url":"/en/rezero-season-4-finale-extended-45-minutes-september-30","img":"/assets/img/_t/real-rezero-s4-finale-banner.jpg.webp","tag":"Schedule","tagClass":"ts","title":"Re:Zero Season 4 Finale Runs 45 Minutes, Airs September 30","meta":"Lin (Khanh Linh) · Sep 28"}]},
-  "news": {"secTitle":"Cinema & \u003cem>Movie News\u003c/em>","hero":{"url":"/en/chiikawa-surprises-the-japanese-box-office-beats-conan","img":"/assets/img/uploads/inline-mup7jcqz-1.jpg","tag":"Film","tagClass":"tc","title":"Chiikawa Surprises the Japanese Box Office, Beats Conan and Passes ¥13.9 Billion","sub":"Chiikawa the Movie: The Secret of Mermaid Island is a hit in Japan, passing ¥13.9 billion, beating Conan and entering the list of the highest-grossing films in the country’s history.","meta":"Yu · Oct 1, 2026"},"sides":[{"url":"/en/laputa-castle-in-the-sky-returns-to-vietnamese-cinemas","img":"/assets/img/_t/uploads/eofdaug8-maxresdefault-1.jpg.webp","tag":"Film","tagClass":"tc","title":"Laputa: Castle in the Sky Returns to Vietnamese Cinemas in 2026","meta":"Yu · Sep 30"},{"url":"/en/we-are-aliens-french-japanese-animated-film-hits-theaters","img":"/assets/img/_t/uploads/inline-mumbpbot-2.jpg.webp","tag":"Film","tagClass":"tc","title":"We Are Aliens: French–Japanese Animated Film Hits Theaters on September 25","meta":"Yu · Sep 29"},{"url":"/en/chainsaw-man-reze-arc-movie-box-office-vietnam-release","img":"/assets/img/_t/pool-chainsaw-man-1.jpg.webp","tag":"Film","tagClass":"tc","title":"Chainsaw Man – Reze Arc Earns About $191.4 Million","meta":"Lin (Khanh Linh) · Sep 19"},{"url":"/en/demon-slayer-infinity-castle-793-million-box-office","img":"/assets/img/_t/news-demon-slayer-infinity-castle-official.jpg.webp","tag":"Film","tagClass":"tc","title":"Demon Slayer: Infinity Castle Earns About $793 Million","meta":"Lin (Khanh Linh) · Sep 4"}]}
+  "all": {"secTitle":"Anime \u003cem>Highlights\u003c/em>","hero":{"url":"/en/forgotten-island-dreamworks-vs-kpop-demon-hunters","img":"/assets/img/forgotten-island-home-hero.jpg","tag":"Features","tagClass":"tv","title":"Forgotten Island: Why DreamWorks Is Compared to KPop Demon Hunters","sub":"DreamWorks’ Forgotten Island draws on Filipino myth and scored 95% on Rotten Tomatoes but opened weakly. How does it compare with KPop Demon Hunters?","meta":"OtaHub Editorial · Oct 2, 2026"},"sides":[{"url":"/en/a-1-pictures-best-anime-lycoris-recoil-solo-leveling","img":"/assets/img/_t/a1-pictures-home-hero.jpg.webp","tag":"Top Lists","tagClass":"ta","title":"A-1 Pictures Anime Worth Watching: From Lycoris Recoil to Solo Leveling","meta":"OtaHub Editorial · Oct 2"},{"url":"/en/chainsaw-man-and-one-piece-both-nominated-at-the-2026-harvey","img":"/assets/img/_t/uploads/inline-mup8rux6-2.jpg.webp","tag":"News","tagClass":"tc","title":"Chainsaw Man and One Piece Both Nominated at the 2026 Harvey Awards","meta":"Yu · Oct 1"},{"url":"/en/chiikawa-surprises-the-japanese-box-office-beats-conan","img":"/assets/img/_t/uploads/inline-mup7jcqz-1.jpg.webp","tag":"Films","tagClass":"ta","title":"Chiikawa Surprises the Japanese Box Office, Beats Conan and Passes ¥13.9 Billion","meta":"Yu · Oct 1"},{"url":"/en/thunder-3-anime-officially-confirms-season-2-for-2027","img":"/assets/img/_t/uploads/thunder-3-season-2-pv.jpg.webp","tag":"Schedule & Announcements","tagClass":"ts","title":"Thunder 3 Anime Officially Confirms Season 2 for 2027","meta":"Anna · Oct 1"}]},
+  "tin-tuc": {"secTitle":"Anime · \u003cem>News\u003c/em>","hero":{"url":"/en/chainsaw-man-and-one-piece-both-nominated-at-the-2026-harvey","img":"/assets/img/uploads/inline-mup8rux6-2.jpg","tag":"News","tagClass":"tc","title":"Chainsaw Man and One Piece Both Nominated at the 2026 Harvey Awards","sub":"Chainsaw Man – The Movie: Reze Arc and One Piece Season 2 are both nominated for Best Adaptation at the 2026 Harvey Awards.","meta":"Yu · Oct 1, 2026"},"sides":[{"url":"/en/gintama-creator-hideaki-sorachi-thought-anime-would-flop","img":"/assets/img/_t/gintama-sorachi-flop-banner.jpg.webp","tag":"News","tagClass":"tc","title":"Gintama Creator Admits He Thought the Anime Would Flop","meta":"Lin (Khanh Linh) · Sep 29"},{"url":"/en/detective-conan-case-30-murder-30th-anniversary-special","img":"/assets/img/_t/uploads/35vurs6i-axod6nnldq0hjychecz2qijj1gcjgnhpl.jpg.webp","tag":"News","tagClass":"tc","title":"Detective Conan Case 30 Murder: 30th Anniversary 2-Hour TV Special","meta":"OtaHub Editorial · Sep 28"},{"url":"/en/chiikawa-anime-pauses-new-episodes","img":"/assets/img/_t/real-chiikawa.jpg.webp","tag":"News","tagClass":"tc","title":"Chiikawa Anime Pauses New Episodes Until December 25","meta":"Lin (Khanh Linh) · Sep 25"},{"url":"/en/rezero-10th-anniversary-visual","img":"/assets/img/_t/news-rezero-10th-anniversary-visual.jpg.webp","tag":"News","tagClass":"tc","title":"Re:ZERO Reveals 10th Anniversary Visual, Tokyo Exhibit","meta":"OtaHub Editorial · Aug 18"}]},
+  "lich-chieu": {"secTitle":"Anime · \u003cem>Schedule &amp; Announcements\u003c/em>","hero":{"url":"/en/thunder-3-anime-officially-confirms-season-2-for-2027","img":"/assets/img/uploads/thunder-3-season-2-pv.jpg","tag":"Schedule & Announcements","tagClass":"ts","title":"Thunder 3 Anime Officially Confirms Season 2 for 2027","sub":"Thunder 3 has officially confirmed Season 2, set to premiere in 2027 right after Episode 12 wrapped up. Here are the broadcast details and the new teaser trailer.","meta":"Anna · Oct 1, 2026"},"sides":[{"url":"/en/frieren-season-3-golden-land-arc-story-macht","img":"/assets/img/_t/uploads/0lu7u0fb-maxresdefault.jpg.webp","tag":"Schedule & Announcements","tagClass":"ts","title":"Frieren Season 3: The Golden Land Arc and the Story of Macht","meta":"Yu · Oct 1"},{"url":"/en/frieren-beyond-journeys-end-season-3-returns-in-october-2027","img":"/assets/img/_t/uploads/inline-mup6iqrc-1.jpg.webp","tag":"Schedule & Announcements","tagClass":"ts","title":"Frieren: Beyond Journey’s End Season 3 Returns in October 2027","meta":"Yu · Oct 1"},{"url":"/en/naruto-confirms-a-new-anime-after-three-quiet-years","img":"/assets/img/_t/naruto-shippuden-bonds-movie-banner.jpg.webp","tag":"Schedule & Announcements","tagClass":"ts","title":"Naruto Confirms a New Anime After Three Quiet Years","meta":"OtaHub Editorial · Sep 30"},{"url":"/en/rom-com-manga-everyones-darling-has-a-secret-officially-gets","img":"/assets/img/_t/uploads/y8conuxi-1790594348-678c4ac8a2f01edc1c0d3d91656946a0.jpg.webp","tag":"Schedule & Announcements","tagClass":"ts","title":"Rom-Com Manga Everyone’s Darling Has a Secret Officially Gets an Anime","meta":"Anna · Sep 30"}]},
+  "phim-rap": {"secTitle":"Anime · \u003cem>Films\u003c/em>","hero":{"url":"/en/chiikawa-surprises-the-japanese-box-office-beats-conan","img":"/assets/img/uploads/inline-mup7jcqz-1.jpg","tag":"Films","tagClass":"ta","title":"Chiikawa Surprises the Japanese Box Office, Beats Conan and Passes ¥13.9 Billion","sub":"Chiikawa the Movie: The Secret of Mermaid Island is a hit in Japan, passing ¥13.9 billion, beating Conan and entering the list of the highest-grossing films in the country’s history.","meta":"Yu · Oct 1, 2026"},"sides":[{"url":"/en/laputa-castle-in-the-sky-returns-to-vietnamese-cinemas","img":"/assets/img/_t/uploads/eofdaug8-maxresdefault-1.jpg.webp","tag":"Films","tagClass":"ta","title":"Laputa: Castle in the Sky Returns to Vietnamese Cinemas in 2026","meta":"Yu · Sep 30"},{"url":"/en/we-are-aliens-french-japanese-animated-film-hits-theaters","img":"/assets/img/_t/uploads/inline-mumbpbot-2.jpg.webp","tag":"Films","tagClass":"ta","title":"We Are Aliens: French–Japanese Animated Film Hits Theaters on September 25","meta":"Yu · Sep 29"},{"url":"/en/chainsaw-man-reze-arc-movie-box-office-vietnam-release","img":"/assets/img/_t/pool-chainsaw-man-1.jpg.webp","tag":"Films","tagClass":"ta","title":"Chainsaw Man – Reze Arc Earns About $191.4 Million","meta":"Lin (Khanh Linh) · Sep 19"},{"url":"/en/demon-slayer-infinity-castle-793-million-box-office","img":"/assets/img/_t/news-demon-slayer-infinity-castle-official.jpg.webp","tag":"Films","tagClass":"ta","title":"Demon Slayer: Infinity Castle Earns About $793 Million","meta":"Lin (Khanh Linh) · Sep 4"}]},
+  "danh-gia": {"secTitle":"Anime · \u003cem>Reviews\u003c/em>","hero":{"url":"/en/the-beginning-after-the-end-anime-review","img":"/assets/img/real-tbate-anime-banner.jpg","tag":"Reviews","tagClass":"ta","title":"The Beginning After The End Review: Great Story, Controversial Animation","sub":"The Beginning After the End review: King Grey reincarnated as Arthur Leywin in the magical world of Dicathen; TurtleMe and Fuyuki23's popular webtoon, though.","meta":"Lin (Khanh Linh) · Sep 27, 2026"},"sides":[{"url":"/en/spy-x-family-anime-review","img":"/assets/img/_t/real-spy-family-banner.jpg.webp","tag":"Reviews","tagClass":"ta","title":"Spy x Family Review: A Fake Family Full of Secrets","meta":"Lin (Khanh Linh) · Sep 27"},{"url":"/en/battle-through-the-heavens-review","img":"/assets/img/_t/uploads/battle-through-the-heavens-donghua.jpg.webp","tag":"Reviews","tagClass":"ta","title":"Battle Through the Heavens Review: A Classic Cultivation Donghua","meta":"Lin (Khanh Linh) · Sep 27"},{"url":"/en/demon-slayer-infinity-castle-review","img":"/assets/img/_t/5418135572-demon-slayer-infinity-castle-review-hero.jpg.webp","tag":"Reviews","tagClass":"ta","title":"Demon Slayer: Infinity Castle Review (9.9/10)","meta":"OtaHub Editorial · Aug 18"},{"url":"/en/oshi-no-ko-anime-review","img":"/assets/img/_t/9506aefbae-oshi-no-ko-hero.jpg.webp","tag":"Reviews","tagClass":"ta","title":"Oshi no Ko Anime Review: Entertainment Industry Exposed","meta":"Lin (Khanh Linh) · Aug 16"}]},
+  "goc-nhin": {"secTitle":"Anime · \u003cem>Features\u003c/em>","hero":{"url":"/en/forgotten-island-dreamworks-vs-kpop-demon-hunters","img":"/assets/img/forgotten-island-home-hero.jpg","tag":"Features","tagClass":"tv","title":"Forgotten Island: Why DreamWorks Is Compared to KPop Demon Hunters","sub":"DreamWorks’ Forgotten Island draws on Filipino myth and scored 95% on Rotten Tomatoes but opened weakly. How does it compare with KPop Demon Hunters?","meta":"OtaHub Editorial · Oct 2, 2026"},"sides":[{"url":"/en/5-life-lessons-from-naruto-uzumaki-still-hold-up","img":"/assets/img/_t/naruto-5-lessons-banner.jpg.webp","tag":"Features","tagClass":"tv","title":"5 Life Lessons From Naruto Uzumaki That Still Hold Up","meta":"OtaHub Editorial · Sep 29"},{"url":"/en/why-you-should-see-laputa-castle-in-the-sky-on-the-big","img":"/assets/img/_t/uploads/bmnjzftx-1788505364131-c2-1788504847736952838044-0-0-1005-1920-crop-1.webp.webp","tag":"Features","tagClass":"tv","title":"Why You Should See Laputa: Castle in the Sky on the Big Screen","meta":"Yu · Sep 29"},{"url":"/en/why-phantom-of-baker-street-is-one-of-the-best-conan-films","img":"/assets/img/_t/real-conan-baker-street-banner.jpg.webp","tag":"Features","tagClass":"tv","title":"Why Phantom Of Baker Street Is One Of The Best Conan Films","meta":"Lin (Khanh Linh) · Sep 26"},{"url":"/en/record-of-ragnarok-what-is-odin-planning","img":"/assets/img/_t/uploads/onqih37d-record-of-ragnarok-shuumatsu-no-valkyrie-has-some-really-v0-.jpg.webp","tag":"Features","tagClass":"tv","title":"Record of Ragnarok: What Is Odin Really Planning?","meta":"Lin (Khanh Linh) · Sep 20"}]},
+  "top-list": {"secTitle":"Anime · \u003cem>Top Lists\u003c/em>","hero":{"url":"/en/a-1-pictures-best-anime-lycoris-recoil-solo-leveling","img":"/assets/img/a1-pictures-home-hero.jpg","tag":"Top Lists","tagClass":"ta","title":"A-1 Pictures Anime Worth Watching: From Lycoris Recoil to Solo Leveling","sub":"From Lycoris Recoil and 86 to Solo Leveling, what is worth watching from A-1 Pictures? Eight standout anime plus Beyond the System and Mashle S3 news.","meta":"OtaHub Editorial · Oct 2, 2026"},"sides":[{"url":"/en/top-10-most-anticipated-anime-coming-in-2027","img":"/assets/img/_t/uploads/5y6fou86-voh-loat-anime-noi-tieng-se-ra-mat-phan-moi-trong-nam-2027-1.webp.webp","tag":"Top Lists","tagClass":"ta","title":"Top 10 Most Anticipated Anime Coming in 2027","meta":"Yu · Sep 30"},{"url":"/en/top-korean-anime-aeni-worth-watching","img":"/assets/img/_t/top-korean-anime-lookism-banner.jpg.webp","tag":"Top Lists","tagClass":"ta","title":"Top 8 Korean Anime (Aeni) Worth Watching Right Now","meta":"Lin (Khanh Linh) · Sep 29"},{"url":"/en/fall-2026-anime-top-10-most-anticipated","img":"/assets/img/_t/real-fall-2026-anticipated.jpg.webp","tag":"Top Lists","tagClass":"ta","title":"Top 10 Most Anticipated Fall Anime: Heavyweight Adaptations Face Off","meta":"OtaHub Editorial · Sep 26"},{"url":"/en/anime-worth-watching-japanese-history-culture","img":"/assets/img/_t/real-history-anime-kamuy.jpg.webp","tag":"Top Lists","tagClass":"ta","title":"Anime Worth Watching For Japanese History Fans","meta":"Lin (Khanh Linh) · Sep 26"}]}
 };
 
 function updateAnimeHero(cat){
@@ -2387,6 +2377,7 @@ function setAnimeFilter(btn, cat){
   });
 })();
 </script>
+<script defer src="/assets/hub-filter.js?v=20261002a"></script>
 <script defer src="/assets/enhance.js?v=20261002g"></script>
 <script defer src="/assets/img-fit.v2.js?v=20261002a"></script>
 <script src="/assets/lang-switch.js" defer></script>

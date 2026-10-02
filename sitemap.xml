@@ -2441,4 +2441,12 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://otahub.asia/top-list</loc>
+    <lastmod>2026-10-02</lastmod>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/top-list</loc>
+    <lastmod>2026-10-02</lastmod>
+  </url>
 </urlset>

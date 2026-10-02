@@ -21,6 +21,7 @@ const NAV = {
     ['/en/reviews', 'Reviews'], ['/en/rankings', 'Rankings'], ['/en/in-depth', 'In-Depth']]
 };
 const CTA = { vi: ['/#newsletter', 'Đăng ký'], en: ['/en/#newsletter', 'Subscribe'] };
+const SUB = { vi: [['/about', 'Giới thiệu'], ['/#newsletter', 'Bản tin'], ['/lien-he', 'Liên hệ']], en: [['/en/about', 'About'], ['/en/#newsletter', 'Newsletter'], ['/en/contact', 'Contact']] };
 const LOGO = (home, lazy) => `<a href="${home}" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block"${lazy ? ' loading="lazy"' : ''}><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a>`;
 const FOOTER = {
   vi: { home: '/', desc: 'Tin tức, đánh giá và lịch phát sóng game, anime, manga cho cộng đồng Việt Nam và châu Á.', copy: '© 2026 OtaHub.asia · Tin tức game, anime &amp; manga',
@@ -67,7 +68,7 @@ const activeOf = (block, lang) => {
   const href = m && norm(m[1] || m[2]);
   return href && NAV[lang].some(([u]) => norm(u) === href) ? href : null;
 };
-const langOfBlock = (block, fallback) => (/href="\/en[\/"#]/.test(block) ? 'en' : /href="\/(?!en[\/"#])/.test(block) ? 'vi' : fallback);
+const langOfBlock = (block, fallback) => fallback === 'en' ? 'en' : (/href="\/en[\/"#]/.test(block) ? 'en' : /href="\/(?!en[\/"#])/.test(block) ? 'vi' : fallback);
 
 function syncHtml(html, pageLang) {
   // menu ngang
@@ -81,13 +82,17 @@ function syncHtml(html, pageLang) {
     const lang = langOfBlock(block, pageLang);
     return block.replace(/<a\b[^>]*\bclass="logo"[^>]*>/, (tag) => tag.replace(/href="(?!\.\/)[^"]*"/, `href="${FOOTER[lang].home}"`));
   });
-  // menu trượt (trang hub)
-  html = replaceElement(html, /<div class="mobile-nav"[^>]*>/, 'div', (block) => {
-    const open = block.match(/^<div[^>]*>/)[0];
-    const lang = langOfBlock(block, pageLang);
-    const act = activeOf(block, lang);
-    return `${open}\n  ${NAV[lang].map(([u, t]) => `<a href="${u}"${norm(u) === act ? ' class="active"' : ''}>${t}</a>`).join('')}\n</div>`;
-  });
+  // menu trượt (trang hub dùng <div>, vài trang như Top List dùng <nav>)
+  for (const tag of ['div', 'nav']) {
+    html = replaceElement(html, new RegExp(`<${tag} class="mobile-nav"[^>]*>`), tag, (block) => {
+      const open = block.match(new RegExp(`^<${tag}[^>]*>`))[0];
+      const lang = langOfBlock(block, pageLang);
+      const act = activeOf(block, lang);
+      // trang bài viết có thêm dòng phụ (Giới thiệu · Bản tin · Liên hệ) ở cuối menu trượt
+      const sub = /class="m-sub"/.test(block) ? `<div class="m-sub">${SUB[lang].map(([u, t]) => `<a href="${u}">${t}</a>`).join('')}</div>` : '';
+      return `${open}\n  ${NAV[lang].map(([u, t]) => `<a href="${u}"${norm(u) === act ? ' class="active"' : ''}>${t}</a>`).join('')}${sub}\n</${tag}>`;
+    });
+  }
   // nút Đăng ký
   html = html.replace(/<a\b([^>]*)\bclass="cta"([^>]*)>[^<]*<\/a>/g, (a, pre, post) => {
     if (!/newsletter/.test(a)) return a; // vd. trang 404: nút "Về trang chủ"

@@ -1,109 +1,112 @@
-// Trang chuyên mục Gaming / Anime / Manga (VI + EN): danh sách bài, nhãn lọc menu con và khối "Tiêu điểm"
-// được dựng lại từ chính các bài viết, không sửa tay.
+// Trang chuyên mục Gaming / Anime / Manga (VI + EN) và trang Top List: dựng lại từ phân loại lưu TRONG từng bài.
 //
-//   - Bài thuộc chuyên mục nào: theo <meta property="article:section"> của bài; bài "Reviews" theo loại ở trang
-//     Đánh giá (game/anime/manga); vài bài ghi sai chuyên mục sửa ở HUB_OVERRIDE.
-//   - Nhãn lọc (data-cat) cho từng tab menu con: phân loại theo tiêu đề + tag + slug (RULES). Tab không có bài bị ẩn.
-//   - Khối Tiêu điểm của từng tab: bài mới nhất có ảnh làm bài lớn + 4 bài kế tiếp.
+// Mỗi bài thuộc trang chuyên mục mang 3 thẻ meta (nguồn sự thật, sửa được ở admin → ô "Mục con"):
+//   <meta name="otahub:hub" content="game|anime|manga">
+//   <meta name="otahub:type" content="tin-tuc|ra-mat|danh-gia|...">   đúng 1 mục con → 1 tab
+//   <meta name="otahub:facet" content="pc|mobile|multi|manga|manhwa|manhua|">  nhóm phụ (nền tảng / xuất xứ)
+// Danh sách mục con, nhãn và gợi ý tự động: assets/hub-taxonomy.js (dùng chung với admin).
 //
-// Chạy:  node scripts/sync-hub-articles.mjs           (ghi)
-//        node scripts/sync-hub-articles.mjs --check   (báo trang cần cập nhật, thoát mã 1)
+// Bài chưa có meta: bản EN lấy theo bản VI (hreflang); bản VI dùng OVERRIDE hoặc gợi ý tự động, rồi GHI meta vào bài.
+//
+// Chạy:  node scripts/sync-hub-articles.mjs           (ghi meta còn thiếu + dựng trang chuyên mục, Top List)
+//        node scripts/sync-hub-articles.mjs --check   (chỉ báo, thoát mã 1 nếu cần cập nhật)
 import fs from 'node:fs';
 import vm from 'node:vm';
 import { read, write, loadReviews } from './lib/review-scores.mjs';
 
 const CHECK = process.argv.includes('--check');
 const exists = (p) => fs.existsSync(new URL('../' + p, import.meta.url));
+const ctx = { window: {} };
+vm.runInNewContext(read('assets/hub-taxonomy.js'), ctx);
+const TX = ctx.window.OT_TAXONOMY;
 
-// Bài ghi sai chuyên mục trong meta (null = không thuộc trang chuyên mục nào, vd. phim người đóng)
-const HUB_OVERRIDE = {
-  'jujutsu-kaisen-juju-fes-2026-anniversary': 'anime',
-  'avengers-doomsday-homework-watchlist': null,
-  'huong-dan': 'game'
+// Chỉ dùng khi bài CHƯA có meta (gợi ý tự động sai / bài ghi sai chuyên mục). null = không thuộc trang chuyên mục.
+const OVERRIDE = {
+  'jujutsu-kaisen-juju-fes-2026-anniversary': { hub: 'anime', type: 'tin-tuc' },
+  'avengers-doomsday-homework-watchlist': { hub: null },
+  'huong-dan': { hub: 'game', type: 'huong-dan', facet: 'multi' },
+  'detective-conan-final-chapter': { hub: 'manga', type: 'tin-tuc', facet: 'manga' },
+  'order-of-the-sinking-star-ps5': { type: 'ra-mat' },
+  'made-in-abyss-awakening-mystery': { type: 'phim-rap' },
+  'dragon-ball-super-beerus-goku-doi-dau-than-huy-diet-beerus': { type: 'lich-chieu' },
+  'dynamite-blue-game-rpg-chien-thuat-cyberpunk-kosmos12': { type: 'ra-mat' },
+  'big-walk-house-house': { type: 'ra-mat' }
 };
-
-// Luật phân loại tab menu con (khớp tiêu đề + tag + slug, không phân biệt hoa thường)
-const R = (s) => new RegExp(s, 'i');
-const RULES = {
-  game: {
-    review: R('review|đánh giá|metacritic \\d|chấm điểm'),
-    mobile: R('mobile|android|\\bios\\b|gacha|genshin|honkai|star rail|wuthering|zenless|honor of kings|pubg mobile|free fire|liên quân|mobile legends|arknights|blue archive|nikke|solo leveling:? arise|girls.? frontline|aniimo|uma ?musume|fate/grand|pok[eé]mon go|wild rift|kaiju no\\.? ?8 the game|golden spirit|suikoden star leap|blue protocol|tower of fantasy|neverness|ananta|duet night|azur lane|epic seven|reverse: ?1999|limbus|delta force|sword of justice|where winds meet|ark nights'),
-    pc: R('\\bpc\\b|stellar blade|steam|ps5|ps4|playstation|xbox|switch|nintendo|console|game pass|epic games|unreal|remaster|remake|elden|monster hunter|metal gear|silent hill|gears of war|wolverine|witcher|cyberpunk|death stranding|ghost of|split fiction|hollow knight|black myth|kingdom come|space marine|mafia|resident evil|final fantasy|persona|zelda|mario|tekken|street fighter|marvel'),
-    preview: R('trailer|teaser|công bố|announce|reveal|hé lộ|lộ diện|ra mắt|sắp|preview|showcase|direct|gameplay|phát hành|release|launch|beta|demo|rò rỉ|leak|ấn định'),
-    guide: R('hướng dẫn|guide|build (?:nhân vật|đồ|meta)|builds\\b|cách chơi|mẹo|tips|walkthrough|đội hình|team comp|tier ?list|nên chơi|đáng chơi|gợi ý|top \\d|best '),
-    esports: R('esports|e-sports|giải đấu|tournament|championship|champions|\\bvct\\b|\\blck\\b|\\bmsi\\b|worlds|asian games|pubg asia|\\bmpl\\b|\\baic\\b|\\bevo\\b|world tour|cấm thi đấu|án cấm|tuyển thủ|chiêu mộ|đội tuyển|roster'),
-    tierlist: R('tier ?list|xếp hạng nhân vật|bảng xếp hạng nhân vật')
-  },
-  anime: {
-    'lich-chieu': R('lên sóng|phát sóng|premiere|lịch chiếu|ấn định|ngày ra mắt|ra mắt|\\bmùa \\d|season \\d|airs?\\b|air date|cour|tập cuối|công bố|chuyển thể|adaptation|announce|teaser|trailer|visual|20(26|27)'),
-    review: R('review|đánh giá'),
-    action: R('hành động|action|shonen|shōnen|jujutsu|one piece|naruto|boruto|bleach|demon slayer|kimetsu|chainsaw|my hero|black clover|solo leveling|kaiju|dandadan|sakamoto|hunter x hunter|tokyo revengers|attack on titan|haikyu|blue lock|dragon ball|tougen anki|fire force|hell.?s paradise|jigokuraku|gachiakuta|kagurabachi|undead unluck|psyren|mob psycho|one punch|fist of the north|chained soldier|black torch|wind breaker|mashle|blue exorcist'),
-    isekai: R('isekai|fantasy|giả tưởng|re:? ?zero|mushoku|konosuba|slime|frieren|overlord|reincarnat|tensei|chuyển sinh|dị giới|\\bsword|witch|phù thủy|magic|ma thuật|apothecary|dược sư|dungeon|hầm ngục|wistoria|danmachi|shield hero|skeleton knight|rayearth|hell mode|black clover'),
-    news: R('movie|the movie|phim điện ảnh|điện ảnh|chiếu rạp|ra rạp|box office|doanh thu|\\bfilm\\b|theatrical|cinema')
-  },
-  manga: {
-    shonen: R('jump|shonen|shōnen|one piece|jujutsu|chainsaw|kagurabachi|sakamoto|dandadan|undead unluck|black clover|my hero|horikoshi|boruto|kaiju|blue box|witch watch|shueisha|hunter x hunter|ichigoki|nue|akane|ao no hako|gachiakuta|me & roboco|elusive samurai|nige jouzu'),
-    manhwa: R('manhwa|webtoon|manhua|solo leveling|beginning after the end|tbate|omniscient|tower of god|naver|kakao|tapas|battle through|martial peak|swallowed star|second life ranker|god of blackfield|wu shen|urban immortal'),
-    reviews: R('review|đánh giá'),
-    seinen: R('seinen|berserk|vagabond|vinland|monster|kingdom|golden kamuy|dungeon meshi|blame|gantz|tokyo ghoul|20th century|look back|goodnight punpun|oishinbo|blue period'),
-    spoilers: R('spoiler|chương \\d|chapter \\d|chương cuối|phát hành|release|tập \\d|volume|vol\\.|viz|manga plus|kết thúc|hoàn kết|tạm ngưng|hiatus|oneshot|one-shot|trở lại|lịch ra')
-  }
-};
-// Nhãn hiển thị trên thẻ: tab ưu tiên đầu tiên khớp
-const TAG = {
-  vi: { game: [['review', 'Đánh giá', 'ta'], ['esports', 'Esports', 'tv'], ['tierlist', 'Tier list', 'ta'], ['guide', 'Hướng dẫn', 'tg'], ['mobile', 'Mobile', 'tg'], ['preview', 'Sắp ra mắt', 'tc'], ['pc', 'PC / Console', 'tc']],
-        anime: [['review', 'Đánh giá', 'ta'], ['news', 'Chiếu rạp', 'tc'], ['lich-chieu', 'Lịch chiếu', 'ts'], ['action', 'Shonen', 'tv'], ['isekai', 'Fantasy', 'tg']],
-        manga: [['reviews', 'Đánh giá', 'ta'], ['manhwa', 'Manhwa', 'tg'], ['spoilers', 'Chương mới', 'ts'], ['shonen', 'Shonen Jump', 'tc'], ['seinen', 'Seinen', 'tv']] },
-  en: { game: [['review', 'Review', 'ta'], ['esports', 'Esports', 'tv'], ['tierlist', 'Tier list', 'ta'], ['guide', 'Guide', 'tg'], ['mobile', 'Mobile', 'tg'], ['preview', 'Upcoming', 'tc'], ['pc', 'PC / Console', 'tc']],
-        anime: [['review', 'Review', 'ta'], ['news', 'Film', 'tc'], ['lich-chieu', 'Schedule', 'ts'], ['action', 'Shonen', 'tv'], ['isekai', 'Fantasy', 'tg']],
-        manga: [['reviews', 'Review', 'ta'], ['manhwa', 'Manhwa', 'tg'], ['spoilers', 'New chapter', 'ts'], ['shonen', 'Shonen Jump', 'tc'], ['seinen', 'Seinen', 'tv']] }
-};
-const HUB_LABEL = { vi: { game: 'Gaming', anime: 'Anime', manga: 'Manga' }, en: { game: 'Gaming', anime: 'Anime', manga: 'Manga' } };
 const PAGES = [
-  { file: 'gaming.html', hub: 'game', lang: 'vi', p: 'gaming', fn: 'setGamingFilter', data: 'GAMING_FEATURED_DATA' },
-  { file: 'anime.html', hub: 'anime', lang: 'vi', p: 'anime', fn: 'setAnimeFilter', data: 'ANIME_FEATURED_DATA' },
-  { file: 'manga.html', hub: 'manga', lang: 'vi', p: 'manga', fn: 'setMangaFilter', data: 'MANGA_FEATURED_DATA' },
-  { file: 'en/gaming.html', hub: 'game', lang: 'en', p: 'gaming', fn: 'setGamingFilter', data: 'GAMING_FEATURED_DATA' },
-  { file: 'en/anime.html', hub: 'anime', lang: 'en', p: 'anime', fn: 'setAnimeFilter', data: 'ANIME_FEATURED_DATA' },
-  { file: 'en/manga.html', hub: 'manga', lang: 'en', p: 'manga', fn: 'setMangaFilter', data: 'MANGA_FEATURED_DATA' }
+  { file: 'gaming.html', hub: 'game', lang: 'vi', p: 'gaming', data: 'GAMING_FEATURED_DATA' },
+  { file: 'anime.html', hub: 'anime', lang: 'vi', p: 'anime', data: 'ANIME_FEATURED_DATA' },
+  { file: 'manga.html', hub: 'manga', lang: 'vi', p: 'manga', data: 'MANGA_FEATURED_DATA' },
+  { file: 'en/gaming.html', hub: 'game', lang: 'en', p: 'gaming', data: 'GAMING_FEATURED_DATA' },
+  { file: 'en/anime.html', hub: 'anime', lang: 'en', p: 'anime', data: 'ANIME_FEATURED_DATA' },
+  { file: 'en/manga.html', hub: 'manga', lang: 'en', p: 'manga', data: 'MANGA_FEATURED_DATA' }
 ];
-// Tab "Mùa Hè 2026" đã hết mùa -> tab bền vững "Lịch chiếu & Công bố"
-const RENAME_TAB = { 'mua-he-2026': ['lich-chieu', { vi: 'Lịch chiếu & Công bố', en: 'Schedule & Announcements' }] };
-const NEW_SECTITLE = { 'lich-chieu': { vi: 'Lịch chiếu <em>&amp; Công bố</em>', en: 'Schedule <em>&amp; Announcements</em>' } };
+const TAG_CLASS = { 'tin-tuc': 'tc', 'ra-mat': 'tc', 'lich-chieu': 'ts', 'phim-rap': 'ta', 'chuong-moi': 'ts', 'chuyen-the': 'tv', 'danh-gia': 'ta', 'huong-dan': 'tg', esports: 'tv', 'goc-nhin': 'tv', 'top-list': 'ta' };
+const TOP_LINK = { vi: { game: '🏆 Top Game', anime: '🏆 Top Anime', manga: '🏆 Top Manga' }, en: { game: '🏆 Top Games', anime: '🏆 Top Anime', manga: '🏆 Top Manga' } };
+const ALL = { vi: 'Tất cả', en: 'All' };
+const SEC_TITLE = {
+  vi: { all: { game: 'Tiêu điểm <em>Gaming</em>', anime: 'Tiêu điểm <em>Anime</em>', manga: 'Tiêu điểm <em>Truyện Tranh</em>' } },
+  en: { all: { game: 'Gaming <em>Highlights</em>', anime: 'Anime <em>Highlights</em>', manga: 'Manga <em>Highlights</em>' } }
+};
 
-// ---------- đọc bài ----------
 const esc = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const unesc = (s) => String(s || '').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#0?39;|&apos;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 const reviewType = new Map();
 for (const f of ['reviews.html', 'en/reviews.html']) for (const r of loadReviews(f)) reviewType.set(String(r.url).split('?')[0], r.type);
 
-function loadArticles() {
-  const files = [...fs.readdirSync(new URL('../', import.meta.url)).filter((f) => f.endsWith('.html')),
-    ...fs.readdirSync(new URL('../en/', import.meta.url)).filter((f) => f.endsWith('.html')).map((f) => 'en/' + f)];
-  const out = [];
-  for (const f of files) {
-    if (/^(en\/)?(admin|article|bai-viet)\.html$/.test(f)) continue;
-    const s = read(f);
-    const pt = s.match(/<meta property="article:published_time" content="([^"]+)"/);
-    if (!pt) continue;
-    if (/<meta name="robots" content="[^"]*noindex/.test(s)) continue;
-    const g = (re) => unesc((s.match(re) || [])[1] || '');
-    const slug = f.replace(/^en\//, '').replace(/\.html$/, '');
-    const url = '/' + f.replace(/\.html$/, '');
-    const sec = g(/<meta property="article:section" content="([^"]*)"/);
-    let hub = { Gaming: 'game', Anime: 'anime', Manga: 'manga' }[sec];
-    if (sec === 'Reviews') hub = reviewType.get(url) || null;
-    if (slug in HUB_OVERRIDE) hub = HUB_OVERRIDE[slug];
-    if (!hub) continue;
-    const title = g(/<meta property="og:title" content="([^"]*)"/).replace(/\s*·\s*OtaHub.*$/, '') || g(/<h1[^>]*>([^<]*)/);
-    const ogImg = g(/<meta property="og:image" content="([^"]*)"/).replace(/^https:\/\/otahub\.asia/, '');
-    const mins = (s.match(/(\d+)\s*(?:phút đọc|min read|phút)/) || [])[1];
-    out.push({ f, url, slug, en: f.startsWith('en/'), hub, sec, date: pt[1], title,
-      desc: g(/<meta name="description" content="([^"]*)"/), img: ogImg && exists(ogImg.slice(1).split('?')[0]) ? ogImg : '',
-      author: g(/<meta name="author" content="([^"]*)"/) || 'OtaHub Editorial', mins: mins ? +mins : null, hay: [title, slug.replace(/-/g, ' ')].join(' ') });
-  }
-  return out;
+// ---------- 1. đọc bài + phân loại ----------
+const metaRe = (n) => new RegExp(`<meta name="otahub:${n}" content="([^"]*)">`);
+function parse(f) {
+  const s = read(f);
+  const pt = s.match(/<meta property="article:published_time" content="([^"]+)"/);
+  if (!pt || /<meta name="robots" content="[^"]*noindex/.test(s)) return null;
+  const g = (re) => unesc((s.match(re) || [])[1] || '');
+  const slug = f.replace(/^en\//, '').replace(/\.html$/, '');
+  const ogImg = g(/<meta property="og:image" content="([^"]*)"/).replace(/^https:\/\/otahub\.asia/, '');
+  const mins = (s.match(/(\d+)\s*(?:phút đọc|min read)/) || [])[1];
+  return { f, s, slug, url: '/' + f.replace(/\.html$/, ''), en: f.startsWith('en/'), date: pt[1],
+    sec: g(/<meta property="article:section" content="([^"]*)"/),
+    title: g(/<meta property="og:title" content="([^"]*)"/).replace(/\s*·\s*OtaHub.*$/, '') || g(/<h1[^>]*>([^<]*)/),
+    desc: g(/<meta name="description" content="([^"]*)"/),
+    img: ogImg && exists(ogImg.slice(1).split('?')[0]) ? ogImg : '',
+    author: g(/<meta name="author" content="([^"]*)"/) || 'OtaHub Editorial', mins: mins ? +mins : null,
+    viAlt: g(/<link rel="alternate" hreflang="vi" href="https:\/\/otahub\.asia([^"]*)"/),
+    meta: { hub: (s.match(metaRe('hub')) || [])[1], type: (s.match(metaRe('type')) || [])[1], facet: (s.match(metaRe('facet')) || [])[1] } };
 }
+function classify(a) {
+  const o = OVERRIDE[a.slug] || {};
+  let hub = 'hub' in o ? o.hub : { Gaming: 'game', Anime: 'anime', Manga: 'manga' }[a.sec];
+  if (!('hub' in o) && a.sec === 'Reviews') hub = reviewType.get(a.url) || null;
+  if (!hub) return { hub: 'none', type: '', facet: '' };
+  const s = TX.suggest(hub, a.title + ' ' + a.slug.replace(/-/g, ' '), { isReview: reviewType.has(a.url) });
+  return { hub, type: o.type || s.type, facet: 'facet' in o ? o.facet : s.facet };
+}
+const files = [...fs.readdirSync(new URL('../', import.meta.url)).filter((f) => f.endsWith('.html')),
+  ...fs.readdirSync(new URL('../en/', import.meta.url)).filter((f) => f.endsWith('.html')).map((f) => 'en/' + f)]
+  .filter((f) => !/^(en\/)?(admin|article|bai-viet)\.html$/.test(f));
+const all = files.map(parse).filter(Boolean);
+const byUrl = new Map(all.map((a) => [a.url, a]));
+let backfilled = 0;
+for (const a of [...all.filter((x) => !x.en), ...all.filter((x) => x.en)]) {
+  if (a.meta.hub) { a.cls = { hub: a.meta.hub, type: a.meta.type || '', facet: a.meta.facet || '' }; continue; }
+  const vi = a.en && a.viAlt && byUrl.get(a.viAlt.replace(/\/$/, ''));
+  a.cls = vi && vi.cls ? { ...vi.cls } : classify(a);
+  backfilled++;
+  if (CHECK) continue;
+  const tags = `<meta name="otahub:hub" content="${a.cls.hub}">\n<meta name="otahub:type" content="${a.cls.type}">\n<meta name="otahub:facet" content="${a.cls.facet}">`;
+  const s2 = /<meta property="article:section"[^>]*>/.test(a.s)
+    ? a.s.replace(/(<meta property="article:section"[^>]*>)/, `$1\n${tags}`)
+    : a.s.replace(/(<meta property="article:published_time"[^>]*>)/, `$1\n${tags}`);
+  write(a.f, s2);
+}
+if (backfilled) console.log(`${CHECK ? 'Thiếu phân loại' : 'Đã ghi phân loại vào'} ${backfilled} bài`);
+// kiểm tra phân loại hợp lệ
+for (const a of all) {
+  const H = TX.hubs[a.cls.hub];
+  if (a.cls.hub === 'none') continue;
+  if (!H || !H.types.some((t) => t[0] === a.cls.type)) { console.error(`! ${a.f}: mục con "${a.cls.type}" không hợp lệ cho "${a.cls.hub}"`); process.exitCode = 1; }
+}
+
+// ---------- 2. dựng trang chuyên mục ----------
 const thumb = (u) => {
   const p = (u || '').split('?')[0];
   if (!/^\/assets\/img\/(?!_[ts]\/)[^?#]+\.(jpe?g|png|webp|jfif)$/i.test(p)) return u;
@@ -117,80 +120,70 @@ const fmtDate = (iso, lang, short) => {
   const dd = String(v.getUTCDate()).padStart(2, '0'), mm = String(v.getUTCMonth() + 1).padStart(2, '0');
   return short ? `${dd}/${mm}` : `${dd}/${mm}/${v.getUTCFullYear()}`;
 };
-
-// ---------- dựng trang ----------
-function tabsOf(html, fn) {
-  return [...html.matchAll(new RegExp(`<button class="ftab[^"]*"[^>]*onclick="${fn}\\(this,'([^']+)'\\)"[^>]*>`, 'g'))].map((m) => m[1]);
-}
-function cats(a, hub, tabs) {
-  const c = tabs.filter((t) => t !== 'all' && t !== 'pc' && RULES[hub][t] && RULES[hub][t].test(a.hay));
-  // PC / Console: game PC/console rõ ràng, hoặc bài game không phải mobile / esports / đồ chơi, thẻ bài, hội chợ
-  const notGame = /lego|thẻ pok[eé]mon|pok[eé]mon card|games expo|hamlet/i.test(a.hay);
-  if (hub === 'game' && tabs.includes('pc') && (RULES.game.pc.test(a.hay) || !(RULES.game.mobile.test(a.hay) || RULES.game.esports.test(a.hay) || notGame))) c.push('pc');
-  return c;
-}
-function tagOf(a, hub, lang, c) {
-  const hit = TAG[lang][hub].find(([k]) => c.includes(k));
-  return hit ? { label: hit[1], cls: hit[2] } : { label: HUB_LABEL[lang][hub], cls: 'tc' };
-}
-function card(a, hub, lang, c, style) {
-  const t = tagOf(a, hub, lang, c);
-  const img = thumb(a.img) || '/assets/img/placeholder.svg';
-  const minsTxt = a.mins ? (lang === 'en' ? `${a.mins} min` : `${a.mins} phút`) : '';
-  if (style === 'manga') {
-    return `<a href="${a.url}" class="ac" data-cat="${c.join(' ')}">
-          <div class="ac-thumb"><img src="${esc(img)}" alt="${esc(a.title)}" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ${t.cls}">${esc(t.label)}</span></div><div class="ac-title">${esc(a.title)}</div></div><div class="ac-meta"><span>${esc(a.author)} · ${fmtDate(a.date, lang)}</span></div></div>
-        </a>`;
-  }
-  return `<a href="${a.url}" class="ac" data-cat="${c.join(' ')}">
-          <div class="ac-thumb"><img src="${esc(img)}" alt="${esc(a.title)}" loading="lazy" width="640" height="360"><span class="tag">${esc(t.label)}</span></div>
-          <div class="ac-info"><div><div class="ac-top"><span class="tag ${t.cls}">${esc(t.label)}</span></div><div class="ac-title">${esc(a.title)}</div></div><div class="ac-meta"><span>${esc(a.author)}</span><span class="ac-meta-sep">·</span><span>${fmtDate(a.date, lang)}</span>${minsTxt ? `<span class="ac-meta-sep">·</span><span>${minsTxt}</span>` : ''}</div></div>
-        </a>`;
-}
 const js = (v) => JSON.stringify(v).replace(/</g, '\\u003c');
 
-function syncPage(P, articles) {
+function card(a, P, style) {
+  const label = TX.label(P.hub, 'type', a.cls.type, P.lang), cls = TAG_CLASS[a.cls.type] || 'tc';
+  const img = thumb(a.img) || '/assets/img/placeholder.svg';
+  const minsTxt = a.mins ? (P.lang === 'en' ? `${a.mins} min` : `${a.mins} phút`) : '';
+  const attrs = `class="ac" data-type="${a.cls.type}" data-facet="${a.cls.facet}"`;
+  if (style === 'manga') {
+    return `<a href="${a.url}" ${attrs}>
+          <div class="ac-thumb"><img src="${esc(img)}" alt="${esc(a.title)}" loading="lazy" width="640" height="360"></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ${cls}">${esc(label)}</span></div><div class="ac-title">${esc(a.title)}</div></div><div class="ac-meta"><span>${esc(a.author)} · ${fmtDate(a.date, P.lang)}</span></div></div>
+        </a>`;
+  }
+  return `<a href="${a.url}" ${attrs}>
+          <div class="ac-thumb"><img src="${esc(img)}" alt="${esc(a.title)}" loading="lazy" width="640" height="360"><span class="tag">${esc(label)}</span></div>
+          <div class="ac-info"><div><div class="ac-top"><span class="tag ${cls}">${esc(label)}</span></div><div class="ac-title">${esc(a.title)}</div></div><div class="ac-meta"><span>${esc(a.author)}</span><span class="ac-meta-sep">·</span><span>${fmtDate(a.date, P.lang)}</span>${minsTxt ? `<span class="ac-meta-sep">·</span><span>${minsTxt}</span>` : ''}</div></div>
+        </a>`;
+}
+
+function syncPage(P) {
   let html = read(P.file);
   const before = html;
-  // tab menu con: đổi tab hết mùa
-  for (const [oldKey, [newKey, label]] of Object.entries(RENAME_TAB)) {
-    html = html.replace(new RegExp(`(<button class="ftab[^"]*"[^>]*onclick="${P.fn}\\(this,')${oldKey}('\\)"[^>]*>)[^<]*(</button>)`), `$1${newKey}$2${label[P.lang]}$3`);
-  }
-  const tabs = tabsOf(html, P.fn);
-  const list = articles.filter((a) => a.hub === P.hub && a.en === (P.lang === 'en')).sort((a, b) => (a.date < b.date ? 1 : -1));
+  const H = TX.hubs[P.hub], L = P.lang === 'en' ? 2 : 1;
+  const list = all.filter((a) => a.cls.hub === P.hub && a.en === (P.lang === 'en')).sort((a, b) => (a.date < b.date ? 1 : -1));
+  const count = (k) => list.filter((a) => a.cls.type === k).length;
+  // a) thanh menu con: mục con (có bài) | nhóm phụ | Top
+  const tabs = H.types.filter(([k]) => k !== 'top-list' && count(k));
+  const facets = H.facets.filter(([k]) => k !== 'multi' && list.some((a) => a.cls.facet === k || (a.cls.facet === 'multi' && P.hub === 'game')));
+  const topHref = (P.lang === 'en' ? '/en' : '') + '/top-list?loai=' + P.hub;
+  const bar = `<div class="filter-bar" data-hub="${P.hub}" data-prefix="${P.p}">
+  <div class="filter-in">
+    <button class="ftab on" data-type="all">${ALL[P.lang]} <span class="ftab-n">${list.length}</span></button>
+${tabs.map(([k, vi, en]) => `    <button class="ftab" data-type="${k}">${esc(P.lang === 'en' ? en : vi)} <span class="ftab-n">${count(k)}</span></button>`).join('\n')}
+${facets.length > 1 ? `    <div class="filter-sep"></div>
+    <span class="ffacet-label">${esc(H.facetLabel[L - 1])}</span>
+    <button class="ffacet on" data-facet="all">${ALL[P.lang]}</button>
+${facets.map(([k, vi, en]) => `    <button class="ffacet" data-facet="${k}">${esc(P.lang === 'en' ? en : vi)}</button>`).join('\n')}\n` : ''}    <div class="filter-sep"></div>
+    <a class="ftab ftop" href="${topHref}">${TOP_LINK[P.lang][P.hub]}</a>
+  </div>
+</div>`;
+  html = html.replace(/<div class="filter-bar"[^>]*>\s*<div class="filter-in">[\s\S]*?<\/div>\s*<\/div>/, () => bar);
+  // b) danh sách bài
   const style = /<!-- ADMIN:ARTICLES_START -->[\s\S]*?class="ac-tags"/.test(html) ? 'manga' : 'default';
-  const withCats = list.map((a) => ({ a, c: cats(a, P.hub, tabs) }));
-  // 1) danh sách bài
   html = html.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/,
-    (m, s1, s2) => `${s1}\n        ${withCats.map(({ a, c }) => card(a, P.hub, P.lang, c, style)).join('\n        ')}\n      ${s2}`);
-  // 2) ẩn tab không có bài
-  const count = Object.fromEntries(tabs.map((t) => [t, t === 'all' ? list.length : withCats.filter((x) => x.c.includes(t)).length]));
-  html = html.replace(new RegExp(`<button class="ftab([^"]*)"([^>]*)onclick="${P.fn}\\(this,'([^']+)'\\)"([^>]*)>`, 'g'), (m, cls, pre, key, post) => {
-    const attrs = (pre + post).replace(/\s*hidden(="[^"]*")?/g, '');
-    return `<button class="ftab${cls}"${attrs.trimEnd() ? ' ' + attrs.trim() : ''} onclick="${P.fn}(this,'${key}')"${count[key] ? '' : ' hidden'}>`;
-  });
-  // 3) khối Tiêu điểm theo từng tab
+    (m, s1, s2) => `${s1}\n        ${list.map((a) => card(a, P, style)).join('\n        ')}\n      ${s2}`);
+  // c) khối Tiêu điểm cho "Tất cả" và từng mục con
   const dm = html.match(new RegExp(`var ${P.data} = (\\{[\\s\\S]*?\\n\\});`));
   if (!dm) throw new Error(`${P.file}: thiếu ${P.data}`);
-  const scope = {}; vm.runInNewContext('d=' + dm[1], scope);
-  const old = scope.d;
-  const tagLine = (a, c) => tagOf(a, P.hub, P.lang, c);
   const feat = {};
-  for (const key of tabs) {
-    const pool = withCats.filter((x) => x.a.img && (key === 'all' || x.c.includes(key)));
+  for (const key of ['all', ...tabs.map((t) => t[0]), 'top-list']) {
+    const pool = list.filter((a) => a.img && (key === 'all' || a.cls.type === key));
     if (!pool.length) continue;
     const [h, ...rest] = pool.slice(0, 5);
-    const ht = tagLine(h.a, h.c);
+    const lab = (a) => TX.label(P.hub, 'type', a.cls.type, P.lang);
+    const name = key === 'all' ? null : TX.label(P.hub, 'type', key, P.lang);
     feat[key] = {
-      secTitle: (NEW_SECTITLE[key] || {})[P.lang] || (old[key] && old[key].secTitle) || old.all.secTitle,
-      hero: { url: h.a.url, img: h.a.img, tag: ht.label, tagClass: ht.cls, title: h.a.title, sub: h.a.desc, meta: `${h.a.author} · ${fmtDate(h.a.date, P.lang)}` },
-      sides: rest.map(({ a, c }) => { const t = tagLine(a, c); return { url: a.url, img: thumb(a.img), tag: t.label, tagClass: t.cls, title: a.title, meta: `${a.author} · ${fmtDate(a.date, P.lang, true)}` }; })
+      secTitle: key === 'all' ? SEC_TITLE[P.lang].all[P.hub] : `${esc(H[P.lang])} · <em>${esc(name)}</em>`,
+      hero: { url: h.url, img: h.img, tag: lab(h), tagClass: TAG_CLASS[h.cls.type] || 'tc', title: h.title, sub: h.desc, meta: `${h.author} · ${fmtDate(h.date, P.lang)}` },
+      sides: rest.map((a) => ({ url: a.url, img: thumb(a.img), tag: lab(a), tagClass: TAG_CLASS[a.cls.type] || 'tc', title: a.title, meta: `${a.author} · ${fmtDate(a.date, P.lang, true)}` }))
     };
   }
   const body = Object.entries(feat).map(([k, v]) => `  ${JSON.stringify(k)}: ${js(v)}`).join(',\n');
   html = html.replace(dm[0], () => `var ${P.data} = {\n${body}\n};`);
-  // 4) khối Tiêu điểm tĩnh (lần tải đầu / máy tìm kiếm) = tab "Tất cả"
+  // d) khối Tiêu điểm tĩnh = "Tất cả"
   const A = feat.all, p = P.p;
   if (A) {
     const setAttr = (id, attr, val) => { html = html.replace(new RegExp(`(<[^>]*\\bid="${id}"[^>]*?\\b${attr}=")[^"]*(")`), `$1${val}$2`).replace(new RegExp(`(<[^>]*\\b${attr}=")[^"]*("[^>]*\\bid="${id}")`), `$1${val}$2`); };
@@ -199,19 +192,41 @@ function syncPage(P, articles) {
     html = html.replace(new RegExp(`(id="${p}HeroImg" style="background-image:url\\()[^)]*(\\))`), `$1${A.hero.img}$2`);
     setText(`${p}HeroTag`, esc(A.hero.tag)); setAttr(`${p}HeroTag`, 'class', 'tag ' + A.hero.tagClass);
     setText(`${p}HeroTitle`, esc(A.hero.title)); setText(`${p}HeroSub`, esc(A.hero.sub)); setText(`${p}HeroMeta`, esc(A.hero.meta));
+    setText(`${p}SecTitle`, A.secTitle);
     A.sides.forEach((s, i) => {
       setAttr(`${p}SideCard${i}`, 'href', s.url); setAttr(`${p}SideImg${i}`, 'src', s.img); setAttr(`${p}SideImg${i}`, 'alt', esc(s.title));
       setText(`${p}SideTag${i}`, esc(s.tag)); setAttr(`${p}SideTag${i}`, 'class', 'tag ' + s.tagClass);
       setText(`${p}SideTitle${i}`, esc(s.title)); setText(`${p}SideMeta${i}`, esc(s.meta));
     });
   }
-  const summary = tabs.map((t) => `${t}:${count[t]}`).join(' ');
-  if (html !== before) { if (!CHECK) write(P.file, html); }
-  console.log(`${P.file}: ${list.length} bài · ${summary}${html !== before ? (CHECK ? ' (cần cập nhật)' : ' (đã ghi)') : ''}`);
-  return html !== before;
+  // e) bộ lọc dùng chung
+  if (!html.includes('/assets/hub-filter.js')) html = html.replace('<script defer src="/assets/enhance.js', '<script defer src="/assets/hub-filter.js?v=20261002a"></script>\n<script defer src="/assets/enhance.js');
+  const changed = html !== before;
+  if (changed && !CHECK) write(P.file, html);
+  console.log(`${P.file}: ${list.length} bài · ${tabs.map(([k]) => `${k}:${count(k)}`).join(' ')} · top-list:${count('top-list')}${changed ? (CHECK ? ' (cần cập nhật)' : ' (đã ghi)') : ''}`);
+  return changed;
 }
 
-const articles = loadArticles();
-let changed = 0;
-for (const P of PAGES) if (syncPage(P, articles)) changed++;
+// ---------- 3. trang Top List (VI + EN) ----------
+const CAT = { game: ['Game', 'var(--cyan)'], anime: ['Anime', 'var(--sakura)'], manga: ['Manga', 'var(--lavender, #a78bfa)'] };
+function syncTopList(file, en) {
+  if (!exists(file)) return false;
+  let html = read(file);
+  const before = html;
+  const items = all.filter((a) => a.en === en && a.cls.type === 'top-list').sort((a, b) => (a.date < b.date ? 1 : -1)).map((a) => {
+    const n = (a.title.match(/\b(?:top ?)?(\d{1,2})\b(?= (?:game|anime|manga|bộ|tựa|titles|series|games|best|đáng|được))/i) || a.title.match(/^top ?(\d{1,2})/i) || [])[1];
+    return { id: a.slug.slice(0, 24), type: a.cls.hub, url: a.url, img: thumb(a.img), cat: CAT[a.cls.hub][0], catC: CAT[a.cls.hub][1], title: a.title, sub: '', desc: a.desc,
+      author: a.author, date: fmtDate(a.date, en ? 'en' : 'vi'), iso: a.date, itemCount: n ? +n : null };
+  });
+  html = html.replace(/var TOPLIST = \[[\s\S]*?\n\];/, () => `var TOPLIST = [\n${items.map((x) => '  ' + js(x)).join(',\n')}\n];`);
+  const changed = html !== before;
+  if (changed && !CHECK) write(file, html);
+  console.log(`${file}: ${items.length} bài Top List${changed ? (CHECK ? ' (cần cập nhật)' : ' (đã ghi)') : ''}`);
+  return changed;
+}
+
+let changed = backfilled > 0;
+for (const P of PAGES) if (syncPage(P)) changed = true;
+if (syncTopList('top-list.html', false)) changed = true;
+if (syncTopList('en/top-list.html', true)) changed = true;
 if (CHECK && changed) process.exitCode = 1;

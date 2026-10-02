@@ -220,3 +220,15 @@ body>footer .ft-bot{max-width:1440px;margin:0 auto;padding:18px 24px 26px;border
 body>footer .ft-copy{font-size:12px;color:#64748b;letter-spacing:.02em}
 @media(min-width:1101px){body>footer .ft-in{grid-template-columns:minmax(220px,1.3fr) repeat(3,minmax(0,1fr))!important;gap:48px!important}}
 @media(min-width:769px) and (max-width:1100px){body>footer .ft-in{grid-template-columns:1fr 1fr 1fr!important;gap:32px 24px!important}body>footer .ft-in>div:first-child{grid-column:1/-1}}
+/* ── Thanh menu con trang chuyên mục (assets/hub-filter.js) ──
+   Tab = mục con (mỗi bài đúng 1 mục), chip = nhóm phụ (nền tảng / xuất xứ), số = số bài trong mục. */
+.filter-bar[data-hub] .ftab{white-space:nowrap}
+.filter-bar[data-hub] .ftab-n{display:inline-block;min-width:18px;margin-left:4px;padding:1px 6px;border-radius:999px;background:rgba(255,255,255,.07);color:var(--muted,#8b8aa3);font-size:10px;letter-spacing:0;line-height:1.6;text-align:center}
+.filter-bar[data-hub] .ftab.on .ftab-n{background:rgba(0,242,255,.14);color:var(--cyan,#00f2ff)}
+.filter-bar[data-hub] .ffacet-label{flex-shrink:0;margin:0 6px 0 10px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted,#8b8aa3);white-space:nowrap}
+.filter-bar[data-hub] .ffacet{flex-shrink:0;margin:0 3px;padding:6px 12px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:none;color:var(--dim,#c4c4cc);font:inherit;font-size:12px;white-space:nowrap;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.filter-bar[data-hub] .ffacet:hover{border-color:rgba(255,255,255,.25);color:#fff}
+.filter-bar[data-hub] .ffacet.on{border-color:rgba(0,242,255,.5);background:rgba(0,242,255,.1);color:var(--cyan,#00f2ff)}
+.filter-bar[data-hub] .ftop{color:var(--amber,#fbbf24)!important;text-decoration:none;white-space:nowrap}
+.hub-empty{padding:48px 0;text-align:center;color:var(--muted,#8b8aa3)}
+@media(min-width:769px) and (max-width:1520px){.filter-bar[data-hub] .ftab{padding-left:12px!important;padding-right:12px!important;letter-spacing:.05em!important}.filter-bar[data-hub] .ffacet-label{display:none}.filter-bar[data-hub] .ffacet{padding:6px 10px}}

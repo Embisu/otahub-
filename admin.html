@@ -4329,6 +4329,7 @@ html.theme-light .wp-draft-banner-text {
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://otahub.asia/"},{"@type":"ListItem","position":2,"name":"${cat}","item":"https://otahub.asia/anime"},{"@type":"ListItem","position":3,"name":"OtaHub Admin","item":"https://otahub.asia/admin"}]}</script>
 <script src="/assets/search.js?v=20261001"></script>
+<script src="/assets/hub-taxonomy.js?v=20261002a"></script>
 </head>
 <body>
 
@@ -10259,6 +10260,87 @@ function addNewCategoryFromSidebar() {
   toast('success', `Đã thêm chuyên mục "${catName}"`);
 }
 
+// ── Mục con trang chuyên mục (assets/hub-taxonomy.js, dùng chung với scripts/sync-hub-articles.mjs) ──
+// Mỗi bài thuộc Gaming/Anime/Manga có đúng 1 mục con (= 1 tab menu con) và 1 nhóm phụ (nền tảng / xuất xứ),
+// lưu trong bài bằng <meta name="otahub:hub|type|facet">. Trang chuyên mục đọc đúng các meta này.
+let ART_CLS = { hub: 'none', type: '', facet: '' };
+const CAT_TO_HUB = { gaming: 'game', game: 'game', anime: 'anime', manga: 'manga' };
+function suggestArticleCls(cat, title) {
+  const TX = window.OT_TAXONOMY;
+  const c = String(cat || '').toLowerCase(), t = String(title || '').toLowerCase();
+  let hub = CAT_TO_HUB[c];
+  if (!hub && /review|đánh giá|tin tức|hướng dẫn|esports|rankings/.test(c)) {
+    hub = /\banime\b|season \d|mùa \d|phim|movie/.test(t) ? 'anime' : /manga|manhwa|manhua|webtoon|chương \d|chapter \d/.test(t) ? 'manga' : 'game';
+  }
+  if (!hub || !TX) return { hub: hub || 'none', type: '', facet: '' };
+  const s = TX.suggest(hub, title || '', { isReview: /review|đánh giá/.test(c) });
+  return { hub, type: s.type, facet: s.facet };
+}
+function readArticleCls(html, cat, title) {
+  const g = (n) => (String(html || '').match(new RegExp(`<meta name="otahub:${n}" content="([^"]*)">`)) || [])[1];
+  return g('hub') ? { hub: g('hub'), type: g('type') || '', facet: g('facet') || '' } : suggestArticleCls(cat, title);
+}
+function currentArticleCls() {
+  const v = (id) => document.getElementById(id)?.value;
+  const hub = v('ed-hub');
+  return hub === undefined ? ART_CLS : { hub, type: hub === 'none' ? '' : (v('ed-type') || ''), facet: hub === 'none' ? '' : (v('ed-facet') || '') };
+}
+function writeArticleCls(html, cls) {
+  if (!cls || !cls.hub) return html;
+  html = html.replace(/<meta name="otahub:(?:hub|type|facet)" content="[^"]*">\n?/g, '');
+  const tags = `<meta name="otahub:hub" content="${esc(cls.hub)}">\n<meta name="otahub:type" content="${esc(cls.type || '')}">\n<meta name="otahub:facet" content="${esc(cls.facet || '')}">`;
+  if (/<meta\s+property="article:section"[^>]*>/i.test(html)) return html.replace(/(<meta\s+property="article:section"[^>]*>)/i, `$1\n${replSafe(tags)}`);
+  return html.replace(/(<meta\s+property="article:published_time"[^>]*>)/i, `$1\n${replSafe(tags)}`);
+}
+function subcatOptions(hub, kind, selected) {
+  const H = window.OT_TAXONOMY?.hubs?.[hub];
+  const list = !H ? [] : kind === 'type' ? H.types : H.facets;
+  return list.map(([k, vi]) => `<option value="${esc(k)}" ${k === selected ? 'selected' : ''}>${esc(vi)}</option>`).join('');
+}
+function renderSubcatBox() {
+  const c = ART_CLS, H = window.OT_TAXONOMY?.hubs?.[c.hub];
+  return `
+        <div class="postbox" id="subcatdiv">
+          <div class="postbox-header" onclick="togglePostbox(this)">
+            <h2><span>🧭</span> Mục con (trang chuyên mục)</h2>
+            <button type="button" class="postbox-toggle-btn">▾</button>
+          </div>
+          <div class="inside" style="display:grid;gap:8px;font-size:12px">
+            <label>Trang chuyên mục
+              <select id="ed-hub" class="form-input" onchange="onSubcatHubChange()">
+                <option value="game" ${c.hub === 'game' ? 'selected' : ''}>🎮 Gaming</option>
+                <option value="anime" ${c.hub === 'anime' ? 'selected' : ''}>🎬 Anime</option>
+                <option value="manga" ${c.hub === 'manga' ? 'selected' : ''}>📖 Manga</option>
+                <option value="none" ${c.hub === 'none' ? 'selected' : ''}>Không hiện ở trang chuyên mục</option>
+              </select></label>
+            <label id="ed-type-wrap" style="${c.hub === 'none' ? 'display:none' : ''}">Mục con (tab)
+              <select id="ed-type" class="form-input" onchange="markChanged()">${subcatOptions(c.hub, 'type', c.type)}</select></label>
+            <label id="ed-facet-wrap" style="${H && H.facets.length ? '' : 'display:none'}">${H && H.facetLabel ? esc(H.facetLabel[0]) : 'Nhóm phụ'}
+              <select id="ed-facet" class="form-input" onchange="markChanged()">${subcatOptions(c.hub, 'facet', c.facet)}</select></label>
+            <a href="javascript:void(0)" onclick="suggestSubcatFromTitle()" style="font-size:12px;color:var(--wp-blue);text-decoration:underline">✨ Gợi ý theo tiêu đề</a>
+            <div style="color:var(--wp-muted,#646970);line-height:1.5">Mỗi bài thuộc đúng 1 tab. Top List: chọn mục con "Top List" (bài sẽ hiện ở trang Top List của chuyên mục).</div>
+          </div>
+        </div>`;
+}
+function refreshSubcatBox() {
+  const box = document.getElementById('subcatdiv');
+  if (box) box.outerHTML = renderSubcatBox();
+}
+function onSubcatHubChange() {
+  const hub = document.getElementById('ed-hub').value;
+  const title = ART_TITLE || document.getElementById('ed-title')?.value || '';
+  const s = hub === 'none' ? { type: '', facet: '' } : (window.OT_TAXONOMY ? window.OT_TAXONOMY.suggest(hub, title) : { type: 'tin-tuc', facet: '' });
+  ART_CLS = { hub, type: s.type, facet: s.facet };
+  refreshSubcatBox();
+  markChanged();
+}
+function suggestSubcatFromTitle() {
+  ART_CLS = suggestArticleCls(document.getElementById('ed-cat')?.value || '', ART_TITLE || document.getElementById('ed-title')?.value || '');
+  refreshSubcatBox();
+  markChanged();
+  toast('success', 'Đã gợi ý mục con theo tiêu đề — kiểm tra lại trước khi lưu.');
+}
+
 function onCategoryCheckboxChange(cb) {
   if (cb.checked) {
     const list = document.getElementById('categorychecklist');
@@ -10267,6 +10349,9 @@ function onCategoryCheckboxChange(cb) {
     });
     const edCat = document.getElementById('ed-cat');
     if (edCat) edCat.value = cb.value;
+    // Đổi sang Gaming/Anime/Manga -> ô "Mục con" chuyển theo và gợi ý lại tab
+    const hubOfCat = CAT_TO_HUB[String(cb.value).toLowerCase()];
+    if (hubOfCat && hubOfCat !== currentArticleCls().hub) { ART_CLS = suggestArticleCls(cb.value, ART_TITLE); refreshSubcatBox(); }
     const serpUrl = document.getElementById('serp-preview-url');
     const slug = (currentFile || '').replace(/\.html$/, '');
     if (serpUrl) serpUrl.textContent = `https://otahub.asia › ${cb.value.toLowerCase()} › ${slug}`;
@@ -10421,6 +10506,7 @@ function renderEditor(file, html) {
   const heroUrl = extractHero(html);
   const heroPos = extractHeroPos(html);
   const cat     = extract(html, /article:section" content="([^"]+)"/) || 'Gaming';
+  ART_CLS = readArticleCls(html, cat, title);
   const bodyVi  = extractBody(html);
   const excerpt = cleanPlainText(extractExcerpt(html) || desc);
   const keyword = cleanPlainText(extract(html, /name="focus-keyword" content="([^"]*)"/) || '');
@@ -11166,6 +11252,8 @@ function renderEditor(file, html) {
             </div>
           </div>
         </div>
+
+        ${renderSubcatBox()}
 
         <!-- Postbox 3: Featured Image (Ảnh đại diện) -->
         <div class="postbox" id="postimagediv">
@@ -12245,6 +12333,8 @@ function isLegacyEnglishSkeleton(html) {
 // trong phiên này, để 2 bản VI/EN luôn giống nhau về giao diện. Không đụng tiêu đề/nội dung.
 function syncSharedFieldsIntoHtml(html, f) {
   const isEnDoc = /<html\b[^>]*\blang="en"/i.test(html);
+  // Mục con trang chuyên mục cũng là trường dùng chung: 2 bản VI/EN luôn cùng tab
+  html = writeArticleCls(html, f.cls || currentArticleCls());
   const cat = f.cat || '';
   const catSlug = categorySlug(cat, isEnDoc);
   if (cat) {
@@ -12398,7 +12488,7 @@ function buildStandardEnglishArticleTemplate(viSlug, enSlug, heroImg, heroPos, c
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
 <link rel="stylesheet" href="/assets/article-style.css?v=20261002e">
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002j">
+<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002l">
 </head>
 <body>
 
@@ -12419,7 +12509,9 @@ function buildStandardEnglishArticleTemplate(viSlug, enSlug, heroImg, heroPos, c
 <div id="amb"><div class="orb o1"></div><div class="orb o2"></div></div>
 <div id="gtex"></div>
 <nav class="nav"><div class="nav-in"><a class="logo" href="/en/"><span><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block"></span><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/en/choi-gi">What to Play</a></li><li><a href="/en/gaming">Gaming</a></li><li><a href="/en/anime">Anime</a></li><li><a href="/en/manga">Manga</a></li><li><a href="/en/lich-phat-song">Schedule</a></li><li><a href="/en/reviews">Reviews</a></li><li><a href="/en/rankings">Rankings</a></li><li><a href="/en/in-depth">In-Depth</a></li></ul><button class="ham" id="ham" aria-label="Menu" onclick="toggleMob()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="Search" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="/en/#newsletter" class="cta" id="cta-sub">Subscribe</a></div></div></nav>
-<nav class="mobile-nav" id="mobnav"><a href="/en/choi-gi">Play What?</a><a href="/en/gaming">Gaming</a><a href="/en/anime">Anime</a><a href="/en/manga">Manga</a><a href="/en/lich-phat-song">Schedule</a><a href="/en/reviews">Reviews</a><a href="/en/rankings">Rankings</a><a href="/en/in-depth">Deep Dive</a><div class="m-sub"><a href="/en/about">About</a><a href="/en/#newsletter">Newsletter</a><a href="/en/about#contact">Contact</a></div></nav>
+<nav class="mobile-nav" id="mobnav">
+  <a href="/en/choi-gi">What to Play</a><a href="/en/gaming">Gaming</a><a href="/en/anime">Anime</a><a href="/en/manga">Manga</a><a href="/en/lich-phat-song">Schedule</a><a href="/en/reviews">Reviews</a><a href="/en/rankings">Rankings</a><a href="/en/in-depth">In-Depth</a><div class="m-sub"><a href="/en/about">About</a><a href="/en/#newsletter">Newsletter</a><a href="/en/contact">Contact</a></div>
+</nav>
 
 <section class="art-hero">
 <div class="art-hero-img" style="background-image:url('${heroImg || '/og-image.png'}');background-position:center ${heroPosition}%;background-color:#0b0418;"></div>
@@ -15730,6 +15822,8 @@ function applyArticleEditsToHtml(baseHtml, customData) {
   html = html.replace(/(<meta\s+name="twitter:description"\s+content=")[^"]*(")/i,  `$1${replSafe(esc(desc))}$2`);
   html = html.replace(/("headline":\s*")[^"]*(")/i,  `$1${replSafe(title.replace(/\\/g,'\\\\').replace(/"/g,'\\"'))}$2`);
   html = html.replace(/(<meta\s+property="article:section"\s+content=")[^"]*(")/i,  `$1${replSafe(esc(cat))}$2`);
+  // Mục con trang chuyên mục (tab menu con) — luôn ghi vào bài
+  html = writeArticleCls(html, (isCustom && customData.cls) ? customData.cls : currentArticleCls());
 
   // Ngày xuất bản (Publish Date & Modified Time)
   const pubDateIso = (isCustom && customData.pubDate) ? customData.pubDate : (CUSTOM_PUBLISH_DATE || '');
@@ -17118,7 +17212,7 @@ function newArticle(prefillTitle) {
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
 <link rel="stylesheet" href="/assets/article-style.css?v=20261002e">
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002j">
+<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002l">
 </head>
 <body>
 
@@ -17139,7 +17233,9 @@ function newArticle(prefillTitle) {
 <div id="amb"><div class="orb o1"></div><div class="orb o2"></div></div>
 <div id="gtex"></div>
 <nav class="nav"><div class="nav-in"><a class="logo" href="/"><span><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block"></span><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><ul class="nav-links"><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/gaming" class="active">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/lich-phat-song">Lịch phát sóng</a></li><li><a href="/reviews">Đánh giá</a></li><li><a href="/rankings">Xếp hạng</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li></ul><button class="ham" id="ham" aria-label="Menu" onclick="toggleMob()"><span></span><span></span><span></span></button><div class="nav-r"><button class="nsearch" aria-label="Tìm kiếm" onclick="openSearch()"><svg width="14" height="14" viewbox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></button><a href="/#newsletter" class="cta" id="cta-sub">Đăng ký</a></div></div></nav>
-<nav class="mobile-nav" id="mobnav"><a href="/choi-gi">Chơi Gì?</a><a href="/gaming" class="active">Gaming</a><a href="/anime">Anime</a><a href="/manga">Manga</a><a href="/lich-phat-song">Lịch phát sóng</a><a href="/reviews">Đánh giá</a><a href="/rankings">Xếp hạng</a><a href="/chuyen-sau">Chuyên sâu</a><div class="m-sub"><a href="/about">Giới thiệu</a><a href="/#newsletter">Bản tin</a><a href="/about#contact">Liên hệ</a></div></nav>
+<nav class="mobile-nav" id="mobnav">
+  <a href="/choi-gi">Chơi Gì?</a><a href="/gaming" class="active">Gaming</a><a href="/anime">Anime</a><a href="/manga">Manga</a><a href="/lich-phat-song">Lịch phát sóng</a><a href="/reviews">Đánh giá</a><a href="/rankings">Xếp hạng</a><a href="/chuyen-sau">Chuyên sâu</a><div class="m-sub"><a href="/about">Giới thiệu</a><a href="/#newsletter">Bản tin</a><a href="/lien-he">Liên hệ</a></div>
+</nav>
 
 <section class="art-hero">
 <div class="art-hero-img" style="background-image:url(${heroImg || '/og-image.png'});background-color:#0b0418;"></div>
@@ -19486,33 +19582,51 @@ async function syncNewArticle(art) {
     }
   }
 
-  // 3. Update Category Hub (VI hoặc EN)
-  // Chuyên mục theo nội dung bài: bài "Reviews"/"Đánh giá"/"Tin mới" không mặc định vào Gaming nữa
-  // (scripts/sync-hub-articles.mjs sẽ sắp lại danh sách + nhãn lọc menu con theo đúng chuyên mục).
-  let targetHub = isEn ? 'en/gaming.html' : 'gaming.html';
-  const c = (cat || '').toLowerCase();
-  const tl = (title || '').toLowerCase();
-  const isAnime = c.includes('anime') || (!/game|gaming/.test(c) && /\banime\b|season \d|mùa \d|phim điện ảnh|chiếu rạp|the movie/.test(tl));
-  const isManga = c.includes('manga') || c.includes('manhwa') || (!/game|gaming|anime/.test(c) && /manga|manhwa|manhua|webtoon|chương \d|chapter \d/.test(tl));
-  if (isAnime) targetHub = isEn ? 'en/anime.html' : 'anime.html';
-  else if (isManga) targetHub = isEn ? 'en/manga.html' : 'manga.html';
-
-  toast('success', `📁 Đang dồn bài vào chuyên mục ${targetHub}...`);
-  try {
-    await ghSyncStep(targetHub, (hubHtml) => {
-      const markerMatch = hubHtml.match(/(<!-- ADMIN:ARTICLES_START -->)([\s\S]*?)(<!-- ADMIN:ARTICLES_END -->)/);
-      if (!markerMatch || markerMatch[2].includes(`href="/${slug}"`)) return null;
-      const tagLabel = isEn ? (cat || 'LATEST') : (cat || 'TIN MỚI');
-      // Ghi ngày đăng thật: chữ "Vừa xong" cố định trong HTML tĩnh vẫn hiện y nguyên nhiều ngày sau.
-      const dateLabel = isEn
-        ? new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })
-        : new Date().toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
-      const cardHtml = `\n      <a href="/${slug}" class="ac" data-cat="">\n        <div class="ac-thumb"><img height="675" width="1200" src="${hero || '/assets/img/placeholder.svg'}" alt="${esc(title)}" loading="lazy"><span class="tag">${esc(tagLabel)}</span></div>\n        <div class="ac-body">\n          <h3 class="ac-title">${esc(title)}</h3>\n          <div class="ac-meta"><span class="ac-author">${esc(author)}</span> · <span class="ac-date">${dateLabel}</span></div>\n        </div>\n      </a>\n`;
-      return hubHtml.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/, replSafe(markerMatch[1] + cardHtml + markerMatch[2] + markerMatch[3]));
-    }, `[admin] don bai /${slug} vao ${targetHub}`);
-  } catch(e) {
-    console.warn('Hub sync error:', e);
-    failures.push(`Chuyên mục (${targetHub})`);
+  // 3. Trang chuyên mục (VI hoặc EN) theo ô "Mục con" của bài: đúng chuyên mục, đúng tab (data-type), đúng nhóm phụ.
+  //    `npm run hubs` (scripts/sync-hub-articles.mjs) dựng lại toàn bộ trang theo cùng quy tắc.
+  const cls = art.cls || currentArticleCls();
+  const HUB_PAGE = { game: 'gaming', anime: 'anime', manga: 'manga' };
+  const dateLabel = isEn
+    ? new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    : new Date().toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  if (HUB_PAGE[cls.hub]) {
+    const targetHub = (isEn ? 'en/' : '') + HUB_PAGE[cls.hub] + '.html';
+    const TX = window.OT_TAXONOMY;
+    const tagLabel = TX ? TX.label(cls.hub, 'type', cls.type, isEn ? 'en' : 'vi') : (cat || '');
+    const tagCls = { 'ra-mat': 'tc', 'lich-chieu': 'ts', 'phim-rap': 'ta', 'chuong-moi': 'ts', 'chuyen-the': 'tv', 'danh-gia': 'ta', 'huong-dan': 'tg', esports: 'tv', 'goc-nhin': 'tv', 'top-list': 'ta' }[cls.type] || 'tc';
+    const href = '/' + slug; // slug đã gồm 'en/' với bài tiếng Anh
+    toast('success', `📁 Đang dồn bài vào ${targetHub} · ${tagLabel}...`);
+    try {
+      await ghSyncStep(targetHub, (hubHtml) => {
+        const markerMatch = hubHtml.match(/(<!-- ADMIN:ARTICLES_START -->)([\s\S]*?)(<!-- ADMIN:ARTICLES_END -->)/);
+        if (!markerMatch || markerMatch[2].includes(`href="${href}"`)) return null;
+        const attrs = `class="ac" data-type="${esc(cls.type)}" data-facet="${esc(cls.facet)}"`;
+        const img = hero || '/assets/img/placeholder.svg';
+        const cardHtml = cls.hub === 'manga'
+          ? `\n        <a href="${href}" ${attrs}>\n          <div class="ac-thumb"><img src="${esc(img)}" alt="${esc(title)}" loading="lazy" width="640" height="360"></div>\n          <div class="ac-info"><div><div class="ac-tags"><span class="tag ${tagCls}">${esc(tagLabel)}</span></div><div class="ac-title">${esc(title)}</div></div><div class="ac-meta"><span>${esc(author)} · ${dateLabel}</span></div></div>\n        </a>`
+          : `\n        <a href="${href}" ${attrs}>\n          <div class="ac-thumb"><img src="${esc(img)}" alt="${esc(title)}" loading="lazy" width="640" height="360"><span class="tag">${esc(tagLabel)}</span></div>\n          <div class="ac-info"><div><div class="ac-top"><span class="tag ${tagCls}">${esc(tagLabel)}</span></div><div class="ac-title">${esc(title)}</div></div><div class="ac-meta"><span>${esc(author)}</span><span class="ac-meta-sep">·</span><span>${dateLabel}</span></div></div>\n        </a>`;
+        return hubHtml.replace(/(<!-- ADMIN:ARTICLES_START -->)[\s\S]*?(<!-- ADMIN:ARTICLES_END -->)/, replSafe(markerMatch[1] + cardHtml + markerMatch[2] + markerMatch[3]));
+      }, `[admin] don bai /${slug} vao ${targetHub} (${cls.type})`);
+    } catch(e) {
+      console.warn('Hub sync error:', e);
+      failures.push(`Chuyên mục (${targetHub})`);
+    }
+    // Bài Top List -> trang Top List của đúng chuyên mục
+    if (cls.type === 'top-list') {
+      const topFile = isEn ? 'en/top-list.html' : 'top-list.html';
+      const CAT = { game: ['Game', 'var(--cyan)'], anime: ['Anime', 'var(--sakura)'], manga: ['Manga', 'var(--lavender, #a78bfa)'] }[cls.hub];
+      const n = (title.match(/^top ?(\d{1,2})|\b(\d{1,2}) (?:game|anime|manga|bộ|tựa|titles|series|games)\b/i) || []).slice(1).find(Boolean);
+      const item = { id: cleanSlug.slice(0, 24), type: cls.hub, url: href, img: hero || '', cat: CAT[0], catC: CAT[1], title, sub: '', desc: desc || '', author, date: dateLabel, iso: new Date().toISOString(), itemCount: n ? +n : null };
+      try {
+        await ghSyncStep(topFile, (tl) => {
+          if (tl.includes(`"url":"${href}"`) || !/var TOPLIST = \[/.test(tl)) return null;
+          return tl.replace(/var TOPLIST = \[/, () => 'var TOPLIST = [\n  ' + JSON.stringify(item).replace(/</g, '\\u003c') + ',');
+        }, `[admin] them /${slug} vao ${topFile}`);
+      } catch (e) {
+        console.warn('Top List sync error:', e);
+        failures.push(`Top List (${topFile})`);
+      }
+    }
   }
 
   // 4. Update news.html (hoặc en/news.html)

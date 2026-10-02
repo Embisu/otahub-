@@ -2095,7 +2095,7 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002j">
+<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002l">
 </head>
 
 
@@ -2192,20 +2192,22 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
 
 <!-- ══ FILTER BAR ══ -->
-<div class="filter-bar">
+<div class="filter-bar" data-hub="game" data-prefix="gaming">
   <div class="filter-in">
-    <button class="ftab on" onclick="setGamingFilter(this,'all')">Tất cả</button>
-    <button class="ftab" onclick="setGamingFilter(this,'pc')">PC / Console</button>
-    <button class="ftab" onclick="setGamingFilter(this,'mobile')">Mobile</button>
+    <button class="ftab on" data-type="all">Tất cả <span class="ftab-n">129</span></button>
+    <button class="ftab" data-type="tin-tuc">Tin tức <span class="ftab-n">42</span></button>
+    <button class="ftab" data-type="ra-mat">Ra mắt &amp; Trailer <span class="ftab-n">45</span></button>
+    <button class="ftab" data-type="danh-gia">Đánh giá <span class="ftab-n">23</span></button>
+    <button class="ftab" data-type="huong-dan">Hướng dẫn <span class="ftab-n">5</span></button>
+    <button class="ftab" data-type="esports">Esports <span class="ftab-n">6</span></button>
+    <button class="ftab" data-type="goc-nhin">Góc nhìn <span class="ftab-n">4</span></button>
     <div class="filter-sep"></div>
-    <button class="ftab" onclick="setGamingFilter(this,'review')">Đánh giá</button>
-    <button class="ftab" onclick="setGamingFilter(this,'preview')">Previews</button>
-    <button class="ftab" onclick="setGamingFilter(this,'guide')">Hướng dẫn</button>
+    <span class="ffacet-label">Nền tảng</span>
+    <button class="ffacet on" data-facet="all">Tất cả</button>
+    <button class="ffacet" data-facet="pc">PC / Console</button>
+    <button class="ffacet" data-facet="mobile">Mobile</button>
     <div class="filter-sep"></div>
-    <button class="ftab" onclick="setGamingFilter(this,'esports')">Esports</button>
-    <button class="ftab" onclick="setGamingFilter(this,'tierlist')">Tier Lists</button>
-    <div class="filter-sep"></div>
-    <a class="ftab" href="/top-list" style="color:var(--cyan)">🏆 Top List</a>
+    <a class="ftab ftop" href="/top-list?loai=game">🏆 Top Game</a>
   </div>
 </div>
 
@@ -2214,34 +2216,34 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
   <!-- 5-Card Featured Grid -->
   <div class="f-grid">
-    <a class="fc" id="gamingHeroCard" href="/dynamite-blue-game-rpg-chien-thuat-cyberpunk-kosmos12">
-      <div class="fc-img" id="gamingHeroImg" style="background-image:url(/assets/img/dynamite-blue-hero.jpg);background-position:center center"></div><div class="fc-ov"></div>
+    <a class="fc" id="gamingHeroCard" href="/gears-of-war-e-day-review-diem-so-uu-nhuoc-diem-cau-hinh-pc">
+      <div class="fc-img" id="gamingHeroImg" style="background-image:url(/assets/img/gears-of-war-e-day-review-hero.jpg);background-position:center center"></div><div class="fc-ov"></div>
       <div class="fc-body">
-        <span class="tag tc" id="gamingHeroTag">PC / Console</span>
-        <h2 class="fc-title" id="gamingHeroTitle">Dynamite Blue: game RPG chiến thuật cyberpunk của dev Exos Heroes</h2>
-        <p class="fc-sub" id="gamingHeroSub">Dynamite Blue là game RPG theo lượt 2.5D pixel cyberpunk của Kosmo’s12, ra mắt toàn cầu 30/9/2026 trên iOS, Android, Steam. Lối chơi, nhân vật, cấu hình.</p>
+        <span class="tag ta" id="gamingHeroTag">Đánh giá</span>
+        <h2 class="fc-title" id="gamingHeroTitle">Gears of War: E-Day review: điểm số, ưu nhược điểm và cấu hình PC</h2>
+        <p class="fc-sub" id="gamingHeroSub">Gears of War: E-Day được khoảng 87-88 điểm Metacritic. Tổng hợp review IGN, GameSpot, GamesRadar, ưu nhược điểm, cấu hình PC và có nên mua không.</p>
         <div class="fc-meta" id="gamingHeroMeta">OtaHub Editorial · 02/10/2026</div>
       </div>
     </a>
 
-    <a class="sc" id="gamingSideCard0" href="/raincoat-pikachu-duoc-ban-voi-gia-8-4-trieu-usd-tro-thanh-th">
-      <div class="sc-img"><img id="gamingSideImg0" src="/assets/img/_t/uploads/raincoat-pikachu-card.jpg.webp" alt="Raincoat Pikachu được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử" fetchpriority="high" decoding="async" width="1200" height="675"></div>
-      <div class="sc-body"><span class="tag tc" id="gamingSideTag0" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Gaming</span><div class="sc-title" id="gamingSideTitle0">Raincoat Pikachu được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử</div><div class="sc-meta" id="gamingSideMeta0">Anh Thu · 01/10</div></div>
+    <a class="sc" id="gamingSideCard0" href="/top-game-mobile-cay-cuoc-dang-choi-2026-aniimo-dragon-nest">
+      <div class="sc-img"><img id="gamingSideImg0" src="/assets/img/_t/top-game-mobile-cay-cuoc-hero.jpg.webp" alt="13 game mobile cày cuốc 2026: Aniimo, Dragon Nest, Ares" fetchpriority="high" decoding="async" width="1200" height="675"></div>
+      <div class="sc-body"><span class="tag ta" id="gamingSideTag0" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Top List</span><div class="sc-title" id="gamingSideTitle0">13 game mobile cày cuốc 2026: Aniimo, Dragon Nest, Ares</div><div class="sc-meta" id="gamingSideMeta0">OtaHub Editorial · 02/10</div></div>
     </a>
 
-    <a class="sc" id="gamingSideCard1" href="/gta-6-he-thong-thoi-tiet-nang-dong-tai-hien-florida-chan-thu">
-      <div class="sc-img"><img id="gamingSideImg1" src="/assets/img/_t/uploads/gta-6-official-key-art.jpg.webp" alt="GTA 6: Hệ thống thời tiết năng động tái hiện Florida chân thực" loading="lazy" width="1200" height="675"></div>
-      <div class="sc-body"><span class="tag tc" id="gamingSideTag1" style="margin-bottom:6px;padding:3px 8px;font-size:9px">PC / Console</span><div class="sc-title" id="gamingSideTitle1">GTA 6: Hệ thống thời tiết năng động tái hiện Florida chân thực</div><div class="sc-meta" id="gamingSideMeta1">Anna · 01/10</div></div>
+    <a class="sc" id="gamingSideCard1" href="/dynamite-blue-game-rpg-chien-thuat-cyberpunk-kosmos12">
+      <div class="sc-img"><img id="gamingSideImg1" src="/assets/img/_t/dynamite-blue-hero.jpg.webp" alt="Dynamite Blue: game RPG chiến thuật cyberpunk của dev Exos Heroes" loading="lazy" width="1200" height="675"></div>
+      <div class="sc-body"><span class="tag tc" id="gamingSideTag1" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Ra mắt &amp; Trailer</span><div class="sc-title" id="gamingSideTitle1">Dynamite Blue: game RPG chiến thuật cyberpunk của dev Exos Heroes</div><div class="sc-meta" id="gamingSideMeta1">OtaHub Editorial · 02/10</div></div>
     </a>
 
-    <a class="sc" id="gamingSideCard2" href="/crimson-desert-charting-the-unknown-bi-tri-hoan-2-tuan">
-      <div class="sc-img"><img id="gamingSideImg2" src="/assets/img/_t/uploads/crimson-desert-charting-the-unknown-steam.jpg.webp" alt="Crimson Desert: Charting the Unknown bị trì hoãn 2 tuần" loading="lazy" width="1200" height="675"></div>
-      <div class="sc-body"><span class="tag tc" id="gamingSideTag2" style="margin-bottom:6px;padding:3px 8px;font-size:9px">PC / Console</span><div class="sc-title" id="gamingSideTitle2">Crimson Desert: Charting the Unknown bị trì hoãn 2 tuần</div><div class="sc-meta" id="gamingSideMeta2">anhthu · 01/10</div></div>
+    <a class="sc" id="gamingSideCard2" href="/raincoat-pikachu-duoc-ban-voi-gia-8-4-trieu-usd-tro-thanh-th">
+      <div class="sc-img"><img id="gamingSideImg2" src="/assets/img/_t/uploads/raincoat-pikachu-card.jpg.webp" alt="Raincoat Pikachu được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử" loading="lazy" width="1200" height="675"></div>
+      <div class="sc-body"><span class="tag tc" id="gamingSideTag2" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Tin tức</span><div class="sc-title" id="gamingSideTitle2">Raincoat Pikachu được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử</div><div class="sc-meta" id="gamingSideMeta2">Anh Thu · 01/10</div></div>
     </a>
 
-    <a class="sc" id="gamingSideCard3" href="/5-game-sinh-ton-mien-phi-dang-choi-tren-steam-fan-the-loai-s">
-      <div class="sc-img"><img id="gamingSideImg3" src="/assets/img/_t/uploads/once-human-steam.jpg.webp" alt="5 game sinh tồn miễn phí đáng chơi trên Steam, fan thể loại survival không nên bỏ qua" loading="lazy" width="1200" height="675"></div>
-      <div class="sc-body"><span class="tag tg" id="gamingSideTag3" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Hướng dẫn</span><div class="sc-title" id="gamingSideTitle3">5 game sinh tồn miễn phí đáng chơi trên Steam, fan thể loại survival không nên bỏ qua</div><div class="sc-meta" id="gamingSideMeta3">Anna · 01/10</div></div>
+    <a class="sc" id="gamingSideCard3" href="/gta-6-he-thong-thoi-tiet-nang-dong-tai-hien-florida-chan-thu">
+      <div class="sc-img"><img id="gamingSideImg3" src="/assets/img/_t/uploads/gta-6-official-key-art.jpg.webp" alt="GTA 6: Hệ thống thời tiết năng động tái hiện Florida chân thực" loading="lazy" width="1200" height="675"></div>
+      <div class="sc-body"><span class="tag tc" id="gamingSideTag3" style="margin-bottom:6px;padding:3px 8px;font-size:9px">Tin tức</span><div class="sc-title" id="gamingSideTitle3">GTA 6: Hệ thống thời tiết năng động tái hiện Florida chân thực</div><div class="sc-meta" id="gamingSideMeta3">Anna · 01/10</div></div>
     </a>
   </div>
 
@@ -2252,527 +2254,519 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 
       <div class="ac-list">
         <!-- ADMIN:ARTICLES_START -->
-      <a href="/gears-of-war-e-day-review-diem-so-uu-nhuoc-diem-cau-hinh-pc" class="ac" data-cat="">
-        <div class="ac-thumb"><img height="675" width="1200" src="/assets/img/gears-of-war-e-day-review-hero.jpg" alt="Gears of War: E-Day review: điểm số, ưu nhược điểm và cấu hình PC" loading="lazy"><span class="tag">Gaming</span></div>
-        <div class="ac-body">
-          <h3 class="ac-title">Gears of War: E-Day review: điểm số, ưu nhược điểm và cấu hình PC</h3>
-          <div class="ac-meta"><span class="ac-author">OtaHub Editorial</span> · <span class="ac-date">02/10/2026</span></div>
-        </div>
-      </a>
-
-      <a href="/top-game-mobile-cay-cuoc-dang-choi-2026-aniimo-dragon-nest" class="ac" data-cat="">
-        <div class="ac-thumb"><img height="675" width="1200" src="/assets/img/top-game-mobile-cay-cuoc-hero.jpg" alt="13 game mobile cày cuốc 2026: Aniimo, Dragon Nest, Ares" loading="lazy"><span class="tag">Gaming</span></div>
-        <div class="ac-body">
-          <h3 class="ac-title">13 game mobile cày cuốc 2026: Aniimo, Dragon Nest, Ares</h3>
-          <div class="ac-meta"><span class="ac-author">OtaHub nghiên cứu tổng hợp</span> · <span class="ac-date">02/10/2026</span></div>
-        </div>
-      </a>
-
-        <a href="/dynamite-blue-game-rpg-chien-thuat-cyberpunk-kosmos12" class="ac" data-cat="pc">
+        <a href="/gears-of-war-e-day-review-diem-so-uu-nhuoc-diem-cau-hinh-pc" class="ac" data-type="danh-gia" data-facet="pc">
+          <div class="ac-thumb"><img src="/assets/img/_t/gears-of-war-e-day-review-hero.jpg.webp" alt="Gears of War: E-Day review: điểm số, ưu nhược điểm và cấu hình PC" loading="lazy" width="640" height="360"></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Gears of War: E-Day review: điểm số, ưu nhược điểm và cấu hình PC</div></div><div class="ac-meta"><span>OtaHub Editorial · 02/10/2026</span></div></div>
+        </a>
+        <a href="/top-game-mobile-cay-cuoc-dang-choi-2026-aniimo-dragon-nest" class="ac" data-type="top-list" data-facet="mobile">
+          <div class="ac-thumb"><img src="/assets/img/_t/top-game-mobile-cay-cuoc-hero.jpg.webp" alt="13 game mobile cày cuốc 2026: Aniimo, Dragon Nest, Ares" loading="lazy" width="640" height="360"></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Top List</span></div><div class="ac-title">13 game mobile cày cuốc 2026: Aniimo, Dragon Nest, Ares</div></div><div class="ac-meta"><span>OtaHub Editorial · 02/10/2026</span></div></div>
+        </a>
+        <a href="/dynamite-blue-game-rpg-chien-thuat-cyberpunk-kosmos12" class="ac" data-type="ra-mat" data-facet="multi">
           <div class="ac-thumb"><img src="/assets/img/_t/dynamite-blue-hero.jpg.webp" alt="Dynamite Blue: game RPG chiến thuật cyberpunk của dev Exos Heroes" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Dynamite Blue: game RPG chiến thuật cyberpunk của dev Exos Heroes</div></div><div class="ac-meta"><span>OtaHub Editorial · 02/10/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Dynamite Blue: game RPG chiến thuật cyberpunk của dev Exos Heroes</div></div><div class="ac-meta"><span>OtaHub Editorial · 02/10/2026</span></div></div>
         </a>
-        <a href="/raincoat-pikachu-duoc-ban-voi-gia-8-4-trieu-usd-tro-thanh-th" class="ac" data-cat="">
+        <a href="/raincoat-pikachu-duoc-ban-voi-gia-8-4-trieu-usd-tro-thanh-th" class="ac" data-type="tin-tuc" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/raincoat-pikachu-card.jpg.webp" alt="Raincoat Pikachu được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Gaming</span></div><div class="ac-title">Raincoat Pikachu được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử</div></div><div class="ac-meta"><span>Anh Thu · 01/10/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Raincoat Pikachu được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử</div></div><div class="ac-meta"><span>Anh Thu · 01/10/2026</span></div></div>
         </a>
-        <a href="/gta-6-he-thong-thoi-tiet-nang-dong-tai-hien-florida-chan-thu" class="ac" data-cat="pc">
+        <a href="/gta-6-he-thong-thoi-tiet-nang-dong-tai-hien-florida-chan-thu" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/gta-6-official-key-art.jpg.webp" alt="GTA 6: Hệ thống thời tiết năng động tái hiện Florida chân thực" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">GTA 6: Hệ thống thời tiết năng động tái hiện Florida chân thực</div></div><div class="ac-meta"><span>Anna · 01/10/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">GTA 6: Hệ thống thời tiết năng động tái hiện Florida chân thực</div></div><div class="ac-meta"><span>Anna · 01/10/2026</span></div></div>
         </a>
-        <a href="/crimson-desert-charting-the-unknown-bi-tri-hoan-2-tuan" class="ac" data-cat="pc">
+        <a href="/crimson-desert-charting-the-unknown-bi-tri-hoan-2-tuan" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/crimson-desert-charting-the-unknown-steam.jpg.webp" alt="Crimson Desert: Charting the Unknown bị trì hoãn 2 tuần" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Crimson Desert: Charting the Unknown bị trì hoãn 2 tuần</div></div><div class="ac-meta"><span>anhthu · 01/10/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Crimson Desert: Charting the Unknown bị trì hoãn 2 tuần</div></div><div class="ac-meta"><span>anhthu · 01/10/2026</span></div></div>
         </a>
-        <a href="/5-game-sinh-ton-mien-phi-dang-choi-tren-steam-fan-the-loai-s" class="ac" data-cat="guide pc">
+        <a href="/5-game-sinh-ton-mien-phi-dang-choi-tren-steam-fan-the-loai-s" class="ac" data-type="top-list" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/once-human-steam.jpg.webp" alt="5 game sinh tồn miễn phí đáng chơi trên Steam, fan thể loại survival không nên bỏ qua" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Hướng dẫn</span></div><div class="ac-title">5 game sinh tồn miễn phí đáng chơi trên Steam, fan thể loại survival không nên bỏ qua</div></div><div class="ac-meta"><span>Anna · 01/10/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Top List</span></div><div class="ac-title">5 game sinh tồn miễn phí đáng chơi trên Steam, fan thể loại survival không nên bỏ qua</div></div><div class="ac-meta"><span>Anna · 01/10/2026</span></div></div>
         </a>
-        <a href="/take-two-dung-ban-port-gta-5-tren-switch-ngay-truoc-them-ra" class="ac" data-cat="preview pc">
+        <a href="/take-two-dung-ban-port-gta-5-tren-switch-ngay-truoc-them-ra" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/dwmbnfr7-01m3rh0fr64tp356kxxeyzxxjm-01m3rh0hwev4z7br9fg1d56edw.webp.webp" alt="Take-Two dừng bản port GTA 5 trên Switch ngay trước thềm ra mắt GTA 6" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Take-Two dừng bản port GTA 5 trên Switch ngay trước thềm ra mắt GTA 6</div></div><div class="ac-meta"><span>Anna · 30/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Take-Two dừng bản port GTA 5 trên Switch ngay trước thềm ra mắt GTA 6</div></div><div class="ac-meta"><span>Anna · 30/09/2026</span></div></div>
         </a>
-        <a href="/call-of-duty-modern-warfare-4-he-lo-cau-hinh-pc-ray-tracing" class="ac" data-cat="preview pc">
+        <a href="/call-of-duty-modern-warfare-4-he-lo-cau-hinh-pc-ray-tracing" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/t5huoqlk-call-of-duty-modern-warfare-4-he-lo-cau-hinh-pc-cho-dot-beta.jpg.webp" alt="Call of Duty: Modern Warfare 4 hé lộ cấu hình PC, Ray Tracing và chế độ Collateral mới" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Call of Duty: Modern Warfare 4 hé lộ cấu hình PC, Ray Tracing và chế độ Collateral mới</div></div><div class="ac-meta"><span>Anna · 30/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Call of Duty: Modern Warfare 4 hé lộ cấu hình PC, Ray Tracing và chế độ Collateral mới</div></div><div class="ac-meta"><span>Anna · 30/09/2026</span></div></div>
         </a>
-        <a href="/control-resonant-buoc-game-thu-pc-tai-lai-toan-bo-tro-choi" class="ac" data-cat="pc">
+        <a href="/control-resonant-buoc-game-thu-pc-tai-lai-toan-bo-tro-choi" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/a5lb66t6-ctrl-r-story-01.webp.webp" alt="CONTROL Resonant buộc game thủ PC tải lại toàn bộ trò chơi" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">CONTROL Resonant buộc game thủ PC tải lại toàn bộ trò chơi</div></div><div class="ac-meta"><span>Anna · 30/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">CONTROL Resonant buộc game thủ PC tải lại toàn bộ trò chơi</div></div><div class="ac-meta"><span>Anna · 30/09/2026</span></div></div>
         </a>
-        <a href="/honkai-star-rail-3-0-amphoreus-remembrance" class="ac" data-cat="mobile preview">
+        <a href="/honkai-star-rail-3-0-amphoreus-remembrance" class="ac" data-type="tin-tuc" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-TqKwoSk6708.jpg.webp" alt="Honkai: Star Rail 3.0 ra mắt 15/1/2025, thế giới Amphoreus" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Mobile</span></div><div class="ac-title">Honkai: Star Rail 3.0 ra mắt 15/1/2025, thế giới Amphoreus</div></div><div class="ac-meta"><span>OtaHub Editorial · 30/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Honkai: Star Rail 3.0 ra mắt 15/1/2025, thế giới Amphoreus</div></div><div class="ac-meta"><span>OtaHub Editorial · 30/09/2026</span></div></div>
         </a>
-        <a href="/rematch-x-blue-lock-crossover-event" class="ac" data-cat="pc">
+        <a href="/rematch-x-blue-lock-crossover-event" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/blue-lock-banner.jpg.webp" alt="Sloclap x Blue Lock: sự kiện crossover Rematch 24/9" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Sloclap x Blue Lock: sự kiện crossover Rematch 24/9</div></div><div class="ac-meta"><span>OtaHub Editorial · 30/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Sloclap x Blue Lock: sự kiện crossover Rematch 24/9</div></div><div class="ac-meta"><span>OtaHub Editorial · 30/09/2026</span></div></div>
         </a>
-        <a href="/duoc-su-tu-su-ra-mat-game-console-dau-tien-the-apothecary-di" class="ac" data-cat="preview pc">
+        <a href="/duoc-su-tu-su-ra-mat-game-console-dau-tien-the-apothecary-di" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/ild2v8ju-library-hero.jpg.webp" alt="Dược Sư Tự Sự ra mắt game console đầu tiên - The Apothecary Diaries: The False Imperial Brother" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Dược Sư Tự Sự ra mắt game console đầu tiên - The Apothecary Diaries: The False Imperial Brother</div></div><div class="ac-meta"><span>Yu · 30/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Dược Sư Tự Sự ra mắt game console đầu tiên - The Apothecary Diaries: The False Imperial Brother</div></div><div class="ac-meta"><span>Yu · 30/09/2026</span></div></div>
         </a>
-        <a href="/vi-sao-the-isle-lai-hot-den-vay-trong-nam-2026" class="ac" data-cat="pc">
+        <a href="/vi-sao-the-isle-lai-hot-den-vay-trong-nam-2026" class="ac" data-type="goc-nhin" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/ralzy7zw-711-thumb.jpg.webp" alt="Vì sao The Isle lại hot đến vậy trong năm 2026?" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Vì sao The Isle lại hot đến vậy trong năm 2026?</div></div><div class="ac-meta"><span>Yu · 30/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Góc nhìn</span></div><div class="ac-title">Vì sao The Isle lại hot đến vậy trong năm 2026?</div></div><div class="ac-meta"><span>Yu · 30/09/2026</span></div></div>
         </a>
-        <a href="/hades-2-khong-phai-lua-chon-kinh-doanh-an-toan-cua-supergian" class="ac" data-cat="pc">
+        <a href="/hades-2-khong-phai-lua-chon-kinh-doanh-an-toan-cua-supergian" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/hades-2-melinoe-key-art.webp.webp" alt="Hades 2 không phải lựa chọn kinh doanh an toàn của Supergiant Games" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Hades 2 không phải lựa chọn kinh doanh an toàn của Supergiant Games</div></div><div class="ac-meta"><span>Anh Thu · 30/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Hades 2 không phải lựa chọn kinh doanh an toàn của Supergiant Games</div></div><div class="ac-meta"><span>Anh Thu · 30/09/2026</span></div></div>
         </a>
-        <a href="/7-game-the-witcher-dang-choi-trong-nam-2026" class="ac" data-cat="guide pc">
+        <a href="/7-game-the-witcher-dang-choi-trong-nam-2026" class="ac" data-type="top-list" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/witcher-3-geralt-steam.jpg.webp" alt="7 game The Witcher đáng chơi trong năm 2026" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Hướng dẫn</span></div><div class="ac-title">7 game The Witcher đáng chơi trong năm 2026</div></div><div class="ac-meta"><span>Anh Thu · 30/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Top List</span></div><div class="ac-title">7 game The Witcher đáng chơi trong năm 2026</div></div><div class="ac-meta"><span>Anh Thu · 30/09/2026</span></div></div>
         </a>
-        <a href="/gears-of-war-e-day-thoi-gian-phat-hanh-va-cach-choi-som" class="ac" data-cat="preview guide pc">
+        <a href="/gears-of-war-e-day-thoi-gian-phat-hanh-va-cach-choi-som" class="ac" data-type="huong-dan" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/p4z3x3u9-gears-of-war-e-day-revs-up-hype-with-a-playable-demo-at-game.webp.webp" alt="Gears of War: E-Day: Thời gian phát hành và cách chơi sớm" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Hướng dẫn</span></div><div class="ac-title">Gears of War: E-Day: Thời gian phát hành và cách chơi sớm</div></div><div class="ac-meta"><span>Anh Thu · 30/09/2026</span></div></div>
         </a>
-        <a href="/diablo-4-van-tiep-tuc-co-mua-moi-sau-khi-diablo-5-ra-mat" class="ac" data-cat="preview pc">
+        <a href="/diablo-4-van-tiep-tuc-co-mua-moi-sau-khi-diablo-5-ra-mat" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/diablo-4-steam.jpg.webp" alt="Diablo 4 vẫn tiếp tục có mùa mới sau khi Diablo 5 ra mắt" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Diablo 4 vẫn tiếp tục có mùa mới sau khi Diablo 5 ra mắt</div></div><div class="ac-meta"><span>Anh Thu · 30/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Diablo 4 vẫn tiếp tục có mùa mới sau khi Diablo 5 ra mắt</div></div><div class="ac-meta"><span>Anh Thu · 30/09/2026</span></div></div>
         </a>
-        <a href="/facing-the-rain-game-rpg-indie-cot-truyen-sau-lang-mien-phi-" class="ac" data-cat="pc">
+        <a href="/facing-the-rain-game-rpg-indie-cot-truyen-sau-lang-mien-phi-" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/facing-the-rain-steam.jpg.webp" alt="Facing the Rain: Game RPG indie cốt truyện sâu lắng miễn phí vĩnh viễn trên Steam" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Facing the Rain: Game RPG indie cốt truyện sâu lắng miễn phí vĩnh viễn trên Steam</div></div><div class="ac-meta"><span>Anna · 30/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Facing the Rain: Game RPG indie cốt truyện sâu lắng miễn phí vĩnh viễn trên Steam</div></div><div class="ac-meta"><span>Anna · 30/09/2026</span></div></div>
         </a>
-        <a href="/minecraft-live-thang-9-2026-minecraft-chuan-bi-don-chieu-kho" class="ac" data-cat="pc">
+        <a href="/minecraft-live-thang-9-2026-minecraft-chuan-bi-don-chieu-kho" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/cxo68b2g-what-time-does-minecraft-live-start-september-2026-210691766.webp.webp" alt="Minecraft Live tháng 9/2026: Minecraft chuẩn bị đón chiều không gian mới" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Minecraft Live tháng 9/2026: Minecraft chuẩn bị đón chiều không gian mới</div></div><div class="ac-meta"><span>Yu · 30/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Minecraft Live tháng 9/2026: Minecraft chuẩn bị đón chiều không gian mới</div></div><div class="ac-meta"><span>Yu · 30/09/2026</span></div></div>
         </a>
-        <a href="/minecraft-bo-sung-chieu-khong-gian-thu-4-the-sift-sau-hon-14" class="ac" data-cat="pc">
+        <a href="/minecraft-bo-sung-chieu-khong-gian-thu-4-the-sift-sau-hon-14" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/pne31nyx-anh-bia-3.webp.webp" alt="Minecraft bổ sung chiều không gian thứ 4 The Sift sau hơn 14 năm" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Minecraft bổ sung chiều không gian thứ 4 The Sift sau hơn 14 năm</div></div><div class="ac-meta"><span>Anna · 29/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Minecraft bổ sung chiều không gian thứ 4 The Sift sau hơn 14 năm</div></div><div class="ac-meta"><span>Anna · 29/09/2026</span></div></div>
         </a>
-        <a href="/delta-force-se-co-che-do-nhay-du-battle-royale-trong-nam-202" class="ac" data-cat="mobile preview pc">
+        <a href="/delta-force-se-co-che-do-nhay-du-battle-royale-trong-nam-202" class="ac" data-type="ra-mat" data-facet="multi">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/delta-force-gameplay-steam.jpg.webp" alt="Delta Force công bố kế hoạch 2027: bản đồ Siege, Unreal Engine 5 và chế độ Detonation" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Mobile</span></div><div class="ac-title">Delta Force công bố kế hoạch 2027: bản đồ Siege, Unreal Engine 5 và chế độ Detonation</div></div><div class="ac-meta"><span>Anna · 29/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Delta Force công bố kế hoạch 2027: bản đồ Siege, Unreal Engine 5 và chế độ Detonation</div></div><div class="ac-meta"><span>Anna · 29/09/2026</span></div></div>
         </a>
-        <a href="/the-witcher-3-remastered-review-nang-cap-hinh-anh-nhung-chua" class="ac" data-cat="review pc">
+        <a href="/the-witcher-3-remastered-review-nang-cap-hinh-anh-nhung-chua" class="ac" data-type="danh-gia" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/witcher-3-remastered-geralt-igni.jpg.webp" alt="The Witcher 3 Remastered Review: Nâng cấp hình ảnh nhưng chưa hoàn toàn thuyết phục" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">The Witcher 3 Remastered Review: Nâng cấp hình ảnh nhưng chưa hoàn toàn thuyết phục</div></div><div class="ac-meta"><span>Yu · 29/09/2026</span></div></div>
         </a>
-        <a href="/star-wars-zero-company-biet-doi-di-biet-tao-nen-nhung-tran-c" class="ac" data-cat="pc">
+        <a href="/star-wars-zero-company-biet-doi-di-biet-tao-nen-nhung-tran-c" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/star-wars-zero-company-steam.jpg.webp" alt="Star Wars: Zero Company: Biệt đội dị biệt tạo nên những trận chiến đầy bất ngờ" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Star Wars: Zero Company: Biệt đội dị biệt tạo nên những trận chiến đầy bất ngờ</div></div><div class="ac-meta"><span>Yu · 29/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Star Wars: Zero Company: Biệt đội dị biệt tạo nên những trận chiến đầy bất ngờ</div></div><div class="ac-meta"><span>Yu · 29/09/2026</span></div></div>
         </a>
-        <a href="/nintendo-gamecube-chiec-may-mau-tim-nho-be-nhung-de-lai-dau-" class="ac" data-cat="pc">
+        <a href="/nintendo-gamecube-chiec-may-mau-tim-nho-be-nhung-de-lai-dau-" class="ac" data-type="goc-nhin" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/nintendo-gamecube-console.jpg.webp" alt="Nintendo GameCube: Chiếc máy màu tím nhỏ bé nhưng để lại dấu ấn lớn" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Nintendo GameCube: Chiếc máy màu tím nhỏ bé nhưng để lại dấu ấn lớn</div></div><div class="ac-meta"><span>Yu · 29/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Góc nhìn</span></div><div class="ac-title">Nintendo GameCube: Chiếc máy màu tím nhỏ bé nhưng để lại dấu ấn lớn</div></div><div class="ac-meta"><span>Yu · 29/09/2026</span></div></div>
         </a>
-        <a href="/uk-games-expo-cam-noi-dung-ai-chi-chua-mot-so-truong-hop-ngo" class="ac" data-cat="">
+        <a href="/uk-games-expo-cam-noi-dung-ai-chi-chua-mot-so-truong-hop-ngo" class="ac" data-type="tin-tuc" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/uk-games-expo-2026.jpg.webp" alt="UK Games Expo cấm nội dung AI, chỉ chừa một số trường hợp ngoại lệ" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Gaming</span></div><div class="ac-title">UK Games Expo cấm nội dung AI, chỉ chừa một số trường hợp ngoại lệ</div></div><div class="ac-meta"><span>Yu · 29/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">UK Games Expo cấm nội dung AI, chỉ chừa một số trường hợp ngoại lệ</div></div><div class="ac-meta"><span>Yu · 29/09/2026</span></div></div>
         </a>
-        <a href="/roman-sands-re-build-mac-ket-trong-giac-mo-vaporwave-dang-da" class="ac" data-cat="pc">
+        <a href="/roman-sands-re-build-mac-ket-trong-giac-mo-vaporwave-dang-da" class="ac" data-type="goc-nhin" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/x6scgjsi-roman-sands-header.webp.webp" alt="Roman Sands RE:Build: Mắc kẹt trong giấc mơ vaporwave đang dần sụp đổ" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Roman Sands RE:Build: Mắc kẹt trong giấc mơ vaporwave đang dần sụp đổ</div></div><div class="ac-meta"><span>Anh Thu · 28/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Góc nhìn</span></div><div class="ac-title">Roman Sands RE:Build: Mắc kẹt trong giấc mơ vaporwave đang dần sụp đổ</div></div><div class="ac-meta"><span>Anh Thu · 28/09/2026</span></div></div>
         </a>
-        <a href="/khi-gta-tro-thanh-san-khau-cho-shakespeare-trong-grand-theft" class="ac" data-cat="">
+        <a href="/khi-gta-tro-thanh-san-khau-cho-shakespeare-trong-grand-theft" class="ac" data-type="goc-nhin" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/grand-theft-hamlet-still.jpg.webp" alt="Khi GTA trở thành sân khấu cho Shakespeare trong Grand Theft Hamlet" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Gaming</span></div><div class="ac-title">Khi GTA trở thành sân khấu cho Shakespeare trong Grand Theft Hamlet</div></div><div class="ac-meta"><span>Anh Thu · 28/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Góc nhìn</span></div><div class="ac-title">Khi GTA trở thành sân khấu cho Shakespeare trong Grand Theft Hamlet</div></div><div class="ac-meta"><span>Anh Thu · 28/09/2026</span></div></div>
         </a>
-        <a href="/gears-of-war-e-day-gold-pre-install-29-9" class="ac" data-cat="pc">
+        <a href="/gears-of-war-e-day-gold-pre-install-29-9" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/real-gears-of-war-e-day.jpg.webp" alt="Gears of War: E-Day chốt gold, tải trước từ 29/9" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Gears of War: E-Day chốt gold, tải trước từ 29/9</div></div><div class="ac-meta"><span>OtaHub Editorial · 26/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Gears of War: E-Day chốt gold, tải trước từ 29/9</div></div><div class="ac-meta"><span>OtaHub Editorial · 26/09/2026</span></div></div>
         </a>
-        <a href="/aixleft-chieu-mo-himass-ve-delta-force" class="ac" data-cat="mobile">
+        <a href="/aixleft-chieu-mo-himass-ve-delta-force" class="ac" data-type="esports" data-facet="multi">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-delta-force-1.jpg.webp" alt="Chủ tịch Aixleft muốn mời Himass về Delta Force" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Mobile</span></div><div class="ac-title">Chủ tịch Aixleft muốn mời Himass về Delta Force</div></div><div class="ac-meta"><span>OtaHub Editorial · 26/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Esports</span></div><div class="ac-title">Chủ tịch Aixleft muốn mời Himass về Delta Force</div></div><div class="ac-meta"><span>OtaHub Editorial · 26/09/2026</span></div></div>
         </a>
-        <a href="/pubg-asia-stars-2026-himass-tanvuu-bi-cam-vinh-vien" class="ac" data-cat="esports">
+        <a href="/pubg-asia-stars-2026-himass-tanvuu-bi-cam-vinh-vien" class="ac" data-type="esports" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/photo-pubg-asia-stars-2026-himass-tanvuu-bi-cam-vinh-vien.jpg.webp" alt="Drama PUBG: Himass và TanVuu bị KRAFTON cấm vĩnh viễn" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Esports</span></div><div class="ac-title">Drama PUBG: Himass và TanVuu bị KRAFTON cấm vĩnh viễn</div></div><div class="ac-meta"><span>OtaHub · 24/09/2026</span></div></div>
         </a>
-        <a href="/asian-games-2026-esports-aichi-nagoya" class="ac" data-cat="esports">
+        <a href="/asian-games-2026-esports-aichi-nagoya" class="ac" data-type="esports" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/photo-asian-games-2026-esports-aichi-nagoya.jpg.webp" alt="Esports Asian Games 2026: 11 nội dung, thi đấu tại Aichi" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Esports</span></div><div class="ac-title">Esports Asian Games 2026: 11 nội dung, thi đấu tại Aichi</div></div><div class="ac-meta"><span>OtaHub Editorial · 24/09/2026</span></div></div>
         </a>
-        <a href="/cong-dong-game-thu-viet-nam-quay-lung-voi-pubg" class="ac" data-cat="pc">
+        <a href="/cong-dong-game-thu-viet-nam-quay-lung-voi-pubg" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/39nlv6pg-delete-pubgmobile-account-1200x900.jpg.webp" alt="Cộng đồng game thủ Việt Nam quay lưng với PUBG" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Cộng đồng game thủ Việt Nam quay lưng với PUBG</div></div><div class="ac-meta"><span>Anh Thu · 24/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Cộng đồng game thủ Việt Nam quay lưng với PUBG</div></div><div class="ac-meta"><span>Anh Thu · 24/09/2026</span></div></div>
         </a>
-        <a href="/tokyo-game-show-2026-roundup" class="ac" data-cat="preview pc">
+        <a href="/tokyo-game-show-2026-roundup" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/photo-tokyo-game-show-2026-roundup.jpg.webp" alt="Tokyo Game Show 2026: công bố lớn nhất, 257.642 lượt tham dự" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Tokyo Game Show 2026: công bố lớn nhất, 257.642 lượt tham dự</div></div><div class="ac-meta"><span>OtaHub Editorial · 23/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Tokyo Game Show 2026: công bố lớn nhất, 257.642 lượt tham dự</div></div><div class="ac-meta"><span>OtaHub Editorial · 23/09/2026</span></div></div>
         </a>
-        <a href="/steam-achievement-leak-persona-6-kingdom-hearts-4" class="ac" data-cat="preview pc">
+        <a href="/steam-achievement-leak-persona-6-kingdom-hearts-4" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/photo-steam-achievement-leak-persona-6-kingdom-hearts-4.jpg.webp" alt="Rò rỉ Steam: Persona 6, Kingdom Hearts IV lộ diện" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Rò rỉ Steam: Persona 6, Kingdom Hearts IV lộ diện</div></div><div class="ac-meta"><span>OtaHub Editorial · 23/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Rò rỉ Steam: Persona 6, Kingdom Hearts IV lộ diện</div></div><div class="ac-meta"><span>OtaHub Editorial · 23/09/2026</span></div></div>
         </a>
-        <a href="/honkai-star-rail-4-6-pearl-zzz-crossover" class="ac" data-cat="mobile preview">
+        <a href="/honkai-star-rail-4-6-pearl-zzz-crossover" class="ac" data-type="tin-tuc" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-ItNs39qvw_w.jpg.webp" alt="Honkai: Star Rail 4.6 ra mắt 28/9 với Pearl" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Mobile</span></div><div class="ac-title">Honkai: Star Rail 4.6 ra mắt 28/9 với Pearl</div></div><div class="ac-meta"><span>OtaHub Editorial · 23/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Honkai: Star Rail 4.6 ra mắt 28/9 với Pearl</div></div><div class="ac-meta"><span>OtaHub Editorial · 23/09/2026</span></div></div>
         </a>
-        <a href="/silent-hill-townfall-launch" class="ac" data-cat="preview pc">
+        <a href="/silent-hill-townfall-launch" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-WARs8turgnM.jpg.webp" alt="Silent Hill: Townfall chính thức ra mắt ngày 24/9/2026" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Silent Hill: Townfall chính thức ra mắt ngày 24/9/2026</div></div><div class="ac-meta"><span>OtaHub Editorial · 23/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Silent Hill: Townfall chính thức ra mắt ngày 24/9/2026</div></div><div class="ac-meta"><span>OtaHub Editorial · 23/09/2026</span></div></div>
         </a>
-        <a href="/marvel-wolverine-review-roundup" class="ac" data-cat="review pc">
+        <a href="/marvel-wolverine-review-roundup" class="ac" data-type="danh-gia" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-G62QQ42Ewwg.jpg.webp" alt="Marvel's Wolverine: chiến đấu tàn bạo, cốt truyện tuyến tính" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Marvel's Wolverine: chiến đấu tàn bạo, cốt truyện tuyến tính</div></div><div class="ac-meta"><span>OtaHub Editorial · 23/09/2026</span></div></div>
         </a>
-        <a href="/girls-frontline-2-exilium-danh-gia-chuyen-sau" class="ac" data-cat="mobile review">
+        <a href="/girls-frontline-2-exilium-danh-gia-chuyen-sau" class="ac" data-type="danh-gia" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/f661df27f7-gfl2-exilium-hero.jpg.webp" alt="Girls' Frontline 2: Exilium: đánh giá chi tiết" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Girls' Frontline 2: Exilium: đánh giá chi tiết</div></div><div class="ac-meta"><span>OtaHub Editorial · 19/09/2026</span></div></div>
         </a>
-        <a href="/zenless-zone-zero-2-0-ban-2-1-yuzuha-alice" class="ac" data-cat="mobile preview">
+        <a href="/zenless-zone-zero-2-0-ban-2-1-yuzuha-alice" class="ac" data-type="tin-tuc" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/news-zzz-20-outer-ring.jpg.webp" alt="Zenless Zone Zero 2.0 ra mắt 6/6/2025, bản 2.1 có Miyabi" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Mobile</span></div><div class="ac-title">Zenless Zone Zero 2.0 ra mắt 6/6/2025, bản 2.1 có Miyabi</div></div><div class="ac-meta"><span>OtaHub Editorial · 19/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Zenless Zone Zero 2.0 ra mắt 6/6/2025, bản 2.1 có Miyabi</div></div><div class="ac-meta"><span>OtaHub Editorial · 19/09/2026</span></div></div>
         </a>
-        <a href="/nintendo-switch-2-direct-gia-ban-mario-kart-moi" class="ac" data-cat="preview pc">
+        <a href="/nintendo-switch-2-direct-gia-ban-mario-kart-moi" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-switch2-1.jpg.webp" alt="Nintendo Switch 2 tăng giá lên 499,99 USD" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Nintendo Switch 2 tăng giá lên 499,99 USD</div></div><div class="ac-meta"><span>OtaHub Editorial · 19/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Nintendo Switch 2 tăng giá lên 499,99 USD</div></div><div class="ac-meta"><span>OtaHub Editorial · 19/09/2026</span></div></div>
         </a>
-        <a href="/gta-6-gameplay-trailer-rockstar-vice-city-leonida" class="ac" data-cat="preview pc">
+        <a href="/gta-6-gameplay-trailer-rockstar-vice-city-leonida" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-VQRLujxTm3c.jpg.webp" alt="GTA 6 tung trailer gameplay mới: bang Leonida rực lửa" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">GTA 6 tung trailer gameplay mới: bang Leonida rực lửa</div></div><div class="ac-meta"><span>OtaHub Editorial · 19/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">GTA 6 tung trailer gameplay mới: bang Leonida rực lửa</div></div><div class="ac-meta"><span>OtaHub Editorial · 19/09/2026</span></div></div>
         </a>
-        <a href="/monster-hunter-wilds-title-update-4-gogmazios-ascendance-2027" class="ac" data-cat="pc">
+        <a href="/monster-hunter-wilds-title-update-4-gogmazios-ascendance-2027" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/monster-hunter-wilds-autumn-update-hero.jpg.webp" alt="Monster Hunter Wilds: Title Update 4 thêm Gogmazios" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Monster Hunter Wilds: Title Update 4 thêm Gogmazios</div></div><div class="ac-meta"><span>OtaHub Editorial · 16/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Monster Hunter Wilds: Title Update 4 thêm Gogmazios</div></div><div class="ac-meta"><span>OtaHub Editorial · 16/09/2026</span></div></div>
         </a>
-        <a href="/dragon-ball-sparking-zero-dlc-season-pass-daima" class="ac" data-cat="pc">
+        <a href="/dragon-ball-sparking-zero-dlc-season-pass-daima" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/real-sparking-zero-daima-pack2.jpg.webp" alt="Sparking Zero: DLC Season Pass thêm nhân vật Daima" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Sparking Zero: DLC Season Pass thêm nhân vật Daima</div></div><div class="ac-meta"><span>OtaHub Editorial · 09/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Sparking Zero: DLC Season Pass thêm nhân vật Daima</div></div><div class="ac-meta"><span>OtaHub Editorial · 09/09/2026</span></div></div>
         </a>
-        <a href="/honkai-star-rail-fate-stay-night-unlimited-blade-works-crossover" class="ac" data-cat="mobile">
+        <a href="/honkai-star-rail-fate-stay-night-unlimited-blade-works-crossover" class="ac" data-type="tin-tuc" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/news-honkai-star-rail-fate-stay-night.jpg.webp" alt="Honkai: Star Rail x Fate/stay night [UBW] crossover" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Mobile</span></div><div class="ac-title">Honkai: Star Rail x Fate/stay night [UBW] crossover</div></div><div class="ac-meta"><span>OtaHub Editorial · 09/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Honkai: Star Rail x Fate/stay night [UBW] crossover</div></div><div class="ac-meta"><span>OtaHub Editorial · 09/09/2026</span></div></div>
         </a>
-        <a href="/aniimo-open-world-creature-rpg-launch" class="ac" data-cat="mobile preview">
+        <a href="/aniimo-open-world-creature-rpg-launch" class="ac" data-type="ra-mat" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/real-aniimo.jpg.webp" alt="Aniimo: RPG thế giới mở thu phục sinh vật ra mắt 16/9" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Mobile</span></div><div class="ac-title">Aniimo: RPG thế giới mở thu phục sinh vật ra mắt 16/9</div></div><div class="ac-meta"><span>OtaHub Editorial · 09/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Aniimo: RPG thế giới mở thu phục sinh vật ra mắt 16/9</div></div><div class="ac-meta"><span>OtaHub Editorial · 09/09/2026</span></div></div>
         </a>
-        <a href="/the-eminence-in-shadow-roguelite-game-announcement" class="ac" data-cat="preview pc">
+        <a href="/the-eminence-in-shadow-roguelite-game-announcement" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/real-eminence-phantom-echoes.jpg.webp" alt="The Eminence in Shadow công bố tựa game roguelite mới" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">The Eminence in Shadow công bố tựa game roguelite mới</div></div><div class="ac-meta"><span>Yu · 09/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">The Eminence in Shadow công bố tựa game roguelite mới</div></div><div class="ac-meta"><span>Yu · 09/09/2026</span></div></div>
         </a>
-        <a href="/nintendo-direct-september-2026-switch-2-mario-kart-9" class="ac" data-cat="preview pc">
+        <a href="/nintendo-direct-september-2026-switch-2-mario-kart-9" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-B_QJ4BYIGME.jpg.webp" alt="Nintendo Direct 9/2026: Zelda 40 năm, Ocarina remake" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Nintendo Direct 9/2026: Zelda 40 năm, Ocarina remake</div></div><div class="ac-meta"><span>OtaHub Editorial · 07/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Nintendo Direct 9/2026: Zelda 40 năm, Ocarina remake</div></div><div class="ac-meta"><span>OtaHub Editorial · 07/09/2026</span></div></div>
         </a>
-        <a href="/lck-summer-2026-gen-g-vo-dich-hanwha-life-a-quan" class="ac" data-cat="esports">
+        <a href="/lck-summer-2026-gen-g-vo-dich-hanwha-life-a-quan" class="ac" data-type="esports" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/real-lck.jpg.webp" alt="LCK mùa hè 2026: Gen.G vô địch, Hanwha Life về nhì" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Esports</span></div><div class="ac-title">LCK mùa hè 2026: Gen.G vô địch, Hanwha Life về nhì</div></div><div class="ac-meta"><span>OtaHub Editorial · 07/09/2026</span></div></div>
         </a>
-        <a href="/girls-frontline-2-huong-dan-tan-thu-doi-hinh-reroll" class="ac" data-cat="mobile guide">
+        <a href="/girls-frontline-2-huong-dan-tan-thu-doi-hinh-reroll" class="ac" data-type="huong-dan" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-X55bhHkc2VU.jpg.webp" alt="Girls' Frontline 2: Lưu Đày – hướng dẫn tân thủ, reroll" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Hướng dẫn</span></div><div class="ac-title">Girls' Frontline 2: Lưu Đày – hướng dẫn tân thủ, reroll</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 07/09/2026</span></div></div>
         </a>
-        <a href="/ghost-of-yotei-chi-tiet-vu-khi-gameplay-map-ezo" class="ac" data-cat="preview pc">
+        <a href="/ghost-of-yotei-chi-tiet-vu-khi-gameplay-map-ezo" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-cgM6poO2JmY.jpg.webp" alt="Ghost of Yōtei: ra mắt PS5 2/10/2025, Atsu dùng song kiếm" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Ghost of Yōtei: ra mắt PS5 2/10/2025, Atsu dùng song kiếm</div></div><div class="ac-meta"><span>OtaHub Editorial · 07/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Ghost of Yōtei: ra mắt PS5 2/10/2025, Atsu dùng song kiếm</div></div><div class="ac-meta"><span>OtaHub Editorial · 07/09/2026</span></div></div>
         </a>
-        <a href="/nintendo-switch-2-launch-lineup-specs" class="ac" data-cat="preview pc">
+        <a href="/nintendo-switch-2-launch-lineup-specs" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/news-switch2-specs-oled.jpg.webp" alt="Nintendo Switch 2: thông số kỹ thuật hệ máy" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Nintendo Switch 2: thông số kỹ thuật hệ máy</div></div><div class="ac-meta"><span>OtaHub Editorial · 04/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Nintendo Switch 2: thông số kỹ thuật hệ máy</div></div><div class="ac-meta"><span>OtaHub Editorial · 04/09/2026</span></div></div>
         </a>
-        <a href="/wuthering-waves-2-0-rinascita-ban-3-6" class="ac" data-cat="mobile preview">
+        <a href="/wuthering-waves-2-0-rinascita-ban-3-6" class="ac" data-type="tin-tuc" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/news-wuthering-waves-black-shores-shorekeeper.jpg.webp" alt="Wuthering Waves 2.0 Rinascita, bản 3.6 ra mắt 20/8/2026" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Mobile</span></div><div class="ac-title">Wuthering Waves 2.0 Rinascita, bản 3.6 ra mắt 20/8/2026</div></div><div class="ac-meta"><span>OtaHub Editorial · 03/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Wuthering Waves 2.0 Rinascita, bản 3.6 ra mắt 20/8/2026</div></div><div class="ac-meta"><span>OtaHub Editorial · 03/09/2026</span></div></div>
         </a>
-        <a href="/monster-hunter-wilds-pc-demo-system-requirements" class="ac" data-cat="preview pc">
+        <a href="/monster-hunter-wilds-pc-demo-system-requirements" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-mh-wilds-1.jpg.webp" alt="Monster Hunter Wilds ra mắt 28/2/2025 sau open beta" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Monster Hunter Wilds ra mắt 28/2/2025 sau open beta</div></div><div class="ac-meta"><span>OtaHub Editorial · 02/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Monster Hunter Wilds ra mắt 28/2/2025 sau open beta</div></div><div class="ac-meta"><span>OtaHub Editorial · 02/09/2026</span></div></div>
         </a>
-        <a href="/genshin-impact-70-snezhnaya-map-gameplay" class="ac" data-cat="mobile preview">
+        <a href="/genshin-impact-70-snezhnaya-map-gameplay" class="ac" data-type="tin-tuc" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-sRV37ZxQmf4.jpg.webp" alt="Genshin Impact 7.0 Snezhnaya: bản đồ băng giá khổng lồ" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Mobile</span></div><div class="ac-title">Genshin Impact 7.0 Snezhnaya: bản đồ băng giá khổng lồ</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 02/09/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Genshin Impact 7.0 Snezhnaya: bản đồ băng giá khổng lồ</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 02/09/2026</span></div></div>
         </a>
-        <a href="/elden-ring-nightreign-coop-multiplayer-reveal" class="ac" data-cat="preview pc">
+        <a href="/elden-ring-nightreign-coop-multiplayer-reveal" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-nightreign-1.jpg.webp" alt="Elden Ring Nightreign ra mắt 30/5/2025" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Elden Ring Nightreign ra mắt 30/5/2025</div></div><div class="ac-meta"><span>OtaHub Editorial · 30/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Elden Ring Nightreign ra mắt 30/5/2025</div></div><div class="ac-meta"><span>OtaHub Editorial · 30/08/2026</span></div></div>
         </a>
-        <a href="/call-of-duty-modern-warfare-4-gamescom-playable" class="ac" data-cat="pc">
+        <a href="/call-of-duty-modern-warfare-4-gamescom-playable" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/news-call-of-duty-modern-warfare-4-gamescom-playable.jpg.webp" alt="COD Modern Warfare 4 cho chơi thử tại Gamescom 2026" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">COD Modern Warfare 4 cho chơi thử tại Gamescom 2026</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 29/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">COD Modern Warfare 4 cho chơi thử tại Gamescom 2026</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 29/08/2026</span></div></div>
         </a>
-        <a href="/marvel-rivals-endgame-encore-update" class="ac" data-cat="pc">
+        <a href="/marvel-rivals-endgame-encore-update" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/news-marvel-rivals-endgame-encore-update.webp.webp" alt="Marvel Rivals tung bản cập nhật Endgame Encore" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Marvel Rivals tung bản cập nhật Endgame Encore</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 28/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Marvel Rivals tung bản cập nhật Endgame Encore</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 28/08/2026</span></div></div>
         </a>
-        <a href="/gamescom-2026-playstation-highlights" class="ac" data-cat="preview pc">
+        <a href="/gamescom-2026-playstation-highlights" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/news-gamescom-2026-playstation-highlights.jpg.webp" alt="Gamescom 2026: PlayStation hé lộ hơn 20 game mới" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Gamescom 2026: PlayStation hé lộ hơn 20 game mới</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 28/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Gamescom 2026: PlayStation hé lộ hơn 20 game mới</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 28/08/2026</span></div></div>
         </a>
-        <a href="/gta-6-extended-look-26-phut-netflix" class="ac" data-cat="pc">
+        <a href="/gta-6-extended-look-26-phut-netflix" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-tJbzMqJGH4k.jpg.webp" alt="GTA 6: Rockstar tung Extended Look 26 phút trên Netflix" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">GTA 6: Rockstar tung Extended Look 26 phút trên Netflix</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 27/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">GTA 6: Rockstar tung Extended Look 26 phút trên Netflix</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 27/08/2026</span></div></div>
         </a>
-        <a href="/girls-frontline-2-luu-day-vietnam-launch" class="ac" data-cat="mobile preview">
+        <a href="/girls-frontline-2-luu-day-vietnam-launch" class="ac" data-type="ra-mat" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-L8WHmgGHGBo.jpg.webp" alt="Girls' Frontline 2: Lưu Đày cập bến Việt Nam" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Mobile</span></div><div class="ac-title">Girls' Frontline 2: Lưu Đày cập bến Việt Nam</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 27/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Girls' Frontline 2: Lưu Đày cập bến Việt Nam</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 27/08/2026</span></div></div>
         </a>
-        <a href="/wuthering-waves-review" class="ac" data-cat="mobile review">
+        <a href="/wuthering-waves-review" class="ac" data-type="danh-gia" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-ww-1.jpg.webp" alt="Wuthering Waves review: đỉnh cao nhập vai mở (9.5 điểm)" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Wuthering Waves review: đỉnh cao nhập vai mở (9.5 điểm)</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 25/08/2026</span></div></div>
         </a>
-        <a href="/vct-champions-2026-prx-sentinels" class="ac" data-cat="esports">
+        <a href="/vct-champions-2026-prx-sentinels" class="ac" data-type="esports" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/paper-rex-masters-london-2026.jpg.webp" alt="VCT Champions 2026: Paper Rex giành vé đầu tiên" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Esports</span></div><div class="ac-title">VCT Champions 2026: Paper Rex giành vé đầu tiên</div></div><div class="ac-meta"><span>OtaHub Editorial · 25/08/2026</span></div></div>
         </a>
-        <a href="/monster-hunter-wilds-review" class="ac" data-cat="review pc">
+        <a href="/monster-hunter-wilds-review" class="ac" data-type="danh-gia" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/monster-hunter-wilds-review-hero.jpg.webp" alt="Monster Hunter Wilds review: kỷ nguyên mới (9.4 điểm)" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Monster Hunter Wilds review: kỷ nguyên mới (9.4 điểm)</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 25/08/2026</span></div></div>
         </a>
-        <a href="/honkai-star-rail-review" class="ac" data-cat="mobile review">
+        <a href="/honkai-star-rail-review" class="ac" data-type="danh-gia" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/news-honkai-star-rail-30-amphoreus.jpg.webp" alt="Honkai: Star Rail review: bản giao hưởng 9.2 điểm" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Honkai: Star Rail review: bản giao hưởng 9.2 điểm</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 25/08/2026</span></div></div>
         </a>
-        <a href="/genshin-impact-sandrone-ban-6-7-khong-phai-7-0" class="ac" data-cat="mobile preview">
+        <a href="/genshin-impact-sandrone-ban-6-7-khong-phai-7-0" class="ac" data-type="tin-tuc" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-x4YPOr0fGYo.jpg.webp" alt="Genshin Impact: Sandrone ra mắt ở bản 6.7, không phải 7.0" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Mobile</span></div><div class="ac-title">Genshin Impact: Sandrone ra mắt ở bản 6.7, không phải 7.0</div></div><div class="ac-meta"><span>OtaHub Editorial · 25/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Genshin Impact: Sandrone ra mắt ở bản 6.7, không phải 7.0</div></div><div class="ac-meta"><span>OtaHub Editorial · 25/08/2026</span></div></div>
         </a>
-        <a href="/elden-ring-shadow-of-the-erdtree-review" class="ac" data-cat="review pc">
+        <a href="/elden-ring-shadow-of-the-erdtree-review" class="ac" data-type="danh-gia" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/elden-ring-shadow-erdtree-review-hero.jpg.webp" alt="Elden Ring: Shadow of the Erdtree review: 9.7 điểm" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Elden Ring: Shadow of the Erdtree review: 9.7 điểm</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 25/08/2026</span></div></div>
         </a>
-        <a href="/solo-leveling-arise-ban-cap-nhat-monarch-transcendence" class="ac" data-cat="mobile">
+        <a href="/solo-leveling-arise-ban-cap-nhat-monarch-transcendence" class="ac" data-type="tin-tuc" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/solo-leveling-arise-key-art.jpg.webp" alt="Solo Leveling: Arise đạt 50 triệu lượt tải" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Mobile</span></div><div class="ac-title">Solo Leveling: Arise đạt 50 triệu lượt tải</div></div><div class="ac-meta"><span>OtaHub Editorial · 24/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Solo Leveling: Arise đạt 50 triệu lượt tải</div></div><div class="ac-meta"><span>OtaHub Editorial · 24/08/2026</span></div></div>
         </a>
-        <a href="/honor-of-kings-global-mua-giai-moi-tuong-lan-ling-wang" class="ac" data-cat="mobile">
+        <a href="/honor-of-kings-global-mua-giai-moi-tuong-lan-ling-wang" class="ac" data-type="huong-dan" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/honor-of-kings-lanling-wang.jpg.webp" alt="Honor of Kings: Lanling Wang là sát thủ đi rừng meta 2026" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Mobile</span></div><div class="ac-title">Honor of Kings: Lanling Wang là sát thủ đi rừng meta 2026</div></div><div class="ac-meta"><span>OtaHub Editorial · 24/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Hướng dẫn</span></div><div class="ac-title">Honor of Kings: Lanling Wang là sát thủ đi rừng meta 2026</div></div><div class="ac-meta"><span>OtaHub Editorial · 24/08/2026</span></div></div>
         </a>
-        <a href="/lies-of-p-complete-edition-switch2" class="ac" data-cat="preview pc">
+        <a href="/lies-of-p-complete-edition-switch2" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/news-lies-of-p-complete-edition-switch2.jpg.webp" alt="Lies of P: Complete Edition ra mắt trên Switch 2" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Lies of P: Complete Edition ra mắt trên Switch 2</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 20/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Lies of P: Complete Edition ra mắt trên Switch 2</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 20/08/2026</span></div></div>
         </a>
-        <a href="/sinking-city-2-launch" class="ac" data-cat="preview pc">
+        <a href="/sinking-city-2-launch" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/news-sinking-city-2-launch.jpg.webp" alt="The Sinking City 2 ra mắt 18/8, đậm chất kinh dị sinh tồn" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">The Sinking City 2 ra mắt 18/8, đậm chất kinh dị sinh tồn</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 19/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">The Sinking City 2 ra mắt 18/8, đậm chất kinh dị sinh tồn</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 19/08/2026</span></div></div>
         </a>
-        <a href="/xbox-game-pass-july-wave-2" class="ac" data-cat="pc">
+        <a href="/xbox-game-pass-july-wave-2" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/uploads/xbox-game-pass-july-2026-wave-2.jpg.webp" alt="Xbox Game Pass Wave 2 tháng 7: Halo Campaign Evolved" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Xbox Game Pass Wave 2 tháng 7: Halo Campaign Evolved</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Xbox Game Pass Wave 2 tháng 7: Halo Campaign Evolved</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
         </a>
-        <a href="/silent-hill-townfall-gameplay" class="ac" data-cat="preview pc">
+        <a href="/silent-hill-townfall-gameplay" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-bpqRBsXP6M0.jpg.webp" alt="Silent Hill: Townfall hé lộ bối cảnh Scotland 1996" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Silent Hill: Townfall hé lộ bối cảnh Scotland 1996</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Silent Hill: Townfall hé lộ bối cảnh Scotland 1996</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
         </a>
-        <a href="/playstation-plus-august-2026" class="ac" data-cat="pc">
+        <a href="/playstation-plus-august-2026" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/news-playstation-plus-august-2026.jpg.webp" alt="PlayStation Plus tháng 8/2026: Dying Light 2, Big Walk" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">PlayStation Plus tháng 8/2026: Dying Light 2, Big Walk</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">PlayStation Plus tháng 8/2026: Dying Light 2, Big Walk</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
         </a>
-        <a href="/order-of-the-sinking-star-ps5" class="ac" data-cat="pc">
+        <a href="/order-of-the-sinking-star-ps5" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/news-order-of-the-sinking-star-ps5.jpg.webp" alt="Order of the Sinking Star xác nhận bản PS5, ra 8/10" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Order of the Sinking Star xác nhận bản PS5, ra 8/10</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Order of the Sinking Star xác nhận bản PS5, ra 8/10</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
         </a>
-        <a href="/oblivion-remastered-switch-2" class="ac" data-cat="pc">
+        <a href="/oblivion-remastered-switch-2" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/news-oblivion-remastered-switch-2.jpg.webp" alt="Oblivion Remastered lên Switch 2, 1080p docked" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Oblivion Remastered lên Switch 2, 1080p docked</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Oblivion Remastered lên Switch 2, 1080p docked</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
         </a>
-        <a href="/marvel-wolverine-story-trailer" class="ac" data-cat="preview pc">
+        <a href="/marvel-wolverine-story-trailer" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-3Z42tBfBLJY.jpg.webp" alt="Marvel's Wolverine tung trailer tại Comic-Con, ra mắt 15/9" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Marvel's Wolverine tung trailer tại Comic-Con, ra mắt 15/9</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Marvel's Wolverine tung trailer tại Comic-Con, ra mắt 15/9</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
         </a>
-        <a href="/marvel-tokon-phoenix-cyclops-dlc" class="ac" data-cat="preview pc">
+        <a href="/marvel-tokon-phoenix-cyclops-dlc" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/news-marvel-tokon-phoenix-cyclops-dlc.jpg.webp" alt="Marvel Tōkon: Fighting Souls công bố DLC Phoenix Cyclops" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Marvel Tōkon: Fighting Souls công bố DLC Phoenix Cyclops</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Marvel Tōkon: Fighting Souls công bố DLC Phoenix Cyclops</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
         </a>
-        <a href="/lous-lagoon-ps5-august-27" class="ac" data-cat="preview pc">
+        <a href="/lous-lagoon-ps5-august-27" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/news-lous-lagoon-ps5-august-27.jpg.webp" alt="Lou's Lagoon ấn định ra mắt PS5, công bố Deluxe Edition" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Lou's Lagoon ấn định ra mắt PS5, công bố Deluxe Edition</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Lou's Lagoon ấn định ra mắt PS5, công bố Deluxe Edition</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
         </a>
-        <a href="/lego-donkey-kong-arcade" class="ac" data-cat="">
+        <a href="/lego-donkey-kong-arcade" class="ac" data-type="ra-mat" data-facet="">
           <div class="ac-thumb"><img src="/assets/img/_t/news-lego-donkey-kong-arcade.jpg.webp" alt="LEGO Donkey Kong Arcade mở bán 1/8, giá 199,99 USD" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Gaming</span></div><div class="ac-title">LEGO Donkey Kong Arcade mở bán 1/8, giá 199,99 USD</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">LEGO Donkey Kong Arcade mở bán 1/8, giá 199,99 USD</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
         </a>
-        <a href="/halo-campaign-evolved-modernizes" class="ac" data-cat="preview pc">
+        <a href="/halo-campaign-evolved-modernizes" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/news-halo-campaign-evolved-modernizes.jpg.webp" alt="Halo: Campaign Evolved ra mắt 28/7 với 13 thay đổi" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Halo: Campaign Evolved ra mắt 28/7 với 13 thay đổi</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Halo: Campaign Evolved ra mắt 28/7 với 13 thay đổi</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
         </a>
-        <a href="/flamecraft-ps5-demo" class="ac" data-cat="preview pc">
+        <a href="/flamecraft-ps5-demo" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/news-flamecraft-ps5-demo.jpg.webp" alt="Flamecraft xác nhận ra mắt PS5, Xbox Series, Switch" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Flamecraft xác nhận ra mắt PS5, Xbox Series, Switch</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Flamecraft xác nhận ra mắt PS5, Xbox Series, Switch</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
         </a>
-        <a href="/dragon-ball-sparking-zero-neo-dlc" class="ac" data-cat="pc">
+        <a href="/dragon-ball-sparking-zero-neo-dlc" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/news-dragon-ball-sparking-zero-neo-dlc.jpg.webp" alt="Sparking Zero tung DLC Neo với 33 nhân vật mới" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Sparking Zero tung DLC Neo với 33 nhân vật mới</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Sparking Zero tung DLC Neo với 33 nhân vật mới</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
         </a>
-        <a href="/ball-x-pit-naturalist-update" class="ac" data-cat="preview pc">
+        <a href="/ball-x-pit-naturalist-update" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/news-ball-x-pit-naturalist-update.jpg.webp" alt="Ball x Pit ra mắt bản cập nhật The Naturalist" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Ball x Pit ra mắt bản cập nhật The Naturalist</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Ball x Pit ra mắt bản cập nhật The Naturalist</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 18/08/2026</span></div></div>
         </a>
-        <a href="/resonance-plague-tale-legacy-release" class="ac" data-cat="preview pc">
+        <a href="/resonance-plague-tale-legacy-release" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/4e114f95a9-plague-tale-legacy-minotaur-island.jpg.webp" alt="Resonance: A Plague Tale Legacy ra mắt 27/8/2026" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Resonance: A Plague Tale Legacy ra mắt 27/8/2026</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 17/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Resonance: A Plague Tale Legacy ra mắt 27/8/2026</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 17/08/2026</span></div></div>
         </a>
-        <a href="/mortal-shell-2-release" class="ac" data-cat="preview pc">
+        <a href="/mortal-shell-2-release" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-mortal-shell-2.jpg.webp" alt="Mortal Shell II ấn định ngày ra mắt 20/8/2026" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Mortal Shell II ấn định ngày ra mắt 20/8/2026</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 17/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Mortal Shell II ấn định ngày ra mắt 20/8/2026</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 17/08/2026</span></div></div>
         </a>
-        <a href="/final-fantasy-7-revelation-gamescom" class="ac" data-cat="preview pc">
+        <a href="/final-fantasy-7-revelation-gamescom" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/b14d8c1cc7-ff7-revelation-gamescom-hero.jpg.webp" alt="FF7 Revelation lộ diện tại Gamescom Opening Night" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">FF7 Revelation lộ diện tại Gamescom Opening Night</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 17/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">FF7 Revelation lộ diện tại Gamescom Opening Night</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 17/08/2026</span></div></div>
         </a>
-        <a href="/gta6-trailer3-netflix-premiere" class="ac" data-cat="preview pc">
+        <a href="/gta6-trailer3-netflix-premiere" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-qq76pQsI1iw.jpg.webp" alt="GTA 6 Trailer 3 công chiếu trên Netflix ngày 27/8" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">GTA 6 Trailer 3 công chiếu trên Netflix ngày 27/8</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 17/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">GTA 6 Trailer 3 công chiếu trên Netflix ngày 27/8</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 17/08/2026</span></div></div>
         </a>
-        <a href="/phantom-blade-zero-state-of-play" class="ac" data-cat="pc">
+        <a href="/phantom-blade-zero-state-of-play" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/891449aa89-phantom-blade-zero-state-of-play-hero.jpg.webp" alt="Phantom Blade Zero: State of Play 17/8" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Phantom Blade Zero: State of Play 17/8</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 17/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Phantom Blade Zero: State of Play 17/8</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 17/08/2026</span></div></div>
         </a>
-        <a href="/honkai-star-rail-zzz-crossover" class="ac" data-cat="mobile">
+        <a href="/honkai-star-rail-zzz-crossover" class="ac" data-type="tin-tuc" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-GpykEcVpzGs.jpg.webp" alt="Honkai: Star Rail xác nhận crossover với ZZZ" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Mobile</span></div><div class="ac-title">Honkai: Star Rail xác nhận crossover với ZZZ</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 16/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Honkai: Star Rail xác nhận crossover với ZZZ</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 16/08/2026</span></div></div>
         </a>
-        <a href="/space-marine-2-chaos-rising-review" class="ac" data-cat="review pc">
+        <a href="/space-marine-2-chaos-rising-review" class="ac" data-type="danh-gia" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-space-marine-1.jpg.webp" alt="Space Marine 2 review: cận chiến và co-op đỉnh" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Space Marine 2 review: cận chiến và co-op đỉnh</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 16/08/2026</span></div></div>
         </a>
-        <a href="/kaiju-no-8-the-game-review" class="ac" data-cat="mobile review">
+        <a href="/kaiju-no-8-the-game-review" class="ac" data-type="danh-gia" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-kaiju-game-1.jpg.webp" alt="Kaiju No.8 THE GAME review sau 1 năm vận hành" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Kaiju No.8 THE GAME review sau 1 năm vận hành</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 16/08/2026</span></div></div>
         </a>
-        <a href="/genshin-70-snezhnaya-review" class="ac" data-cat="mobile review">
+        <a href="/genshin-70-snezhnaya-review" class="ac" data-type="danh-gia" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-QgLZe9BtRJE.jpg.webp" alt="Genshin 7.0 Snezhnaya review: chương cuối tham vọng" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Genshin 7.0 Snezhnaya review: chương cuối tham vọng</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 16/08/2026</span></div></div>
         </a>
-        <a href="/mafia-old-country-review" class="ac" data-cat="review pc">
+        <a href="/mafia-old-country-review" class="ac" data-type="danh-gia" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-mafia-1.jpg.webp" alt="Mafia: The Old Country review: về cội nguồn Sicily" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Mafia: The Old Country review: về cội nguồn Sicily</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 15/08/2026</span></div></div>
         </a>
-        <a href="/black-myth-wukong-review" class="ac" data-cat="review pc">
+        <a href="/black-myth-wukong-review" class="ac" data-type="danh-gia" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-black-myth-1.jpg.webp" alt="Black Myth: Wukong review: souls-like đầu tiên của Trung Quốc" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Black Myth: Wukong review: souls-like đầu tiên của Trung Quốc</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 15/08/2026</span></div></div>
         </a>
-        <a href="/suikoden-star-leap-review" class="ac" data-cat="mobile review">
+        <a href="/suikoden-star-leap-review" class="ac" data-type="danh-gia" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/3a6da459ec-suikoden-star-leap-hero.jpg.webp" alt="Suikoden STAR LEAP review: Konami hồi sinh huyền thoại" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Suikoden STAR LEAP review: Konami hồi sinh huyền thoại</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 15/08/2026</span></div></div>
         </a>
-        <a href="/big-walk-house-house" class="ac" data-cat="pc">
+        <a href="/big-walk-house-house" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/d4b52b428d-big-walk-house-house-hero.jpg.webp" alt="Big Walk: cha đẻ Untitled Goose Game ra game co-op mới" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Big Walk: cha đẻ Untitled Goose Game ra game co-op mới</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 15/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Big Walk: cha đẻ Untitled Goose Game ra game co-op mới</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 15/08/2026</span></div></div>
         </a>
-        <a href="/elden-ring-tarnished-edition" class="ac" data-cat="pc">
+        <a href="/elden-ring-tarnished-edition" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/adbee997e8-elden-ring-tarnished-edition-hero.jpg.webp" alt="Elden Ring: Tarnished Edition đổ bộ Switch 2" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Elden Ring: Tarnished Edition đổ bộ Switch 2</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 15/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Elden Ring: Tarnished Edition đổ bộ Switch 2</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 15/08/2026</span></div></div>
         </a>
-        <a href="/metal-gear-solid-delta-review" class="ac" data-cat="review pc">
+        <a href="/metal-gear-solid-delta-review" class="ac" data-type="danh-gia" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/ce3825d43e-mgs-delta-snake-eater-review-hero.jpg.webp" alt="Metal Gear Solid Delta: Snake Eater review chi tiết" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Metal Gear Solid Delta: Snake Eater review chi tiết</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 15/08/2026</span></div></div>
         </a>
-        <a href="/split-fiction-review" class="ac" data-cat="review pc">
+        <a href="/split-fiction-review" class="ac" data-type="danh-gia" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/4c8ef98e63-split-fiction-review-hero.jpg.webp" alt="Split Fiction review: Hazelight tái định nghĩa co-op" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Split Fiction review: Hazelight tái định nghĩa co-op</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 15/08/2026</span></div></div>
         </a>
-        <a href="/death-stranding-2-review" class="ac" data-cat="review pc">
+        <a href="/death-stranding-2-review" class="ac" data-type="danh-gia" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/9c68ea445d-death-stranding-2-on-the-beach-review-hero.jpg.webp" alt="Death Stranding 2 review: Kojima tự vượt qua mình" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Death Stranding 2 review: Kojima tự vượt qua mình</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 15/08/2026</span></div></div>
         </a>
-        <a href="/wuthering-waves-24" class="ac" data-cat="mobile">
+        <a href="/wuthering-waves-24" class="ac" data-type="danh-gia" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/0c18ade4ba-library_hero.jpg.webp" alt="Wuthering Waves 3.6: Ren Realm và 2 nhân vật mới" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Mobile</span></div><div class="ac-title">Wuthering Waves 3.6: Ren Realm và 2 nhân vật mới</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 15/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Wuthering Waves 3.6: Ren Realm và 2 nhân vật mới</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 15/08/2026</span></div></div>
         </a>
-        <a href="/ghost-of-yotei-review" class="ac" data-cat="review pc">
+        <a href="/ghost-of-yotei-review" class="ac" data-type="danh-gia" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/3c84e61b4e-ghost-of-yotei-review-hero.jpg.webp" alt="Ghost of Yōtei review: vượt qua cả Tsushima" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Ghost of Yōtei review: vượt qua cả Tsushima</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 15/08/2026</span></div></div>
         </a>
-        <a href="/beast-of-reincarnation" class="ac" data-cat="pc">
+        <a href="/beast-of-reincarnation" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/5f8467072b-beast-of-reincarnation-hero.jpg.webp" alt="Beast of Reincarnation: tựa AAA đầu tiên của Game Freak" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Beast of Reincarnation: tựa AAA đầu tiên của Game Freak</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 14/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Beast of Reincarnation: tựa AAA đầu tiên của Game Freak</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 14/08/2026</span></div></div>
         </a>
-        <a href="/suikoden-star-leap" class="ac" data-cat="mobile preview">
+        <a href="/suikoden-star-leap" class="ac" data-type="ra-mat" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-WKOZqkjPcWk.jpg.webp" alt="Suikoden STAR LEAP ra mắt mobile Nhật Bản" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Mobile</span></div><div class="ac-title">Suikoden STAR LEAP ra mắt mobile Nhật Bản</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 14/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Suikoden STAR LEAP ra mắt mobile Nhật Bản</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 14/08/2026</span></div></div>
         </a>
-        <a href="/ghost-of-yotei-complete-edition" class="ac" data-cat="preview pc">
+        <a href="/ghost-of-yotei-complete-edition" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-sLcksHR30UA.jpg.webp" alt="Ghost of Yōtei Complete Edition ra mắt 1/10" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Ghost of Yōtei Complete Edition ra mắt 1/10</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 14/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Ghost of Yōtei Complete Edition ra mắt 1/10</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 14/08/2026</span></div></div>
         </a>
-        <a href="/mafia-old-country-man-of-honor" class="ac" data-cat="preview pc">
+        <a href="/mafia-old-country-man-of-honor" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/6e5a3f1ae0-mafia-old-country-manofhonor-hero.jpg.webp" alt="Mafia: Old Country – DLC Man of Honor ra mắt" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Mafia: Old Country – DLC Man of Honor ra mắt</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 14/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Mafia: Old Country – DLC Man of Honor ra mắt</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 14/08/2026</span></div></div>
         </a>
-        <a href="/genshin-70-tier-list-meta-snezhnaya" class="ac" data-cat="mobile guide tierlist">
+        <a href="/genshin-70-tier-list-meta-snezhnaya" class="ac" data-type="huong-dan" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/ae2a55e940-genshin-citlali-hero.jpg.webp" alt="Genshin Impact 7.0: tier list đội hình meta Snezhnaya" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Tier list</span></div><div class="ac-title">Genshin Impact 7.0: tier list đội hình meta Snezhnaya</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 14/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Hướng dẫn</span></div><div class="ac-title">Genshin Impact 7.0: tier list đội hình meta Snezhnaya</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 14/08/2026</span></div></div>
         </a>
-        <a href="/hollow-knight-silksong-sea-of-sorrow" class="ac" data-cat="pc">
+        <a href="/hollow-knight-silksong-sea-of-sorrow" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/4f81303202-silksong-hero.jpg.webp" alt="Hollow Knight: Silksong ra DLC miễn phí Sea of Sorrow" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Hollow Knight: Silksong ra DLC miễn phí Sea of Sorrow</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 13/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Hollow Knight: Silksong ra DLC miễn phí Sea of Sorrow</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 13/08/2026</span></div></div>
         </a>
-        <a href="/genshin-impact-70-snezhnaya" class="ac" data-cat="mobile">
+        <a href="/genshin-impact-70-snezhnaya" class="ac" data-type="tin-tuc" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/yt-y2Zcmcbrm9s.jpg.webp" alt="Genshin Impact 7.0: Snezhnaya mở cửa, Odette xuất hiện" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Mobile</span></div><div class="ac-title">Genshin Impact 7.0: Snezhnaya mở cửa, Odette xuất hiện</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 13/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Genshin Impact 7.0: Snezhnaya mở cửa, Odette xuất hiện</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 13/08/2026</span></div></div>
         </a>
-        <a href="/star-wars-zero-company" class="ac" data-cat="pc">
+        <a href="/star-wars-zero-company" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/b293aa2b32-swzc-hero.jpg.webp" alt="Star Wars Zero Company: chiến thuật mới từ EA, 27/8" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Star Wars Zero Company: chiến thuật mới từ EA, 27/8</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 12/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Star Wars Zero Company: chiến thuật mới từ EA, 27/8</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 12/08/2026</span></div></div>
         </a>
-        <a href="/jojo-golden-spirit-launch" class="ac" data-cat="mobile preview">
+        <a href="/jojo-golden-spirit-launch" class="ac" data-type="ra-mat" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/c299f2d727-jojo-golden-spirit-hero.jpg.webp" alt="JoJo's Bizarre Adventure: Golden Spirit ra mắt 13/8" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Mobile</span></div><div class="ac-title">JoJo's Bizarre Adventure: Golden Spirit ra mắt 13/8</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 12/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">JoJo's Bizarre Adventure: Golden Spirit ra mắt 13/8</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 12/08/2026</span></div></div>
         </a>
-        <a href="/metal-gear-solid-master-collection-vol2" class="ac" data-cat="preview pc">
+        <a href="/metal-gear-solid-master-collection-vol2" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/bffb8c0a75-mgs-master-collection-vol2.jpg.webp" alt="MGS: Master Collection Vol. 2 ấn định ra mắt 27/8" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">MGS: Master Collection Vol. 2 ấn định ra mắt 27/8</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 12/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">MGS: Master Collection Vol. 2 ấn định ra mắt 27/8</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 12/08/2026</span></div></div>
         </a>
-        <a href="/kaiju-no-8-the-game-anniversary" class="ac" data-cat="mobile">
+        <a href="/kaiju-no-8-the-game-anniversary" class="ac" data-type="tin-tuc" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-kaiju-game-2.jpg.webp" alt="Kaiju No.8 THE GAME: lộ trình cập nhật 1 năm" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Mobile</span></div><div class="ac-title">Kaiju No.8 THE GAME: lộ trình cập nhật 1 năm</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 12/08/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Kaiju No.8 THE GAME: lộ trình cập nhật 1 năm</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 12/08/2026</span></div></div>
         </a>
-        <a href="/vct-pacific-2026" class="ac" data-cat="esports">
+        <a href="/vct-pacific-2026" class="ac" data-type="esports" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/4c17ff1a96-Valorant_Champions_Los_Angeles_2023.jpg.webp" alt="VCT Pacific 2026 Stage 2: Global Esports vô địch" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag tv">Esports</span></div><div class="ac-title">VCT Pacific 2026 Stage 2: Global Esports vô địch</div></div><div class="ac-meta"><span>OtaHub Editorial · 11/08/2026</span></div></div>
         </a>
-        <a href="/space-marine-2-dlc" class="ac" data-cat="pc">
+        <a href="/space-marine-2-dlc" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/pool-space-marine-2.jpg.webp" alt="Space Marine 2 năm 3: Chaos Siege Mode, class mới" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Space Marine 2 năm 3: Chaos Siege Mode, class mới</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 30/07/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Space Marine 2 năm 3: Chaos Siege Mode, class mới</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 30/07/2026</span></div></div>
         </a>
-        <a href="/top-game-pc-2026" class="ac" data-cat="review pc">
+        <a href="/top-game-pc-2026" class="ac" data-type="top-list" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/6eef9e5628-library_hero.jpg.webp" alt="Game PC được đánh giá cao nhất 2026 (tính đến 9/2026)" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Game PC được đánh giá cao nhất 2026 (tính đến 9/2026)</div></div><div class="ac-meta"><span>OtaHub Editorial · 20/06/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Top List</span></div><div class="ac-title">Game PC được đánh giá cao nhất 2026 (tính đến 9/2026)</div></div><div class="ac-meta"><span>OtaHub Editorial · 20/06/2026</span></div></div>
         </a>
-        <a href="/blue-protocol-review" class="ac" data-cat="mobile review">
+        <a href="/blue-protocol-review" class="ac" data-type="danh-gia" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/3578d308d7-library_hero.jpg.webp" alt="Blue Protocol: Star Resonance: tổng quan bản global" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Blue Protocol: Star Resonance: tổng quan bản global</div></div><div class="ac-meta"><span>OtaHub Editorial · 17/06/2026</span></div></div>
         </a>
-        <a href="/elden-ring-dlc2" class="ac" data-cat="pc">
+        <a href="/elden-ring-dlc2" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/b80150127d-library_hero.jpg.webp" alt="Elden Ring Tarnished Pack: 2 class mới Heavy, Idus Knight" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Elden Ring Tarnished Pack: 2 class mới Heavy, Idus Knight</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 12/06/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Elden Ring Tarnished Pack: 2 class mới Heavy, Idus Knight</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 12/06/2026</span></div></div>
         </a>
-        <a href="/stellar-blade-dlc" class="ac" data-cat="mobile preview pc">
+        <a href="/stellar-blade-dlc" class="ac" data-type="tin-tuc" data-facet="multi">
           <div class="ac-thumb"><img src="/assets/img/_t/ec5a6e3960-maxresdefault.jpg.webp" alt="Stellar Blade x NIKKE: DLC miễn phí ra mắt 12/6/2025" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Mobile</span></div><div class="ac-title">Stellar Blade x NIKKE: DLC miễn phí ra mắt 12/6/2025</div></div><div class="ac-meta"><span>OtaHub Editorial · 11/06/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Stellar Blade x NIKKE: DLC miễn phí ra mắt 12/6/2025</div></div><div class="ac-meta"><span>OtaHub Editorial · 11/06/2026</span></div></div>
         </a>
-        <a href="/tekken8-season2" class="ac" data-cat="pc">
+        <a href="/tekken8-season2" class="ac" data-type="tin-tuc" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/31f849a512-library_hero.jpg.webp" alt="Tekken 8 Season 2: 4 nhân vật DLC năm 2025" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">PC / Console</span></div><div class="ac-title">Tekken 8 Season 2: 4 nhân vật DLC năm 2025</div></div><div class="ac-meta"><span>OtaHub Editorial · 10/06/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Tin tức</span></div><div class="ac-title">Tekken 8 Season 2: 4 nhân vật DLC năm 2025</div></div><div class="ac-meta"><span>OtaHub Editorial · 10/06/2026</span></div></div>
         </a>
-        <a href="/resident-evil-9-announcement" class="ac" data-cat="preview pc">
+        <a href="/resident-evil-9-announcement" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/4d865718ab-library_hero.jpg.webp" alt="Resident Evil Requiem: những điều cần biết" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Resident Evil Requiem: những điều cần biết</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 10/06/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Resident Evil Requiem: những điều cần biết</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 10/06/2026</span></div></div>
         </a>
-        <a href="/kingdom-come-deliverance-2" class="ac" data-cat="review pc">
+        <a href="/kingdom-come-deliverance-2" class="ac" data-type="danh-gia" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/50c4f9b171-library_hero.jpg.webp" alt="Kingdom Come Deliverance 2 review: RPG lịch sử đỉnh" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Kingdom Come Deliverance 2 review: RPG lịch sử đỉnh</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 10/06/2026</span></div></div>
         </a>
-        <a href="/gta6-preview" class="ac" data-cat="review preview pc">
+        <a href="/gta6-preview" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/c8cd09fede-maxresdefault.jpg.webp" alt="GTA 6 ra mắt 19/11/2026, giá 79,99 USD, chưa có PC" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">GTA 6 ra mắt 19/11/2026, giá 79,99 USD, chưa có PC</div></div><div class="ac-meta"><span>OtaHub Editorial · 10/06/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">GTA 6 ra mắt 19/11/2026, giá 79,99 USD, chưa có PC</div></div><div class="ac-meta"><span>OtaHub Editorial · 10/06/2026</span></div></div>
         </a>
-        <a href="/huong-dan" class="ac" data-cat="guide pc">
+        <a href="/huong-dan" class="ac" data-type="huong-dan" data-facet="multi">
           <div class="ac-thumb"><img src="/og-image.png" alt="Hướng Dẫn Elden Ring: Nightreign" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag tg">Hướng dẫn</span></div><div class="ac-title">Hướng Dẫn Elden Ring: Nightreign</div></div><div class="ac-meta"><span>OtaHub Editorial · 10/06/2026</span></div></div>
         </a>
-        <a href="/xbox-showcase-2026" class="ac" data-cat="preview pc">
+        <a href="/xbox-showcase-2026" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/baa8311563-maxresdefault.jpg.webp" alt="Xbox Games Showcase 2026: tất cả game được công bố" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Xbox Games Showcase 2026: tất cả game được công bố</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 08/06/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Xbox Games Showcase 2026: tất cả game được công bố</div></div><div class="ac-meta"><span>Mambu (Đức Anh) · 08/06/2026</span></div></div>
         </a>
-        <a href="/stellar-blade-2" class="ac" data-cat="preview pc">
+        <a href="/stellar-blade-2" class="ac" data-type="ra-mat" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/f845d7c936-library_hero.jpg.webp" alt="Stellar Blade: Blood Rain lộ diện, nữ chính mới Evie" loading="lazy" width="640" height="360"></div>
-          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Sắp ra mắt</span></div><div class="ac-title">Stellar Blade: Blood Rain lộ diện, nữ chính mới Evie</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 08/06/2026</span></div></div>
+          <div class="ac-info"><div><div class="ac-tags"><span class="tag tc">Ra mắt &amp; Trailer</span></div><div class="ac-title">Stellar Blade: Blood Rain lộ diện, nữ chính mới Evie</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 08/06/2026</span></div></div>
         </a>
-        <a href="/genshin-natlan-review" class="ac" data-cat="mobile review">
+        <a href="/genshin-natlan-review" class="ac" data-type="danh-gia" data-facet="mobile">
           <div class="ac-thumb"><img src="/assets/img/_t/real-genshin-natlan.jpg.webp" alt="Genshin Impact Natlan: vùng đất lửa và bí mật Celestia" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Genshin Impact Natlan: vùng đất lửa và bí mật Celestia</div></div><div class="ac-meta"><span>Lin (Khánh Linh) · 04/06/2026</span></div></div>
         </a>
-        <a href="/nintendo-switch-2-review" class="ac" data-cat="review pc">
+        <a href="/nintendo-switch-2-review" class="ac" data-type="danh-gia" data-facet="pc">
           <div class="ac-thumb"><img src="/assets/img/_t/d7d77f5de9-maxresdefault.jpg.webp" alt="Nintendo Switch 2 review: hoàn hảo hay chỉ nâng cấp?" loading="lazy" width="640" height="360"></div>
           <div class="ac-info"><div><div class="ac-tags"><span class="tag ta">Đánh giá</span></div><div class="ac-title">Nintendo Switch 2 review: hoàn hảo hay chỉ nâng cấp?</div></div><div class="ac-meta"><span>OtaHub Editorial · 28/05/2026</span></div></div>
         </a>
@@ -2829,14 +2823,14 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
 <script>
 /* ─── GAMING DYNAMIC 5-CARD SWITCHER ─── */
 var GAMING_FEATURED_DATA = {
-  "all": {"secTitle":"Tiêu điểm \u003cem>Gaming\u003c/em>","hero":{"url":"/dynamite-blue-game-rpg-chien-thuat-cyberpunk-kosmos12","img":"/assets/img/dynamite-blue-hero.jpg","tag":"PC / Console","tagClass":"tc","title":"Dynamite Blue: game RPG chiến thuật cyberpunk của dev Exos Heroes","sub":"Dynamite Blue là game RPG theo lượt 2.5D pixel cyberpunk của Kosmo’s12, ra mắt toàn cầu 30/9/2026 trên iOS, Android, Steam. Lối chơi, nhân vật, cấu hình.","meta":"OtaHub Editorial · 02/10/2026"},"sides":[{"url":"/raincoat-pikachu-duoc-ban-voi-gia-8-4-trieu-usd-tro-thanh-th","img":"/assets/img/_t/uploads/raincoat-pikachu-card.jpg.webp","tag":"Gaming","tagClass":"tc","title":"Raincoat Pikachu được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử","meta":"Anh Thu · 01/10"},{"url":"/gta-6-he-thong-thoi-tiet-nang-dong-tai-hien-florida-chan-thu","img":"/assets/img/_t/uploads/gta-6-official-key-art.jpg.webp","tag":"PC / Console","tagClass":"tc","title":"GTA 6: Hệ thống thời tiết năng động tái hiện Florida chân thực","meta":"Anna · 01/10"},{"url":"/crimson-desert-charting-the-unknown-bi-tri-hoan-2-tuan","img":"/assets/img/_t/uploads/crimson-desert-charting-the-unknown-steam.jpg.webp","tag":"PC / Console","tagClass":"tc","title":"Crimson Desert: Charting the Unknown bị trì hoãn 2 tuần","meta":"anhthu · 01/10"},{"url":"/5-game-sinh-ton-mien-phi-dang-choi-tren-steam-fan-the-loai-s","img":"/assets/img/_t/uploads/once-human-steam.jpg.webp","tag":"Hướng dẫn","tagClass":"tg","title":"5 game sinh tồn miễn phí đáng chơi trên Steam, fan thể loại survival không nên bỏ qua","meta":"Anna · 01/10"}]},
-  "pc": {"secTitle":"PC & \u003cem>Console Games\u003c/em>","hero":{"url":"/dynamite-blue-game-rpg-chien-thuat-cyberpunk-kosmos12","img":"/assets/img/dynamite-blue-hero.jpg","tag":"PC / Console","tagClass":"tc","title":"Dynamite Blue: game RPG chiến thuật cyberpunk của dev Exos Heroes","sub":"Dynamite Blue là game RPG theo lượt 2.5D pixel cyberpunk của Kosmo’s12, ra mắt toàn cầu 30/9/2026 trên iOS, Android, Steam. Lối chơi, nhân vật, cấu hình.","meta":"OtaHub Editorial · 02/10/2026"},"sides":[{"url":"/gta-6-he-thong-thoi-tiet-nang-dong-tai-hien-florida-chan-thu","img":"/assets/img/_t/uploads/gta-6-official-key-art.jpg.webp","tag":"PC / Console","tagClass":"tc","title":"GTA 6: Hệ thống thời tiết năng động tái hiện Florida chân thực","meta":"Anna · 01/10"},{"url":"/crimson-desert-charting-the-unknown-bi-tri-hoan-2-tuan","img":"/assets/img/_t/uploads/crimson-desert-charting-the-unknown-steam.jpg.webp","tag":"PC / Console","tagClass":"tc","title":"Crimson Desert: Charting the Unknown bị trì hoãn 2 tuần","meta":"anhthu · 01/10"},{"url":"/5-game-sinh-ton-mien-phi-dang-choi-tren-steam-fan-the-loai-s","img":"/assets/img/_t/uploads/once-human-steam.jpg.webp","tag":"Hướng dẫn","tagClass":"tg","title":"5 game sinh tồn miễn phí đáng chơi trên Steam, fan thể loại survival không nên bỏ qua","meta":"Anna · 01/10"},{"url":"/take-two-dung-ban-port-gta-5-tren-switch-ngay-truoc-them-ra","img":"/assets/img/_t/uploads/dwmbnfr7-01m3rh0fr64tp356kxxeyzxxjm-01m3rh0hwev4z7br9fg1d56edw.webp.webp","tag":"Sắp ra mắt","tagClass":"tc","title":"Take-Two dừng bản port GTA 5 trên Switch ngay trước thềm ra mắt GTA 6","meta":"Anna · 30/09"}]},
-  "mobile": {"secTitle":"Mobile \u003cem>Gaming & Gacha\u003c/em>","hero":{"url":"/honkai-star-rail-3-0-amphoreus-remembrance","img":"/assets/img/yt-TqKwoSk6708.jpg","tag":"Mobile","tagClass":"tg","title":"Honkai: Star Rail 3.0 ra mắt 15/1/2025, thế giới Amphoreus","sub":"Honkai: Star Rail 3.0 mở Amphoreus và Path Remembrance từ 15/1/2025. Nhìn lại cốt truyện, nhân vật, cơ chế memosprite và hệ thống khám phá mới.","meta":"OtaHub Editorial · 30/09/2026"},"sides":[{"url":"/delta-force-se-co-che-do-nhay-du-battle-royale-trong-nam-202","img":"/assets/img/_t/uploads/delta-force-gameplay-steam.jpg.webp","tag":"Mobile","tagClass":"tg","title":"Delta Force công bố kế hoạch 2027: bản đồ Siege, Unreal Engine 5 và chế độ Detonation","meta":"Anna · 29/09"},{"url":"/aixleft-chieu-mo-himass-ve-delta-force","img":"/assets/img/_t/pool-delta-force-1.jpg.webp","tag":"Mobile","tagClass":"tg","title":"Chủ tịch Aixleft muốn mời Himass về Delta Force","meta":"OtaHub Editorial · 26/09"},{"url":"/honkai-star-rail-4-6-pearl-zzz-crossover","img":"/assets/img/_t/yt-ItNs39qvw_w.jpg.webp","tag":"Mobile","tagClass":"tg","title":"Honkai: Star Rail 4.6 ra mắt 28/9 với Pearl","meta":"OtaHub Editorial · 23/09"},{"url":"/girls-frontline-2-exilium-danh-gia-chuyen-sau","img":"/assets/img/_t/f661df27f7-gfl2-exilium-hero.jpg.webp","tag":"Đánh giá","tagClass":"ta","title":"Girls' Frontline 2: Exilium: đánh giá chi tiết","meta":"OtaHub Editorial · 19/09"}]},
-  "review": {"secTitle":"Đánh Giá & \u003cem>Review Game\u003c/em>","hero":{"url":"/the-witcher-3-remastered-review-nang-cap-hinh-anh-nhung-chua","img":"/assets/img/uploads/witcher-3-remastered-geralt-igni.jpg","tag":"Đánh giá","tagClass":"ta","title":"The Witcher 3 Remastered Review: Nâng cấp hình ảnh nhưng chưa hoàn toàn thuyết phục","sub":"Review The Witcher 3 Remastered: ray tracing nâng cấp ánh sáng, bóng đổ và phản chiếu, nhưng một số cảnh kém tự nhiên hơn bản gốc. Điểm 8.5/10.","meta":"Yu · 29/09/2026"},"sides":[{"url":"/marvel-wolverine-review-roundup","img":"/assets/img/_t/yt-G62QQ42Ewwg.jpg.webp","tag":"Đánh giá","tagClass":"ta","title":"Marvel's Wolverine: chiến đấu tàn bạo, cốt truyện tuyến tính","meta":"OtaHub Editorial · 23/09"},{"url":"/girls-frontline-2-exilium-danh-gia-chuyen-sau","img":"/assets/img/_t/f661df27f7-gfl2-exilium-hero.jpg.webp","tag":"Đánh giá","tagClass":"ta","title":"Girls' Frontline 2: Exilium: đánh giá chi tiết","meta":"OtaHub Editorial · 19/09"},{"url":"/wuthering-waves-review","img":"/assets/img/_t/pool-ww-1.jpg.webp","tag":"Đánh giá","tagClass":"ta","title":"Wuthering Waves review: đỉnh cao nhập vai mở (9.5 điểm)","meta":"Mambu (Đức Anh) · 25/08"},{"url":"/monster-hunter-wilds-review","img":"/assets/img/_t/monster-hunter-wilds-review-hero.jpg.webp","tag":"Đánh giá","tagClass":"ta","title":"Monster Hunter Wilds review: kỷ nguyên mới (9.4 điểm)","meta":"Lin (Khánh Linh) · 25/08"}]},
-  "preview": {"secTitle":"Game \u003cem>Sắp Ra Mắt & Previews\u003c/em>","hero":{"url":"/take-two-dung-ban-port-gta-5-tren-switch-ngay-truoc-them-ra","img":"/assets/img/uploads/dwmbnfr7-01m3rh0fr64tp356kxxeyzxxjm-01m3rh0hwev4z7br9fg1d56edw.webp","tag":"Sắp ra mắt","tagClass":"tc","title":"Take-Two dừng bản port GTA 5 trên Switch ngay trước thềm ra mắt GTA 6","sub":"Take-Two yêu cầu Paralympics Productions dừng dự án đưa GTA 5 lên Nintendo Switch và Android, khiến nhóm modder phải kết thúc quá trình phát triển.","meta":"Anna · 30/09/2026"},"sides":[{"url":"/call-of-duty-modern-warfare-4-he-lo-cau-hinh-pc-ray-tracing","img":"/assets/img/_t/uploads/t5huoqlk-call-of-duty-modern-warfare-4-he-lo-cau-hinh-pc-cho-dot-beta.jpg.webp","tag":"Sắp ra mắt","tagClass":"tc","title":"Call of Duty: Modern Warfare 4 hé lộ cấu hình PC, Ray Tracing và chế độ Collateral mới","meta":"Anna · 30/09"},{"url":"/honkai-star-rail-3-0-amphoreus-remembrance","img":"/assets/img/_t/yt-TqKwoSk6708.jpg.webp","tag":"Mobile","tagClass":"tg","title":"Honkai: Star Rail 3.0 ra mắt 15/1/2025, thế giới Amphoreus","meta":"OtaHub Editorial · 30/09"},{"url":"/duoc-su-tu-su-ra-mat-game-console-dau-tien-the-apothecary-di","img":"/assets/img/_t/uploads/ild2v8ju-library-hero.jpg.webp","tag":"Sắp ra mắt","tagClass":"tc","title":"Dược Sư Tự Sự ra mắt game console đầu tiên - The Apothecary Diaries: The False Imperial Brother","meta":"Yu · 30/09"},{"url":"/gears-of-war-e-day-thoi-gian-phat-hanh-va-cach-choi-som","img":"/assets/img/_t/uploads/p4z3x3u9-gears-of-war-e-day-revs-up-hype-with-a-playable-demo-at-game.webp.webp","tag":"Hướng dẫn","tagClass":"tg","title":"Gears of War: E-Day: Thời gian phát hành và cách chơi sớm","meta":"Anh Thu · 30/09"}]},
-  "guide": {"secTitle":"Cẩm Nang & \u003cem>Hướng Dẫn Chơi Game\u003c/em>","hero":{"url":"/5-game-sinh-ton-mien-phi-dang-choi-tren-steam-fan-the-loai-s","img":"/assets/img/uploads/once-human-steam.jpg","tag":"Hướng dẫn","tagClass":"tg","title":"5 game sinh tồn miễn phí đáng chơi trên Steam, fan thể loại survival không nên bỏ qua","sub":"5 game sinh tồn miễn phí đáng thử trên Steam: Once Human, Fallout Shelter, Unturned, Muck và No More Room In Hell, từ xây căn cứ đến chiến đấu với zombie.","meta":"Anna · 01/10/2026"},"sides":[{"url":"/7-game-the-witcher-dang-choi-trong-nam-2026","img":"/assets/img/_t/uploads/witcher-3-geralt-steam.jpg.webp","tag":"Hướng dẫn","tagClass":"tg","title":"7 game The Witcher đáng chơi trong năm 2026","meta":"Anh Thu · 30/09"},{"url":"/gears-of-war-e-day-thoi-gian-phat-hanh-va-cach-choi-som","img":"/assets/img/_t/uploads/p4z3x3u9-gears-of-war-e-day-revs-up-hype-with-a-playable-demo-at-game.webp.webp","tag":"Hướng dẫn","tagClass":"tg","title":"Gears of War: E-Day: Thời gian phát hành và cách chơi sớm","meta":"Anh Thu · 30/09"},{"url":"/girls-frontline-2-huong-dan-tan-thu-doi-hinh-reroll","img":"/assets/img/_t/yt-X55bhHkc2VU.jpg.webp","tag":"Hướng dẫn","tagClass":"tg","title":"Girls' Frontline 2: Lưu Đày – hướng dẫn tân thủ, reroll","meta":"Lin (Khánh Linh) · 07/09"},{"url":"/genshin-70-tier-list-meta-snezhnaya","img":"/assets/img/_t/ae2a55e940-genshin-citlali-hero.jpg.webp","tag":"Tier list","tagClass":"ta","title":"Genshin Impact 7.0: tier list đội hình meta Snezhnaya","meta":"Lin (Khánh Linh) · 14/08"}]},
-  "esports": {"secTitle":"Tin Tức \u003cem>Esports & Giải Đấu\u003c/em>","hero":{"url":"/pubg-asia-stars-2026-himass-tanvuu-bi-cam-vinh-vien","img":"/assets/img/photo-pubg-asia-stars-2026-himass-tanvuu-bi-cam-vinh-vien.jpg","tag":"Esports","tagClass":"tv","title":"Drama PUBG: Himass và TanVuu bị KRAFTON cấm vĩnh viễn","sub":"Toàn cảnh drama PUBG Asia Stars 2026: Himass và TanVuu bị tố stream sniping Soopi ngày 17/9, KRAFTON xin lỗi rồi cấm vĩnh viễn tài khoản và mọi giải esports.","meta":"OtaHub · 24/09/2026"},"sides":[{"url":"/asian-games-2026-esports-aichi-nagoya","img":"/assets/img/_t/photo-asian-games-2026-esports-aichi-nagoya.jpg.webp","tag":"Esports","tagClass":"tv","title":"Esports Asian Games 2026: 11 nội dung, thi đấu tại Aichi","meta":"OtaHub Editorial · 24/09"},{"url":"/lck-summer-2026-gen-g-vo-dich-hanwha-life-a-quan","img":"/assets/img/_t/real-lck.jpg.webp","tag":"Esports","tagClass":"tv","title":"LCK mùa hè 2026: Gen.G vô địch, Hanwha Life về nhì","meta":"OtaHub Editorial · 07/09"},{"url":"/vct-champions-2026-prx-sentinels","img":"/assets/img/_t/uploads/paper-rex-masters-london-2026.jpg.webp","tag":"Esports","tagClass":"tv","title":"VCT Champions 2026: Paper Rex giành vé đầu tiên","meta":"OtaHub Editorial · 25/08"},{"url":"/vct-pacific-2026","img":"/assets/img/_t/4c17ff1a96-Valorant_Champions_Los_Angeles_2023.jpg.webp","tag":"Esports","tagClass":"tv","title":"VCT Pacific 2026 Stage 2: Global Esports vô địch","meta":"OtaHub Editorial · 11/08"}]},
-  "tierlist": {"secTitle":"Bảng Xếp Hạng & \u003cem>Tier Lists\u003c/em>","hero":{"url":"/genshin-70-tier-list-meta-snezhnaya","img":"/assets/img/ae2a55e940-genshin-citlali-hero.jpg","tag":"Tier list","tagClass":"ta","title":"Genshin Impact 7.0: tier list đội hình meta Snezhnaya","sub":"Tier list Genshin Impact 7.0 sau khi Snezhnaya mở cửa: Odette và Sandrone thống trị SS-tier, Sucrose được buff mạnh, đội hình Stellar-Conduct đáng.","meta":"Lin (Khánh Linh) · 14/08/2026"},"sides":[]}
+  "all": {"secTitle":"Tiêu điểm \u003cem>Gaming\u003c/em>","hero":{"url":"/gears-of-war-e-day-review-diem-so-uu-nhuoc-diem-cau-hinh-pc","img":"/assets/img/gears-of-war-e-day-review-hero.jpg","tag":"Đánh giá","tagClass":"ta","title":"Gears of War: E-Day review: điểm số, ưu nhược điểm và cấu hình PC","sub":"Gears of War: E-Day được khoảng 87-88 điểm Metacritic. Tổng hợp review IGN, GameSpot, GamesRadar, ưu nhược điểm, cấu hình PC và có nên mua không.","meta":"OtaHub Editorial · 02/10/2026"},"sides":[{"url":"/top-game-mobile-cay-cuoc-dang-choi-2026-aniimo-dragon-nest","img":"/assets/img/_t/top-game-mobile-cay-cuoc-hero.jpg.webp","tag":"Top List","tagClass":"ta","title":"13 game mobile cày cuốc 2026: Aniimo, Dragon Nest, Ares","meta":"OtaHub Editorial · 02/10"},{"url":"/dynamite-blue-game-rpg-chien-thuat-cyberpunk-kosmos12","img":"/assets/img/_t/dynamite-blue-hero.jpg.webp","tag":"Ra mắt & Trailer","tagClass":"tc","title":"Dynamite Blue: game RPG chiến thuật cyberpunk của dev Exos Heroes","meta":"OtaHub Editorial · 02/10"},{"url":"/raincoat-pikachu-duoc-ban-voi-gia-8-4-trieu-usd-tro-thanh-th","img":"/assets/img/_t/uploads/raincoat-pikachu-card.jpg.webp","tag":"Tin tức","tagClass":"tc","title":"Raincoat Pikachu được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử","meta":"Anh Thu · 01/10"},{"url":"/gta-6-he-thong-thoi-tiet-nang-dong-tai-hien-florida-chan-thu","img":"/assets/img/_t/uploads/gta-6-official-key-art.jpg.webp","tag":"Tin tức","tagClass":"tc","title":"GTA 6: Hệ thống thời tiết năng động tái hiện Florida chân thực","meta":"Anna · 01/10"}]},
+  "tin-tuc": {"secTitle":"Gaming · \u003cem>Tin tức\u003c/em>","hero":{"url":"/raincoat-pikachu-duoc-ban-voi-gia-8-4-trieu-usd-tro-thanh-th","img":"/assets/img/uploads/raincoat-pikachu-card.jpg","tag":"Tin tức","tagClass":"tc","title":"Raincoat Pikachu được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử","sub":"Raincoat Pikachu chuẩn PSA 10 vừa được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử chỉ sau Pikachu Illustrator.","meta":"Anh Thu · 01/10/2026"},"sides":[{"url":"/gta-6-he-thong-thoi-tiet-nang-dong-tai-hien-florida-chan-thu","img":"/assets/img/_t/uploads/gta-6-official-key-art.jpg.webp","tag":"Tin tức","tagClass":"tc","title":"GTA 6: Hệ thống thời tiết năng động tái hiện Florida chân thực","meta":"Anna · 01/10"},{"url":"/take-two-dung-ban-port-gta-5-tren-switch-ngay-truoc-them-ra","img":"/assets/img/_t/uploads/dwmbnfr7-01m3rh0fr64tp356kxxeyzxxjm-01m3rh0hwev4z7br9fg1d56edw.webp.webp","tag":"Tin tức","tagClass":"tc","title":"Take-Two dừng bản port GTA 5 trên Switch ngay trước thềm ra mắt GTA 6","meta":"Anna · 30/09"},{"url":"/control-resonant-buoc-game-thu-pc-tai-lai-toan-bo-tro-choi","img":"/assets/img/_t/uploads/a5lb66t6-ctrl-r-story-01.webp.webp","tag":"Tin tức","tagClass":"tc","title":"CONTROL Resonant buộc game thủ PC tải lại toàn bộ trò chơi","meta":"Anna · 30/09"},{"url":"/honkai-star-rail-3-0-amphoreus-remembrance","img":"/assets/img/_t/yt-TqKwoSk6708.jpg.webp","tag":"Tin tức","tagClass":"tc","title":"Honkai: Star Rail 3.0 ra mắt 15/1/2025, thế giới Amphoreus","meta":"OtaHub Editorial · 30/09"}]},
+  "ra-mat": {"secTitle":"Gaming · \u003cem>Ra mắt &amp; Trailer\u003c/em>","hero":{"url":"/dynamite-blue-game-rpg-chien-thuat-cyberpunk-kosmos12","img":"/assets/img/dynamite-blue-hero.jpg","tag":"Ra mắt & Trailer","tagClass":"tc","title":"Dynamite Blue: game RPG chiến thuật cyberpunk của dev Exos Heroes","sub":"Dynamite Blue là game RPG theo lượt 2.5D pixel cyberpunk của Kosmo’s12, ra mắt toàn cầu 30/9/2026 trên iOS, Android, Steam. Lối chơi, nhân vật, cấu hình.","meta":"OtaHub Editorial · 02/10/2026"},"sides":[{"url":"/crimson-desert-charting-the-unknown-bi-tri-hoan-2-tuan","img":"/assets/img/_t/uploads/crimson-desert-charting-the-unknown-steam.jpg.webp","tag":"Ra mắt & Trailer","tagClass":"tc","title":"Crimson Desert: Charting the Unknown bị trì hoãn 2 tuần","meta":"anhthu · 01/10"},{"url":"/call-of-duty-modern-warfare-4-he-lo-cau-hinh-pc-ray-tracing","img":"/assets/img/_t/uploads/t5huoqlk-call-of-duty-modern-warfare-4-he-lo-cau-hinh-pc-cho-dot-beta.jpg.webp","tag":"Ra mắt & Trailer","tagClass":"tc","title":"Call of Duty: Modern Warfare 4 hé lộ cấu hình PC, Ray Tracing và chế độ Collateral mới","meta":"Anna · 30/09"},{"url":"/duoc-su-tu-su-ra-mat-game-console-dau-tien-the-apothecary-di","img":"/assets/img/_t/uploads/ild2v8ju-library-hero.jpg.webp","tag":"Ra mắt & Trailer","tagClass":"tc","title":"Dược Sư Tự Sự ra mắt game console đầu tiên - The Apothecary Diaries: The False Imperial Brother","meta":"Yu · 30/09"},{"url":"/delta-force-se-co-che-do-nhay-du-battle-royale-trong-nam-202","img":"/assets/img/_t/uploads/delta-force-gameplay-steam.jpg.webp","tag":"Ra mắt & Trailer","tagClass":"tc","title":"Delta Force công bố kế hoạch 2027: bản đồ Siege, Unreal Engine 5 và chế độ Detonation","meta":"Anna · 29/09"}]},
+  "danh-gia": {"secTitle":"Gaming · \u003cem>Đánh giá\u003c/em>","hero":{"url":"/gears-of-war-e-day-review-diem-so-uu-nhuoc-diem-cau-hinh-pc","img":"/assets/img/gears-of-war-e-day-review-hero.jpg","tag":"Đánh giá","tagClass":"ta","title":"Gears of War: E-Day review: điểm số, ưu nhược điểm và cấu hình PC","sub":"Gears of War: E-Day được khoảng 87-88 điểm Metacritic. Tổng hợp review IGN, GameSpot, GamesRadar, ưu nhược điểm, cấu hình PC và có nên mua không.","meta":"OtaHub Editorial · 02/10/2026"},"sides":[{"url":"/the-witcher-3-remastered-review-nang-cap-hinh-anh-nhung-chua","img":"/assets/img/_t/uploads/witcher-3-remastered-geralt-igni.jpg.webp","tag":"Đánh giá","tagClass":"ta","title":"The Witcher 3 Remastered Review: Nâng cấp hình ảnh nhưng chưa hoàn toàn thuyết phục","meta":"Yu · 29/09"},{"url":"/marvel-wolverine-review-roundup","img":"/assets/img/_t/yt-G62QQ42Ewwg.jpg.webp","tag":"Đánh giá","tagClass":"ta","title":"Marvel's Wolverine: chiến đấu tàn bạo, cốt truyện tuyến tính","meta":"OtaHub Editorial · 23/09"},{"url":"/girls-frontline-2-exilium-danh-gia-chuyen-sau","img":"/assets/img/_t/f661df27f7-gfl2-exilium-hero.jpg.webp","tag":"Đánh giá","tagClass":"ta","title":"Girls' Frontline 2: Exilium: đánh giá chi tiết","meta":"OtaHub Editorial · 19/09"},{"url":"/wuthering-waves-review","img":"/assets/img/_t/pool-ww-1.jpg.webp","tag":"Đánh giá","tagClass":"ta","title":"Wuthering Waves review: đỉnh cao nhập vai mở (9.5 điểm)","meta":"Mambu (Đức Anh) · 25/08"}]},
+  "huong-dan": {"secTitle":"Gaming · \u003cem>Hướng dẫn\u003c/em>","hero":{"url":"/gears-of-war-e-day-thoi-gian-phat-hanh-va-cach-choi-som","img":"/assets/img/uploads/p4z3x3u9-gears-of-war-e-day-revs-up-hype-with-a-playable-demo-at-game.webp","tag":"Hướng dẫn","tagClass":"tg","title":"Gears of War: E-Day: Thời gian phát hành và cách chơi sớm","sub":"Gears of War: E-Day ra mắt ngày 6/10/2026; người sở hữu Premium Edition chơi sớm từ 1/10, còn Xbox Game Pass có bản đầy đủ từ ngày phát hành.","meta":"Anh Thu · 30/09/2026"},"sides":[{"url":"/girls-frontline-2-huong-dan-tan-thu-doi-hinh-reroll","img":"/assets/img/_t/yt-X55bhHkc2VU.jpg.webp","tag":"Hướng dẫn","tagClass":"tg","title":"Girls' Frontline 2: Lưu Đày – hướng dẫn tân thủ, reroll","meta":"Lin (Khánh Linh) · 07/09"},{"url":"/honor-of-kings-global-mua-giai-moi-tuong-lan-ling-wang","img":"/assets/img/_t/uploads/honor-of-kings-lanling-wang.jpg.webp","tag":"Hướng dẫn","tagClass":"tg","title":"Honor of Kings: Lanling Wang là sát thủ đi rừng meta 2026","meta":"OtaHub Editorial · 24/08"},{"url":"/genshin-70-tier-list-meta-snezhnaya","img":"/assets/img/_t/ae2a55e940-genshin-citlali-hero.jpg.webp","tag":"Hướng dẫn","tagClass":"tg","title":"Genshin Impact 7.0: tier list đội hình meta Snezhnaya","meta":"Lin (Khánh Linh) · 14/08"},{"url":"/huong-dan","img":"/og-image.png","tag":"Hướng dẫn","tagClass":"tg","title":"Hướng Dẫn Elden Ring: Nightreign","meta":"OtaHub Editorial · 10/06"}]},
+  "esports": {"secTitle":"Gaming · \u003cem>Esports\u003c/em>","hero":{"url":"/aixleft-chieu-mo-himass-ve-delta-force","img":"/assets/img/pool-delta-force-1.jpg","tag":"Esports","tagClass":"tv","title":"Chủ tịch Aixleft muốn mời Himass về Delta Force","sub":"Theo tin lan truyền trong cộng đồng PUBG Việt Nam, Aixleft, chủ tịch kiêm tuyển thủ PERO, muốn mời Himass về đội Delta Force sau án cấm vĩnh viễn của KRAFTON.","meta":"OtaHub Editorial · 26/09/2026"},"sides":[{"url":"/pubg-asia-stars-2026-himass-tanvuu-bi-cam-vinh-vien","img":"/assets/img/_t/photo-pubg-asia-stars-2026-himass-tanvuu-bi-cam-vinh-vien.jpg.webp","tag":"Esports","tagClass":"tv","title":"Drama PUBG: Himass và TanVuu bị KRAFTON cấm vĩnh viễn","meta":"OtaHub · 24/09"},{"url":"/asian-games-2026-esports-aichi-nagoya","img":"/assets/img/_t/photo-asian-games-2026-esports-aichi-nagoya.jpg.webp","tag":"Esports","tagClass":"tv","title":"Esports Asian Games 2026: 11 nội dung, thi đấu tại Aichi","meta":"OtaHub Editorial · 24/09"},{"url":"/lck-summer-2026-gen-g-vo-dich-hanwha-life-a-quan","img":"/assets/img/_t/real-lck.jpg.webp","tag":"Esports","tagClass":"tv","title":"LCK mùa hè 2026: Gen.G vô địch, Hanwha Life về nhì","meta":"OtaHub Editorial · 07/09"},{"url":"/vct-champions-2026-prx-sentinels","img":"/assets/img/_t/uploads/paper-rex-masters-london-2026.jpg.webp","tag":"Esports","tagClass":"tv","title":"VCT Champions 2026: Paper Rex giành vé đầu tiên","meta":"OtaHub Editorial · 25/08"}]},
+  "goc-nhin": {"secTitle":"Gaming · \u003cem>Góc nhìn\u003c/em>","hero":{"url":"/vi-sao-the-isle-lai-hot-den-vay-trong-nam-2026","img":"/assets/img/uploads/ralzy7zw-711-thumb.jpg","tag":"Góc nhìn","tagClass":"tv","title":"Vì sao The Isle lại hot đến vậy trong năm 2026?","sub":"Vì sao The Isle hot trong năm 2026? Khám phá gameplay sinh tồn khủng long, các bản cập nhật EVRIMA và lượng người chơi tăng mạnh của tựa game.","meta":"Yu · 30/09/2026"},"sides":[{"url":"/nintendo-gamecube-chiec-may-mau-tim-nho-be-nhung-de-lai-dau-","img":"/assets/img/_t/uploads/nintendo-gamecube-console.jpg.webp","tag":"Góc nhìn","tagClass":"tv","title":"Nintendo GameCube: Chiếc máy màu tím nhỏ bé nhưng để lại dấu ấn lớn","meta":"Yu · 29/09"},{"url":"/roman-sands-re-build-mac-ket-trong-giac-mo-vaporwave-dang-da","img":"/assets/img/_t/uploads/x6scgjsi-roman-sands-header.webp.webp","tag":"Góc nhìn","tagClass":"tv","title":"Roman Sands RE:Build: Mắc kẹt trong giấc mơ vaporwave đang dần sụp đổ","meta":"Anh Thu · 28/09"},{"url":"/khi-gta-tro-thanh-san-khau-cho-shakespeare-trong-grand-theft","img":"/assets/img/_t/uploads/grand-theft-hamlet-still.jpg.webp","tag":"Góc nhìn","tagClass":"tv","title":"Khi GTA trở thành sân khấu cho Shakespeare trong Grand Theft Hamlet","meta":"Anh Thu · 28/09"}]},
+  "top-list": {"secTitle":"Gaming · \u003cem>Top List\u003c/em>","hero":{"url":"/top-game-mobile-cay-cuoc-dang-choi-2026-aniimo-dragon-nest","img":"/assets/img/top-game-mobile-cay-cuoc-hero.jpg","tag":"Top List","tagClass":"ta","title":"13 game mobile cày cuốc 2026: Aniimo, Dragon Nest, Ares","sub":"OtaHub nghiên cứu, tổng hợp 13 game cày cuốc 2026: Aniimo, Dragon Nest, Where Winds Meet, Ares... Ngày ra mắt, nền tảng, tiếng Việt đến 3/10/2026.","meta":"OtaHub Editorial · 02/10/2026"},"sides":[{"url":"/5-game-sinh-ton-mien-phi-dang-choi-tren-steam-fan-the-loai-s","img":"/assets/img/_t/uploads/once-human-steam.jpg.webp","tag":"Top List","tagClass":"ta","title":"5 game sinh tồn miễn phí đáng chơi trên Steam, fan thể loại survival không nên bỏ qua","meta":"Anna · 01/10"},{"url":"/7-game-the-witcher-dang-choi-trong-nam-2026","img":"/assets/img/_t/uploads/witcher-3-geralt-steam.jpg.webp","tag":"Top List","tagClass":"ta","title":"7 game The Witcher đáng chơi trong năm 2026","meta":"Anh Thu · 30/09"},{"url":"/top-game-pc-2026","img":"/assets/img/_t/6eef9e5628-library_hero.jpg.webp","tag":"Top List","tagClass":"ta","title":"Game PC được đánh giá cao nhất 2026 (tính đến 9/2026)","meta":"OtaHub Editorial · 20/06"}]}
 };
 
 function updateGamingHero(cat){
@@ -2923,6 +2917,7 @@ function setGamingFilter(btn, cat){
   });
 })();
 </script>
+<script defer src="/assets/hub-filter.js?v=20261002a"></script>
 <script defer src="/assets/enhance.js?v=20261002g"></script>
 <script defer src="/assets/img-fit.v2.js?v=20261002a"></script>
 <script src="/assets/lang-switch.js" defer></script>
