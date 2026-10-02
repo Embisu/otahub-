@@ -1,5 +1,23 @@
 window.IDX = [
   {
+    "title": "Tax Shield: A Free Vietnamese Tax Filing Simulator Game",
+    "url": "/en/tax-shield-vietnam-tax-filing-simulator-game",
+    "cat": "Gaming",
+    "date": "2026-10-02",
+    "excerpt": "Tax Shield is a free browser game from a Threads user that simulates Vietnamese tax filing, year-end settlement and audits under the 2026 tax laws.",
+    "img": "/assets/img/tax-shield-game-thue-hero-v2.jpg",
+    "tags": []
+  },
+  {
+    "title": "Game mô phỏng khai thuế Tax Shield: “không khó, chỉ dễ đi tù”",
+    "url": "/tax-shield-game-mo-phong-khai-thue",
+    "cat": "Gaming",
+    "date": "2026-10-02",
+    "excerpt": "Tax Shield là game web miễn phí của một người dùng Threads, mô phỏng khai thuế, quyết toán và đối đầu thanh tra theo luật thuế 2026, chơi được trên điện thoại.",
+    "img": "/assets/img/tax-shield-game-thue-hero-v2.jpg",
+    "tags": []
+  },
+  {
     "title": "Zoro’s Conqueror’s Haki: 4 Techniques From Wano to Elbaf",
     "url": "/en/zoro-conquerors-haki-4-techniques-one-piece",
     "cat": "Manga",
