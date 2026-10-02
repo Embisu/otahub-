@@ -13,7 +13,7 @@
 (function(){try{var t=localStorage.getItem('otahub_admin_theme')||'dark';if(t==='light'){document.documentElement.classList.add('theme-light');}else{document.documentElement.classList.add('theme-dark');}}catch(e){}})();
 </script>
 <style>
-@font-face{font-family:'BHN Fonarto Regular';src:url('/assets/fonts/BHNFonartoRegular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'BHN Fonarto Regular';src:url('/assets/fonts/BHNFonartoRegular-latin.woff2') format('woff2'),url('/assets/fonts/BHNFonartoRegular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}
 :root {
   /* ── Brand palette ── */
   --cyan: #00f2ff;
@@ -12391,14 +12391,14 @@ function buildStandardEnglishArticleTemplate(viSlug, enSlug, heroImg, heroPos, c
 <\/script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"></noscript>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <meta name="theme-color" content="#0b0418">
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
-<link rel="stylesheet" href="/assets/article-style.css?v=20261001e">
+<link rel="stylesheet" href="/assets/article-style.css?v=20261002b">
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002c">
+<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002d">
 </head>
 <body>
 
@@ -17104,7 +17104,7 @@ function newArticle(prefillTitle) {
 <\/script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"></noscript>
 <link rel="manifest" href="/manifest.json">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-12852ZFD0K"><\/script>
 <script>
@@ -17116,9 +17116,9 @@ function newArticle(prefillTitle) {
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <meta name="theme-color" content="#0b0418">
 <link rel="alternate" type="application/rss+xml" title="OtaHub RSS" href="/feed.xml">
-<link rel="stylesheet" href="/assets/article-style.css?v=20261001e">
+<link rel="stylesheet" href="/assets/article-style.css?v=20261002b">
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002c">
+<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002d">
 </head>
 <body>
 
@@ -17504,7 +17504,10 @@ function serializeCats(cats) {
 // (Đã gỡ "Trang khác" — toàn bộ 9 trang trước đây hỏng nay có trình soạn thảo riêng trong sidebar.)
 
 // ── Shared card-field helpers (dùng chung cho trang chủ + trang chuyên mục) ──
-function fieldGet(raw, re) { const m = raw.match(re); return m ? m[1] : ''; }
+// Trang công khai dùng ảnh thu nhỏ /assets/img/_t|_s/<gốc>.webp cho thẻ bài (scripts/build-thumbs.py);
+// admin luôn làm việc với ảnh gốc để ô lớn (Tin nổi bật, Hero) không bị dùng nhầm ảnh nhỏ.
+function origImgUrl(u) { return String(u || '').replace(/^\/assets\/img\/_[ts]\/(.+)\.webp$/, '/assets/img/$1'); }
+function fieldGet(raw, re) { const m = raw.match(re); return m ? origImgUrl(m[1]) : ''; }
 function replaceField(raw, pattern, newVal) {
   if (newVal === undefined) return raw;
   return pattern.test(raw) ? raw.replace(pattern, (full, p1, p2) => p1 + esc(newVal) + p2) : raw;

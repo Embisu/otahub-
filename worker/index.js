@@ -113,6 +113,16 @@ export default {
       return env.ASSETS.fetch(new Request(fallback, request));
     }
 
+    // Ảnh thu nhỏ cho thẻ bài (/assets/img/_t|_s/<gốc>.webp, tạo bởi scripts/build-thumbs.py) có sẵn
+    // thì được phục vụ thẳng như file tĩnh. Chỉ khi chưa tạo (ảnh mới sau lần chạy script) mới tới đây:
+    // chuyển về ảnh gốc để thẻ không bao giờ bị vỡ ảnh.
+    if (/^\/assets\/img\/_[ts]\//.test(url.pathname)) {
+      const orig = url.pathname.replace(/^\/assets\/img\/_[ts]\/(.+)\.webp$/, '/assets/img/$1');
+      if (orig !== url.pathname) {
+        return new Response(null, { status: 302, headers: { Location: orig, 'Cache-Control': 'public, max-age=3600' } });
+      }
+    }
+
     // Ảnh tải lên đã có trên GitHub được Cloudflare phục vụ thẳng như file tĩnh
     // (không chạy tới đây). Worker chỉ chạy cho ảnh CHƯA deploy / chỉ nằm trong KV:
     // đọc KV rồi giữ trong cache Cloudflare 1 ngày, nên mỗi ảnh chỉ tốn ~1 lượt

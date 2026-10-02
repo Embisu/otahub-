@@ -171,3 +171,12 @@
      nới bằng padding + margin âm để không làm xê dịch bố cục */
   .author-profile-link,.sec-more,.read-more,.bc-item,.nav-back,.sc-col-link{display:inline-block;padding-top:7px!important;padding-bottom:7px!important;margin-top:-7px;margin-bottom:-7px}
 }
+/* ── Hiệu năng (2026-10-02) ──
+   Ảnh đầu bài chạy hiệu ứng heroPulse vô hạn (đổi filter + opacity liên tục) buộc trình duyệt vẽ lại
+   mãi; các quầng sáng nền blur 90–110px rất nặng với GPU điện thoại. */
+.art-hero-img,.art-hero-bg{animation:none!important}
+@media(max-width:768px){#amb{display:none!important}}
+@media(prefers-reduced-motion:reduce){
+  #amb{display:none!important}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}

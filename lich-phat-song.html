@@ -52,7 +52,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap"></noscript>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Lịch Chiếu Anime & Cập Nhật Manga 2026","description":"Lịch phát sóng anime theo mùa và bảng cập nhật chapter manga/manhwa/manhua mới nhất năm 2026","url":"https://otahub.asia/lich-phat-song","publisher":{"@type":"Organization","name":"OtaHub"}}</script>
 
@@ -60,7 +60,7 @@
 <style>
 
 
-@font-face{font-family:'BHN Fonarto Regular';src:url('/assets/fonts/BHNFonartoRegular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}:root{--bg:#0b0418;--surf:#16161c;--surf2:#1e1e26;--cyan:#00f2ff;--sakura:#ff2177;--violet:#7c3aed;--amber:#fbbf24;--green:#34d399;--white:#f2f2f4;--dim:#c4c4cc;--muted:#787885;--border:rgba(255,255,255,.09);--bcyan:rgba(0,242,255,.15);--ease:cubic-bezier(.16,1,.3,1);--fd:'Plus Jakarta Sans','Be Vietnam Pro',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--fb:'Be Vietnam Pro',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+@font-face{font-family:'BHN Fonarto Regular';src:url('/assets/fonts/BHNFonartoRegular-latin.woff2') format('woff2'),url('/assets/fonts/BHNFonartoRegular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}:root{--bg:#0b0418;--surf:#16161c;--surf2:#1e1e26;--cyan:#00f2ff;--sakura:#ff2177;--violet:#7c3aed;--amber:#fbbf24;--green:#34d399;--white:#f2f2f4;--dim:#c4c4cc;--muted:#787885;--border:rgba(255,255,255,.09);--bcyan:rgba(0,242,255,.15);--ease:cubic-bezier(.16,1,.3,1);--fd:'Plus Jakarta Sans','Be Vietnam Pro',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--fb:'Be Vietnam Pro',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
 
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -650,7 +650,8 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002c">
+<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002d">
+<script>/* Ảnh thu nhỏ cho thẻ do JS vẽ: /assets/img/X -> /assets/img/_t/X.webp (scripts/build-thumbs.py; thiếu thì worker trả ảnh gốc) */function otThumb(u,k){return /^\/assets\/img\/(?!_[ts]\/|brand\/)[^?#]+\.(jpe?g|png|webp|jfif)$/i.test(u||'')?'/assets/img/'+(k||'_t')+'/'+u.slice(12)+'.webp':u}</script>
 </head>
 
 
@@ -1010,7 +1011,7 @@ function renderGrid(){
 
     <a href="${resolveLink(a.title)}" class="ac">
       <div class="ac-cover-wrap">
-        <img height="675" width="1200" class="ac-cover" src="${resolveImg(a.title, a.img)}" alt="${a.title}" loading="lazy" decoding="async" onerror="this.src='/assets/img/placeholder.svg'">
+        <img height="675" width="1200" class="ac-cover" src="${otThumb(resolveImg(a.title, a.img))}" alt="${a.title}" loading="lazy" decoding="async" onerror="this.src='/assets/img/placeholder.svg'">
         <span class="ac-status-pill ${a.status}"><span class="ac-air-dot"></span>${STATUS_LABEL[a.status] || a.status}</span>
         <span class="ac-type-corner ${a.type}">${a.type.toUpperCase()}</span>
       </div>
@@ -1129,7 +1130,7 @@ function renderMangaGrid(){
   grid.innerHTML = items.map(m => `
     <a href="${m.link}" class="ac">
       <div class="ac-cover-wrap">
-        <img height="675" width="1200" class="ac-cover" src="${m.img}" alt="${m.title}" loading="lazy" decoding="async" onerror="this.src='/assets/img/placeholder.svg'">
+        <img height="675" width="1200" class="ac-cover" src="${otThumb(m.img)}" alt="${m.title}" loading="lazy" decoding="async" onerror="this.src='/assets/img/placeholder.svg'">
         <span class="ac-status-pill ${m.status}"><span class="ac-air-dot"></span>${MANGA_STATUS_LABEL[m.status] || m.status}</span>
         <span class="ac-type-corner ${m.type}">${m.type.toUpperCase()}</span>
       </div>

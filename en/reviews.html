@@ -112,12 +112,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
 
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap"></noscript>
 
 <style>
 
 
-@font-face{font-family:'BHN Fonarto Regular';src:url('/assets/fonts/BHNFonartoRegular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}:root{
+@font-face{font-family:'BHN Fonarto Regular';src:url('/assets/fonts/BHNFonartoRegular-latin.woff2') format('woff2'),url('/assets/fonts/BHNFonartoRegular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}:root{
 
 
   --bg:#0b0418;--surf:#130930;--surf2:#1a1040;--card:#160b38;
@@ -1043,7 +1043,8 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
 <link rel="stylesheet" href="/assets/clamp.v2.css?v=20260926">
-<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002c">
+<link rel="stylesheet" href="/assets/mobile-fix.css?v=20261002d">
+<script>/* Ảnh thu nhỏ cho thẻ do JS vẽ: /assets/img/X -> /assets/img/_t/X.webp (scripts/build-thumbs.py; thiếu thì worker trả ảnh gốc) */function otThumb(u,k){return /^\/assets\/img\/(?!_[ts]\/|brand\/)[^?#]+\.(jpe?g|png|webp|jfif)$/i.test(u||'')?'/assets/img/'+(k||'_t')+'/'+u.slice(12)+'.webp':u}</script>
 </head>
 
 
@@ -1583,7 +1584,7 @@ function renderGrid(){
     <a class="rv-card" href="${r.url||'#'}" style="animation-delay:${i*.07}s;text-decoration:none;color:inherit">
 
 
-      <div class="rvc-img"><img height="675" width="1200" src="${r.img}" alt="${r.title}" fetchpriority="high" decoding="async"></div>
+      <div class="rvc-img"><img height="675" width="1200" src="${otThumb(r.img)}" alt="${r.title}" fetchpriority="high" decoding="async"></div>
 
 
       <div class="rvc-body">
