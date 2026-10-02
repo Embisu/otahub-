@@ -445,7 +445,7 @@ window.IDX = [
     "url": "/5-game-sinh-ton-mien-phi-dang-choi-tren-steam-fan-the-loai-s",
     "cat": "Gaming",
     "date": "2026-10-01",
-    "excerpt": "Steam đang sở hữu nhiều game sinh tồn miễn phí đáng thử, trong đó có những cái tên nổi bật như Once Human, Fallout Shelter, Unturned, Muck và No More Room In…",
+    "excerpt": "5 game sinh tồn miễn phí đáng thử trên Steam: Once Human, Fallout Shelter, Unturned, Muck và No More Room In Hell, từ xây căn cứ đến chiến đấu với zombie.",
     "img": "/assets/img/uploads/hoda51pr-avatar1790737857586-17907378580942085526385.webp",
     "tags": []
   },
@@ -463,7 +463,7 @@ window.IDX = [
     "url": "/7-game-the-witcher-dang-choi-trong-nam-2026",
     "cat": "Gaming",
     "date": "2026-09-30",
-    "excerpt": "The Witcher 3 vẫn là cái tên nổi bật nhất khi nhắc đến dòng game chuyển thể từ thế giới của Andrzej Sapkowski. Tuy nhiên, những cái tên như The Witcher 2,…",
+    "excerpt": "7 game The Witcher đáng chơi năm 2026, không chỉ The Witcher 3 mà còn The Witcher 2, Thronebreaker, Gwent, Reigns: The Witcher, từ RPG đến game thẻ bài.",
     "img": "/assets/img/uploads/yboyto0l-images-17.jpg",
     "tags": [],
     "lang": "vi"
@@ -523,7 +523,7 @@ window.IDX = [
     "url": "/diablo-4-van-tiep-tuc-co-mua-moi-sau-khi-diablo-5-ra-mat",
     "cat": "Gaming",
     "date": "2026-09-30",
-    "excerpt": "Diablo 5 sẽ mở ra chương mới cho thương hiệu, nhưng Blizzard chưa có kế hoạch kết thúc Diablo 4 ngay khi phần game tiếp theo ra mắt. Các mùa của Diablo 4 vẫn…",
+    "excerpt": "Diablo 5 dự kiến ra mắt mùa xuân 2029, nhưng Blizzard cho biết Diablo 4 vẫn có thể tiếp tục ra mùa mới miễn là cộng đồng còn gắn bó với trò chơi.",
     "img": "/assets/img/uploads/1k2n3ieq-images-10.jpg",
     "tags": [],
     "lang": "vi"
@@ -543,7 +543,7 @@ window.IDX = [
     "url": "/duoc-su-tu-su-ra-mat-game-console-dau-tien-the-apothecary-di",
     "cat": "Gaming",
     "date": "2026-09-30",
-    "excerpt": "Dược Sư Tự Sự chính thức có game console đầu tiên mang tên The Apothecary Diaries: The False Imperial Brother, dự kiến ra mắt đầu năm 2027. Game đưa Maomao…",
+    "excerpt": "Dược Sư Tự Sự có game console đầu tiên, The False Imperial Brother của Koei Tecmo và Gust, đưa Maomao vào vụ án mới, dự kiến ra mắt đầu năm 2027.",
     "img": "/assets/img/uploads/ild2v8ju-library-hero.jpg",
     "tags": [],
     "lang": "vi"
@@ -573,7 +573,7 @@ window.IDX = [
     "url": "/gears-of-war-e-day-thoi-gian-phat-hanh-va-cach-choi-som",
     "cat": "Gaming",
     "date": "2026-09-30",
-    "excerpt": "Gears of War: E-Day đang chuẩn bị bước vào ngày phát hành sau khi hoàn tất quá trình phát triển. Tựa game sẽ mở cửa Early Access từ ngày 1/10 trước khi chính…",
+    "excerpt": "Gears of War: E-Day ra mắt ngày 6/10/2026; người sở hữu Premium Edition chơi sớm từ 1/10, còn Xbox Game Pass có bản đầy đủ từ ngày phát hành.",
     "img": "/assets/img/uploads/wclu1bq8-images-16.jpg",
     "tags": [],
     "lang": "vi"
@@ -583,7 +583,7 @@ window.IDX = [
     "url": "/hades-2-khong-phai-lua-chon-kinh-doanh-an-toan-cua-supergian",
     "cat": "Gaming",
     "date": "2026-09-30",
-    "excerpt": "Sau thành công của Hades, Supergiant Games từng không chắc liệu có nên làm phần tiếp theo hay không. Cuối cùng, Hades 2 được lựa chọn vì đội ngũ vẫn nhìn thấy…",
+    "excerpt": "Sau thành công của Hades, Supergiant từng không chắc có nên làm phần tiếp theo; họ chọn Hades 2 vì lý do sáng tạo hơn là phương án an toàn về kinh doanh.",
     "img": "/assets/img/uploads/iieknlvg-images-22.jpg",
     "tags": [],
     "lang": "vi"
@@ -623,7 +623,7 @@ window.IDX = [
     "url": "/liar-game-chinh-thuc-co-mua-2-sau-khi-anime-mua-dau-ket-thuc",
     "cat": "Anime",
     "date": "2026-09-30",
-    "excerpt": "Mùa đầu tiên của Liar Game đã khép lại, nhưng hành trình của Nao và Akiyama vẫn chưa kết thúc. Mùa 2 đã chính thức được xác nhận sản xuất, trong khi thời điểm…",
+    "excerpt": "Liar Game chính thức có mùa 2 sau khi mùa đầu 26 tập khép lại; thời điểm phát hành, số tập và nội dung chi tiết vẫn chưa được công bố.",
     "img": "/assets/img/uploads/ke3sc0o0-images-23.jpg",
     "tags": [],
     "lang": "vi"
@@ -643,7 +643,7 @@ window.IDX = [
     "url": "/manga-rom-com-everyones-darling-has-a-secret-chinh-thuc-duoc",
     "cat": "Anime",
     "date": "2026-09-30",
-    "excerpt": "Everyone’s Darling Has a Secret sẽ đưa chuyện tình giữa nam sinh Hizashi Hiruno và nữ thần tượng Rei Kuromiya lên màn ảnh nhỏ vào tháng 4/2027. Anime do…",
+    "excerpt": "Everyone’s Darling Has a Secret có anime do Studio Gekkō sản xuất, kể chuyện Hizashi Hiruno và thần tượng Rei Kuromiya, lên sóng tháng 4/2027.",
     "img": "/assets/img/uploads/y8conuxi-1790594348-678c4ac8a2f01edc1c0d3d91656946a0.jpg",
     "tags": [],
     "lang": "vi"
@@ -653,7 +653,7 @@ window.IDX = [
     "url": "/minecraft-live-thang-9-2026-minecraft-chuan-bi-don-chieu-kho",
     "cat": "Gaming",
     "date": "2026-09-30",
-    "excerpt": "Minecraft Live tháng 9/2026 mang đến nhiều thông báo lớn, nhưng tâm điểm chắc chắn là The Sift, chiều không gian thứ tư của Minecraft sẽ xuất hiện trong Java…",
+    "excerpt": "Minecraft Live tháng 9/2026: tâm điểm là The Sift, chiều không gian mới đầu tiên sau hơn 14 năm, cùng biome Ice Caves, mob mới và Minecraft Dungeons II.",
     "img": "/assets/img/uploads/cxo68b2g-what-time-does-minecraft-live-start-september-2026-210691766.webp",
     "tags": [],
     "lang": "vi"
@@ -733,7 +733,7 @@ window.IDX = [
     "url": "/duoc-su-tu-su-mua-3-chinh-thuc-len-song-hanh-trinh-moi-day-k",
     "cat": "Gaming",
     "date": "2026-09-29",
-    "excerpt": "Maomao trở lại với những vụ án mới sau khi rời hậu cung. Mùa 3 mở rộng câu chuyện ra bên ngoài cung cấm, đưa Maomao và Jinshi đối mặt với những bí ẩn, âm mưu…",
+    "excerpt": "Dược Sư Tự Sự mùa 3 lên sóng từ 2/10/2026, đưa Maomao và Jinshi ra ngoài hậu cung để đối mặt với những vụ án, bí ẩn và âm mưu mới.",
     "img": "/assets/img/uploads/ytysmngi-anh-bia-1.webp",
     "tags": [],
     "lang": "vi"
@@ -743,7 +743,7 @@ window.IDX = [
     "url": "/5-bai-hoc-tu-naruto-uzumaki-van-con-y-nghia",
     "cat": "Anime",
     "date": "2026-09-29",
-    "excerpt": "Từ cậu nhóc bị cả làng xa lánh đến vị Hokage thứ Bảy, hành trình của Naruto Uzumaki để lại 5 bài học về nghị lực, sự đồng cảm và giá trị của những mối quan hệ…",
+    "excerpt": "Từ cậu nhóc bị cả làng xa lánh đến Hokage đệ Thất, hành trình của Naruto Uzumaki để lại 5 bài học về nghị lực, sự đồng cảm và giá trị của các mối quan hệ.",
     "img": "/assets/img/naruto-5-lessons-banner.jpg",
     "tags": [],
     "lang": "vi"
@@ -863,7 +863,7 @@ window.IDX = [
     "url": "/top-8-anime-han-quoc-aeni-dang-xem-nhat",
     "cat": "Anime",
     "date": "2026-09-29",
-    "excerpt": "Từ Lookism, Ghost Messenger đến There She Is!!, điểm qua 8 tựa anime Hàn Quốc (Aeni) đáng xem nhất, từ hài lãng mạn đến zombie kinh dị, đa số đều chuyển thể…",
+    "excerpt": "Từ Lookism, Ghost Messenger đến There She Is!!, điểm qua 8 anime Hàn Quốc (Aeni) đáng xem nhất, từ hài lãng mạn đến zombie kinh dị.",
     "img": "/assets/img/top-korean-anime-lookism-banner.jpg",
     "tags": [],
     "lang": "vi"
@@ -873,7 +873,7 @@ window.IDX = [
     "url": "/en/top-korean-anime-aeni-worth-watching",
     "cat": "Anime",
     "date": "2026-09-29",
-    "excerpt": "From Lookism to Ghost Messenger and There She Is!!, 8 Korean anime (Aeni) worth watching, spanning romance, folklore fantasy, and zombie horror, most adapted…",
+    "excerpt": "From Lookism to Ghost Messenger and There She Is!!, 8 Korean anime (Aeni) worth watching, spanning romance, folklore fantasy and zombie horror.",
     "img": "/assets/img/top-korean-anime-lookism-banner.jpg",
     "tags": [],
     "lang": "en"
@@ -923,7 +923,7 @@ window.IDX = [
     "url": "/en/ao-no-hako-season-2-premieres-october-4",
     "cat": "Anime",
     "date": "2026-09-28",
-    "excerpt": "Ao no Hako (Blue Box) season 2 officially premieres on October 4, 2026, with Electric Circus taking over animation from Studio C2C and new director Daisuke…",
+    "excerpt": "Ao no Hako (Blue Box) season 2 premieres October 4, 2026, with Electric Circus taking over animation from Studio C2C under a new director.",
     "img": "/assets/img/poster-real-ao-no-hako-s2.jpg",
     "tags": [],
     "lang": "en"
@@ -933,7 +933,7 @@ window.IDX = [
     "url": "/en/aoashi-season-2-new-studio-premieres-october-4",
     "cat": "Anime",
     "date": "2026-09-28",
-    "excerpt": "Aoashi season 2 officially premieres on October 4, 2026, moving production from Production I.G to TMS Entertainment, with a first cour of 12 episodes out of a…",
+    "excerpt": "Aoashi season 2 premieres October 4, 2026, with animation moving from Production I.G to TMS Entertainment and a first cour of 12 episodes.",
     "img": "/assets/img/poster-real-aoashi-s2.jpg",
     "tags": [],
     "lang": "en"
@@ -1033,7 +1033,7 @@ window.IDX = [
     "url": "/oda-tung-gioi-thieu-6-manga-tren-bia-sach",
     "cat": "Manga",
     "date": "2026-09-28",
-    "excerpt": "Từ 2015 đến 2024, Eiichiro Oda đã đích thân viết lời giới thiệu lên obi (dải bìa) của 6 bộ manga, trong đó ba bộ do chính cựu trợ lý của ông vẽ. OtaHub điểm…",
+    "excerpt": "Từ 2015 đến 2024, Eiichiro Oda tự viết lời giới thiệu trên obi (dải bìa) của 6 bộ manga, ba bộ trong số đó do chính cựu trợ lý của ông vẽ.",
     "img": "/assets/img/real-oda-picks-kiyoshi-banner.jpg",
     "tags": [],
     "lang": "vi"
@@ -1093,7 +1093,7 @@ window.IDX = [
     "url": "/en/one-piece-chapter-1194-hiatus-returns-october-11",
     "cat": "Manga",
     "date": "2026-09-28",
-    "excerpt": "One Piece chapter 1194 released on September 27, 2026 in Weekly Shonen Jump, after which the manga goes on hiatus, with chapter 1195 expected to return on…",
+    "excerpt": "One Piece goes on a two-week hiatus after chapter 1194 (September 27, 2026), with chapter 1195 expected on October 11, 2026.",
     "img": "/assets/img/real-op-chapter1194-hiatus-banner.jpg",
     "tags": [],
     "lang": "en"
@@ -1113,7 +1113,7 @@ window.IDX = [
     "url": "/rezero-mua-4-tap-cuoi-keo-dai-45-phut-30-9",
     "cat": "Anime",
     "date": "2026-09-28",
-    "excerpt": "Re:Zero mùa 4 khép lại arc Recapture với tập 19 kéo dài 45 phút, gấp đôi thời lượng thường lệ, lên sóng ngày 30/9/2026 và phát trên Crunchyroll cùng lúc với…",
+    "excerpt": "Re:Zero mùa 4 khép lại arc Recapture bằng tập 19 dài 45 phút, gấp đôi thường lệ, lên sóng ngày 30/9/2026 và phát đồng thời trên Crunchyroll.",
     "img": "/assets/img/real-rezero-s4-finale-banner.jpg",
     "tags": [],
     "lang": "vi"
@@ -1323,7 +1323,7 @@ window.IDX = [
     "url": "/anime-dang-xem-cho-fan-van-hoa-lich-su-nhat-ban",
     "cat": "Anime",
     "date": "2026-09-26",
-    "excerpt": "Bốn anime giúp lịch sử và văn hóa Nhật Bản bớt khô khan: The Elusive Samurai, The Heike Story, Golden Kamuy và Samurai Champloo, từ thời Kamakura, Heian đến…",
+    "excerpt": "Bốn anime giúp lịch sử và văn hóa Nhật Bản bớt khô khan: The Elusive Samurai, The Heike Story, Golden Kamuy và Samurai Champloo.",
     "img": "/assets/img/real-history-anime-kamuy.jpg",
     "tags": [],
     "lang": "vi"
@@ -1353,7 +1353,7 @@ window.IDX = [
     "url": "/en/bride-of-the-barrier-master-netflix-january-2027-trailer",
     "cat": "Anime",
     "date": "2026-09-26",
-    "excerpt": "The romantic fantasy anime Bride of the Barrier Master from TROYCA will stream worldwide on Netflix from January 2027, with a new trailer and an expanded…",
+    "excerpt": "TROYCA’s romantic fantasy anime Bride of the Barrier Master streams worldwide on Netflix from January 2027, with a new trailer, visual and added cast.",
     "img": "/assets/img/real-bride-of-the-barrier-master.jpg",
     "tags": [],
     "lang": "en"
@@ -1473,7 +1473,7 @@ window.IDX = [
     "url": "/shin-oishinbo-anime-moi-sau-35-nam",
     "cat": "Manga",
     "date": "2026-09-26",
-    "excerpt": "Manga ẩm thực Oishinbo của Tetsu Kariya và Akira Hanasaki sẽ có TV anime mới Shin Oishinbo, công bố tại ABEMA Anime Matsuri 2026 trong lễ kỷ niệm 50 năm của…",
+    "excerpt": "Manga ẩm thực Oishinbo có anime truyền hình mới Shin Oishinbo, do Shin-Ei Animation công bố ngày 19/9/2026 tại ABEMA Anime Matsuri 2026.",
     "img": "/assets/img/real-shin-oishinbo.jpg",
     "tags": [],
     "lang": "vi"
@@ -1683,7 +1683,7 @@ window.IDX = [
     "url": "/en/jujutsu-kaisen-culling-game-part-2-sukuna-teaser-juju-fes-2026",
     "cat": "Anime",
     "date": "2026-09-23",
-    "excerpt": "At Juju Fes 2026 marking five years of the anime, MAPPA unveiled a new teaser visual for Culling Game Part 2 centered on Sukuna with the chilling line “Are…",
+    "excerpt": "At Juju Fes 2026, MAPPA revealed a Culling Game Part 2 teaser visual of Sukuna with the line “Are you watching?”, marking five years of the anime.",
     "img": "/assets/img/pool-jujutsu-kaisen-1.jpg",
     "tags": [],
     "lang": "en"
@@ -1713,7 +1713,7 @@ window.IDX = [
     "url": "/en/marvels-wolverine-review-roundup-metacritic-77",
     "cat": "Gaming",
     "date": "2026-09-23",
-    "excerpt": "Marvel’s Wolverine by Insomniac Games launched on PS5 on September 15, 2026, scoring 77 on Metacritic, lower than Spider-Man 2 but still among the year’s…",
+    "excerpt": "Insomniac’s Marvel’s Wolverine launched on PS5 on September 15, 2026, scoring 77 on Metacritic with brutal combat but a more linear story.",
     "img": "/assets/img/yt-G62QQ42Ewwg.jpg",
     "tags": [],
     "lang": "en"
@@ -1753,7 +1753,7 @@ window.IDX = [
     "url": "/en/steam-achievement-leak-persona-6-kingdom-hearts-iv-fable",
     "cat": "Gaming",
     "date": "2026-09-23",
-    "excerpt": "A Steam backend slip on September 8, 2026 exposed achievement lists for roughly 50 unreleased games, including Persona 6, Kingdom Hearts IV, Fable and Metro…",
+    "excerpt": "A Steam backend slip on September 8, 2026 exposed achievement lists for about 50 unreleased games, including Persona 6, Kingdom Hearts IV and Fable.",
     "img": "/assets/img/photo-steam-achievement-leak-persona-6-kingdom-hearts-4.jpg",
     "tags": [],
     "lang": "en"
@@ -1783,7 +1783,7 @@ window.IDX = [
     "url": "/en/tokyo-game-show-2026-roundup-257642-attendees",
     "cat": "Gaming",
     "date": "2026-09-23",
-    "excerpt": "Tokyo Game Show 2026 ran September 17–20 at Makuhari Messe with 257,642 attendees, headlined by Ace Combat 8, Crazy Taxi: World Tour, Gachiakuta: Breakout and…",
+    "excerpt": "Tokyo Game Show 2026 ran September 17–20 at Makuhari Messe with 257,642 attendees, headlined by Ace Combat 8 and Crazy Taxi: World Tour.",
     "img": "/assets/img/photo-tokyo-game-show-2026-roundup.jpg",
     "tags": [],
     "lang": "en"
@@ -1863,7 +1863,7 @@ window.IDX = [
     "url": "/en/gta-6-gameplay-trailer-leonida-lucia-jason",
     "cat": "Gaming",
     "date": "2026-09-19",
-    "excerpt": "Rockstar Games premiered a 26-minute Extended Look at GTA 6 on Netflix, showing the huge state of Leonida, a rebuilt shooting system and Lucia–Jason character…",
+    "excerpt": "Rockstar premiered a 26-minute GTA 6 Extended Look on Netflix, showing the huge state of Leonida, a rebuilt shooting system and Lucia–Jason character swaps.",
     "img": "/assets/img/yt-VQRLujxTm3c.jpg",
     "tags": [],
     "lang": "en"
@@ -1873,7 +1873,7 @@ window.IDX = [
     "url": "/gta-6-gameplay-trailer-rockstar-vice-city-leonida",
     "cat": "Gaming",
     "date": "2026-09-19",
-    "excerpt": "Rockstar Games công chiếu Extended Look 26 phút của GTA 6 trên Netflix, hé lộ bản đồ bang Leonida khổng lồ, hệ thống bắn súng làm lại và cơ chế đổi nhân vật…",
+    "excerpt": "Rockstar công chiếu Extended Look 26 phút của GTA 6 trên Netflix, hé lộ bang Leonida, hệ thống bắn súng làm lại và cơ chế đổi nhân vật Jason – Lucia.",
     "img": "/assets/img/yt-VQRLujxTm3c.jpg",
     "tags": [],
     "lang": "vi"
@@ -1893,7 +1893,7 @@ window.IDX = [
     "url": "/nintendo-switch-2-direct-gia-ban-mario-kart-moi",
     "cat": "Gaming",
     "date": "2026-09-19",
-    "excerpt": "Từ 1/9/2026 Nintendo tăng giá Switch 2 thêm 50 USD lên 499,99 USD; gói Mario Kart World (kèm bản digital và 90 ngày Nintendo Switch Online) giá 549 USD, ra…",
+    "excerpt": "Từ 1/9/2026 Nintendo tăng giá Switch 2 thêm 50 USD lên 499,99 USD; gói Mario Kart World kèm 90 ngày Nintendo Switch Online có giá 549 USD.",
     "img": "/assets/img/pool-switch2-1.jpg",
     "tags": [],
     "lang": "vi"
@@ -1913,7 +1913,7 @@ window.IDX = [
     "url": "/en/the-one-piece-netflix-wit-teaser-february-2027",
     "cat": "Anime",
     "date": "2026-09-19",
-    "excerpt": "WIT Studio’s Netflix remake The One Piece released its first teaser on June 24, 2026, with a seven-episode season due in February 2027 adapting the first 50…",
+    "excerpt": "WIT Studio’s The One Piece for Netflix released its first teaser on June 24, 2026, with a seven-episode season due in February 2027.",
     "img": "/assets/img/pool-one-piece-1.jpg",
     "tags": [],
     "lang": "en"
@@ -1923,7 +1923,7 @@ window.IDX = [
     "url": "/one-piece-remake-wit-studio-netflix-trailer-chinh-thuc",
     "cat": "Anime",
     "date": "2026-09-19",
-    "excerpt": "Bản remake The One Piece do WIT Studio thực hiện cho Netflix tung teaser đầu tiên ngày 24/6/2026, dự kiến phát hành tháng 2/2027 với 7 tập, chuyển thể 50…",
+    "excerpt": "The One Piece, bản làm lại của WIT Studio cho Netflix, tung teaser đầu tiên ngày 24/6/2026 và dự kiến phát hành tháng 2/2027 với 7 tập.",
     "img": "/assets/img/pool-one-piece-1.jpg",
     "tags": [],
     "lang": "vi"
@@ -1953,7 +1953,7 @@ window.IDX = [
     "url": "/en/monster-hunter-wilds-title-update-4-gogmazios-ascendance-2027",
     "cat": "Gaming",
     "date": "2026-09-16",
-    "excerpt": "Monster Hunter Wilds Title Update 4 (December 2025) brought back Elder Dragon Gogmazios; the Ascendance expansion, shown further at TGS 2026 with Teostra,…",
+    "excerpt": "Monster Hunter Wilds Title Update 4 (December 2025) brought back Elder Dragon Gogmazios, while the paid Ascendance expansion arrives in 2027.",
     "img": "/assets/img/monster-hunter-wilds-autumn-update-hero.jpg",
     "tags": [],
     "lang": "en"
@@ -2013,7 +2013,7 @@ window.IDX = [
     "url": "/honkai-star-rail-fate-stay-night-unlimited-blade-works-crossover",
     "cat": "Gaming",
     "date": "2026-09-09",
-    "excerpt": "Honkai: Star Rail x Fate/stay night [Unlimited Blade Works] ra mắt 11/7/2025 với Saber (Hủy Diệt, hệ Phong) và Archer (Săn Bắn, hệ Lượng Tử), thiết kế gốc của…",
+    "excerpt": "Honkai: Star Rail x Fate/stay night [Unlimited Blade Works] ra mắt 11/7/2025 với Saber (Hủy Diệt, hệ Phong) và Archer (Săn Bắn, hệ Lượng Tử).",
     "img": "/assets/img/news-honkai-star-rail-fate-stay-night.jpg",
     "tags": [],
     "lang": "vi"
@@ -2053,7 +2053,7 @@ window.IDX = [
     "url": "/dragon-ball-sparking-zero-dlc-season-pass-daima",
     "cat": "Gaming",
     "date": "2026-09-09",
-    "excerpt": "Season Pass của Dragon Ball: Sparking! ZERO gồm Hero of Justice Pack, hai gói nhân vật DAIMA và Shallot; DAIMA Character Pack 2 thêm 6 nhân vật, phát hành…",
+    "excerpt": "Season Pass của Dragon Ball: Sparking! ZERO gồm Hero of Justice Pack, hai gói nhân vật Dragon Ball DAIMA và nhân vật Shallot từ Dragon Ball Legends.",
     "img": "/assets/img/real-sparking-zero-daima-pack2.jpg",
     "tags": [],
     "lang": "vi"
@@ -2083,7 +2083,7 @@ window.IDX = [
     "url": "/dandadan-mua-2-cursed-house-evil-eye",
     "cat": "Anime",
     "date": "2026-09-07",
-    "excerpt": "Dandadan Mùa 2 lên sóng ngày 3/7/2025 trên Crunchyroll, Netflix, Hulu, chuyển thể arc Cursed House và Evil Eye; phim Dandadan: Evil Eye chiếu ngày 6/6/2025…",
+    "excerpt": "Dandadan mùa 2 lên sóng 3/7/2025 trên Crunchyroll, Netflix và Hulu, chuyển thể arc Cursed House và Evil Eye, kèm phim Dandadan: Evil Eye chiếu từ 6/6/2025.",
     "img": "/assets/img/news-dandadan-season-2-evil-eye.jpg",
     "tags": [],
     "lang": "vi"
@@ -2163,7 +2163,7 @@ window.IDX = [
     "url": "/nintendo-direct-september-2026-switch-2-mario-kart-9",
     "cat": "Gaming",
     "date": "2026-09-07",
-    "excerpt": "Nintendo tổ chức Zelda 40th Anniversary Direct ngày 8/9/2026 tập trung vào bản làm lại The Legend of Zelda: Ocarina of Time, cùng một buổi Nintendo Direct…",
+    "excerpt": "Nintendo Direct tháng 9/2026 kỷ niệm 40 năm The Legend of Zelda, tâm điểm là bản làm lại The Legend of Zelda: Ocarina of Time.",
     "img": "/assets/img/yt-B_QJ4BYIGME.jpg",
     "tags": [],
     "lang": "vi"
@@ -2223,7 +2223,7 @@ window.IDX = [
     "url": "/bleach-tybw-the-calamity-25-7-2026",
     "cat": "Anime",
     "date": "2026-09-04",
-    "excerpt": "Phần cuối Bleach: Thousand-Year Blood War – The Calamity lên sóng ngày 25/7/2026 (Hulu ở Mỹ, Disney+ quốc tế), mỗi thứ Bảy, tập 10 và cũng là tập cuối phát…",
+    "excerpt": "Bleach: TYBW – The Calamity, phần cuối của Thousand-Year Blood War, lên sóng 25/7/2026 trên Hulu (Mỹ) và Disney+ (quốc tế) mỗi thứ Bảy, gồm 10 tập.",
     "img": "/assets/img/pool-bleach-1.jpg",
     "tags": [],
     "lang": "vi"
@@ -2243,7 +2243,7 @@ window.IDX = [
     "url": "/en/demon-slayer-infinity-castle-793-million-box-office",
     "cat": "Anime",
     "date": "2026-09-04",
-    "excerpt": "Ufotable’s Demon Slayer: Infinity Castle opened in Japan July 18, 2025, grossing ¥40.24 billion in Japan and about $793 million worldwide; it is the first of…",
+    "excerpt": "Ufotable’s Demon Slayer: Infinity Castle opened in Japan July 18, 2025, earning ¥40.24 billion at home and about $793 million worldwide.",
     "img": "/assets/img/news-demon-slayer-infinity-castle-official.jpg",
     "tags": [],
     "lang": "en"
@@ -2293,7 +2293,7 @@ window.IDX = [
     "url": "/solo-leveling-season-2-arise-from-the-shadow-premiere",
     "cat": "Anime",
     "date": "2026-09-03",
-    "excerpt": "Solo Leveling Mùa 2 do A-1 Pictures sản xuất (đạo diễn Shunsuke Nakashige) phát sóng độc quyền trên Crunchyroll từ 5/1 đến 30/3/2025, gồm 13 tập, mở đầu từ…",
+    "excerpt": "Solo Leveling mùa 2 của A-1 Pictures (đạo diễn Shunsuke Nakashige) phát độc quyền trên Crunchyroll từ 5/1 đến 30/3/2025 với 13 tập.",
     "img": "/assets/img/pool-solo-leveling-5.jpg",
     "tags": [],
     "lang": "vi"
@@ -2313,7 +2313,7 @@ window.IDX = [
     "url": "/wuthering-waves-2-0-rinascita-ban-3-6",
     "cat": "Gaming",
     "date": "2026-09-03",
-    "excerpt": "Wuthering Waves 2.0 (Rinascita) ra mắt 2/1/2025. Bản 3.6 ra mắt 20/8/2026 với Ren Realm, Sword Flight, Guqin Performance và hai Resonator 5 sao Qingxiao,…",
+    "excerpt": "Wuthering Waves bản 3.6 ra mắt 20/8/2026 với Ren Realm, Sword Flight, Guqin Performance và hai Resonator 5 sao mới, trong đó có Qingxiao.",
     "img": "/assets/img/news-wuthering-waves-black-shores-shorekeeper.jpg",
     "tags": [],
     "lang": "vi"
@@ -2373,7 +2373,7 @@ window.IDX = [
     "url": "/en/elden-ring-nightreign-coop-multiplayer-reveal",
     "cat": "Gaming",
     "date": "2026-08-30",
-    "excerpt": "Elden Ring Nightreign is FromSoftware’s standalone co-op game for up to three players, revealed at The Game Awards 2024 and launched May 30, 2025 on PS4, PS5,…",
+    "excerpt": "Elden Ring Nightreign is FromSoftware’s standalone co-op game for up to three players, launched May 30, 2025 on PS4, PS5, Xbox One, Xbox Series X|S and Steam.",
     "img": "/assets/img/pool-nightreign-1.jpg",
     "tags": [],
     "lang": "en"
@@ -2383,7 +2383,7 @@ window.IDX = [
     "url": "/elden-ring-nightreign-coop-multiplayer-reveal",
     "cat": "Gaming",
     "date": "2026-08-30",
-    "excerpt": "Elden Ring Nightreign là game co-op độc lập (tối đa 3 người) của FromSoftware, công bố tại The Game Awards 2024 và ra mắt ngày 30/5/2025 trên PS4, PS5, Xbox…",
+    "excerpt": "Elden Ring Nightreign là game co-op tối đa 3 người của FromSoftware, công bố tại The Game Awards 2024, ra mắt 30/5/2025 trên PS4, PS5, Xbox và Steam.",
     "img": "/assets/img/pool-nightreign-1.jpg",
     "tags": [],
     "lang": "vi"
@@ -2403,7 +2403,7 @@ window.IDX = [
     "url": "/jujutsu-kaisen-juju-fes-2026-anniversary",
     "cat": "Gaming",
     "date": "2026-08-29",
-    "excerpt": "Juju Fes 2026 -5th Anniversary- chính thức khai mạc 29-30/8 tại K-Arena Yokohama với live-dubbing, ban nhạc sống và khả năng hé lộ cập nhật Jujutsu Kaisen Mùa…",
+    "excerpt": "Juju Fes 2026 -5th Anniversary- khai mạc 29–30/8 tại K-Arena Yokohama với live-dubbing, ban nhạc sống và màn trình diễn của các ca sĩ OP/ED.",
     "img": "/assets/img/pool-jujutsu-kaisen-3.jpg",
     "tags": [],
     "lang": "vi"
@@ -2433,7 +2433,7 @@ window.IDX = [
     "url": "/sekiro-no-defeat-anime-release",
     "cat": "Anime",
     "date": "2026-08-28",
-    "excerpt": "Anime điện ảnh Sekiro: No Defeat chuyển thể từ game Sekiro: Shadows Die Twice chiếu rạp Nhật 3 tuần từ 4/9/2026, phát Crunchyroll toàn cầu, không dùng AI tạo…",
+    "excerpt": "Anime điện ảnh Sekiro: No Defeat chuyển thể từ Sekiro: Shadows Die Twice chiếu rạp Nhật 3 tuần từ 4/9/2026, sau đó phát toàn cầu trên Crunchyroll.",
     "img": "/assets/img/news-sekiro-no-defeat-anime-release.png",
     "tags": [],
     "lang": "vi"
@@ -2443,7 +2443,7 @@ window.IDX = [
     "url": "/tokyopop-anime-nyc-2026-licenses",
     "cat": "Manga",
     "date": "2026-08-28",
-    "excerpt": "Tokyopop công bố 7 manga bản quyền mới cùng 2 manhwa tại Anime NYC 2026, gồm Garagarapon, And Then, She Became Mina và SIX: Paths of Horror, phần lớn phát…",
+    "excerpt": "Tokyopop công bố 7 manga và 2 manhwa bản quyền mới tại Anime NYC 2026, dẫn đầu là Garagarapon, phần lớn dự kiến phát hành năm 2027.",
     "img": "/assets/img/news-tokyopop-anime-nyc-2026-licenses.jpg",
     "tags": [],
     "lang": "vi"
@@ -2463,7 +2463,7 @@ window.IDX = [
     "url": "/gta-6-extended-look-26-phut-netflix",
     "cat": "Gaming",
     "date": "2026-08-27",
-    "excerpt": "Grand Theft Auto VI: An Extended Look dài khoảng 26 phút, ghi hình hoàn toàn từ bản PS5, công chiếu trên Netflix ngày 27/8/2026 rồi lên YouTube của Rockstar;…",
+    "excerpt": "GTA VI: An Extended Look dài khoảng 26 phút, ghi hình từ bản PS5, công chiếu trên Netflix ngày 27/8/2026 rồi lên kênh YouTube của Rockstar.",
     "img": "/assets/img/yt-tJbzMqJGH4k.jpg",
     "tags": [],
     "lang": "vi"
@@ -2503,7 +2503,7 @@ window.IDX = [
     "url": "/elden-ring-shadow-of-the-erdtree-review",
     "cat": "Reviews",
     "date": "2026-08-25",
-    "excerpt": "Review Elden Ring: Shadow of the Erdtree: bản mở rộng dài như một game riêng, Land of Shadow đầy hầm ngục, vũ khí mới và hệ Scadutree; Metacritic 94, độ khó…",
+    "excerpt": "Review Elden Ring: Shadow of the Erdtree: bản mở rộng dài như một game riêng, Land of Shadow đầy hầm ngục, vũ khí mới và hệ Scadutree, Metacritic 94.",
     "img": "/assets/img/elden-ring-shadow-erdtree-review-hero.jpg",
     "tags": [],
     "lang": "vi"
@@ -2513,7 +2513,7 @@ window.IDX = [
     "url": "/en/genshin-impact-sandrone-version-6-7-not-7-0",
     "cat": "Gaming",
     "date": "2026-08-25",
-    "excerpt": "Sandrone, the 7th Fatui Harbinger, became a playable Cryo character in Genshin Impact version 6.7, not 7.0; version 7.0 launched August 12, 2026 opening…",
+    "excerpt": "Sandrone, the 7th Fatui Harbinger, became a playable Cryo character in Genshin Impact version 6.7, not 7.0; version 7.0 launched August 12, 2026.",
     "img": "/assets/img/yt-x4YPOr0fGYo.jpg",
     "tags": [],
     "lang": "en"
@@ -2563,7 +2563,7 @@ window.IDX = [
     "url": "/monster-hunter-wilds-review",
     "cat": "Reviews",
     "date": "2026-08-25",
-    "excerpt": "Review Monster Hunter Wilds: Capcom thêm Focus Mode, thú cưỡi Seikret và hệ sinh thái động, Metacritic 88, bán 8 triệu bản trong 3 ngày; hiệu năng PC và độ…",
+    "excerpt": "Review Monster Hunter Wilds: Focus Mode, thú cưỡi Seikret và hệ sinh thái động, Metacritic 88, bán 8 triệu bản trong 3 ngày; hậu game còn kém hấp dẫn.",
     "img": "/assets/img/monster-hunter-wilds-review-hero.jpg",
     "tags": [],
     "lang": "vi"
@@ -2573,7 +2573,7 @@ window.IDX = [
     "url": "/en/vct-champions-2026-prx-sentinels",
     "cat": "Gaming",
     "date": "2026-08-25",
-    "excerpt": "Paper Rex is the first team to qualify for VALORANT Champions Shanghai 2026; Sentinels were eliminated from Americas Stage 2 on August 22. The event has 16…",
+    "excerpt": "Paper Rex is the first team to qualify for VALORANT Champions Shanghai 2026, while Sentinels were eliminated from Americas Stage 2 on August 22.",
     "img": "/assets/img/real-vct-prx.jpg",
     "tags": [],
     "lang": "en"
@@ -2833,7 +2833,7 @@ window.IDX = [
     "url": "/en/bleach-tybw-calamity-opening-ending",
     "cat": "Anime",
     "date": "2026-08-18",
-    "excerpt": "Bleach: Thousand-Year Blood War - The Calamity reveals its dynamic theme songs: OP \"I-BULL\" by jo0ji and ED \"Rasen\" by 9Lana for the anime…",
+    "excerpt": "Bleach: Thousand-Year Blood War - The Calamity reveals its theme songs: opening “I-BULL” by jo0ji and ending “Rasen” by 9Lana, with new theme videos.",
     "img": "/assets/img/news-bleach-tybw-calamity-opening-ending.jpg",
     "tags": [],
     "lang": "en"
@@ -3173,7 +3173,7 @@ window.IDX = [
     "url": "/en/marvel-rivals-endgame-encore-update",
     "cat": "Gaming",
     "date": "2026-08-18",
-    "excerpt": "Version 20260827 brings a limited-time Infinity Saga event that gathers every previously released MCU-inspired costume bundle into one store tab, plus a…",
+    "excerpt": "Marvel Rivals update 20260827 adds a limited-time Infinity Saga store tab gathering every MCU-inspired costume bundle, plus a 20% Encore Coupon.",
     "img": "/assets/img/news-marvel-rivals-endgame-encore-update.webp",
     "tags": [],
     "lang": "en"
@@ -3433,7 +3433,7 @@ window.IDX = [
     "url": "/en/seven-seas-18-licenses-anime-nyc-2026",
     "cat": "Manga",
     "date": "2026-08-18",
-    "excerpt": "Seven Seas Entertainment announced 18 new licenses at Anime NYC 2026 spanning BL, GL, danmei, and audiobooks, headlined by the deluxe edition of Faraway…",
+    "excerpt": "Seven Seas announced 18 new licenses at Anime NYC 2026 spanning BL, GL, manhwa, danmei and audiobooks, led by priest’s Faraway Wanderers.",
     "img": "/assets/img/news-seven-seas-18-licenses-anime-nyc-2026.jpg",
     "tags": [],
     "lang": "en"
@@ -3523,7 +3523,7 @@ window.IDX = [
     "url": "/en/sinking-city-2-launch",
     "cat": "Gaming",
     "date": "2026-08-18",
-    "excerpt": "Frogwares has launched The Sinking City 2 on PC, PS5 and Xbox Series X/S, ditching detective gameplay for full survival horror in the style of classic…",
+    "excerpt": "Frogwares launched The Sinking City 2 on August 18, 2026 for PC, PS5 and Xbox Series X/S, trading detective work for classic survival horror.",
     "img": "/assets/img/news-sinking-city-2-launch.jpg",
     "tags": [],
     "lang": "en"
@@ -3953,7 +3953,7 @@ window.IDX = [
     "url": "/kaiju-no-8-the-game-review",
     "cat": "Reviews",
     "date": "2026-08-16",
-    "excerpt": "Review Kaiju No. 8 The Game: game di động chiến đấu theo lượt của Akatsuki Games, Toho và Production I.G, ra 31/8/2025, đội hình Lực lượng Phòng vệ và kaiju,…",
+    "excerpt": "Review Kaiju No. 8 The Game: game di động chiến đấu theo lượt của Akatsuki Games, Toho và Production I.G, ra mắt 31/8/2025 trên iOS và Android.",
     "img": "/assets/img/pool-kaiju-game-1.jpg",
     "tags": [],
     "lang": "vi"
@@ -4083,7 +4083,7 @@ window.IDX = [
     "url": "/black-clover-final-volume-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Đánh giá chi tiết tập cuối Black Clover: Hồi kết trọn vẹn sau 11 năm đồng hành cùng Asta và Yuno, những điểm sáng rực rỡ và tiếc nuối lớn nhất trong đại kết…",
+    "excerpt": "Review tập cuối Black Clover: cái kết trọn vẹn sau 11 năm đồng hành cùng Asta và Yuno, cùng những điểm sáng và tiếc nuối lớn nhất của bộ truyện.",
     "img": "/assets/img/bd3666212d-black-clover-cover.jpg",
     "tags": [],
     "lang": "vi"
@@ -4173,7 +4173,7 @@ window.IDX = [
     "url": "/death-stranding-2-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Review Death Stranding 2: On the Beach: Kojima kéo Sam đến Mexico và Úc, thêm chiến đấu, xe cộ, monorail; Metacritic 89, cái giá là vài ý tưởng lặp lại từ…",
+    "excerpt": "Review Death Stranding 2: On the Beach: Kojima đưa Sam đến Mexico và Úc, thêm chiến đấu, xe cộ, monorail; Metacritic 89 dù vài ý tưởng lặp lại phần đầu.",
     "img": "/assets/img/9c68ea445d-death-stranding-2-on-the-beach-review-hero.jpg",
     "tags": [],
     "lang": "vi"
@@ -4233,7 +4233,7 @@ window.IDX = [
     "url": "/kagurabachi-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Review manga Kagurabachi của Takeru Hokazono: Weekly Shonen Jump từ 9/2023, chương đầu có hơn 99 triệu lượt xem trên Manga Plus, hơn 4 triệu bản in, anime…",
+    "excerpt": "Review Kagurabachi của Takeru Hokazono: ra mắt Weekly Shonen Jump từ 9/2023, vượt 4 triệu bản in, anime của Cypic lên sóng tháng 4/2027.",
     "img": "/assets/img/1acdb70bf9-kagurabachi-review-hero.jpg",
     "tags": [],
     "lang": "vi"
@@ -4273,7 +4273,7 @@ window.IDX = [
     "url": "/en/mafia-old-country-review",
     "cat": "Gaming",
     "date": "2026-08-15",
-    "excerpt": "Mafia: The Old Country review: Hangar 13 returns to linear storytelling in 1900s Sicily at $50, Metacritic 73; a striking setting and story, but shallow,…",
+    "excerpt": "Mafia: The Old Country review: Hangar 13 returns to linear storytelling in 1900s Sicily at $50, with a striking setting and story; Metacritic 73.",
     "img": "/assets/img/pool-mafia-1.jpg",
     "tags": [],
     "lang": "en"
@@ -4283,7 +4283,7 @@ window.IDX = [
     "url": "/mafia-old-country-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Review Mafia: The Old Country: Hangar 13 quay lại lối kể tuyến tính ở Sicily 1900, giá 50 USD, Metacritic 73; cốt truyện và bối cảnh đẹp, cơ chế chiến đấu…",
+    "excerpt": "Review Mafia: The Old Country: Hangar 13 quay lại lối kể tuyến tính ở Sicily đầu thế kỷ 20, giá 50 USD, cốt truyện và bối cảnh đẹp, Metacritic 73.",
     "img": "/assets/img/pool-mafia-1.jpg",
     "tags": [],
     "lang": "vi"
@@ -4293,7 +4293,7 @@ window.IDX = [
     "url": "/metal-gear-solid-delta-review",
     "cat": "Reviews",
     "date": "2026-08-15",
-    "excerpt": "Review Metal Gear Solid Delta: Snake Eater: bản làm lại trung thành của Konami trên Unreal Engine 5, hai kiểu điều khiển, Metacritic 85; đẹp và đúng bản gốc…",
+    "excerpt": "Review Metal Gear Solid Delta: Snake Eater: bản làm lại trung thành của Konami trên Unreal Engine 5, giữ lồng tiếng gốc, Metacritic 85.",
     "img": "/assets/img/ce3825d43e-mgs-delta-snake-eater-review-hero.jpg",
     "tags": [],
     "lang": "vi"
@@ -4593,7 +4593,7 @@ window.IDX = [
     "url": "/manga-million-near-simulcast",
     "cat": "Manga",
     "date": "2026-08-14",
-    "excerpt": "Shueisha mở rộng dự án MANGA MILLION với tính năng near-simulcast cho khoảng 30 bộ manga đang chạy, độc giả quốc tế đọc được chương mới chỉ 2-3 tuần sau Nhật…",
+    "excerpt": "Shueisha mở rộng MANGA MILLION với near-simulcast cho khoảng 30 bộ manga, giúp độc giả quốc tế đọc chương mới chỉ 2–3 tuần sau Nhật Bản.",
     "img": "/assets/img/f3ab2a9f19-manga-million-simulcast-hero.jpg",
     "tags": [],
     "lang": "vi"
@@ -4723,7 +4723,7 @@ window.IDX = [
     "url": "/en/chained-soldier-season-3",
     "cat": "Anime",
     "date": "2026-08-12",
-    "excerpt": "Chained Soldier (Mato Seihei no Slave) was confirmed for Season 3 on August 2, 2026; no release date, studio or cast yet. Season 2 aired from January 8, 2026…",
+    "excerpt": "Chained Soldier (Mato Seihei no Slave) Season 3 was confirmed on August 2, 2026 with a key visual and PV; no release date, studio or cast yet.",
     "img": "/assets/img/cc1f44dabd-chained-soldier-s3.jpg",
     "tags": [],
     "lang": "en"
@@ -4793,7 +4793,7 @@ window.IDX = [
     "url": "/en/mushoku-tensei-s3-chaos-breaker",
     "cat": "Anime",
     "date": "2026-08-12",
-    "excerpt": "Studio Bind released the trailer for Chaos Breaker Arc of Mushoku Tensei Season 3, premiering from episode 8 on August 16, 2026 with Rikiya Koyama voicing…",
+    "excerpt": "Studio Bind released the trailer for the Chaos Breaker Arc of Mushoku Tensei Season 3, which begins with episode 8 on August 16, 2026.",
     "img": "/assets/img/77948dbff7-mushoku-tensei-s3-chaosbreaker.jpg",
     "tags": [],
     "lang": "en"
@@ -5003,7 +5003,7 @@ window.IDX = [
     "url": "/en/berserk-arc-cuoi",
     "cat": "Manga",
     "date": "2026-06-16",
-    "excerpt": "When Kentaro Miura passed away in May 2021 after 33 years with Berserk, the manga world witnessed an irreparable loss. But Miura left enough notes and plot…",
+    "excerpt": "Kentaro Miura died in May 2021 after 33 years with Berserk, but he left enough notes for his students at Studio Gaga to carry the final arc forward.",
     "img": "/assets/img/7b5a968234-maxresdefault.jpg",
     "tags": [],
     "lang": "en"
@@ -5083,7 +5083,7 @@ window.IDX = [
     "url": "/kingdom-come-deliverance-2",
     "cat": "Gaming",
     "date": "2026-06-10",
-    "excerpt": "Review Kingdom Come: Deliverance II: RPG thế giới mở góc nhìn thứ nhất của Warhorse trong Bohemia 1403, Metacritic 89, PC Gamer Game of the Year, bán trên 6…",
+    "excerpt": "Review Kingdom Come: Deliverance II: RPG góc nhìn thứ nhất của Warhorse ở Bohemia 1403, Metacritic 89, Game of the Year của PC Gamer, bán hơn 6 triệu bản.",
     "img": "/assets/img/50c4f9b171-library_hero.jpg",
     "tags": [],
     "lang": "vi"
@@ -5123,7 +5123,7 @@ window.IDX = [
     "url": "/en/tekken8-season2",
     "cat": "Gaming",
     "date": "2026-06-10",
-    "excerpt": "Tekken 8 Season 2 has four DLC characters: Anna Williams (April 3, 2025), Fahkumram, Armor King (full release October 16, 2025) and Miary Zo (early access…",
+    "excerpt": "Tekken 8 Season 2 added four DLC fighters in 2025: Anna Williams, Fahkumram, Armor King and the newly created Miary Zo.",
     "img": "/assets/img/31f849a512-library_hero.jpg",
     "tags": [],
     "lang": "en"
@@ -5203,7 +5203,7 @@ window.IDX = [
     "url": "/genshin-natlan-review",
     "cat": "Reviews",
     "date": "2026-06-04",
-    "excerpt": "Review Genshin Impact Natlan (bản 5.0, 28/8/2024): vùng đất của lửa và Archon Mavuika, cơ chế Nightsoul Blessing và thú cưỡi Saurian thay đổi cách khám phá;…",
+    "excerpt": "Review Genshin Impact Natlan (bản 5.0, 28/8/2024): vùng đất lửa của Archon Mavuika, cơ chế Nightsoul Blessing và thú cưỡi Saurian đổi mới cách khám phá.",
     "img": "/assets/img/real-genshin-natlan.jpg",
     "tags": [],
     "lang": "vi"
@@ -5253,7 +5253,7 @@ window.IDX = [
     "url": "/nintendo-switch-2-review",
     "cat": "Reviews",
     "date": "2026-05-28",
-    "excerpt": "Review Nintendo Switch 2: màn 7,9 inch 120Hz HDR10, Joy-Con 2 từ tính, giá ra mắt 449,99 USD, bán 23,68 triệu máy; pin ngắn, chưa xử lý trôi analog và giá cao…",
+    "excerpt": "Review Nintendo Switch 2: màn 7,9 inch 120Hz HDR10, Joy-Con 2 từ tính, giá 449,99 USD, bán 23,68 triệu máy; pin ngắn và giá vẫn là điểm trừ.",
     "img": "/assets/img/d7d77f5de9-maxresdefault.jpg",
     "tags": [],
     "lang": "vi"
