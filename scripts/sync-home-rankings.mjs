@@ -7,10 +7,11 @@
 //
 // Script này:
 //   - dựng lại 2 thẻ PC / Mobile ở trang chủ từ top 5 của CATS;
-//   - ghi điểm catalog vào các mục manga/manhwa/manhua có link -detail, rồi sắp lại cột theo điểm;
+//   - cột manga/manhwa/manhua: chỉ hiện điểm có nguồn review (catalog / bài review), tựa có điểm xếp trước;
 //   - cập nhật nhãn ngày, JSON-LD ItemList và bản <noscript> trong trang rankings.
 import fs from 'node:fs';
 import vm from 'node:vm';
+import { verifiedReviews } from './lib/review-scores.mjs';
 
 const UPDATED = { y: 2026, m: 10, d: 1 };
 const pad = (n) => String(n).padStart(2, '0');
@@ -64,7 +65,7 @@ function cardItem(item, idx, prefix, type) {
   const href = item.url || `${prefix}/${type}-detail?t=${encodeURIComponent(item.title)}`;
   const top = idx < 3 ? ` top${idx + 1}` : '';
   const width = `${Math.round(parseFloat(item.score) * 10)}%`;
-  return `<a class="rk-item${top}" href="${href}"><div class="rk-num">${pad(idx + 1)}</div><div class="rk-thumb"><img src="${item.img}" alt="${esc(item.title)}" loading="lazy" width="76" height="76"></div><div class="rk-info"><div class="rk-name">${esc(item.title)}</div><div class="rk-sub">${esc(item.sub)}</div>${tags}</div><div class="rk-score-col"><div class="rk-score" style="color:${color}">${item.score}</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="${width}" style="background:${color}"></div></div></div></a>`;
+  return `<a class="rk-item${top}" href="${href}"><div class="rk-num">${pad(idx + 1)}</div><div class="rk-thumb"><img src="${thumbS(item.img)}" alt="${esc(item.title)}" loading="lazy" width="76" height="76"></div><div class="rk-info"><div class="rk-name">${esc(item.title)}</div><div class="rk-sub">${esc(item.sub)}</div>${tags}</div><div class="rk-score-col"><div class="rk-score" style="color:${color}">${item.score}</div><div class="rk-bar-wrap"><div class="rk-bar" data-w="${width}" style="background:${color}"></div></div></div></a>`;
 }
 
 function syncRankCards(html, cats, prefix) {
@@ -103,8 +104,11 @@ function mangaEntry(body) {
   const title = (body.match(/class="mi-title">([^<]*)</) || [])[1];
   const key = MANGA_ENTRY[title];
   const entry = key && catalog[key];
-  return entry && entry.type === 'manga' && !isNaN(parseFloat(entry.score)) ? { key, entry } : null;
+  return entry && entry.type === 'manga' ? { key, entry } : null;
 }
+
+// Điểm chỉ hiện khi có nguồn review: hồ sơ (catalog, do sync-profile-scores.mjs ghi) hoặc bài review hợp lệ.
+const reviewScoreByUrl = new Map([...verifiedReviews().values()].flatMap((r) => [[r.url, r.score.toFixed(1)], [r.enUrl, r.score.toFixed(1)]]));
 
 function syncMangaColumns(html, prefix) {
   const itemRe = /<a class="manga-item[^"]*" href="([^"]+)">([\s\S]*?)<\/a>/g;
@@ -119,13 +123,13 @@ function syncMangaColumns(html, prefix) {
       const items = found.map((m, i) => {
         const hit = mangaEntry(m[2]);
         const href = hit ? `${prefix}/manga-detail?t=${encodeURIComponent(hit.key)}` : m[1];
-        const score = hit ? hit.entry.score : m[2].match(/class="mi-score"[^>]*>([\d.]+)</)[1];
-        return { href, body: m[2], score, i };
-      }).sort((a, b) => parseFloat(b.score) - parseFloat(a.score) || a.i - b.i);
+        const score = hit ? hit.entry.score : reviewScoreByUrl.get(m[1]) || null;
+        return { href, body: m[2].replace(/<div class="mi-score"[^>]*>[^<]*<\/div>/, ''), score, i };
+      }).sort((a, b) => (parseFloat(b.score) || 0) - (parseFloat(a.score) || 0) || a.i - b.i);
+      let colorIdx = 0;
       const built = items.map((it, idx) => {
-        const body = it.body
-          .replace(/<div class="mi-num">\d+<\/div>/, `<div class="mi-num">${pad(idx + 1)}</div>`)
-          .replace(/(class="mi-score" style="color:)[^"]*(">)[\d.]+(<)/, `$1${SCORE_COLORS[idx]}$2${it.score}$3`);
+        const scoreHtml = it.score ? `<div class="mi-score" style="color:${SCORE_COLORS[colorIdx++] || 'var(--muted)'}">${it.score}</div>` : '';
+        const body = it.body.replace(/<div class="mi-num">\d+<\/div>/, `<div class="mi-num">${pad(idx + 1)}</div>`).replace(/<\/div>\s*$/, `</div>${scoreHtml}`);
         return `<a class="manga-item${idx < 3 ? ` top${idx + 1}` : ''}" href="${it.href}">${body}</a>`;
       }).join('\n\n\n      ');
       const start = col.indexOf(found[0][0]);
@@ -138,6 +142,38 @@ function syncMangaColumns(html, prefix) {
     }
   }
   return html;
+}
+
+// Khung bên của trang chuyên mục (gaming/anime/manga): top 5 của đúng bảng xếp hạng chuyên mục đó
+const SIDE_HEAD = {
+  vi: { game: '🏆 Top 5 Game · OtaHub', anime: '🏆 Top 5 Anime · OtaHub', manga: '🏆 Top 5 Manga · OtaHub' },
+  en: { game: '🏆 Top 5 Games · OtaHub', anime: '🏆 Top 5 Anime · OtaHub', manga: '🏆 Top 5 Manga · OtaHub' }
+};
+const thumbS = (u) => (/^\/assets\/img\/(?!_[ts]\/|brand\/)[^?#]+\.(jpe?g|png|webp|jfif)$/i.test(u || '') ? '/assets/img/_s/' + u.slice(12) + '.webp' : u);
+function syncSideTop(file, rankingsFile, cat, lang) {
+  const group = loadCats(rankingsFile)[cat];
+  const items = [
+    ...group.top.map((t) => ({ title: t.title, url: t.url, img: t.img, score: t.score, sub: [t.studio, t.genre].filter(Boolean).join(' · ') })),
+    ...group.rest.map((r) => ({ title: r.title, url: r.url, img: r.img, score: r.score, sub: [r.studio, r.sub].filter(Boolean).join(' · ') }))
+  ].slice(0, 5);
+  let html = read(file);
+  const headRe = /<div class="side-head" id="side-head">[^<]*<\/div>/;
+  const at = html.search(headRe);
+  if (at < 0) throw new Error('Thiếu side-head trong ' + file);
+  const boxStart = html.lastIndexOf('<div class="side-box">', at);
+  const boxEnd = matchingClose(html, boxStart);
+  const rows = items.map((it, i) => `<a class="rk t${i + 1}" href="${it.url}">
+          <div class="rk-num">${i + 1}</div>
+          <div class="rk-poster"><img src="${thumbS(it.img)}" alt="${esc(it.title)}" loading="lazy" width="46" height="62"></div>
+          <div class="rk-info"><div class="rk-title">${esc(it.title)}</div><div class="rk-sub">${esc(it.sub)}</div></div>
+          <div class="rk-score">${it.score}</div>
+        </a>`).join('\n        ');
+  const box = `<div class="side-box">
+        <div class="side-head" id="side-head">${SIDE_HEAD[lang][cat]}</div>
+        ${rows}
+      </div>`;
+  write(file, html.slice(0, boxStart) + box + html.slice(boxEnd));
+  console.log(`${file}: khung top 5 ${cat}`);
 }
 
 function syncBadges(html, lang) {
@@ -186,20 +222,14 @@ function syncRankingsPage(file, prefix, lang) {
   console.log(`${file}: ItemList + noscript (${lists.reduce((n, l) => n + l.items.length, 0)} mục)`);
 }
 
-// Kiểm tra: điểm trong CATS phải khớp catalog.
-for (const file of ['rankings.html', 'en/rankings.html']) {
-  const aliases = { 'Jujutsu Kaisen': 'Jujutsu Kaisen (Anime)', 'Chainsaw Man': 'Chainsaw Man (Anime)' };
-  for (const [cat, group] of Object.entries(loadCats(file))) {
-    for (const it of [...group.top, ...group.rest]) {
-      const key = cat === 'anime' ? aliases[it.title] || it.title : it.title;
-      const entry = catalog[key];
-      if (!entry) console.warn(`  ! ${file}: "${it.title}" chưa có trong catalog`);
-      else if (String(entry.score) !== String(it.score)) console.warn(`  ! ${file}: "${it.title}" ${it.score} ≠ catalog ${entry.score}; chạy npm run rankings:sync`);
-    }
-  }
-}
-
 syncHome('index.html', 'rankings.html', '', 'vi');
 syncHome('en/index.html', 'en/rankings.html', '/en', 'en');
+// Trang Tin mới dùng cùng khối bảng xếp hạng / truyện tranh với trang chủ
+syncHome('news.html', 'rankings.html', '', 'vi');
+syncHome('en/news.html', 'en/rankings.html', '/en', 'en');
+for (const [cat, page] of [['game', 'gaming'], ['anime', 'anime'], ['manga', 'manga']]) {
+  syncSideTop(`${page}.html`, 'rankings.html', cat, 'vi');
+  syncSideTop(`en/${page}.html`, 'en/rankings.html', cat, 'en');
+}
 syncRankingsPage('rankings.html', '', 'vi');
 syncRankingsPage('en/rankings.html', '/en', 'en');

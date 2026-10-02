@@ -13,7 +13,7 @@
 //
 // Chạy:  node scripts/build-rankings.mjs          (kiểm tra + ghi rankings.html, en/rankings.html)
 //        node scripts/build-rankings.mjs --check  (chỉ kiểm tra)
-// Sau đó: npm run rankings:sync && npm run rankings:home  (điểm sang catalog + bảng trang chủ)
+// Cả chuỗi (xếp hạng -> hồ sơ -> trang chủ/chuyên mục -> ảnh thu nhỏ): npm run scores
 import fs from 'node:fs';
 import vm from 'node:vm';
 

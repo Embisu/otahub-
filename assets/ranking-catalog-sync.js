@@ -5,7 +5,7 @@
     'Jujutsu Kaisen':'Jujutsu Kaisen (Anime)',
     'Chainsaw Man':'Chainsaw Man (Anime)'
   };
-  fetch('/assets/catalog.json?v=20261001d').then(function(r){return r.json();}).then(function(catalog){
+  fetch('/assets/catalog.json?v=20261002p').then(function(r){return r.json();}).then(function(catalog){
     document.querySelectorAll('a[href*="-detail?t="]').forEach(function(link){
       var url;
       try{url=new URL(link.href,location.origin);}catch(e){return;}

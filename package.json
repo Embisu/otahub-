@@ -11,6 +11,8 @@
     "indexes:build": "node scripts/normalize-publishing-data.mjs && node scripts/generate-author-profiles.mjs && node scripts/rebuild-discovery-indexes.mjs",
     "rankings:sync": "node scripts/sync-ranking-catalog.mjs",
     "rankings:home": "node scripts/sync-home-rankings.mjs",
+    "scores": "node scripts/build-rankings.mjs && node scripts/sync-ranking-catalog.mjs && node scripts/sync-profile-scores.mjs && node scripts/sync-home-rankings.mjs && python scripts/build-thumbs.py --write",
+    "scores:check": "node scripts/build-rankings.mjs --check && node scripts/sync-profile-scores.mjs --check",
     "profiles:complete": "node scripts/complete-profile-catalog.mjs",
     "content:clean-dashes": "node scripts/remove-em-dashes.mjs",
     "news:db:local": "wrangler d1 migrations apply otahub-news --local",

@@ -64,6 +64,9 @@ for f in pages:
         if WRITE: save(f, s)
 
 # Lưu ý: KHÔNG đổi assets/search.js — admin đọc trường img trong đó làm ảnh đầu bài (Hero).
+# Ảnh hồ sơ (assets/catalog.json): trang hồ sơ dùng bản _s cho thẻ gợi ý/bài liên quan
+for m in re.finditer(r'"img":\s*"(/assets/img/[^"]+)"', load('assets/catalog.json')):
+    want(m.group(1), '_s')
 
 made = 0
 for u, (orig, width) in sorted(needed.items()):
