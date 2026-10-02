@@ -653,3 +653,43 @@ var st5=document.createElement('style');st5.textContent=css2;document.head.appen
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bump); else bump();
   window.addEventListener('load', function(){ setTimeout(bump, 600); });
 })();
+
+/* ── 🖼️ Ảnh hero độ phân giải thấp ──
+   Nhiều ảnh hero là banner nhỏ/dẹt (vd. 1150×400, 1600×337) bị background-size:cover kéo phủ khung
+   ~1280×610 → phóng to ~1,8 lần, vỡ hạt. Khi cần phóng quá 1,35 lần: hiện ảnh NÉT ở kích thước không
+   phóng to (vừa khung), nền phía sau là chính ảnh đó làm mờ. Ảnh đủ lớn giữ nguyên kiểu cover. */
+(function(){
+  var SEL = '.art-hero-img,.h-img';
+  var css = '.ot-lowres{background-image:none!important;overflow:hidden}' +
+    '.ot-lowres::before,.ot-lowres::after{content:"";position:absolute;inset:0;background-image:var(--ot-bg);background-repeat:no-repeat;background-position:center;pointer-events:none}' +
+    '.ot-lowres::before{inset:-48px;background-size:cover;filter:blur(30px) saturate(1.15) brightness(.55)}' +
+    '.ot-lowres::after{background-size:var(--ot-w) var(--ot-h)}';
+  var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
+  var items = [];
+  function apply(it){
+    var el = it.el, img = it.img, r = el.getBoundingClientRect();
+    if (!r.width || !r.height || !img.naturalWidth) return;
+    var cover = Math.max(r.width / img.naturalWidth, r.height / img.naturalHeight);
+    if (cover > 1.35) {
+      var s = Math.min(r.width / img.naturalWidth, r.height / img.naturalHeight, 1);
+      el.style.setProperty('--ot-bg', 'url("' + img.src + '")');
+      el.style.setProperty('--ot-w', Math.round(img.naturalWidth * s) + 'px');
+      el.style.setProperty('--ot-h', Math.round(img.naturalHeight * s) + 'px');
+      el.classList.add('ot-lowres');
+    } else {
+      el.classList.remove('ot-lowres');
+    }
+  }
+  function init(){
+    document.querySelectorAll(SEL).forEach(function(el){
+      var m = (el.style.backgroundImage || getComputedStyle(el).backgroundImage || '').match(/url\(["']?([^"')]+)["']?\)/);
+      if (!m) return;
+      var img = new Image(), it = { el: el, img: img };
+      img.onload = function(){ items.push(it); apply(it); };
+      img.src = m[1];
+    });
+  }
+  var t;
+  window.addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(function(){ items.forEach(apply); }, 150); });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
