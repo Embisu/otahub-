@@ -13,7 +13,7 @@ window.IDX = [
     "url": "/girls-frontline-2-huong-dan-phu-kien-chip-vang",
     "cat": "Gaming",
     "date": "2026-10-03",
-    "excerpt": "Cách farm phụ kiện Girls' Frontline 2: Exilium (Lưu Đày): bộ nên farm, công thức sát thương, ngưỡng 450%/600% và lúc dùng chip vàng, theo Elaina Yukino.",
+    "excerpt": "Cách farm phụ kiện Girls' Frontline 2: Exilium (Lưu Đày): bộ nên farm, công thức sát thương, ngưỡng 450%/600% và lúc nên dùng chip vàng để khỏi phí tài nguyên.",
     "img": "/assets/img/girls-frontline-2-huong-dan-phu-kien-chip-vang-hero.jpg",
     "tags": ["Girls' Frontline 2","Lưu Đày","Chip Chỉnh Hỏa Lực","Đả Kích Nguyên Tố","Elaina Yukino"]
   },
@@ -22,16 +22,16 @@ window.IDX = [
     "url": "/en/girls-frontline-2-f2p-t-doll-roll-guide",
     "cat": "Gaming",
     "date": "2026-10-03",
-    "excerpt": "Which T-Dolls should F2P players roll in Girls' Frontline 2: Exilium? A 30-banner plan based on Trần Khắc Minh's community guide, checked against IOP Wiki.",
+    "excerpt": "Which T-Dolls should F2P players roll in Girls' Frontline 2: Exilium? Vector, Springfield and Loreley lead a 30-banner plan of who to pull, keep at V0 or skip.",
     "img": "/assets/img/57fba50e9a-gfl2-exilium-official-bg.jpg",
     "tags": ["Girls' Frontline 2","T-Doll","Springfield","THS Game","MICA Team"]
   },
   {
-    "title": "Girls' Frontline 2: T-Doll nên roll cho F2P, 30 banner",
+    "title": "Girls' Frontline 2: F2P nên roll ai? Lộ trình 30 banner",
     "url": "/girls-frontline-2-t-doll-nen-roll-f2p",
     "cat": "Gaming",
     "date": "2026-10-03",
-    "excerpt": "Girls' Frontline 2: Lưu Đày nên roll T-Doll nào nếu chơi F2P? Bảng 30 banner quốc tế theo cẩm nang của Trần Khắc Minh, có đối chiếu hệ và vai trò.",
+    "excerpt": "Chơi F2P Girls' Frontline 2: Lưu Đày nên roll T-Doll nào? Vector, Springfield, Loreley là ưu tiên; bảng 30 banner chỉ rõ ai nên quay, giữ V0 hay bỏ qua.",
     "img": "/assets/img/57fba50e9a-gfl2-exilium-official-bg.jpg",
     "tags": ["Girls' Frontline 2","Lưu Đày","T-Doll","Springfield","THS Game","MICA Team"]
   },
