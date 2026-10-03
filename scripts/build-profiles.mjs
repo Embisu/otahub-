@@ -406,6 +406,8 @@ const sbThumb = (img) => {
   return m && exists(`assets/img/_s/${m[1]}.webp`) ? `/assets/img/_s/${m[1]}.webp` : (img || '/assets/img/placeholder.svg');
 };
 const TYPE_LABEL = { game: 'Game', anime: 'Anime', manga: 'Manga' };
+// Tiêu đề khối hồ sơ trong sidebar bài viết (assets/enhance.js dùng cùng chữ cho bài mới)
+const RELATED_TITLE = { vi: { game: 'Game liên quan', anime: 'Anime liên quan', manga: 'Manga liên quan' }, en: { game: 'Related games', anime: 'Related anime', manga: 'Related manga' } };
 // Bảng tên cho trình duyệt (bài mới đăng qua admin) và bảng link thẻ chủ đề
 const labelOf = (s, e, en, multi) => (multi ? (en ? e.labelEn : e.label) : TYPE_LABEL[e.type]);
 const profileNames = nameTable(series, matchers, paths, labelOf, (k) => sbThumb(catalog[k].img));
@@ -437,13 +439,17 @@ function withProfileBlock(html, a) {
   html = withTagLinks(html, a.en);
   // Bài đã xử lý nhưng không có tác phẩm nào: để dấu rỗng, enhance.js không phải tải bảng tên
   if (!a.picks.length) return html.replace('<aside class="art-sidebar">', () => '<aside class="art-sidebar"><!-- PROFILE-LINKS --><!-- /PROFILE-LINKS -->');
-  const items = a.picks.map((p) => {
+  const itemHtml = (p) => {
     const { s, e } = editionOf.get(p.key);
     const multi = s.editions.length > 1;
     const cat = multi ? (a.en ? e.labelEn : e.label) : TYPE_LABEL[p.type];
     return `<a class="sb-art" href="${localize(paths[`${p.type}|${p.key}`], a.en)}"><img class="sb-thumb" src="${attrEsc(sbThumb(catalog[p.key].img))}" alt="" loading="lazy" width="76" height="60"><div><div class="sb-cat">${escHtml(cat)}</div><div class="sb-t">${escHtml(a.en ? s.nameEn : s.name)}</div></div></a>`;
-  }).join('');
-  const block = `<!-- PROFILE-LINKS --><div class="sidebar-block"><div class="sb-title">${a.en ? 'Title profiles' : 'Hồ sơ tác phẩm'}</div>${items}</div><!-- /PROFILE-LINKS -->`;
+  };
+  // Mỗi loại một khối có tiêu đề riêng: "Game liên quan" / "Anime liên quan" / "Manga liên quan" (loại xuất hiện đầu tiên đứng trước)
+  const groups = [];
+  for (const p of a.picks) { let g = groups.find((x) => x.type === p.type); if (!g) groups.push(g = { type: p.type, picks: [] }); g.picks.push(p); }
+  const blocks = groups.map((g) => `<div class="sidebar-block"><div class="sb-title">${RELATED_TITLE[a.en ? 'en' : 'vi'][g.type]}</div>${g.picks.map(itemHtml).join('')}</div>`).join('');
+  const block = `<!-- PROFILE-LINKS -->${blocks}<!-- /PROFILE-LINKS -->`;
   return html.replace('<aside class="art-sidebar">', () => '<aside class="art-sidebar">' + block);
 }
 // Trang "Sắp ra mắt": thẻ không có bài riêng trỏ thẳng hồ sơ (trước đây qua link động ?t= rồi 301)

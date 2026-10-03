@@ -793,10 +793,18 @@ fetch('/assets/profile-names.json',{cache:'no-cache'}).then(function(r){return r
   });
   picked=picked.slice(0,4);
   if(!picked.length)return;
-  var box=document.createElement('div');box.className='sidebar-block';
-  box.innerHTML='<div class="sb-title">'+OT_T('Hồ sơ tác phẩm','Title profiles')+'</div>'+picked.map(function(r){
-    return '<a class="sb-art" href="'+path(r)+'"><img class="sb-thumb" src="'+esc(r[7])+'" alt="" loading="lazy" width="76" height="60"><div><div class="sb-cat">'+esc(OT_EN?r[6]:r[5])+'</div><div class="sb-t">'+esc(OT_EN?r[4]:r[3])+'</div></div></a>';
-  }).join('');
-  side.insertBefore(box,side.firstChild);
+  // Mỗi loại một khối: "Game liên quan" / "Anime liên quan" / "Manga liên quan" (loại xuất hiện đầu tiên đứng trước)
+  var T={game:['Game liên quan','Related games'],anime:['Anime liên quan','Related anime'],manga:['Manga liên quan','Related manga']};
+  var groups=[],byType={};
+  picked.forEach(function(r){var t=r[10]||'game';if(!byType[t]){byType[t]=[];groups.push(t);}byType[t].push(r);});
+  var holder=document.createDocumentFragment();
+  groups.forEach(function(t){
+    var box=document.createElement('div');box.className='sidebar-block';
+    box.innerHTML='<div class="sb-title">'+OT_T(T[t][0],T[t][1])+'</div>'+byType[t].map(function(r){
+      return '<a class="sb-art" href="'+path(r)+'"><img class="sb-thumb" src="'+esc(r[7])+'" alt="" loading="lazy" width="76" height="60"><div><div class="sb-cat">'+esc(OT_EN?r[6]:r[5])+'</div><div class="sb-t">'+esc(OT_EN?r[4]:r[3])+'</div></div></a>';
+    }).join('');
+    holder.appendChild(box);
+  });
+  side.insertBefore(holder,side.firstChild);
 }).catch(function(){});
 })();
