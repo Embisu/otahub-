@@ -19559,6 +19559,17 @@ async function syncNewArticle(art) {
 
   // 1. Update assets/search.js
   toast('success', '🔍 Đang cập nhật chỉ mục tìm kiếm...');
+  // Thẻ chủ đề của bài (sb-tags) đưa vào chỉ mục để trang /tag và ô tìm kiếm tìm được bài theo thẻ
+  // (scripts/sync-search-tags.mjs làm cùng việc cho cả site).
+  let idxTags = [];
+  try {
+    const g = await ghGet(file);
+    const h = decodeURIComponent(escape(atob(String(g.content || '').replace(/\s/g, ''))));
+    const box = (h.match(/<div class="sb-tags">([\s\S]*?)<\/div>/) || [])[1] || '';
+    idxTags = [...box.matchAll(/<a[^>]*class="sb-tag"[^>]*>([\s\S]*?)<\/a>/g)]
+      .map((m) => m[1].replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&quot;/g, '"').trim())
+      .filter((t, i, a) => t && a.indexOf(t) === i);
+  } catch (e) { /* bài chưa ghi xong: để trống, npm run hubs sẽ bổ sung */ }
   try {
     await ghSyncStep('assets/search.js', (searchJs) => {
       const searchMatch = searchJs.match(/(?:var|window\.)?\s*IDX\s*=\s*(\[[\s\S]*?\]);/m);
@@ -19572,7 +19583,7 @@ async function syncNewArticle(art) {
         date: new Date().toISOString().split('T')[0],
         excerpt: desc || '',
         img: hero || '',
-        tags: []
+        tags: idxTags
       });
       return searchJs.replace(/(?:var|window\.)?\s*IDX\s*=\s*\[[\s\S]*?\];/, () => `window.IDX = ${JSON.stringify(idxList, null, 2)};`);
     }, `[admin] cap nhat search index cho /${slug}`);
