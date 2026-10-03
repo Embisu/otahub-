@@ -149,8 +149,8 @@ body{background:radial-gradient(ellipse 120% 40% at 50% 0%,rgba(124,58,237,.28) 
 .cs-pick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
 .cs-pick{background:var(--surf);text-decoration:none;overflow:hidden;position:relative;animation:fadeUp .5s var(--ease) both}
 .cs-pick:nth-child(1){animation-delay:.04s}.cs-pick:nth-child(2){animation-delay:.08s}.cs-pick:nth-child(3){animation-delay:.12s}
-.cs-pick-img{aspect-ratio:16/10;overflow:hidden;background:var(--card)}
-.cs-pick-img img{width:100%;height:100%;object-fit:cover;opacity:.88;transition:transform .55s var(--ease),opacity .3s}
+.cs-pick-img{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--card)}
+.cs-pick-img img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;opacity:.88;transition:transform .55s var(--ease),opacity .3s}
 .cs-pick:hover .cs-pick-img img{transform:scale(1.07);opacity:1}
 .cs-pick-body{padding:22px 24px 26px}
 .cs-pick-tag{font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--cyan);margin-bottom:10px;display:block}
@@ -530,7 +530,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
 <!-- FEATURED PICK -->
 <div class="cs-featured">
   <a class="cs-feat-card" href="/one-piece-egghead-arc-review">
-    <div class="cs-feat-img"><img src="/assets/img/_t/pool-one-piece-1.jpg.webp" alt="One Piece Egghead Arc" width="1600" height="337" fetchpriority="high" decoding="async"></div>
+    <div class="cs-feat-img"><img src="/assets/img/_t/yt-YJ34bLwtVUM.jpg.webp" alt="One Piece Egghead Arc" width="1280" height="720" fetchpriority="high" decoding="async"></div>
     <div class="cs-feat-body">
       <div class="cs-feat-label">Bài chuyên sâu nổi bật</div>
       <h2 class="cs-feat-title">One Piece: Egghead Arc và lịch sử thế giới</h2>
@@ -554,7 +554,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
   </div>
   <div class="cs-pick-grid">
     <a class="cs-pick" href="/black-myth-wukong-review">
-      <div class="cs-pick-img"><img src="/assets/img/_t/black-myth-wukong-review-hero.jpg.webp" alt="Black Myth Wukong" loading="lazy" width="1920" height="620"></div>
+      <div class="cs-pick-img"><img src="/assets/img/_t/black-myth-wukong-review-hero.jpg.webp" alt="Black Myth Wukong" loading="lazy" width="640" height="360"></div>
       <div class="cs-pick-body">
         <span class="cs-pick-tag" style="color:var(--cyan)">Gaming · Đánh giá</span>
         <div class="cs-pick-title">Black Myth: Wukong, đánh giá và những điểm cần biết</div>
@@ -563,7 +563,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
       </div>
     </a>
     <a class="cs-pick" href="/one-piece-egghead-arc-review">
-      <div class="cs-pick-img"><img src="/assets/img/_t/pool-one-piece-1.jpg.webp" alt="One Piece Egghead Arc" loading="lazy" width="1600" height="337"></div>
+      <div class="cs-pick-img"><img src="/assets/img/_t/yt-YJ34bLwtVUM.jpg.webp" alt="One Piece Egghead Arc" loading="lazy" width="1280" height="720"></div>
       <div class="cs-pick-body">
         <span class="cs-pick-tag" style="color:var(--lavender)">Manga · Phân tích</span>
         <div class="cs-pick-title">One Piece: Egghead Arc và lịch sử thế giới</div>
@@ -572,7 +572,7 @@ h1, h2, h3, h4, h5, h6, .h-title, .fc-title, .sa-t, .wc-t, .sec-t, .ch-title, .a
       </div>
     </a>
     <a class="cs-pick" href="/tho-san-quy-chainsaw-man-manga-part2-review">
-      <div class="cs-pick-img"><img src="/assets/img/_t/covers/tho-san-quy-chainsaw-man-manga-part2-review.jpg.webp" alt="Chainsaw Man manga" loading="lazy" width="1920" height="404"></div>
+      <div class="cs-pick-img"><img src="/assets/img/_t/covers/tho-san-quy-chainsaw-man-manga-part2-review.jpg.webp" alt="Chainsaw Man manga" loading="lazy" width="640" height="360"></div>
       <div class="cs-pick-body">
         <span class="cs-pick-tag" style="color:var(--lavender)">Manga · Review</span>
         <div class="cs-pick-title">Thợ Săn Quỷ Chainsaw Man: từ Denji đến Asa Mitaka</div>
