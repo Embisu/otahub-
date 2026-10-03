@@ -90,14 +90,14 @@ var CREDIT_LABEL_EN={
 };
 var TXT=EN?{
   score:'OtaHub score',genre:'Genre',platform:'Platforms',release:'Release',status:'Status',
-  related:'You may also like',discover:'Discover more',viewAll:'View all ',share:'Share',
+  related:'You may also like',discover:'Discover more',viewAll:'View all ',allProfiles:'All title profiles',share:'Share',
   readReview:'Read the review',fromReview:'From the OtaHub review',fromHub:'From the OtaHub reviews page',
   unscored:'Not scored yet',unscoredNote:'OtaHub only shows a score once a full review of this title has been published. This profile covers the facts and our coverage so far.',
   overview:'Overview',take:"OtaHub's take",verdict:'Verdict',credits:'Credits',sources:'Sources',articles:'Articles about this title',
   noArticles:'No separate article has been published yet. This profile will be updated when coverage is available.'
 }:{
   score:'Điểm OtaHub',genre:'Thể loại',platform:'Nền tảng',release:'Phát hành',status:'Trạng thái',
-  related:'Có thể bạn quan tâm',discover:'Khám phá thêm',viewAll:'Xem tất cả ',share:'Chia sẻ',
+  related:'Có thể bạn quan tâm',discover:'Khám phá thêm',viewAll:'Xem tất cả ',allProfiles:'Tất cả hồ sơ tác phẩm',share:'Chia sẻ',
   readReview:'Đọc bài review',fromReview:'Theo bài review OtaHub',fromHub:'Theo trang Đánh giá OtaHub',
   unscored:'Chưa chấm điểm',unscoredNote:'OtaHub chỉ hiển thị điểm khi đã đăng bài review đầy đủ cho tác phẩm này. Hồ sơ hiện tổng hợp thông tin chính thức và các bài viết liên quan.',
   overview:'Giới thiệu',take:'Nhận định của OtaHub',verdict:'Kết luận',credits:'Đội ngũ & thông tin sản xuất',sources:'Nguồn thông tin chính thức',articles:'Bài viết về tác phẩm',
@@ -488,7 +488,7 @@ function renderEntry(title, entry, catalog){
           return '<a href="'+hrefFor(r.k,e)+'" class="sim-item"><img class="si-thumb" src="'+esc(otThumbImg(e.img||pickImg(r.k)||'/assets/img/placeholder.svg'))+'" alt="" loading="lazy" width="56" height="76"/><div><div class="si-name">'+esc(r.k.replace(/\s*\((?:Anime|Manga)\)$/,''))+'</div><div class="si-genre">'+esc(e.genre||LABEL[e.type])+(isNaN(sc)?'':' · <span class="si-score">'+sc.toFixed(1)+'</span>')+'</div></div></a>';
         }).join('')+
       '</div></div>':'')+
-      '<div class="gs-block"><div class="gs-title">'+TXT.discover+'</div><a href="'+CATPAGE[entry.type]+'" class="ww-btn"><span class="ww-icon">→</span><span>'+TXT.viewAll+LABEL[entry.type]+'</span></a></div>'+
+      '<div class="gs-block"><div class="gs-title">'+TXT.discover+'</div><a href="'+CATPAGE[entry.type]+'" class="ww-btn"><span class="ww-icon">→</span><span>'+TXT.viewAll+LABEL[entry.type]+'</span></a><a href="'+(EN?'/en/profile/':'/ho-so/')+'" class="ww-btn" style="margin-top:8px"><span class="ww-icon">→</span><span>'+TXT.allProfiles+'</span></a></div>'+
     '</aside>'+
   '</div>';
 
