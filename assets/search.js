@@ -1,59 +1,5 @@
 window.IDX = [
   {
-    "title": "GTA 6 Countdown: Everything to Know Before Nov 19",
-    "url": "/en/gta-6-countdown",
-    "cat": "Gaming",
-    "date": "2026-10-02",
-    "excerpt": "OtaHub researched and compiled GTA 6: live countdown, release date, price, Leonida map, characters, gameplay, cars and weapons revealed so far.",
-    "img": "/assets/img/gta6-official-art.jpg",
-    "tags": []
-  },
-  {
-    "title": "Đếm ngược GTA 6: mọi điều cần biết trước 19/11",
-    "url": "/dem-nguoc-gta-6",
-    "cat": "Gaming",
-    "date": "2026-10-02",
-    "excerpt": "OtaHub nghiên cứu, tổng hợp GTA 6: đồng hồ đếm ngược, ngày ra mắt, giá, bản đồ Leonida, nhân vật, gameplay, xe và vũ khí đã lộ diện.",
-    "img": "/assets/img/gta6-official-art.jpg",
-    "tags": []
-  },
-  {
-    "title": "Chainsaw Man’s Creator Finally Explains Its Mysterious Ending",
-    "url": "/en/chainsaw-man-fujimoto-explains-the-ending",
-    "cat": "Manga",
-    "date": "2026-10-03",
-    "excerpt": "Half a year after the final chapter, Tatsuki Fujimoto reveals why Chainsaw Man ended so strangely: 19 pages a week, no plot written ahead, and a film he loves.",
-    "img": "/assets/img/fujimoto-chainsaw-man-ket-thuc-hero-v3.jpg",
-    "tags": ["Chainsaw Man","Tatsuki Fujimoto","We Are Aliens","Kōhei Kadowaki","Look Back","Shonen Jump+"]
-  },
-  {
-    "title": "Tác giả lần đầu giải thích về cái kết bí ẩn của Chainsaw Man",
-    "url": "/tho-san-quy-chainsaw-man-fujimoto-giai-thich-cai-ket",
-    "cat": "Manga",
-    "date": "2026-10-03",
-    "excerpt": "Nửa năm sau chương cuối, Tatsuki Fujimoto kể vì sao Chainsaw Man kết khó hiểu đến vậy: 19 trang mỗi tuần, không có cốt truyện viết trước và một bộ phim ông mê.",
-    "img": "/assets/img/fujimoto-chainsaw-man-ket-thuc-hero-v3.jpg",
-    "tags": ["Thợ Săn Quỷ Chainsaw Man","Tatsuki Fujimoto","We Are Aliens","Kōhei Kadowaki","Look Back","Shonen Jump+"]
-  },
-  {
-    "title": "Paramount and Warner Bros. Merge as Skydance",
-    "url": "/en/paramount-warner-bros-merger-new-name-skydance",
-    "cat": "Gaming",
-    "date": "2026-10-03",
-    "excerpt": "On October 2, 2026, David Ellison named the combined Paramount and Warner Bros. company Skydance. The roughly $111 billion deal is set to close on October 6.",
-    "img": "/assets/img/skydance-paramount-warner-bros-hero.jpg",
-    "tags": ["Skydance","Paramount","Warner Bros.","David Ellison","HBO Max","Warner Bros. Games","Hogwarts Legacy"]
-  },
-  {
-    "title": "Paramount và Warner Bros. hợp nhất, lấy tên Skydance",
-    "url": "/paramount-warner-bros-hop-nhat-lay-ten-skydance",
-    "cat": "Gaming",
-    "date": "2026-10-03",
-    "excerpt": "Ngày 2/10/2026, David Ellison công bố tên công ty sau khi Paramount và Warner Bros. hợp nhất: Skydance. Thương vụ khoảng 111 tỷ USD dự kiến xong ngày 6/10.",
-    "img": "/assets/img/skydance-paramount-warner-bros-hero.jpg",
-    "tags": ["Skydance","Paramount","Warner Bros.","David Ellison","HBO Max","Warner Bros. Games","Hogwarts Legacy"]
-  },
-  {
     "title": "Beast of Reincarnation review: đỡ đòn hay (8.1 điểm)",
     "url": "/beast-of-reincarnation-review",
     "cat": "Gaming",
@@ -92,6 +38,26 @@ window.IDX = [
     "img": "/assets/img/7b5a968234-maxresdefault.jpg",
     "tags": ["Berserk","Kentaro Miura","Kouji Mori","Studio Gaga","Young Animal","Hakusensha","Dark Horse Comics","Guts"],
     "lang": "vi"
+  },
+  {
+    "title": "Black Clover Season 2: Everything to Know, Oct 3",
+    "url": "/en/black-clover-season-2-everything-to-know",
+    "cat": "Anime",
+    "date": "2026-10-03",
+    "excerpt": "Black Clover Season 2 airs Oct 3, 2026 at 23:00 JST on TV Tokyo with Crunchyroll subs. Air times, voice cast, staff, music and what is still unannounced.",
+    "img": "/assets/img/black-clover-s2-key-art.jpg",
+    "tags": ["Black Clover","Studio Pierrot","Yuki Tabata","Ayataka Tanemura","Asta","Yuno","WANIMA","Spade Kingdom"],
+    "lang": "en"
+  },
+  {
+    "title": "Chainsaw Man’s Creator Finally Explains Its Mysterious Ending",
+    "url": "/en/chainsaw-man-fujimoto-explains-the-ending",
+    "cat": "Manga",
+    "date": "2026-10-03",
+    "excerpt": "Half a year after the final chapter, Tatsuki Fujimoto reveals why Chainsaw Man ended so strangely: 19 pages a week, no plot written ahead, and a film he loves.",
+    "img": "/assets/img/fujimoto-chainsaw-man-ket-thuc-hero-v3.jpg",
+    "tags": ["Chainsaw Man","Tatsuki Fujimoto","We Are Aliens","Kōhei Kadowaki","Look Back","Shonen Jump+"],
+    "lang": "en"
   },
   {
     "title": "Frieren Season 2 Review: Quiet, Deep and Precise (9.6/10)",
@@ -254,6 +220,26 @@ window.IDX = [
     "lang": "en"
   },
   {
+    "title": "Paramount and Warner Bros. Merge as Skydance",
+    "url": "/en/paramount-warner-bros-merger-new-name-skydance",
+    "cat": "Gaming",
+    "date": "2026-10-03",
+    "excerpt": "On October 2, 2026, David Ellison named the combined Paramount and Warner Bros. company Skydance. The roughly $111 billion deal is set to close on October 6.",
+    "img": "/assets/img/skydance-paramount-warner-bros-hero.jpg",
+    "tags": ["Skydance","Paramount","Warner Bros.","David Ellison","HBO Max","Warner Bros. Games","Hogwarts Legacy"],
+    "lang": "en"
+  },
+  {
+    "title": "Paramount và Warner Bros. hợp nhất, lấy tên Skydance",
+    "url": "/paramount-warner-bros-hop-nhat-lay-ten-skydance",
+    "cat": "Gaming",
+    "date": "2026-10-03",
+    "excerpt": "Ngày 2/10/2026, David Ellison công bố tên công ty sau khi Paramount và Warner Bros. hợp nhất: Skydance. Thương vụ khoảng 111 tỷ USD dự kiến xong ngày 6/10.",
+    "img": "/assets/img/skydance-paramount-warner-bros-hero.jpg",
+    "tags": ["Skydance","Paramount","Warner Bros.","David Ellison","HBO Max","Warner Bros. Games","Hogwarts Legacy"],
+    "lang": "vi"
+  },
+  {
     "title": "Pháp Sư Tiễn Táng Frieren mùa 2 review: sâu lắng (9.6 điểm)",
     "url": "/phap-su-tien-tang-frieren-mua-2-review",
     "cat": "Anime",
@@ -314,6 +300,16 @@ window.IDX = [
     "lang": "en"
   },
   {
+    "title": "Tác giả lần đầu giải thích về cái kết bí ẩn của Chainsaw Man",
+    "url": "/tho-san-quy-chainsaw-man-fujimoto-giai-thich-cai-ket",
+    "cat": "Manga",
+    "date": "2026-10-03",
+    "excerpt": "Nửa năm sau chương cuối, Tatsuki Fujimoto kể vì sao Chainsaw Man kết khó hiểu đến vậy: 19 trang mỗi tuần, không có cốt truyện viết trước và một bộ phim ông mê.",
+    "img": "/assets/img/fujimoto-chainsaw-man-ket-thuc-hero-v3.jpg",
+    "tags": ["Thợ Săn Quỷ Chainsaw Man","Tatsuki Fujimoto","We Are Aliens","Kōhei Kadowaki","Look Back","Shonen Jump+"],
+    "lang": "vi"
+  },
+  {
     "title": "Tekken 8 Season 2 Review: A Costly Misstep (4.5/10)",
     "url": "/en/tekken-8-season-2-review",
     "cat": "Gaming",
@@ -341,6 +337,16 @@ window.IDX = [
     "excerpt": "Review The Ribbon Hero (Netflix): phim anime dài đầu tiên từ Princess Knight của Tezuka, hoạt hình giàu phong cách nhưng nhịp kể vội. OtaHub chấm 8.2/10.",
     "img": "/assets/img/632c9aeaf5-the-ribbon-hero-netflix-hero.jpg",
     "tags": ["The Ribbon Hero","Princess Knight","Osamu Tezuka","Yuki Igarashi","OUTLINE","Twin Engine","Sapphire","Kei Mochizuki"],
+    "lang": "vi"
+  },
+  {
+    "title": "Thế Giới Phép Thuật mùa 2: tất cả thông tin, chiếu 3/10",
+    "url": "/the-gioi-phep-thuat-mua-2-tat-ca-thong-tin",
+    "cat": "Anime",
+    "date": "2026-10-03",
+    "excerpt": "Black Clover mùa 2 lên sóng 3/10/2026, 21:00 giờ Việt Nam trên TV Tokyo, phụ đề Crunchyroll. Giờ chiếu, dàn seiyuu, staff, nhạc và điều chưa công bố.",
+    "img": "/assets/img/black-clover-s2-key-art.jpg",
+    "tags": ["Thế Giới Phép Thuật","Studio Pierrot","Yuki Tabata","Ayataka Tanemura","Asta","Yuno","WANIMA"],
     "lang": "vi"
   },
   {

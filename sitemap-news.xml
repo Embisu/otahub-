@@ -1,8 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
-  <url><loc>https://otahub.asia/tho-san-quy-chainsaw-man-fujimoto-giai-thich-cai-ket</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-10-03T10:40:00.000Z</news:publication_date><news:title>Tác giả lần đầu giải thích về cái kết bí ẩn của Chainsaw Man</news:title></news:news></url>
-<url><loc>https://otahub.asia/paramount-warner-bros-hop-nhat-lay-ten-skydance</loc><news:news><news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication><news:publication_date>2026-10-03T06:00:00.000Z</news:publication_date><news:title>Paramount và Warner Bros. hợp nhất, lấy tên Skydance</news:title></news:news></url>
-<url>
+  <url>
+    <loc>https://otahub.asia/the-gioi-phep-thuat-mua-2-tat-ca-thong-tin</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-10-03T21:40:00+07:00</news:publication_date>
+      <news:title>Thế Giới Phép Thuật mùa 2: tất cả thông tin, chiếu 3/10</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/black-clover-season-2-everything-to-know</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
+      <news:publication_date>2026-10-03T21:40:00+07:00</news:publication_date>
+      <news:title>Black Clover Season 2: Everything to Know, Oct 3</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/tho-san-quy-chainsaw-man-fujimoto-giai-thich-cai-ket</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-10-03T17:40:00+07:00</news:publication_date>
+      <news:title>Tác giả lần đầu giải thích về cái kết bí ẩn của Chainsaw Man</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/chainsaw-man-fujimoto-explains-the-ending</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
+      <news:publication_date>2026-10-03T17:40:00+07:00</news:publication_date>
+      <news:title>Chainsaw Man’s Creator Finally Explains Its Mysterious Ending</news:title>
+    </news:news>
+  </url>
+  <url>
     <loc>https://otahub.asia/girls-frontline-2-huong-dan-phu-kien-chip-vang</loc>
     <news:news>
       <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
@@ -32,6 +62,22 @@
       <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
       <news:publication_date>2026-10-03T15:00:00+07:00</news:publication_date>
       <news:title>Girls&apos; Frontline 2: T-Dolls F2P Players Should Roll</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/paramount-warner-bros-hop-nhat-lay-ten-skydance</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
+      <news:publication_date>2026-10-03T13:00:00+07:00</news:publication_date>
+      <news:title>Paramount và Warner Bros. hợp nhất, lấy tên Skydance</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/paramount-warner-bros-merger-new-name-skydance</loc>
+    <news:news>
+      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
+      <news:publication_date>2026-10-03T13:00:00+07:00</news:publication_date>
+      <news:title>Paramount and Warner Bros. Merge as Skydance</news:title>
     </news:news>
   </url>
   <url>
@@ -416,134 +462,6 @@
       <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
       <news:publication_date>2026-10-02T08:12:18+07:00</news:publication_date>
       <news:title>A-1 Pictures Anime Worth Watching: From Lycoris Recoil to Solo Leveling</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://otahub.asia/kuri-hime-ayakashi-yobanashi-se-ket-thuc-vao-ngay-28-10</loc>
-    <news:news>
-      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
-      <news:publication_date>2026-10-01T15:01:52+07:00</news:publication_date>
-      <news:title>Kuri Hime Ayakashi Yobanashi sẽ kết thúc vào ngày 28/10</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://otahub.asia/en/kuri-hime-ayakashi-yobanashi-end-october-28</loc>
-    <news:news>
-      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
-      <news:publication_date>2026-10-01T15:01:52+07:00</news:publication_date>
-      <news:title>Kuri Hime Ayakashi Yobanashi to End on October 28</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://otahub.asia/tho-san-quy-chainsaw-man-va-one-piece-cung-gop-mat-tai-harvey-awards-202</loc>
-    <news:news>
-      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
-      <news:publication_date>2026-10-01T14:38:54+07:00</news:publication_date>
-      <news:title>Thợ Săn Quỷ Chainsaw Man và One Piece cùng góp mặt tại Harvey Awards 2026</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://otahub.asia/en/chainsaw-man-and-one-piece-both-nominated-at-the-2026-harvey</loc>
-    <news:news>
-      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
-      <news:publication_date>2026-10-01T14:38:54+07:00</news:publication_date>
-      <news:title>Chainsaw Man and One Piece Both Nominated at the 2026 Harvey Awards</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://otahub.asia/look-back-vuot-1-trieu-ban-tu-manga-one-shot-den-phim-live-a</loc>
-    <news:news>
-      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
-      <news:publication_date>2026-10-01T14:30:29+07:00</news:publication_date>
-      <news:title>Look Back vượt 1 triệu bản: Từ manga one-shot đến phim live-action tranh giải tại Venice</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://otahub.asia/en/look-back-tops-1-million-copies-from-one-shot-manga-to-live</loc>
-    <news:news>
-      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
-      <news:publication_date>2026-10-01T14:30:29+07:00</news:publication_date>
-      <news:title>Look Back Tops 1 Million Copies: From One-Shot Manga to Live-Action Film Competing at Venice</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://otahub.asia/chiikawa-gay-bat-ngo-tai-phong-ve-nhat-ban-vuot-conan-va-can</loc>
-    <news:news>
-      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
-      <news:publication_date>2026-10-01T14:09:26+07:00</news:publication_date>
-      <news:title>Chiikawa gây bất ngờ tại phòng vé Nhật Bản, vượt Thám Tử Lừng Danh Conan và cán mốc 13,9 tỷ yen</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://otahub.asia/en/chiikawa-surprises-the-japanese-box-office-beats-conan</loc>
-    <news:news>
-      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
-      <news:publication_date>2026-10-01T14:09:26+07:00</news:publication_date>
-      <news:title>Chiikawa Surprises the Japanese Box Office, Beats Conan and Passes ¥13.9 Billion</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://otahub.asia/anime-thunder-3-chinh-thuc-xac-nhan-mua-2-ra-mat-nam-2027</loc>
-    <news:news>
-      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
-      <news:publication_date>2026-10-01T14:01:52+07:00</news:publication_date>
-      <news:title>Thunder 3 có mùa 2 năm 2027: anime từ tác giả Gantz</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://otahub.asia/en/thunder-3-anime-officially-confirms-season-2-for-2027</loc>
-    <news:news>
-      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
-      <news:publication_date>2026-10-01T14:01:52+07:00</news:publication_date>
-      <news:title>Thunder 3 Season 2 Set for 2027: Gantz Creator’s Anime</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://otahub.asia/phap-su-tien-tang-frieren-mua-3-golden-land-arc-va-cau-chuyen-ve-macht</loc>
-    <news:news>
-      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
-      <news:publication_date>2026-10-01T13:59:54+07:00</news:publication_date>
-      <news:title>Pháp Sư Tiễn Táng Frieren mùa 3: Golden Land Arc và câu chuyện về Macht</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://otahub.asia/en/frieren-season-3-golden-land-arc-story-macht</loc>
-    <news:news>
-      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
-      <news:publication_date>2026-10-01T13:59:54+07:00</news:publication_date>
-      <news:title>Frieren Season 3: The Golden Land Arc and the Story of Macht</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://otahub.asia/katsuwo-ra-mat-manga-shogi-moi-oja-no-ban-kuruwase</loc>
-    <news:news>
-      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
-      <news:publication_date>2026-10-01T13:43:09+07:00</news:publication_date>
-      <news:title>Katsuwo ra mắt manga shogi mới Ōja no Ban Kuruwase</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://otahub.asia/en/katsuwo-launches-new-shogi-manga-oja-no-ban-kuruwase</loc>
-    <news:news>
-      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
-      <news:publication_date>2026-10-01T13:43:09+07:00</news:publication_date>
-      <news:title>Katsuwo Launches New Shogi Manga Ōja no Ban Kuruwase</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://otahub.asia/raincoat-pikachu-duoc-ban-voi-gia-8-4-trieu-usd-tro-thanh-th</loc>
-    <news:news>
-      <news:publication><news:name>OtaHub</news:name><news:language>vi</news:language></news:publication>
-      <news:publication_date>2026-10-01T13:32:37+07:00</news:publication_date>
-      <news:title>Raincoat Pikachu được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử</news:title>
-    </news:news>
-  </url>
-  <url>
-    <loc>https://otahub.asia/en/raincoat-pikachu-sells-for-8-4-million-becoming-the-second</loc>
-    <news:news>
-      <news:publication><news:name>OtaHub</news:name><news:language>en</news:language></news:publication>
-      <news:publication_date>2026-10-01T13:32:37+07:00</news:publication_date>
-      <news:title>Raincoat Pikachu Sells for $8.4 Million, Becoming the Second Most Expensive Pokémon Card Ever</news:title>
     </news:news>
   </url>
 </urlset>
