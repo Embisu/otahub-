@@ -82,7 +82,9 @@ export function profileMatchers(catalog, series = []) {
   const out = [];
   // Tên thương hiệu (series.json: name = tên Việt hóa, nameEn = tên gốc) cũng nhận diện được bài viết
   const seriesNames = new Map();
-  for (const s of series) for (const e of s.editions) for (const k of [e.key, ...e.also]) seriesNames.set(k, [s.name, s.nameEn]);
+  // Tên Việt hóa có ngoặc "Thế Giới Phép Thuật (Black Clover)": bài viết thường chỉ gọi phần trước ngoặc
+  const bare = (n) => { const b = String(n || '').replace(/\s*\([^)]*\)\s*$/, '').trim(); return b && b !== n ? [b] : []; };
+  for (const s of series) for (const e of s.editions) for (const k of [e.key, ...e.also]) seriesNames.set(k, [s.name, s.nameEn, ...bare(s.name)]);
   for (const [key, e] of Object.entries(catalog)) {
     const names = new Set([displayName(key), ...(MATCH_EXTRA[key] || []), ...(seriesNames.get(key) || [])]);
     const base = displayName(key).replace(/\s+(?:Season \d+|Final Season|Final Part)$/i, '');
