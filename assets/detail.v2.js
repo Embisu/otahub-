@@ -432,7 +432,7 @@ function renderEntry(title, entry, catalog){
   credits=credits.filter(function(c){return c.value&&c.value!==entry.studio;});
   // đội ngũ chính từ AniList, bỏ dòng đã có cùng nhãn/giá trị
   staffCredits(entry).forEach(function(c){if(!credits.some(function(x){return x.value===c.value;}))credits=credits.concat([c]);});
-  var creditsHtml=credits.length?'<h2 class="review-heading">'+TXT.credits+'</h2><div class="credit-grid">'+credits.map(function(c){var label=EN?(c.labelEn||CREDIT_LABEL_EN[c.label]||c.label):c.label;return '<div class="credit-item"><div class="credit-label">'+esc(label)+'</div><div class="credit-value">'+esc(c.value)+'</div></div>';}).join('')+'</div>':'';
+  var creditsHtml=credits.length?'<h2 class="review-heading">'+TXT.credits+'</h2><div class="credit-grid">'+credits.map(function(c){var label=EN?(c.labelEn||CREDIT_LABEL_EN[c.label]||c.label):c.label;return '<div class="credit-item"><div class="credit-label">'+esc(label)+'</div><div class="credit-value">'+linkEnt(esc(c.value),title)+'</div></div>';}).join('')+'</div>':'';
 
   // Tiêu đề mục theo đúng vai trò đoạn văn: giới thiệu, nhận định, kết luận
   var VERDICT_RE=/^(?:Kết luận|Verdict):\s*/;

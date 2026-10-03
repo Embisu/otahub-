@@ -10,9 +10,11 @@ import fs from 'node:fs';
 import { slugify } from './profile-paths.mjs';
 
 const root = new URL('../../', import.meta.url);
+// Ngưỡng tối thiểu (số thương hiệu có hồ sơ). Tác giả: 2, vì mỗi tác giả thường chỉ có vài tác phẩm trong catalog
 export const MIN_WORKS = 3;
-export const ENTITY_TYPES = ['studio', 'publisher'];
-const DIR = { studio: { vi: 'studio', en: 'studio' }, publisher: { vi: 'nha-phat-hanh', en: 'publisher' } };
+export const MIN_BY_TYPE = { studio: 3, publisher: 3, creator: 2 };
+export const ENTITY_TYPES = ['studio', 'publisher', 'creator'];
+const DIR = { studio: { vi: 'studio', en: 'studio' }, publisher: { vi: 'nha-phat-hanh', en: 'publisher' }, creator: { vi: 'tac-gia-goc', en: 'creator' } };
 export const entityPath = (type, slug, en) => (en ? '/en/' + DIR[type].en + '/' : '/' + DIR[type].vi + '/') + slug;
 export const entityIndexPath = (type, en) => (en ? '/en/' + DIR[type].en + '/' : '/' + DIR[type].vi + '/');
 export const ENTITY_DIRS = ENTITY_TYPES.flatMap((t) => [DIR[t].vi, 'en/' + DIR[t].en]);
@@ -25,9 +27,23 @@ function readConfig() {
   try { return JSON.parse(fs.readFileSync(new URL('assets/entities.json', root), 'utf8')); } catch { return {}; }
 }
 
+// Tên giống công ty / nhóm (không phải người): không lập trang tác giả
+const COMPANY_LIKE = /shueisha|kodansha|bushiroad|china literature|tencent|kadokawa|shogakukan|square enix|webtoon|tapas|studio|\bgames?\b|entertainment|production|pictures|animation|\bfilms?\b|\binc\.?$|\bcorp|\bco\.|\bltd|toei|sunrise|bandai|konami|capcom|sony|netflix|hakusensha|ichijinsha|yen press|comics|\bteam\b|\bworks\b|type-moon|dreamtoon|kakaopage|enterbrain/i;
+const CREATOR_LABELS = /^(Original creators?|Original story|Original author|Author|Creator|Creator \/ publisher|Story|Art)$/i;
+// Tác giả: phần đầu của trường `studio` ở manga + các dòng credits nguyên tác
+function creatorsOf(entry) {
+  const names = [];
+  if (entry.type === 'manga' && entry.studio) names.push(...entry.studio.split(/\s+\/\s+/)[0].split(/\s*(?:,|&)\s*/));
+  for (const c of entry.credits || []) if (CREATOR_LABELS.test(c.labelEn || '')) names.push(...String(c.value).split(/\s*(?:,|\/|&)\s*/));
+  return [...new Set(names.map(clean).filter((n) => n.length >= 3 && !COMPANY_LIKE.test(n)))].map((name) => ({ type: 'creator', name }));
+}
+
+// Gốc thương hiệu: bỏ hậu tố mùa / phần / arc để "Ace of Diamond act II" và "... (Part 2)" chỉ tính một tác phẩm khi xét ngưỡng
+export const franchiseBase = (n) => n.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').replace(/\b(\d+(st|nd|rd|th)|second|third|final|new)\s+season\b.*$/, '').replace(/\bseason\s*\d+.*$/, '').replace(/\bpart\s*\d+.*$/, '').replace(/\bact\s+[ivx]+\b.*$/, '').replace(/\s+(ii|iii|iv|2|3)\s*$/, '').replace(/[:!?.]/g, ' ').replace(/\s+/g, ' ').trim();
+
 // Tên -> danh sách (type) theo quy tắc trên, cho một mục catalog
 export function partsOf(entry) {
-  const out = [];   // { type, name }
+  const out = creatorsOf(entry);   // { type, name }
   if (!entry.studio) return out;
   const parts = entry.studio.split(/\s+\/\s+/).map((p) => p.trim());
   if (entry.type === 'anime') parts.forEach((p) => splitNames(p).forEach((n) => out.push({ type: 'studio', name: n })));
@@ -46,9 +62,9 @@ export function buildEntities(catalog, series) {
   const seriesOf = new Map();
   series.forEach((s) => s.editions.forEach((e) => { seriesOf.set(e.key, s); (e.also || []).forEach((k) => seriesOf.set(k, s)); }));
   // gộp tên: nhóm đầu tiên là tên chuẩn
-  const canon = { studio: new Map(), publisher: new Map() };
+  const canon = { studio: new Map(), publisher: new Map(), creator: new Map() };
   for (const t of ENTITY_TYPES) for (const group of merge[t] || []) for (const n of group) canon[t].set(nameKey(n), group[0]);
-  const groups = { studio: new Map(), publisher: new Map() };
+  const groups = { studio: new Map(), publisher: new Map(), creator: new Map() };
   for (const [key, entry] of Object.entries(catalog)) {
     const s = seriesOf.get(key); if (!s) continue;
     for (const { type, name } of partsOf(entry)) {
@@ -62,9 +78,9 @@ export function buildEntities(catalog, series) {
       g.series.get(s.slug).keys.push({ key, variant: name });
     }
   }
-  const list = [], byKey = new Map(), used = { studio: new Set(), publisher: new Set() };
+  const list = [], byKey = new Map(), used = { studio: new Set(), publisher: new Set(), creator: new Set() };
   for (const type of ENTITY_TYPES) {
-    const sorted = [...groups[type].values()].filter((g) => g.series.size >= MIN_WORKS).sort((a, b) => b.series.size - a.series.size || a.display.localeCompare(b.display));
+    const sorted = [...groups[type].values()].filter((g) => new Set([...g.series.values()].map((w) => franchiseBase(w.series.nameEn))).size >= MIN_BY_TYPE[type]).sort((a, b) => b.series.size - a.series.size || a.display.localeCompare(b.display));
     for (const g of sorted) {
       let slug = slugify(g.display) || type; let n = 2; const base = slug;
       while (used[type].has(slug)) slug = base + '-' + n++;

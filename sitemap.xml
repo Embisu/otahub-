@@ -3504,6 +3504,8 @@
   <url><loc>https://otahub.asia/en/studio/</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://otahub.asia/nha-phat-hanh/</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://otahub.asia/en/publisher/</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/tac-gia-goc/</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/en/creator/</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://otahub.asia/studio/studio-deen</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://otahub.asia/en/studio/studio-deen</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://otahub.asia/studio/studio-kai</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -3602,5 +3604,33 @@
   <url><loc>https://otahub.asia/en/publisher/square-enix</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://otahub.asia/nha-phat-hanh/xbox-game-studios</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://otahub.asia/en/publisher/xbox-game-studios</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/tac-gia-goc/koucha-agasawa</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/en/creator/koucha-agasawa</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/tac-gia-goc/akira-itou</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/en/creator/akira-itou</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/tac-gia-goc/atekichi</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/en/creator/atekichi</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/tac-gia-goc/izumi-toudou</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/en/creator/izumi-toudou</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/tac-gia-goc/katsuwo</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/en/creator/katsuwo</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/tac-gia-goc/kureha</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/en/creator/kureha</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/tac-gia-goc/masashi-kishimoto</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/en/creator/masashi-kishimoto</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/tac-gia-goc/natsu-hyuuga</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/en/creator/natsu-hyuuga</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/tac-gia-goc/nazuna-miki</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/en/creator/nazuna-miki</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/tac-gia-goc/nekoko</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/en/creator/nekoko</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/tac-gia-goc/rocket-shoukai</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/en/creator/rocket-shoukai</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/tac-gia-goc/rumiko-takahashi</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/en/creator/rumiko-takahashi</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/tac-gia-goc/tatsuki-fujimoto</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/en/creator/tatsuki-fujimoto</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/tac-gia-goc/umikaze-minamino</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://otahub.asia/en/creator/umikaze-minamino</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <!-- PROFILES:END -->
 </urlset>

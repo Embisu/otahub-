@@ -23,7 +23,11 @@
   },
   "exclude": {
     "studio": [],
-    "publisher": []
+    "publisher": [],
+    "creator": [
+      "Hajime Yatate",
+      "Type-Moon"
+    ]
   },
   "names": {},
   "desc": {
@@ -75,7 +79,21 @@
     "publisher:HoYoverse": "HoYoverse là thương hiệu phát hành toàn cầu do miHoYo ra mắt năm 2022, hoạt động từ Singapore. miHoYo là công ty game Trung Quốc thành lập năm 2012 tại Thượng Hải, nổi tiếng với Genshin Impact, Honkai: Star Rail và Zenless Zone Zero.",
     "publisher:Kodansha": "Kodansha là nhà xuất bản tư nhân của Nhật Bản, ra đời năm 1909 dưới tên Dai Nippon Yūbenkai và đổi sang tên Kodansha năm 1911, trụ sở tại Tokyo. Công ty do Seiji Noma sáng lập, phát hành các tạp chí manga như Weekly Shōnen Magazine và Nakayoshi.",
     "publisher:Square Enix": "Square Enix là công ty mẹ giải trí của Nhật Bản, hình thành ngày 1 tháng 4 năm 2003 từ việc sáp nhập Square (1983) và Enix (1975), trụ sở tại Shinjuku, Tokyo. Hãng nắm giữ các series Final Fantasy, Dragon Quest và Kingdom Hearts.",
-    "publisher:Xbox Game Studios": "Xbox Game Studios là bộ phận phát hành trò chơi của Microsoft, đặt tại Redmond, Washington, Mỹ. Đơn vị thành lập tháng 3 năm 2000 với tên Microsoft Games, đổi sang tên hiện tại năm 2019, và phát hành các series như Halo, Forza, Gears of War và Minecraft."
+    "publisher:Xbox Game Studios": "Xbox Game Studios là bộ phận phát hành trò chơi của Microsoft, đặt tại Redmond, Washington, Mỹ. Đơn vị thành lập tháng 3 năm 2000 với tên Microsoft Games, đổi sang tên hiện tại năm 2019, và phát hành các series như Halo, Forza, Gears of War và Minecraft.",
+    "creator:Koucha Agasawa": "Koucha Agasawa là tác giả manga người Nhật, được biết đến với You and I Are Polar Opposites, đăng trên ứng dụng Shōnen Jump+ của Shueisha từ năm 2022 đến 2024, và Koori no Jouheki (The Ramparts of Ice).",
+    "creator:Akira Itou": "Akira Itō là họa sĩ manga người Nhật, từng tham gia làm manga Yu-Gi-Oh! và vẽ Yu-Gi-Oh! R. Ông là người đồng sáng tạo Cardfight!! Vanguard, và được ghi nhận là tác giả gốc của Cardfight!! Vanguard Divinez.",
+    "creator:Atekichi": "Atekichi là tác giả light novel người Nhật. Saikyou no Shokugyou wa Yuusha demo Kenja demo Naku Kanteishi (Kari) Rashii desu yo? đăng trên AlphaPolis dạng web novel từ năm 2016, sau đó xuất bản thành light novel; tác giả cũng viết Heroine? Seijo? Iie, All Works Maid desu (Hokori)!",
+    "creator:Izumi Toudou": "Izumi Toudou (Tōdō Izumi) không phải một cá nhân mà là bút danh chung của các nhà sản xuất truyền hình Toei Animation. Tên này được ghi là tác giả gốc của các loạt như Ojamajo Doremi và Pretty Cure, trong đó có Meitantei Precure!.",
+    "creator:Katsuwo": "Katsuwo là tác giả manga người Nhật, vừa viết vừa vẽ. Tác giả được biết đến với Mitsuboshi Colors đăng trên Dengeki Daioh và #Zombie Sagashitemasu đăng trên Comic Dengeki Daioh \"g\" của ASCII Media Works.",
+    "creator:Kureha": "Kureha là tác giả light novel người Nhật. Bride of the Barrier Master do Kureha viết, ra mắt tại Kadokawa Bunko của Kadokawa Shoten từ năm 2021; tác giả cũng viết The Ogre's Bride (Oni no Hanayome).",
+    "creator:Masashi Kishimoto": "Masashi Kishimoto là họa sĩ manga người Nhật, tác giả của Naruto, đăng trên Weekly Shōnen Jump. Ông cũng giám sát và viết kịch bản cho phần nối tiếp Boruto, và là tác giả Samurai 8: The Tale of Hachimaru.",
+    "creator:Natsu Hyuuga": "Natsu Hyuuga (Hyūganatsu) là tác giả light novel người Nhật, nổi tiếng với The Apothecary Diaries. Truyện được đăng trên trang tiểu thuyết mạng Shōsetsuka ni Narō từ năm 2011, sau đó xuất bản dưới dạng light novel ở nhãn Hero Bunko của Shufunotomo.",
+    "creator:Nazuna Miki": "Nazuna Miki là tác giả người Nhật chuyên viết truyện isekai và fantasy. Tác giả này là người viết nguyên tác của Kizoku Tensei (web novel trên Shōsetsuka ni Narō, sau đó ra light novel ở TO Books) và viết kịch bản manga Tensei Goblin dakedo Shitsumon Aru? trên Tonari no Young Jump của Shueisha.",
+    "creator:Nekoko": "Nekoko là tác giả web novel và light novel người Nhật, tác giả của Tensei shitara Dragon no Tamago datta. Truyện bắt đầu đăng trên Shōsetsuka ni Narō từ năm 2015, được Earth Star Entertainment rồi Square Enix (SQEX Novel) phát hành dưới dạng light novel.",
+    "creator:Rocket Shoukai": "Rocket Shoukai (Rocket Shōkai) là tác giả light novel người Nhật. Tác giả này viết Yuusha-kei ni Shosu (Sentenced to Be a Hero), đăng trên Kakuyomu từ năm 2020 rồi ra sách ở nhãn Dengeki no Shin Bungei của ASCII Media Works, và còn là tác giả của Yuusha no Kuzu.",
+    "creator:Rumiko Takahashi": "Rumiko Takahashi là họa sĩ manga người Nhật, hoạt động từ năm 1978. Bà nổi tiếng với Urusei Yatsura, Maison Ikkoku, Ranma ½ và Inuyasha, phần lớn đăng trên Weekly Shōnen Sunday; tác phẩm gần đây của bà là Mao.",
+    "creator:Tatsuki Fujimoto": "Tatsuki Fujimoto là họa sĩ manga người Nhật, sáng tác Fire Punch, Chainsaw Man (Phần 1 trên Weekly Shōnen Jump, Phần 2 trên Shōnen Jump+) và các oneshot như Look Back, Goodbye, Eri. Nhiều tác phẩm của ông chịu ảnh hưởng từ điện ảnh.",
+    "creator:Umikaze Minamino": "Umikaze Minamino là tác giả light novel người Nhật, viết Kyouran Reijou Nia Liston (đăng trên Shōsetsuka ni Narō, ra sách ở HJ Bunko của Hobby Japan) và Majutsushi Kunon wa Mieteiru (đăng trên Shōsetsuka ni Narō, ra sách ở Kadokawa Books của Fujimi Shobo)."
   },
   "descEn": {
     "studio:Studio Deen": "Studio Deen is a Japanese animation studio founded in 1975 by former Sunrise producer Hiroshi Hasegawa and a group of ex-Sunrise animators. Based in Musashino, Tokyo, it has belonged to IMA Group since 2011. Its credits include Ranma ½ and Fate/stay night (2006).",
@@ -126,7 +144,21 @@
     "publisher:HoYoverse": "HoYoverse is the global publishing brand launched by miHoYo in 2022, operating from Singapore. miHoYo is a Chinese game company founded in 2012 in Shanghai, known for Genshin Impact, Honkai: Star Rail and Zenless Zone Zero.",
     "publisher:Kodansha": "Kodansha is a privately held Japanese publisher that began in 1909 as Dai Nippon Yubenkai and took the Kodansha name in 1911, based in Tokyo. Founded by Seiji Noma, it publishes manga magazines such as Weekly Shonen Magazine and Nakayoshi.",
     "publisher:Square Enix": "Square Enix is a Japanese entertainment holding company formed on 1 April 2003 through the merger of Square (1983) and Enix (1975), headquartered in Shinjuku, Tokyo. It owns series such as Final Fantasy, Dragon Quest and Kingdom Hearts.",
-    "publisher:Xbox Game Studios": "Xbox Game Studios is the game publishing division of Microsoft, based in Redmond, Washington, USA. It was established in March 2000 as Microsoft Games, took its current name in 2019, and publishes series such as Halo, Forza, Gears of War and Minecraft."
+    "publisher:Xbox Game Studios": "Xbox Game Studios is the game publishing division of Microsoft, based in Redmond, Washington, USA. It was established in March 2000 as Microsoft Games, took its current name in 2019, and publishes series such as Halo, Forza, Gears of War and Minecraft.",
+    "creator:Koucha Agasawa": "Koucha Agasawa is a Japanese manga creator known for You and I Are Polar Opposites, serialized on Shueisha's Shonen Jump+ app from 2022 to 2024, and for Koori no Jouheki (The Ramparts of Ice).",
+    "creator:Akira Itou": "Akira Itō is a Japanese manga artist who worked on the Yu-Gi-Oh! manga and illustrated Yu-Gi-Oh! R. He is a co-creator of Cardfight!! Vanguard and is credited as original creator of Cardfight!! Vanguard Divinez.",
+    "creator:Atekichi": "Atekichi is a Japanese light novel author. Saikyou no Shokugyou wa Yuusha demo Kenja demo Naku Kanteishi (Kari) Rashii desu yo? began as a web novel on AlphaPolis in 2016 before its light novel release. Atekichi also wrote Heroine? Seijo? Iie, All Works Maid desu (Hokori)!",
+    "creator:Izumi Toudou": "Izumi Toudou (Tōdō Izumi) is not a single person but a collective pen name of Toei Animation television producers. The name is credited as original creator of series such as Ojamajo Doremi and Pretty Cure, which includes Meitantei Precure!.",
+    "creator:Katsuwo": "Katsuwo is a Japanese manga creator who writes and draws their own series. Known for Mitsuboshi Colors in Dengeki Daioh and #Zombie Sagashitemasu in Comic Dengeki Daioh \"g\", both from ASCII Media Works.",
+    "creator:Kureha": "Kureha is a Japanese light novel author. Bride of the Barrier Master was written by Kureha and launched under Kadokawa Shoten's Kadokawa Bunko imprint in 2021. Kureha also wrote The Ogre's Bride (Oni no Hanayome).",
+    "creator:Masashi Kishimoto": "Masashi Kishimoto is a Japanese manga artist and the creator of Naruto, serialized in Weekly Shonen Jump. He supervises and writes the sequel series Boruto and also created Samurai 8: The Tale of Hachimaru.",
+    "creator:Natsu Hyuuga": "Natsu Hyuuga (Hyūganatsu) is a Japanese light novel author best known for The Apothecary Diaries. The story was serialized on the web novel site Shōsetsuka ni Narō from 2011 and later published as light novels under Shufunotomo's Hero Bunko imprint.",
+    "creator:Nazuna Miki": "Nazuna Miki is a Japanese author of isekai and fantasy stories. Miki wrote the original Kizoku Tensei (a Shōsetsuka ni Narō web novel later published as light novels by TO Books) and writes the manga Tensei Goblin dakedo Shitsumon Aru? for Shueisha's Tonari no Young Jump.",
+    "creator:Nekoko": "Nekoko is a Japanese web novel and light novel author, creator of Tensei shitara Dragon no Tamago datta. The story began on Shōsetsuka ni Narō in 2015 and was published as light novels by Earth Star Entertainment and later Square Enix (SQEX Novel).",
+    "creator:Rocket Shoukai": "Rocket Shoukai (Rocket Shōkai) is a Japanese light novel author. Shoukai wrote Yuusha-kei ni Shosu (Sentenced to Be a Hero), serialized on Kakuyomu from 2020 and published under ASCII Media Works' Dengeki no Shin Bungei imprint, and also wrote Yuusha no Kuzu.",
+    "creator:Rumiko Takahashi": "Rumiko Takahashi is a Japanese manga artist active since 1978. She is known for Urusei Yatsura, Maison Ikkoku, Ranma ½ and Inuyasha, mostly serialized in Weekly Shōnen Sunday, and her more recent work is Mao.",
+    "creator:Tatsuki Fujimoto": "Tatsuki Fujimoto is a Japanese manga artist who created Fire Punch, Chainsaw Man (Part 1 in Weekly Shōnen Jump, Part 2 on Shōnen Jump+) and one-shots such as Look Back and Goodbye, Eri. His work draws noticeably on cinema.",
+    "creator:Umikaze Minamino": "Umikaze Minamino is a Japanese light novel author who wrote Kyouran Reijou Nia Liston (serialized on Shōsetsuka ni Narō, published by Hobby Japan's HJ Bunko) and Majutsushi Kunon wa Mieteiru (on Shōsetsuka ni Narō, published under Kadokawa Books by Fujimi Shobo)."
   },
   "sources": {
     "studio:Studio Deen": [
@@ -425,6 +457,106 @@
       {
         "name": "Wikipedia: Xbox Game Studios",
         "url": "https://en.wikipedia.org/wiki/Xbox_Game_Studios"
+      }
+    ],
+    "creator:Koucha Agasawa": [
+      {
+        "name": "Wikipedia: You and I Are Polar Opposites",
+        "url": "https://en.wikipedia.org/wiki/You_and_I_Are_Polar_Opposites"
+      }
+    ],
+    "creator:Akira Itou": [
+      {
+        "name": "Wikipedia: Akira Itō (artist)",
+        "url": "https://en.wikipedia.org/wiki/Akira_It%C5%8D_(artist)"
+      },
+      {
+        "name": "Anime News Network: Cardfight!! Vanguard Divinez Deluxe-hen",
+        "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=33713"
+      }
+    ],
+    "creator:Atekichi": [
+      {
+        "name": "Wikipedia: The Strongest Job Is Apparently Not a Hero or a Sage, but an Appraiser (Provisional)!",
+        "url": "https://en.wikipedia.org/wiki/The_Strongest_Job_Is_Apparently_Not_a_Hero_or_a_Sage,_but_an_Appraiser_(Provisional)!"
+      }
+    ],
+    "creator:Izumi Toudou": [
+      {
+        "name": "Wikipedia: Izumi Todo",
+        "url": "https://en.wikipedia.org/wiki/Izumi_Todo"
+      }
+    ],
+    "creator:Katsuwo": [
+      {
+        "name": "Wikipedia: Zombie Sagashitemasu",
+        "url": "https://en.wikipedia.org/wiki/Zombie_Sagashitemasu"
+      },
+      {
+        "name": "Wikipedia: Mitsuboshi Colors",
+        "url": "https://en.wikipedia.org/wiki/Mitsuboshi_Colors"
+      }
+    ],
+    "creator:Kureha": [
+      {
+        "name": "Wikipedia: Bride of the Barrier Master",
+        "url": "https://en.wikipedia.org/wiki/Bride_of_the_Barrier_Master"
+      }
+    ],
+    "creator:Masashi Kishimoto": [
+      {
+        "name": "Wikipedia: Masashi Kishimoto",
+        "url": "https://en.wikipedia.org/wiki/Masashi_Kishimoto"
+      }
+    ],
+    "creator:Natsu Hyuuga": [
+      {
+        "name": "Wikipedia: The Apothecary Diaries",
+        "url": "https://en.wikipedia.org/wiki/The_Apothecary_Diaries"
+      }
+    ],
+    "creator:Nazuna Miki": [
+      {
+        "name": "Wikipedia: So What's Wrong with Getting Reborn as a Goblin?",
+        "url": "https://en.wikipedia.org/wiki/So_What%27s_Wrong_with_Getting_Reborn_as_a_Goblin%3F"
+      },
+      {
+        "name": "Wikipedia: I'm a Noble on the Brink of Ruin, So I Might as Well Try Mastering Magic",
+        "url": "https://en.wikipedia.org/wiki/I%27m_a_Noble_on_the_Brink_of_Ruin,_So_I_Might_as_Well_Try_Mastering_Magic"
+      }
+    ],
+    "creator:Nekoko": [
+      {
+        "name": "Wikipedia: Reincarnated as a Dragon Hatchling",
+        "url": "https://en.wikipedia.org/wiki/Reincarnated_as_a_Dragon_Hatchling"
+      }
+    ],
+    "creator:Rocket Shoukai": [
+      {
+        "name": "Wikipedia: Sentenced to Be a Hero",
+        "url": "https://en.wikipedia.org/wiki/Sentenced_to_Be_a_Hero"
+      }
+    ],
+    "creator:Rumiko Takahashi": [
+      {
+        "name": "Wikipedia: Rumiko Takahashi",
+        "url": "https://en.wikipedia.org/wiki/Rumiko_Takahashi"
+      }
+    ],
+    "creator:Tatsuki Fujimoto": [
+      {
+        "name": "Wikipedia: Tatsuki Fujimoto",
+        "url": "https://en.wikipedia.org/wiki/Tatsuki_Fujimoto"
+      }
+    ],
+    "creator:Umikaze Minamino": [
+      {
+        "name": "Wikipedia: Nia Liston: The Merciless Maiden",
+        "url": "https://en.wikipedia.org/wiki/Nia_Liston:_The_Merciless_Maiden"
+      },
+      {
+        "name": "Wikipedia: Kunon the Sorcerer Can See",
+        "url": "https://en.wikipedia.org/wiki/Kunon_the_Sorcerer_Can_See"
       }
     ]
   }

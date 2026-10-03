@@ -272,7 +272,7 @@ function indexPage(en) {
   html = setTag(html, /<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${ORIGIN}/og-image.png">`);
   html = html.replace(/<meta name="twitter:image" content="[^"]*">/, () => `<meta name="twitter:image" content="${ORIGIN}/og-image.png">`);
   html = setTag(html, /<\/head>/, `<style id="ot-detail-style">${detailCss}</style><style id="ot-index-style">${css}</style>\n${ld(collection)}\n${ld(crumbs)}\n</head>`);
-  const body = `<div class="pf-wrap"><nav class="breadcrumb" aria-label="breadcrumb"><a href="${en ? '/en/' : '/'}">OtaHub</a><span class="breadcrumb-sep">›</span><span>${L.crumb}</span></nav><h1 class="pf-h1">${L.h1}</h1><p class="pf-lead">${L.lead}</p><p class="ent-browse" style="margin:-8px 0 18px">${en ? 'Browse by' : 'Duyệt theo'}: <a href="${entityIndexPath('studio', en)}">${en ? 'Studios' : 'Studio'}</a> <a href="${entityIndexPath('publisher', en)}">${en ? 'Publishers' : 'Nhà phát hành'}</a></p><div class="pf-tools"><input type="search" id="pfQ" placeholder="${L.ph}" aria-label="${L.ph}" autocomplete="off"><div class="pf-chips">${chips}</div></div><div class="pf-grid">${cards}</div><p class="pf-empty" id="pfEmpty" hidden>${L.empty}</p></div><script>${js}</script>`;
+  const body = `<div class="pf-wrap"><nav class="breadcrumb" aria-label="breadcrumb"><a href="${en ? '/en/' : '/'}">OtaHub</a><span class="breadcrumb-sep">›</span><span>${L.crumb}</span></nav><h1 class="pf-h1">${L.h1}</h1><p class="pf-lead">${L.lead}</p><p class="ent-browse" style="margin:-8px 0 18px">${en ? 'Browse by' : 'Duyệt theo'}: <a href="${entityIndexPath('studio', en)}">${en ? 'Studios' : 'Studio'}</a> <a href="${entityIndexPath('publisher', en)}">${en ? 'Publishers' : 'Nhà phát hành'}</a> <a href="${entityIndexPath('creator', en)}">${en ? 'Creators' : 'Tác giả gốc'}</a></p><div class="pf-tools"><input type="search" id="pfQ" placeholder="${L.ph}" aria-label="${L.ph}" autocomplete="off"><div class="pf-chips">${chips}</div></div><div class="pf-grid">${cards}</div><p class="pf-empty" id="pfEmpty" hidden>${L.empty}</p></div><script>${js}</script>`;
   html = setTag(html, /<div id="detailRoot">[\s\S]*?<\/div><\/div>/, `<div id="detailRoot" data-prerendered>${body}</div>`);
   html = html.replace(/<script defer src="\/assets\/detail\.v2\.js[^>]*><\/script>\n?/, '');
   return html;
@@ -284,6 +284,7 @@ let PF_CSS = '';
 const ENT_L = {
   studio: { vi: 'Studio', en: 'Studio', allVi: 'Tất cả studio', allEn: 'All studios', plural: { vi: 'studio', en: 'studios' } },
   publisher: { vi: 'Nhà phát hành', en: 'Publisher', allVi: 'Tất cả nhà phát hành', allEn: 'All publishers', plural: { vi: 'nhà phát hành', en: 'publishers' } },
+  creator: { vi: 'Tác giả gốc', en: 'Creator', allVi: 'Tất cả tác giả gốc', allEn: 'All original creators', plural: { vi: 'tác giả gốc', en: 'original creators' } },
 };
 const TYPE_VI = { game: 'game', anime: 'anime', manga: 'manga' };
 const thumbS = (img) => {
@@ -292,6 +293,7 @@ const thumbS = (img) => {
 };
 const roleText = (ent, en) => {
   const types = new Set(ent.works.flatMap((w) => w.series.editions.map((e) => e.type)));
+  if (ent.type === 'creator') return types.has('manga') ? (en ? 'a manga creator' : 'tác giả manga') : (en ? 'an original creator' : 'tác giả nguyên tác');
   if (ent.type === 'studio') {
     if (types.has('anime') && types.has('game')) return en ? 'an anime studio and game developer' : 'studio anime và nhà phát triển game';
     return types.has('anime') ? (en ? 'an anime studio' : 'studio anime') : (en ? 'a game developer' : 'nhà phát triển game');
@@ -367,13 +369,13 @@ function entityIndex(type, en) {
   const list = entities.list.filter((x) => x.type === type);
   const url = ORIGIN + entityIndexPath(type, en);
   const lead = en
-    ? `${list.length} ${L.plural.en} with at least three titles profiled on OtaHub. Open one to see every profiled title it worked on, with scores and related articles.`
-    : `${list.length} ${L.plural.vi} có từ ba tác phẩm trở lên được OtaHub lập hồ sơ. Mở từng trang để xem mọi tác phẩm đã có hồ sơ, kèm điểm và bài viết liên quan.`;
+    ? `${list.length} ${L.plural.en} with at least ${type === 'creator' ? 'two' : 'three'} titles profiled on OtaHub. Open one to see every profiled title it worked on, with scores and related articles.`
+    : `${list.length} ${L.plural.vi} có từ ${type === 'creator' ? 'hai' : 'ba'} tác phẩm trở lên được OtaHub lập hồ sơ. Mở từng trang để xem mọi tác phẩm đã có hồ sơ, kèm điểm và bài viết liên quan.`;
   const items = [...list].sort((a, b) => (en ? a.nameEn : a.name).localeCompare(en ? b.nameEn : b.name, 'en', { sensitivity: 'base' })).map((x) => {
     const sample = x.works.slice(0, 3).map((w) => (en ? w.series.nameEn : w.series.name)).join(', ');
     return `<a class="ent-item" href="${entityPath(type, x.slug, en)}"><b>${escHtml(en ? x.nameEn : x.name)}</b><span>${x.works.length} ${en ? 'titles' : 'tác phẩm'}</span><span>${escHtml(sample)}</span></a>`;
   }).join('');
-  const body = `<div class="pf-wrap"><nav class="breadcrumb" aria-label="breadcrumb"><a href="${en ? '/en/' : '/'}">OtaHub</a><span class="breadcrumb-sep">›</span><span>${label}</span></nav><h1 class="pf-h1">${en ? L.allEn : L.allVi}</h1><p class="pf-lead">${escHtml(lead)}</p><div class="ent-list">${items}</div><p class="ent-browse"><a href="${entityIndexPath(type === 'studio' ? 'publisher' : 'studio', en)}">${en ? ENT_L[type === 'studio' ? 'publisher' : 'studio'].allEn : ENT_L[type === 'studio' ? 'publisher' : 'studio'].allVi}</a><a href="${en ? '/en/profile/' : '/ho-so/'}">${en ? 'All title profiles' : 'Tất cả hồ sơ tác phẩm'}</a></p></div>`;
+  const body = `<div class="pf-wrap"><nav class="breadcrumb" aria-label="breadcrumb"><a href="${en ? '/en/' : '/'}">OtaHub</a><span class="breadcrumb-sep">›</span><span>${label}</span></nav><h1 class="pf-h1">${en ? L.allEn : L.allVi}</h1><p class="pf-lead">${escHtml(lead)}</p><div class="ent-list">${items}</div><p class="ent-browse">${ENTITY_TYPES.filter((t) => t !== type).map((t) => `<a href="${entityIndexPath(t, en)}">${en ? ENT_L[t].allEn : ENT_L[t].allVi}</a>`).join('')}<a href="${en ? '/en/profile/' : '/ho-so/'}">${en ? 'All title profiles' : 'Tất cả hồ sơ tác phẩm'}</a></p></div>`;
   const ld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: en ? L.allEn : L.allVi, url, inLanguage: en ? 'en' : 'vi', mainEntity: { '@type': 'ItemList', numberOfItems: list.length, itemListElement: list.map((x, k) => ({ '@type': 'ListItem', position: k + 1, name: en ? x.nameEn : x.name, url: ORIGIN + entityPath(type, x.slug, en) })) } },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'OtaHub', item: ORIGIN + (en ? '/en/' : '/') }, { '@type': 'ListItem', position: 2, name: label, item: url }] }];
   return shellPage(en, { title: `${en ? L.allEn : L.allVi} · OtaHub`, desc: lead.slice(0, 158), url, viUrl: ORIGIN + entityIndexPath(type, false), enUrl: ORIGIN + entityIndexPath(type, true), img: ORIGIN + '/og-image.png', ld, body, css: ENT_CSS });
