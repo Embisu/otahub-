@@ -162,7 +162,10 @@ function pageHtml(s, en, rs) {
   const img = e0.img && !/placeholder/.test(e0.img) ? ORIGIN + e0.img : ORIGIN + '/og-image.png';
   const name = en ? s.nameEn : s.name;   // tên hiển thị theo ngôn ngữ (series.json: name = tên Việt hóa, nameEn = tên gốc)
   const labels = s.editions.map((e) => (en ? e.labelEn : e.label));
-  const title = multi ? `${name}: ${labels.join(', ')} · ${en ? 'Profile' : 'Hồ sơ'} · OtaHub` : r0.title.replace(displayName(main.key), name);
+  let title = multi ? `${name}: ${labels.join(', ')} · ${en ? 'Profile' : 'Hồ sơ'} · OtaHub` : r0.title.replace(displayName(main.key), name);
+  // Tên rất dài (romaji light novel): bỏ đuôi thương hiệu để tiêu đề không bị Google cắt
+  if (title.length > 75) title = title.replace(/ · OtaHub$/, '');
+  if (title.length > 75) title = title.replace(/ · (Hồ sơ|Profile)$/, '');
   const hub = { game: en ? ['Gaming', '/en/gaming'] : ['Gaming', '/gaming'], anime: en ? ['Anime', '/en/anime'] : ['Anime', '/anime'], manga: en ? ['Manga', '/en/manga'] : ['Manga', '/manga'] }[main.type];
   const crumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'OtaHub', item: ORIGIN + (en ? '/en/' : '/') },
@@ -204,6 +207,8 @@ function pageHtml(s, en, rs) {
     }).join('');
     body = bar + panels;
   }
+  // Ảnh thu nhỏ chưa được tạo (ảnh bìa bài mới): dùng ảnh gốc thay vì link thu nhỏ không tồn tại
+  body = body.replace(/src="(\/assets\/img\/_[st]\/([^"?#]+)\.webp)"/g, (m, thumb, orig) => (exists(thumb.slice(1)) ? m : `src="/assets/img/${orig}"`));
   html = setTag(html, /<div id="detailRoot">[\s\S]*?<\/div><\/div>/, `<div id="detailRoot" data-prerendered>${body}</div>`);
   html = html.replace(/\/assets\/detail\.v2\.js\?v=[^"]+/, `/assets/detail.v2.js?v=${DETAIL_VER}`);
   return html;
