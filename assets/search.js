@@ -1,5 +1,23 @@
 window.IDX = [
   {
+    "title": "Nirvana in Girls' Frontline Explained Simply",
+    "url": "/en/nirvana-in-girls-frontline-explained-simply",
+    "cat": "Gaming",
+    "date": "2026-10-03",
+    "excerpt": "What is Nirvana (NB) in Girls' Frontline, and how do OGAS, Keys and the Lake of Cognition connect to it? A plain-language guide with theory flagged.",
+    "img": "/assets/img/gfl2-nb-niet-ban-hero.jpg",
+    "tags": []
+  },
+  {
+    "title": "NB trong Girls' Frontline là gì? Giải thích dễ hiểu",
+    "url": "/nb-niet-ban-trong-girls-frontline-giai-thich-de-hieu",
+    "cat": "Gaming",
+    "date": "2026-10-03",
+    "excerpt": "NB (Niết Bàn) trong Girls' Frontline nối OGAS, “Chìa khóa” và Hồ Nhận Thức ra sao? Giải thích dễ hiểu, tách phần đã xác nhận với phần mới là giả thuyết.",
+    "img": "/assets/img/gfl2-nb-niet-ban-hero.jpg",
+    "tags": []
+  },
+  {
     "title": "Berserk Review: Studio Gaga Carries On After Miura (8.0/10)",
     "url": "/en/berserk-manga-review",
     "cat": "Manga",
