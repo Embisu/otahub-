@@ -1,10 +1,431 @@
 {
   "merge": {
-    "studio": [["Konami", "Konami Digital Entertainment"], ["Gekkou", "Gekkō"]],
-    "publisher": [["Konami", "Konami Digital Entertainment"], ["Kadokawa", "Kadokawa Shoten"]]
+    "studio": [
+      [
+        "Konami",
+        "Konami Digital Entertainment"
+      ],
+      [
+        "Gekkou",
+        "Gekkō"
+      ]
+    ],
+    "publisher": [
+      [
+        "Konami",
+        "Konami Digital Entertainment"
+      ],
+      [
+        "Kadokawa",
+        "Kadokawa Shoten"
+      ]
+    ]
   },
-  "exclude": { "studio": [], "publisher": [] },
+  "exclude": {
+    "studio": [],
+    "publisher": []
+  },
   "names": {},
-  "desc": {},
-  "descEn": {}
+  "desc": {
+    "studio:Studio Deen": "Studio Deen là studio hoạt hình Nhật Bản thành lập năm 1975 bởi cựu nhà sản xuất Sunrise Hiroshi Hasegawa cùng nhóm họa sĩ cũ của Sunrise. Trụ sở đặt tại Musashino, Tokyo, thuộc IMA Group từ năm 2011. Studio được biết đến với Ranma ½ và Fate/stay night (2006).",
+    "studio:Studio KAI": "Studio KAI là studio hoạt hình Nhật Bản thành lập tháng 6 năm 2019 tại Suginami, Tokyo, và tiếp nhận tài sản sản xuất anime của Gonzo vào tháng 7 cùng năm. Studio thuộc ADK Emotions. Các tác phẩm tiêu biểu gồm Umamusume: Pretty Derby (mùa 2 và 3) và Captain Tsubasa: Junior Youth-hen.",
+    "studio:TMS Entertainment": "TMS Entertainment là studio hoạt hình Nhật Bản có nguồn gốc từ năm 1946, mang tên hiện nay từ ngày 1 tháng 1 năm 2000 và kế thừa Tokyo Movie Shinsha. Trụ sở đặt tại Nakano, Tokyo, thuộc Sega Corporation từ năm 2021. Studio nổi tiếng với Detective Conan và Lupin III.",
+    "studio:J.C.Staff": "J.C.Staff là studio hoạt hình Nhật Bản thành lập ngày 18 tháng 1 năm 1986, trụ sở tại Musashino, Tokyo, hoạt động dưới dạng công ty cổ phần độc lập. Studio có các tác phẩm như Azumanga Daioh, Toradora! và loạt A Certain Magical Index.",
+    "studio:LIDENFILMS": "Liden Films (LIDENFILMS) là studio hoạt hình Nhật Bản thành lập ngày 22 tháng 2 năm 2012, trụ sở tại Suginami, Tokyo, thuộc tập đoàn Ultra Super Pictures. Studio được biết đến với Tokyo Revengers, Call of the Night và bản Rurouni Kenshin năm 2023.",
+    "studio:OLM": "OLM, Inc. là studio hoạt hình Nhật Bản thành lập tháng 6 năm 1994, trụ sở tại Setagaya, Tokyo, là công ty con của Imagica Group từ năm 2016. Studio nổi tiếng với các phim thiếu nhi như Pokémon và Yo-kai Watch, cùng Odd Taxi và The Apothecary Diaries.",
+    "studio:Toei Animation": "Toei Animation là studio hoạt hình Nhật Bản thành lập năm 1948 với tên Nihon Dōga và đổi sang tên hiện nay năm 1956. Trụ sở đặt tại Nakano, Tokyo, công ty mẹ chính là Toei Company. Studio sản xuất các loạt như Dragon Ball, Sailor Moon và Pretty Cure.",
+    "studio:Bones Film": "Bones Film (BONES Film Co., Ltd.) là công ty con của studio Bones, bắt đầu hoạt động từ ngày 1 tháng 10 năm 2024 khi bộ phận sản xuất anime được tách riêng. Công ty đặt tại Igusa, Suginami, Tokyo. Các tác phẩm từ năm 2025 gồm Gachiakuta và My Hero Academia: Vigilantes.",
+    "studio:EMT Squared": "EMT Squared là studio hoạt hình Nhật Bản độc lập thành lập ngày 25 tháng 7 năm 2013 bởi Hideaki Miyamoto, cựu nhà sản xuất của TMS Entertainment. Trụ sở tại Momoi, Suginami, Tokyo. Studio chuyên chuyển thể manga và light novel, với các tác phẩm như Kuma Kuma Kuma Bear.",
+    "studio:ENGI": "ENGI là studio hoạt hình Nhật Bản thành lập ngày 4 tháng 4 năm 2018, trụ sở tại Nakano, Tokyo, là liên doanh do Kadokawa nắm phần lớn vốn cùng Sammy và Ultra Super Pictures. Studio sản xuất Uzaki-chan Wants to Hang Out! và The Detective Is Already Dead.",
+    "studio:MAPPA": "MAPPA là studio phim hoạt hình Nhật Bản thành lập năm 2011 bởi Masao Maruyama, cựu đồng sáng lập Madhouse, có trụ sở tại Nakano, Tokyo. Đây là công ty độc lập, được biết đến với Jujutsu Kaisen, Chainsaw Man và phần cuối của Attack on Titan.",
+    "studio:Production I.G": "Production I.G là studio phim hoạt hình Nhật Bản thành lập tháng 12 năm 1987 bởi Mitsuhisa Ishikawa và Takayuki Goto, trụ sở tại Musashino, Tokyo. Công ty thuộc tập đoàn IG Port từ năm 2007, nổi tiếng với Ghost in the Shell, Psycho-Pass và Haikyu!!.",
+    "studio:Sunrise": "Sunrise là studio phim hoạt hình Nhật Bản thành lập tháng 9 năm 1972, đặt tại Ogikubo, Suginami, Tokyo. Từ năm 2022 studio thuộc Bandai Namco Filmworks. Hãng tập trung vào anime robot và nổi tiếng với loạt Gundam, Code Geass và Cowboy Bebop.",
+    "studio:SynergySP": "SynergySP là studio phim hoạt hình Nhật Bản thành lập năm 1998 sau khi tách khỏi Studio Junio, đặt tại Koganei, Tokyo. Từ tháng 4 năm 2017 studio là công ty con của Shin-Ei Animation, từng tham gia các phần Beyblade, Initial D và Hayate the Combat Butler.",
+    "studio:A-1 Pictures": "A-1 Pictures là studio phim hoạt hình Nhật Bản thành lập ngày 9 tháng 5 năm 2005, đặt tại Suginami, Tokyo. Studio là công ty con của Aniplex thuộc Sony Music Entertainment Japan, được lập ra để làm anime cho Aniplex, với các tác phẩm như Sword Art Online và Kaguya-sama: Love Is War.",
+    "studio:Bandai Namco Pictures": "Bandai Namco Pictures là studio phim hoạt hình Nhật Bản thành lập tháng 4 năm 2015 như một nhánh tách ra từ Sunrise, đặt tại Ogikubo, Suginami, Tokyo. Từ năm 2022 studio thuộc Bandai Namco Filmworks, chuyên các nhượng quyền cho trẻ em và gia đình như Aikatsu! và Gintama.",
+    "studio:Brain's Base": "Brain's Base là studio phim hoạt hình Nhật Bản độc lập thành lập tháng 7 năm 1996 bởi Jūkō Ozawa, cựu nhân viên Tokyo Movie Shinsha, đặt tại Mitaka, Tokyo. Studio được biết đến với Baccano!, Durarara!!, Natsume's Book of Friends và To Your Eternity.",
+    "studio:CloverWorks": "CloverWorks là studio phim hoạt hình Nhật Bản thành lập ngày 1 tháng 10 năm 2018, đặt tại Nakano, Tokyo, thuộc Aniplex. Studio vốn là một bộ phận của A-1 Pictures rồi tách ra, và được biết đến với Spy x Family, Bocchi the Rock! và The Promised Neverland.",
+    "studio:Doga Kobo": "Doga Kobo là studio phim hoạt hình Nhật Bản thành lập ngày 11 tháng 7 năm 1973, đặt tại Nerima, Tokyo. Từ tháng 7 năm 2024 studio thuộc tập đoàn Kadokawa. Hãng nổi tiếng với các tác phẩm hài lãng mạn và đời thường như YuruYuri, Monthly Girls' Nozaki-kun và Oshi no Ko.",
+    "studio:Felix Film": "Felix Film là studio phim hoạt hình Nhật Bản độc lập thành lập ngày 14 tháng 5 năm 2014, đặt tại Mitaka, Tokyo, chuyên về hoạt hình 3DCG. Studio được biết đến với Nekopara, MF Ghost, Aharen-san Is Indecipherable và Otherside Picnic.",
+    "studio:Gekkou": "Gekkou là studio anime độc lập của Nhật Bản, thành lập vào tháng 12 năm 2017 và đặt trụ sở tại Shinjuku, Tokyo. Studio từng tham gia sản xuất các anime truyền hình như Grandpa and Grandma Turn Young Again và Demon Lord, Retry! R.",
+    "studio:Kinema Citrus": "Kinema Citrus là studio hoạt hình Nhật Bản thành lập ngày 3 tháng 3 năm 2008, trụ sở tại Suginami, Tokyo. Studio do giám đốc Muneki Ogasawara cùng Kadokawa và Bushiroad sở hữu, nổi tiếng với Made in Abyss và Revue Starlight.",
+    "studio:Shin-Ei Animation": "Shin-Ei Animation là studio hoạt hình Nhật Bản, khởi nguồn từ A Production năm 1965 và đổi tên thành Shin-Ei Animation năm 1976. Studio đặt tại Nishitokyo, Tokyo, thuộc sở hữu của TV Asahi và nổi tiếng với Doraemon và Crayon Shin-chan.",
+    "studio:SILVER LINK.": "Silver Link là studio hoạt hình Nhật Bản thành lập tháng 12 năm 2007, trụ sở tại Musashino, Tokyo. Từ năm 2020 studio thuộc nhóm Asahi Broadcasting thông qua ABC Animation, với các tác phẩm như Non Non Biyori và Bofuri.",
+    "studio:TROYCA": "Troyca là studio hoạt hình độc lập của Nhật Bản, thành lập tháng 5 năm 2013 bởi đạo diễn Ei Aoki cùng hai cộng sự, trụ sở tại Nerima, Tokyo. Studio được biết đến với Aldnoah.Zero, Re:Creators và Bloom Into You.",
+    "studio:Ashi Productions": "Ashi Productions là studio hoạt hình Nhật Bản thành lập ngày 20 tháng 12 năm 1975, trụ sở tại Suginami, Tokyo. Studio từng là công ty con của Bandai Namco giai đoạn 2001 đến 2005, nổi tiếng với dòng phim cô gái phép thuật như Magical Princess Minky Momo.",
+    "studio:David Production": "David Production là studio hoạt hình Nhật Bản thành lập tháng 9 năm 2007 bởi hai cựu nhà sản xuất của Gonzo, trụ sở tại Nishitokyo, Tokyo. Studio thuộc Fuji Television từ năm 2014, nổi tiếng với JoJo's Bizarre Adventure và Fire Force.",
+    "studio:Diomedéa": "Diomedéa là studio hoạt hình độc lập của Nhật Bản, thành lập ngày 28 tháng 11 năm 2007 trên nền Studio Barcelona, trụ sở tại Nerima, Tokyo. Studio từng tham gia các anime như Kantai Collection và Squid Girl.",
+    "studio:East Fish Studio": "East Fish Studio là studio hoạt hình độc lập của Nhật Bản, thành lập năm 2017 bởi Ryu Suzumori, trụ sở tại Shibuya, Tokyo. Studio từng thực hiện các anime như A Condition Called Love và Tōhai.",
+    "studio:HoYoverse": "HoYoverse là thương hiệu phát hành toàn cầu của miHoYo, công ty phát triển game Trung Quốc thành lập năm 2012 tại Thượng Hải. Thương hiệu ra mắt công khai năm 2022, gắn với Genshin Impact, Honkai: Star Rail và Zenless Zone Zero.",
+    "studio:Konami": "Konami là tập đoàn giải trí và trò chơi điện tử của Nhật Bản, thành lập năm 1969 và đặt trụ sở tại Tokyo. Công ty mẹ là Konami Group Corporation, còn mảng game do Konami Digital Entertainment đảm nhiệm. Các thương hiệu quen thuộc gồm Metal Gear, Silent Hill và Castlevania.",
+    "studio:Madhouse": "Madhouse là hãng phim hoạt hình Nhật Bản thành lập năm 1972 bởi Masao Maruyama, Osamu Dezaki và Yoshiaki Kawajiri, trụ sở tại Nakano, Tokyo. Hãng thuộc quyền sở hữu chủ yếu của Nippon Television Network và tạo ra Death Note, Perfect Blue cùng Frieren.",
+    "studio:Maho Film": "Maho Film là studio anime độc lập của Nhật Bản, thành lập năm 2018 bởi Junji Murata sau khi rời Ashi Productions, trụ sở tại Suginami, Tokyo. Studio chuyên chuyển thể light novel và manga, với các phim như In the Land of Leadale và Blue Miburo.",
+    "studio:Passione": "Passione là studio anime độc lập của Nhật Bản, thành lập tháng 1 năm 2011 bởi Kazuhiro Saitō, từng là quản lý sản xuất tại Studio Fantasia. Trụ sở đặt tại Suginami, Tokyo. Studio từng thực hiện Citrus và Spice and Wolf: Merchant Meets the Wise Wolf.",
+    "studio:project No.9": "Project No.9 là studio anime độc lập của Nhật Bản, thành lập tháng 2 năm 2009 và đặt trụ sở tại Tokorozawa, tỉnh Saitama. Studio chủ yếu làm anime truyền hình chuyển thể từ light novel, manga và game, như Ro-Kyu-Bu! và The Angel Next Door Spoils Me Rotten.",
+    "studio:Qzil.la": "Qzil.la là studio hoạt hình Nhật Bản do Shun Fukudome thành lập vào tháng 2 năm 2021, trụ sở tại Kanda-Jinbōchō, Chiyoda, Tokyo. Studio làm anime truyền hình, ONA và đoạn phim cho trò chơi điện tử, trong đó có Champignon no Majo và Sekiro: No Defeat.",
+    "studio:Satelight": "Satelight là studio anime Nhật Bản do Tsuneo Maeda thành lập tháng 12 năm 1995, trụ sở tại Suginami, Tokyo. Studio từng thuộc hãng pachinko Sankyo từ năm 2006 đến 2020, nay có liên minh vốn với NetEase. Các loạt nổi tiếng gồm Aquarion, Symphogear và Macross Frontier.",
+    "studio:Science SARU": "Science SARU là studio anime Nhật Bản thành lập ngày 4 tháng 2 năm 2013 bởi đạo diễn Masaaki Yuasa và nhà sản xuất Eunyoung Choi, trụ sở tại Kichijōji, Tokyo. Từ năm 2024 studio thuộc Toho. Các tác phẩm gồm Devilman Crybaby, Keep Your Hands Off Eizouken! và Dandadan.",
+    "studio:Studio Comet": "Studio Comet là studio anime độc lập của Nhật Bản, thành lập tháng 1 năm 1986 và đặt trụ sở tại quận Nerima, Tokyo. Studio đã tham gia nhiều bộ anime qua các thập niên, trong đó có School Rumble, loạt Jewelpet và Cute High Earth Defense Club.",
+    "studio:WIT Studio": "WIT Studio là studio anime Nhật Bản thành lập ngày 1 tháng 6 năm 2012 bởi George Wada và Tetsuya Nakatake, hai nhà sản xuất từng làm tại Production I.G. Trụ sở ở Musashino, Tokyo, thuộc tập đoàn IG Port. Studio làm Attack on Titan (mùa 1 đến 3) và Spy x Family.",
+    "studio:Zero-G": "Zero-G là studio hoạt hình Nhật Bản thành lập tháng 6 năm 2011 bởi đạo diễn Hiroshi Negishi, có trụ sở tại quận Suginami, Tokyo. Từ tháng 4 năm 2023, studio thuộc Saber Project Co., Ltd. Các tác phẩm đáng chú ý gồm Grand Blue Dreaming và High-Rise Invasion.",
+    "publisher:Shueisha": "Shueisha là nhà xuất bản tư nhân của Nhật Bản, thành lập ngày 8 tháng 8 năm 1926, trụ sở tại quận Chiyoda, Tokyo và thuộc tập đoàn Hitotsubashi. Công ty phát hành nhiều tạp chí manga, trong đó có Weekly Shōnen Jump và nền tảng số Manga Plus.",
+    "publisher:Sony Interactive Entertainment": "Sony Interactive Entertainment là công ty trò chơi điện tử và giải trí số thuộc Sony Group Corporation, đặt trụ sở tại San Mateo, California, Mỹ. Công ty tiền thân là Sony Computer Entertainment (1993), đổi tên năm 2016, và điều hành thương hiệu PlayStation.",
+    "publisher:Konami": "Konami là tập đoàn giải trí và trò chơi điện tử đa quốc gia của Nhật Bản, thành lập ngày 21 tháng 3 năm 1969, trụ sở tại Tokyo. Công ty được biết đến với các series Metal Gear, Silent Hill, Castlevania và Yu-Gi-Oh! Trading Card Game.",
+    "publisher:Electronic Arts": "Electronic Arts là công ty phát triển và phát hành trò chơi điện tử của Mỹ, thành lập ngày 27 tháng 5 năm 1982 và có trụ sở tại Redwood City, California. Hãng sở hữu nhiều thương hiệu như Battlefield, The Sims, Mass Effect và Need for Speed.",
+    "publisher:HoYoverse": "HoYoverse là thương hiệu phát hành toàn cầu do miHoYo ra mắt năm 2022, hoạt động từ Singapore. miHoYo là công ty game Trung Quốc thành lập năm 2012 tại Thượng Hải, nổi tiếng với Genshin Impact, Honkai: Star Rail và Zenless Zone Zero.",
+    "publisher:Kodansha": "Kodansha là nhà xuất bản tư nhân của Nhật Bản, ra đời năm 1909 dưới tên Dai Nippon Yūbenkai và đổi sang tên Kodansha năm 1911, trụ sở tại Tokyo. Công ty do Seiji Noma sáng lập, phát hành các tạp chí manga như Weekly Shōnen Magazine và Nakayoshi.",
+    "publisher:Square Enix": "Square Enix là công ty mẹ giải trí của Nhật Bản, hình thành ngày 1 tháng 4 năm 2003 từ việc sáp nhập Square (1983) và Enix (1975), trụ sở tại Shinjuku, Tokyo. Hãng nắm giữ các series Final Fantasy, Dragon Quest và Kingdom Hearts.",
+    "publisher:Xbox Game Studios": "Xbox Game Studios là bộ phận phát hành trò chơi của Microsoft, đặt tại Redmond, Washington, Mỹ. Đơn vị thành lập tháng 3 năm 2000 với tên Microsoft Games, đổi sang tên hiện tại năm 2019, và phát hành các series như Halo, Forza, Gears of War và Minecraft."
+  },
+  "descEn": {
+    "studio:Studio Deen": "Studio Deen is a Japanese animation studio founded in 1975 by former Sunrise producer Hiroshi Hasegawa and a group of ex-Sunrise animators. Based in Musashino, Tokyo, it has belonged to IMA Group since 2011. Its credits include Ranma ½ and Fate/stay night (2006).",
+    "studio:Studio KAI": "Studio KAI is a Japanese animation studio founded in June 2019 in Suginami, Tokyo, which took over some of Gonzo's anime production assets that July. It is owned by ADK Emotions. Its credits include Umamusume: Pretty Derby (seasons 2 and 3) and Captain Tsubasa: Junior Youth Arc.",
+    "studio:TMS Entertainment": "TMS Entertainment is a Japanese animation studio whose origins date to 1946; it took its current name on 1 January 2000 and descends from Tokyo Movie Shinsha. Based in Nakano, Tokyo, it has been owned by Sega Corporation since 2021. It is known for Detective Conan and Lupin the Third.",
+    "studio:J.C.Staff": "J.C.Staff is a Japanese animation studio founded on 18 January 1986 and based in Musashino, Tokyo, operating as an independent joint-stock company. Its credits include Azumanga Daioh, Toradora! and the A Certain Magical Index franchise.",
+    "studio:LIDENFILMS": "Liden Films (LIDENFILMS) is a Japanese animation studio founded on 22 February 2012, based in Suginami, Tokyo, and part of Ultra Super Pictures. It is known for Tokyo Revengers, Call of the Night and the 2023 Rurouni Kenshin series.",
+    "studio:OLM": "OLM, Inc. is a Japanese animation studio founded in June 1994 and based in Setagaya, Tokyo; it has been a subsidiary of Imagica Group since 2016. It is best known for children's series such as Pokémon and Yo-kai Watch, as well as Odd Taxi and The Apothecary Diaries.",
+    "studio:Toei Animation": "Toei Animation is a Japanese animation studio founded in 1948 as Nihon Dōga and renamed Toei Animation in 1956. Headquartered in Nakano, Tokyo, its main parent is Toei Company. It has produced series such as Dragon Ball, Sailor Moon and Pretty Cure.",
+    "studio:Bones Film": "Bones Film (BONES Film Co., Ltd.) is a subsidiary of Bones, which began operating on 1 October 2024 when the studio's animation production department was split off. It is located in Igusa, Suginami, Tokyo. Its productions from 2025 include Gachiakuta and My Hero Academia: Vigilantes.",
+    "studio:EMT Squared": "EMT Squared is an independent Japanese animation studio founded on 25 July 2013 by Hideaki Miyamoto, a former TMS Entertainment producer. It is based in Momoi, Suginami, Tokyo. It focuses on adapting manga and light novels, with credits such as Kuma Kuma Kuma Bear.",
+    "studio:ENGI": "ENGI is a Japanese animation studio founded on 4 April 2018 and based in Nakano, Tokyo, a joint venture in which Kadokawa holds the majority stake alongside Sammy and Ultra Super Pictures. It produced Uzaki-chan Wants to Hang Out! and The Detective Is Already Dead.",
+    "studio:MAPPA": "MAPPA is a Japanese animation studio founded in 2011 by Masao Maruyama, a former co-founder of Madhouse, and based in Nakano, Tokyo. It is an independent company known for Jujutsu Kaisen, Chainsaw Man and the final season of Attack on Titan.",
+    "studio:Production I.G": "Production I.G is a Japanese animation studio founded in December 1987 by Mitsuhisa Ishikawa and Takayuki Goto, based in Musashino, Tokyo. It has been part of IG Port since 2007 and is known for Ghost in the Shell, Psycho-Pass and Haikyu!!.",
+    "studio:Sunrise": "Sunrise is a Japanese animation studio founded in September 1972 and based in Ogikubo, Suginami, Tokyo. Since 2022 it has belonged to Bandai Namco Filmworks. It focused on mecha anime and is known for the Gundam franchise, Code Geass and Cowboy Bebop.",
+    "studio:SynergySP": "SynergySP is a Japanese animation studio founded in 1998 after splitting from Studio Junio, based in Koganei, Tokyo. Since April 2017 it has been a subsidiary of Shin-Ei Animation, and it has worked on Beyblade, Initial D and Hayate the Combat Butler.",
+    "studio:A-1 Pictures": "A-1 Pictures is a Japanese animation studio founded on 9 May 2005 and based in Suginami, Tokyo. It is a subsidiary of Aniplex, part of Sony Music Entertainment Japan, set up to animate Aniplex productions, and is credited with Sword Art Online and Kaguya-sama: Love Is War.",
+    "studio:Bandai Namco Pictures": "Bandai Namco Pictures is a Japanese animation studio founded in April 2015 as a spinoff of Sunrise and based in Ogikubo, Suginami, Tokyo. Since 2022 it has belonged to Bandai Namco Filmworks, and it works on children and family franchises such as Aikatsu! and Gintama.",
+    "studio:Brain's Base": "Brain's Base is an independent Japanese animation studio founded in July 1996 by Jūkō Ozawa, a former Tokyo Movie Shinsha staff member, and based in Mitaka, Tokyo. It is known for Baccano!, Durarara!!, Natsume's Book of Friends and To Your Eternity.",
+    "studio:CloverWorks": "CloverWorks is a Japanese animation studio founded on 1 October 2018, based in Nakano, Tokyo, and owned by Aniplex. It began as a division of A-1 Pictures before becoming separate, and is known for Spy x Family, Bocchi the Rock! and The Promised Neverland.",
+    "studio:Doga Kobo": "Doga Kobo is a Japanese animation studio founded on 11 July 1973 and based in Nerima, Tokyo. It became part of Kadokawa Corporation in July 2024. It is known for romantic comedy and slice-of-life series such as YuruYuri, Monthly Girls' Nozaki-kun and Oshi no Ko.",
+    "studio:Felix Film": "Felix Film is an independent Japanese animation studio founded on 14 May 2014 and based in Mitaka, Tokyo, specializing in 3DCG animation. It is known for Nekopara, MF Ghost, Aharen-san Is Indecipherable and Otherside Picnic.",
+    "studio:Gekkou": "Gekkou is an independent Japanese animation studio founded in December 2017 and based in Shinjuku, Tokyo. It has worked on TV anime such as Grandpa and Grandma Turn Young Again and Demon Lord, Retry! R.",
+    "studio:Kinema Citrus": "Kinema Citrus is a Japanese animation studio founded on March 3, 2008 and based in Suginami, Tokyo. It is co-owned by Muneki Ogasawara, Kadokawa and Bushiroad, and is known for Made in Abyss and Revue Starlight.",
+    "studio:Shin-Ei Animation": "Shin-Ei Animation is a Japanese animation studio that began as A Production in 1965 and took its current name in 1976. Based in Nishitokyo, Tokyo and owned by TV Asahi, it is best known for Doraemon and Crayon Shin-chan.",
+    "studio:SILVER LINK.": "Silver Link is a Japanese animation studio founded in December 2007 and based in Musashino, Tokyo. Since 2020 it has been part of the Asahi Broadcasting group through ABC Animation, with works such as Non Non Biyori and Bofuri.",
+    "studio:TROYCA": "Troyca is an independent Japanese animation studio founded in May 2013 by director Ei Aoki and two partners, based in Nerima, Tokyo. It is known for Aldnoah.Zero, Re:Creators and Bloom Into You.",
+    "studio:Ashi Productions": "Ashi Productions is a Japanese animation studio founded on December 20, 1975 and based in Suginami, Tokyo. It was a Bandai Namco subsidiary from 2001 to 2005 and is known for magical girl series such as Magical Princess Minky Momo.",
+    "studio:David Production": "David Production is a Japanese animation studio founded in September 2007 by two former Gonzo producers, based in Nishitokyo, Tokyo. It has been owned by Fuji Television since 2014 and is known for JoJo's Bizarre Adventure and Fire Force.",
+    "studio:Diomedéa": "Diomedéa is an independent Japanese animation studio founded on November 28, 2007, succeeding Studio Barcelona, and based in Nerima, Tokyo. It has worked on anime such as Kantai Collection and Squid Girl.",
+    "studio:East Fish Studio": "East Fish Studio is an independent Japanese animation studio founded in 2017 by Ryu Suzumori and based in Shibuya, Tokyo. It has produced anime such as A Condition Called Love and Tōhai.",
+    "studio:HoYoverse": "HoYoverse is the global publishing brand of miHoYo, a Chinese game developer founded in 2012 in Shanghai. The brand was launched publicly in 2022 and is associated with Genshin Impact, Honkai: Star Rail and Zenless Zone Zero.",
+    "studio:Konami": "Konami is a Japanese entertainment and video game company founded in 1969 and based in Tokyo. Its parent is Konami Group Corporation, with games handled by Konami Digital Entertainment. Well-known franchises include Metal Gear, Silent Hill and Castlevania.",
+    "studio:Madhouse": "Madhouse is a Japanese animation studio founded in 1972 by Masao Maruyama, Osamu Dezaki and Yoshiaki Kawajiri, headquartered in Nakano, Tokyo. It is majority-owned by Nippon Television Network and has produced Death Note, Perfect Blue and Frieren.",
+    "studio:Maho Film": "Maho Film is an independent Japanese anime studio founded in 2018 by Junji Murata after he left Ashi Productions, based in Suginami, Tokyo. It focuses on adapting light novels and manga, with titles such as In the Land of Leadale and Blue Miburo.",
+    "studio:Passione": "Passione is an independent Japanese anime studio founded in January 2011 by Kazuhiro Saitō, a former production manager at Studio Fantasia. It is based in Suginami, Tokyo, and has worked on titles such as Citrus and Spice and Wolf: Merchant Meets the Wise Wolf.",
+    "studio:project No.9": "Project No.9 is an independent Japanese anime studio founded in February 2009 and based in Tokorozawa, Saitama Prefecture. It mainly makes television anime adapted from light novels, manga and games, such as Ro-Kyu-Bu! and The Angel Next Door Spoils Me Rotten.",
+    "studio:Qzil.la": "Qzil.la is a Japanese animation studio founded by Shun Fukudome in February 2021, based in Kanda-Jinbōchō, Chiyoda, Tokyo. It produces television anime, ONAs and video game cinematics, including Champignon Witch and Sekiro: No Defeat.",
+    "studio:Satelight": "Satelight is a Japanese anime studio founded by Tsuneo Maeda in December 1995, based in Suginami, Tokyo. It was tied to pachinko maker Sankyo from 2006 to 2020 and now has a capital alliance with NetEase. Known franchises include Aquarion, Symphogear and Macross Frontier.",
+    "studio:Science SARU": "Science SARU is a Japanese anime studio founded on 4 February 2013 by director Masaaki Yuasa and producer Eunyoung Choi, based in Kichijōji, Tokyo. It has been part of Toho since 2024. Its works include Devilman Crybaby, Keep Your Hands Off Eizouken! and Dandadan.",
+    "studio:Studio Comet": "Studio Comet is an independent Japanese animation studio founded in January 1986 and based in Nerima, Tokyo. It has worked on many anime across several decades, including School Rumble, the Jewelpet franchise and Cute High Earth Defense Club.",
+    "studio:WIT Studio": "WIT Studio is a Japanese anime studio founded on 1 June 2012 by George Wada and Tetsuya Nakatake, both former Production I.G producers. Based in Musashino, Tokyo, it is part of IG Port. It produced Attack on Titan (seasons 1 to 3) and Spy x Family.",
+    "studio:Zero-G": "Zero-G is a Japanese animation studio founded in June 2011 by director Hiroshi Negishi, based in Suginami, Tokyo. Since April 2023 it has been under Saber Project Co., Ltd. Its credited works include Grand Blue Dreaming and High-Rise Invasion.",
+    "publisher:Shueisha": "Shueisha is a privately held Japanese publisher founded on 8 August 1926, based in Chiyoda, Tokyo, and part of the Hitotsubashi Group. It publishes many manga magazines, including Weekly Shonen Jump, and runs the digital platform Manga Plus.",
+    "publisher:Sony Interactive Entertainment": "Sony Interactive Entertainment is a video game and digital entertainment company owned by Sony Group Corporation, headquartered in San Mateo, California, USA. It succeeded Sony Computer Entertainment (founded 1993), was renamed in 2016, and runs the PlayStation brand.",
+    "publisher:Konami": "Konami is a Japanese multinational entertainment and video game corporation founded on 21 March 1969 and headquartered in Tokyo. It is known for series such as Metal Gear, Silent Hill, Castlevania and the Yu-Gi-Oh! Trading Card Game.",
+    "publisher:Electronic Arts": "Electronic Arts is an American video game developer and publisher founded on 27 May 1982 and headquartered in Redwood City, California. Its franchises include Battlefield, The Sims, Mass Effect and Need for Speed.",
+    "publisher:HoYoverse": "HoYoverse is the global publishing brand launched by miHoYo in 2022, operating from Singapore. miHoYo is a Chinese game company founded in 2012 in Shanghai, known for Genshin Impact, Honkai: Star Rail and Zenless Zone Zero.",
+    "publisher:Kodansha": "Kodansha is a privately held Japanese publisher that began in 1909 as Dai Nippon Yubenkai and took the Kodansha name in 1911, based in Tokyo. Founded by Seiji Noma, it publishes manga magazines such as Weekly Shonen Magazine and Nakayoshi.",
+    "publisher:Square Enix": "Square Enix is a Japanese entertainment holding company formed on 1 April 2003 through the merger of Square (1983) and Enix (1975), headquartered in Shinjuku, Tokyo. It owns series such as Final Fantasy, Dragon Quest and Kingdom Hearts.",
+    "publisher:Xbox Game Studios": "Xbox Game Studios is the game publishing division of Microsoft, based in Redmond, Washington, USA. It was established in March 2000 as Microsoft Games, took its current name in 2019, and publishes series such as Halo, Forza, Gears of War and Minecraft."
+  },
+  "sources": {
+    "studio:Studio Deen": [
+      {
+        "name": "Wikipedia: Studio Deen",
+        "url": "https://en.wikipedia.org/wiki/Studio_Deen"
+      }
+    ],
+    "studio:Studio KAI": [
+      {
+        "name": "Wikipedia: Studio Kai",
+        "url": "https://en.wikipedia.org/wiki/Studio_Kai"
+      }
+    ],
+    "studio:TMS Entertainment": [
+      {
+        "name": "Wikipedia: TMS Entertainment",
+        "url": "https://en.wikipedia.org/wiki/TMS_Entertainment"
+      }
+    ],
+    "studio:J.C.Staff": [
+      {
+        "name": "Wikipedia: J.C.Staff",
+        "url": "https://en.wikipedia.org/wiki/J.C.Staff"
+      }
+    ],
+    "studio:LIDENFILMS": [
+      {
+        "name": "Wikipedia: Liden Films",
+        "url": "https://en.wikipedia.org/wiki/Liden_Films"
+      }
+    ],
+    "studio:OLM": [
+      {
+        "name": "Wikipedia: OLM, Inc.",
+        "url": "https://en.wikipedia.org/wiki/OLM,_Inc."
+      }
+    ],
+    "studio:Toei Animation": [
+      {
+        "name": "Wikipedia: Toei Animation",
+        "url": "https://en.wikipedia.org/wiki/Toei_Animation"
+      }
+    ],
+    "studio:Bones Film": [
+      {
+        "name": "Wikipedia: Bones (studio)",
+        "url": "https://en.wikipedia.org/wiki/Bones_(studio)"
+      },
+      {
+        "name": "Anime Corner: Bones Separates Animation Production Department Into New Company Called Bones Film",
+        "url": "https://animecorner.me/bones-separates-animation-production-department-into-new-company-called-bones-film/"
+      }
+    ],
+    "studio:EMT Squared": [
+      {
+        "name": "Wikipedia: EMT Squared",
+        "url": "https://en.wikipedia.org/wiki/EMT_Squared"
+      }
+    ],
+    "studio:ENGI": [
+      {
+        "name": "Wikipedia: ENGI",
+        "url": "https://en.wikipedia.org/wiki/ENGI"
+      }
+    ],
+    "studio:MAPPA": [
+      {
+        "name": "Wikipedia: MAPPA",
+        "url": "https://en.wikipedia.org/wiki/MAPPA"
+      }
+    ],
+    "studio:Production I.G": [
+      {
+        "name": "Wikipedia: Production I.G",
+        "url": "https://en.wikipedia.org/wiki/Production_I.G"
+      }
+    ],
+    "studio:Sunrise": [
+      {
+        "name": "Wikipedia: Sunrise (company)",
+        "url": "https://en.wikipedia.org/wiki/Sunrise_(company)"
+      }
+    ],
+    "studio:SynergySP": [
+      {
+        "name": "Wikipedia: SynergySP",
+        "url": "https://en.wikipedia.org/wiki/SynergySP"
+      }
+    ],
+    "studio:A-1 Pictures": [
+      {
+        "name": "Wikipedia: A-1 Pictures",
+        "url": "https://en.wikipedia.org/wiki/A-1_Pictures"
+      }
+    ],
+    "studio:Bandai Namco Pictures": [
+      {
+        "name": "Wikipedia: Bandai Namco Pictures",
+        "url": "https://en.wikipedia.org/wiki/Bandai_Namco_Pictures"
+      }
+    ],
+    "studio:Brain's Base": [
+      {
+        "name": "Wikipedia: Brain's Base",
+        "url": "https://en.wikipedia.org/wiki/Brain%27s_Base"
+      }
+    ],
+    "studio:CloverWorks": [
+      {
+        "name": "Wikipedia: CloverWorks",
+        "url": "https://en.wikipedia.org/wiki/CloverWorks"
+      }
+    ],
+    "studio:Doga Kobo": [
+      {
+        "name": "Wikipedia: Doga Kobo",
+        "url": "https://en.wikipedia.org/wiki/Doga_Kobo"
+      }
+    ],
+    "studio:Felix Film": [
+      {
+        "name": "Wikipedia: Felix Film",
+        "url": "https://en.wikipedia.org/wiki/Felix_Film"
+      }
+    ],
+    "studio:Gekkou": [
+      {
+        "name": "Wikipedia: Gekkou (studio)",
+        "url": "https://en.wikipedia.org/wiki/Gekkou_(studio)"
+      }
+    ],
+    "studio:Kinema Citrus": [
+      {
+        "name": "Wikipedia: Kinema Citrus",
+        "url": "https://en.wikipedia.org/wiki/Kinema_Citrus"
+      }
+    ],
+    "studio:Shin-Ei Animation": [
+      {
+        "name": "Wikipedia: Shin-Ei Animation",
+        "url": "https://en.wikipedia.org/wiki/Shin-Ei_Animation"
+      }
+    ],
+    "studio:SILVER LINK.": [
+      {
+        "name": "Wikipedia: Silver Link",
+        "url": "https://en.wikipedia.org/wiki/Silver_Link"
+      }
+    ],
+    "studio:TROYCA": [
+      {
+        "name": "Wikipedia: Troyca",
+        "url": "https://en.wikipedia.org/wiki/Troyca"
+      }
+    ],
+    "studio:Ashi Productions": [
+      {
+        "name": "Wikipedia: Ashi Productions",
+        "url": "https://en.wikipedia.org/wiki/Ashi_Productions"
+      }
+    ],
+    "studio:David Production": [
+      {
+        "name": "Wikipedia: David Production",
+        "url": "https://en.wikipedia.org/wiki/David_Production"
+      }
+    ],
+    "studio:Diomedéa": [
+      {
+        "name": "Wikipedia: Diomedéa",
+        "url": "https://en.wikipedia.org/wiki/Diomedéa"
+      }
+    ],
+    "studio:East Fish Studio": [
+      {
+        "name": "Wikipedia: East Fish Studio",
+        "url": "https://en.wikipedia.org/wiki/East_Fish_Studio"
+      }
+    ],
+    "studio:HoYoverse": [
+      {
+        "name": "Wikipedia: miHoYo",
+        "url": "https://en.wikipedia.org/wiki/MiHoYo"
+      }
+    ],
+    "studio:Konami": [
+      {
+        "name": "Wikipedia: Konami",
+        "url": "https://en.wikipedia.org/wiki/Konami"
+      }
+    ],
+    "studio:Madhouse": [
+      {
+        "name": "Wikipedia: Madhouse (company)",
+        "url": "https://en.wikipedia.org/wiki/Madhouse_(company)"
+      }
+    ],
+    "studio:Maho Film": [
+      {
+        "name": "Wikipedia: Maho Film",
+        "url": "https://en.wikipedia.org/wiki/Maho_Film"
+      }
+    ],
+    "studio:Passione": [
+      {
+        "name": "Wikipedia: Passione (company)",
+        "url": "https://en.wikipedia.org/wiki/Passione_(company)"
+      }
+    ],
+    "studio:project No.9": [
+      {
+        "name": "Wikipedia: Project No.9",
+        "url": "https://en.wikipedia.org/wiki/Project_No.9"
+      }
+    ],
+    "studio:Qzil.la": [
+      {
+        "name": "Wikipedia: Qzil.la",
+        "url": "https://en.wikipedia.org/wiki/Qzil.la"
+      }
+    ],
+    "studio:Satelight": [
+      {
+        "name": "Wikipedia: Satelight",
+        "url": "https://en.wikipedia.org/wiki/Satelight"
+      }
+    ],
+    "studio:Science SARU": [
+      {
+        "name": "Wikipedia: Science Saru",
+        "url": "https://en.wikipedia.org/wiki/Science_Saru"
+      }
+    ],
+    "studio:Studio Comet": [
+      {
+        "name": "Wikipedia: Studio Comet",
+        "url": "https://en.wikipedia.org/wiki/Studio_Comet"
+      }
+    ],
+    "studio:WIT Studio": [
+      {
+        "name": "Wikipedia: Wit Studio",
+        "url": "https://en.wikipedia.org/wiki/Wit_Studio"
+      }
+    ],
+    "studio:Zero-G": [
+      {
+        "name": "Wikipedia: Zero-G (studio)",
+        "url": "https://en.wikipedia.org/wiki/Zero-G_(studio)"
+      }
+    ],
+    "publisher:Shueisha": [
+      {
+        "name": "Wikipedia: Shueisha",
+        "url": "https://en.wikipedia.org/wiki/Shueisha"
+      }
+    ],
+    "publisher:Sony Interactive Entertainment": [
+      {
+        "name": "Wikipedia: Sony Interactive Entertainment",
+        "url": "https://en.wikipedia.org/wiki/Sony_Interactive_Entertainment"
+      }
+    ],
+    "publisher:Konami": [
+      {
+        "name": "Wikipedia: Konami",
+        "url": "https://en.wikipedia.org/wiki/Konami"
+      }
+    ],
+    "publisher:Electronic Arts": [
+      {
+        "name": "Wikipedia: Electronic Arts",
+        "url": "https://en.wikipedia.org/wiki/Electronic_Arts"
+      }
+    ],
+    "publisher:HoYoverse": [
+      {
+        "name": "Wikipedia: miHoYo",
+        "url": "https://en.wikipedia.org/wiki/MiHoYo"
+      }
+    ],
+    "publisher:Kodansha": [
+      {
+        "name": "Wikipedia: Kodansha",
+        "url": "https://en.wikipedia.org/wiki/Kodansha"
+      }
+    ],
+    "publisher:Square Enix": [
+      {
+        "name": "Wikipedia: Square Enix",
+        "url": "https://en.wikipedia.org/wiki/Square_Enix"
+      }
+    ],
+    "publisher:Xbox Game Studios": [
+      {
+        "name": "Wikipedia: Xbox Game Studios",
+        "url": "https://en.wikipedia.org/wiki/Xbox_Game_Studios"
+      }
+    ]
+  }
 }

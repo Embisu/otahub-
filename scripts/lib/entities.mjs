@@ -72,7 +72,7 @@ export function buildEntities(catalog, series) {
       const over = names[type + ':' + g.display] || {};
       const ent = { type, slug, name: over.name || g.display, nameEn: over.nameEn || over.name || g.display, variants: [...g.variants.keys()],
         works: [...g.series.values()].map((w) => ({ series: w.series, keys: w.keys.map((x) => x.key) })),
-        desc: (cfg.desc || {})[type + ':' + g.display] || '', descEn: (cfg.descEn || {})[type + ':' + g.display] || '' };
+        desc: (cfg.desc || {})[type + ':' + g.display] || '', descEn: (cfg.descEn || {})[type + ':' + g.display] || '', sources: (cfg.sources || {})[type + ':' + g.display] || [] };
       list.push(ent);
       for (const w of g.series.values()) for (const { key, variant } of w.keys) (byKey.get(key) || byKey.set(key, []).get(key)).push({ type, slug, variant });
     }
