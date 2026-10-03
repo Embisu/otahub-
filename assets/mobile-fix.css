@@ -263,3 +263,6 @@ body>footer .ft-copy{font-size:12px;color:#64748b;letter-spacing:.02em}
 .filter-bar[data-hub] .filter-sub .filter-sep{height:16px}
 .filter-bar[data-hub] .femag{color:var(--lavender,#a78bfa)!important;text-decoration:none;white-space:nowrap}
 @media(max-width:768px){.filter-bar[data-hub] .filter-sub{padding-top:6px;padding-bottom:6px}}
+/* Link "Xem toàn bộ lịch game" cuối khối Lịch phát hành ở cột phải trang Gaming */
+.side-box .side-more{display:block;padding:12px 20px;border-top:1px solid rgba(255,255,255,.06);font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--cyan,#00f2ff);text-decoration:none}
+.side-box .side-more:hover{color:#fff}

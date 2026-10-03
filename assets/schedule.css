@@ -149,3 +149,24 @@ a.sch-nx-row:hover .sch-nx-t{color:var(--cyan)}
 }
 .sch-card .sch-st{background:rgba(8,2,20,.86);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .sch-card::after{background:linear-gradient(180deg,transparent 30%,rgba(8,2,20,.97) 92%)}
+
+/* Tab Lịch game: hàng ảnh ngang, chip nhóm (giống bảng Xếp hạng game), tiêu đề tháng */
+.gs-chips{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 4px}
+.gs-chips .seg-tab{flex-shrink:0;white-space:nowrap;padding:7px 14px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:none;color:var(--dim,#c4c4cc);font:inherit;font-size:13px;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.gs-chips .seg-tab:hover{border-color:rgba(255,255,255,.25);color:#fff}
+.gs-chips .seg-tab.on{border-color:rgba(0,242,255,.5);background:rgba(0,242,255,.1);color:var(--cyan,#00f2ff)}
+.gs-chips .seg-n{display:inline-block;min-width:18px;margin-left:4px;padding:1px 6px;border-radius:999px;background:rgba(255,255,255,.07);color:var(--muted,#8b8aa3);font-size:10px;line-height:1.6;text-align:center}
+.gs-chips .seg-tab.on .seg-n{background:rgba(0,242,255,.14);color:var(--cyan,#00f2ff)}
+.gs-chips .seg-tab.seg-empty:not(.on){opacity:.55}
+.gs-month{grid-column:1/-1;margin:14px 0 0;font-family:var(--fd);font-weight:800;font-size:15px;color:var(--cyan,#00f2ff);letter-spacing:.04em;list-style:none}
+.gs-month:first-child{margin-top:0}
+.gs-none{grid-column:1/-1;padding:36px 12px;text-align:center;color:var(--dim,#c4c4cc);line-height:1.8;list-style:none}
+.sch-row.gs-row{grid-template-columns:56px 96px minmax(0,1fr) auto}
+.gs-thumb{width:96px;height:60px}
+.gs-tile{display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:800;font-size:22px;color:var(--cyan,#00f2ff)}
+.gs-seg{font-size:11px;color:var(--muted,#8b8aa3);white-space:nowrap}
+@media(max-width:768px){
+  .sch-row.gs-row{grid-template-columns:84px minmax(0,1fr)}
+  .gs-row .gs-thumb{width:84px;height:56px}
+  .gs-row .sch-tags{flex-direction:row;align-items:center;flex-wrap:wrap;justify-content:flex-start}
+}

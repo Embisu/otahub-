@@ -192,19 +192,22 @@ ${emag}    <a class="ftab ftop" href="${topHref}">${TOP_LINK[P.lang][P.hub]}</a>
   </div>${sub}
 </div>`;
   html = html.replace(/<div class="filter-bar"[^>]*>\s*<div class="filter-in">[\s\S]*?<\/div>\s*<\/div>/, () => bar);
-  // a2) khối "Lịch phát hành game" (chỉ trang Gaming): ngày lấy từ scripts/data/game-releases.json, bỏ mục đã qua
+  // a2) khối "Lịch phát hành game" (chỉ trang Gaming): lấy từ assets/game-schedule-data.js (cùng nguồn với tab Lịch game ở /lich-phat-song), bỏ mục đã qua
   if (P.hub === 'game') {
     const today = new Date(Date.now() + 7 * 3600e3).toISOString().slice(0, 10);
-    const up = JSON.parse(read('scripts/data/game-releases.json')).items.filter((r) => r.date >= today).sort((a, b) => (a.date < b.date ? -1 : 1)).slice(0, 4);
+    const gctx = { window: {} };
+    vm.runInNewContext(read('assets/game-schedule-data.js'), gctx);
+    const up = gctx.window.OT_GAME_SCHEDULE.items.filter((r) => r.d >= today).sort((a, b) => (a.d < b.d ? -1 : 1)).slice(0, 4);
     if (up.length) {
       const en = P.lang === 'en';
-      const [y, m] = up[0].date.split('-');
+      const [y, m] = up[0].d.split('-');
       const badge = en ? new Date(Date.UTC(+y, +m - 1, 1)).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' }) : `Tháng ${+m}/${y}`;
       const dmy = (d) => (en ? new Date(d + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' }) : d.split('-').reverse().join('/'));
-      const rows = up.map((r) => `        <div class="sched-item"><div class="sched-title">${esc(en ? r.en : r.vi)}</div><div class="sched-meta">${dmy(r.date)} · ${esc(r.platforms)} · ${esc(r.studio)}</div></div>`).join(NL);
+      const rows = up.map((r) => `        <div class="sched-item"><div class="sched-title">${esc((!en && r.tv) || r.t)}</div><div class="sched-meta">${dmy(r.d)} · ${esc(r.pf)} · ${esc(r.s)}</div></div>`).join(NL);
       const head = en ? 'Release Schedule' : 'Lịch Phát Hành Game';
-      html = html.replace(/(<div class="side-head"><span>)(?:Lịch Phát Hành Game|Release Schedule)(<\/span><span class="side-badge">)[^<]*(<\/span><\/div>)\s*(?:<div class="sched-item">[\s\S]*?<\/div><\/div>\s*)+/,
-        (mm, a, b, c) => `${a}${head}${b}${badge}${c}${NL}${rows}${NL}      `);
+      const more = `<a class="side-more" href="${en ? '/en' : ''}/lich-phat-song#game">${en ? 'Full game schedule' : 'Xem toàn bộ lịch game'} →</a>`;
+      html = html.replace(/(<div class="side-head"><span>)(?:Lịch Phát Hành Game|Release Schedule)(<\/span><span class="side-badge">)[^<]*(<\/span><\/div>)\s*(?:<div class="sched-item">[\s\S]*?<\/div><\/div>\s*)+(?:<a class="side-more"[^>]*>[^<]*<\/a>\s*)?/,
+        (mm, a1, b1, c1) => `${a1}${head}${b1}${badge}${c1}${NL}${rows}${NL}        ${more}${NL}      `);
     }
   }
   // b) danh sách bài
