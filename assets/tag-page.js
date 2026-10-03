@@ -29,7 +29,8 @@
   var searchInput = document.getElementById('tag-search-input');
   var grid = document.getElementById('tag-articles-grid');
   var countBadge = document.getElementById('tag-count-badge');
-  var chips = document.querySelectorAll('.tag-chip');
+  var chipBox = document.getElementById('popular-tags-container');
+  var allChips = function () { return document.querySelectorAll('.tag-chip'); };
   if (!grid || !searchInput) return;
 
   function norm(s) {
@@ -51,20 +52,37 @@
   // tên gọi khác của tác phẩm (VI <-> EN <-> tên cũ), nạp nền
   var GROUPS = null;
   fetch('/assets/profile-names.json').then(function (r) { return r.json(); }).then(function (rows) {
-    GROUPS = rows.map(function (r) { return { alias: r[0] || [], names: [norm(r[3]), norm(r[4])].filter(Boolean) }; });
+    // bảng tên dùng cách chuẩn hóa riêng (giữ dấu : '), nên chuẩn hóa lại cùng kiểu với ô tìm kiếm
+    GROUPS = rows.map(function (r) { return { alias: (r[0] || []).map(norm), names: [norm(r[3]), norm(r[4])].filter(Boolean) }; });
     if (current !== null) render(current, true);
   }).catch(function () {});
+  // bỏ "season 2", "part 2", "mùa 4", "2nd season", "the " đầu câu: bài thường chỉ ghi tên gốc không kèm mùa
+  function relax(q) {
+    return q.replace(/\b(\d+(st|nd|rd|th) )?(season|part|mua|phan|cour)( \d+)?\b/g, ' ').replace(/^the /, '').replace(/\s+/g, ' ').trim();
+  }
+  // cách gọi khác của cùng tác phẩm: tên Việt hóa, tên gốc và các tên rút gọn (GTA 6, PUBG, Witcher 3...)
   function altNames(q) {
     var out = [];
+    var rl = relax(q);
+    if (rl && rl !== q && rl.length >= 3) out.push(rl);
     if (!GROUPS || q.length < 3) return out;
+    var prefixHits = 0;
     GROUPS.forEach(function (g) {
-      var hit = g.alias.indexOf(q) > -1 || g.names.indexOf(q) > -1;
+      var hit = g.alias.indexOf(q) > -1 || g.names.indexOf(q) > -1 || (rl && (g.alias.indexOf(rl) > -1 || g.names.indexOf(rl) > -1));
+      // gõ dở tên gọi khác (vd. "Kimetsu" -> Kimetsu no Yaiba = Thanh Gươm Diệt Quỷ): khớp đầu tên, tối đa 3 tác phẩm
+      if (!hit && q.length >= 6 && prefixHits < 3 && g.alias.concat(g.names).some(function (a) { return a.indexOf(q + ' ') === 0; })) { hit = true; prefixHits++; }
       if (!hit) return;
-      g.names.concat(g.alias.filter(function (a) { return a.length > 5 && a.split(' ').length > 1; }).slice(0, 2)).forEach(function (n) {
-        if (n && n !== q && out.indexOf(n) < 0 && q.indexOf(n) < 0) out.push(n);
+      g.names.concat(g.alias).forEach(function (n) {
+        n = relax(n);
+        if (n && n !== q && n.length >= 4 && out.indexOf(n) < 0) out.push(n);
       });
     });
-    return out.slice(0, 4);
+    return out.slice(0, 10);
+  }
+  // từ khóa khớp theo đầu từ (gõ dở vẫn ra), riêng số và từ ≤2 ký tự phải khớp nguyên từ: "oshi" không dính "Koshien", "2" không dính "2026"
+  function has(hay, w) {
+    var h = ' ' + hay + ' ';
+    return (w.length <= 2 || /^\d+$/.test(w)) ? h.indexOf(' ' + w + ' ') > -1 : h.indexOf(' ' + w) > -1;
   }
 
   var current = null, shown = PAGE, results = [];
@@ -76,14 +94,16 @@
       var sc = 0;
       for (var i = 0; i < ts.length; i++) {
         var w = ts[i];
-        if (hay.indexOf(w) < 0) return -1;
-        sc += (t.indexOf(w) > -1 ? 6 : 0) + (tg.indexOf(w) > -1 ? 4 : 0) + (u.indexOf(w) > -1 ? 2 : 0) + (s.indexOf(w) > -1 ? 1 : 0) + (c.indexOf(w) > -1 ? 1 : 0);
+        if (!has(hay, w)) return -1;
+        sc += (has(t, w) ? 6 : 0) + (has(tg, w) ? 4 : 0) + (has(u, w) ? 2 : 0) + (has(s, w) ? 1 : 0) + (has(c, w) ? 1 : 0);
       }
       return sc;
     }
-    var best = test(terms);
-    for (var k = 0; k < alts.length; k++) best = Math.max(best, test(alts[k].split(' ')) - 1);
-    return best;
+    var best = test(terms), ph = false;
+    var phrase = ' ' + terms.join(' ');
+    [t, tg, s, u].forEach(function (f) { if ((' ' + f + ' ').indexOf(phrase) > -1 && (' ' + f + ' ').indexOf(phrase + ' ') > -1) ph = true; });
+    for (var k = 0; k < alts.length; k++) { var a = test(alts[k].split(' ')) - 1; if (a >= 0 && test(alts[k].split(' ')) >= 0) ph = true; best = Math.max(best, a); }
+    return { sc: best, ph: ph };
   }
   function find(q) {
     var SKIP = { 'Chuyên mục': 1, 'Trang': 1 };
@@ -95,7 +115,10 @@
     if (!qn) return { list: pool.sort(function (a, b) { return String(b.date || '').localeCompare(String(a.date || '')); }), alts: [] };
     var terms = qn.split(' '), alts = altNames(qn);
     var scored = [];
-    pool.forEach(function (it) { var s = score(it, terms, alts); if (s >= 0) scored.push([s, it]); });
+    pool.forEach(function (it) { var r = score(it, terms, alts); if (r.sc >= 0) scored.push([r.sc, it, r.ph]); });
+    // nhiều từ: ưu tiên bài chứa đúng cụm từ (hoặc tên gọi khác); chỉ khi không có bài nào mới nới sang khớp rời từng từ
+    // (nhấn thẻ "Anime 2026" ra bài gắn thẻ đó, không ra mọi bài có chữ "anime" và "2026" ở đâu đó)
+    if (terms.length > 1 && scored.some(function (x) { return x[2]; })) scored = scored.filter(function (x) { return x[2]; });
     scored.sort(function (a, b) { return b[0] - a[0] || String(b[1].date || '').localeCompare(String(a[1].date || '')); });
     return { list: scored.map(function (x) { return x[1]; }), alts: alts };
   }
@@ -158,17 +181,18 @@
     injectPf();
   }
   function renderBase(query, keepShown) {
+    addAutoChips();
     current = query;
     if (!keepShown) shown = PAGE;
     searchInput.value = query;
-    chips.forEach(function (c) { var v = c.getAttribute('data-tag'); c.classList.toggle('active', (!v && !query) || (v && norm(v) === norm(query))); });
+    Array.prototype.forEach.call(allChips(), function (c) { var v = c.getAttribute('data-tag'); c.classList.toggle('active', (!v && !query) || (v && norm(v) === norm(query))); });
     if (query) { tagLabel.textContent = '#' + query; tagDesc.textContent = L.desc(query); document.title = L.title(query); }
     else { tagLabel.textContent = L.all; tagDesc.textContent = L.allDesc; document.title = L.titleAll; }
     if (!window.IDX || !Array.isArray(window.IDX)) { grid.innerHTML = '<div class="tag-empty"><div class="tag-empty-icon">⚠️</div><div>' + L.noIdx + '</div></div>'; return; }
     var r = find(query); results = r.list;
     countBadge.textContent = L.found(results.length) + (r.alts.length ? '' : '');
     if (!results.length) {
-      var sug = Array.prototype.slice.call(chips).filter(function (c) { return c.getAttribute('data-tag'); }).slice(0, 8).map(function (c) {
+      var sug = Array.prototype.slice.call(allChips()).filter(function (c) { return c.getAttribute('data-tag'); }).slice(0, 8).map(function (c) {
         return '<button type="button" class="tag-chip" data-tag="' + esc(c.getAttribute('data-tag')) + '">' + esc(c.textContent) + '</button>';
       }).join('');
       grid.innerHTML = '<div class="tag-empty"><div class="tag-empty-icon">🔍</div><div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:6px">' + L.emptyT + '</div><div>' + esc(L.emptyD(query)) + '</div><div class="tag-chips" style="justify-content:center;margin-top:14px">' + sug + '</div></div>';
@@ -176,6 +200,25 @@
     }
     draw();
     if (r.alts.length) countBadge.title = L.also(r.alts.join(', '));
+  }
+  // Thêm các thẻ phổ biến nhất trong chỉ mục (ngoài các chip dựng sẵn) để bấm là ra bài, không phải tự gõ
+  var GENERIC = { anime: 1, manga: 1, gaming: 1, 'danh gia': 1, reviews: 1, review: 1, '2026': 1, '2027': 1, pc: 1, ps5: 1, xbox: 1, 'tin tuc': 1, 'tin moi': 1, news: 1, otahub: 1, 'xep hang': 1, rankings: 1, trailer: 1, '2025': 1, game: 1, games: 1 };
+  var autoDone = false;
+  function addAutoChips() {
+    if (autoDone || !chipBox || !window.IDX) return;
+    autoDone = true;
+    var have = {};
+    Array.prototype.forEach.call(allChips(), function (c) { have[norm(c.getAttribute('data-tag'))] = 1; });
+    var cnt = {}, label = {};
+    window.IDX.forEach(function (it) {
+      var url = it.url || it.u || '';
+      if ((EN ? url.indexOf('/en/') !== 0 : url.indexOf('/en/') === 0) || !Array.isArray(it.tags)) return;
+      it.tags.forEach(function (t) { var k = norm(t); if (!k || GENERIC[k] || have[k] || k.length < 3) return; cnt[k] = (cnt[k] || 0) + 1; label[k] = label[k] || {}; label[k][t] = (label[k][t] || 0) + 1; });
+    });
+    Object.keys(cnt).filter(function (k) { return cnt[k] >= 3; }).sort(function (a, b) { return cnt[b] - cnt[a]; }).slice(0, 24).forEach(function (k) {
+      var best = Object.keys(label[k]).sort(function (a, b) { return label[k][b] - label[k][a]; })[0];
+      chipBox.insertAdjacentHTML('beforeend', '<button class="tag-chip" data-tag="' + esc(best) + '">' + esc(best) + ' <span style="opacity:.55">' + cnt[k] + '</span></button>');
+    });
   }
   function go(q, replace) {
     var u = q ? (EN ? '/en/tag?q=' : '/tag?q=') + encodeURIComponent(q) : (EN ? '/en/tag' : '/tag');
