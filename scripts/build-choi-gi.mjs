@@ -2982,7 +2982,7 @@ function SCRIPT_V(old, name, fallback) {
   const m = old && old.match(new RegExp('/assets/' + name.replace('.', '\\.') + '\\?v=([\\w.-]+)'));
   return m ? m[1] : fallback;
 }
-function MOBILE_FIX_V(old) { return SCRIPT_V(old, 'mobile-fix.css', '20261002l'); }
+function MOBILE_FIX_V(old) { return SCRIPT_V(old, 'mobile-fix.css', '20261003a'); }
 
 // ═════════════════════════════════════════════════════════════════════
 // 4. GHI FILE

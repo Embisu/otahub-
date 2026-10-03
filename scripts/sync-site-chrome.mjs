@@ -26,14 +26,15 @@ const NAV = {
 // Toàn bộ kiểu dáng viết thẳng trong thẻ nên không phụ thuộc file CSS nào.
 // GỠ XUỐNG: đổi `FEATURED` thành `null`, chạy `npm run chrome`, rồi commit. Menu về lại đúng 8 mục chuẩn.
 const FEATURED = {
-  vi: { href: '/dem-nguoc-gta-6', label: 'Đếm ngược GTA VI', sub: '19/11/2026' },
-  en: { href: '/en/gta-6-countdown', label: 'Countdown to GTA VI', sub: 'Nov 19, 2026' }
+  vi: { href: '/dem-nguoc-gta-6', label: 'Đếm ngược GTA VI', short: 'GTA VI', sub: '19/11/2026' },
+  en: { href: '/en/gta-6-countdown', label: 'Countdown to GTA VI', short: 'GTA VI', sub: 'Nov 19, 2026' }
 };
+// `short`: nhãn ngắn thay cho `label` khi màn hình 1101–1359px không đủ chỗ (CSS ở assets/mobile-fix.css, khối "Menu ngang vừa khung")
 // Đồng hồ nhỏ có kim quay + vệt sáng quét qua nút (SVG SMIL, không cần CSS hay JS)
 const HOT_CLOCK = '<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;position:relative"><circle cx="12" cy="12" r="9" fill="none" stroke="#1a0a24" stroke-width="2.4"/><path d="M12 6.5V12" stroke="#1a0a24" stroke-width="2.4" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="6s" repeatCount="indefinite"/></path><circle cx="12" cy="12" r="1.8" fill="#1a0a24"/></svg>';
 const HOT_SHINE = '<span aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;border-radius:inherit;pointer-events:none"><svg width="100%" height="100%" viewBox="0 0 100 40" preserveAspectRatio="none"><rect y="-4" width="9" height="48" fill="rgba(255,255,255,.4)" transform="skewX(-22)"><animate attributeName="x" from="-30" to="130" dur="3.2s" repeatCount="indefinite"/></rect></svg></span>';
 const HOT_BASE = 'position:relative;background:linear-gradient(135deg,#ff4fa3,#ff9a3c);color:#1a0a24;font-weight:800;text-transform:uppercase;white-space:nowrap;box-shadow:0 0 0 1px rgba(255,255,255,.4) inset,0 0 22px rgba(255,79,163,.7),0 4px 14px rgba(0,0,0,.35);';
-const hotDesktop = (lang, act) => FEATURED ? `<li class="nav-hot-li" style="display:flex;align-items:center"><a href="${FEATURED[lang].href}" class="nav-hot${act ? ' active' : ''}" style="${HOT_BASE}display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:0 15px 0 12px;height:34px;margin-left:8px;font-size:11.5px;letter-spacing:.07em">${HOT_SHINE}${HOT_CLOCK}<span style="position:relative">${FEATURED[lang].label}</span></a></li>` : '';
+const hotDesktop = (lang, act) => FEATURED ? `<li class="nav-hot-li" style="display:flex;align-items:center"><a href="${FEATURED[lang].href}" class="nav-hot${act ? ' active' : ''}" style="${HOT_BASE}display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:0 15px 0 12px;height:34px;margin-left:8px;font-size:11.5px;letter-spacing:.07em">${HOT_SHINE}${HOT_CLOCK}<span class="nav-hot-t" style="position:relative">${FEATURED[lang].label}</span><span class="nav-hot-s" style="position:relative;display:none">${FEATURED[lang].short}</span></a></li>` : '';
 const hotMobile = (lang, act) => FEATURED ? `<a href="${FEATURED[lang].href}" class="nav-hot${act ? ' active' : ''}" style="${HOT_BASE}border-radius:14px;padding:14px 18px;margin-bottom:12px;border-bottom:0;display:flex;align-items:center;justify-content:center;gap:10px;font-size:17px;letter-spacing:.06em">${HOT_SHINE}${HOT_CLOCK}<span style="position:relative">${FEATURED[lang].label}<small style="display:block;font-size:11px;letter-spacing:.14em;opacity:.78;margin-top:2px;text-align:center">${FEATURED[lang].sub}</small></span></a>` : '';
 // Dải nổi bật chỉ hiện trên điện thoại (≤1100px, lúc menu ngang bị ẩn), nằm ngay dưới thanh menu.
 // Không hiện trên chính trang đích của chiến dịch.
