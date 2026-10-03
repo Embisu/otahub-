@@ -111,8 +111,53 @@
     var html = results.slice(0, shown).map(cardHtml).join('');
     if (results.length > shown) html += '<div class="tag-more-wrap"><button type="button" class="tag-more" id="tag-more">' + esc(L.more(results.length - shown)) + '</button></div>';
     grid.innerHTML = html;
+    injectPf();
   }
+  /* Hồ sơ tác phẩm khớp từ khóa (assets/profile-names.json): hiện thành dải thẻ phía trên danh sách bài viết */
+  var pfRows = null;
+  function loose(x) { return String(x || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, ' ').trim(); }
+  function pfMatch(q, limit) {
+    var best = {};
+    pfRows.forEach(function (o) {
+      o.names.forEach(function (n) {
+        var rank = -1;
+        if (n === q) rank = 0; else if (n.indexOf(q) === 0) rank = 1; else if (q.length >= 3 && (' ' + n).indexOf(' ' + q) > -1) rank = 2;
+        else if (q.length >= 3 && n.indexOf(q) > -1) rank = 3; else if (n.length >= 5 && (' ' + q + ' ').indexOf(' ' + n + ' ') > -1) rank = 4;
+        if (rank < 0) return;
+        var key = o.r[2], cur = best[key];
+        if (!cur || rank < cur.rank || (rank === cur.rank && n.length < cur.len)) best[key] = { r: o.r, rank: rank, len: n.length };
+      });
+    });
+    return Object.keys(best).map(function (k) { return best[k]; }).sort(function (a, b) { return a.rank - b.rank || a.len - b.len; }).slice(0, limit).map(function (x) { return x.r; });
+  }
+  function injectPf() {
+    var old = grid.querySelector('.tag-pf'); if (old) old.parentNode.removeChild(old);
+    var q = loose(current);
+    if (!pfRows || q.length < 2) return;
+    var list = pfMatch(q, 8);
+    if (!list.length) return;
+    var base = EN ? '/en/profile/' : '/ho-so/';
+    var html = '<div class="tag-pf"><div class="tag-pf-h"><span>' + (EN ? 'Title profiles' : 'Hồ sơ tác phẩm') + '</span><a href="' + base + '?q=' + encodeURIComponent(current) + '">' + (EN ? 'See all' : 'Xem tất cả') + ' →</a></div><div class="tag-pf-row">' +
+      list.map(function (r) {
+        var p = EN ? r[1].replace(/^\/ho-so\//, '/en/profile/') : r[1];
+        return '<a class="tag-pf-it" href="' + esc(p) + '"><img src="' + esc(r[7]) + '" alt="" width="48" height="64" loading="lazy"><span><b>' + esc(EN ? r[4] : r[3]) + '</b><small>' + esc(EN ? r[6] : r[5]) + '</small></span></a>';
+      }).join('') + '</div></div>';
+    grid.insertAdjacentHTML('afterbegin', html);
+  }
+  (function () {
+    var st = document.createElement('style');
+    st.textContent = '.tag-pf{grid-column:1/-1;margin-bottom:18px;padding:16px 18px;border:1px solid rgba(0,242,255,.18);background:rgba(255,255,255,.03);border-radius:10px}.tag-pf-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#00f2ff}.tag-pf-h a{color:rgba(240,238,255,.7);text-decoration:none;letter-spacing:.04em;text-transform:none;font-size:13px;font-weight:600}.tag-pf-row{display:flex;gap:12px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}.tag-pf-it{display:flex;align-items:center;gap:10px;flex:none;width:230px;padding:8px 10px;border:1px solid rgba(255,255,255,.08);border-radius:8px;text-decoration:none;color:#f0eeff}.tag-pf-it:hover{border-color:rgba(0,242,255,.4);background:rgba(0,242,255,.06)}.tag-pf-it img{width:48px;height:64px;object-fit:cover;border-radius:4px;background:#1d1240;flex:none}.tag-pf-it b{display:block;font-size:14px;line-height:1.3;font-weight:700}.tag-pf-it small{display:block;margin-top:3px;font-size:11px;color:rgba(240,238,255,.5)}';
+    document.head.appendChild(st);
+    fetch('/assets/profile-names.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : []; }).then(function (j) {
+      pfRows = j.map(function (r) { return { r: r, names: r[0].map(loose).filter(function (n) { return n.length > 1; }) }; });
+      injectPf();
+    }).catch(function () {});
+  })();
   function render(query, keepShown) {
+    renderBase(query, keepShown);
+    injectPf();
+  }
+  function renderBase(query, keepShown) {
     current = query;
     if (!keepShown) shown = PAGE;
     searchInput.value = query;

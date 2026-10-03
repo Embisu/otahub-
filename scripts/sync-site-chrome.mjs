@@ -44,11 +44,11 @@ const SUB = { vi: [['/about', 'Giới thiệu'], ['/#newsletter', 'Bản tin'], 
 const LOGO = (home, lazy) => `<a href="${home}" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block"${lazy ? ' loading="lazy"' : ''}><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a>`;
 const FOOTER = {
   vi: { home: '/', desc: 'Tin tức, đánh giá và lịch phát sóng game, anime, manga cho cộng đồng Việt Nam và châu Á.', copy: '© 2026 OtaHub.asia · Tin tức game, anime &amp; manga',
-    cols: [['Chuyên mục', [['/news', 'Tin mới'], ['/gaming', 'Gaming'], ['/anime', 'Anime'], ['/manga', 'Manga'], ['/lich-phat-song', 'Lịch phát sóng'], ['/choi-gi', 'Chơi Gì?']]],
+    cols: [['Chuyên mục', [['/news', 'Tin mới'], ['/gaming', 'Gaming'], ['/anime', 'Anime'], ['/manga', 'Manga'], ['/lich-phat-song', 'Lịch phát sóng'], ['/choi-gi', 'Chơi Gì?'], ['/ho-so/', 'Hồ sơ tác phẩm']]],
       ['Đánh giá', [['/reviews', 'Bài đánh giá'], ['/rankings', 'Bảng xếp hạng'], ['/chuyen-sau', 'Chuyên sâu'], ['/tieu-chuan-danh-gia', 'Tiêu chuẩn đánh giá']]],
       ['Về OtaHub', [['/about', 'Giới thiệu'], ['/about#team', 'Đội ngũ'], ['/lien-he', 'Liên hệ'], ['/chinh-sach-bao-mat', 'Chính sách bảo mật'], ['/#newsletter', 'Bản tin'], ['/feed.xml', 'RSS Feed']]]] },
   en: { home: '/en/', desc: 'News, reviews and broadcast schedules for games, anime and manga, from Vietnam and across Asia.', copy: '© 2026 OtaHub.asia · Gaming, anime &amp; manga news',
-    cols: [['Sections', [['/en/news', 'Latest news'], ['/en/gaming', 'Gaming'], ['/en/anime', 'Anime'], ['/en/manga', 'Manga'], ['/en/lich-phat-song', 'Schedule'], ['/en/choi-gi', 'What to Play']]],
+    cols: [['Sections', [['/en/news', 'Latest news'], ['/en/gaming', 'Gaming'], ['/en/anime', 'Anime'], ['/en/manga', 'Manga'], ['/en/lich-phat-song', 'Schedule'], ['/en/choi-gi', 'What to Play'], ['/en/profile/', 'Title profiles']]],
       ['Reviews', [['/en/reviews', 'All reviews'], ['/en/rankings', 'Rankings'], ['/en/in-depth', 'In-Depth'], ['/en/review-standards', 'Review standards']]],
       ['About OtaHub', [['/en/about', 'About us'], ['/en/about#team', 'Team'], ['/en/contact', 'Contact'], ['/en/privacy', 'Privacy policy'], ['/en/#newsletter', 'Newsletter'], ['/feed.xml', 'RSS Feed']]]] }
 };

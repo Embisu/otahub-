@@ -222,7 +222,7 @@ function copyArticleLink(button){
   });
 }
 </script>
-<script defer src="/assets/search-redirect.js?v=20261002a"></script>
+<script defer src="/assets/search-redirect.js?v=20261003a"></script>
 <script defer src="/assets/enhance.js?v=20261002i"></script>
 <script defer src="/assets/lang-switch.js"></script>
 </body>
@@ -463,7 +463,7 @@ function copyArticleLink(button){
   });
 }
 </script>
-<script defer src="/assets/search-redirect.js?v=20261002a"></script>
+<script defer src="/assets/search-redirect.js?v=20261003a"></script>
 <script defer src="/assets/enhance.js?v=20261002i"></script>
 <script defer src="/assets/lang-switch.js"></script>
 </body>
@@ -704,7 +704,7 @@ function copyArticleLink(button){
   });
 }
 </script>
-<script defer src="/assets/search-redirect.js?v=20261002a"></script>
+<script defer src="/assets/search-redirect.js?v=20261003a"></script>
 <script defer src="/assets/enhance.js?v=20261002i"></script>
 <script defer src="/assets/lang-switch.js"></script>
 </body>
@@ -942,7 +942,7 @@ function copyArticleLink(button){
   });
 }
 </script>
-<script defer src="/assets/search-redirect.js?v=20261002a"></script>
+<script defer src="/assets/search-redirect.js?v=20261003a"></script>
 <script defer src="/assets/enhance.js?v=20261002i"></script>
 <script defer src="/assets/lang-switch.js"></script>
 </body>
