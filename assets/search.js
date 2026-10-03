@@ -1,5 +1,41 @@
 window.IDX = [
   {
+    "title": "GFL2 Attachment Guide: What to Farm, When to Spend Chips",
+    "url": "/en/girls-frontline-2-attachment-guide-calibration",
+    "cat": "Gaming",
+    "date": "2026-10-03",
+    "excerpt": "How to farm Girls' Frontline 2: Exilium attachments: the sets worth it, the damage formula, the 450%/600% calibration targets and when to spend gold chips.",
+    "img": "/assets/img/girls-frontline-2-huong-dan-phu-kien-chip-vang-hero.jpg",
+    "tags": ["Girls&#x27; Frontline 2","Exilium","Attachments","Calibration Chip","Phase Strike","Guide","Elaina Yukino"]
+  },
+  {
+    "title": "GFL2 Lưu Đày: farm phụ kiện và dùng chip vàng đúng lúc",
+    "url": "/girls-frontline-2-huong-dan-phu-kien-chip-vang",
+    "cat": "Gaming",
+    "date": "2026-10-03",
+    "excerpt": "Cách farm phụ kiện Girls' Frontline 2: Exilium (Lưu Đày): bộ nên farm, công thức sát thương, ngưỡng 450%/600% và lúc dùng chip vàng, theo Elaina Yukino.",
+    "img": "/assets/img/girls-frontline-2-huong-dan-phu-kien-chip-vang-hero.jpg",
+    "tags": ["Girls&#x27; Frontline 2","Lưu Đày","Phụ kiện","Chip Chỉnh Hỏa Lực","Đả Kích Nguyên Tố","Hướng dẫn","Elaina Yukino"]
+  },
+  {
+    "title": "Girls' Frontline 2: T-Dolls F2P Players Should Roll",
+    "url": "/en/girls-frontline-2-f2p-t-doll-roll-guide",
+    "cat": "Gaming",
+    "date": "2026-10-03",
+    "excerpt": "Which T-Dolls should F2P players roll in Girls' Frontline 2: Exilium? A 30-banner plan based on Trần Khắc Minh's community guide, checked against IOP Wiki.",
+    "img": "/assets/img/57fba50e9a-gfl2-exilium-official-bg.jpg",
+    "tags": ["Girls&#x27; Frontline 2","Exilium","T-Doll","F2P","Gacha","Springfield","THS Game","MICA Team"]
+  },
+  {
+    "title": "Girls' Frontline 2: T-Doll nên roll cho F2P, 30 banner",
+    "url": "/girls-frontline-2-t-doll-nen-roll-f2p",
+    "cat": "Gaming",
+    "date": "2026-10-03",
+    "excerpt": "Girls' Frontline 2: Lưu Đày nên roll T-Doll nào nếu chơi F2P? Bảng 30 banner quốc tế theo cẩm nang của Trần Khắc Minh, có đối chiếu hệ và vai trò.",
+    "img": "/assets/img/57fba50e9a-gfl2-exilium-official-bg.jpg",
+    "tags": ["Girls&#x27; Frontline 2","Lưu Đày","T-Doll","F2P","Gacha","Springfield","THS Game","MICA Team"]
+  },
+  {
     "title": "Nirvana in Girls' Frontline Explained Simply",
     "url": "/en/nirvana-in-girls-frontline-explained-simply",
     "cat": "Gaming",
