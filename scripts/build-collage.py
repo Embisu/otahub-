@@ -50,6 +50,11 @@ COLLAGES = {
         ('skydance-paramount-melrose-gate.jpg', (0, 0, 1, 1), 0.54),
         ('skydance-warner-bros-water-tower.jpg', (0, 0, 1, 1), 0.4),
     ],
+    # Fujimoto nói về cái kết Chainsaw Man: Denji (manga) + phim We Are Aliens của Kohei Kadowaki
+    'fujimoto-chainsaw-man-ket-thuc-hero.jpg': [
+        'pool-chainsaw-man-4.jpg',
+        ('fujimoto-we-are-aliens-key-visual.jpg', (0, 0, 1, 1), 0.765),
+    ],
 }
 
 

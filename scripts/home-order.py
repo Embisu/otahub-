@@ -70,6 +70,7 @@ def wcard_html(i, ind):
             f'<div class="wc-t">{E(i["title"])}</div><div class="wc-m">{E(i["by"])} · {i["date"]}</div></div><div class="wc-thumb"><img src="{thumb(i["img"])}" alt="{E(i["title"])}" loading="lazy" width="1200" height="675"></div></a></article>\n')
 
 
+SC_MAX = 4                                     # số thẻ nhỏ (sc) trong khối Tin nổi bật
 SART = r'    <article class="s-art"><a href="([^"]+)" class="sa-link">\n[\s\S]*?\n    </a></article>\n'
 WCARD = r'[ \t]*<article class="w-card"><a href="([^"]+)".*</article>\n'
 TICK = r'      <span class="tick-item">.*?<a href="([^"]+)".*</span>\n'
@@ -115,9 +116,31 @@ def to_fc(s, dropped_blk, en):
     new_sc = (f'    <a class="sc" href="{ofc["href"]}"><div class="sc-img"><img src="{thumb(ofc["img"])}" alt="{E(ofc["title"])}" loading="lazy" width="1200" height="675"></div>'
               f'<div class="sc-body"><span class="tag tag-c" style="margin-bottom:6px;padding:3px 8px;font-size:9px">{E(ofc["tag"])}</span>'
               f'<div class="sc-title">{E(ofc["title"])}</div><div class="sc-meta">{fmeta}</div></div></a>\n')
-    last = scs[-1]
-    s = s[:last.start()] + s[last.end():]
+    if len(scs) >= SC_MAX:                    # đủ ô thì bỏ thẻ nhỏ cuối, thiếu ô thì chỉ chèn thêm
+        last = scs[-1]
+        s = s[:last.start()] + s[last.end():]
     return s.replace(scs[0].group(0), new_sc + scs[0].group(0), 1)
+
+
+def sc_html(i):
+    return (f'    <a class="sc" href="{i["href"]}"><div class="sc-img"><img src="{thumb(i["img"])}" alt="{E(i["title"])}" loading="lazy" width="1200" height="675"></div>'
+            f'<div class="sc-body"><span class="tag tag-c" style="margin-bottom:6px;padding:3px 8px;font-size:9px">{E(i["cat"])}</span>'
+            f'<div class="sc-title">{E(i["title"])}</div><div class="sc-meta">{E(i["by"])} · {i["date"]}</div></div></a>\n')
+
+
+def fill_sc(s, en):
+    """Khối Tin nổi bật luôn đủ SC_MAX thẻ nhỏ: thiếu thì lấy bài mới nhất trong Tin mới nhất chưa xuất hiện ở Hero / Tiêu điểm tuần / fc / sc."""
+    scs = list(re.finditer(r'    <a class="sc" href="([^"]+)">.*</a>\n', s))
+    if not scs or len(scs) >= SC_MAX: return s
+    used = {HERO_HREF} | {m.group(1) for m in re.finditer(SART, s)} | {m.group(1) for m in scs}
+    fc = re.search(r'<a class="fc" href="([^"]+)"', s)
+    if fc: used.add(fc.group(1))
+    add = ''
+    for m in re.finditer(WCARD, s):
+        if len(scs) + add.count('class="sc"') >= SC_MAX: break
+        if m.group(1) not in used and page(m.group(1)): add += sc_html(info(m.group(1), en)); used.add(m.group(1))
+    last = scs[-1]
+    return s[:last.end()] + add + s[last.end():]
 
 
 def order(f, en, push=(), new_hero=None):
@@ -151,6 +174,7 @@ def order(f, en, push=(), new_hero=None):
     for _, blk in reversed(dropped):            # cũ nhất trước, để bài mới hơn nằm ở fc
         s = to_fc(s, blk, en)
     s, _ = resort(s, WCARD, n_w, [(i['href'], wcard_html(i, ind)) for i in infos])
+    s = fill_sc(s, en)
     # dòng chạy: Hero đứng đầu, các bài còn lại xếp theo giờ đăng, không cắt
     h = info(HERO_HREF, en)
     tk = f'      <span class="tick-item">🔥 <strong>{E(h["cat"])}:</strong> <a href="{HERO_HREF}" style="color:inherit;text-decoration:none">{E(h["title"])}</a></span>\n'

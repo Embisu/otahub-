@@ -1,5 +1,23 @@
 window.IDX = [
   {
+    "title": "Chainsaw Man: Fujimoto Explains the Manga’s Ending",
+    "url": "/en/chainsaw-man-fujimoto-explains-the-ending",
+    "cat": "Manga",
+    "date": "2026-10-03",
+    "excerpt": "Talking with We Are Aliens director Kōhei Kadowaki, Tatsuki Fujimoto says 19 pages a week left no time to plot. Here is why Chainsaw Man ended the way it did.",
+    "img": "/assets/img/fujimoto-chainsaw-man-ket-thuc-hero.jpg",
+    "tags": ["Chainsaw Man","Tatsuki Fujimoto","We Are Aliens","Kōhei Kadowaki","Look Back","Shonen Jump+"]
+  },
+  {
+    "title": "Thợ Săn Quỷ Chainsaw Man: Fujimoto giải thích cái kết",
+    "url": "/tho-san-quy-chainsaw-man-fujimoto-giai-thich-cai-ket",
+    "cat": "Manga",
+    "date": "2026-10-03",
+    "excerpt": "Trò chuyện với đạo diễn We Are Aliens, Tatsuki Fujimoto kể nhịp 19 trang mỗi tuần khiến ông không kịp lên cốt truyện. Vì sao Chainsaw Man kết như vậy?",
+    "img": "/assets/img/fujimoto-chainsaw-man-ket-thuc-hero.jpg",
+    "tags": ["Thợ Săn Quỷ Chainsaw Man","Tatsuki Fujimoto","We Are Aliens","Kōhei Kadowaki","Look Back","Shonen Jump+"]
+  },
+  {
     "title": "Paramount and Warner Bros. Merge as Skydance",
     "url": "/en/paramount-warner-bros-merger-new-name-skydance",
     "cat": "Gaming",
@@ -1484,7 +1502,7 @@ window.IDX = [
     "date": "2026-09-29",
     "excerpt": "We Are Aliens is a French–Japanese animated co-production about friendship, childhood memories and things that are hard to forget, opening in Japanese theaters…",
     "img": "/assets/img/uploads/inline-mumbpbot-2.jpg",
-    "tags": ["We Are Aliens","Kohei Kadowaki","NOTHING NEW","MIYU Productions","Tsubasa","Akitaro","adieu"],
+    "tags": ["We Are Aliens","Kōhei Kadowaki","NOTHING NEW","MIYU Productions","Tsubasa","Akitaro","adieu"],
     "lang": "en"
   },
   {
@@ -1494,7 +1512,7 @@ window.IDX = [
     "date": "2026-09-29",
     "excerpt": "We Are Aliens là phim hoạt hình hợp tác Pháp – Nhật, kể về tình bạn, ký ức tuổi thơ và những điều khó quên, ra rạp Nhật ngày 25/9/2026.",
     "img": "/assets/img/uploads/inline-mumbpbot-2.jpg",
-    "tags": ["We Are Aliens","Kohei Kadowaki","NOTHING NEW","MIYU Productions","Tsubasa","Akitaro","adieu","Annecy 2026"],
+    "tags": ["We Are Aliens","Kōhei Kadowaki","NOTHING NEW","MIYU Productions","Tsubasa","Akitaro","adieu","Annecy 2026"],
     "lang": "vi"
   },
   {
