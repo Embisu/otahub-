@@ -1,24 +1,39 @@
 /* Lịch phát hành game OtaHub — dữ liệu dùng chung cho tab "Lịch game" ở /lich-phat-song (VI + EN)
-   và khối "Lịch phát hành game" ở trang Gaming (scripts/sync-hub-articles.mjs đọc đúng file này, bỏ mục đã qua).
-   Trường: t = tên, tv = tên tiếng Việt (nếu khác), d = ngày ra mắt (YYYY-MM-DD, giờ VN),
-           k = game | update (bản cập nhật lớn của game đang chạy), p = pc (PC/Console) | mobile, m = offline | online,
-           vn = true nếu do studio Việt làm, pf = nền tảng hiển thị, s = studio/hãng, l / le = bài OtaHub (VI / EN),
-           i = ảnh, src = nguồn ngày ra mắt.
-   Nhóm p x m x vn khớp bảng Xếp hạng game. Chỉ ghi tựa đã có ngày công bố chính thức; không tự suy đoán.
-   Online = chơi mạng/multiplayer/live-service là cốt lõi; Offline = chơi một mình. */
+   và khối "Lịch phát hành game" ở trang Gaming (scripts/sync-hub-articles.mjs đọc đúng file này, chỉ lấy mục có ngày, bỏ mục đã qua).
+   CHỈ GHI TỰA CHƯA RA MẮT. Game đã ra mắt thì xóa khỏi file (trang tự bỏ mục có ngày đã qua).
+   Trường: t = tên, tv = tên tiếng Việt (nếu khác), d = ngày ra mắt chính thức (YYYY-MM-DD, giờ VN) hoặc null nếu chưa công bố,
+           w / we = mốc dự kiến bằng chữ (VI / EN) khi d = null, pre = true nếu đang mở đăng ký trước,
+           k = game | update, p = pc (PC/Console) | mobile, m = offline | online, vn = true nếu do studio Việt làm,
+           pf = nền tảng hiển thị, s = studio/hãng, l / le = bài OtaHub (VI / EN), i = ảnh, src = nguồn.
+   Nhóm p x m x vn khớp bảng Xếp hạng game. Online = chơi mạng/multiplayer/live-service là cốt lõi; Offline = chơi một mình.
+   Mục không có ngày xếp theo độ hot (hot trước). Ngày chỉ ghi khi nhà phát hành công bố; ngày tạm trên App Store thì để d = null. */
 window.OT_GAME_SCHEDULE = {
   updated: '2026-10-03',
   items: [
-    {t:'Ghost of Yōtei Complete Edition', d:'2026-10-01', k:'game', p:'pc', m:'offline', pf:'PS5', s:'Sucker Punch', l:'/ghost-of-yotei-complete-edition', le:'/en/ghost-of-yotei-complete-edition', i:'/assets/img/yt-sLcksHR30UA.jpg', src:'OtaHub'},
     {t:'Gears of War: E-Day', d:'2026-10-06', k:'game', p:'pc', m:'offline', pf:'Windows, Xbox Series X|S', s:'The Coalition', l:'/gears-of-war-e-day-thoi-gian-phat-hanh-va-cach-choi-som', le:'/en/gears-of-war-e-day-release-time-and-how-to-play-early', i:'/assets/img/uploads/p4z3x3u9-gears-of-war-e-day-revs-up-hype-with-a-playable-demo-at-game.webp', src:'OtaHub'},
     {t:'Order of the Sinking Star', d:'2026-10-08', k:'game', p:'pc', m:'offline', pf:'PC, Switch 2, PS5', s:'Thekla', l:'/order-of-the-sinking-star-ps5', le:'/en/order-of-the-sinking-star-ps5', i:'/assets/img/news-order-of-the-sinking-star-ps5.jpg', src:'OtaHub'},
-    {t:'Zenless Zone Zero 3.3', d:'2026-10-21', k:'update', p:'mobile', m:'online', pf:'Mobile, PC, PS5', s:'HoYoverse', l:'', le:'', i:'/assets/img/news-zzz-20-outer-ring.jpg', src:'Thông báo phiên bản 3.2 của HoYoverse (kết thúc 21/10/2026)'},
     {t:'Call of Duty: Modern Warfare 4', d:'2026-10-23', k:'game', p:'pc', m:'online', pf:'PC, PS5, Xbox, Switch 2', s:'Activision', l:'/call-of-duty-modern-warfare-4-gamescom-playable', le:'/en/call-of-duty-modern-warfare-4-gamescom-playable', i:'/assets/img/news-call-of-duty-modern-warfare-4-gamescom-playable.jpg', src:'OtaHub'},
-    {t:'Monster Hunter Outlanders', d:'2026-10-29', k:'game', p:'mobile', m:'online', pf:'iOS, Android (toàn cầu trừ Trung Quốc)', s:'Capcom / TiMi Studio · Level Infinite, Garena (Đông Nam Á)', l:'', le:'', i:'', src:'Trang chính thức monsterhunteroutlanders.com; Gematsu 9/2026; GamelandVN 2/10/2026'},
-    {t:'GTA 6', d:'2026-11-19', k:'game', p:'pc', m:'offline', pf:'PS5, Xbox Series X|S', s:'Rockstar Games', l:'/dem-nguoc-gta-6', le:'/en/gta-6-countdown', i:'/assets/img/gta6-official-art.jpg', src:'OtaHub'},
     {t:'One Piece: Grand Gourmet', d:'2026-10-23', k:'game', p:'mobile', m:'offline', pf:'iOS, Android, PC, Switch, Switch 2', s:'Bandai Namco / Kairosoft', l:'', le:'', i:'', src:'Gematsu 6/2026; thông cáo Bandai Namco (bản console ra 22/10)'},
-    {t:'Saints Row: The Third Remastered', d:'2026-10-29', k:'game', p:'mobile', m:'offline', pf:'iOS, Android', s:'Feral Interactive', l:'', le:'', i:'', src:'Mobilegamer.biz 9/2026; App Store mở đặt trước'},
-    {t:'Absolum', d:'2026-11-05', k:'game', p:'mobile', m:'offline', pf:'iOS, Android (bản mobile)', s:'Playdigious / Dotemu', l:'', le:'', i:'', src:'Thông báo Playdigious qua iPhoneSoft 9/2026'},
-    {t:'Ananta', d:'2027-01-15', k:'game', p:'mobile', m:'online', pf:'iOS, Android, PC, PS5', s:'NetEase Games / Naked Rain', l:'', le:'', i:'', src:'RPGSite 25/8/2026; Inven Global (công bố tại Gamescom ONL)'}
+    {t:'Monster Hunter Outlanders', d:'2026-10-29', k:'game', p:'mobile', m:'online', pre:true, pf:'iOS, Android (toàn cầu trừ Trung Quốc)', s:'Capcom / TiMi Studio · Level Infinite, Garena (Đông Nam Á)', l:'', le:'', i:'', src:'Trang chính thức monsterhunteroutlanders.com; Gematsu 9/2026; GamelandVN 2/10/2026'},
+    {t:'Saints Row: The Third Remastered', d:'2026-10-29', k:'game', p:'mobile', m:'offline', pre:true, pf:'iOS, Android', s:'Feral Interactive', l:'', le:'', i:'', src:'Mobilegamer.biz 9/2026; App Store mở đặt trước'},
+    {t:'Absolum', d:'2026-11-05', k:'game', p:'mobile', m:'offline', pre:true, pf:'iOS, Android (bản mobile)', s:'Playdigious / Dotemu', l:'', le:'', i:'', src:'Thông báo Playdigious qua iPhoneSoft 9/2026'},
+    {t:'GTA 6', d:'2026-11-19', k:'game', p:'pc', m:'offline', pf:'PS5, Xbox Series X|S', s:'Rockstar Games', l:'/dem-nguoc-gta-6', le:'/en/gta-6-countdown', i:'/assets/img/gta6-official-art.jpg', src:'OtaHub'},
+    {t:'Ananta', d:'2027-01-15', k:'game', p:'mobile', m:'online', pre:true, pf:'iOS, Android, PC, PS5', s:'NetEase Games / Naked Rain', l:'', le:'', i:'', src:'RPGSite 25/8/2026; PocketGamer.biz (17 triệu lượt đăng ký trước)'},
+
+    {t:'Petit Planet', d:null, w:'Mùa đông 2026', we:'Winter 2026', k:'game', p:'mobile', m:'online', pre:true, pf:'iOS, Android, PC', s:'HoYoverse', l:'', le:'', i:'', src:'PocketGamer.biz (công bố tại Gamescom ONL)'},
+    {t:'Palworld Online', d:null, w:'Chưa công bố ngày', we:'Date not announced', k:'game', p:'mobile', m:'online', pre:true, pf:'iOS, Android', s:'Garena / Pocketpair', l:'', le:'', i:'', src:'PocketGamer.biz (đăng ký trước tại Hàn Quốc; ngày 30/11 chỉ là ngày tạm trên App Store)'},
+    {t:'VAMPIR (bản toàn cầu)', d:null, w:'Chưa công bố ngày', we:'Date not announced', k:'game', p:'mobile', m:'online', pre:true, pf:'iOS, Android, PC', s:'Netmarble Neo', l:'', le:'', i:'', src:'MassivelyOP 26/8/2026 (mở đăng ký trước toàn cầu)'},
+    {t:'Ratchet & Clank: Ranger Rumble', d:null, w:'Sắp ra mắt toàn cầu', we:'Global launch soon', k:'game', p:'mobile', m:'online', pre:true, pf:'iOS, Android', s:'PlayStation / Oh Bibi / Insomniac', l:'', le:'', i:'', src:'Game Informer 7/2026 (đã thử nghiệm ở một số khu vực)'},
+    {t:'BLEACH: Mirrors High', d:null, w:'Chưa công bố ngày', we:'Date not announced', k:'game', p:'mobile', m:'online', pre:true, pf:'iOS, Android', s:'Bandai Namco', l:'', le:'', i:'', src:'PocketGamer (đang mở đăng ký trước; ngày 28/11 chỉ là ngày tạm trên App Store)'},
+    {t:'Solo Leveling: KARMA', d:null, w:'Nửa cuối 2026 (Hàn, Nhật trước)', we:'H2 2026 (Korea, Japan first)', k:'game', p:'mobile', m:'online', pre:true, pf:'iOS, Android, PC', s:'Netmarble Neo', l:'', le:'', i:'', src:'Inven Global (TGS 2026); báo cáo kết quả Netmarble'},
+    {t:'Honkai: Nexus Anima', d:null, w:'Chưa công bố ngày', we:'Date not announced', k:'game', p:'mobile', m:'online', pre:true, pf:'iOS, Android, PC', s:'HoYoverse', l:'', le:'', i:'', src:'Sportskeeda (đang thử nghiệm kín, mở đăng ký trước)'},
+    {t:'Azur Promilia', d:null, w:'Chưa công bố ngày', we:'Date not announced', k:'game', p:'mobile', m:'online', pre:true, pf:'iOS, Android, PC, PS5', s:'Manjuu', l:'', le:'', i:'', src:'Dexerto (trang Nhật ghi chưa có ngày)'},
+    {t:'Make Drama: MAD (bản toàn cầu)', d:null, w:'Chưa công bố ngày', we:'Date not announced', k:'game', p:'mobile', m:'online', pre:true, pf:'iOS, Android, PC', s:'Fluffy Duck / Wemade Connect', l:'', le:'', i:'', src:'Inven Global 8/2026 (mở đăng ký trước toàn cầu)'},
+    {t:'Silver Palace', d:null, w:'2027 (chưa xác nhận)', we:'2027 (unconfirmed)', k:'game', p:'mobile', m:'online', pre:true, pf:'iOS, Android, PC, PS5', s:'Elementa / Silver Studio', l:'', le:'', i:'', src:'PocketGamer (mở đăng ký trước; chưa có mốc chính thức)'},
+    {t:'Epic Seven', d:null, w:'Quý 4/2026 (Việt Nam)', we:'Q4 2026 (Vietnam)', k:'game', p:'mobile', m:'online', pf:'iOS, Android', s:'Smilegate · VTC Mobile (Việt Nam)', l:'', le:'', i:'', src:'GameK 12/5/2026; VTC Mobile tại GameVerse 2026'},
+    {t:'Norse Saga: Cửu Giới Thức Tỉnh', d:null, w:'Cuối 2026', we:'Late 2026', k:'game', p:'mobile', m:'online', pf:'iOS, Android', s:'Ujoy Games · DZO Game (Việt Nam)', l:'', le:'', i:'', src:'GameHub (đã chạy thử nghiệm kín tại Việt Nam 8/2026)'},
+    {t:'Hào Khí Đông A', d:null, w:'Dự kiến 12/6/2027', we:'Expected Jun 12, 2027', k:'game', p:'mobile', m:'online', vn:true, pf:'iOS, Android', s:'GihOt (Việt Nam)', l:'', le:'', i:'', src:'VnExpress GameHub (ngày dự kiến, chưa phải thông báo phát hành)'},
+    {t:'Nam Quốc Sơn Hà', d:null, w:'Chưa công bố ngày', we:'Date not announced', k:'game', p:'mobile', m:'offline', vn:true, pf:'Mobile (chưa công bố nền tảng)', s:'Imba Games (Việt Nam)', l:'', le:'', i:'', src:'AFKMobi: danh sách dự án GameVerse 2026'},
+    {t:'Xóm Nhỏ Tuổi Thơ', d:null, w:'Chưa công bố ngày', we:'Date not announced', k:'game', p:'mobile', m:'offline', vn:true, pf:'Mobile (chưa công bố nền tảng)', s:'Corochti (Việt Nam)', l:'', le:'', i:'', src:'AFKMobi: danh sách dự án GameVerse 2026'}
   ]
 };

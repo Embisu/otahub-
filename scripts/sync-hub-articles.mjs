@@ -197,7 +197,7 @@ ${emag}    <a class="ftab ftop" href="${topHref}">${TOP_LINK[P.lang][P.hub]}</a>
     const today = new Date(Date.now() + 7 * 3600e3).toISOString().slice(0, 10);
     const gctx = { window: {} };
     vm.runInNewContext(read('assets/game-schedule-data.js'), gctx);
-    const up = gctx.window.OT_GAME_SCHEDULE.items.filter((r) => r.d >= today).sort((a, b) => (a.d < b.d ? -1 : 1)).slice(0, 4);
+    const up = gctx.window.OT_GAME_SCHEDULE.items.filter((r) => r.d && r.d >= today).sort((a, b) => (a.d < b.d ? -1 : 1)).slice(0, 4);
     if (up.length) {
       const en = P.lang === 'en';
       const [y, m] = up[0].d.split('-');
