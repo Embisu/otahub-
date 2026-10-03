@@ -16,6 +16,8 @@
     "hubs:check": "node scripts/sync-hub-articles.mjs --check",
     "interlinks": "node scripts/build-interlinks.mjs",
     "interlinks:check": "node scripts/build-interlinks.mjs --check",
+    "home": "python scripts/home-order.py",
+    "home:check": "python scripts/home-order.py --check",
     "authors": "node scripts/sync-article-authors.mjs",
     "authors:check": "node scripts/sync-article-authors.mjs --check",
     "chrome": "node scripts/sync-site-chrome.mjs",

@@ -45,6 +45,11 @@ COLLAGES = {
         ('real-genshin-natlan.jpg', (0, 0, 1, 1), 0.47),
         '99357880d4-genshin-70-odette.jpg',
     ],
+    # Skydance: cổng Melrose của Paramount + tháp nước Warner Bros. (ảnh Wikimedia Commons, CC BY 2.0)
+    'skydance-paramount-warner-bros-hero.jpg': [
+        ('skydance-paramount-melrose-gate.jpg', (0, 0, 1, 1), 0.54),
+        ('skydance-warner-bros-water-tower.jpg', (0, 0, 1, 1), 0.4),
+    ],
 }
 
 

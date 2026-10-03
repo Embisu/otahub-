@@ -84,3 +84,4 @@ Câu sau ngắn hơn, có ngày, có nền tảng, và không cần tính từ n
 6. Tiêu đề 40–55 ký tự, mô tả 130–160 ký tự, JSON-LD đủ trường.
 7. Ảnh bìa không bị cắt mất chủ thể ở ô Hero trang chủ; ảnh trong bài có chú thích nguồn.
 8. Chạy quy trình đăng bài trong `docs/PUBLISHING_RUNBOOK.md` (hubs, chrome, authors, thumbs, IndexNow).
+9. Đưa bài lên Hero trang chủ bằng `python scripts/home-order.py --hero /slug-vi /en/slug-en` (Git Bash: thêm `MSYS_NO_PATHCONV=1`), không sửa tay khối Hero. Hero cũ luôn xuống đầu “Tiêu điểm tuần”, mọi danh sách xếp theo giờ đăng. Kiểm tra bằng `npm run home:check`.

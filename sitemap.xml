@@ -2475,4 +2475,16 @@
     <loc>https://otahub.asia/zenless-zone-zero-2-0-ban-2-1-yuzuha-alice</loc>
     <lastmod>2026-09-19</lastmod>
   </url>
+  <url>
+    <loc>https://otahub.asia/paramount-warner-bros-hop-nhat-lay-ten-skydance</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/paramount-warner-bros-merger-new-name-skydance</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

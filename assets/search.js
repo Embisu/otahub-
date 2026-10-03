@@ -1,5 +1,23 @@
 window.IDX = [
   {
+    "title": "Paramount and Warner Bros. Merge as Skydance",
+    "url": "/en/paramount-warner-bros-merger-new-name-skydance",
+    "cat": "Gaming",
+    "date": "2026-10-03",
+    "excerpt": "On October 2, 2026, David Ellison named the combined Paramount and Warner Bros. company Skydance. The roughly $111 billion deal is set to close on October 6.",
+    "img": "/assets/img/skydance-paramount-warner-bros-hero.jpg",
+    "tags": ["Skydance","Paramount","Warner Bros.","David Ellison","HBO Max","Warner Bros. Games","Hogwarts Legacy"]
+  },
+  {
+    "title": "Paramount và Warner Bros. hợp nhất, lấy tên Skydance",
+    "url": "/paramount-warner-bros-hop-nhat-lay-ten-skydance",
+    "cat": "Gaming",
+    "date": "2026-10-03",
+    "excerpt": "Ngày 2/10/2026, David Ellison công bố tên công ty sau khi Paramount và Warner Bros. hợp nhất: Skydance. Thương vụ khoảng 111 tỷ USD dự kiến xong ngày 6/10.",
+    "img": "/assets/img/skydance-paramount-warner-bros-hero.jpg",
+    "tags": ["Skydance","Paramount","Warner Bros.","David Ellison","HBO Max","Warner Bros. Games","Hogwarts Legacy"]
+  },
+  {
     "title": "Beast of Reincarnation review: đỡ đòn hay (8.1 điểm)",
     "url": "/beast-of-reincarnation-review",
     "cat": "Gaming",
