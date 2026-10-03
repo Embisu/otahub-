@@ -80,9 +80,11 @@
     return out.slice(0, 10);
   }
   // từ khóa khớp theo đầu từ (gõ dở vẫn ra), riêng số và từ ≤2 ký tự phải khớp nguyên từ: "oshi" không dính "Koshien", "2" không dính "2026"
+  // từ 3 chữ cái quá phổ biến (tên tác giả ONE, EVE...) chỉ khớp nguyên từ, tránh "one" ra mọi bài One Piece / One Punch Man
+  var EXACT3 = ' one eve new war end red day sky sun all out top '; 
   function has(hay, w) {
     var h = ' ' + hay + ' ';
-    return (w.length <= 2 || /^\d+$/.test(w)) ? h.indexOf(' ' + w + ' ') > -1 : h.indexOf(' ' + w) > -1;
+    return (w.length <= 2 || /^\d+$/.test(w) || EXACT3.indexOf(' ' + w + ' ') > -1) ? h.indexOf(' ' + w + ' ') > -1 : h.indexOf(' ' + w) > -1;
   }
 
   var current = null, shown = PAGE, results = [];

@@ -1,5 +1,5 @@
 {
-  "_doc": "Quy ước thẻ chủ đề: chỉ giữ thẻ RIÊNG (tác phẩm, nhân vật, tác giả, hãng/studio, game/sự kiện cụ thể). generic = thẻ quá chung bị gỡ ở mọi bài; titleOnly = nền tảng/nhà phát hành/nguồn tin chỉ giữ khi tên nó nằm trong tiêu đề bài (bài NÓI VỀ nó); canon = các cách viết khác nhau gộp về một tên chuẩn ('-' = gỡ); brandName = ghi đè tên chuẩn của tác phẩm (slug hồ sơ -> tên). Tên tác phẩm còn lại lấy từ hồ sơ theo ngôn ngữ trang. Chạy: node scripts/normalize-tags.mjs",
+  "_doc": "Quy ước thẻ chủ đề: chỉ giữ thẻ RIÊNG (tác phẩm, nhân vật, tác giả, hãng/studio, game/sự kiện cụ thể). generic = thẻ quá chung bị gỡ ở mọi bài; titleOnly = nền tảng phát sóng/cửa hàng/nguồn tin (không phải nhà sản xuất) chỉ giữ khi tên nó nằm trong tiêu đề bài (bài NÓI VỀ nó); canon = các cách viết khác nhau gộp về một tên chuẩn ('-' = gỡ); brandName = ghi đè tên chuẩn của tác phẩm (slug hồ sơ -> tên). Tên tác phẩm còn lại lấy từ hồ sơ theo ngôn ngữ trang. Chạy: node scripts/normalize-tags.mjs",
   "generic": [
     "Anime",
     "Manga",
@@ -269,7 +269,8 @@
     "Chú Thuật Hồi Chiến Anime": "Chú Thuật Hồi Chiến",
     "Thợ Săn Quỷ Chainsaw Man Anime": "Thợ Săn Quỷ Chainsaw Man",
     "Thợ Săn Quỷ Chainsaw Man Manga": "Thợ Săn Quỷ Chainsaw Man",
-    "Đại Chiến Titan Final Season": "Đại Chiến Titan"
+    "Đại Chiến Titan Final Season": "Đại Chiến Titan",
+    "ONE": "ONE (One Punch Man)"
   },
   "brandName": {
     "grand-theft-auto-vi": "GTA 6",
@@ -287,23 +288,9 @@
     "Anime Corner",
     "Bilibili",
     "MANGA Plus",
-    "Sony",
-    "Nintendo",
     "Switch 2",
     "PlayStation",
     "PlayStation Plus",
-    "Xbox Game Pass",
-    "Weekly Shonen Jump",
-    "Shonen Jump+",
-    "Shueisha",
-    "Kodansha",
-    "Shogakukan",
-    "Kadokawa",
-    "VIZ Media",
-    "Sony Pictures",
-    "Anime Expo",
-    "Gamescom",
-    "Tokyo Game Show",
-    "Anime NYC"
+    "Xbox Game Pass"
   ]
 }

@@ -35,7 +35,7 @@ flowchart TD
   - T?i thi?u 600–900+ ch? d?i v?i tin t?c phân tích / dánh giá.
   - Ph?i có các th? tiêu d? `<h2>`, `<h3>` phân do?n m?ch l?c.
   - S? d?ng kh?i `.highlight-box` (Tóm t?t di?m nh?n) ? d?u bài.
-  - The (tag): 3-6 the RIENG (tac pham, nhan vat, tac gia, studio, su kien cu the), khong the chung; xem docs/QUY-TAC-THE.md. Link `.sb-tag` tro ve `/tag?q=...` (EN: `/en/tag?q=...`).
+  - The (tag): 5-8 the RIENG (tac pham, studio, nhan vat, tac gia, su kien cu the), khong the chung; xem docs/QUY-TAC-THE.md. Link `.sb-tag` tro ve `/tag?q=...` (EN: `/en/tag?q=...`).
 
 ### Bu?c 2: Xu?t B?n (Qua Admin Panel ho?c Script)
 - **Cách 1: Qua Admin Panel ([`admin.html`](file:///d:/ANBU%202/WEBSITE/otahub-source/admin.html))**:
