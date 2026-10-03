@@ -4,7 +4,7 @@
 //   - khối "Hồ sơ tác phẩm" trong sidebar mỗi bài (build-profiles.mjs chèn, chạy lại an toàn),
 //   - danh sách "Bài viết" trên trang hồ sơ (window.OT_PROFILE_ARTICLES khi dựng trang tĩnh).
 import fs from 'node:fs';
-import { displayName } from './profile-paths.mjs';
+import { displayName, localize } from './profile-paths.mjs';
 
 const root = new URL('../../', import.meta.url);
 const read = (f) => fs.readFileSync(new URL(f, root), 'utf8');
@@ -146,7 +146,8 @@ export function articleInfo(html) {
 
 // Bảng tên cho trình duyệt (assets/profile-names.json): bài mới đăng qua admin chưa có khối hồ sơ dựng sẵn,
 // assets/enhance.js dùng bảng này để gắn khối "Hồ sơ tác phẩm" và link các thẻ chủ đề (sb-tag).
-// Mỗi dòng một phiên bản: [tên đã chuẩn hóa[], đường dẫn VI (kèm #tab), slug thương hiệu, tên VI, tên EN, nhãn VI, nhãn EN, ảnh]
+// Mỗi dòng một phiên bản: [tên đã chuẩn hóa[], đường dẫn VI (kèm #tab), slug thương hiệu, tên VI, tên EN, nhãn VI, nhãn EN, ảnh, đường dẫn EN, cờ]
+// cờ 0 = hồ sơ tác phẩm, 1 = studio / nhà phát hành (dùng cho tìm kiếm + link thẻ chủ đề, không vào khối hồ sơ của bài)
 export function nameTable(series, matchers, paths, labelOf, thumbOf) {
   const byKey = new Map(matchers.map((m) => [m.key, m]));
   const rows = [];
@@ -154,7 +155,7 @@ export function nameTable(series, matchers, paths, labelOf, thumbOf) {
     const multi = s.editions.length > 1;
     for (const e of s.editions) {
       const m = byKey.get(e.key);
-      rows.push([m ? m.names : [], paths[`${e.type}|${e.key}`], s.slug, s.name, s.nameEn, labelOf(s, e, false, multi), labelOf(s, e, true, multi), thumbOf(e.key)]);
+      rows.push([m ? m.names : [], paths[`${e.type}|${e.key}`], s.slug, s.name, s.nameEn, labelOf(s, e, false, multi), labelOf(s, e, true, multi), thumbOf(e.key), localize(paths[`${e.type}|${e.key}`], true), 0]);
     }
   }
   return rows;

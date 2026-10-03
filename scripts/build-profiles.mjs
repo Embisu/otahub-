@@ -19,6 +19,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import { profileSeries, profilePaths, aliasPaths, legacyMoves, localize, pagePath, slugTable, displayName, rewriteProfileLinks, PROFILE_TYPES as TYPES } from './lib/profile-paths.mjs';
 import { profileMatchers, profilesForArticle, articleInfo, nameTable, tagTable, norm } from './lib/profile-links.mjs';
+import { buildEntities, entityPath, entityIndexPath, ENTITY_TYPES, ENTITY_DIRS } from './lib/entities.mjs';
 
 const CHECK = process.argv.includes('--check');
 const root = new URL('../', import.meta.url);
@@ -40,6 +41,14 @@ const moves = legacyMoves(paths);             // "/anime/chainsaw-man" (URL cũ)
 // Khóa phụ (also) -> khóa phiên bản; khóa -> thương hiệu + phiên bản
 const editionOf = new Map();
 for (const s of series) for (const e of s.editions) { editionOf.set(e.key, { s, e }); for (const k of e.also) editionOf.set(k, { s, e }); }
+
+// ---- Studio / nhà phát hành (scripts/lib/entities.mjs): trang riêng cho tên có từ MIN_WORKS thương hiệu trở lên ----
+const entities = buildEntities(catalog, series);
+// Link tên studio / nhà phát hành trong bảng thông tin hồ sơ: khóa catalog -> [[tên trong catalog, đường dẫn]]
+const entityLinks = (en) => Object.fromEntries([...entities.byKey].map(([key, arr]) => {
+  const seen = new Set();
+  return [key, arr.filter((x) => (seen.has(x.variant) ? false : seen.add(x.variant))).map((x) => [x.variant, entityPath(x.type, x.slug, en)])];
+}));
 
 // ---- Chạy detail.v2.js với DOM giả lập ----
 const escHtml = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -104,7 +113,7 @@ function render(type, key, en) {
     querySelectorAll: () => [],
     set title(v) { out.title = v; }, get title() { return out.title; }
   };
-  const window = { IDX, OT_PROFILE_PATHS: allPaths, OT_PROFILE_SLUGS: slugTable(), OT_PROFILE_ARTICLES: profileArticles[en ? 'en' : 'vi'], OT_PRERENDER: true };
+  const window = { IDX, OT_PROFILE_PATHS: allPaths, OT_PROFILE_SLUGS: slugTable(), OT_ENTITY_LINKS: entityLinks(en), OT_PROFILE_ARTICLES: profileArticles[en ? 'en' : 'vi'], OT_PRERENDER: true };
   // detail.v2.js tải 3 file: catalog, profile-paths, profile-slugs (slug VI -> slug EN). Trả đúng từng file,
   // nếu không bảng slug bị ghi đè bằng profile-paths và link hồ sơ EN ra /en/profile/<slug VI> (404).
   const fakeFetch = (url) => Promise.resolve({ ok: true, json: () => Promise.resolve(/catalog\.json/.test(url) ? catalog : /profile-slugs\.json/.test(url) ? slugTable() : allPaths) });
@@ -243,7 +252,8 @@ function indexPage(en) {
   const url = ORIGIN + (en ? '/en/profile/' : '/ho-so/');
   const cards = items.map((i) => `<a class="pf-card" href="${pagePath(i.s, en)}" data-t="${i.types.join(' ')}" data-n="${attrEsc(i.key)}"><span class="pf-img"><img src="${attrEsc(i.thumb)}" alt="" loading="lazy" width="240" height="320">${i.score ? `<b class="pf-score">${i.score}</b>` : ''}</span><span class="pf-name">${escHtml(i.name)}</span><span class="pf-meta">${i.types.map((t) => TYPE_NAME[t]).join(' · ')}${i.genre ? ' · ' + escHtml(i.genre) : ''}${i.editions > 1 ? ` · ${i.editions} ${L.ed}` : ''}</span></a>`).join('');
   const chips = [['all', L.all, count(null)], ...['game', 'anime', 'manga'].map((t) => [t, TYPE_NAME[t], count(t)])].map(([t, label, n], k) => `<button type="button" data-t="${t}"${k ? '' : ' class="on"'}>${label} <b>${n}</b></button>`).join('');
-  const css = `.pf-wrap{max-width:1200px;margin:0 auto;padding:28px 24px 64px}.pf-h1{font-family:var(--fd);font-size:34px;line-height:1.2;color:var(--white);margin:14px 0 10px}.pf-lead{color:var(--dim);line-height:1.7;max-width:820px;margin:0 0 22px}.pf-tools{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;margin-bottom:22px}.pf-tools input{flex:1 1 260px;min-height:44px;padding:0 16px;border-radius:8px;border:1px solid var(--border);background:var(--surf);color:var(--white);font:inherit}.pf-chips{display:flex;gap:8px;flex-wrap:wrap}.pf-chips button{min-height:40px;padding:0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:none;color:var(--dim);font-family:var(--fd);font-weight:700;font-size:13px;cursor:pointer}.pf-chips button b{color:var(--amber)}.pf-chips button.on{background:var(--acc);border-color:var(--acc);color:#0b0220}.pf-chips button.on b{color:#0b0220}.pf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:16px}.pf-card{display:flex;flex-direction:column;gap:6px;text-decoration:none;min-width:0}.pf-card[hidden]{display:none}.pf-img{position:relative;display:block;aspect-ratio:3/4;border-radius:8px;overflow:hidden;background:var(--surf);border:1px solid var(--border);transition:transform .2s,border-color .2s}.pf-card:hover .pf-img{transform:translateY(-3px);border-color:color-mix(in srgb,var(--acc) 50%,transparent)}.pf-img img{width:100%;height:100%;object-fit:cover}.pf-score{position:absolute;top:8px;right:8px;padding:3px 8px;border-radius:6px;background:rgba(11,4,24,.82);color:var(--amber);font-family:var(--fd);font-size:13px}.pf-name{color:var(--white);font-family:var(--fd);font-weight:700;font-size:14px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.pf-meta{color:var(--muted);font-size:12px;line-height:1.4}.pf-empty{color:var(--dim);padding:32px 0}@media(max-width:768px){.pf-wrap{padding:20px 16px 56px}.pf-h1{font-size:26px}.pf-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}`;
+  const css = `.pf-wrap{max-width:1200px;margin:0 auto;padding:28px 24px 64px}.pf-h1{font-family:var(--fd);font-size:34px;line-height:1.2;color:var(--white);margin:14px 0 10px}.pf-lead{color:var(--dim);line-height:1.7;max-width:820px;margin:0 0 22px}.pf-tools{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;margin-bottom:22px}.pf-tools input{flex:1 1 260px;min-height:44px;padding:0 16px;border-radius:8px;border:1px solid var(--border);background:var(--surf);color:var(--white);font:inherit}.pf-chips{display:flex;gap:8px;flex-wrap:wrap}.pf-chips button{min-height:40px;padding:0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:none;color:var(--dim);font-family:var(--fd);font-weight:700;font-size:13px;cursor:pointer}.pf-chips button b{color:var(--amber)}.pf-chips button.on{background:var(--acc);border-color:var(--acc);color:#0b0220}.pf-chips button.on b{color:#0b0220}.pf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:16px}.pf-card{display:flex;flex-direction:column;gap:6px;text-decoration:none;min-width:0}.pf-card[hidden]{display:none}.pf-img{position:relative;display:block;aspect-ratio:3/4;border-radius:8px;overflow:hidden;background:var(--surf);border:1px solid var(--border);transition:transform .2s,border-color .2s}.pf-card:hover .pf-img{transform:translateY(-3px);border-color:color-mix(in srgb,var(--acc) 50%,transparent)}.pf-img img{width:100%;height:100%;object-fit:cover}.pf-score{position:absolute;top:8px;right:8px;padding:3px 8px;border-radius:6px;background:rgba(11,4,24,.82);color:var(--amber);font-family:var(--fd);font-size:13px}.pf-name{color:var(--white);font-family:var(--fd);font-weight:700;font-size:14px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.pf-meta{color:var(--muted);font-size:12px;line-height:1.4}.pf-empty{color:var(--dim);padding:32px 0}.ent-browse a{color:var(--acc);margin-right:14px}@media(max-width:768px){.pf-wrap{padding:20px 16px 56px}.pf-h1{font-size:26px}.pf-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}`;
+  PF_CSS = css;
   const js = `(function(){var q=document.getElementById('pfQ'),cards=[].slice.call(document.querySelectorAll('.pf-card')),chips=[].slice.call(document.querySelectorAll('.pf-chips button')),empty=document.getElementById('pfEmpty'),t='all';function norm(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').replace(/đ/g,'d').trim();}function run(){var v=norm(q.value),n=0;cards.forEach(function(c){var ok=(t==='all'||(' '+c.dataset.t+' ').indexOf(' '+t+' ')>-1)&&(!v||c.dataset.n.indexOf(v)>-1);c.hidden=!ok;if(ok)n++;});empty.hidden=n>0;}q.addEventListener('input',run);chips.forEach(function(b){b.addEventListener('click',function(){t=b.dataset.t;chips.forEach(function(x){x.classList.toggle('on',x===b);});run();});});var p=new URLSearchParams(location.search);if(p.get('q')){q.value=p.get('q');run();}})();`;
   const ld = (o) => `<script type="application/ld+json">${JSON.stringify(o).replace(/</g, '\\u003c')}</script>`;
   const collection = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: L.name, url, inLanguage: en ? 'en' : 'vi', mainEntity: { '@type': 'ItemList', numberOfItems: items.length, itemListElement: items.map((i, k) => ({ '@type': 'ListItem', position: k + 1, name: i.name, url: ORIGIN + pagePath(i.s, en) })) } };
@@ -262,12 +272,112 @@ function indexPage(en) {
   html = setTag(html, /<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${ORIGIN}/og-image.png">`);
   html = html.replace(/<meta name="twitter:image" content="[^"]*">/, () => `<meta name="twitter:image" content="${ORIGIN}/og-image.png">`);
   html = setTag(html, /<\/head>/, `<style id="ot-detail-style">${detailCss}</style><style id="ot-index-style">${css}</style>\n${ld(collection)}\n${ld(crumbs)}\n</head>`);
-  const body = `<div class="pf-wrap"><nav class="breadcrumb" aria-label="breadcrumb"><a href="${en ? '/en/' : '/'}">OtaHub</a><span class="breadcrumb-sep">›</span><span>${L.crumb}</span></nav><h1 class="pf-h1">${L.h1}</h1><p class="pf-lead">${L.lead}</p><div class="pf-tools"><input type="search" id="pfQ" placeholder="${L.ph}" aria-label="${L.ph}" autocomplete="off"><div class="pf-chips">${chips}</div></div><div class="pf-grid">${cards}</div><p class="pf-empty" id="pfEmpty" hidden>${L.empty}</p></div><script>${js}</script>`;
+  const body = `<div class="pf-wrap"><nav class="breadcrumb" aria-label="breadcrumb"><a href="${en ? '/en/' : '/'}">OtaHub</a><span class="breadcrumb-sep">›</span><span>${L.crumb}</span></nav><h1 class="pf-h1">${L.h1}</h1><p class="pf-lead">${L.lead}</p><p class="ent-browse" style="margin:-8px 0 18px">${en ? 'Browse by' : 'Duyệt theo'}: <a href="${entityIndexPath('studio', en)}">${en ? 'Studios' : 'Studio'}</a> <a href="${entityIndexPath('publisher', en)}">${en ? 'Publishers' : 'Nhà phát hành'}</a></p><div class="pf-tools"><input type="search" id="pfQ" placeholder="${L.ph}" aria-label="${L.ph}" autocomplete="off"><div class="pf-chips">${chips}</div></div><div class="pf-grid">${cards}</div><p class="pf-empty" id="pfEmpty" hidden>${L.empty}</p></div><script>${js}</script>`;
   html = setTag(html, /<div id="detailRoot">[\s\S]*?<\/div><\/div>/, `<div id="detailRoot" data-prerendered>${body}</div>`);
   html = html.replace(/<script defer src="\/assets\/detail\.v2\.js[^>]*><\/script>\n?/, '');
-  return viNamesIf(html, en);
+  return html;
 }
 const viNamesIf = (html, en) => (en ? html : viNames(html));
+
+// ---- Trang studio / nhà phát hành: /studio/<slug>, /nha-phat-hanh/<slug> (+ /en/studio, /en/publisher) và trang danh mục từng loại ----
+let PF_CSS = '';
+const ENT_L = {
+  studio: { vi: 'Studio', en: 'Studio', allVi: 'Tất cả studio', allEn: 'All studios', plural: { vi: 'studio', en: 'studios' } },
+  publisher: { vi: 'Nhà phát hành', en: 'Publisher', allVi: 'Tất cả nhà phát hành', allEn: 'All publishers', plural: { vi: 'nhà phát hành', en: 'publishers' } },
+};
+const TYPE_VI = { game: 'game', anime: 'anime', manga: 'manga' };
+const thumbS = (img) => {
+  const m = /^\/assets\/img\/(?!_[ts]\/|brand\/)([^?#]+\.(?:jpe?g|png|webp|jfif))$/i.exec(img || '');
+  return m && exists(`assets/img/_s/${m[1]}.webp`) ? `/assets/img/_s/${m[1]}.webp` : (img || '/assets/img/placeholder.svg');
+};
+const roleText = (ent, en) => {
+  const types = new Set(ent.works.flatMap((w) => w.series.editions.map((e) => e.type)));
+  if (ent.type === 'studio') {
+    if (types.has('anime') && types.has('game')) return en ? 'an anime studio and game developer' : 'studio anime và nhà phát triển game';
+    return types.has('anime') ? (en ? 'an anime studio' : 'studio anime') : (en ? 'a game developer' : 'nhà phát triển game');
+  }
+  if (types.has('manga') && types.has('game')) return en ? 'a game and manga publisher' : 'nhà phát hành game và manga';
+  return types.has('manga') ? (en ? 'a manga publisher' : 'nhà xuất bản / phát hành manga') : (en ? 'a game publisher' : 'nhà phát hành game');
+};
+const bestScore = (s) => Math.max(0, ...s.editions.map((e) => parseFloat(catalog[e.key].score)).filter((n) => !isNaN(n)));
+function seriesCard(s, en) {
+  const types = [...new Set(s.editions.map((e) => e.type))];
+  const e0 = catalog[s.editions[0].key];
+  const sc = bestScore(s);
+  return `<a class="pf-card" href="${pagePath(s, en)}" data-t="${types.join(' ')}"><span class="pf-img"><img src="${attrEsc(thumbS(e0.img))}" alt="" loading="lazy" width="240" height="320">${sc ? `<b class="pf-score">${sc.toFixed(1)}</b>` : ''}</span><span class="pf-name">${escHtml(en ? s.nameEn : s.name)}</span><span class="pf-meta">${types.map((t) => ({ game: 'Game', anime: 'Anime', manga: 'Manga' }[t])).join(' · ')}${e0.genre ? ' · ' + escHtml(e0.genre.split('/')[0].trim()) : ''}</span></a>`;
+}
+function shellPage(en, { title, desc, url, viUrl, enUrl, img, ld, body, css }) {
+  let html = read((en ? 'en/' : '') + 'game-detail.html');
+  html = setTag(html, /<title>[^<]*<\/title>/, `<title>${escHtml(title)}</title>`);
+  html = setTag(html, /<link rel="alternate" hreflang="vi" href="[^"]*">/, `<link rel="alternate" hreflang="vi" href="${viUrl}">`);
+  html = setTag(html, /<link rel="alternate" hreflang="en" href="[^"]*">/, `<link rel="alternate" hreflang="en" href="${enUrl}">`);
+  html = setTag(html, /<link rel="alternate" hreflang="x-default" href="[^"]*">/, `<link rel="alternate" hreflang="x-default" href="${viUrl}">`);
+  html = setTag(html, /<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${url}">`);
+  html = setTag(html, /<meta name="description" content="[^"]*">/, `<meta name="description" content="${attrEsc(desc)}">`);
+  html = setTag(html, /<meta name="robots" content="[^"]*">/, '<meta name="robots" content="index, follow, max-image-preview:large">');
+  html = setTag(html, /<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${attrEsc(title)}">`);
+  html = setTag(html, /<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${url}">`);
+  html = setTag(html, /<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${attrEsc(desc)}">`);
+  html = setTag(html, /<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${img}">`);
+  html = html.replace(/<meta name="twitter:image" content="[^"]*">/, () => `<meta name="twitter:image" content="${img}">`);
+  const j = (o) => `<script type="application/ld+json">${JSON.stringify(o).replace(/</g, '\\u003c')}</script>`;
+  html = setTag(html, /<\/head>/, `<style id="ot-detail-style">${detailCss}</style><style id="ot-index-style">${PF_CSS}${css || ''}</style>\n${ld.map(j).join('\n')}\n</head>`);
+  html = setTag(html, /<div id="detailRoot">[\s\S]*?<\/div><\/div>/, `<div id="detailRoot" data-prerendered>${body}</div>`);
+  html = html.replace(/<script defer src="\/assets\/detail\.v2\.js[^>]*><\/script>\n?/, '');
+  return html;
+}
+const ENT_CSS = '.ent-h{font-family:var(--fd);font-size:22px;color:var(--white);margin:36px 0 14px;padding-left:12px;border-left:3px solid var(--acc)}.ent-desc{color:var(--dim);line-height:1.75;max-width:820px;margin:0 0 20px}.ent-browse{margin-top:34px;color:var(--dim);font-size:14px}.ent-browse a{color:var(--acc);margin-right:14px}.ent-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}.ent-item{display:flex;flex-direction:column;gap:4px;padding:14px 16px;border:1px solid var(--border);border-radius:8px;background:var(--surf);text-decoration:none;min-width:0}.ent-item:hover{border-color:color-mix(in srgb,var(--acc) 50%,transparent)}.ent-item b{color:var(--white);font-family:var(--fd);font-size:15px}.ent-item span{color:var(--muted);font-size:12px;line-height:1.5}.article-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}@media(max-width:768px){.article-grid{grid-template-columns:1fr}}';
+function entityPage(ent, en) {
+  const L = ENT_L[ent.type];
+  const label = en ? L.en : L.vi;
+  const name = en ? ent.nameEn : ent.name;
+  const works = ent.works.map((w) => w.series).sort((a, b) => bestScore(b) - bestScore(a) || (en ? a.nameEn : a.name).localeCompare(en ? b.nameEn : b.name));
+  const n = works.length;
+  const top = works.slice(0, 3).map((s) => (en ? s.nameEn : s.name));
+  const intro = en
+    ? `${name} is ${roleText(ent, true)} credited on ${n} titles that OtaHub has profiles for, including ${top.join(', ')}. This page gathers those profiles with OtaHub scores where a full review exists, plus related articles.`
+    : `${name} là ${roleText(ent, false)} có tên trong ${n} tác phẩm mà OtaHub có hồ sơ, trong đó có ${top.join(', ')}. Trang này gom các hồ sơ đó, kèm điểm của OtaHub khi đã có bài review, và các bài viết liên quan.`;
+  const url = ORIGIN + entityPath(ent.type, ent.slug, en);
+  const types = [...new Set(works.flatMap((s) => s.editions.map((e) => e.type)))];
+  const chips = types.length > 1 ? `<div class="pf-tools"><div class="pf-chips"><button type="button" data-t="all" class="on">${en ? 'All' : 'Tất cả'} <b>${n}</b></button>${types.map((t) => `<button type="button" data-t="${t}">${{ game: 'Game', anime: 'Anime', manga: 'Manga' }[t]} <b>${works.filter((s) => s.editions.some((e) => e.type === t)).length}</b></button>`).join('')}</div></div>` : '';
+  // Bài viết liên quan tới các tác phẩm này, mới nhất trước
+  const lang = en ? 'en' : 'vi';
+  const urls = new Set();
+  works.forEach((s) => s.editions.forEach((e) => (profileArticles[lang][e.key] || []).forEach((u) => urls.add(u))));
+  const arts = [...urls].map((u) => idxByUrl.get(u)).filter(Boolean).sort((a, b) => String(b.date || '').localeCompare(String(a.date || ''))).slice(0, 6);
+  const catLabel = (c) => (!en && { Reviews: 'Đánh giá', Review: 'Đánh giá', News: 'Tin tức' }[c]) || c || 'OtaHub';
+  const artHtml = arts.length ? `<h2 class="ent-h">${en ? 'Related articles' : 'Bài viết liên quan'}</h2><div class="article-grid">${arts.map((a) => `<a class="article-card" href="${attrEsc(a.url)}"><img src="${attrEsc(thumbS(a.img))}" alt="" loading="lazy" width="112" height="100"><div class="article-copy"><div class="article-type">${escHtml(catLabel(a.cat))}</div><div class="article-title">${escHtml(a.title)}</div></div></a>`).join('')}</div>` : '';
+  const desc = en ? ent.descEn : ent.desc;
+  const js = "(function(){var chips=[].slice.call(document.querySelectorAll('.pf-chips button')),cards=[].slice.call(document.querySelectorAll('.pf-card'));chips.forEach(function(b){b.addEventListener('click',function(){var t=b.dataset.t;chips.forEach(function(x){x.classList.toggle('on',x===b);});cards.forEach(function(c){c.hidden=!(t==='all'||(' '+c.dataset.t+' ').indexOf(' '+t+' ')>-1);});});});})();";
+  const body = `<div class="pf-wrap"><nav class="breadcrumb" aria-label="breadcrumb"><a href="${en ? '/en/' : '/'}">OtaHub</a><span class="breadcrumb-sep">›</span><a href="${entityIndexPath(ent.type, en)}">${label}</a><span class="breadcrumb-sep">›</span><span>${escHtml(name)}</span></nav><h1 class="pf-h1">${escHtml(name)}</h1><p class="pf-lead">${escHtml(intro)}</p>${desc ? `<p class="ent-desc">${escHtml(desc)}</p>` : ''}${chips}<div class="pf-grid">${works.map((s) => seriesCard(s, en)).join('')}</div>${artHtml}<p class="ent-browse"><a href="${entityIndexPath(ent.type, en)}">${en ? L.allEn : L.allVi}</a><a href="${en ? '/en/profile/' : '/ho-so/'}">${en ? 'All title profiles' : 'Tất cả hồ sơ tác phẩm'}</a></p></div>${chips ? `<script>${js}</script>` : ''}`;
+  const ld = [
+    { '@context': 'https://schema.org', '@type': 'Organization', name, url, subjectOf: { '@type': 'ItemList', numberOfItems: n, itemListElement: works.map((s, k) => ({ '@type': 'ListItem', position: k + 1, name: en ? s.nameEn : s.name, url: ORIGIN + pagePath(s, en) })) } },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'OtaHub', item: ORIGIN + (en ? '/en/' : '/') }, { '@type': 'ListItem', position: 2, name: label, item: ORIGIN + entityIndexPath(ent.type, en) }, { '@type': 'ListItem', position: 3, name, item: url }] },
+  ];
+  const e0 = catalog[works[0].editions[0].key];
+  return shellPage(en, {
+    title: en ? `${name} · ${label}: ${n} titles · OtaHub` : `${name} · ${label}: ${n} tác phẩm · OtaHub`,
+    desc: intro.slice(0, 158), url, viUrl: ORIGIN + entityPath(ent.type, ent.slug, false), enUrl: ORIGIN + entityPath(ent.type, ent.slug, true),
+    img: e0.img && !/placeholder/.test(e0.img) ? ORIGIN + e0.img : ORIGIN + '/og-image.png', ld, body, css: ENT_CSS,
+  });
+}
+function entityIndex(type, en) {
+  const L = ENT_L[type];
+  const label = en ? L.en : L.vi;
+  const list = entities.list.filter((x) => x.type === type);
+  const url = ORIGIN + entityIndexPath(type, en);
+  const lead = en
+    ? `${list.length} ${L.plural.en} with at least three titles profiled on OtaHub. Open one to see every profiled title it worked on, with scores and related articles.`
+    : `${list.length} ${L.plural.vi} có từ ba tác phẩm trở lên được OtaHub lập hồ sơ. Mở từng trang để xem mọi tác phẩm đã có hồ sơ, kèm điểm và bài viết liên quan.`;
+  const items = [...list].sort((a, b) => (en ? a.nameEn : a.name).localeCompare(en ? b.nameEn : b.name, 'en', { sensitivity: 'base' })).map((x) => {
+    const sample = x.works.slice(0, 3).map((w) => (en ? w.series.nameEn : w.series.name)).join(', ');
+    return `<a class="ent-item" href="${entityPath(type, x.slug, en)}"><b>${escHtml(en ? x.nameEn : x.name)}</b><span>${x.works.length} ${en ? 'titles' : 'tác phẩm'}</span><span>${escHtml(sample)}</span></a>`;
+  }).join('');
+  const body = `<div class="pf-wrap"><nav class="breadcrumb" aria-label="breadcrumb"><a href="${en ? '/en/' : '/'}">OtaHub</a><span class="breadcrumb-sep">›</span><span>${label}</span></nav><h1 class="pf-h1">${en ? L.allEn : L.allVi}</h1><p class="pf-lead">${escHtml(lead)}</p><div class="ent-list">${items}</div><p class="ent-browse"><a href="${entityIndexPath(type === 'studio' ? 'publisher' : 'studio', en)}">${en ? ENT_L[type === 'studio' ? 'publisher' : 'studio'].allEn : ENT_L[type === 'studio' ? 'publisher' : 'studio'].allVi}</a><a href="${en ? '/en/profile/' : '/ho-so/'}">${en ? 'All title profiles' : 'Tất cả hồ sơ tác phẩm'}</a></p></div>`;
+  const ld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: en ? L.allEn : L.allVi, url, inLanguage: en ? 'en' : 'vi', mainEntity: { '@type': 'ItemList', numberOfItems: list.length, itemListElement: list.map((x, k) => ({ '@type': 'ListItem', position: k + 1, name: en ? x.nameEn : x.name, url: ORIGIN + entityPath(type, x.slug, en) })) } },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'OtaHub', item: ORIGIN + (en ? '/en/' : '/') }, { '@type': 'ListItem', position: 2, name: label, item: url }] }];
+  return shellPage(en, { title: `${en ? L.allEn : L.allVi} · OtaHub`, desc: lead.slice(0, 158), url, viUrl: ORIGIN + entityIndexPath(type, false), enUrl: ORIGIN + entityIndexPath(type, true), img: ORIGIN + '/og-image.png', ld, body, css: ENT_CSS });
+}
 
 // ---- Ghi ----
 const pages = [];
@@ -285,6 +395,8 @@ for (const s of series) {
   }
 }
 for (const en of [false, true]) pages.push({ file: (en ? 'en/profile' : 'ho-so') + '/index.html', html: indexPage(en), indexable: true, url: ORIGIN + (en ? '/en/profile/' : '/ho-so/') });
+for (const type of ENTITY_TYPES) for (const en of [false, true]) pages.push({ file: entityIndexPath(type, en).slice(1) + 'index.html', html: entityIndex(type, en), indexable: true, url: ORIGIN + entityIndexPath(type, en) });
+for (const ent of entities.list) for (const en of [false, true]) pages.push({ file: entityPath(ent.type, ent.slug, en).slice(1) + '.html', html: entityPage(ent, en), indexable: true, url: ORIGIN + entityPath(ent.type, ent.slug, en) });
 
 // Khối "Hồ sơ tác phẩm" đầu sidebar bài viết; đánh dấu bằng comment để chạy lại thay đúng khối cũ
 const sbThumb = (img) => {
@@ -294,7 +406,19 @@ const sbThumb = (img) => {
 const TYPE_LABEL = { game: 'Game', anime: 'Anime', manga: 'Manga' };
 // Bảng tên cho trình duyệt (bài mới đăng qua admin) và bảng link thẻ chủ đề
 const labelOf = (s, e, en, multi) => (multi ? (en ? e.labelEn : e.label) : TYPE_LABEL[e.type]);
-const names = nameTable(series, matchers, paths, labelOf, (k) => sbThumb(catalog[k].img));
+const profileNames = nameTable(series, matchers, paths, labelOf, (k) => sbThumb(catalog[k].img));
+// studio / nhà phát hành: cùng dạng dòng, cờ cuối = 1. Tên đã thuộc studio thì nhà phát hành cùng tên không giành lại (vd. Capcom)
+const entityRows = (() => {
+  const taken = new Set();
+  return [...entities.list].sort((a, b) => (a.type === b.type ? 0 : a.type === 'studio' ? -1 : 1)).map((ent) => {
+    const nm = [...new Set([ent.name, ent.nameEn, ...ent.variants].map(norm))].filter((x) => x.length > 1 && !taken.has(x));
+    nm.forEach((x) => taken.add(x));
+    const L = ENT_L[ent.type];
+    const top = catalog[ent.works[0].series.editions[0].key];
+    return [nm, entityPath(ent.type, ent.slug, false), 'e:' + ent.type + ':' + ent.slug, ent.name, ent.nameEn, L.vi, L.en, sbThumb(top.img), entityPath(ent.type, ent.slug, true), 1];
+  });
+})();
+const names = [...profileNames, ...entityRows];
 const tagOwner = tagTable(names);
 const namesJson = JSON.stringify(names) + '\n';
 // Thẻ chủ đề trùng tên một tác phẩm -> link thẳng hồ sơ (data-pf đánh dấu để chạy lại an toàn)
@@ -302,7 +426,7 @@ const decodeEnt = (t) => t.replace(/&amp;/g, '&').replace(/&#39;|&apos;/g, "'").
 function withTagLinks(html, en) {
   return html.replace(/<a class="sb-tag"( data-pf)? href="([^"]*)">([^<]*)<\/a>/g, (m, pf, href, text) => {
     const r = tagOwner.get(norm(decodeEnt(text)));
-    if (r) return `<a class="sb-tag" data-pf href="${localize(r[1], en)}">${text}</a>`;
+    if (r) return `<a class="sb-tag" data-pf href="${en ? r[8] : r[1]}">${text}</a>`;
     return pf ? `<a class="sb-tag" href="${en ? '/en/reviews' : '/reviews'}">${text}</a>` : m;
   });
 }
@@ -348,7 +472,7 @@ if (CHECK) {
 
 // Gỡ trang hồ sơ không còn trong catalog, và thư mục URL cũ /game|anime|manga/ (đã chuyển hướng 301)
 const keep = new Set(pages.map((p) => p.file));
-for (const dir of ['ho-so', 'en/profile']) {
+for (const dir of ['ho-so', 'en/profile', ...ENTITY_DIRS]) {
   if (!exists(dir)) continue;
   for (const f of fs.readdirSync(new URL(dir + '/', root))) {
     if (f.endsWith('.html') && !keep.has(`${dir}/${f}`)) fs.unlinkSync(new URL(`${dir}/${f}`, root));

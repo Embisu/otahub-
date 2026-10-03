@@ -513,7 +513,7 @@ async function handleGhPut(request, env, ghPath) {
   if (/\.html$/i.test(ghPath) && !isImageUpload) {
     content = content.replace(
       /\/assets\/enhance\.js(?:\?v=[^"']*)?/gi,
-      '/assets/enhance.js?v=20261002i'
+      '/assets/enhance.js?v=20261003a'
     );
     // article-style.css chứa định dạng đoạn ghi nguồn (.art-source): luôn dùng bản mới nhất.
     content = content.replace(

@@ -12,7 +12,7 @@
       .replace(/[^a-z0-9]+/g, ' ').trim();
   }
   function esc(s) { var d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
-  function path(p) { return EN ? p.replace(/^\/ho-so\//, '/en/profile/') : p; }
+  function path(r) { return EN ? (r[8] || r[1]) : r[1]; }
   function load(cb) {
     if (rows) return cb();
     if (loading) return;
@@ -47,8 +47,8 @@
     if (!box) { box = document.createElement('div'); box.className = 'sr-sug'; el.parentNode.appendChild(box); }
     items = list; sel = -1;
     if (!list.length) { box.hidden = true; return; }
-    box.innerHTML = '<div class="sr-h">' + (EN ? 'Title profiles' : 'Hồ sơ tác phẩm') + '</div>' + list.map(function (r) {
-      return '<a class="sr-it" href="' + esc(path(r[1])) + '"><img src="' + esc(r[7]) + '" alt="" width="36" height="48" loading="lazy"><span><b>' + esc(EN ? r[4] : r[3]) + '</b><small>' + esc(EN ? r[6] : r[5]) + '</small></span></a>';
+    box.innerHTML = '<div class="sr-h">' + (EN ? 'Profiles' : 'Hồ sơ') + '</div>' + list.map(function (r) {
+      return '<a class="sr-it" href="' + esc(path(r)) + '"><img src="' + esc(r[7]) + '" alt="" width="36" height="48" loading="lazy"><span><b>' + esc(EN ? r[4] : r[3]) + '</b><small>' + esc(EN ? r[6] : r[5]) + '</small></span></a>';
     }).join('');
     box.hidden = false;
   }
@@ -73,7 +73,7 @@
     }
     if (e.key !== 'Enter') return;
     e.preventDefault();
-    if (sel > -1 && items[sel]) { window.location.href = path(items[sel][1]); return; }
+    if (sel > -1 && items[sel]) { window.location.href = path(items[sel]); return; }
     var q = this.value.trim();
     var base = location.pathname.indexOf('/en/') === 0 || location.pathname === '/en' ? '/en/tag' : '/tag'; // trang tag đúng ngôn ngữ
     window.location.href = q ? base + '?q=' + encodeURIComponent(q) : base;

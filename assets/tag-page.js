@@ -160,9 +160,9 @@
     var list = pfMatch(q, 8);
     if (!list.length) return;
     var base = EN ? '/en/profile/' : '/ho-so/';
-    var html = '<div class="tag-pf"><div class="tag-pf-h"><span>' + (EN ? 'Title profiles' : 'Hồ sơ tác phẩm') + '</span><a href="' + base + '?q=' + encodeURIComponent(current) + '">' + (EN ? 'See all' : 'Xem tất cả') + ' →</a></div><div class="tag-pf-row">' +
+    var html = '<div class="tag-pf"><div class="tag-pf-h"><span>' + (EN ? 'Profiles' : 'Hồ sơ') + '</span><a href="' + base + '?q=' + encodeURIComponent(current) + '">' + (EN ? 'See all' : 'Xem tất cả') + ' →</a></div><div class="tag-pf-row">' +
       list.map(function (r) {
-        var p = EN ? r[1].replace(/^\/ho-so\//, '/en/profile/') : r[1];
+        var p = EN ? (r[8] || r[1]) : r[1];
         return '<a class="tag-pf-it" href="' + esc(p) + '"><img src="' + esc(r[7]) + '" alt="" width="48" height="64" loading="lazy"><span><b>' + esc(EN ? r[4] : r[3]) + '</b><small>' + esc(EN ? r[6] : r[5]) + '</small></span></a>';
       }).join('') + '</div></div>';
     grid.insertAdjacentHTML('afterbegin', html);

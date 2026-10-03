@@ -770,19 +770,19 @@ function inWords(hay,needle){
 function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 fetch('/assets/profile-names.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():[];}).then(function(rows){
   if(!rows.length)return;
-  var path=function(p){return OT_EN?p.replace(/^\/ho-so\//,'/en/profile/'):p;};
+  var path=function(r){return OT_EN?(r[8]||r[1]):r[1];};
   var h1=document.querySelector('h1');
   var tags=[].slice.call(document.querySelectorAll('.sb-tags a.sb-tag'));
   // Thẻ chủ đề trùng tên đúng một tác phẩm -> link hồ sơ
   var owner={};
   rows.forEach(function(r){r[0].forEach(function(n){if(!(n in owner))owner[n]=r;else if(owner[n]&&owner[n][2]!==r[2])owner[n]=null;});});
-  tags.forEach(function(a){var r=owner[norm(a.textContent)];if(r){a.setAttribute('href',path(r[1]));a.setAttribute('data-pf','');}});
+  tags.forEach(function(a){var r=owner[norm(a.textContent)];if(r){a.setAttribute('href',path(r));a.setAttribute('data-pf','');}});
   // Khối hồ sơ: tên nằm trong tiêu đề trước, rồi thẻ chủ đề (tên dài thắng tên con); mỗi thương hiệu một mục, tối đa 4
   var fields=[norm(h1?h1.textContent:document.title)].concat(tags.map(function(a){return norm(a.textContent);}));
   var picked=[],seen={};
   fields.forEach(function(hay,fi){
     var hits=[];
-    rows.forEach(function(r){r[0].forEach(function(n){inWords(hay,n).forEach(function(sp){hits.push({r:r,s:sp[0],e:sp[1]});});});});
+    rows.forEach(function(r){if(r[9])return;r[0].forEach(function(n){inWords(hay,n).forEach(function(sp){hits.push({r:r,s:sp[0],e:sp[1]});});});});
     hits=hits.filter(function(h){return !hits.some(function(o){return o!==h&&o.s<=h.s&&o.e>=h.e&&o.e-o.s>h.e-h.s;});});
     hits.sort(function(a,b){return a.s-b.s;});
     hits.forEach(function(h){
@@ -795,7 +795,7 @@ fetch('/assets/profile-names.json',{cache:'no-cache'}).then(function(r){return r
   if(!picked.length)return;
   var box=document.createElement('div');box.className='sidebar-block';
   box.innerHTML='<div class="sb-title">'+OT_T('Hồ sơ tác phẩm','Title profiles')+'</div>'+picked.map(function(r){
-    return '<a class="sb-art" href="'+path(r[1])+'"><img class="sb-thumb" src="'+esc(r[7])+'" alt="" loading="lazy" width="76" height="60"><div><div class="sb-cat">'+esc(OT_EN?r[6]:r[5])+'</div><div class="sb-t">'+esc(OT_EN?r[4]:r[3])+'</div></div></a>';
+    return '<a class="sb-art" href="'+path(r)+'"><img class="sb-thumb" src="'+esc(r[7])+'" alt="" loading="lazy" width="76" height="60"><div><div class="sb-cat">'+esc(OT_EN?r[6]:r[5])+'</div><div class="sb-t">'+esc(OT_EN?r[4]:r[3])+'</div></div></a>';
   }).join('');
   side.insertBefore(box,side.firstChild);
 }).catch(function(){});

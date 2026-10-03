@@ -1,0 +1,10 @@
+{
+  "merge": {
+    "studio": [["Konami", "Konami Digital Entertainment"], ["Gekkou", "Gekkō"]],
+    "publisher": [["Konami", "Konami Digital Entertainment"], ["Kadokawa", "Kadokawa Shoten"]]
+  },
+  "exclude": { "studio": [], "publisher": [] },
+  "names": {},
+  "desc": {},
+  "descEn": {}
+}

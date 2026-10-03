@@ -5,6 +5,7 @@ if(!root)return;
 var detailStyle=document.createElement('style');detailStyle.id='ot-detail-style';
 detailStyle.textContent=`
 .ah-bg{filter:blur(22px) saturate(1.15) brightness(.55);transform:scale(1.12)}
+.ent-link{color:inherit;text-decoration:underline dotted rgba(255,255,255,.4);text-underline-offset:4px}.ent-link:hover{color:var(--acc);text-decoration-style:solid}
 .ed-bar{position:relative;z-index:2;background:rgba(11,4,24,.92);border-bottom:1px solid rgba(255,255,255,.08)}
 .ed-in{max-width:1440px;margin:0 auto;padding:12px 40px;display:flex;align-items:center;gap:16px}
 .ed-name{font-family:var(--fd);font-weight:800;font-size:15px;color:var(--white);white-space:nowrap}
@@ -290,6 +291,17 @@ qTitle=TITLE_ALIAS[qTitle]||qTitle;
 function otThumbImg(u){return /^\/assets\/img\/(?!_[ts]\/|brand\/)[^?#]+\.(jpe?g|png|webp|jfif)$/i.test(u||'')?'/assets/img/_s/'+u.slice(12)+'.webp':u;}
 // Nhãn chuyên mục của bài (search.js ghi bằng tiếng Anh)
 function catLabel(c){return (!EN&&{Reviews:'Đánh giá',Review:'Đánh giá',News:'Tin tức'}[c])||c||'OtaHub';}
+// Tên studio / nhà phát hành có trang riêng (scripts/lib/entities.mjs) thành link; bản dựng sẵn mới có bảng này
+function linkEnt(html,key){
+  var L=(window.OT_ENTITY_LINKS||{})[key];
+  if(!L||!L.length)return html;
+  var hits=[];
+  L.forEach(function(p){var n=esc(p[0]),i=html.indexOf(n);if(i>-1)hits.push({i:i,e:i+n.length,n:n,h:p[1]});});
+  hits.sort(function(a,b){return a.i-b.i||b.e-a.e;});
+  var out='',pos=0;
+  hits.forEach(function(h){if(h.i<pos)return;out+=html.slice(pos,h.i)+'<a class="ent-link" href="'+esc(h.h)+'">'+h.n+'</a>';pos=h.e;});
+  return out+html.slice(pos);
+}
 function todayVN(){return new Date(Date.now()+7*36e5).toISOString().slice(0,10);}
 function esc(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML;}
 
@@ -473,7 +485,7 @@ function renderEntry(title, entry, catalog){
       '<nav class="breadcrumb" aria-label="breadcrumb"><a href="'+(EN?'/en':'/')+'">OtaHub</a><span class="breadcrumb-sep">›</span><a href="'+CATPAGE[entry.type]+'">'+LABEL[entry.type]+'</a><span class="breadcrumb-sep">›</span><span>'+esc(name)+'</span></nav>'+
       '<div class="info-table">'+
         nameRows(entry,name)+factRows(entry)+
-        (entry.studio?'<div class="info-row"><span class="ir-label">'+META_LABEL[entry.type]+'</span><span class="ir-val">'+esc(entry.studio)+'</span></div>':'')+
+        (entry.studio?'<div class="info-row"><span class="ir-label">'+META_LABEL[entry.type]+'</span><span class="ir-val">'+linkEnt(esc(entry.studio),title)+'</span></div>':'')+
         (entry.genre?'<div class="info-row"><span class="ir-label">'+TXT.genre+'</span><span class="ir-val">'+esc(entry.genre)+'</span></div>':'')+
         (entry.platforms?'<div class="info-row"><span class="ir-label">'+TXT.platform+'</span><span class="ir-val">'+esc(entry.platforms)+'</span></div>':'')+
         (entry.release&&entry.release!==entry.status?'<div class="info-row"><span class="ir-label">'+TXT.release+'</span><span class="ir-val">'+esc(entry.release)+'</span></div>':'')+
