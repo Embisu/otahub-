@@ -64,7 +64,8 @@ const MATCH_EXTRA = {
   'CONTROL Resonant': ['Control Resonant'],
 };
 // Tên quá chung chung, dễ khớp nhầm, không dùng để nhận diện
-const NO_MATCH = new Set(['big walk']);
+// "cyberpunk" là tên thể loại (vd bài Dynamite Blue "RPG chiến thuật cyberpunk"); bài Cyberpunk 2077/Edgerunners vẫn khớp qua tên đầy đủ
+const NO_MATCH = new Set(['big walk', 'cyberpunk']);
 
 export const norm = (s) => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
   .replace(/đ/g, 'd').replace(/[’‘`]/g, "'").replace(/[–—]/g, '-').replace(/\s+/g, ' ').trim();

@@ -94,14 +94,14 @@ var TXT=EN?{
   readReview:'Read the review',fromReview:'From the OtaHub review',fromHub:'From the OtaHub reviews page',
   unscored:'Not scored yet',unscoredNote:'OtaHub only shows a score once a full review of this title has been published. This profile covers the facts and our coverage so far.',
   overview:'Overview',take:"OtaHub's take",verdict:'Verdict',credits:'Credits',sources:'Sources',articles:'Articles about this title',
-  noArticles:'No separate article has been published yet. This profile will be updated when coverage is available.'
+  noArticles:'OtaHub has not published a dedicated article on this title yet.'
 }:{
   score:'Điểm OtaHub',genre:'Thể loại',platform:'Nền tảng',release:'Phát hành',status:'Trạng thái',
   related:'Có thể bạn quan tâm',discover:'Khám phá thêm',viewAll:'Xem tất cả ',allProfiles:'Tất cả hồ sơ tác phẩm',share:'Chia sẻ',
   readReview:'Đọc bài review',fromReview:'Theo bài review OtaHub',fromHub:'Theo trang Đánh giá OtaHub',
   unscored:'Chưa chấm điểm',unscoredNote:'OtaHub chỉ hiển thị điểm khi đã đăng bài review đầy đủ cho tác phẩm này. Hồ sơ hiện tổng hợp thông tin chính thức và các bài viết liên quan.',
   overview:'Giới thiệu',take:'Nhận định của OtaHub',verdict:'Kết luận',credits:'Đội ngũ & thông tin sản xuất',sources:'Nguồn thông tin chính thức',articles:'Bài viết về tác phẩm',
-  noArticles:'Chưa có bài viết riêng. Hồ sơ sẽ tự cập nhật khi OtaHub xuất bản nội dung liên quan.'
+  noArticles:'OtaHub chưa có bài viết riêng về tác phẩm này.'
 };
 
 // Tên gốc và thông tin phát hành lấy từ AniList (entry.meta, scripts/enrich-catalog.mjs): tên tiếng Nhật, romaji, tiếng Anh,
@@ -432,7 +432,15 @@ function renderEntry(title, entry, catalog){
   var sourcesHtml=entry.sources&&entry.sources.length?'<section class="review-sources"><h2 class="review-heading">'+TXT.sources+'</h2><ul>'+entry.sources.map(function(s){return '<li><a href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">'+esc(s.name)+'</a></li>';}).join('')+'</ul></section>':'';
 
   var articles=detailArticles(title,entry);
+  // Bản EN: bỏ bài chưa có bản EN (trước đây ghép "/en"+slug VI -> 404)
+  if(EN)articles=articles.filter(function(a){var u=a.url||a.href||'';return u.charAt(0)!=='/'||u.indexOf('/en/')===0;});
+  // Chưa có bài riêng: thay câu mẫu (trùng trên hàng trăm hồ sơ) bằng 4 bài mới nhất cùng chuyên mục -> có link nội bộ thật
+  var hubCat={game:'Gaming',anime:'Anime',manga:'Manga'}[entry.type||TYPE];
+  var latest=articles.length?[]:(window.IDX||[]).filter(function(a){var u=a.url||a.href||'';return (EN?/^\/en\//.test(u):!/^\/en\//.test(u))&&(a.cat||a.category)===hubCat;}).slice(0,4);
   var articlesHtml='<h2 class="review-heading">'+TXT.articles+'</h2>'+(articles.length?'<div class="article-grid">'+articles.map(function(a){var u=a.url||a.href||'#';if(EN&&u.charAt(0)==='/'&&u.indexOf('/en/')!==0)u='/en'+u;return '<a class="article-card" href="'+esc(u)+'"><img src="'+esc(otThumbImg(a.img||entry.img||'/assets/img/placeholder.svg'))+'" alt="" loading="lazy" width="112" height="100"><div class="article-copy"><div class="article-type">'+esc(catLabel(a.cat||a.category))+'</div><div class="article-title">'+esc(a.title||name)+'</div></div></a>';}).join('')+'</div>':'<p class="review-note">'+TXT.noArticles+'</p>');
+  if(!articles.length&&latest.length){
+    articlesHtml='<h2 class="review-heading">'+(EN?'Latest '+catLabel(hubCat)+' on OtaHub':'Mới trên OtaHub: '+catLabel(hubCat))+'</h2><p class="review-note">'+TXT.noArticles+'</p><div class="article-grid">'+latest.map(function(a){var u=a.url||a.href||'#';return '<a class="article-card" href="'+esc(u)+'"><img src="'+esc(otThumbImg(a.img||'/assets/img/placeholder.svg'))+'" alt="" loading="lazy" width="112" height="100"><div class="article-copy"><div class="article-type">'+esc(catLabel(a.cat||a.category))+'</div><div class="article-title">'+esc(a.title||'')+'</div></div></a>';}).join('')+'</div>';
+  }
 
   // Gợi ý: cùng loại, ưu tiên cùng thể loại rồi điểm cao; không gợi ý chính nó / bản trùng tên
   var genreWords=(entry.genre||'').toLowerCase().split(/[\/,·]+/).map(function(s){return s.trim();}).filter(Boolean);

@@ -64,6 +64,9 @@ for f in pages:
     # KHÔNG đổi URL ở đây; trang tự đổi lúc vẽ thẻ bằng hàm otThumb(). Chỉ cần tạo sẵn ảnh.
     for m in re.finditer(r"""\bimg:\s*['"](/assets/img/[^'"]+)['"]""", s):
         want(m.group(1), '_t'); want(m.group(1), '_s')
+    # Trang dựng sẵn (hồ sơ, bài liên quan...) đã ghi thẳng URL thu nhỏ: tạo ảnh nếu còn ảnh gốc
+    for m in re.finditer(r'/assets/img/(_[ts])/([^"\'?#\s)]+?)\.webp\b', s):
+        want('/assets/img/' + m.group(2), m.group(1))
     if s != s0:
         changed += 1
         if WRITE: save(f, s)

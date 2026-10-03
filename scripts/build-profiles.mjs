@@ -105,7 +105,9 @@ function render(type, key, en) {
     set title(v) { out.title = v; }, get title() { return out.title; }
   };
   const window = { IDX, OT_PROFILE_PATHS: allPaths, OT_PROFILE_SLUGS: slugTable(), OT_PROFILE_ARTICLES: profileArticles[en ? 'en' : 'vi'], OT_PRERENDER: true };
-  const fakeFetch = (url) => Promise.resolve({ ok: true, json: () => Promise.resolve(/catalog\.json/.test(url) ? catalog : allPaths) });
+  // detail.v2.js tải 3 file: catalog, profile-paths, profile-slugs (slug VI -> slug EN). Trả đúng từng file,
+  // nếu không bảng slug bị ghi đè bằng profile-paths và link hồ sơ EN ra /en/profile/<slug VI> (404).
+  const fakeFetch = (url) => Promise.resolve({ ok: true, json: () => Promise.resolve(/catalog\.json/.test(url) ? catalog : /profile-slugs\.json/.test(url) ? slugTable() : allPaths) });
   const ctx = { document, window, location: { pathname: (en ? '/en/' : '/') + type + '-detail', search: '?t=' + encodeURIComponent(key) },
     URLSearchParams, fetch: fakeFetch, Promise, console, setTimeout, encodeURIComponent, JSON, Object, Array, Math, isNaN, parseFloat };
   vm.createContext(ctx);

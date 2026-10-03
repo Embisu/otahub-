@@ -11,7 +11,8 @@ Voice, signature blocks (Nắm nhanh, Góc OtaHub, FAQ, Nguồn), banned phrases
 - Dates in text: `d/m/yyyy`. Names in original spelling. Japanese title in parentheses on first mention.
 - Tags: 6-8, real entities that appear in the text (work, studio, publisher, platform, format, year).
 - Images: cover 16:9 (>= 1200 px wide) + at least one inline image per 400 words, each with a `figcaption` naming the source. Never reuse an image across articles.
-- Closing line states what is still unannounced. Sources line at the end: "Nguồn tham khảo: ...".
+- Closing line states what is still unannounced. Sources line at the end: "Nguồn tham khảo: ...". Never a bare "Nguồn: Tổng hợp" without naming the sources.
+- Internal links: after publishing run `npm run interlinks` (scripts/build-interlinks.mjs). It links the first mention of each title (up to 3) to its profile page and writes the "Đọc thêm trên OtaHub / Read more on OtaHub" block with 4 related articles (same franchise first, then same section). Don't hand-write generic "Khám phá thêm" boxes. EN articles must be full translations of the VI article, not summaries.
 
 ## Form A - News (announcement)
 1. Paragraph 1: the announcement in full (work, original title, date, platform, who announced it and when).
