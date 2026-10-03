@@ -3264,7 +3264,7 @@ window.IDX = [
     "url": "/bleach-huyet-chien-ngan-nam-calamity-opening-ending",
     "cat": "Anime",
     "date": "2026-08-18",
-    "excerpt": "Bleach: Thousand-Year Blood War - The Calamity công bố opening cùng cẩm nang phân tích chuyên sâu độc quyền tại OtaHub.",
+    "excerpt": "Bleach: Huyết Chiến Ngàn Năm – The Calamity chọn “I-BULL” của jo0ji làm opening và “Rasen” của 9Lana làm ending, công bố ngày 21/6/2026 cho cour cuối.",
     "img": "/assets/img/news-bleach-tybw-calamity-opening-ending.jpg",
     "tags": [],
     "lang": "vi"
@@ -3574,7 +3574,7 @@ window.IDX = [
     "url": "/lous-lagoon-ps5-august-27",
     "cat": "Gaming",
     "date": "2026-08-18",
-    "excerpt": "Lou cùng cẩm nang phân tích chuyên sâu độc quyền tại OtaHub cùng thông tin chi tiết và cẩm nang độc quyền tại OtaHub.",
+    "excerpt": "Lou’s Lagoon, game phiêu lưu xây dựng phong cách cozy của Tiny Roar, ra mắt PS5 ngày 27/8/2026 cùng PC, Xbox, Switch và Switch 2, kèm bản Deluxe Edition.",
     "img": "/assets/img/news-lous-lagoon-ps5-august-27.jpg",
     "tags": [],
     "lang": "vi"
@@ -4854,7 +4854,7 @@ window.IDX = [
     "url": "/en/wuthering-waves-24",
     "cat": "Gaming",
     "date": "2026-08-15",
-    "excerpt": "Wuthering Waves update guide: breakdown of new 5-star Resonator banners, signature weapon stats, echo farming routes, and Astrite rewards.",
+    "excerpt": "Wuthering Waves 3.6, “Lamplight in Mirage, Sword’s Resolve in Heart”, launched on August 20, 2026 with the Ren Realm region, new traversal and two new Resonators.",
     "img": "/assets/img/covers/wuthering-waves-24.jpg",
     "tags": [],
     "lang": "en"
@@ -4864,7 +4864,7 @@ window.IDX = [
     "url": "/wuthering-waves-24",
     "cat": "Gaming",
     "date": "2026-08-15",
-    "excerpt": "Wuthering Waves 3.6 cùng cẩm nang phân tích chuyên sâu độc quyền tại OtaHub cùng thông tin chi tiết và cẩm nang độc quyền tại OtaHub.",
+    "excerpt": "Wuthering Waves 3.6 “Lamplight in Mirage, Sword’s Resolve in Heart” ra mắt 20/8/2026 với vùng Ren Realm, cơ chế di chuyển mới và hai Resonator mới.",
     "img": "/assets/img/covers/wuthering-waves-24.jpg",
     "tags": [],
     "lang": "vi"
@@ -5174,7 +5174,7 @@ window.IDX = [
     "url": "/jojo-golden-spirit-launch",
     "cat": "Gaming",
     "date": "2026-08-12",
-    "excerpt": "JoJo cùng cẩm nang phân tích chuyên sâu độc quyền tại OtaHub cùng thông tin chi tiết và cẩm nang độc quyền tại OtaHub.",
+    "excerpt": "JoJo’s Bizarre Adventure: Golden Spirit ra mắt toàn cầu trên iOS và Android ngày 13/8/2026: game chiến thuật auto-battler có gacha, khoảng 50 nhân vật và Stand.",
     "img": "/assets/img/c299f2d727-jojo-golden-spirit-hero.jpg",
     "tags": [],
     "lang": "vi"
@@ -5184,7 +5184,7 @@ window.IDX = [
     "url": "/en/jojo-golden-spirit-launch",
     "cat": "Gaming",
     "date": "2026-08-12",
-    "excerpt": "JoJo: Golden Spirit global launch guide: Stand battle mechanics, character tier list, and system requirements for mobile and PC.",
+    "excerpt": "JoJo’s Bizarre Adventure: Golden Spirit launches worldwide on iOS and Android on August 13, 2026: a gacha tactical auto-battler with about 50 characters and Stands.",
     "img": "/assets/img/c299f2d727-jojo-golden-spirit-hero.jpg",
     "tags": [],
     "lang": "en"
