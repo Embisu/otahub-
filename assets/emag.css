@@ -15,6 +15,11 @@ html{scroll-behavior:smooth;scroll-padding-top:132px}
 @keyframes em-kb{from{transform:scale(1)}to{transform:scale(1.07)}}
 .em-hero::before{content:'';position:absolute;inset:0;z-index:-2;background:radial-gradient(60% 55% at 78% 8%,rgba(255,154,60,.22),transparent 70%),radial-gradient(50% 60% at 8% 100%,rgba(139,92,246,.35),transparent 70%),linear-gradient(180deg,rgba(11,4,24,.5) 0%,rgba(11,4,24,.1) 32%,rgba(11,4,24,.92) 92%,#0b0418 100%),linear-gradient(90deg,rgba(11,4,24,.82) 0%,rgba(11,4,24,.32) 55%,rgba(11,4,24,.08) 100%)}
 @media(max-width:700px){.em-hero-bg{background-image:var(--hero-m,var(--hero));background-position:var(--hero-m-pos,var(--hero-pos,center 30%))}}
+.em-hero.art{min-height:clamp(560px,56.25vw,900px)}
+.em-hero.art .em-hero-bg{inset:0;animation:none}
+.em-hero.art::before{background:linear-gradient(180deg,rgba(11,4,24,0) 0%,rgba(11,4,24,0) 38%,rgba(11,4,24,.55) 62%,rgba(11,4,24,.94) 90%,#0b0418 100%),linear-gradient(90deg,rgba(11,4,24,.5) 0%,rgba(11,4,24,0) 48%)}
+.em-hero.art::after{opacity:.5}
+.em-hero.art .em-hero-in{padding-top:0;padding-bottom:40px}
 .em-hero::after{content:'';position:absolute;inset:0;z-index:-1;background:repeating-linear-gradient(0deg,rgba(255,255,255,.028) 0 1px,transparent 1px 4px);pointer-events:none}
 .em-hero-in{width:100%;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(330px,.8fr);gap:40px;align-items:end;padding:120px 24px 56px}
 .em-kicker{display:inline-flex;align-items:center;gap:10px;font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--em-a3)}
@@ -56,6 +61,10 @@ html{scroll-behavior:smooth;scroll-padding-top:132px}
 .em-seg{display:flex;border:1px solid var(--em-line);border-radius:999px;overflow:hidden}
 .em-seg button{flex:1;background:transparent;border:0;color:rgba(240,238,255,.74);font:600 12px var(--fb);padding:9px 8px;min-height:38px;cursor:pointer}
 .em-seg button[aria-pressed="true"]{background:linear-gradient(135deg,var(--em-a1),var(--em-a4));color:#fff}
+.em-ics{display:none;align-items:center;justify-content:center;gap:8px;margin-top:12px;min-height:40px;font-size:12.5px;font-weight:600;color:rgba(240,238,255,.86);text-decoration:none;border:1px dashed var(--em-line);border-radius:999px;padding:0 14px;transition:border-color .2s,color .2s}
+.em-js .em-ics{display:flex}
+.em-ics::before{content:'+';font-weight:800;color:var(--em-a3)}
+.em-ics:hover{border-color:var(--em-a3);color:#fff}
 
 /* ---------- Băng chữ chạy ---------- */
 .em-ticker{background:linear-gradient(90deg,var(--em-a1),var(--em-a4) 55%,var(--em-a3));color:#12061f;overflow:hidden;white-space:nowrap}
@@ -364,8 +373,18 @@ dialog.em-lb::backdrop{background:rgba(5,2,12,.92)}
   .em-person{min-height:440px}
 }
 @media(max-width:768px){.em-chapters{top:106px}html{scroll-padding-top:176px}}
+@media(max-width:1000px){
+  .em-hero.art{min-height:0}
+  .em-hero.art .em-hero-bg{inset:0 0 auto 0;height:56.25vw;background-size:100% auto;background-position:center top}
+  .em-hero.art::before{inset:0 0 auto 0;height:56.25vw;background:linear-gradient(180deg,rgba(11,4,24,0) 70%,#0b0418 100%)}
+  .em-hero.art .em-hero-in{padding:calc(56.25vw + 8px) 24px 36px}
+  .em-hero.art .em-hero-in{gap:22px}
+  .em-hero.art .em-clock{order:-1;max-width:none}
+  .em-hero.art .em-live{margin:10px 0 0}
+}
 @media(max-width:640px){
   .em-wrap{padding:0 16px}
+  .em-hero.art .em-hero-in{padding-left:16px;padding-right:16px}
   .em-hero{min-height:0}
   .em-hero-in{padding:72px 16px 36px;gap:26px}
   .em-sec{padding-top:60px}

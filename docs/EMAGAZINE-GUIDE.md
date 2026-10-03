@@ -76,6 +76,11 @@ Mỗi ngôn ngữ có ảnh riêng: đổi `hero.bg`, `hero.bgMobile`, `meta.ogI
 
 Nếu ảnh bìa đã có sẵn chữ/logo tiêu đề thì đặt `hero.hideTitle: true` để ẩn tiêu đề chữ khổng lồ (h1 vẫn còn cho SEO và trình đọc màn hình).
 
+**Chế độ ảnh bìa nguyên bản (`hero.art: true`)** dùng cho ảnh đã dựng sẵn tiêu đề/logo (như bìa GTA VI hiện tại): trang chỉ làm tối phần dưới ảnh để đặt chữ và đồng hồ, không phủ gradient lên nửa trái, không phóng to ảnh. Khi đó:
+- Ảnh desktop và ảnh điện thoại cùng tỉ lệ **16:9** (khuyến nghị 2000 × 1125 px trở lên cho desktop, 1280 × 720 px cho điện thoại). Trên điện thoại, ảnh hiện trọn khung 16:9 ở đầu trang, đồng hồ nằm ngay dưới ảnh, không cần ảnh 9:16.
+- Tiêu đề/logo đặt ở **nửa trên**, 8% đến 55% chiều ngang, từ 15% đến 45% chiều cao. Nửa dưới ảnh sẽ bị chữ và đồng hồ che dần.
+- Dùng cùng `hideTitle: true`. Ảnh chia sẻ `meta.ogImage` (1200 × 630) nên cắt riêng từ ảnh bìa.
+
 ## Hành vi kỹ thuật cần nhớ
 
 - Đồng hồ đếm ngược dùng `countdown.vn` và `countdown.us` (ISO UTC). Khi hãng chưa công bố giờ mở bán, giữ hai giả định như bản GTA 6.

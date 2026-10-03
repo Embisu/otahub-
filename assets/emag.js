@@ -19,6 +19,7 @@
     var tick = function () {
       var left = Math.floor((T[mode] - Date.now()) / 1000);
       if (left <= 0) { grid.style.display = 'none'; done.style.display = 'block'; return false; }
+      grid.style.display = ''; done.style.display = '';
       cells.d.textContent = Math.floor(left / 86400);
       cells.h.textContent = pad(Math.floor(left % 86400 / 3600));
       cells.m.textContent = pad(Math.floor(left % 3600 / 60));
@@ -26,7 +27,14 @@
       var st = cells.s.parentNode; st.classList.remove('tick'); void st.offsetWidth; st.classList.add('tick');
       return true;
     };
-    var paint = function () { btns.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-mode') === mode ? 'true' : 'false'); }); tick(); };
+    var timer = 0;
+    /* Hẹn đúng vào đầu mỗi giây thật để số giây không trôi lệch; tab ẩn thì dừng, hiện lại thì chạy tiếp */
+    var loop = function () {
+      clearTimeout(timer);
+      var live = tick();
+      if (live && !document.hidden) timer = setTimeout(loop, 1000 - Date.now() % 1000 + 20);
+    };
+    var paint = function () { btns.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-mode') === mode ? 'true' : 'false'); }); loop(); };
     btns.forEach(function (b) {
       b.addEventListener('click', function () {
         mode = b.getAttribute('data-mode');
@@ -34,8 +42,15 @@
         paint();
       });
     });
+    document.addEventListener('visibilitychange', loop);
     paint();
-    var timer = setInterval(function () { if (!tick()) clearInterval(timer); }, 1000);
+    /* Nút thêm vào lịch: tạo file .ics cả ngày ngay tại trình duyệt */
+    var ics = $('[data-ics]', clock);
+    if (ics) {
+      var d0 = ics.getAttribute('data-date').replace(/-/g, ''), d1 = new Date(Date.parse(ics.getAttribute('data-date') + 'T00:00:00Z') + 86400000).toISOString().slice(0, 10).replace(/-/g, '');
+      var icsEsc = function (t) { return t.replace(/([,;\\])/g, '\\$1'); };
+      ics.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//OtaHub//GTA VI//EN', 'BEGIN:VEVENT', 'UID:gta6-launch@otahub.asia', 'DTSTAMP:20261002T000000Z', 'DTSTART;VALUE=DATE:' + d0, 'DTEND;VALUE=DATE:' + d1, 'SUMMARY:' + icsEsc(ics.getAttribute('data-title')), 'URL:' + location.href.split('#')[0], 'BEGIN:VALARM', 'TRIGGER:-P1D', 'ACTION:DISPLAY', 'DESCRIPTION:' + icsEsc(ics.getAttribute('data-title')), 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n'));
+    }
   }
 
   /* ----- Số ngày còn lại (theo giả định giờ Việt Nam) ----- */

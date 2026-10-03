@@ -66,7 +66,7 @@ export function validate(spec, { exists }) {
     if (Array.isArray(H?.chips) && (H.chips.length < 2 || H.chips.length > 5)) e(at + 'hero.chips cần 2-5 nhãn (nhãn đầu là ngày ra mắt, được tô nổi bật)');
     if (H?.bgMobile && (!H.bgMobile.src || !H.bgMobile.pos)) e(at + 'hero.bgMobile cần src và pos');
     if (!p.ui?.scroll) e(at + 'ui.scroll (nhãn nút cuộn xuống) thiếu');
-    for (const k of ['today', 'soon', 'daysLeft']) if (!p.ui?.[k]) e(at + `ui.${k} thiếu`);
+    for (const k of ['today', 'soon', 'daysLeft', 'addCal', 'calTitle']) if (!p.ui?.[k]) e(at + `ui.${k} thiếu`);
     if (p.ui?.daysLeft && !p.ui.daysLeft.includes('{n}')) e(at + 'ui.daysLeft phải chứa {n}');
     if (H?.sub && !/OtaHub/.test(H.sub)) e(at + 'hero.sub phải nêu OtaHub nghiên cứu, tổng hợp');
     if (!Array.isArray(p.ticker) || p.ticker.length < 5) e(at + 'ticker cần tối thiểu 5 ý');
