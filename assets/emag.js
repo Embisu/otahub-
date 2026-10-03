@@ -65,7 +65,13 @@
   /* ----- Timeline: tô đường tiến độ tới mốc "Hôm nay" ----- */
   $$('[data-tl]').forEach(function (ol) {
     var mark = $('.em-tl-today', ol);
-    var set = function () { ol.style.setProperty('--prog', (mark ? mark.offsetTop + mark.offsetHeight / 2 : ol.offsetHeight) + 'px'); };
+    var nx = $('li.next', ol);
+    var set = function () {
+      ol.style.setProperty('--prog', (mark ? mark.offsetTop + mark.offsetHeight / 2 : ol.offsetHeight) + 'px');
+      /* Bản rộng: trục dừng ngay tại mốc ra mắt để không cắt ngang dòng ngày ở giữa */
+      if (nx && window.matchMedia('(min-width:641px)').matches) { ol.style.setProperty('--stop', (nx.offsetTop + 11) + 'px'); ol.setAttribute('data-stop', ''); }
+      else ol.removeAttribute('data-stop');
+    };
     set(); addEventListener('resize', set); addEventListener('load', set);
   });
 

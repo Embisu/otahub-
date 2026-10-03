@@ -3,16 +3,17 @@
 // Sinh trang:  npm run emag      Kiểm tra:  npm run emag:check
 const IMG = {
   hero: '/assets/img/news-gta6-gameplay-trailer-leonida.jpg',
-  collage: '/assets/img/gta6-official-art.jpg',
+  collage: '/assets/img/gta6/collage.jpg',
   trailer1: '/assets/img/yt-QdBZY2fkU-0.jpg',
   trailer2: '/assets/img/yt-VQRLujxTm3c.jpg',
   extended: '/assets/img/yt-tJbzMqJGH4k.jpg',
   aerial: '/assets/img/gta6/gta6-keys-bridge-aerial.jpg',
   airboat: '/assets/img/gta6/gta6-grassrivers-airboat.jpg',
   boats: '/assets/img/gta6/gta6-party-boats.jpg',
+  bridge2: '/assets/img/uploads/mhxnx5ls-0512-gta6chinhthucramat14.jpg',
   police: '/assets/img/uploads/o4yizrof-rockstar-tightens-mod-rules-gta-6-og-8fe002001f.webp'
 };
-const NEWS_MATCH = '\\bGTA\\s*(?:6|VI)\\b|Grand Theft Auto\\s*(?:6|VI)\\b';
+const NEWS_MATCH = '\\bGTA\\b|Grand Theft Auto|Rockstar|Take-?Two|Leonida|Vice City';
 
 export default {
   slug: 'gta6',
@@ -48,7 +49,7 @@ export default {
           p: ['Grand Theft Auto VI là tựa game thế giới mở của Rockstar Games, đưa người chơi trở lại Vice City trong bang hư cấu Leonida, vùng đất lấy cảm hứng từ Florida. Đây là phần chính đầu tiên của series kể từ GTA V (2013), tức hơn 13 năm chờ đợi.',
             'Sau hai lần dời lịch, game chốt ngày 19/11/2026 trên PS5 và Xbox Series X|S. Đoạn Extended Look dài khoảng 26 phút ngày 27/8/2026, quay hoàn toàn từ bản chơi trên PS5, là lần đầu Rockstar cho thấy gameplay thật thay vì chỉ trailer điện ảnh.',
             'Trang này gom những gì Rockstar đã xác nhận hoặc thấy trực tiếp trong video chính thức, đánh dấu rõ phần nào còn là suy đoán, và sẽ được cập nhật khi có thông tin mới.'],
-          img: { src: IMG.collage, alt: 'Artwork chính thức của Grand Theft Auto VI với Jason, Lucia và các nhân vật phụ', cap: 'Ảnh: Rockstar Games.', w: 1200, h: 630 } },
+          img: { src: IMG.collage, alt: 'Artwork chính thức của Grand Theft Auto VI với Jason, Lucia và các nhân vật phụ', cap: 'Ảnh: Rockstar Games.', w: 1158, h: 588 } },
         { type: 'guides', id: 'huong-dan', nav: 'Đi nhanh', eyebrow: 'Đi nhanh tới', h: 'Bạn muốn biết điều gì trước?', lead: 'Bốn lối tắt cho những câu hỏi được tìm nhiều nhất.',
           items: [
             { h: 'Bản đồ Leonida', p: 'Sáu khu vực đã lộ diện', href: '#ban-do', img: IMG.aerial },
@@ -140,7 +141,7 @@ export default {
             { src: IMG.airboat, alt: 'Truy đuổi bằng thuyền fanboat trên đầm lầy Grassrivers' },
             { src: IMG.boats, alt: 'Tiệc trên du thuyền và jet ski ngoài khơi' },
             { src: IMG.police, alt: 'Nhân vật sau hàng rào lưới trong ánh đèn cảnh sát' },
-            { src: IMG.collage, alt: 'Artwork chính thức tổng hợp các nhân vật của GTA VI' }] },
+            { src: IMG.bridge2, alt: 'Cây cầu nối các đảo ở Leonida Keys nhìn từ trên cao trong ảnh chính thức' }] },
         { type: 'tabs', id: 'kho', nav: 'Xe & vũ khí', eyebrow: 'Xe & vũ khí', h: 'Những gì đã lộ diện trong trailer',
           lead: 'Tên xe và vũ khí dưới đây do giới biên tập nhận diện từ trailer, Extended Look và thông báo bản Ultimate. Tên chính thức có thể thay đổi khi game ra mắt.',
           tabs: [
@@ -234,7 +235,7 @@ export default {
           p: ['Grand Theft Auto VI is Rockstar Games\' open-world crime game, taking players back to Vice City in the fictional state of Leonida, a region inspired by Florida. It is the first mainline entry since GTA V (2013), a wait of more than 13 years.',
             'After two delays, the game is set for November 19, 2026 on PS5 and Xbox Series X|S. The roughly 26-minute Extended Look on August 27, 2026, captured entirely on PS5, was Rockstar\'s first look at real gameplay rather than cinematic trailers alone.',
             'This page collects what Rockstar has confirmed or shown directly in official video, marks clearly what is still speculation, and will be updated as new information arrives.'],
-          img: { src: IMG.collage, alt: 'Official Grand Theft Auto VI artwork featuring Jason, Lucia and supporting characters', cap: 'Image: Rockstar Games.', w: 1200, h: 630 } },
+          img: { src: IMG.collage, alt: 'Official Grand Theft Auto VI artwork featuring Jason, Lucia and supporting characters', cap: 'Image: Rockstar Games.', w: 1158, h: 588 } },
         { type: 'guides', id: 'huong-dan', nav: 'Jump in', eyebrow: 'Jump in', h: 'What do you want to know first?', lead: 'Four shortcuts for the most searched questions.',
           items: [
             { h: 'Leonida map', p: 'Six regions revealed', href: '#ban-do', img: IMG.aerial },
@@ -326,7 +327,7 @@ export default {
             { src: IMG.airboat, alt: 'Fanboat chase across the Grassrivers swamp' },
             { src: IMG.boats, alt: 'Party on yachts and jet skis offshore' },
             { src: IMG.police, alt: 'A character behind a chain-link fence in police lights' },
-            { src: IMG.collage, alt: 'Official collage artwork of the GTA VI cast' }] },
+            { src: IMG.bridge2, alt: 'The bridge linking the islands of Leonida Keys seen from above in official imagery' }] },
         { type: 'tabs', id: 'kho', nav: 'Cars & weapons', eyebrow: 'Cars & weapons', h: 'What has surfaced in the trailers',
           lead: 'Vehicle and weapon names below were identified by editors from trailers, the Extended Look and the Ultimate Edition announcement. Final names may change at launch.',
           tabs: [
