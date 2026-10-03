@@ -175,7 +175,7 @@
     var lang = box.getAttribute('data-lang') || 'vi';
     var skip = (box.getAttribute('data-exclude') || '').split(',');
     var re; try { re = new RegExp(box.getAttribute('data-match'), 'i'); } catch (e) { re = null; }
-    var PAGE = 9;
+    var PAGE = 12;
     var items = re ? window.IDX.map(function (x, i) { return { x: x, i: i }; }).filter(function (o) {
       var x = o.x;
       return (lang === 'en') === /^\/en\//.test(x.url) && skip.indexOf(x.url) < 0 && re.test((x.title || '') + ' ' + (x.tags || []).join(' '));
