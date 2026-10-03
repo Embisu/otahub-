@@ -57,7 +57,7 @@ Hạn chế dùng: “hứa hẹn” (tối đa 1 lần/bài), “chính thức�
 - **Mô tả:** 130–160 ký tự, đủ cái gì / khi nào / ở đâu, không lặp nguyên tiêu đề.
 - **Từ khóa chính** (`KEYWORD`) có mặt trong sapo, ít nhất một H2 và alt của một ảnh. Không nhồi.
 - 2–3 link nội bộ tới bài liên quan thật sự (cùng tác phẩm, tác giả, hãng). Sidebar “Bài viết liên quan” phải cùng chủ đề.
-- Tag 6–8, là thực thể có trong bài (tác phẩm, tác giả, studio, nền tảng, năm). Không để tag mặc định kiểu “Anime”, “Lịch chiếu”.
+- Thẻ (tag): 3–6 thẻ RIÊNG, là thực thể có thật trong bài (tác phẩm, nhân vật, tác giả, studio/hãng phát triển, sự kiện cụ thể). Không dùng thẻ chung (Anime, Manga, Gaming, Đánh giá, năm, PC/PS5, thể loại như RPG/Isekai, "Trailer", "Gameplay"). Nền tảng/nhà phát hành/nguồn tin (Steam, Netflix, Crunchyroll, Shueisha, Metacritic...) chỉ gắn khi bài nói về chính nó. Chi tiết: docs/QUY-TAC-THE.md.
 - JSON-LD: `description` không được trống; có FAQPage khi bài có mục Câu hỏi thường gặp.
 
 ## 6. Ảnh

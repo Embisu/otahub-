@@ -1,5 +1,7 @@
 // Chuẩn hóa thẻ chủ đề (sb-tags) cuối mỗi bài, VI + EN:
 //   1. Bỏ thẻ quá chung (chuyên mục, năm, nền tảng họ máy, thể loại...) và link chuyên mục trong khối thẻ.
+//      Nền tảng / nhà phát hành / nguồn tin (Steam, Crunchyroll, Netflix, Shueisha, Metacritic...) chỉ giữ khi tên nằm trong
+//      tiêu đề bài (bài nói về nó); luôn chừa lại tối thiểu 2 thẻ.
 //   2. Gộp các cách viết khác nhau của cùng một thẻ về MỘT tên chuẩn
 //      ("Anime Mùa Thu" / "Anime Mùa Thu 2026" / "Anime mùa thu 2026", "VIZ Media" / "Viz Media",
 //       "Honkai Star Rail" / "Honkai: Star Rail", "Chainsaw Man" / "Thợ Săn Quỷ Chainsaw Man"...).
@@ -29,6 +31,7 @@ const decode = (t) => t.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 
 const GENERIC = new Set(cfg.generic.map(nk));
+const TITLE_ONLY = new Set((cfg.titleOnly || []).map(nk));
 const CANON = {}; for (const [k, v] of Object.entries(cfg.canon)) CANON[nk(k)] = v;
 const strip = (x) => String(x || '').replace(/\s*\([^)]*\)/g, '').trim();
 
@@ -60,7 +63,8 @@ for (const f of files) {
   const tags = [...m[1].matchAll(/<a[^>]*class="sb-tag"[^>]*>([\s\S]*?)<\/a>/g)].map((x) => decode(x[1])).filter(Boolean);
   // link hiện có: thẻ bài cũ đôi khi trỏ về trang chuyên mục (href="/anime") thay vì trang thẻ -> cũng phải sửa
   const links = [...m[1].matchAll(/<a([^>]*)class="sb-tag"([^>]*)>([\s\S]*?)<\/a>/g)].map((x) => ({ t: decode(x[3]), href: ((x[1] + x[2]).match(/href="([^"]*)"/) || [, ''])[1], pf: /data-pf/.test(x[1] + x[2]) }));
-  pages.push({ f, en: f.startsWith('en/'), html, box: m[0], tags, links });
+  const title = nk(decode((html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/) || [, ''])[1]));
+  pages.push({ f, en: f.startsWith('en/'), html, box: m[0], tags, links, title });
 }
 // 2) tên chuẩn cho các cách viết còn lại: cách viết dùng nhiều nhất, ưu tiên dạng có dấu ":" / không viết hoa toàn bộ
 const spell = { vi: new Map(), en: new Map() };
@@ -90,8 +94,14 @@ for (const p of pages) {
     if (c !== t) merged++;
     const k = nk(c); if (seen.has(k)) continue; seen.add(k); out.push(c); after[lang].add(c);
   }
-  p.next = out;
-  if (!out.length) empty.push(p.f);
+  // thẻ nền tảng/nguồn tin: bỏ nếu bài không nhắc tên trong tiêu đề, nhưng luôn còn >= 2 thẻ
+  const aboutIt = (t) => (' ' + p.title + ' ').includes(' ' + nk(t) + ' ');
+  const kept = out.filter((t) => !TITLE_ONLY.has(nk(t)) || aboutIt(t));
+  for (const t of out) { if (kept.length >= 2) break; if (!kept.includes(t)) kept.push(t); }
+  const orderIdx = (t) => out.indexOf(t); kept.sort((a, b) => orderIdx(a) - orderIdx(b));
+  for (const t of out) if (!kept.includes(t)) { removedGeneric++; after[lang].delete(t); }
+  p.next = kept;
+  if (!kept.length) empty.push(p.f);
 }
 if (REPORT) {
   console.log('thẻ riêng biệt trước/sau (VI):', before.vi.size, '->', after.vi.size, '| (EN):', before.en.size, '->', after.en.size);
