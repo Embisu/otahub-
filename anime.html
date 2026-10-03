@@ -1219,6 +1219,16 @@ input,select,textarea{font-size:16px!important}
 .sched-item:last-child{border-bottom:none}
 .sched-title{font-weight:600;font-size:13px;color:var(--white);margin-bottom:2px}
 .sched-meta{font-size:11px;color:var(--muted)}
+/* Lịch phát hôm nay (hub Anime): tên một dòng, giờ + studio dòng dưới */
+.side-box .sched-item{display:block;padding:12px 18px;cursor:default;transition:background .2s}
+.side-box .sched-item:hover{background:rgba(255,255,255,.03)}
+.sched-title{display:block;font-weight:600;font-size:13px;line-height:1.35;color:var(--white);text-decoration:none;margin:0}
+a.sched-title:hover{color:var(--sakura)}
+.sched-meta{margin-top:4px;font-size:11.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
+.sched-time{color:var(--sakura);font-weight:600;font-variant-numeric:tabular-nums}
+.sched-new{font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:1px 6px;border:1px solid rgba(0,242,255,.35);color:var(--cyan);border-radius:2px}
+.side-more{display:block;padding:10px 18px 14px;font-size:11px;letter-spacing:.06em;color:var(--cyan);text-decoration:none;border-top:1px solid var(--border)}
+.side-more:hover{text-decoration:underline}
 
 @media(max-width:1100px){
   .f-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
@@ -2300,11 +2310,10 @@ img{mix-blend-mode:normal;filter:saturate(1.05) brightness(1.02)}
         </a>
       </div>
 
-      <div class="side-box">
-        <div class="side-head"><span>Lịch Phát Hôm Nay</span><span class="side-badge">Thứ 4</span></div>
-        <div class="sched-item"><div class="sched-title">Pháp Sư Tiễn Táng Frieren S2</div><div class="sched-meta">Tập 18 · 22:30 JST · Crunchyroll</div></div>
-        <div class="sched-item"><div class="sched-title">Dandadan Season 2</div><div class="sched-meta">Tập 08 · 23:00 JST · Netflix</div></div>
-        <div class="sched-item"><div class="sched-title">Đứa Con Của Thần Tượng Season 3</div><div class="sched-meta">Tập 11 · 23:30 JST · Bilibili</div></div>
+      <div class="side-box" id="airToday">
+        <div class="side-head"><span>Lịch Phát Hôm Nay</span><span class="side-badge" id="airTodayDay">…</span></div>
+        <div id="airTodayList"><div class="sched-item"><div class="sched-meta">Đang tải lịch…</div></div></div>
+        <a class="side-more" id="airTodayMore" href="/lich-phat-song">Xem cả tuần →</a>
       </div>
     </aside>
   </div>
@@ -2423,5 +2432,39 @@ function setAnimeFilter(btn, cat){
 </section>
 <!-- AUTO_DISCOVERY_END -->
 <footer><div class="ft-in"><div><a href="/" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block" loading="lazy"><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a><p class="ft-desc">Tin tức, đánh giá và lịch phát sóng game, anime, manga cho cộng đồng Việt Nam và châu Á.</p></div><div><div class="ft-h">Chuyên mục</div><ul class="ft-links"><li><a href="/news">Tin mới</a></li><li><a href="/gaming">Gaming</a></li><li><a href="/anime">Anime</a></li><li><a href="/manga">Manga</a></li><li><a href="/lich-phat-song">Lịch phát sóng</a></li><li><a href="/choi-gi">Chơi Gì?</a></li><li><a href="/ho-so/">Hồ sơ tác phẩm</a></li></ul></div><div><div class="ft-h">Đánh giá</div><ul class="ft-links"><li><a href="/reviews">Bài đánh giá</a></li><li><a href="/rankings">Bảng xếp hạng</a></li><li><a href="/chuyen-sau">Chuyên sâu</a></li><li><a href="/tieu-chuan-danh-gia">Tiêu chuẩn đánh giá</a></li></ul></div><div><div class="ft-h">Về OtaHub</div><ul class="ft-links"><li><a href="/about">Giới thiệu</a></li><li><a href="/about#team">Đội ngũ</a></li><li><a href="/lien-he">Liên hệ</a></li><li><a href="/chinh-sach-bao-mat">Chính sách bảo mật</a></li><li><a href="/#newsletter">Bản tin</a></li><li><a href="/feed.xml">RSS Feed</a></li></ul></div></div><div class="ft-bot"><span class="ft-copy">© 2026 OtaHub.asia · Tin tức game, anime &amp; manga</span></div></footer>
+
+<script defer src="/assets/schedule-data.js?v=20261003i"></script>
+<script>
+/* Lịch phát hôm nay: cùng dữ liệu với /lich-phat-song (assets/schedule-data.js), tính theo ngày trong tuần giờ Việt Nam */
+document.addEventListener('DOMContentLoaded', function () {
+  var EN = document.documentElement.lang === 'en';
+  var box = document.getElementById('airTodayList'), badge = document.getElementById('airTodayDay'), more = document.getElementById('airTodayMore');
+  if (!box) return;
+  var D = window.OT_SCHEDULE;
+  var esc = function (x) { return String(x == null ? '' : x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  var now = new Date(Date.now() + 7 * 3600e3), today = now.toISOString().slice(0, 10), dow = now.getUTCDay();
+  var DAYS = EN ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] : ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
+  if (badge) badge.textContent = DAYS[dow];
+  if (!D || !D.seasons) { box.innerHTML = ''; return; }
+  var list = (D.seasons[D.current] || []).filter(function (a) {
+    return a.d && a.d <= today && (a.y === 'tv' || a.y === 'ona' || a.y === 'short') && new Date(a.d + 'T00:00:00Z').getUTCDay() === dow;
+  });
+  var rank = function (a) { return (a.l ? 2 : 0) + (a.i ? 1 : 0); };
+  var total = list.length;
+  var show = list.slice().sort(function (a, b) { return rank(b) - rank(a) || String(a.h || '').localeCompare(String(b.h || '')); }).slice(0, 6)
+    .sort(function (a, b) { return String(a.h || '').localeCompare(String(b.h || '')); });
+  if (!total) {
+    box.innerHTML = '<div class="sched-item"><div class="sched-meta">' + (EN ? 'No confirmed new episodes today.' : 'Hôm nay không có tập mới đã xác nhận.') + '</div></div>';
+  } else {
+    box.innerHTML = show.map(function (a) {
+      var name = (!EN && a.tv) || a.t, href = EN ? (a.le || a.hse) : (a.l || a.hs), prem = a.d === today;
+      return '<div class="sched-item">' + (href ? '<a class="sched-title" href="' + esc(href) + '">' : '<div class="sched-title">') + esc(name) + (href ? '</a>' : '</div>') +
+        '<div class="sched-meta">' + (a.h ? '<span class="sched-time">' + esc(a.h) + (EN ? ' (UTC+7)' : ' giờ VN') + '</span>' : '') + (a.s ? '<span>' + esc(a.s) + '</span>' : '') +
+        (prem ? '<span class="sched-new">' + (EN ? 'Premiere' : 'Ra mắt') + '</span>' : '') + '</div></div>';
+    }).join('');
+  }
+  if (more) more.textContent = (EN ? 'Full week schedule' : 'Xem cả tuần') + (total > show.length ? ' (' + total + (EN ? ' titles today' : ' tựa hôm nay') + ')' : '') + ' →';
+});
+</script>
 </body>
 </html>
