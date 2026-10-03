@@ -64,7 +64,7 @@
   function altNames(q) {
     var out = [];
     var rl = relax(q);
-    if (rl && rl !== q && rl.length >= 3) out.push(rl);
+    if (rl && rl !== q && rl.length >= 3 && (rl.indexOf(" ") > -1 || rl.length >= 6)) out.push(rl);
     if (!GROUPS || q.length < 3) return out;
     var prefixHits = 0;
     GROUPS.forEach(function (g) {
