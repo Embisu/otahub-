@@ -1,5 +1,23 @@
 window.IDX = [
   {
+    "title": "Steam Autumn Sale 2026: 25 Deals Worth Buying, From $1.99",
+    "url": "/en/steam-autumn-sale-2026-best-deals",
+    "cat": "Gaming",
+    "date": "2026-10-03",
+    "excerpt": "Steam Autumn Sale 2026 runs until October 8 at 10 a.m. Pacific. OtaHub checked 25 deals worth buying, from Ori for $2.99 to Final Fantasy VII Rebirth for $14.99.",
+    "img": "/assets/img/steam-autumn-sale-2026-hero.jpg",
+    "tags": ["Steam Autumn Sale","Steam","Final Fantasy VII Rebirth","Ori and the Will of the Wisps","The Hundred Line","Street Fighter 6","Tactical Breach Wizards"]
+  },
+  {
+    "title": "Steam Autumn Sale 2026: 25 game đáng mua, rẻ nhất 24.000đ",
+    "url": "/steam-autumn-sale-2026-game-dang-mua-gia-viet-nam",
+    "cat": "Gaming",
+    "date": "2026-10-03",
+    "excerpt": "Steam Autumn Sale 2026 kéo dài tới 0h ngày 9/10 (giờ Việt Nam). OtaHub kiểm tra giá Steam Việt Nam của 25 game đáng mua, từ Ori 25.000đ tới FF7 Rebirth 357.000đ.",
+    "img": "/assets/img/steam-autumn-sale-2026-hero.jpg",
+    "tags": ["Steam Autumn Sale","Steam","Final Fantasy VII Rebirth","Ori and the Will of the Wisps","The Hundred Line","Street Fighter 6","Tactical Breach Wizards"]
+  },
+  {
     "title": "Beast of Reincarnation review: đỡ đòn hay (8.1 điểm)",
     "url": "/beast-of-reincarnation-review",
     "cat": "Gaming",

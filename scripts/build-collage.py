@@ -76,6 +76,12 @@ COLLAGES = {
         ('dynamite-blue-city-hub.jpg', (0, 0, 1, 1), 0.5),
         ('dynamite-blue-special-attack.jpg', (0, 0, 1, 1), 0.55),
     ],
+    # Steam Autumn Sale 2026: Ori and the Will of the Wisps + FF7 Rebirth (khung giữa, hiện trên điện thoại) + The Hundred Line
+    'steam-autumn-sale-2026-hero.jpg': [
+        ('steam-autumn-sale-2026-ori-will-of-the-wisps.jpg', (0, 0, 1, 1), 0.34),
+        ('steam-autumn-sale-2026-ff7-rebirth.jpg', (0, 0, 1, 1), 0.47),
+        ('steam-autumn-sale-2026-hundred-line.jpg', (0, 0, 1, 1), 0.42),
+    ],
 }
 
 

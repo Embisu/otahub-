@@ -3465,4 +3465,16 @@
   <url><loc>https://otahub.asia/tac-gia-goc/umikaze-minamino</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://otahub.asia/en/creator/umikaze-minamino</loc><lastmod>2026-10-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <!-- PROFILES:END -->
+  <url>
+    <loc>https://otahub.asia/steam-autumn-sale-2026-game-dang-mua-gia-viet-nam</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://otahub.asia/en/steam-autumn-sale-2026-best-deals</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
