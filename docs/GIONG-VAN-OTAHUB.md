@@ -22,7 +22,7 @@ Xưng hô: gọi người đọc là **“bạn”**, tòa soạn tự gọi là
 | Thân bài | Có | Theo Form A/B/C trong `content-forms.md`. H2 là câu hoặc cụm từ mô tả, ưu tiên câu người đọc thật sự hỏi. |
 | **Xem ở đâu / Chơi ở đâu** | Khi có | Link chính thức (Netflix, Crunchyroll, Steam, trang game…) mở tab mới. Không dẫn link lậu. |
 | **Góc OtaHub** | Có | 1–2 đoạn nhận định riêng: bối cảnh, so sánh, điều nên chờ, điều đáng lo. Phải có ý, không tóm tắt lại bài. |
-| Câu hỏi thường gặp | Có | 3–5 câu đúng kiểu người ta gõ Google. Trả lời 1–3 câu, có số liệu/ngày. |
+| Câu hỏi thường gặp | Có | 3–5 câu đúng kiểu người ta gõ Google. Trả lời 1–3 câu, có số liệu/ngày. Luôn dùng khối bấm +/− `<div class="review-faq"><details><summary>Câu hỏi</summary><p>Trả lời</p></details>…</div>` (giống mọi bài review), không viết tay bằng H3 + đoạn văn. |
 | Dòng nguồn | Có | `Nguồn: Anime News Network, X chính thức của …`: ghi tên nguồn cụ thể. Không ghi “Tổng hợp”. |
 
 Bản EN dùng cùng khung: *Quick facts*, *Where to watch / Where to play*, *OtaHub’s take*, *FAQ*, *Sources*.

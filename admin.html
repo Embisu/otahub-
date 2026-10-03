@@ -11870,9 +11870,8 @@ function aiAddFaqSchemaBlock() {
     markChanged();
     toast('success', '❓ Đã thêm khối FAQ Schema (Tự động tạo Google Rich Snippets)!');
   } else {
-    const faqHtml = `\n<div class="art-faq-list" data-faq-block="true">
-  <h3 class="art-faq-title">❓ Câu hỏi thường gặp (FAQ)</h3>
-  ${sampleFaq.map(it => `<details class="art-faq-item"><summary class="art-faq-q"><strong>${esc(it.question)}</strong></summary><div class="art-faq-a">${esc(it.answer)}</div></details>`).join('\n  ')}
+    const faqHtml = `\n<h2>Câu hỏi thường gặp</h2>\n<div class="review-faq" data-faq-block="true">
+  ${sampleFaq.map(it => `<details><summary>${esc(it.question)}</summary><p>${esc(it.answer)}</p></details>`).join('\n  ')}
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -14384,13 +14383,9 @@ function blockToHtml(b) {
       }))
     };
     const schemaScript = `<script type="application/ld+json">${JSON.stringify(jsonLd)}<\/script>`;
-    const htmlItems = items.map(it => `
-      <details class="art-faq-item">
-        <summary class="art-faq-q"><strong>${esc(it.question || '')}</strong></summary>
-        <div class="art-faq-a">${esc(it.answer || '')}</div>
-      </details>
-    `).join('');
-    return `<div class="art-faq-list" data-faq-block="true"><h3 class="art-faq-title">❓ Câu hỏi thường gặp (FAQ)</h3>${htmlItems}${schemaScript}</div>`;
+    // Cùng kiểu FAQ bấm +/− với toàn site (.review-faq trong article-style.css)
+    const htmlItems = items.map(it => `<details><summary>${esc(it.question || '')}</summary><p>${esc(it.answer || '')}</p></details>`).join('\n');
+    return `<h2>Câu hỏi thường gặp</h2>\n<div class="review-faq" data-faq-block="true">\n${htmlItems}\n${schemaScript}</div>`;
   }
   if (b.type === 'callout') {
     const variant = b.variant || 'tip';
