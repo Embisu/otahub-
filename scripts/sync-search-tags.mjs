@@ -22,7 +22,11 @@ function tagsOf(url) {
   if (!fs.existsSync(file)) return null;
   const html = fs.readFileSync(file, 'utf8');
   const box = html.match(/<div class="sb-tags">([\s\S]*?)<\/div>/);
-  if (!box) return null;
+  if (!box) {
+    // trang không có khối thẻ (vd. E-Magazine): lấy từ meta keywords
+    const kw = (html.match(/<meta name="keywords" content="([^"]*)"/) || [])[1];
+    return kw ? [...new Set(kw.split(/\s*,\s*/).map(decode).filter(Boolean))] : null;
+  }
   const out = [];
   for (const a of box[1].matchAll(/<a[^>]*class="sb-tag"[^>]*>([\s\S]*?)<\/a>/g)) {
     const t = decode(a[1]);

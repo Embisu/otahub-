@@ -56,12 +56,19 @@ const idxByUrl = new Map(IDX.map((a) => [a.url || a.href, a]));
 const matchers = profileMatchers(catalog, series);
 const articles = htmlFiles('').filter((f) => !SKIP.test(f) && !/^(?:en\/)?article\.html$/.test(f)).flatMap((file) => {
   const html = read(file);
-  if (!html.includes('<aside class="art-sidebar">')) return [];
+  // Trang E-Magazine (<main class="em">, vd. Đếm ngược GTA 6) không có sidebar nhưng vẫn là bài của tác phẩm: đưa vào danh sách "Bài viết" của hồ sơ
+  const isEm = html.includes('<main class="em"');
+  if (!isEm && !html.includes('<aside class="art-sidebar">')) return [];
   const url = '/' + file.replace(/\.html$/, '');
   const meta = idxByUrl.get(url);
   // Mỗi thương hiệu chỉ một mục (vd bài nhắc cả manga lẫn anime Chainsaw Man), giữ phiên bản khớp trước
   const seen = new Set();
-  const picks = profilesForArticle(matchers, { ...articleInfo(html), cat: meta?.cat }, 8)
+  const info = articleInfo(html);
+  if (isEm) {   // tiêu đề lấy từ <title>, thẻ chủ đề từ meta keywords
+    info.title = ((html.match(/<title>([^<]*)<\/title>/) || [])[1] || info.title).replace(/\s*·\s*OtaHub$/, '');
+    info.tags = (((html.match(/<meta name="keywords" content="([^"]*)"/) || [])[1]) || '').split(/\s*,\s*/).filter(Boolean);
+  }
+  const picks = profilesForArticle(matchers, { ...info, cat: meta?.cat }, 8)
     .map((p) => ({ ...p, key: editionOf.get(p.key)?.e.key || p.key }))
     .filter((p) => { const s = editionOf.get(p.key)?.s.slug; if (seen.has(s)) return false; seen.add(s); return true; })
     .slice(0, 4);

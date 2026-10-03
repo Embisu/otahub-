@@ -35,7 +35,7 @@
 
   function norm(s) {
     return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd')
-      .replace(/['"’“”]/g, '').replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+      .replace(/['’]s\b/g, '').replace(/['"’“”]/g, '').replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
   }
   function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
   function qParam() { var p = new URLSearchParams(location.search); return (p.get('q') || p.get('tag') || p.get('t') || '').trim(); }

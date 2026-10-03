@@ -366,7 +366,7 @@ window.IDX = [
     "date": "2026-10-02",
     "excerpt": "OtaHub researched and compiled GTA 6: live countdown, release date, price, Leonida map, characters, gameplay, cars and weapons revealed so far.",
     "img": "/assets/img/gta6-official-art.jpg",
-    "tags": []
+    "tags": ["GTA 6","GTA VI","GTA 6 countdown","GTA 6 release date","GTA 6 price","Leonida map","Vice City","Jason Lucia","Rockstar Games"]
   },
   {
     "title": "Đếm ngược GTA 6: mọi điều cần biết trước 19/11",
@@ -375,7 +375,7 @@ window.IDX = [
     "date": "2026-10-02",
     "excerpt": "OtaHub nghiên cứu, tổng hợp GTA 6: đồng hồ đếm ngược, ngày ra mắt, giá, bản đồ Leonida, nhân vật, gameplay, xe và vũ khí đã lộ diện.",
     "img": "/assets/img/gta6-official-art.jpg",
-    "tags": []
+    "tags": ["GTA 6","GTA VI","đếm ngược GTA 6","ngày ra mắt GTA 6","giá GTA 6","bản đồ Leonida","Vice City","Jason Lucia","Rockstar Games"]
   },
   {
     "title": "Gears of War: E-Day Review Roundup: Scores, Pros, Cons and PC Specs",
