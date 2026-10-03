@@ -141,7 +141,7 @@
   .s-art:active,.sc:active,.fc:active,.ac:active,.author-card:active{transform:scale(0.985);transition:transform .12s ease}
 }
 .ah-poster{object-fit:cover!important}
-@media(max-width:768px){.ah-poster{width:100%!important;height:180px!important;max-width:none}}
+@media(max-width:768px){.ah-poster{width:100%!important;height:auto!important;aspect-ratio:16/9!important;max-width:420px!important}}
 
 /* ── 📱 Sửa lỗi mobile (2026-10-02) ──
    1. Đầu mục (sec-h): tiêu đề dài như "Bảng xếp hạng Game hàng đầu" không xuống dòng nên đẩy

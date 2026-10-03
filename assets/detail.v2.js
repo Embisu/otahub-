@@ -18,8 +18,8 @@ detailStyle.textContent=`
 .ed-tab.on b{color:#0b0220}
 .ed-panel[hidden]{display:none}
 @media(max-width:768px){.ed-in{padding:10px 16px;flex-direction:column;align-items:flex-start;gap:8px}.ed-tabs{max-width:100%}}
-.ah-poster{border-radius:6px;background:var(--surf)}
-.anime-hero.is-wide .ah-poster{width:320px;height:180px}
+.ah-poster{border-radius:6px;background:var(--surf);width:100%;max-width:360px;height:auto;aspect-ratio:16/9;object-fit:cover;display:block}
+.anime-hero.is-wide .ah-poster{width:320px;height:auto;max-width:none}
 .ah-badge.type{border-color:color-mix(in srgb,var(--acc) 40%,transparent);background:color-mix(in srgb,var(--acc) 8%,transparent)}
 .ah-scores{align-items:center;gap:14px 18px}
 .ah-score{display:flex;align-items:center;gap:14px;padding:10px 16px 10px 12px;border:1px solid rgba(255,255,255,.12);background:rgba(11,4,24,.55);border-radius:8px}
@@ -59,8 +59,8 @@ detailStyle.textContent=`
 }
 @media(max-width:768px){
   .ah-content{padding:24px 16px 28px}
-  .ah-poster{width:120px;height:170px}
-  .anime-hero.is-wide .ah-poster{width:100%;height:auto;aspect-ratio:16/9}
+  .ah-poster{width:100%;height:auto;aspect-ratio:16/9;max-width:420px}
+  .anime-hero.is-wide .ah-poster{width:100%;height:auto;aspect-ratio:16/9;max-width:none}
   .ah-synopsis{font-size:15.5px;line-height:1.7}
   .ah-score-num{font-size:32px}
   .ah-cta{flex:1 1 100%;justify-content:center}

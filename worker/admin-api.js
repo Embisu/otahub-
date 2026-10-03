@@ -7,7 +7,7 @@ import {
   logAudit, getAuditLog,
   putDraft, getDraftRaw, deleteDraft, listDrafts, canViewDraft,
 } from './lib.js';
-import { handleNewsApi } from './news-pipeline.js';
+import { handleNewsApi, requireEditor } from './news-pipeline.js';
 
 // Lay IP that cua nguoi goi tu header Cloudflare gan (CF-Connecting-IP luon
 // dang tin cay hon X-Forwarded-For vi Cloudflare tu dat, khong the gia mao
@@ -959,8 +959,11 @@ async function handlePingIndexNow(request, env) {
 }
 
 async function handleAiTranslate(request, env) {
-  const user = await getSessionUser(request, env);
-  if (!user) return json({ error: 'Chưa đăng nhập.' }, 401);
+  // AI translate tốn quota Cloudflare AI và gắn với editorial workflow
+  // (xuất bản bài) — giới hạn cùng mức với news pipeline: admin/editor.
+  const auth = await requireEditor(request, env);
+  if (auth.response) return auth.response;
+  const user = auth.user;
 
   let body;
   try { body = await request.json(); } catch { return json({ error: 'Dữ liệu không hợp lệ.' }, 400); }

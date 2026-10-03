@@ -229,7 +229,7 @@ function normalizeAiResult(raw, article) {
   };
 }
 
-async function requireEditor(request, env) {
+export async function requireEditor(request, env) {
   const user = await getSessionUser(request, env);
   if (!user) return { response: json({ error: 'Chưa đăng nhập.' }, 401) };
   if (user.role !== 'admin' && user.role !== 'editor') return { response: json({ error: 'Chỉ admin/editor mới được quản lý Nguồn tin AI.' }, 403) };

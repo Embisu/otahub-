@@ -16,12 +16,17 @@
 //        node scripts/build-profiles.mjs --check  (chỉ kiểm tra trang đã khớp dữ liệu)
 // Chạy lại sau khi sửa assets/catalog.json hoặc assets/series.json (npm run scores đã gọi script này).
 import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import vm from 'node:vm';
+import sharp from 'sharp';
 import { profileSeries, profilePaths, aliasPaths, legacyMoves, localize, pagePath, slugTable, displayName, rewriteProfileLinks, PROFILE_TYPES as TYPES } from './lib/profile-paths.mjs';
 import { profileMatchers, profilesForArticle, articleInfo, nameTable, tagTable, norm } from './lib/profile-links.mjs';
 import { buildEntities, entityPath, entityIndexPath, ENTITY_TYPES, ENTITY_DIRS } from './lib/entities.mjs';
 
 const CHECK = process.argv.includes('--check');
+// --only=<slug> chỉ dựng một hồ sơ (slug catalog, vd "elden-ring") rồi thoát.
+const ONLY_SLUG = (() => { const a = process.argv.find((x) => x.startsWith('--only=')); return a ? a.slice('--only='.length) : ''; })();
 const root = new URL('../', import.meta.url);
 const read = (f) => fs.readFileSync(new URL(f, root), 'utf8');
 const exists = (f) => fs.existsSync(new URL(f, root));
@@ -41,6 +46,107 @@ const moves = legacyMoves(paths);             // "/anime/chainsaw-man" (URL cũ)
 // Khóa phụ (also) -> khóa phiên bản; khóa -> thương hiệu + phiên bản
 const editionOf = new Map();
 for (const s of series) for (const e of s.editions) { editionOf.set(e.key, { s, e }); for (const k of e.also) editionOf.set(k, { s, e }); }
+
+// ---- Chọn ảnh thẻ phù hợp cho khung 3:4 ----
+// Nếu ảnh chính ngang (aspect > 1.25), tìm ảnh dọc pool-*-2.jpg có tên khớp; nếu không thì giữ nguyên
+// và dùng object-fit:contain để không cắt logo/nhân vật. Ghi đè thủ công ở CARD_IMG_OVERRIDE.
+const CARD_IMG_LANDSCAPE = 1.25;
+const CARD_IMG_OVERRIDE = {
+  'ball-x-pit': '/assets/img/pool-ball-pit-2.jpg',
+  'attack-on-titan': '/assets/img/pool-aot-2.jpg',
+  'cyberpunk': null, // giữ ảnh chính với contain, không dùng pool-edgerunners-2
+};
+const normToken = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const tokenSet = (s) => {
+  const set = new Set();
+  [s.slug, s.name, s.nameEn, ...s.editions.map((e) => e.key)].filter(Boolean).forEach((v) => {
+    normToken(v).split('-').filter((t) => t.length >= 3).forEach((t) => set.add(t));
+  });
+  return set;
+};
+const poolPortraitImages = (() => {
+  const out = [];
+  const dir = new URL('assets/img', root);
+  for (const f of fs.readdirSync(dir)) {
+    const m = /^pool-(.+)-2\.jpg$/.exec(f);
+    if (!m) continue;
+    out.push({ stem: m[1], path: '/assets/img/' + f });
+  }
+  return out;
+})();
+const dimCache = new Map();
+async function getImgDim(rel) {
+  if (dimCache.has(rel)) return dimCache.get(rel);
+  try {
+    const meta = await sharp(fileURLToPath(new URL(rel, root))).metadata();
+    const d = { w: meta.width, h: meta.height, aspect: meta.width / meta.height };
+    dimCache.set(rel, d);
+    return d;
+  } catch {
+    dimCache.set(rel, null);
+    return null;
+  }
+}
+async function ensureThumb(rel) {
+  const m = /^\/assets\/img\/(?!_[ts]\/|brand\/)([^?#]+\.(?:jpe?g|png|webp|jfif))$/i.exec(rel);
+  if (!m) return rel;
+  const outRel = 'assets/img/_s/' + m[1] + '.webp';
+  if (exists(outRel)) return '/assets/img/_s/' + m[1] + '.webp';
+  try {
+    const srcPath = fileURLToPath(new URL('assets/img/' + m[1], root));
+    const outPath = fileURLToPath(new URL(outRel, root));
+    const im = sharp(srcPath);
+    const meta = await im.metadata();
+    const maxW = 240;
+    if (meta.width > maxW) im.resize(maxW, Math.round(meta.height * maxW / meta.width), { fit: 'inside' });
+    await im.webp({ quality: 72, effort: 6 }).toFile(outPath);
+    return '/assets/img/_s/' + m[1] + '.webp';
+  } catch {
+    return rel;
+  }
+}
+async function buildCardImageMap() {
+  const map = new Map();
+  for (const s of series) {
+    const e0 = catalog[s.editions[0].key];
+    let primary = e0.img && !/placeholder/.test(e0.img) ? e0.img : '/assets/img/placeholder.svg';
+    let chosen = primary;
+    let contain = false;
+    const override = CARD_IMG_OVERRIDE[s.slug];
+    if (override !== undefined) {
+      chosen = override || primary;
+      contain = override === null;
+    } else {
+      const primaryThumb = chosen.startsWith('/assets/img/') && !chosen.startsWith('/assets/img/_') && !chosen.startsWith('/assets/img/brand/')
+        ? 'assets/img/_s/' + chosen.slice('/assets/img/'.length) + '.webp' : null;
+      const primaryDim = primaryThumb && exists(primaryThumb) ? await getImgDim(primaryThumb) : null;
+      if (!primaryDim || primaryDim.aspect > CARD_IMG_LANDSCAPE) {
+        const tokens = tokenSet(s);
+        const candidates = [];
+        for (const p of poolPortraitImages) {
+          const ptokens = normToken(p.stem).split('-').filter((t) => t.length >= 2);
+          if (![...tokens].some((t) => ptokens.includes(t))) continue;
+          const thumbRel = 'assets/img/_s/' + path.basename(p.path) + '.webp';
+          const dim = exists(thumbRel) ? await getImgDim(thumbRel) : await getImgDim('assets/img/' + path.basename(p.path));
+          if (dim && dim.aspect <= 1.0) candidates.push({ ...p, dim });
+        }
+        if (candidates.length) {
+          candidates.sort((a, b) => a.dim.aspect - b.dim.aspect);
+          chosen = candidates[0].path;
+          contain = false;
+        } else {
+          contain = true;
+        }
+      }
+    }
+    if (chosen && chosen.startsWith('/assets/img/') && !chosen.startsWith('/assets/img/_') && !chosen.startsWith('/assets/img/brand/')) {
+      chosen = await ensureThumb(chosen);
+    }
+    map.set(s.slug, { img: chosen, contain });
+  }
+  return map;
+}
+const cardImageMap = await buildCardImageMap();
 
 // ---- Studio / nhà phát hành (scripts/lib/entities.mjs): trang riêng cho tên có từ MIN_WORKS thương hiệu trở lên ----
 const entities = buildEntities(catalog, series);
@@ -240,17 +346,16 @@ function indexPage(en) {
     const types = [...new Set(s.editions.map((e) => e.type))];
     const e0 = catalog[s.editions[0].key];
     const scores = s.editions.map((e) => parseFloat(catalog[e.key].score)).filter((n) => !isNaN(n));
-    const m = /^\/assets\/img\/(?!_[ts]\/|brand\/)([^?#]+\.(?:jpe?g|png|webp|jfif))$/i.exec(e0.img || '');
-    const thumb = m && exists(`assets/img/_s/${m[1]}.webp`) ? `/assets/img/_s/${m[1]}.webp` : (e0.img || '/assets/img/placeholder.svg');
+    const card = cardImageMap.get(s.slug) || { img: e0.img || '/assets/img/placeholder.svg', contain: false };
     const names = [s.name, s.nameEn, ...s.editions.flatMap((e) => [displayName(e.key), ...(e.also || [])])];
-    return { s, types, genre: (e0.genre || '').split('/')[0].trim(), score: scores.length ? Math.max(...scores).toFixed(1) : '', thumb, name: en ? s.nameEn : s.name, key: [...new Set(names.map(norm))].join(' | '), editions: s.editions.length };
+    return { s, types, genre: (e0.genre || '').split('/')[0].trim(), score: scores.length ? Math.max(...scores).toFixed(1) : '', thumb: card.img, contain: card.contain, name: en ? s.nameEn : s.name, key: [...new Set(names.map(norm))].join(' | '), editions: s.editions.length };
   }).sort((a, b) => { const k = (x) => norm(x.name).replace(/^[^a-z0-9]+/, ''); return k(a).localeCompare(k(b), 'en'); });
   const count = (t) => items.filter((i) => !t || i.types.includes(t)).length;
   const L = en
     ? { h1: 'Title profiles', lead: `${items.length} profiles for games, anime and manga covered by OtaHub: facts, credits, our reviews and scores, and related articles for every title. Titles with several editions (manga, anime seasons, films, tie-in games) share one page with a tab for each.`, ph: 'Search a title…', all: 'All', empty: 'No profile matches your search.', crumb: 'Profiles', title: 'Title profiles: games, anime and manga · OtaHub', ed: 'editions', name: 'Title profiles' }
     : { h1: 'Hồ sơ tác phẩm', lead: `${items.length} hồ sơ game, anime và manga mà OtaHub theo dõi: thông tin, đội ngũ sản xuất, nhận định, điểm và bài viết liên quan cho từng tác phẩm. Tác phẩm có nhiều phiên bản (manga, anime từng mùa, phim, game chuyển thể) dùng chung một trang với tab cho từng phiên bản.`, ph: 'Tìm tên tác phẩm…', all: 'Tất cả', empty: 'Không có hồ sơ nào khớp từ khóa.', crumb: 'Hồ sơ', title: 'Hồ sơ tác phẩm: game, anime, manga · OtaHub', ed: 'phiên bản', name: 'Hồ sơ tác phẩm' };
   const url = ORIGIN + (en ? '/en/profile/' : '/ho-so/');
-  const cards = items.map((i) => `<a class="pf-card" href="${pagePath(i.s, en)}" data-t="${i.types.join(' ')}" data-n="${attrEsc(i.key)}"><span class="pf-img"><img src="${attrEsc(i.thumb)}" alt="" loading="lazy" width="240" height="320">${i.score ? `<b class="pf-score">${i.score}</b>` : ''}</span><span class="pf-name">${escHtml(i.name)}</span><span class="pf-meta">${i.types.map((t) => TYPE_NAME[t]).join(' · ')}${i.genre ? ' · ' + escHtml(i.genre) : ''}${i.editions > 1 ? ` · ${i.editions} ${L.ed}` : ''}</span></a>`).join('');
+  const cards = items.map((i) => `<a class="pf-card" href="${pagePath(i.s, en)}" data-t="${i.types.join(' ')}" data-n="${attrEsc(i.key)}"><span class="pf-img"><img src="${attrEsc(i.thumb)}" alt="" loading="lazy" width="240" height="320"${i.contain ? ' style="object-fit:contain;background:var(--surf2)"' : ''}>${i.score ? `<b class="pf-score">${i.score}</b>` : ''}</span><span class="pf-name">${escHtml(i.name)}</span><span class="pf-meta">${i.types.map((t) => TYPE_NAME[t]).join(' · ')}${i.genre ? ' · ' + escHtml(i.genre) : ''}${i.editions > 1 ? ` · ${i.editions} ${L.ed}` : ''}</span></a>`).join('');
   const chips = [['all', L.all, count(null)], ...['game', 'anime', 'manga'].map((t) => [t, TYPE_NAME[t], count(t)])].map(([t, label, n], k) => `<button type="button" data-t="${t}"${k ? '' : ' class="on"'}>${label} <b>${n}</b></button>`).join('');
   const css = `.pf-wrap{max-width:1200px;margin:0 auto;padding:28px 24px 64px}.pf-h1{font-family:var(--fd);font-size:34px;line-height:1.2;color:var(--white);margin:14px 0 10px}.pf-lead{color:var(--dim);line-height:1.7;max-width:820px;margin:0 0 22px}.pf-tools{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;margin-bottom:22px}.pf-tools input{flex:1 1 260px;min-height:44px;padding:0 16px;border-radius:8px;border:1px solid var(--border);background:var(--surf);color:var(--white);font:inherit}.pf-chips{display:flex;gap:8px;flex-wrap:wrap}.pf-chips button{min-height:40px;padding:0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:none;color:var(--dim);font-family:var(--fd);font-weight:700;font-size:13px;cursor:pointer}.pf-chips button b{color:var(--amber)}.pf-chips button.on{background:var(--acc);border-color:var(--acc);color:#0b0220}.pf-chips button.on b{color:#0b0220}.pf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:16px}.pf-card{display:flex;flex-direction:column;gap:6px;text-decoration:none;min-width:0}.pf-card[hidden]{display:none}.pf-img{position:relative;display:block;aspect-ratio:3/4;border-radius:8px;overflow:hidden;background:var(--surf);border:1px solid var(--border);transition:transform .2s,border-color .2s}.pf-card:hover .pf-img{transform:translateY(-3px);border-color:color-mix(in srgb,var(--acc) 50%,transparent)}.pf-img img{width:100%;height:100%;object-fit:cover}.pf-score{position:absolute;top:8px;right:8px;padding:3px 8px;border-radius:6px;background:rgba(11,4,24,.82);color:var(--amber);font-family:var(--fd);font-size:13px}.pf-name{color:var(--white);font-family:var(--fd);font-weight:700;font-size:14px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.pf-meta{color:var(--muted);font-size:12px;line-height:1.4}.pf-empty{color:var(--dim);padding:32px 0}.ent-browse a{color:var(--acc);margin-right:14px}@media(max-width:768px){.pf-wrap{padding:20px 16px 56px}.pf-h1{font-size:26px}.pf-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}`;
   PF_CSS = css;
@@ -306,7 +411,9 @@ function seriesCard(s, en) {
   const types = [...new Set(s.editions.map((e) => e.type))];
   const e0 = catalog[s.editions[0].key];
   const sc = bestScore(s);
-  return `<a class="pf-card" href="${pagePath(s, en)}" data-t="${types.join(' ')}"><span class="pf-img"><img src="${attrEsc(thumbS(e0.img))}" alt="" loading="lazy" width="240" height="320">${sc ? `<b class="pf-score">${sc.toFixed(1)}</b>` : ''}</span><span class="pf-name">${escHtml(en ? s.nameEn : s.name)}</span><span class="pf-meta">${types.map((t) => ({ game: 'Game', anime: 'Anime', manga: 'Manga' }[t])).join(' · ')}${e0.genre ? ' · ' + escHtml(e0.genre.split('/')[0].trim()) : ''}</span></a>`;
+  const card = cardImageMap.get(s.slug) || { img: thumbS(e0.img), contain: false };
+  const containAttr = card.contain ? ' style="object-fit:contain;background:var(--surf2)"' : '';
+  return `<a class="pf-card" href="${pagePath(s, en)}" data-t="${types.join(' ')}"><span class="pf-img"><img src="${attrEsc(card.img)}" alt="" loading="lazy" width="240" height="320"${containAttr}>${sc ? `<b class="pf-score">${sc.toFixed(1)}</b>` : ''}</span><span class="pf-name">${escHtml(en ? s.nameEn : s.name)}</span><span class="pf-meta">${types.map((t) => ({ game: 'Game', anime: 'Anime', manga: 'Manga' }[t])).join(' · ')}${e0.genre ? ' · ' + escHtml(e0.genre.split('/')[0].trim()) : ''}</span></a>`;
 }
 function shellPage(en, { title, desc, url, viUrl, enUrl, img, ld, body, css }) {
   let html = read((en ? 'en/' : '') + 'game-detail.html');
@@ -384,6 +491,11 @@ function entityIndex(type, en) {
 // ---- Ghi ----
 const pages = [];
 for (const s of series) {
+  // --only=<slug>: chỉ dựng một thương hiệu khớp theo slug catalog đầu tiên.
+  if (ONLY_SLUG) {
+    const sampleKey = s.editions[0].key;
+    if (displayName(sampleKey) !== ONLY_SLUG && sampleKey !== ONLY_SLUG && s.slug !== ONLY_SLUG) continue;
+  }
   for (const en of [false, true]) {
     const rs = [];
     for (const e of s.editions) {
@@ -395,10 +507,14 @@ for (const s of series) {
     const html = en ? pageHtml(s, en, rs) : viNames(pageHtml(s, en, rs));
     pages.push({ file: pagePath(s, en).slice(1) + '.html', html, indexable: /<meta name="robots" content="index/.test(html), url: ORIGIN + pagePath(s, en) });
   }
+  if (ONLY_SLUG) break;
 }
-for (const en of [false, true]) pages.push({ file: (en ? 'en/profile' : 'ho-so') + '/index.html', html: indexPage(en), indexable: true, url: ORIGIN + (en ? '/en/profile/' : '/ho-so/') });
-for (const type of ENTITY_TYPES) for (const en of [false, true]) pages.push({ file: entityIndexPath(type, en).slice(1) + 'index.html', html: entityIndex(type, en), indexable: true, url: ORIGIN + entityIndexPath(type, en) });
-for (const ent of entities.list) for (const en of [false, true]) pages.push({ file: entityPath(ent.type, ent.slug, en).slice(1) + '.html', html: entityPage(ent, en), indexable: true, url: ORIGIN + entityPath(ent.type, ent.slug, en) });
+// Khi --only=<slug>: chi build trang cho slug do (index page, entity index va entity page khong can rebuild de test mot slug).
+if (!ONLY_SLUG) {
+  for (const en of [false, true]) pages.push({ file: (en ? 'en/profile' : 'ho-so') + '/index.html', html: indexPage(en), indexable: true, url: ORIGIN + (en ? '/en/profile/' : '/ho-so/') });
+  for (const type of ENTITY_TYPES) for (const en of [false, true]) pages.push({ file: entityIndexPath(type, en).slice(1) + 'index.html', html: entityIndex(type, en), indexable: true, url: ORIGIN + entityIndexPath(type, en) });
+  for (const ent of entities.list) for (const en of [false, true]) pages.push({ file: entityPath(ent.type, ent.slug, en).slice(1) + '.html', html: entityPage(ent, en), indexable: true, url: ORIGIN + entityPath(ent.type, ent.slug, en) });
+}
 
 // Khối "Hồ sơ tác phẩm" đầu sidebar bài viết; đánh dấu bằng comment để chạy lại thay đúng khối cũ
 const sbThumb = (img) => {
@@ -480,36 +596,49 @@ if (CHECK) {
 
 // Gỡ trang hồ sơ không còn trong catalog, và thư mục URL cũ /game|anime|manga/ (đã chuyển hướng 301)
 const keep = new Set(pages.map((p) => p.file));
+// Khi co --only=<slug>: chi ghi trang cua slug do, KHONG xoa cac trang khac de tranh mat noi dung.
 for (const dir of ['ho-so', 'en/profile', ...ENTITY_DIRS]) {
   if (!exists(dir)) continue;
   for (const f of fs.readdirSync(new URL(dir + '/', root))) {
-    if (f.endsWith('.html') && !keep.has(`${dir}/${f}`)) fs.unlinkSync(new URL(`${dir}/${f}`, root));
+    if (!f.endsWith('.html')) continue;
+    const rel = `${dir}/${f}`;
+    if (ONLY_SLUG) { if (!keep.has(rel)) continue; }
+    else if (!keep.has(rel)) fs.unlinkSync(new URL(rel, root));
   }
 }
-for (const dir of TYPES.flatMap((t) => [t, 'en/' + t])) if (exists(dir)) fs.rmSync(new URL(dir + '/', root), { recursive: true });
+if (!ONLY_SLUG) for (const dir of TYPES.flatMap((t) => [t, 'en/' + t])) if (exists(dir)) fs.rmSync(new URL(dir + '/', root), { recursive: true });
 for (const p of pages) write(p.file, p.html);
-write('assets/profile-paths.json', pathsJson);
-write('assets/profile-slugs.json', slugsJson);
-write('assets/profile-moves.json', movesJson);
-write('assets/profile-names.json', namesJson);
+if (!ONLY_SLUG) {
+  write('assets/profile-paths.json', pathsJson);
+  write('assets/profile-slugs.json', slugsJson);
+  write('assets/profile-moves.json', movesJson);
+  write('assets/profile-names.json', namesJson);
+}
 
 // Link hồ sơ trên các trang -> URL mới: trang động (?t=) và URL tĩnh cũ (/anime/<slug>). Dữ liệu nguồn
 // trong JS (vd const REVIEWS) giữ dạng ?t= vì các script chấm điểm dựa vào; link đó vẫn được worker chuyển hướng 301.
-for (const u of articleUpdates) write(u.file, u.after);
+// Khi --only: bỏ qua (tránh chạm vào bài viết khi chỉ test 1 hồ sơ).
 let linkFiles = 0;
-for (const file of htmlFiles('')) {
-  if (SKIP.test(file)) continue;
-  const before = read(file);
-  const after = rewriteProfileLinks(before, allPaths, moves);
-  if (after !== before) { write(file, after); linkFiles++; }
+if (!ONLY_SLUG) {
+  for (const u of articleUpdates) write(u.file, u.after);
+  for (const file of htmlFiles('')) {
+    if (SKIP.test(file)) continue;
+    const before = read(file);
+    const after = rewriteProfileLinks(before, allPaths, moves);
+    if (after !== before) { write(file, after); linkFiles++; }
+  }
 }
 
-// Sitemap: chỉ hồ sơ đủ thông tin (detail.v2.js đặt index), khối riêng có đánh dấu để chạy lại an toàn
+// Sitemap: chỉ hồ sơ đủ thông tin (detail.v2.js đặt index), khối riêng có đánh dấu để chạy lại an toàn.
+// Khi --only: giữ nguyên sitemap, không ghi đè khối PROFILES.
 let sm = read('sitemap.xml');
 sm = sm.replace(/\s*<!-- PROFILES:START -->[\s\S]*?<!-- PROFILES:END -->/, '');
-const today = new Date().toISOString().slice(0, 10);
-const entries = pages.filter((p) => p.indexable).map((p) => `  <url><loc>${p.url}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>`);
-sm = sm.replace('</urlset>', `  <!-- PROFILES:START -->\n${entries.join('\n')}\n  <!-- PROFILES:END -->\n</urlset>`);
-write('sitemap.xml', sm);
+if (!ONLY_SLUG) {
+  const today = new Date().toISOString().slice(0, 10);
+  const entries = pages.filter((p) => p.indexable).map((p) => `  <url><loc>${p.url}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>`);
+  sm = sm.replace('</urlset>', `  <!-- PROFILES:START -->\n${entries.join('\n')}\n  <!-- PROFILES:END -->\n</urlset>`);
+  write('sitemap.xml', sm);
+}
 const multi = series.filter((s) => s.editions.length > 1).length;
-console.log(`Hồ sơ tĩnh: ${pages.length} trang (${series.length} thương hiệu × VI/EN, ${multi} trang nhiều phiên bản, ${Object.keys(paths).length} khóa catalog), ${entries.length} trang đưa vào sitemap, ${Object.keys(aliases).length} tên gọi khác, ${Object.keys(moves).length} URL cũ chuyển hướng, đổi link ở ${linkFiles} trang, ${articles.filter((a) => a.picks.length).length}/${articles.length} bài có khối hồ sơ (cập nhật ${articleUpdates.length}).`);
+const idxableCount = pages.filter((p) => p.indexable).length;
+console.log(`Hồ sơ tĩnh: ${pages.length} trang (${series.length} thương hiệu × VI/EN, ${multi} trang nhiều phiên bản, ${Object.keys(paths).length} khóa catalog)${ONLY_SLUG ? " [only=" + ONLY_SLUG + "]" : ""}, ${idxableCount} trang đưa vào sitemap, ${Object.keys(aliases).length} tên gọi khác, ${Object.keys(moves).length} URL cũ chuyển hướng, đổi link ở ${linkFiles} trang, ${articles.filter((a) => a.picks.length).length}/${articles.length} bài có khối hồ sơ (cập nhật ${articleUpdates.length}).`);

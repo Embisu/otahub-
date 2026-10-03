@@ -23,11 +23,25 @@ function attrs(tag) {
   return out;
 }
 
+// Bỏ qua <script>/<style> để regex không bắt nhầm chuỗi template trong JS
+// (vd. `<img src="'+ esc(otThumb(a.i))+'">`) thành URL asset.
+function stripScriptsAndStyles(html) {
+  return html.replace(/<script\b[\s\S]*?<\/script>/gi, '').replace(/<style\b[\s\S]*?<\/style>/gi, '');
+}
+// Chỉ nhận URL ảnh có vẻ thật: bỏ qua template literal và URL có dấu cách.
+function looksLikeAsset(src) {
+  if (!src || /\$\{/.test(src)) return false;
+  if (/^['"`\s]/.test(src) || /['"`\s]$/.test(src)) return false;
+  if (/\s/.test(src)) return false;
+  return true;
+}
+
 const pageResults = await pool(urls, 12, async (url) => {
   const response = await fetch(url, { redirect: 'follow', headers: { 'user-agent': 'OtaHub-QA/1.0' } });
   const html = await response.text();
+  const renderedHtml = stripScriptsAndStyles(html);
   const canonical = attrs(html.match(/<link\b[^>]*rel=["']canonical["'][^>]*>/i)?.[0] || '').href || '';
-  const images = [...html.matchAll(/<img\b[^>]*>/gi)].map((m) => attrs(m[0]).src).filter((src) => src && !src.includes('${'));
+  const images = [...renderedHtml.matchAll(/<img\b[^>]*>/gi)].map((m) => attrs(m[0]).src).filter(looksLikeAsset);
   return { url, status: response.status, finalUrl: response.url, type: response.headers.get('content-type') || '', canonical, images };
 });
 

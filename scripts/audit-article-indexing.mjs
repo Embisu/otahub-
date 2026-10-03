@@ -95,23 +95,29 @@ for (const article of totalArticles) {
     missingFromSitemap.push(article);
   }
 
-  // Check Search
-  if (!searchUrls.has(article)) {
+  // Search index chỉ chứa og:type=article; các trang utility (e-magazine, tieu-chuan-danh-gia...)
+  // cố ý `og:type=website` nên nằm ngoài search index (xem scripts/rebuild-discovery-indexes.mjs).
+  const isArticle = /<meta[^>]+property=["']og:type["'][^>]+content=["']article["']/i.test(content);
+
+  // Check Search (chỉ áp dụng cho article thật)
+  if (isArticle && !searchUrls.has(article)) {
     missingFromSearch.push(article);
   }
 
-  // Check Robots meta for accidental noindex
+  // Check Robots meta for accidental noindex (chỉ cảnh báo nếu article mà bị noindex)
   const robotsMatch = content.match(/<meta\s+name=["']robots["']\s+content=["']([^"']+)["']/i);
   if (robotsMatch && robotsMatch[1].toLowerCase().includes('noindex')) {
     blockedByNoindex.push({ article, robots: robotsMatch[1] });
   }
 
-  // Check Inbound Links
+  // Orphan / low inbound: chỉ áp dụng cho article (utility có thể liên kết từ menu/footer đã tính)
   const inbounds = inboundLinks.get(article) || [];
-  if (inbounds.length === 0) {
-    orphanArticles.push(article);
-  } else if (inbounds.length < 2) {
-    lowInboundArticles.push({ article, inbounds: inbounds.length, from: inbounds });
+  if (isArticle) {
+    if (inbounds.length === 0) {
+      orphanArticles.push(article);
+    } else if (inbounds.length < 2) {
+      lowInboundArticles.push({ article, inbounds: inbounds.length, from: inbounds });
+    }
   }
 }
 

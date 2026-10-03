@@ -6,7 +6,7 @@ const hubPages = [
   'reviews.html', 'rankings.html', 'chuyen-sau.html', 'news.html', 'about.html',
   'game-detail.html', 'anime-detail.html', 'manga-detail.html',
   'en/index.html', 'en/gaming.html', 'en/anime.html', 'en/manga.html',
-  'en/reviews.html', 'en/rankings.html', 'en/chuyen-sau.html', 'en/news.html', 'en/about.html'
+  'en/reviews.html', 'en/rankings.html', 'en/in-depth.html', 'en/news.html', 'en/about.html'
 ];
 
 console.log('=== AUDITING CORE HUB PAGES ===');
