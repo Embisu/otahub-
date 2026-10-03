@@ -1,14 +1,14 @@
 /* Lịch phát sóng anime OtaHub — dữ liệu dùng chung cho /lich-phat-song và /en/lich-phat-song.
-   Nguồn: AnimeSchedule.net (giờ phát hành quy đổi giờ Việt Nam, UTC+7) đối chiếu LiveChart.me, cập nhật 02/10/2026.
+   Nguồn: AnimeSchedule.net (giờ phát hành quy đổi giờ Việt Nam, UTC+7) đối chiếu LiveChart.me và AniChart, cập nhật 03/10/2026.
    Trường: t = tên hiển thị (tên tiếng Anh phổ biến nếu có), r = tên romaji, y = loại (tv | short | ona | movie | special | ova),
            s = studio, d = ngày ra mắt (YYYY-MM-DD, giờ VN; phim = ngày khởi chiếu tại Nhật), h = giờ VN (HH:MM),
            p = nền tảng, l = bài viết OtaHub, i = ảnh.
    Chỉ ghi tựa đã có ngày/giờ công bố chính thức; không tự suy đoán. */
 window.OT_SCHEDULE = {
-  updated: '2026-10-02',
+  updated: '2026-10-03',
   current: 'fall',
   year: 2026,
-  sources: [['AnimeSchedule.net', 'https://animeschedule.net/seasons/fall-2026'], ['LiveChart.me', 'https://www.livechart.me/fall-2026/tv']],
+  sources: [['AnimeSchedule.net', 'https://animeschedule.net/seasons/fall-2026'], ['LiveChart.me', 'https://www.livechart.me/fall-2026/tv'], ['AniChart', 'https://anichart.net/Fall-2026']],
   seasons: {
     fall: [
       {t:'The Apothecary Diaries Season 3', tv:'Dược Sư Tự Sự Season 3', r:'Kusuriya no Hitorigoto 3rd Season', y:'tv', s:'OLM', d:'2026-10-02', h:'21:00', l:'/duoc-su-tu-su-season3-trailer', le:'/en/apothecary-diaries-season3-trailer', i:'/assets/img/ba56514692-apothecary-diaries-s3-key-visual.jpg', hs:'/ho-so/duoc-su-tu-su', hse:'/en/profile/the-apothecary-diaries'},
@@ -37,7 +37,7 @@ window.OT_SCHEDULE = {
       {t:'Chitose Is in the Ramune Bottle (Part 2)', r:'Chitose-kun wa Ramune Bin no Naka Part 2', y:'tv', s:'feel.', d:'2026-10-13', h:'21:00', i:'/assets/img/sch/chitose-kun-wa-ramune-bin-no-naka-part-2.jpg', hs:'/ho-so/chitose-is-in-the-ramune-bottle-part-2', hse:'/en/profile/chitose-is-in-the-ramune-bottle-part-2'},
       {t:'Magical Girl Raising Project: Restart', r:'Mahou Shoujo Ikusei Keikaku: Restart', y:'tv', s:'SynergySP', d:'2026-10-06', h:'00:00', i:'/assets/img/sch/mahou-shoujo-ikusei-keikaku-restart.jpg', hs:'/ho-so/magical-girl-raising-project-restart', hse:'/en/profile/magical-girl-raising-project-restart'},
       {t:'Hotel Inhumans Season 2', y:'tv', s:'Aisle', d:'2026-10-04', h:'21:45', i:'/assets/img/sch/hotel-inhumans-season-2.jpg', hs:'/ho-so/hotel-inhumans-season-2', hse:'/en/profile/hotel-inhumans-season-2'},
-      {t:'Magical★Explorer', y:'tv', s:'White Fox', d:'2026-10-03', h:'22:00', i:'/assets/img/sch/magicalexplorer.jpg', hs:'/ho-so/magical-explorer', hse:'/en/profile/magical-explorer'},
+      {t:'Magical★Explorer', y:'tv', s:'White Fox', d:'2026-09-25', h:'22:00', i:'/assets/img/sch/magicalexplorer.jpg', hs:'/ho-so/magical-explorer', hse:'/en/profile/magical-explorer'},
       {t:'Koori no Jouheki 2nd Season', y:'tv', s:'Studio KAI', d:'2026-10-01', h:'22:30', i:'/assets/img/sch/koori-no-jouheki-2nd-season.jpg', hs:'/ho-so/koori-no-jouheki-2nd-season', hse:'/en/profile/koori-no-jouheki-2nd-season'},
       {t:'Toaru Anbu no ITEM', y:'tv', s:'J.C. Staff', d:'2026-10-08', h:'22:30', i:'/assets/img/sch/toaru-anbu-no-item.jpg', hs:'/ho-so/toaru-anbu-no-item', hse:'/en/profile/toaru-anbu-no-item'},
       {t:'Mezametara Saikyou Soubi to Uchuusenmochi Datta node, Ikkodate Mezashite Youhei to Shite Jiyuu ni Ikitai', y:'tv', s:'Studio A-CAT', d:'2026-10-04', h:'17:30', i:'/assets/img/sch/mezametara-saikyou-soubi-to-uchuusenmochi-datta-node-ikkodat.jpg', hs:'/ho-so/mezametara-saikyou-soubi-to-uchuusenmochi-datta-node', hse:'/en/profile/mezametara-saikyou-soubi-to-uchuusenmochi-datta-node'},
@@ -88,7 +88,7 @@ window.OT_SCHEDULE = {
       {t:'My Happy Marriage: Special Episode', r:'Watashi no Shiawase na Kekkon Special', y:'special', s:'Kinema Citrus', d:'2026-10-25', h:'14:01', i:'/assets/img/prof-my-happy-marriage-special-episode.jpg', hs:'/ho-so/my-happy-marriage-special-episode', hse:'/en/profile/my-happy-marriage-special-episode'},
       {t:'Mahou no Princess Minky Momo (OVA)', y:'ova', s:'Ashi Productions', d:'2026-11-13', i:'/assets/img/sch/mahou-no-princess-minky-momo-ova.jpg', hs:'/ho-so/mahou-no-princess-minky-momo-ova', hse:'/en/profile/mahou-no-princess-minky-momo-ova'},
       {t:'The Apothecary Diaries: The Movie', tv:'Dược Sư Tự Sự: The Movie', r:'Kusuriya no Hitorigoto Movie: Bouhi no Hihou', y:'movie', s:'TOHO animation STUDIO', d:'2026-12-11', i:'/assets/img/sch/kusuriya-no-hitorigoto-movie-bouhi-no-hihou.jpg', hs:'/ho-so/duoc-su-tu-su', hse:'/en/profile/the-apothecary-diaries'},
-      {t:'Witch on the Holy Night', r:'Mahoutsukai no Yoru', y:'movie', s:'ufotable', d:'2027-01-29', i:'/assets/img/sch/mahoutsukai-no-yoru.jpg', hs:'/ho-so/witch-on-the-holy-night', hse:'/en/profile/witch-on-the-holy-night'},
+      {t:'Witch on the Holy Night', r:'Mahoutsukai no Yoru', y:'movie', s:'ufotable', d:'2026-11-20', i:'/assets/img/sch/mahoutsukai-no-yoru.jpg', hs:'/ho-so/witch-on-the-holy-night', hse:'/en/profile/witch-on-the-holy-night'},
       {t:'Rascal Does Not Dream of a Dear Friend', r:'Seishun Buta Yarou wa Dear Friend no Yume wo Minai', y:'movie', s:'CloverWorks', d:'2026-10-16', i:'/assets/img/sch/seishun-buta-yarou-wa-dear-friend-no-yume-wo-minai.jpg', hs:'/ho-so/rascal-does-not-dream-of-a-dear-friend', hse:'/en/profile/rascal-does-not-dream-of-a-dear-friend'},
       {t:'Made in Abyss: Mezameru Shinpi', y:'movie', s:'Kinema Citrus', d:'2026-10-23', i:'/assets/img/sch/made-in-abyss-mezameru-shinpi.jpg', hs:'/ho-so/made-in-abyss', hse:'/en/profile/made-in-abyss'},
       {t:'Doko yori mo Tooi Basho ni Iru Kimi e', y:'movie', s:'TMS Entertainment', d:'2026-10-09', i:'/assets/img/sch/doko-yori-mo-tooi-basho-ni-iru-kimi-e.jpg', hs:'/ho-so/doko-yori-mo-tooi-basho-ni-iru-kimi-e', hse:'/en/profile/doko-yori-mo-tooi-basho-ni-iru-kimi-e'},
@@ -100,7 +100,13 @@ window.OT_SCHEDULE = {
       {t:'Armored Trooper Votoms: Haiiro no Hexe', r:'Soukou Kihei Votoms: Haiiro no Hexe', y:'movie', s:'Production I.G', d:'2026-11-20', i:'/assets/img/sch/soukou-kihei-votoms-haiiro-no-hexe.jpg', hs:'/ho-so/armored-trooper-votoms-haiiro-no-hexe', hse:'/en/profile/armored-trooper-votoms-haiiro-no-hexe'},
       {t:'Takopii no Genzai: Arigatou, Mata Ashita', y:'movie', s:'Enishiya', d:'2026-11-27', i:'/assets/img/sch/takopii-no-genzai-arigatou-mata-ashita.jpg', hs:'/ho-so/takopii-no-genzai-arigatou-mata-ashita', hse:'/en/profile/takopii-no-genzai-arigatou-mata-ashita'},
       {t:'Wareware wa Uchuujin', y:'movie', s:'Miyu Productions', d:'2026-09-25', i:'/assets/img/sch/wareware-wa-uchuujin.jpg', hs:'/ho-so/wareware-wa-uchuujin', hse:'/en/profile/wareware-wa-uchuujin'},
-      {t:'Meitantei Precure! Fushigi na Niwa to Futari no Himitsu', y:'movie', s:'Toei Animation', d:'2026-09-18', i:'/assets/img/sch/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu.jpg', hs:'/ho-so/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu', hse:'/en/profile/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu'}
+      {t:'Meitantei Precure! Fushigi na Niwa to Futari no Himitsu', y:'movie', s:'Toei Animation', d:'2026-09-18', i:'/assets/img/sch/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu.jpg', hs:'/ho-so/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu', hse:'/en/profile/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu'},
+      {t:'Mouse Cursor de Genjitsu wo Sousa Dekiru You ni Natta node, Onnanoko wo Ippai Click Shimasu', y:'short', s:'Studio Houkiboshi', d:'2026-10-04', h:'23:00', i:'/assets/img/sch/mouse-cursor.jpg'},
+      {t:'Punirunes Puni 4', y:'short', s:'OLM', d:'2026-10-04', h:'07:16', i:'/assets/img/sch/punirunes-puni-4.jpg'},
+      {t:'GelPiyo 2', y:'short', d:'2026-10-21', h:'19:54', i:'/assets/img/sch/gelpiyo-2.jpg'},
+      {t:'Mazenchu', y:'short', s:'Studio Nanahoshi', d:'2026-10-02', h:'07:50', i:'/assets/img/sch/mazenchu.jpg'},
+      {t:'PetitCure: Precure Fairies Season 4', y:'ona', s:'IKIF+', d:'2026-10-01', h:'16:30', i:'/assets/img/sch/petitcure-precure-fairies-s4.jpg'},
+      {t:'Delivery Kitten Unyan', r:'Koneko no Haitatsuin Uunyan', y:'ona', s:'Studio Nanahoshi', d:'2026-09-27', i:'/assets/img/sch/koneko-no-haitatsuin-uunyan.jpg'},
     ],
     summer: [
       {t:'Mushoku Tensei III: Jobless Reincarnation', tv:'Thất Nghiệp Chuyển Sinh III: Jobless Reincarnation', r:'Mushoku Tensei III: Isekai Ittara Honki Dasu', y:'tv', s:'Studio Bind', d:'2026-07-04', h:'22:01', l:'/that-nghiep-chuyen-sinh-s3-chaos-breaker', le:'/en/mushoku-tensei-s3-chaos-breaker', i:'/assets/img/77948dbff7-mushoku-tensei-s3-chaosbreaker.jpg', hs:'/ho-so/that-nghiep-chuyen-sinh', hse:'/en/profile/mushoku-tensei'},

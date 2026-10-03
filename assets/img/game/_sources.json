@@ -1,0 +1,56 @@
+{
+ "saints-row-the-third-remastered": {
+  "title": "Saints Row: The Third Remastered",
+  "file": "assets/img/game/saints-row-the-third-remastered.jpg",
+  "width": 616,
+  "height": 353,
+  "sourceUrl": "https://store.steampowered.com/app/978300/",
+  "sourceType": "store",
+  "note": "Steam capsule 616x353"
+ },
+ "absolum": {
+  "title": "Absolum",
+  "file": "assets/img/game/absolum.jpg",
+  "width": 616,
+  "height": 353,
+  "sourceUrl": "https://store.steampowered.com/app/1904480/",
+  "sourceType": "store",
+  "note": "Steam capsule 616x353"
+ },
+ "one-piece-grand-gourmet": {
+  "title": "One Piece: Grand Gourmet",
+  "file": "assets/img/game/one-piece-grand-gourmet.jpg",
+  "width": 616,
+  "height": 353,
+  "sourceUrl": "https://store.steampowered.com/app/3905010/",
+  "sourceType": "store",
+  "note": "Steam capsule 616x353"
+ },
+ "epic-seven": {
+  "title": "Epic Seven",
+  "file": "assets/img/game/epic-seven.jpg",
+  "width": 616,
+  "height": 353,
+  "sourceUrl": "https://store.steampowered.com/app/5019180/",
+  "sourceType": "store",
+  "note": "Steam capsule 616x353"
+ },
+ "make-drama-mad": {
+  "title": "Make Drama: MAD",
+  "file": "assets/img/game/make-drama-mad.jpg",
+  "width": 616,
+  "height": 353,
+  "sourceUrl": "https://store.steampowered.com/app/4578810/",
+  "sourceType": "store",
+  "note": "Steam capsule 616x353"
+ },
+ "vampir": {
+  "title": "VAMPIR",
+  "file": "assets/img/game/vampir.jpg",
+  "width": 616,
+  "height": 353,
+  "sourceUrl": "https://store.steampowered.com/app/4302720/",
+  "sourceType": "store",
+  "note": "Steam capsule 616x353; matched as Vampir: Vengeance, verify it is the intended game"
+ }
+}
