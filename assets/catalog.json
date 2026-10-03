@@ -41,7 +41,7 @@
         "value": "Yuto Suzuki / Shueisha"
       }
     ],
-    "scoreSource": "hub",
+    "scoreSource": "review",
     "meta": {
       "ja": "SAKAMOTO DAYS",
       "en": "Sakamoto Days",
@@ -54,10 +54,14 @@
         }
       ]
     },
-    "verdict": "Rất tốt",
-    "verdictEn": "Very good",
-    "reviewSummary": "Sát thủ huyền thoại nghỉ hưu mở tiệm tạp hóa. Action dàn dựng điện ảnh kết hợp hài hước gia đình ấm áp.",
-    "reviewSummaryEn": "Legendary assassin retires and opens a convenience store. Action-packed cinematic production combined with heartwarming family humor."
+    "review": "/sakamoto-days-manga-review",
+    "reviewEn": "/en/sakamoto-days-manga-review",
+    "verdict": "Rất hay",
+    "verdictEn": "Great",
+    "reviewSummary": "Sakamoto Days là manga hành động hài rất đáng đọc của Jump nếu bạn thích chiêu thức sáng tạo và nhân vật có duyên. Yuto Suzuki dàn trang gọn, biến đồ gia dụng thành vũ khí và giữ được hơi ấm gia đình giữa các trận đánh, dù trò đùa cân nặng lặp khá nhiều và trận cuối kéo dài hơn một năm. Điểm OtaHub: 8.8/10, Rất hay.",
+    "reviewSummaryEn": "Sakamoto Days is a very good action-comedy from Jump if you like inventive fight choreography and characters with charm. Yuto Suzuki lays out his pages cleanly, turns household objects into weapons and keeps a warm family core between fights, though the weight gag repeats and the final battle has run for more than a year. OtaHub score: 8.8/10, Great.",
+    "reviewNote": "Sakamoto Days mạnh nhất ở khả năng dàn dựng hành động rõ ràng và giữ trọng tâm vào một gia đình, một cửa hàng. Trận chung kết dài và dàn nhân vật phình to khiến nhịp truyện không còn gọn như đầu bộ, nhưng phần lớn hành trình vẫn rất cuốn.",
+    "reviewNoteEn": "Sakamoto Days is strongest at clear action staging and at keeping one family and one store at the centre. A long final battle and a swelling cast mean it is less compact than the opening volumes, but most of the journey is still gripping."
   },
   "Undead Unluck": {
     "type": "manga",
@@ -99,7 +103,7 @@
         "value": "Yoshifumi Tozuka / Shueisha"
       }
     ],
-    "scoreSource": "hub",
+    "scoreSource": "review",
     "meta": {
       "ja": "アンデッドアンラック",
       "en": "Undead Unluck",
@@ -113,10 +117,14 @@
         }
       ]
     },
-    "verdict": "Rất tốt",
-    "verdictEn": "Very good",
-    "reviewSummary": "Khép lại 5 năm serialization với cái kết trọn vẹn. Hệ thống sức mạnh UMA sáng tạo bậc nhất thể loại.",
-    "reviewSummaryEn": "Concluding 5 years of serialization with a perfect ending. The most innovative UMA power system in the genre."
+    "review": "/undead-unluck-manga-review",
+    "reviewEn": "/en/undead-unluck-manga-review",
+    "verdict": "Rất hay",
+    "verdictEn": "Great",
+    "reviewSummary": "Undead Unluck là bộ shonen hành động có ý tưởng năng lực hiếm thấy ở một series Jump dài hơi, và nó biết cách dừng đúng lúc. Cặp Fuuko và Andy giữ được trọng tâm cảm xúc suốt 239 chương, đoạn kết khép được tuyến truyện chính mà không kéo dài. Điểm trừ là cách khai thác hình thể nhân vật nữ, một chuyện báo chí quốc tế đã nhắc đến. Điểm OtaHub: 8.9/10, Rất hay.",
+    "reviewSummaryEn": "Undead Unluck is a shonen action manga with a power-system idea that is rare in a long Jump series, and it knows when to stop. Fuuko and Andy hold the emotional centre across 239 chapters, and the ending closes the main story without dragging on. The drawback is how it treats its female characters’ bodies, which international critics have flagged. OtaHub score: 8.9/10, Great.",
+    "reviewNote": "Undead Unluck là một trong những shonen Jump có hệ thống năng lực thú vị nhất thập niên này. Nó không hoàn hảo về giọng kể và cách vẽ nhân vật nữ, nhưng 27 tập trọn vẹn là món đáng đọc một mạch.",
+    "reviewNoteEn": "Undead Unluck has some of the most interesting power rules in a Jump series this decade. Its tone and its way of drawing female characters are not flawless, but 27 complete volumes make a satisfying read in one go."
   },
   "Spy x Family": {
     "type": "anime",
@@ -345,7 +353,7 @@
         "value": "A-1 Pictures"
       }
     ],
-    "scoreSource": "hub",
+    "scoreSource": "review",
     "meta": {
       "ja": "俺だけレベルアップな件",
       "romaji": "Ore dake Level Up na Ken",
@@ -365,10 +373,14 @@
         }
       ]
     },
+    "review": "/toi-thang-cap-mot-minh-mua-2-review",
+    "reviewEn": "/en/solo-leveling-season-2-review",
     "verdict": "Khá",
-    "verdictEn": "Quite",
-    "reviewSummary": "Animation chiến đấu vẫn đỉnh cao nhưng nhịp kể chuyện dồn nén khiến chiều sâu cốt truyện bị ảnh hưởng.",
-    "reviewSummaryEn": "The combat animation is still top-notch, but the rushed storytelling pace affects the depth of the plot."
+    "verdictEn": "Decent",
+    "reviewSummary": "Tôi Thăng Cấp Một Mình mùa 2 đáng xem vì hoạt hình và cảnh chiến đấu, ít đáng nhớ hơn ở phần kể chuyện. A-1 Pictures đưa khoảng 65 chương manhwa vào 13 tập, nên nhịp phim nhanh, nhân vật phụ mỏng và nhiều khoảng lặng của bản gốc bị cắt. Điểm OtaHub: 7.0/10, Khá.",
+    "reviewSummaryEn": "Solo Leveling Season 2 is worth watching for its animation and fights, less so for its storytelling. A-1 Pictures packs roughly 65 manhwa chapters into 13 episodes, so the pace is fast, supporting characters are thin and many quiet beats from the source are cut. OtaHub score: 7.0/10, Decent.",
+    "reviewNote": "Mùa 2 giữ chuẩn hoạt hình cao và có những trận đánh được cả giải thưởng lẫn khán giả công nhận. OtaHub chấm thấp hơn điểm cộng đồng vì cốt truyện bị nén mạnh và ít lý do để xem lại ngoài các màn hành động.",
+    "reviewNoteEn": "Season 2 keeps the high animation standard and delivers fights that both awards and audiences recognised. OtaHub scores it below the community because the story is compressed hard and there is little reason to rewatch beyond the action."
   },
   "Wuthering Waves": {
     "type": "game",
@@ -777,7 +789,7 @@
         "value": "Madhouse"
       }
     ],
-    "scoreSource": "hub",
+    "scoreSource": "review",
     "meta": {
       "ja": "葬送のフリーレン",
       "romaji": "Sousou no Frieren",
@@ -797,10 +809,14 @@
         }
       ]
     },
+    "review": "/phap-su-tien-tang-frieren-mua-2-review",
+    "reviewEn": "/en/frieren-beyond-journeys-end-season-2-review",
     "verdict": "Kiệt tác",
     "verdictEn": "Masterpiece",
-    "reviewSummary": "MyAnimeList 9.34/10, soán ngôi chính mùa 1 để trở thành anime được đánh giá cao thứ hai mọi thời đại.",
-    "reviewSummaryEn": "MyAnimeList 9.34/10, dethroning Season 1 to become the second highest-rated anime of all time."
+    "reviewSummary": "Pháp Sư Tiễn Táng Frieren mùa 2 giữ nguyên chất giọng của mùa đầu dù đổi đạo diễn. Phim chọn nhịp chậm, nhiều điểm dừng nhỏ và vài trận đánh được dựng rất kỹ; cái giá là 10 tập khiến một số mạch truyện chưa kịp đầy, và điểm cộng đồng thấp hơn mùa 1. Nên xem mùa 1 trước. Điểm OtaHub: 9.6/10, Kiệt tác.",
+    "reviewSummaryEn": "Frieren Season 2 keeps the tone of season 1 despite a change of director. It chooses a slow pace, many small stops on the road and a few meticulously staged fights; the price is that ten episodes leave some threads underfed, and community scores sit below season 1. Watch season 1 first. OtaHub score: 9.6/10, Masterpiece.",
+    "reviewNote": "Mùa 2 không cố vượt mùa 1 bằng quy mô mà đào sâu thêm dư âm của chuyến đi. Tay nghề hình ảnh và âm nhạc ở mức rất cao; điểm trừ là 10 tập quá gọn và vài chỗ nhịp kể kém đều so với phần đầu.",
+    "reviewNoteEn": "Season 2 doesn't try to outdo season 1 on scale; it digs further into what a long journey leaves behind. Craft in visuals and music is very high; the drawbacks are a ten-episode run that feels tight and a few stretches where the storytelling is less even than before."
   },
   "One Piece": {
     "type": "manga",
@@ -1030,7 +1046,7 @@
         "value": "Kentaro Miura & Studio Gaga / Hakusensha"
       }
     ],
-    "scoreSource": "hub",
+    "scoreSource": "review",
     "meta": {
       "ja": "ベルセルク",
       "en": "Berserk",
@@ -1047,10 +1063,14 @@
         }
       ]
     },
-    "verdict": "Tốt",
+    "review": "/berserk-manga-review",
+    "reviewEn": "/en/berserk-manga-review",
+    "verdict": "Hay",
     "verdictEn": "Good",
-    "reviewSummary": "Chương 384 trở lại sau 9 tháng gián đoạn, Studio Gaga tiếp tục hoàn thiện di sản của Miura đầy tôn trọng.",
-    "reviewSummaryEn": "Chapter 384 returns after a 9-month hiatus, Gaga Studio continues to respectfully complete Miura's legacy."
+    "reviewSummary": "Berserk thời Studio Gaga đáng đọc nếu bạn đã theo Guts từ trước. Câu chuyện đi theo kế hoạch Miura kể lại cho Kouji Mori và nét vẽ vẫn giữ độ dày chi tiết, nhưng lịch ra chương thất thường, nhịp kể bị nén và phần hình ảnh khó chạm tới tầm của Miura. Điểm OtaHub: 8.0/10, Hay.",
+    "reviewSummaryEn": "Berserk under Studio Gaga is worth reading if you have followed Guts this far. The story follows the plan Miura relayed to Kouji Mori and the art keeps its density of detail, but the chapter schedule is erratic, the pacing is compressed and the visuals struggle to match Miura's own. OtaHub score: 8.0/10, Good.",
+    "reviewNote": "Studio Gaga làm tốt phần khó nhất: giữ đúng tinh thần và không tự thêm thắt vào câu chuyện của Miura. Cái giá là nhịp kể gọn hơn thời Miura, nét vẽ ít dày hơn và những quãng nghỉ dài giữa các chương.",
+    "reviewNoteEn": "Studio Gaga handles the hardest job well: keeping Miura's spirit and adding nothing of their own to his story. The price is a tighter pace than Miura's, lighter linework and long gaps between chapters."
   },
   "Hollow Knight: Silksong": {
     "type": "game",
@@ -1093,11 +1113,15 @@
         "value": "Team Cherry"
       }
     ],
-    "scoreSource": "hub",
-    "verdict": "Kiệt tác",
-    "verdictEn": "Masterpiece",
-    "reviewSummary": "Hornet và hành trình xuyên Pharloom sau 7 năm chờ đợi. Metacritic/OpenCritic 91, một trong những metroidvania hay nhất thập kỷ.",
-    "reviewSummaryEn": "Hornet and his journey through Pharloom after a 7-year wait. Metacritic/OpenCritic 91, one of the best metroidvania of the decade."
+    "scoreSource": "review",
+    "review": "/hollow-knight-silksong-review",
+    "reviewEn": "/en/hollow-knight-silksong-review",
+    "verdict": "Xuất sắc",
+    "verdictEn": "Excellent",
+    "reviewSummary": "Hollow Knight: Silksong là metroidvania đáng chờ đợi, hợp với người thích khám phá bản đồ rộng và chịu được trùm khó. Hornet linh hoạt hơn Hiệp sĩ trong bản đầu, thế giới Pharloom dày chi tiết, nhưng mức sát thương, bẫy và đoạn chạy lại trước trùm khiến không ít người nản. Điểm OtaHub: 9.4/10, Xuất sắc.",
+    "reviewSummaryEn": "Hollow Knight: Silksong is a metroidvania worth the wait, best for players who love exploring big maps and can stomach hard bosses. Hornet is far more agile than the original's Knight and Pharloom is packed with detail, but heavy damage, traps and long runbacks to bosses wear some players down. OtaHub score: 9.4/10, Excellent.",
+    "reviewNote": "Silksong có nghệ thuật, âm nhạc và thiết kế thế giới thuộc hàng đầu của thể loại, cùng nhịp di chuyển rất sướng tay. Độ khó dựng lên bằng sát thương và quãng đường chạy lại chưa phải lúc nào cũng công bằng, nhưng phần thưởng của việc kiên nhẫn là rất lớn.",
+    "reviewNoteEn": "Silksong's art, music and world design are among the best the genre has produced, and Hornet's movement is a joy. The difficulty, built from damage and long runbacks, is not always fair, but patience is richly rewarded."
   },
   "Tekken 8: Season 2": {
     "type": "game",
@@ -1140,11 +1164,15 @@
         "value": "Bandai Namco Studios"
       }
     ],
-    "scoreSource": "hub",
-    "verdict": "Gây tranh cãi",
-    "verdictEn": "Controversial",
-    "reviewSummary": "Bản cập nhật gây review-bomb, người chơi 24h rơi xuống dưới 6.000, mức thấp kỷ lục kể từ ngày ra mắt.",
-    "reviewSummaryEn": "The update caused a review-bomb, with 24-hour player count dropping below 6,000, a record low since launch."
+    "scoreSource": "review",
+    "review": "/tekken-8-season-2-review",
+    "reviewEn": "/en/tekken-8-season-2-review",
+    "verdict": "Dưới trung bình",
+    "verdictEn": "Below Average",
+    "reviewSummary": "Season 2 của Tekken 8 có nhân vật mới đáng chú ý nhưng bản cân bằng ra mắt lại làm hỏng trải nghiệm. Ver. 2.00 nghiêng quá mạnh về tấn công, ngược với lời hứa tăng khả năng phòng thủ, nên Steam ngập đánh giá tiêu cực và lượng người chơi giảm. Nhiều bản vá sau đó cải thiện được khá nhiều, nhưng ấn tượng ban đầu đã in sâu. Điểm OtaHub: 4.5/10, Dưới trung bình.",
+    "reviewSummaryEn": "Tekken 8 Season 2 has worthwhile new fighters, but its launch balance pass undermined the experience. Ver. 2.00 leaned heavily toward offense, the opposite of the promised defensive boost, so Steam filled with negative reviews and the player count sank. Later patches fixed a good deal, but the first impression stuck. OtaHub score: 4.5/10, Below Average.",
+    "reviewNote": "Anna Williams, Armor King và hệ thống xếp hạng mới là phần có giá trị, còn nền tảng Tekken 8 vẫn rất tốt. Nhưng một mùa giải đối kháng sống nhờ cân bằng, và Season 2 đã làm hỏng điều đó ngay từ ngày đầu; các bản vá chỉ sửa được một phần.",
+    "reviewNoteEn": "Anna Williams, Armor King and the new ranked system have real value, and the Tekken 8 foundation is still excellent. But a fighting game season lives or dies on balance, and Season 2 broke it on day one; the patches only repaired part of the damage."
   },
   "Stellar Blade": {
     "type": "game",
@@ -3183,11 +3211,15 @@
         "url": "https://beast-of-reincarnation.happinet-games.com/"
       }
     ],
-    "scoreSource": "hub",
-    "verdict": "Tốt",
+    "scoreSource": "review",
+    "review": "/beast-of-reincarnation-review",
+    "reviewEn": "/en/beast-of-reincarnation-review",
+    "verdict": "Hay",
     "verdictEn": "Good",
-    "reviewSummary": "Game AAA đầu tiên của Game Freak ngoài Pokémon. Chú chó đồng hành Koo mang chiều sâu cảm xúc hiếm thấy trong thể loại.",
-    "reviewSummaryEn": "Game Freak's first AAA game outside of Pokémon. The companion dog Koo possesses a rare emotional depth in the genre."
+    "reviewSummary": "Beast of Reincarnation đáng chơi nếu bạn thích chiến đấu đỡ đòn kiểu Sekiro và muốn một game có nhân vật chính ấm áp. Hệ thống parry kết hợp lệnh cho Koo tạo ra nhịp đánh riêng, còn thế giới hậu tận thế đẹp và có hồn. Đổi lại, cốt truyện loãng, nhân vật phụ nhạt và boss lặp lại, nên điểm số giới phê bình chỉ ở mức 71 trên Metacritic. Điểm OtaHub: 8.1/10, Hay.",
+    "reviewSummaryEn": "Beast of Reincarnation is worth playing if you like Sekiro-style parrying and want a game with a warm lead pair. The parry system, plus commands for the dog Koo, gives combat its own rhythm, and the post-apocalyptic world looks and feels alive. The price is a loose story, forgettable side characters and repeated bosses, which is why critics landed at only 71 on Metacritic. OtaHub score: 8.1/10, Good.",
+    "reviewNote": "Nhịp parry và các đòn Bloom Arts của Koo đủ thú vị để bỏ qua nhiều khuyết điểm, nhất là khi game có trên Game Pass. OtaHub chấm cao hơn mặt bằng giới phê bình vì ưu tiên cảm giác chiến đấu và sức hút của cặp Emma, Koo hơn độ trau chuốt của cốt truyện.",
+    "reviewNoteEn": "The parry rhythm and Koo's Bloom Arts are fun enough to forgive a lot, especially with the game on Game Pass. OtaHub scores it above the critical average because we weigh combat feel and the Emma-and-Koo bond over narrative polish."
   },
   "My Hero Academia Final Season": {
     "type": "anime",
@@ -3223,7 +3255,7 @@
         "url": "https://heroaca.com/episodes/index.html"
       }
     ],
-    "scoreSource": "hub",
+    "scoreSource": "review",
     "meta": {
       "ja": "僕のヒーローアカデミア FINAL SEASON",
       "romaji": "Boku no Hero Academia FINAL SEASON",
@@ -3256,10 +3288,14 @@
         }
       ]
     },
-    "verdict": "Rất tốt",
-    "verdictEn": "Very good",
-    "reviewSummary": "Cuộc đối đầu hoành tráng Deku vs Shigaraki khép lại một trong những anime shonen định hình thế hệ 2010s.",
-    "reviewSummaryEn": "The epic showdown between Deku and Shigaraki concludes one of the shonen anime that shaped the 2010s generation."
+    "review": "/my-hero-academia-final-season-review",
+    "reviewEn": "/en/my-hero-academia-final-season-review",
+    "verdict": "Rất hay",
+    "verdictEn": "Great",
+    "reviewSummary": "My Hero Academia Final Season là hồi kết đáng xem nếu bạn đã đi cùng Deku từ mùa 1. Bones Film dồn trận chiến cuối vào 11 tập với hình ảnh và nhạc rất đầu tư, nhưng phần giá trị lớn nhất nằm ở việc khép lại chuyện cũ, nên người mới khó thưởng thức trọn vẹn. Điểm OtaHub: 8.7/10, Rất hay.",
+    "reviewSummaryEn": "My Hero Academia Final Season is a finale worth watching if you have been with Deku since season 1. Bones Film packs the last battle into 11 episodes with heavy investment in art and music, but most of its value comes from closing old threads, so newcomers will struggle to enjoy it fully. OtaHub score: 8.7/10, Great.",
+    "reviewNote": "Mùa cuối làm tốt điều quan trọng nhất của một phần kết: đưa mọi tuyến truyện về đúng chỗ với hình ảnh đủ sức nặng. Cái giá là nhịp kể nhiều lời thoại ở trận Deku vs Shigaraki và việc người mới gần như phải xem lại từ đầu.",
+    "reviewNoteEn": "The season does the most important thing a finale can: it puts every thread where it belongs, with visuals that carry real weight. The price is a talk-heavy Deku vs Shigaraki fight and a barrier for anyone who has not seen the earlier seasons."
   },
   "JoJo's Bizarre Adventure: Golden Spirit": {
     "type": "game",
@@ -3295,11 +3331,15 @@
         "url": "https://jjbags.wdyxgames.com/"
       }
     ],
-    "scoreSource": "hub",
-    "verdict": "Khá tốt",
-    "verdictEn": "Quite good",
-    "reviewSummary": "Game mobile JoJo đầu tiên ra mắt toàn cầu, chiến thuật theo lượt với 50 nhân vật/Stand từ Phantom Blood đến Stone Ocean.",
-    "reviewSummaryEn": "The first JoJo mobile game to launch globally, a turn-based strategy game with 50 characters/stands ranging from Phantom Blood to Stone Ocean."
+    "scoreSource": "review",
+    "review": "/jojos-bizarre-adventure-golden-spirit-review",
+    "reviewEn": "/en/jojos-bizarre-adventure-golden-spirit-review",
+    "verdict": "Khá",
+    "verdictEn": "Decent",
+    "reviewSummary": "JoJo's Bizarre Adventure: Golden Spirit hợp với fan muốn sưu tầm Stand và xem lại các trận đấu quen thuộc bằng 3D. Phần trình diễn và dàn 50+ nhân vật là điểm cộng lớn, còn chiến đấu chủ yếu tự chạy sau khi bạn xếp đội hình, và gacha đòi nhiều bản sao để nuôi trọn một nhân vật. Điểm OtaHub: 7.8/10, Khá.",
+    "reviewSummaryEn": "JoJo's Bizarre Adventure: Golden Spirit suits fans who want to collect Stands and relive familiar fights in 3D. The presentation and the 50+ character roster are big pluses, but battles mostly play themselves once you set the lineup, and the gacha wants many duplicates to fully build one character. OtaHub score: 7.8/10, Decent.",
+    "reviewNote": "Golden Spirit làm tốt việc đưa các Stand và trận đấu quen thuộc lên màn hình điện thoại. Cái giá là lối chơi auto-battler ít chủ động và vòng nuôi nhân vật tốn bản sao, nên game hợp fan hơn là người tìm một game chiến thuật sâu.",
+    "reviewNoteEn": "Golden Spirit does a good job of putting familiar Stands and fights on a phone screen. The price is a hands-off auto-battler loop and a duplicate-hungry progression system, so it suits fans more than players after deep tactics."
   },
   "Link Click Season 3": {
     "type": "anime",
@@ -3335,7 +3375,7 @@
         "url": "https://link-click.jp/"
       }
     ],
-    "scoreSource": "hub",
+    "scoreSource": "review",
     "meta": {
       "ja": "时光代理人 第三季",
       "romaji": "Shiguang Dailiren III",
@@ -3350,10 +3390,14 @@
         }
       ]
     },
-    "verdict": "Rất tốt",
-    "verdictEn": "Very good",
-    "reviewSummary": "Vòng xoáy thời gian trở lại quanh sự mất tích của Hạ Phi, giữ vững chất lượng kịch bản phức tạp và animation tinh tế.",
-    "reviewSummaryEn": "The time vortex returns around the disappearance of Xia Fei, maintaining the quality of its complex storyline and exquisite animation."
+    "review": "/link-click-season-3-review",
+    "reviewEn": "/en/link-click-season-3-review",
+    "verdict": "Rất hay",
+    "verdictEn": "Great",
+    "reviewSummary": "Link Click Season 3 đáng xem nếu bạn đã theo Trình Tiểu Thời và Lục Quang từ hai mùa trước. Phần 1 kể chậm và rộng hơn, hình ảnh vẫn là điểm mạnh nhất, nhưng mùa mới chỉ phát đến tập 9 trên 12 và cần khá nhiều kiến thức cũ. Điểm OtaHub: 8.5/10, Rất hay.",
+    "reviewSummaryEn": "Link Click Season 3 is worth watching if you have followed Cheng Xiaoshi and Lu Guang through the first two seasons. Part 1 tells a slower, wider story and the visuals remain its strongest asset, but only nine of its twelve episodes have aired and it demands a lot of prior knowledge. OtaHub score: 8.5/10, Great.",
+    "reviewNote": "Hình ảnh, âm nhạc và các mối liên kết giữa những mùa là thứ Season 3 làm tốt nhất, còn nhịp kể rộng hơn khiến vài tập chậm lại. Điểm số dựa trên 9 tập đã phát, nên OtaHub sẽ xem lại khi Phần 1 kết thúc ngày 23/10/2026.",
+    "reviewNoteEn": "Visuals, music and the links between seasons are what Season 3 does best, while its wider storytelling slows a few episodes down. The score rests on the nine episodes aired so far, so OtaHub will revisit it when Part 1 ends on October 23, 2026."
   },
   "The Ribbon Hero": {
     "type": "anime",
@@ -3389,7 +3433,7 @@
         "url": "https://www.netflix.com/title/81493703"
       }
     ],
-    "scoreSource": "hub",
+    "scoreSource": "review",
     "meta": {
       "ja": "THE RIBBON HERO",
       "en": "The Ribbon Hero",
@@ -3408,10 +3452,14 @@
         }
       ]
     },
-    "verdict": "Tốt",
+    "review": "/the-ribbon-hero-review",
+    "reviewEn": "/en/the-ribbon-hero-review",
+    "verdict": "Hay",
     "verdictEn": "Good",
-    "reviewSummary": "Bản chuyển thể điện ảnh đầu tiên của Princess Knight (Osamu Tezuka), tôn vinh di sản khai sinh dòng shoujo và magical girl.",
-    "reviewSummaryEn": "The first film adaptation of Princess Knight (Osamu Tezuka), honoring the legacy of the shoujo and magical girl genres."
+    "reviewSummary": "The Ribbon Hero đáng xem nếu bạn tò mò về Princess Knight hoặc mê hoạt hình giàu phong cách. Phim đẹp, hành động có nhịp và màn kết táo bạo, nhưng kịch bản chạy nhanh, nhân vật phụ mỏng và giới phê bình quốc tế khá chia rẽ. Phim có sẵn trên Netflix từ 8/8/2026. Điểm OtaHub: 8.2/10, Hay.",
+    "reviewSummaryEn": "The Ribbon Hero is worth watching if you are curious about Princess Knight or love richly stylised animation. It looks great, its action has rhythm and its finale takes real risks, but the script rushes, supporting characters are thin and international critics are split. It has been streaming on Netflix since August 8, 2026. OtaHub score: 8.2/10, Good.",
+    "reviewNote": "The Ribbon Hero là phim anime nên xem vì cách tạo hình và hành động, không phải vì bản dựng lại câu chuyện của Tezuka. Nhịp kể vội và nhân vật phụ mỏng là cái giá của 111 phút.",
+    "reviewNoteEn": "The Ribbon Hero is an anime film to watch for its design and action, not as a faithful retelling of Tezuka. A hurried pace and thin supporting cast are the price of its 111 minutes."
   },
   "Re:Zero Season 4": {
     "type": "anime",
@@ -3447,7 +3495,7 @@
         "url": "https://kadokawa-anime.com/titles/entry-224.html"
       }
     ],
-    "scoreSource": "hub",
+    "scoreSource": "review",
     "meta": {
       "ja": "Re:ゼロから始める異世界生活",
       "romaji": "Re:Zero kara Hajimeru Isekai Seikatsu",
@@ -3467,10 +3515,14 @@
         }
       ]
     },
-    "verdict": "Xuất sắc",
-    "verdictEn": "Excellent",
-    "reviewSummary": "Recapture Arc đẩy căng thẳng tâm lý lên cao trào mới, giữ vững cường độ cảm xúc đặc trưng của series.",
-    "reviewSummaryEn": "The Recapture Arc pushes psychological tension to a new climax, maintaining the series' signature emotional intensity."
+    "review": "/re-zero-bat-dau-lai-o-the-gioi-khac-mua-4-review",
+    "reviewEn": "/en/re-zero-season-4-review",
+    "verdict": "Rất hay",
+    "verdictEn": "Great",
+    "reviewSummary": "Re:Zero mùa 4 là phần chuyển thể giàu ý tưởng và chắc tay nhất của series trong nhiều năm, nếu bạn đã theo từ mùa đầu. Arc Pleiades biến trí nhớ của Subaru thành nguồn căng thẳng chính, còn nhịp kể hai cour giữ được độ nặng cảm xúc đến tập 19 dài 45 phút. Cái giá là phần giữa nhiều đối thoại, nhiều khái niệm và gần như không dành cho người mới. Điểm OtaHub: 8.8/10, Rất hay.",
+    "reviewSummaryEn": "Re:Zero Season 4 is the most idea-rich and best-built adaptation the series has had in years, if you have followed it from the start. The Pleiades arc turns Subaru’s memory into the main source of tension, and the two-cour structure holds its emotional weight through a 45-minute episode 19. The price is a dialogue-heavy middle and almost no on-ramp for newcomers. OtaHub score: 8.8/10, Great.",
+    "reviewNote": "Mùa 4 làm tốt điều Re:Zero giỏi nhất: bắt nhân vật trả giá cho từng lần thử lại. Arc 6 dài, nhiều lớp và đòi hỏi nhớ chuyện cũ, nên điểm tối đa nằm ở khoảng cách giữa người xem cũ và người mới.",
+    "reviewNoteEn": "Season 4 does what Re:Zero does best: making its characters pay for every retry. Arc 6 is long, layered and leans on what you remember, so the ceiling is the gap between returning viewers and newcomers."
   },
   "Dragon Ball DAIMA": {
     "type": "anime",

@@ -18,7 +18,20 @@ export const PROFILE_REVIEW = {
   'One Piece': 'opfs', 'One Piece: Egghead Arc': 'opeg', 'Chainsaw Man': 'csmmanga2', 'Chainsaw Man (Manga)': 'csmmanga2',
   'Jujutsu Kaisen': 'jjkfinal', 'Vinland Saga': 'vlsaga', 'Dandadan': 'ddmg', 'Kaiju No.8': 'kj8m',
   'Kagurabachi': 'kgb', 'Black Clover': 'bcfv',
-  'Dragon Ball DAIMA': 'dbdaima', 'Battle Through the Heavens': 'btthreview', 'Solo Leveling: Ragnarok': 'slragreview'
+  'Dragon Ball DAIMA': 'dbdaima', 'Battle Through the Heavens': 'btthreview', 'Solo Leveling: Ragnarok': 'slragreview',
+  'Berserk': 'bskf',
+  'Frieren Season 2': 'frs2',
+  'Solo Leveling Season 2': 'slv2',
+  'Tekken 8: Season 2': 'tk8s2',
+  'Hollow Knight: Silksong': 'hks',
+  'Re:Zero Season 4': 'rz4',
+  'The Ribbon Hero': 'trh',
+  'Link Click Season 3': 'lc3',
+  "JoJo's Bizarre Adventure: Golden Spirit": 'jjgs',
+  'My Hero Academia Final Season': 'mhafs',
+  'Undead Unluck': 'uul',
+  'Sakamoto Days': 'skd',
+  'Beast of Reincarnation': 'bor'
 };
 
 // id review -> khóa hồ sơ. Nhiều hồ sơ cùng một bài review (vd "Chainsaw Man" và "Chainsaw Man (Manga)"):

@@ -6,6 +6,110 @@
   "description": "Asian Gaming, Anime and Manga News Hub",
   "items": [
     {
+      "id": "https://otahub.asia/berserk-manga-review",
+      "url": "https://otahub.asia/berserk-manga-review",
+      "title": "Berserk review: Studio Gaga nối bút Miura (8.0 điểm)",
+      "content_text": "Review Berserk thời Studio Gaga và Kouji Mori: chương 384-386 trở lại sau 9 tháng nghỉ, tập 43, phản hồi của độc giả. OtaHub chấm 8.0/10, mức Hay.",
+      "image": "https://otahub.asia/assets/img/7b5a968234-maxresdefault.jpg",
+      "date_published": "2026-10-03T02:00:00.000Z"
+    },
+    {
+      "id": "https://otahub.asia/phap-su-tien-tang-frieren-mua-2-review",
+      "url": "https://otahub.asia/phap-su-tien-tang-frieren-mua-2-review",
+      "title": "Pháp Sư Tiễn Táng Frieren mùa 2 review: sâu lắng (9.6 điểm)",
+      "content_text": "Review Pháp Sư Tiễn Táng Frieren mùa 2 (Madhouse, 10 tập, 16/1 đến 27/3/2026): hành trình lên phương Bắc, đổi đạo diễn, MAL 8.84. OtaHub chấm 9.6/10.",
+      "image": "https://otahub.asia/assets/img/3f4f599cac-frieren-s2-hero.jpg",
+      "date_published": "2026-10-03T02:00:00.000Z"
+    },
+    {
+      "id": "https://otahub.asia/toi-thang-cap-mot-minh-mua-2-review",
+      "url": "https://otahub.asia/toi-thang-cap-mot-minh-mua-2-review",
+      "title": "Tôi Thăng Cấp Một Mình mùa 2 review: đẹp mà vội (7.0 điểm)",
+      "content_text": "Review Tôi Thăng Cấp Một Mình (Solo Leveling) mùa 2: A-1 Pictures, 13 tập, thắng Best Animation nhưng nén 65 chương manhwa vào một mùa. OtaHub chấm 7.0/10.",
+      "image": "https://otahub.asia/assets/img/1619ce791a-solo-leveling-hero.jpg",
+      "date_published": "2026-10-03T02:00:00.000Z"
+    },
+    {
+      "id": "https://otahub.asia/tekken-8-season-2-review",
+      "url": "https://otahub.asia/tekken-8-season-2-review",
+      "title": "Tekken 8 Season 2 review: bản cập nhật thất vọng (4.5 điểm)",
+      "content_text": "Review Tekken 8 Season 2: Anna Williams cùng 3 DLC khác, nhưng bản cân bằng Ver. 2.00 khiến Steam 85% đánh giá tiêu cực tháng đầu. OtaHub chấm 4.5/10.",
+      "image": "https://otahub.asia/assets/img/cf182db1a1-tekken8-season2-hero.jpg",
+      "date_published": "2026-10-03T02:00:00.000Z"
+    },
+    {
+      "id": "https://otahub.asia/hollow-knight-silksong-review",
+      "url": "https://otahub.asia/hollow-knight-silksong-review",
+      "title": "Hollow Knight: Silksong review: khó mà hay (9.4 điểm)",
+      "content_text": "Review Hollow Knight: Silksong của Team Cherry (4/9/2025): metroidvania đẹp, nhạc hay, khó hơn bản đầu. Metacritic 90, Steam 89,5% tích cực. OtaHub chấm 9.4/10.",
+      "image": "https://otahub.asia/assets/img/a9a34c7e6b-hollow-knight-silksong-hero.jpg",
+      "date_published": "2026-10-03T02:00:00.000Z"
+    },
+    {
+      "id": "https://otahub.asia/re-zero-bat-dau-lai-o-the-gioi-khac-mua-4-review",
+      "url": "https://otahub.asia/re-zero-bat-dau-lai-o-the-gioi-khac-mua-4-review",
+      "title": "Re:Zero mùa 4 review: ký ức và mất mát (8.8 điểm)",
+      "content_text": "Review Re:Zero mùa 4 (White Fox, 19 tập, 8/4 đến 30/9/2026): Arc 6 Pleiades với Subaru mất trí nhớ, vòng chết lặp lại, hoạt họa dày công. OtaHub chấm 8.8/10.",
+      "image": "https://otahub.asia/assets/img/087af8ed98-rezero-s4-hero.jpg",
+      "date_published": "2026-10-03T02:00:00.000Z"
+    },
+    {
+      "id": "https://otahub.asia/the-ribbon-hero-review",
+      "url": "https://otahub.asia/the-ribbon-hero-review",
+      "title": "The Ribbon Hero review: đẹp mắt, kịch bản vội (8.2 điểm)",
+      "content_text": "Review The Ribbon Hero (Netflix): phim anime dài đầu tiên từ Princess Knight của Tezuka, hoạt hình giàu phong cách nhưng nhịp kể vội. OtaHub chấm 8.2/10.",
+      "image": "https://otahub.asia/assets/img/632c9aeaf5-the-ribbon-hero-netflix-hero.jpg",
+      "date_published": "2026-10-03T02:00:00.000Z"
+    },
+    {
+      "id": "https://otahub.asia/link-click-season-3-review",
+      "url": "https://otahub.asia/link-click-season-3-review",
+      "title": "Link Click Season 3 review: bí ẩn Hạ Phi (8.5 điểm)",
+      "content_text": "Review Link Click Season 3 Phần 1: Hạ Phi mất tích, vụ cháy Bahati, kịch bản chồng lớp và hình ảnh tinh tế. Mùa chưa kết thúc, OtaHub chấm 8.5/10.",
+      "image": "https://otahub.asia/assets/img/1f8bc2e797-link-click-s3-hero.jpg",
+      "date_published": "2026-10-03T02:00:00.000Z"
+    },
+    {
+      "id": "https://otahub.asia/jojos-bizarre-adventure-golden-spirit-review",
+      "url": "https://otahub.asia/jojos-bizarre-adventure-golden-spirit-review",
+      "title": "JoJo's Golden Spirit review: auto-battler đẹp (7.8 điểm)",
+      "content_text": "Review JoJo's Bizarre Adventure: Golden Spirit trên iOS/Android: auto-battler 50+ nhân vật, đồ họa 3D đẹp, gacha cần tính toán. OtaHub chấm 7.8/10.",
+      "image": "https://otahub.asia/assets/img/c299f2d727-jojo-golden-spirit-hero.jpg",
+      "date_published": "2026-10-03T02:00:00.000Z"
+    },
+    {
+      "id": "https://otahub.asia/my-hero-academia-final-season-review",
+      "url": "https://otahub.asia/my-hero-academia-final-season-review",
+      "title": "My Hero Academia Final Season review: hồi kết đẹp (8.7 điểm)",
+      "content_text": "Review My Hero Academia Final Season: 11 tập Bones Film chiếu 4/10 đến 13/12/2025, trận Deku vs Shigaraki, xem trên Crunchyroll. OtaHub chấm 8.7/10.",
+      "image": "https://otahub.asia/assets/img/ccede1dd78-my-hero-academia-final-season-hero.jpg",
+      "date_published": "2026-10-03T02:00:00.000Z"
+    },
+    {
+      "id": "https://otahub.asia/undead-unluck-manga-review",
+      "url": "https://otahub.asia/undead-unluck-manga-review",
+      "title": "Undead Unluck review: manga Jump kết thúc đẹp (8.9 điểm)",
+      "content_text": "Review Undead Unluck của Yoshifumi Tozuka: 239 chương, 27 tập, 5 năm trên Weekly Shonen Jump, hệ thống UMA, Negator độc đáo, đoạn kết gọn. OtaHub chấm 8.9/10.",
+      "image": "https://otahub.asia/assets/img/5492106922-undead-unluck-hero.jpg",
+      "date_published": "2026-10-03T02:00:00.000Z"
+    },
+    {
+      "id": "https://otahub.asia/sakamoto-days-manga-review",
+      "url": "https://otahub.asia/sakamoto-days-manga-review",
+      "title": "Sakamoto Days manga review: sát thủ bán tạp hóa (8.8 điểm)",
+      "content_text": "Review manga Sakamoto Days của Yuto Suzuki: hành động như phim, hài gia đình ấm áp, 18 triệu bản in, đọc chính thức trên MANGA Plus, VIZ. OtaHub chấm 8.8/10.",
+      "image": "https://otahub.asia/assets/img/c738f99843-sakamoto-days-hero.jpg",
+      "date_published": "2026-10-03T02:00:00.000Z"
+    },
+    {
+      "id": "https://otahub.asia/beast-of-reincarnation-review",
+      "url": "https://otahub.asia/beast-of-reincarnation-review",
+      "title": "Beast of Reincarnation review: đỡ đòn hay (8.1 điểm)",
+      "content_text": "Review Beast of Reincarnation của Game Freak (PS5, Xbox, PC): chiến đấu đỡ đòn hay, Emma và chú chó Koo có hồn, cốt truyện kéo dài. OtaHub chấm 8.1/10.",
+      "image": "https://otahub.asia/assets/img/5f8467072b-beast-of-reincarnation-hero.jpg",
+      "date_published": "2026-10-03T02:00:00.000Z"
+    },
+    {
       "id": "https://otahub.asia/genshin-impact-6-nam-van-dan-dau-doanh-thu-gacha",
       "url": "https://otahub.asia/genshin-impact-6-nam-van-dan-dau-doanh-thu-gacha",
       "title": "Genshin Impact 6 tuổi vẫn đứng đầu doanh thu gacha tháng 9/2026",
