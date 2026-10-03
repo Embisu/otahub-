@@ -93,14 +93,14 @@ var TXT=EN?{
   score:'OtaHub score',genre:'Genre',platform:'Platforms',release:'Release',status:'Status',
   related:'You may also like',discover:'Discover more',viewAll:'View all ',allProfiles:'All title profiles',share:'Share',
   readReview:'Read the review',fromReview:'From the OtaHub review',fromHub:'From the OtaHub reviews page',
-  unscored:'Not scored yet',unscoredNote:'OtaHub only shows a score once a full review of this title has been published. This profile covers the facts and our coverage so far.',
+  unscored:'Not scored yet',unscoredNote:'Scores appear once OtaHub publishes a full review.',
   overview:'Overview',take:"OtaHub's take",verdict:'Verdict',credits:'Credits',sources:'Sources',articles:'Articles about this title',
   noArticles:'OtaHub has not published a dedicated article on this title yet.'
 }:{
   score:'Điểm OtaHub',genre:'Thể loại',platform:'Nền tảng',release:'Phát hành',status:'Trạng thái',
   related:'Có thể bạn quan tâm',discover:'Khám phá thêm',viewAll:'Xem tất cả ',allProfiles:'Tất cả hồ sơ tác phẩm',share:'Chia sẻ',
   readReview:'Đọc bài review',fromReview:'Theo bài review OtaHub',fromHub:'Theo trang Đánh giá OtaHub',
-  unscored:'Chưa chấm điểm',unscoredNote:'OtaHub chỉ hiển thị điểm khi đã đăng bài review đầy đủ cho tác phẩm này. Hồ sơ hiện tổng hợp thông tin chính thức và các bài viết liên quan.',
+  unscored:'Chưa chấm điểm',unscoredNote:'Điểm chỉ có khi OtaHub đăng bài review đầy đủ.',
   overview:'Giới thiệu',take:'Nhận định của OtaHub',verdict:'Kết luận',credits:'Đội ngũ & thông tin sản xuất',sources:'Nguồn thông tin chính thức',articles:'Bài viết về tác phẩm',
   noArticles:'OtaHub chưa có bài viết riêng về tác phẩm này.'
 };
@@ -302,6 +302,7 @@ function linkEnt(html,key){
   hits.forEach(function(h){if(h.i<pos)return;out+=html.slice(pos,h.i)+'<a class="ent-link" href="'+esc(h.h)+'">'+h.n+'</a>';pos=h.e;});
   return out+html.slice(pos);
 }
+function smartDesc(t){t=String(t).replace(/\s+/g,' ').trim();if(t.length<=160)return t;var c=t.slice(0,160),e=Math.max(c.lastIndexOf('. '),c.lastIndexOf('! '),c.lastIndexOf('? '));if(e>=100)return c.slice(0,e+1);return c.slice(0,c.lastIndexOf(' ')).replace(/[,;:(–-]+$/,'')+'…';}
 function todayVN(){return new Date(Date.now()+7*36e5).toISOString().slice(0,10);}
 function esc(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML;}
 
@@ -382,7 +383,8 @@ function renderEntry(title, entry, catalog){
 
   document.title=name+(hasScore?(EN?' · Review '+entry.score+'/10':' · Đánh giá '+entry.score+'/10'):'')+(EN?' · Profile · OtaHub':' · Hồ sơ · OtaHub');
   var descEl=document.querySelector('meta[name="description"]');
-  if(descEl)descEl.setAttribute('content', entry.desc.slice(0,155));
+  // Mô tả meta: cắt ở cuối câu (hoặc ranh giới từ + …), không cắt giữa chữ
+  if(descEl)descEl.setAttribute('content', smartDesc(entry.desc||''));
   var pageUrl='https://otahub.asia'+profilePath(TYPE, title).replace(/#.*/,'');
   var canon=document.querySelector('link[rel="canonical"]');
   if(canon)canon.setAttribute('href', pageUrl);
