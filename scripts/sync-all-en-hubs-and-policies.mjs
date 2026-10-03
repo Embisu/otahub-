@@ -192,7 +192,7 @@ const dieuKhoanContent = `<!DOCTYPE html>
 <h1>Điều Khoản Sử Dụng</h1>
 <p>Mọi nội dung về Gaming, Anime và Manga xuất bản trên OtaHub đều nhằm mục đích cung cấp thông tin, phân tích và giáo dục.</p>
 <p><a href="/about" style="color:#00e5ff">← Về Chúng Tôi</a> | <a href="/" style="color:#00e5ff">Trang Chủ</a></p>
-<script defer src="/assets/img-fit.v2.js?v=20261002a"></script>
+<script defer src="/assets/img-fit.v2.js?v=20261003b"></script>
 <script src="/assets/lang-switch.js" defer></script>
 </body>
 </html>`;

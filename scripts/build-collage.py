@@ -55,6 +55,27 @@ COLLAGES = {
         'pool-chainsaw-man-4.jpg',
         ('fujimoto-we-are-aliens-key-visual.jpg', (0, 0, 1, 1), 0.765),
     ],
+    # Fujimoto v2: chủ thể nằm giữa từng khung (Hero cắt trên/dưới ở desktop, chỉ hiện khung giữa trên điện thoại)
+    'fujimoto-chainsaw-man-ket-thuc-hero-v2.jpg': [
+        ('6b2483c562-chainsaw-man-anime-hero.jpg', (0, 0, 1, 1), 0.33),
+        ('covers/tho-san-quy-chainsaw-man-chapter-180-death-devil.jpg', (0, 0, 1, 1), 0.27),
+        ('yt-s8cP1Vt5US8.jpg', (0, 0.1, 1, 0.85), 0.68),
+    ],
+    # Ghép lại bằng script chuẩn (bản cũ do phiên khác ghép: nêm đen giữa khung, vạch màu lệch khỏi khe)
+    'a1-pictures-home-hero-v2.jpg': [
+        ('a1-pictures-lycoris-recoil.jpg', (0, 0, 1, 1), 0.33),
+        ('a1-pictures-mashle-season-3.jpg', (0, 0, 1, 1), 0.5),
+        ('a1-pictures-solo-leveling-beyond-the-system-key-visual.jpg', (0, 0.22, 1, 1), 0.8),
+    ],
+    'forgotten-island-home-hero-v2.jpg': [
+        ('forgotten-island-manang.jpg', (0, 0, 1, 1), 0.5),
+        ('forgotten-island-portal-to-nakali.jpg', (0, 0, 1, 1), 0.5),
+        ('forgotten-island-wild-pack-group.jpg', (0, 0, 1, 1), 0.52),
+    ],
+    'dynamite-blue-hero-v2.jpg': [
+        ('dynamite-blue-city-hub.jpg', (0, 0, 1, 1), 0.5),
+        ('dynamite-blue-special-attack.jpg', (0, 0, 1, 1), 0.55),
+    ],
 }
 
 

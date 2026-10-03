@@ -5,7 +5,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-10-03",
     "excerpt": "Talking with We Are Aliens director Kōhei Kadowaki, Tatsuki Fujimoto says 19 pages a week left no time to plot. Here is why Chainsaw Man ended the way it did.",
-    "img": "/assets/img/fujimoto-chainsaw-man-ket-thuc-hero.jpg",
+    "img": "/assets/img/fujimoto-chainsaw-man-ket-thuc-hero-v2.jpg",
     "tags": ["Chainsaw Man","Tatsuki Fujimoto","We Are Aliens","Kōhei Kadowaki","Look Back","Shonen Jump+"]
   },
   {
@@ -14,7 +14,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-10-03",
     "excerpt": "Trò chuyện với đạo diễn We Are Aliens, Tatsuki Fujimoto kể nhịp 19 trang mỗi tuần khiến ông không kịp lên cốt truyện. Vì sao Chainsaw Man kết như vậy?",
-    "img": "/assets/img/fujimoto-chainsaw-man-ket-thuc-hero.jpg",
+    "img": "/assets/img/fujimoto-chainsaw-man-ket-thuc-hero-v2.jpg",
     "tags": ["Thợ Săn Quỷ Chainsaw Man","Tatsuki Fujimoto","We Are Aliens","Kōhei Kadowaki","Look Back","Shonen Jump+"]
   },
   {
@@ -381,7 +381,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-10-02",
     "excerpt": "From Lycoris Recoil and 86 to Solo Leveling, what is worth watching from A-1 Pictures? Eight standout anime plus Beyond the System and Mashle S3 news.",
-    "img": "/assets/img/a1-pictures-home-hero.jpg",
+    "img": "/assets/img/a1-pictures-home-hero-v2.jpg",
     "tags": ["A-1 Pictures","Solo Leveling","Lycoris Recoil","86 Eighty Six","NieR:Automata Ver1.1a","Mashle","Kaguya-sama: Love Is War","Aniplex"],
     "lang": "en"
   },
@@ -391,7 +391,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-10-02",
     "excerpt": "Từ Lycoris Recoil, 86 đến Tôi Thăng Cấp Một Mình, A-1 Pictures có gì đáng xem? Điểm lại 8 anime tiêu biểu cùng tin mới: phim Beyond the System và Mashle mùa 3.",
-    "img": "/assets/img/a1-pictures-home-hero.jpg",
+    "img": "/assets/img/a1-pictures-home-hero-v2.jpg",
     "tags": ["A-1 Pictures","Tôi Thăng Cấp Một Mình","Lycoris Recoil","86 Eighty Six","NieR:Automata Ver1.1a","Mashle","Kaguya-sama: Cuộc Chiến Tỏ Tình","Aniplex"],
     "lang": "vi"
   },
@@ -411,7 +411,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-10-02",
     "excerpt": "Dynamite Blue is a 2.5D pixel cyberpunk turn-based RPG by Kosmo’s12, out September 30, 2026 on iOS, Android and Steam. Gameplay, cast, PC specs.",
-    "img": "/assets/img/dynamite-blue-hero.jpg",
+    "img": "/assets/img/dynamite-blue-hero-v2.jpg",
     "tags": ["Dynamite Blue","Kosmo's12","Exos Heroes","Line Games","4GROUND9","Youngzun Choi","Minsuk Son","Beerhaven"],
     "lang": "en"
   },
@@ -421,7 +421,7 @@ window.IDX = [
     "cat": "Gaming",
     "date": "2026-10-02",
     "excerpt": "Dynamite Blue là game RPG theo lượt 2.5D pixel cyberpunk của Kosmo’s12, ra mắt toàn cầu 30/9/2026 trên iOS, Android, Steam. Lối chơi, nhân vật, cấu hình.",
-    "img": "/assets/img/dynamite-blue-hero.jpg",
+    "img": "/assets/img/dynamite-blue-hero-v2.jpg",
     "tags": ["Dynamite Blue","Kosmo's12","Exos Heroes","4GROUND9","Line Games","Youngzun Choi","Minsuk Son","Beerhaven"],
     "lang": "vi"
   },
@@ -431,7 +431,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-10-02",
     "excerpt": "Forgotten Island của DreamWorks lấy cảm hứng từ thần thoại Philippines, đạt 95% Rotten Tomatoes nhưng phòng vé yếu. Giống và khác Thợ Săn Quỷ K-Pop ra sao?",
-    "img": "/assets/img/forgotten-island-home-hero.jpg",
+    "img": "/assets/img/forgotten-island-home-hero-v2.jpg",
     "tags": ["Forgotten Island","DreamWorks Animation","Thợ Săn Quỷ K-Pop","Joel Crawford","Januel Mercado","Liza Soberano","Puss in Boots: The Last Wish","Universal Pictures"],
     "lang": "vi"
   },
@@ -441,7 +441,7 @@ window.IDX = [
     "cat": "Anime",
     "date": "2026-10-02",
     "excerpt": "DreamWorks’ Forgotten Island draws on Filipino myth and scored 95% on Rotten Tomatoes but opened weakly. How does it compare with KPop Demon Hunters?",
-    "img": "/assets/img/forgotten-island-home-hero.jpg",
+    "img": "/assets/img/forgotten-island-home-hero-v2.jpg",
     "tags": ["Forgotten Island","DreamWorks Animation","KPop Demon Hunters","Joel Crawford","Januel Mercado","Puss in Boots: The Last Wish","Universal Pictures","Liza Soberano"],
     "lang": "en"
   },
