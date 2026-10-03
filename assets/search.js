@@ -1,6 +1,6 @@
 window.IDX = [
   {
-    "title": "Steam Autumn Sale 2026: 25 Deals Worth Buying, From $1.99",
+    "title": "The Best Games in the Steam Autumn Sale, From Just $1.99",
     "url": "/en/steam-autumn-sale-2026-best-deals",
     "cat": "Gaming",
     "date": "2026-10-03",
@@ -9,7 +9,7 @@ window.IDX = [
     "tags": ["Steam Autumn Sale","Steam","Final Fantasy VII Rebirth","Ori and the Will of the Wisps","The Hundred Line","Street Fighter 6","Tactical Breach Wizards"]
   },
   {
-    "title": "Steam Autumn Sale 2026: 25 game đáng mua, rẻ nhất 24.000đ",
+    "title": "Game đáng mua nhất Steam sale mùa thu, chỉ 24.000 VNĐ",
     "url": "/steam-autumn-sale-2026-game-dang-mua-gia-viet-nam",
     "cat": "Gaming",
     "date": "2026-10-03",
