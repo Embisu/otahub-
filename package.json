@@ -19,6 +19,7 @@
     "authors": "node scripts/sync-article-authors.mjs",
     "authors:check": "node scripts/sync-article-authors.mjs --check",
     "chrome": "node scripts/sync-site-chrome.mjs",
+    "schedule:profiles": "node scripts/sync-schedule-profiles.mjs",
     "emag": "node scripts/emag/build.mjs && node scripts/sync-emag-index.mjs && node scripts/sync-site-chrome.mjs",
     "emag:check": "node scripts/emag/build.mjs --check && node scripts/sync-emag-index.mjs --check",
     "gta6": "npm run emag",

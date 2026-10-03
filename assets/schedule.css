@@ -170,3 +170,5 @@ a.sch-nx-row:hover .sch-nx-t{color:var(--cyan)}
   .gs-row .gs-thumb{width:84px;height:56px}
   .gs-row .sch-tags{flex-direction:row;align-items:center;flex-wrap:wrap;justify-content:flex-start}
 }
+.sch-prof{font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--lavender,#a78bfa);text-decoration:none;white-space:nowrap}
+.sch-prof:hover{color:#fff;text-decoration:underline}

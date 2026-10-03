@@ -18,7 +18,7 @@ var T = EN ? {
   none:'No titles match your filters.', count:function(n){ return n + ' titles'; },
   summary:function(c){ return [c.tv && c.tv + ' TV series', c.ona && c.ona + ' streaming', c.film && c.film + ' films & specials'].filter(Boolean).join(' · '); },
   tz:'Times in Vietnam time (UTC+7)', updated:'Updated', source:'Sources', note:'Times can shift by broadcaster or streaming platform.',
-  read:'Read on OtaHub', allWeek:'Show the whole week', oneDay:'Show one day only',
+  read:'Read on OtaHub', profile:'Profile', allWeek:'Show the whole week', oneDay:'Show one day only',
   nextUp:'Premiering soon', nextIn:'Next premiere in', premToday:'Premieres today', premNow:'On air now', units:['days','hrs','min','sec'], upNext:'Up next', today2:'Today', released:'Japan release'
 } : {
   seasons: {winter:'Mùa Đông', spring:'Mùa Xuân', summer:'Mùa Hè', fall:'Mùa Thu'},
@@ -33,7 +33,7 @@ var T = EN ? {
   none:'Không có tựa nào khớp bộ lọc.', count:function(n){ return n + ' tựa'; },
   summary:function(c){ return [c.tv && c.tv + ' phim TV', c.ona && c.ona + ' phim trực tuyến', c.film && c.film + ' phim rạp & đặc biệt'].filter(Boolean).join(' · '); },
   tz:'Giờ Việt Nam (UTC+7)', updated:'Cập nhật', source:'Nguồn', note:'Giờ chiếu có thể thay đổi theo đài hoặc nền tảng phát hành.',
-  read:'Đọc trên OtaHub', allWeek:'Xem cả tuần', oneDay:'Chỉ xem một ngày',
+  read:'Đọc trên OtaHub', profile:'Hồ sơ', allWeek:'Xem cả tuần', oneDay:'Chỉ xem một ngày',
   nextUp:'Sắp lên sóng', nextIn:'Tập đầu lên sóng sau', premToday:'Ra mắt hôm nay', premNow:'Đang lên sóng', units:['ngày','giờ','phút','giây'], upNext:'Tiếp theo', today2:'Hôm nay', released:'Khởi chiếu tại Nhật'
 };
 var ORDER = ['winter','spring','summer','fall'];
@@ -62,7 +62,8 @@ var cdHtml = function(ts){
   }).join('') + '</div>';
 };
 var nameOf = function(a){ return (!EN && a.tv) || a.t; };   // ban VI dung ten Viet hoa (tv) neu co
-var linkOf = function(a){ return EN ? (a.le || '') : (a.l || ''); };
+var profOf = function(a){ return (EN ? a.hse : a.hs) || ''; };            // hồ sơ tác phẩm (/ho-so/<slug>)
+var linkOf = function(a){ return (EN ? a.le : a.l) || profOf(a); };       // ưu tiên bài OtaHub, không có thì mở hồ sơ
 
 var MQ = window.matchMedia('(max-width:768px)');
 var params = new URLSearchParams(location.search);
@@ -138,7 +139,7 @@ function row(a){
     '<span class="sch-time' + (a.h ? '' : ' tba') + '">' + (a.h || T.noTime) + '</span>' + tile(a) +
     '<div class="sch-info"><div class="sch-title">' + title + '</div>' + (a.r && a.r !== nameOf(a) ? '<div class="sch-romaji">' + esc(a.r) + '</div>' : (a.tv && !EN ? '<div class="sch-romaji">' + esc(a.t) + '</div>' : '')) +
     '<div class="sch-meta" data-time="' + (a.h || T.noTime) + '">' + meta + '</div></div>' +
-    '<div class="sch-tags"><span class="sch-type t-' + a.y + '">' + esc(T.types[a.y]) + '</span><span class="sch-st ' + st.k + '">' + esc(st.label) + '</span></div></li>';
+    '<div class="sch-tags"><span class="sch-type t-' + a.y + '">' + esc(T.types[a.y]) + '</span><span class="sch-st ' + st.k + '">' + esc(st.label) + '</span>' + (profOf(a) ? '<a class="sch-prof" href="' + esc(profOf(a)) + '">' + esc(T.profile) + '</a>' : '') + '</div></li>';
 }
 
 function render(){
