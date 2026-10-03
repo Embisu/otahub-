@@ -266,3 +266,9 @@ body>footer .ft-copy{font-size:12px;color:#64748b;letter-spacing:.02em}
 /* Link "Xem toàn bộ lịch game" cuối khối Lịch phát hành ở cột phải trang Gaming */
 .side-box .side-more{display:block;padding:12px 20px;border-top:1px solid rgba(255,255,255,.06);font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--cyan,#00f2ff);text-decoration:none}
 .side-box .side-more:hover{color:#fff}
+
+/* ── Mục "Hồ sơ" trên menu ngang (2026-10-03) ──
+   Menu 8 mục + nút nổi bật đã kín chỗ tới ~1440px; mục thứ 9 chỉ hiện ở màn rộng, nơi còn dư chỗ.
+   Dưới 1600px người dùng vào Hồ sơ qua menu trượt, footer, ô tìm kiếm và nút ở cột bên mỗi hồ sơ. */
+body .nav-links .nav-pf{display:none}
+@media(min-width:1600px){body .nav-links .nav-pf{display:list-item}}
