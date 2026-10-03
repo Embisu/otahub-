@@ -1,56 +1,137 @@
 {
- "saints-row-the-third-remastered": {
-  "title": "Saints Row: The Third Remastered",
-  "file": "assets/img/game/saints-row-the-third-remastered.jpg",
-  "width": 616,
-  "height": 353,
-  "sourceUrl": "https://store.steampowered.com/app/978300/",
-  "sourceType": "store",
-  "note": "Steam capsule 616x353"
- },
- "absolum": {
-  "title": "Absolum",
-  "file": "assets/img/game/absolum.jpg",
-  "width": 616,
-  "height": 353,
-  "sourceUrl": "https://store.steampowered.com/app/1904480/",
-  "sourceType": "store",
-  "note": "Steam capsule 616x353"
- },
- "one-piece-grand-gourmet": {
-  "title": "One Piece: Grand Gourmet",
-  "file": "assets/img/game/one-piece-grand-gourmet.jpg",
-  "width": 616,
-  "height": 353,
-  "sourceUrl": "https://store.steampowered.com/app/3905010/",
-  "sourceType": "store",
-  "note": "Steam capsule 616x353"
- },
- "epic-seven": {
-  "title": "Epic Seven",
-  "file": "assets/img/game/epic-seven.jpg",
-  "width": 616,
-  "height": 353,
-  "sourceUrl": "https://store.steampowered.com/app/5019180/",
-  "sourceType": "store",
-  "note": "Steam capsule 616x353"
- },
- "make-drama-mad": {
-  "title": "Make Drama: MAD",
-  "file": "assets/img/game/make-drama-mad.jpg",
-  "width": 616,
-  "height": 353,
-  "sourceUrl": "https://store.steampowered.com/app/4578810/",
-  "sourceType": "store",
-  "note": "Steam capsule 616x353"
- },
- "vampir": {
-  "title": "VAMPIR",
-  "file": "assets/img/game/vampir.jpg",
-  "width": 616,
-  "height": 353,
-  "sourceUrl": "https://store.steampowered.com/app/4302720/",
-  "sourceType": "store",
-  "note": "Steam capsule 616x353; matched as Vampir: Vengeance, verify it is the intended game"
- }
+  "saints-row-the-third-remastered": {
+    "title": "Saints Row: The Third Remastered",
+    "file": "assets/img/game/saints-row-the-third-remastered.jpg",
+    "width": 616,
+    "height": 353,
+    "sourceUrl": "https://store.steampowered.com/app/978300/",
+    "sourceType": "store",
+    "note": "Steam capsule 616x353"
+  },
+  "absolum": {
+    "title": "Absolum",
+    "file": "assets/img/game/absolum.jpg",
+    "width": 616,
+    "height": 353,
+    "sourceUrl": "https://store.steampowered.com/app/1904480/",
+    "sourceType": "store",
+    "note": "Steam capsule 616x353"
+  },
+  "one-piece-grand-gourmet": {
+    "title": "One Piece: Grand Gourmet",
+    "file": "assets/img/game/one-piece-grand-gourmet.jpg",
+    "width": 616,
+    "height": 353,
+    "sourceUrl": "https://store.steampowered.com/app/3905010/",
+    "sourceType": "store",
+    "note": "Steam capsule 616x353"
+  },
+  "epic-seven": {
+    "title": "Epic Seven",
+    "file": "assets/img/game/epic-seven.jpg",
+    "width": 616,
+    "height": 353,
+    "sourceUrl": "https://store.steampowered.com/app/5019180/",
+    "sourceType": "store",
+    "note": "Steam capsule 616x353"
+  },
+  "monster-hunter-outlanders": {
+    "title": "Monster Hunter Outlanders",
+    "file": "assets/img/game/monster-hunter-outlanders.jpg",
+    "width": 1200,
+    "height": 630,
+    "sourceUrl": "https://mho.assets.garenanow.com/web/official_website/config/meta_image.jpg",
+    "sourceType": "official-site",
+    "note": "og:image of monsterhunteroutlanders.com"
+  },
+  "palworld-online": {
+    "title": "Palworld Online",
+    "file": "assets/img/game/palworld-online.jpg",
+    "width": 708,
+    "height": 398,
+    "sourceUrl": "https://static.invenglobal.com/upload/image/2026/08/03/r1785730339235647.jpeg",
+    "sourceType": "press",
+    "note": "Official key art as embedded by Inven Global; 708x398"
+  },
+  "ratchet-clank-ranger-rumble": {
+    "title": "Ratchet & Clank: Ranger Rumble",
+    "file": "assets/img/game/ratchet-clank-ranger-rumble.jpg",
+    "width": 1600,
+    "height": 900,
+    "sourceUrl": "https://gameinformer.com/sites/default/files/2026/07/15/6e25a1d6/ratchet-and-clank-ranger-rumble-art.jpg",
+    "sourceType": "press",
+    "note": "Official key art via Game Informer"
+  },
+  "honkai-nexus-anima": {
+    "title": "Honkai: Nexus Anima",
+    "file": "assets/img/game/honkai-nexus-anima.jpg",
+    "width": 1200,
+    "height": 675,
+    "sourceUrl": "https://static.gosugamers.net/ab/aa/6f/b08405719413afbdc19c6ac387c7e46ee17ac460c1bed82b985fd746d4.webp",
+    "sourceType": "press",
+    "note": "Official key art (HoYoverse) as embedded in GosuGamers reveal article"
+  },
+  "azur-promilia": {
+    "title": "Azur Promilia",
+    "file": "assets/img/game/azur-promilia.jpg",
+    "width": 1240,
+    "height": 800,
+    "sourceUrl": "https://images.rpgsite.net/articles/thumbnail/da49c9a1/17217/original/azur-promilia-blue-thumbnail.jpg",
+    "sourceType": "press",
+    "note": "Official art with Chinese logo and (c) Manjuu, via RPG Site; 1240x800 (not 16:9)"
+  },
+  "solo-leveling-karma": {
+    "title": "Solo Leveling: KARMA",
+    "file": "assets/img/game/solo-leveling-karma.jpg",
+    "width": 708,
+    "height": 398,
+    "sourceUrl": "https://static.invenglobal.com/upload/image/2025/07/08/r1751944435741694.jpeg",
+    "sourceType": "press",
+    "note": "Official Netmarble teaser art via Inven Global; 708x398"
+  },
+  "bleach-mirrors-high": {
+    "title": "BLEACH: Mirrors High",
+    "file": "assets/img/game/bleach-mirrors-high.jpg",
+    "width": 1600,
+    "height": 900,
+    "sourceUrl": "https://static.animecorner.me/2026/08/1787800103-9d25c9dd29b8750e8b4f1fbda95be7aa.png",
+    "sourceType": "press",
+    "note": "Official key visual via Anime Corner"
+  },
+  "silver-palace": {
+    "title": "Silver Palace",
+    "file": "assets/img/game/silver-palace.jpg",
+    "width": 1240,
+    "height": 800,
+    "sourceUrl": "https://images.rpgsite.net/articles/thumbnail/da49c9a1/21206/original/SilverPalace-s5.png",
+    "sourceType": "press",
+    "note": "Official trailer still (gamescom 2026) via RPG Site; 1240x800 (not 16:9), no logo"
+  },
+  "ananta": {
+    "title": "Ananta",
+    "file": "assets/img/game/ananta.jpg",
+    "width": 1280,
+    "height": 720,
+    "sourceUrl": "https://img.youtube.com/vi/MM60juTPkSM/maxresdefault.jpg",
+    "sourceType": "official-youtube",
+    "note": "Official Ananta channel, Launch Date Trailer thumbnail (has release-date text)"
+  },
+  "petit-planet": {
+    "title": "Petit Planet",
+    "file": "assets/img/game/petit-planet.jpg",
+    "width": 1280,
+    "height": 720,
+    "sourceUrl": "https://img.youtube.com/vi/3eZk1V_0Kdc/maxresdefault.jpg",
+    "sourceType": "press",
+    "note": "IGN-hosted official announcement trailer thumbnail (has OFFICIAL TRAILER label); official channel thumbnails carry heavier text"
+  },
+  "norse-saga": {
+    "title": "Norse Saga: Cuu Gioi Thuc Tinh",
+    "file": "assets/img/game/norse-saga.jpg",
+    "width": 1280,
+    "height": 720,
+    "sourceUrl": "https://img.youtube.com/vi/fnFR92bPr7w/maxresdefault.jpg",
+    "sourceType": "official-youtube",
+    "note": "Official Norse Saga channel, story trailer thumbnail (small Ujoy/DZO logo corner)"
+  }
 }
