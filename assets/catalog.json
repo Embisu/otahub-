@@ -29822,5 +29822,1512 @@
       }
     ],
     "scoreSource": null
+  },
+  "One Piece: Grand Gourmet": {
+    "type": "game",
+    "img": "/assets/img/game/one-piece-grand-gourmet.jpg",
+    "score": null,
+    "genre": "Restaurant Management Simulation",
+    "studio": "Kairosoft / Bandai Namco",
+    "platforms": "iOS / Android / PC / Switch / Switch 2",
+    "release": "23/10/2026",
+    "status": "Sắp ra mắt",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "Game mô phỏng quản lý nhà hàng nổi Baratie số hai của Kairosoft, nấu ăn cùng Sanji và đón hơn 400 nhân vật One Piece làm khách, ra mắt ngày 23/10/2026.",
+    "hookEn": "Kairosoft's floating-restaurant sim set at Baratie Number Two: cook with Sanji and welcome more than 400 One Piece characters as customers, launching on 23 October 2026.",
+    "story": [
+      "One Piece: Grand Gourmet là game mô phỏng quản lý nhà hàng do Kairosoft phát triển, Bandai Namco phát hành. Người chơi giúp Sanji và băng Mũ Rơm dựng và mở rộng chi nhánh mới của Baratie, nhà hàng nổi Baratie số hai. Studio này quen thuộc với dòng game quản lý đồ họa pixel, và đây là lần đầu One Piece được làm theo phong cách đó, với hơn 400 nhân vật trong anime và manga.",
+      "Vòng chơi xoay quanh việc thu thập nguyên liệu, nghĩ ra món mới cùng Sanji, trang trí nhà hàng và thu hút nhân vật đến làm khách hoặc nhân viên. Có hơn 200 món đồ trang trí lấy cảm hứng từ các địa danh như Whole Cake Island, và công thức món ăn dựa trên sức mạnh Trái Ác Quỷ, ví dụ Water-Water Meat BBQ hay Sea King Penne Gorgonzola. Sở thích của từng nhân vật quyết định ai sẽ thành khách quen. Bản Switch 2 hỗ trợ điều khiển bằng chuột Joy-Con 2.",
+      "Game ra mắt toàn cầu ngày 23/10/2026 trên Steam, App Store và Google Play, còn Switch và Switch 2 theo thông báo của hãng sẽ lên kệ sớm hơn một ngày, 22/10. Giá bán được nhiều trang ghi là 19,99 USD. Bản chơi thử đã được giới thiệu tại sự kiện ONE PIECE DAY'26 ngày 22 và 23/8/2026. Các nguồn chưa nói rõ game có cần kết nối mạng hay không, nên OtaHub không khẳng định điều này.",
+      "Kết luận: game hợp với fan One Piece thích nhìn các nhân vật quen thuộc dưới dạng pixel, và với người mê dòng quản lý kiểu Kairosoft muốn một đề tài mới. Điều đã xác nhận là ngày phát hành, danh sách nền tảng và các hệ thống nấu ăn, trang trí. Điều chưa rõ là độ sâu của phần quản lý và việc game có mua thêm nội dung hay không, nên người chơi di động nên chờ thêm đánh giá sau khi ra mắt."
+    ],
+    "storyEn": [
+      "One Piece: Grand Gourmet is a restaurant management sim developed by Kairosoft and published by Bandai Namco. You help Sanji and the Straw Hat Pirates build and expand the newest branch of the Baratie, the floating restaurant known as Baratie Number Two. Kairosoft is best known for its pixel-art management games, and this is the first time One Piece has been done in that style, with more than 400 characters from the anime and manga.",
+      "The loop revolves around collecting ingredients, inventing new dishes with Sanji, decorating the restaurant and attracting characters as customers or staff. There are more than 200 decoration items inspired by places such as Whole Cake Island, and recipes built around Devil Fruit powers, for example Water-Water Meat BBQ and Sea King Penne Gorgonzola. Each character's tastes decide who becomes a regular. The Switch 2 version supports Joy-Con 2 mouse controls.",
+      "The game launches worldwide on 23 October 2026 on Steam, the App Store and Google Play, while Switch and Switch 2 arrive a day earlier on 22 October according to the publisher's announcement. Several outlets list the price as 19.99 USD. A playable demo appeared at ONE PIECE DAY'26 on 22 and 23 August 2026. The sources do not say whether the game needs an internet connection, so OtaHub does not claim either way.",
+      "Verdict: this suits One Piece fans who enjoy seeing familiar characters in pixel form, and management-sim players who want a fresh theme from Kairosoft. Confirmed so far are the dates, the platform list and the cooking and decoration systems. Still unknown are how deep the management gets and whether there is extra paid content, so mobile players may want to wait for post-launch impressions."
+    ],
+    "sources": [
+      {
+        "name": "Siliconera – Kairosoft making One Piece: Grand Gourmet",
+        "url": "https://www.siliconera.com/kairosoft-making-new-one-piece-grand-gourmet-game/"
+      },
+      {
+        "name": "Anime Corner – Build and manage your own Baratie",
+        "url": "https://animecorner.me/build-and-manage-your-own-baratie-in-one-piece-grand-gourmet-new-game/"
+      },
+      {
+        "name": "Saiganak – One Piece: Grand Gourmet announcement",
+        "url": "https://saiganak.com/news/one-piece-grand-gourmet-announcement/amp/"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developer",
+        "value": "Kairosoft"
+      },
+      {
+        "label": "Nhà phát hành",
+        "labelEn": "Publisher",
+        "value": "Bandai Namco"
+      },
+      {
+        "label": "Nền tảng",
+        "labelEn": "Platforms",
+        "value": "iOS, Android, PC (Steam), Nintendo Switch, Nintendo Switch 2"
+      }
+    ],
+    "scoreSource": null,
+    "startDate": "2026-10-23",
+    "statusLive": "Đã phát hành",
+    "statusLiveEn": "Released"
+  },
+  "Monster Hunter Outlanders": {
+    "type": "game",
+    "img": "/assets/img/game/monster-hunter-outlanders.jpg",
+    "score": null,
+    "genre": "Action RPG / Co-op Hunting",
+    "studio": "TiMi Studio Group / Level Infinite, Garena (Southeast Asia)",
+    "platforms": "iOS / Android",
+    "release": "29/10/2026",
+    "status": "Sắp ra mắt",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "Game Monster Hunter miễn phí trên di động của TiMi Studio, săn quái cùng tối đa ba người khác ở vùng đất Aesoland, ra mắt toàn cầu ngày 29/10/2026.",
+    "hookEn": "A free-to-play mobile Monster Hunter from TiMi Studio: hunt solo or in a party of up to four across the land of Aesoland, launching worldwide on 29 October 2026.",
+    "story": [
+      "Monster Hunter Outlanders là game săn quái trên iOS và Android do TiMi Studio Group (Tencent) phát triển dưới sự cấp phép và giám sát của Capcom. Level Infinite phát hành toàn cầu, còn Garena phát hành tại Đông Nam Á. Khác với các game di động trước đây của loạt này, vốn là game giải đố hoặc game thực tế tăng cường, Outlanders hướng tới lối chơi săn quái gần với bản console, trên bản đồ thế giới mở tên Aesoland.",
+      "Người chơi có thể săn một mình hoặc lập nhóm tối đa bốn người. Game có hệ thống chế tạo trang bị và vật dụng, xây dựng, nhiều khu sinh thái, hệ thống Adventurers với kỹ năng riêng và hệ thống Buddies đồng hành. Hai kiểu điều khiển được hỗ trợ. Đợt ra mắt có Elder Dragon gốc Ruger Aidal, Azure Rathalos và vũ khí Charge Blade, cùng cây búa quen thuộc. Nhà phát triển cho biết sẽ bổ sung thêm quái, vũ khí, khu vực và hành động cho Adventurers sau khi ra mắt.",
+      "Game miễn phí, có mua trong ứng dụng, phát hành toàn cầu ngày 29/10/2026 trừ Trung Quốc đại lục. Bản Trung Quốc đại lục sẽ ra riêng từ năm 2027. Đăng ký trước đang mở trên App Store và Google Play. Các nguồn chưa nêu chi tiết cách bán vật phẩm hay mô hình kiếm tiền cụ thể, nên phần này cần chờ sau ngày ra mắt.",
+      "Kết luận: game hợp với người từng chơi Monster Hunter trên máy chơi game và muốn một phiên bản săn quái gọn hơn trên điện thoại, cũng như người mới thích săn theo nhóm với bạn bè. Điều đã xác nhận là ngày phát hành, hình thức miễn phí, nhóm bốn người và danh sách quái, vũ khí đợt đầu. Điều chưa rõ là cách game bán đồ trong ứng dụng và mức độ sâu của lối chơi so với bản console."
+    ],
+    "storyEn": [
+      "Monster Hunter Outlanders is a hunting game for iOS and Android developed by TiMi Studio Group (Tencent) under licence from, and with supervision by, Capcom. Level Infinite publishes it globally and Garena publishes it in Southeast Asia. Unlike earlier mobile entries in the series, which were puzzle or AR games, Outlanders aims at hunting gameplay closer to the console games, set in an open world called Aesoland.",
+      "You can hunt solo or in a party of up to four. The game includes gear and tool crafting, building, multiple biomes, an Adventurers system with unique abilities and a Buddies companion system, and it supports two control modes. Launch content includes the original Elder Dragon Ruger Aidal, Azure Rathalos and the Charge Blade, alongside the hammer. The developers say more monsters, weapon types, areas and Adventurer actions will follow after launch.",
+      "The game is free to play with in-app purchases and launches worldwide on 29 October 2026, excluding mainland China. A separate mainland China version is planned from 2027 onwards. Pre-registration is open on the App Store and Google Play. The sources do not detail what is sold in-game or how monetisation works, so that part has to wait for launch.",
+      "Verdict: this suits series veterans who want a lighter hunting fix on a phone, and newcomers who like hunting in a group with friends. Confirmed so far are the release date, the free-to-play model, four-player parties and the first wave of monsters and weapons. Still unknown are the in-app purchase details and how deep the combat feels compared with the console games."
+    ],
+    "sources": [
+      {
+        "name": "Pocket Gamer – Monster Hunter Outlanders release date announced",
+        "url": "https://www.pocketgamer.com/monster-hunter-outlanders/release-date-announced/"
+      },
+      {
+        "name": "WorthPlaying – Monster Hunter Outlanders comes to Android and iOS",
+        "url": "https://worthplaying.com/article/2026/9/29/news/151098-monster-hunter-outlanders-comes-to-android-and-ios-in-october-trailer/"
+      },
+      {
+        "name": "GosuGamers – Monster Hunter Outlanders release date confirmed",
+        "url": "https://www.gosugamers.net/entertainment/news/79266-monster-hunter-outlanders-release-date-confirmed-launches-in-october-2026"
+      },
+      {
+        "name": "Pocket Gamer – Garena to publish in Southeast Asia",
+        "url": "https://www.pocketgamer.com/monster-hunter-outlanders/garena-southeast-asia/"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developer",
+        "value": "TiMi Studio Group"
+      },
+      {
+        "label": "Nhà phát hành",
+        "labelEn": "Publishers",
+        "value": "Level Infinite (toàn cầu), Garena (Đông Nam Á)"
+      },
+      {
+        "label": "Bản quyền",
+        "labelEn": "Licensor",
+        "value": "Capcom"
+      },
+      {
+        "label": "Nền tảng",
+        "labelEn": "Platforms",
+        "value": "iOS, Android"
+      }
+    ],
+    "scoreSource": null,
+    "startDate": "2026-10-29",
+    "statusLive": "Đã phát hành",
+    "statusLiveEn": "Released"
+  },
+  "Saints Row: The Third Remastered": {
+    "type": "game",
+    "img": "/assets/img/game/saints-row-the-third-remastered.jpg",
+    "score": null,
+    "genre": "Open-world Action",
+    "studio": "Volition (original), Feral Interactive (mobile port) / Feral Interactive",
+    "platforms": "iOS / Android",
+    "release": "29/10/2026",
+    "status": "Sắp ra mắt",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "Feral Interactive đưa Saints Row: The Third Remastered lên iPhone và Android ngày 29/10/2026, giá 19,99 USD, kèm toàn bộ DLC và co-op trực tuyến.",
+    "hookEn": "Feral Interactive brings Saints Row: The Third Remastered to iPhone and Android on 29 October 2026 at 19.99 USD, with all DLC and online co-op included.",
+    "story": [
+      "Saints Row: The Third Remastered là bản chuyển thể di động của game hành động thế giới mở do Volition làm, do Feral Interactive thực hiện phần port. Người chơi đến thành phố Steelport và leo lên làm vua giới tội phạm, trong một phần game nổi tiếng nhờ lối chơi cường điệu hài hước, bắn súng, lái xe và khả năng tùy biến nhân vật, phương tiện rất sâu.",
+      "Bản di động là phiên bản Remastered đầy đủ, gộp toàn bộ DLC: thêm 14 nhiệm vụ cùng hơn 30 vũ khí, phương tiện và trang phục. Điều khiển được thiết kế lại cho màn hình cảm ứng, đồng thời hỗ trợ tay cầm, bàn phím và chuột. Chế độ co-op trực tuyến có ngay từ ngày đầu.",
+      "Game ra mắt ngày 29/10/2026 trên iOS và Android, bán một lần với giá 19,99 USD. Đặt trước đang mở trên App Store, còn Google Play mở đăng ký trước. Về cấu hình, mức tối thiểu trên iOS là iPhone 11 hoặc iPad thế hệ 10 (2022). Yêu cầu cho Android chưa được công bố.",
+      "Kết luận: game hợp với người từng chơi bản gốc muốn mang Steelport theo người, và người thích game thế giới mở trả tiền một lần, không gacha. Điều đã xác nhận là ngày ra mắt, giá, DLC đi kèm và co-op. Điều chưa rõ là cấu hình Android và độ ổn định của game trên các máy cũ, nên người dùng Android nên chờ thông số trước khi mua."
+    ],
+    "storyEn": [
+      "Saints Row: The Third Remastered is the mobile version of Volition's open-world action game, with the port handled by Feral Interactive. You head to the city of Steelport and rise to become king of the criminals, in an entry known for its over-the-top humour, gunplay, driving and deep character and vehicle customisation.",
+      "The mobile release is the full Remastered edition with all DLC included: 14 additional missions and more than 30 extra weapons, vehicles and costumes. Controls have been rebuilt for touchscreens, and gamepads, keyboards and mice are supported as well. Online co-op is available from day one.",
+      "The game launches on 29 October 2026 on iOS and Android as a one-time purchase at 19.99 USD. Pre-orders are open on the App Store and pre-registration is open on Google Play. The iOS minimum is an iPhone 11 or a 10th-generation iPad (2022). Android requirements have not been announced.",
+      "Verdict: this suits players of the original who want Steelport in their pocket, and anyone who likes premium open-world games with no gacha. Confirmed are the release date, price, bundled DLC and co-op. Still unknown are the Android requirements and how well the game runs on older devices, so Android players should wait for the specs before buying."
+    ],
+    "sources": [
+      {
+        "name": "Pocket Gamer – Saints Row: The Third Remastered comes to mobile",
+        "url": "https://www.pocketgamer.com/saints-row-the-third-remastered/coming-to-mobile/"
+      },
+      {
+        "name": "Gagadget – Saints Row: The Third is coming to iPhone and Android on October 29",
+        "url": "https://gagadget.com/en/724676-saints-row-the-third-is-coming-to-iphone-and-android-on-october-29/"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển gốc",
+        "labelEn": "Original developer",
+        "value": "Volition"
+      },
+      {
+        "label": "Bản port di động",
+        "labelEn": "Mobile port",
+        "value": "Feral Interactive"
+      },
+      {
+        "label": "Nền tảng",
+        "labelEn": "Platforms",
+        "value": "iOS, Android"
+      }
+    ],
+    "scoreSource": null,
+    "startDate": "2026-10-29",
+    "statusLive": "Đã phát hành",
+    "statusLiveEn": "Released"
+  },
+  "Absolum": {
+    "type": "game",
+    "img": "/assets/img/game/absolum.jpg",
+    "score": null,
+    "genre": "Roguelite Beat 'em up",
+    "studio": "Dotemu, Guard Crush Games, Supamonks / Playdigious (mobile)",
+    "platforms": "iOS / Android",
+    "release": "05/11/2026",
+    "status": "Sắp ra mắt",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "Beat 'em up pha roguelite của Dotemu, Guard Crush Games và Supamonks lên iOS và Android ngày 5/11/2026, mua một lần, chơi co-op hai người.",
+    "hookEn": "The roguelite beat 'em up from Dotemu, Guard Crush Games and Supamonks reaches iOS and Android on 5 November 2026 as a one-time purchase with two-player co-op.",
+    "story": [
+      "Absolum là game đi cảnh đánh nhau pha roguelite do Dotemu, Guard Crush Games và Supamonks làm. Playdigious, đơn vị chuyên chuyển game sang di động, phát hành bản iOS và Android. Game ra mắt lần đầu trên PC và console vào cuối năm 2025, và bản di động ngày 5/11/2026 đưa nó tới điện thoại.",
+      "Bối cảnh là vương quốc Talamh, nơi Sun King Azra đã cấm phép thuật và bắt những người dùng phép làm nô lệ. Bốn anh hùng có bộ chiêu riêng: Galandra (người) và Karl (người lùn) chơi được ngay, Brome và Cider phải mở khóa. Sau mỗi lượt chơi bạn nhận nâng cấp mới để tiến xa hơn. Màn chơi cố định thay vì sinh ngẫu nhiên, nhưng yếu tố roguelite vẫn giữ mỗi lượt đủ khác nhau. Game hỗ trợ co-op hai người.",
+      "Bản di động có giao diện dựng lại cho màn hình nhỏ, điều khiển cảm ứng làm mới, thành tích trên Game Center và Google Play. Game bán một lần, không nhiều lần mua trong ứng dụng được nhắc tới. Giá trên iOS là 8,99 USD hoặc 8,99 bảng, giá Android chưa được niêm yết. Đặt trước đang mở trên App Store, Google Play mở đăng ký trước.",
+      "Kết luận: game hợp với người thích beat 'em up kiểu cổ điển có thêm tiến trình nâng cấp, và người muốn chơi co-op nhanh với bạn bè. Điều đã xác nhận là ngày phát hành, giá iOS và bốn anh hùng. Điều chưa rõ là giá Android và độ mượt của điều khiển cảm ứng, vì phần này chỉ đánh giá được sau khi game ra mắt."
+    ],
+    "storyEn": [
+      "Absolum is a roguelite beat 'em up made by Dotemu, Guard Crush Games and Supamonks. Playdigious, a company that specialises in adapting games for mobile, publishes the iOS and Android version. The game first launched on PC and console in late 2025, and the mobile release on 5 November 2026 brings it to phones.",
+      "It is set in the kingdom of Talamh, where Sun King Azra has outlawed magic and enslaved those who practise it. Four heroes have their own movesets: Galandra (human) and Karl (dwarf) are playable from the start, while Brome and Cider are unlockable. After each run you earn new upgrades to push further. Stages are fixed rather than procedurally generated, but the roguelite elements keep each run feeling different. Two-player co-op is supported.",
+      "The mobile version has an interface rebuilt for small screens, new touch controls, and Game Center and Google Play achievements. It is a one-time purchase, and no in-app purchases have been mentioned. The iOS price is listed at 8.99 USD or 8.99 GBP, while Android pricing is not yet listed. Pre-orders are open on the App Store and pre-registration is open on Google Play.",
+      "Verdict: this suits fans of classic beat 'em ups who like some upgrade progression, and anyone after quick co-op with a friend. Confirmed are the release date, the iOS price and the four heroes. Still unknown are the Android price and how well the touch controls feel, which can only be judged after launch."
+    ],
+    "sources": [
+      {
+        "name": "Pocket Gamer – Absolum Mobile coming soon",
+        "url": "https://www.pocketgamer.com/absolum-mobile/coming-soon/"
+      },
+      {
+        "name": "Rogueliker – Absolum on Android and iOS",
+        "url": "https://rogueliker.com/absolum-android-ios/"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developers",
+        "value": "Dotemu, Guard Crush Games, Supamonks"
+      },
+      {
+        "label": "Phát hành bản di động",
+        "labelEn": "Mobile publisher",
+        "value": "Playdigious"
+      },
+      {
+        "label": "Nền tảng",
+        "labelEn": "Platforms",
+        "value": "iOS, Android"
+      }
+    ],
+    "scoreSource": null,
+    "startDate": "2026-11-05",
+    "statusLive": "Đã phát hành",
+    "statusLiveEn": "Released"
+  },
+  "Ananta": {
+    "type": "game",
+    "img": "/assets/img/game/ananta.jpg",
+    "score": null,
+    "genre": "Open-world Urban Action RPG",
+    "studio": "Naked Rain / NetEase Games",
+    "platforms": "iOS / Android / PC / PS5",
+    "release": "15/01/2027",
+    "status": "Sắp ra mắt",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "RPG hành động thế giới mở đô thị của Naked Rain và NetEase, miễn phí, hơn 17 triệu lượt đăng ký trước, ra mắt toàn cầu ngày 15/1/2027 trên PS5, PC, iOS và Android.",
+    "hookEn": "Naked Rain and NetEase's free-to-play urban open-world action RPG, with more than 17 million pre-registrations, launches worldwide on 15 January 2027 on PS5, PC, iOS and Android.",
+    "story": [
+      "Ananta là game nhập vai hành động thế giới mở miễn phí do Naked Rain phát triển, NetEase Games phát hành. Game được giới thiệu lần đầu tại Gamescom ngày 24/8/2023 với tên Project Mugen, đến tháng 11/2024 mới có tên chính thức, theo Wikipedia. Ngày phát hành 15/1/2027 được công bố tại Gamescom 2026 Opening Night Live ngày 25/8, cho PS5, PC, iOS và Android.",
+      "Bối cảnh là các đô thị hiện đại nơi người chơi điều tra hiện tượng dị thường và sự kiện siêu nhiên. Thành phố đầu tiên, Nova City, lấy cảm hứng từ Tokyo, thành phố thứ hai Lingyun dựa trên Thượng Hải và Hàng Châu. Người chơi di chuyển bằng chạy, leo, parkour và đu giữa các tòa nhà, hoặc dùng ô tô, xe máy, ván trượt. Đội bốn nhân vật có thể đổi người ngay trong trận lớn. Bài của RPG Site nhắc tới hơn 100 NPC có câu chuyện riêng và nhiều vai trò như hacker hay shipper, cùng các hoạt động trong quán cà phê, tiệm game hay suối nước nóng.",
+      "Game đã tích lũy hơn 17 triệu lượt đăng ký trước tại 110 quốc gia và vùng lãnh thổ. Nhà phát triển xác nhận game không có gacha nhân vật, và việc kiếm tiền dự kiến xoay quanh trang phục, phương tiện và nhà ở. Các nguồn chưa công bố cấu hình PC chi tiết hay lịch các thành phố tiếp theo.",
+      "Kết luận: game hợp với người thích thế giới mở đô thị, di chuyển tự do và hoạt động đời thường kiểu Spider-Man pha Persona, nhất là những ai ngại gacha. Điều đã xác nhận là ngày phát hành, bốn nền tảng, mô hình miễn phí không gacha nhân vật. Điều chưa rõ là cấu hình máy, lượng nội dung ở thời điểm ra mắt và cách bán vật phẩm thẩm mỹ cụ thể."
+    ],
+    "storyEn": [
+      "Ananta is a free-to-play open-world action RPG developed by Naked Rain and published by NetEase Games. It was first shown at Gamescom on 24 August 2023 as Project Mugen and received its official name in November 2024, according to Wikipedia. The 15 January 2027 launch date was announced at Gamescom 2026 Opening Night Live on 25 August, for PS5, PC, iOS and Android.",
+      "It is set in modern cities where players investigate anomalies and supernatural incidents. The first city, Nova City, is inspired by Tokyo, and the second, Lingyun, draws on Shanghai and Hangzhou. You get around by running, climbing, parkour and swinging between buildings, or by car, motorcycle and skateboard. A squad of four characters can be swapped mid-fight. RPG Site's coverage mentions more than 100 NPCs with their own stories, roles such as hacker or delivery rider, and activities in cafes, arcades and hot springs.",
+      "The game has gathered more than 17 million pre-registrations across 110 countries and regions. The developers have confirmed there is no character gacha, and monetisation is expected to focus on outfits, vehicles and homes. The sources have not published detailed PC specs or a roadmap for later cities.",
+      "Verdict: this suits players who like urban open worlds with free traversal and everyday activities, in the vein of Spider-Man crossed with Persona, especially those wary of gacha. Confirmed are the release date, the four platforms and the free-to-play model without character gacha. Still unknown are the hardware requirements, how much content is there at launch and how cosmetic sales will work."
+    ],
+    "sources": [
+      {
+        "name": "Inven Global – ANANTA to launch globally on January 15, 2027",
+        "url": "https://www.invenglobal.com/articles/25119/neteases-ananta-to-launch-globally-on-january-15-2027"
+      },
+      {
+        "name": "RPG Site – Ananta launches on January 15, 2027",
+        "url": "https://www.rpgsite.net/news/21186-ananta-launches-on-january-15-2027-for-ps5-pc-mobile"
+      },
+      {
+        "name": "Wikipedia – Ananta (video game)",
+        "url": "https://en.wikipedia.org/wiki/Ananta_(video_game)"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developer",
+        "value": "Naked Rain"
+      },
+      {
+        "label": "Nhà phát hành",
+        "labelEn": "Publisher",
+        "value": "NetEase Games"
+      },
+      {
+        "label": "Nền tảng",
+        "labelEn": "Platforms",
+        "value": "iOS, Android, PC, PS5"
+      }
+    ],
+    "scoreSource": null,
+    "startDate": "2027-01-15",
+    "statusLive": "Đã phát hành",
+    "statusLiveEn": "Released"
+  },
+  "Petit Planet": {
+    "type": "game",
+    "img": "/assets/img/game/petit-planet.jpg",
+    "score": null,
+    "genre": "Life Simulation / Cozy",
+    "studio": "miHoYo / HoYoverse",
+    "platforms": "iOS / Android / PC",
+    "release": "Mùa đông 2026",
+    "status": "Sắp ra mắt",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "Game mô phỏng cuộc sống thư giãn của HoYoverse, nơi bạn chăm một hành tinh nhỏ cùng ba người bạn thú, miễn phí và chơi liên thông PC, iOS, Android, ra mắt mùa đông 2026.",
+    "hookEn": "HoYoverse's cozy life sim where you tend a small planetoid with three animal companions, free to play with cross-progression across PC, iOS and Android, launching in winter 2026.",
+    "story": [
+      "Petit Planet là game mô phỏng cuộc sống do miHoYo phát triển, HoYoverse phát hành trên toàn cầu. Người chơi làm việc cho công ty Loomi Co., đi cùng ba nhân vật thú hóa người, nhiệm vụ là phát triển một tiểu hành tinh nhỏ và khám phá thiên hà xung quanh. Game được công bố ngày 25/9/2025, và báo chí hay so sánh với Animal Crossing pha Hoàng tử bé.",
+      "Lối chơi nhẹ nhàng: trang trí, chế tạo, thu thập, trồng trọt, câu cá, nấu ăn và kết bạn với NPC, với vai trò Planet Tender. Tiến trình xoay quanh cây Luca Arbor ở trung tâm hành tinh: bạn càng bón nhiều tài nguyên Luca, các khu vực mới càng mở ra cùng sinh vật và thay đổi môi trường. Nhân vật tùy biến sâu, và game chạy theo thời gian thực nên một số mục tiêu cần nhiều ngày.",
+      "Game miễn phí, có mặt trên PC, iOS và Android với tiến trình liên thông giữa các nền tảng. Đăng ký trước đang mở trên App Store, Google Play và Epic Games Store, kèm phần thưởng. Game đã qua hai đợt thử nghiệm kín vào 7/11/2025 và 21/4/2026, và đợt thử cuối bắt đầu 20/9/2026. HoYoverse mới chỉ nói ra mắt vào mùa đông 2026, chưa công bố ngày cụ thể.",
+      "Kết luận: game hợp với người thích nhịp chơi chậm kiểu Animal Crossing hoặc Stardew Valley và muốn chơi tiếp trên nhiều thiết bị. Điều đã xác nhận là mùa ra mắt, ba nền tảng, mô hình miễn phí và chơi liên thông. Điều chưa rõ là ngày phát hành, cách bán vật phẩm trong game và cấu hình PC, nên bạn nên theo dõi thêm trước khi ấn định lịch chơi."
+    ],
+    "storyEn": [
+      "Petit Planet is a life simulation developed by miHoYo and published worldwide by HoYoverse. You work for a company called Loomi Co., accompanied by three anthropomorphic animal companions, with the goal of developing a small planetoid and exploring the galaxy around it. The game was announced on 25 September 2025, and the press often describes it as Animal Crossing meets The Little Prince.",
+      "The pace is relaxed: decorating, crafting, gathering, farming, fishing, cooking and befriending NPCs as a Planet Tender. Progress centres on the Luca Arbor tree at the heart of the planet. The more Luca resources you pour into it, the more new areas, creatures and environmental changes unlock. Characters are deeply customisable, and the game runs in real time, so some goals take several days.",
+      "The game is free to play and comes to PC, iOS and Android with cross-progression between platforms. Pre-registration is open on the App Store, Google Play and the Epic Games Store, with rewards. It has gone through two closed betas, on 7 November 2025 and 21 April 2026, and a final beta began on 20 September 2026. HoYoverse has only said it launches in winter 2026, with no specific date announced.",
+      "Verdict: this suits players who enjoy the slow rhythm of Animal Crossing or Stardew Valley and want to continue across devices. Confirmed are the launch season, the three platforms, the free-to-play model and cross-progression. Still unknown are the release date, how in-game items will be sold and the PC requirements, so keep an eye on updates before planning your playtime."
+    ],
+    "sources": [
+      {
+        "name": "Wikipedia – Petit Planet",
+        "url": "https://en.wikipedia.org/wiki/Petit_Planet"
+      },
+      {
+        "name": "GosuGamers – Petit Planet is releasing in winter 2026",
+        "url": "https://www.gosugamers.net/entertainment/news/79043-hoyoverse-s-cosy-life-sim-game-petit-planet-is-releasing-in-winter-2026"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developer",
+        "value": "miHoYo"
+      },
+      {
+        "label": "Nhà phát hành",
+        "labelEn": "Publisher",
+        "value": "HoYoverse"
+      },
+      {
+        "label": "Nền tảng",
+        "labelEn": "Platforms",
+        "value": "iOS, Android, PC"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Palworld Online": {
+    "type": "game",
+    "img": "/assets/img/game/palworld-online.jpg",
+    "score": null,
+    "genre": "Open-world Survival MMORPG",
+    "studio": "Garena / Pocketpair (licensor)",
+    "platforms": "iOS / Android",
+    "release": "Chưa công bố ngày",
+    "status": "Sắp ra mắt",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "Bản MMORPG sinh tồn trên di động của Palworld do Garena làm theo giấy phép của Pocketpair, đã mở đăng ký trước ở Hàn Quốc, chưa có ngày phát hành chính thức.",
+    "hookEn": "Garena's mobile survival MMORPG based on Palworld, made under licence from Pocketpair. Pre-registration is open in South Korea, and no official release date has been announced.",
+    "story": [
+      "Palworld Online là game nhập vai nhiều người chơi trên iOS và Android do Garena phát triển và phát hành theo giấy phép chính thức của Pocketpair, nhà làm Palworld gốc. Theo Inven Global, loạt Palworld đã thu hút hơn 40 triệu người chơi. Garena công bố đăng ký trước ngày 2/9/2026, và đoạn trailer lối chơi được ra mắt cùng thời điểm.",
+      "Game đưa các yếu tố cốt lõi của Palworld lên thế giới mở liền mạch trực tuyến: bắt Pal, sinh tồn, chế tạo, khám phá, xây căn cứ chung. Người chơi có thể khám phá cùng nhau, đánh PvE, đấu PvP, và theo trailer còn có raid hợp tác, dungeon và đấu tay đôi. Game được báo là miễn phí, dù các nguồn chưa nói rõ cách bán vật phẩm.",
+      "Đăng ký trước hiện chỉ có tại Hàn Quốc trên Google Play và App Store, với phần thưởng theo mốc như Gold Coin, sách huấn luyện, Dog Coin, trứng Huge Verdant và Tera Sphere. Garena nói game sẽ ra mắt tại Hàn Quốc đầu tiên trong năm 2026. App Store Hàn Quốc đang ghi ngày 30/11/2026, nhưng đây chỉ là ngày giữ chỗ, hãng chưa xác nhận và cũng chưa nói việc phát hành toàn cầu sẽ đồng loạt hay theo từng vùng.",
+      "Kết luận: game hợp với fan Palworld muốn chơi cùng nhiều người trên điện thoại. Điều đã xác nhận là nhà phát hành, nền tảng, các hệ thống chính và đợt đăng ký trước ở Hàn Quốc. Điều chưa rõ là ngày ra mắt, lịch phát hành tại các nước khác, trong đó có Việt Nam, và mô hình kiếm tiền. Bạn nên chờ thông báo chính thức trước khi tính chuyện chơi."
+    ],
+    "storyEn": [
+      "Palworld Online is a multiplayer role-playing game for iOS and Android developed and published by Garena under official licence from Pocketpair, the maker of the original Palworld. According to Inven Global, the Palworld franchise has attracted more than 40 million players. Garena announced pre-registration on 2 September 2026 and released a gameplay trailer around the same time.",
+      "The game brings Palworld's core elements into a seamless online open world: Pal capturing, survival, crafting, exploration and shared base building. Players can explore together, fight PvE content and take on PvP, and the trailer also shows co-op raids, dungeons and duels. It is reported to be free to play, although the sources do not explain how items will be sold.",
+      "Pre-registration is currently open only in South Korea on Google Play and the App Store, with milestone rewards such as Gold Coins, training manuals, Dog Coins, a Huge Verdant Egg and Tera Spheres. Garena has said the game will launch first in South Korea in 2026. The Korean App Store lists 30 November 2026, but that is only a placeholder date that the company has not confirmed, and it has not said whether the global rollout will be simultaneous or staggered by region.",
+      "Verdict: this suits Palworld fans who want to play with many others on a phone. Confirmed are the publisher, the platforms, the core systems and the pre-registration in South Korea. Still unknown are the release date, the rollout schedule for other countries, Vietnam included, and the monetisation model. Wait for an official announcement before planning to play."
+    ],
+    "sources": [
+      {
+        "name": "Inven Global – Garena starts pre-registration for Palworld Online in Korea",
+        "url": "https://www.invenglobal.com/articles/25471/garena-starts-pre-registration-for-palworld-online-in-korea"
+      },
+      {
+        "name": "Pocket Gamer – Palworld Online pre-registration in South Korea",
+        "url": "https://www.pocketgamer.com/palworld-online/pre-registration-in-south-korea/"
+      },
+      {
+        "name": "iXBT Games – Garena showcases Palworld Online mobile gameplay",
+        "url": "https://ixbt.games/en/news/2026/09/01/431733-garena-pokazala-geimplei-mobilnoi-palworld-online-i-otkryla-ogranicennuiu-predregistraciiu.html"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển và phát hành",
+        "labelEn": "Developer and publisher",
+        "value": "Garena"
+      },
+      {
+        "label": "Bản quyền",
+        "labelEn": "Licensor",
+        "value": "Pocketpair"
+      },
+      {
+        "label": "Nền tảng",
+        "labelEn": "Platforms",
+        "value": "iOS, Android"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Ratchet & Clank: Ranger Rumble": {
+    "type": "game",
+    "img": "/assets/img/game/ratchet-clank-ranger-rumble.jpg",
+    "score": null,
+    "genre": "Hero Arena Shooter / Free-to-play",
+    "studio": "Oh Bibi, Insomniac Games / PlayStation",
+    "platforms": "iOS / Android",
+    "release": "Sắp ra mắt toàn cầu",
+    "status": "Sắp ra mắt",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "Ratchet & Clank đổi sang game bắn súng đấu trường miễn phí trên di động, với 12 anh hùng, 6 chế độ và bối cảnh là buổi huấn luyện do Captain Qwark dựng nên.",
+    "hookEn": "Ratchet & Clank goes free-to-play on mobile as an arena shooter with 12 heroes, six modes and a training simulation built by Captain Qwark.",
+    "story": [
+      "Ratchet & Clank: Ranger Rumble là game bắn súng anh hùng nhiều người chơi, miễn phí, dành cho iOS và Android. Studio Oh Bibi của Pháp, nơi làm FRAG Pro Shooter, phát triển game với sự tham gia của Insomniac Games, còn PlayStation đứng tên phát hành. Game được công bố vào giữa tháng 11/2025. Bối cảnh là một mô phỏng chiến đấu do Captain Qwark dựng để huấn luyện tân binh Galactic Ranger, nên bạn sẽ gặp lại cái tông hài quen thuộc của loạt game.",
+      "Theo Game Informer, game có 6 chế độ ngay khi ra mắt, trộn PvP và PvE, trong đó có một biến thể battle royale và một chế độ kiểu bóng đá. Dàn anh hùng ban đầu gồm 12 nhân vật, có Ratchet và Clank nhưng phần lớn là nhân vật mới như Widget, một nữ phóng viên điều tra, và Mopz, một thành viên băng đảng đường phố, đến từ các chiều không gian khác. Nhân vật mới sẽ được bổ sung sau khi ra mắt.",
+      "Về tình trạng, game đã mở thử nghiệm giới hạn (soft launch) ở một số khu vực ngoài Mỹ trong vài tháng qua. Ngày phát hành toàn cầu chưa được công bố. Có thể đăng ký trước trên trang web của game để nhận quà. Khi nào chạm đến dịch vụ chạy chính thức thì chưa rõ, và mức độ nặng nhẹ của phần mua trong game cũng chưa được nói cụ thể.",
+      "Kết luận: Đây không phải phần tiếp theo trên PS5 mà nhiều fan mong đợi, và bạn nên đi vào với kỳ vọng đó. Game hợp với người thích bắn súng đấu đội ngắn gọn trên điện thoại và muốn thấy vũ khí kỳ quặc của Ratchet & Clank trong một thể loại khác. Điều đã xác nhận là nền tảng, mô hình miễn phí, số chế độ và số anh hùng. Điều chưa có là ngày ra mắt toàn cầu và chi tiết kinh tế trong game."
+    ],
+    "storyEn": [
+      "Ratchet & Clank: Ranger Rumble is a free-to-play multiplayer hero shooter for iOS and Android. Paris-based Oh Bibi, the studio behind FRAG Pro Shooter, develops it with Insomniac Games involved, and PlayStation is listed as publisher. It was announced in mid-November 2025. The setting is a combat simulation built by Captain Qwark to train new Galactic Ranger recruits, so the series' usual humor carries over.",
+      "According to Game Informer, the game launches with six modes mixing PvP and PvE, including a battle royale variant and a soccer-inspired contest. The starting roster has 12 heroes. Ratchet and Clank are in, but most are new characters such as Widget, a spunky investigative journalist, and Mopz, a mopey street gang member, from other dimensions. More heroes are planned after launch.",
+      "On status, the game has already soft-launched in several non-US regions over recent months. A global release date has not been announced. You can pre-register on the official website for rewards. How the monetization will work in detail has not been spelled out either.",
+      "Verdict: this is not the PS5 sequel many fans were hoping for, and it is better to go in knowing that. It suits anyone who likes short team shooters on a phone and wants to see Ratchet & Clank's odd weapons in a different genre. Confirmed: the platforms, the free-to-play model, the six modes and the 12 heroes. Not confirmed: a global date and the economy details."
+    ],
+    "sources": [
+      {
+        "name": "Game Informer – PlayStation shares new details for Ratchet & Clank: Ranger Rumble",
+        "url": "https://gameinformer.com/2026/07/15/playstation-shares-new-details-for-mobile-hero-shooter-ratchet-clank-ranger-rumble"
+      },
+      {
+        "name": "Full Cleared – New Ratchet & Clank game on mobile",
+        "url": "https://fullcleared.com/news/theres-a-new-ratchet-clank-game-on-mobile/"
+      },
+      {
+        "name": "TBreak – Ratchet & Clank: Ranger Rumble mobile free-to-play",
+        "url": "https://tbreak.com/ratchet-clank-ranger-rumble-mobile-free-to-play/"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developers",
+        "value": "Oh Bibi, Insomniac Games"
+      },
+      {
+        "label": "Nhà phát hành",
+        "labelEn": "Publisher",
+        "value": "PlayStation"
+      },
+      {
+        "label": "Nền tảng",
+        "labelEn": "Platforms",
+        "value": "iOS, Android"
+      }
+    ],
+    "scoreSource": null
+  },
+  "BLEACH: Mirrors High": {
+    "type": "game",
+    "img": "/assets/img/game/bleach-mirrors-high.jpg",
+    "score": null,
+    "genre": "Action Gacha RPG",
+    "studio": "Bandai Namco Entertainment / Bandai Namco Entertainment",
+    "platforms": "iOS / Android",
+    "release": "Chưa công bố ngày",
+    "status": "Sắp ra mắt",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "Game di động hành động gacha kể câu chuyện gốc sau Thousand-Year Blood War, với hai nhân vật mới do chính Tite Kubo thiết kế.",
+    "hookEn": "A mobile action gacha telling an original story after Thousand-Year Blood War, with two new protagonists designed by Tite Kubo himself.",
+    "story": [
+      "BLEACH: Mirrors High là game di động của Bandai Namco Entertainment cho iOS và Android, kể một câu chuyện gốc diễn ra sau arc Thousand-Year Blood War. Bối cảnh là thị trấn Karakura, người chơi tạo Tử thần của riêng mình và rèn một thanh Zanpakuto tùy biến về hình dáng, phần lưỡi kiếm và hiệu ứng. Hai nhân vật chính mới là Shirin Migishima và Shirane Sanari. Tite Kubo được ghi công hợp tác sản xuất, ý tưởng và thiết kế nhân vật.",
+      "Theo trang tổng hợp Hideout Gacha, game thiên về chiến đấu theo đội với cơ chế chọn thẻ thay vì dựa vào phản xạ. Bản thử nghiệm kín diễn ra từ 22/7 đến 29/7/2026 với tối đa 20.000 người, và Bandai Namco có bản demo tại Tokyo Game Show từ 17/9 đến 21/9/2026. Đăng ký trước đang mở trên App Store và Google Play, với mốc 500.000 lượt để mọi người nhận Ichigo Kurosaki và Rukia Kuchiki 3 sao cùng tối đa 6.000 Mirror Stones, tương đương 20 lượt quay.",
+      "Về ngày phát hành, chưa có thông tin chính thức. Ngày 28/11/2026 xuất hiện trên App Store chỉ là ngày giữ chỗ do Apple yêu cầu, không phải thông báo của Bandai Namco. Teaser ban đầu chỉ ghi Summer 2026, và mùa hè đó đã qua mà chưa có mốc mới. OtaHub sẽ cập nhật khi hãng nói rõ.",
+      "Kết luận: Game hợp với fan Bleach muốn có một chương mới sau anime, nhất là bạn quan tâm phần truyện gốc có dấu tay của Kubo. Đã xác nhận: nền tảng, đăng ký trước, mốc quà, nội dung truyện gốc. Chưa xác nhận: ngày ra mắt, và độ thân thiện của gacha cho người chơi không nạp. Nên đăng ký trước nếu muốn nhận quà, nhưng đừng coi 28/11 là hạn chót."
+    ],
+    "storyEn": [
+      "BLEACH: Mirrors High is a mobile game from Bandai Namco Entertainment for iOS and Android, telling an original story set after the Thousand-Year Blood War arc. It takes place in Karakura Town, where you create your own Soul Reaper and forge a custom Zanpakuto, with options for looks, blade parts and effects. The two new protagonists are Shirin Migishima and Shirane Sanari. Tite Kubo is credited for production cooperation, character concept and character design.",
+      "According to the tracker Hideout Gacha, combat is team-based with card selection rather than reflex play. A closed beta ran on 22 to 29 July 2026, capped at 20,000 players, and Bandai Namco had a public demo at Tokyo Game Show on 17 to 21 September 2026. Pre-registration is open on the App Store and Google Play, with a 500,000 sign-up milestone that gives everyone 3-star Ichigo Kurosaki and Rukia Kuchiki plus up to 6,000 Mirror Stones, about 20 pulls.",
+      "As for the release date, nothing official exists. The 28 November 2026 date shown on the App Store is only a placeholder that Apple requires, not an announcement from Bandai Namco. The original teaser only said Summer 2026, and that summer has passed without a new window. OtaHub will update once the company says something firmer.",
+      "Verdict: it suits Bleach fans who want a new chapter after the anime, especially if you care about an original story with Kubo's hand in it. Confirmed: platforms, pre-registration, the reward milestone and the original story. Not confirmed: the launch date and how friendly the gacha is to non-spenders. Pre-register if you want the rewards, but do not treat 28 November as a deadline."
+    ],
+    "sources": [
+      {
+        "name": "Outlook Respawn – BLEACH Mirrors High revealed",
+        "url": "https://respawn.outlookindia.com/pop-culture/pop-culture-news/bleach-mirrors-high-revealed-as-new-story-after-tybw"
+      },
+      {
+        "name": "The Outer Haven – BLEACH Mirrors High pre-registrations",
+        "url": "https://www.theouterhaven.net/bleach-mirrors-high-announces-opening-of-pre-registrations/"
+      },
+      {
+        "name": "Anime Corner – BLEACH: Mirrors High reveals 2026 release",
+        "url": "https://animecorner.me/bleach-mirrors-high-game-reveals-2026-release-with-new-visual/"
+      },
+      {
+        "name": "Hideout Gacha – BLEACH Mirrors High release date",
+        "url": "https://www.hideoutgacha.com/upcoming/bleach-mirrors-high"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developer",
+        "value": "Bandai Namco Entertainment"
+      },
+      {
+        "label": "Nhà phát hành",
+        "labelEn": "Publisher",
+        "value": "Bandai Namco Entertainment"
+      },
+      {
+        "label": "Nền tảng",
+        "labelEn": "Platforms",
+        "value": "iOS, Android"
+      },
+      {
+        "label": "Thiết kế nhân vật",
+        "labelEn": "Character design",
+        "value": "Tite Kubo"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Solo Leveling: KARMA": {
+    "type": "game",
+    "img": "/assets/img/game/solo-leveling-karma.jpg",
+    "score": null,
+    "genre": "Roguelite Action RPG",
+    "studio": "Netmarble Neo / Netmarble",
+    "platforms": "iOS / Android / PC",
+    "release": "Nửa cuối 2026 (Hàn, Nhật trước)",
+    "status": "Sắp ra mắt",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "Roguelite hành động của Netmarble kể 27 năm Monarch War mà truyện gốc chưa kể, với Shadow Army do bạn trực tiếp điều khiển.",
+    "hookEn": "Netmarble's roguelite action RPG tells the 27-year Monarch War the original story skipped, with a Shadow Army you control directly.",
+    "story": [
+      "Solo Leveling: KARMA là game hành động nhập vai roguelite dựa trên IP Solo Leveling, do Netmarble Neo phát triển và Netmarble phát hành. Game được giới thiệu tại Anime Expo 2025 với lối chiến đấu hack-and-slash nhìn chéo, đánh hầm ngục và triệu hồi bóng, nhấn mạnh hành động và khả năng chơi lại hơn Solo Leveling: ARISE. Nội dung xoay quanh 27 năm Sung Jinwoo chiến đấu với các Monarch trong khe nứt không gian, giai đoạn mà tiểu thuyết gốc và webtoon không kể chi tiết.",
+      "Tại Tokyo Game Show 2026, Netmarble mang bản demo với hơn 200 loại buff và 8 nhân vật chơi được. Điểm đáng chú ý là Shadow Army không chỉ là chiêu triệu hồi mà là nhân vật bạn trực tiếp điều khiển. Theo Inven Global, game có Story Mode và Survival Mode.",
+      "Đăng ký trước mở từ 16/9/2026 trên Google Play và App Store tại Hàn Quốc và Nhật Bản. Quà gồm trang phục Sung Jinwoo Predator, vòng hào quang Shadow Monarch, Monarch's Box, Hunter's Box và một thẻ hỗ trợ bí mật. Chưa có ngày ra mắt cụ thể, và chưa có thông tin về ngày phát hành toàn cầu. Thông báo ban đầu ghi game cho Android, iOS và PC, nhưng chi tiết bản PC chưa được nói rõ ở các nguồn mới.",
+      "Kết luận: Game hợp với fan Solo Leveling thích đánh nhanh, xây build bằng buff và chơi lại nhiều lần, hơn là người muốn một game nhập vai nhiều nội dung kiểu ARISE. Đã xác nhận: đăng ký trước ở Hàn, Nhật, số buff và nhân vật trong bản demo. Chưa xác nhận: ngày phát hành, thời điểm sang thị trường quốc tế và lịch của bản PC. Người chơi ngoài Hàn, Nhật chưa đăng ký được và nên theo dõi thêm."
+    ],
+    "storyEn": [
+      "Solo Leveling: KARMA is a roguelite action RPG based on the Solo Leveling IP, developed by Netmarble Neo and published by Netmarble. It was revealed at Anime Expo 2025 with isometric hack-and-slash combat, dungeon crawling and shadow summoning, aiming for more action and replayability than Solo Leveling: ARISE. The story covers the 27 years Sung Jinwoo spends fighting Monarchs inside a sealed dimensional rift, a stretch the original novel and webtoon do not detail.",
+      "At Tokyo Game Show 2026, Netmarble showed a demo build with more than 200 buff types and 8 playable characters. The standout is the Shadow Army, which is not just a summon but a set of characters you control directly. Inven Global also lists Story Mode and Survival Mode.",
+      "Pre-registration has been open since 16 September 2026 on Google Play and the App Store in Korea and Japan. Rewards include the Sung Jinwoo Predator outfit, a Shadow Monarch halo ornament, a Monarch's Box, a Hunter's Box and a secret support card. No launch date has been announced, and there is no global release date either. The original announcement listed Android, iOS and PC, but recent sources do not detail the PC version.",
+      "Verdict: it suits Solo Leveling fans who like quick runs, buff-based builds and replaying, more than those wanting a content-heavy RPG like ARISE. Confirmed: pre-registration in Korea and Japan, and the buff and character counts in the demo. Not confirmed: the launch date, international timing and the PC schedule. Players outside Korea and Japan cannot pre-register yet and should keep watching."
+    ],
+    "sources": [
+      {
+        "name": "Inven Global – Solo Leveling: KARMA unveils key systems at TGS 2026",
+        "url": "https://www.invenglobal.com/articles/26122/solo-leveling-karma-unveils-key-systems-and-content-at-tgs-2026"
+      },
+      {
+        "name": "Digital Today – Netmarble unveils Solo Leveling: KARMA at TGS 2026",
+        "url": "https://www.digitaltoday.co.kr/en/view/104925/netmarble-unveils-solo-leveling-karma-at-tgs-2026-pre-registration-opens-in-korea-and-japan"
+      },
+      {
+        "name": "BlueStacks – Solo Leveling: KARMA announcement",
+        "url": "https://www.bluestacks.com/blog/news/solo-leveling-karma-announcement-en.html"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developer",
+        "value": "Netmarble Neo"
+      },
+      {
+        "label": "Nhà phát hành",
+        "labelEn": "Publisher",
+        "value": "Netmarble"
+      },
+      {
+        "label": "Nền tảng",
+        "labelEn": "Platforms",
+        "value": "iOS, Android, PC"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Honkai: Nexus Anima": {
+    "type": "game",
+    "img": "/assets/img/game/honkai-nexus-anima.jpg",
+    "score": null,
+    "genre": "Creature Collector / Strategy RPG",
+    "studio": "HoYoverse / HoYoverse",
+    "platforms": "iOS / Android / PC",
+    "release": "Chưa công bố ngày",
+    "status": "Sắp ra mắt",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "Game thu thập sinh vật Anima của HoYoverse trong vũ trụ Honkai, đã qua hai đợt thử nghiệm kín nhưng chưa có ngày ra mắt.",
+    "hookEn": "HoYoverse's creature-collecting game in the Honkai universe has had two closed tests but still has no release date.",
+    "story": [
+      "Honkai: Nexus Anima là game phiêu lưu chiến thuật thu thập sinh vật của HoYoverse, thuộc thương hiệu Honkai, dự kiến cho PC, iOS và Android. Bạn vào vai một lữ khách xuyên chiều không gian vừa thoát khỏi nơi giam giữ. Thế giới xoay quanh Nexus, những sợi dây liên kết giữa các cặp khái niệm như yêu và ghét, sáng và tối. Khi các sợi dây đó đứt, sức mạnh của chúng tản ra thành những sinh vật gọi là Anima, và bạn kết giao để dùng năng lực của chúng.",
+      "Theo Anime Corner, bạn thu thập và nuôi các Anima, mỗi con có kỹ năng riêng để nâng cấp và kết hợp, rồi cùng đồng đội chiến đấu trong Nexus Battles. Game mở đầu ở một thị trấn yên tĩnh rồi mở rộng sang các vùng mới. Inven Global ghi bản thử nghiệm Evolution Test ngày 9/7/2026 thêm nhân vật, Anima, vùng đất và hệ thống mới, trong đó có làng Iya, Bond Hall và True Nexus Group. Một số nguồn mô tả game là auto-battler, nhưng các bài OtaHub đọc chỉ gọi là game chiến thuật, nên bạn nên xem đó là chưa xác nhận.",
+      "Đợt thử nghiệm kín đầu tiên, Nexus Bond Test, mở đăng ký đến 12/9/2025, và Evolution Test chạy từ 9/7/2026 trên cả ba nền tảng, chọn người chơi qua bốc thăm trong số người đã đăng ký trước. Cả hai đợt đều xóa dữ liệu sau khi kết thúc. Đăng ký trước mở trên trang chính thức của game. HoYoverse chưa công bố ngày phát hành hay mô hình thu phí.",
+      "Kết luận: Game hợp với fan HoYoverse thích khám phá, sưu tầm sinh vật và xây đội hình, những ai từng mê kiểu Palworld, Pokemon nhưng muốn phong cách Honkai. Đã xác nhận: ba nền tảng, hai đợt thử nghiệm kín, đăng ký trước. Chưa xác nhận: ngày ra mắt, cách kiếm tiền và việc nó có phải auto-battler hay không. Hãng thường thử nghiệm nhiều lần, nên bạn chưa cần vội."
+    ],
+    "storyEn": [
+      "Honkai: Nexus Anima is a creature-collecting adventure strategy game from HoYoverse in the Honkai franchise, planned for PC, iOS and Android. You play a plane-hopping traveler who has just escaped captivity. The world is built on Nexus, the bonds between paired concepts such as love and hate, or light and dark. When those bonds snap, their power scatters into creatures called Anima, and you bond with them to use the concepts they carry.",
+      "According to Anime Corner, you collect and raise Anima, each with its own abilities that can be strengthened and combined, then fight alongside them in Nexus Battles. The game opens in a quiet hub town and expands into new regions. Inven Global says the 9 July 2026 Evolution Test added characters, Anima, regions and systems, including Iya Village, Bond Hall and the True Nexus Group. Some sources call it an auto-battler, but the articles OtaHub read only call it a strategy game, so treat that label as unconfirmed.",
+      "The first closed test, the Nexus Bond Test, took registrations until 12 September 2025, and the Evolution Test began on 9 July 2026 on all three platforms, with testers drawn by lottery from pre-registrants. Both tests wipe data afterward. Pre-registration is open on the game's official site. HoYoverse has not announced a release date or a pricing model.",
+      "Verdict: it suits HoYoverse fans who enjoy exploring, collecting creatures and building teams, especially if Palworld or Pokemon appeal to you but you want a Honkai flavor. Confirmed: three platforms, two closed tests, pre-registration. Not confirmed: the launch date, monetization and whether it is an auto-battler. The studio tends to test many times, so there is no rush."
+    ],
+    "sources": [
+      {
+        "name": "Inven Global – HoYoverse announces Evolution Test for Honkai: Nexus Anima",
+        "url": "https://www.invenglobal.com/articles/23002/hoyoverse-announces-closed-evolution-test-for-new-title-honkai-nexus-anima-on-july-9"
+      },
+      {
+        "name": "Anime Corner – HoYoverse reveals Honkai: Nexus Anima",
+        "url": "https://animecorner.me/hoyoverse-reveals-honkai-nexus-anima-new-creature-collecting-adventure-game"
+      },
+      {
+        "name": "Hideout Gacha – Honkai: Nexus Anima release date",
+        "url": "https://www.hideoutgacha.com/upcoming/honkai-nexus-anima"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developer",
+        "value": "HoYoverse"
+      },
+      {
+        "label": "Nhà phát hành",
+        "labelEn": "Publisher",
+        "value": "HoYoverse"
+      },
+      {
+        "label": "Nền tảng",
+        "labelEn": "Platforms",
+        "value": "iOS, Android, PC"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Azur Promilia": {
+    "type": "game",
+    "img": "/assets/img/game/azur-promilia.jpg",
+    "score": null,
+    "genre": "Open-world Creature-taming Gacha RPG",
+    "studio": "Manjuu / Manjuu",
+    "platforms": "iOS / Android / PC / PS5",
+    "release": "Chưa công bố ngày",
+    "status": "Sắp ra mắt",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "Studio của Azur Lane làm game thế giới mở thu phục sinh vật, vừa chiến đấu, cưỡi, xây dựng vừa làm nông, chưa có ngày chính thức.",
+    "hookEn": "The Azur Lane studio makes an open-world creature game with combat, mounts, building and farming, and no official date yet.",
+    "story": [
+      "Azur Promilia là game nhập vai thế giới mở thu phục sinh vật của Manjuu, studio làm Azur Lane. Bạn vào vai một Starborn đến lục địa Promilia, nơi có nhiều nền văn minh, phép thuật và sinh vật kỳ lạ, và kết bạn với các bạn đồng hành gọi là Kibo. Game dự kiến ra trên PS5, PC, iOS và Android, không có kế hoạch cho Xbox hay Switch theo Dexerto.",
+      "Theo Dexerto, chiến đấu theo hướng Genshin Impact với đổi nhân vật và phản ứng nguyên tố, còn sinh vật vừa chiến đấu, vừa làm vật cưỡi, vừa phụ giúp trong trang trại, gần với Palworld. Các mô tả khác nhắc đến chế tác, xây dựng và làm nông trong thế giới tự do cao. Game theo mô hình miễn phí có gacha.",
+      "Về ngày phát hành, chưa có thông báo chính thức. Một số cửa hàng iOS khu vực châu Á ghi 31/12/2026, nhưng đó chỉ là ngày giữ chỗ trên App Store, không phải ngày hãng công bố. Đăng ký trước đang mở, và quà theo mốc đã được công bố ở một số khu vực. Ngày ra mắt của bản quốc tế cho Nhật, Mỹ và châu Âu vẫn là chưa công bố.",
+      "Kết luận: Game hợp với người thích kiểu Genshin pha Palworld và muốn xem Manjuu chuyển từ game tàu chiến sang thế giới mở. Đã xác nhận: nền tảng, hướng gameplay, mô hình gacha miễn phí. Chưa xác nhận: ngày ra mắt chính thức, lịch từng khu vực và độ nặng của gacha. Đừng coi 31/12 là ngày chắc chắn."
+    ],
+    "storyEn": [
+      "Azur Promilia is an open-world creature-taming RPG from Manjuu, the studio behind Azur Lane. You play a Starborn arriving on the continent of Promilia, a land of many civilizations, magic and strange creatures, and bond with companions called Kibo. It is planned for PS5, PC, iOS and Android, with no Xbox or Switch plans according to Dexerto.",
+      "According to Dexerto, combat follows the Genshin Impact model with character switching and elemental reactions, while creatures fight, serve as mounts and help on the farm, close to Palworld. Other descriptions mention crafting, building and farming in a high-freedom world. It is a free-to-play game with gacha.",
+      "On release timing, nothing official has been announced. Some Asian iOS storefronts list 31 December 2026, but that is only an App Store placeholder, not a date from the publisher. Pre-registration is open, and milestone rewards have been revealed in some regions. A release date for the version aimed at Japan, the US and Europe is still unannounced.",
+      "Verdict: it suits players who like a Genshin and Palworld mix and want to see Manjuu step from ship games into an open world. Confirmed: platforms, gameplay direction and the free-to-play gacha model. Not confirmed: the official launch date, regional schedules and how heavy the gacha will be. Do not treat 31 December as a sure date."
+    ],
+    "sources": [
+      {
+        "name": "Dexerto – Azur Promilia platforms, trailer, gameplay",
+        "url": "https://www.dexerto.com/gaming/azure-promilia-platforms-trailer-gameplay-2604141/"
+      },
+      {
+        "name": "RPG Site – Azur Promilia announced for PS5, mobile and PC",
+        "url": "https://www.rpgsite.net/news/15683-creature-companionship-fantasy-world-rpg-azur-promilia-announced-for-playstation-5-mobile-devices-pc"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developer",
+        "value": "Manjuu"
+      },
+      {
+        "label": "Nhà phát hành",
+        "labelEn": "Publisher",
+        "value": "Manjuu"
+      },
+      {
+        "label": "Nền tảng",
+        "labelEn": "Platforms",
+        "value": "iOS, Android, PC, PS5"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Silver Palace": {
+    "type": "game",
+    "img": "/assets/img/game/silver-palace.jpg",
+    "score": null,
+    "genre": "Open-world Action RPG / Gacha",
+    "studio": "Elementa, Silver Studio / Elementa",
+    "platforms": "iOS / Android / PC / PS5",
+    "release": "2027 (chưa xác nhận)",
+    "status": "Sắp ra mắt",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "RPG hành động thế giới mở phong cách Victoria noir, bạn làm thám tử phá các vụ án, đã vượt 10 triệu lượt đăng ký trước nhưng chưa có ngày chính thức.",
+    "hookEn": "A Victorian noir open-world action RPG where you play a detective, past 10 million pre-registrations but with no official date.",
+    "story": [
+      "Silver Palace là game hành động nhập vai thế giới mở, miễn phí, theo mô hình gacha, do Elementa phát hành. Theo PocketGamer, bối cảnh là một thế giới kiểu nước Anh thời Victoria pha yếu tố cổ tích, vận hành bằng một chất có tên Silvernium. Bạn vào vai một thám tử giải các vụ bí ẩn, gặp nhân vật và chiến đấu theo phong cách hoạt hình. Game còn có chế độ nhiều người House of Greed mang yếu tố kinh dị sinh tồn.",
+      "Game xuất hiện trên iOS, Android, PlayStation và Epic Games Store, và MMOBomb cho biết người đăng ký trước có thể chọn nền tảng ưa thích. Game cũng đã trải qua nhiều đợt thử nghiệm. PocketGamer ghi lượt đăng ký trước đã vượt 10 triệu. Một số nguồn khác nhắc đến việc dùng Unreal Engine 5, nhưng OtaHub chưa kiểm chứng được từ trang chính thức.",
+      "Về ngày phát hành, chưa có thông báo chính thức. App Store hiện ghi 31/1/2027 làm ngày dự kiến, nhưng PocketGamer nhấn mạnh đây là yêu cầu của Apple và không nên tin là ngày thật. Google Play, PlayStation và Epic Games Store đều chưa nói gì thêm. Phần quà đăng ký trước cụ thể cũng chưa được công bố rõ.",
+      "Kết luận: Game hợp với người thích thế giới mở anime có mạch điều tra, nhịp thám tử và chiến đấu đổi nhân vật, hoặc ai đang tìm một gacha thế giới mở mới ngoài Genshin. Đã xác nhận: Elementa phát hành, nền tảng, mô hình gacha miễn phí, đăng ký trước mở. Chưa xác nhận: ngày ra mắt, độ nặng gacha và chi tiết kinh tế. Coi 2027 là dự đoán, chưa phải lời hẹn của hãng."
+    ],
+    "storyEn": [
+      "Silver Palace is a free-to-play open-world action RPG with gacha, published by Elementa. According to PocketGamer, it is set in a Victorian England and fairypunk-style world powered by a substance called Silvernium. You play a detective solving mysteries, meeting characters and fighting in a stylized way. It also has a multiplayer mode called House of Greed with survival horror elements.",
+      "The game is shown on iOS, Android, PlayStation and the Epic Games Store, and MMOBomb notes that pre-registrants can pick a preferred platform. It has also gone through several test phases. PocketGamer reports pre-registrations have passed 10 million. Some other sources mention Unreal Engine 5, but OtaHub could not verify that from an official page.",
+      "On the release date, nothing official has been announced. The App Store currently lists 31 January 2027 as expected, but PocketGamer stresses this is an Apple requirement and should not be trusted as real. Google Play, PlayStation and the Epic Games Store give no further clues. Specific pre-registration rewards have not been clearly published either.",
+      "Verdict: it suits players who like anime open worlds with an investigative thread, detective pacing and character-switch combat, or anyone looking for a new open-world gacha beyond Genshin. Confirmed: Elementa as publisher, the platforms, the free-to-play gacha model and open pre-registration. Not confirmed: the launch date, gacha severity and economy details. Treat 2027 as a guess, not a promise from the company."
+    ],
+    "sources": [
+      {
+        "name": "PocketGamer – Silver Palace opens pre-registration",
+        "url": "https://www.pocketgamer.com/silver-palace/pre-registration-opens/"
+      },
+      {
+        "name": "MMOBomb – Pre-registration for Silver Palace now open",
+        "url": "https://www.mmobomb.com/news/pre-registration-victorian-noir-style-action-rpg-silver-palace-now-open"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developer",
+        "value": "Silver Studio (theo các nguồn tổng hợp, chưa kiểm chứng từ trang chính thức)"
+      },
+      {
+        "label": "Nhà phát hành",
+        "labelEn": "Publisher",
+        "value": "Elementa"
+      },
+      {
+        "label": "Nền tảng",
+        "labelEn": "Platforms",
+        "value": "iOS, Android, PC (Epic Games Store), PS5"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Epic Seven": {
+    "type": "game",
+    "img": "/assets/img/game/epic-seven.jpg",
+    "score": null,
+    "genre": "Turn-based Tactical Gacha RPG",
+    "studio": "Super Creative, Smilegate / VTC Mobile (Việt Nam)",
+    "platforms": "iOS / Android / PC",
+    "release": "Quý 4/2026 (Việt Nam)",
+    "status": "Sắp ra mắt",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "Epic Seven, game gacha theo lượt đã có mặt ở nhiều nước, được VTC Mobile công bố đưa về Việt Nam trong quý 4/2026 trên cả di động và PC.",
+    "hookEn": "Epic Seven, the turn-based gacha already live elsewhere, is slated for an official Vietnam launch via VTC Mobile in Q4 2026 on mobile and PC.",
+    "story": [
+      "Epic Seven là game nhập vai chiến thuật theo lượt trên di động do Super Creative, một công ty con của Smilegate, phát triển. Đây không phải game mới: bản quốc tế đã chạy từ khoảng năm 2018 và vừa kỷ niệm 8 năm vào tháng 8/2026 với tập truyện Paradise Lost, các anh hùng Lisette và Uncharted Pioneer Politis, cùng sự kiện hợp tác với Chaos Zero Nightmare. Trang này nói về bản phát hành chính thức tại Việt Nam sắp tới, chưa phải về chính game.",
+      "Theo Gamota, VTC Mobile và Smilegate ký hợp tác để đưa Epic Seven về Việt Nam vào quý 4/2026, hỗ trợ cả PC lẫn di động, và người chơi Việt sẽ chơi chung máy chủ với bản toàn cầu. Thông báo được đưa ra tại GameVerse 2026, diễn ra 8 và 9/5/2026 ở Thành phố Hồ Chí Minh. Cùng dịp đó, Smilegate và VTC Online ký thỏa thuận hợp tác kinh doanh, trong đó Smilegate lo công nghệ nền tảng và vận hành, còn VTC Online lo cấp phép và phát triển kinh doanh tại địa phương.",
+      "Smilegate cũng thông báo Epic Seven lên Steam trong năm 2026, có hỗ trợ tay cầm và một máy chủ riêng cho người chơi mới khi bản chính thức ra mắt. Chưa có ngày cụ thể cho bản Việt Nam, và các nguồn OtaHub đọc cũng chưa nói rõ tài khoản, dữ liệu sẽ được xử lý ra sao với người đã chơi bản quốc tế.",
+      "Kết luận: Tin này hợp với người chơi Việt muốn chơi Epic Seven qua nhà phát hành trong nước, dễ nạp và hỗ trợ tiếng Việt hơn, nếu có. Đã xác nhận: đối tác VTC Mobile, mốc quý 4/2026, hỗ trợ PC và di động, chung máy chủ toàn cầu. Chưa xác nhận: ngày ra mắt cụ thể, ngôn ngữ, phương thức thanh toán và chuyển tài khoản. Ai đang chơi bản quốc tế chưa cần làm gì."
+    ],
+    "storyEn": [
+      "Epic Seven is a mobile turn-based strategy RPG developed by Super Creative, a Smilegate subsidiary. It is not a new game: the global version has run since around 2018 and just celebrated its 8th anniversary in August 2026 with the Paradise Lost story episode, new heroes Lisette and Uncharted Pioneer Politis, and a Chaos Zero Nightmare collaboration. This page is about its upcoming official launch in Vietnam, not about the game's debut.",
+      "According to Gamota, VTC Mobile and Smilegate signed a partnership to bring Epic Seven to Vietnam in Q4 2026, supporting both PC and mobile, with Vietnamese players sharing a server with the global version. It was announced at GameVerse 2026, held on 8 and 9 May 2026 in Ho Chi Minh City. At the same event, Smilegate and VTC Online signed a joint business agreement, with Smilegate providing platform technology and operations while VTC Online handles local licensing and business development.",
+      "Smilegate has also announced Epic Seven on Steam in 2026, with controller support and a dedicated server for new players when the official release arrives. There is no specific date for Vietnam, and the sources OtaHub read do not explain how accounts and data will be handled for players already on the global version.",
+      "Verdict: this suits Vietnamese players who want to play Epic Seven through a local publisher, with easier payment and possibly Vietnamese-language support. Confirmed: the VTC Mobile partnership, the Q4 2026 window, PC and mobile support and the shared global server. Not confirmed: the exact launch date, language, payment methods and account transfer. If you already play the global version, you do not need to do anything yet."
+    ],
+    "sources": [
+      {
+        "name": "Gamota – Epic Seven Vietnam launch with VTC Mobile",
+        "url": "https://gamota.com/en_GB/?p=3083%2F"
+      },
+      {
+        "name": "Inven Global – Smilegate STOVE at GameVerse 2026 in Vietnam",
+        "url": "https://www.invenglobal.com/articles/21771/smilegates-stove-participates-in-gameverse-2026-in-vietnam-accelerating-global-market-expansion"
+      },
+      {
+        "name": "Smilegate Newsroom – Epic Seven 8th anniversary and Steam launch",
+        "url": "https://newsroom.smilegate.com/eng/1787618476"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developer",
+        "value": "Super Creative (Smilegate)"
+      },
+      {
+        "label": "Nhà phát hành tại Việt Nam",
+        "labelEn": "Vietnam publisher",
+        "value": "VTC Mobile"
+      },
+      {
+        "label": "Nền tảng",
+        "labelEn": "Platforms",
+        "value": "iOS, Android, PC"
+      }
+    ],
+    "scoreSource": null
+  },
+  "VAMPIR": {
+    "type": "game",
+    "img": "/assets/img/placeholder.svg",
+    "score": null,
+    "genre": "Dark-fantasy MMORPG",
+    "studio": "Netmarble Neo / Netmarble",
+    "platforms": "iOS / Android / PC",
+    "release": "Chưa công bố ngày (bản toàn cầu)",
+    "status": "Sắp ra mắt",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "MMORPG ma cà rồng của Netmarble đã chạy ở Hàn, Đài Loan, Hồng Kông, Macau và Nhật, nay mở đăng ký trước bản toàn cầu từ 26/8/2026.",
+    "hookEn": "Netmarble's vampire MMORPG is live in Korea, Taiwan, Hong Kong, Macau and Japan, and opened global pre-registration on 26 August 2026.",
+    "story": [
+      "VAMPIR là MMORPG chủ đề ma cà rồng, chất kinh dị gothic và dark fantasy, do Netmarble Neo phát triển, Netmarble phát hành, hỗ trợ chơi chéo giữa di động và PC. Nhóm làm game gồm những người từng dẫn dắt Lineage 2: Revolution và Ni no Kuni: Cross Worlds. Câu chuyện xoay quanh xung đột, tham vọng và sinh tồn trong thế giới bị chi phối bởi máu và dục vọng. Trang này nói về bản toàn cầu sắp tới, không phải bản đã chạy ở châu Á.",
+      "Game ra mắt tại Hàn Quốc ngày 26/8/2025, sau đó đến Đài Loan, Hồng Kông, Macau vào tháng 3/2026 và Nhật Bản vào tháng 7/2026. Theo Inven Global, trong tháng đầu game thu khoảng 40 triệu USD và đạt 200.000 người chơi cùng lúc. Netmarble cho biết game đứng đầu bảng doanh thu Google Play và App Store tại Hàn, và là game mới 2025 giữ vị trí số 1 lâu nhất ở đó.",
+      "Đăng ký trước toàn cầu mở từ 26/8/2026 trên App Store, Google Play, Epic Games Store và trang chính thức. Quà gồm Heroic Mount Summon Ticket chỉ định, 100 triệu Gold, một bộ trang bị Rare đầy đủ và mảnh Immortal Portrait. Ai vào Discord chính thức còn nhận thêm rương Class Portrait Restoration Kit và vật phẩm hỗ trợ. Ngày ra mắt toàn cầu và danh sách khu vực cụ thể chưa được công bố.",
+      "Kết luận: Game hợp với người thích MMORPG kiểu Lineage 2: Revolution, chơi lâu, đua cấp và chơi chéo giữa điện thoại và PC. Đã xác nhận: đăng ký trước toàn cầu, quà, nền tảng, thành tích ở châu Á. Chưa xác nhận: ngày ra mắt toàn cầu, khu vực cụ thể và liệu mô hình thu phí có thay đổi so với bản Hàn. Doanh số tốt ở châu Á chưa bảo đảm bản quốc tế sẽ cân bằng giống vậy."
+    ],
+    "storyEn": [
+      "VAMPIR is a vampire-themed MMORPG with a gothic horror, dark-fantasy look, developed by Netmarble Neo and published by Netmarble, with full cross-play between mobile and PC. The team includes people who led Lineage 2: Revolution and Ni no Kuni: Cross Worlds. The story is about conflict, ambition and survival in a world ruled by blood and desire. This page covers the upcoming global version, not the one already running in Asia.",
+      "The game launched in South Korea on 26 August 2025, then reached Taiwan, Hong Kong and Macau in March 2026 and Japan in July 2026. According to Inven Global, it earned about 40 million USD and hit 200,000 concurrent players in its first month. Netmarble says it topped the Google Play and App Store grossing charts in Korea and became the longest-running No. 1 among new 2025 games there.",
+      "Global pre-registration opened on 26 August 2026 on the App Store, Google Play, the Epic Games Store and the official site. Rewards include a designated Heroic Mount Summon Ticket, 100 million Gold, a full set of Rare equipment and Immortal Portrait fragments. Joining the official Discord adds a Class Portrait Restoration Kit chest and growth items. The global launch date and the exact list of regions have not been announced.",
+      "Verdict: it suits players who like Lineage 2: Revolution style MMORPGs with long grinds, level races and cross-play between phone and PC. Confirmed: global pre-registration, the rewards, the platforms and the Asian track record. Not confirmed: the global launch date, specific regions and whether the pricing model will differ from the Korean version. Strong sales in Asia do not guarantee the international version will balance the same way."
+    ],
+    "sources": [
+      {
+        "name": "Inven Global – Vampir begins global pre-registration",
+        "url": "https://www.invenglobal.com/articles/25159/vampir-begins-global-pre-registration-today-26th-at-12-pm"
+      },
+      {
+        "name": "Mobile Matters – Netmarble opens global pre-registration for Vampir",
+        "url": "https://mobilematters.gg/news/gaming/netmarble-opens-global-pre-registration-for-vampire-themed-mmorpg-vampir"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developer",
+        "value": "Netmarble Neo"
+      },
+      {
+        "label": "Nhà phát hành",
+        "labelEn": "Publisher",
+        "value": "Netmarble"
+      },
+      {
+        "label": "Nền tảng",
+        "labelEn": "Platforms",
+        "value": "iOS, Android, PC (Epic Games Store)"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Hào Khí Đông A": {
+    "type": "game",
+    "img": "/assets/img/placeholder.svg",
+    "score": null,
+    "genre": "MMORPG / Open World",
+    "studio": "GihOt / GihOt",
+    "platforms": "iOS / Android",
+    "release": "Dự kiến 12/6/2027",
+    "status": "Sắp ra mắt",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "MMORPG 3D của GihOt lấy bối cảnh Đại Việt thời Trần, theo mô hình không pay-to-win, trình làng tại Vietnam GameVerse 2026.",
+    "hookEn": "A 3D MMORPG from GihOt set in Đại Việt during the Trần dynasty, built as a non-pay-to-win game and shown at Vietnam GameVerse 2026.",
+    "story": [
+      "Hào Khí Đông A là MMORPG 3D của studio GihOt (Công ty Cổ phần GihOt, thuộc hệ sinh thái GOSU), khai thác lịch sử và văn hóa Việt Nam, đặc biệt thời Trần với ba lần kháng chiến chống quân Mông Nguyên. Trang studio ghi game miễn phí trên Google Play và App Store, trạng thái “Coming Soon”. Game có mặt trong danh sách dự án văn hóa Việt tại Vietnam GameVerse 2026.",
+      "Theo trang GameHub của VnExpress, game có đồ họa 3D theo bảng màu truyền thống Việt, NPC tích hợp AI để người chơi trò chuyện trực tiếp, và tính năng “Hội nghị Diên Hồng” cho phép các bang hội bỏ phiếu về hướng đi của máy chủ. Nhà phát triển theo hướng “Slow Money”: chỉ bán gacha trang phục (tỷ lệ 0,1%) và Battle Pass, không bán sức mạnh. Trước đó, Silkroad Origin Mobile của GihOt đã giành giải Game Việt của năm tại Vietnam Game Awards 2025.",
+      "Ngày ra mắt hiện chỉ là mốc dự kiến 12/6/2027 trên GameHub, chưa phải thông báo phát hành chính thức. Lịch thử nghiệm chưa được công bố, và trang GameHub không ghi nền tảng cụ thể (trang studio nêu mobile).",
+      "Kết luận: đây là dự án MMORPG lịch sử Việt đáng theo dõi vì hướng kinh doanh không pay-to-win, điều hiếm trong thể loại. Bạn nên chờ đợt thử nghiệm đầu tiên để xem NPC AI và Hội nghị Diên Hồng chạy thật ra sao trước khi kỳ vọng nhiều."
+    ],
+    "storyEn": [
+      "Hào Khí Đông A is a 3D MMORPG from studio GihOt (GihOt JSC, part of the GOSU group) that draws on Vietnamese history and culture, especially the Trần dynasty and its three wars against the Mongol Yuan. The studio's page lists the game as free on Google Play and the App Store, with a “Coming Soon” status. It appears among the Vietnamese culture projects at Vietnam GameVerse 2026.",
+      "According to VnExpress's GameHub page, the game has 3D graphics in a traditional Vietnamese palette, AI-driven NPCs players can talk to directly, and a “Diên Hồng Conference” feature that lets guilds vote on the direction of their server. The team follows a “Slow Money” approach: only gacha for cosmetics (0.1% rate) and a Battle Pass, with no power for sale. GihOt's earlier Silkroad Origin Mobile won Vietnamese Game of the Year at Vietnam Game Awards 2025.",
+      "The release date is only an expected 12 June 2027 on GameHub, not an official launch announcement. No test schedule has been announced, and the GameHub page does not state a platform (the studio page says mobile).",
+      "Verdict: a Vietnamese-history MMORPG worth watching mainly for its non-pay-to-win plan, which is rare in the genre. Wait for the first test phase and see how the AI NPCs and the Diên Hồng Conference work in practice before expecting too much."
+    ],
+    "sources": [
+      {
+        "name": "Hào Khí Đông A – VnExpress GameHub",
+        "url": "https://vnexpress.net/the-thao/gameverse/gamehub/2026/hao-khi-dong-a-311"
+      },
+      {
+        "name": "GihOt Studio",
+        "url": "https://gihot.vn/home-en/"
+      },
+      {
+        "name": "Vietnam GameVerse 2026 có dự án game văn hóa Việt Nam nào? – AFKMobi",
+        "url": "https://afkmobi.com/vietnam-gameverse-2026-co-du-an-game-van-hoa-viet-nam-nao.html"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developer",
+        "value": "GihOt"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Nam Quốc Sơn Hà": {
+    "type": "game",
+    "img": "/assets/img/placeholder.svg",
+    "score": null,
+    "genre": "Roguelike Tower Defense / Idle",
+    "studio": "Imba Games / Imba Games",
+    "platforms": "Mobile",
+    "release": "Chưa công bố ngày",
+    "status": "Sắp ra mắt",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "Game thủ thành roguelike của Imba Games, người chơi làm tướng chỉ huy cùng Ngô Quyền, Lý Thường Kiệt, Trần Hưng Đạo, Lê Lợi, Quang Trung giữ bờ cõi.",
+    "hookEn": "A roguelike tower defense from Imba Games where you command Ngô Quyền, Lý Thường Kiệt, Trần Hưng Đạo, Lê Lợi and Quang Trung to defend the borders.",
+    "story": [
+      "Nam Quốc Sơn Hà là game di động của Imba Games, studio Việt thành lập năm 2015 tại TP.HCM, từng làm series Kawaii và Archer Hunter. Game được giới thiệu tại Vietnam GameVerse 2026. Người chơi vào vai tướng chỉ huy, sát cánh cùng các danh tướng như Ngô Quyền, Lý Thường Kiệt, Trần Hưng Đạo, Lê Lợi và Quang Trung để bảo vệ bờ cõi.",
+      "Theo GameHub của VnExpress, đây là game hybrid casual kết hợp thủ thành, idle và chọn thẻ bài kiểu roguelike. Nhà phát triển coi đề tài lịch sử Việt trên mobile là mảng còn ít đối thủ. Trang GameHub từng ghi mốc dự kiến 30/6/2026, nhưng OtaHub chưa tìm thấy thông báo phát hành nào sau mốc đó.",
+      "Ngày ra mắt chính thức và mô hình kiếm tiền chưa được công bố.",
+      "Kết luận: ý tưởng gọn và hợp mobile, nhưng thể loại thủ thành roguelike rất đông đối thủ. Điều đáng xem là cách game khai thác nhân vật lịch sử có tạo ra khác biệt thật về lối chơi, hay chỉ dừng ở lớp hình ảnh."
+    ],
+    "storyEn": [
+      "Nam Quốc Sơn Hà is a mobile game by Imba Games, a Vietnamese studio founded in 2015 in Ho Chi Minh City, known for the Kawaii series and Archer Hunter. It was presented at Vietnam GameVerse 2026. Players act as a commander alongside historical figures such as Ngô Quyền, Lý Thường Kiệt, Trần Hưng Đạo, Lê Lợi and Quang Trung to defend the country's borders.",
+      "According to VnExpress's GameHub, it is a hybrid casual game combining tower defense, idle play and roguelike card picks. The team sees Vietnamese history on mobile as a field with few competitors. GameHub once listed an expected date of 30 June 2026, but OtaHub found no launch announcement after that date.",
+      "An official release date and the monetization model have not been announced.",
+      "Verdict: a compact idea that suits mobile, but roguelike tower defense is a crowded genre. What to watch is whether the historical roster brings real differences in gameplay or stays a visual layer."
+    ],
+    "sources": [
+      {
+        "name": "Nam Quốc Sơn Hà – VnExpress GameHub",
+        "url": "https://vnexpress.net/the-thao/gameverse/gamehub/2026/nam-quoc-son-ha-296"
+      },
+      {
+        "name": "Vietnam GameVerse 2026 có dự án game văn hóa Việt Nam nào? – AFKMobi",
+        "url": "https://afkmobi.com/vietnam-gameverse-2026-co-du-an-game-van-hoa-viet-nam-nao.html"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developer",
+        "value": "Imba Games"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Xóm Nhỏ Tuổi Thơ": {
+    "type": "game",
+    "img": "/assets/img/placeholder.svg",
+    "score": null,
+    "genre": "Cozy Life Simulation / Village Building",
+    "studio": "Corochti / Corochti",
+    "platforms": "Mobile",
+    "release": "Chưa công bố ngày",
+    "status": "Sắp ra mắt",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "Game mô phỏng đời sống cozy của Corochti, nơi bạn xây dựng và nuôi dưỡng một xóm ven biển Việt Nam giai đoạn 1995-2010.",
+    "hookEn": "A cozy life simulation from Corochti where you build and nurture a Vietnamese coastal village, set between 1995 and 2010.",
+    "story": [
+      "Xóm Nhỏ Tuổi Thơ là game mô phỏng đời sống cozy của Corochti, studio Việt từng làm Trở Về Tuổi Thơ. Người chơi xây dựng và nuôi dưỡng một khu xóm ven biển Việt Nam, bối cảnh khoảng 1995-2010. Game có mặt trong Vietnam GameVerse 2026.",
+      "Theo GameHub của VnExpress, mỗi cư dân trong xóm có lịch sinh hoạt, tính cách riêng, và cộng đồng thay đổi theo thời gian. Trải nghiệm hướng đến cảm xúc thay vì tối ưu chỉ số, với phong cách đồ họa cách điệu. Trở Về Tuổi Thơ, game trước của studio, vào top 5 GameHub tại Vietnam GameVerse 2025. Trang GameHub từng ghi mốc dự kiến 1/6/2026, nhưng OtaHub chưa tìm thấy thông báo phát hành nào sau mốc đó.",
+      "Ngày ra mắt chính thức và mô hình kiếm tiền chưa được công bố.",
+      "Kết luận: nếu bạn thích Trở Về Tuổi Thơ hay các game xây làng thư giãn, đây là dự án đáng để mắt vì có đề tài xóm chài Việt hiếm thấy. Điều cần chờ là bản chơi thử: nhịp độ thư giãn và cách cư dân tương tác có đủ sâu để giữ chân người chơi lâu dài hay không."
+    ],
+    "storyEn": [
+      "Xóm Nhỏ Tuổi Thơ is a cozy life simulation from Corochti, the Vietnamese studio behind Return to Childhood (Trở Về Tuổi Thơ). Players build and nurture a Vietnamese coastal neighborhood, set roughly between 1995 and 2010. The game is part of Vietnam GameVerse 2026.",
+      "According to VnExpress's GameHub, each resident has their own schedule and personality, and the community changes over time. The experience aims at feeling rather than stat optimization, in a stylized art look. The studio's earlier game, Trở Về Tuổi Thơ, made the top 5 on GameHub at Vietnam GameVerse 2025. GameHub once listed an expected date of 1 June 2026, but OtaHub found no launch announcement after that date.",
+      "An official release date and the monetization model have not been announced.",
+      "Verdict: if you liked Trở Về Tuổi Thơ or enjoy relaxed village builders, it is worth watching for its rare Vietnamese coastal setting. What to wait for is a playable build: whether the relaxed pacing and resident interactions have enough depth to keep players for the long run."
+    ],
+    "sources": [
+      {
+        "name": "Xóm Nhỏ Tuổi Thơ – VnExpress GameHub",
+        "url": "https://vnexpress.net/the-thao/gameverse/gamehub/2026/xom-nho-tuoi-tho-306"
+      },
+      {
+        "name": "Vietnam GameVerse 2026 có dự án game văn hóa Việt Nam nào? – AFKMobi",
+        "url": "https://afkmobi.com/vietnam-gameverse-2026-co-du-an-game-van-hoa-viet-nam-nao.html"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developer",
+        "value": "Corochti"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Norse Saga": {
+    "type": "game",
+    "img": "/assets/img/game/norse-saga.jpg",
+    "score": null,
+    "genre": "MMORPG",
+    "studio": "Ujoy Games / PlayPark (Southeast Asia)",
+    "platforms": "iOS / Android",
+    "release": "Cuối 2026",
+    "status": "Sắp ra mắt",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "MMORPG di động lấy cảm hứng thần thoại Bắc Âu của Ujoy Games, PlayPark phát hành tại Đông Nam Á, đã qua hai đợt closed beta.",
+    "hookEn": "A Norse-mythology mobile MMORPG from Ujoy Games, published in Southeast Asia by PlayPark and already through two closed betas.",
+    "story": [
+      "Norse Saga là MMORPG high fantasy lấy cảm hứng từ thần thoại Bắc Âu do Ujoy Games phát triển. PlayPark, nền tảng phát hành của Asphere Innovations, mang game đến sáu thị trường Đông Nam Á gồm Indonesia, Malaysia, Singapore, Thái Lan, Việt Nam và Philippines, dự kiến vào cuối 2026. Đây là lần đầu game phát hành tại khu vực.",
+      "Game có hệ thống hai lớp nhân vật (chính và phụ, đổi tự do khi chiến đấu), đồng đội Star Spirit để sưu tầm và nuôi, hệ thống homestead xây nhà kiểu mô phỏng đời sống, cùng PvP liên máy chủ, đấu trường xếp hạng và boss thế giới. Closed beta đầu chạy 24-28/6/2026 trên Android, iOS qua TestFlight và giả lập PC. Đợt CBT2 chạy 4-11/8/2026, với nhịp nội dung được cân lại và đồ họa nâng cấp.",
+      "Ngày phát hành chính thức và mô hình kiếm tiền cụ thể chưa được công bố. Tuy vậy, cả hai đợt beta đều có sự kiện hoàn tiền nạp, nên khả năng cao bản chính thức có yếu tố nạp thẻ.",
+      "Kết luận: Norse Saga hợp với người thích MMORPG mobile kèm sưu tầm đồng đội. Hãy chờ ngày ra mắt và cách game xử lý chuyện nạp thẻ trước khi lao vào, vì hai đợt beta đã cho thấy game có chương trình nạp."
+    ],
+    "storyEn": [
+      "Norse Saga is a high-fantasy MMORPG inspired by Norse mythology, developed by Ujoy Games. PlayPark, the publishing platform of Asphere Innovations, is bringing it to six Southeast Asian markets: Indonesia, Malaysia, Singapore, Thailand, Vietnam and the Philippines, expected in late 2026. It is the game's first release in the region.",
+      "The game has a dual-class system (a main class and a subclass, switchable during combat), collectible and trainable Star Spirit companions, a homestead system for base building and life-sim play, plus cross-server PvP, a ranked arena and world bosses. The first closed beta ran 24-28 June 2026 on Android, iOS through TestFlight and PC emulators. CBT2 ran 4-11 August 2026, with rebalanced content pacing and upgraded graphics.",
+      "An official release date and the exact monetization model have not been announced. Still, both betas included top-up rebate events, so paid elements are likely in the final game.",
+      "Verdict: Norse Saga suits fans of mobile MMORPGs with companion collecting. Wait for the launch date and see how the game handles spending before diving in, since both betas ran top-up programs."
+    ],
+    "sources": [
+      {
+        "name": "PlayPark Partners with Ujoy Games to Bring “Norse Saga” to Southeast Asia in 2026 – Asphere",
+        "url": "https://asphere.co/en/norse-saga/"
+      },
+      {
+        "name": "Norse Saga launches five-day closed beta test – Tribune",
+        "url": "https://tribune.net.ph/2026/06/25/norse-saga-launches-five-day-closed-beta-test"
+      },
+      {
+        "name": "Norse Saga Closed Beta Test 2 – Pokde",
+        "url": "https://pokde.net/gaming/mobile/norse-saga-closed-beta-test-2"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Nhà phát triển",
+        "labelEn": "Developer",
+        "value": "Ujoy Games"
+      },
+      {
+        "label": "Nhà phát hành (Đông Nam Á)",
+        "labelEn": "Publisher (Southeast Asia)",
+        "value": "PlayPark"
+      }
+    ],
+    "scoreSource": null
+  },
+  "Mouse Cursor de Genjitsu wo Sousa Dekiru You ni Natta node, Onnanoko wo Ippai Click Shimasu": {
+    "type": "anime",
+    "img": "/assets/img/sch/mouse-cursor.jpg",
+    "score": null,
+    "genre": "Ecchi / Romance / Supernatural",
+    "studio": "Studio Houkiboshi",
+    "platforms": "TV / Streaming",
+    "release": "04/10/2026",
+    "status": "Sắp phát sóng",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "Studio Houkiboshi chuyển thể manga của Okumaro thành anime ngắn hài romcom dành cho người lớn, lên sóng TV từ 4/10/2026.",
+    "hookEn": "Studio Houkiboshi adapts Okumaro's manga into a short, adult-oriented romcom, airing on TV from 4/10/2026.",
+    "story": [
+      "Mouse Cursor de Genjitsu wo Sousa Dekiru You ni Natta node, Onnanoko wo Ippai Click Shimasu, tên tiếng Anh Now That I Can Control Reality With A Mouse Cursor, I'm Gonna Click Away On The Girls!, là anime ngắn chuyển thể từ manga của Okumaro, do Studio Houkiboshi sản xuất. Bộ này thuộc dạng hài ecchi dành cho người lớn. Tập 1 được chiếu sớm trên AnimeFesta từ 11/9/2026, còn chuỗi phát sóng chính thức bắt đầu từ 4/10/2026 (giờ Việt Nam).",
+      "Takumi là một otaku, một hôm trong giờ tin học cậu thấy con trỏ chuột chui ra khỏi màn hình. Cậu nhận ra chỉ mình mình thấy và điều khiển được nó, rồi dùng nó trêu cô bạn thuở nhỏ Mone, một cô gái hay coi thường dân otaku. Makoto Sokuza đạo diễn, Eeyo Kurosaki phụ trách cấu trúc kịch bản. Số tập chưa được công bố.",
+      "Kết luận: Chỉ dành cho khán giả trưởng thành thích kiểu hài ecchi với ý tưởng lạ. Ý tưởng chủ đạo xoay quanh việc chạm vào người khác mà họ không hay biết, nên không phải ai cũng thấy thoải mái. Vì là bộ mới hoàn toàn, bạn xem ngay từ tập 1 được, mỗi tập chỉ ngắn."
+    ],
+    "storyEn": [
+      "Mouse Cursor de Genjitsu wo Sousa Dekiru You ni Natta node, Onnanoko wo Ippai Click Shimasu, titled Now That I Can Control Reality With A Mouse Cursor, I'm Gonna Click Away On The Girls! in English, is a short anime adapted from Okumaro's manga and produced by Studio Houkiboshi. It is an adult-oriented ecchi comedy. Episode 1 got an early release on AnimeFesta on 11/9/2026, while the regular broadcast run starts on 4/10/2026 (Vietnam time).",
+      "Takumi is an otaku who notices his mouse cursor has sprung out of the screen during a class. He realizes only he can see and control it, and he uses it to tease his childhood friend Mone, a girl who looks down on otaku. Makoto Sokuza directs and Eeyo Kurosaki handles series composition. The episode count has not been announced.",
+      "Verdict: It is strictly for adult viewers who enjoy ecchi comedy built on an odd gimmick. The central premise is touching people without their knowledge, so it will not suit everyone. As a brand-new series, you can start from episode 1, and episodes are short."
+    ],
+    "sources": [
+      {
+        "name": "AniList: Mouse Cursor de Genjitsu wo Sousa Dekiru You ni Natta node...",
+        "url": "https://anilist.co/anime/206774"
+      },
+      {
+        "name": "Anime News Network: Now That I Can Control Reality With a Mouse Cursor",
+        "url": "https://www.animenewsnetwork.com/news/2026-08-28/oceanveil-reveals-september-11-simulcast-debut-of-now-that-i-can-control-reality-with-a-mouse-/.241034"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Studio",
+        "labelEn": "Studio",
+        "value": "Studio Houkiboshi"
+      },
+      {
+        "label": "Đạo diễn",
+        "labelEn": "Director",
+        "value": "Makoto Sokuza"
+      },
+      {
+        "label": "Nguyên tác",
+        "labelEn": "Original creator",
+        "value": "Okumaro"
+      }
+    ],
+    "scoreSource": null,
+    "startDate": "2026-10-04",
+    "statusLive": "Đang phát sóng",
+    "statusLiveEn": "Airing",
+    "meta": {
+      "ja": "マウスカーソルで現実を操作できるようになったので、女の子をいっぱいクリックしまーす",
+      "romaji": "Mouse Cursor de Genjitsu wo Sousa Dekiru You ni Natta node, Onnanoko wo Ippai Click Shimasu",
+      "en": "Now That I Can Control Reality With A Mouse Cursor, I'm Gonna Click Away On The Girls!",
+      "format": "TV_SHORT",
+      "season": "FALL",
+      "year": 2026,
+      "source": "MANGA",
+      "staff": [
+        {
+          "role": "Original Creator",
+          "name": "Okumaro"
+        },
+        {
+          "role": "Director",
+          "name": "Makoto Sokuza"
+        },
+        {
+          "role": "Series Composition",
+          "name": "Eeyo Kurosaki"
+        }
+      ]
+    }
+  },
+  "Punirunes Puni 4": {
+    "type": "anime",
+    "img": "/assets/img/sch/punirunes-puni-4.jpg",
+    "score": null,
+    "genre": "Slice of Life / Kids",
+    "studio": "OLM",
+    "platforms": "TV / Streaming",
+    "release": "04/10/2026",
+    "status": "Sắp phát sóng",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "OLM làm mùa 4 của Punirunes, anime CGI ngắn từ dòng đồ chơi Takara Tomy, phát trên TV Tokyo từ 4/10/2026.",
+    "hookEn": "OLM produces season 4 of Punirunes, a short CGI anime from Takara Tomy's toy line, airing on TV Tokyo from 4/10/2026.",
+    "story": [
+      "Punirunes Puni 4 là mùa thứ tư của anime ngắn Punirunes, dựa trên dòng đồ chơi Punirunes của Takara Tomy, do OLM sản xuất theo hướng CGI. Theo Anime News Network, mùa mới lên sóng TV Tokyo và các đài liên kết lúc 9:15 sáng ngày 4/10/2026 (giờ Nhật), tức khoảng 7:16 sáng cùng ngày theo giờ Việt Nam. Spin Master chiếu bản phụ đề tiếng Anh trên YouTube cho khu vực Bắc Mỹ.",
+      "Loạt phim kể về những sinh vật mềm mịn tên Punirunes và Yuka, cô bé lớp bốn thích đồ vật mềm mại. Bối cảnh mới của mùa này là “Puni School”, cùng hai nhân vật mới Sanrun và Tsukurun do cặp hài Ganbareruya lồng tiếng. Kentaro Yamaguchi đạo diễn, Gigaemon Ichikawa phụ trách cấu trúc kịch bản, Sayuri Ichiishi thiết kế nhân vật. Số tập chưa được công bố.",
+      "Kết luận: Hợp với trẻ nhỏ và phụ huynh muốn một bộ hoạt hình nhẹ nhàng, hình ảnh dễ thương. Người xem lớn hơn nên tìm bộ khác. Đây là mùa 4 nhưng nội dung độc lập theo từng tập ngắn, nên bạn vào xem từ mùa này cũng không bị lạc."
+    ],
+    "storyEn": [
+      "Punirunes Puni 4 is the fourth season of the Punirunes short anime, based on Takara Tomy's Punirunes toy line and produced by OLM in CGI. According to Anime News Network, the new season airs on TV Tokyo and affiliates at 9:15 a.m. on 4/10/2026 (Japan time), roughly 7:16 a.m. the same day in Vietnam. Spin Master streams an English-subtitled version on YouTube for North America.",
+      "The series follows squishy creatures called Punirunes and Yuka, a fourth-grade girl who loves soft things. This season moves to a new setting, \"Puni School\", with new characters Sanrun and Tsukurun voiced by the comedy duo Ganbareruya. Kentaro Yamaguchi directs, Gigaemon Ichikawa handles series composition and Sayuri Ichiishi designs the characters. The episode count has not been announced.",
+      "Verdict: It suits young children and parents who want gentle, cute animation. Older viewers should look elsewhere. It is season 4 but the content works as short standalone episodes, so you will not be lost jumping in here."
+    ],
+    "sources": [
+      {
+        "name": "AniList: Punirunes Puni 4",
+        "url": "https://anilist.co/anime/216860"
+      },
+      {
+        "name": "Anime News Network: PuniRunes anime 4th season reveals new characters",
+        "url": "https://www.animenewsnetwork.com/news/2026-08-29/punirunes-anime-4th-season-reveals-new-characters-in-promo-video/.241103"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Studio",
+        "labelEn": "Studio",
+        "value": "OLM"
+      },
+      {
+        "label": "Đạo diễn",
+        "labelEn": "Director",
+        "value": "Kentaro Yamaguchi"
+      },
+      {
+        "label": "Nguyên tác",
+        "labelEn": "Original creator",
+        "value": "Takara Tomy"
+      }
+    ],
+    "scoreSource": null,
+    "startDate": "2026-10-04",
+    "statusLive": "Đang phát sóng",
+    "statusLiveEn": "Airing",
+    "meta": {
+      "ja": "ぷにるんず ぷに４",
+      "romaji": "Punirunes Puni 4",
+      "format": "TV_SHORT",
+      "season": "FALL",
+      "year": 2026,
+      "source": "OTHER",
+      "staff": [
+        {
+          "role": "Original Creator",
+          "name": "Takara Tomy"
+        },
+        {
+          "role": "Director",
+          "name": "Kentaro Yamaguchi"
+        },
+        {
+          "role": "Series Composition",
+          "name": "Gigaemon Ichikawa"
+        },
+        {
+          "role": "Character Design",
+          "name": "Sayuri Ichiishi"
+        }
+      ]
+    }
+  },
+  "GelPiyo 2": {
+    "type": "anime",
+    "img": "/assets/img/sch/gelpiyo-2.jpg",
+    "score": null,
+    "genre": "Comedy",
+    "studio": "Chưa công bố",
+    "platforms": "TV / Streaming",
+    "release": "21/10/2026",
+    "status": "Sắp phát sóng",
+    "statusEn": "Upcoming",
+    "generated": false,
+    "hook": "GelPiyo 2 là mùa 2 của anime ngắn về linh vật Gelpiyo của hãng Taica, dự kiến lên sóng từ 21/10/2026.",
+    "hookEn": "GelPiyo 2 is season 2 of the short anime about Taica's mascot Gelpiyo, set to begin on 21/10/2026.",
+    "story": [
+      "GelPiyo 2 là mùa thứ hai của anime ngắn GelPiyo, dựa trên linh vật Gelpiyo của hãng Taica, công ty nổi tiếng với vật liệu giảm chấn Alpha Gel. Mùa 2 dự kiến lên sóng ngày 21/10/2026 (giờ Việt Nam), mỗi tập khoảng 5 phút theo AniList. AniList chưa liệt kê studio cho mùa này; mùa 1 do ODDJOB và Sugarless Factory thực hiện.",
+      "Trong truyện, Gelpiyo và những nhân vật cùng loại có đặc tính “Alpha Gel” giúp bật dậy sau mọi cú ngã. Họ được tập đoàn Alpha Industry cử đến thị trấn Geltown bí ẩn để phục vụ âm mưu thống trị thế giới của công ty, nhưng cứ liên tục dính vào các chuyện trong thị trấn. Mùa 1 phát từ 21/1/2026 gồm 10 tập, do Kazuma Taketani đạo diễn. Ca khúc mở đầu mùa 2 do SILENT SIREN thể hiện.",
+      "Kết luận: Hợp với người thích hài ngắn, nhân vật dễ thương, xem trong vài phút giữa các bộ dài. Bạn không cần xem mùa 1 mới hiểu được, nhưng xem trước sẽ quen các nhân vật hơn. Thông tin nhân sự mùa 2 chưa được công bố đầy đủ."
+    ],
+    "storyEn": [
+      "GelPiyo 2 is the second season of the short anime GelPiyo, based on the mascot Gelpiyo of Taica, a company known for its Alpha Gel shock-absorbing material. Season 2 is set to begin on 21/10/2026 (Vietnam time), with episodes of about 5 minutes according to AniList. AniList lists no studio for this season yet; season 1 was made by ODDJOB and Sugarless Factory.",
+      "In the story, Gelpiyo and similar characters carry the \"Alpha Gel\" trait that lets them bounce back from any setback. Alpha Industry sends them to the mysterious Geltown to further the company's world domination plan, but they keep getting pulled into local events. Season 1 aired from 21/1/2026 with 10 episodes, directed by Kazuma Taketani. The season 2 opening theme is performed by SILENT SIREN.",
+      "Verdict: It suits viewers who like short comedy with cute characters, easy to fit in between longer shows. You do not need season 1 to follow it, though watching first helps you know the cast. Full season 2 staff has not been announced."
+    ],
+    "sources": [
+      {
+        "name": "AniList: GelPiyo 2",
+        "url": "https://anilist.co/anime/217282"
+      },
+      {
+        "name": "Anime News Network: GelPiyo anime announcement (season 1)",
+        "url": "https://www.animenewsnetwork.com/.232475"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Studio",
+        "labelEn": "Studio",
+        "value": "Chưa công bố"
+      }
+    ],
+    "scoreSource": null,
+    "startDate": "2026-10-21",
+    "statusLive": "Đang phát sóng",
+    "statusLiveEn": "Airing",
+    "meta": {
+      "ja": "ゲルぴよ 2",
+      "romaji": "GelPiyo 2",
+      "format": "TV_SHORT",
+      "season": "FALL",
+      "year": 2026,
+      "source": "OTHER",
+      "staff": [
+        {
+          "role": "Theme Song Performance (OP)",
+          "name": "SILENT SIREN"
+        }
+      ]
+    }
+  },
+  "Mazenchu": {
+    "type": "anime",
+    "img": "/assets/img/sch/mazenchu.jpg",
+    "score": null,
+    "genre": "Slice of Life",
+    "studio": "Studio Nanahoshi",
+    "platforms": "TV / Streaming",
+    "release": "02/10/2026",
+    "status": "Đang phát sóng",
+    "statusEn": "Airing",
+    "generated": false,
+    "hook": "Studio Nanahoshi làm Mazenchu, anime ngắn về ngôi trường nơi các món ăn sống tuổi thanh xuân, phát từ 2/10/2026.",
+    "hookEn": "Studio Nanahoshi's Mazenchu is a short anime about a school where foods live out their youth, airing from 2/10/2026.",
+    "story": [
+      "Mazenchu là anime ngắn của Studio Nanahoshi, dựa trên tác phẩm của Ebi theo ghi nhận của AniList. Bộ phim đã lên sóng từ 2/10/2026 (giờ Việt Nam). Các trang theo dõi lịch chiếu ghi ngày phát khác nhau: AniList ghi 2/10, còn MyAnimePulse ghi 7/10, nên OtaHub lấy theo AniList và sẽ cập nhật nếu có xác nhận chính thức.",
+      "Câu chuyện xảy ra ở một ngôi trường nơi đủ loại món ăn được sống tuổi trẻ, kết bạn, đối đầu và có cả những mối tình dang dở. Yuusuke Takase vừa đạo diễn vừa viết kịch bản, Sayo Kawase là nhà sản xuất điều hành. Số tập và thời lượng chưa được công bố.",
+      "Kết luận: Hợp với người thích hài học đường theo kiểu nhân hóa đồ ăn, xem nhanh cho vui. Vì là bộ mới, bạn vào xem từ tập 1 được. Nếu chưa biết tác phẩm của Ebi thì cũng không ảnh hưởng gì."
+    ],
+    "storyEn": [
+      "Mazenchu is a short anime from Studio Nanahoshi, credited on AniList to Ebi as original creator. It began airing on 2/10/2026 (Vietnam time). Schedule trackers disagree on the date: AniList says 2/10 while MyAnimePulse says 7/10, so OtaHub follows AniList and will update if an official confirmation appears.",
+      "The story is set in a school where all kinds of food live out their youth, forming friendships, rivalries and bittersweet romances. Yuusuke Takase both directs and writes the scripts, and Sayo Kawase is executive producer. The episode count and running time have not been announced.",
+      "Verdict: It suits viewers who like school comedies with anthropomorphic food, in quick bites. As a new series, you can start from episode 1. Not knowing Ebi's work will not hold you back."
+    ],
+    "sources": [
+      {
+        "name": "AniList: Mazenchu",
+        "url": "https://anilist.co/anime/217577"
+      },
+      {
+        "name": "MyAnimePulse: Mazenchu",
+        "url": "https://myanimepulse.com/anime/65007/mazenchu"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Studio",
+        "labelEn": "Studio",
+        "value": "Studio Nanahoshi"
+      },
+      {
+        "label": "Đạo diễn",
+        "labelEn": "Director",
+        "value": "Yuusuke Takase"
+      },
+      {
+        "label": "Nguyên tác",
+        "labelEn": "Original creator",
+        "value": "Ebi"
+      }
+    ],
+    "scoreSource": null,
+    "startDate": "2026-10-02",
+    "meta": {
+      "ja": "マゼンチュ",
+      "romaji": "Mazenchu",
+      "format": "TV_SHORT",
+      "season": "FALL",
+      "year": 2026,
+      "source": "OTHER",
+      "staff": [
+        {
+          "role": "Original Creator",
+          "name": "Ebi"
+        },
+        {
+          "role": "Director",
+          "name": "Yuusuke Takase"
+        },
+        {
+          "role": "Script",
+          "name": "Yuusuke Takase"
+        }
+      ]
+    }
+  },
+  "PetitCure: Precure Fairies Season 4": {
+    "type": "anime",
+    "img": "/assets/img/sch/petitcure-precure-fairies-s4.jpg",
+    "score": null,
+    "genre": "Fantasy / Slice of Life",
+    "studio": "IKIF+",
+    "platforms": "TV / Streaming",
+    "release": "01/10/2026",
+    "status": "Đang phát sóng",
+    "statusEn": "Airing",
+    "generated": false,
+    "hook": "IKIF+ ra mùa 4 của PetitCure: Precure Fairies, loạt ONA siêu ngắn về các linh vật Precure, từ 1/10/2026.",
+    "hookEn": "IKIF+ releases season 4 of PetitCure: Precure Fairies, the ultra-short ONA about the Precure mascots, from 1/10/2026.",
+    "story": [
+      "PetitCure: Precure Fairies Season 4 là mùa thứ tư của loạt ONA siêu ngắn ngoại truyện Precure do IKIF+ sản xuất, mỗi tập khoảng 1 phút theo AniList. Mùa 4 bắt đầu từ 1/10/2026 (giờ Việt Nam). Các mùa trước được đăng trên kênh YouTube chính thức của PetitCure; OtaHub chưa xác nhận nền tảng cụ thể của mùa 4.",
+      "Loạt phim cho các linh vật đồng hành của Precure làm nhân vật chính: khi các Precure ngủ, họ hóa thành PetitCure tí hon và vui chơi trong những khu vui chơi kỳ lạ. Phim gần như không có thoại, nhân vật giao tiếp bằng biểu cảm và âm thanh. Yuuko Okumura đạo diễn, Momoka Toyoda phụ trách cấu trúc kịch bản, Izumi Toudou là tác giả cốt truyện gốc. Số tập mùa 4 chưa được công bố.",
+      "Kết luận: Hợp với fan Precure, trẻ nhỏ và ai cần vài chục giây thư giãn. Vì phim gần như không thoại, bạn không cần phụ đề. Người chưa xem Precure vẫn xem được, nhưng sẽ không nhận ra các nhân vật khách mời."
+    ],
+    "storyEn": [
+      "PetitCure: Precure Fairies Season 4 is the fourth season of the ultra-short Precure spinoff ONA produced by IKIF+, with episodes of about 1 minute according to AniList. Season 4 began on 1/10/2026 (Vietnam time). Earlier seasons were posted on the official PetitCure YouTube channel; OtaHub has not confirmed the exact platform for season 4.",
+      "The series puts the Precure partner mascots in the lead: while the Precures sleep, they turn into tiny PetitCure and play in strange amusement-park-style worlds. There is almost no dialogue, and the characters communicate through expressions and sounds. Yuuko Okumura directs, Momoka Toyoda handles series composition and Izumi Toudou is credited with the original story. The season 4 episode count has not been announced.",
+      "Verdict: It suits Precure fans, young children and anyone who wants a minute of calm. With almost no dialogue, you do not need subtitles. Newcomers to Precure can watch, but will not recognize the guest characters."
+    ],
+    "sources": [
+      {
+        "name": "AniList: PetitCure: Precure Fairies Season 4",
+        "url": "https://anilist.co/anime/217624"
+      },
+      {
+        "name": "Anime News Network: PetitCure Precure Fairies",
+        "url": "https://www.animenewsnetwork.com/cms/.235486"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Studio",
+        "labelEn": "Studio",
+        "value": "IKIF+"
+      },
+      {
+        "label": "Đạo diễn",
+        "labelEn": "Director",
+        "value": "Yuuko Okumura"
+      },
+      {
+        "label": "Nguyên tác",
+        "labelEn": "Original story",
+        "value": "Izumi Toudou"
+      }
+    ],
+    "scoreSource": null,
+    "startDate": "2026-10-01",
+    "meta": {
+      "ja": "ぷちきゅあ～Precure Fairies～ シーズン4",
+      "romaji": "PetitCure: Precure Fairies Season 4",
+      "format": "ONA",
+      "season": "FALL",
+      "year": 2026,
+      "source": "ORIGINAL",
+      "staff": [
+        {
+          "role": "Original Story",
+          "name": "Izumi Toudou"
+        },
+        {
+          "role": "Director",
+          "name": "Yuuko Okumura"
+        },
+        {
+          "role": "Series Composition",
+          "name": "Momoka Toyoda"
+        }
+      ]
+    }
+  },
+  "Delivery Kitten Unyan": {
+    "type": "anime",
+    "img": "/assets/img/sch/koneko-no-haitatsuin-uunyan.jpg",
+    "score": null,
+    "genre": "Slice of Life",
+    "studio": "Studio Nanahoshi",
+    "platforms": "TV / Streaming",
+    "release": "27/09/2026",
+    "status": "Đang phát sóng",
+    "statusEn": "Airing",
+    "generated": false,
+    "hook": "Studio Nanahoshi ra Delivery Kitten Unyan, ONA 3 tập kể về chú mèo con đi giao hàng ngày đầu, từ 27/9/2026.",
+    "hookEn": "Studio Nanahoshi's Delivery Kitten Unyan is a 3-episode ONA about a kitten's first day as a courier, from 27/9/2026.",
+    "story": [
+      "Delivery Kitten Unyan, tên gốc Koneko no Haitatsuin Uunyan, là ONA gồm 3 tập, mỗi tập khoảng 3 phút, do Studio Nanahoshi sản xuất. Loạt phim bắt đầu ngày 27/9/2026 và dựa trên nhân vật gốc của studio. Trước đó studio đã làm một tập đơn dài 7 phút phát ngày 13/8/2022.",
+      "Hôm nay là ngày chú mèo con Unyan bắt đầu làm người giao hàng. Cậu mặc đồ, ăn sáng, xếp túi, và gặp rất nhiều điều lần đầu trên đường đi. Koudai Satou đạo diễn kiêm sản xuất, Tomomi Kikawada thiết kế nhân vật, Masami Tanji lo âm thanh và nhạc. Studio có đăng bản xem trên YouTube.",
+      "Kết luận: Hợp với trẻ nhỏ và người thích phim ngắn ấm áp, chỉ mất chừng chục phút xem hết. Bạn không cần xem tập 2022 trước. Đây là phim nhẹ nhàng, không có kịch tính lớn."
+    ],
+    "storyEn": [
+      "Delivery Kitten Unyan, originally Koneko no Haitatsuin Uunyan, is a 3-episode ONA with episodes of about 3 minutes, produced by Studio Nanahoshi. It began on 27/9/2026 and is based on the studio's own original character. The studio previously made a 7-minute one-off episode released on 13/8/2022.",
+      "Today is the day Unyan the kitten becomes a delivery courier. He gets dressed, eats breakfast, packs his bag, and meets plenty of firsts along the way. Koudai Satou directs and produces, Tomomi Kikawada designs the characters and Masami Tanji handles sound and music. The studio has posted a viewing on YouTube.",
+      "Verdict: It suits young children and anyone who likes warm short films, since the whole thing takes only around ten minutes. You do not need to watch the 2022 episode first. It is gentle and low on drama."
+    ],
+    "sources": [
+      {
+        "name": "AniList: Koneko no Haitatsuin Uunyan",
+        "url": "https://anilist.co/anime/207217"
+      },
+      {
+        "name": "MyAnimePulse: Delivery Kitten Unyan (2022 episode)",
+        "url": "https://myanimepulse.com/anime/54330/delivery-kitten-unyan"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Studio",
+        "labelEn": "Studio",
+        "value": "Studio Nanahoshi"
+      },
+      {
+        "label": "Đạo diễn",
+        "labelEn": "Director",
+        "value": "Koudai Satou"
+      }
+    ],
+    "scoreSource": null,
+    "startDate": "2026-09-27",
+    "meta": {
+      "ja": "子猫の配達員うーにゃん",
+      "romaji": "Koneko no Haitatsuin Uunyan",
+      "en": "Delivery Kitten Unyan",
+      "format": "ONA",
+      "season": "FALL",
+      "year": 2026,
+      "source": "ORIGINAL",
+      "staff": [
+        {
+          "role": "Director",
+          "name": "Koudai Satou"
+        },
+        {
+          "role": "Producer",
+          "name": "Koudai Satou"
+        },
+        {
+          "role": "Character Design",
+          "name": "Tomomi Kikawada"
+        }
+      ]
+    }
   }
 }

@@ -43,7 +43,7 @@ var segOf = function(a){ return (a.p === 'pc' ? 'PC/Console' : 'Mobile') + ' · 
 var fmt = function(iso){ if (!iso) return ''; var p = iso.split('-'); return EN ? T.months[+p[1] - 1].slice(0, 3) + ' ' + (+p[2]) : (+p[2]) + '/' + (+p[1]); };
 
 function row(a){
-  var diff = a.d ? dayNum(a.d) - dayNum(todayKey) : null, href = (EN ? a.le : a.l) || '';
+  var diff = a.d ? dayNum(a.d) - dayNum(todayKey) : null, prof = (EN ? a.hse : a.hs) || '', href = (EN ? a.le : a.l) || prof;
   var name = (!EN && a.tv) || a.t;
   var title = href ? '<a href="' + esc(href) + '">' + esc(name) + '</a>' : esc(name);
   var img = a.i ? '<img class="sch-thumb gs-thumb" src="' + esc(thumb(a.i)) + '" alt="" loading="lazy" decoding="async" width="96" height="60" onerror="this.onerror=null;this.src=\'' + esc(a.i) + '\'">'
@@ -52,7 +52,7 @@ function row(a){
   var meta = [a.s, a.pf, a.k === 'update' ? T.upd : ''].filter(Boolean).map(esc).join(' · ');
   return '<li class="sch-row gs-row' + (href ? ' has-link' : '') + '"><span class="sch-time' + (a.d ? '' : ' tba') + '">' + esc(a.d ? fmt(a.d) : wOf(a)) + '</span>' + img +
     '<div class="sch-info"><div class="sch-title">' + title + '</div><div class="sch-meta" data-time="' + esc(a.d ? fmt(a.d) : wOf(a)) + '">' + meta + '</div></div>' +
-    '<div class="sch-tags">' + st + '<span class="gs-seg">' + esc(segOf(a)) + (a.vn ? ' · ' + (EN ? 'Vietnamese' : 'Game Việt') : '') + '</span></div></li>';
+    '<div class="sch-tags">' + st + '<span class="gs-seg">' + esc(segOf(a)) + (a.vn ? ' · ' + (EN ? 'Vietnamese' : 'Game Việt') : '') + '</span>' + (prof ? '<a class="sch-prof" href="' + esc(prof) + '">' + (EN ? 'Profile' : 'Hồ sơ') + '</a>' : '') + '</div></li>';
 }
 function render(){
   var seg = SEG.filter(function(s){ return s[0] === state.seg; })[0];
