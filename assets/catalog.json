@@ -29773,5 +29773,54 @@
       }
     ],
     "scoreSource": null
+  },
+  "Tax Shield": {
+    "type": "game",
+    "img": "/assets/img/tax-shield-game-thue-hero-v3.jpg",
+    "score": null,
+    "genre": "Simulation / Educational / Strategy",
+    "studio": "@youngader6868 (Threads) / Tự phát hành",
+    "platforms": "Web browser (PC / Mobile)",
+    "release": "2026",
+    "status": "Đã phát hành",
+    "statusEn": "Released",
+    "generated": false,
+    "hook": "Game web miễn phí mô phỏng khai thuế và đối đầu thanh tra theo luật thuế 2026, do một người dùng Threads tự làm và chơi được ngay trên điện thoại.",
+    "hookEn": "A free browser game by a Threads user that simulates tax filing and facing a tax inspector under the 2026 tax rules, playable on a phone.",
+    "story": [
+      "Tax Shield, tên đầy đủ là Tax Shield – Phiêu lưu săn quái thuế 2026, là một game chạy thẳng trên trình duyệt do người dùng Threads @youngader6868 phát triển và mở miễn phí cho cộng đồng. Không cần cài đặt, chỉ cần nhập một tên hiển thị là vào chơi, và giao diện đã được dựng lại để dùng thoải mái trên điện thoại. Tác giả mô tả đây là game khá nặng kiến thức, hợp nhất với người đi làm và sinh viên ngành kế toán, kiểm toán, tài chính.",
+      "Bạn vào vai kế toán mới của công ty TNHH Juventus, đúng lúc công ty nhận thư báo thanh tra. Sếp Long giao việc mỗi sáng, linh vật hình chiếc khiên tên Khiên Khiên đi cùng nhắc bài, còn đối thủ là Thanh tra Bóng Thuế. Game chia thành 5 chương tương ứng 5 cấp bậc, từ thực tập sinh bỡ ngỡ cho đến giám đốc thuế phải bảo vệ công ty trước thanh tra, xen kẽ là những công việc thường nhật như chốt sổ, đối chiếu công nợ hay soát hóa đơn điện tử.",
+      "Nội dung gồm 16 chế độ chơi và 5 mức độ khó, trải trên bản đồ 12 vùng có huy hiệu và bảng xếp hạng. Người chơi làm tờ khai GTGT, tính thuế TNCN theo biểu 5 bậc mới, quyết toán TNDN, rồi đến thuế TTĐB, thuế nhà thầu, thuế xuất nhập khẩu, lệ phí trước bạ và kê khai của hộ kinh doanh. Mỗi mảng kiến thức gắn với một vùng và những con quái đặt tên khá có duyên như Zombie Hóa Đơn Giả hay Heo Rừng Ngưỡng 1 Tỷ.",
+      "Luật chơi giữ đúng tinh thần câu khẩu hiệu \"khai thuế không khó, chỉ dễ đi tù\": bạn có 5 điểm uy tín, sai hoặc hết giờ là mất điểm và bị xử lý theo thang từ khiển trách đến khởi tố, sai đủ 5 lần sẽ phải vào trận trùm cuối Phòng hỏi cung. Mỗi câu hỏi có đáp án, giải thích và căn cứ pháp lý, nhưng game cũng nhắc rõ đây chỉ là mô phỏng, khi khai thật vẫn cần đối chiếu văn bản hiện hành."
+    ],
+    "storyEn": [
+      "Tax Shield, full title Tax Shield – Phiêu lưu săn quái thuế 2026 (Tax Monster Hunt 2026), is a browser game made by the Threads user @youngader6868 and opened to the community for free. There is nothing to install: enter a display name and you are in, and the interface has been rebuilt to work comfortably on a phone. The author calls it fairly heavy on knowledge, best suited to working professionals and students of accounting, auditing and finance.",
+      "You play a new accountant at Juventus Co., Ltd. just as the company receives a tax inspection notice. Boss Long hands out the day's work, a shield mascot called Khiên Khiên tags along with reminders, and the rival is Inspector Bóng Thuế (Shadow Tax). The game has 5 chapters matching 5 career ranks, from a bewildered intern to a tax director defending the company against the inspector, with everyday chores such as closing the books, reconciling payables and checking e-invoices in between.",
+      "The content spans 16 game modes and 5 difficulty levels across a 12-region map with badges and a leaderboard. Players fill in VAT returns, compute personal income tax under the new 5-bracket table, handle corporate income tax settlement, then excise tax, foreign contractor tax, import-export duty, registration fees and household business filings. Each knowledge area ties to a region and to monsters with charmingly specific names such as the Fake Invoice Zombie or the 1-Billion-Threshold Boar.",
+      "The rules keep to the slogan that tax filing is not hard, just easy to end up in jail over: you have 5 credibility points, a wrong answer or timeout costs one and triggers a penalty ladder from reprimand to prosecution, and five mistakes send you into the final boss fight, the Interrogation Room. Every question comes with an answer, an explanation and a legal basis, but the game stresses that it is only a simulation and real filings must be checked against current regulations."
+    ],
+    "sources": [
+      {
+        "name": "Tax Shield – Phiêu lưu săn quái thuế 2026 (trang game chính thức)",
+        "url": "https://khai-bao-thue-stimulator.vercel.app/"
+      },
+      {
+        "name": "OtaHub – Game mô phỏng khai thuế Tax Shield",
+        "url": "https://otahub.asia/tax-shield-game-mo-phong-khai-thue"
+      }
+    ],
+    "credits": [
+      {
+        "label": "Tác giả",
+        "labelEn": "Author",
+        "value": "@youngader6868 (Threads)"
+      },
+      {
+        "label": "Nền tảng chơi",
+        "labelEn": "Platform",
+        "value": "Trình duyệt web / Web browser, miễn phí / free"
+      }
+    ],
+    "scoreSource": null
   }
 }
