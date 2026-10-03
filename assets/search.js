@@ -5,7 +5,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-10-03",
     "excerpt": "Talking with We Are Aliens director Kōhei Kadowaki, Tatsuki Fujimoto says 19 pages a week left no time to plot. Here is why Chainsaw Man ended the way it did.",
-    "img": "/assets/img/fujimoto-chainsaw-man-ket-thuc-hero-v2.jpg",
+    "img": "/assets/img/fujimoto-chainsaw-man-ket-thuc-hero-v3.jpg",
     "tags": ["Chainsaw Man","Tatsuki Fujimoto","We Are Aliens","Kōhei Kadowaki","Look Back","Shonen Jump+"]
   },
   {
@@ -14,7 +14,7 @@ window.IDX = [
     "cat": "Manga",
     "date": "2026-10-03",
     "excerpt": "Trò chuyện với đạo diễn We Are Aliens, Tatsuki Fujimoto kể nhịp 19 trang mỗi tuần khiến ông không kịp lên cốt truyện. Vì sao Chainsaw Man kết như vậy?",
-    "img": "/assets/img/fujimoto-chainsaw-man-ket-thuc-hero-v2.jpg",
+    "img": "/assets/img/fujimoto-chainsaw-man-ket-thuc-hero-v3.jpg",
     "tags": ["Thợ Săn Quỷ Chainsaw Man","Tatsuki Fujimoto","We Are Aliens","Kōhei Kadowaki","Look Back","Shonen Jump+"]
   },
   {
