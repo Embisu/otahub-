@@ -12,7 +12,7 @@
     "rankings:sync": "node scripts/sync-ranking-catalog.mjs",
     "rankings:home": "node scripts/sync-home-rankings.mjs",
     "scores": "node scripts/build-rankings.mjs && node scripts/sync-ranking-catalog.mjs && node scripts/sync-profile-scores.mjs && node scripts/sync-home-rankings.mjs && node scripts/build-profiles.mjs && python scripts/build-thumbs.py --write && node scripts/build-profiles.mjs",
-    "hubs": "node scripts/sync-hub-articles.mjs && node scripts/sync-search-tags.mjs",
+    "hubs": "node scripts/sync-hub-articles.mjs && node scripts/normalize-tags.mjs && node scripts/sync-search-tags.mjs",
     "hubs:check": "node scripts/sync-hub-articles.mjs --check",
     "interlinks": "node scripts/build-interlinks.mjs",
     "interlinks:check": "node scripts/build-interlinks.mjs --check",
