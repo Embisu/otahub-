@@ -41,6 +41,8 @@ const hotMobile = (lang, act) => FEATURED ? `<a href="${FEATURED[lang].href}" cl
 const hotStrip = (lang) => FEATURED ? `<style data-hot-m>@media(min-width:1101px){.nav-hot-m{display:none!important}}</style><a href="${FEATURED[lang].href}" class="nav-hot-m" style="position:relative;overflow:hidden;z-index:2;display:flex;align-items:center;justify-content:center;gap:9px;padding:12px 16px;background:linear-gradient(135deg,#ff4fa3,#ff9a3c);color:#1a0a24;font-weight:800;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;text-decoration:none;white-space:nowrap;box-shadow:0 8px 26px rgba(255,79,163,.4)">${HOT_SHINE}${HOT_CLOCK}<span style="position:relative">${FEATURED[lang].label} · ${FEATURED[lang].sub}</span><span aria-hidden="true" style="position:relative;font-size:18px;line-height:1">›</span></a>` : '';
 // Mục thêm chỉ ở menu trượt (điện thoại/máy tính bảng): menu ngang đã chật (8 mục + nút nổi bật) nên không thêm vào đó
 const MOBILE_EXTRA = { vi: [['/ho-so/', 'Hồ sơ tác phẩm']], en: [['/en/profile/', 'Title profiles']] };
+// Menu ngang: mục "Hồ sơ" chỉ hiện từ 1600px trở lên (.nav-pf trong assets/mobile-fix.css); dưới đó menu đã kín chỗ
+const PF_SHORT = { vi: 'Hồ sơ', en: 'Profiles' };
 const CTA = { vi: ['/#newsletter', 'Đăng ký'], en: ['/en/#newsletter', 'Subscribe'] };
 const SUB = { vi: [['/about', 'Giới thiệu'], ['/#newsletter', 'Bản tin'], ['/lien-he', 'Liên hệ']], en: [['/en/about', 'About'], ['/en/#newsletter', 'Newsletter'], ['/en/contact', 'Contact']] };
 const LOGO = (home, lazy) => `<a href="${home}" class="logo" style="display:inline-flex"><img src="/assets/img/brand/otahub-icon.png" alt="" width="34" height="34" style="width:34px;height:34px;flex-shrink:0;display:inline-block"${lazy ? ' loading="lazy"' : ''}><span class="logo-t"><span class="logo-ota">Ota</span><span class="logo-hub">Hub</span></span></a>`;
@@ -99,7 +101,7 @@ function syncHtml(html, pageLang, pagePath) {
   html = replaceElement(html, /<ul class="nav-links"[^>]*>/, 'ul', (block) => {
     const lang = langOfBlock(block, pageLang);
     const act = actOf(block, lang);
-    return `<ul class="nav-links">${NAV[lang].map(([u, t]) => `<li><a href="${u}"${norm(u) === act ? ' class="active"' : ''}>${t}</a></li>`).join('')}${hotDesktop(lang, FEATURED && norm(FEATURED[lang].href) === act)}</ul>`;
+    return `<ul class="nav-links">${NAV[lang].map(([u, t]) => `<li><a href="${u}"${norm(u) === act ? ' class="active"' : ''}>${t}</a></li>`).join('')}${MOBILE_EXTRA[lang].map(([u, t]) => `<li class="nav-pf"><a href="${u}">${PF_SHORT[lang]}</a></li>`).join('')}${hotDesktop(lang, FEATURED && norm(FEATURED[lang].href) === act)}</ul>`;
   });
   // logo trên menu -> trang chủ đúng ngôn ngữ (trang 404 giữ đường dẫn tương đối riêng)
   html = html.replace(/<style data-hot-m>[\s\S]*?<\/style><a [^>]*class="nav-hot-m"[\s\S]*?<\/a>/g, '');
