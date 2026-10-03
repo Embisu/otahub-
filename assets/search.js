@@ -474,7 +474,7 @@ window.IDX = [
     "date": "2026-10-01",
     "excerpt": "Chainsaw Man – The Movie: Reze Arc and One Piece Season 2 are both nominated for Best Adaptation at the 2026 Harvey Awards.",
     "img": "/assets/img/uploads/inline-mup8rux6-2.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Chainsaw Man","One Piece","Netflix","Anime"]
   },
   {
     "title": "Look Back Tops 1 Million Copies: From One-Shot Manga to Live-Action Film Competing at Venice",
@@ -483,7 +483,7 @@ window.IDX = [
     "date": "2026-10-01",
     "excerpt": "Tatsuki Fujimoto’s Look Back has passed 1 million copies in circulation and has been adapted into a live-action film by Hirokazu Kore-eda that competed at Venice 2026.",
     "img": "/assets/img/uploads/knzgipw6-maxresdefault-1.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Look Back","Action","Shonen Jump","Manga"]
   },
   {
     "title": "Look Back vượt 1 triệu bản, phim live-action dự Venice",
@@ -501,7 +501,7 @@ window.IDX = [
     "date": "2026-10-01",
     "excerpt": "Chiikawa the Movie: The Secret of Mermaid Island is a hit in Japan, passing ¥13.9 billion, beating Conan and entering the list of the highest-grossing films in the country’s history.",
     "img": "/assets/img/uploads/inline-mup7jcqz-1.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Chiikawa","Box Office","Anime"]
   },
   {
     "title": "Phim Chiikawa vượt Thám Tử Lừng Danh Conan, cán mốc 13,9 tỷ yên phòng vé",
@@ -537,7 +537,7 @@ window.IDX = [
     "date": "2026-10-01",
     "excerpt": "Katsuwo, creator of Mitsuboshi Colors and Hitoribocchi, has launched a new shogi manga called Ōja no Ban Kuruwase in Comic Dengeki Daioh magazine.",
     "img": "/assets/img/uploads/oja-no-ban-kuruwase-daioh-g-cover.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Ōja no Ban Kuruwase","Manga"]
   },
   {
     "title": "Frieren: Beyond Journey’s End Season 3 Returns in October 2027",
@@ -546,7 +546,7 @@ window.IDX = [
     "date": "2026-10-01",
     "excerpt": "Frieren Season 3 returns in October 2027 with the Golden Land Arc. Here is the latest on the broadcast window, the Macht teaser and what we know about the next anime season.",
     "img": "/assets/img/uploads/inline-mup6iqrc-1.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Frieren","Frieren: Beyond Journey's End","Anime Expo","Madhouse","Anime"]
   },
   {
     "title": "Raincoat Pikachu Sells for $8.4 Million, Becoming the Second Most Expensive Pokémon Card Ever",
@@ -555,7 +555,7 @@ window.IDX = [
     "date": "2026-10-01",
     "excerpt": "A PSA 10 Raincoat Pikachu has sold for $8.4 million, becoming the second most expensive Pokémon card in history, behind only the Pikachu Illustrator.",
     "img": "/assets/img/uploads/raincoat-pikachu-card.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Pokémon","Pikachu","Pokémon cards","Gaming"]
   },
   {
     "title": "Thẻ Raincoat Pikachu được bán với giá 8,4 triệu USD",
@@ -564,7 +564,7 @@ window.IDX = [
     "date": "2026-10-01",
     "excerpt": "Raincoat Pikachu chuẩn PSA 10 vừa được bán với giá 8,4 triệu USD, trở thành thẻ Pokémon đắt thứ hai lịch sử chỉ sau Pikachu Illustrator.",
     "img": "/assets/img/uploads/raincoat-pikachu-card.jpg",
-    "tags": ["Gaming","Anime","Manga","Đánh giá","Xếp hạng"]
+    "tags": ["Pokémon","Pikachu","Thẻ Pokémon","Gaming"]
   },
   {
     "title": "GTA 6: A Dynamic Weather System Recreates Florida in Realistic Detail",
@@ -573,7 +573,7 @@ window.IDX = [
     "date": "2026-10-01",
     "excerpt": "GTA 6 is expected to feature a dynamic weather system that recreates many of Florida’s distinctive climate conditions in the open world of Leonida.",
     "img": "/assets/img/gta6/gta6-keys-bridge-aerial.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Grand Theft Auto VI","GTA 6","Open World","Gaming"]
   },
   {
     "title": "Crimson Desert: Charting the Unknown Delayed by 2 Weeks",
@@ -582,7 +582,7 @@ window.IDX = [
     "date": "2026-10-01",
     "excerpt": "Pearl Abyss has announced that Charting the Unknown, the first DLC for Crimson Desert, is delayed by two weeks from its original release date.",
     "img": "/assets/img/uploads/crimson-desert-charting-the-unknown-steam.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Crimson Desert","DLC","Gaming"]
   },
   {
     "title": "Crimson Desert: Charting the Unknown bị trì hoãn 2 tuần",
@@ -591,7 +591,7 @@ window.IDX = [
     "date": "2026-10-01",
     "excerpt": "Pearl Abyss vừa thông báo trì hoãn DLC đầu tiên của Crimson Desert, Charting the Unknown, thêm 2 tuần so với lịch phát hành ban đầu.",
     "img": "/assets/img/uploads/crimson-desert-charting-the-unknown-steam.jpg",
-    "tags": ["Gaming","Anime","Manga","Đánh giá","Xếp hạng"]
+    "tags": ["Crimson Desert","DLC","Gaming"]
   },
   {
     "title": "5 Free Survival Games on Steam That Survival Fans Shouldn’t Miss",
@@ -600,7 +600,7 @@ window.IDX = [
     "date": "2026-10-01",
     "excerpt": "Steam has plenty of free survival games worth trying, including standouts like Once Human, Fallout Shelter, Unturned, Muck and No More Room In Hell.",
     "img": "/assets/img/uploads/once-human-steam.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Steam","Free","Gaming"]
   },
   {
     "title": "Take-Two Shuts Down a GTA 5 Switch Port Just Ahead of GTA 6’s Launch",
@@ -609,7 +609,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Take-Two has asked Paralympics Productions to stop its project bringing GTA 5 to Nintendo Switch and Android, forcing the modding group to end development.",
     "img": "/assets/img/uploads/dwmbnfr7-01m3rh0fr64tp356kxxeyzxxjm-01m3rh0hwev4z7br9fg1d56edw.webp",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Grand Theft Auto VI","GTA 6","Nintendo","Rockstar Games","Gaming"]
   },
   {
     "title": "Call of Duty: Modern Warfare 4 Reveals PC Specs, Ray Tracing and the New Collateral Mode",
@@ -618,7 +618,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Modern Warfare 4 upgrades its PC graphics and adds Collateral, a new multiplayer mode focused on teamwork, loadout management and round-by-round tactics.",
     "img": "/assets/img/uploads/t5huoqlk-call-of-duty-modern-warfare-4-he-lo-cau-hinh-pc-cho-dot-beta.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Call of Duty: Modern Warfare 4","Switch 2","Gaming"]
   },
   {
     "title": "CONTROL Resonant Update Forces PC Players to Redownload the Entire Game",
@@ -627,7 +627,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "The new CONTROL Resonant update adds an Assist Mode for adjusting difficulty, but a bug forces PC players to redownload the full 92 GB game.",
     "img": "/assets/img/uploads/a5lb66t6-ctrl-r-story-01.webp",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["CONTROL Resonant","Gaming"]
   },
   {
     "title": "The Apothecary Diaries Gets Its First Console Game: The False Imperial Brother",
@@ -636,7 +636,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "The Apothecary Diaries is getting its first console game, The Apothecary Diaries: The False Imperial Brother, planned for early 2027. Maomao takes on a brand-new case.",
     "img": "/assets/img/covers/duoc-su-tu-su-ra-mat-game-console-dau-tien-the-apothecary-di.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["The Apothecary Diaries","Console","Steam","Switch 2","Nintendo","Gaming"]
   },
   {
     "title": "Top 10 Most Anticipated Anime Coming in 2027",
@@ -645,7 +645,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "The top 10 most anticipated anime of 2027 include The One Piece, Frieren Season 3, Sakamoto Days Season 2, Kagurabachi, The Apothecary Diaries and many other big names.",
     "img": "/assets/img/uploads/5y6fou86-voh-loat-anime-noi-tieng-se-ra-mat-phan-moi-trong-nam-2027-1.webp",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Top 10 anime","The One Piece","Netflix","Wit Studio","Anime 2027","Anime"]
   },
   {
     "title": "Naruto Confirms a New Anime After Three Quiet Years",
@@ -654,7 +654,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Viz Media has officially confirmed a brand-new “limited” Naruto TV anime after three quiet years, with full details to be revealed at NYCC 2026 on October 10.",
     "img": "/assets/img/covers/naruto-xac-nhan-anime-truyen-hinh-moi-nycc-2026.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Naruto","Anime"]
   },
   {
     "title": "Rom-Com Manga Everyone’s Darling Has a Secret Officially Gets an Anime",
@@ -663,7 +663,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Everyone’s Darling Has a Secret will bring the romance between schoolboy Hizashi Hiruno and idol Rei Kuromiya to TV in April 2027, produced by Studio Gekkō.",
     "img": "/assets/img/uploads/y8conuxi-1790594348-678c4ac8a2f01edc1c0d3d91656946a0.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Everyone's Darling Has a Secret","Anime"]
   },
   {
     "title": "Sakamoto Days Season 2 Reveals a New Trailer, Returns in January 2027",
@@ -672,7 +672,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Sakamoto Days Season 2 drops a new character trailer introducing Amane, Satoda and Yotsumura. The anime officially returns on Netflix in January 2027.",
     "img": "/assets/img/uploads/xwv04u5g-aaaaqfufjk-gc2lxpr5ck4nk1nrf47vpkxwl-guhkt3pdrxjqo-rhfhjgykp.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Sakamoto Days","Netflix","Anime"]
   },
   {
     "title": "Liar Game Officially Gets Season 2 After the Anime’s First Season Ends",
@@ -681,7 +681,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Liar Game’s first season has wrapped up, but Nao and Akiyama’s journey isn’t over. Season 2 has officially been confirmed, though its release window has not yet been announced.",
     "img": "/assets/img/uploads/liar-game-anime-trailer-2.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Liar Game","Anime"]
   },
   {
     "title": "Why Is The Isle So Popular in 2026?",
@@ -690,7 +690,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Why is The Isle so hot in 2026? A look at its dinosaur survival gameplay, the ongoing EVRIMA updates and the game’s sharp rise in player numbers.",
     "img": "/assets/img/uploads/ralzy7zw-711-thumb.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["The Isle","Gaming"]
   },
   {
     "title": "Laputa: Castle in the Sky Returns to Vietnamese Cinemas in 2026",
@@ -699,7 +699,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Laputa: Castle in the Sky returns to cinemas in Vietnam from September 25, 2026. Join Pazu and Sheeta on their adventure to the legendary flying castle.",
     "img": "/assets/img/uploads/eofdaug8-maxresdefault-1.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Castle in the Sky","Anime"]
   },
   {
     "title": "Hades 2 Wasn’t a Safe Business Choice for Supergiant Games",
@@ -708,7 +708,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "After the success of Hades, Supergiant Games wasn’t sure whether to make a sequel. In the end, Hades 2 was chosen because the team still saw so much left to explore.",
     "img": "/assets/img/covers/hades-2-khong-phai-lua-chon-kinh-doanh-an-toan-cua-supergian.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Hades II","Gaming"]
   },
   {
     "title": "7 The Witcher Games Worth Playing in 2026",
@@ -717,7 +717,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "The Witcher 3 is still the standout among games set in Andrzej Sapkowski’s world, but titles like The Witcher 2, Thronebreaker and Gwent are also worth exploring.",
     "img": "/assets/img/uploads/witcher-3-geralt-steam.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["The Witcher 3: Wild Hunt","Gaming"]
   },
   {
     "title": "Gears of War: E-Day Release Time and How to Play Early",
@@ -726,7 +726,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Gears of War: E-Day is ready for launch after finishing development. The game opens Early Access on October 1 before its official release on October 6, 2026.",
     "img": "/assets/img/uploads/p4z3x3u9-gears-of-war-e-day-revs-up-hype-with-a-playable-demo-at-game.webp",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Gears of War: E-Day","Xbox Game Pass","Gaming"]
   },
   {
     "title": "Boruto: Sarada Reveals More of Her Mangekyo Sharingan Power, but It Costs Her Eyesight",
@@ -735,7 +735,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Boruto: Two Blue Vortex Chapter 37 shows Sarada using Ohirume more flexibly than ever, while raising questions about the limits of her Mangekyo Sharingan.",
     "img": "/assets/img/covers/sarada-mangekyo-sharingan-suc-manh-ho-den-ohirume.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Boruto: Two Blue Vortex","Boruto","Sarada Uchiha","Mangekyo Sharingan","Naruto","Manga"]
   },
   {
     "title": "Diablo 4 Will Keep Getting New Seasons After Diablo 5 Launches",
@@ -744,7 +744,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Diablo 5 will open a new chapter for the franchise, but Blizzard has no plans to end Diablo 4 as soon as the next game arrives. Diablo 4’s seasons can continue as long as players stick around.",
     "img": "/assets/img/uploads/diablo-4-steam.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Diablo IV","Gaming"]
   },
   {
     "title": "Facing the Rain: A Heartfelt Indie RPG Now Free Forever on Steam",
@@ -753,7 +753,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Facing the Rain is an indie RPG that is now permanently free on Steam, with a heartfelt story, combat-free gameplay and a runtime of about 2–3 hours.",
     "img": "/assets/img/uploads/facing-the-rain-steam.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Facing the Rain","Steam","Indie","RPG","Free","Gaming"]
   },
   {
     "title": "Minecraft Live September 2026: Minecraft Prepares for a New Dimension",
@@ -762,7 +762,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Minecraft Live in September 2026 brought plenty of big announcements, but the highlight was The Sift, Minecraft’s fourth dimension, coming to Java and Bedrock in 2027.",
     "img": "/assets/img/uploads/cxo68b2g-what-time-does-minecraft-live-start-september-2026-210691766.webp",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Minecraft","Switch 2","Nintendo","Gaming"]
   },
   {
     "title": "Minecraft Adds The Sift, Its Fourth Dimension, After More Than 14 Years",
@@ -771,7 +771,7 @@ window.IDX = [
     "date": "2026-09-29",
     "excerpt": "Mojang has revealed The Sift, Minecraft’s first new dimension in over 14 years. It debuts in Minecraft Dungeons II before arriving in Java and Bedrock Edition in 2027.",
     "img": "/assets/img/uploads/pne31nyx-anh-bia-3.webp",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Minecraft","Gaming"]
   },
   {
     "title": "Delta Force Reveals Its 2027 Plans: Siege Map, Unreal Engine 5 and Detonation Mode",
@@ -780,7 +780,7 @@ window.IDX = [
     "date": "2026-09-29",
     "excerpt": "For its second anniversary, Delta Force outlined plans for late 2026 and 2027, including the Siege map on Unreal Engine 5, the Detonation mode, better matchmaking and anti-cheat.",
     "img": "/assets/img/uploads/delta-force-gameplay-steam.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Delta Force","Unreal Engine 5","Esports","Gaming"]
   },
   {
     "title": "The Apothecary Diaries Season 3 Premieres: A Thrilling New Journey for Maomao and Jinshi",
@@ -789,7 +789,7 @@ window.IDX = [
     "date": "2026-09-29",
     "excerpt": "Maomao returns with new cases after leaving the inner palace. Season 3 expands the story beyond the palace walls, pitting Maomao and Jinshi against new mysteries and conspiracies.",
     "img": "/assets/img/uploads/ytysmngi-anh-bia-1.webp",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["The Apothecary Diaries","Maomao","Crunchyroll","Anime"]
   },
   {
     "title": "Dragon Ball Super: Beerus – Goku Faces Beerus, the God of Destruction",
@@ -798,7 +798,7 @@ window.IDX = [
     "date": "2026-09-29",
     "excerpt": "Dragon Ball Super: Beerus pits Goku against Beerus, the God of Destruction, retelling the Super Saiyan God battle with upgraded visuals and content.",
     "img": "/assets/img/uploads/mvh7st8i-dragon-ball-super-beerus-remake-anime.avif",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Dragon Ball","Anime"]
   },
   {
     "title": "Dragon Ball Super: Beerus – Dragon Ball Super Returns in an Enhanced Edition",
@@ -807,7 +807,7 @@ window.IDX = [
     "date": "2026-09-29",
     "excerpt": "Dragon Ball Super: Beerus airs from October 11, 2026: an ENHANCED edition that reworks the Battle of Gods arc with new visuals, audio, footage and structure.",
     "img": "/assets/img/uploads/7b3q8nv7-maxresdefault-2.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Dragon Ball","Shueisha","Toei Animation","Anime"]
   },
   {
     "title": "The Witcher 3 Remastered Review: Visual Upgrades That Don’t Fully Convince",
@@ -816,7 +816,7 @@ window.IDX = [
     "date": "2026-09-29",
     "excerpt": "The Witcher 3 Remastered upgrades lighting, shadows and reflections with ray tracing, but some scenes look less natural than the original. Our review and score.",
     "img": "/assets/img/uploads/witcher-3-remastered-geralt-igni.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["The Witcher 3: Wild Hunt","Open World","Gaming"]
   },
   {
     "title": "Star Wars: Zero Company: A Squad of Misfits Makes for Surprising Battles",
@@ -825,7 +825,7 @@ window.IDX = [
     "date": "2026-09-29",
     "excerpt": "Star Wars: Zero Company brings XCOM-style turn-based tactics to Star Wars, with a squad of misfits whose relationships shape the battles. Here’s what works and what doesn’t.",
     "img": "/assets/img/uploads/star-wars-zero-company-steam.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Star Wars: Zero Company","Gaming"]
   },
   {
     "title": "Nintendo GameCube: The Little Purple Console That Left a Big Mark",
@@ -834,7 +834,7 @@ window.IDX = [
     "date": "2026-09-29",
     "excerpt": "The GameCube wasn’t Nintendo’s best-selling console, but its compact purple design, unusual controller and memorable library secured it a unique place in gaming history.",
     "img": "/assets/img/uploads/nintendo-gamecube-console.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Nintendo","Console","Sony","Gaming"]
   },
   {
     "title": "UK Games Expo Bans AI-Generated Content, With Only a Few Exceptions",
@@ -843,7 +843,7 @@ window.IDX = [
     "date": "2026-09-29",
     "excerpt": "UK Games Expo has banned tabletop products created wholly or substantially with AI, while still allowing assistive tools like spell checks and accessibility features.",
     "img": "/assets/img/covers/uk-games-expo-cam-noi-dung-ai-chi-chua-mot-so-truong-hop-ngo.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["UK Games Expo","AI-generated content","Tabletop games","Gaming"]
   },
   {
     "title": "The Apothecary Diaries Season 3: Maomao Takes on New Cases Into 2027",
@@ -852,7 +852,7 @@ window.IDX = [
     "date": "2026-09-29",
     "excerpt": "The Apothecary Diaries Season 3 returns on October 2, 2026, sending Maomao and Jinshi into new cases beyond the inner palace.",
     "img": "/assets/img/uploads/apothecary-diaries-s3-pv2.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["The Apothecary Diaries","Maomao","Anime"]
   },
   {
     "title": "Why You Should See Laputa: Castle in the Sky on the Big Screen",
@@ -861,7 +861,7 @@ window.IDX = [
     "date": "2026-09-29",
     "excerpt": "Laputa: Castle in the Sky returns to cinemas in Vietnam on September 25, 2026. Here’s why this Studio Ghibli classic is worth rewatching on the big screen.",
     "img": "/assets/img/uploads/bmnjzftx-1788505364131-c2-1788504847736952838044-0-0-1005-1920-crop-1.webp",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["Castle in the Sky","Anime"]
   },
   {
     "title": "We Are Aliens: French–Japanese Animated Film Hits Theaters on September 25",
@@ -870,7 +870,7 @@ window.IDX = [
     "date": "2026-09-29",
     "excerpt": "We Are Aliens is a French–Japanese animated co-production about friendship, childhood memories and things that are hard to forget, opening in Japanese theaters on September 25, 2026.",
     "img": "/assets/img/uploads/inline-mumbpbot-2.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings"]
+    "tags": ["We Are Aliens","Anime"]
   },
   {
     "title": "Kuri Hime Ayakashi Yobanashi to End on October 28",
@@ -888,7 +888,7 @@ window.IDX = [
     "date": "2026-10-01",
     "excerpt": "Sau gần hai năm đồng hành cùng độc giả, Kuri Hime Ayakashi Yobanashi chuẩn bị bước vào chương cuối. Manga kể về Kinuko, một giảng viên đại học sống tại khuôn viên đền Tamamayu, nơi những bí ẩn và hiện tượng siêu nhiên dần xuất hiện.",
     "img": "/assets/img/uploads/kuri-hime-ayakashi-yobanashi-cover.jpg",
-    "tags": ["Kuri Hime Ayakashi Yobanashi","Manga","Tin mới"]
+    "tags": ["Kuri-hime: Ayakashi Yobanashi","Manga"]
   },
   {
     "title": "Thợ Săn Quỷ Chainsaw Man và One Piece cùng góp mặt tại Harvey Awards 2026",
@@ -897,7 +897,7 @@ window.IDX = [
     "date": "2026-10-01",
     "excerpt": "Chainsaw Man – The Movie: Reze Arc và One Piece Season 2 cùng được đề cử Harvey Awards 2026 ở hạng mục Best Adaptation.",
     "img": "/assets/img/uploads/inline-mup8rux6-2.jpg",
-    "tags": ["Thợ Săn Quỷ Chainsaw Man","Anime","Tin anime"]
+    "tags": ["Thợ Săn Quỷ Chainsaw Man","One Piece","Anime"]
   },
   {
     "title": "Pháp Sư Tiễn Táng Frieren mùa 3: Golden Land Arc và câu chuyện về Macht",
@@ -924,7 +924,7 @@ window.IDX = [
     "date": "2026-10-01",
     "excerpt": "Katsuwo , tác giả của Mitsuboshi Colors và Hitoribocchi no Marumaru Seikatsu , đã trở lại với manga mới mang tên Ōja no Ban Kuruwase: Net Shōgi no Teiō, Riaru Taikai de Chōjō o Mezasu",
     "img": "/assets/img/uploads/oja-no-ban-kuruwase-daioh-g-cover.jpg",
-    "tags": ["Ōja No Ban Kuruwase","Manga","Tin mới"]
+    "tags": ["Ōja no Ban Kuruwase","Manga"]
   },
   {
     "title": "Pháp Sư Tiễn Táng Frieren mùa 3 chính thức trở lại tháng 10/2027",
@@ -942,7 +942,7 @@ window.IDX = [
     "date": "2026-10-01",
     "excerpt": "5 game sinh tồn miễn phí đáng thử trên Steam: Once Human, Fallout Shelter, Unturned, Muck và No More Room In Hell, từ xây căn cứ đến chiến đấu với zombie.",
     "img": "/assets/img/uploads/once-human-steam.jpg",
-    "tags": ["Gaming","Anime","Manga","Đánh giá","Xếp hạng"]
+    "tags": ["Steam","Miễn phí","Gaming"]
   },
   {
     "title": "GTA 6: Hệ thống thời tiết năng động tái hiện Florida chân thực",
@@ -951,7 +951,7 @@ window.IDX = [
     "date": "2026-10-01",
     "excerpt": "GTA 6 được kỳ vọng sở hữu hệ thống thời tiết năng động, tái hiện nhiều điều kiện khí hậu đặc trưng của Florida trong thế giới mở Leonida.",
     "img": "/assets/img/gta6/gta6-keys-bridge-aerial.jpg",
-    "tags": ["Gaming","Anime","Manga","Đánh giá","Xếp hạng"]
+    "tags": ["Grand Theft Auto VI","GTA 6","Gaming"]
   },
   {
     "title": "7 game The Witcher đáng chơi trong năm 2026",
@@ -960,7 +960,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "7 game The Witcher đáng chơi năm 2026, không chỉ The Witcher 3 mà còn The Witcher 2, Thronebreaker, Gwent, Reigns: The Witcher, từ RPG đến game thẻ bài.",
     "img": "/assets/img/uploads/witcher-3-geralt-steam.jpg",
-    "tags": ["Gaming","Anime","Manga","Đánh giá","Xếp hạng"],
+    "tags": ["The Witcher 3: Wild Hunt","RPG","Gaming"],
     "lang": "vi"
   },
   {
@@ -1000,7 +1000,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Modern Warfare 4 nâng cấp đồ họa PC và bổ sung Collateral, chế độ multiplayer mới tập trung vào phối hợp, quản lý trang bị và chiến thuật trong từng hiệp.",
     "img": "/assets/img/uploads/t5huoqlk-call-of-duty-modern-warfare-4-he-lo-cau-hinh-pc-cho-dot-beta.jpg",
-    "tags": ["Gaming","Anime","Manga","Đánh giá","Xếp hạng"],
+    "tags": ["Call of Duty","Modern Warfare 4","Switch 2","PlayStation","Gaming"],
     "lang": "vi"
   },
   {
@@ -1010,7 +1010,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Bản cập nhật CONTROL Resonant mới giúp chỉnh độ khó bằng Assist Mode, nhưng dính lỗi bắt người chơi PC phải tải lại toàn bộ 92 GB game.",
     "img": "/assets/img/uploads/a5lb66t6-ctrl-r-story-01.webp",
-    "tags": ["Gaming","Anime","Manga","Đánh giá","Xếp hạng"],
+    "tags": ["CONTROL Resonant","Gaming"],
     "lang": "vi"
   },
   {
@@ -1020,7 +1020,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Diablo 5 dự kiến ra mắt mùa xuân 2029, nhưng Blizzard cho biết Diablo 4 vẫn có thể tiếp tục ra mùa mới miễn là cộng đồng còn gắn bó với trò chơi.",
     "img": "/assets/img/uploads/diablo-4-steam.jpg",
-    "tags": ["Gaming","Anime","Manga","Đánh giá","Xếp hạng"],
+    "tags": ["Diablo IV","Gaming"],
     "lang": "vi"
   },
   {
@@ -1040,7 +1040,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Dược Sư Tự Sự có game console đầu tiên, The False Imperial Brother của Koei Tecmo và Gust, đưa Maomao vào vụ án mới, dự kiến ra mắt đầu năm 2027.",
     "img": "/assets/img/covers/duoc-su-tu-su-ra-mat-game-console-dau-tien-the-apothecary-di.jpg",
-    "tags": ["Gaming","Anime","Manga","Đánh giá","Xếp hạng"],
+    "tags": ["Dược Sư Tự Sự","The Apothecary Diaries","Console","Switch 2","Steam","Nintendo","Gaming"],
     "lang": "vi"
   },
   {
@@ -1050,7 +1050,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Facing the Rain là game RPG indie miễn phí vĩnh viễn trên Steam, sở hữu cốt truyện sâu lắng, lối chơi không chiến đấu và thời lượng khoảng 2–3 giờ.",
     "img": "/assets/img/uploads/facing-the-rain-steam.jpg",
-    "tags": ["Gaming","Anime","Manga","Đánh giá","Xếp hạng"],
+    "tags": ["Facing the Rain","Steam","RPG","Indie","Miễn phí","Gaming"],
     "lang": "vi"
   },
   {
@@ -1070,7 +1070,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Gears of War: E-Day ra mắt ngày 6/10/2026; người sở hữu Premium Edition chơi sớm từ 1/10, còn Xbox Game Pass có bản đầy đủ từ ngày phát hành.",
     "img": "/assets/img/uploads/p4z3x3u9-gears-of-war-e-day-revs-up-hype-with-a-playable-demo-at-game.webp",
-    "tags": ["Gaming","Anime","Manga","Đánh giá","Xếp hạng"],
+    "tags": ["Gears of War: E-Day","Xbox Game Pass","Gaming"],
     "lang": "vi"
   },
   {
@@ -1080,7 +1080,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Sau thành công của Hades, Supergiant từng không chắc có nên làm phần tiếp theo; họ chọn Hades 2 vì lý do sáng tạo hơn là phương án an toàn về kinh doanh.",
     "img": "/assets/img/covers/hades-2-khong-phai-lua-chon-kinh-doanh-an-toan-cua-supergian.jpg",
-    "tags": ["Gaming","Anime","Manga","Đánh giá","Xếp hạng"],
+    "tags": ["Hades II","Gaming"],
     "lang": "vi"
   },
   {
@@ -1150,7 +1150,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Minecraft Live tháng 9/2026: tâm điểm là The Sift, chiều không gian mới đầu tiên sau hơn 14 năm, cùng biome Ice Caves, mob mới và Minecraft Dungeons II.",
     "img": "/assets/img/uploads/cxo68b2g-what-time-does-minecraft-live-start-september-2026-210691766.webp",
-    "tags": ["Gaming","Anime","Manga","Đánh giá","Xếp hạng"],
+    "tags": ["Minecraft","Switch 2","Nintendo","Gaming"],
     "lang": "vi"
   },
   {
@@ -1190,7 +1190,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Take-Two yêu cầu Paralympics Productions dừng dự án đưa GTA 5 lên Nintendo Switch và Android, khiến nhóm modder phải kết thúc quá trình phát triển.",
     "img": "/assets/img/uploads/dwmbnfr7-01m3rh0fr64tp356kxxeyzxxjm-01m3rh0hwev4z7br9fg1d56edw.webp",
-    "tags": ["Gaming","Anime","Manga","Đánh giá","Xếp hạng"],
+    "tags": ["Grand Theft Auto VI","GTA 6","Nintendo","Rockstar Games","Gaming"],
     "lang": "vi"
   },
   {
@@ -1220,7 +1220,7 @@ window.IDX = [
     "date": "2026-09-30",
     "excerpt": "Vì sao The Isle hot trong năm 2026? Khám phá gameplay sinh tồn khủng long, các bản cập nhật EVRIMA và lượng người chơi tăng mạnh của tựa game.",
     "img": "/assets/img/uploads/ralzy7zw-711-thumb.jpg",
-    "tags": ["Gaming","Anime","Manga","Đánh giá","Xếp hạng"],
+    "tags": ["The Isle","Gaming"],
     "lang": "vi"
   },
   {
@@ -1270,7 +1270,7 @@ window.IDX = [
     "date": "2026-09-29",
     "excerpt": "Delta Force công bố kế hoạch cuối 2026 và năm 2027: bản đồ Siege trên Unreal Engine 5, chế độ Detonation, ghép trận cross-server và chống gian lận tốt hơn.",
     "img": "/assets/img/uploads/delta-force-gameplay-steam.jpg",
-    "tags": ["Gaming","Anime","Manga","Đánh giá","Xếp hạng"],
+    "tags": ["Delta Force","Unreal Engine 5","Esports","Gaming"],
     "lang": "vi"
   },
   {
@@ -1320,7 +1320,7 @@ window.IDX = [
     "date": "2026-09-29",
     "excerpt": "Mojang giới thiệu The Sift, chiều không gian thứ tư của Minecraft sau hơn 14 năm, xuất hiện trước trong Minecraft Dungeons II rồi đến Java và Bedrock năm 2027.",
     "img": "/assets/img/uploads/pne31nyx-anh-bia-3.webp",
-    "tags": ["Gaming","Anime","Manga","Đánh giá","Xếp hạng"],
+    "tags": ["Minecraft","Gaming"],
     "lang": "vi"
   },
   {
@@ -2300,7 +2300,7 @@ window.IDX = [
     "date": "2026-09-20",
     "excerpt": "Trận chiến Record of Ragnarok liệu có đơn thuần quyết định số phận nhân loại, hay Odin đang toan tính kế hoạch hồi sinh các Primordial Gods cổ xưa?",
     "img": "/assets/img/covers/dai-chien-nhan-than-odin-thuc-su-dang-chuan-bi-cho-dieu-gi.jpg",
-    "tags": ["Gaming","Anime","Manga","Đánh giá","Xếp hạng","Đại Chiến Nhân Thần","2026"],
+    "tags": ["Record of Ragnarok","Đại Chiến Nhân Thần","Anime"],
     "lang": "vi"
   },
   {
@@ -2510,7 +2510,7 @@ window.IDX = [
     "date": "2026-09-09",
     "excerpt": "Honkai: Star Rail x Fate/stay night [Unlimited Blade Works] ra mắt 11/7/2025 với Saber (Hủy Diệt, hệ Phong) và Archer (Săn Bắn, hệ Lượng Tử).",
     "img": "/assets/img/news-honkai-star-rail-fate-stay-night.jpg",
-    "tags": ["Gaming","Anime","Manga","Đánh giá","Xếp hạng","Honkai","2026"],
+    "tags": ["Honkai: Star Rail","Crossover","HoYoverse","Gaming"],
     "lang": "vi"
   },
   {
@@ -2520,7 +2520,7 @@ window.IDX = [
     "date": "2026-09-09",
     "excerpt": "Honkai: Star Rail x Fate/stay night [Unlimited Blade Works] launched July 11, 2025 with Saber (Destruction, Wind) and Archer (The Hunt, Quantum), original.",
     "img": "/assets/img/news-honkai-star-rail-fate-stay-night.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings","Honkai","2026"],
+    "tags": ["Honkai: Star Rail","HoYoverse","Gaming"],
     "lang": "en"
   },
   {
@@ -2530,7 +2530,7 @@ window.IDX = [
     "date": "2026-09-09",
     "excerpt": "Sloclap confirms the Rematch x Blue Lock collaboration starts September 24, 2026 with Season 5, adding Isagi, Rin, Bachira and Nagi as playable characters.",
     "img": "/assets/img/covers/rematch-x-blue-lock-crossover-event.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings","Sloclap x Blue Lock","PS5","PC"],
+    "tags": ["Rematch","Blue Lock","Sloclap","Crossover","Gaming"],
     "lang": "en"
   },
   {
@@ -2560,7 +2560,7 @@ window.IDX = [
     "date": "2026-09-09",
     "excerpt": "The Eminence in Shadow: Phantom Echoes là game hành động roguelite 3D ra mắt năm 2027. Xem gameplay, cốt truyện, nền tảng và thông tin đã xác nhận.",
     "img": "/assets/img/real-eminence-phantom-echoes.jpg",
-    "tags": ["Gaming","Anime","Manga","Đánh giá","Xếp hạng","PS5","PC","Switch 2"],
+    "tags": ["Switch 2","Steam","Nintendo","Gaming"],
     "lang": "vi"
   },
   {
@@ -2570,7 +2570,7 @@ window.IDX = [
     "date": "2026-09-09",
     "excerpt": "The Eminence in Shadow: Phantom Echoes, a 3D action roguelite by Aiming and NIS America, was announced at the September 2026 State of Play for a 2027 release.",
     "img": "/assets/img/real-eminence-phantom-echoes.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Rankings","The Eminence in Shadow","PS5","PC"],
+    "tags": ["The Eminence in Shadow","Steam","Switch 2","Nintendo","Mobile","Gaming"],
     "lang": "en"
   },
   {
@@ -2690,7 +2690,7 @@ window.IDX = [
     "date": "2026-09-07",
     "excerpt": "Solo Leveling: Ragnarok ra mắt bản tiếng Anh tập 1 và mở ra triển vọng chuyển thể anime sau thành công vang dội của nguyên tác.",
     "img": "/assets/img/covers/solo-leveling-ragnarok-anime-chuyen-the-va-trailer-dau-tien.jpg",
-    "tags": ["Manga","Tôi Thăng Cấp Một Mình","Trailer","2026","Tin tức","OtaHub"],
+    "tags": ["Tôi Thăng Cấp Một Mình","Solo Leveling: Ragnarok","Manga"],
     "lang": "vi"
   },
   {
@@ -2980,7 +2980,7 @@ window.IDX = [
     "date": "2026-08-25",
     "excerpt": "MAPPA chính thức khởi động sản xuất Chainsaw Man Mùa 2 chuyển thể arc Sát Thủ Quốc Tế sau cú hích doanh thu 191,4 triệu USD từ phim điện ảnh Reze Arc.",
     "img": "/assets/img/yt-s8cP1Vt5US8.jpg",
-    "tags": ["Anime","MAPPA","Trailer","2026","Tin tức","OtaHub"],
+    "tags": ["Thợ Săn Quỷ Chainsaw Man","Shueisha","MAPPA","Anime"],
     "lang": "vi"
   },
   {
@@ -3140,7 +3140,7 @@ window.IDX = [
     "date": "2026-08-24",
     "excerpt": "Solo Leveling: Arise của Netmarble vượt 50 triệu lượt tải sau khoảng 5 tháng kể từ khi ra mắt toàn cầu tháng 5/2024, kèm sự kiện điểm danh tặng tối đa 10.000.",
     "img": "/assets/img/uploads/solo-leveling-arise-key-art.jpg",
-    "tags": ["Gaming","Solo Leveling","2026","Tin tức","OtaHub"],
+    "tags": ["Tôi Thăng Cấp Một Mình","Solo Leveling","Gaming"],
     "lang": "vi"
   },
   {
@@ -3340,7 +3340,7 @@ window.IDX = [
     "date": "2026-08-18",
     "excerpt": "Call of Duty: Modern Warfare 4 hit the Xbox booth at Gamescom 2026 with a hands-on Core 6v6 Multiplayer demo, confirming an October 23 release on Nintendo.",
     "img": "/assets/img/news-call-of-duty-modern-warfare-4-gamescom-playable.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Xbox","Nintendo","PS5","PC"],
+    "tags": ["Call of Duty: Modern Warfare 4","Gamescom 2026","Switch 2","Nintendo"],
     "lang": "en"
   },
   {
@@ -3440,7 +3440,7 @@ window.IDX = [
     "date": "2026-08-18",
     "excerpt": "Flamecraft, the board game adaptation from Monster Couch, confirms PS5, Xbox Series, and Switch versions, with a free demo available since July 28.",
     "img": "/assets/img/news-flamecraft-ps5-demo.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","PS5","Xbox","PC","Nintendo"],
+    "tags": ["Flamecraft","Nintendo","Gaming"],
     "lang": "en"
   },
   {
@@ -3540,7 +3540,7 @@ window.IDX = [
     "date": "2026-08-18",
     "excerpt": "Halo: Campaign Evolved launched July 28 on Xbox, PC, and PS5 for the first time, detailing 13 changes that modernize the original Combat Evolved campaign.",
     "img": "/assets/img/news-halo-campaign-evolved-modernizes.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Halo","PS5","PC","Xbox"],
+    "tags": ["Halo","Steam","Game Pass","Gaming"],
     "lang": "en"
   },
   {
@@ -3570,7 +3570,7 @@ window.IDX = [
     "date": "2026-08-18",
     "excerpt": "Juju Fes 2026 -5th Anniversary- officially opens August 29-30 at K-Arena Yokohama with live-dubbing, a live band, and possible Jujutsu Kaisen Season 4 news.",
     "img": "/assets/img/covers/chu-thuat-hoi-chien-juju-fes-2026-anniversary.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","MAPPA","Trailer","2026"],
+    "tags": ["Jujutsu Kaisen","Juju Fes 2026"],
     "lang": "en"
   },
   {
@@ -3610,7 +3610,7 @@ window.IDX = [
     "date": "2026-08-18",
     "excerpt": "LEGO Donkey Kong Arcade, set 72051 with 1,367 pieces, recreates the 1981 arcade cabinet with working mechanisms, priced $199.99, launching August 1.",
     "img": "/assets/img/news-lego-donkey-kong-arcade.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Nintendo","2026"],
+    "tags": ["Nintendo","Gaming"],
     "lang": "en"
   },
   {
@@ -3640,7 +3640,7 @@ window.IDX = [
     "date": "2026-08-18",
     "excerpt": "Lou’s Lagoon, the cozy building adventure from Tiny Roar, confirms an August 27 PS5 launch with a new gameplay walkthrough and Deluxe Edition.",
     "img": "/assets/img/news-lous-lagoon-ps5-august-27.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","PS5","Nintendo","PC","Xbox"],
+    "tags": ["Lou's Lagoon","Switch 2","Nintendo","Gaming"],
     "lang": "en"
   },
   {
@@ -3670,7 +3670,7 @@ window.IDX = [
     "date": "2026-08-18",
     "excerpt": "Marvel Rivals update 20260827 adds a limited-time Infinity Saga store tab gathering every MCU-inspired costume bundle, plus a 20% Encore Coupon.",
     "img": "/assets/img/news-marvel-rivals-endgame-encore-update.webp",
-    "tags": ["Gaming","Anime","Manga","Reviews","2026","News","OtaHub"],
+    "tags": ["Marvel Rivals"],
     "lang": "en"
   },
   {
@@ -3700,7 +3700,7 @@ window.IDX = [
     "date": "2026-08-18",
     "excerpt": "Insomniac Games revealed a Marvel’s Wolverine story trailer at San Diego Comic-Con, confirming composer David Fleming and a September 15, 2026 PS5 launch.",
     "img": "/assets/img/yt-3Z42tBfBLJY.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Trailer","PS5","2026"],
+    "tags": ["Marvel's Wolverine","Gaming"],
     "lang": "en"
   },
   {
@@ -3730,7 +3730,7 @@ window.IDX = [
     "date": "2026-08-18",
     "excerpt": "Monster Hunter Wilds review: Capcom adds Focus Mode, the Seikret mount and a dynamic ecosystem, Metacritic 88 and 8 million copies in three days; PC.",
     "img": "/assets/img/monster-hunter-wilds-review-hero.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Monster Hunter Wilds","PC","Review","2026"],
+    "tags": ["Monster Hunter Wilds","Steam","Metacritic","Capcom"],
     "lang": "en"
   },
   {
@@ -3740,7 +3740,7 @@ window.IDX = [
     "date": "2026-08-18",
     "excerpt": "Crunchyroll confirms Romelia War Chronicle and expands its Summer 2026 lineup with BLACK TORCH, Link Click Season 3 and more.",
     "img": "/assets/img/anime-nyc-2026-hero-v2.png",
-    "tags": ["Gaming","Anime","Manga","Reviews","Crunchyroll","2026"],
+    "tags": ["Romelia War Chronicle","Crunchyroll","Anime"],
     "lang": "en"
   },
   {
@@ -3800,7 +3800,7 @@ window.IDX = [
     "date": "2026-08-18",
     "excerpt": "One Punch Man artist Yusuke Murata revealed he used his son Keisuke, a competitive bodybuilder, as a real-life reference for Chapter 283",
     "img": "/assets/img/pool-opm-1.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","One Punch Man","Trailer","2026"],
+    "tags": ["One Punch Man"],
     "lang": "en"
   },
   {
@@ -3920,7 +3920,7 @@ window.IDX = [
     "date": "2026-08-18",
     "excerpt": "Yuzusoft confirms an anime adaptation of its visual novel Senren＊Banka for 2027, with the original voice cast reprising their roles and KOTOKO performing.",
     "img": "/assets/img/news-senren-banka-anime-2027.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Anime News Network","2026"],
+    "tags": ["Senren Banka","Anime"],
     "lang": "en"
   },
   {
@@ -3930,7 +3930,7 @@ window.IDX = [
     "date": "2026-08-18",
     "excerpt": "Seven Seas announced 18 new licenses at Anime NYC 2026 spanning BL, GL, manhwa, danmei and audiobooks, led by priest’s Faraway Wanderers.",
     "img": "/assets/img/news-seven-seas-18-licenses-anime-nyc-2026.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Manhwa","2026"],
+    "tags": ["Seven Seas","Anime NYC 2026","Manga licensing","Manhwa"],
     "lang": "en"
   },
   {
@@ -4020,7 +4020,7 @@ window.IDX = [
     "date": "2026-08-18",
     "excerpt": "Frogwares launched The Sinking City 2 on August 18, 2026 for PC, PS5 and Xbox Series X/S, trading detective work for classic survival horror.",
     "img": "/assets/img/news-sinking-city-2-launch.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Xbox","PS5","PC","Sony"],
+    "tags": ["The Sinking City 2","Survival Horror","Steam","Metacritic","Gaming"],
     "lang": "en"
   },
   {
@@ -4060,7 +4060,7 @@ window.IDX = [
     "date": "2026-08-18",
     "excerpt": "Tokyopop revealed seven new manga licenses at Anime NYC 2026, including Garagarapon, And Then, She Became Mina, and SIX: Paths of Horror, set for 2027 release.",
     "img": "/assets/img/uploads/tokyopop-logo.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","Manhwa","2026"],
+    "tags": ["Tokyopop","Anime NYC 2026","Manga licensing","Manhwa"],
     "lang": "en"
   },
   {
@@ -4070,7 +4070,7 @@ window.IDX = [
     "date": "2026-08-18",
     "excerpt": "August 18 is one of VIZ's busiest release dates of the month, spanning action shonen, historical seinen and premium collected editions.",
     "img": "/assets/img/covers/viz-manga-phat-hanh-18-8-2026.jpg",
-    "tags": ["Gaming","Anime","Manga","Reviews","VIZ's August 18 Slate","2026"],
+    "tags": ["Vagabond","Undead Unluck","VIZ's August 18 Slate","Shonen","Manga"],
     "lang": "en"
   },
   {
